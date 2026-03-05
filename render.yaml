@@ -1,0 +1,18 @@
+# Render Deployment Configuration
+# Place this in your repository root as render.yaml
+
+services:
+  - type: web
+    name: exhaust-analyzer
+    env: docker
+    plan: free  # or 'starter' for $7/month, etc.
+    dockerfilePath: Dockerfile
+    healthCheckPath: /
+    envVars:
+      - key: FLASK_APP
+        value: app.py
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true  # Render will generate a random secret
+    # Optional: custom domain will be added in Render dashboard after deploy

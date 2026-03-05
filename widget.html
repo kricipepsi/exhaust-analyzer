@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-Gas Exhaust Analyzer Widget</title>
+    <style>
+        :root {
+            primary: #0066cc;
+            bg: #f5f7fa;
+            text: #333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            margin: 0;
+            padding: 20px;
+            color: var(--text);
+        }
+        .widget-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #0066cc 0%, #0048a0 100%);
+            color: white;
+            padding: 20px 30px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.6rem;
+        }
+        .header p {
+            margin: 8px 0 0;
+            opacity: 0.9;
+        }
+        .controls {
+            padding: 20px 30px;
+            background: #f8faff;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        .controls label {
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        button {
+            background: white;
+            border: 1px solid #0066cc;
+            color: #0066cc;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        button:hover {
+            background: #0066cc;
+            color: white;
+        }
+        .iframe-wrapper {
+            position: relative;
+            width: 100%;
+            height: 800px;
+            border: none;
+            background: white;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .instructions {
+            padding: 20px 30px;
+            background: #f0f4f8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .instructions code {
+            background: #e8eef2;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+            color: #666;
+            background: #f8f8f8;
+        }
+        @media (max-width: 600px) {
+            .header, .controls, .instructions {
+                padding: 15px;
+            }
+            .iframe-wrapper {
+                height: 1000px;  /* more height for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="widget-container">
+        <div class="header">
+            <h1>5-Gas Exhaust Analyzer</h1>
+            <p>Embedded diagnostic tool for engine health assessment</p>
+        </div>
+
+        <div class="controls">
+            <label>Demo scenarios:</label>
+            <button data-sample="rich">Rich Mixture</button>
+            <button data-sample="lean">Lean Condition</button>
+            <button data-sample="misfire">Misfire</button>
+            <button data-sample="normal">Normal</button>
+            <button id="clearBtn">Clear</button>
+        </div>
+
+        <div class="iframe-wrapper">
+            <iframe id="analyzer" src="/" title="Exhaust Analyzer"></iframe>
+        </div>
+
+        <div class="instructions">
+            <h3>How to Embed on Your Site</h3>
+            <p>Add the following HTML snippet to your page. Replace <code>YOUR_DOMAIN</code> with the URL where this widget is hosted.</p>
+            <pre><code>&lt;iframe src="https://YOUR_DOMAIN/static/widget.html" width="100%" height="900" frameborder="0"&gt;&lt;/iframe&gt;</code></pre>
+            <p><strong>Note:</strong> The widget must be served from the same origin as the analyzer for the sample data buttons to work. If embedding on a different domain, the buttons will not function due to browser security restrictions, but the analyzer will still be usable manually.</p>
+        </div>
+
+        <footer>
+            Powered by the 5-Gas Exhaust Analyzer • <a href="https://github.com/yourrepo" target="_blank">Learn more</a>
+        </footer>
+    </div>
+
+    <script>
+        // Wait for the iframe to load before enabling sample buttons
+        const iframe = document.getElementById('analyzer');
+        let iframeDoc = null;
+
+        iframe.addEventListener('load', function() {
+            try {
+                iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                enableSampleButtons();
+            } catch (e) {
+                console.warn('Cannot access iframe document (cross-origin). Sample buttons disabled.');
+            }
+        });
+
+        function enableSampleButtons() {
+            const buttons = document.querySelectorAll('button[data-sample]');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => loadSample(btn.dataset.sample));
+            });
+            document.getElementById('clearBtn').addEventListener('click', clearForm);
+        }
+
+        // Sample data sets (from README and added scenarios)
+        const samples = {
+            rich: {
+                lambda_idle: 0.85, co_idle: 3.5, co2_idle: 10.0, o2_idle: 0.2, hc_idle: 800, nox_idle: 50,
+                lambda_high: 0.88, co_high: 2.8, co2_high: 11.0, o2_high: 0.5, hc_high: 400, nox_high: 100
+            },
+            lean: {
+                lambda_idle: 1.25, co_idle: 0.05, co2_idle: 5.0, o2_idle: 3.5, hc_idle: 150, nox_idle: 300,
+                lambda_high: 1.30, co_high: 0.04, co2_high: 5.5, o2_high: 4.0, hc_high: 200, nox_high: 500
+            },
+            misfire: {
+                lambda_idle: 1.05, co_idle: 0.1, co2_idle: 5.0, o2_idle: 3.0, hc_idle: 3000, nox_idle: 20,
+                lambda_high: 1.08, co_high: 0.08, co2_high: 5.5, o2_high: 3.5, hc_high: 2500, nox_high: 50
+            },
+            normal: {
+                lambda_idle: 1.00, co_idle: 0.12, co2_idle: 13.5, o2_idle: 0.7, hc_idle: 100, nox_idle: 60,
+                lambda_high: 1.00, co_high: 0.15, co2_high: 14.0, o2_high: 0.9, hc_high: 80, nox_high: 130
+            }
+        };
+
+        function fillForm(data) {
+            if (!iframeDoc) return;
+            const form = iframeDoc.querySelector('form');
+            if (!form) {
+                alert('Analyzer form not found. Make sure the analyzer is loaded.');
+                return;
+            }
+            // Set input values
+            Object.entries(data).forEach(([name, value]) => {
+                const input = form.querySelector(`[name="${name}"]`);
+                if (input) {
+                    input.value = value;
+                    // Trigger change event if needed
+                    input.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+            });
+            // Auto-submit after a short delay to allow UI update
+            setTimeout(() => {
+                form.submit();
+            }, 300);
+        }
+
+        function loadSample(scenario) {
+            if (samples[scenario]) {
+                fillForm(samples[scenario]);
+            }
+        }
+
+        function clearForm() {
+            if (!iframeDoc) return;
+            const form = iframeDoc.querySelector('form');
+            if (!form) return;
+            form.reset();
+        }
+    </script>
+</body>
+</html>
