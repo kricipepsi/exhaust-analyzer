@@ -1,3 +1,4 @@
 flask>=3.0
+gunicorn>=21.0
 # Core dependencies are already installed:
 # pandas, numpy, scikit-learn, sentence-transformers, lancedb, sqlitedict, pymupdf4llm, pdfplumber, pillow, pytesseract, httpx, requests, beautifulsoup4, pre-commit, invoke, typer, rich
