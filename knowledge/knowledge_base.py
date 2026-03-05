@@ -288,3 +288,260 @@ MOT_LIMITS = {
     "lambda_min": 0.97,
     "lambda_max": 1.03,
 }
+
+# ----------------------------------------------------------------------------
+# Fault Pattern Reference Table (from tabelagas.xlsx)
+# ----------------------------------------------------------------------------
+# This table provides qualitative expected changes for each gas when a
+# particular symptom/fault is present. The values are descriptive strings
+# like "Large increase", "Some decrease", "No change", etc.
+#
+# Use `get_table_pattern()` to retrieve a pattern and optionally convert
+# qualitative descriptors into numeric indicator conditions based on the
+# normal ranges and thresholds defined above.
+#
+# Columns: Symptom | HC | CO | CO2 | O2 | NOx
+
+TABLE_PATTERNS_RAW = {
+    "ignition_misfire": {
+        "hc": "Large increase",
+        "co": "Some decrease",
+        "co2": "Some Decrease",
+        "o2": "Some-large increase",
+        "nox": "Some-large decrease",
+    },
+    "compression_loss": {
+        "hc": "Some-large Increase",
+        "co": "Some decrease",
+        "co2": "Some decrease",
+        "o2": "Some Increase",
+        "nox": "Some-large decrease",
+    },
+    "rich_mixture_alt": {  # Note: differs slightly from FAULT_PATTERNS['rich_mixture']
+        "hc": "Some-large Increase",
+        "co": "Large increase",
+        "co2": "Some decrease",
+        "o2": "Some Decrease",
+        "nox": "Some-large decrease",
+    },
+    "lean_mixture_alt": {
+        "hc": "Some Increase",
+        "co": "Large Decrease",
+        "co2": "Some Decrease",
+        "o2": "Some Increase",
+        "nox": "Some-large increase",
+    },
+    "very_lean_mixture": {
+        "hc": "Large Increase",
+        "co": "Large Decrease",
+        "co2": "Some Decrease",
+        "o2": "Large Increase",
+        "nox": "Some-large decrease",
+    },
+    "slightly_retarded_timing": {
+        "hc": "Some decrease",
+        "co": "No change or Some increase",
+        "co2": "No change",
+        "o2": "No change",
+        "nox": "Large Decrease",
+    },
+    "very_retarded_timing": {
+        "hc": "Some Increase",
+        "co": "No Change",
+        "co2": "Some-large Decrease",
+        "o2": "No Change",
+        "nox": "Large Decrease",
+    },
+    "advanced_timing": {
+        "hc": "Some Increase",
+        "co": "No change or Some-decrease",
+        "co2": "No change",
+        "o2": "No Change",
+        "nox": "Large Increase",
+    },
+    "egr_operating": {
+        "hc": "No Change",
+        "co": "No Change",
+        "co2": "Some Decrease",
+        "o2": "No Change",
+        "nox": "Large Decrease",
+    },
+    "egr_leaking": {
+        "hc": "Some Increase",
+        "co": "No Change",
+        "co2": "No change or Some decrease",
+        "o2": "No Change",
+        "nox": "Some decrease or No change",
+    },
+    "air_injection_operation": {
+        "hc": "Large Decrease",
+        "co": "Large Decrease",
+        "co2": "Some-large Decrease",
+        "o2": "Large Increase",
+        "nox": "No Change",
+    },
+    "catalytic_converter_functional": {
+        "hc": "Some Decrease",
+        "co": "Some Decrease",
+        "co2": "Some Increase",
+        "o2": "Some Decrease",
+        "nox": "Some Decrease W/3-w cat",  # note: weird text, keep as-is
+    },
+    "catalytic_converter_not_functional": {
+        "hc": "Some-large Increase",
+        "co": "Some-large increase",
+        "co2": "Some Decrease",
+        "o2": "Some Increase",
+        "nox": "Some Increased W/3-w cat",
+    },
+    "exhaust_leak": {
+        "hc": "Some Decrease",
+        "co": "Some Decrease",
+        "co2": "Some Decrease",
+        "o2": "Some Increase",
+        "nox": "No change",
+    },
+    "worn_engine": {
+        "hc": "Some Increase",
+        "co": "Some Increase",
+        "co2": "Some Decrease",
+        "o2": "Some Decrease",
+        "nox": "No change or Slight decrease",
+    },
+    "o2_sensor_biased_low": {
+        "hc": "Some Increase",
+        "co": "Some-large Increase",
+        "co2": "Some Decrease",
+        "o2": "Some Decrease",
+        "nox": "Some Decrease",
+    },
+    "o2_sensor_biased_high": {
+        "hc": "Some Increase",
+        "co": "Some decrease",
+        "co2": "Some Decrease",
+        "o2": "Some increase",
+        "nox": "Some increase",
+    },
+    "flat_camshaft": {
+        "hc": "No change or Some decrease",
+        "co": "Some Decrease",
+        "co2": "Some Decrease",
+        "o2": "No change or Some decrease",
+        "nox": "No change or Some decrease",
+    },
+}
+
+# Mapping of qualitative change descriptors to numeric conditions.
+# This is approximate and should be calibrated to specific engine/analyzer.
+QUALITATIVE_TO_INDICATOR = {
+    # Format: "descriptor": (comparison_op, threshold_modifier)
+    # comparison_op: "<", ">", "~" (within normal), "!" (outside normal)
+    # threshold_modifier: multiplier or absolute offset applied to normal range or THRESHOLDS
+    "large increase": (">", 2.0),      # > 2x typical or > threshold_max
+    "some increase": (">", 1.2),       # > 1.2x typical or > threshold_normal
+    "some-large increase": (">", 1.5),
+    "some decrease": ("<", 0.8),       # < 0.8x typical
+    "some-large decrease": ("<", 0.6),
+    "large decrease": ("<", 0.5),
+    "no change": ("~", 1.0),           # within normal expected range
+    "no change or some increase": ("~", 1.1),  # either normal or slightly above
+    "no change or some decrease": ("~", 0.9),
+    "some Decrease": ("<", 0.8),       # case variations
+    "Some Increase": (">", 1.2),
+    "Large Increase": (">", 2.0),
+    "Large decrease": ("<", 0.5),
+    "Some-large increase": (">", 1.5),
+    "Some-large decrease": ("<", 0.6),
+    "No Change": ("~", 1.0),
+    # For mixed descriptors, fallback to moderate bounds
+}
+
+def get_table_pattern(symptom_key: str) -> Optional[Dict[str, str]]:
+    """
+    Retrieve the qualitative pattern for a given symptom from the reference table.
+    Args:
+        symptom_key: e.g., "ignition_misfire", "rich_mixture_alt"
+    Returns:
+        dict mapping gas names (hc, co, co2, o2, nox) to change descriptors, or None if not found.
+    """
+    return TABLE_PATTERNS_RAW.get(symptom_key)
+
+def convert_qualitative_to_indicator(gas: str, descriptor: str, condition: str = "idle") -> Optional[str]:
+    """
+    Convert a qualitative change descriptor into a numeric condition string
+    compatible with FAULT_PATTERNS indicator format.
+    Example: "Large increase" for hc might become "hc > 2000" (using THRESHOLDS).
+    This is approximate and may need tuning.
+    Args:
+        gas: one of "hc", "co", "co2", "o2", "nox", "lambda"
+        descriptor: qualitative string like "Large increase"
+        condition: "idle" or "high_idle" (to pick appropriate normal range)
+    Returns:
+        condition string like ">2000" or "<0.5", or None if unknown descriptor.
+    """
+    if gas not in ["lambda", "co", "co2", "o2", "hc", "nox"]:
+        return None
+    descriptor = descriptor.strip().lower()
+    op, modifier = QUALITATIVE_TO_INDICATOR.get(descriptor, (">", 1.5) if "increase" in descriptor else ("<", 0.7))
+
+    # Determine baseline normal value
+    normals = NORMAL_IDLE if condition == "idle" else NORMAL_HIGH_IDLE
+    if gas in normals:
+        normal_range = normals[gas]
+        typical = normal_range.typical if normal_range.typical is not None else (normal_range.min + normal_range.max) / 2
+    elif gas == "lambda":
+        # lambda handled separately but similar
+        normal_range = normals.get("lambda", Range(0.98, 1.02, "ratio", 1.0))
+        typical = normal_range.typical if normal_range.typical is not None else 1.0
+    else:
+        # unknown gas
+        return None
+
+    # For increase > typical
+    if op == ">":
+        # Use multiplier on typical or apply to threshold upper bound if available
+        # For HC, use hc_high threshold; for CO use co_high; etc.
+        thresholds = {
+            "hc": THRESHOLDS.get("hc_high", 500),
+            "co": THRESHOLDS.get("co_high", 2.0),
+            "nox": THRESHOLDS.get("nox_converter_max", 2000),  # high NOx could indicate issue
+            "o2": THRESHOLDS.get("o2_high_lean", 2.0),
+            "co2": None,  # CO2 doesn't have a high threshold; use typical
+            "lambda": THRESHOLDS.get("lambda_high_lean", 1.10),
+        }
+        if gas in thresholds and thresholds[gas] is not None:
+            base = thresholds[gas]
+        else:
+            base = typical * 1.5  # fallback
+        # Apply modifier: e.g., "large" (2.0) gives base*2, "some" (1.2) gives base*1.2
+        val = base * modifier if modifier < 10 else modifier  # if modifier is absolute threshold
+        if gas in ["co", "co2", "lambda", "o2"]:
+            return f"{gas} > {val:.2f}"
+        else:
+            return f"{gas} > {int(val) if val >= 100 else val:.0f}"
+    elif op == "<":
+        # For decrease, use lower bound of normal range or threshold lower
+        thresholds = {
+            "hc": None,  # low HC not usually a problem; use normal min
+            "co": None,
+            "co2": THRESHOLDS.get("co2_inefficiency", 12.0),
+            "o2": THRESHOLDS.get("o2_low_rich", 0.5),
+            "nox": None,
+            "lambda": THRESHOLDS.get("lambda_low_rich", 0.90),
+        }
+        if gas in thresholds and thresholds[gas] is not None:
+            base = thresholds[gas]
+        else:
+            base = normal_range.min if gas in normals else 0.0
+        val = base * modifier if modifier < 10 else modifier
+        if gas in ["co", "co2", "lambda", "o2"]:
+            return f"{gas} < {val:.2f}"
+        else:
+            return f"{gas} < {int(val) if val >= 100 else val:.0f}"
+    else:  # "~" within normal
+        return f"{gas} normal"
+
+# Example usage:
+#   pattern = get_table_pattern("ignition_misfire")
+#   if pattern:
+#       indicators = {g: convert_qualitative_to_indicator(g, d) for g, d in pattern.items()}
