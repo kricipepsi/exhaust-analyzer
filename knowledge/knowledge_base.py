@@ -2,7 +2,7 @@
 # Derived from: C:\Users\asus\.openclaw\workspace\memory\emissions.md (Sections 3 & 9.2)
 
 from dataclasses import dataclass
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Optional
 
 @dataclass
 class Range:

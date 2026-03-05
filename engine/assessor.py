@@ -7,7 +7,8 @@ Analyzes 5-gas measurements (idle and high idle) to assess engine health.
 from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
 from knowledge.knowledge_base import (
-    NORMAL_IDLE, NORMAL_HIGH_IDLE, THRESHOLDS, FAULT_PATTERNS
+    NORMAL_IDLE, NORMAL_HIGH_IDLE, THRESHOLDS, FAULT_PATTERNS,
+    TABLE_PATTERNS_RAW, get_table_pattern, convert_qualitative_to_indicator
 )
 
 @dataclass
@@ -98,8 +99,11 @@ class DiagnosticEngine:
     def match_patterns(self, deviations: List[dict], measurements: Dict[str, float]) -> List[MatchedPattern]:
         """Compare observed deviations against known fault patterns.
         deviations: list of dicts with keys: gas, measured, severity, direction
+        Returns combined matches from FAULT_PATTERNS and TABLE_PATTERNS_RAW.
         """
         matches = []
+
+        # 1. Match against explicit FAULT_PATTERNS (existing)
         for pattern_name, pattern in FAULT_PATTERNS.items():
             matched = 0
             total = len(pattern["indicators"])
@@ -160,7 +164,55 @@ class DiagnosticEngine:
                     culprits=pattern["culprits"],
                     notes=pattern.get("notes", "")
                 ))
-        return sorted(matches, key=lambda x: x.confidence, reverse=True)
+
+        # 2. Match against TABLE_PATTERNS_RAW (qualitative table)
+        # For each table pattern, convert descriptors to numeric conditions and check against measurements
+        for table_key, table_pat in TABLE_PATTERNS_RAW.items():
+            matched = 0
+            total = len(table_pat)
+            for gas, descriptor in table_pat.items():
+                # Convert descriptor to a numeric condition (e.g., "hc > 2000")
+                cond_str = convert_qualitative_to_indicator(gas, descriptor, condition="idle")
+                if not cond_str:
+                    continue
+                # Parse condition: "gas > value" or "gas < value" or "gas normal"
+                parts = cond_str.split()
+                if len(parts) < 3:
+                    continue
+                gas_key = parts[0]
+                op = parts[1]
+                try:
+                    threshold = float(parts[2])
+                except ValueError:
+                    continue
+                val = measurements.get(gas_key)
+                if val is None:
+                    continue
+                # Evaluate
+                if op == ">" and val > threshold:
+                    matched += 1
+                elif op == "<" and val < threshold:
+                    matched += 1
+                # "~" means within normal; we don't use it for matching (too permissive)
+            if matched >= 2:  # require at least 2 indicators to match
+                confidence = matched / total
+                # Use human-friendly name from table key
+                display_name = table_key.replace('_', ' ').title()
+                matches.append(MatchedPattern(
+                    pattern_name=display_name,
+                    matched_indicators=matched,
+                    total_indicators=total,
+                    confidence=confidence,
+                    culprits=[f"Pattern from reference table: {display_name}"],  # generic; user should interpret
+                    notes=f"Matched {matched}/{total} gas changes according to tabelagas.xlsx reference."
+                ))
+
+        # Deduplicate by pattern_name (keep highest confidence)
+        best = {}
+        for m in matches:
+            if m.pattern_name not in best or m.confidence > best[m.pattern_name].confidence:
+                best[m.pattern_name] = m
+        return sorted(best.values(), key=lambda x: x.confidence, reverse=True)
 
     def assess(self, idle_measurements: Dict[str, float], high_idle_measurements: Dict[str, float]) -> Dict:
         """Run full assessment on both idle and high idle data."""
