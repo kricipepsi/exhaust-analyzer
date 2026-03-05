@@ -1,12 +1,11 @@
-# Render Deployment Configuration
-# Place this in your repository root as render.yaml
-
+# Render Deployment Configuration for Python buildpack
 services:
   - type: web
     name: exhaust-analyzer
-    env: docker
-    plan: free  # or 'starter' for $7/month, etc.
-    dockerfilePath: Dockerfile
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 60
     healthCheckPath: /
     envVars:
       - key: FLASK_APP
@@ -14,5 +13,4 @@ services:
       - key: FLASK_ENV
         value: production
       - key: SECRET_KEY
-        generateValue: true  # Render will generate a random secret
-    # Optional: custom domain will be added in Render dashboard after deploy
+        generateValue: true
