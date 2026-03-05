@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-Gas Exhaust Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>5-Gas Exhaust Analyzer</h1>
+        <p class="subtitle">Engine Health Assessment from Exhaust Gas Measurements</p>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert">{{ messages[0] }}</div>
+          {% endif %}
+        {% endwith %}
+
+        <form method="post" class="measurement-form">
+            <h2>Idle Measurements (warm engine, ~800 rpm)</h2>
+            <div class="form-row">
+                <label>Lambda (λ):</label>
+                <input type="number" step="0.01" name="lambda_idle" required placeholder="1.00" min="0.5" max="2">
+            </div>
+            <div class="form-row">
+                <label>CO (%):</label>
+                <input type="number" step="0.01" name="co_idle" required placeholder="0.1" min="0" max="20">
+            </div>
+            <div class="form-row">
+                <label>CO2 (%):</label>
+                <input type="number" step="0.01" name="co2_idle" required placeholder="13.0" min="0" max="25">
+            </div>
+            <div class="form-row">
+                <label>O2 (%):</label>
+                <input type="number" step="0.01" name="o2_idle" required placeholder="0.7" min="0" max="25">
+            </div>
+            <div class="form-row">
+                <label>HC (ppm):</label>
+                <input type="number" step="1" name="hc_idle" required placeholder="100" min="0" max="20000">
+            </div>
+            <div class="form-row">
+                <label>NOx (ppm):</label>
+                <input type="number" step="1" name="nox_idle" required placeholder="50" min="0" max="5000">
+            </div>
+
+            <h2>High Idle Measurements (fast idle, ~1500-2000 rpm)</h2>
+            <div class="form-row">
+                <label>Lambda (λ):</label>
+                <input type="number" step="0.01" name="lambda_high" required placeholder="1.00" min="0.5" max="2">
+            </div>
+            <div class="form-row">
+                <label>CO (%):</label>
+                <input type="number" step="0.01" name="co_high" required placeholder="0.15" min="0" max="20">
+            </div>
+            <div class="form-row">
+                <label>CO2 (%):</label>
+                <input type="number" step="0.01" name="co2_high" required placeholder="14.0" min="0" max="25">
+            </div>
+            <div class="form-row">
+                <label>O2 (%):</label>
+                <input type="number" step="0.01" name="o2_high" required placeholder="0.9" min="0" max="25">
+            </div>
+            <div class="form-row">
+                <label>HC (ppm):</label>
+                <input type="number" step="1" name="hc_high" required placeholder="80" min="0" max="20000">
+            </div>
+            <div class="form-row">
+                <label>NOx (ppm):</label>
+                <input type="number" step="1" name="nox_high" required placeholder="120" min="0" max="5000">
+            </div>
+
+            <button type="submit">Analyze</button>
+        </form>
+
+        {% if results %}
+        <div class="results">
+            <h2>Diagnostic Report</h2>
+            <div class="health-score {{ 'urgent' if results.overall.urgent else '' }}">
+                Health Score: {{ results.overall.health_score }}/100
+                {% if results.overall.urgent %}⚠️ Urgent attention required{% endif %}
+            </div>
+
+            <h3>Measurement Comparison Chart</h3>
+            <canvas id="gaugeChart" width="400" height="200"></canvas>
+            <script>
+                const ctx = document.getElementById('gaugeChart').getContext('2d');
+                // Use raw measurements directly from results.raw_idle / raw_high
+                const idleData = {
+                    lambda: {{ results.raw_idle.lambda | default(0) }},
+                    co: {{ results.raw_idle.co | default(0) }},
+                    co2: {{ results.raw_idle.co2 | default(0) }},
+                    o2: {{ results.raw_idle.o2 | default(0) }},
+                    hc: {{ results.raw_idle.hc | default(0) }},
+                    nox: {{ results.raw_idle.nox | default(0) }}
+                };
+                const highData = {
+                    lambda: {{ results.raw_high.lambda | default(0) }},
+                    co: {{ results.raw_high.co | default(0) }},
+                    co2: {{ results.raw_high.co2 | default(0) }},
+                    o2: {{ results.raw_high.o2 | default(0) }},
+                    hc: {{ results.raw_high.hc | default(0) }},
+                    nox: {{ results.raw_high.nox | default(0) }}
+                };
+                // Normal midpoints for reference (idle/high share similar targets)
+                const normalMid = {
+                    lambda: 1.00,
+                    co: 0.1,
+                    co2: 13.5,
+                    o2: 0.7,
+                    hc: 100,
+                    nox: 80
+                };
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Lambda', 'CO', 'CO2', 'O2', 'HC', 'NOx'],
+                        datasets: [
+                            {
+                                label: 'Idle',
+                                data: [idleData.lambda, idleData.co, idleData.co2, idleData.o2, idleData.hc/100, idleData.nox/100],
+                                backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                            },
+                            {
+                                label: 'High Idle',
+                                data: [highData.lambda, highData.co, highData.co2, highData.o2, highData.hc/100, highData.nox/100],
+                                backgroundColor: 'rgba(255, 99, 132, 0.6)'
+                            },
+                            {
+                                label: 'Normal (ref)',
+                                data: [normalMid.lambda, normalMid.co, normalMid.co2, normalMid.o2, normalMid.hc/100, normalMid.nox/100],
+                                type: 'line',
+                                borderColor: 'rgba(0, 200, 0, 0.8)',
+                                backgroundColor: 'transparent',
+                                pointRadius: 4,
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: { beginAtZero: true, title: { display: true, text: 'Value (HC/NOx scaled ×0.01)' } }
+                        },
+                        plugins: {
+                            tooltip: { callbacks: { label: function(ctx) { if (ctx.dataset.label === 'Normal (ref)') return 'Normal mid'; return ctx.dataset.label + ': ' + ctx.raw.toFixed(2); } } },
+                            legend: { position: 'bottom' }
+                        }
+                    }
+                });
+            </script>
+
+            <h3>Idle Deviations</h3>
+            {% if results.idle.deviations %}
+                <ul class="deviations">
+                {% for d in results.idle.deviations %}
+                    <li class="severity-{{ d.severity }}">
+                        <strong>{{ d.gas.upper() }}</strong>: {{ d.measured }} (normal: {{ d.normal_range }}) – <span class="badge">{{ d.severity }}</span>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p class="ok">All within normal range.</p>
+            {% endif %}
+
+            <h3>High Idle Deviations</h3>
+            {% if results.high_idle.deviations %}
+                <ul class="deviations">
+                {% for d in results.high_idle.deviations %}
+                    <li class="severity-{{ d.severity }}">
+                        <strong>{{ d.gas.upper() }}</strong>: {{ d.measured }} (normal: {{ d.normal_range }}) – <span class="badge">{{ d.severity }}</span>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p class="ok">All within normal range.</p>
+            {% endif %}
+
+            <h3>Fault Patterns Detected</h3>
+            {% if results.overall.patterns %}
+                <ul class="patterns">
+                {% for p in results.overall.patterns[:3] %}
+                    <li>
+                        <strong>{{ p.pattern.replace('_', ' ').title() }}</strong> (confidence: {{ (p.confidence*100)|int }}%)
+                        <ul class="culprits">
+                        {% for culprit in p.culprits[:3] %}
+                            <li>{{ culprit }}</li>
+                        {% endfor %}
+                        </ul>
+                        {% if p.notes %}<p class="notes"><em>{{ p.notes }}</em></p>{% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No fault patterns matched.</p>
+            {% endif %}
+
+            <h3>Recommendations</h3>
+            <ul class="recommendations">
+            {% for rec in results.overall.recommendations %}
+                <li>{{ rec }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
