@@ -42,6 +42,8 @@ THRESHOLDS = {
     "hc_critical": 2000,        # ppm - severe misfire
     "hc_high": 500,             # ppm - elevated
     "nocrit_matches_required": 2,  # minimum matching indicators to suggest a cause
+    "nox_converter_max": 2000,  # ppm - typical converter capacity; above this indicates engine/aftertreatment issue
+    "co2_inefficiency": 12.0,   # % - below this indicates combustion inefficiency (misfire, mechanical, etc.)
 }
 
 # Fault pattern signatures
@@ -240,6 +242,34 @@ FAULT_PATTERNS = {
             "Incorrect oxygen sensor type (narrowband used where wideband required)",
         ],
         "notes": "A good O2 sensor switches ~1-2 times per second at 1500-2500 rpm. Monitor voltage with scan tool.",
+    },
+    # New patterns from extended reference documents
+    "air_injection_malfunction": {
+        "indicators": {
+            "o2": ">2.0",
+            "co2": "<12.0",
+            "lambda": "0.98-1.02",  # near stoichiometric, ECU may compensate
+        },
+        "culprits": [
+            "Air injection pump failed",
+            "Air injection check valve stuck",
+            "Air injection diverter valve stuck open",
+            "Air injection system leaking",
+        ],
+        "notes": "Secondary air injection adds oxygen to exhaust, diluting CO2 and raising O2 without changing lambda. Disable AIR to test; compare readings before/after.",
+    },
+    "combustion_inefficiency": {
+        "indicators": {
+            "co2": "<12.0",
+        },
+        "culprits": [
+            "Ignition misfire",
+            "Low compression (worn rings, valves, head gasket)",
+            "Mechanical timing issues (chain/gear stretch)",
+            "Fuel delivery problems (weak pump, clogged filter)",
+            "Air/fuel imbalance (sensor faults, vacuum leaks)",
+        ],
+        "notes": "Low CO2 indicates incomplete combustion. With air injection disabled, CO2 below 12% suggests engine issues. If HC is high and CO2 normal, suspect catalytic converter instead.",
     },
 }
 
