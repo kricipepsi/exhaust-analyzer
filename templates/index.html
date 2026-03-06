@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>5-Gas Exhaust Analyzer</title>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Google AdSense -->
@@ -220,5 +221,20 @@
             </script>
         </aside>
     </div> <!-- end .page-wrapper -->
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/static/sw.js')
+                    .then((registration) => {
+                        console.log('[SW] Registered:', registration);
+                    })
+                    .catch((error) => {
+                        console.log('[SW] Registration failed:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
