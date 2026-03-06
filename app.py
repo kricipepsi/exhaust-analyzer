@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Flask Web App: 5-Gas Exhaust Analyzer"""
 
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, send_from_directory
 import sys
 import os
 
@@ -12,6 +12,10 @@ from engine.assessor import DiagnosticEngine
 
 app = Flask(__name__)
 app.secret_key = "exhaust-analyzer-demo"  # for flash messages
+
+@app.route('/manifest.json')
+def serve_manifest():
+    return send_from_directory('static', 'manifest.json')
 
 @app.route("/", methods=["GET", "POST"])
 def index():
