@@ -20,12 +20,28 @@
             color: var(--text);
         }
         .widget-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             overflow: hidden;
+        }
+        .page-wrapper {
+            display: flex;
+            gap: 20px;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar {
+            width: 300px;
+            flex-shrink: 0;
+        }
+        .sidebar .adsbygoogle {
+            display: block;
         }
         .header {
             background: linear-gradient(135deg, #0066cc 0%, #0048a0 100%);
@@ -69,8 +85,8 @@
         }
         .iframe-wrapper {
             position: relative;
-            width: 100%;
-            height: 800px;
+            flex: 1;
+            min-height: 800px;
             border: none;
             background: white;
         }
@@ -102,50 +118,75 @@
             color: #666;
             background: #f8f8f8;
         }
+        @media (max-width: 900px) {
+            .page-wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                order: -1;
+            }
+        }
         @media (max-width: 600px) {
             .header, .controls, .instructions {
                 padding: 15px;
             }
             .iframe-wrapper {
-                height: 1000px;  /* more height for mobile */
+                min-height: 1000px;
             }
         }
     </style>
 </head>
 <body>
     <div class="widget-container">
-        <div class="header">
-            <h1>5-Gas Exhaust Analyzer</h1>
-            <p>Embedded diagnostic tool for engine health assessment</p>
-        </div>
+        <div class="page-wrapper">
+            <div class="main-content">
+                <div class="header">
+                    <h1>5-Gas Exhaust Analyzer</h1>
+                    <p>Embedded diagnostic tool for engine health assessment</p>
+                </div>
 
-        <div class="controls">
-            <label>Demo scenarios:</label>
-            <button data-sample="rich">Rich Mixture</button>
-            <button data-sample="lean">Lean Condition</button>
-            <button data-sample="misfire">Misfire</button>
-            <button data-sample="normal">Normal</button>
-            <button id="clearBtn">Clear</button>
-        </div>
+                <div class="controls">
+                    <label>Demo scenarios:</label>
+                    <button data-sample="rich">Rich Mixture</button>
+                    <button data-sample="lean">Lean Condition</button>
+                    <button data-sample="misfire">Misfire</button>
+                    <button data-sample="normal">Normal</button>
+                    <button id="clearBtn">Clear</button>
+                </div>
 
-        <div class="iframe-wrapper">
-            <iframe id="analyzer" src="/" title="Exhaust Analyzer"></iframe>
-        </div>
+                <div class="iframe-wrapper">
+                    <iframe id="analyzer" src="/" title="Exhaust Analyzer"></iframe>
+                </div>
 
-        <div class="instructions">
-            <h3>How to Embed on Your Site</h3>
-            <p>Add the following HTML snippet to your page. Replace <code>YOUR_DOMAIN</code> with the URL where this widget is hosted.</p>
-            <pre><code>&lt;iframe src="https://YOUR_DOMAIN/static/widget.html" width="100%" height="900" frameborder="0"&gt;&lt;/iframe&gt;</code></pre>
-            <p><strong>Note:</strong> The widget must be served from the same origin as the analyzer for the sample data buttons to work. If embedding on a different domain, the buttons will not function due to browser security restrictions, but the analyzer will still be usable manually.</p>
-        </div>
+                <div class="instructions">
+                    <h3>How to Embed on Your Site</h3>
+                    <p>Add the following HTML snippet to your page. Replace <code>YOUR_DOMAIN</code> with the URL where this widget is hosted.</p>
+                    <pre><code>&lt;iframe src="https://YOUR_DOMAIN/static/widget.html" width="100%" height="900" frameborder="0"&gt;&lt;/iframe&gt;</code></pre>
+                    <p><strong>Note:</strong> The widget must be served from the same origin as the analyzer for the sample data buttons to work. If embedding on a different domain, the buttons will not function due to browser security restrictions, but the analyzer will still be usable manually.</p>
+                </div>
 
-        <footer>
-            Powered by the 5-Gas Exhaust Analyzer • <a href="https://github.com/yourrepo" target="_blank">Learn more</a>
-        </footer>
+                <footer>
+                    Powered by the 5-Gas Exhaust Analyzer • <a href="https://github.com/yourrepo" target="_blank">Learn more</a>
+                </footer>
+            </div> <!-- end .main-content -->
+
+            <aside class="sidebar">
+                <!-- Google AdSense - Side -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4889634886203423"
+                     data-ad-slot="9399620782"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </aside>
+        </div> <!-- end .page-wrapper -->
     </div>
 
     <script>
-        // Wait for the iframe to load before enabling sample buttons
         const iframe = document.getElementById('analyzer');
         let iframeDoc = null;
 
@@ -166,7 +207,6 @@
             document.getElementById('clearBtn').addEventListener('click', clearForm);
         }
 
-        // Sample data sets (from README and added scenarios)
         const samples = {
             rich: {
                 lambda_idle: 0.85, co_idle: 3.5, co2_idle: 10.0, o2_idle: 0.2, hc_idle: 800, nox_idle: 50,
@@ -193,25 +233,18 @@
                 alert('Analyzer form not found. Make sure the analyzer is loaded.');
                 return;
             }
-            // Set input values
             Object.entries(data).forEach(([name, value]) => {
                 const input = form.querySelector(`[name="${name}"]`);
                 if (input) {
                     input.value = value;
-                    // Trigger change event if needed
                     input.dispatchEvent(new Event('input', { bubbles: true }));
                 }
             });
-            // Auto-submit after a short delay to allow UI update
-            setTimeout(() => {
-                form.submit();
-            }, 300);
+            setTimeout(() => form.submit(), 300);
         }
 
         function loadSample(scenario) {
-            if (samples[scenario]) {
-                fillForm(samples[scenario]);
-            }
+            if (samples[scenario]) fillForm(samples[scenario]);
         }
 
         function clearForm() {

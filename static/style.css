@@ -4,13 +4,25 @@ body {
     margin: 0;
     padding: 20px;
 }
-.container {
-    max-width: 900px;
+.page-wrapper {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
     margin: 0 auto;
+}
+.main-content {
+    flex: 1;
     background: white;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.sidebar {
+    width: 300px;
+    flex-shrink: 0;
+}
+.sidebar .adsbygoogle {
+    display: block;
 }
 h1 {
     margin-top: 0;
@@ -182,8 +194,17 @@ canvas {
     margin: 20px 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
+@media (max-width: 900px) {
+    .page-wrapper {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        order: -1; /* Ad appears above content on mobile */
+    }
+}
 @media (max-width: 600px) {
-    .container { padding: 15px; }
+    .main-content { padding: 15px; }
     .form-row { flex-direction: column; align-items: flex-start; }
     .form-row label { width: 100%; margin-bottom: 5px; }
     .form-row input { width: 100%; }
