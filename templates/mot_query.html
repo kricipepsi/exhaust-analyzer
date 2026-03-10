@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOT Test Lookup - 5-Gas Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .nav-link {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .query-form {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            max-width: 600px;
+        }
+        .form-row {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        .form-row label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-row input, .form-row select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-row input:focus, .form-row select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .form-row small {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+        .btn-primary {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+        .result-box {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            max-width: 900px;
+        }
+        .result-box h3 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .result-section {
+            margin-bottom: 20px;
+        }
+        .result-section h4 {
+            color: #555;
+            margin-bottom: 8px;
+        }
+        .limits-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        .limits-table th, .limits-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .limits-table th {
+            background: #f2f2f2;
+            font-weight: bold;
+        }
+        .alert {
+            color: #721c24;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            background: #28a745;
+            color: white;
+        }
+        .badge.warning {
+            background: #ffc107;
+            color: #212529;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="nav-link">← Back to Analyzer</a>
+        <h1>MOT Test Determination</h1>
+        <p class="subtitle">Enter vehicle details to find which MOT emissions test applies</p>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert">{{ messages[0] }}</div>
+          {% endif %}
+        {% endwith %}
+
+        <form method="post" class="query-form">
+            <h3>Vehicle Details</h3>
+            <div class="form-row">
+                <label for="make">Make *</label>
+                <input type="text" id="make" name="make" required placeholder="e.g., Ford, Volkswagen, Toyota">
+            </div>
+            <div class="form-row">
+                <label for="model">Model *</label>
+                <input type="text" id="model" name="model" required placeholder="e.g., Focus, Golf, Corolla">
+            </div>
+            <div class="form-row">
+                <label for="engine_code">Engine Code (optional)</label>
+                <input type="text" id="engine_code" name="engine_code" placeholder="e.g., 1.4 TSI, 2.0 Duratec">
+                <small>Helps find specific model limits in the Annex</small>
+            </div>
+            <div class="form-row">
+                <label for="first_use_date">First Use Date (registration) *</label>
+                <input type="date" id="first_use_date" name="first_use_date" required>
+            </div>
+            <div class="form-row">
+                <label for="fuel_type">Fuel Type *</label>
+                <select id="fuel_type" name="fuel_type" required>
+                    <option value="petrol">Petrol</option>
+                    <option value="diesel">Diesel</option>
+                    <option value="gas">Gas (LPG/CNG)</option>
+                    <option value="hybrid">Hybrid</option>
+                    <option value="electric">Electric (no test)</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label>
+                    <input type="checkbox" id="has_catalyst" name="has_catalyst">
+                    Has catalytic converter (or other advanced emission control)
+                </label>
+                <small>If unsure, leave unchecked; the system can still determine test based on date and model</small>
+            </div>
+            <div class="form-row">
+                <label for="dgw_kg">Design Gross Weight (kg, optional)</label>
+                <input type="number" id="dgw_kg" name="dgw_kg" min="0" placeholder="e.g., 2500">
+            </div>
+            <div class="form-row">
+                <label for="seat_count">Number of seats (incl. driver, optional)</label>
+                <input type="number" id="seat_count" name="seat_count" min="1" placeholder="e.g., 5">
+            </div>
+
+            <button type="submit" class="btn-primary">Determine MOT Test</button>
+        </form>
+
+        {% if result %}
+        <div class="result-box">
+            <h3>Test Requirement</h3>
+            {% if result.error %}
+                <div class="alert">{{ result.error }}</div>
+            {% else %}
+                <div class="result-section">
+                    <h4>Required MOT Test</h4>
+                    <p><strong>{{ result.test_type }}</strong>
+                        {% if result.uses_annex %} <span class="badge">Annex specific limits</span>{% endif %}
+                    </p>
+                </div>
+
+                <div class="result-section">
+                    <h4>Description</h4>
+                    <p>{{ result.description }}</p>
+                </div>
+
+                {% if result.procedure %}
+                <div class="result-section">
+                    <h4>Procedure</h4>
+                    <p>{{ result.procedure }}</p>
+                </div>
+                {% endif %}
+
+                {% if result.limits %}
+                <div class="result-section">
+                    <h4>Emission Limits</h4>
+                    <table class="limits-table">
+                        <tr><th>Parameter</th><th>Limit</th></tr>
+                        {% for key, value in result.limits.items() %}
+                        <tr><td>{{ key }}</td><td>{{ value }}</td></tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                {% endif %}
+
+                {% if result.get('smoke_limit') %}
+                <div class="result-section">
+                    <h4>Diesel Smoke Limit</h4>
+                    <p>{{ result.smoke_limit }}</p>
+                    {% if result.smoke_limit_notes %}
+                    <p><small>{{ result.smoke_limit_notes }}</small></p>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                {% if result.get('note') %}
+                <div class="result-section">
+                    <h4>Important Note</h4>
+                    <p style="color: #856404;">{{ result.note }}</p>
+                </div>
+                {% endif %}
+
+                <div class="result-section">
+                    <h4>MOT Manual Reference</h4>
+                    <p>Section 8.2.1 — Spark ignition engine emissions (or diesel equivalent)<br>
+                    Flowcharts 1-3 for test determination</p>
+                </div>
+
+                {% if result.get('test_type') == 'extended_catalyst' and not result.get('uses_annex') %}
+                <div class="alert">
+                    <strong>Annex lookup needed:</strong> This vehicle may have specific limits in the official Annex.
+                    Consult the vehicle's entry in the "In-service exhaust emission standards" publication
+                    or use the EGA database for exact values. The defaults shown are general standards.
+                </div>
+                {% endif %}
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <div class="result-box">
+            <h3>How to Use</h3>
+            <ul>
+                <li><strong>Make/Model</strong>: Enter exactly as shown on V5C logbook or vehicle registration.</li>
+                <li><strong>Engine code</strong>: Optional, but helps match specific entries in the Annex (e.g., "1.4 TSI", "2.0 Duratec").</li>
+                <li><strong>First use date</strong>: The date the vehicle was first registered. This determines which emission standards apply.</li>
+                <li><strong>Fuel type</strong>: Petrol, diesel, gas (LPG/CNG), hybrid, or electric.</li>
+                <li><strong>Catalytic converter</strong>: Check if the vehicle has one (most post-1992 petrol cars do). If unsure, you can leave it unchecked and the system will infer from date and model.</li>
+                <li><strong>DGW / Seats</strong>: Optional, but helps classify as passenger car vs light goods vehicle, which affects standards.</li>
+            </ul>
+            <p>The system uses the UK MOT Inspection Manual ( Passenger and Light Commercial Vehicles) plus the 19th edition emission standards tables.</p>
+        </div>
+    </div>
+</body>
+</html>
