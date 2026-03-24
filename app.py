@@ -91,62 +91,13 @@ with st.sidebar:
     st.divider()
     st.markdown("**Note:** O2 thresholds are relaxed when cold engine is checked.")
     
-    # Sponsored ad space – vertical banner (AdSense)
+    # Sponsored ad space – placeholder (AdSense integration pending)
     st.markdown("---")
     st.markdown(
         """
         <div style="text-align: center; margin: 10px 0;">
             <small style="color: #666; font-style: italic;">Sponsored</small>
         </div>
-        """,
-        unsafe_allow_html=True
-    )
-    
-    # Ad 1: 300×600 (always visible)
-    st.markdown(
-        """
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4889634886203423"
-             crossorigin="anonymous"></script>
-        <!-- side -->
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:300px;height:600px"
-             data-ad-client="ca-pub-4889634886203423"
-             data-ad-slot="9399620782"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        """,
-        unsafe_allow_html=True
-    )
-    
-    st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)  # spacer
-    
-    # Ad 2: 300×250
-    st.markdown(
-        """
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4889634886203423"
-             crossorigin="anonymous"></script>
-        <!-- side2 -->
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:300px;height:250px"
-             data-ad-client="ca-pub-4889634886203423"
-             data-ad-slot="4890529554"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        """,
-        unsafe_allow_html=True
-    )
-    
-    st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)  # spacer
-    
-    # Ad 3: 300×250
-    st.markdown(
-        """
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4889634886203423"
-             crossorigin="anonymous"></script>
-        <!-- side3 -->
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:300px;height:250px"
-             data-ad-client="ca-pub-4889634886203423"
-             data-ad-slot="2946058349"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         """,
         unsafe_allow_html=True
     )
