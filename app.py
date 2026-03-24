@@ -23,6 +23,12 @@ from core.validator import validate_gas_data, check_probe_placement
 from core.matrix import match_case
 from core.reporter import generate_report
 
+# AdSense site verification meta tag (injected into <head>)
+st.markdown(
+    '<meta name="google-adsense-account" content="ca-pub-4889634886203423">',
+    unsafe_allow_html=True
+)
+
 # Page config
 st.set_page_config(
     page_title="4D Petrol Diagnostic Engine",
