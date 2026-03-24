@@ -1,0 +1,21 @@
+ID,Fuel,CO_Pct,CO2_Pct,HC_PPM,O2_Pct,NOx_PPM,Lambda_Gas,OBD_STFT,OBD_LTFT,OBD_Lambda,OBD_DTC,Expected_Result,Confidence_Score,ECU_Health
+TC001,E0,0.06,14.6,24,0.14,26,1.004,3,-4,1.002,None,Healthy Engine,0.95,100
+TC002,E0,0.06,14.4,42,0.28,55,0.994,5,3,0.998,None,Healthy Engine,0.95,100
+TC003,E85,0.17,15.6,10,0.33,30,1.004,0,-1,0.993,None,Healthy Engine,0.95,100
+TC004,E10,0.07,14.8,32,0.35,58,0.995,-5,2,1.001,None,Healthy Engine,0.95,100
+TC005,E85,0.07,14.6,50,0.29,75,0.997,-2,-4,0.991,None,Healthy Engine,0.95,100
+TC006,E5,0.2,16.0,24,0.36,44,0.996,5,0,0.993,None,Healthy Engine,0.95,100
+TC007,E10,0.09,14.5,14,0.28,30,1.001,-2,-3,0.999,None,Healthy Engine,0.95,100
+TC008,E10,0.25,15.3,45,0.17,40,1.007,-5,-2,1.006,None,Healthy Engine,0.95,100
+TC009,E10,0.13,14.1,46,0.36,40,0.994,2,1,1.008,None,Healthy Engine,0.95,100
+TC010,E85,0.08,14.3,45,0.26,67,1.002,4,1,0.997,None,Healthy Engine,0.95,100
+TC011,E5,0.15,14.2,13,0.36,29,1.003,5,1,1.002,None,Healthy Engine,0.95,100
+TC012,E85,0.13,16.0,43,0.18,55,1.007,-5,5,1.004,None,Healthy Engine,0.95,100
+TC013,E10,0.2,14.7,28,0.23,49,0.99,-1,3,1.005,None,Healthy Engine,0.95,100
+TC014,E0,0.22,14.6,50,0.25,32,0.993,-3,3,1.009,None,Healthy Engine,0.95,100
+TC015,E0,0.17,15.0,17,0.38,76,1.01,-1,-2,0.991,None,Healthy Engine,0.95,100
+TC016,E0,0.9,13.8,117,0.69,1545,1.011,-3,5,0.999,P0420,Catalytic Converter Efficiency Failure,0.9,40
+TC017,E10,1.43,14.0,154,0.67,1773,1.009,-2,-1,0.996,P0430,Catalytic Converter Efficiency Failure,0.9,40
+TC018,E85,1.88,13.8,163,0.39,1346,0.981,3,-2,1.004,P0420,Catalytic Converter Efficiency Failure,0.9,40
+TC019,E0,1.65,13.3,117,0.66,1880,0.993,3,-2,0.991,P0430,Catalytic Converter Efficiency Failure,0.9,40
+TC020,E5,1.45,14.1,246,0.53,1248,1.011,1,-2,0.984,P0430,Catalytic Converter Efficiency Failure,0.9,40

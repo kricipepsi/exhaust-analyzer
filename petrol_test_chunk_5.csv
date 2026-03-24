@@ -1,0 +1,21 @@
+ID,Fuel,CO_Pct,CO2_Pct,HC_PPM,O2_Pct,NOx_PPM,Lambda_Gas,OBD_STFT,OBD_LTFT,OBD_Lambda,OBD_DTC,Expected_Result,Confidence_Score,ECU_Health
+TC081,E85,0.13,14.5,30,0.17,1307,1.002,1,2,0.991,P0016,Excessively Advanced Timing,0.75,50
+TC082,E0,0.13,14.0,45,0.27,801,1.016,2,1,1.007,P0016,Excessively Advanced Timing,0.75,50
+TC083,E5,0.15,14.4,51,0.23,852,0.998,2,-1,1.027,P0016,Excessively Advanced Timing,0.75,50
+TC084,E85,0.19,14.2,21,0.29,1423,1.022,-1,0,1.012,P0016,Excessively Advanced Timing,0.75,50
+TC085,E85,0.11,15.0,27,0.19,920,1.016,-1,1,1.027,P0016,Excessively Advanced Timing,0.75,50
+TC086,E10,1.16,12.3,111,0.49,17,0.999,-2,0,0.994,P0016,Ignition Timing Issues (Retard),0.65,50
+TC087,E5,1.4,12.3,103,0.3,18,1.006,-1,2,0.996,P0016,Ignition Timing Issues (Retard),0.65,50
+TC088,E85,1.41,12.5,111,0.3,22,0.999,-1,3,0.994,P0016,Ignition Timing Issues (Retard),0.65,50
+TC089,E5,1.2,12.3,149,0.32,20,1.005,2,3,0.998,P0016,Ignition Timing Issues (Retard),0.65,50
+TC090,E5,1.15,12.0,114,0.49,20,1.007,3,3,0.999,P0016,Ignition Timing Issues (Retard),0.65,50
+TC091,E85,0.31,13.1,133,0.64,44,0.999,-1,-1,1.005,P0134,O2 Sensor Sluggish or Failed,0.7,60
+TC092,E0,0.73,13.9,118,0.53,60,1.005,3,0,1.015,P0131,O2 Sensor Sluggish or Failed,0.7,60
+TC093,E0,0.42,13.7,86,0.65,87,0.984,-3,3,1.005,P0131,O2 Sensor Sluggish or Failed,0.7,60
+TC094,E85,0.38,13.3,53,0.46,90,0.982,-1,-1,0.997,P0132,O2 Sensor Sluggish or Failed,0.7,60
+TC095,E85,0.58,13.8,71,0.49,79,1.015,1,2,0.99,P0132,O2 Sensor Sluggish or Failed,0.7,60
+TC096,E5,0.19,13.3,72,2.83,219,1.114,20,9,1.064,P0102,MAF Sensor Under-Reading,0.7,50
+TC097,E10,0.23,13.4,72,2.41,177,1.072,18,14,1.089,P0101,MAF Sensor Under-Reading,0.7,50
+TC098,E85,0.21,13.6,77,1.54,201,1.076,12,12,1.105,P0102,MAF Sensor Under-Reading,0.7,50
+TC099,E5,0.22,13.4,64,2.74,135,1.098,12,10,1.107,P0101,MAF Sensor Under-Reading,0.7,50
+TC100,E10,0.25,13.1,77,2.15,206,1.071,14,14,1.092,P0102,MAF Sensor Under-Reading,0.7,50

@@ -1,0 +1,12 @@
+ID,Fuel,CO_Pct,CO2_Pct,HC_PPM,O2_Pct,NOx_PPM,Lambda_Gas,OBD_STFT,OBD_LTFT,OBD_Lambda,OBD_DTC,Expected_Result,Confidence_Score,ECU_Health
+TC001,E10,0.12,14.8,25,0.25,30,1.00,0,0,1.00,None,Healthy Engine,0.95,100
+TC002,E10,1.26,13.81,166,0.426,1183,0.979,0,0,0.979,None,Catalytic Converter Efficiency Failure,0.90,40
+TC003,E10,2.27,12.52,1663,2.71,13.2,0.99,0,0,0.99,None,Intake Vacuum Leak,0.75,60
+TC004,E10,0.15,13.0,800,3.0,50,1.12,15,10,1.12,None,Exhaust Dilution (False Lean),0.80,85
+TC005,E10,0.10,15.2,20,0.15,30,1.00,-3,2,1.00,None,Healthy Engine,0.95,100
+TC006,E10,0.08,13.5,500,2.0,900,1.08,18,12,1.08,P0171,Fuel Delivery Problem (Lean),0.80,55
+TC007,E10,2.50,11.0,2500,0.10,15,0.70,-15,-10,0.70,None,Cold Start Enrichment,0.80,40
+TC008,E10,0.20,6.0,3000,3.5,50,1.02,12,8,1.02,P0300,Engine Misfire,0.90,30
+TC009,E10,0.15,14.5,40,0.20,1200,1.01,2,1,1.01,P0016,Excessively Advanced Timing,0.75,50
+TC010,E10,1.00,12.0,100,0.30,20,0.90,-12,-8,0.90,P0172,System Running Rich,0.75,45
+TC011,E10,0.30,13.2,80,0.50,60,1.00,-2,3,1.00,P0133,O2 Sensor Sluggish or Failed,0.70,60

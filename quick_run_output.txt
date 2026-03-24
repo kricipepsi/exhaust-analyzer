@@ -1,0 +1,6 @@
+Total: 100; Passed: 83; Failed: 17; Accuracy: 83.0%
+Failures (first 10):
+Traceback (most recent call last):
+  File "C:\Users\asus\.openclaw\workspace-main\petrol_diagnostic\quick_100_test.py", line 73, in <module>
+    for fid, exp, act in failures[:10]:
+ValueError: too many values to unpack (expected 3)

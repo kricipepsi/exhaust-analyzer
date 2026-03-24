@@ -1,0 +1,80 @@
+101	0.15	30	0.40	1.01	0.95	280	1.10	1.03	Conversion Efficiency Delta	Catalyst Failure (Dead)
+102	0.45	180	0.60	0.98	1.40	450	1.40	1.04	CO/O2 Coexistence	Catalyst Efficiency Low
+103	0.05	15	0.10	1.00	0.03	12	0.05	1.00	Baseline (Healthy)	Pass / Healthy
+104	0.20	50	0.30	1.00	0.75	210	0.90	1.02	Storage Capacity Depleted	Weak Catalyst
+105	0.10	40	0.25	1.01	1.10	320	1.25	1.05	High-Flow Breakthrough	Catalyst Failure
+106	1.20	250	0.20	0.95	1.30	280	0.15	0.94	Rich Masking (Engine Out)	Rich (Cat Saturated)
+107	0.35	95	0.55	1.01	0.88	240	1.05	1.03	Thermal Deactivation	Catalyst Efficiency Low
+108	0.12	35	1.50	1.05	0.08	25	1.40	1.05	Lean Masking (Healthy Cat)	Lean (Healthy Cat)
+109	0.55	160	0.75	0.99	1.65	510	2.10	1.06	Total Conversion Loss	Catalyst Failure
+110	0.25	70	0.45	1.00	0.65	190	0.85	1.02	Partial Efficiency Loss	Weak Catalyst
+111	0.08	25	0.20	1.00	0.90	260	1.15	1.04	Conversion Efficiency Delta	Catalyst Failure
+112	0.40	110	0.50	1.00	1.20	350	1.50	1.03	CO/O2 Coexistence	Catalyst Efficiency Low
+113	0.06	18	0.15	1.00	0.04	14	0.08	1.00	Baseline (Healthy)	Pass / Healthy
+114	0.30	85	0.40	1.01	0.80	225	0.95	1.02	Storage Capacity Depleted	Weak Catalyst
+115	0.15	45	0.35	1.01	1.05	310	1.30	1.05	High-Flow Breakthrough	Catalyst Failure
+116	1.50	300	0.10	0.93	1.70	350	0.08	0.92	Rich Masking (Engine Out)	Rich (Cat Saturated)
+117	0.38	100	0.58	1.01	0.92	250	1.10	1.03	Thermal Deactivation	Catalyst Efficiency Low
+118	0.10	30	1.80	1.07	0.07	20	1.70	1.07	Lean Masking (Healthy Cat)	Lean (Healthy Cat)
+119	0.50	145	0.70	1.00	1.55	490	1.95	1.05	Total Conversion Loss	Catalyst Failure
+120	0.22	65	0.42	1.00	0.70	200	0.88	1.02	Partial Efficiency Loss	Weak Catalyst
+121	0.02	12.5	45	4.20	0.01	11.8	35	5.50
+122	0.15	8.5	60	6.50	0.25	7.2	85	8.00
+123	0.01	12.1	55	4.80	0.01	11.5	40	6.20	High Temp Combustion Edge	Lean Mixture (Fuel Starve)
+124	0.85	9.2	220	5.20	1.10	8.8	340	6.50	CO/O2 Coexistence + Low CO2	Exhaust Leak (Pre-Sensor)
+125	0.03	12.8	70	3.50	0.02	12.2	60	4.20	Lean Stability Edge	Lean Mixture (Air Leak)
+126	0.12	10.5	110	4.00	0.15	9.8	140	4.80	Dilution Masking	Minor Exhaust Leak
+127	0.01	11.9	40	5.10	0.01	11.0	30	6.80	Severe Lean Edge	Lean (Intake Boot Leak)
+128	0.95	8.8	310	5.80	1.25	8.1	420	7.20	Rich Compensation Edge	Exhaust Leak (Manifold)
+129	0.04	12.6	85	3.80	0.03	12.0	75	4.50	Lean Efficiency Edge	Lean Mixture
+130	0.08	9.5	50	6.20	0.10	8.5	65	7.50	Dilution Edge	Exhaust Leak
+131	0.02	12.3	50	4.40	0.01	11.6	42	5.80	Vacuum Leak Signature	Lean Mixture
+132	0.20	8.0	150	7.50	0.35	6.8	210	9.00	Total Dilution Signature	Severe Exhaust Leak
+133	0.01	12.0	42	5.00	0.01	11.2	32	6.50	Fuel Pressure Node Activation	Lean (Pump/Filter)
+134	0.70	9.8	180	4.60	0.90	9.1	260	5.50	False Lean / Rich Shift	Exhaust Leak
+135	0.03	12.9	65	3.20	0.02	12.4	55	4.00	Intake Path Edge	Lean Mixture
+136	0.10	10.2	90	4.50	0.12	9.4	120	5.20	Dilution Path Edge	Exhaust Leak
+137	0.01	12.2	48	4.70	0.01	11.4	38	6.10	Lean Burn Edge	Lean Mixture
+138	1.05	8.2	350	6.40	1.45	7.5	490	7.80	Rich-Bias Leak Edge	Severe Exhaust Leak
+139	0.04	12.4	75	4.10	0.03	11.9	60	5.10	Lean Control Edge	Lean Mixture
+140	0.06	11.0	45	5.50	0.08	10.1	55	6.80	Atmospheric Mixing Edge	Exhaust Leak
+141	0.10	1200	4.50	12.1	0.08	1500	5.20	11.5
+142	4.50	850	0.30	10.5	5.20	950	0.25	9.8
+143	0.15	1100	4.20	12.5	0.12	1400	4.80	11.8	Quench Zone Edge	Spark Plug Failure
+144	3.80	600	0.45	11.2	4.10	720	0.40	10.8	Saturated Combustion Edge	Rich Misfire (Injectors)
+145	0.20	1350	5.10	11.8	0.18	1700	6.00	10.5	Raw Charge Edge	Ignition Coil Failure
+146	0.05	400	3.80	12.2	0.04	250	3.20	12.8	Lean Misfire Node	Lean Misfire (Vacuum)
+147	5.50	900	0.20	9.5	6.20	1100	0.15	8.8	Flooding Edge	Rich Misfire (FPR)
+148	0.12	1050	4.00	12.4	0.10	1300	4.60	11.6	Secondary Ignition Edge	Bad Plug Wires
+149	0.25	1500	5.80	11.0	0.22	1900	6.50	10.2	Incomplete Oxidation Path	Major Ignition Fault
+150	4.00	750	0.35	10.8	4.80	880	0.30	9.5	Inhibitor Path (High Fuel)	Rich Misfire
+151	0.08	1150	4.30	12.2	0.06	1450	5.00	11.4	Ignition Source Node	Ignition Misfire
+152	4.20	800	0.28	10.6	5.00	920	0.22	9.9	Over-Fueling Path	Rich Misfire
+153	0.18	1250	4.70	11.9	0.15	1600	5.40	11.2	Quench Path	Bad Ignition Coil
+154	0.04	380	3.50	12.5	0.03	220	3.00	13.0	Lean Limit Node	Lean Misfire
+155	5.20	950	0.18	9.8	6.00	1200	0.12	9.2	Flooding Path	Severe Rich Misfire
+156	0.11	1080	4.10	12.3	0.09	1350	4.70	11.7	Spark Latency Path	Worn Spark Plugs
+157	0.30	1600	6.20	10.8	0.28	2000	7.00	10.0	Unburned Oxygen Node	Complete Ignition Loss
+158	4.10	780	0.32	10.7	4.70	900	0.28	9.7	Saturated Node	Rich Misfire
+159	0.07	1120	4.20	12.1	0.05	1420	4.90	11.5	Electrical Edge	Ignition Misfire
+160	0.03	420	4.00	12.0	0.02	260	3.40	12.6	Fuel Starvation Edge	Lean Misfire
+161	0.00	12	1.50	15.2	0.00	8	1.60	15.4
+162	2.50	210	0.10	13.5	0.05	45	0.08	15.1	Low Idle Only Fault	Lazy O2 Sensor
+163	0.05	35	0.05	14.8	4.50	380	0.20	11.5	High Idle Logic Flip	Restricted Air Intake
+164	1.10	180	4.20	10.1	1.40	250	5.50	9.2	Multiple High-Node Weights	Exhaust Leak (Pre-O2)
+165	0.02	15	0.12	14.9	0.02	15	0.12	14.9	Frozen Value Node	Stuck Gas Analyzer
+166	0.15	95	3.50	12.0	0.12	80	4.20	11.5	Lean/Healthy Ambiguity	Faulty EGR (Stay Open)
+167	3.20	450	4.50	8.5	4.80	620	5.80	7.1	Max Conflict:
+168	0.08	25	0.20	15.0	0.05	20	0.15	15.2	Perfect Combustion Node	Pass / Healthy
+169	0.45	120	0.50	14.1	0.45	120	0.50	14.1	RPM Independence Fault	Fixed Signal (O2 Sensor)
+170	0.60	280	1.10	13.2	1.80	550	2.50	10.8	Thermal Sensitivity Path	Catalytic Converter (Melting)
+171	0.01	10	10.5	6.2	0.01	12	11.2	5.8	Atmospheric Bias Node	Exhaust Sample Dilution
+172	2.80	190	0.35	12.1	3.20	240	0.25	11.5	Rich Trim Stability	Coolant Temp Sensor (Cold)
+173	0.18	450	2.80	13.4	0.15	380	3.20	12.8	Moderate HC/O2 Conflict	Secondary Air Injection Fault
+174	0.05	18	0.10	15.1	0.03	12	0.05	15.3	Clean Burn Baseline	Pass / Healthy
+175	0.12	85	1.80	13.8	0.08	65	2.20	13.2	Transient Lean Node	Lazy Fuel Pump
+176	5.50	920	0.10	9.1	6.50	1100	0.05	8.2	Saturated Graph (Max Rich)	Fuel Pressure Regulator
+177	0.25	1400	6.50	10.2	0.18	1800	7.80	9.1	Incomplete Combustion Path	Igniter Module Failure
+178	0.40	110	0.55	14.2	1.30	320	1.60	11.9	High Flow Breakthrough	Catalyst Aging
+179	0.03	22	0.18	14.7	0.02	15	0.10	14.9	Minor Trim Variation	Pass / Healthy
+180	0.90	250	4.80	9.5	1.20	380	6.20	8.1	Dilution vs Fueling Edge	Cracked Exhaust Y-Pipe

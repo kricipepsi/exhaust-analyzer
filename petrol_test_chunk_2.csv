@@ -1,0 +1,21 @@
+ID,Fuel,CO_Pct,CO2_Pct,HC_PPM,O2_Pct,NOx_PPM,Lambda_Gas,OBD_STFT,OBD_LTFT,OBD_Lambda,OBD_DTC,Expected_Result,Confidence_Score,ECU_Health
+TC021,E10,1.31,13.8,286,0.32,1669,1.019,-4,-5,0.996,P0430,Catalytic Converter Efficiency Failure,0.9,40
+TC022,E0,1.1,13.4,214,0.36,1187,0.991,-2,-4,0.998,P0420,Catalytic Converter Efficiency Failure,0.9,40
+TC023,E0,1.58,13.9,103,0.69,1948,1.01,-2,-3,0.996,P0430,Catalytic Converter Efficiency Failure,0.9,40
+TC024,E5,1.84,14.4,142,0.45,1399,0.991,2,-1,0.997,P0430,Catalytic Converter Efficiency Failure,0.9,40
+TC025,E5,1.03,13.5,114,0.53,1555,0.982,0,-5,0.982,P0430,Catalytic Converter Efficiency Failure,0.9,40
+TC026,E5,0.22,13.0,63,3.14,58,1.111,11,11,1.044,None,Exhaust Leak (False Lean),0.75,55
+TC027,E5,0.43,12.5,50,3.84,124,1.098,13,9,1.055,None,Exhaust Leak (False Lean),0.75,55
+TC028,E10,0.3,12.9,78,3.91,146,1.142,8,12,1.105,None,Exhaust Leak (False Lean),0.75,55
+TC029,E0,0.23,12.7,73,3.26,94,1.136,11,10,1.064,None,Exhaust Leak (False Lean),0.75,55
+TC030,E85,0.53,13.2,118,4.97,133,1.093,12,6,1.143,None,Exhaust Leak (False Lean),0.75,55
+TC031,E5,0.31,13.4,110,3.31,86,1.103,13,8,1.112,None,Exhaust Leak (False Lean),0.75,55
+TC032,E10,0.4,12.8,46,3.18,104,1.13,8,5,1.07,None,Exhaust Leak (False Lean),0.75,55
+TC033,E5,0.45,12.8,96,4.1,104,1.097,9,6,1.143,None,Exhaust Leak (False Lean),0.75,55
+TC034,E5,0.21,13.3,124,3.11,135,1.068,16,13,1.114,None,Intake Vacuum Leak,0.75,60
+TC035,E0,0.28,12.7,81,3.33,125,1.107,18,10,1.116,None,Intake Vacuum Leak,0.75,60
+TC036,E5,0.27,13.5,72,3.76,83,1.071,17,14,1.108,None,Intake Vacuum Leak,0.75,60
+TC037,E5,0.15,13.3,63,2.77,84,1.112,15,11,1.109,None,Intake Vacuum Leak,0.75,60
+TC038,E85,0.17,13.3,79,2.45,164,1.072,17,12,1.112,None,Intake Vacuum Leak,0.75,60
+TC039,E10,0.17,13.0,136,3.96,148,1.08,12,9,1.113,None,Intake Vacuum Leak,0.75,60
+TC040,E10,0.14,13.5,83,2.08,156,1.086,17,14,1.096,None,Intake Vacuum Leak,0.75,60

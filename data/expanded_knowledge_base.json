@@ -1,0 +1,178 @@
+{
+  "engine_metadata": {
+    "version": "1.0.6",
+    "fuel_profile": "Petrol Only (E0/E5/E10/E85)"
+  },
+  "validation_gatekeeper": {
+    "ranges": {
+      "co": {"min": 0.0, "max": 10.0},
+      "hc": {"min": 0, "max": 25000},
+      "co2": {"min": 6.0, "max": 16.5},
+      "o2": {"min": 0.0, "max": 20.0},
+      "lambda": {"min": 0.6, "max": 1.5},
+      "nox": {"min": 0, "max": 5000}
+    }
+  },
+  "health_penalties": [
+    {
+      "id": "lambda_delta",
+      "condition": "lambda_delta > 0.05",
+      "penalty": 10
+    },
+    {
+      "id": "catalyst_low",
+      "condition": "cat_eff < 80",
+      "penalty": 15
+    },
+    {
+      "id": "nox_severe",
+      "condition": "nox > 1500",
+      "penalty": 15,
+      "warning": "Severe NOx ({nox} ppm) - possible cooling system, EGR, or catalyst failure"
+    },
+    {
+      "id": "nox_lean",
+      "condition": "nox > 500 and lambda_val > 1.03",
+      "penalty": 10,
+      "warning": "Elevated NOx ({nox} ppm) with lean mixture - check EGR and cooling system"
+    }
+  ],
+  "catalyst_config": {
+    "co_o2_penalty": {"co_threshold": 0.5, "o2_threshold": 0.5, "penalty": 15},
+    "status_thresholds": {"optimal": 95, "marginal": 85}
+  },
+  "diagnostic_matrix": [
+    {
+      "case_id": "catalyst_failure",
+      "name": "Catalytic Converter Efficiency Failure",
+      "logic": "low_idle.nox > 1000 && 0.98 <= low_idle.lambda <= 1.02 && low_idle.co2 > 13.0 && low_idle.hc < 1000",
+      "health_score": 40,
+      "confidence_boosters": {"base_confidence": 0.9},
+      "modular_addons": {"tier2_obd_dtc": ["P0420","P0430"]}
+    },
+    {
+      "case_id": "high_nox_timing_advance",
+      "name": "Excessively Advanced Timing",
+      "logic": "low_idle.nox > 500 && low_idle.co < 0.35 && low_idle.hc < 60 && 0.99 <= low_idle.lambda <= 1.03",
+      "health_score": 50,
+      "confidence_boosters": {"base_confidence": 0.75},
+      "modular_addons": {"tier2_obd_dtc": ["P0016"]}
+    },
+    {
+      "case_id": "exhaust_leak_false_lean",
+      "name": "Exhaust Leak (False Lean)",
+      "logic": "low_idle.o2 > 3.5 && low_idle.lambda > 1.02 && low_idle.co < 0.4 && low_idle.hc < 100 && low_idle.nox < 150",
+      "health_score": 55,
+      "confidence_boosters": {"base_confidence": 0.75}
+    },
+    {
+      "case_id": "misfire",
+      "name": "Engine Misfire",
+      "logic": "low_idle.hc > 1500 && low_idle.o2 > 1.5 && low_idle.co < 1.0 && low_idle.co2 > 5.0",
+      "health_score": 30,
+      "confidence_boosters": {"base_confidence": 0.9},
+      "modular_addons": {"tier2_obd_dtc": ["P0300","P0301","P0302","P0303","P0304","P0305","P0306"]}
+    },
+    {
+      "case_id": "cold_start_enrichment",
+      "name": "Cold Start Enrichment",
+      "logic": "low_idle.co > 2.5 && low_idle.hc > 5000 && low_idle.co2 < 13.0 && low_idle.lambda < 0.75",
+      "health_score": 40,
+      "confidence_boosters": {"base_confidence": 0.8}
+    },
+    {
+      "case_id": "fuel_delivery_lean",
+      "name": "Fuel Delivery Problem (Lean)",
+      "logic": "low_idle.lambda > 1.07 && low_idle.o2 > 1.5 && low_idle.stft > 10 && low_idle.ltft > 8 && low_idle.nox > 150 && ('P0171' in dtc_codes or 'P0174' in dtc_codes)",
+      "health_score": 55,
+      "confidence_boosters": {"base_confidence": 0.8}
+    },
+    {
+      "case_id": "vacuum_leak",
+      "name": "Intake Vacuum Leak",
+      "logic": "low_idle.lambda > 1.05 && low_idle.o2 > 2.0 && low_idle.o2 <= 3.5 && low_idle.co < 0.5 && low_idle.co2 < 13.0 && low_idle.nox < 200",
+      "health_score": 60,
+      "confidence_boosters": {"base_confidence": 0.75}
+    },
+    {
+      "case_id": "rich_running",
+      "name": "System Running Rich",
+      "logic": "low_idle.lambda < 0.92 && low_idle.co > 2.0 && low_idle.o2 < 0.2 && low_idle.hc < 2000",
+      "health_score": 45,
+      "confidence_boosters": {"base_confidence": 0.75}
+    },
+    {
+      "case_id": "o2_lazy",
+      "name": "O2 Sensor Sluggish or Failed",
+      "logic": "0.96 <= low_idle.lambda <= 1.04 && low_idle.o2 > 0.4 && low_idle.o2 < 0.7 && low_idle.co > 0.3 && low_idle.nox < 200",
+      "health_score": 60,
+      "confidence_boosters": {"base_confidence": 0.7}
+    },
+    {
+      "case_id": "timing_retard",
+      "name": "Ignition Timing Issues (Retard)",
+      "logic": "low_idle.nox < 30 && low_idle.co > 0.8 && 0.98 <= low_idle.lambda <= 1.03",
+      "health_score": 50,
+      "confidence_boosters": {"base_confidence": 0.65}
+    },
+    {
+      "case_id": "maf_under",
+      "name": "MAF Sensor Under-Reading",
+      "logic": "low_idle.lambda > 1.06 && low_idle.stft > 10 && low_idle.ltft > 8 && low_idle.nox > 80 && not ('P0171' in dtc_codes or 'P0174' in dtc_codes)",
+      "health_score": 50,
+      "confidence_boosters": {"base_confidence": 0.7}
+    },
+    {
+      "case_id": "P_001",
+      "name": "Vacuum Leak (Differential)",
+      "logic": "low_idle.lambda > 1.05 && high_idle.lambda < 1.02 && low_idle.o2 > 1.5",
+      "health_score": 65,
+      "verdict": "Unmetered air detected at idle. Airflow stabilizes at higher RPM.",
+      "action": "Inspect intake manifold gaskets, vacuum hoses, and brake booster.",
+      "confidence_boosters": {"base_confidence": 0.85}
+    },
+    {
+      "case_id": "P_003",
+      "name": "Exhaust Dilution (False Lean)",
+      "logic": "measured_lambda > calculated_lambda + 0.05 && low_idle.o2 > 2.0",
+      "health_score": 85,
+      "verdict": "Bretschneider vs Measured Lambda mismatch. Atmospheric air is entering the tailpipe.",
+      "action": "Find and seal the exhaust leak near the O2 sensor or flange.",
+      "confidence_boosters": {"base_confidence": 0.9}
+    },
+    {
+      "case_id": "P_005",
+      "name": "Systemic Rich Mixture",
+      "logic": "calculated_lambda < 0.94 && low_idle.co > 2.0",
+      "health_score": 45,
+      "verdict": "Engine is over-fueling across all ranges. Lambda control is lost.",
+      "action": "Check fuel pressure regulator, leaky injectors, or coolant temp sensor.",
+      "confidence_boosters": {"base_confidence": 0.8}
+    },
+    {
+      "case_id": "high_nox_lean_egr",
+      "name": "High NOx + Lean Idle (EGR/Cooling Failure)",
+      "logic": "low_idle.nox > 800 && low_idle.lambda > 1.03 && low_idle.o2 > 1.0",
+      "health_score": 45,
+      "verdict": "High NOx with lean idle indicates EGR system not recirculating or cooling system deficiency.",
+      "action": "Check EGR valve operation, EGR cooler, engine coolant temperature, and thermostat.",
+      "confidence_boosters": {"base_confidence": 0.85}
+    },
+    {
+      "case_id": "vacuum_leak_differential_high_idle",
+      "name": "Vacuum Leak (Differential - High Idle Confirms)",
+      "logic": "low_idle.lambda > 1.05 && high_idle.lambda < 1.02 && low_idle.o2 > 1.5 && high_idle.o2 < 1.0",
+      "health_score": 60,
+      "verdict": "Lean at low idle but normal at high idle confirms unmetered air entering at idle only.",
+      "action": "Smoke test intake manifold, check vacuum hoses, brake booster, PCV valve, and throttle body gasket.",
+      "confidence_boosters": {"base_confidence": 0.9}
+    },
+    {
+      "case_id": "P_100",
+      "name": "Healthy Engine",
+      "logic": "0.99 <= low_idle.lambda <= 1.01 && low_idle.co < 0.3 && low_idle.co2 >= 14.0 && low_idle.hc < 60 && low_idle.o2 < 0.5",
+      "health_score": 100,
+      "confidence_boosters": {"base_confidence": 0.95}
+    }
+  ]
+}

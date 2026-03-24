@@ -1,0 +1,189 @@
+{
+  "engine_metadata": {
+    "version": "1.0.4",
+    "fuel_profile": "Standard Petrol (E5/E10)",
+    "stoich_target": 1.0,
+    "bretschneider_constants": {
+      "h_c_ratio": 1.85,
+      "o_c_ratio": 0.02
+    }
+  },
+  "validation_gatekeeper": {
+    "ranges": {
+      "co": {
+        "min": 0.0,
+        "max": 10.0,
+        "error": "Liquid fuel/Flooding detected"
+      },
+      "hc": {
+        "min": 0,
+        "max": 10000,
+        "error": "Total ignition failure"
+      },
+      "co2": {
+        "min": 8.0,
+        "max": 16.5,
+        "error": "Extremely low efficiency or probe not deep enough"
+      },
+      "o2": {
+        "min": 0.0,
+        "max": 12.0,
+        "error": "Secondary Air Pump active or massive exhaust leak"
+      },
+      "lambda": {
+        "min": 0.7,
+        "max": 1.3,
+        "error": "Mixture beyond combustion limits"
+      },
+      "nox": {
+        "min": 0,
+        "max": 5000,
+        "error": "NOx out of range"
+      }
+    },
+    "integrity_check": {
+      "co_plus_co2_min": 12.0,
+      "warning": "Total gas volume low. Check probe placement in tailpipe."
+    }
+  },
+  "physics_baselines": {
+    "stoichiometric_zone": {
+      "lambda_range": [
+        0.98,
+        1.02
+      ],
+      "ideal_co2": 15.2,
+      "max_co": 0.3,
+      "max_hc": 50,
+      "max_o2": 0.5
+    },
+    "lean_zone": {
+      "lambda_range": [
+        1.03,
+        1.2
+      ],
+      "nox_spike_start": 1.05
+    },
+    "rich_zone": {
+      "lambda_range": [
+        0.85,
+        0.97
+      ],
+      "co_linear_increase": "0.5% per 0.02 Lambda"
+    }
+  },
+  "health_penalties": [
+    {
+      "id": "lambda_delta",
+      "condition": "lambda_delta > 0.05",
+      "penalty": 10
+    },
+    {
+      "id": "catalyst_low",
+      "condition": "cat_eff < 80",
+      "penalty": 15
+    },
+    {
+      "id": "nox_severe",
+      "condition": "nox > 1500",
+      "penalty": 15,
+      "warning": "Severe NOx ({nox} ppm) - possible cooling system, EGR, or catalyst failure"
+    },
+    {
+      "id": "nox_lean",
+      "condition": "nox > 500 and lambda_val > 1.03",
+      "penalty": 10,
+      "warning": "Elevated NOx ({nox} ppm) with lean mixture - check EGR and cooling system"
+    }
+  ],
+  "catalyst_config": {
+    "co_o2_penalty": {"co_threshold": 0.5, "o2_threshold": 0.5, "penalty": 15},
+    "status_thresholds": {"optimal": 95, "marginal": 85}
+  },
+  "diagnostic_matrix": [
+    {
+      "case_id": "P_001",
+      "name": "Vacuum Leak (Differential)",
+      "logic": "low_idle.lambda > 1.05 && high_idle.lambda < 1.02 && low_idle.o2 > 1.5",
+      "health_score": 65,
+      "verdict": "Unmetered air detected at idle. Airflow stabilizes at higher RPM.",
+      "action": "Inspect intake manifold gaskets, vacuum hoses, and brake booster."
+    },
+    {
+      "case_id": "P_002",
+      "name": "Catalytic Converter Dead",
+      "logic": "abs(low_idle.lambda - 1.0) < 0.02 && low_idle.co > 0.6 && low_idle.co2 < 12.5",
+      "health_score": 40,
+      "verdict": "Engine mix is perfect (Stoich), but the Catalyst is not oxidizing pollutants.",
+      "action": "Replace Catalytic Converter. Check for old misfire codes that may have melted it."
+    },
+    {
+      "case_id": "P_003",
+      "name": "Exhaust Dilution (False Lean)",
+      "logic": "measured_lambda > calculated_lambda + 0.05 && low_idle.o2 > 2.0",
+      "health_score": 85,
+      "verdict": "Bretschneider vs Measured Lambda mismatch. Atmospheric air is entering the tailpipe.",
+      "action": "Find and seal the exhaust leak near the O2 sensor or flange."
+    },
+    {
+      "case_id": "P_004",
+      "name": "Ignition Misfire",
+      "logic": "low_idle.hc > 300 && low_idle.o2 > 2.0 && low_idle.co < 0.5",
+      "health_score": 30,
+      "verdict": "Raw fuel and air detected together. Spark was not triggered.",
+      "action": "Check spark plugs, ignition coils, and high-tension leads immediately."
+    },
+    {
+      "case_id": "P_005",
+      "name": "Systemic Rich Mixture",
+      "logic": "calculated_lambda < 0.94 && low_idle.co > 2.0",
+      "health_score": 45,
+      "verdict": "Engine is over-fueling across all ranges. Lambda control is lost.",
+      "action": "Check fuel pressure regulator, leaky injectors, or coolant temp sensor."
+    },
+    {
+      "case_id": "high_nox_lean_egr",
+      "name": "High NOx + Lean Idle (EGR/Cooling Failure)",
+      "logic": "low_idle.nox > 800 && low_idle.lambda > 1.03 && low_idle.o2 > 1.0",
+      "health_score": 45,
+      "verdict": "High NOx with lean idle indicates EGR system not recirculating or cooling system deficiency allowing excessive combustion temperatures.",
+      "action": "Check EGR valve operation, EGR cooler, engine coolant temperature, and thermostat."
+    },
+    {
+      "case_id": "high_nox_timing_advance",
+      "name": "High NOx + Timing Over-Advanced (Knock/VVT Issue)",
+      "logic": "low_idle.nox > 500 && low_idle.co < 0.3 && low_idle.hc < 80 && low_idle.lambda >= 0.99 && low_idle.lambda <= 1.03",
+      "health_score": 50,
+      "verdict": "High NOx with near-stoichiometric mixture and clean burn suggests excessive ignition advance raising peak combustion temperature.",
+      "action": "Check knock sensor operation, VVT/cam phaser, base timing, and for carbon buildup increasing compression."
+    },
+    {
+      "case_id": "vacuum_leak_differential_high_idle",
+      "name": "Vacuum Leak (Differential - High Idle Confirms)",
+      "logic": "low_idle.lambda > 1.05 && high_idle.lambda < 1.02 && low_idle.o2 > 1.5 && high_idle.o2 < 1.0",
+      "health_score": 60,
+      "verdict": "Lean at low idle but normal at high idle confirms unmetered air entering at idle only. Vacuum leak is speed-dependent.",
+      "action": "Smoke test intake manifold, check vacuum hoses, brake booster, PCV valve, and throttle body gasket."
+    },
+    {
+      "case_id": "P_100",
+      "name": "Healthy Engine",
+      "logic": "0.99 <= low_idle.lambda <= 1.01 && low_idle.co < 0.3 && low_idle.hc < 60",
+      "health_score": 100,
+      "verdict": "Combustion and conversion are operating at peak efficiency.",
+      "action": "No action required. Maintain regular service intervals."
+    }
+  ],
+  "ui_configuration": {
+    "efficiency_gauge": {
+      "critical": 80,
+      "marginal": 90,
+      "optimal": 95
+    },
+    "colors": {
+      "fail": "#FF0000",
+      "warning": "#FFA500",
+      "pass": "#00FF00"
+    }
+  }
+}

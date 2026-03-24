@@ -1,0 +1,61 @@
+ID,Fuel,CO_Pct,CO2_Pct,HC_PPM,O2_Pct,NOx_PPM,Lambda_Gas,OBD_STFT,OBD_LTFT,OBD_Lambda,OBD_DTC,Expected_Result,Confidence_Score,ECU_Health
+101,E10,0.15,1.01,30,0.4,0,1.0,0,0,1.0,None,Conversion Efficiency Delta Catalyst Failure (Dead),0.8,50
+102,E10,0.45,0.98,180,0.6,0,1.0,0,0,1.0,None,CO/O2 Coexistence Catalyst Efficiency Low,0.8,50
+103,E10,0.05,1.0,15,0.1,0,1.0,0,0,1.0,None,Baseline (Healthy) Pass / Healthy,0.8,50
+104,E10,0.2,1.0,50,0.3,0,1.0,0,0,1.0,None,Storage Capacity Depleted Weak Catalyst,0.8,50
+105,E10,0.1,1.01,40,0.25,0,1.0,0,0,1.0,None,High-Flow Breakthrough Catalyst Failure,0.8,50
+106,E10,1.2,0.95,250,0.2,0,1.0,0,0,1.0,None,Rich Masking (Engine Out) Rich (Cat Saturated),0.8,50
+107,E10,0.35,1.01,95,0.55,0,1.0,0,0,1.0,None,Thermal Deactivation Catalyst Efficiency Low,0.8,50
+108,E10,0.12,1.05,35,1.5,0,1.0,0,0,1.0,None,Lean Masking (Healthy Cat) Lean (Healthy Cat),0.8,50
+109,E10,0.55,0.99,160,0.75,0,1.0,0,0,1.0,None,Total Conversion Loss Catalyst Failure,0.8,50
+110,E10,0.25,1.0,70,0.45,0,1.0,0,0,1.0,None,Partial Efficiency Loss Weak Catalyst,0.8,50
+111,E10,0.08,1.0,25,0.2,0,1.0,0,0,1.0,None,Conversion Efficiency Delta Catalyst Failure,0.8,50
+112,E10,0.4,1.0,110,0.5,0,1.0,0,0,1.0,None,CO/O2 Coexistence Catalyst Efficiency Low,0.8,50
+113,E10,0.06,1.0,18,0.15,0,1.0,0,0,1.0,None,Baseline (Healthy) Pass / Healthy,0.8,50
+114,E10,0.3,1.01,85,0.4,0,1.0,0,0,1.0,None,Storage Capacity Depleted Weak Catalyst,0.8,50
+115,E10,0.15,1.01,45,0.35,0,1.0,0,0,1.0,None,High-Flow Breakthrough Catalyst Failure,0.8,50
+116,E10,1.5,0.93,300,0.1,0,1.0,0,0,1.0,None,Rich Masking (Engine Out) Rich (Cat Saturated),0.8,50
+117,E10,0.38,1.01,100,0.58,0,1.0,0,0,1.0,None,Thermal Deactivation Catalyst Efficiency Low,0.8,50
+118,E10,0.1,1.07,30,1.8,0,1.0,0,0,1.0,None,Lean Masking (Healthy Cat) Lean (Healthy Cat),0.8,50
+119,E10,0.5,1.0,145,0.7,0,1.0,0,0,1.0,None,Total Conversion Loss Catalyst Failure,0.8,50
+120,E10,0.22,1.0,65,0.42,0,1.0,0,0,1.0,None,Partial Efficiency Loss Weak Catalyst,0.8,50
+141,E10,0.1,12.1,1200,4.5,0,1.0,0,0,1.0,None,,0.8,50
+142,E10,4.5,10.5,850,0.3,0,1.0,0,0,1.0,None,,0.8,50
+143,E10,0.15,12.5,1100,4.2,0,1.0,0,0,1.0,None,Quench Zone Edge Spark Plug Failure,0.8,50
+144,E10,3.8,11.2,600,0.45,0,1.0,0,0,1.0,None,Saturated Combustion Edge Rich Misfire (Injectors),0.8,50
+145,E10,0.2,11.8,1350,5.1,0,1.0,0,0,1.0,None,Raw Charge Edge Ignition Coil Failure,0.8,50
+146,E10,0.05,12.2,400,3.8,0,1.0,0,0,1.0,None,Lean Misfire Node Lean Misfire (Vacuum),0.8,50
+147,E10,5.5,9.5,900,0.2,0,1.0,0,0,1.0,None,Flooding Edge Rich Misfire (FPR),0.8,50
+148,E10,0.12,12.4,1050,4.0,0,1.0,0,0,1.0,None,Secondary Ignition Edge Bad Plug Wires,0.8,50
+149,E10,0.25,11.0,1500,5.8,0,1.0,0,0,1.0,None,Incomplete Oxidation Path Major Ignition Fault,0.8,50
+150,E10,4.0,10.8,750,0.35,0,1.0,0,0,1.0,None,Inhibitor Path (High Fuel) Rich Misfire,0.8,50
+151,E10,0.08,12.2,1150,4.3,0,1.0,0,0,1.0,None,Ignition Source Node Ignition Misfire,0.8,50
+152,E10,4.2,10.6,800,0.28,0,1.0,0,0,1.0,None,Over-Fueling Path Rich Misfire,0.8,50
+153,E10,0.18,11.9,1250,4.7,0,1.0,0,0,1.0,None,Quench Path Bad Ignition Coil,0.8,50
+154,E10,0.04,12.5,380,3.5,0,1.0,0,0,1.0,None,Lean Limit Node Lean Misfire,0.8,50
+155,E10,5.2,9.8,950,0.18,0,1.0,0,0,1.0,None,Flooding Path Severe Rich Misfire,0.8,50
+156,E10,0.11,12.3,1080,4.1,0,1.0,0,0,1.0,None,Spark Latency Path Worn Spark Plugs,0.8,50
+157,E10,0.3,10.8,1600,6.2,0,1.0,0,0,1.0,None,Unburned Oxygen Node Complete Ignition Loss,0.8,50
+158,E10,4.1,10.7,780,0.32,0,1.0,0,0,1.0,None,Saturated Node Rich Misfire,0.8,50
+159,E10,0.07,12.1,1120,4.2,0,1.0,0,0,1.0,None,Electrical Edge Ignition Misfire,0.8,50
+160,E10,0.03,12.0,420,4.0,0,1.0,0,0,1.0,None,Fuel Starvation Edge Lean Misfire,0.8,50
+161,E10,0.0,15.2,12,1.5,0,1.0,0,0,1.0,None,,0.8,50
+162,E10,2.5,13.5,210,0.1,0,1.0,0,0,1.0,None,Low Idle Only Fault Lazy O2 Sensor,0.8,50
+163,E10,0.05,14.8,35,0.05,0,1.0,0,0,1.0,None,High Idle Logic Flip Restricted Air Intake,0.8,50
+164,E10,1.1,10.1,180,4.2,0,1.0,0,0,1.0,None,Multiple High-Node Weights Exhaust Leak (Pre-O2),0.8,50
+165,E10,0.02,14.9,15,0.12,0,1.0,0,0,1.0,None,Frozen Value Node Stuck Gas Analyzer,0.8,50
+166,E10,0.15,12.0,95,3.5,0,1.0,0,0,1.0,None,Lean/Healthy Ambiguity Faulty EGR (Stay Open),0.8,50
+167,E10,3.2,8.5,450,4.5,0,1.0,0,0,1.0,None,Max Conflict:,0.8,50
+168,E10,0.08,15.0,25,0.2,0,1.0,0,0,1.0,None,Perfect Combustion Node Pass / Healthy,0.8,50
+169,E10,0.45,14.1,120,0.5,0,1.0,0,0,1.0,None,RPM Independence Fault Fixed Signal (O2 Sensor),0.8,50
+170,E10,0.6,13.2,280,1.1,0,1.0,0,0,1.0,None,Thermal Sensitivity Path Catalytic Converter (Melting),0.8,50
+171,E10,0.01,6.2,10,10.5,0,1.0,0,0,1.0,None,Atmospheric Bias Node Exhaust Sample Dilution,0.8,50
+172,E10,2.8,12.1,190,0.35,0,1.0,0,0,1.0,None,Rich Trim Stability Coolant Temp Sensor (Cold),0.8,50
+173,E10,0.18,13.4,450,2.8,0,1.0,0,0,1.0,None,Moderate HC/O2 Conflict Secondary Air Injection Fault,0.8,50
+174,E10,0.05,15.1,18,0.1,0,1.0,0,0,1.0,None,Clean Burn Baseline Pass / Healthy,0.8,50
+175,E10,0.12,13.8,85,1.8,0,1.0,0,0,1.0,None,Transient Lean Node Lazy Fuel Pump,0.8,50
+176,E10,5.5,9.1,920,0.1,0,1.0,0,0,1.0,None,Saturated Graph (Max Rich) Fuel Pressure Regulator,0.8,50
+177,E10,0.25,10.2,1400,6.5,0,1.0,0,0,1.0,None,Incomplete Combustion Path Igniter Module Failure,0.8,50
+178,E10,0.4,14.2,110,0.55,0,1.0,0,0,1.0,None,High Flow Breakthrough Catalyst Aging,0.8,50
+179,E10,0.03,14.7,22,0.18,0,1.0,0,0,1.0,None,Minor Trim Variation Pass / Healthy,0.8,50
+180,E10,0.9,9.5,250,4.8,0,1.0,0,0,1.0,None,Dilution vs Fueling Edge Cracked Exhaust Y-Pipe,0.8,50

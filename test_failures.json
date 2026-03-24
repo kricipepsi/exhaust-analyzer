@@ -1,0 +1,182 @@
+[
+  [
+    "TC026",
+    "Exhaust Leak (False Lean)",
+    "Unclassified Condition"
+  ],
+  [
+    "TC027",
+    "Exhaust Leak (False Lean)",
+    "Unclassified Condition"
+  ],
+  [
+    "TC029",
+    "Exhaust Leak (False Lean)",
+    "Intake Vacuum Leak"
+  ],
+  [
+    "TC030",
+    "Exhaust Leak (False Lean)",
+    "Unclassified Condition"
+  ],
+  [
+    "TC031",
+    "Exhaust Leak (False Lean)",
+    "Unclassified Condition"
+  ],
+  [
+    "TC032",
+    "Exhaust Leak (False Lean)",
+    "Intake Vacuum Leak"
+  ],
+  [
+    "TC033",
+    "Exhaust Leak (False Lean)",
+    "Unclassified Condition"
+  ],
+  [
+    "TC034",
+    "Intake Vacuum Leak",
+    "Unclassified Condition"
+  ],
+  [
+    "TC036",
+    "Intake Vacuum Leak",
+    "Exhaust Leak (False Lean)"
+  ],
+  [
+    "TC037",
+    "Intake Vacuum Leak",
+    "Unclassified Condition"
+  ],
+  [
+    "TC038",
+    "Intake Vacuum Leak",
+    "Unclassified Condition"
+  ],
+  [
+    "TC039",
+    "Intake Vacuum Leak",
+    "Unclassified Condition"
+  ],
+  [
+    "TC040",
+    "Intake Vacuum Leak",
+    "Unclassified Condition"
+  ],
+  [
+    "TC041",
+    "Intake Vacuum Leak",
+    "Unclassified Condition"
+  ],
+  [
+    "TC042",
+    "Intake Vacuum Leak",
+    "Unclassified Condition"
+  ],
+  [
+    "TC043",
+    "Intake Vacuum Leak",
+    "Unclassified Condition"
+  ],
+  [
+    "TC044",
+    "Intake Vacuum Leak",
+    "Unclassified Condition"
+  ],
+  [
+    "TC045",
+    "Intake Vacuum Leak",
+    "Unclassified Condition"
+  ],
+  [
+    "TC046",
+    "Fuel Delivery Problem (Lean)",
+    "Unclassified Condition"
+  ],
+  [
+    "TC047",
+    "Fuel Delivery Problem (Lean)",
+    "Intake Vacuum Leak"
+  ],
+  [
+    "TC048",
+    "Fuel Delivery Problem (Lean)",
+    "Unclassified Condition"
+  ],
+  [
+    "TC049",
+    "Fuel Delivery Problem (Lean)",
+    "Unclassified Condition"
+  ],
+  [
+    "TC050",
+    "Fuel Delivery Problem (Lean)",
+    "Unclassified Condition"
+  ],
+  [
+    "TC051",
+    "Fuel Delivery Problem (Lean)",
+    "Unclassified Condition"
+  ],
+  [
+    "TC052",
+    "Fuel Delivery Problem (Lean)",
+    "Unclassified Condition"
+  ],
+  [
+    "TC053",
+    "Fuel Delivery Problem (Lean)",
+    "Intake Vacuum Leak"
+  ],
+  [
+    "TC054",
+    "Fuel Delivery Problem (Lean)",
+    "Unclassified Condition"
+  ],
+  [
+    "TC055",
+    "Fuel Delivery Problem (Lean)",
+    "Unclassified Condition"
+  ],
+  [
+    "TC073",
+    "Engine Misfire",
+    "Unclassified Condition"
+  ],
+  [
+    "TC086",
+    "Ignition Timing Issues (Retard)",
+    "O2 Sensor Sluggish or Failed"
+  ],
+  [
+    "TC090",
+    "Ignition Timing Issues (Retard)",
+    "O2 Sensor Sluggish or Failed"
+  ],
+  [
+    "TC096",
+    "MAF Sensor Under-Reading",
+    "Unclassified Condition"
+  ],
+  [
+    "TC097",
+    "MAF Sensor Under-Reading",
+    "Unclassified Condition"
+  ],
+  [
+    "TC098",
+    "MAF Sensor Under-Reading",
+    "Unclassified Condition"
+  ],
+  [
+    "TC099",
+    "MAF Sensor Under-Reading",
+    "Unclassified Condition"
+  ],
+  [
+    "TC100",
+    "MAF Sensor Under-Reading",
+    "Unclassified Condition"
+  ]
+]

@@ -1,0 +1,207 @@
+{
+  "total": 24,
+  "passed": 4,
+  "failed": 20,
+  "accuracy": 16.666666666666664,
+  "results": [
+    {
+      "id": "1",
+      "expected": "Healthy_Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.7,
+      "match": true
+    },
+    {
+      "id": "2",
+      "expected": "Healthy_Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.7,
+      "match": true
+    },
+    {
+      "id": "10",
+      "expected": "Healthy_Diesel",
+      "actual": "VALIDATION_FAILED",
+      "actual_id": null,
+      "confidence": 0.0,
+      "match": false,
+      "note": "Secondary Air Pump active or massive exhaust leak: o2=16.5 (valid range: 0.0-12.0)"
+    },
+    {
+      "id": "16",
+      "expected": "Mechanical_Lean_Vacuum_Leak",
+      "actual": "Timing Advance (excessive)",
+      "actual_id": "pattern_007",
+      "confidence": 0.7,
+      "match": false
+    },
+    {
+      "id": "18",
+      "expected": "Mechanical_Rich_Leaking_Injector",
+      "actual": "Systemic Rich Mixture",
+      "actual_id": "P_005",
+      "confidence": 0.7,
+      "match": false
+    },
+    {
+      "id": "22",
+      "expected": "Mechanical_Misfire_Spark_Plug",
+      "actual": "MAF Sensor Under-Reading",
+      "actual_id": "mass_airflow_underreport",
+      "confidence": 0.7,
+      "match": false
+    },
+    {
+      "id": "25",
+      "expected": "Lazy_O2_Sensor_Aging",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.7,
+      "match": false
+    },
+    {
+      "id": "30",
+      "expected": "Mechanical_EGR_Stuck_Open",
+      "actual": "VALIDATION_FAILED",
+      "actual_id": null,
+      "confidence": 0.0,
+      "match": false,
+      "note": "Secondary Air Pump active or massive exhaust leak: o2=14.0 (valid range: 0.0-12.0)"
+    },
+    {
+      "id": "41",
+      "expected": "ECU_Logic_Inversion_False_Lean",
+      "actual": "Systemic Rich Mixture",
+      "actual_id": "P_005",
+      "confidence": 0.7,
+      "match": false
+    },
+    {
+      "id": "43",
+      "expected": "ECU_Input_Error_Ref_Volt_Drift",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.7,
+      "match": false
+    },
+    {
+      "id": "45",
+      "expected": "ECU_Output_Driver_Hardware_Fail",
+      "actual": "O2 Sensor Sluggish or Failed",
+      "actual_id": "o2_sensor_lazy",
+      "confidence": 0.7,
+      "match": false
+    },
+    {
+      "id": "48",
+      "expected": "ECU_Diesel_Injector_Driver_Fail",
+      "actual": "VALIDATION_FAILED",
+      "actual_id": null,
+      "confidence": 0.0,
+      "match": false,
+      "note": "Secondary Air Pump active or massive exhaust leak: o2=14.0 (valid range: 0.0-12.0)"
+    },
+    {
+      "id": "52",
+      "expected": "ECU_Misfire_Blindness",
+      "actual": "Ignition Misfire",
+      "actual_id": "P_004",
+      "confidence": 0.7,
+      "match": false
+    },
+    {
+      "id": "55",
+      "expected": "ECU_LPG_Rich_Logic_Fault",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false
+    },
+    {
+      "id": "66",
+      "expected": "Ghost_Misfire_Electrical_Noise",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.7,
+      "match": false
+    },
+    {
+      "id": "68",
+      "expected": "Ghost_Lean_DTC_False_Trigger",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.7,
+      "match": false
+    },
+    {
+      "id": "72",
+      "expected": "ECU_Internal_Checksum_Error",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.7,
+      "match": false
+    },
+    {
+      "id": "75",
+      "expected": "ECU_SCR_AdBlue_Logic_Blindness",
+      "actual": "VALIDATION_FAILED",
+      "actual_id": null,
+      "confidence": 0.0,
+      "match": false,
+      "note": "Secondary Air Pump active or massive exhaust leak: o2=16.5 (valid range: 0.0-12.0)"
+    },
+    {
+      "id": "81",
+      "expected": "INVALID_INPUT_CO2_OVER_RANGE",
+      "actual": "INVALID_REJECTED",
+      "actual_id": null,
+      "confidence": 0.0,
+      "match": true,
+      "note": "Extremely low efficiency or probe not deep enough: co2=20.5 (valid range: 8.0-16.5)"
+    },
+    {
+      "id": "83",
+      "expected": "INVALID_INPUT_PROBE_IN_OPEN_AIR",
+      "actual": "INVALID_REJECTED",
+      "actual_id": null,
+      "confidence": 0.0,
+      "match": true,
+      "note": "Extremely low efficiency or probe not deep enough: co2=0.0 (valid range: 8.0-16.5)"
+    },
+    {
+      "id": "86",
+      "expected": "Mechanical_Lean_E85",
+      "actual": "Timing Advance (excessive)",
+      "actual_id": "pattern_007",
+      "confidence": 0.7,
+      "match": false
+    },
+    {
+      "id": "90",
+      "expected": "Mechanical_Diesel_Air_Restriction",
+      "actual": "VALIDATION_FAILED",
+      "actual_id": null,
+      "confidence": 0.0,
+      "match": false,
+      "note": "Mixture beyond combustion limits: lambda=3.5 (valid range: 0.7-1.3)"
+    },
+    {
+      "id": "95",
+      "expected": "Exhaust_Air_Leak_Pre_Cat",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.7,
+      "match": false
+    },
+    {
+      "id": "100",
+      "expected": "Severe_Intake_Restriction",
+      "actual": "Systemic Rich Mixture",
+      "actual_id": "P_005",
+      "confidence": 0.7,
+      "match": false
+    }
+  ]
+}

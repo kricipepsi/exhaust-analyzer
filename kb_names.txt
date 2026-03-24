@@ -1,0 +1,14 @@
+Number of cases: 12
+Case names:
+  Catalytic Converter Efficiency Failure
+  Excessively Advanced Timing
+  Exhaust Leak (False Lean)
+  Engine Misfire
+  Cold Start Enrichment
+  Fuel Delivery Problem (Lean)
+  Intake Vacuum Leak
+  System Running Rich
+  O2 Sensor Sluggish or Failed
+  Ignition Timing Issues (Retard)
+  MAF Sensor Under-Reading
+  Healthy Engine

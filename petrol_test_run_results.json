@@ -1,0 +1,959 @@
+{
+  "run_date": "2026-03-23T18:16:13.220015",
+  "total": 100,
+  "passed": 64,
+  "failed": 36,
+  "accuracy": 64.0,
+  "category_stats": {
+    "Healthy Engine": {
+      "passed": 15,
+      "failed": 0
+    },
+    "Catalytic Converter Efficiency Failure": {
+      "passed": 10,
+      "failed": 0
+    },
+    "Exhaust Leak (False Lean)": {
+      "passed": 1,
+      "failed": 7
+    },
+    "Intake Vacuum Leak": {
+      "passed": 1,
+      "failed": 11
+    },
+    "Fuel Delivery Problem (Lean)": {
+      "passed": 0,
+      "failed": 10
+    },
+    "System Running Rich": {
+      "passed": 8,
+      "failed": 0
+    },
+    "Cold Start Enrichment": {
+      "passed": 8,
+      "failed": 0
+    },
+    "Engine Misfire": {
+      "passed": 7,
+      "failed": 1
+    },
+    "Excessively Advanced Timing": {
+      "passed": 6,
+      "failed": 0
+    },
+    "Ignition Timing Issues (Retard)": {
+      "passed": 3,
+      "failed": 2
+    },
+    "O2 Sensor Sluggish or Failed": {
+      "passed": 5,
+      "failed": 0
+    },
+    "MAF Sensor Under-Reading": {
+      "passed": 0,
+      "failed": 5
+    }
+  },
+  "results": [
+    {
+      "id": "TC001",
+      "expected": "Healthy Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Healthy Engine"
+    },
+    {
+      "id": "TC002",
+      "expected": "Healthy Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Healthy Engine"
+    },
+    {
+      "id": "TC003",
+      "expected": "Healthy Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Healthy Engine"
+    },
+    {
+      "id": "TC004",
+      "expected": "Healthy Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Healthy Engine"
+    },
+    {
+      "id": "TC005",
+      "expected": "Healthy Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Healthy Engine"
+    },
+    {
+      "id": "TC006",
+      "expected": "Healthy Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Healthy Engine"
+    },
+    {
+      "id": "TC007",
+      "expected": "Healthy Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Healthy Engine"
+    },
+    {
+      "id": "TC008",
+      "expected": "Healthy Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Healthy Engine"
+    },
+    {
+      "id": "TC009",
+      "expected": "Healthy Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Healthy Engine"
+    },
+    {
+      "id": "TC010",
+      "expected": "Healthy Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Healthy Engine"
+    },
+    {
+      "id": "TC011",
+      "expected": "Healthy Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Healthy Engine"
+    },
+    {
+      "id": "TC012",
+      "expected": "Healthy Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Healthy Engine"
+    },
+    {
+      "id": "TC013",
+      "expected": "Healthy Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Healthy Engine"
+    },
+    {
+      "id": "TC014",
+      "expected": "Healthy Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Healthy Engine"
+    },
+    {
+      "id": "TC015",
+      "expected": "Healthy Engine",
+      "actual": "Healthy Engine",
+      "actual_id": "P_100",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Healthy Engine"
+    },
+    {
+      "id": "TC016",
+      "expected": "Catalytic Converter Efficiency Failure",
+      "actual": "Catalytic Converter Efficiency Failure",
+      "actual_id": "catalyst_failure",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Catalytic Converter Efficiency Failure"
+    },
+    {
+      "id": "TC017",
+      "expected": "Catalytic Converter Efficiency Failure",
+      "actual": "Catalytic Converter Efficiency Failure",
+      "actual_id": "catalyst_failure",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Catalytic Converter Efficiency Failure"
+    },
+    {
+      "id": "TC018",
+      "expected": "Catalytic Converter Efficiency Failure",
+      "actual": "Catalytic Converter Efficiency Failure",
+      "actual_id": "catalyst_failure",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Catalytic Converter Efficiency Failure"
+    },
+    {
+      "id": "TC019",
+      "expected": "Catalytic Converter Efficiency Failure",
+      "actual": "Catalytic Converter Efficiency Failure",
+      "actual_id": "catalyst_failure",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Catalytic Converter Efficiency Failure"
+    },
+    {
+      "id": "TC020",
+      "expected": "Catalytic Converter Efficiency Failure",
+      "actual": "Catalytic Converter Efficiency Failure",
+      "actual_id": "catalyst_failure",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Catalytic Converter Efficiency Failure"
+    },
+    {
+      "id": "TC021",
+      "expected": "Catalytic Converter Efficiency Failure",
+      "actual": "Catalytic Converter Efficiency Failure",
+      "actual_id": "catalyst_failure",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Catalytic Converter Efficiency Failure"
+    },
+    {
+      "id": "TC022",
+      "expected": "Catalytic Converter Efficiency Failure",
+      "actual": "Catalytic Converter Efficiency Failure",
+      "actual_id": "catalyst_failure",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Catalytic Converter Efficiency Failure"
+    },
+    {
+      "id": "TC023",
+      "expected": "Catalytic Converter Efficiency Failure",
+      "actual": "Catalytic Converter Efficiency Failure",
+      "actual_id": "catalyst_failure",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Catalytic Converter Efficiency Failure"
+    },
+    {
+      "id": "TC024",
+      "expected": "Catalytic Converter Efficiency Failure",
+      "actual": "Catalytic Converter Efficiency Failure",
+      "actual_id": "catalyst_failure",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Catalytic Converter Efficiency Failure"
+    },
+    {
+      "id": "TC025",
+      "expected": "Catalytic Converter Efficiency Failure",
+      "actual": "Catalytic Converter Efficiency Failure",
+      "actual_id": "catalyst_failure",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Catalytic Converter Efficiency Failure"
+    },
+    {
+      "id": "TC026",
+      "expected": "Exhaust Leak (False Lean)",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Exhaust Leak (False Lean)"
+    },
+    {
+      "id": "TC027",
+      "expected": "Exhaust Leak (False Lean)",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Exhaust Leak (False Lean)"
+    },
+    {
+      "id": "TC028",
+      "expected": "Exhaust Leak (False Lean)",
+      "actual": "Exhaust Leak (False Lean)",
+      "actual_id": "exhaust_leak_false_lean",
+      "confidence": 0.75,
+      "match": true,
+      "category": "Exhaust Leak (False Lean)"
+    },
+    {
+      "id": "TC029",
+      "expected": "Exhaust Leak (False Lean)",
+      "actual": "Intake Vacuum Leak",
+      "actual_id": "vacuum_leak",
+      "confidence": 0.75,
+      "match": false,
+      "category": "Exhaust Leak (False Lean)"
+    },
+    {
+      "id": "TC030",
+      "expected": "Exhaust Leak (False Lean)",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Exhaust Leak (False Lean)"
+    },
+    {
+      "id": "TC031",
+      "expected": "Exhaust Leak (False Lean)",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Exhaust Leak (False Lean)"
+    },
+    {
+      "id": "TC032",
+      "expected": "Exhaust Leak (False Lean)",
+      "actual": "Intake Vacuum Leak",
+      "actual_id": "vacuum_leak",
+      "confidence": 0.75,
+      "match": false,
+      "category": "Exhaust Leak (False Lean)"
+    },
+    {
+      "id": "TC033",
+      "expected": "Exhaust Leak (False Lean)",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Exhaust Leak (False Lean)"
+    },
+    {
+      "id": "TC034",
+      "expected": "Intake Vacuum Leak",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Intake Vacuum Leak"
+    },
+    {
+      "id": "TC035",
+      "expected": "Intake Vacuum Leak",
+      "actual": "Intake Vacuum Leak",
+      "actual_id": "vacuum_leak",
+      "confidence": 0.75,
+      "match": true,
+      "category": "Intake Vacuum Leak"
+    },
+    {
+      "id": "TC036",
+      "expected": "Intake Vacuum Leak",
+      "actual": "Exhaust Leak (False Lean)",
+      "actual_id": "exhaust_leak_false_lean",
+      "confidence": 0.75,
+      "match": false,
+      "category": "Intake Vacuum Leak"
+    },
+    {
+      "id": "TC037",
+      "expected": "Intake Vacuum Leak",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Intake Vacuum Leak"
+    },
+    {
+      "id": "TC038",
+      "expected": "Intake Vacuum Leak",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Intake Vacuum Leak"
+    },
+    {
+      "id": "TC039",
+      "expected": "Intake Vacuum Leak",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Intake Vacuum Leak"
+    },
+    {
+      "id": "TC040",
+      "expected": "Intake Vacuum Leak",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Intake Vacuum Leak"
+    },
+    {
+      "id": "TC041",
+      "expected": "Intake Vacuum Leak",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Intake Vacuum Leak"
+    },
+    {
+      "id": "TC042",
+      "expected": "Intake Vacuum Leak",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Intake Vacuum Leak"
+    },
+    {
+      "id": "TC043",
+      "expected": "Intake Vacuum Leak",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Intake Vacuum Leak"
+    },
+    {
+      "id": "TC044",
+      "expected": "Intake Vacuum Leak",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Intake Vacuum Leak"
+    },
+    {
+      "id": "TC045",
+      "expected": "Intake Vacuum Leak",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Intake Vacuum Leak"
+    },
+    {
+      "id": "TC046",
+      "expected": "Fuel Delivery Problem (Lean)",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Fuel Delivery Problem (Lean)"
+    },
+    {
+      "id": "TC047",
+      "expected": "Fuel Delivery Problem (Lean)",
+      "actual": "Intake Vacuum Leak",
+      "actual_id": "vacuum_leak",
+      "confidence": 0.75,
+      "match": false,
+      "category": "Fuel Delivery Problem (Lean)"
+    },
+    {
+      "id": "TC048",
+      "expected": "Fuel Delivery Problem (Lean)",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Fuel Delivery Problem (Lean)"
+    },
+    {
+      "id": "TC049",
+      "expected": "Fuel Delivery Problem (Lean)",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Fuel Delivery Problem (Lean)"
+    },
+    {
+      "id": "TC050",
+      "expected": "Fuel Delivery Problem (Lean)",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Fuel Delivery Problem (Lean)"
+    },
+    {
+      "id": "TC051",
+      "expected": "Fuel Delivery Problem (Lean)",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Fuel Delivery Problem (Lean)"
+    },
+    {
+      "id": "TC052",
+      "expected": "Fuel Delivery Problem (Lean)",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Fuel Delivery Problem (Lean)"
+    },
+    {
+      "id": "TC053",
+      "expected": "Fuel Delivery Problem (Lean)",
+      "actual": "Intake Vacuum Leak",
+      "actual_id": "vacuum_leak",
+      "confidence": 0.75,
+      "match": false,
+      "category": "Fuel Delivery Problem (Lean)"
+    },
+    {
+      "id": "TC054",
+      "expected": "Fuel Delivery Problem (Lean)",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Fuel Delivery Problem (Lean)"
+    },
+    {
+      "id": "TC055",
+      "expected": "Fuel Delivery Problem (Lean)",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Fuel Delivery Problem (Lean)"
+    },
+    {
+      "id": "TC056",
+      "expected": "System Running Rich",
+      "actual": "System Running Rich",
+      "actual_id": "rich_running",
+      "confidence": 0.75,
+      "match": true,
+      "category": "System Running Rich"
+    },
+    {
+      "id": "TC057",
+      "expected": "System Running Rich",
+      "actual": "System Running Rich",
+      "actual_id": "rich_running",
+      "confidence": 0.75,
+      "match": true,
+      "category": "System Running Rich"
+    },
+    {
+      "id": "TC058",
+      "expected": "System Running Rich",
+      "actual": "System Running Rich",
+      "actual_id": "rich_running",
+      "confidence": 0.75,
+      "match": true,
+      "category": "System Running Rich"
+    },
+    {
+      "id": "TC059",
+      "expected": "System Running Rich",
+      "actual": "System Running Rich",
+      "actual_id": "rich_running",
+      "confidence": 0.75,
+      "match": true,
+      "category": "System Running Rich"
+    },
+    {
+      "id": "TC060",
+      "expected": "System Running Rich",
+      "actual": "System Running Rich",
+      "actual_id": "rich_running",
+      "confidence": 0.75,
+      "match": true,
+      "category": "System Running Rich"
+    },
+    {
+      "id": "TC061",
+      "expected": "System Running Rich",
+      "actual": "System Running Rich",
+      "actual_id": "rich_running",
+      "confidence": 0.75,
+      "match": true,
+      "category": "System Running Rich"
+    },
+    {
+      "id": "TC062",
+      "expected": "System Running Rich",
+      "actual": "System Running Rich",
+      "actual_id": "rich_running",
+      "confidence": 0.75,
+      "match": true,
+      "category": "System Running Rich"
+    },
+    {
+      "id": "TC063",
+      "expected": "System Running Rich",
+      "actual": "System Running Rich",
+      "actual_id": "rich_running",
+      "confidence": 0.75,
+      "match": true,
+      "category": "System Running Rich"
+    },
+    {
+      "id": "TC064",
+      "expected": "Cold Start Enrichment",
+      "actual": "Cold Start Enrichment",
+      "actual_id": "cold_start_enrichment",
+      "confidence": 0.8,
+      "match": true,
+      "category": "Cold Start Enrichment"
+    },
+    {
+      "id": "TC065",
+      "expected": "Cold Start Enrichment",
+      "actual": "Cold Start Enrichment",
+      "actual_id": "cold_start_enrichment",
+      "confidence": 0.8,
+      "match": true,
+      "category": "Cold Start Enrichment"
+    },
+    {
+      "id": "TC066",
+      "expected": "Cold Start Enrichment",
+      "actual": "Cold Start Enrichment",
+      "actual_id": "cold_start_enrichment",
+      "confidence": 0.8,
+      "match": true,
+      "category": "Cold Start Enrichment"
+    },
+    {
+      "id": "TC067",
+      "expected": "Cold Start Enrichment",
+      "actual": "Cold Start Enrichment",
+      "actual_id": "cold_start_enrichment",
+      "confidence": 0.8,
+      "match": true,
+      "category": "Cold Start Enrichment"
+    },
+    {
+      "id": "TC068",
+      "expected": "Cold Start Enrichment",
+      "actual": "Cold Start Enrichment",
+      "actual_id": "cold_start_enrichment",
+      "confidence": 0.8,
+      "match": true,
+      "category": "Cold Start Enrichment"
+    },
+    {
+      "id": "TC069",
+      "expected": "Cold Start Enrichment",
+      "actual": "Cold Start Enrichment",
+      "actual_id": "cold_start_enrichment",
+      "confidence": 0.8,
+      "match": true,
+      "category": "Cold Start Enrichment"
+    },
+    {
+      "id": "TC070",
+      "expected": "Cold Start Enrichment",
+      "actual": "Cold Start Enrichment",
+      "actual_id": "cold_start_enrichment",
+      "confidence": 0.8,
+      "match": true,
+      "category": "Cold Start Enrichment"
+    },
+    {
+      "id": "TC071",
+      "expected": "Cold Start Enrichment",
+      "actual": "Cold Start Enrichment",
+      "actual_id": "cold_start_enrichment",
+      "confidence": 0.8,
+      "match": true,
+      "category": "Cold Start Enrichment"
+    },
+    {
+      "id": "TC072",
+      "expected": "Engine Misfire",
+      "actual": "Engine Misfire",
+      "actual_id": "misfire",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Engine Misfire"
+    },
+    {
+      "id": "TC073",
+      "expected": "Engine Misfire",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "Engine Misfire"
+    },
+    {
+      "id": "TC074",
+      "expected": "Engine Misfire",
+      "actual": "Engine Misfire",
+      "actual_id": "misfire",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Engine Misfire"
+    },
+    {
+      "id": "TC075",
+      "expected": "Engine Misfire",
+      "actual": "Engine Misfire",
+      "actual_id": "misfire",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Engine Misfire"
+    },
+    {
+      "id": "TC076",
+      "expected": "Engine Misfire",
+      "actual": "Engine Misfire",
+      "actual_id": "misfire",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Engine Misfire"
+    },
+    {
+      "id": "TC077",
+      "expected": "Engine Misfire",
+      "actual": "Engine Misfire",
+      "actual_id": "misfire",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Engine Misfire"
+    },
+    {
+      "id": "TC078",
+      "expected": "Engine Misfire",
+      "actual": "Engine Misfire",
+      "actual_id": "misfire",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Engine Misfire"
+    },
+    {
+      "id": "TC079",
+      "expected": "Engine Misfire",
+      "actual": "Engine Misfire",
+      "actual_id": "misfire",
+      "confidence": 1.0,
+      "match": true,
+      "category": "Engine Misfire"
+    },
+    {
+      "id": "TC080",
+      "expected": "Excessively Advanced Timing",
+      "actual": "Excessively Advanced Timing",
+      "actual_id": "high_nox_timing_advance",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Excessively Advanced Timing"
+    },
+    {
+      "id": "TC081",
+      "expected": "Excessively Advanced Timing",
+      "actual": "Excessively Advanced Timing",
+      "actual_id": "high_nox_timing_advance",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Excessively Advanced Timing"
+    },
+    {
+      "id": "TC082",
+      "expected": "Excessively Advanced Timing",
+      "actual": "Excessively Advanced Timing",
+      "actual_id": "high_nox_timing_advance",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Excessively Advanced Timing"
+    },
+    {
+      "id": "TC083",
+      "expected": "Excessively Advanced Timing",
+      "actual": "Excessively Advanced Timing",
+      "actual_id": "high_nox_timing_advance",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Excessively Advanced Timing"
+    },
+    {
+      "id": "TC084",
+      "expected": "Excessively Advanced Timing",
+      "actual": "Excessively Advanced Timing",
+      "actual_id": "high_nox_timing_advance",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Excessively Advanced Timing"
+    },
+    {
+      "id": "TC085",
+      "expected": "Excessively Advanced Timing",
+      "actual": "Excessively Advanced Timing",
+      "actual_id": "high_nox_timing_advance",
+      "confidence": 0.95,
+      "match": true,
+      "category": "Excessively Advanced Timing"
+    },
+    {
+      "id": "TC086",
+      "expected": "Ignition Timing Issues (Retard)",
+      "actual": "O2 Sensor Sluggish or Failed",
+      "actual_id": "o2_lazy",
+      "confidence": 0.7,
+      "match": false,
+      "category": "Ignition Timing Issues (Retard)"
+    },
+    {
+      "id": "TC087",
+      "expected": "Ignition Timing Issues (Retard)",
+      "actual": "Ignition Timing Issues (Retard)",
+      "actual_id": "timing_retard",
+      "confidence": 0.65,
+      "match": true,
+      "category": "Ignition Timing Issues (Retard)"
+    },
+    {
+      "id": "TC088",
+      "expected": "Ignition Timing Issues (Retard)",
+      "actual": "Ignition Timing Issues (Retard)",
+      "actual_id": "timing_retard",
+      "confidence": 0.65,
+      "match": true,
+      "category": "Ignition Timing Issues (Retard)"
+    },
+    {
+      "id": "TC089",
+      "expected": "Ignition Timing Issues (Retard)",
+      "actual": "Ignition Timing Issues (Retard)",
+      "actual_id": "timing_retard",
+      "confidence": 0.65,
+      "match": true,
+      "category": "Ignition Timing Issues (Retard)"
+    },
+    {
+      "id": "TC090",
+      "expected": "Ignition Timing Issues (Retard)",
+      "actual": "O2 Sensor Sluggish or Failed",
+      "actual_id": "o2_lazy",
+      "confidence": 0.7,
+      "match": false,
+      "category": "Ignition Timing Issues (Retard)"
+    },
+    {
+      "id": "TC091",
+      "expected": "O2 Sensor Sluggish or Failed",
+      "actual": "O2 Sensor Sluggish or Failed",
+      "actual_id": "o2_lazy",
+      "confidence": 0.7,
+      "match": true,
+      "category": "O2 Sensor Sluggish or Failed"
+    },
+    {
+      "id": "TC092",
+      "expected": "O2 Sensor Sluggish or Failed",
+      "actual": "O2 Sensor Sluggish or Failed",
+      "actual_id": "o2_lazy",
+      "confidence": 0.7,
+      "match": true,
+      "category": "O2 Sensor Sluggish or Failed"
+    },
+    {
+      "id": "TC093",
+      "expected": "O2 Sensor Sluggish or Failed",
+      "actual": "O2 Sensor Sluggish or Failed",
+      "actual_id": "o2_lazy",
+      "confidence": 0.7,
+      "match": true,
+      "category": "O2 Sensor Sluggish or Failed"
+    },
+    {
+      "id": "TC094",
+      "expected": "O2 Sensor Sluggish or Failed",
+      "actual": "O2 Sensor Sluggish or Failed",
+      "actual_id": "o2_lazy",
+      "confidence": 0.7,
+      "match": true,
+      "category": "O2 Sensor Sluggish or Failed"
+    },
+    {
+      "id": "TC095",
+      "expected": "O2 Sensor Sluggish or Failed",
+      "actual": "O2 Sensor Sluggish or Failed",
+      "actual_id": "o2_lazy",
+      "confidence": 0.7,
+      "match": true,
+      "category": "O2 Sensor Sluggish or Failed"
+    },
+    {
+      "id": "TC096",
+      "expected": "MAF Sensor Under-Reading",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "MAF Sensor Under-Reading"
+    },
+    {
+      "id": "TC097",
+      "expected": "MAF Sensor Under-Reading",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "MAF Sensor Under-Reading"
+    },
+    {
+      "id": "TC098",
+      "expected": "MAF Sensor Under-Reading",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "MAF Sensor Under-Reading"
+    },
+    {
+      "id": "TC099",
+      "expected": "MAF Sensor Under-Reading",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "MAF Sensor Under-Reading"
+    },
+    {
+      "id": "TC100",
+      "expected": "MAF Sensor Under-Reading",
+      "actual": "Unclassified Condition",
+      "actual_id": "FALLBACK_001",
+      "confidence": 0.0,
+      "match": false,
+      "category": "MAF Sensor Under-Reading"
+    }
+  ]
+}

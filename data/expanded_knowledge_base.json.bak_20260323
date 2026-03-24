@@ -1,0 +1,521 @@
+{
+  "engine_metadata": {
+    "version": "1.0.4",
+    "fuel_profile": "Standard Petrol (E5/E10)",
+    "stoich_target": 1.0,
+    "bretschneider_constants": {
+      "h_c_ratio": 1.85,
+      "o_c_ratio": 0.02
+    }
+  },
+  "validation_gatekeeper": {
+    "ranges": {
+      "co": {
+        "min": 0.0,
+        "max": 10.0,
+        "error": "Liquid fuel/Flooding detected"
+      },
+      "hc": {
+        "min": 0,
+        "max": 10000,
+        "error": "Total ignition failure"
+      },
+      "co2": {
+        "min": 8.0,
+        "max": 16.5,
+        "error": "Extremely low efficiency or probe not deep enough"
+      },
+      "o2": {
+        "min": 0.0,
+        "max": 12.0,
+        "error": "Secondary Air Pump active or massive exhaust leak"
+      },
+      "lambda": {
+        "min": 0.7,
+        "max": 1.3,
+        "error": "Mixture beyond combustion limits"
+      },
+      "nox": {
+        "min": 0,
+        "max": 5000,
+        "error": "NOx out of range"
+      }
+    },
+    "integrity_check": {
+      "co_plus_co2_min": 12.0,
+      "warning": "Total gas volume low. Check probe placement in tailpipe."
+    }
+  },
+  "physics_baselines": {
+    "stoichiometric_zone": {
+      "lambda_range": [
+        0.98,
+        1.02
+      ],
+      "ideal_co2": 15.2,
+      "max_co": 0.3,
+      "max_hc": 50,
+      "max_o2": 0.5
+    },
+    "lean_zone": {
+      "lambda_range": [
+        1.03,
+        1.2
+      ],
+      "nox_spike_start": 1.05
+    },
+    "rich_zone": {
+      "lambda_range": [
+        0.85,
+        0.97
+      ],
+      "co_linear_increase": "0.5% per 0.02 Lambda"
+    }
+  },
+  "diagnostic_matrix": [
+    {
+      "case_id": "P_001",
+      "name": "Vacuum Leak (Differential)",
+      "logic": "low_idle.lambda > 1.05 && high_idle.lambda < 1.02 && low_idle.o2 > 1.5",
+      "health_score": 65,
+      "verdict": "Unmetered air detected at idle. Airflow stabilizes at higher RPM.",
+      "action": "Inspect intake manifold gaskets, vacuum hoses, and brake booster."
+    },
+    {
+      "case_id": "P_002",
+      "name": "Catalytic Converter Dead",
+      "logic": "abs(low_idle.lambda - 1.0) < 0.02 && low_idle.co > 0.6 && low_idle.co2 < 12.5",
+      "health_score": 40,
+      "verdict": "Engine mix is perfect (Stoich), but the Catalyst is not oxidizing pollutants.",
+      "action": "Replace Catalytic Converter. Check for old misfire codes that may have melted it."
+    },
+    {
+      "case_id": "P_003",
+      "name": "Exhaust Dilution (False Lean)",
+      "logic": "measured_lambda > calculated_lambda + 0.05 && low_idle.o2 > 2.0",
+      "health_score": 85,
+      "verdict": "Bretschneider vs Measured Lambda mismatch. Atmospheric air is entering the tailpipe.",
+      "action": "Find and seal the exhaust leak near the O2 sensor or flange."
+    },
+    {
+      "case_id": "P_004",
+      "name": "Ignition Misfire",
+      "logic": "low_idle.hc > 300 && low_idle.hc < 5000 && low_idle.o2 > 2.0 && low_idle.o2 < 15.0 && low_idle.co < 0.5 && low_idle.co2 > 5.0",
+      "health_score": 30,
+      "verdict": "Raw fuel and air detected together. Spark was not triggered.",
+      "action": "Check spark plugs, ignition coils, and high-tension leads immediately."
+    },
+    {
+      "case_id": "P_005",
+      "name": "Systemic Rich Mixture",
+      "logic": "calculated_lambda < 0.94 && low_idle.co > 2.0 && low_idle.hc < 7000 && low_idle.o2 < 6.0",
+      "health_score": 45,
+      "verdict": "Engine is over-fueling across all ranges. Lambda control is lost.",
+      "action": "Check fuel pressure regulator, leaky injectors, or coolant temp sensor."
+    },
+    {
+      "case_id": "high_nox_lean_egr",
+      "name": "High NOx + Lean Idle (EGR/Cooling Failure)",
+      "logic": "low_idle.nox > 800 && low_idle.lambda > 1.03 && low_idle.o2 > 1.0",
+      "health_score": 45,
+      "verdict": "High NOx with lean idle indicates EGR system not recirculating or cooling system deficiency allowing excessive combustion temperatures.",
+      "action": "Check EGR valve operation, EGR cooler, engine coolant temperature, and thermostat."
+    },
+    {
+      "case_id": "high_nox_timing_advance",
+      "name": "High NOx + Timing Over-Advanced (Knock/VVT Issue)",
+      "logic": "low_idle.nox > 500 && low_idle.co < 0.3 && low_idle.hc < 80 && low_idle.lambda >= 0.99 && low_idle.lambda <= 1.03",
+      "health_score": 50,
+      "verdict": "High NOx with near-stoichiometric mixture and clean burn suggests excessive ignition advance raising peak combustion temperature.",
+      "action": "Check knock sensor operation, VVT/cam phaser, base timing, and for carbon buildup increasing compression."
+    },
+    {
+      "case_id": "vacuum_leak_differential_high_idle",
+      "name": "Vacuum Leak (Differential - High Idle Confirms)",
+      "logic": "low_idle.lambda > 1.05 && high_idle.lambda < 1.02 && low_idle.o2 > 1.5 && high_idle.o2 < 1.0",
+      "health_score": 60,
+      "verdict": "Lean at low idle but normal at high idle confirms unmetered air entering at idle only. Vacuum leak is speed-dependent.",
+      "action": "Smoke test intake manifold, check vacuum hoses, brake booster, PCV valve, and throttle body gasket."
+    },
+    {
+      "case_id": "P_100",
+      "name": "Healthy Engine",
+      "logic": "0.99 <= low_idle.lambda <= 1.01 && low_idle.co < 0.3 && low_idle.hc < 60",
+      "health_score": 100,
+      "verdict": "Combustion and conversion are operating at peak efficiency.",
+      "action": "No action required. Maintain regular service intervals."
+    },
+    {
+      "case_id": "catalyst_failure",
+      "name": "Catalytic Converter Efficiency Failure",
+      "logic": "low_idle.nox > 1000",
+      "health_score": 40,
+      "verdict": "Catalytic Converter Efficiency Failure - Condition: nox=>1000",
+      "action": "Follow diagnostic procedure for: Aged/failed catalyst substrate; Contaminated by oil or fuel additives; Thermal shock damage"
+    },
+    {
+      "case_id": "cold_start_enrichment_fault",
+      "name": "Cold Start Enrichment Fault (Over-Enrichment)",
+      "logic": "low_idle.co > 3.0 and low_idle.hc > 20000.0 and low_idle.co2 < 5.0 and calculated_lambda < 0.7",
+      "health_score": 40,
+      "verdict": "Cold Start Enrichment Fault (Over-Enrichment) - Condition: lambda=<0.7",
+      "action": "Follow diagnostic procedure for: Faulty engine coolant temperature sensor (reading cold); Stuck cold start injector (if equipped); Faulty IAC/air control valve stuck closed"
+    },
+    {
+      "case_id": "ecu_logic_inversion_false_lean",
+      "name": "ECU Logic Inversion - False Lean",
+      "logic": "calculated_lambda < 0.95 and obd_lambda > 1.05 and obd_stft > 10%",
+      "health_score": 20,
+      "verdict": "ECU Logic Inversion - False Lean - Condition: lambda=<0.95 and obd_lambda=>1.05 and obd_stft=>10%",
+      "action": "Follow diagnostic procedure for: ECU software corruption or failed internal bias circuit; O2 sensor input driver misinterpreting voltage; Fuel map corruption"
+    },
+    {
+      "case_id": "ecu_logic_inversion_false_rich",
+      "name": "ECU Logic Inversion - False Rich",
+      "logic": "calculated_lambda > 1.05 and obd_lambda < 0.95 and obd_stft < -10%",
+      "health_score": 20,
+      "verdict": "ECU Logic Inversion - False Rich - Condition: lambda=>1.05 and obd_lambda=<0.95 and obd_stft=<-10%",
+      "action": "Follow diagnostic procedure for: ECU software corruption; O2 sensor input driver stuck; Fuel map logic failure"
+    },
+    {
+      "case_id": "ecu_input_buffer_failure",
+      "name": "ECU Input Signal Processing Failure",
+      "logic": "delta_rpm > 1500 and delta_maf < 2.0",
+      "health_score": 40,
+      "verdict": "ECU Input Signal Processing Failure - Condition: delta_rpm=>1500 and delta_maf=<2.0",
+      "action": "Follow diagnostic procedure for: ECU input buffer circuit dead; Faulty ADC (Analog-to-Digital converter); Sensor signal wiring / voltage divider failure inside ECU"
+    },
+    {
+      "case_id": "ecu_output_driver_short",
+      "name": "ECU Output Driver Short to Ground",
+      "logic": "is_permanently_rich == True and obd_stft < -20%",
+      "health_score": 20,
+      "verdict": "ECU Output Driver Short to Ground - Condition: is_permanently_rich=True and obd_stft=<-20%",
+      "action": "Follow diagnostic procedure for: Injector driver transistor shorted (low-side); Ignition coil driver burnt; ECU ground-side driver failure"
+    },
+    {
+      "case_id": "ecu_reference_voltage_drift",
+      "name": "ECU Reference Voltage Drift",
+      "logic": "multiple_sensor_offsets == True and gas_lambda == 0.9-1.1",
+      "health_score": 40,
+      "verdict": "ECU Reference Voltage Drift - Condition: multiple_sensor_offsets=True and gas_lambda=0.9-1.1",
+      "action": "Follow diagnostic procedure for: 5V reference regulator failure inside ECU; All analog sensorsbiased by same offset"
+    },
+    {
+      "case_id": "ecu_blindness_adaptive_frozen",
+      "name": "ECU Blindness - Adaptive Memory Frozen",
+      "logic": "gas_lambda > 1.10 and obd_dtcs is None and total_trim == 0%",
+      "health_score": 55,
+      "verdict": "ECU Blindness - Adaptive Memory Frozen - Condition: gas_lambda=>1.10 and obd_dtcs=none and total_trim=0%",
+      "action": "Follow diagnostic procedure for: Adaptive memory cannot write learned corrections; ECU in permanent open loop due to internal fault; Corrupted KAM (Keep Alive Memory)"
+    },
+    {
+      "case_id": "pattern_001",
+      "name": "Rich Running",
+      "logic": "low_idle.co > 2.0 and low_idle.hc > 1000 and low_idle.o2 < 0.2 and low_idle.co2 < 10.0 and low_idle.nox < 100 and calculated_lambda <  1.0",
+      "health_score": 55,
+      "verdict": "Rich Running - Condition: lambda=< 1.0",
+      "action": "Follow diagnostic procedure for: saturated charcoal canister; faulty O2 sensor rich bias; excess fuel (leaking injector, high fuel pressure); low compression; dirty air filter / restricted intake; non-functioning PCV; MAP/MAF error (under-reporting airflow); coolant sensor cold reading"
+    },
+    {
+      "case_id": "pattern_002",
+      "name": "Lean Running",
+      "logic": "low_idle.co < 0.5 and low_idle.hc > 1000 and low_idle.hc < 5000 and low_idle.o2 > 1.0 and low_idle.o2 < 15.0 and low_idle.co2 < 10.0 and low_idle.co2 > 1.0 and low_idle.nox > 0 and calculated_lambda > 1.0",
+      "health_score": 55,
+      "verdict": "Lean Running - Condition: lambda=> 1.0",
+      "action": "Follow diagnostic procedure for: exhaust air leak (dilution); MAF under-reporting airflow; vacuum leak (intake or post-combustion); weak fuel pump; EGR stuck open (causing false lean); clogged injector; low fuel pressure"
+    },
+    {
+      "case_id": "pattern_003",
+      "name": "Ignition Misfire",
+      "logic": "low_idle.o2 > 2.0 and low_idle.o2 < 15.0 and low_idle.co < 0.5 and low_idle.hc > 150 and low_idle.co2 > 5.0",
+      "health_score": 55,
+      "verdict": "Ignition Misfire - Gas signs: hc=150-300+ at idle, o2=high, co=low",
+      "action": "Follow diagnostic procedure for: damaged ignition wires; Catalytic converter inefficiency \u2192 leftover HC not burned; weak coil/ignition system; Air injection failure \u2192 insufficient O2 to burn leftover HC; fouled spark plugs; Carbon deposits in chamber absorb gasoline, release on exhaust stroke; EGR valve spring weak \u2192 valve opens too much \u2192 cools flame \u2192 incomplete burn; cylinder imbalance; vacuum leak (lean misfire); poor compression; injector failure (no fuel); improper timing/dwell"
+    },
+    {
+      "case_id": "pattern_004",
+      "name": "EGR Stuck Open",
+      "logic": "low_idle.o2 > 2.0 and low_idle.o2 < 6.0 and low_idle.co > 2.0 and low_idle.co < 7.0 and low_idle.hc > 1000 and low_idle.hc < 7000 and low_idle.nox < 100",
+      "health_score": 55,
+      "verdict": "EGR Stuck Open - Gas signs: o2=high, co=high, hc=high",
+      "action": "Follow diagnostic procedure for: Recirculated exhaust contains little O2 \u2192 O2 sensor reads lean \u2192 ECU richens mixture \u2192 high CO/HC possible"
+    },
+    {
+      "case_id": "pattern_005",
+      "name": "Catalyst Failure",
+      "logic": "low_idle.hc > 1000 and low_idle.hc < 7000 and low_idle.co > 2.0 and low_idle.co < 7.0 and low_idle.o2 < 6.0",
+      "health_score": 55,
+      "verdict": "Catalyst Failure - Gas signs: pre_cat=may be normal or abnormal depending on root cause, downstream_o2=oscillates rapidly like upstream (should be steady), hc=high",
+      "action": "Perform comprehensive diagnostic based on gas patterns."
+    },
+    {
+      "case_id": "pattern_006",
+      "name": "Timing Retard",
+      "logic": "low_idle.nox < 100 and low_idle.co > 2.0 and low_idle.co < 7.0 and low_idle.hc > 1000 and low_idle.hc < 7000 and low_idle.co2 < 10.0 and low_idle.o2 < 6.0",
+      "health_score": 55,
+      "verdict": "Timing Retard - Gas signs: nox=low, co=high, hc=high",
+      "action": "Follow diagnostic procedure for: sensor correlation fault (CKP/CMP); timing chain stretch/belt issues; knock sensor over-advancing retard; mechanical distributor wear; VVT failure or stuck cam phaser"
+    },
+    {
+      "case_id": "pattern_007",
+      "name": "Timing Advance (excessive)",
+      "logic": "low_idle.nox > 0 and low_idle.co < 0.5 and low_idle.hc < 100",
+      "health_score": 55,
+      "verdict": "Timing Advance (excessive) - Gas signs: nox=high, co=low, hc=low",
+      "action": "Follow diagnostic procedure for: over-advanced base timing; knock sensor failure (ECU doesn't retard); VVT stuck advanced; carbon buildup increasing compression"
+    },
+    {
+      "case_id": "pattern_008",
+      "name": "Air Injection System (AIR) Malfunction",
+      "logic": "low_idle.co < 0.5 and low_idle.co2 < 10.0 and low_idle.co2 > 5.0 and low_idle.o2 > 2.0 and low_idle.o2 < 15.0 and low_idle.hc < 1000",
+      "health_score": 55,
+      "verdict": "Air Injection System (AIR) Malfunction - Gas signs: o2=elevated (dilution from injected air), co=low, co2=low",
+      "action": "Follow diagnostic procedure for: stuck ON: high O2, low CO (dilution); stuck OFF: may cause rich/CO failure on vehicles designed to use AIR; pulse-air reed valves rust shut (no air at idle \u2192 CO failure)"
+    },
+    {
+      "case_id": "pattern_009",
+      "name": "Compression Problems",
+      "logic": "low_idle.hc > 1000 and low_idle.hc < 7000 and low_idle.co > 2.0 and low_idle.co < 7.0 and low_idle.o2 > 2.0 and low_idle.o2 < 6.0 and low_idle.co2 < 10.0",
+      "health_score": 55,
+      "verdict": "Compression Problems - Gas signs: hc=high, co=high, o2=high",
+      "action": "Follow diagnostic procedure for: head gasket breach (especially between cylinder and oil/coolant); worn piston rings; valve seating problems"
+    },
+    {
+      "case_id": "pattern_010",
+      "name": "Vacuum Leak (intake)",
+      "logic": "low_idle.o2 > 2.0 and low_idle.o2 < 15.0 and low_idle.co < 0.5 and low_idle.hc > 1000 and low_idle.hc < 5000 and low_idle.co2 < 10.0 and low_idle.co2 > 1.0",
+      "health_score": 55,
+      "verdict": "Vacuum Leak (intake) - Gas signs: o2=high, co=low, hc=high",
+      "action": "Follow diagnostic procedure for: leaking gasket (intake manifold, throttle body); brake booster diaphragm rupture; PCV system malfunction; broken/disconnected hose"
+    },
+    {
+      "case_id": "pattern_011",
+      "name": "Oxygen Sensor Fault",
+      "logic": "",
+      "health_score": 55,
+      "verdict": "Oxygen Sensor Fault",
+      "action": "Follow diagnostic procedure for: contaminated (Si, Pb, P): incorrect readings; slow/lazy: poor response \u2192 driveability issues, check engine light; stuck rich: indicates low O2 \u2192 ECU runs lean \u2192 high O2, low CO/HC; stuck lean: indicates high O2 \u2192 ECU runs rich \u2192 low O2, high CO/HC"
+    },
+    {
+      "case_id": "pattern_012",
+      "name": "Fuel Delivery Issues",
+      "logic": "",
+      "health_score": 55,
+      "verdict": "Fuel Delivery Issues",
+      "action": "Follow diagnostic procedure for: high pressure: rich condition (low O2, high CO); injector leakage: rich at idle, may improve after warm; injector clog: lean (especially under load), high O2, low CO; low pressure: lean condition (high O2, low CO)"
+    },
+    {
+      "case_id": "pattern_013",
+      "name": "Mass Airflow (MAF) Sensor Error",
+      "logic": "",
+      "health_score": 55,
+      "verdict": "Mass Airflow (MAF) Sensor Error",
+      "action": "Follow diagnostic procedure for: under-reporting airflow \u2192 ECU adds fuel \u2192 rich (low O2, high CO); contamination (dirt, oil): often causes lean initially, may cause rich later as sensor degrades; over-reporting airflow \u2192 ECU leans \u2192 high O2, low CO"
+    },
+    {
+      "case_id": "pattern_014",
+      "name": "Manifold Absolute Pressure (MAP) Sensor Error",
+      "logic": "",
+      "health_score": 55,
+      "verdict": "Manifold Absolute Pressure (MAP) Sensor Error",
+      "action": "Follow diagnostic procedure for: sensor drift: incorrect pressure readings \u2192 fuel trim errors; vacuum leak in hose \u2192 reads lower pressure \u2192 ECU thinks load is high \u2192 richens"
+    },
+    {
+      "case_id": "pattern_015",
+      "name": "Exhaust Leak (upstream of O2 sensor)",
+      "logic": "low_idle.o2 > 2.0 and low_idle.co < 0.5 and low_idle.co2 < 10.0 and low_idle.hc < 100 and low_idle.nox < 100",
+      "health_score": 55,
+      "verdict": "Exhaust Leak (upstream of O2 sensor) - Gas signs: o2=high, co=low, co2=low",
+      "action": "Perform comprehensive diagnostic based on gas patterns."
+    },
+    {
+      "case_id": "dpf_blocked",
+      "name": "DPF Clogged / Excessive Soot Loading",
+      "logic": "dpf_differential_pressure > 40 and dpf_soot_mass > 24",
+      "health_score": 40,
+      "verdict": "DPF Clogged / Excessive Soot Loading - Condition: dpf_differential_pressure=>40 and dpf_soot_mass=>24",
+      "action": "Follow diagnostic procedure for: DPF fully loaded with soot (needs forced regen); Failed/declined regeneration (DPF temp sensor fault, additive low); Ash loading (oil ash, cannot burn off); Cracked/blocked DPF substrate"
+    },
+    {
+      "case_id": "scr_failure",
+      "name": "SCR Catalyst Failure (Poor NOx Conversion)",
+      "logic": "nox_reduction_efficiency < 70%",
+      "health_score": 40,
+      "verdict": "SCR Catalyst Failure (Poor NOx Conversion) - Condition: nox_reduction_efficiency=<70%",
+      "action": "Follow diagnostic procedure for: Degraded SCR catalyst substrate; Contaminated by oil/fuel additives (Si, P); Insufficient AdBlue dosing (pump/nozzle fault); NOx sensor fault (downstream reading inaccurate); SCR temperature outside optimal window (<200degC or >500degC)"
+    },
+    {
+      "case_id": "adblue_system_fault",
+      "name": "AdBlue (DEF) System Failure",
+      "logic": "adblue_quality < 30% or >35% and adblue_dosing == =0 when upstream_nox > 500",
+      "health_score": 40,
+      "verdict": "AdBlue (DEF) System Failure - Condition: adblue_quality=<30% or >35% and adblue_dosing==0 when upstream_nox > 500",
+      "action": "Follow diagnostic procedure for: Empty or severely diluted AdBlue tank; Faulty AdBlue pump / dosing nozzle clogged; AdBlue quality sensor (concentration) failure; AdBlue lines frozen or blocked"
+    },
+    {
+      "case_id": "egr_stuck_open_diesel",
+      "name": "EGR Valve Stuck Open (Diesel)",
+      "logic": "low_idle.co > 2.0 and low_idle.hc > 1500.0 and low_idle.o2 < 5.0 and low_idle.co2 > 10.0 and egr_duty_cycle > 80% at high load (>2000 RPM)",
+      "health_score": 55,
+      "verdict": "EGR Valve Stuck Open (Diesel) - Condition: egr_duty_cycle=>80% at high load (>2000 RPM)",
+      "action": "Follow diagnostic procedure for: EGR valve mechanical failure (seized open); Vacuum/pressure actuator leak; Electronic EGR position sensor fault (false reading)"
+    },
+    {
+      "case_id": "egr_stuck_closed_diesel",
+      "name": "EGR Valve Stuck Closed (Diesel)",
+      "logic": "egr_duty_cycle == =0% at idle (when EGR should be active) and nox > 800",
+      "health_score": 55,
+      "verdict": "EGR Valve Stuck Closed (Diesel) - Condition: egr_duty_cycle==0% at idle (when EGR should be active) and nox=>800",
+      "action": "Follow diagnostic procedure for: EGR valve seized closed; Vacuum/pressure supply failed (no actuation); EGR cooler plugged (coking)"
+    },
+    {
+      "case_id": "diesel_fuel_pressure_low",
+      "name": "Diesel Fuel Delivery Low Pressure",
+      "logic": "low_idle.o2 > 15.0 and low_idle.co < 0.5 and low_idle.hc > 2000.0 and low_idle.lambda > 1.3 and fuel_rail_pressure < 1000 bar",
+      "health_score": 40,
+      "verdict": "Diesel Fuel Delivery Low Pressure - Condition: fuel_rail_pressure=<1000 bar",
+      "action": "Follow diagnostic procedure for: Weak/failing high-pressure fuel pump; Clogged fuel filter; Leaking injector (internal); Restricted fuel supply (lift pump issue, clogged pickup)"
+    },
+    {
+      "case_id": "egt_overheat",
+      "name": "Exhaust Gas Temperature Excessive",
+      "logic": "exhaust_gas_temp > 750",
+      "health_score": 40,
+      "verdict": "Exhaust Gas Temperature Excessive - Condition: exhaust_gas_temp=>750",
+      "action": "Follow diagnostic procedure for: Over-fueling (injector leak, poor atomization); Advanced injection timing; Exhaust restriction (DPF blocked, catalyst collapsed); EGT sensor failure (false reading)"
+    },
+    {
+      "case_id": "doc_failure",
+      "name": "Diesel Oxidation Catalyst (DOC) Failure",
+      "logic": "low_idle.co > 5.0 and low_idle.hc > 1000.0 and low_idle.o2 > 10.0",
+      "health_score": 55,
+      "verdict": "Diesel Oxidation Catalyst (DOC) Failure - Gas signs: co=>5%, hc=>1000, o2=10-15%",
+      "action": "Follow diagnostic procedure for: Catalyst substrate melted or poisoned (oil ash, fuel additives); Over-temperature exposure; Severe over-fueling causing thermal runaway"
+    },
+    {
+      "case_id": "late_ignition_timing",
+      "name": "Late Ignition Timing",
+      "logic": "low_idle.lambda < 1.0 and low_idle.co > 7.0 and low_idle.hc > 7000 and low_idle.o2 > 6.0 and low_idle.co2 < 8.0",
+      "health_score": 40,
+      "verdict": "Late Ignition Timing - High CO/HC with low CO2 and excess O2 in rich condition",
+      "action": "Check ignition timing, VVT system, cam/crank sensors, mechanical timing stretch"
+    },
+    {
+      "case_id": "ignition_failure_no_spark",
+      "name": "Ignition System Failure (No Spark)",
+      "logic": "low_idle.hc > 20000 and low_idle.co < 0.1 and low_idle.co2 < 1.0 and low_idle.o2 > 15.0",
+      "health_score": 30,
+      "verdict": "No Spark - Extreme HC with near-zero CO/CO2 and atmospheric O2",
+      "action": "Check ignition coils, spark plugs, wires, crank/cam sensors"
+    },
+    {
+      "case_id": "fuel_delivery_lean",
+      "name": "Fuel Delivery Problem (Lean)",
+      "logic": "low_idle.lambda > 1.3 and low_idle.o2 > 15.0 and low_idle.co2 < 5.0 and low_idle.hc > 2000",
+      "health_score": 40,
+      "verdict": "Lean Condition - High O2/HC with low CO2",
+      "action": "Inspect fuel pump, filter, pressure regulator, injectors for clogging"
+    },
+    {
+      "case_id": "fuel_delivery_rich_injector_leak",
+      "name": "Rich from Injector Leak / High Pressure",
+      "logic": "low_idle.lambda < 0.85 and low_idle.co > 3.0 and low_idle.hc > 500 and low_idle.o2 < 0.5 and low_idle.co2 < 13.0",
+      "health_score": 45,
+      "verdict": "System Rich - Excess fuel from leaky injectors or high pressure",
+      "action": "Check injectors for leakage, fuel pressure regulator, air filter restriction, O2 sensor bias"
+    },
+    {
+      "case_id": "egr_stuck_open_idle",
+      "name": "EGR Valve Stuck Open at Idle",
+      "logic": "0.98 <= low_idle.lambda <= 1.02 and low_idle.co > 2.0 and low_idle.o2 > 2.0 and low_idle.co2 < 13.0 and low_idle.hc > 1000",
+      "health_score": 55,
+      "verdict": "EGR Stuck Open - Stoichiometric but poor combustion due to dilution",
+      "action": "Check EGR valve operation, position sensor, vacuum lines"
+    },
+    {
+      "case_id": "catalyst_failure_high_nox",
+      "name": "Catalytic Converter NOx Conversion Failure",
+      "logic": "low_idle.lambda > 1.05 and low_idle.nox > 1000",
+      "health_score": 50,
+      "verdict": "Catalyst NOx Failure - Lean combustion with high NOx indicates poor three-way conversion",
+      "action": "Replace catalytic converter; check for codes P0420/P0430"
+    },
+    {
+      "case_id": "cold_start_over_enrichment",
+      "name": "Cold Start Enrichment Fault",
+      "logic": "low_idle.co > 3.0 and low_idle.hc > 20000 and low_idle.co2 < 5.0",
+      "health_score": 50,
+      "verdict": "Over-enrichment during cold start - Excessive fuel not being burned",
+      "action": "Check coolant temperature sensor, cold start injector, fuel enrichment parameters"
+    },
+    {
+      "case_id": "mass_airflow_underreport",
+      "name": "MAF Sensor Under-Reading",
+      "logic": "low_idle.lambda >= 1.1 and low_idle.o2 > 1.5 and low_idle.co2 < 12.0",
+      "health_score": 55,
+      "verdict": "MAF Under-Reporting - Lean condition persists, airflow signal low",
+      "action": "Check MAF sensor for contamination, wiring, voltage supply"
+    },
+    {
+      "case_id": "o2_sensor_lazy",
+      "name": "O2 Sensor Sluggish or Failed",
+      "logic": "1.0 <= low_idle.lambda <= 1.1 and low_idle.o2 > 1.0 and low_idle.o2 < 2.0 and low_idle.hc < 100",
+      "health_score": 60,
+      "verdict": "O2 Sensor Not Switching - Voltage stuck mid-range, slow response",
+      "action": "Test O2 sensor frequency and amplitude at >2000 RPM; replace if <1 Hz"
+    },
+    {
+      "case_id": "ignition_misfire_high_hc_o2",
+      "name": "Ignition Misfire (High HC + High O2)",
+      "logic": "low_idle.hc > 300 and low_idle.o2 > 2.0 and low_idle.co < 0.5",
+      "health_score": 35,
+      "verdict": "Misfire Detected - Raw fuel and unburned oxygen exiting cylinders",
+      "action": "Check spark plugs, ignition coils, wires, compression, fuel injector operation"
+    },
+    {
+      "case_id": "exhaust_leak_false_lean",
+      "name": "Exhaust Leak Causing False Lean",
+      "logic": "low_idle.lambda > 1.1 and low_idle.o2 > 3.0",
+      "health_score": 85,
+      "verdict": "Exhaust Dilution - Air entering tailpipe inflates lambda; engine actually healthy",
+      "action": "Inspect exhaust manifold, gaskets, downpipe for holes before O2 sensor; seal leak"
+    },
+    {
+      "case_id": "vacuum_leak_differential",
+      "name": "Vacuum Leak (Idle Only)",
+      "logic": "low_idle.lambda > 1.05 and low_idle.o2 > 1.5",
+      "health_score": 60,
+      "verdict": "Idle-Only Air Leak - Extra air unmetered at idle",
+      "action": "Check intake manifold gaskets, vacuum hoses, brake booster, throttle body gasket"
+    },
+    {
+      "case_id": "cat_inefficiency_perfect_lambda",
+      "name": "Catalyst Inefficiency (Perfect Lambda)",
+      "logic": "abs(low_idle.lambda - 1.0) < 0.02 and low_idle.co > 0.6 and low_idle.co2 < 12.5",
+      "health_score": 40,
+      "verdict": "Dead Catalyst - Engine combustion perfect but converter not oxidizing pollutants",
+      "action": "Replace catalytic converter; check for prior misfire codes"
+    },
+    {
+      "case_id": "engine_wear_oil_burning",
+      "name": "Engine Oil Burning (Worn Rings/Valves)",
+      "logic": "low_idle.hc > 500 and low_idle.co > 0.5 and low_idle.o2 < 1.0 and low_idle.co2 < 12.0",
+      "health_score": 55,
+      "verdict": "Oil Combustion - Elevated HC and CO indicates oil burning",
+      "action": "Perform compression test, leak-down; inspect valve guides, piston rings; check for blue smoke"
+    }
+  ],
+  "ui_configuration": {
+    "efficiency_gauge": {
+      "critical": 80,
+      "marginal": 90,
+      "optimal": 95
+    },
+    "colors": {
+      "fail": "#FF0000",
+      "warning": "#FFA500",
+      "pass": "#00FF00"
+    }
+  }
+}
