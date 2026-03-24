@@ -219,7 +219,7 @@ with st.sidebar:
 # Load knowledge base (cached)
 @st.cache_resource
 def load_knowledge_base():
-    kb_path = Path(__file__).parent.parent / "data" / "expanded_knowledge_base.json"
+    kb_path = Path(__file__).parent / "data" / "expanded_knowledge_base.json"
     with open(kb_path, 'r') as f:
         return json.load(f)
 
