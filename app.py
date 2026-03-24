@@ -30,98 +30,36 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS for consistent, clean styling across light and dark modes
+# Custom CSS to force light inputs
 st.markdown(
     """
     <style>
-    /* Subtle borders for all input widgets - matches expander header style */
+    /* Ensure all inputs have white background and visible border */
     .stApp input[type="number"],
     .stApp input[type="text"],
     .stApp textarea,
-    .stApp select {
+    .stApp select,
+    .stApp .stTextInput input,
+    .stApp .stNumberInput input,
+    .stApp .stSelectbox input,
+    .stApp .stTextInput > div > input,
+    .stApp .stNumberInput > div > input,
+    .stApp .stSelectbox > div > select {
+        background-color: #ffffff !important;
+        color: #31333F !important;
         border: 1px solid #ccc !important;
         border-radius: 4px !important;
         padding: 4px 8px !important;
     }
 
-    /* Dark mode adjustments */
-    @media (prefers-color-scheme: dark) {
-        .stApp input[type="number"],
-        .stApp input[type="text"],
-        .stApp textarea,
-        .stApp select {
-            border-color: #555 !important;
-            background-color: #2d2d2d !important;
-        }
-    }
-
-    /* Focus state: clear but unobtrusive */
-    .stApp input[type="number"]:focus,
-    .stApp input[type="text"]:focus,
-    .stApp textarea:focus,
-    .stApp select:focus {
-        border-color: #0d6efd !important;
-        box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.15) !important;
-        outline: none !important;
-    }
-
-    /* Bold labels for readability */
-    .stApp label {
-        font-weight: 600 !important;
-    }
-
-    /* Expander styling - framed container */
-    .streamlit-expander {
-        border: 1px solid #ccc !important;
-        border-radius: 6px !important;
-        margin-bottom: 1rem !important;
-        background: var(--background-color, #fff) !important;
-    }
-
-    .streamlit-expanderHeader {
-        border-bottom: 1px solid #ccc !important;
-        font-weight: 600 !important;
-        padding: 0.5rem 1rem !important;
-    }
-
-    .streamlit-expanderContent {
-        padding: 1rem !important;
-    }
-
-    @media (prefers-color-scheme: dark) {
-        .streamlit-expander {
-            border-color: #555 !important;
-            background-color: #1e1e1e !important;
-        }
-        .streamlit-expanderHeader {
-            border-bottom-color: #555 !important;
-            color: #eee !important;
-        }
-    }
-
-    /* Ad vertical banner styling - consistent border */
-    .ad-vertical-banner {
-        border: 1px solid #ccc !important;
-        border-radius: 6px !important;
-        padding: 8px !important;
-        background: var(--background-color, #fff) !important;
-        min-height: 600px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        color: #666 !important;
-        font-size: 14px !important;
-        text-align: center !important;
-    }
-
-    @media (prefers-color-scheme: dark) {
-        .ad-vertical-banner {
-            border-color: #555 !important;
-            color: #aaa !important;
-            background-color: #1e1e1e !important;
-        }
+    /* Override dark mode completely */
+    .stApp {
+        background-color: #ffffff !important;
     }
     </style>
+    """,
+    unsafe_allow_html=True
+)
     """,
     unsafe_allow_html=True
 )
@@ -529,3 +467,4 @@ if st.button("🔍 Run Diagnosis", type="primary", use_container_width=True):
 
 st.divider()
 st.caption("Built with Bretschneider formula | 4D Diagnostic System | krici pepsi")
+
