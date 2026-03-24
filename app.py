@@ -60,9 +60,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-    """,
-    unsafe_allow_html=True
-)
 
 # Title and description
 st.title("🔧 4D Petrol Diagnostic Engine")
