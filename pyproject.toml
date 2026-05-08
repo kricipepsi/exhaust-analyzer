@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "4d-diagnostic-engine-v2"
+version = "2.0.0-dev"
+description = "4D Petrol Diagnostic Engine V2 — Evidence Arbitrator"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

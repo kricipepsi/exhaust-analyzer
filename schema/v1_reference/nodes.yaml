@@ -1,0 +1,1285 @@
+nodes:
+- id: rich_mixture
+  name: Rich Running
+  node_type: fault
+  category: fuel_delivery
+  prior: 0.05
+  description: Air-fuel ratio is richer than stoichiometric (lambda < 0.95)
+  severity: moderate
+  typical_dtcs:
+  - P0172
+  repair: Check fuel pressure regulator, inspect injectors, verify MAF readings
+  priority: 2
+- id: lean_condition
+  name: Lean Running
+  node_type: fault
+  category: air_management
+  prior: 0.05
+  description: Air-fuel ratio is leaner than stoichiometric (lambda > 1.05)
+  severity: moderate
+  typical_dtcs:
+  - P0171
+  repair: Check for vacuum leaks, inspect intake gaskets, verify fuel delivery pressure
+  priority: 2
+- id: misfire
+  name: Ignition Misfire
+  node_type: fault
+  category: ignition
+  prior: 0.03
+  description: One or more cylinders failing to ignite air-fuel mixture
+  severity: severe
+  typical_dtcs:
+  - P0300
+  - P0301
+  - P0302
+  - P0303
+  - P0304
+  repair: Check spark plugs, coil packs, ignition module, HT leads
+  priority: 1
+- id: exhaust_leak
+  name: Exhaust Leak (Pre-Catalyst)
+  node_type: fault
+  category: exhaust
+  prior: 0.02
+  description: Air entering exhaust system before catalyst, causing false lean
+  severity: moderate
+  typical_dtcs:
+  - P0171
+  repair: Inspect exhaust manifold gaskets, flex joints, pre-cat pipes
+  priority: 2
+- id: egr_fault
+  name: EGR System Fault
+  node_type: fault
+  category: air_management
+  prior: 0.02
+  description: EGR valve stuck open or closed, or control circuit failure
+  severity: moderate
+  typical_dtcs:
+  - P0401
+  - P0404
+  repair: Clean/replace EGR valve, check vacuum lines
+  priority: 3
+- id: catalyst_failure
+  name: Catalytic Converter Inefficiency
+  node_type: fault
+  category: exhaust
+  prior: 0.02
+  description: Catalyst not converting pollutants effectively
+  severity: severe
+  typical_dtcs:
+  - P0420
+  - P0430
+  repair: 'Replace catalytic converter. Common upstream causes: oil consumption (valve seals/rings/PCV), upstream rich-misfire
+    history, NOx breakthrough indicating reduction-capacity loss. Check for upstream root cause before fitting new cat.'
+  priority: 4
+- id: sensor_fault
+  name: Sensor Fault (O2/MAF/etc)
+  node_type: fault
+  category: sensors
+  prior: 0.04
+  description: Oxygen sensor, MAF, or other sensor providing inaccurate data
+  severity: moderate
+  typical_dtcs:
+  - P0130
+  - P0131
+  - P0132
+  - P0133
+  - P0134
+  - P0100
+  - P0101
+  - P0102
+  - P0103
+  repair: Replace O2 sensor, check wiring, verify with known-good analyzer
+  priority: 1
+- id: late_ignition_timing
+  name: Late Ignition Timing
+  node_type: fault
+  category: ignition
+  prior: 0.02
+  description: Spark fires too late for charge to burn fully before exhaust valve opens. Combustible mixture (lambda 0.75-0.92)
+    with extreme incomplete combustion. Timing chain/belt stretch or jumped tooth.
+  severity: severe
+  typical_dtcs:
+  - P0016
+  repair: Check timing chain/belt for stretch or jumped tooth, verify cam/crank alignment
+  priority: 1
+- id: mechanical_wear
+  name: Worn Piston Rings / Cylinder Wear
+  node_type: fault
+  category: mechanical
+  prior: 0.03
+  description: Worn piston rings or cylinder walls causing compression loss. HC high (steady), O2 high, CO2 LOW (<12%), CO
+    low, Lambda >1.0 (indicated lean), NOx LOW (low compression temp). Blue smoke under acceleration. Fuel trims positive
+    (+10-20%) as ECU compensates for false lean.
+  severity: severe
+  typical_dtcs: []
+  repair: Engine teardown, ring/bore inspection and replacement
+  priority: 5
+- id: valve_seal_wear
+  name: Worn Valve Seals / Guides
+  node_type: fault
+  category: mechanical
+  prior: 0.02
+  description: Oil seeps past valve seals into combustion chamber during high vacuum (decel/startup). HC elevated but CO2
+    NORMAL (14%+) because compression is good. Lambda near 1.0 at cruise. HC spikes on deceleration then cleans up — transient
+    vs steady state distinguishes from rings. Blue smoke at startup or after long idle.
+  severity: moderate
+  typical_dtcs: []
+  repair: Replace valve stem seals
+  priority: 4
+- id: pcv_fault
+  name: PCV System Failure
+  node_type: fault
+  category: mechanical
+  prior: 0.02
+  description: 'PCV valve stuck open sucks oil mist from crankcase into combustion — acts like vacuum leak + oil burn. HC
+    high and erratic at idle, O2 high, CO2 low, Lambda >1.0 (lean from unmetered air). Stuck closed builds crankcase pressure
+    forcing oil past rings. Pinch test: squeeze PCV hose, if HC drops instantly = PCV fault confirmed.'
+  severity: moderate
+  typical_dtcs: []
+  repair: Replace PCV valve, check hoses, pinch-test to confirm
+  priority: 3
+  parent: lean_condition
+  discriminator:
+  - pcv_leak_pattern
+- id: induction_issue
+  name: Induction Airflow Problem
+  node_type: fault
+  category: air_management
+  prior: 0.02
+  description: Intake restriction, cracked manifold, or throttle body fault
+  severity: moderate
+  typical_dtcs:
+  - P0101
+  - P0102
+  - P0103
+  repair: Inspect air filter, intake ducting, throttle body, check for restrictions
+  priority: 2
+  parent: lean_condition
+  discriminator:
+  - dtc_induction
+- id: turbo_fault
+  name: Turbocharger/Supercharger Fault
+  node_type: fault
+  category: forced_induction
+  prior: 0.01
+  description: 'Boost leak, wastegate stuck, or seal failure. Intake seal leak: HC high under boost, O2 high, CO2 low, Lambda
+    >1.0. Exhaust seal leak: HC EXTREME but CO2 normal and Lambda ~1.0 (engine healthy, oil vaporizes after combustion). Intercooler
+    check: oil in lower hose confirms compressor seal gone.'
+  severity: severe
+  typical_dtcs:
+  - P0299
+  - P0234
+  - P0235
+  repair: Rebuild/replace turbocharger, check intercooler for oil
+  priority: 4
+- id: fuel_delivery
+  name: Fuel Delivery Issue
+  node_type: fault
+  category: fuel_delivery
+  prior: 0.03
+  description: Weak pump, clogged filter, or injector problem
+  severity: moderate
+  typical_dtcs:
+  - P0201
+  - P0202
+  - P0203
+  - P0204
+  - P0087
+  repair: Check fuel pump output pressure, replace fuel filter, inspect injectors
+  priority: 2
+  parent: lean_condition
+  discriminator:
+  - lambda_high
+- id: ecu_fault
+  name: ECU Internal Fault
+  node_type: fault
+  category: ecu
+  prior: 0.01
+  description: ECU processor, driver circuit, or reference voltage failure. Gas readings contradict OBD data.
+  severity: critical
+  typical_dtcs:
+  - P0053
+  - P0171
+  - P0172
+  - P0201
+  - P0300
+  - P0351
+  - P0352
+  - P0353
+  - P0354
+  - P0601
+  - P0602
+  - P0603
+  - P0604
+  - P0605
+  - P0606
+  - P0641
+  - P0651
+  repair: ECU shows signs of perception fault (gas vs OBD contradiction, missing misfire detection, false lean DTC) or genuine
+    hardware/firmware fault. Re-flash first; replace if persistent.
+  priority: 1
+- id: high_fuel_pressure
+  name: High Fuel Pressure (Systemic Rich)
+  node_type: fault
+  category: fuel_delivery
+  prior: 0.02
+  description: Fuel rail pressure too high causing systemic rich across all banks. CO high, O2 low, LTFT strongly negative,
+    Lambda <0.95. Differentiated from leaking injector by affecting ALL cylinders uniformly.
+  severity: moderate
+  typical_dtcs:
+  - P0172
+  repair: Check fuel pressure regulator, inspect return line
+  priority: 3
+  parent: rich_mixture
+  discriminator:
+  - high_fuel_pressure_pattern
+- id: leaking_injector
+  name: Leaking Injector (Single Cylinder)
+  node_type: fault
+  category: fuel_delivery
+  prior: 0.02
+  description: Single injector leaking fuel into cylinder, causing localized rich with injector circuit DTC. CO high, HC high,
+    negative trims, Lambda <0.95. Injector DTC differentiates from systemic high fuel pressure.
+  severity: moderate
+  typical_dtcs:
+  - P0201
+  - P0202
+  - P0203
+  - P0204
+  repair: Replace leaking injector, isolate via cylinder disable test
+  priority: 3
+  parent: rich_mixture
+  discriminator:
+  - leaking_injector_pattern
+- id: evap_purge_stuck_open
+  name: EVAP Purge Valve Stuck Open
+  node_type: fault
+  category: fuel_delivery
+  prior: 0.02
+  description: EVAP purge valve stuck open, allowing fuel vapors to enter intake continuously. Affects both banks symmetrically
+    — differentiates from leaking injector which is bank-specific. Per master_fuel_system_guide.md §4.
+  severity: moderate
+  typical_dtcs:
+  - P0442
+  - P0455
+  repair: Replace EVAP purge valve; smoke-test EVAP system
+  priority: 3
+  parent: rich_mixture
+  discriminator:
+  - rich_negative_trims_pattern
+- id: head_gasket
+  name: Head Gasket Failure
+  node_type: fault
+  category: mechanical
+  prior: 0.02
+  description: Combustion/coolant breach. HC very high from coolant hydrocarbons, O2 high from combustion gas escaping, CO2
+    low from dilution, CO low (not a fueling issue). Lambda >1.0. No misfire DTC — distinguishes from ignition misfire.
+  severity: severe
+  typical_dtcs: []
+  repair: Replace head gasket, check head for warping, pressure test cooling system
+  priority: 5
+- id: head_gasket_failure_combustion_to_coolant
+  name: Head Gasket — Combustion to Coolant Breach
+  node_type: fault
+  category: mechanical
+  prior: 0.015
+  description: Combustion gases enter cooling system. HC very high, O2 high, CO2 low, CO low. Coolant hydrocarbons test positive.
+    Per master_mechanical_guide.md §5.
+  severity: severe
+  typical_dtcs: []
+  repair: Replace head gasket; pressure-test cooling system; check for warped head
+  priority: 5
+  parent: head_gasket
+  discriminator:
+  - head_gasket_pattern
+- id: head_gasket_failure_cyl_to_cyl
+  name: Head Gasket — Cylinder-to-Cylinder Breach
+  node_type: fault
+  category: mechanical
+  prior: 0.015
+  description: Adjacent cylinders leak into each other. Compression loss on paired cylinders. HC elevated, CO2 low. Per master_mechanical_guide.md
+    §5.
+  severity: severe
+  typical_dtcs: []
+  repair: Replace head gasket; check for warped head between cylinders
+  priority: 5
+  parent: head_gasket
+  discriminator:
+  - compression_loss_pattern
+- id: stuck_egr_open
+  name: EGR Stuck Open (Idle)
+  node_type: fault
+  category: air_management
+  prior: 0.02
+  description: EGR valve stuck open at idle causing excessive inert gas dilution. HC high from incomplete combustion, O2 high,
+    CO2 low. Refines generic egr_fault with specific idle gas pattern.
+  severity: moderate
+  typical_dtcs:
+  - P0401
+  repair: Clean/replace EGR valve, check vacuum lines
+  priority: 3
+- id: contaminated_maf
+  name: Contaminated MAF Sensor
+  node_type: fault
+  category: sensors
+  prior: 0.02
+  description: MAF sensor contaminated with oil/dirt, underreporting airflow at high RPM. Normal at idle, lean at high RPM.
+    STFT worsens with speed.
+  severity: moderate
+  typical_dtcs:
+  - P0101
+  repair: Clean MAF with dedicated cleaner or replace
+  priority: 2
+  parent: lean_condition
+  discriminator:
+  - dual_contaminated_maf_pattern
+- id: clogged_exhaust
+  name: Clogged Exhaust / Catalyst
+  node_type: fault
+  category: exhaust
+  prior: 0.02
+  description: Exhaust restriction (collapsed cat, crushed pipe). CO2 drops at high RPM as backpressure builds. Mildly negative
+    trims at idle worsen under load.
+  severity: severe
+  typical_dtcs: []
+  repair: Replace catalytic converter or clear exhaust restriction
+  priority: 4
+- id: intake_gasket_leak
+  name: Intake Manifold Gasket Leak
+  node_type: fault
+  category: air_management
+  prior: 0.02
+  description: Vacuum leak at intake gasket. Very lean at idle (high vacuum), normalizes at high RPM (low vacuum). STFT >15%
+    at idle, <5% at RPM.
+  severity: moderate
+  typical_dtcs:
+  - P0171
+  repair: Replace intake manifold gasket
+  priority: 3
+  parent: lean_condition
+  discriminator:
+  - dual_intake_gasket_pattern
+- id: low_fuel_delivery
+  name: Low Fuel Delivery (Pump/Filter)
+  node_type: fault
+  category: fuel_delivery
+  prior: 0.02
+  description: Weak fuel pump or clogged filter. Normal at idle (low demand), lean at high RPM (can't keep up). Similar to
+    contaminated MAF but no MAF DTC.
+  severity: moderate
+  typical_dtcs:
+  - P0087
+  repair: Replace fuel filter, check pump output pressure
+  priority: 3
+  parent: lean_condition
+  discriminator:
+  - dual_low_fuel_delivery_pattern
+- id: GDI_HPFP_Failure
+  name: GDI High-Pressure Fuel Pump Failure
+  node_type: fault
+  category: fuel_delivery
+  prior: 0.01
+  description: GDI HPFP worn cam lobe or failed pump. Fuel rail pressure below desired, VCV duty cycle outside 20-35% range.
+    P0087/P0089 family. Per master_fuel_system_guide.md §6.3.
+  severity: severe
+  typical_dtcs:
+  - P0087
+  - P0089
+  repair: Replace high-pressure fuel pump; inspect cam lobe for wear
+  priority: 2
+  parent: fuel_delivery
+  discriminator:
+  - lambda_high
+- id: stuck_egr_open_confirmed
+  name: EGR Stuck Open (Confirmed by Dual-Speed)
+  node_type: fault
+  category: air_management
+  prior: 0.02
+  description: 'EGR stuck open confirmed: rough idle with high HC recovers at high RPM where EGR flow is proportionally smaller.'
+  severity: moderate
+  typical_dtcs:
+  - P0401
+  repair: Clean/replace EGR valve, check vacuum lines
+  priority: 3
+- id: Mechanical_Lean_Vacuum_Leak
+  name: Intake Vacuum Leak (Mechanical Lean)
+  node_type: fault
+  category: air_management
+  prior: 0.03
+  description: Unmetered air entering downstream of the MAF/throttle. Causes lean condition at idle that improves at higher
+    RPM as the leak becomes a smaller fraction of total airflow.
+  severity: moderate
+  typical_dtcs:
+  - P0171
+  repair: Smoke-test intake; inspect intake manifold gasket, vacuum hoses, brake booster, PCV valve
+  priority: 2
+  parent: lean_condition
+  discriminator:
+  - nox_high
+  - idle_lean_load_corrects
+  - dual_intake_gasket_pattern
+- id: vacuum_leak
+  name: Vacuum Leak (Unmetered Air)
+  node_type: fault
+  category: air_management
+  prior: 0.03
+  description: Unmetered air entering downstream of MAF/throttle. Lean at idle that improves at higher RPM as leak becomes
+    smaller fraction of total airflow. Per master_air_induction_guide.md §5.
+  severity: moderate
+  typical_dtcs:
+  - P0171
+  repair: Smoke-test intake; inspect vacuum hoses, intake manifold gasket, brake booster, PCV connections
+  priority: 2
+  parent: lean_condition
+  discriminator:
+  - idle_lean_load_corrects
+- id: Mechanical_Misfire_Spark_Plug
+  name: Spark Plug / Coil Misfire (Mechanical)
+  node_type: fault
+  category: ignition
+  prior: 0.03
+  description: Single- or multi-cylinder physical misfire from worn plugs, failing coil, or HT lead. High HC + high O2 in
+    exhaust; misfire DTC present.
+  severity: severe
+  typical_dtcs:
+  - P0300
+  - P0301
+  - P0302
+  - P0303
+  - P0304
+  - P0305
+  - P0306
+  repair: Replace spark plugs; coil-swap test for affected cylinder; check HT leads
+  priority: 1
+- id: Worn_Piston_Rings_Valve_Seals
+  name: Worn Piston Rings or Valve Seals
+  node_type: fault
+  category: mechanical
+  prior: 0.03
+  description: Compression loss from worn rings or valve seals. HC stays elevated under load (blow-by), O2 elevated, NOx low
+    (low compression temperature). Positive fuel trims as ECU compensates for false lean.
+  severity: severe
+  typical_dtcs: []
+  repair: Compression test; leakdown test; if confirmed, ring/bore inspection or top-end rebuild
+  priority: 5
+- id: valve_timing_mechanical
+  name: Valve Timing Mechanical (Wrong Valve Timing)
+  node_type: fault
+  category: mechanical
+  prior: 0.02
+  description: HC > 1000 + O2 > 5 % + CO high + CO2 low — classic "what enters gets out only partially burned" mechanical
+    fingerprint. Timing chain/belt stretch or jumped tooth. Per master_gas_guide.md §8.4.
+  severity: severe
+  typical_dtcs:
+  - P0016
+  - P0017
+  repair: Check timing chain/belt for stretch or jumped tooth, verify cam/crank alignment
+  priority: 1
+  discriminator:
+  - hc_very_high
+  - o2_very_high
+  - co_high
+- id: Cam_Timing_Retard_Late
+  name: Late Cam / Ignition Timing
+  node_type: fault
+  category: ignition
+  prior: 0.02
+  description: Cam phasing or ignition timing retarded — fuel burns late in the cycle. High HC, low CO2, low NOx (low peak
+    combustion temperature).
+  severity: severe
+  typical_dtcs:
+  - P0016
+  - P0017
+  - P0011
+  - P0012
+  repair: Verify VVT solenoid operation; inspect timing chain stretch / jumped tooth; check ignition timing reference
+  priority: 1
+- id: ECU_Internal_Checksum_Error
+  name: ECU Internal Checksum / EEPROM Error
+  node_type: fault
+  category: ecu_hardware
+  prior: 0.005
+  description: ECU reports internal checksum or memory error (P0601/P0606/P0610) but combustion gases are healthy. ECU must
+    be re-flashed or replaced.
+  severity: severe
+  typical_dtcs:
+  - P0601
+  - P0606
+  - P0610
+  repair: Attempt ECU re-flash with manufacturer firmware; if checksum DTC persists, replace ECU
+  priority: 1
+  parent: ecu_fault
+  discriminator:
+  - dtc_ecu_internal
+- id: ECT_Sensor_Bias
+  name: ECT Sensor Bias (Stuck Cold/Hot)
+  node_type: fault
+  category: sensors
+  prior: 0.02
+  description: ECT sensor reporting wrong temperature — stuck cold, stuck hot, or sluggish response. Poisons the cold-start
+    gate itself. Per master_cold_start_guide.md §6.
+  severity: moderate
+  typical_dtcs:
+  - P0115
+  - P0116
+  - P0117
+  - P0118
+  - P0125
+  - P0128
+  repair: Compare ECT reading against known-good after cold-soak; replace ECT sensor if biased
+  priority: 2
+  discriminator:
+  - ff_iat_ect_biased
+- id: Lazy_O2_Sensor_Aging
+  name: Lazy / Aging O2 Sensor
+  node_type: fault
+  category: sensors
+  prior: 0.03
+  description: Upstream O2 sensor switching slowly or biased — Brettschneider vs OBD lambda delta exceeds the bias threshold
+    but combustion is otherwise OK.
+  severity: moderate
+  typical_dtcs:
+  - P0133
+  - P0153
+  repair: Replace upstream O2 sensor; verify with cross-count test post-replacement (>8 counts in 10s at 2500 RPM)
+  priority: 2
+- id: co_high
+  name: High Carbon Monoxide
+  node_type: symptom
+  category: gas_pattern
+  gas_type: CO
+  condition: high
+  threshold_min: 1.0
+  weight: 0.8
+- id: co_low_lean
+  name: Low CO in Lean Condition
+  node_type: symptom
+  category: gas_pattern
+  gas_type: CO
+  condition: low_lean
+  threshold_max: 0.5
+  weight: 0.6
+- id: co2_low
+  name: Low Carbon Dioxide
+  node_type: symptom
+  category: gas_pattern
+  gas_type: CO2
+  condition: low
+  threshold_max: 10.0
+  weight: 0.7
+- id: co2_good
+  name: Good CO2 (Efficient Combustion)
+  node_type: symptom
+  category: gas_pattern
+  gas_type: CO2
+  condition: good
+  threshold_min: 13.0
+  threshold_max: 15.5
+  weight: 0.5
+- id: hc_high
+  name: High Hydrocarbons
+  node_type: symptom
+  category: gas_pattern
+  gas_type: HC
+  condition: high
+  threshold_min: 300
+  weight: 0.6
+- id: hc_very_high
+  name: Very High Hydrocarbons (Misfire)
+  node_type: symptom
+  category: gas_pattern
+  gas_type: HC
+  condition: very_high
+  threshold_min: 1000
+  weight: 0.95
+- id: hc_low
+  name: Low/Normal HC
+  node_type: symptom
+  category: gas_pattern
+  gas_type: HC
+  condition: low
+  threshold_max: 150
+  weight: 0.3
+- id: o2_high
+  name: High Oxygen
+  node_type: symptom
+  category: gas_pattern
+  gas_type: O2
+  condition: high
+  threshold_min: 2.0
+  threshold_max: 5.0
+  weight: 0.7
+- id: o2_very_high
+  name: Very High Oxygen (Air Leak)
+  node_type: symptom
+  category: gas_pattern
+  gas_type: O2
+  condition: very_high
+  threshold_min: 5.0
+  weight: 0.8
+- id: o2_low
+  name: Low Oxygen
+  node_type: symptom
+  category: gas_pattern
+  gas_type: O2
+  condition: low
+  threshold_max: 0.5
+  weight: 0.4
+- id: nox_high
+  name: High Nitrogen Oxides
+  node_type: symptom
+  category: gas_pattern
+  gas_type: NOx
+  condition: high
+  threshold_min: 600
+  weight: 0.6
+- id: lambda_low
+  name: Low Lambda (Rich)
+  node_type: symptom
+  category: gas_pattern
+  gas_type: Lambda
+  condition: low
+  threshold_max: 0.95
+  weight: 0.85
+- id: lambda_high
+  name: High Lambda (Lean)
+  node_type: symptom
+  category: gas_pattern
+  gas_type: Lambda
+  condition: high
+  threshold_min: 1.05
+  weight: 0.85
+- id: lambda_normal
+  name: Normal Lambda
+  node_type: symptom
+  category: gas_pattern
+  gas_type: Lambda
+  condition: normal
+  threshold_min: 0.95
+  threshold_max: 1.05
+  weight: 0.3
+- id: dtc_p0171
+  name: DTC P0171 (System Too Lean)
+  node_type: symptom
+  category: obd_dtc
+  weight: 0.9
+- id: dtc_p0172
+  name: DTC P0172 (System Too Rich)
+  node_type: symptom
+  category: obd_dtc
+  weight: 0.9
+- id: dtc_catalyst
+  name: DTC P0420/P0430 (Catalyst Efficiency)
+  node_type: symptom
+  category: obd_dtc
+  weight: 0.85
+- id: dtc_misfire
+  name: DTC P0300+ (Misfire)
+  node_type: symptom
+  category: obd_dtc
+  weight: 0.95
+- id: dtc_egr
+  name: DTC P0401 (EGR Flow Insufficient)
+  node_type: symptom
+  category: obd_dtc
+  weight: 0.8
+- id: dtc_ecu_internal
+  name: DTC P06xx (ECU Internal Fault)
+  node_type: symptom
+  category: obd_dtc
+  weight: 0.95
+- id: dtc_injector
+  name: DTC P0201-P0204 (Injector Circuit)
+  node_type: symptom
+  category: obd_dtc
+  weight: 0.85
+- id: dtc_sensor
+  name: DTC P01xx (Sensor Circuit)
+  node_type: symptom
+  category: obd_dtc
+  weight: 0.8
+- id: dtc_induction
+  name: DTC P0101 (MAF/Airflow)
+  node_type: symptom
+  category: obd_dtc
+  weight: 0.8
+- id: dtc_boost
+  name: DTC P0299/P0234/P0235 (Turbo/Boost)
+  node_type: symptom
+  category: obd_dtc
+  weight: 0.85
+- id: dtc_camshaft_timing
+  name: DTC P0011/P0012 (Camshaft Position Timing)
+  node_type: symptom
+  category: obd_dtc
+  weight: 0.85
+- id: dtc_ho2s_heater
+  name: DTC P0053 (HO2S Heater Resistance)
+  node_type: symptom
+  category: obd_dtc
+  weight: 0.8
+- id: dtc_knock_sensor
+  name: DTC P0324/P0325 (Knock Sensor)
+  node_type: symptom
+  category: obd_dtc
+  weight: 0.8
+- id: trim_positive_high
+  name: High Positive Fuel Trims
+  node_type: symptom
+  category: obd_pid
+  weight: 0.75
+- id: trim_negative_high
+  name: High Negative Fuel Trims
+  node_type: symptom
+  category: obd_pid
+  weight: 0.75
+- id: ecu_logic_inversion
+  name: ECU Logic Inversion (gas vs OBD mismatch)
+  node_type: symptom
+  category: compound
+  weight: 0.95
+- id: ghost_misfire
+  name: Ghost Misfire (DTC but no physical evidence)
+  node_type: symptom
+  category: compound
+  weight: 0.9
+- id: ghost_dtc_no_evidence
+  name: DTC Present But No Physical Evidence
+  node_type: symptom
+  category: compound
+  weight: 0.85
+- id: clean_gas_with_dtc
+  name: Clean Exhaust With Active DTC
+  node_type: symptom
+  category: compound
+  weight: 0.8
+- id: gases_normal
+  name: All Gas Readings Within Healthy Range
+  node_type: symptom
+  category: compound
+  weight: 0.9
+- id: ecu_open_loop_blind
+  name: ECU Open Loop / Frozen Trims (blind to exhaust)
+  node_type: symptom
+  category: compound
+  description: HC/CO high but STFT=0 LTFT=0 = ECU running fixed map, not responding to exhaust chemistry
+  weight: 0.9
+- id: ecu_misread_lean_confirmed
+  name: ECU Confirmed Lean Misread (gas rich, ECU reads lean)
+  node_type: symptom
+  category: compound
+  description: Fires when ecu_logic_inversion confirmed (lam<0.905, STFT>15, P0171) OR ecu_open_loop_blind with lean DTC/OBD
+    (obd_lambda>1.10). Gates ECU_Logic_Inversion_False_Lean leaf.
+  weight: 0.92
+- id: ecu_injector_driver_stuck
+  name: ECU Injector Driver Hard Ground (stuck open)
+  node_type: symptom
+  category: compound
+  description: Max negative trims (-20%+) but HC/CO still extreme = ECU lost physical control of injector
+  weight: 0.95
+- id: sensor_bias_lean
+  name: O2 Sensor Biased Lean (reports lean when gas says rich)
+  node_type: symptom
+  category: compound
+  description: Gas lambda <0.95 but OBD lambda >1.05 = sensor fooling ECU into adding fuel
+  weight: 0.9
+- id: sensor_bias_rich
+  name: O2 Sensor Biased Rich (reports rich when gas says lean)
+  node_type: symptom
+  category: compound
+  description: Gas lambda >1.05 but OBD lambda <0.95 = sensor fooling ECU into removing fuel
+  weight: 0.9
+- id: late_timing_pattern
+  name: Late Timing Pattern (combustible mix + extreme incomplete burn)
+  node_type: symptom
+  category: compound
+  description: Lambda 0.75-0.92 (combustible) + HC>5000 + CO>2.5 + CO2<8 + O2>3 = spark too late
+  weight: 0.95
+- id: compression_loss_pattern
+  name: 'Compression Loss Pattern (rings: HC+O2 high, CO2 LOW, NOx low)'
+  node_type: symptom
+  category: compound
+  description: HC high + O2 high + CO2 LOW (<12%) + CO low + NOx low + Lambda >1.0 = worn rings
+  weight: 0.9
+- id: valve_seal_pattern
+  name: Valve Seal Pattern (HC elevated, CO2 NORMAL, good compression)
+  node_type: symptom
+  category: compound
+  description: HC elevated (300-1000) + CO2 normal (13%+) + CO low + Lambda near 1.0 + NOx normal = oil past valve seals with
+    good compression
+  weight: 0.85
+- id: pcv_leak_pattern
+  name: PCV Leak Pattern (vacuum leak + oil burn)
+  node_type: symptom
+  category: compound
+  description: HC high + O2 high + CO2 low + Lambda >1.05 + positive trims = unmetered air from crankcase
+  weight: 0.85
+- id: trim_oscillation
+  name: Trim Oscillation (STFT vs LTFT opposing)
+  node_type: symptom
+  category: compound
+  description: STFT and LTFT in opposite directions (abs>=8 each) = lazy O2 sensor causing ECU hunting
+  weight: 0.85
+- id: high_fuel_pressure_pattern
+  name: High Fuel Pressure Pattern (systemic rich all banks)
+  node_type: symptom
+  category: compound
+  description: CO >2% + O2 <0.5% + LTFT <-15% + Lambda <0.95 = fuel rail overpressure
+  weight: 0.9
+- id: leaking_injector_pattern
+  name: Leaking Injector Pattern (single cylinder rich + injector DTC)
+  node_type: symptom
+  category: compound
+  description: CO >2% + HC >200 + (LTFT<-10 or STFT<-10) + Lambda <0.95 + injector DTC = single injector leak
+  weight: 0.9
+- id: head_gasket_pattern
+  name: Head Gasket Pattern (coolant/combustion breach)
+  node_type: symptom
+  category: compound
+  description: HC >400 + O2 >2% + CO2 <12% + CO <1.5% + Lambda >1.0 + no misfire DTC = head gasket
+  weight: 0.9
+- id: stuck_egr_open_pattern
+  name: Stuck EGR Open Pattern (excessive inert gas at idle)
+  node_type: symptom
+  category: compound
+  description: HC >350 + O2 >2% + CO2 <13% + no misfire DTC = EGR stuck open at idle
+  weight: 0.85
+- id: egr_dilution_pattern
+  name: EGR Dilution Pattern (incomplete combustion from inert gas)
+  node_type: symptom
+  category: compound
+  description: HC >500 + CO >1.5% (combustion occurring) + Lambda ~1.0 (AFR correct) + NOx <100 (flame temp suppressed) +
+    CO2 <14%. Inert gas dilutes charge, impedes flame front. High CO proves spark fires — differentiates from dead-cylinder
+    misfire which has LOW CO.
+  weight: 0.95
+- id: ignition_misfire_confirmed
+  name: 'Ignition Misfire Confirmed (dead cylinder: HC extreme + O2 high + CO LOW)'
+  node_type: symptom
+  category: compound
+  description: HC >1000 + O2 >2.5% + CO <1.5% = raw fuel + air passing through unburnt dead cylinder. Low CO proves NO combustion
+    — differentiates from EGR dilution where CO is high (combustion occurring but incomplete).
+  weight: 0.9
+- id: individual_cylinder_misfire_pattern
+  name: Individual Cylinder Misfire (CO + O2 both high = multi-state exhaust)
+  node_type: symptom
+  category: compound
+  description: HC >800 + CO >1.0% + O2 >2.0% = physically impossible in single combustion event. Dead cylinder pumps raw O2+HC
+    while live cylinders run rich producing CO. CO+O2 contradiction proves multiple cylinder states.
+  weight: 0.95
+- id: tired_catalyst_pattern
+  name: Tired Catalyst (engine clean, cat not finishing)
+  node_type: symptom
+  category: compound
+  description: Lambda 0.98-1.02 + HC >80 + CO >0.3% + CO2 >12.5% + STFT near 0 = engine combustion near-perfect but tailpipe
+    shows cat isn't cleaning.
+  weight: 0.85
+- id: high_idle_nox_pattern
+  name: High Idle NOx (carbon buildup or EGR restriction)
+  node_type: symptom
+  category: compound
+  description: NOx >150 at idle + Lambda ~1.0 + HC <100 = excessive combustion temp from carbon deposits or blocked EGR passages.
+  weight: 0.85
+- id: sensor_bias_false_rich
+  name: Sensor Bias False Rich (Lambda<0.95 but CO near zero)
+  node_type: symptom
+  category: compound
+  description: Lambda <0.95 + CO <0.2% + CO2 >12% = contradiction. Can't be rich with no CO. O2 sensor shifted rich, fooling
+    ECU into removing fuel.
+  weight: 0.9
+- id: rich_negative_trims_pattern
+  name: Rich + Negative Trims (systemic over-fueling)
+  node_type: symptom
+  category: compound
+  description: CO >2% + STFT or LTFT <-15% + Lambda <=0.95 = ECU pulling fuel but can't overcome richness. Fuel pressure regulator,
+    EVAP purge, or unmetered fuel source.
+  weight: 0.85
+- id: lean_misfire_pattern
+  name: Lean Misfire Pattern (moderate HC + very lean)
+  node_type: symptom
+  category: compound
+  description: HC 150-300 + O2 >4% + Lambda >1.1 = fuel starvation causing intermittent misfire
+  weight: 0.8
+- id: rich_misfire_pattern
+  name: Rich Misfire Pattern (excess fuel quenches spark)
+  node_type: symptom
+  category: compound
+  description: HC >500 + CO >1.5% + O2 >2% + Lambda <0.95 = excess fuel quenching spark. Both rich-side and lean-side products
+    coexist — differentiates from ignition misfire which has LOW CO. Per master_ignition_guide.md §6.
+  weight: 0.9
+- id: catalyst_masking
+  name: Catalyst Masking (active catalyst hiding upstream faults)
+  node_type: symptom
+  category: compound
+  description: CO2 >14.5% + HC <30ppm = catalyst actively cleaning exhaust, may mask upstream issues
+  weight: 0.7
+- id: exhaust_leak_ghost
+  name: Exhaust Leak Ghost (O2+CO contradiction)
+  node_type: symptom
+  category: compound
+  description: O2 >4% + CO >1% + STFT >10% = CO and O2 both elevated is physically contradictory, indicating pre-cat air ingress
+  weight: 0.9
+- id: dual_contaminated_maf_pattern
+  name: 'Dual-Speed: MAF Contamination (normal idle, lean at RPM)'
+  node_type: symptom
+  category: compound
+  description: Idle STFT normal (<5%), high-RPM STFT >10% + O2 >1.5% = MAF underreporting at speed
+  weight: 0.9
+- id: dual_clogged_exhaust_pattern
+  name: 'Dual-Speed: Clogged Exhaust (CO2 drops at RPM)'
+  node_type: symptom
+  category: compound
+  description: Idle CO2 >13% + LTFT -5 to -12%, high-RPM CO2 <12% = backpressure builds under load
+  weight: 0.9
+- id: clogged_exhaust_rpm_pattern
+  name: Clogged Exhaust @ RPM (single snapshot)
+  node_type: symptom
+  category: compound
+  description: 'High-RPM snapshot only: CO2 <11 + O2 elevated + NOx >200 + lean λ + moderate HC = restriction re-breathing'
+  weight: 0.9
+- id: dual_intake_gasket_pattern
+  name: 'Dual-Speed: Intake Gasket Leak (lean disappears at RPM)'
+  node_type: symptom
+  category: compound
+  description: Idle STFT >15% + O2 >2.5%, high-RPM STFT <5% + O2 <1.5% = vacuum leak seals under load
+  weight: 0.9
+- id: dual_low_fuel_delivery_pattern
+  name: 'Dual-Speed: Low Fuel Delivery (starves at RPM)'
+  node_type: symptom
+  category: compound
+  description: Idle STFT normal (<5%), high-RPM STFT >10% + O2 >2% = pump can't keep up at load
+  weight: 0.9
+- id: dual_egr_recovery_pattern
+  name: 'Dual-Speed: EGR Recovery (rough idle clears at RPM)'
+  node_type: symptom
+  category: compound
+  description: Idle stuck_egr pattern + high-RPM HC <100 + CO2 >13% = EGR stuck open confirmed by recovery
+  weight: 0.9
+- id: aftermarket_catalyst_inefficient
+  name: Aftermarket Catalyst Inefficient (Engine Healthy)
+  node_type: fault
+  category: exhaust
+  prior: 0.02
+  description: 'Universal/replacement catalyst with lower noble-metal loading than OEM. Engine runs clean (good combustion,
+    normal trims) but tailpipe HC/CO elevated. Distinguished from catalyst_failure by: (a) emission profile = aftermarket,
+    (b) engine combustion is healthy.'
+  severity: moderate
+  typical_dtcs:
+  - P0420
+  repair: Replace aftermarket catalyst with OEM-spec unit; engine itself appears healthy.
+  priority: 3
+  parent: catalyst_failure
+  discriminator:
+  - tired_catalyst_pattern
+- id: idle_lean_load_corrects
+  name: 'L1->L2: Lambda Drops Under Load (Vacuum Leak Corrects)'
+  node_type: symptom
+  category: compound
+  description: Lambda higher at idle than at load (dl < -0.05). Vacuum leak draws unmetered air at idle then seals under load.
+  weight: 0.8
+- id: idle_stoich_load_lean
+  name: 'L1->L2: Lambda Rises Under Load (Fuel Delivery Can''t Keep Up)'
+  node_type: symptom
+  category: compound
+  description: Lambda lower at idle than at load (dl > 0.05). Fuel delivery can't keep up at higher RPM — pump or MAF.
+  weight: 0.8
+- id: nox_high_idle
+  name: High NOx at Idle (no high-RPM data)
+  node_type: symptom
+  category: compound
+  weight: 0.7
+- id: nox_high_load
+  name: High NOx at Load (high idle gases)
+  node_type: symptom
+  category: compound
+  weight: 0.75
+- id: nox_low_with_lean
+  name: Low NOx With Lean Lambda (suggests pre-cat exhaust leak)
+  node_type: symptom
+  category: compound
+  weight: 0.85
+- id: o2_upstream_lazy
+  name: Upstream O2 Sensor Lazy / Stuck
+  node_type: symptom
+  category: obd_pid
+  weight: 0.8
+- id: o2_downstream_active
+  name: Downstream O2 Active With P0420 (catalyst not damping)
+  node_type: symptom
+  category: obd_pid
+  weight: 0.8
+- id: o2_downstream_steady
+  name: Downstream O2 Steady High (healthy or rich-stuck)
+  node_type: symptom
+  category: obd_pid
+  weight: 0.5
+- id: bank2_lean
+  name: Bank 2 Lean
+  node_type: symptom
+  category: obd_pid
+  weight: 0.75
+- id: bank2_rich
+  name: Bank 2 Rich
+  node_type: symptom
+  category: obd_pid
+  weight: 0.75
+- id: trim_global_both_banks
+  name: Trim Imbalance Global (both banks same direction)
+  node_type: symptom
+  category: obd_pid
+  weight: 0.7
+- id: trim_local_one_bank
+  name: Trim Imbalance Local (one bank diverges)
+  node_type: symptom
+  category: obd_pid
+  weight: 0.8
+- id: ff_open_loop_at_fault
+  name: 'FF: Fuel System Open Loop at Fault Capture'
+  node_type: symptom
+  category: freeze_frame
+  weight: 0.8
+- id: ff_load_high_at_low_rpm
+  name: 'FF: Calculated Load High at Low RPM'
+  node_type: symptom
+  category: freeze_frame
+  weight: 0.7
+- id: ff_ect_warmup
+  name: 'FF: ECT Below Operating Temperature'
+  node_type: symptom
+  category: freeze_frame
+  weight: 0.7
+- id: ff_iat_ect_biased
+  name: 'FF: IAT/ECT Disagreement at Cold Soak'
+  node_type: symptom
+  category: freeze_frame
+  weight: 0.7
+- id: ff_timing_retard_severe
+  name: 'FF: Severe Ignition Timing Retard'
+  node_type: symptom
+  category: freeze_frame
+  weight: 0.85
+- id: ff_codes_cleared_invalidated
+  name: 'FF: DTC Memory Recently Cleared (trims un-learned)'
+  node_type: symptom
+  category: freeze_frame
+  weight: 0.95
+- id: Exhaust_Air_Leak_Pre_Cat
+  name: Pre-Catalyst Exhaust Air Leak
+  node_type: fault
+  category: exhaust
+  prior: 0.01
+  description: Air entering exhaust system upstream of the catalyst. Tailpipe shows elevated O2 with non-trivial CO; ECU adds
+    fuel (positive trims) chasing a false-lean upstream O2 sensor reading.
+  severity: moderate
+  typical_dtcs:
+  - P0171
+  repair: Smoke-test exhaust upstream of cat; inspect manifold gaskets, flex joint, pre-cat pipe seams
+  priority: 2
+  parent: exhaust_leak
+  discriminator:
+  - exhaust_leak_ghost
+- id: Low_Compression_Multi_Cylinder
+  name: Low Compression (Multi-Cylinder)
+  node_type: fault
+  category: mechanical
+  prior: 0.005
+  description: Compression loss across multiple cylinders from worn rings or valves. HC high from incomplete burn, O2 high
+    from weak combustion, CO2 LOW (<12%) from poor volumetric efficiency, NOx low (low peak compression temperature). Positive
+    fuel trims as ECU compensates for false lean.
+  severity: severe
+  typical_dtcs: []
+  repair: Compression test all cylinders; if multiple cylinders <100 psi, leakdown test to isolate rings vs valves
+  priority: 5
+- id: ns_ckp_failure
+  name: CKP Sensor Failure (No RPM Signal During Cranking)
+  node_type: fault
+  category: sensors
+  prior: 0.02
+  description: Crankshaft position sensor failure — no RPM signal during cranking. ECU cannot fire injectors or coils. No
+    fuel AND no spark simultaneously. Per master_non_starter_guide.md §5 and master_ignition_guide.md §7.
+  severity: severe
+  typical_dtcs:
+  - P0335
+  repair: Replace CKP sensor; check wiring and air gap
+  priority: 1
+- id: ctx_cold_engine
+  name: Cold Engine Context
+  node_type: symptom
+  category: context
+  weight: 0.7
+  description: Engine is cold (not at operating temperature). Suppresses O2-sensor-dependent diagnoses (ECU runs fixed map).
+- id: perception_lean_seen_rich
+  name: 'Perception: ECU Lean But Gas Rich (Truth-vs-Perception)'
+  node_type: symptom
+  category: compound
+  description: Gas chemistry says rich (lambda<0.905, CO>1.5) but ECU reports lean (P0171, obd_lambda>1.05). Suspect O2 sensor
+    bias or ECU adaptive memory corruption. Per master_perception_guide.md §3.1.
+  weight: 0.85
+- id: perception_rich_seen_lean
+  name: 'Perception: ECU Rich But Gas Lean (Truth-vs-Perception)'
+  node_type: symptom
+  category: compound
+  description: Gas chemistry says lean (lambda>1.095, O2>2.0) but ECU reports rich (P0172, obd_lambda<0.95). Suspect O2 sensor
+    bias or ECU adaptive memory corruption. Per master_perception_guide.md §3.2.
+  weight: 0.85
+- id: trim_sum_positive_high
+  name: Total Fuel Trim High Positive (STFT+LTFT > 10%)
+  node_type: symptom
+  category: obd_pid
+  weight: 0.85
+  description: Industry-standard total-trim heuristic. STFT+LTFT > 10% on bank 1 (or bank 2). Stronger lean-condition signal
+    than either component alone.
+- id: trim_sum_negative_high
+  name: Total Fuel Trim High Negative (STFT+LTFT < -10%)
+  node_type: symptom
+  category: obd_pid
+  weight: 0.85
+  description: Industry-standard total-trim heuristic. STFT+LTFT < -10% on bank 1 (or bank 2). Stronger rich-condition signal
+    than either component alone.
+- id: vvt_phaser_fault
+  name: VVT Phaser Mechanical Fault (Lag/Advance)
+  node_type: fault
+  category: mechanical
+  prior: 0.005
+  description: VVT phaser stuck or sluggish � cam timing drifts from commanded position. Incomplete burn produces elevated
+    HC at idle with normal lambda.
+  severity: moderate
+  typical_dtcs:
+  - P0011
+  - P0012
+  - P0014
+  repair: Inspect VVT solenoid resistance, check oil passages for sludge, verify phaser movement with bidirectional scan tool
+  priority: 3
+  parent: valve_timing_mechanical
+  discriminator:
+  - vvt_lag
+  - cooled_rich_burn
+  - cam_timing_noise
+- id: gdi_lspi
+  name: GDI Low-Speed Pre-Ignition (LSPI)
+  node_type: fault
+  category: mechanical
+  prior: 0.003
+  description: Low-speed pre-ignition in GDI turbo engines � fuel droplets ignite before spark under high load/low RPM. Knock
+    sensor triggers severe timing retard in freeze-frame.
+  severity: severe
+  typical_dtcs: []
+  repair: Check for oil dilution raising crankcase vapour, inspect injector spray pattern, use LSPI-resistant oil specification
+  priority: 3
+  discriminator:
+  - lspi
+- id: gdi_carbon_buildup
+  name: GDI Intake Valve Carbon Buildup
+  node_type: fault
+  category: fuel_delivery
+  prior: 0.004
+  description: Carbon deposits on GDI intake valves disrupt airflow and fuel atomization. HC elevated especially cold start.
+    No fuel washing of valves (GDI injects directly into cylinder).
+  severity: moderate
+  typical_dtcs: []
+  repair: Walnut-blast intake valves, consider catch-can installation, verify PCV function
+  priority: 3
+  discriminator:
+  - gdi_carbon
+- id: gdi_hpfp_internal_leak
+  name: GDI HPFP Internal Seal Leak (Fuel in Oil)
+  node_type: fault
+  category: fuel_delivery
+  prior: 0.004
+  description: GDI high-pressure fuel pump internal seal leaks fuel into engine oil. PCV recycles fuel vapour causing rich
+    mixture. Oil level rises with fuel dilution.
+  severity: severe
+  typical_dtcs:
+  - P0172
+  repair: Replace HPFP assembly, change oil and filter, verify no bore scoring from fuel-washed oil
+  priority: 3
+  parent: high_fuel_pressure
+  discriminator:
+  - dilution
+  - hpfp_seal
+- id: ecu_open_loop_fault
+  name: ECU Stuck in Open Loop (Corrupted Adaptive)
+  node_type: fault
+  category: ecu
+  prior: 0.004
+  description: ECU adaptive fuel strategy corrupted forcing permanent open-loop with stale fuel map values. Trims frozen at
+    0% despite rich or lean gas evidence.
+  severity: severe
+  typical_dtcs: []
+  repair: Reflash ECU with latest calibration, reset adaptive learned values, verify fuel system status PID
+  priority: 2
+  parent: ecu_fault
+  discriminator:
+  - open_loop
+- id: ecu_logic_inversion_fault
+  name: ECU Logic Inversion (False Lean/Rich)
+  node_type: fault
+  category: ecu
+  prior: 0.005
+  description: ECU misinterprets O2 sensor signal � sees lean when rich (or vice versa). Gas chemistry contradicts ECU perception.
+    Positive trims despite rich exhaust; lean DTC on rich engine.
+  severity: severe
+  typical_dtcs:
+  - P0171
+  repair: Check O2 sensor signal integrity, inspect for silicone contamination on sensor, verify ECU ground reference
+  priority: 2
+  parent: ecu_fault
+  discriminator:
+  - ecu_liar
+- id: egr_stuck_open_idle
+  name: EGR Stuck Open at Idle
+  node_type: fault
+  category: air_management
+  prior: 0.005
+  description: EGR valve mechanically stuck open at idle � exhaust gas dilutes intake charge causing very high HC, rough idle,
+    possible stalling. Clears at higher RPM.
+  severity: severe
+  typical_dtcs:
+  - P0401
+  repair: Remove and clean EGR valve, verify pintle seats fully, check for carbon debris holding valve open
+  priority: 2
+  parent: stuck_egr_open
+  discriminator:
+  - dilution
+  - stoich
+  - high_hc
+- id: sai_valve_stuck_open
+  name: Secondary Air Injection Valve Stuck Open
+  node_type: fault
+  category: air_management
+  prior: 0.004
+  description: SAI valve fails open pumping fresh air into exhaust stream. O2 reads very high, CO and HC diluted, ECU may
+    falsely interpret as lean.
+  severity: moderate
+  typical_dtcs:
+  - P0410
+  - P0411
+  repair: Check SAI solenoid and check valve, verify pump only runs during cold start, inspect for stuck-open reed valve
+  priority: 2
+  discriminator:
+  - sai_open
+  parent: exhaust_leak
+- id: misfire_single_cylinder
+  name: Single-Cylinder Misfire (P0301-P0304)
+  node_type: fault
+  category: ignition
+  prior: 0.005
+  description: Misfire isolated to a single cylinder � plug, coil, or injector fault. ECU identifies specific cylinder via
+    crank acceleration.
+  severity: moderate
+  typical_dtcs:
+  - P0301
+  - P0302
+  - P0303
+  - P0304
+  repair: Swap coil/plug to isolate, compression test suspect cylinder, inspect injector
+  priority: 2
+  parent: misfire
+  discriminator:
+  - p030x
+- id: nox_low
+  name: Low Nitrogen Oxides
+  node_type: symptom
+  category: chemical
+  description: NOx below threshold � indicates low peak combustion temperature (rich mixture, EGR dilution, late timing, or
+    low compression)

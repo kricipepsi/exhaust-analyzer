@@ -1,0 +1,291 @@
+# Gas symptom thresholds
+gas_symptoms:
+  co_high: 1.0
+  co2_low: 10.0
+  co2_high: 15.0
+  co2_good_min: 14.5
+  co2_good_min_decat: 13.0
+  co2_good_max: 15.5
+  hc_very_high: 1000
+  hc_high: 300
+  hc_low: 150
+  o2_very_high: 5.0
+  o2_high: 2.0
+  o2_low: 0.5
+  nox_high: 600
+  nox_low: 100
+  lambda_low: 0.95
+  lambda_high: 1.05
+
+# Compound pattern thresholds
+patterns:
+  late_timing:
+    lambda_min: 0.75
+    lambda_max: 1.06      # was 0.99 — cam retard is stoich to slightly lean (cases up to λ=1.05)
+    hc_min: 200           # was 1200 — cam retard HC is 180–420 ppm
+    co_min: 0.3           # was 2.5 — cam retard CO is 0.4–1.5%, not >2.5%
+    co_max: 2.0           # T15o: guard against rich-mixture/misfire/mechanical-wear inhibitory collisions; all 9 target cases CO ≤ 1.5%
+    co2_max: 13.5         # was 13.0 — EXP-N007 has CO2=13.5
+    o2_min: 0.3           # was 1.0 — EXP-N007/EXP-N023 have O2=0.4–0.45%
+
+  compression_loss:
+    hc_min: 300
+    hc_max: 1300          # was 1000 — covers MECH-001 (HC=1200)
+    o2_min: 1.3           # was 2.0 — covers EXT-222 (O2=1.5), EXT-223 (O2=1.8)
+    co2_max: 13.0         # was 12.0 — covers EXT-222 (CO2=12.5), EXT-223 (boundary)
+    co_max: 1.0
+    nox_max: 200
+    lambda_min: 0.95      # was 1.0 — covers MECH-001 (λ=0.99)
+    lambda_max: 1.2
+
+  valve_seal:
+    hc_min: 300
+    hc_max: 1000
+    co2_min: 13.0
+    # widened from 0.5 -> 0.8 so blow-by cases with mild oil-burn CO (e.g.
+    # case 10: HC=580, CO=0.6) still trigger the pattern instead of falling
+    # through to catalyst_failure.
+    co_max: 0.8
+    o2_max: 2.5
+    lambda_min: 0.95
+    lambda_max: 1.05
+
+  pcv_leak:
+    hc_min: 60
+    hc_max: 800
+    o2_min: 2.0
+    co2_max: 13.0
+    lambda_min: 1.05
+    lambda_max: 1.2
+    co_max: 1.0
+
+  high_fuel_pressure:
+    co_min: 2.0
+    o2_max: 0.5
+    ltft_max: -15
+    lambda_max: 0.95
+
+  leaking_injector:
+    co_min: 2.0
+    hc_min: 200
+    trim_max: -10
+    lambda_max: 0.95
+
+  rich_negative_trims:
+    co_min: 2.0
+    trim_max: -15
+    lambda_max: 0.95
+
+  head_gasket:
+    hc_min: 400
+    # widened from 2000 -> 3500 so the extreme coolant-quench signature
+    # (case 12: HC=2500) still fires this pattern.
+    hc_max: 3500
+    o2_min: 2.0
+    co2_max: 12.0
+    co_max: 1.5
+    lambda_min: 1.0
+    # widened from 1.2 -> 1.5 so HC>2000 + λ>1.2 cases are still recognized.
+    lambda_max: 1.5
+
+  stuck_egr_open:
+    hc_min: 350
+    hc_max: 2500
+    o2_min: 2.0
+    co2_max: 13.0
+    nox_max: 200
+
+  stuck_egr_open_dtc_assisted:
+    hc_min: 300
+    o2_min: 2.0
+    co2_max: 13.0
+
+  egr_dilution:
+    hc_min: 500
+    lambda_min: 0.97
+    lambda_max: 1.03
+    nox_max: 100
+    co2_max: 14.0
+    o2_max: 3.5
+    stft_min: -10
+
+  ignition_misfire_confirmed:
+    hc_min: 1000
+    o2_min: 2.5
+    co_max: 1.5
+
+  individual_cylinder_misfire:
+    hc_min: 800
+    co_max: 0.8
+    o2_min: 3.0
+
+  lean_misfire:
+    hc_min: 150
+    o2_min: 4.0
+    lambda_min: 1.1
+    co_max: 0.3
+
+  # T15z F26: rich misfire — both rich-side and lean-side products coexist
+  # per master_ignition_guide.md §6 table row 3 and master_gas_guide.md §3 rule 3
+  rich_misfire:
+    hc_min: 500
+    co_min: 1.5
+    o2_min: 2.0
+    lambda_max: 0.95
+
+  tired_catalyst:
+    lambda_min: 0.98
+    lambda_max: 1.02
+    hc_min: 80
+    hc_max: 300
+    co_min: 0.3
+    co_max: 1.5
+    co2_min: 12.5
+    stft_abs_max: 5
+
+  high_idle_nox:
+    nox_min: 150
+    lambda_min: 0.95
+    lambda_max: 1.05
+    hc_max: 100
+
+  catalyst_masking:
+    co2_min: 14.5
+    hc_max: 30
+
+  exhaust_leak_ghost:
+    o2_min: 4.0
+    co_min: 1.0
+    stft_min: 10
+
+  # Single-snapshot clogged-exhaust detector (case 3b).
+  # Differential-bible Rule 4 (CO2 collapse + restriction) is normally checked
+  # via the dual_speed.clogged_exhaust pattern that compares low-RPM and
+  # high-RPM data. This single-snapshot variant catches the same fault from
+  # one high-RPM reading: low CO2 + elevated O2 + elevated NOx + lean λ +
+  # moderate HC = exhaust re-breathing under load.
+  clogged_exhaust_rpm:
+    hc_min: 50
+    hc_max: 250
+    co_max: 1.0
+    co2_max: 11.0
+    o2_min: 2.0
+    o2_max: 5.0
+    lambda_min: 1.05
+    lambda_max: 1.20
+    nox_min: 200
+
+  sensor_bias_false_rich:
+    lambda_max: 0.95
+    co_max: 0.2
+    co2_min: 12.0
+
+# Sensor bias delta thresholds
+sensor_bias:
+  delta_hot: 0.08
+  delta_cold: 0.15
+  obd_not_rich_min: 0.98
+  obd_not_lean_max: 1.02
+
+# Dual-speed pattern thresholds
+dual_speed:
+  contaminated_maf:
+    stft_idle_abs_max: 5
+    stft_high_min: 10
+    o2_high_min: 1.5
+  clogged_exhaust:
+    co2_idle_min: 13.0
+    ltft_min: -12
+    ltft_max: -5
+    co2_high_max: 12.0
+  intake_gasket:
+    stft_idle_min: 15
+    o2_idle_min: 2.5
+    stft_high_max: 5
+    o2_high_max: 1.5
+  low_fuel_delivery:
+    stft_idle_abs_max: 5
+    stft_high_min: 10
+    o2_high_min: 2.0
+  egr_recovery:
+    hc_high_max: 100
+    co2_high_min: 13.0
+  high_idle_diff:
+    idle_lean_load_corrects_delta: -0.05
+    idle_stoich_load_lean_delta: 0.05
+
+# Non-starter thresholds
+non_starter:
+  ckp_rpm_max: 50
+  fast_cranking_rpm_max: 350      # T15z F31: RPM > this during cranking => no compression
+  no_fuel_hc_max: 50
+  flooded_hc_min: 3000
+  no_spark_hc_min: 1500
+  partial_hc_min: 200
+  partial_hc_max: 800
+  no_compression_map_min: 98
+  vacuum_map_max: 90
+  ect_low_max: -35
+  ect_high_min: 145
+  # Lean no-start: spark confirmed but fuel insufficient
+  lean_no_start_co2_min: 1.5    # CO2 must be above this to confirm combustion
+  lean_no_start_o2_max: 18.0    # O2 must have dropped from ambient (20.9%)
+  lean_no_start_lambda_min: 2.0  # Lambda must be extremely lean
+
+# Healthy gas thresholds (replaces HEALTHY_PETROL / HEALTHY_DECAT from constants.py)
+healthy_gas:
+  petrol:
+    co_max: 0.5
+    hc_max: 150
+    co2_min: 14.5
+    o2_max: 1.5
+    lambda_min: 0.95
+    lambda_max: 1.05
+    nox_max: 300
+  decat:
+    co_max: 1.0
+    hc_max: 200
+    co2_min: 12.0
+    o2_max: 2.0
+    lambda_min: 0.95
+    lambda_max: 1.05
+    nox_max: 500
+
+# Validation thresholds
+validation:
+  ambient_air_o2_min: 20.2
+  ambient_air_co2_max: 1.0
+  carbon_balance_max: 18.0
+  carbon_balance_warning_min: 9.0
+  lambda_delta_warning: 0.08
+  extreme_cranking_hc: 5000
+
+# Freeze-frame symptom derivation thresholds (Step 1.4)
+freeze_frame:
+  load_high_threshold: 70           # calc_load > this AND rpm < load_rpm_threshold => ff_load_high_at_low_rpm
+  load_low_threshold: 30            # calc_load < this AND rpm > load_rpm_threshold => ff_load_low_at_high_rpm (T15z F20)
+  load_rpm_threshold: 1500
+  ect_warmup_max: 70                # ect < this => ff_ect_warmup (T15z F23: 60→70 per master_fuel_trim_guide.md §6)
+  iat_ect_delta_threshold: 30       # |iat - ect| > this AND rpm == 0 => ff_iat_ect_biased
+  timing_retard_threshold: -10      # ignition_advance < this => ff_timing_retard_severe
+  open_loop_fuel_status:            # ff.fuel_status in this set => ff_open_loop_at_fault
+    - "OL_DRIVE"
+    - "OL_FAULT"
+    - "OL"
+
+# Dual-PID extension thresholds (Step 1.10 bank-aware patterns)
+dual_pid:
+  trim_total_imbalance: 10          # |stft+ltft| > this triggers trim_global / trim_local logic
+  o2_upstream_ambiguous_low: 0.85   # ambiguous narrowband/wideband zone
+  o2_upstream_ambiguous_high: 1.10
+  o2_upstream_classifier_match_tol: 0.10  # |value - calc_lambda| <= this => wideband
+  o2_downstream_active_min: 0.3     # exclusive: active = (active_min, active_max) AND P0420 present
+  o2_downstream_active_max: 0.7
+  o2_downstream_steady_min: 0.7     # exclusive: steady = (steady_min, steady_max)
+  o2_downstream_steady_max: 0.8
+  o2_upstream_lazy_low: 0.3         # narrowband stuck below this at idle => lazy
+  o2_upstream_lazy_high: 0.7        # narrowband stuck above this at idle => lazy
+  nox_high_idle_threshold: 100      # gases.nox > this AND gases_high is None => nox_high_idle
+  nox_low_with_lean_threshold: 50   # gases.nox < this AND lambda > 1.05 => nox_low_with_lean
+  nox_high_load_threshold: 600      # gases_high.nox > this => nox_high_load
+  trim_per_bank_sum_threshold: 10   # |stft+ltft| > this on a single bank => trim_sum_positive_high / trim_sum_negative_high
