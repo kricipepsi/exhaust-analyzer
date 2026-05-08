@@ -127,6 +127,36 @@ HC 300+ ppm + O₂ 2.0+ % + λ ≈ 1.00 without a DTC is diagnostically ambiguou
 
 The `dual_egr_recovery_pattern` fires when idle shows HC↑/O₂↑/CO₂↓ but 2500 RPM shows improvement. Physical basis: at 2500 RPM the ECU ramps load above the EGR open window — even a stuck-open valve sees reduced manifold vacuum, reducing flow. The O₂ sensor now sees cleaner combustion and the trims return toward zero. This is the reliable differentiator from a true vacuum leak (which may still show some improvement at 2500 but typically not the dramatic recovery seen with EGR).
 
+#### 5.6 Threshold provenance summary — every EGR threshold cited
+
+This table maps every numeric threshold the 4D engine uses for EGR nodes to its physical justification section in this guide and to the underlying master-guide source chain:
+
+| Threshold | Value | 4D engine node(s) | Physical justification | Source guide § |
+|-----------|-------|-------------------|----------------------|----------------|
+| `HC_min_stuck_open` | 300 ppm | `stuck_egr_open`, `stuck_egr_open_confirmed` | Combustion deficit at ~1.5% unburned fuel; §5.1 | `master_egr_guide.md §5.1` |
+| `O2_min_stuck_open` | 2.0 % | `stuck_egr_open`, `stuck_egr_open_confirmed` | Above healthy-no-cat boundary, below lean-misfire threshold; §5.2 | `master_egr_guide.md §5.2` |
+| `CO2_max_stuck_open` | 13.0 % | `stuck_egr_open`, `stuck_egr_open_confirmed` | CO₂ partial pressure depressed by inert dilution; §5.3 | `master_egr_guide.md §5.3` |
+| `lambda_balance_window` | 0.97–1.03 | All EGR stuck-open nodes | λ stays near stoichiometric during inert dilution; §4.2 | `master_egr_guide.md §4.2` |
+| `NOx_max_idle_normal_egr` | 150 ppm | `egr_insufficient_flow` | Idle NOx with otherwise normal gases = EGR absent; §4.3 | `master_nox_guide.md §2`, `master_egr_guide.md §4.3` |
+| `ect_warm_gate` | 70 °C | All EGR nodes | Cold enrichment produces HC 200–600 ppm; §5.1 | `master_cold_start_guide.md §4` |
+| `ect_cold_disable` | 40 °C | EGR valve operation | ECT below 40 °C: EGR disabled for combustibility; §2 table | `master_egr_guide.md §2` |
+| `vacuum_egr_stuck_open` | < 15 inHg | `stuck_egr_open_confirmed` | Steady warm-idle vacuum below 15 inHg with EGR DTC; §4.2 | `master_mechanical_guide.md §3` |
+
+**Citation format rule:** In `thresholds.yaml`, each row references the "Source guide §" column above as `# source_guide: docs/master_guides/egr/master_egr_guide.md §5.1` (or equivalent). This satisfies R10 provenance lint.
+
+#### 5.7 Era-specific EGR threshold nuance
+
+EGR architectures and sensitivity change across the four era buckets defined by R6. The thresholds above remain correct across all eras, but the *diagnostic weight* of each signal shifts:
+
+| Era | EGR architecture | Dominant signal | Caveat |
+|-----|-----------------|-----------------|--------|
+| **1990–1995** | Ported vacuum / positive backpressure only | DTCs may be absent (pre-OBD-II); gas sigs carry nearly full weight | EGR position sensor absent — valve failure inferred from gas alone |
+| **1996–2005** | PWM electronic + first linear types | P040x DTCs present; gas sigs used as confirmation layer | ECU P0401 monitor tests MAP change on EGR command — MAF-based only after ~1999 |
+| **2006–2015** | Linear electronic position-feedback | DTC (full P040x family) + position sensor PID + gas sigs in triple-confirmation | Position sensor drift (P0405/P0406) may fire without gas disturbance |
+| **2016–2020** | VVT internal EGR dominant; external EGR valve rare on GDI | May lack external EGR valve entirely; VVT phaser data replaces traditional EGR signals | Route to `master_mechanical_guide.md §9` for internal EGR; P040x DTCs expected absent on GDI |
+
+**1990–1995 pre-OBD-II special case:** Vehicles without EGR position feedback and without DTCs require the 4D engine to place greater weight on the gas signature (HC > 300 ppm + O₂ > 2.0 % + λ ≈ 1.00) because no ECM-confirmed DTC exists. The `stuck_egr_open` node may fire on gas alone in this era. For all other eras, the `stuck_egr_open_confirmed` node requires co-occurring DTC evidence per §5.4.
+
 ---
 
 ## 6. EGR DTC reference for petrol engines
@@ -151,6 +181,56 @@ The `dual_egr_recovery_pattern` fires when idle shows HC↑/O₂↑/CO₂↓ but
 4. **2500 RPM test improves HC and O₂ dramatically from the idle readings?** → `dual_egr_recovery_pattern` fires; strong confirmation of EGR stuck-open vs vacuum leak which would not improve as dramatically.
 5. **VVT-equipped engine with no external EGR valve?** → EGR is performed internally by valve-timing strategy. EGR DTCs will not exist. Misfire-like symptoms are VVT-related — route to `master_mechanical_guide.md §9`.
 
+#### 7a. Era-specific diagnostic flow for EGR
+
+The diagnostic decision tree above assumes a vehicle with an external EGR valve and OBD-II DTCs. For pre-OBD-II and VVT-only vehicles, use these era-adapted flows:
+
+**1990–1995 (pre-OBD-II):**
+1. **Warm idle gas analysis is the primary tool.** No P040x DTCs exist.
+2. **HC > 300 ppm + O₂ > 2.0 % + λ ≈ 1.00 at warm idle** → stuck-open EGR is the leading hypothesis. Apply vacuum to EGR valve at idle:
+   - RPM drops or stalls → EGR passage clear, valve was closed; problem is elsewhere
+   - RPM improves or unchanged → EGR valve was stuck open or already partially open
+3. **Vacuum gauge reading:** Steady vacuum < 15 inHg reinforces stuck-open EGR.
+4. **2500 RPM test is critical:** HC and O₂ that improve dramatically at 2500 RPM confirm `dual_egr_recovery_pattern`.
+5. **No DTC to distinguish EGR from ignition misfire** → the vacuum test and 2500 RPM recovery are the splitters.
+
+**1996–2005 (OBD-II, early electronic EGR):**
+1. **P0401/P0402 present** → confirm with gas analysis; thresholds same as §7.
+2. **No DTC but gas sig present** → the ECM monitor may not have completed (drive-cycle dependent). Run drive cycle; recheck.
+3. **P0404 + position sensor erratic** → pintle carbon-stuck; clean valve, recheck.
+4. **PWM type without position feedback** → no P0404/P0405/P0406 possible.
+
+**2006–2015 (CAN-bus, position-feedback EGR):**
+1. **P040x present + position PID available** → compare commanded vs actual EGR position via scan tool. Disagreement > 10 % confirms mechanical fault.
+2. **P0405/P0406 (position sensor low/high)** → sensor circuit fault; gas sig may be normal because the valve itself operates correctly.
+3. **Stuck-open with normal position PID** → valve physically stuck but position sensor reads commanded position; detectable only by gas analysis.
+
+**2016–2020 (VVT internal EGR era):**
+1. **No external EGR valve on most GDI applications** → P040x DTCs will not exist.
+2. **HC + O₂ → run VVT phaser diagnostics** (`master_mechanical_guide.md §9`).
+3. **If external EGR valve is fitted** (rare on GDI, more common on PFI turbo) → apply the 2006–2015 flow above.
+
+#### 7b. Common EGR diagnostic pitfalls
+
+**Pitfall 1 — Confusing EGR stuck-open with vacuum leak.** Both produce HC↑/O₂↑ at idle. The technician's first instinct is often to hunt for a vacuum leak (hoses, intake gasket), because vacuum leaks are far more common than stuck-open EGR valves. The splitters are:
+
+- **Fuel trim behaviour:** MAF-based vacuum leak → STFT sharply positive, normalising at cruise. EGR stuck-open on MAF system → STFT near normal because inert gas is not metered by MAF and doesn't shift the O₂ sensor lean signal. On a MAP-based system, both can look similar.
+- **NOx (5-gas):** Vacuum leak → NOx may rise (lean misfire heats chamber). EGR stuck-open → NOx suppressed (inert gas quench).
+- **2500 RPM:** Vacuum leak shows moderate improvement. EGR stuck-open shows dramatic improvement.
+- **Vacuum gauge:** Vacuum leak: reading may be low but fluctuates. EGR stuck-open: steady low reading with minimal fluctuation.
+
+**Pitfall 2 — Condemning the EGR valve when the passage is coked.** P0401 (insufficient flow) with commanded EGR position at 100 % and zero measured flow change → the valve is trying but the passage is blocked. Remove valve, clean passage, reinstall the same valve — replacing the valve without cleaning the passage produces a comeback.
+
+**Pitfall 3 — Assuming P0400 with normal gases means the EGR is fine.** P0400 can fire for electrical faults (open/short in solenoid) without any gas disturbance. A P0403 (circuit fault) with normal gases is an electrical problem, not a flow problem.
+
+**Pitfall 4 — Ignoring the cold-start inhibition.** If the engine is tested cold (ECT < 40 °C), EGR is disabled. Gas analysis under cold conditions will not reveal an EGR fault, and the EGR valve is closed — vacuum application at cold idle proves nothing. Always warm the engine to ECT ≥ 70 °C before EGR diagnostics.
+
+**Pitfall 5 — Missing the VVT internal EGR transition.** On a 2016+ engine with VVT internal EGR and no external valve, running traditional EGR diagnostics (vacuum application, position sensor check) is impossible. The technician may falsely conclude "EGR is fine" because they tested for the wrong architecture. Always verify EGR valve type visually before beginning the diagnostic flow.
+
+**Pitfall 6 — Cleaning the EGR valve without resetting adaptions.** After cleaning a carbon-stuck EGR valve, the ECU's learned position adaptions may still reflect the pre-cleaning state. The valve may be physically free but the ECU sees out-of-range position feedback when the motor moves to a freshly freed position. Always clear adaptions (usually via scan tool EGR relearn function) after cleaning an electronic EGR valve.
+
+**Pitfall 7 — Cascade misdiagnosis with P0300 + P0402.** A stuck-open EGR causes lean-misfire at idle, generating P0300. The technician sees P0300 and replaces spark plugs/coils. The EGR fault stays, the misfire returns within weeks, and P0300 fires again. In all P0300 diagnosistics, specifically ask: does this engine have EGR, and is it stuck open at idle? Check P0402 before replacing any ignition component.
+
 ---
 
 ## 8. Inter-guide rules
@@ -158,6 +238,11 @@ The `dual_egr_recovery_pattern` fires when idle shows HC↑/O₂↑/CO₂↓ but
 - EGR stuck-open at idle produces the same HC↑/O₂↑ signature as lean misfire. The splitter is NOx: EGR suppresses NOx (inert-gas quench); lean misfire at threshold burns hotter and may elevate NOx slightly. If 5-gas NOx > 150 ppm alongside HC↑/O₂↑, suspect lean misfire over EGR. Cross-ref `master_nox_guide.md §2`.
 - A P0401 (insufficient flow) combined with P0420 (catalyst degradation) may be related: without EGR dilution, NOx rises and the cat faces higher NOx load, degrading efficiency faster. When both DTCs are present, resolve EGR first.
 - EGR stuck-open causes a real lean-misfire condition. The upstream O₂ sensor sees this as lean and generates positive fuel trim. This confirms a true lean condition — but the cause is charge dilution, not an air leak. The fuel-trim guide's "positive trim at idle normalising at cruise" rule can be overridden by EGR if the EGR flow is post-MAP/pre-throttle body on that platform. Cross-ref `master_fuel_trim_guide.md §4`.
+- **Bank-specific EGR on V-engines:** Some V-configuration engines apply EGR to only one intake bank (usually bank 1). When EGR is stuck open and bank-specific, the gas analyser sees a partial signature — O₂ may be elevated but not as severely as with dual-bank EGR dilution. Bank-1 fuel trim may run sharply positive while bank 2 trims are normal. The inter-bank trim delta > 8 % at warm idle with EGR DTC present signals bank-specific EGR fault. Cross-ref `master_fuel_trim_guide.md §5`.
+- **EGR + P0420 catalyst interaction:** A stuck-open EGR valve at idle increases HC emission and reduces NOx, but the elevated HC load taxes the catalyst, progressively degrading its efficiency. If P0420 appears alongside EGR DTCs, correct the EGR fault first and re-test catalyst efficiency — the cat may recover. If P0420 persists after EGR repair, the catalyst is genuinely degraded. Route to `master_catalyst_guide.md §4`.
+- **EGR + P0300 random misfire:** A stuck-open EGR at idle causes lean-misfire that the ECU counts. With enough idle-misfire events across multiple cylinders, a P0300 (random misfire) can set. The 4D engine should always check for EGR DTCs when diagnosing P0300 at warm idle with otherwise normal ignition and fuel delivery. Fixing the EGR fault resolves the misfire; condemning the ignition system wastes diagnostic time.
+- **EGR temperature sensor (where fitted):** Some linear EGR systems include an EGR temperature sensor. Normal EGR flow produces a 40–80 °C temperature rise at the EGR outlet above ambient intake temperature. Zero temperature rise when the valve is commanded open confirms zero flow (P0401). Persistently elevated EGR outlet temperature with valve commanded closed suggests the valve is stuck partially open. The temperature sensor provides an independent layer of EGR flow verification before resorting to gas analysis.
+- **Exhaust backpressure and EGR flow:** A partially restricted exhaust (clogged catalytic converter) reduces the pressure differential that drives EGR. Reduced EGR flow from exhaust restriction is not an EGR fault — fix the exhaust restriction first. EGR flow tests can produce misleadingly low flow readings when the exhaust is restricted. Cross-ref `master_catalyst_guide.md §3` and `master_exhaust_guide.md §2`.
 
 ---
 
@@ -173,7 +258,48 @@ The `dual_egr_recovery_pattern` fires when idle shows HC↑/O₂↑/CO₂↓ but
 
 ---
 
-## 10. Citations
+## 10. EGR testing and verification procedures
+
+These procedures confirm or exclude EGR faults when the diagnostic decision tree (§7) returns ambiguous results.
+
+#### 10.1 Manual vacuum test (ported vacuum and positive backpressure valves)
+
+1. **Warm engine to ECT ≥ 70 °C.** EGR is disabled cold; testing cold proves nothing.
+2. **At warm curb idle, apply vacuum directly to the EGR valve diaphragm with a hand pump.**
+3. **Observe RPM:**
+   - **RPM drops 100+ RPM or engine stalls** → EGR passage is clear; the valve was closed and the engine cannot tolerate the sudden inert-gas charge. Passage is not coked; valve was not stuck open.
+   - **RPM unchanged** → EGR passage is fully coked, or valve diaphragm is ruptured. Apply vacuum while watching the valve stem — if stem moves but RPM does not change, the passage is coked. If stem does not move, the diaphragm is ruptured or the valve is mechanically seized.
+   - **RPM improves or stabilises** → Valve was already stuck partially open; adding vacuum opens it further or keeps it in the open position. This is a positive stuck-open indication.
+
+#### 10.2 Scan-tool position test (linear electronic EGR with feedback)
+
+1. **Warm engine to ECT ≥ 70 °C.**
+2. **Connect scan tool; monitor EGR commanded position and EGR actual position PIDs.**
+3. **Command EGR valve from 0 % → 100 % in 20 % increments.**
+4. **Verify:** Actual position tracks within ±10 % of commanded at each step. Actual position < commanded by > 10 % → pintle or seat carbon-stuck. Actual position erratic (jumping 0 % ↔ 100 %) → position sensor fault or loose connector.
+
+#### 10.3 EGR temperature sensor flow confirmation (where fitted)
+
+1. **Monitor EGR outlet temperature PID.**
+2. **With EGR commanded closed → open:** Temperature rise should be 40–80 °C within 10 seconds.
+3. **Interpretation:**
+   - Temperature rises within spec → EGR flow confirmed; gas sig behaviour is not from zero-flow EGR.
+   - No temperature rise → zero EGR flow despite commanded open position. P0401 flow insufficient is confirmed.
+   - Temperature rises with EGR commanded closed → valve is stuck partially open.
+
+#### 10.4 2500 RPM EGR recovery test
+
+1. **Record HC, O₂, CO₂, and λ at warm curb idle.**
+2. **Hold engine at 2500 RPM under no load for 60 seconds.**
+3. **Record the same gases at steady 2500 RPM.**
+4. **Interpretation:**
+   - HC and O₂ drop substantially (> 30 % reduction) and CO₂ recovers → `dual_egr_recovery_pattern` fires. Strong positive for EGR stuck-open.
+   - HC and O₂ unchanged or change ≤ 15 % → problem is not EGR-related.
+   - HC and O₂ worsen at 2500 RPM → unlikely to be EGR; suspect ignition or fuel delivery fault.
+
+---
+
+## 11. Citations
 
 - Delphi Product & Service Solutions: EGR valve technical documentation and operating strategy (2018)
 - SAE J1979 — EGR monitor enable conditions (Mode $06)

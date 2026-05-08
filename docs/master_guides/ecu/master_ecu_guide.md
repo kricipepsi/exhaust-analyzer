@@ -37,6 +37,21 @@ These DTCs indicate the ECU's internal microprocessor, memory, or programming in
 
 ---
 
+## 2a. Era-specific ECU architecture — what changed 1990–2020
+
+ECU diagnostic capabilities evolved significantly across the V2 era buckets. Understanding which capabilities exist on the vehicle under test prevents false conclusions from missing data.
+
+| Era | ECU architecture | Diagnostic capability | Implications for 4D engine |
+|-----|-----------------|----------------------|---------------------------|
+| **1990–1995** | Simple microprocessor; limited or no flash memory; KAM via battery-backed RAM | P0601–P0606 may not exist as defined DTCs; OBD-I codes are manufacturer-specific | ECU internal self-test is rudimentary; the absence of P060x codes does not mean the ECU is healthy. Gas analysis carries proportionally more weight. |
+| **1996–2005** | OBD-II mandated; first flash-programmable ECUs; KAM in non-volatile memory or battery-backed | P0600–P0606 family defined; Mode $06 monitor data available; freeze-frame mandated | ECU faults are now coded and retrievable. Freeze-frame available. P0603 may still fire on battery disconnect — distinguish from genuine KAM corruption. |
+| **2006–2015** | CAN-bus ECUs; multi-processor architectures; 5V reference rail monitor | P060x extended; CAN communication DTCs (U-codes) can cascade from ECU faults; Mode $09 calibration ID | ECU internal diagnostics are sophisticated. But CAN errors from a failing ECU can generate dozens of spurious U-code DTCs — the ECU fault may hide behind a wall of communication errors. |
+| **2016–2020** | High-speed CAN FD; ECU-internal current monitoring per injector/coil driver; O₂ sensor heater circuit monitor per sensor | Rich DTC taxonomy for ECU-internal faults; per-driver diagnostics; GPF sensor integration | ECU fault detection is now granular. A single injector driver fault (P020x) is more likely to be the ECU than the wiring. But the ECU may report individual driver faults when the root cause is a failing MFI relay — apply Rule 5 (§7) before condemning the ECU. |
+
+**Pre-OBD-II special rule (1990–1995):** The absence of ECU DTCs (P060x family) or freeze-frame data in pre-OBD-II vehicles means the 4D engine cannot rely on ECU self-reported faults. Gas analysis, vacuum gauge, and the physical symptom pattern carry higher diagnostic weight. When an OBD-I vehicle exhibits behaviour consistent with ECU logic inversion (false-lean or false-rich), the engine must not default to `insufficient_evidence` simply because the ECU cannot self-report; treat the gas signature as primary evidence.
+
+---
+
 ## 3. ECU logic inversion — the central fault class
 
 ECU logic inversion occurs when the ECU's *perceived* mixture state contradicts physical reality as measured by the tailpipe gas analyser. The ECU hardware is healthy; the sensor data it receives is biased or corrupted.
@@ -101,6 +116,58 @@ The 4D engine must suppress `ecu_logic_inversion` during the first 30 seconds of
 
 ---
 
+## 5a. Freeze-frame interpretation for ECU faults
+
+Freeze-frame data is the ECU's "snapshot" of operating conditions at the moment a fault code was set. For ECU-internal faults and logic-inversion patterns, freeze-frame interpretation follows different rules than for combustion or sensor faults.
+
+#### 5a.1 What freeze-frame tells you about ECU faults
+
+| Freeze-frame PID | P060x internal fault | P0171 + tailpipe λ < 0.905 | P0172 + tailpipe λ > 1.095 |
+|-----------------|---------------------|---------------------------|---------------------------|
+| **ECT** | Usually normal; fault may set at key-on (cold) | Often at operating temperature | Often at operating temperature |
+| **RPM** | May be 0 (key-on, engine off) — hardware check runs at power-up | Typically idle or low-load cruise | Typically idle or low-load cruise |
+| **Load (calculated)** | Often 0 % | Low load (< 30 %) — highest vacuum draws exhaust leak | Variable |
+| **STFT** | N/A — ECU fault supersedes trim | **Positive** (+15 to +25 %) — ECU adding fuel | **Negative** (–15 to –25 %) — ECU subtracting fuel |
+| **LTFT** | May read 0 % (P0603 cleared KAM) | Positive | Negative |
+| **Loop status** | May not have reached closed loop | Closed loop | Closed loop |
+| **MAP/MAF** | Often no valid reading | Low MAP at idle for exhaust leak scenario | Can be elevated |
+| **O₂ sensor voltage** | May be stuck at bias voltage | **Low (< 0.3 V)** — sensor sees lean (but tailpipe is rich) | **High (> 0.7 V)** — sensor sees rich (but tailpipe is lean) |
+
+#### 5a.2 Freeze-frame diagnostic rules for ECU faults
+
+**Rule FF-1 — Key-on, engine-off fault setting:** If P060x freeze-frame shows RPM = 0 and ECT = ambient, the ECU ran its internal self-check at key-on and found a hardware fault. This is a genuine ECU internal fault — not a cascade from a sensor or actuator. Verify power and ground before condemning the ECU.
+
+**Rule FF-2 — Contradicting fuel trim vs tailpipe:** When the freeze-frame shows STFT sharply positive (+20 % or more) but the tailpipe gas analyser reads λ < 0.905 (rich), the ECU is enriching an engine that is already rich. This is the quintessential false-lean signature. The freeze-frame confirms the ECU's *intent* (enrich) and the tailpipe confirms the *reality* (already rich). The sensor or exhaust leak is the root cause.
+
+**Rule FF-3 — Contradicting fuel trim vs tailpipe (inverse):** When the freeze-frame shows STFT sharply negative (–20 % or more) but the tailpipe reads λ > 1.095 (lean), the ECU is leaning an engine that is already lean — false-rich signature.
+
+**Rule FF-4 — Multiple P060x in the same freeze-frame:** When P0603, P0606, and P020x injector codes all appear with the same freeze-frame timestamp, the common cause is an ECU power-supply interruption (relay, fuse, or ground). Do not replace the ECU; verify the power supply first.
+
+**Rule FF-5 — Freeze-frame capture-point bias:** The ECU captures freeze-frame at the moment of fault detection, which for P0171/P0172 may be after the fuel trim has already deviated significantly. The freeze-frame shows the *end state* of the fault, not the *initiating* condition. The 4D engine should weight freeze-frame data as confirmatory, not as the primary trigger for logic-inversion detection.
+
+---
+
+## 5b. ECU threshold provenance — every λ and trim threshold cited
+
+This table maps the numeric thresholds the 4D engine uses for ECU-logic and ECU-internal fault nodes to their physical justification:
+
+| Threshold | Value | 4D engine node(s) | Physical justification | Source guide § |
+|-----------|-------|-------------------|----------------------|----------------|
+| `lambda_rich_inversion` | 0.905 | `ECU_Logic_Inversion_False_Lean` | > 10 % ambient air leak required to shift perceived λ lean from λ < 0.905 | `master_ecu_guide.md §3.2` |
+| `lambda_lean_inversion` | 1.095 | `ECU_Logic_Inversion_False_Rich` | Symmetric false-rich boundary; equally impossible under normal sensor tolerance | `master_ecu_guide.md §3.2` |
+| `co_rich_gate` | 1.5 % | `ECU_Logic_Inversion_False_Lean` | CO > 1.5 % confirms rich combustion; contradicts lean DTC | `master_ecu_guide.md §3.2` |
+| `o2_lean_gate` | 2.0 % | `ECU_Logic_Inversion_False_Rich` | O₂ > 2.0 % confirms lean combustion; contradicts rich DTC | `master_ecu_guide.md §7 rule 3` |
+| `hc_misfire_trap` | 800 ppm | Misfire-not-inversion routing | HC > 800 ppm routes to misfire, not ECU inversion | `master_ecu_guide.md §3.3` |
+| `o2_misfire_trap` | 5.0 % | Misfire-not-inversion routing | O₂ > 5 % with HC > 800 ppm = incomplete combustion | `master_ecu_guide.md §3.3`, `master_ignition_guide.md §6` |
+| `ltft_deviation_p0171` | +25 % | `sensor_bias_lean`, `ECU_Logic_Inversion_False_Lean` | LTFT at max authority +25 % — ECU cannot compensate further | `master_ecu_guide.md §5` |
+| `stft_positive_threshold` | +20 % | False-lean detection | STFT > +20 % sustained with rich tailpipe confirms contradiction | `master_ecu_guide.md §5a.2 rule FF-2` |
+| `stft_negative_threshold` | –20 % | False-rich detection | STFT < –20 % sustained with lean tailpipe confirms contradiction | `master_ecu_guide.md §5a.2 rule FF-3` |
+| `vbatt_min_running` | 11.5 V | `ECU_Internal_Fault`, P060x routing | Below 11.5 V running — ECU may not function correctly | `master_ecu_guide.md §4` |
+| `vref_5v_lower` | 4.7 V | P0606 routing | 5 V reference rail below 4.7 V — shorted sensor or actuator | `master_ecu_guide.md §2` |
+| `vref_5v_upper` | 5.1 V | P0606 routing | 5 V reference rail above 5.1 V — supply regulation fault | `master_ecu_guide.md §2` |
+
+---
+
 ## 6. ECU electronic faults — DTC reference
 
 | DTC | Pattern in 4D engine | Routing rule |
@@ -146,6 +213,27 @@ RULE 5 — Multi-DTC ECU relay cascade:
   IF P0603 AND (P0606 OR multiple P020x):
     → flag verify_ecu_relay before all other routing
     → after relay verification, re-run diagnosis with fresh LTFT baseline
+
+RULE 6 — Pre-OBD-II ECU suspicion (1990–1995 only):
+  IF MY 1990–1995 AND λ contradiction observed (ECU enrichening, tailpipe rich, or vice versa)
+     AND no DTCs available (pre-OBD-II):
+    → treat gas signature as primary evidence
+    → do NOT default to insufficient_evidence because ECU cannot self-report
+    → surface ECU_Logic_Inversion with a note: "pre-OBD-II — no ECU DTC confirmation available"
+
+RULE 7 — ECU 5V reference rail short cascade:
+  IF P0606 AND (multiple sensor DTCs from different sensors on the same reference rail):
+    → one sensor or actuator on the 5V rail is shorted, pulling down the rail
+    → unplug sensors one at a time while monitoring the 5V reference PID
+    → when reference voltage returns to 4.7–5.1 V, the last unplugged sensor is the shorted component
+    → do NOT replace ECU until all sensors on the rail have been checked
+
+RULE 8 — ECU logic inversion during misfire suppression:
+  IF HC < 800 ppm AND O₂ < 5 % AND λ < 0.905 AND P0171:
+    → proceed with ECU_Logic_Inversion_False_Lean (the misfire trap is not triggered)
+  IF HC > 800 ppm AND O₂ > 5 % AND λ ≈ 1.00:
+    → misfire trap active; route to ignition/mechanical, not ECU
+    → the O₂ sensor is reading correctly; the combustion chemistry is the problem
 ```
 
 ---
@@ -161,6 +249,53 @@ Sensor bias (a continuously drifted O₂ sensor) produces a *graded* perception 
 | Sensor failed lean; exhaust λ < 0.905 | LTFT maxed +25 % | P0171 set; CO > 1.5 % | `ECU_Logic_Inversion_False_Lean` |
 
 Cross-ref `master_o2_sensor_guide.md §6` for the sensor-bias-vs-real-mixture rule.
+
+---
+
+## 8a. The perception gap — when ECU reality contradicts physical reality
+
+The perception gap is the central concept linking ECU diagnostics to gas analysis. The ECU's model of the engine state is built from sensor data. When a sensor is biased, the ECU acts on a perception that diverges from physical reality. The gap between "what the ECU thinks is happening" and "what the tailpipe says is happening" is the diagnostic signal.
+
+#### 8a.1 Three perception-gap severities
+
+| Severity | Δλ (actual vs perceived) | Fuel trim response | DTC set? | 4D engine action |
+|----------|--------------------------|-------------------|----------|-----------------|
+| **Mild (sensor aging)** | < 0.04 λ | LTFT 5–15 % compensating | No | Surface `Lazy_O2_Sensor_Aging` as supplementary symptom; continue diagnosis |
+| **Moderate (sensor bias)** | 0.04–0.10 λ | LTFT 15–25 %; approaching authority limit | P0171/P0172 may set | Surface `sensor_bias_lean` or `sensor_bias_rich`; flag for sensor replacement |
+| **Severe (logic inversion)** | > 0.10 λ | LTFT at limit (±25 %); sensor voltage contradicts tailpipe | P0171/P0172 set | Surface `ECU_Logic_Inversion_False_Lean` or `ECU_Logic_Inversion_False_Rich`; suppress all mixture fault candidates |
+
+#### 8a.2 Perception-gap diagnostic flow
+
+```
+1. Measure tailpipe λ with 5-gas analyser.
+2. Read O₂ sensor voltage or wideband λ from scan tool.
+3. Compute perceived λ:
+   - Narrowband: voltage < 0.3 V → ECU perceives lean; voltage > 0.7 V → ECU perceives rich
+   - Wideband: read λ directly from PID
+4. Compare tailpipe λ vs perceived λ:
+   - Tailpipe λ < 0.905 AND ECU perceives lean → FALSE-LEAN INVERSION
+   - Tailpipe λ > 1.095 AND ECU perceives rich → FALSE-RICH INVERSION
+   - Δλ < 0.04 AND fuel trim compensating → SENSOR AGING (non-blocking)
+   - 0.04 ≤ Δλ ≤ 0.10 → SENSOR BIAS (requires sensor replacement)
+5. If FALSE-LEAN INVERSION confirmed:
+   - Check for exhaust leak before upstream O₂ sensor
+   - Check O₂ sensor ground and heater circuit
+   - If no leak and heater OK, replace O₂ sensor
+6. If FALSE-RICH INVERSION confirmed:
+   - Check O₂ sensor for silicone contamination (white powder on sensor tip)
+   - Check MAF for contamination causing over-reading
+   - If DTC + tailpipe contradict but sensor swap doesn't fix → investigate ECU analog-to-digital channel
+```
+
+#### 8a.3 The "chemistry beats ECU" architecture principle
+
+The 4D engine's foundational architecture rule is: **gas chemistry (Brettschneider lambda) is ground truth; ECU perception is fallible.** This means:
+
+- When tailpipe λ and ECU-perceived λ agree within tolerance → normal diagnostic flow.
+- When tailpipe λ and ECU-perceived λ disagree beyond the thresholds above → the ECU is in error. Trust the tailpipe.
+- This principle overrides all fuel-trim-based fault hypotheses: if the ECU is enrichening because it perceives lean, but the tailpipe is actually rich, the rich-mixture fault candidates (injector leak, high fuel pressure) are suppressed because the root cause is a *false* perception of leanness — not an actual rich condition that requires correction.
+
+The λ < 0.905 and λ > 1.095 thresholds are calibrated to ensure that only physically impossible perception gaps trigger the inversion logic. Sensor aging and borderline cases remain in the "bias" category and do not suppress mixture fault candidates — they inform the sensor health diagnostic alongside normal mixture fault diagnosis.
 
 ---
 
