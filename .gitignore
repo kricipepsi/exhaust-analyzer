@@ -12,3 +12,4 @@ __pycache__/
 dist/
 build/
 *.egg-info/
+results/L2_latest.json

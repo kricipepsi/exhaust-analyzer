@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: petrol-only-lint
+        name: Petrol-only lint (R12/L20)
+        entry: python -m pytest tests/v2/unit/test_petrol_only_lint.py -x --tb=short -q
+        language: system
+        pass_filenames: false
+        always_run: true

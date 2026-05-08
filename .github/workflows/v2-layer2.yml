@@ -1,0 +1,55 @@
+name: v2-layer2
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "engine/v2/**"
+      - "schema/v2/**"
+      - "cases/csv/**"
+      - "dev/run_corpus.py"
+
+jobs:
+  corpus-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run corpus replay
+        run: python dev/run_corpus.py
+
+      - name: Check accuracy regression
+        run: |
+          python -c "
+          import json
+          with open('results/L2_latest.json') as f:
+              latest = json.load(f)
+          with open('results/L2_baseline.json') as f:
+              baseline = json.load(f)
+          if baseline == {}:
+              print('No baseline yet — skipping regression check.')
+              exit(0)
+          for key in baseline:
+              if key in latest:
+                  delta = baseline[key] - latest[key]
+                  if delta > 1.0:
+                      print(f'REGRESSION: {key} dropped by {delta:.1f} pp')
+                      exit(1)
+          print('No regression > 1 pp detected')
+          "
+
+      - name: Compare baseline vs latest
+        if: always()
+        run: |
+          echo "=== L2 Baseline ==="
+          cat results/L2_baseline.json
+          echo ""
+          echo "=== L2 Latest ==="
+          cat results/L2_latest.json
