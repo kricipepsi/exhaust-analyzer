@@ -16,6 +16,8 @@ When these two truths agree, the fault is a conventional mechanical, fuel, or ig
 
 **The foundational rule:** Chemistry is ground truth. When the analyser and the ECU disagree *and the analyser reading has been validated* (no sample leak, no probe-out, no calibration error), the Brettschneider λ takes precedence over the ECU's sensor output. The ECU is perception; the analyser is reality.
 
+**Critical architectural constraint — perception fires as a KG symptom, never as a global override (L01):** The perception nodes (`SYM_PERCEPTION_LEAN_SEEN_RICH`, `SYM_PERCEPTION_RICH_SEEN_LEAN`) are ordinary knowledge graph symptoms. They carry edge weights into the KG like any other symptom — they do NOT bypass the inference engine, do NOT veto other layers, and do NOT short-circuit the pipeline. When a perception gap is detected, M3 emits a perception symptom, the KG scores edges from it alongside all other evidence, and M4/M5 combine and resolve normally. Perception gets edges, not authority. This is the single most important architectural rule in the 4D engine — violating it was the primary cause of V1's 44% accuracy plateau (L01 guard).
+
 ---
 
 ## 2. Perception gap mechanisms — the four physical causes
@@ -182,7 +184,60 @@ Any case with `expected_perception_gap = true` where the engine does **not** ret
 
 ---
 
-## 9. Cross-references
+## 9. Worked diagnostic examples
+
+#### 9.1 Example 1 — Definitive false-lean perception gap
+
+**Vehicle:** 2008 Toyota Camry 2.4L, 180,000 km.
+**Complaint:** MIL on, P0171 (System Too Lean Bank 1).
+**Freeze frame:** ECT 88 °C, CLV 28 %, RPM 720, vehicle speed 0 km/h, STFT +24 %, LTFT +25 %.
+**5-gas idle test (warm):** HC 45 ppm, CO 2.8 %, CO₂ 13.2 %, O₂ 0.8 %, λ 0.88.
+
+**Analysis:** ECU is adding maximum fuel (+25 % LTFT, +24 % STFT) because it perceives a lean condition. But tailpipe λ = 0.88 is severely rich (≈12 % excess fuel). CO at 2.8 % confirms rich combustion. This is a definitive false-lean perception gap: the O₂ sensor is reading lean despite clearly rich exhaust.
+
+**ECU vs. chemistry:** ECU perceives lean (positive trims, P0171). Chemistry says rich (λ 0.88, high CO, low O₂). Chemistry is ground truth. The O₂ sensor is biased low or there is an exhaust air leak upstream of the sensor.
+
+**4D engine routing:** `perception_lean_seen_rich` fires. Suppress `lean_condition`, `vacuum_leak`, `low_fuel_delivery`. Recommend: inspect exhaust manifold for leaks upstream of Bank 1 Sensor 1; if manifold is intact, replace upstream O₂ sensor. Re-test after repair — LTFT should normalise to ±5 %.
+
+#### 9.2 Example 2 — Consistent lean (no perception gap)
+
+**Vehicle:** 2005 Honda Civic 1.7L, 220,000 km.
+**Complaint:** MIL on, P0171.
+**Freeze frame:** ECT 85 °C, CLV 15 %, RPM 750, vehicle speed 0 km/h, STFT +18 %, LTFT +22 %.
+**5-gas idle test (warm):** HC 120 ppm, CO 0.15 %, CO₂ 14.8 %, O₂ 2.4 %, λ 1.06.
+
+**Analysis:** ECU adds fuel (positive trims) and tailpipe confirms genuine lean (λ 1.06, high O₂, low CO). ECU and chemistry agree — no perception gap. This is a real lean condition.
+
+**4D engine routing:** `lean_condition` fires. Route toward vacuum leak, MAF under-read, or low fuel delivery. Do NOT fire perception nodes. The ECU is correctly detecting a lean condition.
+
+#### 9.3 Example 3 — Misfire-induced false lean (not a perception gap)
+
+**Vehicle:** 2012 Ford Focus 2.0L GDI, 140,000 km.
+**Complaint:** MIL flashing, P0300 Random Misfire, P0171 also stored.
+**5-gas idle test:** HC 950 ppm, CO 0.6 %, CO₂ 12.5 %, O₂ 4.8 %, λ 1.01.
+
+**Analysis:** HC very high (>800 ppm), O₂ elevated (4.8 %), λ ≈ 1.00. This is the misfire triple: both raw HC and raw O₂ exit the cylinder together because combustion is incomplete. The O₂ sensor catalytic surface sees both HC and O₂ simultaneously and cannot complete its reaction — output drops to near zero, which the ECU misreads as "lean" and adds fuel. But the actual mixture was balanced when it entered the cylinder.
+
+**4D engine routing:** Route to `Ignition_Misfire`, not to perception gap and not to `lean_condition`. The O₂ sensor is not faulty — it is responding correctly to an impossible catalytic environment. Suppress `lean_condition` and `perception_lean_seen_rich`.
+
+---
+
+## 10. Perception gap testing protocol
+
+When a perception gap is suspected, follow this ordered protocol before concluding:
+
+1. **Validate the analyser.** Run the §6 checklist. An uncalibrated analyser is the most common false-perception-gap trigger.
+2. **Verify the source guide threshold.** Confirm the DTC+λ combination meets the definitive threshold (λ < 0.905 or λ > 1.095 for definitive gap; λ 0.905–0.95 for moderate gap warning).
+3. **Check freeze frame ECT.** If ECT < 70 °C, the fault set during warm-up — suppress perception evaluation. Cold-start mixture is open-loop by design.
+4. **Confirm fuel system status at fault.** If freeze frame shows OL or OL-FAULT, the O₂ sensor was not active at fault time. The DTC may reflect cold-start enrichment, not a sensor fault.
+5. **Inspect the exhaust manifold and upstream O₂ sensor physically.** An exhaust leak before the sensor is the most common cause of a false-lean perception gap. Visual inspection and the brake-cleaner-around-suspect-joints test at idle are definitive.
+6. **Check O₂ sensor switching on scan tool.** At warm idle in closed loop, the upstream O₂ sensor voltage should cross 0.45 V at ≥ 0.5 Hz. A sensor that is stuck high (>0.8 V — false rich), stuck low (<0.1 V — false lean), or switching slowly (<0.2 Hz) is suspect. Cross-ref `master_o2_sensor_guide.md §4`.
+7. **Perform a snap-throttle test.** Rapidly open and close the throttle. A healthy O₂ sensor should swing full rich (>0.8 V) on tip-in and full lean (<0.2 V) on decel. A sensor that fails to cross the full range is contaminated or aged.
+8. **After repair, clear codes and road-test.** LTFT must re-learn over at least one full drive cycle. Verify LTFT normalises to ±10 % in closed-loop cruise before closing the case.
+
+---
+
+## 11. Cross-references
 
 - `master_ecu_guide.md §3.2` — physical justification for the λ < 0.905 inversion threshold
 - `master_o2_sensor_guide.md §6` — sensor bias rule; boundary between bias and inversion
@@ -195,7 +250,7 @@ Any case with `expected_perception_gap = true` where the engine does **not** ret
 
 ---
 
-## 10. Citations
+## 12. Citations
 
 - SAE J1979 — OBD-II PID and DTC standard; Mode $01 lambda sensor PID
 - Haltech Knowledge Base: Narrowband vs Wideband O₂ sensor signal behaviour (silicon poisoning, bias mechanisms)

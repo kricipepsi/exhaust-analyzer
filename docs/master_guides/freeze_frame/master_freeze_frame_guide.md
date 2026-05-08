@@ -161,7 +161,81 @@ The freeze frame `barometric_pressure` PID — available on extended-freeze-fram
 
 ---
 
-## 13. Cross-references
+## 13. Freeze frame and 5-gas analysis — integrated interpretation
+
+Freeze frame conditions contextualise gas readings that would otherwise be ambiguous.
+
+#### 13.1 Idle-confirmed faults
+
+When freeze frame shows vehicle speed = 0 km/h, RPM ≤ 900, and CLV ≤ 30 %, the fault set at stationary idle. The 5-gas idle test directly reproduces the fault conditions. If idle gases are clean but freeze frame shows high load and high RPM, the engine passed the idle test but may fail under the operating conditions where the DTC originally set. Do not clear the code on clean idle gases alone — reproduce the freeze frame conditions.
+
+#### 13.2 ECT at fault time vs. ECT during test
+
+| Freeze frame ECT | Test ECT | Diagnostic implication |
+|-----------------|----------|----------------------|
+| < 40 °C | 85 °C+ | Fault set cold; test is hot. Cold-start enrichment, EGR disable, and O₂ sensor not yet active at fault time. Reproduce cold. |
+| 40–70 °C | 85 °C+ | Fault set during warm-up transition. Fuel trims still stabilising. Reproduce warm-up or cold soak. |
+| 85 °C+ | 85 °C+ | Fault conditions reproduced. Test results are directly applicable. |
+
+#### 13.3 Fuel trim at fault vs. fuel trim during test
+
+Comparing freeze-frame STFT/LTFT with current live-data fuel trims at matching RPM/load reveals whether the fault is **chronic** (trims still abnormal — persistent condition), **intermittent** (trims normal now — fault was transient), or **recently cleared** (LTFT near zero, STFT active — ECU has not re-learned). A chronic lean freeze-frame trim that has since normalised strongly suggests an intermittent vacuum leak or a fuel delivery issue that is temperature-dependent.
+
+#### 13.4 The open-loop-at-fault integration rule
+
+When freeze frame shows OL or OL-FAULT fuel status and the DTC is P0171/P0172/P0174/P0175, the DTC was set *before* closed-loop fuel control was active. The O₂ sensor was not yet at operating temperature, or a sensor fault forced open-loop operation. The fuel trim values stored in this freeze frame reflect open-loop base-map operation, not closed-loop correction. Do not use open-loop freeze-frame fuel trims to diagnose a closed-loop fuel control problem. Flag `ff_open_loop_at_fault` and suppress mixture-fault routing for this DTC.
+
+---
+
+## 14. Common diagnostic pitfalls with freeze frame data
+
+**Pitfall 1 — Treating freeze frame as current data.** Freeze frame is a snapshot of the *past*. The vehicle may have been driven hundreds of kilometres since the DTC set. Current live data may not match freeze frame conditions. Always compare freeze-frame operating conditions with current conditions before concluding the fault is still present.
+
+**Pitfall 2 — Ignoring the single-frame priority rule.** If multiple DTCs are present and freeze frame shows conditions inconsistent with the primary DTC (e.g., cold ECT for a catalyst efficiency DTC), the frame belongs to an earlier DTC. The later DTC has no freeze frame of its own. Diagnose the DTC that owns the freeze frame first.
+
+**Pitfall 3 — Misreading CLV as throttle position.** CLV is torque-based, not position-based. A turbocharged engine at 2500 RPM under boost can reach 85 % CLV at 30 % throttle opening. Using throttle position instead of CLV will misclassify the fault condition.
+
+**Pitfall 4 — Assuming freeze frame conditions are reproducible.** A freeze frame captured during a transient event (gear shift, tip-in enrichment, decel fuel cut) may record conditions that cannot be held steady-state. Diagnose the pattern, not the exact snapshot values.
+
+**Pitfall 5 — Neglecting era capability.** Pre-2006 vehicles have mandatory-only freeze frame — extended PIDs (BARO, commanded EGR, fuel level, run time) are absent. The 4D engine must not penalise confidence for missing extended PIDs on era-appropriate vehicles. Gate extended-PID expectations on the vehicle's era bucket per R6.
+
+**Pitfall 6 — Misattributing fuel trim to the wrong DTC.** When multiple DTCs are stored and one is P0171, fuel trims stored in freeze frame belong to the DTC that owns the frame (first emissions-critical DTC set). Using P0171 freeze frame trims to diagnose a later P0420 is invalid.
+
+**Pitfall 7 — Over-weighting freeze frame MAF at idle.** The MAF PID in freeze frame at idle (CLV < 30 %) is a low-airflow reading where hot-wire MAF contamination effects are most pronounced. A freeze-frame MAF reading at idle should not be used as a MAF accuracy check without corroborating cruise-RPM MAF data.
+
+---
+
+## 15. Freeze frame quick-reference — DTC-to-FF diagnostic routing
+
+| DTC family | Critical FF PIDs to inspect | Diagnostic question |
+|-----------|---------------------------|-------------------|
+| P0171/P0174 (Lean) | STFT, LTFT, fuel system status, ECT | Was the ECU in closed loop? Was ECT ≥ 70 °C? Are trims confirming lean at fault time? |
+| P0172/P0175 (Rich) | STFT, LTFT, fuel system status, ECT | Was the ECU in closed loop? Are trims negative at fault time? |
+| P0300–P0308 (Misfire) | CLV, RPM, ECT, vehicle speed | Was the misfire under load or at idle? Cold or hot? |
+| P0401 (EGR Insufficient) | CLV, RPM, vehicle speed, ECT | Was the fault at cruise load (where EGR should be open)? |
+| P0402 (EGR Excessive) | CLV, RPM, ECT | Was the fault at idle (where stuck-open EGR hits hardest)? |
+| P0420 (Catalyst) | ECT, RPM, vehicle speed, CLV | Was ECT ≥ 70 °C? Was the test at steady cruise? |
+| P060x (ECU Internal) | Battery voltage, run time | Was battery voltage normal? Was this a cold-start event? |
+| EVAP codes (P0440–P0457) | Fuel level, CLV, ECT, vehicle speed | Was fuel level 15–85 %? Was ECT cold (cold-start leak test) or hot (running-loss test)? |
+
+---
+
+## 16. Era-specific freeze frame capability and the 4D engine
+
+Freeze frame data availability varies significantly by era bucket (R6). The 4D engine must adapt its evidence weighting based on what freeze frame data the vehicle's ECU is capable of storing.
+
+| Era bucket | Mandatory PIDs | Extended PIDs typically available | 4D engine adaptation |
+|------------|---------------|----------------------------------|---------------------|
+| **1990–1995** | None — OBD-I; manufacturer-specific freeze frame if any | Rare; some high-end ECUs store rudimentary snapshots | Do not expect freeze frame. Gas analysis is primary. `freeze_frame_present` flag = false on most inputs. Confidence ceiling reduced per L16 (gas-only: 0.40). |
+| **1996–2005** | 13 mandatory Mode $02 PIDs | Some extended PIDs on premium brands; BARO may be absent | Full freeze frame analysis for mandatory PIDs. Extended PIDs expected only if vehicle is CAN-equipped or premium-brand. Missing BARO is not a fault. |
+| **2006–2015** | 13 mandatory + commonly 6–8 extended | BARO, commanded EGR, EVAP purge, fuel level, run time | Full freeze frame. Missing extended PIDs flagged as `ff_limited_capability` (warning, not blocking). |
+| **2016–2020** | Full Mode $02 + Mode $09 calibration data | Rich freeze frame: BARO, fuel rail pressure, O₂ sensor heater status, GPF pressure | Full freeze frame analysis. Extended data expected. Missing BARO or fuel rail pressure on GDI vehicles is unusual — flag as `ff_data_gap`. |
+
+**The `ff_limited_capability` warning:** When a vehicle's era bucket predicts extended PIDs should be available but the freeze frame contains only mandatory PIDs, the 4D engine surfaces `ff_limited_capability` as a non-blocking warning. This may indicate: a budget OBD-II scanner was used (not retrieving all available PIDs), the ECU does not support the extended PID set for that era, or the freeze frame memory was partially overwritten. The warning reduces evidence-layer confidence for freeze-frame-derived symptoms but does not block diagnosis.
+
+---
+
+## 17. Cross-references
 
 - `master_obd_guide.md §7` — freeze frame attachment rules, SAE J1979 Mode $02
 - `master_cold_start_guide.md §5` — open-loop fuel status in freeze frame as DTC validity gate
@@ -172,7 +246,7 @@ The freeze frame `barometric_pressure` PID — available on extended-freeze-fram
 
 ---
 
-## 14. Citations
+## 18. Citations
 
 - SAE J1979 — Mandatory and optional freeze frame PIDs, Mode $02 specification
 - Saab WIS OBD-II technical documentation — ECT operating temperature gate
