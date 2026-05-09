@@ -1,0 +1,463 @@
+# V2 Symptoms — Tier 1 of the three-tier taxonomy (R5)
+# Migrated from V1 nodes.yaml (node_type: symptom entries).
+# Symptoms are derived from sensor data, never returned as primary diagnosis.
+# Fed to M4 as KG inputs.
+
+# ── Gas pattern symptoms (M2: gas_lab.py) ──
+
+SYM_CO_HIGH:
+  description: "Carbon monoxide above threshold, indicating rich or incomplete combustion"
+  source_guide: "docs/master_guides/gases/master_gas_guide.md §4.1"
+  emitted_by: "M2"
+
+SYM_CO_LOW_LEAN:
+  description: "Low CO in lean condition — minimal incomplete combustion products"
+  source_guide: "docs/master_guides/gases/master_gas_guide.md §4.1"
+  emitted_by: "M2"
+
+SYM_CO2_LOW:
+  description: "Carbon dioxide below 10%, indicating poor volumetric efficiency or combustion dilution"
+  source_guide: "docs/master_guides/gases/master_gas_guide.md §4.2"
+  emitted_by: "M2"
+
+SYM_CO2_GOOD:
+  description: "CO2 in healthy range (13.0–15.5%), indicating efficient combustion"
+  source_guide: "docs/master_guides/gases/master_gas_guide.md §4.2"
+  emitted_by: "M2"
+
+SYM_HC_HIGH:
+  description: "Hydrocarbons above 300 ppm, indicating unburnt fuel in exhaust"
+  source_guide: "docs/master_guides/gases/master_gas_guide.md §4.3"
+  emitted_by: "M2"
+
+SYM_HC_VERY_HIGH:
+  description: "Hydrocarbons above 1000 ppm, indicating severe misfire or dead cylinder"
+  source_guide: "docs/master_guides/gases/master_gas_guide.md §4.3"
+  emitted_by: "M2"
+
+SYM_HC_LOW:
+  description: "Hydrocarbons below 150 ppm, within normal range for healthy combustion"
+  source_guide: "docs/master_guides/gases/master_gas_guide.md §4.3"
+  emitted_by: "M2"
+
+SYM_O2_HIGH:
+  description: "Oxygen elevated (2.0–5.0%), suggesting unburnt air from misfire or vacuum leak"
+  source_guide: "docs/master_guides/gases/master_gas_guide.md §4.4"
+  emitted_by: "M2"
+
+SYM_O2_VERY_HIGH:
+  description: "Oxygen above 5.0%, indicating significant air leak or severe misfire"
+  source_guide: "docs/master_guides/gases/master_gas_guide.md §4.4"
+  emitted_by: "M2"
+
+SYM_O2_LOW:
+  description: "Oxygen below 0.5%, indicating rich combustion consuming available oxygen"
+  source_guide: "docs/master_guides/gases/master_gas_guide.md §4.4"
+  emitted_by: "M2"
+
+SYM_NOX_HIGH:
+  description: "Nitrogen oxides above 600 ppm, indicating high peak combustion temperature"
+  source_guide: "docs/master_guides/nox/master_nox_guide.md §3.1"
+  emitted_by: "M2"
+
+SYM_NOX_LOW:
+  description: "NOx below threshold — indicates low peak combustion temperature from rich mixture, EGR dilution, late timing, or low compression"
+  source_guide: "docs/master_guides/nox/master_nox_guide.md §3.2"
+  emitted_by: "M2"
+
+SYM_LAMBDA_LOW:
+  description: "Lambda below 0.95 — air-fuel ratio richer than stoichiometric"
+  source_guide: "docs/master_guides/gases/master_gas_guide.md §3.1"
+  emitted_by: "M2"
+
+SYM_LAMBDA_HIGH:
+  description: "Lambda above 1.05 — air-fuel ratio leaner than stoichiometric"
+  source_guide: "docs/master_guides/gases/master_gas_guide.md §3.1"
+  emitted_by: "M2"
+
+SYM_LAMBDA_NORMAL:
+  description: "Lambda in stoichiometric range (0.95–1.05) — AFR near ideal"
+  source_guide: "docs/master_guides/gases/master_gas_guide.md §3.1"
+  emitted_by: "M2"
+
+# ── OBD DTC symptoms (M1: digital_parser.py) ──
+
+SYM_DTC_P0171:
+  description: "DTC P0171 — system too lean (bank 1)"
+  source_guide: "docs/master_guides/obd/master_obd_guide.md §5.1"
+  emitted_by: "M1"
+
+SYM_DTC_P0172:
+  description: "DTC P0172 — system too rich (bank 1)"
+  source_guide: "docs/master_guides/obd/master_obd_guide.md §5.1"
+  emitted_by: "M1"
+
+SYM_DTC_CATALYST:
+  description: "DTC P0420/P0430 — catalyst system efficiency below threshold"
+  source_guide: "docs/master_guides/catalyst/master_catalyst_guide.md §6.1"
+  emitted_by: "M1"
+
+SYM_DTC_MISFIRE:
+  description: "DTC P0300–P0306 — cylinder misfire detected"
+  source_guide: "docs/master_guides/ignition/master_ignition_guide.md §5.1"
+  emitted_by: "M1"
+
+SYM_DTC_EGR:
+  description: "DTC P0401 — EGR flow insufficient"
+  source_guide: "docs/master_guides/egr/master_egr_guide.md §5.1"
+  emitted_by: "M1"
+
+SYM_DTC_ECU_INTERNAL:
+  description: "DTC P06xx family — ECU internal processor, memory, or driver circuit fault"
+  source_guide: "docs/master_guides/ecu/master_ecu_guide.md §4.1"
+  emitted_by: "M1"
+
+SYM_DTC_INJECTOR:
+  description: "DTC P0201–P0204 — injector circuit malfunction"
+  source_guide: "docs/master_guides/fuel_system/master_fuel_system_guide.md §5.1"
+  emitted_by: "M1"
+
+SYM_DTC_SENSOR:
+  description: "DTC P01xx — sensor circuit malfunction (O2, MAF, MAP, IAT, ECT)"
+  source_guide: "docs/master_guides/obd/master_obd_guide.md §5.2"
+  emitted_by: "M1"
+
+SYM_DTC_INDUCTION:
+  description: "DTC P0101 — mass or volume air flow circuit range/performance"
+  source_guide: "docs/master_guides/air_induction/master_air_induction_guide.md §6.1"
+  emitted_by: "M1"
+
+SYM_DTC_BOOST:
+  description: "DTC P0299/P0234/P0235 — turbocharger/supercharger underboost or overboost"
+  source_guide: "docs/master_guides/turbo/master_turbo_guide.md §5.1"
+  emitted_by: "M1"
+
+SYM_DTC_CAMSHAFT_TIMING:
+  description: "DTC P0011/P0012 — camshaft position timing over-advanced or over-retarded"
+  source_guide: "docs/master_guides/ignition/master_ignition_guide.md §5.2"
+  emitted_by: "M1"
+
+SYM_DTC_HO2S_HEATER:
+  description: "DTC P0053 — heated oxygen sensor heater resistance"
+  source_guide: "docs/master_guides/o2_sensor/master_o2_sensor_guide.md §5.1"
+  emitted_by: "M1"
+
+SYM_DTC_KNOCK_SENSOR:
+  description: "DTC P0324/P0325 — knock sensor circuit malfunction"
+  source_guide: "docs/master_guides/ignition/master_ignition_guide.md §5.3"
+  emitted_by: "M1"
+
+# ── OBD PID symptoms (M1: digital_parser.py) ──
+
+SYM_TRIM_POSITIVE_HIGH:
+  description: "STFT or LTFT strongly positive — ECU adding fuel to compensate for perceived lean"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §3.1"
+  emitted_by: "M1"
+
+SYM_TRIM_NEGATIVE_HIGH:
+  description: "STFT or LTFT strongly negative — ECU removing fuel to compensate for perceived rich"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §3.1"
+  emitted_by: "M1"
+
+SYM_TRIM_SUM_POSITIVE_HIGH:
+  description: "Total fuel trim (STFT + LTFT) above +10% — industry-standard strong lean-condition signal"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §3.2"
+  emitted_by: "M1"
+
+SYM_TRIM_SUM_NEGATIVE_HIGH:
+  description: "Total fuel trim (STFT + LTFT) below −10% — industry-standard strong rich-condition signal"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §3.2"
+  emitted_by: "M1"
+
+SYM_O2_UPSTREAM_LAZY:
+  description: "Upstream O2 sensor switching slowly or stuck — response time degraded"
+  source_guide: "docs/master_guides/o2_sensor/master_o2_sensor_guide.md §4.1"
+  emitted_by: "M1"
+
+SYM_O2_DOWNSTREAM_ACTIVE:
+  description: "Downstream O2 sensor switching actively with P0420 — catalyst not damping signal"
+  source_guide: "docs/master_guides/o2_sensor/master_o2_sensor_guide.md §4.2"
+  emitted_by: "M1"
+
+SYM_O2_DOWNSTREAM_STEADY:
+  description: "Downstream O2 steady high — either healthy catalyst or rich-stuck sensor"
+  source_guide: "docs/master_guides/o2_sensor/master_o2_sensor_guide.md §4.2"
+  emitted_by: "M1"
+
+SYM_BANK2_LEAN:
+  description: "Bank 2 fuel trims positive — lean condition isolated to bank 2"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §4.1"
+  emitted_by: "M1"
+
+SYM_BANK2_RICH:
+  description: "Bank 2 fuel trims negative — rich condition isolated to bank 2"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §4.1"
+  emitted_by: "M1"
+
+SYM_TRIM_GLOBAL_BOTH_BANKS:
+  description: "Both banks trimming in the same direction — systemic fuel or air metering issue"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §4.2"
+  emitted_by: "M1"
+
+SYM_TRIM_LOCAL_ONE_BANK:
+  description: "One bank diverges from the other — bank-specific fault (injector, gasket, O2 sensor)"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §4.2"
+  emitted_by: "M1"
+
+# ── Freeze frame symptoms (M1: digital_parser.py) ──
+
+SYM_FF_OPEN_LOOP_AT_FAULT:
+  description: "Freeze frame: fuel system in open loop at fault capture — ECU not using O2 feedback"
+  source_guide: "docs/master_guides/freeze_frame/master_freeze_frame_guide.md §5.1"
+  emitted_by: "M1"
+
+SYM_FF_LOAD_HIGH_AT_LOW_RPM:
+  description: "Freeze frame: calculated engine load high at low RPM — possible mechanical drag or sensor fault"
+  source_guide: "docs/master_guides/freeze_frame/master_freeze_frame_guide.md §5.2"
+  emitted_by: "M1"
+
+SYM_FF_ECT_WARMUP:
+  description: "Freeze frame: engine coolant temperature below normal operating range at fault capture"
+  source_guide: "docs/master_guides/freeze_frame/master_freeze_frame_guide.md §5.3"
+  emitted_by: "M1"
+
+SYM_FF_IAT_ECT_BIASED:
+  description: "Freeze frame: IAT and ECT disagree at cold soak — sensor bias suspected"
+  source_guide: "docs/master_guides/freeze_frame/master_freeze_frame_guide.md §5.4"
+  emitted_by: "M1"
+
+SYM_FF_TIMING_RETARD_SEVERE:
+  description: "Freeze frame: severe ignition timing retard — knock response or base timing fault"
+  source_guide: "docs/master_guides/freeze_frame/master_freeze_frame_guide.md §5.5"
+  emitted_by: "M1"
+
+SYM_FF_CODES_CLEARED_INVALIDATED:
+  description: "Freeze frame: DTC memory recently cleared — fuel trims and readiness flags un-learned"
+  source_guide: "docs/master_guides/freeze_frame/master_freeze_frame_guide.md §5.6"
+  emitted_by: "M1"
+
+# ── Context symptoms (M1: digital_parser.py) ──
+
+SYM_CTX_COLD_ENGINE:
+  description: "Engine is cold (not at operating temperature) — suppresses O2-sensor-dependent diagnoses as ECU runs fixed map"
+  source_guide: "docs/master_guides/cold_start/master_cold_start_guide.md §4.1"
+  emitted_by: "M1"
+
+# ── Compound / pattern symptoms (M3: arbitrator.py) ──
+
+SYM_ECU_LOGIC_INVERSION:
+  description: "ECU logic inversion — gas chemistry contradicts OBD lambda direction (gas vs OBD mismatch)"
+  source_guide: "docs/master_guides/ecu/master_ecu_guide.md §3.1"
+  emitted_by: "M3"
+
+SYM_GHOST_MISFIRE:
+  description: "Ghost misfire — misfire DTC present but no physical evidence (HC/O2 normal, no dead cylinder signature)"
+  source_guide: "docs/master_guides/ignition/master_ignition_guide.md §6.1"
+  emitted_by: "M3"
+
+SYM_GHOST_DTC_NO_EVIDENCE:
+  description: "DTC present but no physical evidence in gas or PID data — possible intermittent or pending code"
+  source_guide: "docs/master_guides/obd/master_obd_guide.md §6.1"
+  emitted_by: "M3"
+
+SYM_CLEAN_GAS_WITH_DTC:
+  description: "Clean exhaust gas readings with an active DTC — perception gap or intermittent fault"
+  source_guide: "docs/master_guides/obd/master_obd_guide.md §6.2"
+  emitted_by: "M3"
+
+SYM_GASES_NORMAL:
+  description: "All gas readings within healthy range — combustion is efficient and complete"
+  source_guide: "docs/master_guides/gases/master_gas_guide.md §5.1"
+  emitted_by: "M3"
+
+SYM_ECU_OPEN_LOOP_BLIND:
+  description: "ECU in open loop with frozen trims — HC/CO high but STFT=0 LTFT=0, ECU running fixed map blind to exhaust"
+  source_guide: "docs/master_guides/ecu/master_ecu_guide.md §3.2"
+  emitted_by: "M3"
+
+SYM_ECU_MISREAD_LEAN_CONFIRMED:
+  description: "ECU confirmed lean misread — gas rich (lambda<0.905, CO>1.5) but ECU sees lean (P0171, obd_lambda>1.05)"
+  source_guide: "docs/master_guides/ecu/master_ecu_guide.md §3.3"
+  emitted_by: "M3"
+
+SYM_ECU_INJECTOR_DRIVER_STUCK:
+  description: "ECU injector driver hard ground — max negative trims (−20%+) but HC/CO still extreme, ECU lost physical injector control"
+  source_guide: "docs/master_guides/ecu/master_ecu_guide.md §3.4"
+  emitted_by: "M3"
+
+SYM_SENSOR_BIAS_LEAN:
+  description: "O2 sensor biased lean — gas lambda <0.95 but OBD lambda >1.05, sensor fooling ECU into adding fuel"
+  source_guide: "docs/master_guides/o2_sensor/master_o2_sensor_guide.md §3.1"
+  emitted_by: "M3"
+
+SYM_SENSOR_BIAS_RICH:
+  description: "O2 sensor biased rich — gas lambda >1.05 but OBD lambda <0.95, sensor fooling ECU into removing fuel"
+  source_guide: "docs/master_guides/o2_sensor/master_o2_sensor_guide.md §3.1"
+  emitted_by: "M3"
+
+SYM_SENSOR_BIAS_FALSE_RICH:
+  description: "Lambda <0.95 but CO near zero — contradiction, cannot be rich with no CO, O2 sensor shifted rich"
+  source_guide: "docs/master_guides/o2_sensor/master_o2_sensor_guide.md §3.2"
+  emitted_by: "M3"
+
+SYM_LATE_TIMING_PATTERN:
+  description: "Combustible mixture (lambda 0.75–0.92) with extreme incomplete burn — HC>5000, CO>2.5, CO2<8, O2>3 — spark too late"
+  source_guide: "docs/master_guides/ignition/master_ignition_guide.md §7.1"
+  emitted_by: "M3"
+
+SYM_COMPRESSION_LOSS_PATTERN:
+  description: "HC high + O2 high + CO2 LOW (<12%) + CO low + NOx low + Lambda >1.0 — worn piston rings"
+  source_guide: "docs/master_guides/mechanical/master_mechanical_guide.md §4.1"
+  emitted_by: "M3"
+
+SYM_VALVE_SEAL_PATTERN:
+  description: "HC elevated (300–1000) + CO2 normal (13%+) + CO low + Lambda near 1.0 + NOx normal — oil past valve seals with good compression"
+  source_guide: "docs/master_guides/mechanical/master_mechanical_guide.md §4.2"
+  emitted_by: "M3"
+
+SYM_PCV_LEAK_PATTERN:
+  description: "HC high + O2 high + CO2 low + Lambda >1.05 + positive trims — unmetered air from crankcase via PCV"
+  source_guide: "docs/master_guides/mechanical/master_mechanical_guide.md §4.3"
+  emitted_by: "M3"
+
+SYM_TRIM_OSCILLATION:
+  description: "STFT and LTFT in opposite directions (|Δ| ≥ 8 each) — lazy O2 sensor causing ECU control hunting"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §5.1"
+  emitted_by: "M3"
+
+SYM_HIGH_FUEL_PRESSURE_PATTERN:
+  description: "CO >2% + O2 <0.5% + LTFT <−15% + Lambda <0.95 — fuel rail overpressure affecting all cylinders"
+  source_guide: "docs/master_guides/fuel_system/master_fuel_system_guide.md §4.1"
+  emitted_by: "M3"
+
+SYM_LEAKING_INJECTOR_PATTERN:
+  description: "CO >2% + HC >200 + (LTFT<−10 or STFT<−10) + Lambda <0.95 + injector DTC — single injector leak"
+  source_guide: "docs/master_guides/fuel_system/master_fuel_system_guide.md §4.2"
+  emitted_by: "M3"
+
+SYM_HEAD_GASKET_PATTERN:
+  description: "HC >400 + O2 >2% + CO2 <12% + CO <1.5% + Lambda >1.0 + no misfire DTC — head gasket combustion/coolant breach"
+  source_guide: "docs/master_guides/mechanical/master_mechanical_guide.md §5.1"
+  emitted_by: "M3"
+
+SYM_STUCK_EGR_OPEN_PATTERN:
+  description: "HC >350 + O2 >2% + CO2 <13% + no misfire DTC — EGR valve stuck open at idle diluting intake charge"
+  source_guide: "docs/master_guides/egr/master_egr_guide.md §4.1"
+  emitted_by: "M3"
+
+SYM_EGR_DILUTION_PATTERN:
+  description: "HC >500 + CO >1.5% (combustion occurring) + Lambda ~1.0 + NOx <100 + CO2 <14% — inert gas diluting charge, flame front impeded. High CO differentiates from dead-cylinder misfire"
+  source_guide: "docs/master_guides/egr/master_egr_guide.md §4.2"
+  emitted_by: "M3"
+
+SYM_IGNITION_MISFIRE_CONFIRMED:
+  description: "HC >1000 + O2 >2.5% + CO <1.5% — raw fuel and air passing through unburnt dead cylinder. Low CO proves no combustion occurred"
+  source_guide: "docs/master_guides/ignition/master_ignition_guide.md §6.2"
+  emitted_by: "M3"
+
+SYM_INDIVIDUAL_CYLINDER_MISFIRE_PATTERN:
+  description: "HC >800 + CO >1.0% + O2 >2.0% — physically impossible in single combustion event. Dead cylinder pumps raw O2+HC while live cylinders run rich producing CO. CO+O2 contradiction proves multiple cylinder states"
+  source_guide: "docs/master_guides/ignition/master_ignition_guide.md §6.3"
+  emitted_by: "M3"
+
+SYM_TIRED_CATALYST_PATTERN:
+  description: "Lambda 0.98–1.02 + HC >80 + CO >0.3% + CO2 >12.5% + STFT near 0 — engine combustion near-perfect but tailpipe shows cat not finishing conversion"
+  source_guide: "docs/master_guides/catalyst/master_catalyst_guide.md §4.1"
+  emitted_by: "M3"
+
+SYM_HIGH_IDLE_NOX_PATTERN:
+  description: "NOx >150 at idle + Lambda ~1.0 + HC <100 — excessive combustion temperature from carbon deposits or blocked EGR passages"
+  source_guide: "docs/master_guides/nox/master_nox_guide.md §4.1"
+  emitted_by: "M3"
+
+SYM_RICH_NEGATIVE_TRIMS_PATTERN:
+  description: "CO >2% + STFT or LTFT <−15% + Lambda ≤0.95 — ECU pulling fuel but cannot overcome systemic richness"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §5.2"
+  emitted_by: "M3"
+
+SYM_LEAN_MISFIRE_PATTERN:
+  description: "HC 150–300 + O2 >4% + Lambda >1.1 — fuel starvation causing intermittent misfire"
+  source_guide: "docs/master_guides/ignition/master_ignition_guide.md §6.4"
+  emitted_by: "M3"
+
+SYM_RICH_MISFIRE_PATTERN:
+  description: "HC >500 + CO >1.5% + O2 >2% + Lambda <0.95 — excess fuel quenching spark, both rich-side and lean-side products coexist"
+  source_guide: "docs/master_guides/ignition/master_ignition_guide.md §6.5"
+  emitted_by: "M3"
+
+SYM_CATALYST_MASKING:
+  description: "CO2 >14.5% + HC <30 ppm — catalyst actively cleaning exhaust, may mask upstream faults"
+  source_guide: "docs/master_guides/catalyst/master_catalyst_guide.md §4.2"
+  emitted_by: "M3"
+
+SYM_EXHAUST_LEAK_GHOST:
+  description: "O2 >4% + CO >1% + STFT >10% — CO and O2 both elevated is physically contradictory, indicating pre-cat air ingress"
+  source_guide: "docs/master_guides/exhaust/master_exhaust_guide.md §4.1"
+  emitted_by: "M3"
+
+SYM_DUAL_CONTAMINATED_MAF_PATTERN:
+  description: "Idle STFT normal (<5%), high-RPM STFT >10% + O2 >1.5% — MAF underreporting airflow at speed from contamination"
+  source_guide: "docs/master_guides/air_induction/master_air_induction_guide.md §4.1"
+  emitted_by: "M3"
+
+SYM_DUAL_CLOGGED_EXHAUST_PATTERN:
+  description: "Idle CO2 >13% + LTFT −5 to −12%, high-RPM CO2 <12% — backpressure builds under load from exhaust restriction"
+  source_guide: "docs/master_guides/exhaust/master_exhaust_guide.md §4.2"
+  emitted_by: "M3"
+
+SYM_CLOGGED_EXHAUST_RPM_PATTERN:
+  description: "High-RPM snapshot: CO2 <11% + O2 elevated + NOx >200 + lean lambda + moderate HC — restriction causing re-breathing"
+  source_guide: "docs/master_guides/exhaust/master_exhaust_guide.md §4.3"
+  emitted_by: "M3"
+
+SYM_DUAL_INTAKE_GASKET_PATTERN:
+  description: "Idle STFT >15% + O2 >2.5%, high-RPM STFT <5% + O2 <1.5% — vacuum leak seals under load as manifold vacuum decreases"
+  source_guide: "docs/master_guides/air_induction/master_air_induction_guide.md §4.2"
+  emitted_by: "M3"
+
+SYM_DUAL_LOW_FUEL_DELIVERY_PATTERN:
+  description: "Idle STFT normal (<5%), high-RPM STFT >10% + O2 >2% — fuel pump cannot keep up at higher demand"
+  source_guide: "docs/master_guides/fuel_system/master_fuel_system_guide.md §4.3"
+  emitted_by: "M3"
+
+SYM_DUAL_EGR_RECOVERY_PATTERN:
+  description: "Idle stuck-EGR pattern + high-RPM HC <100 + CO2 >13% — EGR stuck open confirmed by recovery at higher RPM"
+  source_guide: "docs/master_guides/egr/master_egr_guide.md §4.3"
+  emitted_by: "M3"
+
+SYM_IDLE_LEAN_LOAD_CORRECTS:
+  description: "Lambda higher at idle than at load (Δλ < −0.05) — vacuum leak draws unmetered air at idle then seals under load"
+  source_guide: "docs/master_guides/air_induction/master_air_induction_guide.md §5.1"
+  emitted_by: "M3"
+
+SYM_IDLE_STOICH_LOAD_LEAN:
+  description: "Lambda lower at idle than at load (Δλ > 0.05) — fuel delivery cannot keep up at higher RPM, pump or MAF suspect"
+  source_guide: "docs/master_guides/fuel_system/master_fuel_system_guide.md §4.4"
+  emitted_by: "M3"
+
+SYM_NOX_HIGH_IDLE:
+  description: "High NOx at idle snapshot — no high-RPM data available for comparison"
+  source_guide: "docs/master_guides/nox/master_nox_guide.md §4.2"
+  emitted_by: "M3"
+
+SYM_NOX_HIGH_LOAD:
+  description: "High NOx at load (high idle gases) — combustion temperature elevated under load"
+  source_guide: "docs/master_guides/nox/master_nox_guide.md §4.3"
+  emitted_by: "M3"
+
+SYM_NOX_LOW_WITH_LEAN:
+  description: "Low NOx with lean lambda — suggests pre-catalyst exhaust leak diluting sample"
+  source_guide: "docs/master_guides/nox/master_nox_guide.md §4.4"
+  emitted_by: "M3"
+
+# ── Perception symptoms (M3: arbitrator.py) ──
+
+SYM_PERCEPTION_LEAN_SEEN_RICH:
+  description: "Gas chemistry says rich (lambda<0.905, CO>1.5) but ECU reports lean (P0171, obd_lambda>1.05) — truth-vs-perception gap"
+  source_guide: "docs/master_guides/perception/master_perception_guide.md §3.1"
+  emitted_by: "M3"
+
+SYM_PERCEPTION_RICH_SEEN_LEAN:
+  description: "Gas chemistry says lean (lambda>1.095, O2>2.0) but ECU reports rich (P0172, obd_lambda<0.95) — truth-vs-perception gap"
+  source_guide: "docs/master_guides/perception/master_perception_guide.md §3.2"
+  emitted_by: "M3"
