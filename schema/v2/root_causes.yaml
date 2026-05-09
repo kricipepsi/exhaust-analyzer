@@ -1,0 +1,299 @@
+# V2 Root Causes -- Tier 3 of the three-tier taxonomy (R5)
+# Root causes are specific causal agents surfaced when M5 confidence >= 0.80
+# and (if backward chaining is on) the user has confirmed.
+# Each root cause has: applies_to_fault, prompt, source_guide.
+# Invariant: every applies_to_fault value must exist in faults.yaml.
+
+# --- Root causes for Rich Mixture family ---
+
+Fuel_Pressure_Regulator_Diaphragm_Leak:
+  applies_to_fault: High_Fuel_Pressure
+  prompt: "Remove FPR vacuum hose and check for fuel in vacuum line. If fuel present, diaphragm is ruptured — replace FPR."
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §4.1
+
+Fuel_Pressure_Regulator_Spring_Fatigue:
+  applies_to_fault: Fuel_Pressure_Regulator_Fault
+  prompt: "Connect fuel pressure gauge and observe pressure at idle vs. snap-throttle. If pressure does not rise with throttle, regulator spring is fatigued — replace FPR."
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §6.1
+
+Injector_O_Ring_Failure:
+  applies_to_fault: Leaking_Injector
+  prompt: "Perform injector leak-down test with fuel rail pressurised. If pressure drops >10 psi in 5 min without external leak, remove injectors and inspect O-rings for cuts or flattening."
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §4.2
+
+Injector_Pintle_Stuck_Open:
+  applies_to_fault: Leaking_Injector
+  prompt: "Remove suspect injector and bench-test for drip at static pressure. If pintle does not seal, ultrasonic-clean or replace injector."
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §4.2
+
+EVAP_Purge_Solenoid_Failure:
+  applies_to_fault: EVAP_Purge_Stuck_Open
+  prompt: "Disconnect EVAP purge line at intake and apply vacuum. If vacuum holds, solenoid is functioning. If it bleeds down, solenoid is stuck open — replace purge solenoid."
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §4.5
+
+EVAP_Canister_Saturated:
+  applies_to_fault: EVAP_Purge_Stuck_Open
+  prompt: "Remove EVAP canister and weigh against new-spec. If canister is >200 g over dry weight or smells of raw fuel, canister is saturated — replace canister and check for chronic overfill."
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §4.5
+
+Fuel_Return_Line_Crushed:
+  applies_to_fault: Return_Line_Restricted
+  prompt: "Trace fuel return line from rail to tank. Look for pinch points, kinks, or impact damage. Disconnect at both ends and blow compressed air through — resistance indicates restriction."
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §6.2
+
+GDI_HPFP_Piston_Seal_Worn:
+  applies_to_fault: GDI_HPFP_Internal_Leak
+  prompt: "Remove HPFP and inspect piston bore for scoring. Check fuel dilution in engine oil (>5% indicates internal leak). If piston seal is worn, replace HPFP assembly."
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §6.3
+
+# --- Root causes for Lean Condition family ---
+
+Intake_Manifold_Gasket_Split:
+  applies_to_fault: Vacuum_Leak_Intake
+  prompt: "Spray carburettor cleaner around intake manifold flange at idle. If RPM rises, gasket is leaking. Target the cylinder showing highest O2 on a per-cylinder gas sample."
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §4.2
+
+Brake_Booster_Vacuum_Leak:
+  applies_to_fault: Vacuum_Leak_Intake
+  prompt: "Clamp off brake booster vacuum line at idle. If STFT drops toward 0%, the booster diaphragm is leaking. Confirm with vacuum gauge on booster circuit."
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §5.1
+
+Fuel_Pump_Strainer_Clogged:
+  applies_to_fault: Fuel_Delivery_Low
+  prompt: "Measure fuel pump current draw during prime. If current is low and volume is low, the in-tank strainer is clogged. Remove fuel pump module and inspect strainer."
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §4.3
+
+Fuel_Pump_Worn_Brushes:
+  applies_to_fault: Fuel_Pump_Weak
+  prompt: "Measure fuel pump current draw during running. If current is high but pressure is low, motor brushes are worn. Replace fuel pump assembly."
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §4.4
+
+Fuel_Filter_Element_Saturated:
+  applies_to_fault: Fuel_Filter_Clogged
+  prompt: "Measure fuel pressure before and after filter at WOT. Pressure drop >5 psi across filter indicates clogging. Cut open old filter and inspect element for debris or water saturation."
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §6.4
+
+PCV_Valve_Stuck_Open:
+  applies_to_fault: PCV_System_Fault
+  prompt: "Remove PCV valve and shake. If no rattle or valve is gummed open, replace PCV valve. Inspect PCV hose for oil sludge indicating chronic blow-by."
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §4.3
+
+Injector_Basket_Filter_Clogged:
+  applies_to_fault: Injector_Clogged
+  prompt: "Remove injectors and inspect inlet basket filters under magnification. If debris is visible, replace filter baskets and flush fuel rail. If deposits are varnish, ultrasonic-clean injectors."
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §5.2
+
+Intake_Gasket_Split_Multi_Cylinder:
+  applies_to_fault: Intake_Gasket_Leak
+  prompt: "Perform smoke test on intake system. If smoke exits at manifold-to-head joint on multiple cylinders, intake gasket is split. Replace gasket and torque to spec."
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §4.2
+
+# --- Root causes for Misfire family ---
+
+Spark_Plug_Electrode_Erosion:
+  applies_to_fault: Spark_Plug_Worn
+  prompt: "Remove all spark plugs and measure gap. If gap exceeds spec by >0.2 mm or centre electrode is rounded, replace spark plugs. Check plug heat range matches OEM spec."
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §6.2
+
+Ignition_Coil_Secondary_Winding_Short:
+  applies_to_fault: Ignition_Coil_Failure
+  prompt: "Measure coil secondary resistance across tower to primary connector. If resistance is outside OEM spec (+-20%), coil has internal short. Swap coil to different cylinder and confirm misfire follows."
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §6.3
+
+Ignition_Coil_Boot_Carbon_Tracking:
+  applies_to_fault: Ignition_Coil_Failure
+  prompt: "Remove coil boot and inspect for carbon tracking (black dendritic lines on rubber). If tracking is present, replace boot and coil as a set. Apply dielectric grease to new boot."
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §6.3
+
+HT_Lead_Resistance_Excessive:
+  applies_to_fault: HT_Lead_Fault
+  prompt: "Measure each HT lead resistance end-to-end. If any lead exceeds 25 kOhm or differs from others by >50%, replace full HT lead set. Inspect lead routing for crossfire risk."
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §6.1
+
+# --- Root causes for Exhaust Fault family ---
+
+Exhaust_Gasket_Blown_Pre_Cat:
+  applies_to_fault: Exhaust_Air_Leak_Pre_Cat
+  prompt: "With engine idling, feel around exhaust manifold flange and head joints for pulsing air. If detected, the gasket is blown. Scope O2 upstream signal for lean spikes confirming air ingress."
+  source_guide: docs/master_guides/exhaust/master_exhaust_guide.md §4.1
+
+Manifold_Thermal_Crack:
+  applies_to_fault: Exhaust_Manifold_Crack
+  prompt: "Cold-start engine and immediately feel around manifold runners for exhaust pulse. If crack is suspected, use a mechanic's stethoscope to locate. Weld or replace manifold."
+  source_guide: docs/master_guides/exhaust/master_exhaust_guide.md §4.2
+
+Flex_Pipe_Braiding_Fatigue:
+  applies_to_fault: Flex_Pipe_Leak
+  prompt: "Inspect flex pipe braiding for black soot streaks or separation. If braiding is frayed or inner bellows is visible through break, replace flex section."
+  source_guide: docs/master_guides/exhaust/master_exhaust_guide.md §4.3
+
+# --- Root causes for EGR Fault family ---
+
+EGR_Valve_Seat_Carbon_Deposit:
+  applies_to_fault: EGR_Stuck_Open
+  prompt: "Remove EGR valve and inspect valve seat for carbon deposits preventing full closure. If carbon is present, clean valve and seat with a wire brush. Verify pintle movement is smooth."
+  source_guide: docs/master_guides/egr/master_egr_guide.md §4.1
+
+EGR_Valve_Diaphragm_Ruptured:
+  applies_to_fault: EGR_Stuck_Closed
+  prompt: "Apply vacuum directly to EGR valve diaphragm. If diaphragm does not hold vacuum or valve does not lift, diaphragm is ruptured — replace EGR valve."
+  source_guide: docs/master_guides/egr/master_egr_guide.md §5.1
+
+EGR_Passage_Carbon_Blockage:
+  applies_to_fault: EGR_Passage_Restricted
+  prompt: "Remove EGR valve and inspect intake manifold EGR passages with a borescope. If passages are >50% occluded with carbon, mechanically clean passages and ream to spec diameter."
+  source_guide: docs/master_guides/egr/master_egr_guide.md §5.2
+
+# --- Root causes for Catalyst Failure family ---
+
+Catalyst_Substrate_Thermal_Shock:
+  applies_to_fault: Catalyst_Melted
+  prompt: "Remove catalyst and inspect substrate with borescope. If substrate shows glassy, melted appearance (not just discolouration), thermal shock has occurred. Identify and repair root rich-condition cause before replacing catalyst."
+  source_guide: docs/master_guides/catalyst/master_catalyst_guide.md §4.2
+
+Catalyst_Phosphorus_Contamination:
+  applies_to_fault: Catalyst_Poisoned
+  prompt: "Submit used oil sample for ICP analysis. If phosphorus >1200 ppm, oil ash is poisoning catalyst. Check for excessive oil consumption (worn rings, valve seals). Replace catalyst after oil consumption fix."
+  source_guide: docs/master_guides/catalyst/master_catalyst_guide.md §5.1
+
+Aftermarket_Catalyst_Low_Cell_Density:
+  applies_to_fault: Aftermarket_Catalyst_Inefficient
+  prompt: "Compare catalyst part number against OEM spec. Aftermarket catalysts often have 200-300 CPSI vs. OEM 400-600 CPSI. If low-density substrate is verified, replace with OEM or CARB-certified unit."
+  source_guide: docs/master_guides/catalyst/master_catalyst_guide.md §4.1
+
+Clogged_Substrate_Mechanical_Failure:
+  applies_to_fault: Clogged_Catalyst_Substrate
+  prompt: "Measure exhaust backpressure before and after catalyst at 2500 RPM. If delta >0.5 psi, substrate is clogged. Tap catalyst case with rubber mallet — rattling indicates substrate fragmentation."
+  source_guide: docs/master_guides/exhaust/master_exhaust_guide.md §4.2
+
+# --- Root causes for Sensor Fault family ---
+
+O2_Sensor_Ceramic_Element_Aging:
+  applies_to_fault: Lazy_O2_Sensor
+  prompt: "Scope O2 sensor signal during snap-throttle. If transition time rich-to-lean exceeds 100 ms, the ceramic element is aged. Replace O2 sensor and verify response time on new unit."
+  source_guide: docs/master_guides/o2_sensor/master_o2_sensor_guide.md §4.1
+
+O2_Sensor_Reference_Air_Contamination:
+  applies_to_fault: O2_Sensor_Bias_Lean
+  prompt: "Inspect O2 sensor wiring harness for oil or coolant contamination at the connector. If reference air passage is blocked or contaminated, sensor will bias lean. Clean connector and replace sensor if bias persists."
+  source_guide: docs/master_guides/o2_sensor/master_o2_sensor_guide.md §3.1
+
+MAF_Hot_Wire_Contamination:
+  applies_to_fault: MAF_Sensor_Fault
+  prompt: "Remove MAF sensor and inspect hot wire element under magnification. If wire shows dust, oil film, or insect debris, clean with MAF-specific spray cleaner. Do NOT use carb cleaner or compressed air."
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §6.1
+
+ECT_Sensor_Calibration_Drift:
+  applies_to_fault: ECT_Sensor_Bias
+  prompt: "Measure ECT resistance at known temperature (ice bath = 0 C, boiling = 100 C). If resistance deviates >5% from OEM curve, sensor has calibration drift. Replace ECT sensor."
+  source_guide: docs/master_guides/cold_start/master_cold_start_guide.md §6.1
+
+# --- Root causes for Mechanical Fault family ---
+
+Piston_Ring_Land_Wear:
+  applies_to_fault: Worn_Piston_Rings
+  prompt: "Perform dry vs. wet compression test. If wet compression rises >15% over dry, rings are worn. Follow with leak-down test to quantify loss per cylinder. Bore-scope for cylinder wall scoring."
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §4.1
+
+Head_Gasket_Inter_Cylinder_Breach:
+  applies_to_fault: Low_Compression_Multi_Cylinder
+  prompt: "If two adjacent cylinders both show low compression, suspect head gasket breach between cylinders. Perform leak-down test on one cylinder and listen for air at adjacent spark plug hole."
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §4.2
+
+VVT_Phaser_Oil_Gallery_Clogged:
+  applies_to_fault: VVT_Phaser_Fault
+  prompt: "Remove VVT solenoid and inspect oil control valve filter screen. If screen is clogged with sludge, clean or replace solenoid. Check oil condition — if sludge is present, flush engine and replace oil."
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §4.5
+
+Timing_Chain_Tensioner_Failure:
+  applies_to_fault: Timing_Chain_Stretch
+  prompt: "Remove timing cover inspection plug and check tensioner extension. If tensioner is at >80% of travel, the chain has stretched. Replace timing chain, tensioner, and guides as a set."
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §4.4
+
+# --- Root causes for Turbo Fault family ---
+
+Turbo_Wastegate_Actuator_Seized:
+  applies_to_fault: Turbo_Underboost
+  prompt: "Apply vacuum/pressure to wastegate actuator and watch for rod movement. If rod does not move or moves in steps, actuator is seized. Check wastegate flapper valve for freedom of movement."
+  source_guide: docs/master_guides/turbo/master_turbo_guide.md §5.1
+
+Turbo_Journal_Bearing_Wear:
+  applies_to_fault: Turbo_Seal_Failure
+  prompt: "Remove turbo intake pipe and check for radial and axial shaft play. If play exceeds 1 mm radial or 0.5 mm axial, journal bearings are worn. Check oil feed line for sludge — clogged feed line causes bearing failure."
+  source_guide: docs/master_guides/turbo/master_turbo_guide.md §5.4
+
+Intercooler_Core_Puncture:
+  applies_to_fault: Intercooler_Leak
+  prompt: "Pressurise intercooler circuit to 15 psi with smoke machine. If smoke exits anywhere on the core or end-tank seams, intercooler has a puncture or seam split. Replace or weld intercooler."
+  source_guide: docs/master_guides/turbo/master_turbo_guide.md §5.5
+
+# --- Root causes for Head Gasket Failure family ---
+
+Head_Gasket_Fire_Ring_Erosion:
+  applies_to_fault: Head_Gasket_Combustion_To_Coolant
+  prompt: "Perform combustion leak test on cooling system with chemical block tester (blue fluid turns yellow = combustion gases in coolant). If positive, verify which cylinder with cylinder leak-down test and inspect borescope for fire ring erosion."
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §5.1
+
+# --- Root causes for Non-Starter Fault family ---
+
+Fuel_Pump_Electrical_Connector_Corrosion:
+  applies_to_fault: NS_Fuel_Pump_Failure
+  prompt: "Check voltage at fuel pump connector during prime. If voltage is 0 V or <9 V, trace wiring to relay. If voltage is present but pump is silent, connector is corroded — clean or replace pump connector."
+  source_guide: docs/master_guides/non_starter/master_non_starter_guide.md §5.2
+
+Battery_Terminal_Corrosion:
+  applies_to_fault: NS_Battery_Voltage_Low
+  prompt: "Measure voltage drop from battery post to terminal clamp during cranking. If drop >0.5 V, terminals are corroded. Clean posts and clamps to bright metal, re-torque, and apply anti-corrosion felt washers."
+  source_guide: docs/master_guides/non_starter/master_non_starter_guide.md §5.4
+
+# --- Root causes for Cold Start Fault family ---
+
+ECT_Sensor_Reading_Artificially_Warm:
+  applies_to_fault: Cold_Start_Enrichment_Fault
+  prompt: "After cold-soak (>8 h), compare ECT reading to IAT reading before cranking. If ECT is >5 C warmer than IAT, sensor is biased warm and enrichment will be insufficient. Replace ECT sensor."
+  source_guide: docs/master_guides/cold_start/master_cold_start_guide.md §5.1
+
+# --- Root causes for Ignition Timing Fault family ---
+
+Timing_Belt_Tensioner_Spring_Fatigue:
+  applies_to_fault: Cam_Timing_Retard_Late
+  prompt: "Check timing belt tension with a belt tension gauge. If tension is below spec and belt has not jumped teeth, tensioner spring has fatigued. Replace tensioner and timing belt as a set."
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §7.1
+
+Distributor_Cap_Carbon_Tracking:
+  applies_to_fault: Ignition_Base_Timing_Offset
+  prompt: "Remove distributor cap and inspect inside for carbon tracking between terminals. If tracking is present, replace cap and rotor. Check that distributor base timing is correct after replacement."
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §7.3
+
+# --- Root causes for Fuel System Fault family ---
+
+Fuel_Contamination_Water:
+  applies_to_fault: Fuel_Quality_Contaminated
+  prompt: "Drain fuel sample from rail Schrader valve into clear glass jar. If water separates at bottom or fuel is cloudy, fuel is contaminated. Drain tank, flush lines, and replace fuel filter."
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §7.1
+
+# --- Root causes for Air Induction Fault family ---
+
+Air_Filter_Element_Debris_Packed:
+  applies_to_fault: Air_Filter_Restricted
+  prompt: "Remove air filter and hold up to light. If <25% light transmission through element, filter is restricted. Check air box for rodent nesting or debris ingestion. Replace filter and clean air box."
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §5.2
+
+# --- Root causes for GDI-specific faults ---
+
+GDI_Intake_Valve_Carbon_Deposits:
+  applies_to_fault: GDI_Carbon_Buildup
+  prompt: "Borescope intake valves through manifold port. If valves show >2 mm carbon crust on stem or tulip, perform walnut-blast cleaning. Verify PCV system is not contributing to buildup post-cleaning."
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §5.4
+
+# --- Root causes for Perception Fault family ---
+
+O2_Sensor_Ground_Offset:
+  applies_to_fault: Perception_Lean_Seen_Rich
+  prompt: "Measure voltage between O2 sensor signal ground and battery negative at idle. If offset >50 mV, sensor ground is compromised. Check engine ground straps and sensor ground circuit resistance."
+  source_guide: docs/master_guides/perception/master_perception_guide.md §3.1
+
+MAF_Under_Reporting_Airflow:
+  applies_to_fault: Perception_Rich_Seen_Lean
+  prompt: "Compare MAF reported g/s at 2500 RPM no-load against known-good reference for that engine. If MAF under-reports by >15%, sensor is dirty or failing. Clean MAF and re-test; replace if still out of spec."
+  source_guide: docs/master_guides/perception/master_perception_guide.md §3.2
