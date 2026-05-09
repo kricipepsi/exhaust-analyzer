@@ -1,1 +1,18 @@
-{}
+{
+  "accuracy": {
+    "top1_family": 0.0,
+    "specific_node": 0.0
+  },
+  "cases_processed": 0,
+  "engine_status": "not_yet_built",
+  "schema_hashes": {
+    "schema/v2/edges.yaml": "d06eb761e72c3050948238b0532af2d6034149533a32068188601af8fb863a8c",
+    "schema/v2/faults.yaml": "11fabf1e76ec2165c55be7279b38d7e6690e3aa645f2c6d5f2f6bc798c0faa74",
+    "schema/v2/label_aliases.yaml": "9ecc3b81dd66801f7232c0fcc53177abf94c748e2237b0bae9d1076e5df39d92",
+    "schema/v2/root_causes.yaml": "41c0bff924bb5fd18da61e0919f337095b3719d49cfbdaca259574361b4b98ce",
+    "schema/v2/symptoms.yaml": "7d0aee0a5598386cc9bdeb1a8863c1f0c10d93964eafd02731957964527a5386",
+    "schema/v2/thresholds.yaml": "fcb2cb6452eed44409e007a4e31fdc0e90a8c87a07d031a1ac803506f49dcad7"
+  },
+  "phase": "P1",
+  "git_tag": "p1-complete"
+}
