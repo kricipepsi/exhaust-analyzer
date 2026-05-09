@@ -36,6 +36,20 @@ _TRIM_STRONG_PCT: float = 8.0
 _TRIM_CRUISE_NEUTRAL_MAX: float = 10.0
 _TRIM_IDLE_ONLY_CF_REDUCTION: float = 0.70
 
+# ── bank symmetry thresholds ───────────────────────────────────────────────────
+# source: v2-arbitrator §2.3 bank symmetry (V-engine only)
+
+_BANK_ASYM_DIFF_PCT: float = 10.0
+_BANK_SWAP_CF: float = 0.65
+_BANK_ASYM_CF: float = 0.55
+
+# ── flood control thresholds ───────────────────────────────────────────────────
+# source: v2-arbitrator §2.4 flood control
+# source: R8 — single root cause firing > 3 sibling symptoms triggers cascade
+
+_FLOOD_SIBLING_THRESHOLD: int = 3
+_FLOOD_REDUCTION_FACTOR: float = 0.70
+
 # ── carry-forward CF defaults ─────────────────────────────────────────────────
 # source: v2-arbitrator §3 output contract — M3 assembles M1/M2 symptoms
 # into the evidence vector with appropriate CF weights.
@@ -55,6 +69,29 @@ _SYM_TRIM_LEAN_IDLE_ONLY = "SYM_TRIM_LEAN_IDLE_ONLY"
 _SYM_TRIM_LEAN_LOAD_BIAS = "SYM_TRIM_LEAN_LOAD_BIAS"
 _SYM_TRIM_RICH_STATIC = "SYM_TRIM_RICH_STATIC"
 _SYM_TRIM_RICH_IDLE_ONLY = "SYM_TRIM_RICH_IDLE_ONLY"
+
+_SYM_O2_HARNESS_SWAP = "SYM_O2_HARNESS_SWAP"
+_SYM_BANK_ASYM_FAULT = "SYM_BANK_ASYM_FAULT"
+
+
+# ── symptom family groups for flood control ────────────────────────────────────
+# source: v2-arbitrator §2.4 — symptoms sharing a common fault ancestry
+# are grouped by prefix; when > _FLOOD_SIBLING_THRESHOLD in one group,
+# the highest-CF symptom is kept at full weight and the rest reduced 30%.
+# This is a proxy for full KG ancestry lookup (M4's domain); when M3 and
+# M4 are integrated, replace with faults.yaml lineage.
+#
+# Grouping key: extracted by stripping trailing type/condition qualifiers
+# from the symptom ID (e.g. SYM_TRIM_LEAN_IDLE_ONLY → SYM_TRIM_LEAN).
+
+_FLOOD_GROUP_KEYS: dict[str, str] = {
+    "SYM_TRIM_LEAN_IDLE_ONLY": "TRIM_LEAN",
+    "SYM_TRIM_LEAN_LOAD_BIAS": "TRIM_LEAN",
+    "SYM_TRIM_RICH_STATIC": "TRIM_RICH",
+    "SYM_TRIM_RICH_IDLE_ONLY": "TRIM_RICH",
+    "SYM_PERCEPTION_LEAN_SEEN_RICH": "PERCEPTION_GAP",
+    "SYM_PERCEPTION_RICH_SEEN_LEAN": "PERCEPTION_GAP",
+}
 
 
 # ── output dataclasses ────────────────────────────────────────────────────────
@@ -122,6 +159,8 @@ def arbitrate(
     _collect_gas_symptoms(gas_output, evidence)
     _detect_perception_gap(validated_input, gas_output, evidence)
     _analyse_trim_trend(validated_input, gas_output, evidence)
+    _analyse_bank_symmetry(dna_output, validated_input, evidence)
+    _apply_flood_control(evidence)
 
     return evidence
 
@@ -303,3 +342,109 @@ def _classify_trim_idle_only(
         evidence.active_symptoms[_SYM_TRIM_LEAN_IDLE_ONLY] = cf
     elif idle_total <= -_TRIM_STRONG_PCT:
         evidence.active_symptoms[_SYM_TRIM_RICH_IDLE_ONLY] = cf
+
+
+# ── bank symmetry analysis ─────────────────────────────────────────────────────
+
+
+def _analyse_bank_symmetry(
+    dna_output: DNAOutput,
+    validated_input: ValidatedInput,
+    evidence: MasterEvidenceVector,
+) -> None:
+    """Detect bank-to-bank trim asymmetry on V-engines (R8).
+
+    Fires only when tech_mask.is_v_engine is True.  Compares Bank 1 vs
+    Bank 2 total trims (STFT + LTFT):
+      - Opposite signs, |diff| > 10 pp → SYM_O2_HARNESS_SWAP  (CF = 0.65)
+      - Same sign,     |diff| > 10 pp → SYM_BANK_ASYM_FAULT   (CF = 0.55)
+
+    SYM_BANK_ASYM_FAULT implies hard-veto edges to common-mode faults
+    (Maf_Fault, Fuel_Pump_Weak, Plenum_Leak) — bank-asymmetric trim
+    cannot come from a single-point fault affecting both banks equally.
+
+    source: v2-arbitrator §2.3
+    """
+    if not dna_output.tech_mask.get("is_v_engine"):
+        return
+
+    obd = validated_input.raw.obd
+    if obd is None:
+        return
+
+    trim_b1 = _compute_trim_total_b1(obd)
+    if trim_b1 is None:
+        return
+
+    trim_b2 = _compute_trim_total_b2(obd)
+    if trim_b2 is None:
+        return
+
+    diff = abs(trim_b1 - trim_b2)
+    if diff <= _BANK_ASYM_DIFF_PCT:
+        return
+
+    b1_sign = 1 if trim_b1 > 0 else -1 if trim_b1 < 0 else 0
+    b2_sign = 1 if trim_b2 > 0 else -1 if trim_b2 < 0 else 0
+
+    if b1_sign != 0 and b2_sign != 0 and b1_sign != b2_sign:
+        evidence.active_symptoms[_SYM_O2_HARNESS_SWAP] = _BANK_SWAP_CF
+        evidence.bank_asym = True
+    elif b1_sign != 0 or b2_sign != 0:
+        evidence.active_symptoms[_SYM_BANK_ASYM_FAULT] = _BANK_ASYM_CF
+        evidence.bank_asym = True
+
+
+def _compute_trim_total_b2(obd: OBDRecord) -> float | None:
+    """Compute STFT + LTFT for bank 2. Returns None if both are missing."""
+    stft = obd.stft_b2
+    ltft = obd.ltft_b2
+    if stft is None and ltft is None:
+        return None
+    return (stft if stft is not None else 0.0) + (ltft if ltft is not None else 0.0)
+
+
+# ── flood control ──────────────────────────────────────────────────────────────
+
+
+def _apply_flood_control(evidence: MasterEvidenceVector) -> None:
+    """Prevent a single root cause from dominating the score distribution (R8).
+
+    Groups active symptoms by fault-family key.  When more than
+    _FLOOD_SIBLING_THRESHOLD symptoms share the same group, the
+    highest-CF symptom is kept at full weight and the remaining
+    symptoms in that group are reduced by _FLOOD_REDUCTION_FACTOR
+    (default 30% reduction).  Reduced symptoms are recorded in
+    cascading_consequences[].
+
+    Symptom grouping uses _FLOOD_GROUP_KEYS as a proxy for full KG
+    ancestry lookup.  When M3/M4 integration adds faults.yaml lineage,
+    replace the group-key lookup with ancestry-walk from the KG.
+
+    source: v2-arbitrator §2.4
+    source: R8 — > 3 sibling symptoms triggers cascade grouping
+    """
+    # Bucket symptoms by flood group key.
+    groups: dict[str, list[tuple[str, float]]] = {}
+    ungrouped: list[tuple[str, float]] = []
+
+    for sym_id, cf in evidence.active_symptoms.items():
+        group_key = _FLOOD_GROUP_KEYS.get(sym_id)
+        if group_key is not None:
+            groups.setdefault(group_key, []).append((sym_id, cf))
+        else:
+            ungrouped.append((sym_id, cf))
+
+    cascading: list[str] = []
+
+    for _group_key, entries in groups.items():
+        if len(entries) <= _FLOOD_SIBLING_THRESHOLD:
+            continue
+        # Sort descending by CF; top symptom kept at full weight.
+        entries.sort(key=lambda x: x[1], reverse=True)
+        for sym_id, cf in entries[1:]:
+            reduced_cf = cf * _FLOOD_REDUCTION_FACTOR
+            evidence.active_symptoms[sym_id] = reduced_cf
+            cascading.append(sym_id)
+
+    evidence.cascading_consequences.extend(cascading)

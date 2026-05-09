@@ -486,3 +486,15 @@ SYM_PERCEPTION_RICH_SEEN_LEAN:
   description: "Gas chemistry says lean (lambda>1.095, O2>2.0) but ECU reports rich (P0172, obd_lambda<0.95) — truth-vs-perception gap"
   source_guide: "docs/master_guides/perception/master_perception_guide.md §3.2"
   emitted_by: "M3"
+
+# ── Bank symmetry symptoms (M3: arbitrator.py) ──
+
+SYM_O2_HARNESS_SWAP:
+  description: "Bank 1 and Bank 2 fuel trims in opposite directions (|Δ|>10) — O2 sensor harness connectors swapped between banks"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §6.1"
+  emitted_by: "M3"
+
+SYM_BANK_ASYM_FAULT:
+  description: "Bank 1 and Bank 2 fuel trims different magnitudes same direction (|Δ|>10) — bank-specific fault (injector, gasket, O2 sensor), carries hard-veto edges to common-mode faults"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §6.2"
+  emitted_by: "M3"
