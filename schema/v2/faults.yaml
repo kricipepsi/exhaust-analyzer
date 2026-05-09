@@ -1,0 +1,1567 @@
+# V2 Faults -- Tier 2 of the three-tier taxonomy (R5)
+# Migrated from V1 nodes.yaml (node_type: fault entries), expanded to ~90 entries.
+# Faults are what the engine reports as a primary diagnosis.
+# Each fault has: parent, prior, era[], tech_required[], discriminator[], source_guide.
+# Invariant: no two siblings under the same parent share identical discriminator[] sets (L03).
+
+
+# --- Rich Mixture family ---
+
+Rich_Mixture:
+  parent: null
+  prior: 0.05
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LAMBDA_LOW
+  dtc_required: []
+  source_guide: docs/master_guides/gases/master_gas_guide.md §3.1
+High_Fuel_Pressure:
+  parent: Rich_Mixture
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_HIGH_FUEL_PRESSURE_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §4.1
+Leaking_Injector:
+  parent: Rich_Mixture
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LEAKING_INJECTOR_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §4.2
+EVAP_Purge_Stuck_Open:
+  parent: Rich_Mixture
+  prior: 0.02
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_RICH_NEGATIVE_TRIMS_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §4.5
+Fuel_Pressure_Regulator_Fault:
+  parent: Rich_Mixture
+  prior: 0.015
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LAMBDA_LOW
+  - SYM_CO_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §6.1
+Return_Line_Restricted:
+  parent: Rich_Mixture
+  prior: 0.01
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_RICH_NEGATIVE_TRIMS_PATTERN
+  - SYM_LAMBDA_LOW
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §6.2
+GDI_HPFP_Internal_Leak:
+  parent: High_Fuel_Pressure
+  prior: 0.004
+  era:
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_gdi
+  discriminator:
+  - SYM_LAMBDA_LOW
+  - SYM_DTC_P0172
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §6.3
+
+# --- Lean Condition family ---
+
+Lean_Condition:
+  parent: null
+  prior: 0.05
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LAMBDA_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/gases/master_gas_guide.md §3.1
+Vacuum_Leak_Intake:
+  parent: Lean_Condition
+  prior: 0.03
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_IDLE_LEAN_LOAD_CORRECTS
+  dtc_required: []
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §5.1
+Intake_Gasket_Leak:
+  parent: Lean_Condition
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DUAL_INTAKE_GASKET_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §4.2
+PCV_System_Fault:
+  parent: Lean_Condition
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_PCV_LEAK_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §4.3
+Fuel_Delivery_Low:
+  parent: Lean_Condition
+  prior: 0.03
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_IDLE_STOICH_LOAD_LEAN
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §4.3
+Fuel_Pump_Weak:
+  parent: Lean_Condition
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DUAL_LOW_FUEL_DELIVERY_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §4.4
+Fuel_Filter_Clogged:
+  parent: Lean_Condition
+  prior: 0.015
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LAMBDA_HIGH
+  - SYM_DUAL_LOW_FUEL_DELIVERY_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §6.4
+Contaminated_MAF:
+  parent: Lean_Condition
+  prior: 0.02
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DUAL_CONTAMINATED_MAF_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §4.1
+Induction_Airflow_Fault:
+  parent: Lean_Condition
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_INDUCTION
+  dtc_required: []
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §6.1
+Throttle_Body_Fault:
+  parent: Lean_Condition
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LAMBDA_HIGH
+  - SYM_DTC_INDUCTION
+  dtc_required: []
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §6.2
+Injector_Clogged:
+  parent: Lean_Condition
+  prior: 0.015
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LEAN_MISFIRE_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §5.2
+GDI_HPFP_Failure:
+  parent: Fuel_Delivery_Low
+  prior: 0.01
+  era:
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_gdi
+  discriminator:
+  - SYM_LAMBDA_HIGH
+  - SYM_DTC_INJECTOR
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §6.3
+
+# --- Misfire family ---
+
+Misfire:
+  parent: null
+  prior: 0.03
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_MISFIRE
+  dtc_required: []
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §5.1
+Misfire_Single_Cylinder:
+  parent: Misfire
+  prior: 0.02
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_MISFIRE
+  - SYM_IGNITION_MISFIRE_CONFIRMED
+  dtc_required: []
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §6.2
+Spark_Plug_Worn:
+  parent: Misfire
+  prior: 0.025
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_HC_HIGH
+  - SYM_O2_HIGH
+  - SYM_CO_LOW_LEAN
+  dtc_required: []
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §6.2
+Ignition_Coil_Failure:
+  parent: Misfire
+  prior: 0.02
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_MISFIRE
+  - SYM_INDIVIDUAL_CYLINDER_MISFIRE_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §6.3
+HT_Lead_Fault:
+  parent: Misfire
+  prior: 0.015
+  era:
+  - 1990-1995
+  - 1996-2005
+  tech_required: []
+  discriminator:
+  - SYM_HC_VERY_HIGH
+  - SYM_O2_VERY_HIGH
+  - SYM_CO_LOW_LEAN
+  dtc_required: []
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §6.1
+Ignition_Module_Fault:
+  parent: Misfire
+  prior: 0.01
+  era:
+  - 1990-1995
+  - 1996-2005
+  tech_required: []
+  discriminator:
+  - SYM_DTC_MISFIRE
+  - SYM_GHOST_MISFIRE
+  dtc_required: []
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §5.3
+Rich_Misfire:
+  parent: Misfire
+  prior: 0.015
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_RICH_MISFIRE_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §6.5
+
+# --- Exhaust fault family ---
+
+Exhaust_Fault:
+  parent: null
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_O2_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/exhaust/master_exhaust_guide.md §4.1
+Exhaust_Air_Leak_Pre_Cat:
+  parent: Exhaust_Fault
+  prior: 0.015
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_EXHAUST_LEAK_GHOST
+  dtc_required: []
+  source_guide: docs/master_guides/exhaust/master_exhaust_guide.md §4.1
+Exhaust_Manifold_Crack:
+  parent: Exhaust_Fault
+  prior: 0.01
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_O2_HIGH
+  - SYM_EXHAUST_LEAK_GHOST
+  dtc_required: []
+  source_guide: docs/master_guides/exhaust/master_exhaust_guide.md §4.2
+Flex_Pipe_Leak:
+  parent: Exhaust_Fault
+  prior: 0.01
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_O2_VERY_HIGH
+  - SYM_EXHAUST_LEAK_GHOST
+  dtc_required: []
+  source_guide: docs/master_guides/exhaust/master_exhaust_guide.md §4.3
+SAI_Valve_Stuck_Open:
+  parent: Exhaust_Fault
+  prior: 0.004
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_secondary_air
+  discriminator:
+  - SYM_O2_VERY_HIGH
+  - SYM_LAMBDA_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/exhaust/master_exhaust_guide.md §5.1
+
+# --- Clogged exhaust family ---
+
+Clogged_Exhaust:
+  parent: null
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_CLOGGED_EXHAUST_RPM_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/exhaust/master_exhaust_guide.md §4.2
+Clogged_Catalyst_Substrate:
+  parent: Clogged_Exhaust
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DUAL_CLOGGED_EXHAUST_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/exhaust/master_exhaust_guide.md §4.2
+Muffler_Restriction:
+  parent: Clogged_Exhaust
+  prior: 0.01
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_CLOGGED_EXHAUST_RPM_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/exhaust/master_exhaust_guide.md §4.3
+
+# --- EGR fault family ---
+
+EGR_Fault:
+  parent: null
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_egr
+  discriminator:
+  - SYM_DTC_EGR
+  dtc_required: []
+  source_guide: docs/master_guides/egr/master_egr_guide.md §4.1
+EGR_Stuck_Open:
+  parent: EGR_Fault
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_egr
+  discriminator:
+  - SYM_STUCK_EGR_OPEN_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/egr/master_egr_guide.md §4.1
+EGR_Stuck_Open_Confirmed:
+  parent: EGR_Fault
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_egr
+  discriminator:
+  - SYM_DUAL_EGR_RECOVERY_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/egr/master_egr_guide.md §4.3
+EGR_Stuck_Closed:
+  parent: EGR_Fault
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_egr
+  discriminator:
+  - SYM_DTC_EGR
+  - SYM_NOX_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/egr/master_egr_guide.md §5.1
+EGR_Passage_Restricted:
+  parent: EGR_Fault
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_egr
+  discriminator:
+  - SYM_HIGH_IDLE_NOX_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/egr/master_egr_guide.md §5.2
+EGR_Solenoid_Fault:
+  parent: EGR_Fault
+  prior: 0.01
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_egr
+  discriminator:
+  - SYM_DTC_EGR
+  - SYM_EGR_DILUTION_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/egr/master_egr_guide.md §5.3
+
+# --- Catalyst fault family ---
+
+Catalyst_Failure:
+  parent: null
+  prior: 0.02
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_CATALYST
+  dtc_required: []
+  source_guide: docs/master_guides/catalyst/master_catalyst_guide.md §4.1
+Aftermarket_Catalyst_Inefficient:
+  parent: Catalyst_Failure
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_TIRED_CATALYST_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/catalyst/master_catalyst_guide.md §4.1
+Catalyst_Melted:
+  parent: Catalyst_Failure
+  prior: 0.01
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_CATALYST
+  - SYM_HC_VERY_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/catalyst/master_catalyst_guide.md §4.2
+Catalyst_Poisoned:
+  parent: Catalyst_Failure
+  prior: 0.01
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_CATALYST
+  - SYM_HC_HIGH
+  - SYM_CO_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/catalyst/master_catalyst_guide.md §5.1
+Catalyst_Masking:
+  parent: Catalyst_Failure
+  prior: 0.008
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_CATALYST_MASKING
+  dtc_required: []
+  source_guide: docs/master_guides/catalyst/master_catalyst_guide.md §4.2
+
+# --- Sensor fault family ---
+
+Sensor_Fault:
+  parent: null
+  prior: 0.04
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_SENSOR
+  dtc_required: []
+  source_guide: docs/master_guides/obd/master_obd_guide.md §5.2
+Lazy_O2_Sensor:
+  parent: Sensor_Fault
+  prior: 0.03
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_O2_UPSTREAM_LAZY
+  dtc_required: []
+  source_guide: docs/master_guides/o2_sensor/master_o2_sensor_guide.md §4.1
+O2_Sensor_Bias_Lean:
+  parent: Sensor_Fault
+  prior: 0.02
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_SENSOR_BIAS_LEAN
+  dtc_required: []
+  source_guide: docs/master_guides/o2_sensor/master_o2_sensor_guide.md §3.1
+O2_Sensor_Bias_Rich:
+  parent: Sensor_Fault
+  prior: 0.02
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_SENSOR_BIAS_RICH
+  dtc_required: []
+  source_guide: docs/master_guides/o2_sensor/master_o2_sensor_guide.md §3.1
+O2_Sensor_Bias_False_Rich:
+  parent: Sensor_Fault
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_SENSOR_BIAS_FALSE_RICH
+  dtc_required: []
+  source_guide: docs/master_guides/o2_sensor/master_o2_sensor_guide.md §3.2
+O2_Sensor_Heater_Fault:
+  parent: Sensor_Fault
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_HO2S_HEATER
+  dtc_required: []
+  source_guide: docs/master_guides/o2_sensor/master_o2_sensor_guide.md §5.1
+ECT_Sensor_Bias:
+  parent: Sensor_Fault
+  prior: 0.02
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_FF_IAT_ECT_BIASED
+  dtc_required: []
+  source_guide: docs/master_guides/cold_start/master_cold_start_guide.md §6.1
+MAF_Sensor_Fault:
+  parent: Sensor_Fault
+  prior: 0.02
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_INDUCTION
+  dtc_required: []
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §6.1
+MAP_Sensor_Fault:
+  parent: Sensor_Fault
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_SENSOR
+  - SYM_FF_LOAD_HIGH_AT_LOW_RPM
+  dtc_required: []
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §6.3
+IAT_Sensor_Fault:
+  parent: Sensor_Fault
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_SENSOR
+  - SYM_FF_IAT_ECT_BIASED
+  dtc_required: []
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §6.4
+TPS_Sensor_Fault:
+  parent: Sensor_Fault
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_SENSOR
+  - SYM_LAMBDA_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §6.5
+Knock_Sensor_Fault:
+  parent: Sensor_Fault
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_KNOCK_SENSOR
+  dtc_required: []
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §5.3
+CKP_Sensor_Failure:
+  parent: Sensor_Fault
+  prior: 0.02
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_SENSOR
+  dtc_required: []
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §7.2
+Cam_Sensor_Fault:
+  parent: Sensor_Fault
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_CAMSHAFT_TIMING
+  dtc_required: []
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §5.2
+
+# --- Mechanical fault family ---
+
+Mechanical_Fault:
+  parent: null
+  prior: 0.03
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_COMPRESSION_LOSS_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §4.1
+Worn_Piston_Rings:
+  parent: Mechanical_Fault
+  prior: 0.025
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_COMPRESSION_LOSS_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §4.1
+Low_Compression_Multi_Cylinder:
+  parent: Mechanical_Fault
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_COMPRESSION_LOSS_PATTERN
+  - SYM_HC_VERY_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §4.2
+
+# --- Valve seal wear ---
+
+Valve_Seal_Wear:
+  parent: null
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_VALVE_SEAL_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §4.2
+Worn_Valve_Seals:
+  parent: Valve_Seal_Wear
+  prior: 0.018
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_VALVE_SEAL_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §4.2
+Valve_Timing_Mechanical:
+  parent: Mechanical_Fault
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LATE_TIMING_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §4.4
+VVT_Phaser_Fault:
+  parent: Mechanical_Fault
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_vvt
+  discriminator:
+  - SYM_DTC_CAMSHAFT_TIMING
+  - SYM_LATE_TIMING_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §4.5
+Timing_Chain_Stretch:
+  parent: Mechanical_Fault
+  prior: 0.015
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LATE_TIMING_PATTERN
+  - SYM_HC_VERY_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §4.4
+GDI_LSPI:
+  parent: Mechanical_Fault
+  prior: 0.005
+  era:
+  - 2016-2020
+  tech_required:
+  - has_gdi
+  - has_turbo
+  discriminator:
+  - SYM_FF_TIMING_RETARD_SEVERE
+  - SYM_DTC_KNOCK_SENSOR
+  dtc_required: []
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §5.3
+GDI_Carbon_Buildup:
+  parent: Mechanical_Fault
+  prior: 0.008
+  era:
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_gdi
+  discriminator:
+  - SYM_HC_HIGH
+  - SYM_CTX_COLD_ENGINE
+  dtc_required: []
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §5.4
+
+# --- Turbo fault family ---
+
+Turbo_Fault:
+  parent: null
+  prior: 0.015
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_turbo
+  discriminator:
+  - SYM_DTC_BOOST
+  dtc_required: []
+  source_guide: docs/master_guides/turbo/master_turbo_guide.md §4.1
+Turbo_Underboost:
+  parent: Turbo_Fault
+  prior: 0.012
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_turbo
+  discriminator:
+  - SYM_DTC_BOOST
+  - SYM_LAMBDA_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/turbo/master_turbo_guide.md §5.1
+Turbo_Overboost:
+  parent: Turbo_Fault
+  prior: 0.01
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_turbo
+  discriminator:
+  - SYM_DTC_BOOST
+  - SYM_LAMBDA_LOW
+  dtc_required: []
+  source_guide: docs/master_guides/turbo/master_turbo_guide.md §5.2
+Turbo_Wastegate_Stuck:
+  parent: Turbo_Fault
+  prior: 0.01
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_turbo
+  discriminator:
+  - SYM_DTC_BOOST
+  - SYM_HC_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/turbo/master_turbo_guide.md §5.3
+Turbo_Seal_Failure:
+  parent: Turbo_Fault
+  prior: 0.008
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_turbo
+  discriminator:
+  - SYM_HC_VERY_HIGH
+  - SYM_O2_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/turbo/master_turbo_guide.md §5.4
+Intercooler_Leak:
+  parent: Turbo_Fault
+  prior: 0.008
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_turbo
+  discriminator:
+  - SYM_LAMBDA_HIGH
+  - SYM_DTC_BOOST
+  dtc_required: []
+  source_guide: docs/master_guides/turbo/master_turbo_guide.md §5.5
+
+# --- ECU fault family ---
+
+ECU_Fault:
+  parent: null
+  prior: 0.01
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_ECU_INTERNAL
+  dtc_required: []
+  source_guide: docs/master_guides/ecu/master_ecu_guide.md §3.1
+ECU_Internal_Checksum_Error:
+  parent: ECU_Fault
+  prior: 0.008
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_ECU_INTERNAL
+  dtc_required: []
+  source_guide: docs/master_guides/ecu/master_ecu_guide.md §4.1
+ECU_Logic_Inversion:
+  parent: ECU_Fault
+  prior: 0.008
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_ECU_LOGIC_INVERSION
+  dtc_required: []
+  source_guide: docs/master_guides/ecu/master_ecu_guide.md §3.1
+ECU_Open_Loop_Fault:
+  parent: ECU_Fault
+  prior: 0.006
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_ECU_OPEN_LOOP_BLIND
+  dtc_required: []
+  source_guide: docs/master_guides/ecu/master_ecu_guide.md §3.2
+ECU_Misread_Lean_Confirmed:
+  parent: ECU_Fault
+  prior: 0.006
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_ECU_MISREAD_LEAN_CONFIRMED
+  dtc_required: []
+  source_guide: docs/master_guides/ecu/master_ecu_guide.md §3.3
+ECU_Injector_Driver_Stuck:
+  parent: ECU_Fault
+  prior: 0.005
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_ECU_INJECTOR_DRIVER_STUCK
+  dtc_required: []
+  source_guide: docs/master_guides/ecu/master_ecu_guide.md §3.4
+
+# --- Ignition timing fault family ---
+
+Ignition_Timing_Fault:
+  parent: null
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LATE_TIMING_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §7.1
+Cam_Timing_Retard_Late:
+  parent: Ignition_Timing_Fault
+  prior: 0.018
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LATE_TIMING_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §7.1
+Jumped_Timing_Belt:
+  parent: Ignition_Timing_Fault
+  prior: 0.01
+  era:
+  - 1990-1995
+  - 1996-2005
+  tech_required: []
+  discriminator:
+  - SYM_LATE_TIMING_PATTERN
+  - SYM_HC_VERY_HIGH
+  - SYM_O2_VERY_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §7.2
+Ignition_Base_Timing_Offset:
+  parent: Ignition_Timing_Fault
+  prior: 0.015
+  era:
+  - 1990-1995
+  - 1996-2005
+  tech_required: []
+  discriminator:
+  - SYM_FF_TIMING_RETARD_SEVERE
+  dtc_required: []
+  source_guide: docs/master_guides/ignition/master_ignition_guide.md §7.3
+
+# --- Head gasket fault family ---
+
+Head_Gasket_Failure:
+  parent: null
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_HEAD_GASKET_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §5.1
+Head_Gasket_Combustion_To_Coolant:
+  parent: Head_Gasket_Failure
+  prior: 0.015
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_HEAD_GASKET_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §5.1
+Head_Gasket_Cylinder_To_Cylinder:
+  parent: Head_Gasket_Failure
+  prior: 0.012
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_COMPRESSION_LOSS_PATTERN
+  - SYM_HEAD_GASKET_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/mechanical/master_mechanical_guide.md §5.2
+
+# --- Non-starter fault family ---
+
+Non_Starter_Fault:
+  parent: null
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_FF_OPEN_LOOP_AT_FAULT
+  dtc_required: []
+  source_guide: docs/master_guides/non_starter/master_non_starter_guide.md §4.1
+NS_CKP_Sensor_Failure:
+  parent: Non_Starter_Fault
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_SENSOR
+  dtc_required: []
+  source_guide: docs/master_guides/non_starter/master_non_starter_guide.md §5.1
+NS_Fuel_Pump_Failure:
+  parent: Non_Starter_Fault
+  prior: 0.015
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LAMBDA_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/non_starter/master_non_starter_guide.md §5.2
+NS_Immobilizer_Fault:
+  parent: Non_Starter_Fault
+  prior: 0.01
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_ECU_INTERNAL
+  dtc_required: []
+  source_guide: docs/master_guides/non_starter/master_non_starter_guide.md §5.3
+NS_Battery_Voltage_Low:
+  parent: Non_Starter_Fault
+  prior: 0.015
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_FF_OPEN_LOOP_AT_FAULT
+  dtc_required: []
+  source_guide: docs/master_guides/non_starter/master_non_starter_guide.md §5.4
+
+# --- Cold start fault family ---
+
+Cold_Start_Fault:
+  parent: null
+  prior: 0.015
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_CTX_COLD_ENGINE
+  dtc_required: []
+  source_guide: docs/master_guides/cold_start/master_cold_start_guide.md §4.1
+Cold_Start_Enrichment_Fault:
+  parent: Cold_Start_Fault
+  prior: 0.012
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_FF_ECT_WARMUP
+  dtc_required: []
+  source_guide: docs/master_guides/cold_start/master_cold_start_guide.md §5.1
+Cold_Start_IAC_Fault:
+  parent: Cold_Start_Fault
+  prior: 0.01
+  era:
+  - 1990-1995
+  - 1996-2005
+  tech_required: []
+  discriminator:
+  - SYM_FF_LOAD_HIGH_AT_LOW_RPM
+  - SYM_CTX_COLD_ENGINE
+  dtc_required: []
+  source_guide: docs/master_guides/cold_start/master_cold_start_guide.md §5.2
+
+# --- Emissions system fault family ---
+
+Emissions_System_Fault:
+  parent: null
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LAMBDA_HIGH
+  - SYM_DTC_EGR
+  dtc_required: []
+  source_guide: docs/master_guides/exhaust/master_exhaust_guide.md §6.1
+EVAP_System_Leak:
+  parent: Emissions_System_Fault
+  prior: 0.012
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LAMBDA_HIGH
+  - SYM_TRIM_POSITIVE_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §4.5
+SAI_System_Fault:
+  parent: Emissions_System_Fault
+  prior: 0.008
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required:
+  - has_secondary_air
+  discriminator:
+  - SYM_O2_VERY_HIGH
+  - SYM_LAMBDA_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/exhaust/master_exhaust_guide.md §5.1
+GPF_Regeneration_Fault:
+  parent: Emissions_System_Fault
+  prior: 0.005
+  era:
+  - 2016-2020
+  tech_required:
+  - has_gdi
+  discriminator:
+  - SYM_HC_HIGH
+  - SYM_LAMBDA_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/exhaust/master_exhaust_guide.md §6.2
+
+# --- Fuel system fault family ---
+
+Fuel_System_Fault:
+  parent: null
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_IDLE_STOICH_LOAD_LEAN
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §4.1
+Fuel_Pump_Relay_Fault:
+  parent: Fuel_System_Fault
+  prior: 0.015
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LAMBDA_HIGH
+  - SYM_IDLE_STOICH_LOAD_LEAN
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §6.5
+Fuel_Quality_Contaminated:
+  parent: Fuel_System_Fault
+  prior: 0.01
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_HC_HIGH
+  - SYM_CO_HIGH
+  - SYM_DTC_MISFIRE
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §7.1
+Fuel_Pressure_Damper_Fault:
+  parent: Fuel_System_Fault
+  prior: 0.008
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_TRIM_OSCILLATION
+  dtc_required: []
+  source_guide: docs/master_guides/fuel_system/master_fuel_system_guide.md §6.6
+
+# --- Air induction fault family ---
+
+Air_Induction_Fault:
+  parent: null
+  prior: 0.02
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_DTC_INDUCTION
+  dtc_required: []
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §4.1
+Air_Filter_Restricted:
+  parent: Air_Induction_Fault
+  prior: 0.015
+  era:
+  - 1990-1995
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_LAMBDA_LOW
+  - SYM_CO_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §5.2
+IAC_Valve_Fault:
+  parent: Air_Induction_Fault
+  prior: 0.012
+  era:
+  - 1990-1995
+  - 1996-2005
+  tech_required: []
+  discriminator:
+  - SYM_FF_LOAD_HIGH_AT_LOW_RPM
+  dtc_required: []
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §5.3
+Intake_Air_Temp_Sensor_Fault:
+  parent: Air_Induction_Fault
+  prior: 0.01
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_FF_IAT_ECT_BIASED
+  - SYM_DTC_SENSOR
+  dtc_required: []
+  source_guide: docs/master_guides/air_induction/master_air_induction_guide.md §6.4
+
+# --- Perception fault family ---
+
+Perception_Fault:
+  parent: null
+  prior: 0.02
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_GHOST_DTC_NO_EVIDENCE
+  dtc_required: []
+  source_guide: docs/master_guides/perception/master_perception_guide.md §3.1
+Perception_Lean_Seen_Rich:
+  parent: Perception_Fault
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_PERCEPTION_LEAN_SEEN_RICH
+  dtc_required: []
+  source_guide: docs/master_guides/perception/master_perception_guide.md §3.1
+Perception_Rich_Seen_Lean:
+  parent: Perception_Fault
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_PERCEPTION_RICH_SEEN_LEAN
+  dtc_required: []
+  source_guide: docs/master_guides/perception/master_perception_guide.md §3.2
+Perception_Ghost_DTC:
+  parent: Perception_Fault
+  prior: 0.012
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_GHOST_DTC_NO_EVIDENCE
+  dtc_required: []
+  source_guide: docs/master_guides/perception/master_perception_guide.md §4.1
+Perception_Clean_Gas_With_DTC:
+  parent: Perception_Fault
+  prior: 0.01
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_CLEAN_GAS_WITH_DTC
+  dtc_required: []
+  source_guide: docs/master_guides/perception/master_perception_guide.md §4.2
+
+# --- NOx fault family ---
+
+NOx_Fault:
+  parent: null
+  prior: 0.015
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_NOX_HIGH
+  dtc_required: []
+  source_guide: docs/master_guides/nox/master_nox_guide.md §4.1
+NOx_Carbon_Buildup:
+  parent: NOx_Fault
+  prior: 0.012
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_HIGH_IDLE_NOX_PATTERN
+  dtc_required: []
+  source_guide: docs/master_guides/nox/master_nox_guide.md §4.1
+NOx_Pre_Cat_Leak_Dilution:
+  parent: NOx_Fault
+  prior: 0.01
+  era:
+  - 1996-2005
+  - 2006-2015
+  - 2016-2020
+  tech_required: []
+  discriminator:
+  - SYM_NOX_LOW_WITH_LEAN
+  dtc_required: []
+  source_guide: docs/master_guides/nox/master_nox_guide.md §4.4
