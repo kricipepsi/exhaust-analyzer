@@ -1,0 +1,592 @@
+# V2 label_aliases.yaml — T-P1-6
+# Generated 2026-05-09 13:29
+# Maps V1 node IDs → V2 schema IDs (symptoms.yaml, faults.yaml, root_causes.yaml).
+# target: null means the node was intentionally removed with no replacement.
+# Closes L09: every removed/renamed node must have an alias entry.
+#
+# Sources:
+#   V1 nodes: schema/v1_reference/nodes.yaml (139 nodes)
+#   V2 symptoms: schema/v2/symptoms.yaml (89 entries)
+#   V2 faults: schema/v2/faults.yaml (116 entries)
+#   Forensic: 02_inputs/lessons/timing_compression_forensic.md (10 VVT/compression aliases)
+#   T-P0-5/T-P0-6: corpus case expected_fault references
+#
+# Total aliases: 144
+# Null-target (removed): 2
+# Active remaps: 142
+
+aftermarket_catalyst_inefficient:
+  target: Aftermarket_Catalyst_Inefficient
+  reason: "V1 fault ID case-normalized to V2 Aftermarket_Catalyst_Inefficient"
+
+bank2_lean:
+  target: SYM_BANK2_LEAN
+  reason: "V1 symptom ID migrated to V2 SYM_BANK2_LEAN"
+
+bank2_rich:
+  target: SYM_BANK2_RICH
+  reason: "V1 symptom ID migrated to V2 SYM_BANK2_RICH"
+
+Cam_Timing_Advance_VVT_Phaser_Stuck:
+  target: Cam_Timing_Retard_Late
+  reason: "V1 CSV case expected node; aliased to closest V2 fault"
+
+Cam_Timing_Retard:
+  target: Cam_Timing_Retard_Late
+  reason: "Renamed for specificity in V2 schema"
+
+Cam_Timing_Retard_VVT_Phaser_Lag:
+  target: Cam_Timing_Retard_Late
+  reason: "V1 CSV case expected node; aliased to closest V2 fault"
+
+catalyst_failure:
+  target: Catalyst_Failure
+  reason: "V1 fault ID case-normalized to V2 Catalyst_Failure"
+
+catalyst_masking:
+  target: SYM_CATALYST_MASKING
+  reason: "V1 symptom ID migrated to V2 SYM_CATALYST_MASKING"
+
+clean_gas:
+  target: null
+  reason: "V1 legacy tag; replaced by SYM_GASES_NORMAL + insufficient_evidence state"
+
+clean_gas_with_dtc:
+  target: SYM_CLEAN_GAS_WITH_DTC
+  reason: "V1 symptom ID migrated to V2 SYM_CLEAN_GAS_WITH_DTC"
+
+clogged_exhaust:
+  target: Clogged_Exhaust
+  reason: "V1 fault ID case-normalized to V2 Clogged_Exhaust"
+
+clogged_exhaust_rpm_pattern:
+  target: SYM_CLOGGED_EXHAUST_RPM_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_CLOGGED_EXHAUST_RPM_PATTERN"
+
+co2_good:
+  target: SYM_CO2_GOOD
+  reason: "V1 symptom ID migrated to V2 SYM_CO2_GOOD"
+
+co2_low:
+  target: SYM_CO2_LOW
+  reason: "V1 symptom ID migrated to V2 SYM_CO2_LOW"
+
+co_high:
+  target: SYM_CO_HIGH
+  reason: "V1 symptom ID migrated to V2 SYM_CO_HIGH"
+
+co_low_lean:
+  target: SYM_CO_LOW_LEAN
+  reason: "V1 symptom ID migrated to V2 SYM_CO_LOW_LEAN"
+
+compression_loss_pattern:
+  target: SYM_COMPRESSION_LOSS_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_COMPRESSION_LOSS_PATTERN"
+
+contaminated_maf:
+  target: Contaminated_MAF
+  reason: "V1 fault ID case-normalized to V2 Contaminated_MAF"
+
+ctx_cold_engine:
+  target: SYM_CTX_COLD_ENGINE
+  reason: "V1 symptom ID migrated to V2 SYM_CTX_COLD_ENGINE"
+
+dtc_boost:
+  target: SYM_DTC_BOOST
+  reason: "V1 symptom ID migrated to V2 SYM_DTC_BOOST"
+
+dtc_camshaft_timing:
+  target: SYM_DTC_CAMSHAFT_TIMING
+  reason: "V1 symptom ID migrated to V2 SYM_DTC_CAMSHAFT_TIMING"
+
+dtc_catalyst:
+  target: SYM_DTC_CATALYST
+  reason: "V1 symptom ID migrated to V2 SYM_DTC_CATALYST"
+
+dtc_ecu_internal:
+  target: SYM_DTC_ECU_INTERNAL
+  reason: "V1 symptom ID migrated to V2 SYM_DTC_ECU_INTERNAL"
+
+dtc_egr:
+  target: SYM_DTC_EGR
+  reason: "V1 symptom ID migrated to V2 SYM_DTC_EGR"
+
+dtc_ho2s_heater:
+  target: SYM_DTC_HO2S_HEATER
+  reason: "V1 symptom ID migrated to V2 SYM_DTC_HO2S_HEATER"
+
+dtc_induction:
+  target: SYM_DTC_INDUCTION
+  reason: "V1 symptom ID migrated to V2 SYM_DTC_INDUCTION"
+
+dtc_injector:
+  target: SYM_DTC_INJECTOR
+  reason: "V1 symptom ID migrated to V2 SYM_DTC_INJECTOR"
+
+dtc_knock_sensor:
+  target: SYM_DTC_KNOCK_SENSOR
+  reason: "V1 symptom ID migrated to V2 SYM_DTC_KNOCK_SENSOR"
+
+dtc_misfire:
+  target: SYM_DTC_MISFIRE
+  reason: "V1 symptom ID migrated to V2 SYM_DTC_MISFIRE"
+
+dtc_p0171:
+  target: SYM_DTC_P0171
+  reason: "V1 symptom ID migrated to V2 SYM_DTC_P0171"
+
+dtc_p0172:
+  target: SYM_DTC_P0172
+  reason: "V1 symptom ID migrated to V2 SYM_DTC_P0172"
+
+dtc_sensor:
+  target: SYM_DTC_SENSOR
+  reason: "V1 symptom ID migrated to V2 SYM_DTC_SENSOR"
+
+dual_clogged_exhaust_pattern:
+  target: SYM_DUAL_CLOGGED_EXHAUST_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_DUAL_CLOGGED_EXHAUST_PATTERN"
+
+dual_contaminated_maf_pattern:
+  target: SYM_DUAL_CONTAMINATED_MAF_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_DUAL_CONTAMINATED_MAF_PATTERN"
+
+dual_egr_recovery_pattern:
+  target: SYM_DUAL_EGR_RECOVERY_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_DUAL_EGR_RECOVERY_PATTERN"
+
+dual_intake_gasket_pattern:
+  target: SYM_DUAL_INTAKE_GASKET_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_DUAL_INTAKE_GASKET_PATTERN"
+
+dual_low_fuel_delivery_pattern:
+  target: SYM_DUAL_LOW_FUEL_DELIVERY_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_DUAL_LOW_FUEL_DELIVERY_PATTERN"
+
+ecu_fault:
+  target: ECU_Fault
+  reason: "V1 fault ID case-normalized to V2 ECU_Fault"
+
+ecu_injector_driver_stuck:
+  target: SYM_ECU_INJECTOR_DRIVER_STUCK
+  reason: "V1 symptom ID migrated to V2 SYM_ECU_INJECTOR_DRIVER_STUCK"
+
+ecu_logic_inversion:
+  target: SYM_ECU_LOGIC_INVERSION
+  reason: "V1 symptom ID migrated to V2 SYM_ECU_LOGIC_INVERSION"
+
+ecu_logic_inversion_fault:
+  target: ECU_Logic_Inversion
+  reason: "V1 ecu_logic_inversion_fault → V2 ECU_Logic_Inversion"
+
+ecu_misread_lean_confirmed:
+  target: SYM_ECU_MISREAD_LEAN_CONFIRMED
+  reason: "V1 symptom ID migrated to V2 SYM_ECU_MISREAD_LEAN_CONFIRMED"
+
+ecu_open_loop_blind:
+  target: SYM_ECU_OPEN_LOOP_BLIND
+  reason: "V1 symptom ID migrated to V2 SYM_ECU_OPEN_LOOP_BLIND"
+
+ecu_open_loop_fault:
+  target: ECU_Open_Loop_Fault
+  reason: "V1 fault ID case-normalized to V2 ECU_Open_Loop_Fault"
+
+egr_dilution_pattern:
+  target: SYM_EGR_DILUTION_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_EGR_DILUTION_PATTERN"
+
+egr_fault:
+  target: EGR_Fault
+  reason: "V1 fault ID case-normalized to V2 EGR_Fault"
+
+egr_stuck_open_idle:
+  target: EGR_Stuck_Open
+  reason: "V1 egr_stuck_open_idle merged into V2 EGR_Stuck_Open"
+
+evap_purge_stuck_open:
+  target: EVAP_Purge_Stuck_Open
+  reason: "V1 fault ID case-normalized to V2 EVAP_Purge_Stuck_Open"
+
+exhaust_leak:
+  target: Exhaust_Air_Leak_Pre_Cat
+  reason: "V1 exhaust_leak family → V2 specific child fault"
+
+exhaust_leak_ghost:
+  target: SYM_EXHAUST_LEAK_GHOST
+  reason: "V1 symptom ID migrated to V2 SYM_EXHAUST_LEAK_GHOST"
+
+ff_codes_cleared_invalidated:
+  target: SYM_FF_CODES_CLEARED_INVALIDATED
+  reason: "V1 symptom ID migrated to V2 SYM_FF_CODES_CLEARED_INVALIDATED"
+
+ff_ect_warmup:
+  target: SYM_FF_ECT_WARMUP
+  reason: "V1 symptom ID migrated to V2 SYM_FF_ECT_WARMUP"
+
+ff_iat_ect_biased:
+  target: SYM_FF_IAT_ECT_BIASED
+  reason: "V1 symptom ID migrated to V2 SYM_FF_IAT_ECT_BIASED"
+
+ff_load_high_at_low_rpm:
+  target: SYM_FF_LOAD_HIGH_AT_LOW_RPM
+  reason: "V1 symptom ID migrated to V2 SYM_FF_LOAD_HIGH_AT_LOW_RPM"
+
+ff_open_loop_at_fault:
+  target: SYM_FF_OPEN_LOOP_AT_FAULT
+  reason: "V1 symptom ID migrated to V2 SYM_FF_OPEN_LOOP_AT_FAULT"
+
+ff_timing_retard_severe:
+  target: SYM_FF_TIMING_RETARD_SEVERE
+  reason: "V1 symptom ID migrated to V2 SYM_FF_TIMING_RETARD_SEVERE"
+
+fuel_delivery:
+  target: Fuel_Delivery_Low
+  reason: "V1 fuel_delivery family → V2 Fuel_Delivery_Low"
+
+gases_normal:
+  target: SYM_GASES_NORMAL
+  reason: "V1 symptom ID migrated to V2 SYM_GASES_NORMAL"
+
+gdi_carbon_buildup:
+  target: GDI_Carbon_Buildup
+  reason: "V1 fault ID case-normalized to V2 GDI_Carbon_Buildup"
+
+gdi_hpfp_internal_leak:
+  target: GDI_HPFP_Internal_Leak
+  reason: "V1 fault ID case-normalized to V2 GDI_HPFP_Internal_Leak"
+
+gdi_lspi:
+  target: GDI_LSPI
+  reason: "V1 fault ID case-normalized to V2 GDI_LSPI"
+
+ghost_dtc_no_evidence:
+  target: SYM_GHOST_DTC_NO_EVIDENCE
+  reason: "V1 symptom ID migrated to V2 SYM_GHOST_DTC_NO_EVIDENCE"
+
+ghost_misfire:
+  target: SYM_GHOST_MISFIRE
+  reason: "V1 symptom ID migrated to V2 SYM_GHOST_MISFIRE"
+
+hc_high:
+  target: SYM_HC_HIGH
+  reason: "V1 symptom ID migrated to V2 SYM_HC_HIGH"
+
+hc_low:
+  target: SYM_HC_LOW
+  reason: "V1 symptom ID migrated to V2 SYM_HC_LOW"
+
+hc_very_high:
+  target: SYM_HC_VERY_HIGH
+  reason: "V1 symptom ID migrated to V2 SYM_HC_VERY_HIGH"
+
+head_gasket:
+  target: Head_Gasket_Failure
+  reason: "V1 head_gasket family → V2 Head_Gasket_Failure"
+
+head_gasket_failure_combustion_to_coolant:
+  target: Head_Gasket_Combustion_To_Coolant
+  reason: "V1 full name → V2 Head_Gasket_Combustion_To_Coolant"
+
+head_gasket_failure_cyl_to_cyl:
+  target: Head_Gasket_Cylinder_To_Cylinder
+  reason: "V1 full name → V2 Head_Gasket_Cylinder_To_Cylinder"
+
+head_gasket_pattern:
+  target: SYM_HEAD_GASKET_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_HEAD_GASKET_PATTERN"
+
+Healthy_Engine:
+  target: null
+  reason: "L19: no pseudo-fault; engine returns insufficient_evidence instead"
+
+high_fuel_pressure:
+  target: High_Fuel_Pressure
+  reason: "V1 fault ID case-normalized to V2 High_Fuel_Pressure"
+
+high_fuel_pressure_pattern:
+  target: SYM_HIGH_FUEL_PRESSURE_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_HIGH_FUEL_PRESSURE_PATTERN"
+
+high_idle_nox_pattern:
+  target: SYM_HIGH_IDLE_NOX_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_HIGH_IDLE_NOX_PATTERN"
+
+idle_lean_load_corrects:
+  target: SYM_IDLE_LEAN_LOAD_CORRECTS
+  reason: "V1 symptom ID migrated to V2 SYM_IDLE_LEAN_LOAD_CORRECTS"
+
+idle_stoich_load_lean:
+  target: SYM_IDLE_STOICH_LOAD_LEAN
+  reason: "V1 symptom ID migrated to V2 SYM_IDLE_STOICH_LOAD_LEAN"
+
+ignition_misfire_confirmed:
+  target: SYM_IGNITION_MISFIRE_CONFIRMED
+  reason: "V1 symptom ID migrated to V2 SYM_IGNITION_MISFIRE_CONFIRMED"
+
+individual_cylinder_misfire_pattern:
+  target: SYM_INDIVIDUAL_CYLINDER_MISFIRE_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_INDIVIDUAL_CYLINDER_MISFIRE_PATTERN"
+
+induction_issue:
+  target: Induction_Airflow_Fault
+  reason: "V1 induction_issue → V2 Induction_Airflow_Fault family"
+
+intake_gasket_leak:
+  target: Intake_Gasket_Leak
+  reason: "V1 fault ID case-normalized to V2 Intake_Gasket_Leak"
+
+lambda_high:
+  target: SYM_LAMBDA_HIGH
+  reason: "V1 symptom ID migrated to V2 SYM_LAMBDA_HIGH"
+
+lambda_low:
+  target: SYM_LAMBDA_LOW
+  reason: "V1 symptom ID migrated to V2 SYM_LAMBDA_LOW"
+
+lambda_normal:
+  target: SYM_LAMBDA_NORMAL
+  reason: "V1 symptom ID migrated to V2 SYM_LAMBDA_NORMAL"
+
+late_ignition_timing:
+  target: Ignition_Timing_Fault
+  reason: "V1 late_ignition_timing → V2 Ignition_Timing_Fault family"
+
+late_timing_pattern:
+  target: SYM_LATE_TIMING_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_LATE_TIMING_PATTERN"
+
+Lazy_O2_Sensor_Aging:
+  target: Lazy_O2_Sensor
+  reason: "V1 Lazy_O2_Sensor_Aging renamed to V2 Lazy_O2_Sensor"
+
+leaking_injector:
+  target: Leaking_Injector
+  reason: "V1 fault ID case-normalized to V2 Leaking_Injector"
+
+leaking_injector_pattern:
+  target: SYM_LEAKING_INJECTOR_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_LEAKING_INJECTOR_PATTERN"
+
+lean_condition:
+  target: Lean_Condition
+  reason: "V1 fault ID case-normalized to V2 Lean_Condition"
+
+lean_misfire_pattern:
+  target: SYM_LEAN_MISFIRE_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_LEAN_MISFIRE_PATTERN"
+
+Low_Compression_Multi_Cylinder:
+  target: Worn_Piston_Rings
+  reason: "T15d schema collapse removed node; aliased to closest V2 fault"
+
+low_fuel_delivery:
+  target: Fuel_Delivery_Low
+  reason: "V1 low_fuel_delivery merged into V2 Fuel_Delivery_Low"
+
+Mechanical_Lean_Vacuum_Leak:
+  target: Vacuum_Leak_Intake
+  reason: "V1 Mechanical_Lean_Vacuum_Leak renamed to V2 Vacuum_Leak_Intake"
+
+Mechanical_Misfire_Spark_Plug:
+  target: Spark_Plug_Worn
+  reason: "V1 Mechanical_Misfire_Spark_Plug renamed to V2 Spark_Plug_Worn"
+
+mechanical_wear:
+  target: Mechanical_Fault
+  reason: "V1 mechanical_wear → V2 Mechanical_Fault family"
+
+Mechanical_Wear_Low_Compression_Multi_Cylinder_FF_HighLoad:
+  target: Worn_Piston_Rings
+  reason: "V1 CSV annotation; aliased to closest V2 fault"
+
+Mechanical_Wear_Worn_Piston_Rings_FF_Idle:
+  target: Worn_Piston_Rings
+  reason: "V1 CSV annotation; aliased to closest V2 fault"
+
+misfire:
+  target: Misfire
+  reason: "V1 snake_case fault ID migrated to V2 Misfire"
+
+misfire_single_cylinder:
+  target: Misfire_Single_Cylinder
+  reason: "V1 fault ID case-normalized to V2 Misfire_Single_Cylinder"
+
+nox_high:
+  target: SYM_NOX_HIGH
+  reason: "V1 symptom ID migrated to V2 SYM_NOX_HIGH"
+
+nox_high_idle:
+  target: SYM_NOX_HIGH_IDLE
+  reason: "V1 symptom ID migrated to V2 SYM_NOX_HIGH_IDLE"
+
+nox_high_load:
+  target: SYM_NOX_HIGH_LOAD
+  reason: "V1 symptom ID migrated to V2 SYM_NOX_HIGH_LOAD"
+
+nox_low:
+  target: SYM_NOX_LOW
+  reason: "V1 symptom ID migrated to V2 SYM_NOX_LOW"
+
+nox_low_with_lean:
+  target: SYM_NOX_LOW_WITH_LEAN
+  reason: "V1 symptom ID migrated to V2 SYM_NOX_LOW_WITH_LEAN"
+
+ns_ckp_failure:
+  target: NS_CKP_Sensor_Failure
+  reason: "V1 ns_ckp_failure → V2 NS_CKP_Sensor_Failure"
+
+o2_downstream_active:
+  target: SYM_O2_DOWNSTREAM_ACTIVE
+  reason: "V1 symptom ID migrated to V2 SYM_O2_DOWNSTREAM_ACTIVE"
+
+o2_downstream_steady:
+  target: SYM_O2_DOWNSTREAM_STEADY
+  reason: "V1 symptom ID migrated to V2 SYM_O2_DOWNSTREAM_STEADY"
+
+o2_high:
+  target: SYM_O2_HIGH
+  reason: "V1 symptom ID migrated to V2 SYM_O2_HIGH"
+
+o2_low:
+  target: SYM_O2_LOW
+  reason: "V1 symptom ID migrated to V2 SYM_O2_LOW"
+
+o2_upstream_lazy:
+  target: SYM_O2_UPSTREAM_LAZY
+  reason: "V1 symptom ID migrated to V2 SYM_O2_UPSTREAM_LAZY"
+
+o2_very_high:
+  target: SYM_O2_VERY_HIGH
+  reason: "V1 symptom ID migrated to V2 SYM_O2_VERY_HIGH"
+
+pcv_leak_pattern:
+  target: SYM_PCV_LEAK_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_PCV_LEAK_PATTERN"
+
+perception_lean_seen_rich:
+  target: SYM_PERCEPTION_LEAN_SEEN_RICH
+  reason: "V1 symptom ID migrated to V2 SYM_PERCEPTION_LEAN_SEEN_RICH"
+
+perception_rich_seen_lean:
+  target: SYM_PERCEPTION_RICH_SEEN_LEAN
+  reason: "V1 symptom ID migrated to V2 SYM_PERCEPTION_RICH_SEEN_LEAN"
+
+rich_misfire_pattern:
+  target: SYM_RICH_MISFIRE_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_RICH_MISFIRE_PATTERN"
+
+rich_mixture:
+  target: Rich_Mixture
+  reason: "V1 fault ID case-normalized to V2 Rich_Mixture"
+
+rich_negative_trims_pattern:
+  target: SYM_RICH_NEGATIVE_TRIMS_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_RICH_NEGATIVE_TRIMS_PATTERN"
+
+sai_valve_stuck_open:
+  target: SAI_Valve_Stuck_Open
+  reason: "V1 fault ID case-normalized to V2 SAI_Valve_Stuck_Open"
+
+sensor_bias_false_rich:
+  target: SYM_SENSOR_BIAS_FALSE_RICH
+  reason: "V1 symptom ID migrated to V2 SYM_SENSOR_BIAS_FALSE_RICH"
+
+sensor_bias_lean:
+  target: SYM_SENSOR_BIAS_LEAN
+  reason: "V1 symptom ID migrated to V2 SYM_SENSOR_BIAS_LEAN"
+
+sensor_bias_rich:
+  target: SYM_SENSOR_BIAS_RICH
+  reason: "V1 symptom ID migrated to V2 SYM_SENSOR_BIAS_RICH"
+
+sensor_fault:
+  target: Sensor_Fault
+  reason: "V1 fault ID case-normalized to V2 Sensor_Fault"
+
+stuck_egr_open:
+  target: EGR_Stuck_Open
+  reason: "V1 stuck_egr_open → V2 EGR_Stuck_Open"
+
+stuck_egr_open_confirmed:
+  target: EGR_Stuck_Open_Confirmed
+  reason: "V1 stuck_egr_open_confirmed → V2 EGR_Stuck_Open_Confirmed"
+
+stuck_egr_open_pattern:
+  target: SYM_STUCK_EGR_OPEN_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_STUCK_EGR_OPEN_PATTERN"
+
+tired_catalyst_pattern:
+  target: SYM_TIRED_CATALYST_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_TIRED_CATALYST_PATTERN"
+
+trim_global_both_banks:
+  target: SYM_TRIM_GLOBAL_BOTH_BANKS
+  reason: "V1 symptom ID migrated to V2 SYM_TRIM_GLOBAL_BOTH_BANKS"
+
+trim_local_one_bank:
+  target: SYM_TRIM_LOCAL_ONE_BANK
+  reason: "V1 symptom ID migrated to V2 SYM_TRIM_LOCAL_ONE_BANK"
+
+trim_negative_high:
+  target: SYM_TRIM_NEGATIVE_HIGH
+  reason: "V1 symptom ID migrated to V2 SYM_TRIM_NEGATIVE_HIGH"
+
+trim_oscillation:
+  target: SYM_TRIM_OSCILLATION
+  reason: "V1 symptom ID migrated to V2 SYM_TRIM_OSCILLATION"
+
+trim_positive_high:
+  target: SYM_TRIM_POSITIVE_HIGH
+  reason: "V1 symptom ID migrated to V2 SYM_TRIM_POSITIVE_HIGH"
+
+trim_sum_negative_high:
+  target: SYM_TRIM_SUM_NEGATIVE_HIGH
+  reason: "V1 symptom ID migrated to V2 SYM_TRIM_SUM_NEGATIVE_HIGH"
+
+trim_sum_positive_high:
+  target: SYM_TRIM_SUM_POSITIVE_HIGH
+  reason: "V1 symptom ID migrated to V2 SYM_TRIM_SUM_POSITIVE_HIGH"
+
+turbo_fault:
+  target: Turbo_Fault
+  reason: "V1 fault ID case-normalized to V2 Turbo_Fault"
+
+vacuum_leak:
+  target: Vacuum_Leak_Intake
+  reason: "V1 vacuum_leak merged into V2 Vacuum_Leak_Intake"
+
+valve_seal_pattern:
+  target: SYM_VALVE_SEAL_PATTERN
+  reason: "V1 symptom ID migrated to V2 SYM_VALVE_SEAL_PATTERN"
+
+valve_seal_wear:
+  target: Valve_Seal_Wear
+  reason: "V1 fault ID case-normalized to V2 Valve_Seal_Wear"
+
+valve_timing_mechanical:
+  target: Valve_Timing_Mechanical
+  reason: "V1 fault ID case-normalized to V2 Valve_Timing_Mechanical"
+
+vvt_fault:
+  target: Cam_Timing_Retard_Late
+  reason: "V1 CSV case expected node; aliased to closest V2 fault"
+
+vvt_phaser_fault:
+  target: VVT_Phaser_Fault
+  reason: "V1 fault ID case-normalized to V2 VVT_Phaser_Fault"
+
+VVT_Phaser_Lag_HC_Rises_Under_Load:
+  target: Cam_Timing_Retard_Late
+  reason: "V1 CSV case expected node; aliased to closest V2 fault"
+
+VVT_Phaser_Sludge_Lag:
+  target: Cam_Timing_Retard_Late
+  reason: "V1 CSV case expected node; aliased to closest V2 fault"
+
+VVT_Solenoid_Resistance_Drift:
+  target: Cam_Timing_Retard_Late
+  reason: "V1 CSV case expected node; aliased to closest V2 fault"
+
+Worn_Piston_Rings_Valve_Seals:
+  target: Worn_Piston_Rings
+  reason: "V1 Worn_Piston_Rings_Valve_Seals renamed to V2 Worn_Piston_Rings"
