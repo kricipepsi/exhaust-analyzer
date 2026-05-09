@@ -1017,6 +1017,7 @@ Intercooler_Leak:
   discriminator:
   - SYM_LAMBDA_HIGH
   - SYM_DTC_BOOST
+  - SYM_O2_HIGH
   dtc_required: []
   source_guide: docs/master_guides/turbo/master_turbo_guide.md §5.5
 
