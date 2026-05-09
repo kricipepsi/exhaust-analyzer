@@ -15,7 +15,14 @@ from engine.v2.dna_core import (
     ERA_PRE_OBDII,
     DNAOutput,
 )
-from engine.v2.kg_engine import _has_hard_veto, _tech_vetoed, combine_cf, score_faults
+from engine.v2.kg_engine import (
+    ROOT_CAUSE_PARENT_THRESHOLD,
+    _has_hard_veto,
+    _tech_vetoed,
+    combine_cf,
+    score_faults,
+    score_root_causes,
+)
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 
@@ -404,3 +411,146 @@ def test_score_faults_never_calls_resolve_conflicts() -> None:
                     raise AssertionError(
                         f"M4 must not import resolve_conflicts: {ast.unparse(node)}"
                     )
+
+
+# ── score_root_causes — parent ≥ 0.80 gate ────────────────────────────────────
+
+
+def test_root_cause_parent_below_threshold_excluded() -> None:
+    """Root cause whose parent fault scores < 0.80 must be excluded."""
+    raw_probs = {"Rich_Fault": 0.75}
+    root_causes = {
+        "RC_FPR_Leak": {
+            "applies_to_fault": "Rich_Fault",
+            "prompt": "Check FPR vacuum line.",
+        },
+    }
+    result = score_root_causes(raw_probs, root_causes)
+    assert "RC_FPR_Leak" not in result
+
+
+def test_root_cause_parent_at_threshold_included() -> None:
+    """Root cause whose parent fault scores exactly 0.80 must be included."""
+    raw_probs = {"Rich_Fault": 0.80}
+    root_causes = {
+        "RC_FPR_Leak": {
+            "applies_to_fault": "Rich_Fault",
+            "prompt": "Check FPR vacuum line.",
+        },
+    }
+    result = score_root_causes(raw_probs, root_causes)
+    assert "RC_FPR_Leak" in result
+    assert result["RC_FPR_Leak"]["parent_score"] == 0.80
+
+
+def test_root_cause_parent_above_threshold_included() -> None:
+    """Root cause whose parent fault scores > 0.80 must be included."""
+    raw_probs = {"Rich_Fault": 0.85}
+    root_causes = {
+        "RC_FPR_Leak": {
+            "applies_to_fault": "Rich_Fault",
+            "prompt": "Check FPR vacuum line.",
+        },
+    }
+    result = score_root_causes(raw_probs, root_causes)
+    assert "RC_FPR_Leak" in result
+    assert result["RC_FPR_Leak"]["parent_score"] == 0.85
+
+
+def test_root_cause_parent_not_in_raw_probs_excluded() -> None:
+    """Root cause whose parent fault is missing from raw_probs is excluded."""
+    raw_probs: dict[str, float] = {}
+    root_causes = {
+        "RC_FPR_Leak": {
+            "applies_to_fault": "Rich_Fault",
+            "prompt": "Check FPR vacuum line.",
+        },
+    }
+    result = score_root_causes(raw_probs, root_causes)
+    assert "RC_FPR_Leak" not in result
+
+
+def test_multiple_root_causes_same_parent() -> None:
+    """Multiple root causes linked to the same qualifying parent all pass."""
+    raw_probs = {"EVAP_Stuck": 0.90}
+    root_causes = {
+        "RC_Solenoid": {
+            "applies_to_fault": "EVAP_Stuck",
+            "prompt": "Disconnect purge line.",
+        },
+        "RC_Canister": {
+            "applies_to_fault": "EVAP_Stuck",
+            "prompt": "Weigh canister vs new-spec.",
+        },
+    }
+    result = score_root_causes(raw_probs, root_causes)
+    assert "RC_Solenoid" in result
+    assert "RC_Canister" in result
+
+
+def test_mixed_qualifying_and_excluded_root_causes() -> None:
+    """Only root causes with qualifying parents pass."""
+    raw_probs = {"Rich_Fault": 0.85, "Lean_Fault": 0.45}
+    root_causes = {
+        "RC_Rich": {
+            "applies_to_fault": "Rich_Fault",
+            "prompt": "Check fuel pressure.",
+        },
+        "RC_Lean": {
+            "applies_to_fault": "Lean_Fault",
+            "prompt": "Check vacuum lines.",
+        },
+    }
+    result = score_root_causes(raw_probs, root_causes)
+    assert "RC_Rich" in result
+    assert "RC_Lean" not in result
+
+
+def test_root_cause_missing_applies_to_fault_skipped() -> None:
+    """Root cause without applies_to_fault field is silently skipped."""
+    raw_probs = {"Rich_Fault": 0.90}
+    root_causes = {
+        "RC_Orphan": {
+            "prompt": "No parent fault specified.",
+        },
+    }
+    result = score_root_causes(raw_probs, root_causes)
+    assert "RC_Orphan" not in result
+
+
+def test_root_cause_preserves_original_fields() -> None:
+    """Qualified root cause dict includes all original fields plus parent_score."""
+    raw_probs = {"Rich_Fault": 0.88}
+    root_causes = {
+        "RC_FPR_Leak": {
+            "applies_to_fault": "Rich_Fault",
+            "prompt": "Check FPR vacuum line.",
+            "source_guide": "docs/master_guides/fuel_system/guide.md §4.1",
+        },
+    }
+    result = score_root_causes(raw_probs, root_causes)
+    entry = result["RC_FPR_Leak"]
+    assert entry["applies_to_fault"] == "Rich_Fault"
+    assert entry["prompt"] == "Check FPR vacuum line."
+    assert entry["source_guide"] == "docs/master_guides/fuel_system/guide.md §4.1"
+    assert entry["parent_score"] == 0.88
+
+
+def test_score_root_causes_does_not_mutate_input() -> None:
+    """score_root_causes must not mutate the root_causes argument."""
+    raw_probs = {"Rich_Fault": 0.90}
+    root_causes = {
+        "RC_FPR_Leak": {
+            "applies_to_fault": "Rich_Fault",
+            "prompt": "Check FPR vacuum line.",
+        },
+    }
+    original = dict(root_causes["RC_FPR_Leak"])
+    score_root_causes(raw_probs, root_causes)
+    assert root_causes["RC_FPR_Leak"] == original
+    assert "parent_score" not in root_causes["RC_FPR_Leak"]
+
+
+def test_root_cause_parent_threshold_constant() -> None:
+    """Threshold constant must be exactly 0.80 per v2-cf-inference §5."""
+    assert ROOT_CAUSE_PARENT_THRESHOLD == 0.80

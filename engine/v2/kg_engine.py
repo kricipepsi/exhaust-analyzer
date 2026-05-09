@@ -156,6 +156,44 @@ def score_faults(
     return raw_probs
 
 
+# ── root-cause scoring gate ─────────────────────────────────────────────────────
+# source: v2-cf-inference §5 — parent fault score ≥ 0.80 required for root causes
+
+ROOT_CAUSE_PARENT_THRESHOLD: float = 0.80
+"""Parent fault raw_score must reach this threshold for its root causes to be
+included in M5 input.  source: v2-cf-inference §5, v2-design-rules R2."""
+
+
+def score_root_causes(
+    raw_probs: dict[str, float],
+    root_causes: dict,
+) -> dict[str, dict]:
+    """Filter root causes whose parent fault meets the 0.80 raw_score gate.
+
+    R2: root-cause scoring gate — edges from faults to root_causes fire only
+    when the parent fault's score ≥ ROOT_CAUSE_PARENT_THRESHOLD in raw_probs.
+    Root causes below the gate are excluded from M5 input.
+
+    Args:
+        raw_probs: fault_id → raw_score from score_faults().
+        root_causes: parsed root_causes.yaml (rc_id → {applies_to_fault, …}).
+
+    Returns:
+        Qualified root causes: rc_id → {**root_cause_def, parent_score: float}.
+    """
+    qualified: dict[str, dict] = {}
+    for rc_id, rc_def in root_causes.items():
+        parent = rc_def.get("applies_to_fault")
+        if parent is None:
+            continue
+        parent_score = raw_probs.get(parent, 0.0)
+        if parent_score >= ROOT_CAUSE_PARENT_THRESHOLD:
+            entry = dict(rc_def)
+            entry["parent_score"] = parent_score
+            qualified[rc_id] = entry
+    return qualified
+
+
 # ── veto helpers ──────────────────────────────────────────────────────────────
 
 
