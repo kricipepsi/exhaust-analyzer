@@ -14,6 +14,7 @@ import re
 from engine.v2.input_model import (
     DiagnosticInput,
     ValidatedInput,
+    ValidationWarning,
 )
 
 # ── category 1: physical range table ──────────────────────────────────────
@@ -57,6 +58,11 @@ _PROBE_AIR_O2_PCT = 18.0
 # source: v2-validation-layer §3 category 7
 _DELTA_ECT_MAX = 100.0
 
+# ── category 6: combined-mode thresholds ────────────────────────────────────
+# source: v2-validation-layer §3 category 6
+_TRIM_CONTRADICTION_PCT = 15.0
+_LOW_FUEL_PRESSURE_KPA = 250.0
+
 
 def _in_range(value: float, bounds: tuple[float, float]) -> bool:
     """Check value against [min, max] inclusive."""
@@ -80,10 +86,15 @@ def _accept_channel(vi: ValidatedInput, channel: str) -> None:
 
 # ── public entry point ────────────────────────────────────────────────────
 
-def validate(diagnostic_input: DiagnosticInput) -> ValidatedInput:
-    """Run VL categories 1–5, 7–8, 9–11 and return ValidatedInput.
+def validate(
+    diagnostic_input: DiagnosticInput, soft_mode: bool = True
+) -> ValidatedInput:
+    """Run all 11 VL categories and return ValidatedInput.
 
-    Categories 6 and 8b (soft-mode warnings) are handled in T-P2-3.
+    Categories 1–8 (hard rejection + soft warnings), 9–11 (path routing).
+    Categories 6 and 8b emit ValidationWarning only — they never reject
+    a channel.  Gated by soft_mode flag (default True).
+
     Category order follows the canonical list in v2-validation-layer §3.
     """
     vi = ValidatedInput(raw=diagnostic_input)
@@ -95,6 +106,9 @@ def validate(diagnostic_input: DiagnosticInput) -> ValidatedInput:
     _cat5_dtc_era(vi)
     _cat7_delta(vi)
     _cat8_consistency(vi)
+    if soft_mode:
+        _cat6_combined_mode(vi)
+        _cat8b_consistency_soft(vi)
     _cat9_thermal_gate(vi)
     _cat10_open_loop(vi)
     _cat11_probe_count(vi)
@@ -362,7 +376,97 @@ def _cat8_consistency(vi: ValidatedInput) -> None:
     pass
 
 
-# ── category 9: thermal gate ──────────────────────────────────────────────
+# ── category 6: combined-mode (soft warning) ───────────────────────────────
+
+def _cat6_combined_mode(vi: ValidatedInput) -> None:
+    """Emit ValidationWarning for contradictory combined OBD signals.
+
+    Never rejects a channel — this is a soft-mode warning only (Q4 / v2.0).
+    Checks:
+      a) Strong negative fuel trims (< -15%) AND low fuel pressure (< 250 kPa).
+         ECU is pulling fuel (sees rich) but low fuel pressure should cause
+         a lean condition — these signals contradict.
+      b) Strong positive fuel trims (> +15%) AND high O2 voltage (> 0.8 V,
+         B1S1).  ECU is adding fuel (sees lean) but the O2 sensor reports
+         a rich signal — these signals contradict.
+    """
+    raw = vi.raw
+    if raw.obd is None:
+        return
+
+    o = raw.obd
+
+    # check (a): negative trims + low fuel pressure
+    neg_trim = (o.stft_b1 is not None and o.stft_b1 < -_TRIM_CONTRADICTION_PCT) or (
+        o.ltft_b1 is not None and o.ltft_b1 < -_TRIM_CONTRADICTION_PCT
+    )
+    low_fp = (
+        o.fuel_pressure_kpa is not None
+        and o.fuel_pressure_kpa < _LOW_FUEL_PRESSURE_KPA
+    )
+    if neg_trim and low_fp:
+        vi.warnings.append(
+            ValidationWarning(
+                category=6,
+                message=(
+                    f"contradiction: strong negative fuel trim "
+                    f"(STFT={o.stft_b1}, LTFT={o.ltft_b1}) + low fuel pressure "
+                    f"({o.fuel_pressure_kpa} kPa)"
+                ),
+                channel="obd",
+            )
+        )
+
+    # check (b): positive trims + high O2 voltage (rich signal)
+    pos_trim = (o.stft_b1 is not None and o.stft_b1 > _TRIM_CONTRADICTION_PCT) or (
+        o.ltft_b1 is not None and o.ltft_b1 > _TRIM_CONTRADICTION_PCT
+    )
+    rich_o2 = (
+        o.o2_voltage_b1 is not None and o.o2_voltage_b1 > 0.8
+    )
+    if pos_trim and rich_o2:
+        vi.warnings.append(
+            ValidationWarning(
+                category=6,
+                message=(
+                    f"contradiction: strong positive fuel trim "
+                    f"(STFT={o.stft_b1}, LTFT={o.ltft_b1}) + high O2 voltage "
+                    f"({o.o2_voltage_b1} V — rich signal)"
+                ),
+                channel="obd",
+            )
+        )
+
+
+# ── category 8b: consistency soft (warning) ────────────────────────────────
+
+def _cat8b_consistency_soft(vi: ValidatedInput) -> None:
+    """Emit ValidationWarning for soft consistency concerns.
+
+    Never rejects a channel — this is a soft-mode warning only.
+    Checks:
+      a) VVT angle PID present in OBD data → flag for manual verification.
+         VL cannot access vref.db tech-mask flags (M0's domain), so this
+         warns on VVT angle presence regardless of has_vvt status.
+         A future enhancement could accept an optional tech_context to
+         make this check precise (warn only when has_vvt=False).
+    """
+    raw = vi.raw
+    if raw.obd is None:
+        return
+
+    o = raw.obd
+    if o.vvt_angle is not None:
+        vi.warnings.append(
+            ValidationWarning(
+                category=8,
+                message=(
+                    f"VVT angle PID present ({o.vvt_angle}°) — "
+                    f"verify VVT capability matches vehicle spec"
+                ),
+                channel="obd",
+            )
+        )
 
 def _cat9_thermal_gate(vi: ValidatedInput) -> None:
     """Set restricted_cold_start flag when ECT < 75°C.
