@@ -330,6 +330,26 @@ SYM_TRIM_OSCILLATION:
   source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §5.1"
   emitted_by: "M3"
 
+SYM_TRIM_LEAN_IDLE_ONLY:
+  description: "Total trim (STFT+LTFT) ≥ +8% at idle that returns toward 0% at cruise — vacuum leak or IAC fault, not fuel delivery"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §5.3"
+  emitted_by: "M3"
+
+SYM_TRIM_LEAN_LOAD_BIAS:
+  description: "Total trim (STFT+LTFT) ≥ +8% at idle and stays ≥ +8% or increases at cruise — fuel delivery issue (pump/filter), not vacuum leak"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §5.3"
+  emitted_by: "M3"
+
+SYM_TRIM_RICH_STATIC:
+  description: "Total trim (STFT+LTFT) ≤ −8% at both idle and cruise — high fuel pressure or injector drip, not EVAP"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §5.3"
+  emitted_by: "M3"
+
+SYM_TRIM_RICH_IDLE_ONLY:
+  description: "Total trim (STFT+LTFT) ≤ −8% at idle that returns toward 0% at cruise — EVAP purge stuck open, not fuel pressure"
+  source_guide: "docs/master_guides/fuel_trim/master_fuel_trim_guide.md §5.3"
+  emitted_by: "M3"
+
 SYM_HIGH_FUEL_PRESSURE_PATTERN:
   description: "CO >2% + O2 <0.5% + LTFT <−15% + Lambda <0.95 — fuel rail overpressure affecting all cylinders"
   source_guide: "docs/master_guides/fuel_system/master_fuel_system_guide.md §4.1"
