@@ -80,6 +80,11 @@ SYM_LAMBDA_NORMAL:
   source_guide: "docs/master_guides/gases/master_gas_guide.md §3.1"
   emitted_by: "M2"
 
+SYM_BASELINE_DEVIATION:
+  description: "Measured lambda at high-idle deviates from target lambda by more than 0.02 — potential sensor bias, fuel delivery, or vref mismatch"
+  source_guide: "docs/master_guides/gases/master_gas_guide.md §3.1"
+  emitted_by: "M2"
+
 # ── OBD DTC symptoms (M1: digital_parser.py) ──
 
 SYM_DTC_P0171:

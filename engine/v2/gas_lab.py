@@ -128,9 +128,12 @@ def analyse_gas(
     dual_state_tag = _compute_dual_state_delta(gas_idle, gas_high)
 
     # ── baseline deviation ───────────────────────────────────────────────
+    # source: v2-gas-chemistry §2 — |analyser_lambda_high − target_lambda| > 0.02
     baseline_deviation_high: float | None = None
     if analyser_lambda_high is not None:
         baseline_deviation_high = abs(analyser_lambda_high - dna_output.target_lambda_v112)
+        if baseline_deviation_high > _BASELINE_DEVIATION_THRESHOLD:
+            symptoms_high.append("SYM_BASELINE_DEVIATION")
 
     return GasLabOutput(
         symptoms_idle=symptoms_idle,
