@@ -1,0 +1,1152 @@
+# V2 Edges — Tier 1→Tier 2 symptom-to-fault weighted edges (R2, R5)
+# Migrated from schema/v1_reference/edges.yaml — T-P1-4
+# Weights normalized to [-1.0, +1.0] by dividing V1 weight by 3.0.
+# 359 edges migrated, 7 edges removed.
+#
+# Magnet edge rule (R7/L07): no weight > 0.30 without discriminator_gate.
+# Pattern-symptom edges (>0.30) self-gate via discriminator_gate: [<src>].
+# Non-pattern edges > 0.30 capped at 0.30 (original weight noted).
+#
+# Removed edges:
+#   ff_open_loop_at_fault → o2_upstream_lazy (w=0.9, inhibitory): V1 target 'o2_upstream_lazy' has no V2 fault mapping
+#   ff_codes_cleared_invalidated → trim_positive_high (w=0.95, inhibitory): V1 target 'trim_positive_high' has no V2 fault mapping
+#   ff_codes_cleared_invalidated → trim_negative_high (w=0.95, inhibitory): V1 target 'trim_negative_high' has no V2 fault mapping
+#   trim_local_one_bank → bank2_lean (w=0.65, excitatory): V1 target 'bank2_lean' has no V2 fault mapping
+#   trim_local_one_bank → bank2_rich (w=0.65, excitatory): V1 target 'bank2_rich' has no V2 fault mapping
+#   ff_open_loop_at_fault → sensor_bias_lean (w=0.5, inhibitory): V1 target 'sensor_bias_lean' has no V2 fault mapping
+#   ff_open_loop_at_fault → sensor_bias_rich (w=0.5, inhibitory): V1 target 'sensor_bias_rich' has no V2 fault mapping
+
+edges:
+  - source: SYM_CO_HIGH
+    target: Aftermarket_Catalyst_Inefficient
+    weight: 0.1
+  - source: SYM_DTC_CATALYST
+    target: Aftermarket_Catalyst_Inefficient
+    weight: 0.3
+    # v1_original_weight: 0.32
+  - source: SYM_O2_DOWNSTREAM_ACTIVE
+    target: Aftermarket_Catalyst_Inefficient
+    weight: 0.17
+  - source: SYM_TIRED_CATALYST_PATTERN
+    target: Aftermarket_Catalyst_Inefficient
+    weight: 0.4
+    discriminator_gate: ['SYM_TIRED_CATALYST_PATTERN']
+  - source: SYM_CO2_LOW
+    target: Air_Induction_Fault
+    weight: 0.13
+  - source: SYM_CO_HIGH
+    target: Air_Induction_Fault
+    weight: 0.1
+  - source: SYM_DTC_BOOST
+    target: Air_Induction_Fault
+    weight: -0.17
+  - source: SYM_DTC_INDUCTION
+    target: Air_Induction_Fault
+    weight: 0.3
+    # v1_original_weight: 0.45
+  - source: SYM_O2_HIGH
+    target: Air_Induction_Fault
+    weight: 0.13
+  - source: SYM_CO2_GOOD
+    target: Cam_Timing_Retard_Late
+    weight: 0.07
+  - source: SYM_CO2_LOW
+    target: Cam_Timing_Retard_Late
+    weight: 0.1
+  - source: SYM_COMPRESSION_LOSS_PATTERN
+    target: Cam_Timing_Retard_Late
+    weight: 0.1
+  - source: SYM_DTC_CAMSHAFT_TIMING
+    target: Cam_Timing_Retard_Late
+    weight: 0.3
+  - source: SYM_HC_HIGH
+    target: Cam_Timing_Retard_Late
+    weight: 0.17
+  - source: SYM_HC_VERY_HIGH
+    target: Cam_Timing_Retard_Late
+    weight: 0.07
+  - source: SYM_HIGH_IDLE_NOX_PATTERN
+    target: Cam_Timing_Retard_Late
+    weight: -0.1
+  - source: SYM_IGNITION_MISFIRE_CONFIRMED
+    target: Cam_Timing_Retard_Late
+    weight: -0.08
+  - source: SYM_LAMBDA_NORMAL
+    target: Cam_Timing_Retard_Late
+    weight: 0.07
+  - source: SYM_LATE_TIMING_PATTERN
+    target: Cam_Timing_Retard_Late
+    weight: 0.5
+    discriminator_gate: ['SYM_LATE_TIMING_PATTERN']
+  - source: SYM_CATALYST_MASKING
+    target: Catalyst_Failure
+    weight: -0.23
+  - source: SYM_CLOGGED_EXHAUST_RPM_PATTERN
+    target: Catalyst_Failure
+    weight: -0.13
+  - source: SYM_CO2_LOW
+    target: Catalyst_Failure
+    weight: 0.1
+  - source: SYM_CO_HIGH
+    target: Catalyst_Failure
+    weight: 0.13
+  - source: SYM_DTC_CATALYST
+    target: Catalyst_Failure
+    weight: 0.3
+  - source: SYM_DTC_MISFIRE
+    target: Catalyst_Failure
+    weight: -0.23
+  - source: SYM_DUAL_CLOGGED_EXHAUST_PATTERN
+    target: Catalyst_Failure
+    weight: -0.17
+  - source: SYM_FF_ECT_WARMUP
+    target: Catalyst_Failure
+    weight: -0.23
+  - source: SYM_FF_OPEN_LOOP_AT_FAULT
+    target: Catalyst_Failure
+    weight: -0.2
+  - source: SYM_HC_HIGH
+    target: Catalyst_Failure
+    weight: 0.13
+  - source: SYM_HIGH_IDLE_NOX_PATTERN
+    target: Catalyst_Failure
+    weight: 0.5
+    discriminator_gate: ['SYM_HIGH_IDLE_NOX_PATTERN']
+  - source: SYM_LAMBDA_LOW
+    target: Catalyst_Failure
+    weight: -0.17
+  - source: SYM_LAMBDA_NORMAL
+    target: Catalyst_Failure
+    weight: 0.1
+  - source: SYM_NOX_HIGH
+    target: Catalyst_Failure
+    weight: 0.17
+  - source: SYM_O2_DOWNSTREAM_ACTIVE
+    target: Catalyst_Failure
+    weight: 0.23
+  - source: SYM_TIRED_CATALYST_PATTERN
+    target: Catalyst_Failure
+    weight: 0.83
+    discriminator_gate: ['SYM_TIRED_CATALYST_PATTERN']
+  - source: SYM_TRIM_POSITIVE_HIGH
+    target: Catalyst_Failure
+    weight: 0.1
+  - source: SYM_CLOGGED_EXHAUST_RPM_PATTERN
+    target: Clogged_Exhaust
+    weight: 0.83
+    discriminator_gate: ['SYM_CLOGGED_EXHAUST_RPM_PATTERN']
+  - source: SYM_DUAL_CLOGGED_EXHAUST_PATTERN
+    target: Clogged_Exhaust
+    weight: 0.83
+    discriminator_gate: ['SYM_DUAL_CLOGGED_EXHAUST_PATTERN']
+  - source: SYM_DTC_INDUCTION
+    target: Contaminated_MAF
+    weight: 0.27
+  - source: SYM_DTC_P0171
+    target: Contaminated_MAF
+    weight: 0.17
+  - source: SYM_DUAL_CONTAMINATED_MAF_PATTERN
+    target: Contaminated_MAF
+    weight: 0.83
+    discriminator_gate: ['SYM_DUAL_CONTAMINATED_MAF_PATTERN']
+  - source: SYM_DUAL_LOW_FUEL_DELIVERY_PATTERN
+    target: Contaminated_MAF
+    weight: -0.23
+  - source: SYM_IDLE_STOICH_LOAD_LEAN
+    target: Contaminated_MAF
+    weight: 0.13
+  - source: SYM_LAMBDA_HIGH
+    target: Contaminated_MAF
+    weight: 0.1
+  - source: SYM_TRIM_POSITIVE_HIGH
+    target: Contaminated_MAF
+    weight: 0.13
+  - source: SYM_DTC_SENSOR
+    target: ECT_Sensor_Bias
+    weight: 0.17
+  - source: SYM_FF_IAT_ECT_BIASED
+    target: ECT_Sensor_Bias
+    weight: 0.27
+  - source: SYM_CLEAN_GAS_WITH_DTC
+    target: ECU_Fault
+    weight: 0.4
+    discriminator_gate: ['SYM_CLEAN_GAS_WITH_DTC']
+  - source: SYM_CO_HIGH
+    target: ECU_Fault
+    weight: 0.07
+  - source: SYM_DTC_ECU_INTERNAL
+    target: ECU_Fault
+    weight: 0.3
+    # v1_original_weight: 0.67
+  - source: SYM_DTC_HO2S_HEATER
+    target: ECU_Fault
+    weight: 0.3
+  - source: SYM_DTC_INDUCTION
+    target: ECU_Fault
+    weight: -0.1
+  - source: SYM_DTC_INJECTOR
+    target: ECU_Fault
+    weight: 0.3
+    # v1_original_weight: 0.5
+  - source: SYM_DTC_KNOCK_SENSOR
+    target: ECU_Fault
+    weight: 0.1
+  - source: SYM_DTC_MISFIRE
+    target: ECU_Fault
+    weight: -0.27
+  - source: SYM_DTC_P0172
+    target: ECU_Fault
+    weight: 0.17
+  - source: SYM_DTC_SENSOR
+    target: ECU_Fault
+    weight: 0.27
+  - source: SYM_DUAL_CONTAMINATED_MAF_PATTERN
+    target: ECU_Fault
+    weight: 0.15
+  - source: SYM_ECU_INJECTOR_DRIVER_STUCK
+    target: ECU_Fault
+    weight: 0.83
+    discriminator_gate: ['SYM_ECU_INJECTOR_DRIVER_STUCK']
+  - source: SYM_ECU_LOGIC_INVERSION
+    target: ECU_Fault
+    weight: 0.53
+    discriminator_gate: ['SYM_ECU_LOGIC_INVERSION']
+  - source: SYM_ECU_MISREAD_LEAN_CONFIRMED
+    target: ECU_Fault
+    weight: 0.4
+    discriminator_gate: ['SYM_ECU_MISREAD_LEAN_CONFIRMED']
+  - source: SYM_ECU_OPEN_LOOP_BLIND
+    target: ECU_Fault
+    weight: 0.67
+    discriminator_gate: ['SYM_ECU_OPEN_LOOP_BLIND']
+  - source: SYM_EXHAUST_LEAK_GHOST
+    target: ECU_Fault
+    weight: -0.23
+  - source: SYM_GHOST_DTC_NO_EVIDENCE
+    target: ECU_Fault
+    weight: 0.23
+  - source: SYM_GHOST_MISFIRE
+    target: ECU_Fault
+    weight: 0.53
+    discriminator_gate: ['SYM_GHOST_MISFIRE']
+  - source: SYM_HC_VERY_HIGH
+    target: ECU_Fault
+    weight: 0.13
+  - source: SYM_IGNITION_MISFIRE_CONFIRMED
+    target: ECU_Fault
+    weight: 0.2
+  - source: SYM_LAMBDA_HIGH
+    target: ECU_Fault
+    weight: 0.13
+  - source: SYM_LAMBDA_LOW
+    target: ECU_Fault
+    weight: -0.27
+  - source: SYM_LEAKING_INJECTOR_PATTERN
+    target: ECU_Fault
+    weight: -0.17
+  - source: SYM_NOX_LOW_WITH_LEAN
+    target: ECU_Fault
+    weight: 0.17
+  - source: SYM_O2_HIGH
+    target: ECU_Fault
+    weight: 0.1
+  - source: SYM_PERCEPTION_LEAN_SEEN_RICH
+    target: ECU_Fault
+    weight: 0.27
+  - source: SYM_PERCEPTION_RICH_SEEN_LEAN
+    target: ECU_Fault
+    weight: 0.27
+  - source: SYM_SENSOR_BIAS_LEAN
+    target: ECU_Fault
+    weight: -0.27
+  - source: SYM_SENSOR_BIAS_RICH
+    target: ECU_Fault
+    weight: 0.2
+  - source: SYM_TRIM_NEGATIVE_HIGH
+    target: ECU_Fault
+    weight: 0.1
+  - source: SYM_TRIM_OSCILLATION
+    target: ECU_Fault
+    weight: 0.12
+  - source: SYM_TRIM_POSITIVE_HIGH
+    target: ECU_Fault
+    weight: 0.13
+  - source: SYM_CLEAN_GAS_WITH_DTC
+    target: ECU_Internal_Checksum_Error
+    weight: 0.02
+  - source: SYM_DTC_ECU_INTERNAL
+    target: ECU_Internal_Checksum_Error
+    weight: 0.3
+    # v1_original_weight: 0.43
+  - source: SYM_GASES_NORMAL
+    target: ECU_Internal_Checksum_Error
+    weight: 0.02
+  - source: SYM_DTC_P0171
+    target: ECU_Logic_Inversion
+    weight: 0.05
+  - source: SYM_ECU_LOGIC_INVERSION
+    target: ECU_Logic_Inversion
+    weight: 0.23
+  - source: SYM_ECU_MISREAD_LEAN_CONFIRMED
+    target: ECU_Logic_Inversion
+    weight: 0.17
+  - source: SYM_PERCEPTION_LEAN_SEEN_RICH
+    target: ECU_Logic_Inversion
+    weight: 0.17
+  - source: SYM_SENSOR_BIAS_LEAN
+    target: ECU_Logic_Inversion
+    weight: 0.07
+  - source: SYM_TRIM_POSITIVE_HIGH
+    target: ECU_Logic_Inversion
+    weight: 0.05
+  - source: SYM_ECU_OPEN_LOOP_BLIND
+    target: ECU_Open_Loop_Fault
+    weight: 0.23
+  - source: SYM_SENSOR_BIAS_LEAN
+    target: ECU_Open_Loop_Fault
+    weight: 0.05
+  - source: SYM_CO2_LOW
+    target: EGR_Fault
+    weight: 0.13
+  - source: SYM_DTC_EGR
+    target: EGR_Fault
+    weight: 0.3
+  - source: SYM_DUAL_EGR_RECOVERY_PATTERN
+    target: EGR_Fault
+    weight: -0.2
+  - source: SYM_EGR_DILUTION_PATTERN
+    target: EGR_Fault
+    weight: 0.5
+    discriminator_gate: ['SYM_EGR_DILUTION_PATTERN']
+  - source: SYM_HIGH_IDLE_NOX_PATTERN
+    target: EGR_Fault
+    weight: 0.33
+    discriminator_gate: ['SYM_HIGH_IDLE_NOX_PATTERN']
+  - source: SYM_INDIVIDUAL_CYLINDER_MISFIRE_PATTERN
+    target: EGR_Fault
+    weight: -0.23
+  - source: SYM_LAMBDA_LOW
+    target: EGR_Fault
+    weight: -0.13
+  - source: SYM_O2_HIGH
+    target: EGR_Fault
+    weight: 0.17
+  - source: SYM_STUCK_EGR_OPEN_PATTERN
+    target: EGR_Fault
+    weight: -0.2
+  - source: SYM_DTC_EGR
+    target: EGR_Stuck_Open
+    weight: 0.27
+  - source: SYM_DTC_EGR
+    target: EGR_Stuck_Open
+    weight: 0.1
+  - source: SYM_DUAL_EGR_RECOVERY_PATTERN
+    target: EGR_Stuck_Open
+    weight: -0.17
+  - source: SYM_EGR_DILUTION_PATTERN
+    target: EGR_Stuck_Open
+    weight: 1.0
+    discriminator_gate: ['SYM_EGR_DILUTION_PATTERN']
+  - source: SYM_EGR_DILUTION_PATTERN
+    target: EGR_Stuck_Open
+    weight: 0.17
+  - source: SYM_HC_VERY_HIGH
+    target: EGR_Stuck_Open
+    weight: 0.1
+  - source: SYM_HEAD_GASKET_PATTERN
+    target: EGR_Stuck_Open
+    weight: -0.1
+  - source: SYM_IGNITION_MISFIRE_CONFIRMED
+    target: EGR_Stuck_Open
+    weight: -0.2
+  - source: SYM_INDIVIDUAL_CYLINDER_MISFIRE_PATTERN
+    target: EGR_Stuck_Open
+    weight: -0.27
+  - source: SYM_LAMBDA_LOW
+    target: EGR_Stuck_Open
+    weight: -0.17
+  - source: SYM_LEAN_MISFIRE_PATTERN
+    target: EGR_Stuck_Open
+    weight: -0.17
+  - source: SYM_NOX_HIGH_IDLE
+    target: EGR_Stuck_Open
+    weight: 0.13
+  - source: SYM_RICH_NEGATIVE_TRIMS_PATTERN
+    target: EGR_Stuck_Open
+    weight: -0.2
+  - source: SYM_STUCK_EGR_OPEN_PATTERN
+    target: EGR_Stuck_Open
+    weight: 0.83
+    discriminator_gate: ['SYM_STUCK_EGR_OPEN_PATTERN']
+  - source: SYM_STUCK_EGR_OPEN_PATTERN
+    target: EGR_Stuck_Open
+    weight: 0.17
+  - source: SYM_DTC_EGR
+    target: EGR_Stuck_Open_Confirmed
+    weight: 0.27
+  - source: SYM_DUAL_EGR_RECOVERY_PATTERN
+    target: EGR_Stuck_Open_Confirmed
+    weight: 0.83
+    discriminator_gate: ['SYM_DUAL_EGR_RECOVERY_PATTERN']
+  - source: SYM_DTC_P0172
+    target: EVAP_Purge_Stuck_Open
+    weight: 0.17
+  - source: SYM_RICH_NEGATIVE_TRIMS_PATTERN
+    target: EVAP_Purge_Stuck_Open
+    weight: 0.23
+  - source: SYM_CLOGGED_EXHAUST_RPM_PATTERN
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: -0.23
+  - source: SYM_CO2_LOW
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: 0.25
+  - source: SYM_COMPRESSION_LOSS_PATTERN
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: -0.2
+  - source: SYM_DUAL_INTAKE_GASKET_PATTERN
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: -0.17
+  - source: SYM_ECU_LOGIC_INVERSION
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: -0.23
+  - source: SYM_EGR_DILUTION_PATTERN
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: -0.2
+  - source: SYM_EXHAUST_LEAK_GHOST
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: 0.83
+    discriminator_gate: ['SYM_EXHAUST_LEAK_GHOST']
+  - source: SYM_EXHAUST_LEAK_GHOST
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: 0.5
+    discriminator_gate: ['SYM_EXHAUST_LEAK_GHOST']
+  - source: SYM_GASES_NORMAL
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: -0.13
+  - source: SYM_HC_LOW
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: 0.07
+  - source: SYM_HEAD_GASKET_PATTERN
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: -0.22
+  - source: SYM_IGNITION_MISFIRE_CONFIRMED
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: -0.17
+  - source: SYM_LAMBDA_HIGH
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: 0.23
+  - source: SYM_LAMBDA_LOW
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: -0.23
+  - source: SYM_LAMBDA_NORMAL
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: -0.13
+  - source: SYM_NOX_LOW_WITH_LEAN
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: 0.28
+  - source: SYM_O2_HIGH
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: 0.17
+  - source: SYM_O2_VERY_HIGH
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: 0.28
+  - source: SYM_PCV_LEAK_PATTERN
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: -0.17
+  - source: SYM_TRIM_POSITIVE_HIGH
+    target: Exhaust_Air_Leak_Pre_Cat
+    weight: 0.1
+  - source: SYM_DTC_INDUCTION
+    target: Fuel_Delivery_Low
+    weight: -0.17
+  - source: SYM_DUAL_CONTAMINATED_MAF_PATTERN
+    target: Fuel_Delivery_Low
+    weight: -0.23
+  - source: SYM_DUAL_LOW_FUEL_DELIVERY_PATTERN
+    target: Fuel_Delivery_Low
+    weight: 0.83
+    discriminator_gate: ['SYM_DUAL_LOW_FUEL_DELIVERY_PATTERN']
+  - source: SYM_IDLE_STOICH_LOAD_LEAN
+    target: Fuel_Delivery_Low
+    weight: 0.13
+  - source: SYM_LAMBDA_HIGH
+    target: Fuel_Delivery_Low
+    weight: 0.17
+  - source: SYM_LAMBDA_HIGH
+    target: Fuel_Delivery_Low
+    weight: 0.05
+  - source: SYM_LEAN_MISFIRE_PATTERN
+    target: Fuel_Delivery_Low
+    weight: 0.17
+  - source: SYM_TRIM_POSITIVE_HIGH
+    target: Fuel_Delivery_Low
+    weight: 0.23
+  - source: SYM_TRIM_SUM_POSITIVE_HIGH
+    target: Fuel_Delivery_Low
+    weight: 0.15
+  - source: SYM_HC_HIGH
+    target: GDI_Carbon_Buildup
+    weight: 0.05
+  - source: SYM_SENSOR_BIAS_LEAN
+    target: GDI_Carbon_Buildup
+    weight: 0.1
+  - source: SYM_VALVE_SEAL_PATTERN
+    target: GDI_Carbon_Buildup
+    weight: 0.17
+  - source: SYM_DTC_SENSOR
+    target: GDI_HPFP_Failure
+    weight: 0.13
+  - source: SYM_LAMBDA_HIGH
+    target: GDI_HPFP_Failure
+    weight: 0.17
+  - source: SYM_CO_HIGH
+    target: GDI_HPFP_Internal_Leak
+    weight: 0.05
+  - source: SYM_DTC_P0172
+    target: GDI_HPFP_Internal_Leak
+    weight: 0.1
+  - source: SYM_HIGH_FUEL_PRESSURE_PATTERN
+    target: GDI_HPFP_Internal_Leak
+    weight: 0.17
+  - source: SYM_RICH_NEGATIVE_TRIMS_PATTERN
+    target: GDI_HPFP_Internal_Leak
+    weight: 0.13
+  - source: SYM_TRIM_NEGATIVE_HIGH
+    target: GDI_HPFP_Internal_Leak
+    weight: 0.05
+  - source: SYM_FF_TIMING_RETARD_SEVERE
+    target: GDI_LSPI
+    weight: 0.2
+  - source: SYM_HC_HIGH
+    target: GDI_LSPI
+    weight: 0.05
+  - source: SYM_HEAD_GASKET_PATTERN
+    target: Head_Gasket_Combustion_To_Coolant
+    weight: 0.4
+    discriminator_gate: ['SYM_HEAD_GASKET_PATTERN']
+  - source: SYM_COMPRESSION_LOSS_PATTERN
+    target: Head_Gasket_Cylinder_To_Cylinder
+    weight: 0.4
+    discriminator_gate: ['SYM_COMPRESSION_LOSS_PATTERN']
+  - source: SYM_DTC_EGR
+    target: Head_Gasket_Failure
+    weight: -0.2
+  - source: SYM_HEAD_GASKET_PATTERN
+    target: Head_Gasket_Failure
+    weight: 0.83
+    discriminator_gate: ['SYM_HEAD_GASKET_PATTERN']
+  - source: SYM_IGNITION_MISFIRE_CONFIRMED
+    target: Head_Gasket_Failure
+    weight: -0.2
+  - source: SYM_INDIVIDUAL_CYLINDER_MISFIRE_PATTERN
+    target: Head_Gasket_Failure
+    weight: -0.17
+  - source: SYM_LEAN_MISFIRE_PATTERN
+    target: Head_Gasket_Failure
+    weight: -0.17
+  - source: SYM_CATALYST_MASKING
+    target: High_Fuel_Pressure
+    weight: 0.12
+  - source: SYM_DTC_P0172
+    target: High_Fuel_Pressure
+    weight: 0.17
+  - source: SYM_ECU_INJECTOR_DRIVER_STUCK
+    target: High_Fuel_Pressure
+    weight: -0.23
+  - source: SYM_HIGH_FUEL_PRESSURE_PATTERN
+    target: High_Fuel_Pressure
+    weight: 0.83
+    discriminator_gate: ['SYM_HIGH_FUEL_PRESSURE_PATTERN']
+  - source: SYM_LEAKING_INJECTOR_PATTERN
+    target: High_Fuel_Pressure
+    weight: -0.23
+  - source: SYM_RICH_MISFIRE_PATTERN
+    target: High_Fuel_Pressure
+    weight: 0.2
+  - source: SYM_RICH_NEGATIVE_TRIMS_PATTERN
+    target: High_Fuel_Pressure
+    weight: 0.5
+    discriminator_gate: ['SYM_RICH_NEGATIVE_TRIMS_PATTERN']
+  - source: SYM_TRIM_SUM_NEGATIVE_HIGH
+    target: High_Fuel_Pressure
+    weight: 0.18
+  - source: SYM_COMPRESSION_LOSS_PATTERN
+    target: Ignition_Timing_Fault
+    weight: -0.27
+  - source: SYM_DTC_CAMSHAFT_TIMING
+    target: Ignition_Timing_Fault
+    weight: 0.17
+  - source: SYM_FF_TIMING_RETARD_SEVERE
+    target: Ignition_Timing_Fault
+    weight: 0.23
+  - source: SYM_HC_VERY_HIGH
+    target: Ignition_Timing_Fault
+    weight: 0.17
+  - source: SYM_LAMBDA_LOW
+    target: Ignition_Timing_Fault
+    weight: 0.1
+  - source: SYM_LATE_TIMING_PATTERN
+    target: Ignition_Timing_Fault
+    weight: 0.83
+    discriminator_gate: ['SYM_LATE_TIMING_PATTERN']
+  - source: SYM_NOX_HIGH_IDLE
+    target: Ignition_Timing_Fault
+    weight: 0.17
+  - source: SYM_SENSOR_BIAS_FALSE_RICH
+    target: Ignition_Timing_Fault
+    weight: -0.27
+  - source: SYM_DUAL_INTAKE_GASKET_PATTERN
+    target: Intake_Gasket_Leak
+    weight: 0.83
+    discriminator_gate: ['SYM_DUAL_INTAKE_GASKET_PATTERN']
+  - source: SYM_IDLE_LEAN_LOAD_CORRECTS
+    target: Intake_Gasket_Leak
+    weight: 0.13
+  - source: SYM_NOX_HIGH
+    target: Intake_Gasket_Leak
+    weight: 0.13
+  - source: SYM_NOX_HIGH_IDLE
+    target: Intake_Gasket_Leak
+    weight: 0.08
+  - source: SYM_TRIM_SUM_POSITIVE_HIGH
+    target: Intake_Gasket_Leak
+    weight: 0.17
+  - source: SYM_CTX_COLD_ENGINE
+    target: Lazy_O2_Sensor
+    weight: -0.17
+  - source: SYM_ECU_MISREAD_LEAN_CONFIRMED
+    target: Lazy_O2_Sensor
+    weight: -0.3
+  - source: SYM_FF_OPEN_LOOP_AT_FAULT
+    target: Lazy_O2_Sensor
+    weight: -0.23
+  - source: SYM_O2_UPSTREAM_LAZY
+    target: Lazy_O2_Sensor
+    weight: 0.3
+    # v1_original_weight: 0.47
+  - source: SYM_SENSOR_BIAS_LEAN
+    target: Lazy_O2_Sensor
+    weight: 0.5
+    discriminator_gate: ['SYM_SENSOR_BIAS_LEAN']
+  - source: SYM_SENSOR_BIAS_RICH
+    target: Lazy_O2_Sensor
+    weight: 0.4
+    discriminator_gate: ['SYM_SENSOR_BIAS_RICH']
+  - source: SYM_CATALYST_MASKING
+    target: Leaking_Injector
+    weight: 0.12
+  - source: SYM_DTC_INJECTOR
+    target: Leaking_Injector
+    weight: 0.27
+  - source: SYM_ECU_INJECTOR_DRIVER_STUCK
+    target: Leaking_Injector
+    weight: -0.23
+  - source: SYM_HIGH_FUEL_PRESSURE_PATTERN
+    target: Leaking_Injector
+    weight: -0.23
+  - source: SYM_LAMBDA_LOW
+    target: Leaking_Injector
+    weight: 0.1
+  - source: SYM_LEAKING_INJECTOR_PATTERN
+    target: Leaking_Injector
+    weight: 0.83
+    discriminator_gate: ['SYM_LEAKING_INJECTOR_PATTERN']
+  - source: SYM_RICH_MISFIRE_PATTERN
+    target: Leaking_Injector
+    weight: 0.17
+  - source: SYM_TRIM_SUM_NEGATIVE_HIGH
+    target: Leaking_Injector
+    weight: 0.17
+  - source: SYM_CLOGGED_EXHAUST_RPM_PATTERN
+    target: Lean_Condition
+    weight: -0.17
+  - source: SYM_CO2_LOW
+    target: Lean_Condition
+    weight: 0.17
+  - source: SYM_COMPRESSION_LOSS_PATTERN
+    target: Lean_Condition
+    weight: -0.2
+  - source: SYM_CO_LOW_LEAN
+    target: Lean_Condition
+    weight: 0.17
+  - source: SYM_DTC_P0171
+    target: Lean_Condition
+    weight: 0.3
+  - source: SYM_DUAL_CONTAMINATED_MAF_PATTERN
+    target: Lean_Condition
+    weight: -0.17
+  - source: SYM_DUAL_INTAKE_GASKET_PATTERN
+    target: Lean_Condition
+    weight: -0.2
+  - source: SYM_DUAL_LOW_FUEL_DELIVERY_PATTERN
+    target: Lean_Condition
+    weight: -0.17
+  - source: SYM_ECU_LOGIC_INVERSION
+    target: Lean_Condition
+    weight: -0.23
+  - source: SYM_EGR_DILUTION_PATTERN
+    target: Lean_Condition
+    weight: -0.2
+  - source: SYM_EXHAUST_LEAK_GHOST
+    target: Lean_Condition
+    weight: -0.23
+  - source: SYM_GASES_NORMAL
+    target: Lean_Condition
+    weight: -0.2
+  - source: SYM_GHOST_DTC_NO_EVIDENCE
+    target: Lean_Condition
+    weight: -0.2
+  - source: SYM_HC_LOW
+    target: Lean_Condition
+    weight: -0.13
+  - source: SYM_IDLE_LEAN_LOAD_CORRECTS
+    target: Lean_Condition
+    weight: 0.1
+  - source: SYM_IDLE_STOICH_LOAD_LEAN
+    target: Lean_Condition
+    weight: 0.1
+  - source: SYM_IGNITION_MISFIRE_CONFIRMED
+    target: Lean_Condition
+    weight: -0.2
+  - source: SYM_LAMBDA_HIGH
+    target: Lean_Condition
+    weight: 0.3
+  - source: SYM_LAMBDA_LOW
+    target: Lean_Condition
+    weight: -0.3
+  - source: SYM_LEAN_MISFIRE_PATTERN
+    target: Lean_Condition
+    weight: 0.33
+    discriminator_gate: ['SYM_LEAN_MISFIRE_PATTERN']
+  - source: SYM_NOX_HIGH
+    target: Lean_Condition
+    weight: 0.1
+  - source: SYM_NOX_HIGH_IDLE
+    target: Lean_Condition
+    weight: 0.18
+  - source: SYM_O2_HIGH
+    target: Lean_Condition
+    weight: 0.23
+  - source: SYM_O2_VERY_HIGH
+    target: Lean_Condition
+    weight: 0.2
+  - source: SYM_PCV_LEAK_PATTERN
+    target: Lean_Condition
+    weight: -0.2
+  - source: SYM_RICH_NEGATIVE_TRIMS_PATTERN
+    target: Lean_Condition
+    weight: -0.23
+  - source: SYM_SENSOR_BIAS_RICH
+    target: Lean_Condition
+    weight: -0.2
+  - source: SYM_TIRED_CATALYST_PATTERN
+    target: Lean_Condition
+    weight: -0.17
+  - source: SYM_TRIM_GLOBAL_BOTH_BANKS
+    target: Lean_Condition
+    weight: 0.2
+  - source: SYM_TRIM_POSITIVE_HIGH
+    target: Lean_Condition
+    weight: 0.28
+  - source: SYM_TRIM_SUM_POSITIVE_HIGH
+    target: Lean_Condition
+    weight: 0.27
+  - source: SYM_COMPRESSION_LOSS_PATTERN
+    target: Low_Compression_Multi_Cylinder
+    weight: 0.27
+  - source: SYM_HC_HIGH
+    target: Low_Compression_Multi_Cylinder
+    weight: 0.1
+  - source: SYM_LAMBDA_HIGH
+    target: Low_Compression_Multi_Cylinder
+    weight: 0.07
+  - source: SYM_O2_HIGH
+    target: Low_Compression_Multi_Cylinder
+    weight: 0.07
+  - source: SYM_CO2_LOW
+    target: Mechanical_Fault
+    weight: 0.17
+  - source: SYM_COMPRESSION_LOSS_PATTERN
+    target: Mechanical_Fault
+    weight: 0.83
+    discriminator_gate: ['SYM_COMPRESSION_LOSS_PATTERN']
+  - source: SYM_ECU_INJECTOR_DRIVER_STUCK
+    target: Mechanical_Fault
+    weight: -0.23
+  - source: SYM_ECU_OPEN_LOOP_BLIND
+    target: Mechanical_Fault
+    weight: -0.23
+  - source: SYM_EGR_DILUTION_PATTERN
+    target: Mechanical_Fault
+    weight: -0.23
+  - source: SYM_FF_LOAD_HIGH_AT_LOW_RPM
+    target: Mechanical_Fault
+    weight: 0.17
+  - source: SYM_GASES_NORMAL
+    target: Mechanical_Fault
+    weight: -0.23
+  - source: SYM_HC_HIGH
+    target: Mechanical_Fault
+    weight: 0.2
+  - source: SYM_HEAD_GASKET_PATTERN
+    target: Mechanical_Fault
+    weight: -0.17
+  - source: SYM_IGNITION_MISFIRE_CONFIRMED
+    target: Mechanical_Fault
+    weight: -0.17
+  - source: SYM_LATE_TIMING_PATTERN
+    target: Mechanical_Fault
+    weight: -0.3
+  - source: SYM_O2_HIGH
+    target: Mechanical_Fault
+    weight: 0.1
+  - source: SYM_PCV_LEAK_PATTERN
+    target: Mechanical_Fault
+    weight: -0.2
+  - source: SYM_SENSOR_BIAS_FALSE_RICH
+    target: Mechanical_Fault
+    weight: -0.23
+  - source: SYM_STUCK_EGR_OPEN_PATTERN
+    target: Mechanical_Fault
+    weight: -0.2
+  - source: SYM_VALVE_SEAL_PATTERN
+    target: Mechanical_Fault
+    weight: -0.27
+  - source: SYM_CATALYST_MASKING
+    target: Misfire
+    weight: -0.1
+  - source: SYM_DTC_MISFIRE
+    target: Misfire
+    weight: 0.3
+    # v1_original_weight: 0.32
+  - source: SYM_EGR_DILUTION_PATTERN
+    target: Misfire
+    weight: -0.27
+  - source: SYM_GASES_NORMAL
+    target: Misfire
+    weight: -0.27
+  - source: SYM_GHOST_MISFIRE
+    target: Misfire
+    weight: -0.27
+  - source: SYM_HC_HIGH
+    target: Misfire
+    weight: 0.17
+  - source: SYM_HC_VERY_HIGH
+    target: Misfire
+    weight: 0.3
+    # v1_original_weight: 0.32
+  - source: SYM_HEAD_GASKET_PATTERN
+    target: Misfire
+    weight: -0.13
+  - source: SYM_IGNITION_MISFIRE_CONFIRMED
+    target: Misfire
+    weight: 0.5
+    discriminator_gate: ['SYM_IGNITION_MISFIRE_CONFIRMED']
+  - source: SYM_INDIVIDUAL_CYLINDER_MISFIRE_PATTERN
+    target: Misfire
+    weight: 1.0
+    discriminator_gate: ['SYM_INDIVIDUAL_CYLINDER_MISFIRE_PATTERN']
+  - source: SYM_LATE_TIMING_PATTERN
+    target: Misfire
+    weight: -0.23
+  - source: SYM_LEAN_MISFIRE_PATTERN
+    target: Misfire
+    weight: 0.17
+  - source: SYM_NOX_HIGH
+    target: Misfire
+    weight: -0.13
+  - source: SYM_NOX_HIGH_IDLE
+    target: Misfire
+    weight: -0.13
+  - source: SYM_O2_HIGH
+    target: Misfire
+    weight: 0.17
+  - source: SYM_O2_VERY_HIGH
+    target: Misfire
+    weight: 0.2
+  - source: SYM_RICH_MISFIRE_PATTERN
+    target: Misfire
+    weight: 0.27
+  - source: SYM_CLEAN_GAS_WITH_DTC
+    target: Misfire_Single_Cylinder
+    weight: 0.1
+  - source: SYM_DTC_MISFIRE
+    target: Misfire_Single_Cylinder
+    weight: 0.13
+  - source: SYM_DTC_MISFIRE
+    target: NS_CKP_Sensor_Failure
+    weight: 0.17
+  - source: SYM_CO2_GOOD
+    target: PCV_System_Fault
+    weight: 0.07
+  - source: SYM_COMPRESSION_LOSS_PATTERN
+    target: PCV_System_Fault
+    weight: -0.17
+  - source: SYM_IGNITION_MISFIRE_CONFIRMED
+    target: PCV_System_Fault
+    weight: -0.2
+  - source: SYM_LAMBDA_NORMAL
+    target: PCV_System_Fault
+    weight: 0.07
+  - source: SYM_PCV_LEAK_PATTERN
+    target: PCV_System_Fault
+    weight: 0.83
+    discriminator_gate: ['SYM_PCV_LEAK_PATTERN']
+  - source: SYM_TRIM_POSITIVE_HIGH
+    target: PCV_System_Fault
+    weight: 0.17
+  - source: SYM_CATALYST_MASKING
+    target: Rich_Mixture
+    weight: 0.13
+  - source: SYM_CO2_LOW
+    target: Rich_Mixture
+    weight: 0.13
+  - source: SYM_COMPRESSION_LOSS_PATTERN
+    target: Rich_Mixture
+    weight: -0.27
+  - source: SYM_CO_HIGH
+    target: Rich_Mixture
+    weight: 0.28
+  - source: SYM_DTC_P0172
+    target: Rich_Mixture
+    weight: 0.3
+  - source: SYM_DUAL_CLOGGED_EXHAUST_PATTERN
+    target: Rich_Mixture
+    weight: -0.17
+  - source: SYM_ECU_INJECTOR_DRIVER_STUCK
+    target: Rich_Mixture
+    weight: -0.2
+  - source: SYM_ECU_LOGIC_INVERSION
+    target: Rich_Mixture
+    weight: -0.17
+  - source: SYM_ECU_OPEN_LOOP_BLIND
+    target: Rich_Mixture
+    weight: -0.17
+  - source: SYM_EGR_DILUTION_PATTERN
+    target: Rich_Mixture
+    weight: -0.23
+  - source: SYM_EXHAUST_LEAK_GHOST
+    target: Rich_Mixture
+    weight: -0.17
+  - source: SYM_GASES_NORMAL
+    target: Rich_Mixture
+    weight: -0.2
+  - source: SYM_HIGH_FUEL_PRESSURE_PATTERN
+    target: Rich_Mixture
+    weight: -0.17
+  - source: SYM_IDLE_LEAN_LOAD_CORRECTS
+    target: Rich_Mixture
+    weight: -0.1
+  - source: SYM_IDLE_STOICH_LOAD_LEAN
+    target: Rich_Mixture
+    weight: -0.1
+  - source: SYM_INDIVIDUAL_CYLINDER_MISFIRE_PATTERN
+    target: Rich_Mixture
+    weight: -0.2
+  - source: SYM_LAMBDA_HIGH
+    target: Rich_Mixture
+    weight: -0.3
+  - source: SYM_LAMBDA_LOW
+    target: Rich_Mixture
+    weight: 0.3
+  - source: SYM_LATE_TIMING_PATTERN
+    target: Rich_Mixture
+    weight: -0.27
+  - source: SYM_LEAKING_INJECTOR_PATTERN
+    target: Rich_Mixture
+    weight: -0.17
+  - source: SYM_O2_LOW
+    target: Rich_Mixture
+    weight: 0.1
+  - source: SYM_RICH_MISFIRE_PATTERN
+    target: Rich_Mixture
+    weight: 0.4
+    discriminator_gate: ['SYM_RICH_MISFIRE_PATTERN']
+  - source: SYM_RICH_NEGATIVE_TRIMS_PATTERN
+    target: Rich_Mixture
+    weight: 0.33
+    discriminator_gate: ['SYM_RICH_NEGATIVE_TRIMS_PATTERN']
+  - source: SYM_SENSOR_BIAS_FALSE_RICH
+    target: Rich_Mixture
+    weight: -0.3
+  - source: SYM_SENSOR_BIAS_LEAN
+    target: Rich_Mixture
+    weight: -0.2
+  - source: SYM_TIRED_CATALYST_PATTERN
+    target: Rich_Mixture
+    weight: -0.17
+  - source: SYM_TRIM_NEGATIVE_HIGH
+    target: Rich_Mixture
+    weight: 0.27
+  - source: SYM_TRIM_SUM_NEGATIVE_HIGH
+    target: Rich_Mixture
+    weight: 0.25
+  - source: SYM_VALVE_SEAL_PATTERN
+    target: Rich_Mixture
+    weight: -0.2
+  - source: SYM_CO_LOW_LEAN
+    target: SAI_Valve_Stuck_Open
+    weight: 0.05
+  - source: SYM_NOX_LOW_WITH_LEAN
+    target: SAI_Valve_Stuck_Open
+    weight: 0.1
+  - source: SYM_O2_VERY_HIGH
+    target: SAI_Valve_Stuck_Open
+    weight: 0.17
+  - source: SYM_SENSOR_BIAS_RICH
+    target: SAI_Valve_Stuck_Open
+    weight: 0.1
+  - source: SYM_CTX_COLD_ENGINE
+    target: Sensor_Fault
+    weight: -0.13
+  - source: SYM_DTC_HO2S_HEATER
+    target: Sensor_Fault
+    weight: 0.1
+  - source: SYM_DTC_INDUCTION
+    target: Sensor_Fault
+    weight: -0.17
+  - source: SYM_DTC_SENSOR
+    target: Sensor_Fault
+    weight: 0.27
+  - source: SYM_ECU_INJECTOR_DRIVER_STUCK
+    target: Sensor_Fault
+    weight: -0.23
+  - source: SYM_ECU_MISREAD_LEAN_CONFIRMED
+    target: Sensor_Fault
+    weight: -0.3
+  - source: SYM_FF_OPEN_LOOP_AT_FAULT
+    target: Sensor_Fault
+    weight: 0.23
+  - source: SYM_FF_OPEN_LOOP_AT_FAULT
+    target: Sensor_Fault
+    weight: -0.17
+  - source: SYM_GASES_NORMAL
+    target: Sensor_Fault
+    weight: 0.13
+  - source: SYM_O2_UPSTREAM_LAZY
+    target: Sensor_Fault
+    weight: 0.25
+  - source: SYM_PERCEPTION_LEAN_SEEN_RICH
+    target: Sensor_Fault
+    weight: 0.13
+  - source: SYM_PERCEPTION_RICH_SEEN_LEAN
+    target: Sensor_Fault
+    weight: 0.13
+  - source: SYM_SENSOR_BIAS_FALSE_RICH
+    target: Sensor_Fault
+    weight: 1.0
+    discriminator_gate: ['SYM_SENSOR_BIAS_FALSE_RICH']
+  - source: SYM_SENSOR_BIAS_LEAN
+    target: Sensor_Fault
+    weight: 0.67
+    discriminator_gate: ['SYM_SENSOR_BIAS_LEAN']
+  - source: SYM_SENSOR_BIAS_RICH
+    target: Sensor_Fault
+    weight: 0.67
+    discriminator_gate: ['SYM_SENSOR_BIAS_RICH']
+  - source: SYM_TRIM_OSCILLATION
+    target: Sensor_Fault
+    weight: 0.5
+    discriminator_gate: ['SYM_TRIM_OSCILLATION']
+  - source: SYM_TRIM_POSITIVE_HIGH
+    target: Sensor_Fault
+    weight: 0.1
+  - source: SYM_DTC_MISFIRE
+    target: Spark_Plug_Worn
+    weight: 0.2
+  - source: SYM_GHOST_MISFIRE
+    target: Spark_Plug_Worn
+    weight: -0.27
+  - source: SYM_IGNITION_MISFIRE_CONFIRMED
+    target: Spark_Plug_Worn
+    weight: 0.17
+  - source: SYM_INDIVIDUAL_CYLINDER_MISFIRE_PATTERN
+    target: Spark_Plug_Worn
+    weight: 0.47
+    discriminator_gate: ['SYM_INDIVIDUAL_CYLINDER_MISFIRE_PATTERN']
+  - source: SYM_CO2_LOW
+    target: Turbo_Fault
+    weight: 0.13
+  - source: SYM_CO_HIGH
+    target: Turbo_Fault
+    weight: 0.1
+  - source: SYM_DTC_BOOST
+    target: Turbo_Fault
+    weight: 0.3
+    # v1_original_weight: 0.67
+  - source: SYM_LAMBDA_LOW
+    target: Turbo_Fault
+    weight: 0.1
+  - source: SYM_O2_HIGH
+    target: Turbo_Fault
+    weight: 0.1
+  - source: SYM_FF_TIMING_RETARD_SEVERE
+    target: VVT_Phaser_Fault
+    weight: 0.2
+  - source: SYM_HC_HIGH
+    target: VVT_Phaser_Fault
+    weight: 0.05
+  - source: SYM_COMPRESSION_LOSS_PATTERN
+    target: Vacuum_Leak_Intake
+    weight: -0.13
+  - source: SYM_DUAL_INTAKE_GASKET_PATTERN
+    target: Vacuum_Leak_Intake
+    weight: 0.5
+    discriminator_gate: ['SYM_DUAL_INTAKE_GASKET_PATTERN']
+  - source: SYM_IDLE_LEAN_LOAD_CORRECTS
+    target: Vacuum_Leak_Intake
+    weight: 0.15
+  - source: SYM_IDLE_LEAN_LOAD_CORRECTS
+    target: Vacuum_Leak_Intake
+    weight: 0.2
+  - source: SYM_LAMBDA_HIGH
+    target: Vacuum_Leak_Intake
+    weight: 0.1
+  - source: SYM_LAMBDA_HIGH
+    target: Vacuum_Leak_Intake
+    weight: 0.13
+  - source: SYM_NOX_HIGH
+    target: Vacuum_Leak_Intake
+    weight: 0.15
+  - source: SYM_NOX_HIGH_IDLE
+    target: Vacuum_Leak_Intake
+    weight: 0.1
+  - source: SYM_PCV_LEAK_PATTERN
+    target: Vacuum_Leak_Intake
+    weight: 0.43
+    discriminator_gate: ['SYM_PCV_LEAK_PATTERN']
+  - source: SYM_TRIM_POSITIVE_HIGH
+    target: Vacuum_Leak_Intake
+    weight: 0.1
+  - source: SYM_COMPRESSION_LOSS_PATTERN
+    target: Valve_Seal_Wear
+    weight: -0.27
+  - source: SYM_VALVE_SEAL_PATTERN
+    target: Valve_Seal_Wear
+    weight: 0.83
+    discriminator_gate: ['SYM_VALVE_SEAL_PATTERN']
+  - source: SYM_CO_HIGH
+    target: Valve_Timing_Mechanical
+    weight: 0.2
+  - source: SYM_DTC_CAMSHAFT_TIMING
+    target: Valve_Timing_Mechanical
+    weight: 0.23
+  - source: SYM_HC_VERY_HIGH
+    target: Valve_Timing_Mechanical
+    weight: 0.2
+  - source: SYM_O2_VERY_HIGH
+    target: Valve_Timing_Mechanical
+    weight: 0.2
+  - source: SYM_CO2_LOW
+    target: Worn_Piston_Rings
+    weight: 0.07
+  - source: SYM_COMPRESSION_LOSS_PATTERN
+    target: Worn_Piston_Rings
+    weight: 0.47
+    discriminator_gate: ['SYM_COMPRESSION_LOSS_PATTERN']
+  - source: SYM_HC_HIGH
+    target: Worn_Piston_Rings
+    weight: 0.07
+  - source: SYM_TRIM_POSITIVE_HIGH
+    target: Worn_Piston_Rings
+    weight: 0.07
