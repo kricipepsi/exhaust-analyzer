@@ -1,0 +1,1142 @@
+# V2 vref.db manual overrides — top petrol engine codes
+# Source: master guides + domain-expert flags for tech masking (v2-era-masking §3)
+# Each entry maps one engine code to its V2 engine_ref row.
+#
+# era_bucket is derived from my_start/my_end:
+#   1990-1995 → ERA_PRE_OBDII
+#   1996-2005 → ERA_OBDII_EARLY
+#   2006-2015 → ERA_CAN
+#   2016-2020 → ERA_MODERN
+#
+# target_rpm_u2: high-idle test RPM per manufacturer spec (default 2500)
+# target_lambda_v112: expected lambda at target RPM (default 1.000)
+# o2_type: "WB" = wideband, "NB" = narrowband
+
+engines:
+  # ── VW Group ──────────────────────────────────────────────────────────
+  - engine_code: EA111_1.2_TSI
+    brand: VOLKSWAGEN
+    displacement_cc: 1197
+    euro_norm: euro5
+    my_start: 2009
+    my_end: 2015
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: EA211_1.4_TSI
+    brand: VOLKSWAGEN
+    displacement_cc: 1395
+    euro_norm: euro6
+    my_start: 2012
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: EA888_2.0_TSI_Gen2
+    brand: VOLKSWAGEN
+    displacement_cc: 1984
+    euro_norm: euro5
+    my_start: 2008
+    my_end: 2014
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: true
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: EA888_2.0_TSI_Gen3
+    brand: VOLKSWAGEN
+    displacement_cc: 1984
+    euro_norm: euro6
+    my_start: 2013
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: EA827_1.8_20V
+    brand: VOLKSWAGEN
+    displacement_cc: 1781
+    euro_norm: euro3
+    my_start: 1995
+    my_end: 2005
+    has_vvt: false
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: EA827_1.8_20V_TURBO
+    brand: VOLKSWAGEN
+    displacement_cc: 1781
+    euro_norm: euro4
+    my_start: 1998
+    my_end: 2008
+    has_vvt: false
+    has_gdi: false
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: true
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: EA390_3.2_VR6
+    brand: VOLKSWAGEN
+    displacement_cc: 3189
+    euro_norm: euro4
+    my_start: 2002
+    my_end: 2010
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: true
+    has_egr: true
+    has_secondary_air: true
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: EA288_2.0_TDI  # petrol-only guard: this is diesel, excluded
+    brand: VOLKSWAGEN
+    displacement_cc: 1968
+    euro_norm: euro6
+    my_start: 2012
+    my_end: 2020
+    has_vvt: false
+    has_gdi: false
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+    fuel_type: diesel
+    note: excluded from vref.db — V2 is petrol-only
+
+  # ── Audi ──────────────────────────────────────────────────────────────
+  - engine_code: EA837_3.0_TFSI
+    brand: AUDI
+    displacement_cc: 2995
+    euro_norm: euro6
+    my_start: 2010
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: true
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: EA825_4.0_TFSI
+    brand: AUDI
+    displacement_cc: 3996
+    euro_norm: euro6
+    my_start: 2013
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: true
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── SEAT / SKODA (VW Group) ──────────────────────────────────────────
+  - engine_code: EA111_1.4_16V
+    brand: SKODA
+    displacement_cc: 1390
+    euro_norm: euro4
+    my_start: 2002
+    my_end: 2010
+    has_vvt: false
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── BMW ───────────────────────────────────────────────────────────────
+  - engine_code: M54B22
+    brand: BMW
+    displacement_cc: 2171
+    euro_norm: euro3
+    my_start: 2000
+    my_end: 2006
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: true
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: M54B30
+    brand: BMW
+    displacement_cc: 2979
+    euro_norm: euro3
+    my_start: 2000
+    my_end: 2006
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: true
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: N52B30
+    brand: BMW
+    displacement_cc: 2996
+    euro_norm: euro4
+    my_start: 2005
+    my_end: 2011
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: true
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: N54B30
+    brand: BMW
+    displacement_cc: 2979
+    euro_norm: euro5
+    my_start: 2006
+    my_end: 2013
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: N55B30
+    brand: BMW
+    displacement_cc: 2979
+    euro_norm: euro5
+    my_start: 2009
+    my_end: 2016
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: B48B20
+    brand: BMW
+    displacement_cc: 1998
+    euro_norm: euro6
+    my_start: 2014
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: B58B30
+    brand: BMW
+    displacement_cc: 2998
+    euro_norm: euro6
+    my_start: 2015
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: N46B20
+    brand: BMW
+    displacement_cc: 1995
+    euro_norm: euro4
+    my_start: 2004
+    my_end: 2012
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: true
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Mercedes-Benz ─────────────────────────────────────────────────────
+  - engine_code: M111_E23
+    brand: MERCEDES
+    displacement_cc: 2295
+    euro_norm: euro2
+    my_start: 1995
+    my_end: 2002
+    has_vvt: false
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: true
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: M271_E18
+    brand: MERCEDES
+    displacement_cc: 1796
+    euro_norm: euro4
+    my_start: 2002
+    my_end: 2012
+    has_vvt: true
+    has_gdi: false
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: true
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: M272_E35
+    brand: MERCEDES
+    displacement_cc: 3498
+    euro_norm: euro4
+    my_start: 2004
+    my_end: 2013
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: true
+    has_egr: true
+    has_secondary_air: true
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: M274_E20
+    brand: MERCEDES
+    displacement_cc: 1991
+    euro_norm: euro6
+    my_start: 2013
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Toyota ────────────────────────────────────────────────────────────
+  - engine_code: 4A-FE
+    brand: TOYOTA
+    displacement_cc: 1587
+    euro_norm: euro1
+    my_start: 1990
+    my_end: 1999
+    has_vvt: false
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: 1ZZ-FE
+    brand: TOYOTA
+    displacement_cc: 1794
+    euro_norm: euro3
+    my_start: 1998
+    my_end: 2008
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: 2ZZ-GE
+    brand: TOYOTA
+    displacement_cc: 1796
+    euro_norm: euro4
+    my_start: 1999
+    my_end: 2011
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: 1NZ-FE
+    brand: TOYOTA
+    displacement_cc: 1497
+    euro_norm: euro4
+    my_start: 1999
+    my_end: 2014
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: 2AR-FE
+    brand: TOYOTA
+    displacement_cc: 2494
+    euro_norm: euro5
+    my_start: 2008
+    my_end: 2020
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: 8AR-FTS
+    brand: TOYOTA
+    displacement_cc: 1998
+    euro_norm: euro6
+    my_start: 2015
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Honda ─────────────────────────────────────────────────────────────
+  - engine_code: D16Y8
+    brand: HONDA
+    displacement_cc: 1590
+    euro_norm: euro2
+    my_start: 1996
+    my_end: 2001
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: K20A2
+    brand: HONDA
+    displacement_cc: 1998
+    euro_norm: euro4
+    my_start: 2001
+    my_end: 2011
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: K24A2
+    brand: HONDA
+    displacement_cc: 2354
+    euro_norm: euro4
+    my_start: 2003
+    my_end: 2014
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: R18A2
+    brand: HONDA
+    displacement_cc: 1799
+    euro_norm: euro5
+    my_start: 2006
+    my_end: 2015
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: L15B7
+    brand: HONDA
+    displacement_cc: 1498
+    euro_norm: euro6
+    my_start: 2015
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Ford ──────────────────────────────────────────────────────────────
+  - engine_code: Zetec_E_1.8
+    brand: FORD
+    displacement_cc: 1796
+    euro_norm: euro2
+    my_start: 1992
+    my_end: 2003
+    has_vvt: false
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: Duratec_2.0
+    brand: FORD
+    displacement_cc: 1999
+    euro_norm: euro4
+    my_start: 2001
+    my_end: 2010
+    has_vvt: false
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: EcoBoost_1.0
+    brand: FORD
+    displacement_cc: 999
+    euro_norm: euro5
+    my_start: 2012
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: EcoBoost_1.6
+    brand: FORD
+    displacement_cc: 1596
+    euro_norm: euro5
+    my_start: 2010
+    my_end: 2016
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: EcoBoost_2.0
+    brand: FORD
+    displacement_cc: 1999
+    euro_norm: euro6
+    my_start: 2015
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Opel / Vauxhall (GM) ─────────────────────────────────────────────
+  - engine_code: X16XEL
+    brand: OPEL
+    displacement_cc: 1598
+    euro_norm: euro2
+    my_start: 1994
+    my_end: 2002
+    has_vvt: false
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: Z18XER
+    brand: OPEL
+    displacement_cc: 1796
+    euro_norm: euro4
+    my_start: 2003
+    my_end: 2012
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: A14NET
+    brand: OPEL
+    displacement_cc: 1364
+    euro_norm: euro5
+    my_start: 2009
+    my_end: 2016
+    has_vvt: true
+    has_gdi: false
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: B14XFT
+    brand: OPEL
+    displacement_cc: 1399
+    euro_norm: euro6
+    my_start: 2014
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── PSA (Peugeot / Citroen) ──────────────────────────────────────────
+  - engine_code: TU5JP4
+    brand: PEUGEOT
+    displacement_cc: 1587
+    euro_norm: euro3
+    my_start: 1998
+    my_end: 2008
+    has_vvt: false
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: EW10J4S
+    brand: PEUGEOT
+    displacement_cc: 1997
+    euro_norm: euro3
+    my_start: 2001
+    my_end: 2008
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: EP6CDT
+    brand: PEUGEOT
+    displacement_cc: 1598
+    euro_norm: euro5
+    my_start: 2006
+    my_end: 2016
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: EB2DT
+    brand: PEUGEOT
+    displacement_cc: 1199
+    euro_norm: euro6
+    my_start: 2014
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Renault ───────────────────────────────────────────────────────────
+  - engine_code: K4M_1.6_16V
+    brand: RENAULT
+    displacement_cc: 1598
+    euro_norm: euro3
+    my_start: 1998
+    my_end: 2012
+    has_vvt: false
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: F4R_2.0_16V
+    brand: RENAULT
+    displacement_cc: 1998
+    euro_norm: euro4
+    my_start: 2000
+    my_end: 2012
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: H5Ft
+    brand: RENAULT
+    displacement_cc: 1199
+    euro_norm: euro6
+    my_start: 2013
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Fiat / Alfa Romeo ────────────────────────────────────────────────
+  - engine_code: FIRE_1.2_8V
+    brand: FIAT
+    displacement_cc: 1242
+    euro_norm: euro3
+    my_start: 1993
+    my_end: 2010
+    has_vvt: false
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: MultiAir_1.4
+    brand: FIAT
+    displacement_cc: 1368
+    euro_norm: euro5
+    my_start: 2009
+    my_end: 2018
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: T-Jet_1.4
+    brand: FIAT
+    displacement_cc: 1368
+    euro_norm: euro5
+    my_start: 2007
+    my_end: 2015
+    has_vvt: false
+    has_gdi: false
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Volvo ─────────────────────────────────────────────────────────────
+  - engine_code: B5234T3
+    brand: VOLVO
+    displacement_cc: 2319
+    euro_norm: euro3
+    my_start: 1999
+    my_end: 2006
+    has_vvt: true
+    has_gdi: false
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: true
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: B4204T11
+    brand: VOLVO
+    displacement_cc: 1969
+    euro_norm: euro5
+    my_start: 2010
+    my_end: 2016
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Mazda ─────────────────────────────────────────────────────────────
+  - engine_code: MZR_2.0_DISI
+    brand: MAZDA
+    displacement_cc: 1999
+    euro_norm: euro4
+    my_start: 2006
+    my_end: 2013
+    has_vvt: true
+    has_gdi: true
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: SkyActiv_G_2.0
+    brand: MAZDA
+    displacement_cc: 1998
+    euro_norm: euro6
+    my_start: 2012
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Subaru ────────────────────────────────────────────────────────────
+  - engine_code: EJ25
+    brand: SUBARU
+    displacement_cc: 2457
+    euro_norm: euro4
+    my_start: 1999
+    my_end: 2012
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: true
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Hyundai / Kia ─────────────────────────────────────────────────────
+  - engine_code: Gamma_1.6_GDI
+    brand: HYUNDAI
+    displacement_cc: 1591
+    euro_norm: euro5
+    my_start: 2010
+    my_end: 2018
+    has_vvt: true
+    has_gdi: true
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: Theta_II_2.0_T-GDI
+    brand: HYUNDAI
+    displacement_cc: 1998
+    euro_norm: euro6
+    my_start: 2013
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Nissan ────────────────────────────────────────────────────────────
+  - engine_code: QR25DE
+    brand: NISSAN
+    displacement_cc: 2488
+    euro_norm: euro4
+    my_start: 2002
+    my_end: 2014
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: MR16DDT
+    brand: NISSAN
+    displacement_cc: 1618
+    euro_norm: euro5
+    my_start: 2011
+    my_end: 2018
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Mitsubishi ────────────────────────────────────────────────────────
+  - engine_code: 4B11T
+    brand: MITSUBISHI
+    displacement_cc: 1998
+    euro_norm: euro5
+    my_start: 2007
+    my_end: 2015
+    has_vvt: true
+    has_gdi: false
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Suzuki ────────────────────────────────────────────────────────────
+  - engine_code: M16A
+    brand: SUZUKI
+    displacement_cc: 1586
+    euro_norm: euro4
+    my_start: 2001
+    my_end: 2014
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Jaguar / Land Rover ──────────────────────────────────────────────
+  - engine_code: AJ20_Petrol_2.0T
+    brand: JAGUAR
+    displacement_cc: 1997
+    euro_norm: euro6
+    my_start: 2016
+    my_end: 2020
+    has_vvt: true
+    has_gdi: true
+    has_turbo: true
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Porsche ───────────────────────────────────────────────────────────
+  - engine_code: M96_03
+    brand: PORSCHE
+    displacement_cc: 3387
+    euro_norm: euro3
+    my_start: 1997
+    my_end: 2004
+    has_vvt: true
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: true
+    o2_type: WB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  # ── Edge / era-cover cases ───────────────────────────────────────────
+  - engine_code: Motronic_1.3_8V
+    brand: OPEL
+    displacement_cc: 1297
+    euro_norm: euro1
+    my_start: 1990
+    my_end: 1995
+    has_vvt: false
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: false
+    has_secondary_air: false
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: Motronic_1.6_Eco
+    brand: VOLKSWAGEN
+    displacement_cc: 1595
+    euro_norm: euro2
+    my_start: 1992
+    my_end: 1998
+    has_vvt: false
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: false
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000
+
+  - engine_code: M44B19
+    brand: BMW
+    displacement_cc: 1895
+    euro_norm: euro2
+    my_start: 1994
+    my_end: 2000
+    has_vvt: false
+    has_gdi: false
+    has_turbo: false
+    is_v_engine: false
+    has_egr: true
+    has_secondary_air: true
+    o2_type: NB
+    target_rpm_u2: 2500
+    target_lambda_v112: 1.000

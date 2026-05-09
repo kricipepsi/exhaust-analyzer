@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""Build vref.db from OPSI Slovenian registration CSV files.
+"""Build engine/v2/vref.db with the V2 engine_ref schema.
 
-Reads Nio_vozila_1/2/3.csv, filters petrol, buckets displacement, and
-aggregates per-engine emission/RPM reference values via median.
+Primary data source: tools/vref_manual_overrides.yaml (top engine codes
+with tech-mask flags). Optional OPSI CSV enrichment if the vehicle-data
+directory is present.
 
-Extends the original schema with 6 new columns requested by v2 HLD:
-  ref_u2_rpm, ref_low_idle_rpm, ref_low_idle_co,
-  ref_high_idle_rpm, ref_high_idle_co, ref_high_idle_lambda
+V2 schema per v2-era-masking skill §5:
+  engine_code TEXT PRIMARY KEY, brand, displacement_cc, euro_norm,
+  my_start, my_end, era_bucket, has_vvt, has_gdi, has_turbo,
+  is_v_engine, has_egr, has_secondary_air, o2_type,
+  target_rpm_u2, target_lambda_v112
 """
 
 from __future__ import annotations
@@ -14,40 +17,170 @@ from __future__ import annotations
 import csv
 import re
 import sqlite3
-from collections import defaultdict
 from pathlib import Path
-
-import numpy as np
 
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
-ROOT = Path(__file__).parent.parent.parent
+ROOT = Path(__file__).resolve().parent.parent
+OVERRIDES_YAML = ROOT / "tools" / "vref_manual_overrides.yaml"
+OUT_DB = ROOT / "engine" / "v2" / "vref.db"
 CSV_DIR = ROOT / "vehicle-data" / "OPSI_podatki_reg._vozilih_30.06.2023"
-OUT_DB = ROOT / "vehicle-data" / "vref.db"
 CSV_ENCODING = "iso-8859-1"
-
 CSV_FILES = [CSV_DIR / f"Nio_vozila_{i}.csv" for i in (1, 2, 3)]
 
 # ---------------------------------------------------------------------------
-# Fuel-code → internal fuel_type
+# Era bucket derivation
 # ---------------------------------------------------------------------------
-PETROL_CODES = {"P", "P/LPG", "P/CNG", "P/ET", "CNG", "LPG", "M", "LNG", "H", "O"}
-DIESEL_CODES = {"D", "D/BD", "D/LPG", "D/CNG", "LNG/D"}
+ERA_BUCKETS = [
+    (1990, 1995, "ERA_PRE_OBDII"),
+    (1996, 2005, "ERA_OBDII_EARLY"),
+    (2006, 2015, "ERA_CAN"),
+    (2016, 2020, "ERA_MODERN"),
+]
 
 
-def _norm_fuel(raw: str) -> str | None:
-    code = raw.strip()
-    if code in PETROL_CODES:
-        return "petrol"
-    if code in DIESEL_CODES:
-        return "diesel"
-    return None
+def _derive_era(my_start: int, my_end: int) -> str:
+    """Map (my_start, my_end) to the earliest matching era bucket."""
+    for era_start, era_end, label in ERA_BUCKETS:
+        if my_start <= era_end and my_end >= era_start:
+            return label
+    return "ERA_MODERN"
 
 
 # ---------------------------------------------------------------------------
-# Euro-norm string → internal code (euro4, euro5, euro6, pre_euro3, etc.)
+# V2 engine_ref schema (source: v2-era-masking skill §5)
 # ---------------------------------------------------------------------------
+CREATE_ENGINE_REF = """\
+CREATE TABLE IF NOT EXISTS engine_ref (
+    engine_code        TEXT PRIMARY KEY,
+    brand              TEXT    NOT NULL,
+    displacement_cc    INTEGER,
+    euro_norm          TEXT,
+    my_start           INTEGER,
+    my_end             INTEGER,
+    era_bucket         TEXT    NOT NULL,
+    has_vvt            INTEGER NOT NULL DEFAULT 0,
+    has_gdi            INTEGER NOT NULL DEFAULT 0,
+    has_turbo          INTEGER NOT NULL DEFAULT 0,
+    is_v_engine        INTEGER NOT NULL DEFAULT 0,
+    has_egr            INTEGER NOT NULL DEFAULT 0,
+    has_secondary_air  INTEGER NOT NULL DEFAULT 0,
+    o2_type            TEXT    NOT NULL DEFAULT 'NB',
+    target_rpm_u2      INTEGER NOT NULL DEFAULT 2500,
+    target_lambda_v112 REAL    NOT NULL DEFAULT 1.000
+)
+"""
+
+INSERT_ROW = """\
+INSERT OR REPLACE INTO engine_ref
+    (engine_code, brand, displacement_cc, euro_norm, my_start, my_end,
+     era_bucket, has_vvt, has_gdi, has_turbo, is_v_engine, has_egr,
+     has_secondary_air, o2_type, target_rpm_u2, target_lambda_v112)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+"""
+
+# ---------------------------------------------------------------------------
+# Petrol-only guard
+# ---------------------------------------------------------------------------
+PETROL_ONLY_FUEL_TYPES = frozenset({"petrol"})
+
+
+def _bool_to_int(value: bool) -> int:
+    return 1 if value else 0
+
+
+# ---------------------------------------------------------------------------
+# YAML loading (stdlib-only, no PyYAML dependency)
+# ---------------------------------------------------------------------------
+def _load_overrides(path: Path) -> list[dict]:
+    """Parse vref_manual_overrides.yaml without a YAML library.
+
+    Uses a minimal line-based parser that handles the simple flat-record
+    format used by the overrides file. Falls back to PyYAML if installed.
+    """
+    try:
+        import yaml  # type: ignore[import-untyped]
+    except ImportError:
+        yaml = None  # type: ignore[assignment]
+
+    if yaml is not None:
+        with open(path, encoding="utf-8") as fh:
+            doc = yaml.safe_load(fh)
+        return doc.get("engines", [])
+
+    # Minimal stdlib parser for this specific YAML structure
+    return _parse_overrides_stdlib(path)
+
+
+def _parse_overrides_stdlib(path: Path) -> list[dict]:
+    """Minimal line-based parser for the manual overrides YAML format."""
+    lines = path.read_text(encoding="utf-8").splitlines()
+    entries: list[dict] = []
+    current: dict | None = None
+    list_context: str | None = None
+
+    for line in lines:
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+
+        # Detect list-of-dicts start
+        if stripped == "engines:":
+            list_context = "engines"
+            continue
+
+        if list_context == "engines" and stripped.startswith("- "):
+            key_val = stripped[2:]
+            if ":" in key_val:
+                k, v = key_val.split(":", 1)
+                k = k.strip()
+                v = v.strip()
+                if k == "engine_code":
+                    if current is not None:
+                        entries.append(current)
+                    current = {}
+                if current is not None:
+                    current[k] = _yaml_scalar(v)
+            continue
+
+        # Indented key: value (4 spaces)
+        if (current is not None and line.startswith("    ")
+                and not stripped.startswith("- ") and ":" in stripped):
+            k, v = stripped.split(":", 1)
+            k = k.strip()
+            v = v.strip()
+            if k not in ("engine_code",) and v:
+                current[k] = _yaml_scalar(v)
+
+    if current is not None:
+        entries.append(current)
+
+    return entries
+
+
+def _yaml_scalar(value: str) -> str | int | float | bool:
+    """Coerce a YAML scalar string to the appropriate Python type."""
+    v = value.strip().strip('"').strip("'")
+    if v in ("true", "True", "TRUE"):
+        return True
+    if v in ("false", "False", "FALSE"):
+        return False
+    try:
+        return int(v)
+    except ValueError:
+        pass
+    try:
+        return float(v)
+    except ValueError:
+        pass
+    return v
+
+
+# ---------------------------------------------------------------------------
+# Optional OPSI CSV enrichment
+# ---------------------------------------------------------------------------
+PETROL_CODES = frozenset({"P", "P/LPG", "P/CNG", "P/ET", "CNG", "LPG", "M"})
 _EURO_RE = re.compile(r"EURO\s*(\d+[a-zA-Z]?|VI)", re.IGNORECASE)
 
 
@@ -57,31 +190,20 @@ def _norm_euro(raw: str) -> str:
         return "unknown"
     m = _EURO_RE.search(s)
     if not m:
-        # Try common patterns without "EURO" label
         if re.search(r"2003/76B", s):
             return "euro4"
-        if re.search(r"2002/80[AB]?", s):
-            return "euro4"
-        if re.search(r"2001/100A?", s):
-            return "euro3"
-        if re.search(r"2006/96B?", s):
-            return "euro4"
-        if re.search(r"83RII", s):
-            return "euro4"
-        if re.search(r"98/69", s) or re.search(r"1999/102", s):
-            return "euro3"
-        if re.search(r"96/69", s) or re.search(r"94/12", s):
-            return "euro2"
         if re.search(r"91/441", s):
             return "euro1"
-        if re.search(r"97/24", s):
+        if re.search(r"94/12", s):
             return "euro2"
+        if re.search(r"96/69", s):
+            return "euro2"
+        if re.search(r"98/69", s) or re.search(r"1999/102", s):
+            return "euro3"
         return "unknown"
-
     tok = m.group(1).upper()
     if tok == "VI":
         return "euro6"
-    # Strip trailing letters: "5a" → "5", "6b" → "6", "6d" → "6"
     num = re.match(r"(\d+)", tok)
     if num:
         digit = int(num.group(1))
@@ -101,19 +223,83 @@ def _norm_euro(raw: str) -> str:
     return "unknown"
 
 
-def _emission_class(euro_norm: str) -> str:
-    """Map fine-grained euro_norm to coarse emission_class."""
-    if euro_norm in ("euro4", "euro5", "euro6"):
-        return "euro4"
-    return "pre_euro4"
+def _try_enrich_from_opsi(rows: list[dict]) -> None:
+    """If OPSI CSVs exist, compute median lambda/RPM per (brand, displ_cc, euro_norm)
+    and update any matching rows' target_rpm_u2/target_lambda_v112."""
+    if not CSV_DIR.exists():
+        print("OPSI CSVs not found — skipping enrichment pass.")
+        return
 
-
-# ---------------------------------------------------------------------------
-# Displacement bucket
-# ---------------------------------------------------------------------------
-def _bucket(cc) -> int | None:
     try:
-        return round(int(cc) / 100) * 100
+        import numpy as np
+    except ImportError:
+        print("numpy not installed — skipping OPSI enrichment.")
+        return
+
+    from collections import defaultdict
+
+    groups: dict[tuple, dict[str, list[float]]] = defaultdict(lambda: defaultdict(list))
+
+    for csv_path in CSV_FILES:
+        if not csv_path.exists():
+            continue
+        print(f"Reading {csv_path.name} for enrichment ...")
+        with open(csv_path, encoding=CSV_ENCODING) as fh:
+            for row in csv.DictReader(fh, delimiter=";"):
+                fuel_code = (row.get("P13-Vrsta goriva (oznaka)", "") or "").strip()
+                if fuel_code not in PETROL_CODES:
+                    continue
+                brand = (row.get("D1-Znamka", "") or "").strip().upper()
+                if not brand:
+                    continue
+                cc_raw = row.get("P11-Delovna prostornina", "")
+                try:
+                    displ_cc = int(float(str(cc_raw).replace(",", ".")))
+                except (TypeError, ValueError):
+                    continue
+                displ_bucket = round(displ_cc / 100) * 100
+                euro = _norm_euro(row.get("V9-Podatek o okoljevarstveni kategoriji vozila", ""))
+
+                key = (brand, displ_bucket, euro)
+
+                for col, csv_field in [
+                    ("lambda_vals", "V112-Vrednost Lambda"),
+                    ("rpm_hi_vals", "V11-Vrtilna frekvenca prostega teka, visoka"),
+                ]:
+                    raw = row.get(csv_field, "")
+                    v = _safe_float(raw)
+                    if v is not None and 0 < v < 100000:
+                        groups[key][col].append(v)
+
+    enriched = 0
+    for row_dict in rows:
+        brand = str(row_dict.get("brand", "")).upper()
+        displ = int(row_dict.get("displacement_cc", 0))
+        displ_bucket = round(displ / 100) * 100
+        euro = str(row_dict.get("euro_norm", "unknown"))
+        key = (brand, displ_bucket, euro)
+        if key in groups:
+            lambdas = groups[key].get("lambda_vals", [])
+            rpms = groups[key].get("rpm_hi_vals", [])
+            if lambdas and "target_lambda_v112" not in row_dict:
+                row_dict["target_lambda_v112"] = round(float(np.median(lambdas)), 3)
+                enriched += 1
+            if rpms and "target_rpm_u2" not in row_dict:
+                row_dict["target_rpm_u2"] = int(round(np.median(rpms)))
+                enriched += 1
+
+    if enriched:
+        print(f"OPSI enrichment: {enriched} fields updated.")
+
+
+def _safe_float(raw: str) -> float | None:
+    if not raw:
+        return None
+    s = str(raw).strip()
+    if not s or s == "-":
+        return None
+    try:
+        return float(s.replace(",", "."))
     except (TypeError, ValueError):
         return None
 
@@ -121,245 +307,103 @@ def _bucket(cc) -> int | None:
 # ---------------------------------------------------------------------------
 # Build
 # ---------------------------------------------------------------------------
-def _safe_float(raw) -> float | None:
-    if raw is None:
-        return None
-    s = str(raw).strip()
-    if not s or s == "-":
-        return None
-    try:
-        s = s.replace(",", ".")
-        return float(s)
-    except (TypeError, ValueError):
-        return None
-
-
-def _safe_int(raw) -> int | None:
-    v = _safe_float(raw)
-    if v is None:
-        return None
-    return int(round(v))
-
-
 def main() -> None:
-    # Read & parse all CSVs into per-key lists of numeric values
-    groups: dict[tuple, dict[str, list[float]]] = defaultdict(
-        lambda: defaultdict(list)
-    )
+    # 1. Load manual overrides
+    print(f"Loading manual overrides from {OVERRIDES_YAML} ...")
+    if not OVERRIDES_YAML.exists():
+        print(f"ERROR: {OVERRIDES_YAML} not found.")
+        raise SystemExit(1)
 
-    total_rows = 0
-    petrol_rows = 0
+    entries = _load_overrides(OVERRIDES_YAML)
 
-    for csv_path in CSV_FILES:
-        print(f"Reading {csv_path.name} ...")
-        with open(csv_path, "r", encoding=CSV_ENCODING) as fh:
-            reader = csv.DictReader(fh, delimiter=";")
-            for row in reader:
-                total_rows += 1
+    # 2. Filter petrol-only
+    petrol_entries = []
+    skipped = 0
+    for e in entries:
+        fuel = str(e.get("fuel_type", "petrol")).lower()
+        if fuel in PETROL_ONLY_FUEL_TYPES:
+            petrol_entries.append(e)
+        else:
+            skipped += 1
+            print(f"  Skipping non-petrol: {e.get('engine_code', '?')} (fuel_type={fuel})")
 
-                fuel = _norm_fuel(row.get("P13-Vrsta goriva (oznaka)", ""))
-                if fuel is None:
-                    continue
-                if fuel not in ("petrol", "diesel"):
-                    continue
-                petrol_rows += 1
+    print(f"Loaded {len(petrol_entries)} petrol engine codes"
+          f"{f' ({skipped} skipped)' if skipped else ''}.")
 
-                brand = (row.get("D1-Znamka", "") or "").strip().upper()
-                if not brand:
-                    continue
+    # 3. Optional OPSI enrichment
+    _try_enrich_from_opsi(petrol_entries)
 
-                displ_cc = _bucket(row.get("P11-Delovna prostornina", ""))
-                if displ_cc is None:
-                    continue
+    # 4. Derive era_bucket for any entry missing it
+    for e in petrol_entries:
+        my_start = int(e.get("my_start", 2000))
+        my_end = int(e.get("my_end", 2010))
+        if "era_bucket" not in e:
+            e["era_bucket"] = _derive_era(my_start, my_end)
 
-                euro = _norm_euro(
-                    row.get("V9-Podatek o okoljevarstveni kategoriji vozila", "")
-                )
-
-                key = (brand, fuel, displ_cc, euro)
-
-                # Existing columns
-                _append_float(groups, key, "ref_co",
-                              row.get("V1-CO"))
-                _append_float(groups, key, "ref_hc",
-                              row.get("V2-HC"))
-                _append_float(groups, key, "ref_nox",
-                              row.get("V3-Nox"))
-                _append_float(groups, key, "ref_hc_nox",
-                              row.get("V4-HC + Nox"))
-                _append_float(groups, key, "ref_pm",
-                              row.get("V5-Delci pri dizel motorjih"))
-                _append_float(groups, key, "ref_smoke_k",
-                              row.get("V6-Korigiran absorpcijski koeficient pri dizel motorjih"))
-                _append_float(groups, key, "ref_co2",
-                              row.get("V7-CO2"))
-                _append_float(groups, key, "ref_co2_wltp",
-                              row.get("CO2_WLTP"))
-                _append_float(groups, key, "ref_fuel_cons",
-                              row.get("V8-Kombinirana poraba goriva"))
-                _append_float(groups, key, "ref_lambda",
-                              row.get("V112-Vrednost Lambda"))
-                _append_float(groups, key, "ref_idle_rpm_lo",
-                              row.get("V10-Vrtilna frekvenca prostega teka, nizka"))
-                _append_float(groups, key, "ref_idle_rpm_hi",
-                              row.get("V11-Vrtilna frekvenca prostega teka, visoka"))
-                _append_float(groups, key, "ref_co_idle_lo",
-                              row.get("V101-Vsebina CO"))
-                _append_float(groups, key, "ref_co_idle_hi",
-                              row.get("V111-Vsebina CO"))
-
-                # New columns (Part 2)
-                _append_float(groups, key, "ref_u2_rpm",
-                              row.get("U2-Pri vrtilni frekvenci motorja"))
-                _append_float(groups, key, "ref_low_idle_rpm",
-                              row.get("V10-Vrtilna frekvenca prostega teka, nizka"))
-                _append_float(groups, key, "ref_low_idle_co",
-                              row.get("V101-Vsebina CO"))
-                _append_float(groups, key, "ref_high_idle_rpm",
-                              row.get("V11-Vrtilna frekvenca prostega teka, visoka"))
-                _append_float(groups, key, "ref_high_idle_co",
-                              row.get("V111-Vsebina CO"))
-                _append_float(groups, key, "ref_high_idle_lambda",
-                              row.get("V112-Vrednost Lambda"))
-
-    print(f"Total rows: {total_rows:,}")
-    print(f"Petrol rows: {petrol_rows:,}")
-    print(f"Aggregate keys (brand+fuel+displ+euro): {len(groups):,}")
-
-    # Write to SQLite
+    # 5. Create output directory and database
     out_dir = OUT_DB.parent
-    if not out_dir.exists():
-        out_dir.mkdir(parents=True, exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
 
     conn = sqlite3.connect(str(OUT_DB))
-    conn.execute("DROP TABLE IF EXISTS vehicle_refs")
-    conn.execute("""
-        CREATE TABLE vehicle_refs (
-            id                  INTEGER PRIMARY KEY AUTOINCREMENT,
-            brand               TEXT    NOT NULL,
-            fuel_type           TEXT    NOT NULL,
-            displ_bucket        INTEGER NOT NULL,
-            euro_norm           TEXT    NOT NULL,
-            emission_class      TEXT    NOT NULL,
-            sample_count        INTEGER NOT NULL,
-            ref_co              REAL,
-            ref_hc              REAL,
-            ref_nox             REAL,
-            ref_hc_nox          REAL,
-            ref_pm              REAL,
-            ref_smoke_k         REAL,
-            ref_co2             REAL,
-            ref_co2_wltp        REAL,
-            ref_fuel_cons       REAL,
-            ref_lambda          REAL,
-            ref_idle_rpm_lo     INTEGER,
-            ref_idle_rpm_hi     INTEGER,
-            ref_co_idle_lo      REAL,
-            ref_co_idle_hi      REAL,
-            ref_u2_rpm          INTEGER,
-            ref_low_idle_rpm    INTEGER,
-            ref_low_idle_co     REAL,
-            ref_high_idle_rpm   INTEGER,
-            ref_high_idle_co    REAL,
-            ref_high_idle_lambda REAL
-        )
-    """)
+    conn.execute("DROP TABLE IF EXISTS engine_ref")
+    conn.execute(CREATE_ENGINE_REF)
     conn.execute(
-        "CREATE INDEX IF NOT EXISTS idx_vehicle_refs_lookup "
-        "ON vehicle_refs(brand, fuel_type, displ_bucket, euro_norm)"
+        "CREATE INDEX IF NOT EXISTS idx_engine_ref_brand "
+        "ON engine_ref(brand, displacement_cc, euro_norm)"
     )
 
-    sorted_keys = sorted(groups.keys())
-    for key in sorted_keys:
-        brand, fuel, displ, euro = key
-        vals = groups[key]
-        sample_count = len(vals["ref_co"])
-        emission_class = _emission_class(euro)
+    # 6. Insert rows
+    inserted = 0
+    for e in petrol_entries:
+        ec = str(e.get("engine_code", ""))
+        if not ec:
+            continue
 
-        row_data = (
-            brand, fuel, displ, euro, emission_class, sample_count,
-            _median_float(vals.get("ref_co")),
-            _median_float(vals.get("ref_hc")),
-            _median_float(vals.get("ref_nox")),
-            _median_float(vals.get("ref_hc_nox")),
-            _median_float(vals.get("ref_pm")),
-            _median_float(vals.get("ref_smoke_k")),
-            _median_float(vals.get("ref_co2")),
-            _median_float(vals.get("ref_co2_wltp")),
-            _median_float(vals.get("ref_fuel_cons")),
-            _median_float(vals.get("ref_lambda")),
-            _median_int(vals.get("ref_idle_rpm_lo")),
-            _median_int(vals.get("ref_idle_rpm_hi")),
-            _median_float(vals.get("ref_co_idle_lo")),
-            _median_float(vals.get("ref_co_idle_hi")),
-            _median_int(vals.get("ref_u2_rpm")),
-            _median_int(vals.get("ref_low_idle_rpm")),
-            _median_float(vals.get("ref_low_idle_co")),
-            _median_int(vals.get("ref_high_idle_rpm")),
-            _median_float(vals.get("ref_high_idle_co")),
-            _median_float(vals.get("ref_high_idle_lambda")),
-        )
+        brand = str(e.get("brand", "")).upper()
+        displ_cc = int(e.get("displacement_cc", 0))
+        euro = str(e.get("euro_norm", "unknown"))
+        my_start = int(e.get("my_start", 2000))
+        my_end = int(e.get("my_end", 2010))
+        era_bucket = str(e.get("era_bucket", _derive_era(my_start, my_end)))
 
-        conn.execute(
-            """INSERT INTO vehicle_refs
-               (brand, fuel_type, displ_bucket, euro_norm, emission_class,
-                sample_count,
-                ref_co, ref_hc, ref_nox, ref_hc_nox, ref_pm, ref_smoke_k,
-                ref_co2, ref_co2_wltp, ref_fuel_cons, ref_lambda,
-                ref_idle_rpm_lo, ref_idle_rpm_hi, ref_co_idle_lo, ref_co_idle_hi,
-                ref_u2_rpm, ref_low_idle_rpm, ref_low_idle_co,
-                ref_high_idle_rpm, ref_high_idle_co, ref_high_idle_lambda)
-               VALUES (?, ?, ?, ?, ?, ?,
-                       ?, ?, ?, ?, ?, ?,
-                       ?, ?, ?, ?,
-                       ?, ?, ?, ?,
-                       ?, ?, ?,
-                       ?, ?, ?)""",
-            row_data,
+        row = (
+            ec,
+            brand,
+            displ_cc if displ_cc > 0 else None,
+            euro if euro != "unknown" else None,
+            my_start,
+            my_end,
+            era_bucket,
+            _bool_to_int(bool(e.get("has_vvt", False))),
+            _bool_to_int(bool(e.get("has_gdi", False))),
+            _bool_to_int(bool(e.get("has_turbo", False))),
+            _bool_to_int(bool(e.get("is_v_engine", False))),
+            _bool_to_int(bool(e.get("has_egr", False))),
+            _bool_to_int(bool(e.get("has_secondary_air", False))),
+            str(e.get("o2_type", "NB")),
+            int(e.get("target_rpm_u2", 2500)),
+            float(e.get("target_lambda_v112", 1.000)),
         )
+        conn.execute(INSERT_ROW, row)
+        inserted += 1
 
     conn.commit()
 
-    count = conn.execute("SELECT COUNT(*) FROM vehicle_refs").fetchone()[0]
+    # 7. Report
+    count = conn.execute("SELECT COUNT(*) FROM engine_ref").fetchone()[0]
     print(f"Wrote {count} rows to {OUT_DB}")
 
-    # Sanity checks
-    row = conn.execute(
-        "SELECT brand, ref_u2_rpm, ref_high_idle_rpm, ref_high_idle_lambda "
-        "FROM vehicle_refs WHERE brand='VOLKSWAGEN' AND displ_bucket=1400 "
-        "AND euro_norm='euro5'"
-    ).fetchone()
-    if row:
-        print(f"\nSanity check VW 1400cc euro5:")
-        print(f"  ref_u2_rpm={row[1]}, ref_high_idle_rpm={row[2]}, "
-              f"ref_high_idle_lambda={row[3]}")
-        if row[1] is None or row[1] < 2500 or row[1] > 4500:
-            print("  WARNING: ref_u2_rpm out of expected range (2500-4500)")
-        else:
-            print("  OK: ref_u2_rpm in expected range")
-    else:
-        print("WARNING: VW 1400cc euro5 not found in output")
+    # Quick sanity
+    sample = conn.execute(
+        "SELECT engine_code, brand, era_bucket, has_vvt, has_gdi, has_turbo "
+        "FROM engine_ref ORDER BY engine_code LIMIT 5"
+    ).fetchall()
+    print("Sample rows:")
+    for s in sample:
+        print(f"  {s[0]:30s} {s[1]:15s} {s[2]:20s} vvt={s[3]} gdi={s[4]} turbo={s[5]}")
 
     conn.close()
     print("Done.")
-
-
-def _append_float(groups, key, col, raw):
-    v = _safe_float(raw)
-    if v is not None:
-        groups[key][col].append(v)
-
-
-def _median_float(lst) -> float | None:
-    if not lst:
-        return None
-    return float(np.median(lst))
-
-
-def _median_int(lst) -> int | None:
-    if not lst:
-        return None
-    return int(round(np.median(lst)))
 
 
 if __name__ == "__main__":
