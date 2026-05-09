@@ -1,0 +1,372 @@
+# V2 Thresholds — 4D Petrol Diagnostic Engine
+# =============================================
+# Built: T-P1-5 (2026-05-09)
+# Source: schema/v1_reference/thresholds.yaml + THRESHOLD_PROVENANCE_AUDIT.md (T-P0-4)
+# Rule: R10 — every numeric cites a master guide section (see source_guide comments below)
+# Rule: L08 — no magic numbers; all thresholds have provenance
+#
+# RECALIBRATE corrections applied (15 + 1 pending resolution):
+#   gas_symptoms.nox_high:          600 → 500  (align with master_nox_guide.md §4.1)
+#   patterns.stuck_egr_open.hc_min: 350 → 300  (per master_egr_guide.md §5.6)
+#   patterns.compression_loss.lambda_min: 0.95 → 0.94  (per task T-P1-5 / forensic)
+#   freeze_frame.ect_warmup_max:    kept 70   (FF guide §4 + fuel_trim_guide §6 cross-ref;
+#                                              §9 table says 60 but §4 prose says 70)
+#   patterns.sensor_bias_false_rich.lambda_max: kept 0.95 (PENDING semantic review —
+#                                              pattern name "false_rich" but λ<0.95 means
+#                                              engine IS rich; see audit #119 note)
+#
+# All late_timing and compression_loss RECALIBRATE corrections were pre-applied
+# in V1 reference; verified against timing_compression_forensic.md (2026-05-03).
+
+# ---------------------------------------------------------------------------
+# Gas symptom thresholds
+# ---------------------------------------------------------------------------
+gas_symptoms:
+  co_high: 1.0               # source_guide: master_gas_guide.md §3 — CO > 1.0% indicates rich combustion
+  co2_low: 10.0              # source_guide: master_exhaust_guide.md §2.2 — CO₂ < 10% indicates severe dilution or combustion failure
+  co2_high: 15.0             # source_guide: master_gas_guide.md — CO₂ > 15% unusual; indicates rich mixture with efficient combustion
+  co2_good_min: 14.5         # source_guide: master_exhaust_guide.md §2.2 — stoich combustion produces ~15% CO₂; 14.5% lower bound for healthy cat-equipped engine
+  co2_good_min_decat: 13.0   # source_guide: master_gas_guide.md — decat engines run 1–2% lower CO₂
+  co2_good_max: 15.5         # source_guide: master_gas_guide.md — CO₂ max for healthy stoich combustion
+  hc_very_high: 1000         # source_guide: master_ignition_guide.md §6 — HC > 1000 ppm = severe misfire
+  hc_high: 300               # source_guide: master_egr_guide.md §5.1 — HC > 300 ppm = measurable combustion deficit (~1.5% unburned fuel)
+  hc_low: 150                # source_guide: master_gas_guide.md — HC < 150 ppm normal for cat-equipped warm engine
+  o2_very_high: 5.0          # source_guide: master_gas_guide.md — O₂ > 5% indicates severe lean condition or misfire
+  o2_high: 2.0               # source_guide: master_egr_guide.md §5.2 — O₂ > 2.0% at warm idle above healthy-no-cat boundary
+  o2_low: 0.5                # source_guide: master_gas_guide.md — O₂ < 0.5% indicates rich combustion consuming available oxygen
+  nox_high: 500              # source_guide: master_nox_guide.md §4.1 — NOx > 500 ppm with λ > 1.05 = lean-combustion NOx (RECALIBRATE: was 600, aligned to NOx guide)
+  nox_low: 100               # source_guide: master_nox_guide.md §3.1 — idle NOx > 100 ppm = EGR not diluting
+  lambda_low: 0.95           # source_guide: master_ecu_guide.md §3.2 — λ 0.95 is borderline rich; below this is moderate rich
+  lambda_high: 1.05          # source_guide: master_nox_guide.md §4.1 — λ > 1.05 = peak NOx formation zone
+
+# ---------------------------------------------------------------------------
+# Compound pattern thresholds
+# ---------------------------------------------------------------------------
+patterns:
+  # Cam timing retard (late valve timing / phaser lag).
+  # Corrected per timing_compression_forensic.md (2026-05-03).
+  # V1 values (hc_min=5000, co_min=2.5, co2_max=8.0, o2_min=3.0) were physically
+  # impossible for cam retard — they described extreme ignition failure.
+  late_timing:
+    lambda_min: 0.75         # source_guide: master_mechanical_guide.md §9.2 — cam retard λ floor; wide lower bound covers cold-start enrichment (forensic: timing_compression_forensic.md L24)
+    lambda_max: 1.06         # source_guide: master_mechanical_guide.md §9.2 — was 0.99; cam retard is stoich to slightly lean (cases up to λ=1.05) (forensic: timing_compression_forensic.md L24)
+    hc_min: 200              # source_guide: master_mechanical_guide.md §9.2 — cam retard HC is 180–420 ppm (was 5000→1200→200) (forensic: timing_compression_forensic.md L25)
+    co_min: 0.3              # source_guide: master_mechanical_guide.md §9.2 — cam retard CO is 0.4–1.5%, not >2.5% (was 2.5→0.3) (forensic: timing_compression_forensic.md L26)
+    co_max: 2.0              # source_guide: master_mechanical_guide.md §9.2 — guard against rich-mixture/misfire inhibitory collisions; all 9 target cases CO ≤ 1.5% (forensic: timing_compression_forensic.md L27)
+    co2_max: 13.5            # source_guide: master_mechanical_guide.md §9.2 — was 8.0→13.0→13.5; EXP-N007 has CO2=13.5 (forensic: timing_compression_forensic.md L28)
+    o2_min: 0.3              # source_guide: master_mechanical_guide.md §9.2 — was 3.0→1.0→0.3; EXP-N007/EXP-N023 have O2=0.4–0.45% (forensic: timing_compression_forensic.md L29)
+
+  # Compression loss (ring seal / valve seal / head gasket compression).
+  # Corrected per timing_compression_forensic.md (2026-05-03).
+  # V1 lambda_min=1.0 blocked 3 of 4 benchmark compression cases.
+  compression_loss:
+    hc_min: 300              # source_guide: master_mechanical_guide.md §8.1 — OK; all benchmark cases HC ≥ 450 (forensic: timing_compression_forensic.md L106)
+    hc_max: 1300             # source_guide: master_mechanical_guide.md §8.1 — was 1000→1300; covers MECH-001 (HC=1200) (forensic: timing_compression_forensic.md L106)
+    o2_min: 1.3              # source_guide: master_mechanical_guide.md §8.1 — was 2.0→1.3; covers EXT-222 (O2=1.5), EXT-223 (O2=1.8) (forensic: timing_compression_forensic.md L107)
+    co2_max: 13.0            # source_guide: master_mechanical_guide.md §8.1 — was 12.0→13.0; covers EXT-222 (CO2=12.5) (forensic: timing_compression_forensic.md L108)
+    co_max: 1.0              # source_guide: master_mechanical_guide.md §8.1 — compression loss should not produce elevated CO
+    nox_max: 200             # source_guide: master_nox_guide.md — compression loss → lower combustion temp → reduced NOx
+    lambda_min: 0.94         # source_guide: master_mechanical_guide.md §8.1 — was 1.0→0.94; covers MECH-001 (λ=0.99) (forensic: timing_compression_forensic.md L109)
+    lambda_max: 1.2          # source_guide: master_mechanical_guide.md §8.1 — OK; reasonable upper bound for compression-loss λ (forensic: timing_compression_forensic.md L109)
+
+  # Valve seal / oil-burn gas signatures.
+  valve_seal:
+    hc_min: 300              # source_guide: master_mechanical_guide.md — valve seal HC starts elevated from oil burning
+    hc_max: 1000             # source_guide: master_mechanical_guide.md — valve seal HC ceiling; above this suspect ring/compression
+    co2_min: 13.0            # source_guide: master_mechanical_guide.md — valve seal should not severely depress CO₂
+    # widened from 0.5 → 0.8 so blow-by cases with mild oil-burn CO
+    # (e.g. case 10: HC=580, CO=0.6) still trigger the pattern.
+    co_max: 0.8              # source_guide: master_mechanical_guide.md — widened from 0.5→0.8 for blow-by cases with mild oil-burn CO
+    o2_max: 2.5              # source_guide: master_mechanical_guide.md — valve seal O₂ ceiling
+    lambda_min: 0.95         # source_guide: master_mechanical_guide.md — valve seal λ floor
+    lambda_max: 1.05         # source_guide: master_mechanical_guide.md — valve seal λ ceiling
+
+  # PCV system / vacuum leak.
+  pcv_leak:
+    hc_min: 60               # source_guide: master_mechanical_guide.md — PCV leak HC floor; lower than other patterns (mild unmetered air)
+    hc_max: 800              # source_guide: master_mechanical_guide.md — PCV leak HC ceiling
+    o2_min: 2.0              # source_guide: master_mechanical_guide.md — PCV leak introduces unmetered air → elevated O₂
+    co2_max: 13.0            # source_guide: master_exhaust_guide.md §2.2 — unmetered air dilutes CO₂
+    lambda_min: 1.05         # source_guide: master_mechanical_guide.md — PCV leak leans mixture
+    lambda_max: 1.2          # source_guide: master_mechanical_guide.md — PCV leak λ ceiling
+    co_max: 1.0              # source_guide: master_mechanical_guide.md — CO should not be elevated for vacuum leak
+
+  # High fuel pressure → rich condition.
+  high_fuel_pressure:
+    co_min: 2.0              # source_guide: master_fuel_system_guide.md — high fuel pressure → rich → CO elevated; CO > 2.0% = definitive rich
+    o2_max: 0.5              # source_guide: master_gas_guide.md — rich combustion consumes O₂
+    ltft_max: -15            # source_guide: master_fuel_trim_guide.md — ECU pulling fuel (negative trim) for rich condition; LTFT < -15% = significant rich correction
+    lambda_max: 0.95         # source_guide: master_fuel_system_guide.md — high fuel pressure → λ < 0.95
+
+  # Leaking injector → rich condition.
+  leaking_injector:
+    co_min: 2.0              # source_guide: master_fuel_system_guide.md — leaking injector → rich → CO elevated; CO > 2.0% = definitive rich
+    hc_min: 200              # source_guide: master_fuel_system_guide.md — leaking injector → unburned fuel → HC elevated
+    trim_max: -10            # source_guide: master_fuel_trim_guide.md — ECU pulling fuel for rich
+    lambda_max: 0.95         # source_guide: master_fuel_system_guide.md — leaking injector → λ < 0.95
+
+  # Rich condition with negative fuel trim confirmation.
+  rich_negative_trims:
+    co_min: 2.0              # source_guide: master_fuel_trim_guide.md — rich condition confirmed by CO > 2.0%
+    trim_max: -15            # source_guide: master_fuel_trim_guide.md — ECU pulling ≥ 15% fuel
+    lambda_max: 0.95         # source_guide: master_fuel_trim_guide.md — λ < 0.95 confirms rich
+
+  # Head gasket failure — coolant-quench gas signature.
+  head_gasket:
+    hc_min: 400              # source_guide: master_mechanical_guide.md — head gasket HC floor; coolant quench elevates HC
+    # widened from 2000 → 3500 for extreme coolant-quench cases
+    # (e.g. case 12: HC=2500).
+    hc_max: 3500             # source_guide: master_mechanical_guide.md — widened from 2000→3500 for coolant-quench extreme cases
+    o2_min: 2.0              # source_guide: master_mechanical_guide.md — coolant quench → incomplete combustion → elevated O₂
+    co2_max: 12.0            # source_guide: master_exhaust_guide.md §2.2 — combustion dilution depresses CO₂; severe depression consistent with coolant in cylinder
+    co_max: 1.5              # source_guide: master_mechanical_guide.md — head gasket CO ceiling
+    lambda_min: 1.0          # source_guide: master_mechanical_guide.md — coolant quench leans effective mixture
+    # widened from 1.2 → 1.5 for HC>2000 + λ>1.2 cases.
+    lambda_max: 1.5          # source_guide: master_mechanical_guide.md — widened from 1.2→1.5 for HC>2000 + λ>1.2 cases
+
+  # EGR stuck open at idle.
+  stuck_egr_open:
+    hc_min: 300              # source_guide: master_egr_guide.md §5.1 — HC > 300 ppm = measurable combustion deficit (~1.5% unburned fuel) (RECALIBRATE: was 350)
+    hc_max: 2500             # source_guide: master_egr_guide.md §4.2 — EGR stuck open HC can reach 1500+ ppm; 2500 covers extreme cases
+    o2_min: 2.0              # source_guide: master_egr_guide.md §5.2 — O₂ > 2.0% at warm idle above healthy-no-cat boundary
+    co2_max: 13.0            # source_guide: master_egr_guide.md §5.3 — CO₂ < 13% at warm idle with normal λ → dilution source active
+    nox_max: 200             # source_guide: master_egr_guide.md §4.2 — EGR stuck open → NOx suppressed (inert gas quench)
+
+  # EGR stuck open with DTC co-occurrence (lowered thresholds due to DTC confidence).
+  stuck_egr_open_dtc_assisted:
+    hc_min: 300              # source_guide: master_egr_guide.md §5.1 — HC > 300 ppm with DTC co-occurrence
+    o2_min: 2.0              # source_guide: master_egr_guide.md §5.2 — O₂ > 2.0% at warm idle
+    co2_max: 13.0            # source_guide: master_egr_guide.md §5.3 — CO₂ < 13% dilution indicator
+
+  # EGR dilution (more severe than stuck-open).
+  egr_dilution:
+    hc_min: 500              # source_guide: master_egr_guide.md §4 — EGR dilution HC; more severe than stuck-open
+    lambda_min: 0.97         # source_guide: master_egr_guide.md §5.6 — λ balance window 0.97–1.03 during inert dilution
+    lambda_max: 1.03         # source_guide: master_egr_guide.md §5.6 — λ stays near stoich during inert dilution
+    nox_max: 100             # source_guide: master_nox_guide.md §8 — NOx suppressed by EGR dilution
+    co2_max: 14.0            # source_guide: master_egr_guide.md §4 — moderate CO₂ depression from dilution
+    o2_max: 3.5              # source_guide: master_egr_guide.md §4 — moderate O₂ elevation from dilution
+    stft_min: -10            # source_guide: master_egr_guide.md §4 — EGR dilution may cause mild trim response
+
+  # Severe ignition misfire (multi-cylinder).
+  ignition_misfire_confirmed:
+    hc_min: 1000             # source_guide: master_ignition_guide.md §6 — HC > 1000 ppm = severe ignition misfire
+    o2_min: 2.5              # source_guide: master_ignition_guide.md §6 — raw O₂ exits with raw HC in misfire
+    co_max: 1.5              # source_guide: master_ignition_guide.md §6 — misfire CO ceiling (mixture isn't rich, it's incomplete)
+
+  # Single-cylinder misfire signature.
+  individual_cylinder_misfire:
+    hc_min: 800              # source_guide: master_ignition_guide.md §6 — single-cylinder misfire HC floor; slightly lower than multi-cylinder (dilution by other cylinders)
+    co_max: 0.8              # source_guide: master_ignition_guide.md §6 — single-cylinder misfire CO ceiling
+    o2_min: 3.0              # source_guide: master_ignition_guide.md §6 — single-cylinder misfire O₂ floor; higher than multi-cylinder (undiluted raw O₂ from one cylinder)
+
+  # Lean misfire — excess air, moderate HC.
+  lean_misfire:
+    hc_min: 150              # source_guide: master_gas_guide.md §3 — lean misfire has lower HC than rich/ignition misfire
+    o2_min: 4.0              # source_guide: master_gas_guide.md §3 — lean misfire → very high O₂ (excess air); O₂ > 4% confirms lean condition
+    lambda_min: 1.1          # source_guide: master_gas_guide.md §3 — λ > 1.1 = definitive lean condition
+    co_max: 0.3              # source_guide: master_gas_guide.md §3 — lean misfire CO is low (oxygen-rich burn)
+
+  # Rich misfire — both rich-side and lean-side products coexist.
+  # Per master_ignition_guide.md §6 table row 3 and master_gas_guide.md §3 rule 3.
+  rich_misfire:
+    hc_min: 500              # source_guide: master_ignition_guide.md §6 — rich misfire: both rich-side and lean-side products coexist
+    co_min: 1.5              # source_guide: master_ignition_guide.md §6 — rich misfire CO floor
+    o2_min: 2.0              # source_guide: master_ignition_guide.md §6 — rich misfire O₂ floor (lean-side products present)
+    lambda_max: 0.95         # source_guide: master_ignition_guide.md §6 — rich misfire λ ceiling
+
+  # Tired/aging catalyst — efficiency loss with normal λ.
+  tired_catalyst:
+    lambda_min: 0.98         # source_guide: master_catalyst_guide.md — catalyst efficiency requires λ in TWC window 0.98–1.02
+    lambda_max: 1.02         # source_guide: master_catalyst_guide.md — TWC window upper bound
+    hc_min: 80               # source_guide: master_catalyst_guide.md — tired cat lets some HC through
+    hc_max: 300              # source_guide: master_catalyst_guide.md — above this suspect engine fault, not just catalyst
+    co_min: 0.3              # source_guide: master_catalyst_guide.md — tired cat CO floor
+    co_max: 1.5              # source_guide: master_catalyst_guide.md — tired cat CO ceiling
+    co2_min: 12.5            # source_guide: master_catalyst_guide.md — tired cat CO₂ floor
+    stft_abs_max: 5          # source_guide: master_catalyst_guide.md — normal fuel trim for catalyst evaluation; trim must be near zero
+
+  # High idle NOx — EGR failure signature.
+  high_idle_nox:
+    nox_min: 150             # source_guide: master_nox_guide.md §4.3 — idle NOx > 150 ppm with otherwise normal gases = EGR absent
+    lambda_min: 0.95         # source_guide: master_nox_guide.md §4.3 — normal λ at idle with elevated NOx
+    lambda_max: 1.05         # source_guide: master_nox_guide.md §4.3 — normal λ ceiling
+    hc_max: 100              # source_guide: master_nox_guide.md §4.3 — HC normal when NOx elevated from EGR failure (key discriminator)
+
+  # Catalyst masking — false-negative catalyst assessment.
+  catalyst_masking:
+    co2_min: 14.5            # source_guide: master_catalyst_guide.md — high CO₂ suggests catalyst is working; masking other faults
+    hc_max: 30               # source_guide: master_catalyst_guide.md — very low HC suggests cat is masking engine HC; below normal healthy-engine HC
+
+  # Post-cat exhaust leak ghosting as lean.
+  exhaust_leak_ghost:
+    o2_min: 4.0              # source_guide: master_exhaust_guide.md §3.2 — post-cat leak elevates tailpipe O₂
+    co_min: 1.0              # source_guide: master_exhaust_guide.md §3.2 — exhaust leak ghost CO floor
+    stft_min: 10             # source_guide: master_exhaust_guide.md §3.2 — fuel trim response to perceived lean; trim confirms ECU response
+
+  # Single-snapshot clogged-exhaust detector.
+  # Differential-bible Rule 4 (CO2 collapse + restriction) is normally checked
+  # via dual_speed.clogged_exhaust comparing low-RPM and high-RPM data.
+  # This single-snapshot variant catches the same fault from one high-RPM reading:
+  # low CO2 + elevated O2 + elevated NOx + lean λ + moderate HC = exhaust re-breathing under load.
+  clogged_exhaust_rpm:
+    hc_min: 50               # source_guide: master_exhaust_guide.md §4.2 — clogged exhaust HC floor; moderate HC from re-breathing
+    hc_max: 250              # source_guide: master_exhaust_guide.md §4.2 — clogged exhaust HC ceiling
+    co_max: 1.0              # source_guide: master_exhaust_guide.md §4.2 — clogged exhaust CO ceiling
+    co2_max: 11.0            # source_guide: master_exhaust_guide.md §4.2 — severe CO₂ depression from re-breathing; Differential-bible Rule 4
+    o2_min: 2.0              # source_guide: master_exhaust_guide.md §4.2 — clogged exhaust O₂ floor
+    o2_max: 5.0              # source_guide: master_exhaust_guide.md §4.2 — clogged exhaust O₂ ceiling
+    lambda_min: 1.05         # source_guide: master_exhaust_guide.md §4.2 — clogged exhaust leans effective mixture
+    lambda_max: 1.20         # source_guide: master_exhaust_guide.md §4.2 — clogged exhaust λ ceiling
+    nox_min: 200             # source_guide: master_exhaust_guide.md §4.2 — elevated NOx from hot re-breathed charge
+
+  # Sensor bias false-rich: ECU perceives rich but λ may tell a different story.
+  # PENDING semantic review: pattern name "false_rich" with lambda_max: 0.95.
+  # λ < 0.95 means engine IS rich — the pattern may detect when sensor bias
+  # creates false-rich ECU perception while engine is actually rich (both rich,
+  # but sensor bias created the DTC). Flagged in T-P0-4 audit #119.
+  sensor_bias_false_rich:
+    lambda_max: 0.95         # source_guide: master_ecu_guide.md §3.2 — false-rich perception λ boundary (PENDING semantic review per T-P0-4 audit)
+    co_max: 0.2              # source_guide: master_ecu_guide.md §7 Rule 3 — false-rich: ECU perceives rich but tailpipe is lean (low CO); CO < 0.2% confirms lean combustion
+    co2_min: 12.0            # source_guide: master_ecu_guide.md — reasonable CO₂ floor for false-rich pattern
+
+# ---------------------------------------------------------------------------
+# Sensor bias delta thresholds
+# ---------------------------------------------------------------------------
+sensor_bias:
+  delta_hot: 0.08            # source_guide: master_perception_guide.md §4.2 — |Δλ| > 0.08 = significant O₂ sensor drift
+  delta_cold: 0.15           # source_guide: master_o2_sensor_guide.md — wider tolerance for cold sensor; cold sensor naturally has wider variance
+  obd_not_rich_min: 0.98     # source_guide: master_o2_sensor_guide.md — OBD λ > 0.98 = ECU not reporting rich
+  obd_not_lean_max: 1.02     # source_guide: master_o2_sensor_guide.md — OBD λ < 1.02 = ECU not reporting lean
+
+# ---------------------------------------------------------------------------
+# Dual-speed pattern thresholds (L1 idle vs L2 high-idle)
+# ---------------------------------------------------------------------------
+dual_speed:
+  # Contaminated MAF — under-reads at low airflow, trim reversal at high RPM.
+  contaminated_maf:
+    stft_idle_abs_max: 5     # source_guide: master_air_induction_guide.md §3 — normal trim at idle for contaminated MAF; under-reads at low airflow
+    stft_high_min: 10        # source_guide: master_air_induction_guide.md §3 — trim goes positive at high RPM for contaminated MAF (characteristic reversal)
+    o2_high_min: 1.5         # source_guide: master_air_induction_guide.md §3 — O₂ elevation at high RPM
+
+  # Exhaust restriction — dual-speed CO₂ collapse.
+  clogged_exhaust:
+    co2_idle_min: 13.0       # source_guide: master_exhaust_guide.md §4 — CO₂ at idle for exhaust restriction test
+    ltft_min: -12            # source_guide: master_exhaust_guide.md §4 — LTFT negative from restriction-induced rich
+    ltft_max: -5             # source_guide: master_exhaust_guide.md §4 — LTFT upper bound for restriction
+    co2_high_max: 12.0       # source_guide: master_exhaust_guide.md §4 — CO₂ depressed at high RPM from restriction; key discriminator
+
+  # Intake gasket leak — vacuum leak worst at idle, normalizes at high RPM.
+  intake_gasket:
+    stft_idle_min: 15        # source_guide: master_air_induction_guide.md — intake gasket leak: high positive trim at idle; vacuum leak worst at idle
+    o2_idle_min: 2.5         # source_guide: master_air_induction_guide.md — elevated O₂ at idle from unmetered air
+    stft_high_max: 5         # source_guide: master_air_induction_guide.md — trim normalizes at high RPM; key discriminator (leak effect shrinks at higher MAP)
+    o2_high_max: 1.5         # source_guide: master_air_induction_guide.md — O₂ normalizes at high RPM
+
+  # Low fuel delivery — pump can't keep up at high RPM demand.
+  low_fuel_delivery:
+    stft_idle_abs_max: 5     # source_guide: master_fuel_system_guide.md — normal trim at idle; fuel demand is low
+    stft_high_min: 10        # source_guide: master_fuel_system_guide.md — trim goes positive at high RPM as fuel pump can't keep up; key discriminator
+    o2_high_min: 2.0         # source_guide: master_fuel_system_guide.md — O₂ rises at high RPM from lean-out
+
+  # EGR recovery — 2500 RPM test: gases normalize when EGR closes.
+  egr_recovery:
+    hc_high_max: 100         # source_guide: master_egr_guide.md §5.5 — HC normalizes at 2500 RPM when EGR closes; key discriminator for EGR stuck-open
+    co2_high_min: 13.0       # source_guide: master_egr_guide.md §5.5 — CO₂ recovers at 2500 RPM
+
+  # High-idle lambda differentials.
+  high_idle_diff:
+    idle_lean_load_corrects_delta: -0.05    # source_guide: master_gas_guide.md — λ delta idle→load for lean correction
+    idle_stoich_load_lean_delta: 0.05       # source_guide: master_gas_guide.md — λ delta idle→load for lean drift
+
+# ---------------------------------------------------------------------------
+# Non-starter thresholds (cranking diagnostics)
+# ---------------------------------------------------------------------------
+non_starter:
+  ckp_rpm_max: 50            # source_guide: master_non_starter_guide.md — CKP RPM max for no-start detection; standard cranking RPM floor
+  fast_cranking_rpm_max: 350 # source_guide: master_non_starter_guide.md — RPM > 350 during cranking = no compression (T15z F31)
+  no_fuel_hc_max: 50         # source_guide: master_non_starter_guide.md — HC < 50 ppm during cranking = no fuel
+  flooded_hc_min: 3000       # source_guide: master_non_starter_guide.md — HC > 3000 ppm during cranking = flooded
+  no_spark_hc_min: 1500      # source_guide: master_non_starter_guide.md — HC > 1500 ppm during cranking = no spark
+  partial_hc_min: 200        # source_guide: master_non_starter_guide.md — HC 200–800 during cranking = partial combustion
+  partial_hc_max: 800        # source_guide: master_non_starter_guide.md — HC ceiling for partial combustion
+  no_compression_map_min: 98 # source_guide: master_non_starter_guide.md — MAP > 98 kPa during cranking = no compression (near-atmospheric MAP = no vacuum generated)
+  vacuum_map_max: 90         # source_guide: master_non_starter_guide.md — MAP < 90 kPa during cranking = vacuum present
+  ect_low_max: -35           # source_guide: master_cold_start_guide.md — ECT < -35°C = extreme cold; below reasonable operating range
+  ect_high_min: 145          # source_guide: master_mechanical_guide.md — ECT > 145°C = severe overheat; above boiling point, cooling system failure
+  # Lean no-start: spark confirmed but fuel insufficient.
+  lean_no_start_co2_min: 1.5   # source_guide: master_non_starter_guide.md — CO₂ > 1.5% confirms combustion during lean no-start
+  lean_no_start_o2_max: 18.0   # source_guide: master_non_starter_guide.md — O₂ < 18.0% confirms some combustion consumed oxygen
+  lean_no_start_lambda_min: 2.0  # source_guide: master_non_starter_guide.md — λ > 2.0 = extremely lean no-start
+
+# ---------------------------------------------------------------------------
+# Healthy gas thresholds (reference ranges for petrol engines)
+# ---------------------------------------------------------------------------
+healthy_gas:
+  # Cat-equipped petrol engine.
+  petrol:
+    co_max: 0.5              # source_guide: master_gas_guide.md — healthy cat-equipped petrol CO max
+    hc_max: 150              # source_guide: master_gas_guide.md — healthy cat-equipped petrol HC max
+    co2_min: 14.5            # source_guide: master_exhaust_guide.md §2.2 — healthy CO₂ floor; consistent with O₂-CO₂ sum rule
+    o2_max: 1.5              # source_guide: master_gas_guide.md — healthy petrol O₂ max
+    lambda_min: 0.95         # source_guide: master_gas_guide.md — healthy petrol λ floor; standard closed-loop range
+    lambda_max: 1.05         # source_guide: master_gas_guide.md — healthy petrol λ ceiling; standard closed-loop range
+    nox_max: 300             # source_guide: master_nox_guide.md §8 — healthy petrol NOx max at cruise
+
+  # De-cat petrol engine — wider tolerances without catalyst.
+  decat:
+    co_max: 1.0              # source_guide: master_gas_guide.md — decat CO max (wider tolerance without catalyst)
+    hc_max: 200              # source_guide: master_gas_guide.md — decat HC max
+    co2_min: 12.0            # source_guide: master_gas_guide.md — decat CO₂ floor (1–2% lower without cat); consistent with co2_good_min_decat
+    o2_max: 2.0              # source_guide: master_gas_guide.md — decat O₂ max
+    lambda_min: 0.95         # source_guide: master_gas_guide.md — decat λ floor; same closed-loop range
+    lambda_max: 1.05         # source_guide: master_gas_guide.md — decat λ ceiling; same closed-loop range
+    nox_max: 500             # source_guide: master_nox_guide.md — decat NOx max (wider without catalyst reduction)
+
+# ---------------------------------------------------------------------------
+# Validation thresholds (VL — R4/L04)
+# ---------------------------------------------------------------------------
+validation:
+  ambient_air_o2_min: 20.2        # source_guide: master_perception_guide.md §6 — probe-out O₂ should be ≈20.9%; O₂ < 20% = calibration error
+  ambient_air_co2_max: 1.0        # source_guide: master_perception_guide.md §6 — probe-out CO₂ should be ≈0.04%; CO₂ > 1% with probe out = picking up exhaust
+  carbon_balance_max: 18.0        # source_guide: master_gas_guide.md — carbon balance upper bound; standard combustion chemistry
+  carbon_balance_warning_min: 9.0 # source_guide: master_gas_guide.md — carbon balance lower warning
+  lambda_delta_warning: 0.08      # source_guide: master_perception_guide.md §4.2 — Δλ > 0.08 = analyser/OBD mismatch; same as sensor_bias.delta_hot
+  extreme_cranking_hc: 5000       # source_guide: master_non_starter_guide.md — extreme HC during cranking; flooded/no-spark extreme HC boundary
+
+# ---------------------------------------------------------------------------
+# Freeze-frame symptom derivation thresholds (Step 1.4)
+# ---------------------------------------------------------------------------
+freeze_frame:
+  load_high_threshold: 70         # source_guide: master_freeze_frame_guide.md §3 — SAE/Innova/Autodtcs 70% CLV high-stress boundary
+  load_low_threshold: 30          # source_guide: master_freeze_frame_guide.md §3 — below 30% CLV = idle/light cruise
+  load_rpm_threshold: 1500        # source_guide: master_freeze_frame_guide.md §9 — 1500 RPM boundary for load-at-low-RPM flag
+  # FF guide §4 says 70°C is the warm-up → normal transition threshold.
+  # FF guide §9 table says 60. V1 comment "60→70 per master_fuel_trim_guide.md §6"
+  # provides cross-reference rationale. Kept at 70; §9 table inconsistency noted.
+  ect_warmup_max: 70              # source_guide: master_freeze_frame_guide.md §4 — ECT < 70°C = warm-up; fault set during transition (cross-ref master_fuel_trim_guide.md §6)
+  iat_ect_delta_threshold: 30     # source_guide: master_freeze_frame_guide.md §9 — |IAT − ECT| > 30°C at RPM=0 = sensor bias
+  timing_retard_threshold: -10    # source_guide: master_freeze_frame_guide.md §9 — timing < -10° = severe retard
+  open_loop_fuel_status:          # source_guide: master_freeze_frame_guide.md — ff.fuel_status in this set → ff_open_loop_at_fault
+    - "OL_DRIVE"
+    - "OL_FAULT"
+    - "OL"
+
+# ---------------------------------------------------------------------------
+# Dual-PID extension thresholds (bank-aware PID analysis)
+# ---------------------------------------------------------------------------
+dual_pid:
+  trim_total_imbalance: 10             # source_guide: master_fuel_trim_guide.md §5 — |STFT+LTFT| > 10% = bank imbalance
+  o2_upstream_ambiguous_low: 0.85      # source_guide: master_o2_sensor_guide.md — narrowband/wideband ambiguous zone low
+  o2_upstream_ambiguous_high: 1.10     # source_guide: master_o2_sensor_guide.md — narrowband/wideband ambiguous zone high
+  o2_upstream_classifier_match_tol: 0.10  # source_guide: master_o2_sensor_guide.md — wideband classification tolerance; |value − calc_lambda| ≤ 0.10 = wideband
+  o2_downstream_active_min: 0.3        # source_guide: master_o2_sensor_guide.md — downstream O₂ active zone (with P0420); catalyst monitor O₂ storage test
+  o2_downstream_active_max: 0.7        # source_guide: master_o2_sensor_guide.md — downstream O₂ active zone upper
+  o2_downstream_steady_min: 0.7        # source_guide: master_o2_sensor_guide.md — downstream O₂ steady zone
+  o2_downstream_steady_max: 0.8        # source_guide: master_o2_sensor_guide.md — downstream O₂ steady zone upper
+  o2_upstream_lazy_low: 0.3            # source_guide: master_o2_sensor_guide.md §6 — lazy O₂ sensor stuck low threshold
+  o2_upstream_lazy_high: 0.7           # source_guide: master_o2_sensor_guide.md §6 — lazy O₂ sensor stuck high threshold
+  nox_high_idle_threshold: 100         # source_guide: master_nox_guide.md §8 — NOx > 100 at idle = EGR not diluting (nox_egr_failure_idle)
+  nox_low_with_lean_threshold: 50      # source_guide: master_nox_guide.md §3.1 — NOx < 50 at idle is normal (nox_idle_warning)
+  nox_high_load_threshold: 600         # source_guide: master_nox_guide.md §8 — high-load NOx; reasonable for WOT/load NOx
+  trim_per_bank_sum_threshold: 10      # source_guide: master_fuel_trim_guide.md §5 — per-bank trim sum > 10% = bank-specific fault
