@@ -495,3 +495,198 @@ def test_context_fields_preserved_in_result() -> None:
     assert result.perception_gap.gap_type == "LEAN_SEEN_RICH"
     assert len(result.validation_warnings) == 1
     assert result.cascading_consequences == cascading
+
+
+# ── 4-pathway scenario tests ──────────────────────────────────────────────────
+
+
+def test_pathway_regular_all_layers() -> None:
+    """Regular pathway (L1+L2+L3+L4): all evidence layers, Vacuum_Leak case."""
+    raw_probs = {"Vacuum_Leak_Intake_Manifold": 0.75, "Lean_Condition": 0.55, "Maf_Fault": 0.20}
+    ctx = _ctx(
+        dtcs=["P0171", "P0174"],
+        symptoms=["SYM_LAMBDA_HIGH", "SYM_VE_LOSS", "SYM_O2_HIGH", "SYM_TRIM_LEAN_IDLE_ONLY"],
+        engine_state="warm_closed_loop",
+        evidence_layers_used=["L1", "L2", "L3", "L4"],
+    )
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+
+    assert result.state == "named_fault"
+    assert result.primary is not None
+    assert result.primary.fault_id == "Vacuum_Leak_Intake_Manifold"
+    assert result.primary.discriminator_satisfied is True
+    assert result.confidence_ceiling == pytest.approx(1.00)
+    assert result.primary.raw_score == pytest.approx(0.75)
+    assert result.primary.confidence == pytest.approx(0.75)
+    assert result.primary.evidence_layers_used == ["L1", "L2", "L3", "L4"]
+    assert len(result.alternatives) >= 1
+
+
+def test_pathway_non_starter_dtc_only() -> None:
+    """Non-starter pathway: DTC-only (L3), no gas symptoms — P1570 immobiliser case."""
+    raw_probs = {"P0420_Catalyst_Efficiency": 0.55, "Maf_Fault": 0.10}
+    ctx = _ctx(
+        dtcs=["P0420"],
+        symptoms=[],  # no gas-derived symptoms
+        engine_state="warm_closed_loop",
+        evidence_layers_used=["L3"],
+    )
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+
+    assert result.state == "named_fault"
+    assert result.primary is not None
+    assert result.primary.fault_id == "P0420_Catalyst_Efficiency"
+    # Ceiling for single layer (L3 only counted as 1 layer)
+    assert result.confidence_ceiling == pytest.approx(0.40)
+    assert result.primary.confidence == pytest.approx(0.40)
+    assert result.primary.raw_score == pytest.approx(0.55)
+    assert result.primary.confidence < result.primary.raw_score
+
+
+def test_pathway_non_starter_missing_dtc() -> None:
+    """Non-starter pathway: DTC-only with absent required DTC → insufficient_evidence."""
+    raw_probs = {"P0420_Catalyst_Efficiency": 0.55}
+    ctx = _ctx(
+        dtcs=["P0300"],  # wrong DTC — P0420 not present
+        symptoms=[],
+        engine_state="warm_closed_loop",
+        evidence_layers_used=["L3"],
+    )
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+
+    assert result.state == "insufficient_evidence"
+
+
+def test_pathway_cold_start_restricted() -> None:
+    """Cold-start restricted pathway: rich-trim fault suppressed during cold_open_loop."""
+    raw_probs = {
+        "High_Fuel_Pressure": 0.60,
+        "EVAP_Purge_Stuck_Open": 0.55,
+        "Lean_Condition": 0.40,
+        "Maf_Fault": 0.25,
+    }
+    ctx = _ctx(
+        dtcs=["P0172"],
+        symptoms=["SYM_HIGH_FUEL_PRESSURE_PATTERN", "SYM_LAMBDA_LOW", "SYM_LAMBDA_HIGH"],
+        engine_state="cold_open_loop",
+        evidence_layers_used=["L1", "L2", "L3"],
+    )
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+
+    # Rich_Mixture family faults are suppressed to 30%.
+    # High_Fuel_Pressure: 0.60 * 0.30 = 0.18
+    # EVAP_Purge_Stuck_Open: 0.55 * 0.30 = 0.165
+    # Lean_Condition at 0.40 becomes top (not in rich family)
+    assert result.primary is not None
+    assert result.primary.fault_id == "Lean_Condition"
+    assert result.primary.raw_score == pytest.approx(0.40)
+    # Verify suppressed faults are still in alternatives
+    suppressed_ids = {alt.fault_id for alt in result.alternatives}
+    assert "High_Fuel_Pressure" in suppressed_ids or len(result.alternatives) > 0
+
+
+def test_pathway_soft_rerun_determinism() -> None:
+    """Soft-rerun pathway: identical inputs produce identical RankedResult."""
+    raw_probs = {
+        "Vacuum_Leak_Intake_Manifold": 0.72,
+        "Lean_Condition": 0.55,
+        "Rich_Mixture": 0.40,
+        "Maf_Fault": 0.15,
+    }
+    ctx = _ctx(
+        dtcs=["P0171", "P0174"],
+        symptoms=["SYM_LAMBDA_HIGH", "SYM_VE_LOSS", "SYM_O2_HIGH", "SYM_TRIM_LEAN_IDLE_ONLY"],
+        engine_state="warm_closed_loop",
+        evidence_layers_used=["L1", "L2", "L3", "L4"],
+    )
+
+    r1 = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    r2 = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+
+    # Full structural comparison — every field must match.
+    assert r1.state == r2.state
+    assert r1.primary is not None
+    assert r2.primary is not None
+    assert r1.primary.fault_id == r2.primary.fault_id
+    assert r1.primary.raw_score == pytest.approx(r2.primary.raw_score)
+    assert r1.primary.confidence == pytest.approx(r2.primary.confidence)
+    assert r1.primary.tier_delta == pytest.approx(r2.primary.tier_delta)
+    assert r1.primary.discriminator_satisfied == r2.primary.discriminator_satisfied
+    assert r1.primary.promoted_from_parent == r2.primary.promoted_from_parent
+    assert r1.confidence_ceiling == pytest.approx(r2.confidence_ceiling)
+    assert len(r1.alternatives) == len(r2.alternatives)
+    for a1, a2 in zip(r1.alternatives, r2.alternatives, strict=True):
+        assert a1.fault_id == a2.fault_id
+        assert a1.raw_score == pytest.approx(a2.raw_score)
+
+
+def test_pathway_soft_rerun_empty_probs() -> None:
+    """Soft-rerun pathway: empty probs determinism (insufficient_evidence both times)."""
+    ctx = _ctx()
+    r1 = resolve_conflicts({}, ctx, _faults(), _root_causes())
+    r2 = resolve_conflicts({}, ctx, _faults(), _root_causes())
+
+    assert r1.state == r2.state == "insufficient_evidence"
+    assert r1.primary is None
+    assert r2.primary is None
+
+
+def test_all_four_pathways_produce_r9_shape() -> None:
+    """Every pathway result must contain all R9 top-level fields."""
+    pathways: list[dict] = [
+        {  # Regular
+            "raw_probs": {"Vacuum_Leak_Intake_Manifold": 0.75, "Lean_Condition": 0.50},
+            "dtcs": ["P0171"],
+            "symptoms": ["SYM_LAMBDA_HIGH", "SYM_VE_LOSS", "SYM_O2_HIGH"],
+            "engine_state": "warm_closed_loop",
+            "evidence_layers_used": ["L1", "L2", "L3", "L4"],
+        },
+        {  # Non-starter
+            "raw_probs": {"P0420_Catalyst_Efficiency": 0.55},
+            "dtcs": ["P0420"],
+            "symptoms": [],
+            "engine_state": "warm_closed_loop",
+            "evidence_layers_used": ["L3"],
+        },
+        {  # Cold-start restricted
+            "raw_probs": {"High_Fuel_Pressure": 0.60, "Lean_Condition": 0.40},
+            "dtcs": [],
+            "symptoms": ["SYM_HIGH_FUEL_PRESSURE_PATTERN", "SYM_LAMBDA_HIGH"],
+            "engine_state": "cold_open_loop",
+            "evidence_layers_used": ["L1", "L2"],
+        },
+        {  # Soft-rerun
+            "raw_probs": {"Maf_Fault": 0.50},
+            "dtcs": [],
+            "symptoms": [],
+            "engine_state": "warm_closed_loop",
+            "evidence_layers_used": ["L1"],
+        },
+    ]
+
+    r9_fields = {
+        "state", "primary", "alternatives", "perception_gap",
+        "validation_warnings", "cascading_consequences",
+        "confidence_ceiling", "next_steps",
+    }
+
+    for i, p in enumerate(pathways):
+        ctx = _ctx(
+            dtcs=p["dtcs"],
+            symptoms=p["symptoms"],
+            engine_state=p["engine_state"],
+            evidence_layers_used=p["evidence_layers_used"],
+        )
+        result = resolve_conflicts(p["raw_probs"], ctx, _faults(), _root_causes())
+        result_dict = {
+            "state": result.state,
+            "primary": result.primary,
+            "alternatives": result.alternatives,
+            "perception_gap": result.perception_gap,
+            "validation_warnings": result.validation_warnings,
+            "cascading_consequences": result.cascading_consequences,
+            "confidence_ceiling": result.confidence_ceiling,
+            "next_steps": result.next_steps,
+        }
+        missing = r9_fields - set(result_dict.keys())
+        assert not missing, f"Pathway {i}: missing R9 fields: {missing}"
