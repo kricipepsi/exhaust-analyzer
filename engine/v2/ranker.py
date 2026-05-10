@@ -44,6 +44,14 @@ COLD_START_RICH_FAMILY: frozenset[str] = frozenset(
 # source: v2-result-schema §4 step 5 — cold-start suppression factor
 COLD_START_SUPPRESSION_FACTOR: float = 0.30
 
+# source: v2-backward-chaining §3 — calibrated from V1 accuracy deltas
+LAYER_EXPECTED_LIFT: dict[str, float] = {
+    "L2_high_idle_gas": 0.12,
+    "L3_dtcs": 0.18,
+    "L4_freeze_frame": 0.15,
+    "vehicle_context_dna": 0.10,
+}
+
 # ── evidence-layer ceiling table ──────────────────────────────────────────────
 # source: v2-result-schema §2 confidence ceiling model
 
@@ -108,6 +116,7 @@ class ResolutionContext:
     symptoms: list[str]
     engine_state: str
     evidence_layers_used: list[str]
+    backward_chaining: bool = False
     perception_gap: PerceptionGap | None = None
     validation_warnings: list[ValidationWarning] = field(default_factory=list)
     cascading_consequences: list[str] = field(default_factory=list)
@@ -300,6 +309,36 @@ def _promote_specific_within_margin(
     return promoted
 
 
+# ── backward-chaining: next_steps[] construction ──────────────────────────────
+
+
+def _compute_next_steps(
+    top_raw_score: float,
+    evidence_layers_used: list[str],
+    backward_chaining: bool,
+    state: str,
+) -> list[dict[str, str | float]]:
+    """Compute next_steps[] for insufficient_evidence recovery (R3).
+
+    Populated only when state == "insufficient_evidence" AND backward_chaining
+    is enabled.  For each evidence layer not yet provided, if adding its
+    expected lift would push the top raw_score past NAMED_FAULT_THRESHOLD,
+    include it.  Sorted by expected_lift descending.
+
+    source: v2-backward-chaining §2–§4
+    """
+    if state != "insufficient_evidence" or not backward_chaining:
+        return []
+
+    steps: list[dict[str, str | float]] = []
+    for layer, lift in LAYER_EXPECTED_LIFT.items():
+        if layer not in evidence_layers_used and top_raw_score + lift >= NAMED_FAULT_THRESHOLD:
+            steps.append({"evidence": layer, "expected_lift": lift})
+
+    steps.sort(key=lambda x: -float(x["expected_lift"]))
+    return steps
+
+
 # ── result assembly ──────────────────────────────────────────────────────────
 
 
@@ -354,6 +393,15 @@ def _build_result(
     # Determine state (R9 state machine).
     state = _determine_state(primary)
 
+    # Compute next_steps for insufficient_evidence recovery (R3).
+    top_raw = primary.raw_score if primary is not None else 0.0
+    next_steps = _compute_next_steps(
+        top_raw_score=top_raw,
+        evidence_layers_used=ctx.evidence_layers_used,
+        backward_chaining=ctx.backward_chaining,
+        state=state,
+    )
+
     return RankedResult(
         state=state,
         primary=primary,
@@ -362,7 +410,7 @@ def _build_result(
         validation_warnings=list(ctx.validation_warnings),
         cascading_consequences=list(ctx.cascading_consequences),
         confidence_ceiling=ceiling,
-        next_steps=[],  # populated in T-P5-2 backward-chaining
+        next_steps=next_steps,
     )
 
 
