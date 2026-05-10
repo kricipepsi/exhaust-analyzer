@@ -11,3 +11,4 @@ ruff>=0.4
 bandit>=1.7
 pyright>=1.1
 mutmut>=2.4
+fpdf2>=2.7
