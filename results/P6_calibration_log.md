@@ -68,11 +68,16 @@ Gap of 55.2 pp. The structural issues above explain the gap. This cannot be clos
 
 ## Recommended Follow-ups
 
-1. **Re-open T-P3-5 (gas_lab.py)**: Add symptom detection for `SYM_LATE_TIMING_PATTERN` based on HC/CO2/lambda patterns
-2. **Re-open T-P4-4 (kg_engine.py)**: Review edge weight balance — reduce Fuel_Delivery_Low's default evidence or add more discriminators
-3. **New task T-P6-2b**: Add specific EGR/exhaust leak inhibitory edges to reduce Fuel_Delivery_Low false positives
-4. **New task T-P6-2c**: Confidence ceiling (L16) calibration — current threshold may be too aggressive
+See `V2_PROGRESS.md` "Unplanned follow-ups — T-P6-2" for the canonical task list. Summary:
+
+1. **T-P6-2b — gas_lab.py**: Tighten symptom thresholds feeding Fuel_Delivery_Low's 7 incoming edges. SYM_LAMBDA_HIGH (λ > 1.03) and SYM_IDLE_STOICH_LOAD_LEAN fire on almost every lean-ish case, producing a near-ceiling CF combination. Add discriminator_gate requiring co-occurrence.
+
+2. **T-P6-2c — kg_engine.py**: Add inhibitory edges from fuel-contradictory symptoms (SYM_DUAL_IMPROVING, SYM_STUCK_EGR_OPEN_PATTERN) → Fuel_Delivery_Low. Today only SYM_DTC_INDUCTION (−0.17) inhibits it.
+
+3. **T-P6-2d — gas_lab.py**: Implement SYM_LATE_TIMING_PATTERN detection. Pattern: HC > 250 ppm + CO2 < 13.5% + O2 < 2.0% + no DTC_P0300. This symptom has a 0.50 edge to Cam_Timing_Retard_Late but is never emitted.
+
+4. **T-P6-2e — kg_engine.py**: Audit whether EGR_Stuck_Open / Exhaust_Air_Leak_Pre_Cat / Head_Gasket_Failure symptom patterns are actually emitted by M2 for the 12 blocker cases. Likely root cause is gas_lab.py thresholds, not edge weights.
 
 ## Calibration Assessment
 
-T-P6-2 has addressed all schema_gap regressions (393 → 0) through alias resolution and classification fixes. The 12 blockers and 334 threshold_tweak cases represent structural scoring imbalances that require P3/P4 module work — they are outside T-P6-2 scope per the task's "only schema/threshold fixes" constraint. These are documented for escalation, not ignored.
+T-P6-2 reached the calibration-only ceiling. Schema_gap eliminated (393 → 0) through alias resolution and classification fixes. Layer-2 family accuracy at 4.8% is the **pre-structural-fix floor** — not a calibration failure, but the baseline from which P3/P4 structural work must lift the engine. The 4.8% → 75% gap is the delta the unplanned follow-ups above are designed to close.
