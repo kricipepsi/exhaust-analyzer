@@ -1,0 +1,17 @@
+# Render deployment configuration for 4D Petrol Diagnostic Engine V2
+# https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: 4d-diagnostic-engine-v2
+    env: python
+    region: oregon
+    plan: free
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: STREAMLIT_SERVER_HEADLESS
+        value: "true"
