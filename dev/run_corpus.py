@@ -118,12 +118,33 @@ def csv_to_input(row: dict[str, str]) -> Any:
 # ── main ─────────────────────────────────────────────────────────────────────
 
 
+def _load_alias_map() -> dict[str, str | None]:
+    """Load label_aliases.yaml → {v1_id: v2_target_or_None}."""
+    import yaml
+
+    aliases_path = ROOT / "schema" / "v2" / "label_aliases.yaml"
+    if not aliases_path.exists():
+        return {}
+    with aliases_path.open(encoding="utf-8") as f:
+        raw: dict = yaml.safe_load(f)
+    mapping: dict[str, str | None] = {}
+    for key, val in raw.items():
+        if isinstance(val, dict):
+            target = val.get("target")
+            mapping[key] = target  # None for deleted nodes
+        else:
+            mapping[key] = val
+    return mapping
+
+
 def main() -> None:
     if not CORPUS_PATH.exists():
         print(f"Corpus not found at {CORPUS_PATH}")
         raise SystemExit(1)
 
     from engine.v2.pipeline import diagnose
+
+    alias_map = _load_alias_map()
 
     with CORPUS_PATH.open(encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
@@ -150,12 +171,23 @@ def main() -> None:
         if result["state"] == expected_state:
             state_correct += 1
 
-        expected_family = row.get("expected_top_fault_family", "").strip()
-        if expected_family and result["primary"]:
+        expected_fault_raw = row.get("expected_top_fault", "").strip()
+        expected_family_raw = row.get("expected_top_fault_family", "").strip()
+
+        # Resolve expected fault and family through V1→V2 aliases
+        expected_fault = alias_map.get(expected_fault_raw, expected_fault_raw)
+        if expected_fault is None:
+            expected_fault = expected_fault_raw  # null-target alias: keep original
+        expected_family = alias_map.get(expected_family_raw, expected_family_raw)
+        if expected_family is None:
+            expected_family = expected_family_raw
+
+        if result["primary"] and (expected_fault or expected_family):
             fault_id: str = result["primary"]["fault_id"]
-            # family match: top fault belongs to expected family
-            # (loose match — fault_id contains family string prefix)
-            if fault_id == expected_family or fault_id.startswith(expected_family):
+            # Exact match against resolved expected fault
+            if expected_fault and fault_id == expected_fault or expected_family and (
+                fault_id == expected_family or fault_id.startswith(expected_family)
+            ):
                 family_correct += 1
 
     elapsed = time.monotonic() - t0

@@ -11,9 +11,9 @@
 #   Forensic: 02_inputs/lessons/timing_compression_forensic.md (10 VVT/compression aliases)
 #   T-P0-5/T-P0-6: corpus case expected_fault references
 #
-# Total aliases: 144
-# Null-target (removed): 2
-# Active remaps: 142
+# Total aliases: 155
+# Null-target (removed): 4
+# Active remaps: 151
 
 aftermarket_catalyst_inefficient:
   target: Aftermarket_Catalyst_Inefficient
@@ -590,3 +590,49 @@ VVT_Solenoid_Resistance_Drift:
 Worn_Piston_Rings_Valve_Seals:
   target: Worn_Piston_Rings
   reason: "V1 Worn_Piston_Rings_Valve_Seals renamed to V2 Worn_Piston_Rings"
+
+# ── T-P6-2 calibration additions (2026-05-10) ─────────────────────────────
+
+pcv_fault:
+  target: PCV_System_Fault
+  reason: "V1 pcv_fault → V2 PCV_System_Fault"
+
+no_fault:
+  target: null
+  reason: "L19: no pseudo-fault; engine returns insufficient_evidence instead"
+
+invalid_input:
+  target: null
+  reason: "VL validation-layer handles invalid input; no fault emitted"
+
+ignition_fault:
+  target: Ignition_Timing_Fault
+  reason: "V1 ignition_fault family → V2 Ignition_Timing_Fault"
+
+cam_timing:
+  target: Cam_Timing_Retard_Late
+  reason: "V1 cam_timing family → V2 Cam_Timing_Retard_Late"
+
+ns_lean_no_start:
+  target: Non_Starter_Fault
+  reason: "V1 non-starter sub-type → V2 Non_Starter_Fault family"
+
+ns_flooded:
+  target: Non_Starter_Fault
+  reason: "V1 non-starter sub-type → V2 Non_Starter_Fault family"
+
+ns_no_fuel:
+  target: Non_Starter_Fault
+  reason: "V1 non-starter sub-type → V2 Non_Starter_Fault family"
+
+ns_mechanical_partial:
+  target: Non_Starter_Fault
+  reason: "V1 non-starter sub-type → V2 Non_Starter_Fault family"
+
+fuel_delivery_low:
+  target: Fuel_Delivery_Low
+  reason: "V1 fuel_delivery_low → V2 Fuel_Delivery_Low"
+
+cam_timing_retard_late:
+  target: Cam_Timing_Retard_Late
+  reason: "V1 snake_case → V2 PascalCase: Cam_Timing_Retard_Late"

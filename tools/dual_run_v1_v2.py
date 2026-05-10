@@ -258,19 +258,68 @@ def _run_v2_case(case: dict[str, str]) -> dict[str, Any]:
 
 
 def _load_v2_fault_ids() -> frozenset[str]:
-    """Return the set of all valid V2 fault IDs from faults.yaml."""
+    """Return the set of all valid V2 fault IDs from faults.yaml AND label_aliases.yaml.
+
+    Schema-gap classification checks whether a V1 fault ID exists in V2.
+    Many V1 IDs map through label_aliases.yaml rather than appearing directly
+    in faults.yaml, so we must include alias targets in the valid-id set.
+    Non-null alias targets are included; null-target aliases (deleted nodes)
+    and symptom-only aliases (SYM_ prefix) are excluded.
+    """
     import yaml
+
+    ids: set[str] = set()
 
     faults_path = ROOT / "schema" / "v2" / "faults.yaml"
     with faults_path.open(encoding="utf-8") as f:
         faults: dict = yaml.safe_load(f)
-    ids: set[str] = set()
     for fid in faults:
         ids.add(fid)
         node = faults[fid]
         for child in node.get("children", []) if isinstance(node, dict) else []:
             ids.add(child)
+
+    # Include non-null alias targets so V1 IDs with valid V2 mappings
+    # are not incorrectly classified as schema_gap.
+    aliases_path = ROOT / "schema" / "v2" / "label_aliases.yaml"
+    if aliases_path.exists():
+        with aliases_path.open(encoding="utf-8") as f:
+            aliases: dict = yaml.safe_load(f)
+        for alias_def in aliases.values():
+            if isinstance(alias_def, dict):
+                target = alias_def.get("target")
+                if target is not None:
+                    ids.add(target)
+
     return frozenset(ids)
+
+
+def _resolve_v1_fault(v1_fault: str) -> str:
+    """Resolve a V1 fault ID through label_aliases.yaml to its V2 equivalent.
+
+    Returns the resolved V2 fault ID, or the original V1 ID if no alias exists.
+    Null-target aliases (deleted nodes) return the original V1 ID.
+    """
+    import yaml
+
+    if not v1_fault or v1_fault in ("unknown", "insufficient_evidence", "no_fault"):
+        return v1_fault
+
+    aliases_path = ROOT / "schema" / "v2" / "label_aliases.yaml"
+    if not aliases_path.exists():
+        return v1_fault
+
+    with aliases_path.open(encoding="utf-8") as f:
+        aliases: dict = yaml.safe_load(f)
+
+    alias = aliases.get(v1_fault)
+    if alias is None:
+        return v1_fault
+    if isinstance(alias, dict):
+        target = alias.get("target")
+        if target is not None:
+            return target
+    return v1_fault
 
 
 def _classify(
@@ -283,7 +332,7 @@ def _classify(
 
     Returns one of: schema_gap / threshold_tweak / expected_drift / blocker
     """
-    v1_fault = v1.get("top_fault", "unknown") if "error" not in v1 else "v1_error"
+    v1_fault_raw = v1.get("top_fault", "unknown") if "error" not in v1 else "v1_error"
     v1_state = v1.get("state", "unknown") if "error" not in v1 else "v1_error"
 
     v2_error = "error" in v2
@@ -297,7 +346,7 @@ def _classify(
 
     if v2_error:
         return "blocker"
-    if v1_fault == "v1_error":
+    if v1_fault_raw == "v1_error":
         return "blocker"
 
     if v1_state == "insufficient_evidence" and v2_state == "insufficient_evidence":
@@ -305,15 +354,18 @@ def _classify(
     if v1_state == "invalid_input" and v2_state == "invalid_input":
         return "expected_drift"
 
-    if v1_fault == v2_fault:
-        return "expected_drift"
-
+    # Resolve V1 fault through aliases for comparison (L09 guard)
+    v1_fault = _resolve_v1_fault(v1_fault_raw)
     v2_fault_str = v2_fault or ""
 
-    # schema_gap: V1 fault missing from V2 schema
+    if v1_fault == v2_fault_str:
+        return "expected_drift"
+
+    # schema_gap: V1 fault (alias-resolved) missing from V2 schema.
+    # Exclude state-only values that aren't fault IDs.
     if (
         v1_fault
-        and v1_fault not in ("unknown", "insufficient_evidence", "no_fault")
+        and v1_fault not in ("unknown", "insufficient_evidence", "no_fault", "invalid_input")
         and v1_fault not in v2_fault_ids
     ):
         return "schema_gap"
@@ -324,7 +376,7 @@ def _classify(
     if v1_family and v2_family and v1_family == v2_family:
         return "threshold_tweak"
 
-    if v1_state == v2_state and v1_fault != v2_fault:
+    if v1_state == v2_state and v1_fault != v2_fault_str:
         return "threshold_tweak"
 
     if v2_state == "insufficient_evidence" and v1_state == "named_fault":
