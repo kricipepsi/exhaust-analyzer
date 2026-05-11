@@ -1,5 +1,33 @@
 # Changelog
 
+## [v2.0.1] - Unreleased — VIN-first vehicle context + reference UI
+
+> Hotfix on top of v2.0.0 (`UI_REMEDY_PLAN.md` Path A). Closes a doc-mention-without-module gap surfaced by the 2026-05-10 owner audit: VIN auto-fill — the headline V2 vehicle-context flow — was missing despite being described in HLD prose. v2.0.1 also reverts the UI from a 5-stage stepper (carried over from a V4 prototype) to the canonical V1 reference flat layout.
+
+### Added (planned, T-R2..T-R5)
+- `engine/v2/vin/` — VIN resolver lifted verbatim from `vehicle-data/petrol_vin/` (owner-supplied, 2026-05-10). **14 brand extractors** (VW group, BMW group, Mercedes, Ford, PSA group, Toyota, Hyundai/Kia, Fiat). Returns `EngineDNA(make, engine_code, displacement_l, induction, intercooler, injection, o2_arch, spec_idle_gps, …, confidence ∈ {high, partial, none})`.
+- `engine/v2/vin/data/engine_dna.json` — **1,978 petrol engine codes / 110 brands** (~1 MB, OPSI-derived; data lint asserts `fuel_type=='petrol'` on every row, R12).
+- `vininfo>=1.7.0` runtime dependency (`requirements.txt`).
+- `VehicleContext.vin: str | None` — new optional input field (T-R3, backward-compatible default `None`).
+- `validation.py` category 12 — VIN format `^[A-HJ-NPR-Z0-9]{17}$` + ISO 3779 checksum.
+- `tests/v2/unit/test_vin_resolver.py`, `tests/v2/unit/test_vehicle_context_vin.py`, `tests/v2/unit/test_validation_vin_cat12.py`, `tests/v2/integration/test_pipeline_vin.py`.
+- `app.py` — full UI rewrite to the V1 reference flat layout (sidebar VIN primary + L1..L5 stacked expanders + dx-card results). Plotly confidence gauge.
+
+### Changed
+- `dna_core.py` — when `validated.raw.vehicle_context.vin` resolves with confidence ≥ partial, M0 lifts `engine_code`, `displacement_cc`, `induction` from `EngineDNA` before `vref.db` lookup. Manual fields fall back when VIN absent / confidence='none'.
+- HLD §7.0a (NEW), §7.8 rewritten, §6.1 / §6.2 diagrams updated, §12 drift entries added (3).
+- MASTER_PLAN — added L21 (doc-mention-without-module-section).
+- ROADMAP — added phase P5.5 (VIN remediation), 6 v2.1 follow-ups, L01–L21 mapping.
+
+### Removed
+- PDF export (`fpdf2` dependency removed). Was in v2.0; reference UI does not have one. Owner direction; PRD §7 Feat 11 carried as drift in HLD §12.
+- 5-stage stepper UI (Stage 0 → 4 progressive disclosure). Replaced by flat reference layout.
+
+### Diesel sibling note
+v2.0.1's deliverables are the structural template the planned Diesel sibling app forks from: `engine/v2/vin/extractors/` (1:1 reuse), `app.py` sidebar/results layout (fuel-agnostic CSS + helpers), L21 doc-lint principle. Only `engine_dna.json` (→ `engine_dna_diesel.json`) and the M2 Gas Lab equivalent change.
+
+---
+
 ## v2.0.0 — Evidence Arbitrator Architecture (2026-05-10)
 
 ### Breaking changes from V1
