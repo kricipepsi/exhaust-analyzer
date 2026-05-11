@@ -11,12 +11,23 @@ ENGINE_V2 = ROOT / "engine" / "v2"
 SCHEMA_V2 = ROOT / "schema" / "v2"
 
 
+# Directories excluded from the petrol-only lexical scan:
+# - engine/v2/vin/ — VIN reference data module with its own data-layer lint
+#   (test_vin_resolver.py::test_petrol_only_data_lint asserts all 1,978
+#   engine_dna.json rows are fuel_type='petrol'). Model name strings and
+#   Literal type annotations mentioning other fuel types are reference data,
+#   not inference code paths.
+_VIN_DIR = ROOT / "engine" / "v2" / "vin"
+
+
 def _scan_dir(directory: Path) -> list[str]:
     violations: list[str] = []
     if not directory.exists():
         return violations
     for filepath in directory.rglob("*"):
         if not filepath.is_file():
+            continue
+        if _VIN_DIR in filepath.parents or filepath.parent == _VIN_DIR:
             continue
         try:
             text = filepath.read_text(encoding="utf-8").lower()

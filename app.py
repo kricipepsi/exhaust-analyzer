@@ -1,25 +1,21 @@
-"""Streamlit UI for the 4D Petrol Diagnostic Engine V2.
+"""4D Petrol Diagnostic Engine V2 — Streamlit UI (flat reference layout).
 
-Stage 0-4 progressive disclosure.  All fields derive from DiagnosticInput (L17).
-Backward-chaining checkbox defaults off (R3 opt-in).  Three result-state visual
-treatments: named_fault (green), insufficient_evidence (amber), invalid_input (red).
-PDF export via fpdf2.
+Sidebar uses VIN as primary vehicle entry point. Main area has stacked
+L1..L4 expanders. Results pane uses dx-card styling from the V1 reference.
+All fields derive from DiagnosticInput (L17). Backward-chaining defaults OFF (R3).
 """
 
 from __future__ import annotations
 
-import logging
 import sys
 from pathlib import Path
 from typing import Any
 
 import streamlit as st
-from fpdf import FPDF
 
 REPO_ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(REPO_ROOT))
 
-# Engine imports after path setup — required for repo-relative resolution.
 from engine.v2.input_model import (  # noqa: E402
     DiagnosticInput,
     FreezeFrameRecord,
@@ -29,59 +25,94 @@ from engine.v2.input_model import (  # noqa: E402
 )
 from engine.v2.pipeline import diagnose  # noqa: E402
 
-logger = logging.getLogger(__name__)
+# ── page config ──────────────────────────────────────────────────────────
 
-# ── constants ──
+st.set_page_config(
+    page_title="4D Petrol Diagnostic Engine",
+    page_icon="🔧",
+    layout="wide",
+)
 
-MY_MIN: int = 1990   # source: v2-design-rules R6 era buckets
-MY_MAX: int = 2020
-DEFAULT_MY: int = 2005
-DEFAULT_DISPLACEMENT: int = 2000
+# ── CSS (lifted from exhaust-analyzer-main/app.py) ───────────────────────
 
-STATE_COLOR: dict[str, str] = {
-    "named_fault": "#2e7d32",
-    "insufficient_evidence": "#e65100",
-    "invalid_input": "#c62828",
-}
-STATE_BG: dict[str, str] = {
-    "named_fault": "#e8f5e9",
-    "insufficient_evidence": "#fff3e0",
-    "invalid_input": "#ffebee",
-}
-STATE_ICON: dict[str, str] = {
-    "named_fault": ":white_check_mark:",
-    "insufficient_evidence": ":warning:",
-    "invalid_input": ":no_entry:",
-}
+st.markdown(
+    """
+    <style>
+    .dx-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 12px;
+        background: #ffffff;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .dx-card-top1 {
+        border-left: 5px solid #1a73e8;
+        background: #f8faff;
+        box-shadow: 0 2px 6px rgba(26,115,232,0.12);
+    }
+    .dx-card-top2, .dx-card-top3 {
+        border-left: 3px solid #9aa0a6;
+        background: #fafafa;
+    }
+    .dx-state-panel {
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 12px;
+    }
+    .dx-state-insufficient {
+        background: #fef7e0;
+        border: 1px solid #f9d849;
+    }
+    .dx-state-invalid {
+        background: #fce8e6;
+        border: 1px solid #ea4335;
+    }
+    @media (max-width: 640px) {
+        .dx-card { padding: 12px; }
+        .dx-state-panel { padding: 14px; }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
+st.title("🔧 4D Petrol Diagnostic Engine")
+st.markdown(
+    "Knowledge graph-based exhaust gas analysis. Enter a VIN or vehicle context "
+    "on the left, fill gas readings in the centre, and run a diagnosis."
+)
 
-# ── session state init ──
+# ── session state init ──────────────────────────────────────────────────
 
-_KEYS: dict[str, Any] = {
-    "stage": 0,
+_DEFAULTS: dict[str, Any] = {
     "result": None,
-    # Stage 0 — vehicle context
+    "vin_input": "",
+    "vin_dna": None,
     "brand": "",
     "model": "",
     "engine_code": "",
-    "displacement_cc": DEFAULT_DISPLACEMENT,
-    "my": DEFAULT_MY,
-    # Stage 1 — gas
+    "displacement_cc": 2000,
+    "my": 2010,
+    "vin_autofilled": False,
     "analyser_type": "5-gas",
+    "backward_chaining": False,
+    # L1 gas idle
+    "l1_co": 0.0,
+    "l1_co2": 0.0,
+    "l1_hc": 0,
+    "l1_o2": 0.0,
+    "l1_nox": 0.0,
+    "l1_lambda": 1.0,
+    # L2 gas high
     "include_high_idle": False,
-    "gas_idle_co": 0.0,
-    "gas_idle_hc": 0,
-    "gas_idle_co2": 0.0,
-    "gas_idle_o2": 0.0,
-    "gas_idle_nox": 0.0,
-    "gas_idle_lambda": 1.0,
-    "gas_high_co": 0.0,
-    "gas_high_hc": 0,
-    "gas_high_co2": 0.0,
-    "gas_high_o2": 0.0,
-    "gas_high_nox": 0.0,
-    "gas_high_lambda": 1.0,
-    # Stage 2 — digital
+    "l2_co": 0.0,
+    "l2_co2": 0.0,
+    "l2_hc": 0,
+    "l2_o2": 0.0,
+    "l2_nox": 0.0,
+    "l2_lambda": 1.0,
+    # L3 OBD + DTCs
     "dtcs_text": "",
     "include_obd": False,
     "obd_stft_b1": 0.0,
@@ -103,6 +134,7 @@ _KEYS: dict[str, Any] = {
     "obd_evap": 0.0,
     "obd_load": 0.0,
     "obd_tps": 0.0,
+    # L4 freeze frame
     "include_ff": False,
     "ff_dtc_trigger": "",
     "ff_ect": 90.0,
@@ -123,101 +155,116 @@ _KEYS: dict[str, Any] = {
     "ff_tps": 0.0,
     "ff_evap": 0.0,
     "ff_runtime": 0,
-    # Stage 3
-    "backward_chaining": False,
 }
 
-for _key, _val in _KEYS.items():
+for _key, _val in _DEFAULTS.items():
     if _key not in st.session_state:
         st.session_state[_key] = _val
 
 
-# ── helpers ─────────────────────────────────────────────────────────────────
+# ── helpers ─────────────────────────────────────────────────────────────
+
+
+def _any_nonzero(*values: float) -> bool:
+    """True if any value is non-zero (used for L2 gas_high presence)."""
+    return any(v != 0.0 for v in values) or any(v != 0 for v in values)
+
+
+def _build_gas(prefix: str) -> GasRecord:
+    """Build a GasRecord from session_state keys prefixed with l1_ or l2_."""
+    is_5gas = st.session_state.analyser_type == "5-gas"
+    return GasRecord(
+        co_pct=float(st.session_state[f"{prefix}_co"]),
+        co2_pct=float(st.session_state[f"{prefix}_co2"]),
+        hc_ppm=float(st.session_state[f"{prefix}_hc"]),
+        o2_pct=float(st.session_state[f"{prefix}_o2"]),
+        nox_ppm=float(st.session_state[f"{prefix}_nox"]) if is_5gas else None,
+        lambda_analyser=float(st.session_state[f"{prefix}_lambda"]) if is_5gas else None,
+    )
+
+
+def _build_obd() -> OBDRecord | None:
+    """Build OBDRecord if include_obd is checked."""
+    if not st.session_state.include_obd:
+        return None
+    s = st.session_state
+    return OBDRecord(
+        stft_b1=float(s.obd_stft_b1) if s.obd_stft_b1 else None,
+        stft_b2=float(s.obd_stft_b2) if s.obd_stft_b2 else None,
+        ltft_b1=float(s.obd_ltft_b1) if s.obd_ltft_b1 else None,
+        ltft_b2=float(s.obd_ltft_b2) if s.obd_ltft_b2 else None,
+        map_kpa=float(s.obd_map) if s.obd_map else None,
+        maf_gs=float(s.obd_maf) if s.obd_maf else None,
+        rpm=int(s.obd_rpm) if s.obd_rpm else None,
+        ect_c=float(s.obd_ect) if s.obd_ect else None,
+        iat_c=float(s.obd_iat) if s.obd_iat else None,
+        fuel_status=str(s.obd_fuel_status) if s.obd_fuel_status else None,
+        o2_voltage_b1=float(s.obd_o2v_b1) if s.obd_o2v_b1 else None,
+        o2_voltage_b2=float(s.obd_o2v_b2) if s.obd_o2v_b2 else None,
+        obd_lambda=float(s.obd_lambda) if s.obd_lambda else None,
+        vvt_angle=float(s.obd_vvt) if s.obd_vvt else None,
+        fuel_pressure_kpa=float(s.obd_fuel_pressure) if s.obd_fuel_pressure else None,
+        baro_kpa=float(s.obd_baro) if s.obd_baro else None,
+        evap_purge_pct=float(s.obd_evap) if s.obd_evap else None,
+        load_pct=float(s.obd_load) if s.obd_load else None,
+        tps_pct=float(s.obd_tps) if s.obd_tps else None,
+    )
+
+
+def _build_ff() -> FreezeFrameRecord | None:
+    """Build FreezeFrameRecord if include_ff is checked."""
+    if not st.session_state.include_ff:
+        return None
+    s = st.session_state
+    return FreezeFrameRecord(
+        dtc_trigger=str(s.ff_dtc_trigger) if s.ff_dtc_trigger else "",
+        ect_c=float(s.ff_ect) if s.ff_ect else None,
+        rpm=int(s.ff_rpm) if s.ff_rpm else None,
+        load_pct=float(s.ff_load) if s.ff_load else None,
+        map_kpa=float(s.ff_map) if s.ff_map else None,
+        maf_gs=float(s.ff_maf) if s.ff_maf else None,
+        stft_b1=float(s.ff_stft_b1) if s.ff_stft_b1 else None,
+        stft_b2=float(s.ff_stft_b2) if s.ff_stft_b2 else None,
+        ltft_b1=float(s.ff_ltft_b1) if s.ff_ltft_b1 else None,
+        ltft_b2=float(s.ff_ltft_b2) if s.ff_ltft_b2 else None,
+        speed_kph=int(s.ff_speed) if s.ff_speed else None,
+        iat_c=float(s.ff_iat) if s.ff_iat else None,
+        fuel_status=str(s.ff_fuel_status) if s.ff_fuel_status else None,
+        o2_voltage_b1=float(s.ff_o2v_b1) if s.ff_o2v_b1 else None,
+        o2_voltage_b2=float(s.ff_o2v_b2) if s.ff_o2v_b2 else None,
+        baro_kpa=float(s.ff_baro) if s.ff_baro else None,
+        tps_pct=float(s.ff_tps) if s.ff_tps else None,
+        evap_purge_pct=float(s.ff_evap) if s.ff_evap else None,
+        runtime_s=int(s.ff_runtime) if s.ff_runtime else None,
+    )
 
 
 def _build_diagnostic_input() -> DiagnosticInput:
     """Assemble DiagnosticInput from session-state values (L17 compliance)."""
+    s = st.session_state
     vehicle = VehicleContext(
-        brand=st.session_state.brand,
-        model=st.session_state.model,
-        engine_code=st.session_state.engine_code,
-        displacement_cc=st.session_state.displacement_cc,
-        my=st.session_state.my,
+        brand=str(s.brand),
+        model=str(s.model),
+        engine_code=str(s.engine_code),
+        displacement_cc=int(s.displacement_cc),
+        my=int(s.my),
+        vin=str(s.vin_input) if s.vin_input else None,
     )
 
-    analyser_type: Any = st.session_state.analyser_type
-    is_5gas = analyser_type == "5-gas"
+    dtcs: list[str] = []
+    if s.dtcs_text.strip():
+        dtcs = [c.strip().upper() for c in s.dtcs_text.split() if c.strip()]
 
-    gas_idle = GasRecord(
-        co_pct=st.session_state.gas_idle_co,
-        hc_ppm=st.session_state.gas_idle_hc,
-        co2_pct=st.session_state.gas_idle_co2,
-        o2_pct=st.session_state.gas_idle_o2,
-        nox_ppm=st.session_state.gas_idle_nox if is_5gas else None,
-        lambda_analyser=st.session_state.gas_idle_lambda if is_5gas else None,
-    )
+    gas_idle = _build_gas("l1")
 
     gas_high: GasRecord | None = None
-    if st.session_state.include_high_idle:
-        gas_high = GasRecord(
-            co_pct=st.session_state.gas_high_co,
-            hc_ppm=st.session_state.gas_high_hc,
-            co2_pct=st.session_state.gas_high_co2,
-            o2_pct=st.session_state.gas_high_o2,
-            nox_ppm=st.session_state.gas_high_nox if is_5gas else None,
-            lambda_analyser=st.session_state.gas_high_lambda if is_5gas else None,
-        )
+    if s.include_high_idle and _any_nonzero(
+        s.l2_co, s.l2_co2, s.l2_hc, s.l2_o2,
+        s.l2_nox if s.analyser_type == "5-gas" else 0.0, s.l2_lambda,
+    ):
+        gas_high = _build_gas("l2")
 
-    obd: OBDRecord | None = None
-    if st.session_state.include_obd:
-        obd = OBDRecord(
-            stft_b1=_none_if_zero_f(st.session_state.obd_stft_b1),
-            stft_b2=_none_if_zero_f(st.session_state.obd_stft_b2),
-            ltft_b1=_none_if_zero_f(st.session_state.obd_ltft_b1),
-            ltft_b2=_none_if_zero_f(st.session_state.obd_ltft_b2),
-            map_kpa=_none_if_zero_f(st.session_state.obd_map),
-            maf_gs=_none_if_zero_f(st.session_state.obd_maf),
-            rpm=_none_if_zero_i(st.session_state.obd_rpm),
-            ect_c=_none_if_zero_f(st.session_state.obd_ect),
-            iat_c=_none_if_zero_f(st.session_state.obd_iat),
-            fuel_status=st.session_state.obd_fuel_status or None,
-            o2_voltage_b1=_none_if_zero_f(st.session_state.obd_o2v_b1),
-            o2_voltage_b2=_none_if_zero_f(st.session_state.obd_o2v_b2),
-            obd_lambda=_none_if_zero_f(st.session_state.obd_lambda),
-            vvt_angle=_none_if_zero_f(st.session_state.obd_vvt),
-            fuel_pressure_kpa=_none_if_zero_f(
-                st.session_state.obd_fuel_pressure),
-            baro_kpa=_none_if_zero_f(st.session_state.obd_baro),
-            evap_purge_pct=_none_if_zero_f(st.session_state.obd_evap),
-            load_pct=_none_if_zero_f(st.session_state.obd_load),
-            tps_pct=_none_if_zero_f(st.session_state.obd_tps),
-        )
-
-    ff: FreezeFrameRecord | None = None
-    if st.session_state.include_ff:
-        ff = FreezeFrameRecord(
-            dtc_trigger=st.session_state.ff_dtc_trigger,
-            ect_c=_none_if_zero_f(st.session_state.ff_ect),
-            rpm=_none_if_zero_i(st.session_state.ff_rpm),
-            load_pct=_none_if_zero_f(st.session_state.ff_load),
-            map_kpa=_none_if_zero_f(st.session_state.ff_map),
-            maf_gs=_none_if_zero_f(st.session_state.ff_maf),
-            stft_b1=_none_if_zero_f(st.session_state.ff_stft_b1),
-            stft_b2=_none_if_zero_f(st.session_state.ff_stft_b2),
-            ltft_b1=_none_if_zero_f(st.session_state.ff_ltft_b1),
-            ltft_b2=_none_if_zero_f(st.session_state.ff_ltft_b2),
-            speed_kph=_none_if_zero_i(st.session_state.ff_speed),
-            iat_c=_none_if_zero_f(st.session_state.ff_iat),
-            fuel_status=st.session_state.ff_fuel_status or None,
-            o2_voltage_b1=_none_if_zero_f(st.session_state.ff_o2v_b1),
-            o2_voltage_b2=_none_if_zero_f(st.session_state.ff_o2v_b2),
-            baro_kpa=_none_if_zero_f(st.session_state.ff_baro),
-            tps_pct=_none_if_zero_f(st.session_state.ff_tps),
-            evap_purge_pct=_none_if_zero_f(st.session_state.ff_evap),
-            runtime_s=_none_if_zero_i(st.session_state.ff_runtime),
-        )
-
-    dtcs = _parse_dtcs(st.session_state.dtcs_text)
+    analyser_type: Any = s.analyser_type
 
     return DiagnosticInput(
         vehicle_context=vehicle,
@@ -225,719 +272,403 @@ def _build_diagnostic_input() -> DiagnosticInput:
         analyser_type=analyser_type,
         gas_idle=gas_idle,
         gas_high=gas_high,
-        obd=obd,
-        freeze_frame=ff,
+        obd=_build_obd(),
+        freeze_frame=_build_ff(),
     )
 
 
-def _none_if_zero_f(value: float) -> float | None:
-    """Return None for zero float values so optional fields stay optional."""
-    return value if value != 0.0 else None
+# ══════════════════════════════════════════════════════════════════════════
+# Sidebar
+# ══════════════════════════════════════════════════════════════════════════
 
+with st.sidebar:
+    st.header("⚙️ Vehicle & Options")
 
-def _none_if_zero_i(value: int) -> int | None:
-    """Return None for zero int values so optional fields stay optional."""
-    return value if value != 0 else None
+    # ── VIN Lookup ──────────────────────────────────────────────────────
+    with st.expander("🔍 VIN Lookup", expanded=True):
+        vin_input = st.text_input(
+            "VIN (17 chars)",
+            key="vin_input",
+            placeholder="e.g. WVWZZZ1KZAW123456",
+        ).strip().upper()
 
+        vin_dna = None
+        if len(vin_input) == 17:
+            try:
+                from engine.v2.vin import resolve as vin_resolve
+                vin_dna = vin_resolve(vin_input)
+            except Exception:
+                vin_dna = None
 
-def _parse_dtcs(text: str) -> list[str]:
-    """Parse DTCs from comma- or whitespace-separated text."""
-    if not text.strip():
-        return []
-    tokens = text.replace(",", " ").split()
-    return [t.strip().upper() for t in tokens if t.strip()]
+        if vin_dna and vin_dna.confidence == "high":
+            st.success(
+                f"✅ {vin_dna.make or ''} · {vin_dna.engine_code or ''} · "
+                f"{vin_dna.displacement_l}L · {vin_dna.induction or ''}"
+            )
+        elif vin_dna and vin_dna.confidence == "partial":
+            st.info(f"ℹ️ {vin_dna.make or 'Manufacturer'} identified — engine not decoded")
+        elif vin_dna and vin_dna.confidence == "none":
+            st.warning("⚠️ VIN not recognised — fill fields manually below.")
+        elif len(vin_input) == 17:
+            st.caption("Resolving...")
 
+        if (
+            st.button("Auto-fill from VIN", key="vin_autofill_btn")
+            and vin_dna
+            and vin_dna.confidence in ("high", "partial")
+        ):
+            if vin_dna.make:
+                st.session_state.brand = vin_dna.make
+            if vin_dna.engine_code:
+                st.session_state.engine_code = vin_dna.engine_code
+            if vin_dna.displacement_l is not None:
+                st.session_state.displacement_cc = int(round(vin_dna.displacement_l * 1000))
+            st.session_state.vin_autofilled = True
+            st.rerun()
 
-# ── PDF export ──────────────────────────────────────────────────────────────
-
-
-def _pdf_cell(pdf: FPDF, text: str, **kw: Any) -> None:
-    """Shorthand for pdf.cell with standard new-line options."""
-    pdf.cell(0, 6, text, new_x="LMARGIN", new_y="NEXT", **kw)
-
-
-def generate_pdf(result: dict) -> bytes:
-    """Generate a PDF diagnostic report from the result dict (R9 shape).
-
-    Returns:
-        PDF file contents as bytes.
-    """
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_auto_page_break(auto=True, margin=15)
-
-    pdf.set_font("Helvetica", "B", 18)
-    pdf.cell(0, 12, "4D Petrol Diagnostic Report", align="C",
-             new_x="LMARGIN", new_y="NEXT")
-    pdf.ln(4)
-
-    pdf.set_font("Helvetica", "B", 12)
-    _pdf_cell(pdf, "Vehicle Context")
-    pdf.set_font("Helvetica", "", 10)
-    _pdf_cell(pdf, f"Brand: {st.session_state.brand}")
-    _pdf_cell(pdf, f"Model: {st.session_state.model}")
-    _pdf_cell(pdf, f"Engine Code: {st.session_state.engine_code}")
-    _pdf_cell(pdf,
-              f"Displacement: {st.session_state.displacement_cc} cc")
-    _pdf_cell(pdf, f"Model Year: {st.session_state.my}")
-    pdf.ln(4)
-
-    state = result.get("state", "unknown")
-    pdf.set_font("Helvetica", "B", 12)
-    _pdf_cell(pdf, f"Result: {state}")
-    pdf.set_font("Helvetica", "", 10)
-
-    primary = result.get("primary")
-    if primary is not None:
-        fid = primary.get("fault_id", "N/A")
-        conf = primary.get("confidence", 0)
-        raw = primary.get("raw_score", 0)
-        _pdf_cell(pdf, f"Primary Fault: {fid}")
-        _pdf_cell(pdf, f"Confidence: {conf:.2f}")
-        _pdf_cell(pdf, f"Raw Score: {raw:.4f}")
-        root_cause = primary.get("root_cause")
-        if root_cause is not None:
-            _pdf_cell(pdf, f"Root Cause: {root_cause}")
-
-    alternatives = result.get("alternatives", [])
-    if alternatives:
-        pdf.ln(2)
-        pdf.set_font("Helvetica", "B", 10)
-        _pdf_cell(pdf, "Alternatives:")
-        pdf.set_font("Helvetica", "", 10)
-        for alt in alternatives:
-            alt_id = alt.get("fault_id", "N/A")
-            alt_score = alt.get("raw_score", 0)
-            _pdf_cell(pdf, f"- {alt_id} (score: {alt_score:.4f})")
-
-    warnings = result.get("validation_warnings", [])
-    if warnings:
-        pdf.ln(2)
-        pdf.set_font("Helvetica", "B", 10)
-        _pdf_cell(pdf, "Validation Warnings:")
-        pdf.set_font("Helvetica", "", 10)
-        for w in warnings:
-            cat = w.get("category", "?")
-            msg = w.get("message", "")
-            _pdf_cell(pdf, f"- [{cat}] {msg}")
-
-    next_steps = result.get("next_steps", [])
-    if next_steps:
-        pdf.ln(2)
-        pdf.set_font("Helvetica", "B", 10)
-        _pdf_cell(pdf, "Recommended Next Steps:")
-        pdf.set_font("Helvetica", "", 10)
-        for ns in next_steps:
-            evidence = ns.get("evidence", "unknown")
-            lift = ns.get("expected_lift", 0.0)
-            _pdf_cell(pdf,
-                      f"- Gather {evidence} (expected lift: {lift:.2f})")
-
-    return bytes(pdf.output())
-
-
-# ── stage renderers ─────────────────────────────────────────────────────────
-
-
-def _render_stage_0() -> None:
-    """Stage 0 — Vehicle Context."""
-    st.subheader("Stage 0: Vehicle Context")
-    st.caption(
-        "All fields required for VIN-free vehicle identification "
-        "(vref.db lookup)."
+    # ── Vehicle Identification ──────────────────────────────────────────
+    vin_success = bool(
+        st.session_state.get("vin_autofilled")
+        and st.session_state.vin_input
+        and len(st.session_state.vin_input) == 17
     )
+    with st.expander("🚗 Vehicle Identification", expanded=not vin_success):
+        st.text_input("Brand", key="brand", placeholder="e.g. VOLKSWAGEN")
+        if st.session_state.vin_autofilled and st.session_state.brand:
+            st.caption("auto-filled from VIN")
 
-    col1, col2 = st.columns(2)
-    with col1:
-        st.text_input("Brand", key="brand", placeholder="e.g. BMW, Toyota")
-        st.text_input("Model", key="model", placeholder="e.g. 325i, Camry")
-        st.text_input(
-            "Engine Code", key="engine_code",
-            placeholder="e.g. M50B25, 2AZ-FE",
-        )
-    with col2:
+        st.text_input("Model", key="model", placeholder="e.g. Golf")
+        st.text_input("Engine Code", key="engine_code", placeholder="e.g. BSE")
+        if st.session_state.vin_autofilled and st.session_state.engine_code:
+            st.caption("auto-filled from VIN")
+
         st.number_input(
-            "Displacement (cc)", min_value=500, max_value=10000,
-            step=100, key="displacement_cc",
+            "Displacement (cc)", min_value=0, max_value=10000,
+            value=st.session_state.displacement_cc, step=100, key="displacement_cc",
         )
+        if st.session_state.vin_autofilled and st.session_state.displacement_cc:
+            st.caption("auto-filled from VIN")
+
         st.number_input(
-            "Model Year", min_value=MY_MIN, max_value=MY_MAX,
-            step=1, key="my",
+            "Model Year", min_value=1990, max_value=2020,
+            value=st.session_state.my, step=1, key="my",
         )
 
-    valid = all([
-        st.session_state.brand,
-        st.session_state.model,
-        st.session_state.engine_code,
-    ])
-    st.button(
-        "Next: Gas Data →", key="to_stage_1",
-        disabled=not valid, on_click=_advance_stage,
-    )
+    # ── Analyser ────────────────────────────────────────────────────────
+    with st.expander("🧪 Analyser", expanded=False):
+        st.radio(
+            "Analyser type",
+            options=["5-gas", "4-gas"],
+            horizontal=True,
+            key="analyser_type",
+            help="5-gas includes NOx; 4-gas suppresses NOx and analyser-lambda.",
+        )
+
+    # ── Diagnosis Options ──────────────────────────────────────────────
+    with st.expander("⚙️ Diagnosis Options", expanded=False):
+        st.checkbox(
+            "Enable backward chaining",
+            value=False,
+            key="backward_chaining",
+            help="When ON and evidence is insufficient, suggests next diagnostic steps.",
+        )
+
+    st.divider()
+
+    # ── Probe Depth Check ───────────────────────────────────────────────
+    st.markdown("**🔍 Probe Depth Check**")
+    total_co_co2 = float(st.session_state.l1_co) + float(st.session_state.l1_co2)
+    if total_co_co2 > 0 and total_co_co2 < 12.0:
+        st.warning(
+            f"⚠️ Total CO+CO₂ = {total_co_co2:.1f}% is low. "
+            "Ensure probe is inserted 30 cm into tailpipe."
+        )
+    elif total_co_co2 > 0:
+        st.success(f"✅ Total CO+CO₂ = {total_co_co2:.1f}% (adequate)")
+    else:
+        st.caption("Enter L1 CO and CO₂ to check probe depth.")
 
 
-def _render_stage_1() -> None:
-    """Stage 1 — Gas Data (idle + optional high-idle)."""
-    st.subheader("Stage 1: Exhaust Gas Data")
+# ══════════════════════════════════════════════════════════════════════════
+# Main area — stacked expanders
+# ══════════════════════════════════════════════════════════════════════════
 
-    st.radio(
-        "Analyser Type", options=["5-gas", "4-gas"],
-        horizontal=True, key="analyser_type",
-    )
+# ── L1: Low Idle Gas ────────────────────────────────────────────────────
+with st.expander("📊 L1 — Low Idle Gas", expanded=True):
     is_5gas = st.session_state.analyser_type == "5-gas"
-
-    st.markdown("#### Idle Gas Reading")
-    _render_gas_fields("gas_idle", is_5gas, required=True)
-
-    st.markdown("#### High-Idle Gas Reading")
-    st.checkbox(
-        "Include high-idle gas reading (recommended for L2 evidence)",
-        key="include_high_idle",
-    )
-    if st.session_state.include_high_idle:
-        _render_gas_fields("gas_high", is_5gas, required=False)
-
-    col_a, col_b = st.columns(2)
-    with col_a:
-        st.button(
-            "← Back: Vehicle", key="to_stage_0",
-            on_click=_retreat_stage,
-        )
-    with col_b:
-        idle_ok = (
-            st.session_state.gas_idle_co != 0.0
-            or st.session_state.gas_idle_o2 != 0.0
-        )
-        st.button(
-            "Next: Digital Data →", key="to_stage_2",
-            disabled=not idle_ok, on_click=_advance_stage,
-        )
-
-
-def _render_gas_fields(prefix: str, is_5gas: bool, *, required: bool) -> None:
-    """Render a gas-record field group bound to session-state keys."""
     c1, c2, c3 = st.columns(3)
     with c1:
-        st.number_input(
-            "CO (%)", min_value=0.0, max_value=15.0,
-            step=0.01, key=f"{prefix}_co",
-        )
-        st.number_input(
-            "CO₂ (%)", min_value=0.0, max_value=20.0,
-            step=0.1, key=f"{prefix}_co2",
-        )
+        st.number_input("CO (%)", min_value=0.0, max_value=15.0, value=0.12,
+                        step=0.01, format="%.2f", key="l1_co")
+        st.number_input("CO₂ (%)", min_value=0.0, max_value=20.0, value=14.8,
+                        step=0.1, format="%.1f", key="l1_co2")
     with c2:
-        st.number_input(
-            "HC (ppm)", min_value=0, max_value=10000,
-            step=1, key=f"{prefix}_hc",
-        )
-        st.number_input(
-            "O₂ (%)", min_value=0.0, max_value=25.0,
-            step=0.01, key=f"{prefix}_o2",
-        )
+        st.number_input("HC (ppm)", min_value=0, max_value=30000, value=25,
+                        step=1, key="l1_hc")
+        st.number_input("O₂ (%)", min_value=0.0, max_value=21.0, value=0.25,
+                        step=0.01, format="%.2f", key="l1_o2")
     with c3:
         if is_5gas:
-            st.number_input(
-                "NOx (ppm)", min_value=0.0, max_value=5000.0,
-                step=1.0, key=f"{prefix}_nox",
-            )
-            st.number_input(
-                "Lambda (analyser)", min_value=0.5, max_value=2.0,
-                step=0.001, key=f"{prefix}_lambda",
-            )
+            st.number_input("NOx (ppm)", min_value=0, max_value=5000, value=0,
+                            step=1, key="l1_nox")
+            st.number_input("Lambda (analyser)", min_value=0.50, max_value=2.00,
+                            value=1.00, step=0.01, format="%.2f", key="l1_lambda")
         else:
-            st.caption("NOx: N/A (4-gas)")
-            st.caption("Lambda: N/A (4-gas)")
+            st.caption("NOx — 4-gas (disabled)")
+            st.caption("Lambda — 4-gas (disabled)")
 
+# ── L2: High Idle Gas ───────────────────────────────────────────────────
+with st.expander("📊 L2 — High Idle Gas (~2500 RPM)", expanded=False):
+    st.checkbox("Include high-idle gas readings", key="include_high_idle")
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        st.number_input("CO (%)", min_value=0.0, max_value=15.0, value=0.0,
+                        step=0.01, format="%.2f", key="l2_co")
+        st.number_input("CO₂ (%)", min_value=0.0, max_value=20.0, value=0.0,
+                        step=0.1, format="%.1f", key="l2_co2")
+    with c2:
+        st.number_input("HC (ppm)", min_value=0, max_value=30000, value=0,
+                        step=1, key="l2_hc")
+        st.number_input("O₂ (%)", min_value=0.0, max_value=21.0, value=0.0,
+                        step=0.01, format="%.2f", key="l2_o2")
+    with c3:
+        if is_5gas:
+            st.number_input("NOx (ppm)", min_value=0, max_value=5000, value=0,
+                            step=1, key="l2_nox")
+            st.number_input("Lambda (analyser)", min_value=0.50, max_value=2.00,
+                            value=1.00, step=0.01, format="%.2f", key="l2_lambda")
+        else:
+            st.caption("NOx — 4-gas (disabled)")
+            st.caption("Lambda — 4-gas (disabled)")
 
-def _render_stage_2() -> None:
-    """Stage 2 — Digital Data (DTCs + OBD + Freeze Frame)."""
-    st.subheader("Stage 2: Digital Data")
-
-    st.markdown("#### Diagnostic Trouble Codes (DTCs)")
-    st.text_input(
-        "DTCs (comma-separated)", key="dtcs_text",
-        placeholder="e.g. P0171, P0174, P0300",
+# ── L3: Live PIDs + DTCs ────────────────────────────────────────────────
+with st.expander("📈 L3 — Live PIDs + DTCs", expanded=False):
+    st.text_area(
+        "DTCs (space-separated, e.g. P0420 P0171)",
+        key="dtcs_text",
+        placeholder="P0420 P0171",
+        height=68,
     )
-    parsed = _parse_dtcs(st.session_state.dtcs_text)
-    if parsed:
-        st.caption(f"{len(parsed)} DTC(s): {' • '.join(parsed)}")
-
-    st.markdown("#### OBD Live Data")
-    st.checkbox("Include OBD live data (L3 evidence)", key="include_obd")
+    st.checkbox("Include OBD live data", key="include_obd")
     if st.session_state.include_obd:
-        _render_obd_fields()
+        c1, c2, c3 = st.columns(3)
+        s = st.session_state
+        with c1:
+            st.number_input("STFT B1 (%)", value=0.0, step=0.1, key="obd_stft_b1")
+            st.number_input("STFT B2 (%)", value=0.0, step=0.1, key="obd_stft_b2")
+            st.number_input("LTFT B1 (%)", value=0.0, step=0.1, key="obd_ltft_b1")
+            st.number_input("LTFT B2 (%)", value=0.0, step=0.1, key="obd_ltft_b2")
+            st.number_input("MAP (kPa)", value=100.0, step=1.0, key="obd_map")
+            st.number_input("MAF (g/s)", value=0.0, step=0.1, key="obd_maf")
+        with c2:
+            st.number_input("RPM", value=0, step=100, key="obd_rpm")
+            st.number_input("ECT (°C)", value=90.0, step=1.0, key="obd_ect")
+            st.number_input("IAT (°C)", value=25.0, step=1.0, key="obd_iat")
+            st.text_input("Fuel Status", key="obd_fuel_status", placeholder="CL")
+            st.number_input("O₂ Voltage B1 (V)", value=0.0, step=0.01, key="obd_o2v_b1")
+            st.number_input("O₂ Voltage B2 (V)", value=0.0, step=0.01, key="obd_o2v_b2")
+        with c3:
+            st.number_input("OBD Lambda", value=1.0, step=0.01, key="obd_lambda")
+            st.number_input("VVT Angle (°)", value=0.0, step=0.1, key="obd_vvt")
+            st.number_input("Fuel Pressure (kPa)", value=0.0, step=1.0, key="obd_fuel_pressure")
+            st.number_input("Baro (kPa)", value=101.0, step=0.1, key="obd_baro")
+            st.number_input("EVAP Purge (%)", value=0.0, step=0.1, key="obd_evap")
+            st.number_input("Load (%)", value=0.0, step=0.1, key="obd_load")
+            st.number_input("TPS (%)", value=0.0, step=0.1, key="obd_tps")
 
-    st.markdown("#### Freeze Frame Data")
-    st.checkbox(
-        "Include freeze frame data (L4 evidence)", key="include_ff",
-    )
+# ── L4: Freeze Frame ────────────────────────────────────────────────────
+with st.expander("📟 L4 — Freeze Frame", expanded=False):
+    st.checkbox("Include freeze frame data", key="include_ff")
     if st.session_state.include_ff:
-        _render_ff_fields()
-
-    col_a, col_b = st.columns(2)
-    with col_a:
-        st.button(
-            "← Back: Gas Data", key="to_stage_1b",
-            on_click=_retreat_stage,
-        )
-    with col_b:
-        st.button(
-            "Next: Run Diagnosis →", key="to_stage_3",
-            on_click=_advance_stage,
-        )
-
-
-def _render_obd_fields() -> None:
-    """Render OBD live-data inputs."""
-    with st.expander("OBD Live Data Fields", expanded=True):
+        st.text_input("DTC Trigger", key="ff_dtc_trigger", placeholder="e.g. P0420")
         c1, c2, c3 = st.columns(3)
+        s = st.session_state
         with c1:
-            st.number_input(
-                "STFT B1 (%)", min_value=-50.0, max_value=50.0,
-                step=0.1, key="obd_stft_b1",
-            )
-            st.number_input(
-                "STFT B2 (%)", min_value=-50.0, max_value=50.0,
-                step=0.1, key="obd_stft_b2",
-            )
-            st.number_input(
-                "LTFT B1 (%)", min_value=-50.0, max_value=50.0,
-                step=0.1, key="obd_ltft_b1",
-            )
-            st.number_input(
-                "LTFT B2 (%)", min_value=-50.0, max_value=50.0,
-                step=0.1, key="obd_ltft_b2",
-            )
-            st.number_input(
-                "MAP (kPa)", min_value=0.0, max_value=300.0,
-                step=1.0, key="obd_map",
-            )
-            st.number_input(
-                "MAF (g/s)", min_value=0.0, max_value=500.0,
-                step=0.1, key="obd_maf",
-            )
+            st.number_input("FF ECT (°C)", value=90.0, step=1.0, key="ff_ect")
+            st.number_input("FF RPM", value=0, step=100, key="ff_rpm")
+            st.number_input("FF Load (%)", value=0.0, step=0.1, key="ff_load")
+            st.number_input("FF MAP (kPa)", value=100.0, step=1.0, key="ff_map")
+            st.number_input("FF MAF (g/s)", value=0.0, step=0.1, key="ff_maf")
         with c2:
-            st.number_input(
-                "RPM", min_value=0, max_value=12000,
-                step=50, key="obd_rpm",
-            )
-            st.number_input(
-                "ECT (°C)", min_value=-40.0, max_value=150.0,
-                step=0.5, key="obd_ect",
-            )
-            st.number_input(
-                "IAT (°C)", min_value=-40.0, max_value=100.0,
-                step=0.5, key="obd_iat",
-            )
-            st.text_input(
-                "Fuel Status", key="obd_fuel_status",
-                placeholder="e.g. CL, OL, OL_DRIVE, OL_FAULT",
-            )
-            st.number_input(
-                "O₂ Voltage B1 (V)", min_value=0.0, max_value=1.5,
-                step=0.01, key="obd_o2v_b1",
-            )
-            st.number_input(
-                "O₂ Voltage B2 (V)", min_value=0.0, max_value=1.5,
-                step=0.01, key="obd_o2v_b2",
-            )
+            st.number_input("FF STFT B1 (%)", value=0.0, step=0.1, key="ff_stft_b1")
+            st.number_input("FF STFT B2 (%)", value=0.0, step=0.1, key="ff_stft_b2")
+            st.number_input("FF LTFT B1 (%)", value=0.0, step=0.1, key="ff_ltft_b1")
+            st.number_input("FF LTFT B2 (%)", value=0.0, step=0.1, key="ff_ltft_b2")
+            st.number_input("FF Speed (kph)", value=0, step=1, key="ff_speed")
         with c3:
-            st.number_input(
-                "OBD Lambda", min_value=0.5, max_value=2.0,
-                step=0.001, key="obd_lambda",
-            )
-            st.number_input(
-                "VVT Angle (°)", min_value=-30.0, max_value=60.0,
-                step=0.5, key="obd_vvt",
-            )
-            st.number_input(
-                "Fuel Pressure (kPa)", min_value=0.0, max_value=1000.0,
-                step=10.0, key="obd_fuel_pressure",
-            )
-            st.number_input(
-                "Barometric (kPa)", min_value=50.0, max_value=110.0,
-                step=0.1, key="obd_baro",
-            )
-            st.number_input(
-                "EVAP Purge (%)", min_value=0.0, max_value=100.0,
-                step=0.5, key="obd_evap",
-            )
-            st.number_input(
-                "Engine Load (%)", min_value=0.0, max_value=100.0,
-                step=0.5, key="obd_load",
-            )
-            st.number_input(
-                "TPS (%)", min_value=0.0, max_value=100.0,
-                step=0.5, key="obd_tps",
-            )
+            st.number_input("FF IAT (°C)", value=25.0, step=1.0, key="ff_iat")
+            st.text_input("FF Fuel Status", key="ff_fuel_status", placeholder="CL")
+            st.number_input("FF O₂V B1 (V)", value=0.0, step=0.01, key="ff_o2v_b1")
+            st.number_input("FF O₂V B2 (V)", value=0.0, step=0.01, key="ff_o2v_b2")
+            st.number_input("FF Baro (kPa)", value=101.0, step=0.1, key="ff_baro")
+            st.number_input("FF TPS (%)", value=0.0, step=0.1, key="ff_tps")
+            st.number_input("FF EVAP (%)", value=0.0, step=0.1, key="ff_evap")
+            st.number_input("FF Runtime (s)", value=0, step=1, key="ff_runtime")
 
+# ── L5: Deferred ────────────────────────────────────────────────────────
+with st.expander("📈 L5 — Live PIDs (deferred v2.1)", expanded=False):
+    st.caption("Live PID streaming will be available in v2.1.")
 
-def _render_ff_fields() -> None:
-    """Render freeze frame data inputs."""
-    with st.expander("Freeze Frame Data Fields", expanded=True):
-        c1, c2, c3 = st.columns(3)
-        with c1:
-            st.text_input(
-                "DTC Trigger", key="ff_dtc_trigger",
-                placeholder="e.g. P0171",
-            )
-            st.number_input(
-                "FF ECT (°C)", min_value=-40.0, max_value=150.0,
-                step=0.5, key="ff_ect",
-            )
-            st.number_input(
-                "FF RPM", min_value=0, max_value=12000,
-                step=50, key="ff_rpm",
-            )
-            st.number_input(
-                "FF Load (%)", min_value=0.0, max_value=100.0,
-                step=0.5, key="ff_load",
-            )
-            st.number_input(
-                "FF MAP (kPa)", min_value=0.0, max_value=300.0,
-                step=1.0, key="ff_map",
-            )
-            st.number_input(
-                "FF MAF (g/s)", min_value=0.0, max_value=500.0,
-                step=0.1, key="ff_maf",
-            )
-        with c2:
-            st.number_input(
-                "FF STFT B1 (%)", min_value=-50.0, max_value=50.0,
-                step=0.1, key="ff_stft_b1",
-            )
-            st.number_input(
-                "FF STFT B2 (%)", min_value=-50.0, max_value=50.0,
-                step=0.1, key="ff_stft_b2",
-            )
-            st.number_input(
-                "FF LTFT B1 (%)", min_value=-50.0, max_value=50.0,
-                step=0.1, key="ff_ltft_b1",
-            )
-            st.number_input(
-                "FF LTFT B2 (%)", min_value=-50.0, max_value=50.0,
-                step=0.1, key="ff_ltft_b2",
-            )
-            st.number_input(
-                "FF Speed (km/h)", min_value=0, max_value=300,
-                step=1, key="ff_speed",
-            )
-            st.number_input(
-                "FF IAT (°C)", min_value=-40.0, max_value=100.0,
-                step=0.5, key="ff_iat",
-            )
-        with c3:
-            st.text_input(
-                "FF Fuel Status", key="ff_fuel_status",
-                placeholder="e.g. CL, OL",
-            )
-            st.number_input(
-                "FF O₂V B1 (V)", min_value=0.0, max_value=1.5,
-                step=0.01, key="ff_o2v_b1",
-            )
-            st.number_input(
-                "FF O₂V B2 (V)", min_value=0.0, max_value=1.5,
-                step=0.01, key="ff_o2v_b2",
-            )
-            st.number_input(
-                "FF Baro (kPa)", min_value=50.0, max_value=110.0,
-                step=0.1, key="ff_baro",
-            )
-            st.number_input(
-                "FF TPS (%)", min_value=0.0, max_value=100.0,
-                step=0.5, key="ff_tps",
-            )
-            st.number_input(
-                "FF EVAP (%)", min_value=0.0, max_value=100.0,
-                step=0.5, key="ff_evap",
-            )
-            st.number_input(
-                "FF Runtime (s)", min_value=0, max_value=3600,
-                step=1, key="ff_runtime",
-            )
+# ── Run Diagnosis button ────────────────────────────────────────────────
 
+st.markdown("---")
+run_col1, run_col2 = st.columns([1, 4])
+with run_col1:
+    run_clicked = st.button("🔍 Run Diagnosis", type="primary", use_container_width=True)
 
-def _render_stage_3() -> None:
-    """Stage 3 — Backward chaining opt-in + diagnosis trigger."""
-    st.subheader("Stage 3: Run Diagnosis")
+if run_clicked:
+    with st.spinner("Running diagnosis pipeline..."):
+        try:
+            diag_input = _build_diagnostic_input()
+            result = diagnose(
+                diag_input,
+                backward_chaining=st.session_state.backward_chaining,
+            )
+            st.session_state.result = result
+        except Exception as exc:
+            st.error(f"Diagnosis failed: {exc}")
+            st.session_state.result = None
 
-    st.checkbox(
-        "Enable backward chaining (suggest next evidence when insufficient)",
-        value=False,
-        key="backward_chaining",
-        help=(
-            "When enabled, next_steps[] will populate if the engine "
-            "cannot reach a confident diagnosis (R3 opt-in)."
-        ),
-    )
+# ══════════════════════════════════════════════════════════════════════════
+# Results pane
+# ══════════════════════════════════════════════════════════════════════════
+
+result = st.session_state.get("result")
+if result is None:
+    st.info("Enter vehicle context and gas readings, then click **Run Diagnosis**.")
+else:
+    state = result.get("state", "invalid_input")
+    primary = result.get("primary")
+    alternatives = result.get("alternatives", [])
+    warnings = result.get("validation_warnings", [])
+    ceiling = result.get("confidence_ceiling", 0.0)
+    perception_gap = result.get("perception_gap")
+    next_steps = result.get("next_steps", [])
+    cascading = result.get("cascading_consequences", [])
 
     st.markdown("---")
+    st.header("📋 Diagnosis Result")
 
-    col_a, col_b = st.columns(2)
-    with col_a:
-        st.button(
-            "← Back: Digital Data", key="to_stage_2b",
-            on_click=_retreat_stage,
-        )
-    with col_b:
-        st.button(
-            "Run Diagnosis", key="run_diagnosis",
-            type="primary", on_click=_run_diagnosis,
-        )
-
-
-def _render_stage_4() -> None:
-    """Stage 4 — Results display with 3-state visual treatment."""
-    result: dict[str, Any] = st.session_state.result  # type: ignore[assignment]
-
-    if result is None:
-        st.warning("No result yet. Click 'Run Diagnosis' on Stage 3.")
-        st.button(
-            "← Back to Diagnosis", key="to_stage_3b",
-            on_click=_retreat_stage,
-        )
-        return
-
-    state: str = result.get("state", "unknown")
-    color = STATE_COLOR.get(state, "#333333")
-    bg = STATE_BG.get(state, "#f0f0f0")
-    icon = STATE_ICON.get(state, ":grey_question:")
-
-    # ── state banner ──
+    # 1. State banner
+    _state_colors = {
+        "named_fault": ("#2e7d32", "#e8f5e9", "✅"),
+        "insufficient_evidence": ("#e65100", "#fef7e0", "⚠️"),
+        "invalid_input": ("#c62828", "#fce8e6", "🚫"),
+    }
+    sc = _state_colors.get(state, _state_colors["invalid_input"])
+    state_label = state.replace("_", " ").title()
     st.markdown(
-        f"<div style='background-color:{bg}; "
-        f"border-left:6px solid {color}; "
-        f"padding:16px 20px; border-radius:4px; margin-bottom:16px;'>"
-        f"<h3 style='margin:0; color:{color};'>{icon} State: {state}</h3>"
-        f"</div>",
+        f"""<div class="dx-state-panel"
+        style="background:{sc[1]};border:1px solid {sc[0]};">
+        <span style="color:{sc[0]};font-weight:600;font-size:1.1em;">
+        {sc[2]} {state_label}</span>
+        </div>""",
         unsafe_allow_html=True,
     )
 
-    # ── validation warnings ──
-    warnings: list[dict] = result.get("validation_warnings", [])
+    # 2. Validation warnings
     if warnings:
-        expanded = state == "invalid_input"
-        with st.expander(
-            f":warning: Validation Warnings ({len(warnings)})",
-            expanded=expanded,
-        ):
+        with st.expander(f"⚠️ Validation Warnings ({len(warnings)})", expanded=bool(warnings)):
             for w in warnings:
-                cat = w.get("category", "?")
-                msg = w.get("message", "")
-                ch = w.get("channel", "")
-                st.warning(f"**[Cat {cat}]** {msg} — `{ch}`")
+                st.warning(f"**[{w.get('channel', '?')}]** {w.get('message', str(w))}")
 
-    # ── primary fault ──
-    primary: dict | None = result.get("primary")
-    if primary is not None:
-        st.markdown("### Primary Diagnosis")
+    # 3. Metric tiles
+    if primary:
+        mc1, mc2, mc3, mc4 = st.columns(4)
+        with mc1:
+            st.metric("Confidence", f"{primary.get('confidence', 0):.1%}")
+        with mc2:
+            st.metric("Raw Score", f"{primary.get('raw_score', 0):.3f}")
+        with mc3:
+            st.metric("Confidence Ceiling", f"{ceiling:.2f}")
+        with mc4:
+            layers = primary.get("evidence_layers_used", [])
+            st.metric("Layers Used", " → ".join(layers) if layers else "—")
 
-        col_a, col_b = st.columns([2, 1])
-        with col_a:
-            _render_fault_chain(primary, result)
-        with col_b:
-            _render_confidence_gauge(primary, result)
+    # 4. Primary diagnosis
+    if primary and state == "named_fault":
+        fault_id = primary.get("fault_id", "Unknown")
+        st.markdown(f"<h2 style='color:{sc[0]};'>{fault_id}</h2>", unsafe_allow_html=True)
 
-        # ── alternatives ──
-        alternatives: list[dict] = result.get("alternatives", [])
-        if alternatives:
-            st.markdown("#### Alternative Candidates")
-            alt_data = [
-                {
-                    "Rank": i + 1,
-                    "Fault": a.get("fault_id", "?"),
-                    "Raw Score": f"{a.get('raw_score', 0):.4f}",
-                    "Confidence": f"{a.get('confidence', 0):.2f}",
-                    "Tier Delta": f"{a.get('tier_delta', 0):.4f}",
-                }
-                for i, a in enumerate(alternatives)
-            ]
-            st.dataframe(
-                alt_data, use_container_width=True, hide_index=True,
-            )
+        symptom_chain = primary.get("symptom_chain", [])
+        if symptom_chain:
+            st.markdown("**Symptom Chain:** " + " → ".join(symptom_chain))
 
-    else:
-        if state == "invalid_input":
-            st.error(
-                "All input channels were rejected by the Validation Layer. "
-                "No diagnosis possible."
-            )
-        elif state == "insufficient_evidence":
-            st.warning(
-                "Insufficient evidence to reach a confident diagnosis."
-            )
+        root_cause = primary.get("root_cause")
+        if root_cause:
+            st.markdown(f"**Root Cause:** ★ {root_cause}")
 
-    # ── perception gap ──
-    pg: dict | None = result.get("perception_gap")
-    if pg is not None and pg.get("fired"):
-        pg_type = pg.get("type", "?")
-        pg_delta = pg.get("delta_lambda", 0)
-        st.info(
-            f":mag: **Perception Gap Detected** — "
-            f"Type: `{pg_type}`, Delta Lambda: `{pg_delta:.3f}`"
-        )
+        disc = primary.get("discriminator_tags", [])
+        prom = primary.get("promotion_tags", [])
+        if disc:
+            st.markdown("**Discriminators:** " + ", ".join(disc))
+        if prom:
+            st.markdown("**Promotions:** " + ", ".join(prom))
 
-    # ── next steps ──
-    next_steps: list[dict] = result.get("next_steps", [])
-    if next_steps:
-        st.markdown("#### :bulb: Recommended Next Steps")
-        for ns in next_steps:
-            evidence = ns.get("evidence", "unknown")
-            lift = ns.get("expected_lift", 0.0)
+    # 5. Differential diagnosis
+    if alternatives:
+        st.subheader("Differential Diagnosis")
+        for idx, alt in enumerate(alternatives):
+            css_class = "dx-card-top1" if idx == 0 else ("dx-card-top2" if idx < 3 else "")
+            fault_name = alt.get("fault_id", "?")
+            conf = alt.get("confidence", 0)
             st.markdown(
-                f"- Gather **{evidence}** "
-                f"(expected score lift: +{lift:.2f})"
+                f"""<div class="dx-card {css_class}">
+                <strong>{fault_name}</strong>
+                <span style="float:right;color:#5f6368;">{conf:.1%}</span>
+                </div>""",
+                unsafe_allow_html=True,
             )
 
-    # ── cascading consequences ──
-    cascading: list[str] = result.get("cascading_consequences", [])
+    # 6. Plotly confidence gauge
+    if primary:
+        try:
+            import plotly.graph_objects as go
+            conf_val = primary.get("confidence", 0) * 100
+            fig = go.Figure(go.Indicator(
+                mode="gauge+number",
+                value=conf_val,
+                title={"text": "Confidence %"},
+                gauge={
+                    "axis": {"range": [0, 100]},
+                    "bar": {"color": sc[0]},
+                    "steps": [
+                        {"range": [0, 25], "color": "#f0f0f0"},
+                        {"range": [25, 50], "color": "#ffe0b2"},
+                        {"range": [50, 100], "color": "#c8e6c9"},
+                    ],
+                },
+            ))
+            fig.update_layout(height=200, margin=dict(l=20, r=20, t=40, b=20))
+            st.plotly_chart(fig, use_container_width=True)
+        except ImportError:
+            st.caption("Plotly not available — install plotly>=5.14 for confidence gauge.")
+
+    # 7. Perception gap
+    if perception_gap and perception_gap.get("fired"):
+        st.info(
+            f"🔍 **Perception Gap Detected:** {perception_gap.get('summary', '')} "
+            f"(Δλ = {perception_gap.get('delta_lambda', 0):.3f})"
+        )
+
+    # 8. Next steps
+    if next_steps:
+        with st.expander("📋 Recommended Next Steps", expanded=True):
+            for ns in next_steps:
+                st.markdown(f"- **{ns.get('action', ns)}**: {ns.get('rationale', '')}")
+
+    # 9. Cascading consequences
     if cascading:
-        st.markdown(
-            "#### :cyclone: Cascading Consequences (Flood Control)"
-        )
-        for cc in cascading:
-            st.markdown(f"- `{cc}`")
+        with st.expander("🔗 Cascading Consequences", expanded=False):
+            for cc in cascading:
+                st.markdown(f"- {cc}")
 
-    # ── metadata ──
-    st.markdown("---")
-    st.caption(
-        f"Confidence Ceiling: {result.get('confidence_ceiling', 0):.2f}"
-    )
-    evidence_used: list[str] = (
-        primary.get("evidence_layers_used", []) if primary else []
-    )
-    st.caption(
-        f"Evidence Layers Used: "
-        f"{', '.join(evidence_used) if evidence_used else 'none'}"
-    )
+    # 10. Technical details
+    with st.expander("🔧 Technical Details", expanded=False):
+        st.json(result)
 
-    # ── actions ──
-    col_x, col_y, col_z = st.columns([1, 1, 2])
-    with col_x:
-        st.button(
-            "← Back to Diagnosis", key="to_stage_3c",
-            on_click=_retreat_stage,
-        )
-    with col_y:
-        pdf_bytes = generate_pdf(result)
-        st.download_button(
-            label="Export PDF",
-            data=pdf_bytes,
-            file_name="4d_diagnostic_report.pdf",
-            mime="application/pdf",
-        )
-
-
-def _render_fault_chain(primary: dict, result: dict) -> None:
-    """Render symptom chain → fault → root cause for the primary diagnosis."""
-    fault_id = primary.get("fault_id", "Unknown")
-    symptom_chain: list[str] = primary.get("symptom_chain", [])
-    root_cause = primary.get("root_cause")
-
-    st.markdown(f"**Fault:** `{fault_id}`")
-
-    if symptom_chain:
-        chain_repr = "  →  ".join(f"`{s}`" for s in symptom_chain)
-        st.markdown(f"**Symptom Chain:** {chain_repr}")
-    else:
-        st.caption("(symptom chain populated by forward reasoning)")
-
-    if root_cause is not None:
-        st.markdown(
-            f"**Root Cause:** `{root_cause}` :star: (score ≥ 0.80)"
-        )
-
-    discrim = primary.get("discriminator_satisfied", True)
-    promoted = primary.get("promoted_from_parent", False)
-    tags = []
-    if discrim:
-        tags.append("discriminator ✓")
-    if promoted:
-        tags.append("promoted over parent")
-    if tags:
-        st.caption(" • ".join(tags))
-
-
-def _render_confidence_gauge(primary: dict, result: dict) -> None:
-    """Render a confidence gauge using Streamlit progress bar."""
-    confidence: float = primary.get("confidence", 0.0)
-    raw_score: float = primary.get("raw_score", 0.0)
-    ceiling: float = result.get("confidence_ceiling", 1.0)
-
-    st.markdown("**Confidence**")
-    st.progress(min(confidence, 1.0), text=f"{confidence:.2f}")
-    st.caption(f"raw_score: {raw_score:.4f}  |  ceiling: {ceiling:.2f}")
-
-
-# ── navigation ──────────────────────────────────────────────────────────────
-
-
-def _advance_stage() -> None:
-    """Move to the next stage."""
-    st.session_state.stage = min(st.session_state.stage + 1, 4)
-
-
-def _retreat_stage() -> None:
-    """Move to the previous stage."""
-    st.session_state.stage = max(st.session_state.stage - 1, 0)
-
-
-def _run_diagnosis() -> None:
-    """Build DiagnosticInput from session state, run diagnose(), store result."""
-    try:
-        di = _build_diagnostic_input()
-        result = diagnose(
-            di, backward_chaining=st.session_state.backward_chaining,
-        )
-        st.session_state.result = result
-        st.session_state.stage = 4
-    except Exception:
-        logger.exception("diagnosis_failed")
-        st.error("Diagnosis failed. Check the console for details.")
+    # 11. Run again
+    if st.button("🔄 Run Again", key="run_again_btn"):
         st.session_state.result = None
-
-
-# ── main ────────────────────────────────────────────────────────────────────
-
-
-def main() -> None:
-    """Entry point — render current stage with progressive disclosure."""
-    st.title("4D Petrol Diagnostic Engine V2")
-    st.caption(
-        "Petrol MY 1990–2020  |  Evidence Arbitrator Architecture  |  V2.0"
-    )
-
-    # ── progress stepper ──
-    stage_labels = [
-        "0: Vehicle", "1: Gas Data", "2: Digital",
-        "3: Diagnose", "4: Results",
-    ]
-    current = st.session_state.stage
-    step_cols = st.columns(5)
-    for i, label in enumerate(stage_labels):
-        with step_cols[i]:
-            if i < current:
-                st.success(label)
-            elif i == current:
-                st.info(label)
-            else:
-                st.markdown(f":gray[{label}]")
-
-    st.markdown("---")
-
-    # ── stage router ──
-    if current == 0:
-        _render_stage_0()
-    elif current == 1:
-        _render_stage_1()
-    elif current == 2:
-        _render_stage_2()
-    elif current == 3:
-        _render_stage_3()
-    elif current == 4:
-        _render_stage_4()
-
-
-if __name__ == "__main__":
-    main()
+        st.session_state.vin_autofilled = False
+        st.rerun()

@@ -1,10 +1,10 @@
-"""Validation Layer (VL) — 11-category autoverification engine.
+"""Validation Layer (VL) — 12-category autoverification engine.
 
 R4 / L04: no module downstream of VL may read raw DiagnosticInput.
 All modules consume ValidatedInput.  VL must not import from kg_engine.py
 or schema/v2/ — it is purely data-level.
 
-Source: v2-validation-layer §3 (11 categories), §6 (hard rules).
+Source: v2-validation-layer §3 (12 categories, cat 12 = VIN format/checksum), §6 (hard rules).
 """
 
 from __future__ import annotations
@@ -49,6 +49,24 @@ _OBD2_INTRO_YEAR = 1996
 # ── category 9: cold-start thermal threshold ──────────────────────────────
 # source: v2-validation-layer §3 category 9
 _COLD_START_ECT_THRESHOLD = 75.0
+
+# ── category 12: VIN format + ISO 3779 checksum ─────────────────────────
+# source: v2-validation-layer §3 category 12 (VIN remediation)
+_VIN_RE = re.compile(r"^[A-HJ-NPR-Z0-9]{17}$")
+
+# ISO 3779 VIN transliteration: A=1..H=8, J=1..N=5 (skip I,O,Q), P=7,
+# R=9, S=2..Z=9, digits 0-9 = 0-9
+_VIN_TRANSLITERATION: dict[str, int] = {
+    "A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8,
+    "J": 1, "K": 2, "L": 3, "M": 4, "N": 5,
+    "P": 7,
+    "R": 9, "S": 2, "T": 3, "U": 4, "V": 5, "W": 6, "X": 7, "Y": 8, "Z": 9,
+}
+for _d in range(10):
+    _VIN_TRANSLITERATION[str(_d)] = _d
+
+# Position weights 1–17 (index 0–16); position 9 (index 8) has weight 0
+_VIN_WEIGHTS: tuple[int, ...] = (8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2)
 
 # ── category 3: probe-air O2 threshold ────────────────────────────────────
 # source: v2-validation-layer §3 category 3
@@ -112,6 +130,7 @@ def validate(
     _cat9_thermal_gate(vi)
     _cat10_open_loop(vi)
     _cat11_probe_count(vi)
+    _cat12_vin(vi, soft_mode)
 
     return vi
 
@@ -513,6 +532,75 @@ def _cat11_probe_count(vi: ValidatedInput) -> None:
     """
     if vi.raw.analyser_type == "4-gas":
         vi.nox_suppressed = True
+
+
+# ── category 12: VIN format + ISO 3779 checksum ────────────────────────────
+
+
+def _cat12_vin(vi: ValidatedInput, soft_mode: bool = True) -> None:
+    """Validate VIN format and ISO 3779 checksum; reject only the vin field.
+
+    VIN is optional — None or empty is not an error.
+    Format failure or checksum failure emits ValidationWarning(category=12)
+    and rejects only the vin field. Manual vehicle_context fields survive.
+    """
+    vin = vi.raw.vehicle_context.vin
+    if not vin:
+        return
+
+    vin_upper = vin.strip().upper()
+
+    # format check
+    if not _VIN_RE.match(vin_upper):
+        vi.warnings.append(
+            ValidationWarning(
+                category=12,
+                message=f"VIN format invalid: {vin!r} does not match "
+                        f"^[A-HJ-NPR-Z0-9]{{17}}$",
+                channel="vehicle_context",
+            )
+        )
+        return
+
+    # ISO 3779 checksum (position 9, index 8)
+    try:
+        total = 0
+        for i, ch in enumerate(vin_upper):
+            val = _VIN_TRANSLITERATION.get(ch)
+            if val is None:
+                vi.warnings.append(
+                    ValidationWarning(
+                        category=12,
+                        message=f"VIN checksum: invalid character {ch!r} "
+                                f"at position {i + 1}",
+                        channel="vehicle_context",
+                    )
+                )
+                return
+            total += val * _VIN_WEIGHTS[i]
+
+        remainder = total % 11
+        expected = "X" if remainder == 10 else str(remainder)
+        actual = vin_upper[8]
+        if expected != actual:
+            vi.warnings.append(
+                ValidationWarning(
+                    category=12,
+                    message=f"VIN checksum failed: expected {expected!r}, "
+                            f"got {actual!r} at position 9",
+                    channel="vehicle_context",
+                )
+            )
+            return
+    except Exception:
+        vi.warnings.append(
+            ValidationWarning(
+                category=12,
+                message=f"VIN checksum computation failed for {vin!r}",
+                channel="vehicle_context",
+            )
+        )
+        return
 
 
 # ── helpers ───────────────────────────────────────────────────────────────

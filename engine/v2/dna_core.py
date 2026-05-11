@@ -91,6 +91,10 @@ def load_dna(
     M0 is the only module allowed to do I/O (vref.db lookup). All other
     modules receive DNAOutput and never query the database directly.
 
+    When a valid VIN is present (VL cat 12 passed), M0 resolves it via
+    engine.v2.vin.resolve() to auto-fill engine_code, displacement_cc,
+    and induction before vref.db lookup. Manual fields act as fallback.
+
     Args:
         validated_input: Post-VL input (R4/L04 — never raw DiagnosticInput).
         db_path: Path to vref.db. Defaults to engine/v2/vref.db next to
@@ -102,6 +106,7 @@ def load_dna(
     """
     ctx = validated_input.raw.vehicle_context
     engine_code = ctx.engine_code
+    displacement_cc = ctx.displacement_cc
     my = ctx.my
 
     db_path = (
@@ -110,9 +115,34 @@ def load_dna(
         else Path(db_path)
     )
 
+    # ── VIN resolution (before vref.db lookup) ───────────────────────────
+    vin = ctx.vin
+    vin_dna = None
+    # Only block VIN usage on format failures (checksum failures are advisory
+    # — many European VINs don't enforce the ISO 3779 check digit).
+    vin_blocked = (
+        vin is not None
+        and any(
+            w.category == 12 and "format" in w.message.lower()
+            for w in validated_input.warnings
+            if w.channel == "vehicle_context"
+        )
+    )
+    if vin and not vin_blocked:
+        from engine.v2.vin import resolve as resolve_vin
+        vin_dna = resolve_vin(vin)
+
+    warnings: list[ValidationWarning] = []
+
+    if vin_dna is not None and vin_dna.confidence == "high":
+        engine_code = vin_dna.engine_code or engine_code
+        if vin_dna.displacement_l is not None:
+            displacement_cc = int(round(vin_dna.displacement_l * 1000))
+    elif vin_dna is not None and vin_dna.confidence == "partial":
+        engine_code = vin_dna.engine_code or engine_code
+
     # ── vref.db lookup ──────────────────────────────────────────────────
     row = _query_vref(db_path, engine_code)
-    warnings: list[ValidationWarning] = []
 
     if row is None:
         era_bucket = _my_to_era(my)

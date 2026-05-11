@@ -21,12 +21,17 @@ class VehicleContext:
 
     my (model year) must be in [1990, 2020]; values outside this range are
     rejected by VL category 1 (range check).
+    vin: 17-character VIN string (optional). Validated by VL category 12
+    (format + ISO 3779 checksum). When present and valid, M0 resolves it
+    via engine.v2.vin.resolve() to auto-fill engine_code, displacement_cc,
+    and induction before vref.db lookup.
     """
     brand: str
     model: str
     engine_code: str
     displacement_cc: int
     my: int
+    vin: str | None = None
 
 
 # ── gas records ────────────────────────────────────────────────────────────
