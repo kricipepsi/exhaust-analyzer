@@ -76,14 +76,12 @@ def test_vin_invalid_characters(ctx_base: VehicleContext) -> None:
     assert len(cat12) == 1
 
 
-# ── valid VIN ─────────────────────────────────────────────────────────────
+# ── EU VIN: non-numeric at position 9 skips checksum ──────────────────────
 
 
-def test_valid_vin_format_may_trigger_checksum_warning(ctx_base: VehicleContext) -> None:
-    """A VIN with valid format but non-conforming check digit emits
-    a checksum warning (cat 12). Many European VINs don't enforce ISO 3779
-    check digits, so checksum failures are advisory — they do not block
-    VIN usage in M0."""
+def test_eu_vin_with_z_at_position_9_passes_silently(ctx_base: VehicleContext) -> None:
+    """EU manufacturers place Z at position 9 to opt out of ISO 3779
+    checksum. Cat 12 must accept this silently — no warning emitted."""
     ctx = VehicleContext(
         brand="VW", model="Golf", engine_code="BSE", displacement_cc=1595,
         my=2005, vin="WVWZZZ1KZAW123456",
@@ -91,9 +89,10 @@ def test_valid_vin_format_may_trigger_checksum_warning(ctx_base: VehicleContext)
     diag = DiagnosticInput(vehicle_context=ctx, dtcs=[], analyser_type="5-gas")
     result = validate(diag)
     cat12 = [w for w in result.warnings if w.category == 12]
-    # Checksum validation fires on this synthetic VIN (check digit mismatch)
-    assert len(cat12) == 1
-    assert "checksum" in cat12[0].message.lower()
+    assert cat12 == []
+
+
+# ── valid checksum (numeric at position 9) ─────────────────────────────────
 
 
 def test_vin_with_valid_checksum_passes(ctx_base: VehicleContext) -> None:
@@ -108,11 +107,12 @@ def test_vin_with_valid_checksum_passes(ctx_base: VehicleContext) -> None:
     assert cat12 == []
 
 
-# ── bad checksum ──────────────────────────────────────────────────────────
+# ── bad checksum (numeric at position 9) ───────────────────────────────────
 
 
-def test_vin_bad_checksum(ctx_base: VehicleContext) -> None:
-    """VIN with wrong check digit → cat 12 warning."""
+def test_vin_bad_checksum_numeric_position_9(ctx_base: VehicleContext) -> None:
+    """VIN with a numeric at position 9 still has its checksum validated.
+    Wrong check digit → cat 12 warning."""
     ctx = VehicleContext(
         brand="VW", model="Golf", engine_code="BSE", displacement_cc=1595,
         my=2005, vin="WVWZZZ1K0AW123456",

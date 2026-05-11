@@ -538,11 +538,16 @@ def _cat11_probe_count(vi: ValidatedInput) -> None:
 
 
 def _cat12_vin(vi: ValidatedInput, soft_mode: bool = True) -> None:
-    """Validate VIN format and ISO 3779 checksum; reject only the vin field.
+    """Validate VIN format and conditionally ISO 3779 checksum.
 
     VIN is optional — None or empty is not an error.
-    Format failure or checksum failure emits ValidationWarning(category=12)
-    and rejects only the vin field. Manual vehicle_context fields survive.
+    Format failure emits ValidationWarning(category=12) and rejects only the
+    vin field. Manual vehicle_context fields survive.
+
+    ISO 3779 checksum is enforced by NHTSA in North America only. European
+    manufacturers opt out by placing a non-numeric character (typically 'Z')
+    at position 9 (1-indexed). When VIN[8] is not a digit, the checksum is
+    skipped — no warning is emitted and the VIN is accepted.
     """
     vin = vi.raw.vehicle_context.vin
     if not vin:
@@ -562,7 +567,12 @@ def _cat12_vin(vi: ValidatedInput, soft_mode: bool = True) -> None:
         )
         return
 
-    # ISO 3779 checksum (position 9, index 8)
+    # ISO 3779 checksum: only enforced when position 9 is numeric (NHTSA).
+    # EU manufacturers place a non-numeric character (typically 'Z') at
+    # position 9 to opt out of checksum validation.
+    if not vin_upper[8].isdigit():
+        return
+
     try:
         total = 0
         for i, ch in enumerate(vin_upper):
