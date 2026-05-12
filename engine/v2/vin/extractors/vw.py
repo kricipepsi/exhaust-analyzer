@@ -71,7 +71,6 @@ _WVW_P4_ENGINE: dict[str, str] = {
     'X': 'AUC',   # 1.8 20V (Passat B5.5)
     'Y': 'BFS',   # 2.0 FSI 150hp
     'Z': 'BKR',   # 1.6 FSI 115hp
-    'A': 'CHY',   # (duplicate — CHY dominant for 'A')
 }
 
 # WAU (Audi) — 27 chars

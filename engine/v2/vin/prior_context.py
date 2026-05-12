@@ -65,7 +65,11 @@ class EngineDNA:
             object.__setattr__(self, 'spec_idle_gps', round(self.displacement_l * 2.0, 2))
 
     @classmethod
-    def from_dna_row(cls, row: dict, source: str = 'vininfo+dna') -> EngineDNA:
+    def from_dna_row(
+        cls,
+        row: dict,
+        source: Literal['vininfo+dna', 'wmi_only', 'manual', 'unknown'] = 'vininfo+dna',
+    ) -> EngineDNA:
         """Build an EngineDNA from a raw data/engine_dna.json row dict."""
         yr_min = row.get('year_min')
         yr_max = row.get('year_max')
