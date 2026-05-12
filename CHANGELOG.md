@@ -1,10 +1,10 @@
 # Changelog
 
-## [v2.0.1] - Unreleased — VIN-first vehicle context + reference UI
+## [v2.0.1] - 2026-05-12 — VIN-first vehicle context + reference UI
 
 > Hotfix on top of v2.0.0 (`UI_REMEDY_PLAN.md` Path A). Closes a doc-mention-without-module gap surfaced by the 2026-05-10 owner audit: VIN auto-fill — the headline V2 vehicle-context flow — was missing despite being described in HLD prose. v2.0.1 also reverts the UI from a 5-stage stepper (carried over from a V4 prototype) to the canonical V1 reference flat layout.
 
-### Added (planned, T-R2..T-R5)
+### Added
 - `engine/v2/vin/` — VIN resolver lifted verbatim from `vehicle-data/petrol_vin/` (owner-supplied, 2026-05-10). **14 brand extractors** (VW group, BMW group, Mercedes, Ford, PSA group, Toyota, Hyundai/Kia, Fiat). Returns `EngineDNA(make, engine_code, displacement_l, induction, intercooler, injection, o2_arch, spec_idle_gps, …, confidence ∈ {high, partial, none})`.
 - `engine/v2/vin/data/engine_dna.json` — **1,978 petrol engine codes / 110 brands** (~1 MB, OPSI-derived; data lint asserts `fuel_type=='petrol'` on every row, R12).
 - `vininfo>=1.7.0` runtime dependency (`requirements.txt`).
