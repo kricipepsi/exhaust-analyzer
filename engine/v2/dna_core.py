@@ -106,7 +106,6 @@ def load_dna(
     """
     ctx = validated_input.raw.vehicle_context
     engine_code = ctx.engine_code
-    displacement_cc = ctx.displacement_cc
     my = ctx.my
 
     db_path = (
@@ -134,11 +133,7 @@ def load_dna(
 
     warnings: list[ValidationWarning] = []
 
-    if vin_dna is not None and vin_dna.confidence == "high":
-        engine_code = vin_dna.engine_code or engine_code
-        if vin_dna.displacement_l is not None:
-            displacement_cc = int(round(vin_dna.displacement_l * 1000))
-    elif vin_dna is not None and vin_dna.confidence == "partial":
+    if vin_dna is not None and vin_dna.confidence in ("high", "partial"):
         engine_code = vin_dna.engine_code or engine_code
 
     # ── vref.db lookup ──────────────────────────────────────────────────
