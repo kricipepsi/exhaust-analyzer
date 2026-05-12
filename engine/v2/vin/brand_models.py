@@ -2552,7 +2552,6 @@ _ALIAS_MAP: dict[str, str] = {
     'SEAT': 'SEAT',
     'CITROEN': 'CITROEN',
     'CITROËN': 'CITROEN',
-    'CITROEN': 'CITROEN',
     'PEUGEOT': 'PEUGEOT',
     'RENAULT': 'RENAULT',
     'OPEL': 'OPEL',
@@ -2627,9 +2626,8 @@ def lookup_models(make: str | None, year: int | None = None) -> list[str]:
         return BRAND_MODELS[canonical]
     # Prefix / substring hit (e.g. "VW Group" → "VOLKSWAGEN")
     for alias, canonical in _ALIAS_MAP.items():
-        if key.startswith(alias) or alias.startswith(key):
-            if canonical in BRAND_MODELS:
-                return BRAND_MODELS[canonical]
+        if (key.startswith(alias) or alias.startswith(key)) and canonical in BRAND_MODELS:
+            return BRAND_MODELS[canonical]
     return []
 
 

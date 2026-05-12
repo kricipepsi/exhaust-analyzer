@@ -5,11 +5,8 @@ from __future__ import annotations
 import json
 import pathlib
 
-import pytest
-
 from engine.v2.vin import resolve
 from engine.v2.vin.prior_context import EngineDNA
-
 
 # ── invalid VIN format ─────────────────────────────────────────────────────
 
@@ -64,6 +61,29 @@ def test_happy_path_porsche_cyp():
     assert result.confidence == "high"
     assert result.make == "PORSCHE"
     assert result.engine_code == "CYP"
+
+
+def test_happy_path_mercedes_wdb():
+    """WDB2030421A123456 resolves to Mercedes-Benz with high confidence."""
+    result = resolve("WDB2030421A123456")
+    assert result.confidence == "high"
+    assert "MERCEDES" in result.make.upper()
+
+
+def test_happy_path_ford_ecoboost():
+    """WF0LXXGBB12345678 resolves to Ford 1.0 EcoBoost (M1DA) with high confidence."""
+    result = resolve("WF0LXXGBB12345678")
+    assert result.confidence == "high"
+    assert result.make == "FORD"
+    assert result.engine_code == "M1DA"
+
+
+def test_happy_path_toyota_2zr():
+    """JTDKN3DUX0A123456 resolves to Toyota 2ZR-FE with high confidence."""
+    result = resolve("JTDKN3DUX0A123456")
+    assert result.confidence == "high"
+    assert result.make == "TOYOTA"
+    assert result.engine_code == "2ZR-FE"
 
 
 # ── partial confidence (WMI only) ──────────────────────────────────────────

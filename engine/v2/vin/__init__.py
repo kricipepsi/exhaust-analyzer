@@ -17,7 +17,6 @@ from __future__ import annotations
 import json
 import pathlib
 import re
-from typing import Optional
 
 from .brand_models import lookup_models
 from .extractors import register_all_extractors
