@@ -533,18 +533,18 @@ if run_clicked:
 # Results pane
 # ══════════════════════════════════════════════════════════════════════════
 
-result = st.session_state.get("result")
-if result is None:
+display_result: dict[str, Any] | None = st.session_state.get("result")
+if display_result is None:
     st.info("Enter vehicle context and gas readings, then click **Run Diagnosis**.")
 else:
-    state = result.get("state", "invalid_input")
-    primary = result.get("primary")
-    alternatives = result.get("alternatives", [])
-    warnings = result.get("validation_warnings", [])
-    ceiling = result.get("confidence_ceiling", 0.0)
-    perception_gap = result.get("perception_gap")
-    next_steps = result.get("next_steps", [])
-    cascading = result.get("cascading_consequences", [])
+    state = display_result.get("state", "invalid_input")
+    primary = display_result.get("primary")
+    alternatives = display_result.get("alternatives", [])
+    warnings = display_result.get("validation_warnings", [])
+    ceiling = display_result.get("confidence_ceiling", 0.0)
+    perception_gap = display_result.get("perception_gap")
+    next_steps = display_result.get("next_steps", [])
+    cascading = display_result.get("cascading_consequences", [])
 
     st.markdown("---")
     st.header("📋 Diagnosis Result")
@@ -665,7 +665,7 @@ else:
 
     # 10. Technical details
     with st.expander("🔧 Technical Details", expanded=False):
-        st.json(result)
+        st.json(display_result)
 
     # 11. Run again
     if st.button("🔄 Run Again", key="run_again_btn"):
