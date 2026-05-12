@@ -159,6 +159,51 @@ class TestDtcUnknown:
         assert _map_dtc("") is None
 
 
+class TestDtcSetMapParametrised:
+    """Parametrised pinning tests — every DTC family mapped via _DTC_SET_MAP."""
+
+    @pytest.mark.parametrize("dtc, expected", [
+        # exact matches
+        ("P0171", "SYM_DTC_P0171"),
+        ("P0172", "SYM_DTC_P0172"),
+        ("P0401", "SYM_DTC_EGR"),
+        ("P0101", "SYM_DTC_INDUCTION"),
+        ("P0053", "SYM_DTC_HO2S_HEATER"),
+        # set-based families
+        ("P0420", "SYM_DTC_CATALYST"),
+        ("P0430", "SYM_DTC_CATALYST"),
+        ("P0300", "SYM_DTC_MISFIRE"),
+        ("P0305", "SYM_DTC_MISFIRE"),
+        ("P0201", "SYM_DTC_INJECTOR"),
+        ("P0299", "SYM_DTC_BOOST"),
+        ("P0234", "SYM_DTC_BOOST"),
+        ("P0235", "SYM_DTC_BOOST"),
+        ("P0011", "SYM_DTC_CAMSHAFT_TIMING"),
+        ("P0012", "SYM_DTC_CAMSHAFT_TIMING"),
+        ("P0324", "SYM_DTC_KNOCK_SENSOR"),
+        ("P0325", "SYM_DTC_KNOCK_SENSOR"),
+        # prefix-based families
+        ("P0606", "SYM_DTC_ECU_INTERNAL"),
+        ("P0610", "SYM_DTC_ECU_INTERNAL"),
+        # P01 prefix sensor (but not P0101 which has an exact match)
+        ("P0100", "SYM_DTC_SENSOR"),
+        ("P0102", "SYM_DTC_SENSOR"),
+        # P0101 still resolves to induction (exact match beats prefix)
+        ("P0101", "SYM_DTC_INDUCTION"),
+        # unknown
+        ("P0999", None),
+        ("P9999", None),
+    ])
+    def test_map_dtc_mapping(self, dtc: str, expected: str | None) -> None:
+        assert _map_dtc(dtc) == expected
+
+    def test_map_dtc_uses_set_map_structure(self) -> None:
+        """_DTC_SET_MAP must exist; _DTC_FAMILY_MAP must not."""
+        import engine.v2.digital_parser as dp
+        assert hasattr(dp, "_DTC_SET_MAP"), "_DTC_SET_MAP missing"
+        assert not hasattr(dp, "_DTC_FAMILY_MAP"), "_DTC_FAMILY_MAP still present"
+
+
 class TestParseDtcs:
     def test_multiple_dtcs(self) -> None:
         result = _parse_dtcs(["P0171", "P0420", "P0999", "P0302"])

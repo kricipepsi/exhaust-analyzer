@@ -26,17 +26,19 @@ _DTC_EXACT_MAP: dict[str, str] = {
     "P0053": "SYM_DTC_HO2S_HEATER",
 }
 
-_DTC_FAMILY_MAP: dict[str, tuple[str, frozenset[str]]] = {
-    # (symptom_id, frozenset of exact codes in the family)
-    "SYM_DTC_CATALYST": ("SYM_DTC_CATALYST", frozenset({"P0420", "P0430"})),
-    "SYM_DTC_MISFIRE": ("SYM_DTC_MISFIRE", frozenset({f"P030{i}" for i in range(8)})),
-    "SYM_DTC_ECU_INTERNAL": ("SYM_DTC_ECU_INTERNAL", frozenset()),  # prefix P06
-    "SYM_DTC_INJECTOR": ("SYM_DTC_INJECTOR", frozenset({"P0201", "P0202", "P0203", "P0204"})),
-    "SYM_DTC_SENSOR": ("SYM_DTC_SENSOR", frozenset()),  # prefix P01 (but not P0101)
-    "SYM_DTC_BOOST": ("SYM_DTC_BOOST", frozenset({"P0299", "P0234", "P0235"})),
-    "SYM_DTC_CAMSHAFT_TIMING": ("SYM_DTC_CAMSHAFT_TIMING", frozenset({"P0011", "P0012"})),
-    "SYM_DTC_KNOCK_SENSOR": ("SYM_DTC_KNOCK_SENSOR", frozenset({"P0324", "P0325"})),
-}
+# source: symptoms.yaml "emitted_by: M1" entries
+# Each entry is (frozenset of DTC codes, symptom_id).
+# Adding a new DTC family requires ONE entry here — _map_dtc iterates this list.
+# Prefix-based families (P06* → ECU_INTERNAL, P01* → SENSOR) are handled
+# as suffix if-guards in _map_dtc because they cannot be expressed as frozensets.
+_DTC_SET_MAP: list[tuple[frozenset[str], str]] = [
+    (frozenset({"P0420", "P0430"}), "SYM_DTC_CATALYST"),
+    (frozenset({f"P030{i}" for i in range(8)}), "SYM_DTC_MISFIRE"),
+    (frozenset({"P0201", "P0202", "P0203", "P0204"}), "SYM_DTC_INJECTOR"),
+    (frozenset({"P0299", "P0234", "P0235"}), "SYM_DTC_BOOST"),
+    (frozenset({"P0011", "P0012"}), "SYM_DTC_CAMSHAFT_TIMING"),
+    (frozenset({"P0324", "P0325"}), "SYM_DTC_KNOCK_SENSOR"),
+]
 
 # ── threshold constants ───────────────────────────────────────────────────
 
@@ -234,21 +236,12 @@ def _map_dtc(dtc: str) -> str | None:
     if dtc in _DTC_EXACT_MAP:
         return _DTC_EXACT_MAP[dtc]
 
-    # family-prefix match
-    if dtc in _DTC_FAMILY_MAP["SYM_DTC_CATALYST"][1]:
-        return "SYM_DTC_CATALYST"
-    if dtc in _DTC_FAMILY_MAP["SYM_DTC_MISFIRE"][1]:
-        return "SYM_DTC_MISFIRE"
-    if dtc in _DTC_FAMILY_MAP["SYM_DTC_INJECTOR"][1]:
-        return "SYM_DTC_INJECTOR"
-    if dtc in _DTC_FAMILY_MAP["SYM_DTC_BOOST"][1]:
-        return "SYM_DTC_BOOST"
-    if dtc in _DTC_FAMILY_MAP["SYM_DTC_CAMSHAFT_TIMING"][1]:
-        return "SYM_DTC_CAMSHAFT_TIMING"
-    if dtc in _DTC_FAMILY_MAP["SYM_DTC_KNOCK_SENSOR"][1]:
-        return "SYM_DTC_KNOCK_SENSOR"
+    # set-based families — iterate _DTC_SET_MAP linearly
+    for codes, symptom_id in _DTC_SET_MAP:
+        if dtc in codes:
+            return symptom_id
 
-    # prefix-based families
+    # prefix-based families (cannot be expressed as frozensets)
     if dtc.startswith("P06"):
         return "SYM_DTC_ECU_INTERNAL"
     if dtc.startswith("P01") and dtc != "P0101":
