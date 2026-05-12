@@ -14,7 +14,13 @@ import sqlite3
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from engine.v2.input_model import ValidatedInput, ValidationWarning
+from engine.v2.input_model import (
+    ValidatedInput,
+    ValidationWarning,
+    extract_ect,
+    extract_fuel_status,
+    extract_rpm,
+)
 
 # ── era bucket constants ────────────────────────────────────────────────────
 # source: v2-era-masking §2 era buckets
@@ -222,9 +228,9 @@ def _compute_engine_state(vi: ValidatedInput) -> str:
       warm_open_loop    — ECT >= 75 °C, RPM > 0, fuel_status OL_DRIVE/OL_FAULT
       warm_dfco         — ECT >= 75 °C, RPM > 0, fuel_status OL (decel fuel cut)
     """
-    ect = _extract_ect(vi)
-    rpm = _extract_rpm(vi)
-    fuel_status = _extract_fuel_status(vi)
+    ect = extract_ect(vi.raw.obd, vi.raw.freeze_frame)
+    rpm = extract_rpm(vi.raw.obd, vi.raw.freeze_frame)
+    fuel_status = extract_fuel_status(vi.raw.obd, vi.raw.freeze_frame)
 
     # cold open loop — thermal gate applies regardless of other signals
     if ect is not None and ect < _COLD_ECT_THRESHOLD:
@@ -244,35 +250,3 @@ def _compute_engine_state(vi: ValidatedInput) -> str:
     # default: closed loop (or unknown fuel_status with RPM > 0)
     return "warm_closed_loop"
 
-
-# ── signal extraction helpers ───────────────────────────────────────────────
-
-
-def _extract_ect(vi: ValidatedInput) -> float | None:
-    """Extract ECT from OBD (priority) or freeze frame (fallback)."""
-    raw = vi.raw
-    if raw.obd is not None and raw.obd.ect_c is not None:
-        return raw.obd.ect_c
-    if raw.freeze_frame is not None and raw.freeze_frame.ect_c is not None:
-        return raw.freeze_frame.ect_c
-    return None
-
-
-def _extract_rpm(vi: ValidatedInput) -> int | None:
-    """Extract RPM from OBD (priority) or freeze frame (fallback)."""
-    raw = vi.raw
-    if raw.obd is not None and raw.obd.rpm is not None:
-        return raw.obd.rpm
-    if raw.freeze_frame is not None and raw.freeze_frame.rpm is not None:
-        return raw.freeze_frame.rpm
-    return None
-
-
-def _extract_fuel_status(vi: ValidatedInput) -> str | None:
-    """Extract fuel_status from OBD (priority) or freeze frame (fallback)."""
-    raw = vi.raw
-    if raw.obd is not None and raw.obd.fuel_status is not None:
-        return raw.obd.fuel_status
-    if raw.freeze_frame is not None and raw.freeze_frame.fuel_status is not None:
-        return raw.freeze_frame.fuel_status
-    return None

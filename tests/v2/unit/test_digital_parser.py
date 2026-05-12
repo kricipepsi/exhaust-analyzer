@@ -14,8 +14,6 @@ from engine.v2.digital_parser import (
     _compute_breathing_efficiency,
     _compute_open_loop_suppression,
     _extract_baro,
-    _extract_ect,
-    _extract_fuel_status,
     _extract_map,
     _map_dtc,
     _parse_dtcs,
@@ -32,6 +30,8 @@ from engine.v2.input_model import (
     OBDRecord,
     ValidatedInput,
     VehicleContext,
+    extract_ect,
+    extract_fuel_status,
 )
 
 # ── helpers ─────────────────────────────────────────────────────────────────
@@ -223,32 +223,32 @@ class TestParseDtcs:
 class TestExtractFuelStatus:
     def test_from_obd(self) -> None:
         obd = OBDRecord(fuel_status="CL")
-        assert _extract_fuel_status(obd, None) == "CL"
+        assert extract_fuel_status(obd, None) == "CL"
 
     def test_from_ff_fallback(self) -> None:
         ff = FreezeFrameRecord(fuel_status="OL_FAULT")
-        assert _extract_fuel_status(None, ff) == "OL_FAULT"
+        assert extract_fuel_status(None, ff) == "OL_FAULT"
 
     def test_obd_priority_over_ff(self) -> None:
         obd = OBDRecord(fuel_status="CL")
         ff = FreezeFrameRecord(fuel_status="OL_DRIVE")
-        assert _extract_fuel_status(obd, ff) == "CL"
+        assert extract_fuel_status(obd, ff) == "CL"
 
     def test_both_none(self) -> None:
-        assert _extract_fuel_status(None, None) is None
+        assert extract_fuel_status(None, None) is None
 
 
 class TestExtractEct:
     def test_from_obd(self) -> None:
         obd = OBDRecord(ect_c=90.0)
-        assert _extract_ect(obd, None) == 90.0
+        assert extract_ect(obd, None) == 90.0
 
     def test_from_ff_fallback(self) -> None:
         ff = FreezeFrameRecord(ect_c=65.0)
-        assert _extract_ect(None, ff) == 65.0
+        assert extract_ect(None, ff) == 65.0
 
     def test_both_none(self) -> None:
-        assert _extract_ect(None, None) is None
+        assert extract_ect(None, None) is None
 
 
 class TestOpenLoopSuppression:

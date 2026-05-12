@@ -159,3 +159,40 @@ class ValidatedInput:
     restricted_cold_start: bool = False
     open_loop_suppression: bool = False
     nox_suppressed: bool = False
+
+
+# ── signal extraction helpers ────────────────────────────────────────────────
+
+
+def extract_ect(obd: OBDRecord | None, ff: FreezeFrameRecord | None) -> float | None:
+    """Extract ECT from OBD (priority) or freeze frame (fallback).
+
+    OBD live data takes priority over freeze frame when both are available,
+    as live data reflects current engine state while freeze frame is a
+    snapshot captured at DTC-set time.
+    """
+    if obd is not None and obd.ect_c is not None:
+        return obd.ect_c
+    if ff is not None and ff.ect_c is not None:
+        return ff.ect_c
+    return None
+
+
+def extract_rpm(obd: OBDRecord | None, ff: FreezeFrameRecord | None) -> int | None:
+    """Extract RPM from OBD (priority) or freeze frame (fallback)."""
+    if obd is not None and obd.rpm is not None:
+        return obd.rpm
+    if ff is not None and ff.rpm is not None:
+        return ff.rpm
+    return None
+
+
+def extract_fuel_status(
+    obd: OBDRecord | None, ff: FreezeFrameRecord | None
+) -> str | None:
+    """Extract fuel_status from OBD (priority) or freeze frame (fallback)."""
+    if obd is not None and obd.fuel_status is not None:
+        return obd.fuel_status
+    if ff is not None and ff.fuel_status is not None:
+        return ff.fuel_status
+    return None

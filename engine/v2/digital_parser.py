@@ -11,7 +11,13 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from engine.v2.dna_core import DNAOutput
-from engine.v2.input_model import FreezeFrameRecord, OBDRecord, ValidatedInput
+from engine.v2.input_model import (
+    FreezeFrameRecord,
+    OBDRecord,
+    ValidatedInput,
+    extract_ect,
+    extract_fuel_status,
+)
 
 # ── DTC → symptom mapping ─────────────────────────────────────────────────
 # Each entry maps a DTC code (exact or family prefix) to its M1 symptom ID.
@@ -126,8 +132,8 @@ def parse_digital(
     ff = raw.freeze_frame
 
     # ── fuel-status gate (L18) ──────────────────────────────────────────
-    fuel_status = _extract_fuel_status(obd, ff)
-    ect = _extract_ect(obd, ff)
+    fuel_status = extract_fuel_status(obd, ff)
+    ect = extract_ect(obd, ff)
     open_loop_suppression = _compute_open_loop_suppression(fuel_status, ect)
     cold_engine = ect is not None and ect < _COLD_ECT_THRESHOLD
 
@@ -169,28 +175,6 @@ def parse_digital(
 
 
 # ── fuel-status gate (L18) ───────────────────────────────────────────────
-
-
-def _extract_fuel_status(
-    obd: OBDRecord | None, ff: FreezeFrameRecord | None
-) -> str | None:
-    """Extract fuel_status from OBD (priority) or freeze frame."""
-    if obd is not None and obd.fuel_status is not None:
-        return obd.fuel_status
-    if ff is not None and ff.fuel_status is not None:
-        return ff.fuel_status
-    return None
-
-
-def _extract_ect(
-    obd: OBDRecord | None, ff: FreezeFrameRecord | None
-) -> float | None:
-    """Extract ECT from OBD (priority) or freeze frame."""
-    if obd is not None and obd.ect_c is not None:
-        return obd.ect_c
-    if ff is not None and ff.ect_c is not None:
-        return ff.ect_c
-    return None
 
 
 def _compute_open_loop_suppression(

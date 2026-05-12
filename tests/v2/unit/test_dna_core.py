@@ -17,9 +17,6 @@ from engine.v2.dna_core import (
     ERA_PRE_OBDII,
     DNAOutput,
     _compute_engine_state,
-    _extract_ect,
-    _extract_fuel_status,
-    _extract_rpm,
     _my_to_era,
     load_dna,
 )
@@ -29,6 +26,9 @@ from engine.v2.input_model import (
     OBDRecord,
     ValidatedInput,
     VehicleContext,
+    extract_ect,
+    extract_fuel_status,
+    extract_rpm,
 )
 
 # ── helpers ─────────────────────────────────────────────────────────────────
@@ -472,7 +472,7 @@ def test_extract_ect_obd_priority() -> None:
         obd=OBDRecord(ect_c=90.0),
         ff=FreezeFrameRecord(ect_c=30.0),
     )
-    assert _extract_ect(vi) == 90.0
+    assert extract_ect(vi.raw.obd, vi.raw.freeze_frame) == 90.0
 
 
 def test_extract_ect_ff_fallback() -> None:
@@ -481,7 +481,7 @@ def test_extract_ect_ff_fallback() -> None:
         obd=OBDRecord(rpm=800),
         ff=FreezeFrameRecord(ect_c=55.0),
     )
-    assert _extract_ect(vi) == 55.0
+    assert extract_ect(vi.raw.obd, vi.raw.freeze_frame) == 55.0
 
 
 def test_extract_ect_none() -> None:
@@ -489,13 +489,13 @@ def test_extract_ect_none() -> None:
     vi = _vi_from_records(
         obd=OBDRecord(rpm=800),
     )
-    assert _extract_ect(vi) is None
+    assert extract_ect(vi.raw.obd, vi.raw.freeze_frame) is None
 
 
 def test_extract_ect_none_no_obd() -> None:
     """ECT returns None when there is no OBD and no FF."""
     vi = _vi_from_records()
-    assert _extract_ect(vi) is None
+    assert extract_ect(vi.raw.obd, vi.raw.freeze_frame) is None
 
 
 def test_extract_rpm_obd_priority() -> None:
@@ -504,7 +504,7 @@ def test_extract_rpm_obd_priority() -> None:
         obd=OBDRecord(rpm=3000),
         ff=FreezeFrameRecord(rpm=800),
     )
-    assert _extract_rpm(vi) == 3000
+    assert extract_rpm(vi.raw.obd, vi.raw.freeze_frame) == 3000
 
 
 def test_extract_rpm_ff_fallback() -> None:
@@ -513,7 +513,7 @@ def test_extract_rpm_ff_fallback() -> None:
         obd=OBDRecord(ect_c=90.0),
         ff=FreezeFrameRecord(rpm=2500),
     )
-    assert _extract_rpm(vi) == 2500
+    assert extract_rpm(vi.raw.obd, vi.raw.freeze_frame) == 2500
 
 
 def test_extract_rpm_none() -> None:
@@ -521,7 +521,7 @@ def test_extract_rpm_none() -> None:
     vi = _vi_from_records(
         obd=OBDRecord(ect_c=90.0),
     )
-    assert _extract_rpm(vi) is None
+    assert extract_rpm(vi.raw.obd, vi.raw.freeze_frame) is None
 
 
 def test_extract_fuel_status_obd_priority() -> None:
@@ -530,7 +530,7 @@ def test_extract_fuel_status_obd_priority() -> None:
         obd=OBDRecord(fuel_status="OL_FAULT"),
         ff=FreezeFrameRecord(fuel_status="CL"),
     )
-    assert _extract_fuel_status(vi) == "OL_FAULT"
+    assert extract_fuel_status(vi.raw.obd, vi.raw.freeze_frame) == "OL_FAULT"
 
 
 def test_extract_fuel_status_ff_fallback() -> None:
@@ -539,7 +539,7 @@ def test_extract_fuel_status_ff_fallback() -> None:
         obd=OBDRecord(ect_c=90.0, rpm=800),
         ff=FreezeFrameRecord(fuel_status="OL_DRIVE"),
     )
-    assert _extract_fuel_status(vi) == "OL_DRIVE"
+    assert extract_fuel_status(vi.raw.obd, vi.raw.freeze_frame) == "OL_DRIVE"
 
 
 def test_extract_fuel_status_none() -> None:
@@ -547,7 +547,7 @@ def test_extract_fuel_status_none() -> None:
     vi = _vi_from_records(
         obd=OBDRecord(ect_c=90.0, rpm=800),
     )
-    assert _extract_fuel_status(vi) is None
+    assert extract_fuel_status(vi.raw.obd, vi.raw.freeze_frame) is None
 
 
 # ── DNAOutput dataclass ─────────────────────────────────────────────────────
