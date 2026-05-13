@@ -33,8 +33,7 @@ _PERCEPTION_CF_MULTIPLIER: float = 6.0
 # source: v2-arbitrator §2.2 trim-trend 4-pattern matrix
 
 _TRIM_STRONG_PCT: float = 8.0
-_TRIM_CRUISE_NEUTRAL_MAX: float = 10.0
-_TRIM_IDLE_ONLY_CF_REDUCTION: float = 0.70
+_TRIM_NO_L2_CF_REDUCTION: float = 0.70
 
 # ── bank symmetry thresholds ───────────────────────────────────────────────────
 # source: v2-arbitrator §2.3 bank symmetry (V-engine only)
@@ -279,12 +278,8 @@ def _analyse_trim_trend(
     if idle_total is None:
         return
 
-    cruise_total = _get_cruise_trim_total(validated_input)
-
-    if cruise_total is not None and gas_output.analyser_lambda_high is not None:
-        _classify_trim_full(idle_total, cruise_total, evidence)
-    else:
-        _classify_trim_idle_only(idle_total, evidence)
+    has_l2 = gas_output.analyser_lambda_high is not None
+    _classify_trim_trend(idle_total, has_l2, evidence)
 
 
 def _compute_trim_total_b1(obd: OBDRecord) -> float | None:
@@ -296,48 +291,24 @@ def _compute_trim_total_b1(obd: OBDRecord) -> float | None:
     return (stft if stft is not None else 0.0) + (ltft if ltft is not None else 0.0)
 
 
-def _get_cruise_trim_total(validated_input: ValidatedInput) -> float | None:
-    """Attempt to extract cruise (high-idle) trim from available data.
-
-    The current data model has a single OBDRecord captured at idle.
-    Freeze-frame trim values are not reliable as cruise proxies (they
-    are captured at DTC-trigger time, which could be any load point).
-    Returns None when cruise trim data is unavailable.
-    """
-    del validated_input
-    return None
-
-
-def _classify_trim_full(
+def _classify_trim_trend(
     idle_total: float,
-    cruise_total: float,
+    has_l2: bool,
     evidence: MasterEvidenceVector,
 ) -> None:
-    """Apply the full 4-pattern trim-trend matrix.
+    """Classify fuel-trim pattern from idle trim data (Option A).
 
-    source: v2-arbitrator §2.2 trim-trend matrix
+    When L2 high-idle gas data is present, the idle trim reading is at a
+    confirmed operating point — no CF penalty.  When L2 is absent, a 30%
+    CF reduction applies because the idle-only reading is less reliable.
+
+    The full 4-pattern matrix (LEAN_LOAD_BIAS / RICH_STATIC) remains
+    deferred to v2.1 when a high-idle OBD snapshot is added to the data
+    model.
+
+    source: v2-arbitrator §2.2 — Option A idle-only classification
     """
-    if idle_total >= _TRIM_STRONG_PCT:
-        if abs(cruise_total) < _TRIM_CRUISE_NEUTRAL_MAX:
-            evidence.active_symptoms[_SYM_TRIM_LEAN_IDLE_ONLY] = 0.65
-        else:
-            evidence.active_symptoms[_SYM_TRIM_LEAN_LOAD_BIAS] = 0.65
-    elif idle_total <= -_TRIM_STRONG_PCT:
-        if abs(cruise_total) < _TRIM_CRUISE_NEUTRAL_MAX:
-            evidence.active_symptoms[_SYM_TRIM_RICH_IDLE_ONLY] = 0.65
-        else:
-            evidence.active_symptoms[_SYM_TRIM_RICH_STATIC] = 0.65
-
-
-def _classify_trim_idle_only(
-    idle_total: float,
-    evidence: MasterEvidenceVector,
-) -> None:
-    """Degraded trim-trend: idle data only, CF reduced by 30%.
-
-    source: v2-arbitrator §2.2 — idle-only fallback
-    """
-    cf = 0.65 * _TRIM_IDLE_ONLY_CF_REDUCTION
+    cf = 0.65 if has_l2 else 0.65 * _TRIM_NO_L2_CF_REDUCTION  # 30% penalty when idle-only
     if idle_total >= _TRIM_STRONG_PCT:
         evidence.active_symptoms[_SYM_TRIM_LEAN_IDLE_ONLY] = cf
     elif idle_total <= -_TRIM_STRONG_PCT:

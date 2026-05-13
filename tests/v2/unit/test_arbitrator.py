@@ -1,12 +1,14 @@
 """Unit tests for arbitrator.py (M3) — perception gap, trim-trend, bank symmetry, flood control.
 
-Covers: perception gap detection, trim-trend 4-pattern matrix (full + idle-only
-fallback), bank symmetry analysis (V-engine only), flood control (cascade
-grouping), and end-to-end evidence vector assembly via arbitrate().
+Covers: perception gap detection, trim-trend Option A classification (L2 present
+→ no CF penalty, L2 absent → 30% penalty), bank symmetry analysis (V-engine
+only), flood control (cascade grouping), and end-to-end evidence vector assembly
+via arbitrate().
 """
 
 from __future__ import annotations
 
+import pathlib
 from typing import Any
 
 import pytest
@@ -17,16 +19,13 @@ from engine.v2.arbitrator import (
     _SYM_PERCEPTION_LEAN_SEEN_RICH,
     _SYM_PERCEPTION_RICH_SEEN_LEAN,
     _SYM_TRIM_LEAN_IDLE_ONLY,
-    _SYM_TRIM_LEAN_LOAD_BIAS,
     _SYM_TRIM_RICH_IDLE_ONLY,
-    _SYM_TRIM_RICH_STATIC,
     MasterEvidenceVector,
     PerceptionGap,
     _analyse_bank_symmetry,
     _analyse_trim_trend,
     _apply_flood_control,
-    _classify_trim_full,
-    _classify_trim_idle_only,
+    _classify_trim_trend,
     _detect_perception_gap,
     arbitrate,
 )
@@ -327,94 +326,74 @@ class TestTrimTrendIdleOnly:
         assert _SYM_TRIM_LEAN_IDLE_ONLY in evidence.active_symptoms
 
 
-# ── trim-trend: full 4-pattern matrix ───────────────────────────────────────────
+# ── trim-trend: classification ─────────────────────────────────────────────────
 
 
-class TestTrimTrendFull:
-    """Full 4-pattern trim-trend matrix — idle vs cruise classification."""
+class TestClassifyTrimTrend:
+    """Direct tests for _classify_trim_trend — Option A idle-only classification.
 
-    def test_lean_idle_only(self) -> None:
-        """idle >= +8%, cruise near 0 → SYM_TRIM_LEAN_IDLE_ONLY."""
+    L2 present → CF = 0.65 (no penalty — L2 confirms operating point).
+    L2 absent → CF = 0.65 * 0.70 = 0.455 (30% penalty — idle-only).
+    """
+
+    # ── lean, L2 absent ─────────────────────────────────────────────────────
+
+    def test_lean_no_l2_reduced_cf(self) -> None:
+        """Lean idle, L2 absent → CF = 0.455 (30% penalty)."""
         evidence = MasterEvidenceVector()
-        _classify_trim_full(idle_total=12.0, cruise_total=2.0, evidence=evidence)
-
-        assert _SYM_TRIM_LEAN_IDLE_ONLY in evidence.active_symptoms
-        assert evidence.active_symptoms[_SYM_TRIM_LEAN_IDLE_ONLY] == 0.65
-
-    def test_lean_load_bias(self) -> None:
-        """idle >= +8%, cruise stays >= +8% → SYM_TRIM_LEAN_LOAD_BIAS."""
-        evidence = MasterEvidenceVector()
-        _classify_trim_full(idle_total=10.0, cruise_total=10.0, evidence=evidence)
-
-        assert _SYM_TRIM_LEAN_LOAD_BIAS in evidence.active_symptoms
-        assert evidence.active_symptoms[_SYM_TRIM_LEAN_LOAD_BIAS] == 0.65
-
-    def test_rich_static(self) -> None:
-        """idle <= -8%, cruise stays <= -8% → SYM_TRIM_RICH_STATIC."""
-        evidence = MasterEvidenceVector()
-        _classify_trim_full(idle_total=-10.0, cruise_total=-12.0, evidence=evidence)
-
-        assert _SYM_TRIM_RICH_STATIC in evidence.active_symptoms
-        assert evidence.active_symptoms[_SYM_TRIM_RICH_STATIC] == 0.65
-
-    def test_rich_idle_only(self) -> None:
-        """idle <= -8%, cruise near 0 → SYM_TRIM_RICH_IDLE_ONLY."""
-        evidence = MasterEvidenceVector()
-        _classify_trim_full(idle_total=-10.0, cruise_total=-2.0, evidence=evidence)
-
-        assert _SYM_TRIM_RICH_IDLE_ONLY in evidence.active_symptoms
-        assert evidence.active_symptoms[_SYM_TRIM_RICH_IDLE_ONLY] == 0.65
-
-    def test_idle_inband_no_emission(self) -> None:
-        """idle total in (-8%, +8%) → no trim symptom emitted from full matrix."""
-        evidence = MasterEvidenceVector()
-        _classify_trim_full(idle_total=5.0, cruise_total=0.0, evidence=evidence)
-
-        assert len(evidence.active_symptoms) == 0
-
-    def test_exactly_at_positive_boundary(self) -> None:
-        """idle at exactly +8.0 with cruise near 0 → LEAN_IDLE_ONLY."""
-        evidence = MasterEvidenceVector()
-        _classify_trim_full(idle_total=8.0, cruise_total=0.0, evidence=evidence)
-
-        assert _SYM_TRIM_LEAN_IDLE_ONLY in evidence.active_symptoms
-
-    def test_exactly_at_negative_boundary(self) -> None:
-        """idle at exactly -8.0 with cruise near 0 → RICH_IDLE_ONLY."""
-        evidence = MasterEvidenceVector()
-        _classify_trim_full(idle_total=-8.0, cruise_total=0.0, evidence=evidence)
-
-        assert _SYM_TRIM_RICH_IDLE_ONLY in evidence.active_symptoms
-
-
-# ── trim-trend: idle-only private function ──────────────────────────────────────
-
-
-class TestClassifyTrimIdleOnly:
-    """Direct tests for _classify_trim_idle_only."""
-
-    def test_lean_idle_only_reduced_cf(self) -> None:
-        """CF reduced by 30% (0.65 * 0.70 = 0.455)."""
-        evidence = MasterEvidenceVector()
-        _classify_trim_idle_only(idle_total=10.0, evidence=evidence)
+        _classify_trim_trend(idle_total=10.0, has_l2=False, evidence=evidence)
 
         assert _SYM_TRIM_LEAN_IDLE_ONLY in evidence.active_symptoms
         assert evidence.active_symptoms[_SYM_TRIM_LEAN_IDLE_ONLY] == pytest.approx(0.455)
 
-    def test_rich_idle_only_reduced_cf(self) -> None:
-        """CF reduced by 30% for rich idle-only path."""
+    # ── lean, L2 present ────────────────────────────────────────────────────
+
+    def test_lean_with_l2_no_penalty(self) -> None:
+        """Lean idle, L2 present → CF = 0.65 (no penalty)."""
         evidence = MasterEvidenceVector()
-        _classify_trim_idle_only(idle_total=-10.0, evidence=evidence)
+        _classify_trim_trend(idle_total=10.0, has_l2=True, evidence=evidence)
+
+        assert _SYM_TRIM_LEAN_IDLE_ONLY in evidence.active_symptoms
+        assert evidence.active_symptoms[_SYM_TRIM_LEAN_IDLE_ONLY] == pytest.approx(0.65)
+
+    # ── rich, L2 absent ─────────────────────────────────────────────────────
+
+    def test_rich_no_l2_reduced_cf(self) -> None:
+        """Rich idle, L2 absent → CF = 0.455 (30% penalty)."""
+        evidence = MasterEvidenceVector()
+        _classify_trim_trend(idle_total=-10.0, has_l2=False, evidence=evidence)
 
         assert _SYM_TRIM_RICH_IDLE_ONLY in evidence.active_symptoms
         assert evidence.active_symptoms[_SYM_TRIM_RICH_IDLE_ONLY] == pytest.approx(0.455)
 
-    def test_inband_no_emission(self) -> None:
-        """Trim within ±8% → no symptom emitted."""
+    # ── rich, L2 present ────────────────────────────────────────────────────
+
+    def test_rich_with_l2_no_penalty(self) -> None:
+        """Rich idle, L2 present → CF = 0.65 (no penalty)."""
         evidence = MasterEvidenceVector()
-        _classify_trim_idle_only(idle_total=5.0, evidence=evidence)
+        _classify_trim_trend(idle_total=-10.0, has_l2=True, evidence=evidence)
+
+        assert _SYM_TRIM_RICH_IDLE_ONLY in evidence.active_symptoms
+        assert evidence.active_symptoms[_SYM_TRIM_RICH_IDLE_ONLY] == pytest.approx(0.65)
+
+    # ── in-band ─────────────────────────────────────────────────────────────
+
+    def test_inband_no_emission(self) -> None:
+        """Trim within ±8% → no symptom emitted (regardless of L2)."""
+        evidence = MasterEvidenceVector()
+        _classify_trim_trend(idle_total=5.0, has_l2=False, evidence=evidence)
 
         assert len(evidence.active_symptoms) == 0
+
+    # ── deletion confirmation ───────────────────────────────────────────────
+
+    def test_dead_code_removed(self) -> None:
+        """_classify_trim_full and _get_cruise_trim_total must not exist."""
+        src = pathlib.Path(__file__).parent.parent.parent.parent / "engine" / "v2" / "arbitrator.py"
+        text = src.read_text()
+        assert "_get_cruise_trim_total" not in text, "stub still present"
+        assert "_classify_trim_full" not in text, "dead code still present"
+        assert "_classify_trim_trend" in text, "renamed function not found"
 
 
 # ── bank symmetry ───────────────────────────────────────────────────────────────
