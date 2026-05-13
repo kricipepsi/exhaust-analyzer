@@ -33,7 +33,9 @@ _LAMBDA_LEAN: float = 1.03
 # ── HC thresholds ────────────────────────────────────────────────────────────
 # source: v2-gas-chemistry §2
 # source: docs/master_guides/gases/master_gas_guide.md §6
-_HC_MISFIRE_PPM: float = 600.0
+_HC_MISFIRE_PPM_MPFI: float = 600.0
+# source: docs/master_guides/gases/master_gas_guide.md §6.2 — GDI footnote
+_HC_MISFIRE_PPM_GDI: float = 900.0
 
 # ── CO thresholds ────────────────────────────────────────────────────────────
 # source: v2-gas-chemistry §2
@@ -108,6 +110,7 @@ def analyse_gas(
     gas_idle = raw.gas_idle
     gas_high = raw.gas_high
     nox_suppressed = validated_input.nox_suppressed
+    has_gdi = dna_output.tech_mask.get("has_gdi", False)
 
     symptoms_idle: list[str] = []
     symptoms_high: list[str] = []
@@ -117,12 +120,16 @@ def analyse_gas(
     # ── idle analysis ────────────────────────────────────────────────────
     if gas_idle is not None:
         analyser_lambda_idle = _brettschneider(gas_idle)
-        symptoms_idle = _detect_gas_symptoms(gas_idle, analyser_lambda_idle, nox_suppressed)
+        symptoms_idle = _detect_gas_symptoms(
+            gas_idle, analyser_lambda_idle, nox_suppressed, has_gdi=has_gdi,
+        )
 
     # ── high-idle analysis ───────────────────────────────────────────────
     if gas_high is not None:
         analyser_lambda_high = _brettschneider(gas_high)
-        symptoms_high = _detect_gas_symptoms(gas_high, analyser_lambda_high, nox_suppressed)
+        symptoms_high = _detect_gas_symptoms(
+            gas_high, analyser_lambda_high, nox_suppressed, has_gdi=has_gdi,
+        )
 
     # ── dual-state delta ─────────────────────────────────────────────────
     dual_state_tag = _compute_dual_state_delta(gas_idle, gas_high)
@@ -188,15 +195,18 @@ def _detect_gas_symptoms(
     gas: GasRecord,
     lamb: float,
     nox_suppressed: bool,
+    has_gdi: bool = False,
 ) -> list[str]:
     """Detect gas symptoms from a single exhaust sample.
 
     source: v2-gas-chemistry §2 per-state symptom detection table.
+    source: master_gas_guide.md §6.2 — GDI HC threshold = 900 ppm.
 
     Args:
         gas: Gas record for a single RPM state (idle or high-idle).
         lamb: Computed Brettschneider lambda for this sample.
         nox_suppressed: True on 4-gas analysers — skips NOx checks.
+        has_gdi: True for GDI engines — raises HC misfire threshold to 900 ppm.
 
     Returns:
         List of matching symptom IDs from schema/v2/symptoms.yaml (emitted_by: M2).
@@ -212,7 +222,9 @@ def _detect_gas_symptoms(
         symptoms.append("SYM_LAMBDA_NORMAL")
 
     # HC — source: v2-gas-chemistry §2, master_gas_guide.md §6
-    if gas.hc_ppm > _HC_MISFIRE_PPM:
+    # source: master_gas_guide.md §6.2 — GDI threshold 900 ppm (wall-wetting)
+    _hc_threshold = _HC_MISFIRE_PPM_GDI if has_gdi else _HC_MISFIRE_PPM_MPFI
+    if gas.hc_ppm > _hc_threshold:
         symptoms.append("SYM_HC_HIGH")
     else:
         symptoms.append("SYM_HC_LOW")

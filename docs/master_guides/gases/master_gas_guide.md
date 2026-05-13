@@ -127,6 +127,21 @@ A healthy three-way cat scrubs HC and CO post-cat, raises CO2 slightly, and pull
 - Idle NOx > ~1000 ppm is suspicious — confirm load, EGR, and cooling.
 - Trims (STFT/LTFT) outside ±25 % at idle indicate either a real large mixture issue or a sensor rail-out (P0131/P0132 etc.).
 
+### 6.1 HC reference bands (idle, warm closed-loop)
+
+| HC band | MPFI threshold | Interpretation |
+|---|---|---|
+| HC ≤ 50 ppm | — | clean burn or good cat scrubbing. |
+| HC 50–250 ppm | — | minor inefficiency; could be pre-cat normal or marginal misfire. |
+| HC 250–600 ppm | — | real combustion problem (lean misfire, vacuum leak, ignition). |
+| HC 600–800 ppm | SYM_HC_HIGH | above MPFI misfire threshold; moderate misfire. |
+| HC > 800 ppm | SYM_HC_HIGH | severe misfire, oil-burning, or catalyst failure. |
+| HC > 2000 ppm | SYM_HC_HIGH | almost always mechanical (rings, valve sealing) or hard ignition fault. |
+
+### 6.2 GDI HC threshold override
+
+GDI (Gasoline Direct Injection) engines have systematically higher baseline HC at idle (~30–50% above MPFI) due to wall-wetting and stratified charge. The HC misfire threshold for GDI is raised to **900 ppm**. Normal GDI idle HC in the 700–850 ppm range must not fire `SYM_HC_HIGH`. This override applies when `tech_mask["has_gdi"]` is True.
+
 ---
 
 ## 7. How the reasoning column is written

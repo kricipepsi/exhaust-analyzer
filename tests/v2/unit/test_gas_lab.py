@@ -156,6 +156,33 @@ def test_hc_at_threshold_boundary():
     assert "SYM_HC_LOW" in symptoms
 
 
+# ── _detect_gas_symptoms: HC — GDI threshold ─────────────────────────────────
+# source: master_gas_guide.md §6.2 GDI footnote — GDI HC threshold = 900 ppm
+# source: VIN_ENGINE_CONNECTION_REVIEW.md Fix C
+
+
+@pytest.mark.parametrize(
+    "has_gdi, hc_ppm, expect_high",
+    [
+        (True, 750.0, False),   # GDI: 750 < 900 → no SYM_HC_HIGH
+        (True, 950.0, True),    # GDI: 950 > 900 → SYM_HC_HIGH
+        (False, 650.0, True),   # MPFI: 650 > 600 → SYM_HC_HIGH
+        (False, 550.0, False),  # MPFI: 550 ≤ 600 → no SYM_HC_HIGH
+    ],
+)
+def test_hc_gdi_threshold(has_gdi, hc_ppm, expect_high):
+    """GDI engines use 900 ppm HC threshold; MPFI uses 600 ppm."""
+    gas = _gas(co_pct=0.5, hc_ppm=hc_ppm, co2_pct=14.0, o2_pct=1.0)
+    lamb = _brettschneider(gas)
+    symptoms = _detect_gas_symptoms(gas, lamb, nox_suppressed=False, has_gdi=has_gdi)
+    if expect_high:
+        assert "SYM_HC_HIGH" in symptoms
+        assert "SYM_HC_LOW" not in symptoms
+    else:
+        assert "SYM_HC_HIGH" not in symptoms
+        assert "SYM_HC_LOW" in symptoms
+
+
 # ── _detect_gas_symptoms: CO ────────────────────────────────────────────────
 # source: v2-gas-chemistry §2 — CO > 3.0% → SYM_CO_HIGH
 
