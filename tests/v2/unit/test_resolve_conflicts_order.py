@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import pytest
 
+from engine.v2.kg_engine import score_root_causes
 from engine.v2.ranker import (
     COLD_START_SUPPRESSION_FACTOR,
     ResolutionContext,
@@ -85,6 +86,11 @@ def _root_causes() -> dict:
     }
 
 
+def _qrc(raw_probs: dict[str, float]) -> dict:
+    """Pre-filter root causes through score_root_causes gate (M4)."""
+    return score_root_causes(raw_probs, _root_causes())
+
+
 def _ctx(**overrides: object) -> ResolutionContext:
     """Build a ResolutionContext with defaults overridden."""
     defaults: dict[str, object] = {
@@ -135,7 +141,7 @@ def test_dtc_gate_fault_requires_missing_dtc_falls_back() -> None:
     """Fault requiring P0420 without it in input → demoted to 1e-9."""
     raw_probs = {"P0420_Catalyst_Efficiency": 0.45}
     ctx = _ctx(dtcs=["P0171"])  # wrong DTC
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.state == "insufficient_evidence"
     assert result.primary is not None
@@ -146,7 +152,7 @@ def test_dtc_gate_fault_requires_present_dtc_passes() -> None:
     """Fault requiring P0420 with P0420 in input → score preserved."""
     raw_probs = {"P0420_Catalyst_Efficiency": 0.45}
     ctx = _ctx(dtcs=["P0420"])
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.state == "named_fault"
     assert result.primary is not None
@@ -157,7 +163,7 @@ def test_dtc_gate_fault_with_no_dtc_required_untouched() -> None:
     """Fault with empty dtc_required → score preserved regardless of DTCs."""
     raw_probs = {"Maf_Fault": 0.50}
     ctx = _ctx(dtcs=[])
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.primary is not None
     assert result.primary.raw_score == pytest.approx(0.50)
@@ -170,7 +176,7 @@ def test_discriminator_gate_absent_symptom_demotes() -> None:
     """Fault whose discriminator symptom is absent → demoted to 1e-9."""
     raw_probs = {"Rich_Mixture": 0.40}
     ctx = _ctx(symptoms=["SYM_CO_HIGH"])  # not SYM_LAMBDA_LOW
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.primary is not None
     assert result.primary.raw_score == pytest.approx(1e-9)
@@ -181,7 +187,7 @@ def test_discriminator_gate_present_symptom_passes() -> None:
     """Fault whose discriminator symptom is present → score preserved."""
     raw_probs = {"Rich_Mixture": 0.40, "Lean_Condition": 0.50}
     ctx = _ctx(symptoms=["SYM_LAMBDA_LOW", "SYM_LAMBDA_HIGH"])
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.primary is not None
     # Top fault should be Lean_Condition (higher score)
@@ -193,7 +199,7 @@ def test_discriminator_gate_no_discriminator_passes() -> None:
     """Fault with empty discriminator → always satisfied."""
     raw_probs = {"Maf_Fault": 0.50}
     ctx = _ctx(symptoms=[])
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.primary is not None
     assert result.primary.discriminator_satisfied is True
@@ -209,7 +215,7 @@ def test_cold_start_suppresses_rich_family() -> None:
         engine_state="cold_open_loop",
         symptoms=["SYM_HIGH_FUEL_PRESSURE_PATTERN", "SYM_LAMBDA_HIGH"],
     )
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     # High_Fuel_Pressure suppressed from 0.50 → 0.15.
     # Lean_Condition at 0.40 should now be top fault.
@@ -222,7 +228,7 @@ def test_cold_start_does_not_suppress_non_rich_family() -> None:
     """Non Rich_Mixture faults are untouched during cold_open_loop."""
     raw_probs = {"Maf_Fault": 0.50}
     ctx = _ctx(engine_state="cold_open_loop")
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.primary is not None
     assert result.primary.raw_score == pytest.approx(0.50)
@@ -240,7 +246,7 @@ def test_specific_within_margin_promoted_over_parent() -> None:
     """Child fault within 0.10 of parent → parent demoted, child promoted."""
     raw_probs = {"Rich_Mixture": 0.45, "Leaking_Injector": 0.40}
     ctx = _ctx(symptoms=["SYM_LAMBDA_LOW", "SYM_LEAKING_INJECTOR_PATTERN"])
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     # Leaking_Injector (0.40) is within 0.10 of Rich_Mixture (0.45)
     # → Rich_Mixture demoted, Leaking_Injector becomes top.
@@ -253,7 +259,7 @@ def test_specific_far_from_parent_not_promoted() -> None:
     """Child fault far below parent (>0.10) → parent stays top."""
     raw_probs = {"Rich_Mixture": 0.60, "Leaking_Injector": 0.30}
     ctx = _ctx(symptoms=["SYM_LAMBDA_LOW", "SYM_LEAKING_INJECTOR_PATTERN"])
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     # Gap 0.30 > 0.10 → Rich_Mixture stays top.
     assert result.primary is not None
@@ -267,7 +273,7 @@ def test_confidence_capped_by_ceiling() -> None:
     """confidence must be min(raw_score, ceiling) — never exceed ceiling."""
     raw_probs = {"Maf_Fault": 0.80}
     ctx = _ctx(evidence_layers_used=["L1"])  # ceiling 0.40
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.primary is not None
     assert result.primary.raw_score == pytest.approx(0.80)
@@ -279,7 +285,7 @@ def test_confidence_not_capped_when_below_ceiling() -> None:
     """When raw_score is below ceiling, confidence equals raw_score."""
     raw_probs = {"Maf_Fault": 0.30}
     ctx = _ctx(evidence_layers_used=["L1", "L2", "L3"])  # ceiling 0.95
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.primary is not None
     assert result.primary.raw_score == pytest.approx(0.30)
@@ -296,7 +302,7 @@ def test_sort_by_score_then_prior_then_id() -> None:
         symptoms=["SYM_LAMBDA_LOW", "SYM_LAMBDA_HIGH"],
         evidence_layers_used=["L1", "L2", "L3"],
     )
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.primary is not None
     assert result.primary.fault_id == "Lean_Condition"
@@ -309,8 +315,8 @@ def test_sort_deterministic_tie_break() -> None:
     """Same inputs produce same outputs (determinism)."""
     raw_probs = {"Maf_Fault": 0.50, "Rich_Mixture": 0.50}
     ctx = _ctx(symptoms=["SYM_LAMBDA_LOW"])
-    r1 = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
-    r2 = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    r1 = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
+    r2 = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert r1.primary is not None
     assert r2.primary is not None
@@ -325,7 +331,7 @@ def test_state_named_fault() -> None:
     """Top candidate ≥ threshold with discriminator satisfied → named_fault."""
     raw_probs = {"Maf_Fault": 0.50}
     ctx = _ctx()
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.state == "named_fault"
 
@@ -334,7 +340,7 @@ def test_state_insufficient_evidence_low_score() -> None:
     """Top candidate below threshold → insufficient_evidence."""
     raw_probs = {"Maf_Fault": 0.05}
     ctx = _ctx()
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.state == "insufficient_evidence"
     assert result.primary is not None  # still populated for inspection
@@ -344,7 +350,7 @@ def test_state_insufficient_evidence_discriminator_not_satisfied() -> None:
     """Top candidate above threshold but discriminator not satisfied."""
     raw_probs = {"Rich_Mixture": 0.50}
     ctx = _ctx(symptoms=[])  # no SYM_LAMBDA_LOW
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.state == "insufficient_evidence"
 
@@ -353,7 +359,7 @@ def test_state_insufficient_evidence_no_candidates() -> None:
     """All raw_probs are zero → insufficient_evidence."""
     raw_probs = {"Maf_Fault": 0.0, "Rich_Mixture": 0.0}
     ctx = _ctx()
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.state == "insufficient_evidence"
     assert result.primary is None
@@ -366,7 +372,7 @@ def test_result_has_all_r9_fields() -> None:
     """RankedResult must include all R9 required top-level fields."""
     raw_probs = {"Maf_Fault": 0.50}
     ctx = _ctx()
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.state is not None
     assert result.primary is not None
@@ -382,7 +388,7 @@ def test_fault_result_has_all_fields() -> None:
     """FaultResult must include all R9 primary/alternatives fields."""
     raw_probs = {"Maf_Fault": 0.50}
     ctx = _ctx()
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     primary = result.primary
     assert primary is not None
@@ -401,7 +407,7 @@ def test_tier_delta_computed() -> None:
     """tier_delta is raw_score gap to first alternative."""
     raw_probs = {"Maf_Fault": 0.60, "Rich_Mixture": 0.40, "Lean_Condition": 0.30}
     ctx = _ctx(symptoms=["SYM_LAMBDA_LOW", "SYM_LAMBDA_HIGH"])
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.primary is not None
     assert result.primary.tier_delta == pytest.approx(0.20)
@@ -411,7 +417,7 @@ def test_tier_delta_zero_when_no_alternatives() -> None:
     """tier_delta is 0.0 when there are no alternatives."""
     raw_probs = {"Maf_Fault": 0.50}
     ctx = _ctx()
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.primary is not None
     assert result.primary.tier_delta == pytest.approx(0.0)
@@ -424,7 +430,7 @@ def test_root_cause_linked_when_score_above_80() -> None:
     """Fault with raw_score ≥ 0.80 gets root cause linked."""
     raw_probs = {"High_Fuel_Pressure": 0.85}
     ctx = _ctx(symptoms=["SYM_HIGH_FUEL_PRESSURE_PATTERN"])
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.primary is not None
     assert result.primary.root_cause == "Fuel_Pressure_Regulator_Diaphragm_Leak"
@@ -434,7 +440,7 @@ def test_root_cause_not_linked_below_80() -> None:
     """Fault with raw_score < 0.80 → root_cause is None."""
     raw_probs = {"High_Fuel_Pressure": 0.79}
     ctx = _ctx(symptoms=["SYM_HIGH_FUEL_PRESSURE_PATTERN"])
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.primary is not None
     assert result.primary.root_cause is None
@@ -445,7 +451,7 @@ def test_root_cause_not_linked_below_80() -> None:
 
 def test_empty_raw_probs() -> None:
     """Empty raw_probs dict → insufficient_evidence, no primary."""
-    result = resolve_conflicts({}, _ctx(), _faults(), _root_causes())
+    result = resolve_conflicts({}, _ctx(), _faults(), _qrc({}))
 
     assert result.state == "insufficient_evidence"
     assert result.primary is None
@@ -456,7 +462,7 @@ def test_promoted_from_parent_tracked() -> None:
     """FaultResult.promoted_from_parent reflects step 6 promotion."""
     raw_probs = {"Rich_Mixture": 0.45, "Leaking_Injector": 0.40}
     ctx = _ctx(symptoms=["SYM_LAMBDA_LOW", "SYM_LEAKING_INJECTOR_PATTERN"])
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     primary = result.primary
     assert primary is not None
@@ -489,7 +495,7 @@ def test_context_fields_preserved_in_result() -> None:
         cascading_consequences=cascading,
     )
     raw_probs = {"Maf_Fault": 0.50}
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.perception_gap is not None
     assert result.perception_gap.gap_type == "LEAN_SEEN_RICH"
@@ -509,7 +515,7 @@ def test_pathway_regular_all_layers() -> None:
         engine_state="warm_closed_loop",
         evidence_layers_used=["L1", "L2", "L3", "L4"],
     )
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.state == "named_fault"
     assert result.primary is not None
@@ -531,7 +537,7 @@ def test_pathway_non_starter_dtc_only() -> None:
         engine_state="warm_closed_loop",
         evidence_layers_used=["L3"],
     )
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.state == "named_fault"
     assert result.primary is not None
@@ -552,7 +558,7 @@ def test_pathway_non_starter_missing_dtc() -> None:
         engine_state="warm_closed_loop",
         evidence_layers_used=["L3"],
     )
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.state == "insufficient_evidence"
 
@@ -571,7 +577,7 @@ def test_pathway_cold_start_restricted() -> None:
         engine_state="cold_open_loop",
         evidence_layers_used=["L1", "L2", "L3"],
     )
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     # Rich_Mixture family faults are suppressed to 30%.
     # High_Fuel_Pressure: 0.60 * 0.30 = 0.18
@@ -600,8 +606,8 @@ def test_pathway_soft_rerun_determinism() -> None:
         evidence_layers_used=["L1", "L2", "L3", "L4"],
     )
 
-    r1 = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
-    r2 = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    r1 = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
+    r2 = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     # Full structural comparison — every field must match.
     assert r1.state == r2.state
@@ -623,8 +629,8 @@ def test_pathway_soft_rerun_determinism() -> None:
 def test_pathway_soft_rerun_empty_probs() -> None:
     """Soft-rerun pathway: empty probs determinism (insufficient_evidence both times)."""
     ctx = _ctx()
-    r1 = resolve_conflicts({}, ctx, _faults(), _root_causes())
-    r2 = resolve_conflicts({}, ctx, _faults(), _root_causes())
+    r1 = resolve_conflicts({}, ctx, _faults(), _qrc({}))
+    r2 = resolve_conflicts({}, ctx, _faults(), _qrc({}))
 
     assert r1.state == r2.state == "insufficient_evidence"
     assert r1.primary is None
@@ -677,7 +683,7 @@ def test_all_four_pathways_produce_r9_shape() -> None:
             engine_state=p["engine_state"],
             evidence_layers_used=p["evidence_layers_used"],
         )
-        result = resolve_conflicts(p["raw_probs"], ctx, _faults(), _root_causes())
+        result = resolve_conflicts(p["raw_probs"], ctx, _faults(), _qrc(p["raw_probs"]))
         result_dict = {
             "state": result.state,
             "primary": result.primary,

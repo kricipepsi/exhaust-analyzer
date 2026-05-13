@@ -108,7 +108,7 @@ class ResolutionContext:
     """Context bundle passed to resolve_conflicts() from the pipeline orchestrator.
 
     Carries everything M5 needs that is not the raw_probs vector or the schema
-    (faults/root_causes are passed separately to keep resolve_conflicts()
+    (faults/qualified_root_causes are passed separately to keep resolve_conflicts()
     testable without YAML I/O).
     """
 
@@ -129,7 +129,7 @@ def resolve_conflicts(
     raw_probs: dict[str, float],
     ctx: ResolutionContext,
     faults: dict,
-    root_causes: dict,
+    qualified_root_causes: dict,
 ) -> RankedResult:
     """Run the 8-step ordered conflict-resolution loop (R7, L02).
 
@@ -152,7 +152,9 @@ def resolve_conflicts(
         ctx: ResolutionContext with dtcs, symptoms, engine_state, layers,
              perception_gap, validation_warnings, cascading_consequences.
         faults: Parsed faults.yaml (fault_id → fault_def).
-        root_causes: Parsed root_causes.yaml (rc_id → root_cause_def).
+        qualified_root_causes: Pre-filtered root causes from
+            score_root_causes() — only includes entries whose parent
+            fault meets the ROOT_CAUSE_PARENT_THRESHOLD (0.80).
 
     Returns:
         RankedResult with primary, alternatives, state, and all R9 fields.
@@ -182,7 +184,7 @@ def resolve_conflicts(
         key=lambda x: (-x[1], -faults.get(x[0], {}).get("prior", 0.0), x[0]),
     )
 
-    return _build_result(ranked, promoted, ctx, faults, root_causes, ceiling)
+    return _build_result(ranked, promoted, ctx, faults, qualified_root_causes, ceiling)
 
 
 # ── ceiling computation ───────────────────────────────────────────────────────
@@ -347,7 +349,7 @@ def _build_result(
     promoted: set[str],
     ctx: ResolutionContext,
     faults: dict,
-    root_causes: dict,
+    qualified_root_causes: dict,
     ceiling: float,
 ) -> RankedResult:
     """Assemble the RankedResult from the ranked candidate list.
@@ -366,8 +368,8 @@ def _build_result(
             or any(s in ctx.symptoms for s in discriminator)
         )
 
-        # Determine root cause if parent score ≥ 0.80 (R2 / L16).
-        root_cause = _find_root_cause(fid, raw_score, root_causes)
+        # Root cause from pre-filtered qualified set (gate applied in M4).
+        root_cause = _find_root_cause(fid, qualified_root_causes)
 
         fr = FaultResult(
             fault_id=fid,
@@ -416,18 +418,19 @@ def _build_result(
 
 def _find_root_cause(
     fault_id: str,
-    raw_score: float,
-    root_causes: dict,
+    qualified_root_causes: dict,
 ) -> str | None:
-    """Find the best root cause for a fault if parent threshold is met.
+    """Look up the root cause for a fault in the pre-filtered qualified set.
 
-    source: R2/L16 — root cause only populated when raw_score ≥ 0.80.
+    The 0.80 ROOT_CAUSE_PARENT_THRESHOLD gate is applied upstream by
+    score_root_causes() in kg_engine.py (M4).  This function is a simple
+    lookup — no threshold logic.
+
+    source: R2/L16 — root cause only populated when parent raw_score ≥ 0.80.
     When multiple root causes apply to the same fault, the first defined
     in root_causes.yaml wins.
     """
-    if raw_score < 0.80:
-        return None
-    for rc_id, rc_def in root_causes.items():
+    for rc_id, rc_def in qualified_root_causes.items():
         if rc_def.get("applies_to_fault") == fault_id:
             return rc_id
     return None

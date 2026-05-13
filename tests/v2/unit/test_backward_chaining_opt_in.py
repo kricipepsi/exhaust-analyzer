@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import pytest
 
+from engine.v2.kg_engine import score_root_causes
 from engine.v2.ranker import (
     LAYER_EXPECTED_LIFT,
     ResolutionContext,
@@ -38,6 +39,11 @@ def _faults() -> dict:
 
 def _root_causes() -> dict:
     return {}
+
+
+def _qrc(raw_probs: dict[str, float]) -> dict:
+    """Pre-filter root causes through score_root_causes gate (M4)."""
+    return score_root_causes(raw_probs, _root_causes())
 
 
 def _ctx(**overrides: object) -> ResolutionContext:
@@ -153,7 +159,7 @@ def test_resolve_conflicts_bc_off_next_steps_empty() -> None:
     """Integration: BC off → next_steps is always [] in RankedResult."""
     raw_probs = {"Rich_Mixture": 0.05}  # below threshold
     ctx = _ctx(backward_chaining=False, evidence_layers_used=["L1"])
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.state == "insufficient_evidence"
     assert result.next_steps == []
@@ -163,7 +169,7 @@ def test_resolve_conflicts_named_fault_next_steps_empty() -> None:
     """Integration: state=named_fault → next_steps is [] even with BC on."""
     raw_probs = {"Maf_Fault": 0.50}
     ctx = _ctx(backward_chaining=True, evidence_layers_used=["L1"])
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.state == "named_fault"
     assert result.next_steps == []
@@ -177,7 +183,7 @@ def test_resolve_conflicts_insufficient_evidence_bc_on() -> None:
         evidence_layers_used=["L1"],
         symptoms=["SYM_LAMBDA_LOW"],
     )
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.state == "insufficient_evidence"
     assert len(result.next_steps) >= 1
@@ -200,7 +206,7 @@ def test_resolve_conflicts_all_evidence_provided_next_steps_empty() -> None:
         ],
         symptoms=["SYM_LAMBDA_LOW"],
     )
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.state == "insufficient_evidence"
     assert result.next_steps == []
@@ -210,7 +216,7 @@ def test_resolve_conflicts_no_candidates_next_steps_populated() -> None:
     """No positive candidates + BC on → next_steps populated (all missing layers)."""
     raw_probs = {"Maf_Fault": 0.0, "Rich_Mixture": 0.0}
     ctx = _ctx(backward_chaining=True, evidence_layers_used=["L1"])
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
     assert result.state == "insufficient_evidence"
     # top_raw_score=0.0 means all missing layers with lift ≥ 0.10 qualify

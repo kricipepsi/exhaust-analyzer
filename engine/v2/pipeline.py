@@ -19,7 +19,7 @@ from engine.v2.digital_parser import parse_digital
 from engine.v2.dna_core import load_dna
 from engine.v2.gas_lab import analyse_gas
 from engine.v2.input_model import DiagnosticInput, ValidatedInput
-from engine.v2.kg_engine import score_faults
+from engine.v2.kg_engine import score_faults, score_root_causes
 from engine.v2.ranker import ResolutionContext, resolve_conflicts
 from engine.v2.validation import validate
 
@@ -93,6 +93,10 @@ def diagnose(
         evidence, dna, schemas["faults"], schemas["edges"]  # type: ignore[arg-type]
     )
 
+    qualified_root_causes = score_root_causes(
+        raw_probs, schemas["root_causes"]  # type: ignore[arg-type]
+    )
+
     ctx = ResolutionContext(
         dtcs=list(diagnostic_input.dtcs),
         symptoms=list(evidence.active_symptoms),
@@ -105,7 +109,7 @@ def diagnose(
     )
 
     result = resolve_conflicts(
-        raw_probs, ctx, schemas["faults"], schemas["root_causes"]  # type: ignore[arg-type]
+        raw_probs, ctx, schemas["faults"], qualified_root_causes  # type: ignore[arg-type]
     )
     return _result_to_dict(result)
 

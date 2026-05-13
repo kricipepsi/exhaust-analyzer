@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import pytest
 
+from engine.v2.kg_engine import score_root_causes
 from engine.v2.ranker import (
     NAMED_FAULT_THRESHOLD,
     FaultResult,
@@ -129,6 +130,11 @@ def _root_causes() -> dict:
     }
 
 
+def _qrc(raw_probs: dict[str, float]) -> dict:
+    """Pre-filter root causes through score_root_causes gate (M4)."""
+    return score_root_causes(raw_probs, _root_causes())
+
+
 def _ctx(**overrides: object) -> ResolutionContext:
     """Build a ResolutionContext with defaults overridden."""
     defaults: dict[str, object] = {
@@ -163,7 +169,7 @@ def _result_dict(result: RankedResult) -> dict:
 
 def test_all_r9_top_level_fields_present() -> None:
     """Every RankedResult must have all 8 R9 top-level keys."""
-    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _root_causes())
+    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _qrc({"Maf_Fault": 0.50}))
     fields = _result_dict(result)
     missing = R9_TOP_LEVEL_FIELDS - set(fields.keys())
     assert not missing, f"Missing top-level R9 fields: {missing}"
@@ -171,7 +177,7 @@ def test_all_r9_top_level_fields_present() -> None:
 
 def test_fault_result_all_fields_present() -> None:
     """Every FaultResult must have all 9 required fields."""
-    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _root_causes())
+    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _qrc({"Maf_Fault": 0.50}))
     primary = result.primary
     assert primary is not None
     fr_fields = {
@@ -192,23 +198,23 @@ def test_fault_result_all_fields_present() -> None:
 def test_state_is_valid_literal() -> None:
     """result.state must be one of the 3 valid literals."""
     # named_fault case
-    r1 = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _root_causes())
+    r1 = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _qrc({"Maf_Fault": 0.50}))
     assert r1.state in VALID_STATES
     assert r1.state == "named_fault"
 
     # insufficient_evidence case
-    r2 = resolve_conflicts({"Maf_Fault": 0.05}, _ctx(), _faults(), _root_causes())
+    r2 = resolve_conflicts({"Maf_Fault": 0.05}, _ctx(), _faults(), _qrc({"Maf_Fault": 0.05}))
     assert r2.state in VALID_STATES
     assert r2.state == "insufficient_evidence"
 
     # empty probs
-    r3 = resolve_conflicts({}, _ctx(), _faults(), _root_causes())
+    r3 = resolve_conflicts({}, _ctx(), _faults(), _qrc({}))
     assert r3.state in VALID_STATES
 
 
 def test_fault_result_types() -> None:
     """FaultResult fields must have correct Python types."""
-    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _root_causes())
+    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _qrc({"Maf_Fault": 0.50}))
     primary = result.primary
     assert primary is not None
 
@@ -230,24 +236,24 @@ def test_alternatives_is_list_of_fault_results() -> None:
         symptoms=["SYM_LAMBDA_LOW", "SYM_LAMBDA_HIGH"],
         evidence_layers_used=["L1", "L2", "L3"],
     )
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
     assert isinstance(result.alternatives, list)
     for alt in result.alternatives:
         assert isinstance(alt, FaultResult)
 
     # Empty alternatives
-    r2 = resolve_conflicts({}, _ctx(), _faults(), _root_causes())
+    r2 = resolve_conflicts({}, _ctx(), _faults(), _qrc({}))
     assert isinstance(r2.alternatives, list)
     assert len(r2.alternatives) == 0
 
 
 def test_primary_null_when_no_candidates() -> None:
     """primary is None only when there are no candidates."""
-    result = resolve_conflicts({}, _ctx(), _faults(), _root_causes())
+    result = resolve_conflicts({}, _ctx(), _faults(), _qrc({}))
     assert result.primary is None
 
     # With candidates, primary must be set (even for insufficient_evidence)
-    r2 = resolve_conflicts({"Maf_Fault": 0.05}, _ctx(), _faults(), _root_causes())
+    r2 = resolve_conflicts({"Maf_Fault": 0.05}, _ctx(), _faults(), _qrc({"Maf_Fault": 0.05}))
     assert r2.primary is not None
     assert r2.state == "insufficient_evidence"
 
@@ -257,7 +263,7 @@ def test_primary_null_when_no_candidates() -> None:
 
 def test_raw_score_and_confidence_both_present() -> None:
     """Both raw_score and confidence must be present in every FaultResult (L05)."""
-    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _root_causes())
+    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _qrc({"Maf_Fault": 0.50}))
     assert result.primary is not None
     assert hasattr(result.primary, "raw_score")
     assert hasattr(result.primary, "confidence")
@@ -272,7 +278,7 @@ def test_confidence_never_exceeds_raw_score() -> None:
             {"Maf_Fault": score},
             _ctx(evidence_layers_used=["L1", "L2", "L3", "L4"]),  # ceiling 1.00
             _faults(),
-            _root_causes(),
+            _qrc({"Maf_Fault": score}),
         )
         assert result.primary is not None
         assert result.primary.confidence == pytest.approx(score)
@@ -285,7 +291,7 @@ def test_confidence_capped_by_ceiling_when_raw_high() -> None:
         {"Maf_Fault": 0.80},
         _ctx(evidence_layers_used=["L1"]),  # ceiling 0.40
         _faults(),
-        _root_causes(),
+        _qrc({"Maf_Fault": 0.80}),
     )
     assert result.primary is not None
     assert result.primary.raw_score == pytest.approx(0.80)
@@ -300,7 +306,7 @@ def test_confidence_equals_raw_when_below_ceiling() -> None:
         {"Maf_Fault": 0.35},
         _ctx(evidence_layers_used=["L1", "L2", "L3"]),  # ceiling 0.95
         _faults(),
-        _root_causes(),
+        _qrc({"Maf_Fault": 0.35}),
     )
     assert result.primary is not None
     assert result.primary.raw_score == pytest.approx(0.35)
@@ -345,7 +351,7 @@ def test_tier_delta_is_raw_score_gap() -> None:
         symptoms=["SYM_LAMBDA_LOW", "SYM_LAMBDA_HIGH"],
         evidence_layers_used=["L1", "L2", "L3"],
     )
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
     assert result.primary is not None
     assert result.primary.tier_delta == pytest.approx(0.25)
     assert result.primary.tier_delta >= 0.0
@@ -353,14 +359,14 @@ def test_tier_delta_is_raw_score_gap() -> None:
 
 def test_tier_delta_zero_when_no_alternatives() -> None:
     """tier_delta is 0.0 when there are no alternatives."""
-    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _root_causes())
+    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _qrc({"Maf_Fault": 0.50}))
     assert result.primary is not None
     assert result.primary.tier_delta == pytest.approx(0.0)
 
 
 def test_tier_delta_zero_when_single_candidate() -> None:
     """tier_delta is 0.0 when only one candidate exists."""
-    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _root_causes())
+    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _qrc({"Maf_Fault": 0.50}))
     assert result.primary is not None
     assert result.primary.tier_delta == pytest.approx(0.0)
 
@@ -373,7 +379,7 @@ def test_tier_delta_preserved_after_suppression() -> None:
         symptoms=["SYM_HIGH_FUEL_PRESSURE_PATTERN", "SYM_LAMBDA_HIGH"],
         evidence_layers_used=["L1", "L2"],
     )
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
     assert result.primary is not None
     # High_Fuel_Pressure suppressed to 0.18, Lean_Condition at 0.50 is top
     assert result.primary.fault_id == "Lean_Condition"
@@ -389,7 +395,7 @@ def test_named_fault_threshold_boundary() -> None:
         {"Maf_Fault": NAMED_FAULT_THRESHOLD},
         _ctx(),
         _faults(),
-        _root_causes(),
+        _qrc({"Maf_Fault": NAMED_FAULT_THRESHOLD}),
     )
     assert result.state == "named_fault"
 
@@ -400,7 +406,7 @@ def test_named_fault_just_below_threshold() -> None:
         {"Maf_Fault": NAMED_FAULT_THRESHOLD - 1e-6},
         _ctx(),
         _faults(),
-        _root_causes(),
+        _qrc({"Maf_Fault": NAMED_FAULT_THRESHOLD - 1e-6}),
     )
     assert result.state == "insufficient_evidence"
 
@@ -409,7 +415,7 @@ def test_state_transitions_with_discriminator() -> None:
     """A fault with high score but missing discriminator → insufficient_evidence."""
     raw_probs = {"Rich_Mixture": 0.80}
     ctx = _ctx(symptoms=[])  # no SYM_LAMBDA_LOW
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
     assert result.state == "insufficient_evidence"
     assert result.primary is not None
     assert result.primary.discriminator_satisfied is False
@@ -421,7 +427,7 @@ def test_state_with_discriminator_and_dtc_combined() -> None:
     # P0420_Catalyst_Efficiency needs DTC P0420
     raw_probs = {"P0420_Catalyst_Efficiency": 0.55}
     ctx = _ctx(dtcs=["P0171"])  # wrong DTC
-    result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+    result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
     assert result.state == "insufficient_evidence"
 
 
@@ -445,7 +451,7 @@ class TestRegularPathway:
             engine_state="warm_closed_loop",
             evidence_layers_used=["L1", "L2", "L3", "L4"],
         )
-        result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+        result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
         assert result.state == "named_fault"
         assert result.primary is not None
@@ -463,7 +469,7 @@ class TestRegularPathway:
             engine_state="warm_closed_loop",
             evidence_layers_used=["L1", "L2", "L3", "L4"],
         )
-        result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+        result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
         fields = _result_dict(result)
         missing = R9_TOP_LEVEL_FIELDS - set(fields.keys())
@@ -480,7 +486,7 @@ class TestRegularPathway:
             symptoms=["SYM_LAMBDA_HIGH", "SYM_VE_LOSS", "SYM_O2_HIGH"],
             evidence_layers_used=["L1", "L2", "L3", "L4"],
         )
-        result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+        result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
         assert result.primary is not None
         assert result.primary.fault_id == "Vacuum_Leak_Intake_Manifold"
         assert result.primary.promoted_from_parent is True
@@ -498,7 +504,7 @@ class TestNonStarterPathway:
             engine_state="warm_closed_loop",
             evidence_layers_used=["L3"],
         )
-        result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+        result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
         assert result.state == "named_fault"
         assert result.primary is not None
@@ -517,7 +523,7 @@ class TestNonStarterPathway:
             engine_state="warm_closed_loop",
             evidence_layers_used=["L3"],
         )
-        result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+        result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
         assert result.state == "insufficient_evidence"
 
     def test_non_starter_immobiliser_case(self) -> None:
@@ -529,7 +535,7 @@ class TestNonStarterPathway:
             engine_state="warm_closed_loop",
             evidence_layers_used=["L3"],
         )
-        result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+        result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
         assert result.state == "named_fault"
         assert result.primary is not None
         assert result.primary.fault_id == "P1570_Immobiliser"
@@ -544,7 +550,7 @@ class TestNonStarterPathway:
             engine_state="warm_closed_loop",
             evidence_layers_used=["L3"],
         )
-        result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+        result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
         assert result.primary is not None
         assert result.primary.raw_score == pytest.approx(0.90)
         assert result.primary.confidence == pytest.approx(0.40)
@@ -566,7 +572,7 @@ class TestColdStartPathway:
             symptoms=["SYM_HIGH_FUEL_PRESSURE_PATTERN", "SYM_LAMBDA_HIGH"],
             evidence_layers_used=["L1", "L2"],
         )
-        result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+        result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
         assert result.primary is not None
         # High_Fuel_Pressure: 0.60 → 0.18; Lean_Condition at 0.40 wins
         assert result.primary.fault_id == "Lean_Condition"
@@ -589,7 +595,7 @@ class TestColdStartPathway:
             ],
             evidence_layers_used=["L1", "L2", "L3"],
         )
-        result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+        result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
         assert result.primary is not None
         # Maf_Fault (0.30) beats all suppressed rich faults
         assert result.primary.fault_id == "Maf_Fault"
@@ -601,7 +607,7 @@ class TestColdStartPathway:
             engine_state="cold_open_loop",
             evidence_layers_used=["L1", "L2"],
         )
-        result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+        result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
         assert result.primary is not None
         assert result.primary.raw_score == pytest.approx(0.50)
 
@@ -613,7 +619,7 @@ class TestColdStartPathway:
             symptoms=["SYM_HIGH_FUEL_PRESSURE_PATTERN", "SYM_LAMBDA_HIGH"],
             evidence_layers_used=["L1", "L2"],
         )
-        result = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+        result = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
         missing = R9_TOP_LEVEL_FIELDS - set(_result_dict(result).keys())
         assert not missing, f"Cold-start pathway missing R9 fields: {missing}"
 
@@ -634,8 +640,8 @@ class TestSoftRerunPathway:
             engine_state="warm_closed_loop",
             evidence_layers_used=["L1", "L2", "L3", "L4"],
         )
-        r1 = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
-        r2 = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+        r1 = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
+        r2 = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
         assert r1.state == r2.state
         assert r1.primary is not None
@@ -653,8 +659,8 @@ class TestSoftRerunPathway:
             symptoms=["SYM_LAMBDA_LOW", "SYM_LAMBDA_HIGH"],
             evidence_layers_used=["L1", "L2", "L3"],
         )
-        r1 = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
-        r2 = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+        r1 = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
+        r2 = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
 
         assert len(r1.alternatives) == len(r2.alternatives)
         for a1, a2 in zip(r1.alternatives, r2.alternatives, strict=True):
@@ -663,8 +669,8 @@ class TestSoftRerunPathway:
 
     def test_soft_rerun_empty_probs_deterministic(self) -> None:
         """Empty probs determinism: insufficient_evidence both times."""
-        r1 = resolve_conflicts({}, _ctx(), _faults(), _root_causes())
-        r2 = resolve_conflicts({}, _ctx(), _faults(), _root_causes())
+        r1 = resolve_conflicts({}, _ctx(), _faults(), _qrc({}))
+        r2 = resolve_conflicts({}, _ctx(), _faults(), _qrc({}))
         assert r1.state == r2.state == "insufficient_evidence"
         assert r1.primary is None
         assert r2.primary is None
@@ -676,8 +682,8 @@ class TestSoftRerunPathway:
             engine_state="cold_open_loop",
             symptoms=["SYM_HIGH_FUEL_PRESSURE_PATTERN", "SYM_LAMBDA_HIGH"],
         )
-        r1 = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
-        r2 = resolve_conflicts(raw_probs, ctx, _faults(), _root_causes())
+        r1 = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
+        r2 = resolve_conflicts(raw_probs, ctx, _faults(), _qrc(raw_probs))
         assert r1.primary is not None
         assert r2.primary is not None
         assert r1.primary.fault_id == r2.primary.fault_id
@@ -727,7 +733,7 @@ def test_all_four_pathways_produce_same_schema_shape() -> None:
             engine_state=p["engine_state"],
             evidence_layers_used=p["evidence_layers_used"],
         )
-        result = resolve_conflicts(p["raw_probs"], ctx, _faults(), _root_causes())
+        result = resolve_conflicts(p["raw_probs"], ctx, _faults(), _qrc(p["raw_probs"]))
         fields = _result_dict(result)
         missing = R9_TOP_LEVEL_FIELDS - set(fields.keys())
         assert not missing, f"Pathway {i}: missing R9 fields: {missing}"
@@ -738,14 +744,14 @@ def test_all_four_pathways_produce_same_schema_shape() -> None:
 
 def test_perception_gap_nullable() -> None:
     """perception_gap may be None (M3 may not find a gap)."""
-    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _root_causes())
+    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _qrc({"Maf_Fault": 0.50}))
     # perception_gap is None by default in _ctx — this is valid
     assert result.perception_gap is None  # valid R9 state
 
 
 def test_next_steps_empty_when_named_fault() -> None:
     """next_steps must be empty when state is named_fault (no recovery needed)."""
-    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _root_causes())
+    result = resolve_conflicts({"Maf_Fault": 0.50}, _ctx(), _faults(), _qrc({"Maf_Fault": 0.50}))
     assert result.state == "named_fault"
     assert result.next_steps == []
 
@@ -757,7 +763,7 @@ def test_next_steps_populated_on_insufficient_evidence_with_bc() -> None:
         backward_chaining=True,
     )
     result = resolve_conflicts(
-        {"Maf_Fault": 0.05}, ctx, _faults(), _root_causes()
+        {"Maf_Fault": 0.05}, ctx, _faults(), _qrc({"Maf_Fault": 0.05})
     )
     assert result.state == "insufficient_evidence"
     assert len(result.next_steps) >= 0  # may be empty if no layer lifts above threshold
@@ -770,7 +776,7 @@ def test_next_steps_empty_when_bc_disabled() -> None:
         backward_chaining=False,
     )
     result = resolve_conflicts(
-        {"Maf_Fault": 0.05}, ctx, _faults(), _root_causes()
+        {"Maf_Fault": 0.05}, ctx, _faults(), _qrc({"Maf_Fault": 0.05})
     )
     assert result.state == "insufficient_evidence"
     assert result.next_steps == []
