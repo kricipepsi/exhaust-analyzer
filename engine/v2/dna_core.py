@@ -92,6 +92,7 @@ class DNAOutput:
     target_lambda_v112: float
     vref_missing: bool
     confidence_ceiling: float
+    known_issues: list[str] = field(default_factory=list)
     warnings: list[ValidationWarning] = field(default_factory=list)
 
 
@@ -199,6 +200,13 @@ def load_dna(
         confidence_ceiling = 1.00
         vref_missing = False
 
+    # ── known_issues — curated high-prevalence faults for this engine code ──
+    # source: T-FX-6 — only populated when VIN DNA confidence is "high";
+    # empty list otherwise.  Used downstream in ranker Step 8 sort key.
+    known_issues: list[str] = []
+    if vin_dna is not None and vin_dna.confidence == "high":
+        known_issues = list(vin_dna.known_issues)
+
     # ── engine-state FSM ─────────────────────────────────────────────────
     engine_state = _compute_engine_state(validated_input)
 
@@ -211,6 +219,7 @@ def load_dna(
         target_lambda_v112=target_lambda_v112,
         vref_missing=vref_missing,
         confidence_ceiling=confidence_ceiling,
+        known_issues=known_issues,
         warnings=warnings,
     )
 

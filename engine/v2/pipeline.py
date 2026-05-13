@@ -102,6 +102,7 @@ def diagnose(
         symptoms=list(evidence.active_symptoms),
         engine_state=dna.engine_state,
         evidence_layers_used=_derive_evidence_layers(diagnostic_input, validated),
+        known_issues=list(dna.known_issues),
         backward_chaining=backward_chaining,
         perception_gap=evidence.perception_gap,
         validation_warnings=list(validated.warnings),

@@ -182,6 +182,7 @@ def _vin_dna_high(
     o2_arch: str | None = None,
     cylinders: int | None = None,
     engine_code: str | None = "TEST_ENGINE",
+    known_issues: list[str] | None = None,
 ) -> EngineDNA:
     """Build a high-confidence EngineDNA with specific tech fields."""
     return EngineDNA(
@@ -193,6 +194,7 @@ def _vin_dna_high(
         injection=injection,  # type: ignore[arg-type]
         o2_arch=o2_arch,  # type: ignore[arg-type]
         cylinders=cylinders,
+        known_issues=known_issues if known_issues is not None else [],
     )
 
 
@@ -365,6 +367,73 @@ def test_vref_hit_vin_high_not_overridden() -> None:
     assert dna.tech_mask["has_turbo"] is True   # vref.db says turbo
     assert dna.tech_mask["has_gdi"] is True      # vref.db says GDI
     assert dna.confidence_ceiling == 1.00        # vref.db hit ceiling
+
+
+# ── known_issues population (T-FX-6) ──────────────────────────────────────────
+
+
+def test_known_issues_populated_vin_high_vref_miss() -> None:
+    """VIN high confidence + known_issues → DNAOutput.known_issues populated."""
+    vi = _validated(ctx=_ctx_with_vin())
+    with patch("engine.v2.dna_core._query_vref", return_value=None), \
+         patch("engine.v2.vin.resolve", return_value=_vin_dna_high(
+             induction="na", injection="mpfi",
+             known_issues=["timing_chain_stretch", "vanos_fault"],
+         )):
+        dna = load_dna(vi, db_path=Path("nonexistent.db"))
+
+    assert dna.known_issues == ["timing_chain_stretch", "vanos_fault"]
+
+
+def test_known_issues_populated_vin_high_vref_hit() -> None:
+    """VIN high + vref hit → known_issues still populated (both paths)."""
+    vi = _validated(ctx=VehicleContext(
+        brand="TEST", model="X",
+        engine_code="EA111_1.2_TSI",
+        displacement_cc=1197, my=2012,
+        vin="WBA12345678900001",
+    ))
+    with patch("engine.v2.vin.resolve", return_value=_vin_dna_high(
+        induction="na", injection="mpfi",
+        engine_code=None,
+        known_issues=["high_pressure_fuel_pump"],
+    )):
+        dna = load_dna(vi, db_path=_VREF_DB)
+
+    assert dna.vref_missing is False
+    assert dna.known_issues == ["high_pressure_fuel_pump"]
+
+
+def test_known_issues_empty_vin_partial() -> None:
+    """VIN partial confidence → known_issues empty (only high confidence)."""
+    vi = _validated(ctx=_ctx_with_vin())
+    with patch("engine.v2.dna_core._query_vref", return_value=None), \
+         patch("engine.v2.vin.resolve", return_value=_vin_dna_partial()):
+        dna = load_dna(vi, db_path=Path("nonexistent.db"))
+
+    assert dna.known_issues == []
+
+
+def test_known_issues_empty_no_vin() -> None:
+    """No VIN → known_issues empty."""
+    vi = _validated(ctx=_sample_ctx("NONEXISTENT", my=2015))
+    with patch("engine.v2.dna_core._query_vref", return_value=None):
+        dna = load_dna(vi, db_path=Path("nonexistent.db"))
+
+    assert dna.known_issues == []
+
+
+def test_known_issues_empty_vin_high_no_data() -> None:
+    """VIN high confidence but engine_dna has empty known_issues → empty list."""
+    vi = _validated(ctx=_ctx_with_vin())
+    with patch("engine.v2.dna_core._query_vref", return_value=None), \
+         patch("engine.v2.vin.resolve", return_value=_vin_dna_high(
+             induction="na", injection="mpfi",
+             known_issues=[],
+         )):
+        dna = load_dna(vi, db_path=Path("nonexistent.db"))
+
+    assert dna.known_issues == []
 
 
 # ── engine-state FSM ────────────────────────────────────────────────────────

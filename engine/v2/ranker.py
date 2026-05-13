@@ -44,6 +44,11 @@ COLD_START_RICH_FAMILY: frozenset[str] = frozenset(
 # source: v2-result-schema §4 step 5 — cold-start suppression factor
 COLD_START_SUPPRESSION_FACTOR: float = 0.30
 
+# source: T-FX-6 — calibrated conservatively; must not cause a fault with
+# zero evidence to outrank one with positive CF.  Only changes ranking within
+# the top-3 when raw_scores are close.
+_KNOWN_ISSUE_PRIOR_BOOST: float = 0.05
+
 # source: v2-backward-chaining §3 — calibrated from V1 accuracy deltas
 LAYER_EXPECTED_LIFT: dict[str, float] = {
     "L2_high_idle_gas": 0.12,
@@ -116,6 +121,7 @@ class ResolutionContext:
     symptoms: list[str]
     engine_state: str
     evidence_layers_used: list[str]
+    known_issues: list[str] = field(default_factory=list)
     backward_chaining: bool = False
     perception_gap: PerceptionGap | None = None
     validation_warnings: list[ValidationWarning] = field(default_factory=list)
@@ -179,9 +185,16 @@ def resolve_conflicts(
     ceiling = compute_ceiling(ctx.evidence_layers_used)
 
     # ── Step 8: Sort + deterministic tie-break ─────────────────────────
+    # source: T-FX-6 — known_issues boost is a tiebreaker-level nudge (0.05).
+    # Only affects ordering; does NOT change raw_score or confidence.
+    known_set = frozenset(ctx.known_issues)
     ranked = sorted(
         candidates.items(),
-        key=lambda x: (-x[1], -faults.get(x[0], {}).get("prior", 0.0), x[0]),
+        key=lambda x: (
+            -x[1] - (_KNOWN_ISSUE_PRIOR_BOOST if x[0] in known_set else 0.0),
+            -faults.get(x[0], {}).get("prior", 0.0),
+            x[0],
+        ),
     )
 
     return _build_result(ranked, promoted, ctx, faults, qualified_root_causes, ceiling)
