@@ -896,7 +896,7 @@ def main() -> None:
 
     # Verify all new cases have required fields
     for case in CASES:
-        assert case["case_id"], f"Missing case_id"
+        assert case["case_id"], "Missing case_id"
         assert case["expected_top_fault"], f"Missing expected_top_fault for {case['case_id']}"
         assert case["expected_state"] in ("named_fault", "insufficient_evidence"), \
             f"Invalid expected_state for {case['case_id']}: {case['expected_state']}"

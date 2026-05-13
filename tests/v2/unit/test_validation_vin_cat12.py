@@ -6,7 +6,6 @@ import pytest
 
 from engine.v2.input_model import (
     DiagnosticInput,
-    ValidationWarning,
     VehicleContext,
 )
 from engine.v2.validation import validate

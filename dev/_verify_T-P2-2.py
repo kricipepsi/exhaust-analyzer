@@ -1,8 +1,13 @@
 """Ad-hoc manual verification for T-P2-2 validation.py task checks."""
 from engine.v2.input_model import (
-    DiagnosticInput, VehicleContext, GasRecord, OBDRecord, FreezeFrameRecord,
+    DiagnosticInput,
+    FreezeFrameRecord,
+    GasRecord,
+    OBDRecord,
+    VehicleContext,
 )
 from engine.v2.validation import validate
+
 
 def main() -> None:
     # Shared context
@@ -22,7 +27,7 @@ def main() -> None:
     di2 = DiagnosticInput(vehicle_context=ctx, dtcs=[], analyser_type="5-gas",
                           gas_idle=gas, obd=obd2)
     vi2 = validate(di2)
-    assert "gas_idle" in vi2.invalid_channels, f"FAIL: O2=19% should reject gas_idle"
+    assert "gas_idle" in vi2.invalid_channels, "FAIL: O2=19% should reject gas_idle"
     print("PASS: O2=19% with RPM=800 -> gas_idle rejected")
 
     # Verification 5: fuel_status=OL_FAULT, ECT=80 -> open_loop_suppression=True

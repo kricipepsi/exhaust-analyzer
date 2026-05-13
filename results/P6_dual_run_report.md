@@ -1,6 +1,6 @@
 # P6 Dual-Run Report — V1 vs V2
 
-**Date:** 2026-05-10 13:26
+**Date:** 2026-05-13 16:04
 **Corpus:** `cases/csv/cases_petrol_master_v6.csv`
 **Cases processed:** 400
 **Elapsed:** 0.9s
@@ -44,7 +44,7 @@
 | MECH-002 | mechanical_wear | head_gasket | Fuel_Delivery_Low | blocker |
 | MECH-003 | lean_condition | lean_condition | Fuel_Delivery_Low | threshold_tweak |
 | MECH-004 | cam_timing | catalyst_failure | Vacuum_Leak_Intake | threshold_tweak |
-| MECH-005 | lean_condition | valve_seal_wear | Fuel_Delivery_Low | threshold_tweak |
+| MECH-005 | lean_condition | valve_seal_wear | Vacuum_Leak_Intake | threshold_tweak |
 | MECH-006 | mechanical_wear | head_gasket | Fuel_Delivery_Low | threshold_tweak |
 | ECU-001 | ecu_fault | pcv_fault | Leaking_Injector | threshold_tweak |
 | ECU-002 | ecu_fault | ecu_fault | ECT_Sensor_Bias | threshold_tweak |
@@ -155,7 +155,7 @@
 | EXP-N011 | lean_condition | catalyst_failure | Vacuum_Leak_Intake | threshold_tweak |
 | EXP-N012 | catalyst_failure | rich_mixture | Lean_Condition | threshold_tweak |
 | EXP-N013 | rich_mixture | high_fuel_pressure | EVAP_Purge_Stuck_Open | threshold_tweak |
-| EXP-N014 | lean_condition | late_ignition_timing | GDI_Carbon_Buildup | threshold_tweak |
+| EXP-N014 | lean_condition | late_ignition_timing | Lean_Condition | threshold_tweak |
 | EXP-N015 | sensor_fault | sensor_fault | Vacuum_Leak_Intake | threshold_tweak |
 | EXP-N016 | misfire | ecu_fault | Spark_Plug_Worn | threshold_tweak |
 | EXP-N017 | lean_condition | turbo_fault | Turbo_Fault | expected_drift |
@@ -220,7 +220,7 @@
 | CASE-015 | catalyst_failure | sensor_fault | Lean_Condition | threshold_tweak |
 | CASE-016 | catalyst_failure | catalyst_failure | Aftermarket_Catalyst_Inefficient | threshold_tweak |
 | CASE-017 | lean_condition | Mechanical_Lean_Vacuum_Leak | Fuel_Delivery_Low | threshold_tweak |
-| CASE-018 | cam_timing | catalyst_failure | VVT_Phaser_Fault | threshold_tweak |
+| CASE-018 | cam_timing | catalyst_failure | Lean_Condition | threshold_tweak |
 | CASE-019 | lean_condition | lean_condition | Fuel_Delivery_Low | threshold_tweak |
 | CASE-020 | lean_condition | stuck_egr_open | EGR_Stuck_Open | expected_drift |
 | CASE-021 | misfire | late_ignition_timing | Fuel_Delivery_Low | threshold_tweak |
@@ -441,7 +441,7 @@
 ### MECH-002
 - **Expected:** mechanical_wear
 - **V1:** head_gasket (confidence=0.0916)
-- **V2:** {'fault_id': 'Fuel_Delivery_Low', 'symptom_chain': [], 'root_cause': None, 'confidence': 0.48725393625, 'raw_score': 0.48725393625, 'evidence_layers_used': ['L1', 'L3'], 'tier_delta': 0.0, 'discriminator_satisfied': False, 'promoted_from_parent': True}
+- **V2:** {'fault_id': 'Fuel_Delivery_Low', 'symptom_chain': [], 'root_cause': None, 'confidence': 0.37675393625000003, 'raw_score': 0.37675393625000003, 'evidence_layers_used': ['L1', 'L3'], 'tier_delta': 0.0, 'discriminator_satisfied': False, 'promoted_from_parent': True}
 
 ### PDF-4G-03
 - **Expected:** rich_mixture

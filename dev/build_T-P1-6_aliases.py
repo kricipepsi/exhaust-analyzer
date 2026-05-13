@@ -5,7 +5,7 @@ aliases from timing_compression_forensic.md.
 from __future__ import annotations
 
 from pathlib import Path
-import re
+
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -198,7 +198,7 @@ def main() -> None:
         reason = entry["reason"]
         if target is None:
             lines.append(f"{old_id}:")
-            lines.append(f"  target: null")
+            lines.append("  target: null")
             lines.append(f"  reason: \"{reason}\"")
         else:
             lines.append(f"{old_id}:")

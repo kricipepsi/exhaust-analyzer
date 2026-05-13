@@ -1,5 +1,6 @@
 """Manual verification for T-P2-3 — VL categories 6 and 8b."""
 import sys
+
 sys.path.insert(0, ".")
 
 from engine.v2.input_model import (

@@ -2,11 +2,8 @@
 
 from __future__ import annotations
 
-import pytest
-
 from engine.v2.input_model import DiagnosticInput, GasRecord, VehicleContext
 from engine.v2.pipeline import diagnose
-
 
 # ── helpers ────────────────────────────────────────────────────────────────
 

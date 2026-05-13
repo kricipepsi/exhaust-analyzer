@@ -28,6 +28,39 @@ v2.0.1's deliverables are the structural template the planned Diesel sibling app
 
 ---
 
+## [v2.0.2] - 2026-05-13 — Architecture Fix Pack
+
+> Non-breaking cleanup on top of v2.0.1. Addresses 8 structural issues surfaced by the `ARCHITECTURE_REVIEW.md` audit. Zero regressions vs v2.0.1 baseline. All 674 tests green. 6/8 ship gates PASS (2 pre-existing failures unchanged: L2 corpus 5.0% structural floor, missing perturbation suite).
+
+### Fixed
+- **T-FX-1:** DTC map restructured — replaced fragile if-chain with `_DTC_SET_MAP` dict in `digital_parser.py`. All 13 DTC families resolve identically.
+- **T-FX-2:** Signal extractor consolidation — single source in `input_model.py`. Removed duplicated `extract_*` helpers.
+- **T-FX-3:** VIN fallback bridge — `induction`, `injection`, and tech-flags from `EngineDNA` now flow into `DNAOutput` on vref-miss path.
+- **T-FX-4:** GDI HC threshold — raised from 600 ppm to 900 ppm when `has_gdi=True` per `master_gas_guide.md` GDI footnote.
+- **T-FX-5:** `score_root_causes` wiring — `pipeline.py` now calls the `kg_engine` root-cause gate; removed inline 0.80 threshold duplication in `ranker._find_root_cause`.
+- **T-FX-6:** `known_issues` prior boost — `DNAOutput.known_issues` field flows through `ResolutionContext` into ranker tiebreaker sort key.
+- **T-FX-7:** Trim-trend dead code — deleted `_get_cruise_trim_total` stub, removed `_classify_trim_full`, renamed `_classify_trim_idle_only` → `_classify_trim_trend` with L2-aware CF penalty.
+- **T-FX-8:** UI contract fix — 7 phantom field reads in app.py results pane corrected: `discriminator_tags`→`discriminator_satisfied`, `promotion_tags`→`promoted_from_parent`, perception gap block rewired, next-steps evidence/expected_lift fields.
+
+### Changed
+- `digital_parser.py` — DTC family dispatch via `_DTC_SET_MAP` (T-FX-1)
+- `input_model.py` — `extract_*` helpers consolidated (T-FX-2)
+- `dna_core.py` — VIN fallback bridge fields in `DNAOutput` (T-FX-3, T-FX-6)
+- `gas_lab.py` — GDI-aware HC threshold (T-FX-4)
+- `pipeline.py` — `score_root_causes` gate call + `known_issues` in `ResolutionContext` (T-FX-5, T-FX-6)
+- `ranker.py` — `known_issues` tiebreaker sort nudge (T-FX-6)
+- `arbitrator.py` — trim-trend rename + dead code removal (T-FX-7)
+- `app.py` — 7 V1→V2 field name fixes in results pane (T-FX-8)
+- `master_gas_guide.md` — GDI HC footnote (T-FX-4)
+- Tests: +55 tests across all FX tasks; 674 total green, 94% coverage
+
+### Known limitations (unchanged from v2.0.0/v2.0.1)
+- Layer-2 corpus accuracy: 5.0% family (structural floor; 12 blocker cases pre-existing). v2.1 structural work required.
+- Perturbation test suite (L14): not yet built.
+- Mutation-score gate: skipped (mutmut requires WSL/Linux).
+
+---
+
 ## v2.0.0 — Evidence Arbitrator Architecture (2026-05-10)
 
 ### Breaking changes from V1

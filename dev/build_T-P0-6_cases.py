@@ -4,8 +4,10 @@
 Real-world provenance — no synthetic gas invented to force output.
 """
 from __future__ import annotations
+
 import csv
 from pathlib import Path
+
 REPO = Path(__file__).resolve().parent.parent
 CSV_PATH = REPO / "cases" / "csv" / "cases_petrol_master_v6.csv"
 COLS = [

@@ -7,8 +7,6 @@ or confidence.
 
 from __future__ import annotations
 
-import pytest
-
 from engine.v2.ranker import ResolutionContext, resolve_conflicts
 
 
