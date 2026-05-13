@@ -7,6 +7,7 @@ era bucket derivation, tech mask flag defaults, signal extraction helpers.
 from __future__ import annotations
 
 from pathlib import Path
+from unittest.mock import patch
 
 import pytest
 
@@ -30,6 +31,7 @@ from engine.v2.input_model import (
     extract_fuel_status,
     extract_rpm,
 )
+from engine.v2.vin.prior_context import EngineDNA
 
 # ── helpers ─────────────────────────────────────────────────────────────────
 
@@ -169,6 +171,200 @@ def test_load_dna_vref_miss_modern_era() -> None:
     assert dna.vref_missing is True
     assert dna.era_bucket == ERA_MODERN
     assert dna.confidence_ceiling == 0.60
+
+
+# ── VIN fallback bridge (T-FX-3) ─────────────────────────────────────────────
+
+
+def _vin_dna_high(
+    induction: str | None = None,
+    injection: str | None = None,
+    o2_arch: str | None = None,
+    cylinders: int | None = None,
+    engine_code: str | None = "TEST_ENGINE",
+) -> EngineDNA:
+    """Build a high-confidence EngineDNA with specific tech fields."""
+    return EngineDNA(
+        source="vininfo+dna",
+        confidence="high",
+        make="TEST",
+        engine_code=engine_code,
+        induction=induction,  # type: ignore[arg-type]
+        injection=injection,  # type: ignore[arg-type]
+        o2_arch=o2_arch,  # type: ignore[arg-type]
+        cylinders=cylinders,
+    )
+
+
+def _vin_dna_partial() -> EngineDNA:
+    """Build a partial-confidence EngineDNA (should NOT trigger bridge)."""
+    return EngineDNA(
+        source="wmi_only",
+        confidence="partial",
+        make="TEST",
+    )
+
+
+def _ctx_with_vin(
+    engine_code: str = "NONEXISTENT",
+    my: int = 2015,
+) -> VehicleContext:
+    """VehicleContext with a VIN that passes format validation."""
+    return VehicleContext(
+        brand="TEST",
+        model="X",
+        engine_code=engine_code,
+        displacement_cc=2000,
+        my=my,
+        vin="WBA12345678900001",
+    )
+
+
+def test_vref_miss_vin_high_turbo() -> None:
+    """vref miss + VIN high + induction=turbo → has_turbo=True."""
+    vi = _validated(ctx=_ctx_with_vin())
+    with patch("engine.v2.dna_core._query_vref", return_value=None), \
+         patch("engine.v2.vin.resolve", return_value=_vin_dna_high(induction="turbo")):
+        dna = load_dna(vi, db_path=Path("nonexistent.db"))
+
+    assert dna.vref_missing is True
+    assert dna.tech_mask["has_turbo"] is True
+    assert dna.tech_mask["has_gdi"] is False
+    assert dna.tech_mask["is_v_engine"] is False
+    assert dna.o2_type == "NB"
+
+
+def test_vref_miss_vin_high_super() -> None:
+    """vref miss + VIN high + induction=super → has_turbo=True."""
+    vi = _validated(ctx=_ctx_with_vin())
+    with patch("engine.v2.dna_core._query_vref", return_value=None), \
+         patch("engine.v2.vin.resolve", return_value=_vin_dna_high(induction="super")):
+        dna = load_dna(vi, db_path=Path("nonexistent.db"))
+
+    assert dna.tech_mask["has_turbo"] is True
+
+
+def test_vref_miss_vin_high_gdi() -> None:
+    """vref miss + VIN high + injection=gdi → has_gdi=True."""
+    vi = _validated(ctx=_ctx_with_vin())
+    with patch("engine.v2.dna_core._query_vref", return_value=None), \
+         patch("engine.v2.vin.resolve", return_value=_vin_dna_high(injection="gdi")):
+        dna = load_dna(vi, db_path=Path("nonexistent.db"))
+
+    assert dna.tech_mask["has_gdi"] is True
+    assert dna.tech_mask["has_turbo"] is False
+
+
+def test_vref_miss_vin_high_tsi() -> None:
+    """vref miss + VIN high + injection=tsi → has_gdi=True."""
+    vi = _validated(ctx=_ctx_with_vin())
+    with patch("engine.v2.dna_core._query_vref", return_value=None), \
+         patch("engine.v2.vin.resolve", return_value=_vin_dna_high(injection="tsi")):
+        dna = load_dna(vi, db_path=Path("nonexistent.db"))
+
+    assert dna.tech_mask["has_gdi"] is True
+
+
+def test_vref_miss_vin_high_wideband() -> None:
+    """vref miss + VIN high + o2_arch=wideband → o2_type='WB'."""
+    vi = _validated(ctx=_ctx_with_vin())
+    with patch("engine.v2.dna_core._query_vref", return_value=None), \
+         patch("engine.v2.vin.resolve", return_value=_vin_dna_high(o2_arch="wideband")):
+        dna = load_dna(vi, db_path=Path("nonexistent.db"))
+
+    assert dna.o2_type == "WB"
+
+
+def test_vref_miss_vin_high_v6() -> None:
+    """vref miss + VIN high + cylinders=6 → is_v_engine=True."""
+    vi = _validated(ctx=_ctx_with_vin())
+    with patch("engine.v2.dna_core._query_vref", return_value=None), \
+         patch("engine.v2.vin.resolve", return_value=_vin_dna_high(cylinders=6)):
+        dna = load_dna(vi, db_path=Path("nonexistent.db"))
+
+    assert dna.tech_mask["is_v_engine"] is True
+
+
+def test_vref_miss_vin_high_v8() -> None:
+    """vref miss + VIN high + cylinders=8 → is_v_engine=True."""
+    vi = _validated(ctx=_ctx_with_vin())
+    with patch("engine.v2.dna_core._query_vref", return_value=None), \
+         patch("engine.v2.vin.resolve", return_value=_vin_dna_high(cylinders=8)):
+        dna = load_dna(vi, db_path=Path("nonexistent.db"))
+
+    assert dna.tech_mask["is_v_engine"] is True
+
+
+def test_vref_miss_vin_high_inline4() -> None:
+    """vref miss + VIN high + cylinders=4 → is_v_engine=False (inline-4)."""
+    vi = _validated(ctx=_ctx_with_vin())
+    with patch("engine.v2.dna_core._query_vref", return_value=None), \
+         patch("engine.v2.vin.resolve", return_value=_vin_dna_high(cylinders=4)):
+        dna = load_dna(vi, db_path=Path("nonexistent.db"))
+
+    assert dna.tech_mask["is_v_engine"] is False
+
+
+def test_vref_miss_vin_high_combined() -> None:
+    """vref miss + VIN high with all fields → all bridge flags set."""
+    vi = _validated(ctx=_ctx_with_vin())
+    with patch("engine.v2.dna_core._query_vref", return_value=None), \
+         patch("engine.v2.vin.resolve", return_value=_vin_dna_high(
+             induction="turbo", injection="gdi", o2_arch="wideband", cylinders=8,
+         )):
+        dna = load_dna(vi, db_path=Path("nonexistent.db"))
+
+    assert dna.tech_mask["has_turbo"] is True
+    assert dna.tech_mask["has_gdi"] is True
+    assert dna.tech_mask["is_v_engine"] is True
+    assert dna.o2_type == "WB"
+
+
+def test_vref_miss_vin_partial_no_bridge() -> None:
+    """vref miss + VIN partial confidence → bridge does NOT fire."""
+    vi = _validated(ctx=_ctx_with_vin())
+    with patch("engine.v2.dna_core._query_vref", return_value=None), \
+         patch("engine.v2.vin.resolve", return_value=_vin_dna_partial()):
+        dna = load_dna(vi, db_path=Path("nonexistent.db"))
+
+    assert dna.tech_mask["has_turbo"] is False
+    assert dna.tech_mask["has_gdi"] is False
+    assert dna.tech_mask["is_v_engine"] is False
+    assert dna.o2_type == "NB"
+
+
+def test_vref_miss_vin_none_no_bridge() -> None:
+    """vref miss + VIN None (no VIN at all) → bridge does NOT fire."""
+    vi = _validated(ctx=_sample_ctx("NONEXISTENT", my=2015))
+    with patch("engine.v2.dna_core._query_vref", return_value=None):
+        dna = load_dna(vi, db_path=Path("nonexistent.db"))
+
+    assert dna.tech_mask["has_turbo"] is False
+    assert dna.tech_mask["has_gdi"] is False
+    assert dna.tech_mask["is_v_engine"] is False
+    assert dna.o2_type == "NB"
+
+
+def test_vref_hit_vin_high_not_overridden() -> None:
+    """vref hit + VIN high → tech_mask from vref.db, NOT overridden by VIN."""
+    vi = _validated(ctx=VehicleContext(
+        brand="TEST", model="X",
+        engine_code="EA111_1.2_TSI",
+        displacement_cc=1197, my=2012,
+        vin="WBA12345678900001",
+    ))
+    # VIN says NA + MPFI → would override if bridge fired on hit path
+    with patch("engine.v2.vin.resolve", return_value=_vin_dna_high(
+            induction="na", injection="mpfi", o2_arch="narrowband", cylinders=4,
+            engine_code=None,  # don't override engine_code for vref lookup
+        )):
+        dna = load_dna(vi, db_path=_VREF_DB)
+
+    # vref.db hit — bridge must NOT fire; values come from vref.db
+    assert dna.vref_missing is False
+    assert dna.tech_mask["has_turbo"] is True   # vref.db says turbo
+    assert dna.tech_mask["has_gdi"] is True      # vref.db says GDI
+    assert dna.confidence_ceiling == 1.00        # vref.db hit ceiling
 
 
 # ── engine-state FSM ────────────────────────────────────────────────────────

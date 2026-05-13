@@ -62,6 +62,16 @@ _COLD_ECT_THRESHOLD = 75.0
 # source: v2-era-masking §6 rule 3 — confidence ceiling when vref.db misses
 _VREF_MISS_CEILING = 0.60
 
+# ── VIN fallback bridge constants ─────────────────────────────────────────────
+# source: T-FX-3 VIN fallback bridge — induction types that imply forced induction
+_VIN_TURBO_INDUCTIONS: frozenset[str] = frozenset({"turbo", "super", "twincharged"})
+
+# source: T-FX-3 VIN fallback bridge — injection types that imply direct injection
+_VIN_GDI_INJECTIONS: frozenset[str] = frozenset({"gdi", "tsi"})
+
+# source: T-FX-3 VIN fallback bridge — cylinder counts that imply V-engine
+_VIN_V_ENGINE_CYLINDERS: frozenset[int] = frozenset({6, 8, 10, 12})
+
 # ── output dataclass ────────────────────────────────────────────────────────
 
 
@@ -153,6 +163,23 @@ def load_dna(
         target_lambda_v112 = _DEFAULT_TARGET_LAMBDA
         confidence_ceiling = _VREF_MISS_CEILING
         vref_missing = True
+
+        # source: T-FX-3 VIN fallback bridge
+        # When vref.db misses and VIN DNA has high confidence, use
+        # VIN-derived fields to enrich tech_mask and o2_type.
+        if vin_dna is not None and vin_dna.confidence == "high":
+            if vin_dna.induction in _VIN_TURBO_INDUCTIONS:
+                tech_mask["has_turbo"] = True
+            if vin_dna.injection in _VIN_GDI_INJECTIONS:
+                tech_mask["has_gdi"] = True
+            if vin_dna.o2_arch == "wideband":
+                o2_type = "WB"
+            if (
+                vin_dna.cylinders is not None
+                and vin_dna.cylinders in _VIN_V_ENGINE_CYLINDERS
+            ):
+                tech_mask["is_v_engine"] = True
+
         warnings.append(
             ValidationWarning(
                 category=0,
