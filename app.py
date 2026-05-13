@@ -598,12 +598,10 @@ else:
         if root_cause:
             st.markdown(f"**Root Cause:** ★ {root_cause}")
 
-        disc = primary.get("discriminator_tags", [])
-        prom = primary.get("promotion_tags", [])
-        if disc:
-            st.markdown("**Discriminators:** " + ", ".join(disc))
-        if prom:
-            st.markdown("**Promotions:** " + ", ".join(prom))
+        if primary.get("discriminator_satisfied"):
+            st.success("✓ Discriminator satisfied")
+        if primary.get("promoted_from_parent"):
+            st.info("↑ Promoted over parent fault")
 
     # 5. Differential diagnosis
     if alternatives:
@@ -645,17 +643,24 @@ else:
             st.caption("Plotly not available — install plotly>=5.14 for confidence gauge.")
 
     # 7. Perception gap
-    if perception_gap and perception_gap.get("fired"):
+    if perception_gap:
+        delta = abs(
+            perception_gap.get("analyser_lambda", 0)
+            - perception_gap.get("obd_lambda", 0)
+        )
         st.info(
-            f"🔍 **Perception Gap Detected:** {perception_gap.get('summary', '')} "
-            f"(Δλ = {perception_gap.get('delta_lambda', 0):.3f})"
+            f"🔍 **Perception Gap:** {perception_gap.get('gap_type', '')} "
+            f"(Δλ = {delta:.3f}, CF = {perception_gap.get('cf', 0):.2f})"
         )
 
     # 8. Next steps
     if next_steps:
         with st.expander("📋 Recommended Next Steps", expanded=True):
             for ns in next_steps:
-                st.markdown(f"- **{ns.get('action', ns)}**: {ns.get('rationale', '')}")
+                st.markdown(
+                    f"- **{ns.get('evidence', str(ns))}**: "
+                    f"expected lift +{ns.get('expected_lift', 0):.0%}"
+                )
 
     # 9. Cascading consequences
     if cascading:
