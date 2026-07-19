@@ -1,0 +1,162 @@
+{
+  "version": "2.0",
+  "fault_family": "lean_condition",
+  "rules": [
+    {
+      "rule_id": "LC-001",
+      "fault_family": "lean_condition",
+      "description": "Classic lean condition from unmetered air \u2014 Brettschneider lambda > 1.03 with positive fuel trims",
+      "chemistry_evidence": [
+        {
+          "state": "LEAN_MIXTURE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "longft1",
+          "operator": "ge",
+          "value": 10.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "shrtft1",
+          "operator": "ge",
+          "value": 5.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0171",
+            "P0174"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.85,
+      "competition_group": "lean_condition",
+      "passes_cases": [
+        "CSV-016",
+        "CSV-109",
+        "CSV-110",
+        "CSV-112",
+        "MECH-003",
+        "case_031",
+        "case_032"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a72",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "LC-002",
+      "fault_family": "lean_condition",
+      "description": "Lean condition with retarded timing \u2014 knock-avoidance timing pull causes lean chemistry without DTC confirmation",
+      "chemistry_evidence": [
+        {
+          "state": "LEAN_MIXTURE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        },
+        {
+          "state": "TIMING_RETARDED",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "longft1",
+          "operator": "ge",
+          "value": 3.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "map_kpa",
+          "operator": "lt",
+          "value": 40.0,
+          "tier": "SUGGESTIVE",
+          "units": "kPa",
+          "wiki_ref": "OBD_VOCABULARY \u00a73"
+        }
+      ],
+      "base_weight": 0.81,
+      "competition_group": "lean_condition",
+      "passes_cases": [
+        "REAL-002",
+        "EXP-N011",
+        "case_003"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a72"
+      ]
+    },
+    {
+      "rule_id": "LC-003",
+      "fault_family": "lean_condition",
+      "description": "MAF sensor contamination or under-reading \u2014 low airflow signal causes ECU to under-fuel producing lean exhaust",
+      "chemistry_evidence": [
+        {
+          "state": "LEAN_MIXTURE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "maf",
+          "operator": "lt",
+          "value": 3.5,
+          "tier": "SUGGESTIVE",
+          "units": "g/s",
+          "wiki_ref": "OBD_VOCABULARY \u00a73"
+        },
+        {
+          "pid": "longft1",
+          "operator": "ge",
+          "value": 8.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0101",
+            "P0102"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.75,
+      "competition_group": "lean_condition",
+      "passes_cases": [
+        "CASE-027",
+        "case_050",
+        "EXT-202"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a72",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    }
+  ]
+}

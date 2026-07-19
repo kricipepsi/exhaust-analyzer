@@ -1,0 +1,804 @@
+{
+  "task": "T-V3-P4-C5-PRE",
+  "generated": "2026-07-05",
+  "mode": "DISCLOSE only (read-only pre-author; no wiring, no score move)",
+  "purpose": "Instance the frozen reveal contract for C5 — lean-condition root cause. Surfaces LeanRootCauseState gates, consumer mapping, C6-MAF-collision, C3 interaction, 10-case split, live FT-8 neighbours, column audit, confounders, and baseline pin.",
+  "reveal_contract_template": [
+    {
+      "key": "BUILDABLE_NOW",
+      "definition": "Producer/consumer logic + thresholds derivable from the cluster research answer; provable by unit tests on synthetic vectors, with no owner data."
+    },
+    {
+      "key": "SCORING_GATED",
+      "definition": "The per-case owner columns still required and which residual case_ids each unlocks; stays abstained until the owner supplies real measured values."
+    },
+    {
+      "key": "CODE_LANDED_NEQ_SCORE_MOVED",
+      "definition": "Explicit separation of producer/consumer logic shipped from top3_family delta. Landing code proves the discriminator is wired; it does not move score until gated data exists."
+    },
+    {
+      "key": "REGRESSION_FT8",
+      "definition": "The neighbour set the consumer edit touches, plus the no-regressed-family audit run on the full corpus at commit time."
+    },
+    {
+      "key": "ABSTAIN_FALLBACK",
+      "definition": "Cases whose discriminating signal the owner cannot supply stay abstained at MARGIN=0.02, never guessed from static idle data."
+    }
+  ],
+  "baseline": {
+    "yardstick": "V3_YARDSTICK_2026-07-05-C6B",
+    "csv_hash": "bf7393688230caf7f15054cc2473343e26351aa72c4615ca83044c7eb12fc0de",
+    "oracle_hash": "3088a7c3",
+    "scorer": "apps/wired/v7/run_suite.py (hash-locked, untouched)",
+    "named_run": "POST_T_V3_P4_C6B",
+    "run_dir": "apps/wired/v7/runs/POST_T_V3_P4_C6B/results.json",
+    "note": "All C5 sizing references this current post-C6B baseline. If any commit lands first, stop and re-pin before C5-SYNTH/C5A."
+  },
+  "c5_instance": {
+    "cluster": "C5",
+    "title": "lean-condition root cause",
+    "research_source": "v3/research/research_answers/cluster5.md",
+    "producer": {
+      "states": [
+        "OBDLab LeanRootCauseState"
+      ],
+      "emit_condition": "Emit VACUUM_LEAK_TRIM_PATTERN from positive trims at idle that recover at 2500; emit FUEL_DELIVERY_SHORTFALL from lean under load and rail pressure drop > 35 kPa; emit MAF_UNDERREAD from peak load < 80% with positive trims; emit SENSOR_HEALTH_UNPROVEN_ABSTAIN for static-only evidence.",
+      "thresholds": [
+        {
+          "signal": "Total fuel trim delta (ΔTFT) between idle and 2500 RPM",
+          "maneuver": "Stationary stabilized idle (Maneuver A) transitioning to free-rev mid-RPM hold (Maneuver B)",
+          "threshold": "Positive trims at idle (e.g. TFT >= +15%) that recover by >= 15% at 2500 RPM (e.g. TFT <= +10%)",
+          "verdict": "VACUUM_LEAK_TRIM_PATTERN",
+          "producer_state": "OBDLab LeanRootCauseState",
+          "evidence_fields": "stft_idle_pct, ltft_idle_pct, stft_2500_pct, ltft_2500_pct",
+          "cite": "cluster5.md §Signal Evaluation and Discriminative Ranking lines 127-129; §Quantitative Expected Signatures and Decision Matrix lines 155-156",
+          "grounding": "empirical (direction strong; numeric values provisional)",
+          "feasibility_tier": "Tier A: generic OBD-II live trims"
+        },
+        {
+          "signal": "Fuel rail pressure drop and wide-range lambda under WOT",
+          "maneuver": "Wide-Open Throttle (WOT) acceleration sweep (Maneuver C) under high load",
+          "threshold": "Fuel rail pressure drop of > 5 psi (35 kPa) below OEM spec, accompanied by wide-range lambda lambda > 1.05 (failure to enrich)",
+          "verdict": "FUEL_DELIVERY_SHORTFALL",
+          "producer_state": "OBDLab LeanRootCauseState",
+          "evidence_fields": "fuel_rail_pressure_load_kpa, wideband_lambda_wot",
+          "cite": "cluster5.md §Signal Evaluation and Discriminative Ranking lines 135-137, 139-141; §Quantitative Expected Signatures and Decision Matrix lines 158-159",
+          "grounding": "manufacturer-typical (for 35 kPa drop) / standardized (for lambda > 1.05)",
+          "feasibility_tier": "Tier A if sensor exposed; Tier C if mechanical gauge required"
+        },
+        {
+          "signal": "Calculated engine load at peak WOT, with positive trims",
+          "maneuver": "Wide-Open Throttle (WOT) acceleration sweep (Maneuver C) up to upshift point",
+          "threshold": "Calculated engine load failing to reach OEM typical bounds (Peak Load < 80%) under WOT, while trims run positive",
+          "verdict": "MAF_UNDERREAD",
+          "producer_state": "OBDLab LeanRootCauseState",
+          "evidence_fields": "calc_load_wot_pct, stft_idle_pct, ltft_idle_pct, stft_2500_pct, ltft_2500_pct, stft_load_pct, ltft_load_pct",
+          "cite": "cluster5.md §Signal Evaluation and Discriminative Ranking lines 131-133; §Quantitative Expected Signatures and Decision Matrix line 157; Bottom Line Diagnostic Recommendation line 166",
+          "grounding": "manufacturer-typical / empirical-inferred",
+          "feasibility_tier": "Tier A: generic OBD-II calculated load and trims"
+        },
+        {
+          "signal": "Static-only or idle-only trim evidence",
+          "maneuver": "Stationary idle only; absent Maneuver B/C dynamic evidence",
+          "threshold": "Reject static/idle-only trims as a separator; emit SENSOR_HEALTH_UNPROVEN_ABSTAIN",
+          "verdict": "SENSOR_HEALTH_UNPROVEN_ABSTAIN",
+          "producer_state": "OBDLab LeanRootCauseState",
+          "evidence_fields": "absence of decisive dynamic 2500 RPM / WOT load / pressure evidence",
+          "cite": "cluster5.md §Bottom Line Diagnostic Recommendation line 166; V3_SIGNAL_ACQUISITION_SPEC_2026-07-01.md §C5.6 line 53",
+          "grounding": "physics/regulatory rationale (dynamic multi-point data required)",
+          "feasibility_tier": "Abstain fallback"
+        }
+      ],
+      "corpus_columns": [
+        "stft_idle_pct",
+        "ltft_idle_pct",
+        "stft_2500_pct",
+        "ltft_2500_pct",
+        "stft_load_pct",
+        "ltft_load_pct",
+        "calc_load_wot_pct",
+        "maf_gps_idle",
+        "maf_gps_2500",
+        "fuel_rail_pressure_load_kpa",
+        "wideband_lambda_wot"
+      ]
+    },
+    "column_audit": {
+      "total_contract_columns": 11,
+      "live_columns": [
+        "ltft_2500_pct",
+        "ltft_idle_pct",
+        "maf_gps_2500",
+        "maf_gps_idle",
+        "stft_2500_pct",
+        "stft_idle_pct"
+      ],
+      "live_columns_count": 6,
+      "new_columns": [
+        "calc_load_wot_pct",
+        "fuel_rail_pressure_load_kpa",
+        "ltft_load_pct",
+        "stft_load_pct",
+        "wideband_lambda_wot"
+      ],
+      "new_columns_count": 5,
+      "note": "Of the 11 required C5 columns, 6 already exist in the live schema (4 trims from C2B, 2 MAF from C6B). The genuinely new ask is shrank to 5 columns. For C5 rows, the live columns exist in the schema but are currently empty/null."
+    },
+    "consumer": {
+      "lean_condition": {
+        "file": "labs/comlab/registry/rules/lean_condition.json",
+        "rules": [
+          "LC-001",
+          "LC-002",
+          "LC-003"
+        ],
+        "reads": "LC-001/LC-002/LC-003 consume trims, MAP, and MAF g/s columns. In C5B, they will gate on the C5 state outputs VACUUM_LEAK_TRIM_PATTERN and MAF_UNDERREAD.",
+        "evidence_fields": [
+          "stft_idle_pct",
+          "ltft_idle_pct",
+          "stft_2500_pct",
+          "ltft_2500_pct",
+          "stft_load_pct",
+          "ltft_load_pct",
+          "calc_load_wot_pct",
+          "maf_gps_idle",
+          "maf_gps_2500",
+          "fuel_rail_pressure_load_kpa",
+          "wideband_lambda_wot"
+        ]
+      },
+      "vacuum_leak": {
+        "file": "labs/comlab/registry/rules/vacuum_leak.json",
+        "rules": [
+          "VL-001",
+          "VL-002",
+          "VL-003"
+        ],
+        "reads": "VL-001/VL-002/VL-003 read trims and MAP directly. Today, no cases in the active corpus expect vacuum_leak as their fault family, so these rules are not currently mapped to active cases (only synthetic placeholders).",
+        "evidence_fields": [
+          "stft_idle_pct",
+          "ltft_idle_pct",
+          "stft_2500_pct",
+          "ltft_2500_pct",
+          "stft_load_pct",
+          "ltft_load_pct",
+          "calc_load_wot_pct",
+          "maf_gps_idle",
+          "maf_gps_2500",
+          "fuel_rail_pressure_load_kpa",
+          "wideband_lambda_wot"
+        ]
+      },
+      "exhaust_leak_note": {
+        "file": "labs/comlab/registry/rules/exhaust_leak.json",
+        "rule": "EL-001",
+        "reads": "Reads longft1 and DTCs. Used in C4 later to separate exhaust leak from true lean."
+      }
+    },
+    "c6_maf_collision": {
+      "description": "C6's SensorDynamicsState and C5's LeanRootCauseState can both emit a MAF-underread verdict from the same MAF columns, but attribute it to different families (sensor_fault vs lean_condition).",
+      "populations_today": "Disjoint: 14 C6 rows vs 10 C5 rows in the current corpus.",
+      "disambiguation_rule": "C6's sensor-attribution requires its Mode $06/dynamics evidence; C5's requires the trim+load pattern; neither fires on MAF delta alone. When both are present, C5's lean root cause takes precedence over C6's sensor-fault boost to prevent a lean-condition MAF drift from being misclassified as a sensor fault.",
+      "integration_location": "Lands in integration_shim.py::_score_rule (around lines 608-662), evaluated after the C3 and C6 branches. C5 must prune/suppress C6's sensor-fault boost if the C5 WOT load suppression pattern is present."
+    },
+    "c3_interaction": {
+      "live_c3_state": "ControlPlausibilityState.CONTROL_REFERENCE_FAULT",
+      "live_c3_reader": "integration_shim.py::_control_plausibility_state lines 540-557",
+      "live_c3_effect": "integration_shim.py::_score_rule lines 562-569 boosts EF-001/002/003 by +0.10 and prunes SF-001/SF-002 when CONTROL_REFERENCE_FAULT is present.",
+      "c5_future_effect": "C5 will boost lean_condition consumers (LC-001/LC-002/LC-003) based on LeanRootCauseState: VACUUM_LEAK_TRIM_PATTERN, FUEL_DELIVERY_SHORTFALL, or MAF_UNDERREAD.",
+      "required_precedence_for_c5b": "If a future row carries both C3 control-reference columns and C5 lean-condition columns, C3 control-reference pruning must run first. Static-only C5 evidence must preserve abstain/prune behavior to prevent control-reference faults from being misclassified as lean conditions."
+    },
+    "case_split": {
+      "total": 10,
+      "buildable_now_reachable": [],
+      "buildable_now_count": 0,
+      "scoring_gated": [
+        {
+          "case_id": "CSV-113",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "lean_condition",
+          "predicted_family": "misfire",
+          "source_detail": "expected_rank=7; expected_rule=LC-002; winner_rule=MF-001",
+          "required_columns": [
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "stft_load_pct",
+            "ltft_load_pct",
+            "calc_load_wot_pct",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "fuel_rail_pressure_load_kpa",
+            "wideband_lambda_wot"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "CSV-114",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "lean_condition",
+          "predicted_family": "misfire",
+          "source_detail": "expected_rank=7; expected_rule=LC-002; winner_rule=MF-001",
+          "required_columns": [
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "stft_load_pct",
+            "ltft_load_pct",
+            "calc_load_wot_pct",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "fuel_rail_pressure_load_kpa",
+            "wideband_lambda_wot"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "EXP-N011",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "lean_condition",
+          "predicted_family": "sensor_fault",
+          "source_detail": "rule-specific corroborating OBD/DTC evidence",
+          "required_columns": [
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "stft_load_pct",
+            "ltft_load_pct",
+            "calc_load_wot_pct",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "fuel_rail_pressure_load_kpa",
+            "wideband_lambda_wot"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "EXP-N022",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "lean_condition",
+          "predicted_family": "catalyst_failure",
+          "source_detail": "rule-specific corroborating OBD/DTC evidence",
+          "required_columns": [
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "stft_load_pct",
+            "ltft_load_pct",
+            "calc_load_wot_pct",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "fuel_rail_pressure_load_kpa",
+            "wideband_lambda_wot"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "EXP-N029",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "lean_condition",
+          "predicted_family": "mechanical_wear",
+          "source_detail": "rule-specific corroborating OBD/DTC evidence",
+          "required_columns": [
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "stft_load_pct",
+            "ltft_load_pct",
+            "calc_load_wot_pct",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "fuel_rail_pressure_load_kpa",
+            "wideband_lambda_wot"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "REAL-004",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "lean_condition",
+          "predicted_family": "misfire",
+          "source_detail": "expected_rank=7; expected_rule=LC-002; winner_rule=MF-001",
+          "required_columns": [
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "stft_load_pct",
+            "ltft_load_pct",
+            "calc_load_wot_pct",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "fuel_rail_pressure_load_kpa",
+            "wideband_lambda_wot"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "case_003",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "lean_condition",
+          "predicted_family": "catalyst_failure",
+          "source_detail": "rule-specific corroborating OBD/DTC evidence",
+          "required_columns": [
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "stft_load_pct",
+            "ltft_load_pct",
+            "calc_load_wot_pct",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "fuel_rail_pressure_load_kpa",
+            "wideband_lambda_wot"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "case_016",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "lean_condition",
+          "predicted_family": "catalyst_failure",
+          "source_detail": "rule-specific corroborating OBD/DTC evidence",
+          "required_columns": [
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "stft_load_pct",
+            "ltft_load_pct",
+            "calc_load_wot_pct",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "fuel_rail_pressure_load_kpa",
+            "wideband_lambda_wot"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "era1_001",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "lean_condition",
+          "predicted_family": "misfire",
+          "source_detail": "expected_rank=6; expected_rule=LC-002; winner_rule=MF-001",
+          "required_columns": [
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "stft_load_pct",
+            "ltft_load_pct",
+            "calc_load_wot_pct",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "fuel_rail_pressure_load_kpa",
+            "wideband_lambda_wot"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "era3_015",
+          "bucket": "TUNABLE_HELD",
+          "expected_family": "lean_condition",
+          "predicted_family": "misfire",
+          "source_detail": "**HARD**; ",
+          "required_columns": [
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "stft_load_pct",
+            "ltft_load_pct",
+            "calc_load_wot_pct",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "fuel_rail_pressure_load_kpa",
+            "wideband_lambda_wot"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        }
+      ],
+      "scoring_gated_count": 10,
+      "bucket_breakdown": {
+        "DATA_GAP_ACQUISITION_GAP": 5,
+        "OUTRANKED_HARD": 4,
+        "TUNABLE_HELD": 1
+      },
+      "expected_family_mix": {
+        "lean_condition": 10
+      },
+      "predicted_family_mix": {
+        "catalyst_failure": 3,
+        "mechanical_wear": 1,
+        "misfire": 5,
+        "sensor_fault": 1
+      },
+      "note": "All 10 C5 rows are SCORING_GATED. The producer/consumer logic is buildable from research, but the top3_family delta is unknowable until trims/load/pressure values exist."
+    },
+    "ft8_neighbours": {
+      "touched_families": [
+        "lean_condition",
+        "vacuum_leak"
+      ],
+      "touched_competition_groups": [
+        "lean_condition",
+        "vacuum_leak"
+      ],
+      "rules": [
+        {
+          "rule_id": "LC-001",
+          "fault_family": "lean_condition",
+          "source_file": "labs/comlab/registry/rules/lean_condition.json",
+          "competition_group": "lean_condition",
+          "base_weight": 0.85,
+          "passes_cases": [
+            "CSV-016",
+            "CSV-109",
+            "CSV-110",
+            "CSV-112",
+            "MECH-003",
+            "case_031",
+            "case_032"
+          ]
+        },
+        {
+          "rule_id": "LC-002",
+          "fault_family": "lean_condition",
+          "source_file": "labs/comlab/registry/rules/lean_condition.json",
+          "competition_group": "lean_condition",
+          "base_weight": 0.81,
+          "passes_cases": [
+            "REAL-002",
+            "EXP-N011",
+            "case_003"
+          ]
+        },
+        {
+          "rule_id": "LC-003",
+          "fault_family": "lean_condition",
+          "source_file": "labs/comlab/registry/rules/lean_condition.json",
+          "competition_group": "lean_condition",
+          "base_weight": 0.75,
+          "passes_cases": [
+            "CASE-027",
+            "case_050",
+            "EXT-202"
+          ]
+        },
+        {
+          "rule_id": "VL-001",
+          "fault_family": "vacuum_leak",
+          "source_file": "labs/comlab/registry/rules/vacuum_leak.json",
+          "competition_group": "vacuum_leak",
+          "base_weight": 0.8,
+          "passes_cases": [
+            "NEW-vacuum_leak-01",
+            "NEW-vacuum_leak-04"
+          ]
+        },
+        {
+          "rule_id": "VL-002",
+          "fault_family": "vacuum_leak",
+          "source_file": "labs/comlab/registry/rules/vacuum_leak.json",
+          "competition_group": "vacuum_leak",
+          "base_weight": 0.75,
+          "passes_cases": [
+            "NEW-vacuum_leak-02"
+          ]
+        },
+        {
+          "rule_id": "VL-003",
+          "fault_family": "vacuum_leak",
+          "source_file": "labs/comlab/registry/rules/vacuum_leak.json",
+          "competition_group": "vacuum_leak",
+          "base_weight": 0.85,
+          "passes_cases": [
+            "NEW-vacuum_leak-03"
+          ]
+        }
+      ],
+      "passes_cases_union": [
+        "CASE-011",
+        "CASE-012",
+        "CASE-013",
+        "CASE-016",
+        "CASE-017",
+        "CASE-019",
+        "CASE-022",
+        "CASE-026",
+        "CASE-027",
+        "CASE-029",
+        "CASE-030",
+        "CASE-034",
+        "CASE-036",
+        "CSV-016",
+        "CSV-043",
+        "CSV-068",
+        "CSV-095",
+        "CSV-109",
+        "CSV-110",
+        "CSV-111",
+        "CSV-112",
+        "ECU-002",
+        "EXP-N001",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N009",
+        "EXP-N011",
+        "EXP-N021",
+        "EXP-N025",
+        "EXP-N030",
+        "EXT-201",
+        "EXT-202",
+        "EXT-204",
+        "EXT-205",
+        "EXT-207",
+        "EXT-208",
+        "EXT-213",
+        "EXT-214",
+        "EXT-215",
+        "EXT-218",
+        "MECH-003",
+        "NEW-vacuum_leak-01",
+        "NEW-vacuum_leak-02",
+        "NEW-vacuum_leak-03",
+        "NEW-vacuum_leak-04",
+        "PDF-HI-007",
+        "REAL-002",
+        "TC-011",
+        "YAML-CSV43",
+        "YAML-CSV68",
+        "YAML-PDF_HI_007",
+        "YAML-TC22",
+        "case_001",
+        "case_003",
+        "case_019",
+        "case_031",
+        "case_032",
+        "case_050",
+        "era1_005",
+        "era1_007",
+        "era1_016",
+        "era1_018",
+        "era2_003",
+        "era2_014",
+        "era2_017",
+        "era3_002",
+        "era3_016",
+        "era3_019"
+      ],
+      "passes_cases_count": 68,
+      "static_passes_cases": [
+        "CASE-027",
+        "CSV-016",
+        "CSV-109",
+        "CSV-110",
+        "CSV-112",
+        "EXP-N011",
+        "EXT-202",
+        "MECH-003",
+        "NEW-vacuum_leak-01",
+        "NEW-vacuum_leak-02",
+        "NEW-vacuum_leak-03",
+        "NEW-vacuum_leak-04",
+        "REAL-002",
+        "case_003",
+        "case_031",
+        "case_032",
+        "case_050"
+      ],
+      "runtime_passes_cases": [
+        "CASE-011",
+        "CASE-012",
+        "CASE-013",
+        "CASE-016",
+        "CASE-017",
+        "CASE-019",
+        "CASE-022",
+        "CASE-026",
+        "CASE-027",
+        "CASE-029",
+        "CASE-030",
+        "CASE-034",
+        "CASE-036",
+        "CSV-016",
+        "CSV-043",
+        "CSV-068",
+        "CSV-095",
+        "CSV-109",
+        "CSV-110",
+        "CSV-111",
+        "CSV-112",
+        "ECU-002",
+        "EXP-N001",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N009",
+        "EXP-N021",
+        "EXP-N025",
+        "EXP-N030",
+        "EXT-201",
+        "EXT-202",
+        "EXT-204",
+        "EXT-205",
+        "EXT-207",
+        "EXT-208",
+        "EXT-213",
+        "EXT-214",
+        "EXT-215",
+        "EXT-218",
+        "MECH-003",
+        "PDF-HI-007",
+        "TC-011",
+        "YAML-CSV43",
+        "YAML-CSV68",
+        "YAML-PDF_HI_007",
+        "YAML-TC22",
+        "case_001",
+        "case_019",
+        "era1_005",
+        "era1_007",
+        "era1_016",
+        "era1_018",
+        "era2_003",
+        "era2_014",
+        "era2_017",
+        "era3_002",
+        "era3_016",
+        "era3_019"
+      ],
+      "risk_note": "LC rules touch lean-condition cases. Vacuum leak and fuel shortfall rules have high overlap with other clusters (e.g., C3 control-reference lean-bias cases which are now-passing LC-001/LC-002, and C4 exhaust-leak lookalikes). A false boost that regresses these neighbours must be audited."
+    },
+    "dual_target_and_neighbour": [
+      "EXP-N011",
+      "case_003"
+    ],
+    "confounder_disclosure": {
+      "confounders": [
+        {
+          "confounder": "Exhaust leak pre-O2 (false lean)",
+          "mechanism": "Allows outside air to enter before the upstream O2 sensor via venturi effect, causing false lean lambda but normal engine load and trims. Separated by gas chemistry (high O2) or vacuum-leak/fuel-pressure verification.",
+          "cite": "cluster5.md §Technical Characterization of the Confusable Set line 37"
+        },
+        {
+          "confounder": "Misfire (false lean)",
+          "mechanism": "Unburned oxygen passes directly into the exhaust, causing false lean lambda. Separated by misfire codes (P0300-P0312) or Mode $06 misfire counts.",
+          "cite": "cluster5.md §Technical Characterization of the Confusable Set line 37"
+        },
+        {
+          "confounder": "Speed-Density vs MAF architecture",
+          "mechanism": "Naturally aspirated speed-density vehicles are immune to idle vacuum leak trims; turbocharged speed-density systems show negative trims under boost (boost leak).",
+          "cite": "cluster5.md §Physical and Thermodynamic Mechanisms of Fault Separation lines 77-83"
+        },
+        {
+          "confounder": "C4 exhaust-leak / true-lean overlap",
+          "mechanism": "C4 contains exhaust-leak/lean-condition/sensor-bias lookalikes that share these same C5 trim/load columns. C5-SYNTH must mark cases outside true-lean separability (confounders) as stay-abstained.",
+          "cite": "V3_SIGNAL_ACQUISITION_SPEC_2026-07-01.md lines 106-112"
+        }
+      ],
+      "mimic_risk_per_case": [
+        {
+          "case_id": "CSV-113",
+          "expected_family": "lean_condition",
+          "predicted_family": "misfire",
+          "mimic_risk": "misfire lookalike; dynamic C5 trims/load needed or stay abstained"
+        },
+        {
+          "case_id": "CSV-114",
+          "expected_family": "lean_condition",
+          "predicted_family": "misfire",
+          "mimic_risk": "misfire lookalike; dynamic C5 trims/load needed or stay abstained"
+        },
+        {
+          "case_id": "EXP-N011",
+          "expected_family": "lean_condition",
+          "predicted_family": "sensor_fault",
+          "mimic_risk": "sensor_fault lookalike; dynamic C5 trims needed or stay abstained"
+        },
+        {
+          "case_id": "EXP-N022",
+          "expected_family": "lean_condition",
+          "predicted_family": "catalyst_failure",
+          "mimic_risk": "catalyst_failure lookalike; dynamic C5 trims/load needed or stay abstained"
+        },
+        {
+          "case_id": "EXP-N029",
+          "expected_family": "lean_condition",
+          "predicted_family": "mechanical_wear",
+          "mimic_risk": "mechanical_wear lookalike; dynamic C5 trims/load needed or stay abstained"
+        },
+        {
+          "case_id": "REAL-004",
+          "expected_family": "lean_condition",
+          "predicted_family": "misfire",
+          "mimic_risk": "misfire lookalike; dynamic C5 trims/load needed or stay abstained"
+        },
+        {
+          "case_id": "case_003",
+          "expected_family": "lean_condition",
+          "predicted_family": "catalyst_failure",
+          "mimic_risk": "catalyst_failure lookalike; dynamic C5 trims/load needed or stay abstained"
+        },
+        {
+          "case_id": "case_016",
+          "expected_family": "lean_condition",
+          "predicted_family": "catalyst_failure",
+          "mimic_risk": "catalyst_failure lookalike; dynamic C5 trims/load needed or stay abstained"
+        },
+        {
+          "case_id": "era1_001",
+          "expected_family": "lean_condition",
+          "predicted_family": "misfire",
+          "mimic_risk": "misfire lookalike; dynamic C5 trims/load needed or stay abstained"
+        },
+        {
+          "case_id": "era3_015",
+          "expected_family": "lean_condition",
+          "predicted_family": "misfire",
+          "mimic_risk": "misfire lookalike; dynamic C5 trims/load needed or stay abstained"
+        }
+      ],
+      "c4_dependency": "C4 is not a new-column ask; its residuals consume the C5 trim/load columns and C6 dynamics columns. Landing C5 is a required prerequisite for C4B."
+    },
+    "grounding_strength": [
+      {
+        "signal": "Total fuel trim delta (ΔTFT) between idle and 2500 RPM",
+        "threshold": "Positive trims at idle (e.g. TFT >= +15%) that recover by >= 15% at 2500 RPM (e.g. TFT <= +10%)",
+        "grounding": "empirical (direction strong; numeric values provisional)",
+        "feasibility_tier": "Tier A: generic OBD-II live trims",
+        "risk_note": "Direction is strong; local trims at idle recover at 2500, but exact delta % threshold is empirical."
+      },
+      {
+        "signal": "Fuel rail pressure drop and wide-range lambda under WOT",
+        "threshold": "Fuel rail pressure drop of > 5 psi (35 kPa) below OEM spec, accompanied by wide-range lambda lambda > 1.05 (failure to enrich)",
+        "grounding": "manufacturer-typical (for 35 kPa drop) / standardized (for lambda > 1.05)",
+        "feasibility_tier": "Tier A if sensor exposed; Tier C if mechanical gauge required",
+        "risk_note": "Pressure drop limit is typical for port-injection; DI rails have higher targets. WOT Load threshold may vary by altitude."
+      },
+      {
+        "signal": "Calculated engine load at peak WOT, with positive trims",
+        "threshold": "Calculated engine load failing to reach OEM typical bounds (Peak Load < 80%) under WOT, while trims run positive",
+        "grounding": "manufacturer-typical / empirical-inferred",
+        "feasibility_tier": "Tier A: generic OBD-II calculated load and trims",
+        "risk_note": "Pressure drop limit is typical for port-injection; DI rails have higher targets. WOT Load threshold may vary by altitude."
+      },
+      {
+        "signal": "Static-only or idle-only trim evidence",
+        "threshold": "Reject static/idle-only trims as a separator; emit SENSOR_HEALTH_UNPROVEN_ABSTAIN",
+        "grounding": "physics/regulatory rationale (dynamic multi-point data required)",
+        "feasibility_tier": "Abstain fallback",
+        "risk_note": "Static-only inputs are insufficient; abstain is the intended outcome."
+      }
+    ],
+    "code_landed_neq_score_moved": "The C5 producer emit rule + consumer map are BUILDABLE_NOW from cluster5.md and unit-testable on synthetic LeanRootCauseState vectors. That is CODE_LANDED. SCORE_MOVED on these 10 cannot be shown until owner/synthetic C5 values exist; the two must never be conflated.",
+    "abstain_fallback": "If only static or idle trims are supplied, the case stays abstained at MARGIN=0.02. Dynamic multi-point data is the separator for C5."
+  },
+  "provenance": {
+    "read_only": true,
+    "corpus_changed": false,
+    "yardstick_minted": false,
+    "rules_edited": false,
+    "producers_wired": false,
+    "values_synthesized": false,
+    "abstain_dial_changed": false,
+    "run_suite_touched": false,
+    "vault_touched": false,
+    "graphify_run": false
+  }
+}

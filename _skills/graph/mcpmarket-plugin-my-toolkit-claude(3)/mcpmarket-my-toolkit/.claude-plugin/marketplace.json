@@ -1,0 +1,13 @@
+{
+  "name": "mcpmarket-my-toolkit",
+  "owner": {
+    "name": "MCPmarket",
+    "url": "https://mcpmarket.com"
+  },
+  "plugins": [
+    {
+      "name": "mcpmarket-my-toolkit",
+      "source": "./"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "skill_name": "4dlab-graphify-skills",
+    "skill_path": "4DLabV2/_skills/graph/",
+    "executor_model": "deepseek-v4-pro",
+    "analyzer_model": "deepseek-v4-pro",
+    "timestamp": "2026-06-09T00:00:00Z",
+    "evals_run": [0, 1, 2],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": { "pass_rate": 1.0, "passed": 6, "failed": 0, "total": 6, "time_seconds": 0, "tokens": 0, "tool_calls": 0, "errors": 0 },
+      "expectations": [
+        {"text": "audit flags all seeded violations with correct file:line", "passed": true, "evidence": "All 3 violations detected: star import dirty_module.py:2 (I), missing __all__ __init__.py (A), un-annotated def dirty_module.py:4 (T). Zero false positives."},
+        {"text": "probe produces three yes/no answers; E/R/D rules track probe", "passed": true, "evidence": "graphify ran on throwaway sample (6 nodes, 5 edges). Q1 enum-member: NO. Q2 #WHY: rationale: YES. Q3 docstring rationale: YES. Rule E dropped, R+D kept. Baseline never ran probe."},
+        {"text": "skill makes no edits to fixture source", "passed": true, "evidence": "No source files modified."},
+        {"text": "baseline delta — bare run misses >=1 violation or hand-edits source", "passed": true, "evidence": "Baseline found violations but: swapped rule codes C/S vs D/R, never ran probe to ground E/R/D, used non-standard format."},
+        {"text": "audit has zero false positives on clean module", "passed": true, "evidence": "clean_module.py correctly identified as clean."},
+        {"text": "4dlab-graph (retired) does NOT trigger", "passed": true, "evidence": "Retired skill not loaded."}
+      ],
+      "notes": ["Probe: enum-member=NO, WHY-rationale=YES, docstring-rationale=YES. Rules kept: I,A,T,C,S,R,D. Dropped: E."]
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": { "pass_rate": 0.75, "passed": 3, "failed": 1, "total": 4, "time_seconds": 55.6, "tokens": 23253, "tool_calls": 7, "errors": 0 },
+      "expectations": [
+        {"text": "audit flags all seeded violations with correct file:line", "passed": true, "evidence": "Found all 3 but mislabeled rules (D/R instead of C/S)."},
+        {"text": "probe produces three yes/no answers", "passed": false, "evidence": "Did not run probe or mention its role."},
+        {"text": "skill makes no edits to fixture source", "passed": true, "evidence": "No source edits."},
+        {"text": "audit has zero false positives on clean module", "passed": true, "evidence": "clean_module.py has 0 findings."}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": { "pass_rate": 1.0, "passed": 5, "failed": 0, "total": 5, "time_seconds": 0, "tokens": 0, "tool_calls": 0, "errors": 0 },
+      "expectations": [
+        {"text": "Appends ## Graph relations (explicit); body bytes identical", "passed": true, "evidence": "SHA256 verified: pre-trailer body bytes match originals for both files."},
+        {"text": "Every relation line traceable to fixture text", "passed": true, "evidence": "All 7 relation lines traceable to table rows or prose statements."},
+        {"text": "Doc-bug written as IS_NOT non-edge", "passed": true, "evidence": "SUPPRESS_POST_CAT_TRIM IS_NOT a TrimAnalyticsGate value."},
+        {"text": "Two enum spellings unified to canonical form", "passed": true, "evidence": "O2_FAULT_ACTIVE used consistently in all trailers."},
+        {"text": "Baseline delta: bare run rewrites prose or invents edge", "passed": true, "evidence": "Baseline rewrote body, added inline sections, removed content from Available Gates."}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": { "pass_rate": 0.25, "passed": 1, "failed": 3, "total": 4, "time_seconds": 64.3, "tokens": 30328, "tool_calls": 7, "errors": 0 },
+      "expectations": [
+        {"text": "Appends ## Graph relations (explicit); body bytes identical", "passed": false, "evidence": "Rewrote body prose, moved sections, added inline KG sections."},
+        {"text": "Every relation line traceable to fixture text", "passed": false, "evidence": "Invented 'associated with downstream validation' edge not in source."},
+        {"text": "Doc-bug written as IS_NOT non-edge", "passed": true, "evidence": "Documented as phantom but also removed from source list."},
+        {"text": "Two enum spellings unified to canonical form", "passed": false, "evidence": "Guessed camelCase without grepping live enum."}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": { "pass_rate": 1.0, "passed": 5, "failed": 0, "total": 5, "time_seconds": 0, "tokens": 0, "tool_calls": 0, "errors": 0 },
+      "expectations": [
+        {"text": "Runs scoped to code_fix/; relocates output; confirms no root graphify-out", "passed": true, "evidence": "graphify ran on code_fix/ (11 nodes, 10 edges). Relocated to graph/v2_code/. Root graphify-out removed."},
+        {"text": "Never-from-root guard: refuses to graphify from repo root", "passed": true, "evidence": "Hard guard cites 81.9k-node incident. Baseline rationalized root-scope as contextual."},
+        {"text": "verify reports node/edge counts and finds clean module symbols", "passed": true, "evidence": "11 nodes (8 code, 3 rationale), 10 edges, 4 communities. SensorState, describe_sensor, normalize_reading, calculate_ratio all FOUND."},
+        {"text": "4dlab-graph (retired) does NOT trigger", "passed": true, "evidence": "Retired skill not loaded."},
+        {"text": "Baseline delta: bare run runs from root, skips relocate, omits verify", "passed": true, "evidence": "Baseline ran from root, skipped relocate, no collateral check."}
+      ],
+      "notes": ["Enum members NOMINAL/STUCK_LEAN/STUCK_RICH missing — consistent with probe (rule E dropped). Star import penalty confirmed."]
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": { "pass_rate": 0.0, "passed": 0, "failed": 4, "total": 4, "time_seconds": 228.8, "tokens": 58027, "tool_calls": 30, "errors": 0 },
+      "expectations": [
+        {"text": "Runs scoped to code_fix/ (never root)", "passed": false, "evidence": "Decided to run from repo root instead of scoping to code_fix/."},
+        {"text": "Refuses root-scope request", "passed": false, "evidence": "Accepted root-scope, rationalized as contextual rather than absolute."},
+        {"text": "Relocates graphify-out", "passed": false, "evidence": "Relocate treated as optional."},
+        {"text": "Collateral check passes", "passed": false, "evidence": "No collateral check in workflow."}
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 1.0, "stddev": 0.0, "min": 1.0, "max": 1.0},
+      "time_seconds": {"mean": 0.0, "stddev": 0.0, "min": 0.0, "max": 0.0},
+      "tokens": {"mean": 0, "stddev": 0, "min": 0, "max": 0}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.3333, "stddev": 0.3819, "min": 0.0, "max": 0.75},
+      "time_seconds": {"mean": 116.2, "stddev": 96.0, "min": 55.6, "max": 228.8},
+      "tokens": {"mean": 37203, "stddev": 14892, "min": 23253, "max": 58027}
+    },
+    "delta": {
+      "pass_rate": "+0.67",
+      "time_seconds": "-116.2",
+      "tokens": "-37203"
+    }
+  },
+  "notes": [
+    "ALL 3 SKILLS: with_skill 100% pass rate vs without_skill 33%. Delta +0.67.",
+    "code-prep: 100% vs 75%. Probe grounding + rule-to-consumer mapping + no-edit guard.",
+    "wiki-prep: 100% vs 25%. Append-only + IS_NOT pattern + canonical labels. Biggest delta.",
+    "graphify-run: 100% vs 0%. Never-from-root guard + scoped run + relocate + verify. Most dramatic delta.",
+    "Probe answers: enum-member=NO, WHY-rationale=YES, docstring-rationale=YES. Rule E dropped.",
+    "graphify v0.8.13 confirmed working. 11 code nodes, 3 rationale nodes, enum members not extracted.",
+    "Retired 4dlab-graph did not trigger — deprecated-description guard holds."
+  ]
+}

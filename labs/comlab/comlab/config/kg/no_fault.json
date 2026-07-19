@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "fault_family": "no_fault",
+  "nodes": {
+    "OPTIMAL_HEALTH": {
+      "fault_name": "no_active_fault_detected",
+      "fault_family": "no_fault",
+      "component_group": "N/A",
+      "impacted_subsystems": [
+        "ALL_SYSTEMS_NORMAL"
+      ],
+      "mechanical_failure_mode": "All diagnostic parameters are within normal operating ranges. No mixture error, no sensor anomaly, no misfire pattern, and no DTC evidence of any active fault. Engine is performing within calibration.",
+      "ui_remediation_steps": [
+        "No immediate repair is required. Engine parameters confirm normal operation.",
+        "Document the gas analyser readings and OBD PIDs as a baseline if this is a periodic service check — this establishes a healthy reference for future comparison.",
+        "If the vehicle was brought in for a specific symptom (rough idle, intermittent warning light), consider that the fault may be intermittent and not present during this test session. Schedule a retest under the conditions that trigger the symptom.",
+        "Advise normal service intervals and next scheduled maintenance."
+      ],
+      "differential_siblings": []
+    }
+  }
+}

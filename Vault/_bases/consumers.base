@@ -1,0 +1,27 @@
+# 4DLab vault — signal/noise audit. Every framed note must show a named consumer.
+# A "MISSING" row means a note shipped without a downstream consumer — fix it.
+# Consumes frontmatter: node_type, module, consumers, implements.
+filters:
+  and:
+    - 'file.ext == "md"'
+    - file.hasProperty("node_type")
+    - '!file.inFolder("tasks")'  # tasks use tasks.base
+formulas:
+  has_consumer: 'if(consumers.isEmpty(), "MISSING", "ok (" + consumers.length.toString() + ")")'
+properties:
+  formula.has_consumer:
+    displayName: "Signal/noise"
+  consumers:
+    displayName: "Named consumers"
+  module:
+    displayName: Module
+views:
+  - type: table
+    name: Consumer audit
+    order:
+      - file.name
+      - module
+      - node_type
+      - formula.has_consumer
+      - consumers
+      - implements

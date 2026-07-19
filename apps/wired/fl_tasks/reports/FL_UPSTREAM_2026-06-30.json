@@ -1,0 +1,5717 @@
+{
+  "coverage": {
+    "gas_states_captured": 314,
+    "obd_modes_populated": 314,
+    "total": 314
+  },
+  "dead_family_records": [
+    {
+      "case_id": "era1_002",
+      "expected_fault_code": "ERR-MW-002",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "COOLANT_LEAK_INTERNAL",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_015",
+      "expected_fault_code": "ERR-MW-003",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "INCOMPLETE_OXIDATION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "WORN_PISTON_RINGS",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_016",
+      "expected_fault_code": "ERR-EL-001",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_019",
+      "expected_fault_code": "ERR-EL-002",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-095",
+      "expected_fault_code": "ERR-EL-001",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-117",
+      "expected_fault_code": "ERR-MW-004",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "WORN_VALVE_SEALS",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-118",
+      "expected_fault_code": "ERR-MW-004",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "WORN_VALVE_SEALS",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-119",
+      "expected_fault_code": "ERR-MW-002",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "COOLANT_LEAK_INTERNAL",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-120",
+      "expected_fault_code": "ERR-MW-002",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "IGNITION_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "COOLANT_LEAK_INTERNAL",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-129",
+      "expected_fault_code": "ERR-EL-005",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-130",
+      "expected_fault_code": "ERR-EL-005",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N030",
+      "expected_fault_code": "ERR-MW-002",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "GDI_HPFP_INTERNAL_SEAL_LEAK"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "COOLANT_LEAK_INTERNAL",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-222",
+      "expected_fault_code": "ERR-MW-005",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "INCOMPLETE_COMBUSTION",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-223",
+      "expected_fault_code": "ERR-MW-003",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "WORN_PISTON_RINGS",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-224",
+      "expected_fault_code": "ERR-MW-002",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "COOLANT_LEAK_INTERNAL",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-238",
+      "expected_fault_code": "ERR-EL-005",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-239",
+      "expected_fault_code": "ERR-EL-005",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "MECH-001",
+      "expected_fault_code": "ERR-MW-003",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "WORN_PISTON_RINGS",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "MECH-002",
+      "expected_fault_code": "ERR-MW-002",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "COOLANT_LEAK_INTERNAL",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "MECH-006",
+      "expected_fault_code": "ERR-MW-005",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "INCOMPLETE_COMBUSTION",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "PDF-HI-007",
+      "expected_fault_code": "ERR-EL-001",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "REAL-001",
+      "expected_fault_code": "ERR-NS-001",
+      "expected_fault_family": "non_starter",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "IGNITION_MISFIRE",
+      "source_category": "non_starter",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "REAL-003",
+      "expected_fault_code": "ERR-NS-003",
+      "expected_fault_family": "non_starter",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "non_starter",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "TC-048",
+      "expected_fault_code": "ERR-EL-001",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-CSV95",
+      "expected_fault_code": "ERR-EL-001",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_006",
+      "expected_fault_code": "ERR-NS-003",
+      "expected_fault_family": "non_starter",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "II-002",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "non_starter",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_007",
+      "expected_fault_code": "ERR-NS-004",
+      "expected_fault_family": "non_starter",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "INCOMPLETE_COMBUSTION",
+      "source_category": "non_starter",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_040",
+      "expected_fault_code": "ERR-NS-001",
+      "expected_fault_family": "non_starter",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "II-002",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": "IGNITION_MISFIRE",
+      "source_category": "non_starter",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_044",
+      "expected_fault_code": "ERR-MW-007",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "POA_SIGNATURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    }
+  ],
+  "gas_state_counts_by_expected_family": {
+    "cam_timing": {
+      "EGR_STUCK_OPEN": 1,
+      "INCOMPLETE_COMBUSTION": 6,
+      "SAMPLE_INVALID": 4
+    },
+    "catalyst_failure": {
+      "FLAT_CAMSHAFT": 2,
+      "SAMPLE_INVALID": 3,
+      "TIMING_RETARDED": 8,
+      "VVT_FAILURE": 8,
+      "WORN_PISTON_RINGS": 2
+    },
+    "ecu_fault": {
+      "EGR_STUCK_OPEN": 5,
+      "GDI_HPFP_INTERNAL_SEAL_LEAK": 1,
+      "INCOMPLETE_COMBUSTION": 1,
+      "INCOMPLETE_OXIDATION": 1,
+      "LEAN_MIXTURE": 2,
+      "NORMAL_OPERATION": 2,
+      "RICH_MIXTURE": 6,
+      "TIMING_RETARDED": 6,
+      "VVT_FAILURE": 7
+    },
+    "exhaust_leak": {
+      "LEAN_MIXTURE": 1,
+      "SAMPLE_INVALID": 7,
+      "VVT_FAILURE": 2
+    },
+    "ignition_fault": {
+      "EGR_STUCK_OPEN": 1,
+      "GDI_INTAKE_VALVE_CARBON": 1,
+      "POA_SIGNATURE": 1,
+      "SAMPLE_INVALID": 1
+    },
+    "invalid_input": {
+      "GDI_HPFP_INTERNAL_SEAL_LEAK": 1,
+      "LEAN_MIXTURE": 4,
+      "RICH_MIXTURE": 1,
+      "SAMPLE_INVALID": 9,
+      "TIMING_RETARDED": 2,
+      "VVT_FAILURE": 3
+    },
+    "lean_condition": {
+      "EGR_STUCK_OPEN": 3,
+      "FLAT_CAMSHAFT": 1,
+      "GDI_HPFP_INTERNAL_SEAL_LEAK": 1,
+      "GDI_INTAKE_VALVE_CARBON": 2,
+      "INCOMPLETE_COMBUSTION": 1,
+      "INCOMPLETE_OXIDATION": 1,
+      "LEAN_MIXTURE": 10,
+      "RICH_MISFIRE": 3,
+      "RICH_MIXTURE": 2,
+      "SAMPLE_INVALID": 3,
+      "TIMING_RETARDED": 12,
+      "VVT_FAILURE": 22,
+      "WORN_VALVE_SEALS": 1
+    },
+    "mechanical_wear": {
+      "EGR_STUCK_OPEN": 4,
+      "GDI_HPFP_INTERNAL_SEAL_LEAK": 1,
+      "IGNITION_MISFIRE": 1,
+      "INCOMPLETE_COMBUSTION": 1,
+      "INCOMPLETE_OXIDATION": 1,
+      "POA_SIGNATURE": 1,
+      "RICH_MISFIRE": 5
+    },
+    "misfire": {
+      "EGR_STUCK_OPEN": 4,
+      "GDI_INTAKE_VALVE_CARBON": 8,
+      "IGNITION_MISFIRE": 9,
+      "INCOMPLETE_COMBUSTION": 1,
+      "POA_SIGNATURE": 3,
+      "RICH_MISFIRE": 3,
+      "SAMPLE_INVALID": 6,
+      "TIMING_RETARDED": 14,
+      "VVT_FAILURE": 5,
+      "WORN_VALVE_SEALS": 1
+    },
+    "no_fault": {
+      "EGR_STUCK_OPEN": 1,
+      "GDI_HPFP_INTERNAL_SEAL_LEAK": 1,
+      "NORMAL_OPERATION": 1,
+      "TIMING_RETARDED": 11,
+      "VVT_FAILURE": 4
+    },
+    "non_starter": {
+      "SAMPLE_INVALID": 5
+    },
+    "rich_mixture": {
+      "EGR_STUCK_OPEN": 1,
+      "EVAP_CANISTER_SATURATED": 3,
+      "FLAT_CAMSHAFT": 1,
+      "GDI_HPFP_INTERNAL_SEAL_LEAK": 4,
+      "INCOMPLETE_COMBUSTION": 5,
+      "INCOMPLETE_OXIDATION": 1,
+      "LEAN_MIXTURE": 1,
+      "RICH_MIXTURE": 13,
+      "SAMPLE_INVALID": 2,
+      "TIMING_RETARDED": 2,
+      "VVT_FAILURE": 4
+    },
+    "sensor_fault": {
+      "EGR_STUCK_OPEN": 3,
+      "EVAP_CANISTER_SATURATED": 1,
+      "INCOMPLETE_COMBUSTION": 1,
+      "LEAN_MIXTURE": 1,
+      "NORMAL_OPERATION": 1,
+      "SAMPLE_INVALID": 2,
+      "TIMING_RETARDED": 7,
+      "VVT_FAILURE": 7,
+      "WORN_PISTON_RINGS": 2
+    }
+  },
+  "metadata": {
+    "corpus_csv": "apps/wired/v7/data/cases_petrol_v7.csv",
+    "engine_lab_source_edits": false,
+    "generated_utc": "2026-06-30T17:07:47+00:00",
+    "method": "read-only replay of GASLab/OBDLab stages using v7.load_corpus.row_to_raw_inputs and wired.composition lab helpers",
+    "registry": "labs/comlab/comlab/config/global_fault_registry.json",
+    "run_results": "apps/wired/v7/runs/20260630_163900/results.json",
+    "task": "T-FL-2"
+  },
+  "records": [
+    {
+      "case_id": "era1_001",
+      "expected_fault_code": "ERR-LC-005",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "INCOMPLETE_OXIDATION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_002",
+      "expected_fault_code": "ERR-MW-002",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "COOLANT_LEAK_INTERNAL",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_003",
+      "expected_fault_code": "ERR-RM-007",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "INCOMPLETE_OXIDATION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_004",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_005",
+      "expected_fault_code": "ERR-LC-003",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_006",
+      "expected_fault_code": "ERR-SF-001",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_007",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_008",
+      "expected_fault_code": "ERR-CF-004",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "CATALYST_OVERWHELMED",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_009",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "EVAP_CANISTER_SATURATED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_011",
+      "expected_fault_code": "ERR-CT-001",
+      "expected_fault_family": "cam_timing",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "CAM_TIMING_RETARDED_MAP",
+      "source_category": "cam_timing",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_012",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "IGNITION_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_013",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "EVAP_CANISTER_SATURATED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_014",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_015",
+      "expected_fault_code": "ERR-MW-003",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "INCOMPLETE_OXIDATION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "WORN_PISTON_RINGS",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_016",
+      "expected_fault_code": "ERR-EL-001",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_017",
+      "expected_fault_code": "ERR-SF-005",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_018",
+      "expected_fault_code": "ERR-LC-002",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_019",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era1_020",
+      "expected_fault_code": "ERR-MF-004",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "IGNITION_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_001",
+      "expected_fault_code": "ERR-CF-004",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "CATALYST_OVERWHELMED",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_002",
+      "expected_fault_code": "ERR-RM-004",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_003",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_004",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "IGNITION_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_005",
+      "expected_fault_code": "ERR-SF-001",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EVAP_CANISTER_SATURATED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_006",
+      "expected_fault_code": "ERR-LC-005",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_008",
+      "expected_fault_code": "ERR-CT-004",
+      "expected_fault_family": "cam_timing",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "VVT_FAILURE",
+      "source_category": "cam_timing",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_009",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_010",
+      "expected_fault_code": "ERR-SF-004",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "VVT_FAILURE",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_011",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CT-008",
+      "predicted_fault_family": "cam_timing",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_012",
+      "expected_fault_code": "ERR-SF-005",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_013",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_014",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_015",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_016",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_017",
+      "expected_fault_code": "ERR-LC-003",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_019",
+      "expected_fault_code": "ERR-RM-004",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era2_020",
+      "expected_fault_code": "ERR-MF-001",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "POA_SIGNATURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_001",
+      "expected_fault_code": "ERR-RM-005",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_002",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_003",
+      "expected_fault_code": "ERR-IF-005",
+      "expected_fault_family": "ignition_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "POA_SIGNATURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "IF-002",
+      "predicted_fault_family": "ignition_fault",
+      "required_gating_state_for_expected_code": "INCOMPLETE_COMBUSTION",
+      "source_category": "ignition_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_004",
+      "expected_fault_code": "ERR-SF-002",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_005",
+      "expected_fault_code": "ERR-RM-004",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_006",
+      "expected_fault_code": "ERR-MF-006",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "IGNITION_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_007",
+      "expected_fault_code": "ERR-LC-005",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_008",
+      "expected_fault_code": "ERR-LC-004",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-002",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "LEAN_MISFIRE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_009",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_011",
+      "expected_fault_code": "ERR-MF-006",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "IGNITION_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_013",
+      "expected_fault_code": "ERR-LC-002",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_014",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_015",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_016",
+      "expected_fault_code": "ERR-LC-006",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "VVT_FAILURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_017",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "EVAP_CANISTER_SATURATED"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_018",
+      "expected_fault_code": "ERR-CT-002",
+      "expected_fault_family": "cam_timing",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CT-008",
+      "predicted_fault_family": "cam_timing",
+      "required_gating_state_for_expected_code": "IGNITION_MISFIRE",
+      "source_category": "cam_timing",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_019",
+      "expected_fault_code": "ERR-EL-002",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "era3_020",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "EF-004",
+      "predicted_fault_family": "ecu_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-009",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-010",
+      "expected_fault_code": "ERR-SF-002",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-011",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-012",
+      "expected_fault_code": "ERR-LC-003",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-013",
+      "expected_fault_code": "ERR-CF-003",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "CATALYST_OVERWHELMED",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-014",
+      "expected_fault_code": "ERR-SF-001",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "WORN_PISTON_RINGS"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-015",
+      "expected_fault_code": "ERR-CF-005",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-016",
+      "expected_fault_code": "ERR-CF-004",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "CATALYST_OVERWHELMED",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-017",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-018",
+      "expected_fault_code": "ERR-CT-004",
+      "expected_fault_family": "cam_timing",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CT-007",
+      "predicted_fault_family": "cam_timing",
+      "required_gating_state_for_expected_code": "VVT_FAILURE",
+      "source_category": "cam_timing",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-019",
+      "expected_fault_code": "ERR-LC-002",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "FLAT_CAMSHAFT"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-020",
+      "expected_fault_code": "ERR-LC-005",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-021",
+      "expected_fault_code": "ERR-MF-009",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "COOLANT_LEAK_INTERNAL",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-022",
+      "expected_fault_code": "ERR-SF-004",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "VVT_FAILURE",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-023",
+      "expected_fault_code": "ERR-RM-006",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-024",
+      "expected_fault_code": "ERR-MF-001",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "GDI_INTAKE_VALVE_CARBON"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-025",
+      "expected_fault_code": "ERR-RM-004",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-026",
+      "expected_fault_code": "ERR-CF-007",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "CATALYST_NOT_LIGHTING_OFF",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-027",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-028",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-029",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-030",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-031",
+      "expected_fault_code": "ERR-RM-005",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-032",
+      "expected_fault_code": "ERR-LC-008",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": "WORN_VALVE_SEALS",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-033",
+      "expected_fault_code": "ERR-MF-007",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "LEAN_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-034",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-035",
+      "expected_fault_code": "ERR-IF-005",
+      "expected_fault_family": "ignition_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "INCOMPLETE_COMBUSTION",
+      "source_category": "ignition_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-036",
+      "expected_fault_code": "ERR-LC-004",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MISFIRE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-037",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-038",
+      "expected_fault_code": "ERR-MF-005",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "GDI_INTAKE_VALVE_CARBON"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "LEAN_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-039",
+      "expected_fault_code": "ERR-EF-002",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-040",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-041",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "ERR-ABORT-001",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "CASE-043",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "EF-004",
+      "predicted_fault_family": "ecu_fault",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "FAIL",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "CASE-045",
+      "expected_fault_code": "ERR-SF-005",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CASE-046",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "ERR-ABORT-001",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "CASE-047",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "ERR-ABORT-001",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "CASE-048",
+      "expected_fault_code": "ERR-SF-005",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-001",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-005",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-016",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-018",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-022",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "IGNITION_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-025",
+      "expected_fault_code": "ERR-SF-001",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-041",
+      "expected_fault_code": "ERR-EF-006",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-043",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-045",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-052",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-066",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-068",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-072",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "NORMAL_OPERATION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "EF-004",
+      "predicted_fault_family": "ecu_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-081",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "ERR-ABORT-001",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "CSV-083",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "ERR-ABORT-001",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "CSV-095",
+      "expected_fault_code": "ERR-EL-001",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-100",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "GDI_HPFP_INTERNAL_SEAL_LEAK"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-101",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "GDI_INTAKE_VALVE_CARBON"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-102",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "GDI_INTAKE_VALVE_CARBON"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-103",
+      "expected_fault_code": "ERR-MF-001",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "IGNITION_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-104",
+      "expected_fault_code": "ERR-MF-001",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "IGNITION_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-105",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "GDI_INTAKE_VALVE_CARBON"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-106",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "GDI_INTAKE_VALVE_CARBON"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-107",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-108",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-109",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-110",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-111",
+      "expected_fault_code": "ERR-LC-003",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-112",
+      "expected_fault_code": "ERR-LC-003",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-113",
+      "expected_fault_code": "ERR-LC-005",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-114",
+      "expected_fault_code": "ERR-LC-005",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-115",
+      "expected_fault_code": "ERR-CT-001",
+      "expected_fault_family": "cam_timing",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CT-007",
+      "predicted_fault_family": "cam_timing",
+      "required_gating_state_for_expected_code": "CAM_TIMING_RETARDED_MAP",
+      "source_category": "cam_timing",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-116",
+      "expected_fault_code": "ERR-CT-001",
+      "expected_fault_family": "cam_timing",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CT-007",
+      "predicted_fault_family": "cam_timing",
+      "required_gating_state_for_expected_code": "CAM_TIMING_RETARDED_MAP",
+      "source_category": "cam_timing",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-117",
+      "expected_fault_code": "ERR-MW-004",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "WORN_VALVE_SEALS",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-118",
+      "expected_fault_code": "ERR-MW-004",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "WORN_VALVE_SEALS",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-119",
+      "expected_fault_code": "ERR-MW-002",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "COOLANT_LEAK_INTERNAL",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-120",
+      "expected_fault_code": "ERR-MW-002",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "IGNITION_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "COOLANT_LEAK_INTERNAL",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-121",
+      "expected_fault_code": "ERR-CF-005",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "WORN_PISTON_RINGS"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-122",
+      "expected_fault_code": "ERR-CF-005",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "FLAT_CAMSHAFT"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-123",
+      "expected_fault_code": "ERR-EF-007",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-124",
+      "expected_fault_code": "ERR-EF-007",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-125",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-126",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-127",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-128",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-129",
+      "expected_fault_code": "ERR-EL-005",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "CSV-130",
+      "expected_fault_code": "ERR-EL-005",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "ECU-001",
+      "expected_fault_code": "ERR-EF-006",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "ECU-002",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "ECU-003",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "ECU-007",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "ECU-008",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "ECU-009",
+      "expected_fault_code": "ERR-EF-002",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N001",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N002",
+      "expected_fault_code": "ERR-EF-006",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "GDI_HPFP_INTERNAL_SEAL_LEAK"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N003",
+      "expected_fault_code": "ERR-RM-007",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "GDI_HPFP_INTERNAL_SEAL_LEAK"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N004",
+      "expected_fault_code": "ERR-EF-006",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N005",
+      "expected_fault_code": "ERR-EF-008",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N006",
+      "expected_fault_code": "ERR-SF-004",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "VVT_FAILURE",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N007",
+      "expected_fault_code": "ERR-CT-004",
+      "expected_fault_family": "cam_timing",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "VVT_FAILURE",
+      "source_category": "cam_timing",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N008",
+      "expected_fault_code": "ERR-CF-006",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N009",
+      "expected_fault_code": "ERR-LC-002",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N010",
+      "expected_fault_code": "ERR-RM-004",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N011",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N012",
+      "expected_fault_code": "ERR-CF-003",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "CATALYST_OVERWHELMED",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N013",
+      "expected_fault_code": "ERR-RM-005",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N014",
+      "expected_fault_code": "ERR-MF-007",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "LEAN_MISFIRE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N015",
+      "expected_fault_code": "ERR-SF-002",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N016",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N017",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N018",
+      "expected_fault_code": "ERR-EF-002",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N019",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N020",
+      "expected_fault_code": "ERR-SF-004",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "VVT_FAILURE",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N021",
+      "expected_fault_code": "ERR-MF-003",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N022",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N023",
+      "expected_fault_code": "ERR-CT-005",
+      "expected_fault_family": "cam_timing",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "cam_timing",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N025",
+      "expected_fault_code": "ERR-CF-003",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "FLAT_CAMSHAFT"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "CATALYST_OVERWHELMED",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N026",
+      "expected_fault_code": "ERR-IF-005",
+      "expected_fault_family": "ignition_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "INCOMPLETE_COMBUSTION",
+      "source_category": "ignition_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N027",
+      "expected_fault_code": "ERR-RM-006",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N028",
+      "expected_fault_code": "ERR-SF-002",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N029",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "WORN_VALVE_SEALS"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MW-002",
+      "predicted_fault_family": "mechanical_wear",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXP-N030",
+      "expected_fault_code": "ERR-MW-002",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "GDI_HPFP_INTERNAL_SEAL_LEAK"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "COOLANT_LEAK_INTERNAL",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-201",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-202",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-203",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "FLAT_CAMSHAFT"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-204",
+      "expected_fault_code": "ERR-LC-003",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-205",
+      "expected_fault_code": "ERR-LC-003",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-206",
+      "expected_fault_code": "ERR-RM-004",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-207",
+      "expected_fault_code": "ERR-CF-003",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "CATALYST_OVERWHELMED",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-208",
+      "expected_fault_code": "ERR-CF-002",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "CATALYST_OVERWHELMED",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-209",
+      "expected_fault_code": "ERR-CT-001",
+      "expected_fault_family": "cam_timing",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CT-007",
+      "predicted_fault_family": "cam_timing",
+      "required_gating_state_for_expected_code": "CAM_TIMING_RETARDED_MAP",
+      "source_category": "cam_timing",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-210",
+      "expected_fault_code": "ERR-CT-002",
+      "expected_fault_family": "cam_timing",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CT-007",
+      "predicted_fault_family": "cam_timing",
+      "required_gating_state_for_expected_code": "IGNITION_MISFIRE",
+      "source_category": "cam_timing",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-211",
+      "expected_fault_code": "ERR-LC-005",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-212",
+      "expected_fault_code": "ERR-LC-005",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-213",
+      "expected_fault_code": "ERR-CF-004",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "CATALYST_OVERWHELMED",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-214",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-215",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-216",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "GDI_HPFP_INTERNAL_SEAL_LEAK"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-217",
+      "expected_fault_code": "ERR-RM-006",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-218",
+      "expected_fault_code": "ERR-LC-002",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-219",
+      "expected_fault_code": "ERR-SF-003",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "SAMPLE_INVALID",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-220",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "NORMAL_OPERATION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-221",
+      "expected_fault_code": "ERR-EF-006",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-222",
+      "expected_fault_code": "ERR-MW-005",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "INCOMPLETE_COMBUSTION",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-223",
+      "expected_fault_code": "ERR-MW-003",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "WORN_PISTON_RINGS",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-224",
+      "expected_fault_code": "ERR-MW-002",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "COOLANT_LEAK_INTERNAL",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-225",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-226",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-227",
+      "expected_fault_code": "ERR-RM-007",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "GDI_HPFP_INTERNAL_SEAL_LEAK"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-228",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-229",
+      "expected_fault_code": "ERR-SF-001",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "WORN_PISTON_RINGS"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-230",
+      "expected_fault_code": "ERR-SF-001",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-231",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-232",
+      "expected_fault_code": "ERR-CF-005",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-233",
+      "expected_fault_code": "ERR-CF-006",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-234",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-235",
+      "expected_fault_code": "ERR-MF-004",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "GDI_INTAKE_VALVE_CARBON"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "IGNITION_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-236",
+      "expected_fault_code": "ERR-MF-004",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "IGNITION_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "IGNITION_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-237",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-238",
+      "expected_fault_code": "ERR-EL-005",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-239",
+      "expected_fault_code": "ERR-EL-005",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "EXT-240",
+      "expected_fault_code": "ERR-RM-004",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "MECH-001",
+      "expected_fault_code": "ERR-MW-003",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "WORN_PISTON_RINGS",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "MECH-002",
+      "expected_fault_code": "ERR-MW-002",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "COOLANT_LEAK_INTERNAL",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "MECH-003",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "GDI_INTAKE_VALVE_CARBON"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "MECH-004",
+      "expected_fault_code": "ERR-CT-001",
+      "expected_fault_family": "cam_timing",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CT-008",
+      "predicted_fault_family": "cam_timing",
+      "required_gating_state_for_expected_code": "CAM_TIMING_RETARDED_MAP",
+      "source_category": "cam_timing",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "MECH-005",
+      "expected_fault_code": "ERR-MF-007",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "POA_SIGNATURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "LEAN_MISFIRE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "MECH-006",
+      "expected_fault_code": "ERR-MW-005",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "INCOMPLETE_COMBUSTION",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "PDF-4G-01",
+      "expected_fault_code": "ERR-CF-007",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "CATALYST_NOT_LIGHTING_OFF",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "PDF-4G-02",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "EGR_STUCK_OPEN"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "PDF-4G-03",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "PDF-4G-04",
+      "expected_fault_code": "ERR-IF-004",
+      "expected_fault_family": "ignition_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "GDI_INTAKE_VALVE_CARBON"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "IGNITION_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "PDF-4G-05",
+      "expected_fault_code": "ERR-MF-005",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "WORN_VALVE_SEALS"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "LEAN_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "PDF-HI-001",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "GDI_HPFP_INTERNAL_SEAL_LEAK"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "PDF-HI-002",
+      "expected_fault_code": "ERR-MF-003",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "IGNITION_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "LEAN_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "PDF-HI-005",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "PDF-HI-006",
+      "expected_fault_code": "ERR-CF-001",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "WORN_PISTON_RINGS"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "CATALYST_OVERWHELMED",
+      "source_category": "catalyst_failure",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "PDF-HI-007",
+      "expected_fault_code": "ERR-EL-001",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "PDF-HI-008",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "PDF-HI-010",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "REAL-001",
+      "expected_fault_code": "ERR-NS-001",
+      "expected_fault_family": "non_starter",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "IGNITION_MISFIRE",
+      "source_category": "non_starter",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "REAL-002",
+      "expected_fault_code": "ERR-LC-003",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "REAL-003",
+      "expected_fault_code": "ERR-NS-003",
+      "expected_fault_family": "non_starter",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "non_starter",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "REAL-004",
+      "expected_fault_code": "ERR-LC-005",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "REAL-005",
+      "expected_fault_code": "ERR-CF-004",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "CATALYST_OVERWHELMED",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "RULE-CO-1",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "RULE-NOx-1",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "FAIL",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "TC-011",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "TC-021",
+      "expected_fault_code": "ERR-EF-006",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "TC-046",
+      "expected_fault_code": "ERR-SF-001",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "TC-048",
+      "expected_fault_code": "ERR-EL-001",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-CSV1",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-CSV100",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "GDI_HPFP_INTERNAL_SEAL_LEAK"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "ERR-ABORT-001",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "YAML-CSV16",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "ERR-ABORT-001",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "YAML-CSV18",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-CSV22",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "IGNITION_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-CSV25",
+      "expected_fault_code": "ERR-SF-001",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-CSV41",
+      "expected_fault_code": "ERR-EF-006",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-CSV43",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-CSV45",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-CSV5",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-CSV52",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-CSV66",
+      "expected_fault_code": "ERR-MF-008",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-CSV68",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-CSV72",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "NORMAL_OPERATION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "EF-004",
+      "predicted_fault_family": "ecu_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-CSV81",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "ERR-ABORT-001",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "YAML-CSV83",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "ERR-ABORT-001",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "YAML-CSV95",
+      "expected_fault_code": "ERR-EL-001",
+      "expected_fault_family": "exhaust_leak",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "EXHAUST_AIR_LEAK",
+      "source_category": "exhaust_leak",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-PDF_4G_01",
+      "expected_fault_code": "ERR-CF-001",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "CT-002",
+      "predicted_fault_family": "cam_timing",
+      "required_gating_state_for_expected_code": "CATALYST_OVERWHELMED",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-PDF_4G_02",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-PDF_4G_03",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-PDF_4G_04",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-PDF_4G_05",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "EF-004",
+      "predicted_fault_family": "ecu_fault",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-PDF_HI_001",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "GDI_HPFP_INTERNAL_SEAL_LEAK"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-PDF_HI_002",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "GDI_INTAKE_VALVE_CARBON"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-PDF_HI_005",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "EF-004",
+      "predicted_fault_family": "ecu_fault",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-PDF_HI_006",
+      "expected_fault_code": "ERR-CF-001",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "CATALYST_OVERWHELMED",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-PDF_HI_007",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "FAIL",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "YAML-PDF_HI_008",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "ERR-ABORT-001",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "YAML-PDF_HI_010",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-RULE_CO2_1",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "ERR-ABORT-001",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "YAML-RULE_CO_1",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-RULE_NOx_1",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-TC1",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "EF-004",
+      "predicted_fault_family": "ecu_fault",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-TC11",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "ERR-ABORT-001",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "YAML-TC12",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-TC21",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "ERR-ABORT-001",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "YAML-TC22",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "LC-002",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-TC36",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-TC37",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "IGNITION_MISFIRE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-TC46",
+      "expected_fault_code": "ERR-SF-001",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "NORMAL_OPERATION"
+      ],
+      "obd_o2_failure_mode": "NOT_RUN_NO_OBD_INPUT",
+      "predicted_fault_code": "MF-005",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-TC47",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "YAML-TC48",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "ERR-ABORT-001",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "case_001",
+      "expected_fault_code": "ERR-EF-006",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "INCOMPLETE_OXIDATION"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_002",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_003",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_004",
+      "expected_fault_code": "ERR-SF-001",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_005",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "POA_SIGNATURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_006",
+      "expected_fault_code": "ERR-NS-003",
+      "expected_fault_family": "non_starter",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "II-002",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "non_starter",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_007",
+      "expected_fault_code": "ERR-NS-004",
+      "expected_fault_family": "non_starter",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-001",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "INCOMPLETE_COMBUSTION",
+      "source_category": "non_starter",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_008",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_009",
+      "expected_fault_code": "ERR-SF-002",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_010",
+      "expected_fault_code": "ERR-CF-001",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "CATALYST_OVERWHELMED",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_011",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": null,
+      "predicted_fault_family": null,
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "case_013",
+      "expected_fault_code": "ERR-EF-007",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_014",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-002",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_015",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_016",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_017",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_018",
+      "expected_fault_code": "ERR-LC-001",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "GDI_INTAKE_VALVE_CARBON"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "LEAN_MIXTURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_019",
+      "expected_fault_code": "ERR-LC-005",
+      "expected_fault_family": "lean_condition",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "LEAN_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "WIDEBAND_OFFSET_CANDIDATE",
+      "predicted_fault_code": "LC-001",
+      "predicted_fault_family": "lean_condition",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "lean_condition",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_020",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "OBDLAB_ERROR:PIDValidationError",
+      "predicted_fault_code": null,
+      "predicted_fault_family": null,
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "case_021",
+      "expected_fault_code": "",
+      "expected_fault_family": "invalid_input",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "OBDLAB_ERROR:PIDValidationError",
+      "predicted_fault_code": null,
+      "predicted_fault_family": null,
+      "required_gating_state_for_expected_code": null,
+      "source_category": "invalid_input",
+      "state_dimension": "PASS",
+      "tag": "invalid"
+    },
+    {
+      "case_id": "case_022",
+      "expected_fault_code": "ERR-MF-002",
+      "expected_fault_family": "misfire",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "MF-002",
+      "predicted_fault_family": "misfire",
+      "required_gating_state_for_expected_code": "RICH_MISFIRE",
+      "source_category": "misfire",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_023",
+      "expected_fault_code": "ERR-RM-003",
+      "expected_fault_family": "rich_mixture",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "RICH_MIXTURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "RM-001",
+      "predicted_fault_family": "rich_mixture",
+      "required_gating_state_for_expected_code": "RICH_MIXTURE",
+      "source_category": "rich_mixture",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_027",
+      "expected_fault_code": "ERR-ECU-001",
+      "expected_fault_family": "ecu_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "EF-004",
+      "predicted_fault_family": "ecu_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "ecu_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_028",
+      "expected_fault_code": "OPTIMAL_HEALTH",
+      "expected_fault_family": "no_fault",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": null,
+      "source_category": "no_fault",
+      "state_dimension": "FAIL",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_034",
+      "expected_fault_code": "ERR-CF-001",
+      "expected_fault_family": "catalyst_failure",
+      "fault_family_dimension": "PASS",
+      "gas_chemistry_states": [
+        "VVT_FAILURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "CF-001",
+      "predicted_fault_family": "catalyst_failure",
+      "required_gating_state_for_expected_code": "CATALYST_OVERWHELMED",
+      "source_category": "catalyst_failure",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_040",
+      "expected_fault_code": "ERR-NS-001",
+      "expected_fault_family": "non_starter",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "SAMPLE_INVALID"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "II-002",
+      "predicted_fault_family": "invalid_input",
+      "required_gating_state_for_expected_code": "IGNITION_MISFIRE",
+      "source_category": "non_starter",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_044",
+      "expected_fault_code": "ERR-MW-007",
+      "expected_fault_family": "mechanical_wear",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "POA_SIGNATURE"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "SF-001",
+      "predicted_fault_family": "sensor_fault",
+      "required_gating_state_for_expected_code": "POA_SIGNATURE",
+      "source_category": "mechanical_wear",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    },
+    {
+      "case_id": "case_046",
+      "expected_fault_code": "ERR-SF-001",
+      "expected_fault_family": "sensor_fault",
+      "fault_family_dimension": "FAIL",
+      "gas_chemistry_states": [
+        "TIMING_RETARDED"
+      ],
+      "obd_o2_failure_mode": "NO_FAULT",
+      "predicted_fault_code": "NF-001",
+      "predicted_fault_family": "no_fault",
+      "required_gating_state_for_expected_code": "NORMAL_OPERATION",
+      "source_category": "sensor_fault",
+      "state_dimension": "PASS",
+      "tag": "viable"
+    }
+  ],
+  "required_gating_states_by_dead_family": {
+    "exhaust_leak": [
+      "EXHAUST_AIR_LEAK",
+      "INCOMPLETE_COMBUSTION",
+      "NORMAL_OPERATION",
+      "SAMPLE_INVALID"
+    ],
+    "mechanical_wear": [
+      "COOLANT_LEAK_INTERNAL",
+      "IGNITION_MISFIRE",
+      "INCOMPLETE_COMBUSTION",
+      "POA_SIGNATURE",
+      "WORN_ENGINE",
+      "WORN_PISTON_RINGS",
+      "WORN_VALVE_SEALS"
+    ],
+    "non_starter": [
+      "IGNITION_MISFIRE",
+      "INCOMPLETE_COMBUSTION",
+      "LEAN_MIXTURE",
+      "NORMAL_OPERATION",
+      "SAMPLE_INVALID"
+    ]
+  },
+  "spot_checks": [
+    {
+      "case_id": "era1_002",
+      "emitted_gas_state": "RICH_MISFIRE",
+      "expected_fault_code": "ERR-MW-002",
+      "expected_fault_family": "mechanical_wear",
+      "matched_expected_rule": true,
+      "matching_rule_pruned_event": {
+        "attributes": {
+          "failed_gating_key": "gas_lab_state",
+          "prune_reason": "chemistry",
+          "rule_id": "MW-002"
+        },
+        "name": "rule_pruned"
+      },
+      "phase_prune_attrs": [
+        {
+          "router.candidates_in": 73,
+          "router.candidates_out": 19
+        }
+      ],
+      "phase_prune_spans": 1,
+      "required_gating_state": "COOLANT_LEAK_INTERNAL"
+    },
+    {
+      "case_id": "era3_019",
+      "emitted_gas_state": "VVT_FAILURE",
+      "expected_fault_code": "ERR-EL-002",
+      "expected_fault_family": "exhaust_leak",
+      "matched_expected_rule": true,
+      "matching_rule_pruned_event": {
+        "attributes": {
+          "failed_gating_key": "no_evidence_satisfied",
+          "prune_reason": "missing_evidence",
+          "rule_id": "EL-002"
+        },
+        "name": "rule_pruned"
+      },
+      "phase_prune_attrs": [
+        {
+          "router.candidates_in": 73,
+          "router.candidates_out": 24
+        }
+      ],
+      "phase_prune_spans": 1,
+      "required_gating_state": "EXHAUST_AIR_LEAK"
+    },
+    {
+      "case_id": "REAL-001",
+      "emitted_gas_state": "SAMPLE_INVALID",
+      "expected_fault_code": "ERR-NS-001",
+      "expected_fault_family": "non_starter",
+      "matched_expected_rule": true,
+      "matching_rule_pruned_event": {
+        "attributes": {
+          "failed_gating_key": "gas_lab_state",
+          "prune_reason": "chemistry",
+          "rule_id": "NS-001"
+        },
+        "name": "rule_pruned"
+      },
+      "phase_prune_attrs": [
+        {
+          "router.candidates_in": 73,
+          "router.candidates_out": 15
+        }
+      ],
+      "phase_prune_spans": 1,
+      "required_gating_state": "IGNITION_MISFIRE"
+    }
+  ]
+}

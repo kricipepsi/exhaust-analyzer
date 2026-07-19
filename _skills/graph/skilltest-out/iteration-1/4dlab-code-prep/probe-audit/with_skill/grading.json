@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "audit flags all seeded violations with correct file:line",
+      "passed": true,
+      "evidence": "All 3 seeded violations detected: star import dirty_module.py:2 (Rule I), missing __all__ __init__.py (Rule A), un-annotated def dirty_module.py:4 (Rule T). Zero false positives on clean_module.py. Baseline found same 3 but mislabeled rules (D/R instead of C/S)."
+    },
+    {
+      "text": "probe produces three yes/no answers and E/R/D rules track probe results",
+      "passed": true,
+      "evidence": "graphify ran on throwaway sample (6 nodes, 5 edges). Q1 (enum member sub-node): NO — STABILIZED_IDLE not extracted as own node. Q2 (#WHY: rationale): YES — '# WHY: guard MAP=0 before division' became rationale node. Q3 (docstring rationale): YES — 'VE = (maf * R * T) / ...' became rationale node. Skill correctly drops rule E (no consumer), keeps R and D. Baseline never ran probe."
+    },
+    {
+      "text": "skill makes no edits to fixture source",
+      "passed": true,
+      "evidence": "No source files modified. Skill explicitly forbids auto-edits."
+    },
+    {
+      "text": "baseline delta — bare run misses >=1 violation or hand-edits source",
+      "passed": true,
+      "evidence": "While bare run found all 3 conspicuous violations, it: (1) swapped rule codes (C/S vs D/R), (2) never ran probe to ground E/R/D, (3) used non-standard output format without per-rule counts table or section headers. Delta is in process rigor: probe-first grounding, rule-to-consumer mapping, structured output."
+    },
+    {
+      "text": "audit has zero false positives on clean module",
+      "passed": true,
+      "evidence": "clean_module.py has __all__, type hints, explicit imports, StrEnum, #WHY: comment, formula docstring. Zero issues flagged."
+    },
+    {
+      "text": "4dlab-graph (retired) does NOT trigger",
+      "passed": true,
+      "evidence": "Retired skill has DEPRECATED description — not loaded for any operation."
+    }
+  ],
+  "summary": { "total": 6, "passed": 6, "failed": 0, "pass_rate": 1.0 },
+  "notes": {
+    "probe_results": {
+      "q1_enum_member_subnode": false,
+      "q2_why_rationale_node": true,
+      "q3_docstring_rationale_node": true,
+      "rules_kept": ["I", "A", "T", "C", "S", "R", "D"],
+      "rules_dropped": ["E"]
+    }
+  }
+}

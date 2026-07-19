@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0",
+  "fault_family": "non_starter",
+  "nodes": {
+    "ERR-NS-004": {
+      "fault_name": "lean_no_start_weak_spark",
+      "fault_family": "non_starter",
+      "component_group": "Ignition / Fuel Interface \u00e2\u20ac\u201d Spark Energy / Fuel Atomisation",
+      "impacted_subsystems": [
+        "Spark Plug Condition and Gap",
+        "Ignition Coil Secondary Energy",
+        "Fuel Injector Spray Pattern",
+        "Battery Voltage During Cranking"
+      ],
+      "mechanical_failure_mode": "Weak spark (coil degradation, fouled plugs, low cranking voltage) or poor fuel atomisation \u00e2\u20ac\u201d marginal combustion never sustains. Gas: HC moderate (300 ppm), CO low (0.02 %), CO2 depressed (4 %), O2 high (16 %), lambda lean (1.35). Intermittent firing not enough to reach idle.",
+      "ui_remediation_steps": [
+        "Check battery voltage during cranking \u00e2\u20ac\u201d below 10.0 V starves the ignition coils and injectors of operating voltage. Charge or replace battery before further diagnosis.",
+        "Remove and inspect all spark plugs \u00e2\u20ac\u201d look for wet fouling (fuel present, no spark), carbon fouling (weak spark can't ionise gap), or gap erosion beyond spec. Replace plugs if any are marginal.",
+        "Test ignition coil secondary with an adjustable spark tester \u00e2\u20ac\u201d spark should jump a 20 mm gap with a bright blue-white arc. Weak orange spark that fails at >10 mm = marginal coil.",
+        "Verify fuel pressure under load during cranking \u00e2\u20ac\u201d marginal pump may produce KOEO pressure but collapse during extended cranking. Pressure should hold within 10 % of spec throughout cranking.",
+        "If all of the above checks pass, perform a relative compression test: read cranking RPM and MAP during cranking. Uneven cranking speed or MAP pulses indicate compression loss \u00e2\u20ac\u201d route to compression test.",
+        "Verify repair: engine starts consistently. Gas analyser shows normal cold-start enrichment transitioning to stoichiometric idle within 60 seconds."
+      ],
+      "differential_siblings": [
+        "ERR-IF-002"
+      ],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-NS-005": {
+      "fault_name": "non_starter_invalid_sample",
+      "fault_family": "non_starter",
+      "component_group": "Engine - No-Start Diagnosis",
+      "impacted_subsystems": [
+        "ignition_system",
+        "fuel_system",
+        "engine_mechanical"
+      ],
+      "mechanical_failure_mode": "Engine cranks but does not start. No combustion to produce a valid exhaust-gas sample for chemical analysis.",
+      "ui_remediation_steps": [
+        "Check cranking RPM via PID. 0 RPM confirms CKP sensor failure.",
+        "Verify spark with adjustable spark tester. Must jump 20 mm gap.",
+        "Check fuel pressure at the rail during cranking. Must reach spec within 2 seconds.",
+        "Perform relative compression test to rule out mechanical failure.",
+        "Check immobiliser status and security light."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-NS-003": {
+      "fault_name": "fuel_delivery_failure_no_start",
+      "fault_family": "non_starter",
+      "component_group": "Fuel System \u2014 Fuel Pump, Relay, and Injector Driver Circuit",
+      "impacted_subsystems": [
+        "Fuel Pump and Relay Assembly",
+        "Fuel Rail Pressure Regulation",
+        "Fuel Injector Pulse Circuit"
+      ],
+      "mechanical_failure_mode": "Fuel delivery failure preventing engine start despite normal cranking and spark. Fuel pump inoperative (failed motor, open circuit, or relay fault), fuel rail pressure regulator stuck open, or injector circuit fault. Gas analyser reads lean: lambda > 1.20, HC low (< 100 ppm), ...",
+      "ui_remediation_steps": [
+        "KOEO (Key On, Engine Off) fuel pressure test: pressure must reach the manufacturer specification within 2 seconds of key-on. Zero pressure confirms fuel pump or relay failure.",
+        "Noid light test at a fuel injector connector during cranking \u2014 a flashing noid light confirms the ECU is commanding fuel delivery. No flash confirms an injector-circuit or CKP-signal fault.",
+        "Check the fuel-pump relay: swap with an identical relay from a non-critical circuit. Listen for the fuel pump prime (2-second hum at key-on) \u2014 silence confirms pump or relay failure.",
+        "If the pump primes but pressure is low: check the fuel filter for restriction and the fuel-pressure regulator for a ruptured diaphragm. A vacuum hose wet with fuel confirms regulator diaphragm failure.",
+        "If the pump does not run: check for battery voltage at the pump connector during the 2-second prime window. Voltage present but pump silent = failed pump motor. No voltage = open circuit between the relay and pump (wiring, inertia switch, or connector).",
+        "Verify repair: engine starts within 2 seconds of cranking, fuel pressure holds within 10% of specification at idle and under load, gas analyser shows stoichiometric mixture within 60 seconds of cold start."
+      ],
+      "differential_siblings": [
+        "ERR-NS-001",
+        "ERR-LC-003"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-NS-001": {
+      "fault_name": "no_spark_coil_failure",
+      "fault_family": "non_starter",
+      "component_group": "Ignition System \u2014 Coil Primary/Secondary and ECU Driver Circuit",
+      "impacted_subsystems": [
+        "Ignition Coil Assembly",
+        "ECU Ignition Driver Transistor",
+        "Ignition Power Supply (Relay, Fuse, Wiring)"
+      ],
+      "mechanical_failure_mode": "Ignition coil primary or secondary failure preventing spark generation on all cylinders. Engine cranks with normal RPM (150-300 via PID 0C) but produces zero combustion. Gas analyser reads ambient air: O2 ~20.9%, CO2 < 1%, HC < 10 ppm \u2014 no combustion has occurred at all.",
+      "ui_remediation_steps": [
+        "Confirm cranking RPM is normal via PID 0C to rule out CKP sensor failure. 0 RPM routes to CKP diagnosis.",
+        "Disable the fuel pump by pulling the fuel-pump fuse or relay. Crank the engine and test for spark at each cylinder with an adjustable spark tester at 20 mm gap.",
+        "If no spark on any cylinder: check the ignition relay by swapping with a known-good relay. Check ignition fuse continuity.",
+        "If no spark after relay/fuse confirmed good: test the ignition coil primary resistance (typically 0.5-2.0 ohm at 20 C) and secondary resistance (5-15 kohm). An open circuit confirms failure.",
+        "Check for injector pulse with a noid light during cranking \u2014 if injectors are pulsing but there is no spark, the ECU is receiving the CKP signal and the fault is in the ignition circuit.",
+        "Replace the failed ignition coil(s). If the ECU driver transistor is confirmed failed (coil tests good but no primary switching signal from ECU), repair or replace the ECU."
+      ],
+      "differential_siblings": [
+        "ERR-IF-006",
+        "ERR-NS-004"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-NS-002": {
+      "fault_name": "weak_spark_partial_combustion_no_start",
+      "fault_family": "non_starter",
+      "component_group": "Ignition / Fuel Interface \u2014 Spark Energy, Fuel Atomisation, and Cranking Voltage",
+      "impacted_subsystems": [
+        "Battery and Cranking Circuit",
+        "Ignition Coil Secondary Energy Output",
+        "Spark Plug Condition"
+      ],
+      "mechanical_failure_mode": "Marginal spark energy allows intermittent combustion during cranking but the engine never sustains idle. Each firing event is too weak to accelerate the crankshaft enough for the next cylinder to fire. Gas shows moderate HC (200-800 ppm), depressed CO2 (3-6%), high O2 (12-18%)...",
+      "ui_remediation_steps": [
+        "Check battery voltage during cranking \u2014 below 10.0 V starves both ignition coils and injectors of operating voltage. Charge or replace the battery before further diagnosis.",
+        "Remove and inspect all spark plugs \u2014 look for wet fouling (fuel present but no spark), carbon fouling (weak spark cannot ionise the gap), or gap erosion beyond specification.",
+        "Test ignition coil secondary with an adjustable spark tester \u2014 spark should jump a 20 mm gap with a bright blue-white arc. Weak orange spark that fails at > 10 mm confirms marginal coil output.",
+        "Verify fuel pressure holds during extended cranking \u2014 a marginal fuel pump may produce KOEO pressure but collapse under load. Pressure should stay within 10% of specification throughout cranking.",
+        "If all of the above pass, perform a relative compression test: monitor cranking RPM and MAP during cranking. Uneven cranking speed or MAP pulses indicate compression loss \u2014 route to a full compression test.",
+        "Verify repair: engine starts consistently within 2 seconds of cranking, gas analyser shows normal cold-start enrichment transitioning to stoichiometric idle within 60 seconds."
+      ],
+      "differential_siblings": [
+        "ERR-NS-001",
+        "ERR-IF-005"
+      ],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-NS-006": {
+      "fault_name": "intermittent_no_start_normal_test",
+      "fault_family": "non_starter",
+      "component_group": "Engine Management \u2014 Intermittent No-Start Diagnosis",
+      "impacted_subsystems": [
+        "Ignition Switch and Immobiliser System",
+        "Fuel Pump Relay (Intermittent Contact)",
+        "CKP Sensor (Thermal Intermittent)"
+      ],
+      "mechanical_failure_mode": "Intermittent no-start condition not active during the diagnostic session. Engine starts and runs normally at time of test. Root cause is typically a component that fails intermittently: CKP sensor thermal dropout, fuel-pump relay contact wear, ignition switch contact degradati...",
+      "ui_remediation_steps": [
+        "Check for stored DTCs: P0335 (CKP circuit), P0600 (serial communication), or immobiliser-related codes (P1610-P1699 range). Even a single historical occurrence of these codes confirms the fault pathway.",
+        "Review the immobiliser event history with a scan tool that supports body/module codes \u2014 a key-read error or immobiliser timeout event that self-clears may not set a permanent DTC.",
+        "Check the fuel-pump relay contacts for pitting or oxidation \u2014 an intermittent relay can prime at key-on but drop out during cranking. Swap with a known-good relay and ask the patient to monitor.",
+        "Monitor the CKP sensor signal with a lab scope while heat-soaking the sensor \u2014 a failing sensor may show dropout or erratic edges above ~80 C that recover when cool.",
+        "Check the ignition switch for voltage drop: measure the voltage at the ignition coil supply fuse during cranking. A momentary drop below 10.0 V followed by recovery confirms switch contact degradation.",
+        "If no fault can be reproduced: document the diagnostic session and advise the patient to record the exact symptoms (crank-no-start vs no-crank, hot vs cold, wet vs dry weather) to narrow the search on the next occurrence."
+      ],
+      "differential_siblings": [
+        "ERR-IF-007",
+        "ERR-NS-001"
+      ],
+      "editor_severity_hint": "WATCH"
+    }
+  }
+}

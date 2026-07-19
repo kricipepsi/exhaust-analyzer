@@ -1,0 +1,36 @@
+# Source: VehicleDNA.md §"Complete Universal Triage & Diagnostic Mapping Diagram"
+# Contract: SEMANTIC_CONTRACT.md §4.2 — the (tier_1, tier_2) strings are the enum source.
+# Last updated: 2026-06-11
+#
+# Routing (suppress_modes, prioritize_modes, target_backend_equation, ui_input_fields)
+# is NOT here — that lives in COMLab per DNALab_TO_COMLab_FLOW.md §4.
+
+combinations:
+  vehicle_starting_issues:
+    - no_crank_silent
+    - fast_crank_whining
+    - prolonged_crank_hard_start
+  rough_idle_shudder:
+    - constant_vibration_shudder
+    - surging_hunting_idle
+    - stalls_on_cold_start
+  lack_of_power_hesitation:
+    - flat_sluggish_always
+    - hesitation_throttle_tip_in
+    - sudden_jerk_stumble
+  poor_economy_fuel_odor_sound:
+    - just_poor_mpg
+    - strong_fuel_smell
+    - knock_pinging_under_load
+  engine_dies_or_stalls:
+    - when_coasting_to_stop
+    - intermittent_random_cutout
+    - backfire_loud_pop
+  visible_exhaust_smoke:
+    - black_smoke
+    - blue_oily_smell
+    - white_sweet_smell
+  oil_consumption:
+    - blue_smoke_on_cold_start_clears   # valve-stem seals: cold-start cloud that clears on driving (P_NEW_10)
+    - blue_smoke_under_acceleration     # piston rings / turbo seal: worsens under load (P_NEW_09, P_NEW_13)
+    - oil_loss_no_visible_smoke         # PCV stuck-open / slow consumption: oil loss without obvious smoke (P_NEW_11)

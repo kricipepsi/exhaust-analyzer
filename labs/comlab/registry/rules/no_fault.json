@@ -1,0 +1,191 @@
+{
+  "version": "2.0",
+  "fault_family": "no_fault",
+  "rules": [
+    {
+      "rule_id": "NF-001",
+      "fault_family": "no_fault",
+      "description": "Clean stoichiometric no-DTC acceptance: low HC/CO, efficient CO2, low residual O2, moderate NOx, and lambda perception aligned with no confirmed DTCs",
+      "chemistry_evidence": [],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "le",
+          "value": 50.0,
+          "tier": "GATING",
+          "units": "ppm",
+          "wiki_ref": "master_gas_guide \u00a72"
+        },
+        {
+          "pid": "co",
+          "operator": "le",
+          "value": 0.5,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "master_gas_guide \u00a72"
+        },
+        {
+          "pid": "co2",
+          "operator": "ge",
+          "value": 14.5,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "master_gas_guide \u00a72"
+        },
+        {
+          "pid": "o2",
+          "operator": "le",
+          "value": 0.6,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "master_gas_guide \u00a72"
+        },
+        {
+          "pid": "nox",
+          "operator": "le",
+          "value": 50.0,
+          "tier": "GATING",
+          "units": "ppm",
+          "wiki_ref": "master_gas_guide \u00a78.5"
+        },
+        {
+          "pid": "obd_lambda",
+          "operator": "in_range",
+          "range_low": 0.97,
+          "range_high": 1.03,
+          "tier": "GATING",
+          "units": "lambda",
+          "wiki_ref": "master_gas_guide \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0113",
+            "P0118",
+            "P0128",
+            "P0171",
+            "P0172",
+            "P0201",
+            "P0202",
+            "P0203",
+            "P0204",
+            "P0205",
+            "P0206",
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304",
+            "P0420",
+            "P0430",
+            "P0606"
+          ],
+          "strategy": "none_present",
+          "tier": "GATING",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.93,
+      "competition_group": "no_fault",
+      "confidence_ceiling": 0.93,
+      "passes_cases": [
+        "CSV-001",
+        "CSV-005",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "YAML-TC1",
+        "YAML-CSV5",
+        "YAML-PDF_HI_005",
+        "EXT-220",
+        "EXT-231",
+        "CASE-009",
+        "case_012",
+        "case_028"
+      ],
+      "source_wiki_refs": [
+        "master_gas_guide \u00a72",
+        "master_gas_guide \u00a78.5",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "NF-002",
+      "fault_family": "no_fault",
+      "description": "Clean combustion with false lean DTC: pristine gas and aligned lambda override a lone lean-history code when there is no chemical lean consequence",
+      "chemistry_evidence": [],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "le",
+          "value": 30.0,
+          "tier": "GATING",
+          "units": "ppm",
+          "wiki_ref": "master_gas_guide \u00a72"
+        },
+        {
+          "pid": "co",
+          "operator": "le",
+          "value": 0.05,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "master_gas_guide \u00a72"
+        },
+        {
+          "pid": "co2",
+          "operator": "ge",
+          "value": 14.6,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "master_gas_guide \u00a72"
+        },
+        {
+          "pid": "o2",
+          "operator": "le",
+          "value": 0.5,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "master_gas_guide \u00a72"
+        },
+        {
+          "pid": "nox",
+          "operator": "le",
+          "value": 300.0,
+          "tier": "GATING",
+          "units": "ppm",
+          "wiki_ref": "master_gas_guide \u00a78.5"
+        },
+        {
+          "pid": "obd_lambda",
+          "operator": "in_range",
+          "range_low": 0.97,
+          "range_high": 1.03,
+          "tier": "GATING",
+          "units": "lambda",
+          "wiki_ref": "master_gas_guide \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0171"
+          ],
+          "strategy": "any_match",
+          "tier": "GATING",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.96,
+      "competition_group": "no_fault",
+      "confidence_ceiling": 0.96,
+      "passes_cases": [
+        "case_049"
+      ],
+      "source_wiki_refs": [
+        "master_gas_guide \u00a72",
+        "master_gas_guide \u00a78.5",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    }
+  ]
+}

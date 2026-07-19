@@ -1,0 +1,200 @@
+{
+  "manufacturers": [
+    {
+      "field": "row_id",
+      "type": "int"
+    },
+    {
+      "field": "id",
+      "type": "int"
+    },
+    {
+      "field": "canbedisplayed",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "description",
+      "type": "varchar(255)"
+    },
+    {
+      "field": "fulldescription",
+      "type": "varchar(512)"
+    },
+    {
+      "field": "haslink",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "isaxle",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "iscommercialvehicle",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "isengine",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "ismotorbike",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "ispassengercar",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "istransporter",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "isvgl",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "matchcode",
+      "type": "varchar(255)"
+    }
+  ],
+  "models": [
+    {
+      "field": "row_id",
+      "type": "int"
+    },
+    {
+      "field": "id",
+      "type": "int"
+    },
+    {
+      "field": "canbedisplayed",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "constructioninterval",
+      "type": "varchar(255)"
+    },
+    {
+      "field": "description",
+      "type": "varchar(255)"
+    },
+    {
+      "field": "fulldescription",
+      "type": "varchar(512)"
+    },
+    {
+      "field": "haslink",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "isaxle",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "iscommercialvehicle",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "isengine",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "ismotorbike",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "ispassengercar",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "istransporter",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "manufacturerid",
+      "type": "int"
+    }
+  ],
+  "manufacturers_sample": [
+    [
+      1,
+      1,
+      "True",
+      "AEBI",
+      "AEBI",
+      "True",
+      "False",
+      "True",
+      "False",
+      "False",
+      "False",
+      "False",
+      "False",
+      "AEBI"
+    ],
+    [
+      2,
+      1,
+      "True",
+      "AEBI",
+      "AEBI",
+      "True",
+      "False",
+      "False",
+      "True",
+      "False",
+      "False",
+      "False",
+      "False",
+      "AEBI"
+    ],
+    [
+      3,
+      2,
+      "True",
+      "ALFA ROMEO",
+      "ALFA ROMEO",
+      "True",
+      "False",
+      "False",
+      "True",
+      "False",
+      "False",
+      "False",
+      "False",
+      "ALFA ROMEO"
+    ],
+    [
+      4,
+      2,
+      "True",
+      "ALFA ROMEO",
+      "ALFA ROMEO",
+      "True",
+      "False",
+      "False",
+      "False",
+      "False",
+      "True",
+      "False",
+      "False",
+      "ALFA"
+    ],
+    [
+      5,
+      3,
+      "True",
+      "AUTO UNION",
+      "AUTO UNION",
+      "True",
+      "False",
+      "False",
+      "False",
+      "False",
+      "True",
+      "False",
+      "False",
+      "AUTOU"
+    ]
+  ]
+}

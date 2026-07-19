@@ -1,0 +1,13 @@
+Now I have enough. Here's the deduction workflow as a decision diagram, grounded in the rebuilt pack — the key idea is that GASLab's gas chemistry (the Brettschneider λ ground truth) does most of the sorting, and only the two `POA_SIGNATURE` cases need the L1→L2 gas-signature delta to separate.How the engine deduces the factual failure, in order:
+
+The symptom (`oil_consumption`) does **not** pick the failure — it only nudges a whole family weakly, and in the rebuilt pack that nudge is proposal-only. The real work is gas chemistry. GASLab measures gas at both idle and high idle and computes the Brettschneider λ as ground truth, emitting a single `chemical_state`. That state is the **GATING** evidence (the gate a rule must pass before anything else is scored), and it does most of the sorting on its own:
+
+- `WORN_PISTON_RINGS` → only MW-001 survives → worn rings
+- `WORN_VALVE_SEALS` → only MW-002 → valve-stem seals
+- `COOLANT_LEAK_INTERNAL` → only MW-003 → head-gasket breach
+
+Three of the five fall out cleanly because each maps to a distinct chemistry. The trouble is **PCV and turbo both emit `POA_SIGNATURE`** — chemistry can't tell them apart. That's the only fork that needs the gas-signature itself, specifically the low→high-idle delta plus λ and CO at idle: PCV runs **rich** at idle (λ < 0.94) with HC collapsing as vacuum drops (610→170); turbo stays **stoichiometric** (λ ≈ 1.0) with clean CO (< 0.15) and extreme HC that dilutes at high flow (720→130), because the oil cracks post-cylinder in the hot exhaust rather than burning rich in the chamber. Whichever rule clears its evidence gates and scores ≥ 0.70 becomes the verdict (`fault_code = MW-00x`).
+
+The no-VIN consequence is the honest weak spot. Without a VIN the engine can't confirm the car is even turbocharged, so the forced-induction guard (the deferred `U-OIL-FI-1`) is unavailable. Turbo vs PCV then rests entirely on the λ/CO gas signature — which is usually enough (rich vs stoich is a clean split), but a naturally-aspirated engine that happens to show stoich-λ with extreme HC could mis-trigger the turbo verdict. That residual ambiguity is exactly why R5 keeps `forced_induction` as corroboration rather than a hard gate, and why surfacing it in the verdict (not hiding it) is the right behavior until a VIN is known.
+
+One caveat on the diagram: MW-008 and MW-009 are the **proposed** rules from tasks R4/R5 — they don't exist in the registry yet (they need the high-idle contract from R3a/R3b first). Today, with the live code as-is, both PCV and turbo would fall through to the generic `POA_SIGNATURE` handling and not be distinguished. The diagram shows the target state the rebuilt pack delivers.

@@ -1,0 +1,141 @@
+{
+  "version": "2.0",
+  "fault_family": "ignition_fault",
+  "rules": [
+    {
+      "rule_id": "IF-001",
+      "fault_family": "ignition_fault",
+      "description": "ECU ignition coil driver fault — IGNITION_MISFIRE chemistry with coil-primary DTC (P0351–P0358) and positive short-term fuel trim confirms the misfire is ignition-hardware, not fuel or mechanical. Reproduces e2e ERR-IF-001 path.",
+      "chemistry_evidence": [
+        {
+          "state": "IGNITION_MISFIRE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY §3"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "shrtft1",
+          "operator": "ge",
+          "value": 5.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY §2"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0351",
+            "P0352",
+            "P0353",
+            "P0354",
+            "P0355",
+            "P0356",
+            "P0357",
+            "P0358"
+          ],
+          "strategy": "any_match",
+          "tier": "GATING",
+          "wiki_ref": "DTC_VOCABULARY §4"
+        }
+      ],
+      "base_weight": 0.85,
+      "competition_group": "ignition_fault",
+      "passes_cases": [
+        "E2E-IF-001"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY §2",
+        "GAS_VOCABULARY §3",
+        "DTC_VOCABULARY §4"
+      ]
+    },
+    {
+      "rule_id": "IF-002",
+      "fault_family": "ignition_fault",
+      "description": "Knock-sensor-indicated pre-ignition / weak spark — POA_SIGNATURE chemistry with knock-sensor DTC (P0324–P0334) and elevated HC. Knock-sensor circuit faults are an ignition-system discriminator: pre-ignition and knock events stress the secondary ignition, and a knock DTC without a misfire DTC points to ignition hardware rather than fuel/mechanical. GATING on knock DTC prevents cannibalisation of other POA_SIGNATURE families. base_weight 0.86: on POA_SIGNATURE cases scores 1.01→1.0 (0.86 + 0.10 DEF + 0.05 SUGG); on SAMPLE_INVALID/chemistry-None cases (where the shim blanks chemistry per hard-absence semantics) scores 0.91 (0.86 + 0.05 SUGG), clearing CF-001 at 0.90 on both consumer cases.",
+      "chemistry_evidence": [
+        {
+          "state": "POA_SIGNATURE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY §3"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "ge",
+          "value": 200.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY §2"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0324",
+            "P0325",
+            "P0326",
+            "P0327",
+            "P0328",
+            "P0329",
+            "P0330",
+            "P0331",
+            "P0332",
+            "P0333",
+            "P0334"
+          ],
+          "strategy": "any_match",
+          "tier": "GATING",
+          "wiki_ref": "DTC_VOCABULARY §4"
+        }
+      ],
+      "base_weight": 0.86,
+      "competition_group": "ignition_fault",
+      "passes_cases": [
+        "EXP-N026",
+        "CASE-035"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY §2",
+        "GAS_VOCABULARY §3",
+        "DTC_VOCABULARY §4"
+      ]
+    },
+    {
+      "rule_id": "IF-003",
+      "fault_family": "ignition_fault",
+      "description": "Late ignition timing / no-DTC ignition fault — POA_SIGNATURE chemistry (catch-all, variable gas signature) with elevated HC and no DTC requirement. Captures ignition-timing faults (knock-sensor fault causing late spark, failing coil producing weak spark below the misfire-detection threshold) that the ECU does not flag with a DTC. Low base_weight (0.42) prevents cannibalisation of other POA_SIGNATURE families: this rule fires at 0.57 (0.42 + 0.10 + 0.05) which beats no_fault but loses to any other family with a stronger signal. Known limitation: cannot flip case_036 (current winner CF-001 at 0.90) without raising base_weight above 0.75, which would cannibalise all POA_SIGNATURE cases — see progress_notes.",
+      "chemistry_evidence": [
+        {
+          "state": "POA_SIGNATURE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY §3"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "ge",
+          "value": 200.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY §2"
+        }
+      ],
+      "dtc_evidence": [],
+      "base_weight": 0.42,
+      "competition_group": "ignition_fault",
+      "confidence_ceiling": 0.60,
+      "passes_cases": [
+        "case_036"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY §2",
+        "GAS_VOCABULARY §3"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "schema_version": "1.0",
+  "fault_family": "cam_timing",
+  "nodes": {
+    "ERR-CT-001": {
+      "fault_name": "cam_timing_retard_chain_stretch",
+      "fault_family": "cam_timing",
+      "component_group": "Engine Mechanical \u00e2\u20ac\u201d Timing Chain/Belt and Camshaft Phasing Assembly",
+      "impacted_subsystems": [
+        "Timing Chain or Belt Drive System",
+        "Camshaft-to-Crankshaft Phasing Index",
+        "All Cylinder Volumetric Efficiency"
+      ],
+      "mechanical_failure_mode": "Timing chain stretched beyond tensioner range or belt jumped one tooth. Cam phasing globally retarded \u00e2\u20ac\u201d intake valves open/close later than designed. All cylinders equally low compression.",
+      "ui_remediation_steps": [
+        "Compression test all cylinders: uniformly low across the board (60-80 psi where 120-180 psi is expected). Wet test on a representative cylinder: little or no change \u00e2\u20ac\u201d rings are not the cause.",
+        "Verify cam timing mechanically: rotate engine to TDC compression stroke on cylinder 1. Check camshaft timing mark aligns with crank timing mark. A misalignment of one tooth or more confirms the timing has jumped.",
+        "Vacuum gauge at warm idle: steady but abnormally low (10-15 inHg). Engine idles rough and lacks power under load. Snap-throttle: vacuum plunges sluggishly and fails to rebound above baseline.",
+        "Inspect timing chain tensioner: remove timing cover and check whether tensioner plunger is at full extension with no remaining take-up range.",
+        "Replace timing chain/belt, tensioner, guides, and cam/crank sprockets as a complete kit. Re-time engine to manufacturer specification.",
+        "Verify repair: compression restored to 120-180 psi across all cylinders, vacuum gauge steady 17-22 inHg at warm idle, engine idles smoothly, power restored. Perform CASE relearn if required."
+      ],
+      "differential_siblings": [
+        "ERR-CT-003",
+        "ERR-MW-005",
+        "ERR-MF-006"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-CT-002": {
+      "fault_name": "vvt_phaser_stuck_advanced",
+      "fault_family": "cam_timing",
+      "component_group": "Engine Mechanical \u00e2\u20ac\u201d Variable Valve Timing (VVT) Phaser and Oil Control Circuit",
+      "impacted_subsystems": [
+        "VVT Phaser (Cam Sprocket Integrated)",
+        "Engine Oil Supply Gallery to Phaser",
+        "Knock Sensor Feedback Loop"
+      ],
+      "mechanical_failure_mode": "VVT phaser locked full-advance \u00e2\u20ac\u201d lock pin seized, spool valve jammed, or return spring broken. Intake valves open too early, raising low-RPM cylinder pressure causing knock under light load. Rough/loping idle from exhaust reversion into intake port.",
+      "ui_remediation_steps": [
+        "Scan for DTCs: P0011 (intake cam over-advanced, bank 1) or P0021 (bank 2) confirm ECU has detected phaser stuck beyond commanded position. Check freeze-frame for actual vs desired cam angle delta.",
+        "Road test: light-throttle acceleration from ~1500 RPM produces audible knock (pinging) that diminishes at higher RPM \u00e2\u20ac\u201d advanced cam timing creates excessive low-RPM cylinder pressure.",
+        "Check engine oil condition and level: low or sludged oil is the most common root cause. Perform engine oil flush and oil change before condemning the phaser.",
+        "Bi-directional scan tool: command VVT phaser through full range at warm idle. If actual cam angle does not move while desired angle changes, the phaser or solenoid is mechanically stuck.",
+        "If phaser confirmed stuck: replace VVT phaser, oil control solenoid, and all O-rings and gaskets. Flush engine oil system to remove debris.",
+        "Verify repair: no knock/pinging under light load, P0011/P0021 does not return, actual cam angle tracks desired angle within 2 degrees, engine idles smoothly."
+      ],
+      "differential_siblings": [
+        "ERR-CT-003",
+        "ERR-CT-005",
+        "ERR-MF-001"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-CT-003": {
+      "fault_name": "vvt_phaser_stuck_retarded",
+      "fault_family": "cam_timing",
+      "component_group": "Engine Mechanical \u00e2\u20ac\u201d Variable Valve Timing (VVT) Phaser and Oil Control Circuit",
+      "impacted_subsystems": [
+        "VVT Phaser (Cam Sprocket Integrated)",
+        "Engine Oil Supply Gallery to Phaser",
+        "Crankshaft Torque Output (Low-End)"
+      ],
+      "mechanical_failure_mode": "VVT phaser locked full-retard \u00e2\u20ac\u201d lock pin seized, spool valve jammed, or debris overrides return spring. Intake valves open/close late, reducing compression and cylinder fill at low-to-mid RPM. Engine flat below 3500 RPM.",
+      "ui_remediation_steps": [
+        "Scan for DTCs: P0014 (intake cam over-retarded, bank 1) or P0024 (bank 2). If no DTC but engine feels weak at low RPM, phaser may be stuck without exceeding ECU detection threshold.",
+        "Road test: engine feels flat and unresponsive below 3000-3500 RPM. Above 4000 RPM it wakes up because cam retard becomes beneficial. This RPM-dependent power delivery is a strong VVT-phaser-stuck signal.",
+        "Check engine oil condition and level first \u00e2\u20ac\u201d dirty or low oil is the most common cause. Perform oil change with correct viscosity before further diagnosis.",
+        "Bi-directional scan tool: command VVT phaser from full retard to full advance at warm idle. If actual cam angle does not move, phaser or solenoid is stuck. If it moves sluggishly, suspect sludge (see ERR-CT-004).",
+        "If phaser confirmed stuck retarded: replace VVT phaser, oil control solenoid, and all seals. Flush engine oil system thoroughly \u00e2\u20ac\u201d sludge that killed old phaser will kill the new one.",
+        "Verify repair: power delivery smooth from 1500 RPM to redline, no flat spot, P0014/P0024 does not return, actual cam angle tracks desired within 2 degrees, HC returns to normal range."
+      ],
+      "differential_siblings": [
+        "ERR-CT-001",
+        "ERR-CT-002",
+        "ERR-CT-004",
+        "ERR-MF-001"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-CT-004": {
+      "fault_name": "vvt_phaser_sludge_lag",
+      "fault_family": "cam_timing",
+      "component_group": "Engine Mechanical \u00e2\u20ac\u201d Variable Valve Timing (VVT) Oil Supply and Phaser Response",
+      "impacted_subsystems": [
+        "VVT Phaser Oil Supply Gallery",
+        "Engine Oil Pump and Oil Condition",
+        "ECU Cam Angle Feedback Control Loop"
+      ],
+      "mechanical_failure_mode": "Sludge/varnish obstructs VVT solenoid screen and phaser oil galleries. Phaser moves but lags commanded angle 0.5-2.0 s. Transient lean/rich during throttle changes. Often no DTC \u00e2\u20ac\u201d phaser eventually reaches target; fault is response time, not final position.",
+      "ui_remediation_steps": [
+        "Scan tool: graph actual vs desired cam angle during throttle snap at warm idle. Healthy phaser tracks within 0.2 seconds. Sludge lag shows actual trace visibly chasing desired trace with 0.5-2.0 second delay.",
+        "Road test: light-throttle acceleration from 1500-2500 RPM produces momentary hesitation \u00e2\u20ac\u201d phaser is still moving to commanded position while engine is already at new load point.",
+        "Check oil change history: extended intervals, non-synthetic oil, or low-quality filters are root cause of VVT sludge. VVT system is intolerant of oil neglect.",
+        "Professional engine oil flush with reputable product, then drain and refill with correct synthetic oil and new OEM-quality filter. In many cases this restores phaser response without hardware replacement.",
+        "If flushing does not restore response: remove VVT oil-control solenoid, inspect screen for debris, clean or replace solenoid. If phaser itself is sludged internally, replace phaser and solenoid together.",
+        "Verify repair: actual cam angle tracks desired within 0.2 seconds on scan tool, no hesitation during throttle transients, oil changed at manufacturer recommended interval going forward."
+      ],
+      "differential_siblings": [
+        "ERR-CT-003",
+        "ERR-CT-005"
+      ],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-CT-005": {
+      "fault_name": "vvt_solenoid_fault",
+      "fault_family": "cam_timing",
+      "component_group": "Engine Mechanical \u00e2\u20ac\u201d VVT Oil Control Solenoid and Electrical Circuit",
+      "impacted_subsystems": [
+        "VVT Oil Control Solenoid (Spool Valve Assembly)",
+        "ECU VVT Driver Output Stage",
+        "Engine Oil Pressure Supply to Phaser"
+      ],
+      "mechanical_failure_mode": "VVT oil control solenoid degraded \u00e2\u20ac\u201d coil resistance drifted beyond spec, spool valve stuck from varnish, or connector pin corrosion. ECU cannot position phaser: not responding to PWM or responding erratically. Sets P0010/P0020.",
+      "ui_remediation_steps": [
+        "Scan for DTCs: P0010 or P0020 confirm ECU has detected electrical fault in VVT solenoid circuit. Check freeze-frame data for conditions when fault set (ECT, RPM, oil temperature).",
+        "Measure solenoid coil resistance at connector with digital multimeter \u00e2\u20ac\u201d compare to manufacturer specification (typically 6-14 ohm at 20 C). Open circuit, short, or out-of-range resistance confirms solenoid failure.",
+        "Check solenoid connector and wiring for green corrosion, broken pins, or chafed insulation. Back-probe ECU-side drive signal with lab scope \u00e2\u20ac\u201d clean PWM waveform confirms ECU driver is good.",
+        "Remove solenoid and inspect spool valve screen for debris \u00e2\u20ac\u201d clogged screen starves phaser of oil pressure and mimics failed solenoid. Clean screen with solvent. If spool valve does not move freely, replace solenoid.",
+        "Apply 12 V to solenoid briefly with fused jumper \u00e2\u20ac\u201d spool valve should produce audible click. No click with correct resistance confirms mechanically stuck spool valve.",
+        "Replace VVT solenoid if confirmed faulty. Use OEM-quality replacement. Verify repair: no P0010/P0020 DTC, actual cam angle tracks desired, connector clean and weather-sealed."
+      ],
+      "differential_siblings": [
+        "ERR-CT-002",
+        "ERR-CT-003",
+        "ERR-CT-004",
+        "ERR-EF-001"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-CT-006": {
+      "fault_name": "invalid_sample_cam_timing_misalignment",
+      "fault_family": "cam_timing",
+      "component_group": "Engine Mechanical - Valve Train",
+      "impacted_subsystems": [
+        "camshaft_drive",
+        "timing_components",
+        "valve_train"
+      ],
+      "mechanical_failure_mode": "Cam timing offset from spec. Chain stretch, belt jump, or phaser lock-pin failure causing valves to open at wrong crank angle.",
+      "ui_remediation_steps": [
+        "Verify cam timing mechanically at TDC with timing marks aligned.",
+        "Inspect timing chain/belt, tensioner, and guides for wear or damage.",
+        "Check VVT phaser lock pin and oil control valve if equipped.",
+        "Re-time engine to manufacturer specification after repair.",
+        "Perform CASE relearn if required."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-CT-008": {
+      "fault_name": "cam_timing_incomplete_combustion_misalignment",
+      "fault_family": "cam_timing",
+      "component_group": "Engine Mechanical \u2014 Camshaft-to-Crankshaft Phasing (Jumped Timing)",
+      "impacted_subsystems": [
+        "Timing Belt Teeth or Chain Link Engagement",
+        "Tensioner and Idler Pulley Assembly",
+        "Valve-to-Piston Clearance (Interference Engine)"
+      ],
+      "mechanical_failure_mode": "Severe cam/crank misalignment from a jumped timing belt or chain. When the belt jumps one or more teeth (or the tensioner fails completely), valve events occur at the wrong crank angle \u2014 intake valves open during the compression stroke, exhaust valves open during the power str...",
+      "ui_remediation_steps": [
+        "This is an urgent diagnosis \u2014 if the engine is an interference design, a jumped belt risks piston-to-valve contact and catastrophic engine damage. Do NOT attempt to start or run the engine again until timing is verified.",
+        "Rotate the engine by hand (socket on the crankshaft bolt) to TDC on cylinder 1 and check cam timing marks. A misalignment of > 2 teeth confirms a jumped belt or chain. Do not force the engine if resistance is felt \u2014 valves may be contacting pistons.",
+        "Inspect the timing belt for missing teeth (stripped at the crank sprocket) or the timing chain tensioner for catastrophic failure (broken tensioner, guide rail fragments in the oil pan). A failed tensioner allows the chain to skip teeth during engine deceleration.",
+        "If the engine is an interference design and timing has jumped: perform a leak-down test before replacing the timing components. A cylinder with > 50% leakage past the intake or exhaust valves confirms valve-to-piston contact \u2014 the cylinder head must be removed and valves replaced.",
+        "If valves are confirmed undamaged: replace the timing belt/chain, tensioner, idlers/guides, and water pump (if timing-belt-driven) as a complete kit. Re-time the engine precisely to the manufacturer specification.",
+        "Verify repair: cam timing marks perfectly aligned at TDC, compression even across all cylinders within 10%, vacuum gauge 17-22 inHg steady at idle, engine runs smoothly throughout the RPM range."
+      ],
+      "differential_siblings": [
+        "ERR-CT-001",
+        "ERR-CT-007",
+        "ERR-MW-005"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-CT-007": {
+      "fault_name": "cam_timing_retard_chain_stretch",
+      "fault_family": "cam_timing",
+      "component_group": "Engine Mechanical \u2014 Timing Chain, Belt, and Tensioner Assembly",
+      "impacted_subsystems": [
+        "Timing Chain or Belt",
+        "Timing Chain Tensioner (Hydraulic or Spring-Loaded)",
+        "Camshaft and Crankshaft Sprockets"
+      ],
+      "mechanical_failure_mode": "Timing chain stretch or belt elongation causing globally retarded cam timing. As the chain wears at the link pins, it effectively lengthens, retarding the camshaft relative to the crankshaft. The tensioner plunger extends to compensate, but timing retard accumulates. Gas analy...",
+      "ui_remediation_steps": [
+        "Verify cam timing mechanically at TDC: rotate the engine to TDC on cylinder 1 (compression stroke) and confirm that the camshaft timing marks align exactly with the crankshaft timing mark. Even half a tooth of misalignment confirms timing error.",
+        "Inspect the timing chain tensioner: remove the tensioner and measure the plunger extension. A fully extended or near-fully extended plunger confirms the chain has stretched beyond the tensioner's compensation range.",
+        "Vacuum gauge at warm idle: a steady but abnormally low reading (10-15 inHg vs 17-22 inHg normal) with the needle steady (not fluctuating) is characteristic of retarded valve timing \u2014 consistent across all cylinders.",
+        "Check cam/crank correlation with a scan tool: many vehicles report cam/crank phase angle as a PID. Values outside the manufacturer specification (typically +/- 5 degrees) confirm timing error before any mechanical disassembly.",
+        "Replace the timing chain or belt, tensioner, guides, and both cam and crank sprockets as a complete kit. A new chain on worn sprockets will wear prematurely. Re-time the engine to the manufacturer specification.",
+        "Verify repair: cam timing marks aligned at TDC, cam/crank correlation PID within specification, vacuum gauge 17-22 inHg at warm idle, gas analyser shows normal combustion chemistry, engine power restored."
+      ],
+      "differential_siblings": [
+        "ERR-CT-001",
+        "ERR-MW-005"
+      ],
+      "editor_severity_hint": "URGENT"
+    }
+  }
+}

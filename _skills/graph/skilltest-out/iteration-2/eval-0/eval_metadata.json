@@ -1,0 +1,6 @@
+{
+  "eval_id": 0,
+  "name": "4dlab-code-prep probe-audit",
+  "prompt": "Audit C:\\tmp\\gfxskilltest\\iteration-2\\code_fix for graphify code-map readiness. With-skill runs must use 4dlab-code-prep; baseline runs must use no graph skill. Emit audit_report.md with probe answers where available and file:line findings, including seeded C dynamic dispatch and S runtime symbol cases."
+}
+

@@ -1,0 +1,46 @@
+{
+  "_case_id": "MW-003",
+  "_provenance": "OilburnCases.md §P_NEW_12; OIL_CASE_SIGNATURES_5FR.md §1; archived T-WV2-2 routed baseline",
+  "vin": "XXXXXXXXXXXXXXXXX",
+  "triage": {
+    "tier_1": "rough_idle_shudder",
+    "tier_2": "constant_vibration_shudder",
+    "occurs_during": "always",
+    "engine_state": "running",
+    "load_state": "idle",
+    "csv_primary_symptom": "oil_loss_no_visible_smoke"
+  },
+  "gas": {
+    "hc": 450,
+    "co": 0.15,
+    "co2": 11.2,
+    "o2": 2.7,
+    "nox": 5,
+    "hc_high": 440,
+    "co_high": 0.15,
+    "co2_high": 11.2,
+    "o2_high": 2.7,
+    "nox_high": 5,
+    "block_test_passed": true,
+    "engine_state": "STABILIZED_IDLE",
+    "lambda_measured": 1.1
+  },
+  "dtc": {
+    "raw_dtcs": {},
+    "raw_freeze_frame": {
+      "calculated_load_pct": 20.0,
+      "engine_rpm": 800,
+      "coolant_temp_c": 98.0,
+      "short_term_ft1": 0.0,
+      "long_term_ft1": 0.0,
+      "manifold_pressure_kpa": 30.0,
+      "vehicle_speed_kmh": 0.0,
+      "ignition_advance_deg": 10.0,
+      "intake_air_temp_c": 35.0,
+      "maf_gps": 3.5,
+      "throttle_pos_pct": 15.0,
+      "fuel_system_status": "CL"
+    },
+    "raw_mode06": {}
+  }
+}

@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gaslab"
+version = "0.1.0"
+description = "GASLab — 5-gas exhaust diagnostic module of 4DLab. See GAS_WIKI §2.1."
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+    "pyright",
+]
+
+[tool.setuptools.packages.find]
+include = ["gaslab*"]
+exclude = ["ARCHIVE*", "tests*", "_gaslab_skills*", "gaslab_tasks*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-m 'not slow'"
+markers = ["slow: heavy generative cases (1000+ runs); excluded from the fast inner loop"]
+
+[tool.ruff]
+target-version = "py311"
+
+[tool.pyright]
+pythonVersion = "3.11"
+include = ["gaslab"]

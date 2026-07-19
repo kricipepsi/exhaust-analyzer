@@ -1,0 +1,360 @@
+{
+  "version": "2.0",
+  "fault_family": "catalyst_failure",
+  "rules": [
+    {
+      "rule_id": "CF-001",
+      "fault_family": "catalyst_failure",
+      "description": "Dead or overwhelmed catalyst \u2014 post-cat gases show failed reduction: high NOx breakthrough, depressed CO2, with P0420/P0430 DTC confirmation",
+      "chemistry_evidence": [
+        {
+          "state": "CATALYST_OVERWHELMED",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "nox",
+          "operator": "ge",
+          "value": 250.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "co2",
+          "operator": "le",
+          "value": 14.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0420",
+            "P0430"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.85,
+      "competition_group": "catalyst_failure",
+      "passes_cases": [
+        "REAL-005",
+        "PDF-4G-01",
+        "case_010",
+        "case_034"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a72",
+        "GAS_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "CF-002",
+      "fault_family": "catalyst_failure",
+      "description": "Catalyst masking \u2014 cat cleans tailpipe to pristine levels (NORMAL_OPERATION chemistry) but elevated LTFT reveals upstream mechanical wear or oil burn the cat is compensating for; perception_flag: tailpipe is perception, OBD trims are the tell",
+      "chemistry_evidence": [
+        {
+          "state": "NORMAL_OPERATION",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "longft1",
+          "operator": "ge",
+          "value": 10.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "hc",
+          "operator": "lt",
+          "value": 100.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0420",
+            "P0430"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.7,
+      "competition_group": "catalyst_failure",
+      "confidence_ceiling": 0.8,
+      "perception_flag": "perception_only",
+      "passes_cases": [
+        "CSV-121",
+        "CSV-122",
+        "EXP-N008",
+        "EXT-232",
+        "EXT-233",
+        "CASE-015"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a72",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "CF-003",
+      "fault_family": "catalyst_failure",
+      "description": "Flow restriction \u2014 melted or collapsed catalyst substrate causes exhaust backpressure: CO2 collapses under load, O2 rises as exhaust backs up, often with P0420 set",
+      "chemistry_evidence": [
+        {
+          "state": "CATALYST_OVERWHELMED",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "co2",
+          "operator": "le",
+          "value": 11.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "o2",
+          "operator": "ge",
+          "value": 4.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0420",
+            "P0430"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.8,
+      "competition_group": "catalyst_failure",
+      "passes_cases": [
+        "EXT-207",
+        "EXT-208",
+        "EXT-213",
+        "CASE-013",
+        "EXP-N012"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a72",
+        "GAS_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "CF-004",
+      "fault_family": "catalyst_failure",
+      "description": "Cold catalyst / not lighting off \u2014 cat below light-off temperature from heater circuit failure or low ECT; downstream O2 fluctuates, P0420 set despite engine being healthy",
+      "chemistry_evidence": [
+        {
+          "state": "CATALYST_NOT_LIGHTING_OFF",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "co2",
+          "operator": "ge",
+          "value": 13.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0420",
+            "P0430"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.7,
+      "competition_group": "catalyst_failure",
+      "confidence_ceiling": 0.8,
+      "passes_cases": [
+        "CASE-026"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "GAS_VOCABULARY \u00a72",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "CF-005",
+      "fault_family": "catalyst_failure",
+      "description": "TIMING_RETARDED-aware marginal catalyst \u2014 knock-avoidance timing pull masks catalyst degradation; accepts TIMING_RETARDED as suggestive evidence rather than gating hard on CATALYST_OVERWHELMED, closing the Tier B chemistry gap for ~10 catalyst_failure cases",
+      "chemistry_evidence": [
+        {
+          "state": "TIMING_RETARDED",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        },
+        {
+          "state": "CATALYST_OVERWHELMED",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "nox",
+          "operator": "ge",
+          "value": 150.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0420",
+            "P0430"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.6,
+      "competition_group": "catalyst_failure",
+      "confidence_ceiling": 0.75,
+      "passes_cases": [
+        "PDF-HI-006",
+        "YAML-PDF_HI_006",
+        "YAML-PDF_4G_01"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "GAS_VOCABULARY \u00a72",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "CF-006",
+      "fault_family": "catalyst_failure",
+      "description": "Perception-gap catalyst failure \u2014 Brettschneider override: chemistry shows CATALYST_OVERWHELMED but OBD lambda is zero or significantly biased (ECU O2 sensor perception failure); chemistry lambda is ground truth, OBD lambda is perception",
+      "chemistry_evidence": [
+        {
+          "state": "CATALYST_OVERWHELMED",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "obd_lambda",
+          "operator": "le",
+          "value": 0.1,
+          "tier": "SUGGESTIVE",
+          "units": "",
+          "wiki_ref": "OBD_VOCABULARY \u00a73"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0420",
+            "P0430"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.75,
+      "competition_group": "catalyst_failure",
+      "perception_flag": "perception_only",
+      "passes_cases": [
+        "PDF-HI-006",
+        "REAL-005",
+        "YAML-PDF_HI_006",
+        "YAML-PDF_4G_01"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "CF-007",
+      "fault_family": "catalyst_failure",
+      "description": "Marginal HC breakthrough \u2014 early-stage catalyst degradation where HC rises under load but cat hasn't fully collapsed; includes freeze-frame-only evidence where idle gases are pristine but drive-cycle freeze frame shows cat failure",
+      "chemistry_evidence": [
+        {
+          "state": "CATALYST_OVERWHELMED",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "ge",
+          "value": 150.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0420",
+            "P0430"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.6,
+      "competition_group": "catalyst_failure",
+      "confidence_ceiling": 0.75,
+      "passes_cases": [
+        "CASE-016",
+        "case_024"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a72",
+        "GAS_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    }
+  ]
+}

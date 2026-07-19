@@ -1,0 +1,2816 @@
+{
+  "$schema": "https://json-schema.org",
+  "title": "OrchestratorGlobalFaultRegistry",
+  "version": "0.1.0",
+  "description": "Flat cross-domain fault registry for ComLab. v0.1 ships with the three starter rules from OrchestratorLabBP.md plus a synthetic catalyst-efficiency rule. New faults are added by appending to this array \u00e2\u20ac\u201d no Python changes required.",
+  "registry": [
+    {
+      "fault_id": "ERR-E1-M032",
+      "fault_name": "stuck_open_egr_valve",
+      "target_horizons": [
+        "HORIZON_LEGACY"
+      ],
+      "ui_diagnostic_string": "Stuck-open Exhaust Gas Recirculation (EGR) valve causing intake dilution at idle.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "INCOMPLETE_OXIDATION",
+        "obd_live_pids": {
+          "manifold_vacuum_kpa": {
+            "operator": "IN_RANGE",
+            "value": [
+              30.0,
+              50.0
+            ]
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0401",
+            "P0402"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.85,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-E2-I104",
+      "fault_name": "coil_on_plug_insulation_arc",
+      "target_horizons": [
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Coil-on-Plug (COP) internal insulation failure resulting in ignition arc leakage to engine ground.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "IGNITION_MISFIRE",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "GREATER_THAN",
+            "value": 15.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304"
+          ],
+          "fallback_strategy": "REQUIRE_MATCH"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.7,
+        "bonus_on_dtc_match": 0.3
+      }
+    },
+    {
+      "fault_id": "ERR-CF-001",
+      "fault_name": "catalyst_efficiency_below_threshold",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Three-way catalyst oxygen storage capacity depleted below the OBD monitor threshold \u00e2\u20ac\u201d post-cat O2 switching ratio approaching 1:1.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "CATALYST_OVERWHELMED",
+        "obd_live_pids": {
+          "o2_b1s2_v": {
+            "operator": "GREATER_THAN",
+            "value": 0.6
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0420",
+            "P0430"
+          ],
+          "fallback_strategy": "REQUIRE_MATCH"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.2
+      }
+    },
+    {
+      "fault_id": "ERR-CF-002",
+      "fault_name": "catalyst_substrate_meltdown",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Catalyst ceramic substrate melted and collapsed from sustained misfire dumping raw fuel \u00e2\u20ac\u201d housing shows heat discolouration and backpressure exceeds 3.0 psi at 2500 RPM.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "CATALYST_OVERWHELMED",
+        "obd_live_pids": {
+          "calc_load_pct": {
+            "operator": "GREATER_THAN",
+            "value": 60.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0420",
+            "P0430",
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304"
+          ],
+          "fallback_strategy": "REQUIRE_MATCH"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.9,
+        "bonus_on_dtc_match": 0.1
+      }
+    },
+    {
+      "fault_id": "ERR-CF-003",
+      "fault_name": "catalyst_flow_restriction",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Exhaust flow restricted by partially collapsed substrate or carbon-clogged honeycomb \u00e2\u20ac\u201d CO2 collapses under load as volumetric efficiency drops.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "CATALYST_OVERWHELMED",
+        "obd_live_pids": {
+          "map_kpa": {
+            "operator": "GREATER_THAN",
+            "value": 75.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0420"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.2
+      }
+    },
+    {
+      "fault_id": "ERR-CF-004",
+      "fault_name": "dead_catalyst_hc_nox_breakthrough",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Catalyst has lost all conversion \u00e2\u20ac\u201d oxidation and reduction both failed. Tailpipe HC exceeds 250 ppm with-cat, CO above 1.5 %, CO2 below 13 %, post-cat O2 flat at reference voltage.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "CATALYST_OVERWHELMED",
+        "obd_live_pids": {
+          "o2_b1s2_v": {
+            "operator": "IN_RANGE",
+            "value": [
+              0.4,
+              0.5
+            ]
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0420",
+            "P0430"
+          ],
+          "fallback_strategy": "REQUIRE_MATCH"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.9,
+        "bonus_on_dtc_match": 0.1
+      }
+    },
+    {
+      "fault_id": "ERR-CF-005",
+      "fault_name": "catalyst_masking_rich_engine",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Healthy catalyst oxidising rich feed-gas \u00e2\u20ac\u201d clean tailpipe masks a serious upstream rich condition. Strongly negative LTFT is the tell.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "NORMAL_OPERATION",
+        "obd_live_pids": {
+          "longft1": {
+            "operator": "LESS_THAN_OR_EQUAL",
+            "value": -10.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.75,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-CF-006",
+      "fault_name": "catalyst_oil_poisoning",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Catalyst washcoat poisoned by phosphorus and zinc from engine oil consumption \u00e2\u20ac\u201d glassy coating permanently blocks OSC sites, gradual P0420 onset.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "POA_SIGNATURE",
+        "obd_live_pids": {
+          "longft1": {
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": -10.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0420",
+            "P0430"
+          ],
+          "fallback_strategy": "REQUIRE_MATCH"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.2
+      }
+    },
+    {
+      "fault_id": "ERR-CF-007",
+      "fault_name": "catalyst_below_lightoff_temperature",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Catalyst has not reached light-off temperature (> 250 \u00c2\u00b0C) \u00e2\u20ac\u201d CO/HC oxidation and NOx reduction stalled. Check O2 heater circuit, thermostat, or short-trip operating pattern.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "CATALYST_NOT_LIGHTING_OFF",
+        "obd_live_pids": {
+          "ect_c": {
+            "operator": "LESS_THAN",
+            "value": 75.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0135",
+            "P0141"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.7,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-EL-001",
+      "fault_name": "exhaust_manifold_gasket_leak",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Exhaust manifold-to-head gasket failure allowing atmospheric air into the exhaust stream \u00e2\u20ac\u201d upstream O2 sensor reads false-lean, driving positive fuel trim correction.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "EXHAUST_AIR_LEAK",
+        "obd_live_pids": {
+          "longft1": {
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": 10.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0171",
+            "P0174"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-EL-002",
+      "fault_name": "exhaust_manifold_crack",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Cracked exhaust manifold (cast iron or tubular) admitting air pre-O2 sensor \u00e2\u20ac\u201d pulse-synchronous false-lean O2 reading with audible cold-engine ticking.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "EXHAUST_AIR_LEAK",
+        "obd_live_pids": {
+          "longft1": {
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": 8.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0171",
+            "P0174"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.75,
+        "bonus_on_dtc_match": 0.1
+      }
+    },
+    {
+      "fault_id": "ERR-EL-003",
+      "fault_name": "downpipe_flange_leak",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Bolted flange leak at manifold-to-downpipe joint \u00e2\u20ac\u201d false-lean if O2 sensor is downstream of the leak; noise without trim disturbance if O2 is upstream.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "EXHAUST_AIR_LEAK",
+        "obd_live_pids": {
+          "longft1": {
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": 5.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0171",
+            "P0174"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.7,
+        "bonus_on_dtc_match": 0.1
+      }
+    },
+    {
+      "fault_id": "ERR-EL-004",
+      "fault_name": "flex_pipe_rupture",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Flex pipe bellows ruptured post-catalyst \u00e2\u20ac\u201d no O2 sensor or trim impact; primary symptoms are exhaust noise and possible cabin fume entry.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "NORMAL_OPERATION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-EL-005",
+      "fault_name": "egr_feed_tube_leak",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "EGR feed tube crack or pinhole leak \u00e2\u20ac\u201d exhaust gas escapes before reaching EGR valve, reducing actual EGR flow; false-lean if leak is pre-O2 sensor.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "EXHAUST_AIR_LEAK",
+        "obd_live_pids": {
+          "longft1": {
+            "operator": "GREATER_THAN_OR_EQUAL",
+            "value": 5.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0401",
+            "P0402"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.75,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-EL-006",
+      "fault_name": "exhaust_joint_donut_failure",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Compression donut gasket at exhaust slip-joint or spring-bolted flange has deteriorated \u00e2\u20ac\u201d exhaust leak under load with no trim disturbance unless pre-O2.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "EXHAUST_AIR_LEAK",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.6,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-IF-001",
+      "fault_name": "ignition_coil_driver_fault",
+      "target_horizons": [
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "ECU ignition coil driver transistor failing \u00e2\u20ac\u201d coil fires intermittently or not at all; misfire stays on the cylinder after coil swap, confirming the fault is upstream in the ECU.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "IGNITION_MISFIRE",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "GREATER_THAN",
+            "value": 15.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304",
+            "P0351",
+            "P0352",
+            "P0353",
+            "P0354"
+          ],
+          "fallback_strategy": "REQUIRE_MATCH"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.85,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-IF-002",
+      "fault_name": "ignition_switch_voltage_drop",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Worn ignition switch contacts causing voltage drop in coil primary supply \u00e2\u20ac\u201d coil primary voltage below 10.5 V during cranking produces weak or absent spark.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "IGNITION_MISFIRE",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "GREATER_THAN",
+            "value": 10.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0300"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.7,
+        "bonus_on_dtc_match": 0.1
+      }
+    },
+    {
+      "fault_id": "ERR-IF-003",
+      "fault_name": "ckp_sensor_intermittent_dropout",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "CKP sensor signal dropping out intermittently \u00e2\u20ac\u201d ECU loses crankshaft position reference, causing random no-spark events registered as P0300 random misfire.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "IGNITION_MISFIRE",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "GREATER_THAN",
+            "value": 12.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0300",
+            "P0335"
+          ],
+          "fallback_strategy": "REQUIRE_MATCH"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.2
+      }
+    },
+    {
+      "fault_id": "ERR-MW-001",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "preconditions": {},
+      "ui_diagnostic_string": "Head gasket fire ring breached between two adjacent cylinders \u00e2\u20ac\u201d combustion pressure crosses the gasket land during compression and power strokes. Two adjacent cylinders read 30-60 psi below bank average on compression test.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "INCOMPLETE_COMBUSTION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.85,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-MW-002",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "preconditions": {},
+      "ui_diagnostic_string": "Head gasket breached between combustion chamber and coolant passage \u00e2\u20ac\u201d combustion gas forced into cooling system during power stroke. Continuous bubbles in radiator at idle confirm the leak path.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "COOLANT_LEAK_INTERNAL",
+        "obd_live_pids": {
+          "ect_c": {
+            "operator": "GREATER_THAN",
+            "value": 90.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0115",
+            "P0116",
+            "P0117",
+            "P0118",
+            "P0119"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.9,
+        "bonus_on_dtc_match": 0.1
+      }
+    },
+    {
+      "fault_id": "ERR-MW-003",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "preconditions": {},
+      "ui_diagnostic_string": "Piston rings worn beyond specification \u00e2\u20ac\u201d compression ring face barrel profile lost, oil control ring drain-back holes carbon-plugged. Wet compression test positive (>= 20 psi rise). Continuous oil burning and crankcase blow-by.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "WORN_PISTON_RINGS",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "IN_RANGE",
+            "value": [
+              -10.0,
+              10.0
+            ]
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.2
+      }
+    },
+    {
+      "fault_id": "ERR-MW-004",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "preconditions": {},
+      "ui_diagnostic_string": "Valve stem seals hardened, cracked, or worn \u00e2\u20ac\u201d lip seal no longer wipes oil from valve stem. Blue-white smoke puff at cold start (clears in 2-5 seconds) and on snap-throttle. Compression typically normal because rings seal pressure.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "WORN_VALVE_SEALS",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.7,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-MW-005",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "preconditions": {},
+      "ui_diagnostic_string": "Uniformly low compression across all or most cylinders (60-80 psi) from high-mileage ring/cylinder wear or jumped timing. Vacuum gauge steady but abnormally low at 10-15 inHg. Engine idles rough, lacks power under load.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "INCOMPLETE_COMBUSTION",
+        "obd_live_pids": {
+          "map_kpa": {
+            "operator": "LESS_THAN",
+            "value": 30.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0300"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.1
+      }
+    },
+    {
+      "fault_id": "ERR-MW-006",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "preconditions": {},
+      "ui_diagnostic_string": "Single cylinder bore scored \u00e2\u20ac\u201d vertical gouges from debris ingestion, detonation, or oil starvation. Affected cylinder 30-50 psi below bank average with minimal wet-test recovery (< 10 psi rise). Oil-fouled plug on that cylinder only.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "WORN_ENGINE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.85,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-CT-001",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "preconditions": {},
+      "ui_diagnostic_string": "Timing chain stretched beyond tensioner range or belt jumped one tooth \u00e2\u20ac\u201d cam phasing globally retarded. All cylinders equally low compression. Classic wrong-valve-timing gas fingerprint: very high HC (> 1000 ppm) plus elevated O2 (> 5 %).",
+      "cross_domain_matrix": {
+        "gas_lab_state": "CAM_TIMING_RETARDED_MAP",
+        "obd_live_pids": {
+          "map_kpa": {
+            "operator": "LESS_THAN",
+            "value": 30.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0300",
+            "P0016",
+            "P0017",
+            "P0018",
+            "P0019"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.85,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-CT-002",
+      "target_horizons": [
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "preconditions": {
+        "vvt_equipped": true
+      },
+      "ui_diagnostic_string": "VVT phaser locked in full-advance position \u00e2\u20ac\u201d internal lock pin seized or spool valve jammed. Intake valves open too early causing knock under light load and rough/loping idle from exhaust reversion. P0011/P0021 DTCs set.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "IGNITION_MISFIRE",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "IN_RANGE",
+            "value": [
+              -10.0,
+              10.0
+            ]
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0011",
+            "P0021"
+          ],
+          "fallback_strategy": "REQUIRE_MATCH"
+        }
+      },
+      "fallback_strategy": "REQUIRE_DTC",
+      "confidence_scoring": {
+        "base_weight": 0.75,
+        "bonus_on_dtc_match": 0.25
+      }
+    },
+    {
+      "fault_id": "ERR-CT-003",
+      "target_horizons": [
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "preconditions": {
+        "vvt_equipped": true
+      },
+      "ui_diagnostic_string": "VVT phaser locked in full-retard position \u00e2\u20ac\u201d lock pin seized or debris overrides return spring. Engine flat and gutless below 3500 RPM, wakes up above 4000 RPM. HC 1000-3000 ppm with mild rich lambda. P0014/P0024 DTCs set.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "CAM_TIMING_RETARDED_MAP",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "GREATER_THAN",
+            "value": 5.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0014",
+            "P0024"
+          ],
+          "fallback_strategy": "REQUIRE_MATCH"
+        }
+      },
+      "fallback_strategy": "REQUIRE_DTC",
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.2
+      }
+    },
+    {
+      "fault_id": "ERR-CT-004",
+      "target_horizons": [
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "preconditions": {
+        "vvt_equipped": true
+      },
+      "ui_diagnostic_string": "VVT phaser responds sluggishly to ECU commands \u00e2\u20ac\u201d oil sludge/varnish obstructing solenoid screen and phaser oil galleries. Phaser lags commanded angle by 0.5-2.0 seconds. Transient hesitation during throttle changes. Often sets no DTC.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "VVT_FAILURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-CT-005",
+      "target_horizons": [
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "preconditions": {
+        "vvt_equipped": true
+      },
+      "ui_diagnostic_string": "VVT oil control solenoid electrically degraded \u00e2\u20ac\u201d coil resistance drifted beyond 6-14 ohm spec, internal spool valve stuck, or connector pin corrosion. ECU cannot position phaser. P0010/P0020 circuit DTCs set.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "NORMAL_OPERATION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0010",
+            "P0020"
+          ],
+          "fallback_strategy": "REQUIRE_MATCH"
+        }
+      },
+      "fallback_strategy": "REQUIRE_DTC",
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.2
+      }
+    },
+    {
+      "fault_id": "ERR-NS-004",
+      "fault_name": "lean_no_start_weak_spark",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Weak spark or marginal fuel delivery \u00e2\u20ac\u201d intermittent firing during cranking never sustains. HC moderate (200-800 ppm), CO2 depressed (3-6 %), O2 high (12-18 %), lambda lean (1.20-1.50).",
+      "cross_domain_matrix": {
+        "gas_lab_state": "INCOMPLETE_COMBUSTION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.6,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-LC-001",
+      "fault_name": "vacuum_leak_post_maf",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Unmetered air entering the intake downstream of the MAF sensor \u00e2\u20ac\u201d vacuum leak causing true lean combustion with idle-dominant positive fuel trim correction.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "LEAN_MIXTURE",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "GREATER_THAN",
+            "value": 15.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0171",
+            "P0174"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-LC-003",
+      "fault_name": "fuel_pump_low_pressure",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Fuel pump unable to maintain rail pressure under demand \u00e2\u20ac\u201d stress-RPM-dominant lean from fuel starvation. Fuel pressure drops under load.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "LEAN_MIXTURE",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "GREATER_THAN",
+            "value": 10.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0087",
+            "P0171",
+            "P0174"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-LC-004",
+      "fault_name": "clogged_fuel_injector",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Partially blocked fuel injector nozzle \u00e2\u20ac\u201d cylinder-specific or bank-specific lean from restricted fuel flow. May show bank-asymmetric trim on dual-bank engines.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "LEAN_MIXTURE",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "GREATER_THAN",
+            "value": 10.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0171",
+            "P0174",
+            "P0201",
+            "P0202",
+            "P0203",
+            "P0204"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.75,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-LC-004",
+      "fault_name": "clogged_fuel_injector",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Severely clogged fuel injector causing cylinder lean misfire \u00e2\u20ac\u201d restricted flow below reliable ignition threshold. Misfire DTC with lean fuel trim confirms injector-level restriction.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "LEAN_MISFIRE",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "GREATER_THAN",
+            "value": 10.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.2
+      }
+    },
+    {
+      "fault_id": "ERR-RM-001",
+      "fault_name": "worn_valve_stem_seals",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Worn valve stem seals drawing engine oil into the combustion chamber on valve open \u00e2\u20ac\u201d idle-dominant oil burn produces elevated HC with POA-style chemistry. Replace all valve stem seals as a set; inspect guides for clearance.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "POA_SIGNATURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.75,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-RM-002",
+      "fault_name": "worn_piston_rings",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Worn piston rings allow oil blow-by on both compression and intake strokes \u00e2\u20ac\u201d POA chemistry with HC elevated at both idle and high-idle. Confirm with wet compression test; bottom-end rebuild required.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "POA_SIGNATURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.7,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-RM-003",
+      "fault_name": "leaking_fuel_injector",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Fuel injector pintle not sealing \u00e2\u20ac\u201d drip leak into the manifold delivering excess fuel. Strong negative trim with rich chemistry and no mechanical symptom. Perform injector pressure-drop balance test; replace leaking injector.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "RICH_MIXTURE",
+        "obd_live_pids": {
+          "longft1": {
+            "operator": "LESS_THAN_OR_EQUAL",
+            "value": -15.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0172",
+            "P0175"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-RM-004",
+      "fault_name": "evap_purge_valve_stuck_open",
+      "target_horizons": [
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "EVAP purge solenoid stuck open dumping raw fuel vapour from the charcoal canister into the intake \u00e2\u20ac\u201d rich chemistry with very high HC. Replace the purge control valve; verify canister is free of liquid fuel.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "RICH_MIXTURE",
+        "obd_live_pids": {
+          "longft1": {
+            "operator": "LESS_THAN_OR_EQUAL",
+            "value": -12.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0444",
+            "P0445",
+            "P0455",
+            "P0172"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-RM-006",
+      "fault_name": "ect_sensor_bias_cold",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Engine coolant temperature sensor biased cold \u00e2\u20ac\u201d ECU locked in cold-start enrichment after warm-up, forcing rich chemistry. Compare ECT PID against mechanical thermostat temperature; replace drifted ECT sensor.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "RICH_MIXTURE",
+        "obd_live_pids": {
+          "longft1": {
+            "operator": "LESS_THAN_OR_EQUAL",
+            "value": -10.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0115",
+            "P0116",
+            "P0117",
+            "P0118"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.7,
+        "bonus_on_dtc_match": 0.25
+      }
+    },
+    {
+      "fault_id": "ERR-RM-007",
+      "fault_name": "fpr_diaphragm_rupture",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Vacuum-referenced fuel pressure regulator diaphragm ruptured \u00e2\u20ac\u201d fuel leaking through the vacuum reference line into the intake manifold. Strong rich condition with raw fuel deposits on vacuum line. Replace mechanical FPR.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "RICH_MIXTURE",
+        "obd_live_pids": {
+          "longft1": {
+            "operator": "LESS_THAN_OR_EQUAL",
+            "value": -20.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0172",
+            "P0175"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.85,
+        "bonus_on_dtc_match": 0.1
+      }
+    },
+    {
+      "fault_id": "ERR-MF-002",
+      "fault_name": "spark_plug_carbon_fouled",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Carbon or oil deposits bridging spark plug electrode gap \u00e2\u20ac\u201d conductive shunt bleeds ignition energy causing intermittent misfire. Remove and inspect plugs; if fouled black, investigate root cause (rich running or oil consumption).",
+      "cross_domain_matrix": {
+        "gas_lab_state": "IGNITION_MISFIRE",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "GREATER_THAN",
+            "value": 5.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0300"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.75,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-MF-003",
+      "fault_name": "spark_plug_gap_erosion",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Electrode metal erosion widens spark plug gap beyond coil secondary voltage capability \u00e2\u20ac\u201d lean-type misfires dominant at idle where coil dwell time is shortest. Measure gap; replace all plugs if gap > 0.2 mm over OEM spec.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "LEAN_MISFIRE",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "GREATER_THAN",
+            "value": 5.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0300"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.75,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-MF-004",
+      "fault_name": "ignition_coil_primary_winding_failure",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Open or shorted primary winding prevents ECM from energising coil \u00e2\u20ac\u201d cylinder completely dead with every cycle misfiring. Severe IGNITION_MISFIRE with extreme positive trim. Measure primary resistance (0.5-2.0 ohm); swap coil to confirm; replace failed coil.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "IGNITION_MISFIRE",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "GREATER_THAN",
+            "value": 15.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304"
+          ],
+          "fallback_strategy": "REQUIRE_MATCH"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.85,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-MF-005",
+      "fault_name": "dead_injector_cylinder_misfire",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Open circuit in fuel injector solenoid \u00e2\u20ac\u201d no fuel to affected cylinder. Air-only cylinder produces LEAN_MISFIRE with bank-specific positive trim spike. Simultaneous P020X injector circuit + P030X misfire DTC on same cylinder is the strongest combined signal.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "LEAN_MISFIRE",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "GREATER_THAN",
+            "value": 15.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0201",
+            "P0202",
+            "P0203",
+            "P0204",
+            "P0300"
+          ],
+          "fallback_strategy": "REQUIRE_MATCH"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.85,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-MF-006",
+      "fault_name": "low_compression_mechanical_misfire",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Severe compression loss from ring, valve, or bore degradation \u00e2\u20ac\u201d misfire persists after ignition and fuel systems ruled out. Perform wet/dry compression test and leak-down test to pinpoint leak location. Mechanical repair required \u00e2\u20ac\u201d no ignition or fuel system fix will resolve.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "IGNITION_MISFIRE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0300"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.7,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-MF-007",
+      "fault_name": "gdi_intake_valve_carbon_buildup",
+      "target_horizons": [
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "preconditions": {
+        "fuel_delivery_type": "GDI"
+      },
+      "ui_diagnostic_string": "Carbon deposits accumulate on GDI intake valves due to absent port fuel washing \u00e2\u20ac\u201d restricts intake flow and disrupts charge motion causing lean misfire at idle and part-load. Borescope intake ports to confirm; walnut blast media clean to remove deposits.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "LEAN_MISFIRE",
+        "obd_live_pids": {
+          "shrtft1": {
+            "operator": "GREATER_THAN",
+            "value": 5.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0300",
+            "P0171"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.75,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-MF-002",
+      "fault_name": "spark_plug_carbon_fouled",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Spark plug carbon fouling from rich-mixture misfire \u00e2\u20ac\u201d excess fuel washing down cylinder walls and depositing conductive carbon on plug insulator. Black matte or oily black deposits across electrode and insulator nose.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "RICH_MISFIRE",
+        "obd_live_pids": {
+          "longft1": {
+            "operator": "LESS_THAN_OR_EQUAL",
+            "value": -5.0
+          }
+        },
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [
+            "P0300"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.75,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-CT-003",
+      "fault_name": "vvt_phaser_stuck_retarded",
+      "target_horizons": [
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "VVT phaser locked in full-retard position \u00e2\u20ac\u201d lock pin seized or debris overrides return spring. Engine flat and gutless below 3500 RPM, wakes up above 4000 RPM. HC 1000-3000 ppm with mild rich lambda. P0014/P0024 DTCs set.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "VVT_FAILURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0014",
+            "P0024"
+          ],
+          "fallback_strategy": "PROCEED_ON_MATCH_OR_EMPTY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.15
+      }
+    },
+    {
+      "fault_id": "ERR-SF-002",
+      "fault_name": "upstream_o2_sensor_fixed_voltage",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Upstream O2 sensor element is dead \u00e2\u20ac\u201d output voltage is fixed (stuck rich > 0.7 V or stuck lean < 0.2 V) with no switching. Circuit DTC (P0131/P0132/P0134) confirms electrical failure. Gas analyser lambda_chem may be near-normal while ECU perception is pegged.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "NORMAL_OPERATION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0131",
+            "P0132",
+            "P0134"
+          ],
+          "fallback_strategy": "REQUIRE_MATCH"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.85,
+        "bonus_on_dtc_match": 0.15
+      },
+      "routing_tag": "O2_HISTORY"
+    },
+    {
+      "fault_id": "ERR-SF-001",
+      "fault_name": "upstream_o2_sensor_lazy_response",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Upstream O2 sensor responding sluggishly \u00e2\u20ac\u201d ECU over-corrects fuel trim because delayed feedback causes oscillation. Gas analyser lambda_chem is near-stoichiometric ground truth but OBD lambda perception is biased high (sensor reads falsely lean). No circuit DTC \u00e2\u20ac\u201d sensor still switches, just too slowly.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "NORMAL_OPERATION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.7,
+        "bonus_on_dtc_match": 0.0
+      },
+      "perception_flag": "O2_SENSOR_BIASED_HIGH"
+    },
+    {
+      "fault_id": "ERR-SF-001",
+      "fault_name": "upstream_o2_sensor_lazy_response",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "Upstream O2 sensor responding sluggishly \u00e2\u20ac\u201d ECU under-fuels because delayed feedback causes oscillation. Gas analyser lambda_chem is near-stoichiometric ground truth but OBD lambda perception is biased low (sensor reads falsely rich). No circuit DTC \u00e2\u20ac\u201d sensor still switches, just too slowly.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "NORMAL_OPERATION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.7,
+        "bonus_on_dtc_match": 0.0
+      },
+      "perception_flag": "O2_SENSOR_BIASED_LOW"
+    },
+    {
+      "fault_id": "ERR-ECU-001",
+      "fault_name": "ecu_internal_processor_fault",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE",
+        "HORIZON_MODERN"
+      ],
+      "ui_diagnostic_string": "ECM internal processor/memory self-test failure (P0606). The ECU is reporting that it is defective \u00e2\u20ac\u201d all ECU-reported sensor values become unreliable. Gas analyser is the sole ground-truth data source.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "NORMAL_OPERATION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": true,
+          "p_code_match": [
+            "P0606"
+          ],
+          "fallback_strategy": "REQUIRE_MATCH"
+        }
+      },
+      "confidence_scoring": {
+        "base_weight": 0.8,
+        "bonus_on_dtc_match": 0.15
+      },
+      "routing_tag": "ECU_INTERNAL_HISTORY",
+      "fault_wiki_page": "wiki/ERR-ECU-001_ECU_Internal_Processor_Fault.md"
+    },
+    {
+      "fault_id": "ERR-CT-006",
+      "fault_name": "invalid_sample_cam_timing_misalignment",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Invalid gas sample (CO+CO2+O2 outside 14-18% window) masking a cam-timing fault. Probe leak, analyser fault, or exhaust-sample contamination producing unclassifiable chemistry. Re-test with verified sampling equipment.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "SAMPLE_INVALID",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-EF-002",
+      "fault_name": "ecu_fault_poa_context",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "ECU internal fault presenting with oil-burning gas chemistry (POA_SIGNATURE). ECU sensor ground offset or injector-driver leakage causing rich-perceived compensation that reads as oil consumption. Verify ECU grounds and injector waveforms.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "POA_SIGNATURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-EF-003",
+      "fault_name": "ecu_fault_vvt_context",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "ECU VVT driver circuit fault presenting with VVT-failure gas chemistry. Cam phaser not responding to ECU commands despite mechanically functional phaser. Back-probe VVT solenoid control wire for missing or stuck signal.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "VVT_FAILURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-EF-004",
+      "fault_name": "ecu_fault_incomplete_oxidation_context",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "ECU injector-driver fault presenting with incomplete-oxidation chemistry. Partial fuel delivery from weak injector driver transistor or injector-circuit voltage drop. Scope injector waveforms for amplitude and pintle bump.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "INCOMPLETE_OXIDATION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-EF-005",
+      "fault_name": "ecu_fault_incomplete_combustion_context",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "ECU ignition-driver fault presenting with incomplete-combustion chemistry. Weak or intermittent spark from failing coil driver transistor. Swap coil to confirm the fault stays on the cylinder; back-probe coil primary control signal.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "INCOMPLETE_COMBUSTION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-II-001",
+      "fault_name": "invalid_input_lean_mixture",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Technician-entered data inconsistent with measured lean-mixture chemistry. Suspect incorrect RPM entry, displacement, or cylinder count producing implausible VE or trim calculations. Verify all technician-entered values against vehicle specifications.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "LEAN_MIXTURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-II-002",
+      "fault_name": "invalid_input_timing_retarded",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Technician-entered data inconsistent with timing-retarded gas chemistry. Suspect incorrect firing-order entry, ignition-type selection, or cam-sensor configuration producing implausible timing calculations.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "TIMING_RETARDED",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-II-003",
+      "fault_name": "invalid_input_vvt_failure",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Technician-entered data inconsistent with VVT-failure gas chemistry. Suspect incorrect VVT-equipped flag, cam-type selection, or belt/chain configuration producing implausible phaser-response calculations.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "VVT_FAILURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-II-004",
+      "fault_name": "invalid_input_incomplete_oxidation",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Technician-entered data inconsistent with incomplete-oxidation chemistry. Suspect incorrect EGR-equipped flag, air-injection selection, or catalyst-configuration entry producing implausible exhaust-flow calculations.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "INCOMPLETE_OXIDATION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-II-005",
+      "fault_name": "invalid_input_sample_invalid",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Technician-entered data inconsistent with invalid gas sample. Sample contamination or analyser fault detected by the sum-of-gases check. Verify sampling probe seal, analyser calibration, and exhaust-system integrity before re-testing.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "SAMPLE_INVALID",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-II-006",
+      "fault_name": "invalid_input_rich_mixture",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Technician-entered data inconsistent with measured rich-mixture chemistry. Suspect incorrect fuel-type selection, fuel-pressure entry, or injector-size configuration producing implausible fuel-delivery calculations.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "RICH_MIXTURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-LC-005",
+      "fault_name": "lean_condition_poa_context",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Oil-burning chemistry (POA_SIGNATURE) with lean-condition symptoms. Oil consumption causing both rich-perceived O2 displacement AND actual lean-running from PCV unmetered air or ring-blowby dilution of intake charge. Check PCV system integrity and perform leak-down test.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "POA_SIGNATURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-LC-006",
+      "fault_name": "lean_condition_vvt_context",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "VVT-failure gas chemistry with lean-condition symptoms. Retarded cam timing reducing volumetric efficiency and creating lean combustion from reduced effective compression. Verify cam timing mechanically at TDC; inspect VVT solenoid and oil control valve.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "VVT_FAILURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-LC-007",
+      "fault_name": "lean_condition_invalid_sample",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Invalid gas sample (sum-of-gases outside 14-18%) with lean-condition symptoms. Unreliable chemistry masking the true air-fuel ratio. Resolve the sampling fault (probe leak, analyser calibration, exhaust leak) and re-test before diagnosing lean condition.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "SAMPLE_INVALID",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-LC-008",
+      "fault_name": "lean_condition_worn_valve_seals",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Worn valve-seal gas chemistry with lean-condition symptoms. Valve-stem oil leakage causing intake-valve deposit buildup that disrupts charge motion and creates lean misfire at idle. Borescope intake valves; perform intake-system cleaning if carbon-fouled.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "WORN_VALVE_SEALS",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-LC-009",
+      "fault_name": "lean_condition_rich_chemistry",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Rich-mixture gas chemistry presenting with lean-condition symptoms. Likely EVAP purge or fuel-pressure-regulator fault where the ECU over-corrects rich with extreme negative fuel trim, overshooting into lean territory. Check EVAP purge valve for sticking open and fuel pressure at the rail.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "RICH_MIXTURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-NS-005",
+      "fault_name": "non_starter_invalid_sample",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Invalid gas sample on a non-starting engine. Crank-no-start with unreliable or absent exhaust chemistry. The gas analyser cannot produce a valid reading without combustion; diagnose the no-start condition electrically (spark, fuel, compression, CKP signal) before re-attempting gas measurement.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "SAMPLE_INVALID",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-RM-008",
+      "fault_name": "rich_mixture_timing_retarded",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Timing-retarded gas chemistry with rich-mixture symptoms. Retarded ignition timing causing incomplete combustion that reads as rich (unburned fuel in exhaust) with elevated HC. Verify base ignition timing and cam/crank correlation; check for knock-sensor-induced timing retard.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "TIMING_RETARDED",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-RM-009",
+      "fault_name": "rich_mixture_vvt_context",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "VVT-failure gas chemistry with rich-mixture symptoms. Stuck-advanced cam phaser causing intake-valve overlap that dilutes the intake charge with exhaust gas, creating rich-perceived chemistry. Check VVT phaser lock pin and oil control valve; verify cam timing at TDC.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "VVT_FAILURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-RM-010",
+      "fault_name": "rich_mixture_invalid_sample",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Invalid gas sample with rich-mixture symptoms. Unreliable chemistry from sampling fault masking the true mixture. Resolve the sampling issue and re-test before diagnosing a rich condition.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "SAMPLE_INVALID",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-RM-011",
+      "fault_name": "rich_mixture_incomplete_combustion",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Incomplete-combustion gas chemistry with rich-mixture symptoms. Partial burn from ignition weakness producing elevated HC with depressed CO2, reading as rich on a non-lambda analyser. Check spark-plug condition, coil output, and ignition timing before diagnosing fuel delivery.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "INCOMPLETE_COMBUSTION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-SF-003",
+      "fault_name": "sensor_fault_invalid_sample",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Invalid gas sample with sensor-fault symptoms. Gas-analyser probe leak, calibration drift, or exhaust-system air leak producing unclassifiable chemistry. The sensor-fault verdict is unreliable when the gas sample itself is invalid. Verify analyser calibration and probe seal; re-test.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "SAMPLE_INVALID",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-SF-004",
+      "fault_name": "sensor_fault_vvt_context",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "VVT-failure gas chemistry with sensor-fault symptoms. Cam or crank position sensor drift causing the ECU to misreport cam phasing, producing a VVT-failure chemical fingerprint from a sensor fault rather than a mechanical failure. Scope CKP/CMP sensors for signal integrity; check sensor air gap.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "VVT_FAILURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-SF-005",
+      "fault_name": "sensor_fault_normal_operation",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Normal gas chemistry with sensor-fault symptoms. The engine is running correctly but a sensor is reporting implausible values to the ECU. The gas analyser shows normal combustion while OBD data shows a sensor fault. Check O2 sensor, MAF/MAP, ECT, and IAT sensor plausibility against known-good values.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "NORMAL_OPERATION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-IF-004",
+      "fault_name": "ignition_coil_secondary_breakdown",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Ignition coil secondary winding breakdown under heat soak. Spark energy collapses when coil reaches operating temperature, producing raw-fuel misfire with elevated HC and O2. Engine may start cold and stall hot. Swap coil to confirm; misfire follows the coil.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "IGNITION_MISFIRE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-IF-005",
+      "fault_name": "ignition_weak_spark_partial_combustion",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Weak or marginal spark producing incomplete combustion. Coil primary voltage supply compromised by corroded relay contacts, failing ignition switch, or high-resistance ground. HC moderately elevated (300-800 ppm), CO depressed, CO2 below 10%, O2 elevated from partial burn. Check coil supply voltage during cranking and running.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "INCOMPLETE_COMBUSTION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-IF-006",
+      "fault_name": "ignition_failure_no_combustion_no_start",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Complete ignition system failure \u2014 no spark on any cylinder. Engine cranks but produces zero combustion, so gas analyser reads ambient air (no valid exhaust sample). Confirm no-spark with adjustable spark tester at 20 mm gap. Check CKP sensor signal, ignition relay, and ECU power supply before condemning coils.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "SAMPLE_INVALID",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-IF-007",
+      "fault_name": "ignition_fault_intermittent_not_active",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Intermittent ignition fault not active during the diagnostic session. Engine runs normally at time of test, but patient reports random stalling, hot no-restart, or wet-weather misfire. Inspect ignition components for heat-related or moisture-related intermittent failure. Consider coil, CKP sensor, or ignition switch thermal degradation.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "NORMAL_OPERATION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-NS-001",
+      "fault_name": "no_spark_coil_failure",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Ignition coil primary or secondary failure preventing spark generation. Engine cranks with normal RPM but zero combustion \u2014 gas analyser shows ambient air. Confirm cranking RPM is normal via PID, disable fuel pump, crank and verify no spark with spark tester. Replace failed coil(s). If ECU driver failed, repair or replace ECU.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "IGNITION_MISFIRE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-NS-002",
+      "fault_name": "weak_spark_partial_combustion_no_start",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Marginal spark energy allows intermittent firing during cranking but never sustains combustion. HC moderate (200-800 ppm), CO2 depressed (3-6%), O2 high (12-18%), lambda lean (1.20-1.50). Check battery voltage during cranking, coil primary supply, and spark-plug condition. Weak spark often from low cranking voltage or coil degradation.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "INCOMPLETE_COMBUSTION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-NS-003",
+      "fault_name": "fuel_delivery_failure_no_start",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Fuel delivery failure preventing start \u2014 no fuel pressure at the rail despite normal cranking. Gas analyser shows lean mixture (lambda > 1.20, HC low, CO near zero) from fuel starvation. Check fuel-pump relay, pump operation, and fuel pressure at the rail during cranking. KOEO pressure must reach specification within 2 seconds.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "LEAN_MIXTURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-NS-006",
+      "fault_name": "intermittent_no_start_normal_test",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Intermittent no-start condition not active during the diagnostic session. Engine starts and runs normally at time of test, but patient reports occasional no-crank or crank-no-start events. Check for stored DTCs, immobiliser event history, and intermittent relay or sensor faults. Consider CKP sensor thermal dropout, fuel-pump relay wear, or ignition switch contact degradation.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "NORMAL_OPERATION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-EL-007",
+      "fault_name": "exhaust_leak_incomplete_combustion",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Pre-O2 exhaust leak causing false-lean O2 reading that drives the ECU to over-fuel, producing incomplete-combustion chemistry with elevated HC and depressed CO2. The analyser sees raw fuel + diluted O2 as a partial-burn signature. Confirm leak with smoke test or cold-engine listening; the chemistry normalises when the leak is sealed.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "INCOMPLETE_COMBUSTION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-EL-008",
+      "fault_name": "exhaust_leak_sample_contamination",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Severe exhaust leak contaminating the tailpipe sample with ambient air. Sum-of-gases check fails (CO+CO2+O2 outside 14-18% window) because the analyser is sampling diluted exhaust. Verify sampling probe seal and exhaust system integrity. Fix the leak and re-test before diagnosing engine condition.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "SAMPLE_INVALID",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-MW-007",
+      "fault_name": "mechanical_wear_oil_burning",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Oil-burning chemistry (POA_SIGNATURE: HC normal-high, CO low, lambda ~1) from mechanical engine wear. Worn piston rings, valve guides, or valve stem seals allowing oil into the combustion chamber. Consistent oil consumption with blue-white exhaust smoke. Perform wet/dry compression test and leak-down to isolate the leak path.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "POA_SIGNATURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-MW-008",
+      "fault_name": "mechanical_wear_compression_loss_misfire",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Compression-loss misfire from mechanical wear producing an ignition-misfire gas signature. Low compression prevents proper combustion, reads as unburned fuel + O2 spike indistinguishable from ignition failure on gas alone. Perform compression test to confirm mechanical basis. Wet test rise > 20 psi confirms ring wear; no rise points to valves or head gasket.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "IGNITION_MISFIRE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-EF-006",
+      "fault_name": "ecu_fault_lean_bias",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "ECU sensor-ground offset or 5V reference drift causing systematic lean bias in fuel control. The ECU perceives a richer mixture than actual, pulling fuel trim negative until the engine runs truly lean. Gas analyser confirms lean combustion while ECU data shows negative fuel trim. Verify ECU grounds and sensor reference voltages against specification.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "LEAN_MIXTURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-EF-007",
+      "fault_name": "ecu_fault_rich_bias",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "ECU injector-driver leakage or MAP sensor 5V-reference over-voltage causing systematic rich bias. The ECU perceives a leaner mixture than actual, adding fuel until the engine runs truly rich. Gas analyser confirms rich chemistry while ECU data shows positive fuel trim. Scope injector waveforms for stuck-on events; verify MAP sensor calibration.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "RICH_MIXTURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-EF-008",
+      "fault_name": "ecu_fault_intermittent_normal_test",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Intermittent ECU fault not active during the diagnostic session. Engine runs normally at time of test, but patient reports random MIL illumination, limp-mode events, or sensor-circuit DTCs that self-clear. Check ECU connector for corrosion, pin fretting, or water ingress. Review freeze-frame data for the conditions at fault set time.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "NORMAL_OPERATION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-LC-010",
+      "fault_name": "lean_condition_timing_retarded_context",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Retarded ignition or cam timing causing lean-perceived gas chemistry. Late combustion reduces effective cylinder pressure and temperature, producing elevated O2 with depressed CO2 that mimics a lean mixture. Verify base ignition timing and cam/crank correlation at TDC. A jumped timing belt or stretched chain retards cam timing globally.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "TIMING_RETARDED",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-LC-011",
+      "fault_name": "lean_condition_misfire_masked",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Ignition misfire producing a lean-appearing gas signature from unburned oxygen passing through to the tailpipe. The O2 sensor and gas analyser both see elevated O2, but the root cause is ignition failure, not excess air. Rule out ignition (plugs, coils, CKP signal) before diagnosing a fuel-delivery or air-induction fault.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "IGNITION_MISFIRE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-RM-012",
+      "fault_name": "rich_mixture_lean_overshoot_context",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Lean-mixture gas chemistry from ECU over-correction of a rich condition. The ECU detects rich and pulls fuel trim aggressively negative, overshooting into lean territory at idle. The gas analyser may see lean at idle but rich under load. Check fuel pressure for elevation, injector leak-down for drip, and EVAP purge for vapour intrusion.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "LEAN_MIXTURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-RM-013",
+      "fault_name": "rich_mixture_misfire_context",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Ignition misfire producing a rich-perceived gas signature. Raw unburned fuel from a dead cylinder passes directly to the exhaust, elevating HC dramatically (1000+ ppm) and depressing O2 \u2014 the analyser reads this as a rich mixture. Confirm ignition first (swap coil, inspect plug) before condemning the fuel system.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "IGNITION_MISFIRE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-SF-007",
+      "fault_name": "sensor_fault_lean_bias",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Sensor fault producing lean-mixture chemistry through ECU mis-fueling. MAF sensor under-reading (dirty hot-wire), MAP sensor vacuum leak at the sensor port, or IAT sensor reading hot \u2014 all cause the ECU to under-fuel, creating true lean combustion. Compare sensor readings against known-good references; clean or replace drifted sensors.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "LEAN_MIXTURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-SF-008",
+      "fault_name": "sensor_fault_rich_bias",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Sensor fault producing rich-mixture chemistry through ECU mis-fueling. ECT sensor biased cold (stuck at low resistance), MAF over-reading (oil contamination), or fuel-rail pressure sensor reading high \u2014 all cause the ECU to over-fuel, creating true rich combustion. Compare ECT against mechanical thermostat temperature; clean MAF hot-wire; verify fuel pressure with mechanical gauge.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "RICH_MIXTURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-CF-008",
+      "fault_name": "catalyst_failure_lean_breakthrough",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Failed catalytic converter producing a lean tailpipe signature. A dead catalyst that cannot oxidise CO or HC leaves excess oxygen in the exhaust stream that the post-cat sensor and gas analyser read as lean. Pre-cat gas readings would show normal or rich chemistry. Compare pre-cat vs post-cat emissions to confirm catalyst failure.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "LEAN_MIXTURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-CF-009",
+      "fault_name": "catalyst_failure_rich_breakthrough",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Failed catalytic converter allowing raw fuel to pass through to the tailpipe. The catalyst cannot oxidise hydrocarbons, so the gas analyser reads rich even though the pre-cat mixture is stoichiometric. HC dramatically elevated post-cat while pre-cat is normal. Confirm with pre-cat vs post-cat gas comparison; replace catalyst if conversion efficiency is confirmed below threshold.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "RICH_MIXTURE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-CT-007",
+      "fault_name": "cam_timing_retard_chain_stretch",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Timing chain stretch or belt elongation causing globally retarded cam timing. All cylinders show low compression, vacuum gauge reads steady but low (10-15 inHg), and gas analyser shows timing-retarded chemistry (high HC, elevated O2). Verify cam timing mechanically at TDC with timing marks aligned. Replace timing chain/belt, tensioner, and guides as a complete kit.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "TIMING_RETARDED",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-CT-008",
+      "fault_name": "cam_timing_incomplete_combustion_misalignment",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Severe cam/crank misalignment causing incomplete-combustion gas chemistry. When valve timing is far enough off, combustion becomes so inefficient that it reads as partial burn \u2014 HC very high, CO2 depressed below 10%, O2 elevated. Verify cam timing mechanically at TDC. A jumped belt or chain is the likely cause; inspect tensioner and guides for failure.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "INCOMPLETE_COMBUSTION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-MF-008",
+      "fault_name": "misfire_intermittent_normal_test",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Intermittent misfire not active during the diagnostic session. Engine runs smoothly at time of test, but patient reports random hesitation, rough idle when cold, or MIL flashing under load. Review Mode 06 misfire counts per cylinder. Inspect spark plugs for gap erosion, coils for heat-related degradation, and injectors for intermittent sticking.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "NORMAL_OPERATION",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-MF-009",
+      "fault_name": "misfire_coolant_fouled_spark",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Internal coolant leak (head gasket breach to combustion chamber) fouling the spark plug on the affected cylinder. Coolant quenches the spark and shorts the plug electrode, causing cylinder-specific misfire with coolant-leak gas chemistry. The affected plug shows a clean, steam-cleaned appearance. Block test confirms combustion gas in coolant.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "COOLANT_LEAK_INTERNAL",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    },
+    {
+      "fault_id": "ERR-MF-010",
+      "fault_name": "misfire_rich_fouled_plug_no_dtc",
+      "target_horizons": [
+        "HORIZON_LEGACY",
+        "HORIZON_ADAPTIVE"
+      ],
+      "ui_diagnostic_string": "Rich-mixture misfire without active MIL. Carbon-fouled spark plug from persistent rich running causes intermittent misfire that has not yet tripped the OBD misfire monitor (Mode 06 counts below the P0300 threshold). Black matte deposits on plug insulator. Correct the rich condition first, then replace fouled plugs. Verify misfire counts return to zero.",
+      "cross_domain_matrix": {
+        "gas_lab_state": "RICH_MISFIRE",
+        "obd_live_pids": {},
+        "dtc_lab_status": {
+          "active_mil": false,
+          "p_code_match": [],
+          "fallback_strategy": "GAS_ONLY"
+        }
+      },
+      "fallback_strategy": "GAS_ONLY",
+      "confidence_scoring": {
+        "base_weight": 0.55,
+        "bonus_on_dtc_match": 0.0
+      }
+    }
+  ],
+  "remediation_map": {
+    "stuck_open_egr_valve": "Remove EGR valve and inspect internal pintle configuration for severe carbon build-up. Clean valve or replace assembly.",
+    "coil_on_plug_insulation_arc": "Inspect the isolated cylinder ignition coil pack for white tracking marks. Replace the targeted ignition coil and spark plug.",
+    "catalyst_efficiency_below_threshold": "Rule out feed-gas faults (misfire, fuel trim, exhaust leak) before condemning the catalyst. Check Mode $06 catalyst monitor data and IR temperature delta. Replace catalytic converter if OSC is confirmed depleted.",
+    "catalyst_substrate_meltdown": "Identify and repair the root cause that dumped fuel into the catalyst (misfire, leaking injector) before replacing the converter. Replace catalytic converter and both O2 sensors. Inspect exhaust manifold and downstream components for heat damage.",
+    "catalyst_flow_restriction": "Perform backpressure test at idle and 2500 RPM. Inspect substrate face with borescope for soot or collapse. Replace catalytic converter if backpressure remains above 3.0 psi at 2500 RPM.",
+    "dead_catalyst_hc_nox_breakthrough": "Confirm dead cat with tailpipe gas analyser \u00e2\u20ac\u201d compare pre-cat vs post-cat emissions. Check for poisoning source before replacement. Replace catalytic converter and post-cat O2 sensor.",
+    "catalyst_masking_rich_engine": "Do NOT replace the catalyst \u00e2\u20ac\u201d it is healthy. Chase the upstream rich condition: check fuel pressure, injector leak-down, EVAP purge function, and HPFP seal (GDI). Fix the root cause; the cat will recover once the rich feed-gas stops.",
+    "catalyst_oil_poisoning": "Identify and repair the oil consumption root cause (valve seals, piston rings, PCV) before replacing the converter \u00e2\u20ac\u201d a new cat will be poisoned within weeks if the oil path is not closed. Replace catalytic converter; poisoned washcoat cannot be regenerated.",
+    "catalyst_below_lightoff_temperature": "Check pre-cat O2 sensor heater circuit resistance and thermostat opening temperature. For short-trip-only vehicles, document as operating pattern. Replace failed O2 sensor or thermostat. Verify catalyst reaches > 250 \u00c2\u00b0C within 5 minutes of cold start.",
+    "exhaust_manifold_gasket_leak": "Confirm exhaust leak with cold-engine listening test and exhaust analyser probe at the manifold-to-head joint. Replace the failed exhaust manifold gasket. Inspect manifold flange for flatness \u00e2\u20ac\u201d a warped flange will cause the new gasket to fail.",
+    "exhaust_manifold_crack": "Cold-engine listening test for pulse-synchronous ticking. Spray soapy water near suspected crack points. Replace or weld the cracked manifold. Replace flange gaskets and hardware.",
+    "downpipe_flange_leak": "Listening test at the manifold-to-downpipe flange. Inspect flange hardware for loose or missing bolts. Replace flange gasket. On turbo vehicles, verify wastegate actuator stroke after repair.",
+    "flex_pipe_rupture": "Listen for exhaust noise from underneath the vehicle. Visual inspection of flex pipe braiding for broken wires or tears. Check engine mounts before replacement. Replace flex pipe section.",
+    "egr_feed_tube_leak": "Listen for ticking near EGR tube routing. Inspect tube for carbon soot marks or cracks at flex section and flare nuts. Replace EGR feed tube. Verify EGR monitor completes without DTC after repair.",
+    "exhaust_joint_donut_failure": "Load engine against torque converter and listen for exhaust blat at suspect joint. Inspect donut gasket for deformation or carbon soot tracks. Replace donut gasket and spring bolts as a set.",
+    "ignition_coil_driver_fault": "Swap suspect coil with known-good cylinder \u00e2\u20ac\u201d if misfire stays on original cylinder, the fault is upstream. Back-probe coil primary control wire with lab scope. Replace or repair ECU if driver transistor is confirmed failed.",
+    "ignition_switch_voltage_drop": "Measure coil primary supply voltage during cranking \u00e2\u20ac\u201d below 10.5 V confirms supply-side drop. Perform voltage-drop test across ignition switch. Replace ignition switch if drop exceeds 0.3 V.",
+    "ckp_sensor_intermittent_dropout": "Monitor CKP sensor output with lab scope while heat-soaking. Check air gap with feeler gauge. Inspect trigger wheel for damaged teeth. Replace CKP sensor and perform CASE relearn if required.",
+    "head_gasket_fire_ring_failure": "Remove cylinder head. Inspect gasket fire ring for burned-through or crushed section between the two low cylinders. Check head and block deck for flatness. Replace head gasket with new MLS or composite gasket. Torque head bolts in correct sequence to angle specification.",
+    "head_gasket_coolant_passage_leak": "Perform block test to confirm combustion gas in coolant. Remove cylinder head. Replace head gasket. Flush cooling system thoroughly. Change engine oil \u00e2\u20ac\u201d coolant contamination destroys bearing protection.",
+    "worn_piston_rings": "Confirm with wet compression test (>= 20 psi rise). Engine requires bottom-end rebuild: piston rings, cylinder hone or bore, possibly pistons. Inspect PCV system before teardown. This is a major mechanical repair.",
+    "worn_valve_stem_seals": "Replace all valve stem seals as a set (intake and exhaust). Inspect valve guides for excessive clearance while seals are off \u00e2\u20ac\u201d worn guides will destroy new seals. Verify: no blue smoke on cold start or snap-throttle.",
+    "low_compression_multi_cylinder": "Check cam timing first \u00e2\u20ac\u201d if timing marks align and wet test raises compression, rings are the cause. If timing is correct and rings confirmed worn: full engine rebuild (rings, hone, possibly oversize pistons, bearings). Engine-out major repair.",
+    "cylinder_bore_scoring": "Borescope inspection to confirm vertical score marks. If confirmed: engine requires bottom-end rebuild (bore, oversize piston, rings). In severe cases, replacement engine may be more economical than rebuild.",
+    "cam_timing_retard_chain_stretch": "Verify cam timing mechanically at TDC. Replace timing chain/belt, tensioner, guides, and cam/crank sprockets as a complete kit. Re-time engine to manufacturer specification. Perform CASE relearn if required.",
+    "vvt_phaser_stuck_advanced": "Check engine oil condition first \u00e2\u20ac\u201d flush if sludged. Replace VVT phaser, oil control solenoid, and all O-rings and gaskets. Flush engine oil system to remove debris. Verify: no knock under light load, P0011/P0021 does not return.",
+    "vvt_phaser_stuck_retarded": "Check engine oil condition first \u00e2\u20ac\u201d flush if sludged. Replace VVT phaser, oil control solenoid, and all seals. Flush engine oil system thoroughly. Verify: power delivery smooth from 1500 RPM to redline, P0014/P0024 does not return.",
+    "vvt_phaser_sludge_lag": "Professional engine oil flush with reputable product, then drain and refill with correct synthetic oil and new OEM-quality filter. If flushing does not restore response, remove and clean/replace oil-control solenoid. If phaser is internally sludged, replace phaser and solenoid together.",
+    "vvt_solenoid_fault": "Measure solenoid coil resistance (typically 6-14 ohm at 20 C). Inspect spool valve screen for debris. Apply 12 V to verify spool valve clicks. Replace VVT solenoid if confirmed faulty. Use OEM-quality replacement.",
+    "no_spark_coil_failure": "Confirm cranking RPM is normal (150-300 via PID $0C) to rule out CKP failure. Disable fuel pump (pull fuse), crank, and verify no spark on any cylinder with spark tester. Replace failed ignition coil(s). If ECU driver is confirmed failed, repair or replace ECU.",
+    "rich_no_start_ect_sensor": "Read ECT PID: -40 C on warm engine = open circuit. Attempt WOT clear-flood \u00e2\u20ac\u201d if engine fires, flooding is confirmed. Measure ECT sensor resistance and compare to manufacturer spec. Replace failed ECT sensor. Verify cold-start enrichment tapers to stoichiometric within 30 seconds.",
+    "no_fuel_delivery": "Check cranking RPM PID first \u00e2\u20ac\u201d 0 RPM routes to CKP failure. KOEO fuel pressure test: must reach spec within 2 seconds. Noid light test for injector pulse during cranking. Check immobiliser security light. Replace fuel pump if confirmed dead. If injector circuit fault, diagnose wiring before replacing injectors.",
+    "lean_no_start_weak_spark": "Check battery voltage during cranking \u00e2\u20ac\u201d below 10.0 V starves coils and injectors. Inspect spark plugs for fouling, carbon tracking, or gap erosion. Test coil secondary with adjustable spark tester \u00e2\u20ac\u201d spark must jump 20 mm gap. Verify fuel pressure holds during extended cranking. If all pass, perform relative compression test.",
+    "ckp_sensor_failure_no_rpm": "Read RPM PID during cranking \u00e2\u20ac\u201d zero RPM with audible cranking confirms CKP failure. Scan for P0335/P0336. Inspect CKP connector and harness for corrosion or chafing. Measure CKP sensor resistance (200-1000 ohm typical for inductive). Replace CKP sensor and perform CASE relearn if required.",
+    "spark_plug_carbon_fouled": "Remove all spark plugs and inspect \u00e2\u20ac\u201d carbon-fouled plug shows black matte or oily black deposits across electrode and insulator nose. Identify the fouled plug(s). Replace all fouled spark plugs with OEM-specified plugs. Investigate and repair the root cause of fouling (rich running or oil consumption) before replacing plugs.",
+    "spark_plug_gap_erosion": "Remove and measure spark plug gap with feeler gauge \u00e2\u20ac\u201d gap more than 0.2 mm above OEM spec confirms erosion. Replace all spark plugs simultaneously. Verify: misfire DTCs clear and HC returns to < 100 ppm after one drive cycle.",
+    "ignition_coil_primary_winding_failure": "Measure primary winding resistance with multimeter (typically 0.5-2.0 ohm). Open circuit or short confirms failure. Swap suspect coil to known-good cylinder. Replace failed coil. Check ECM coil driver if repeated coil failures occur.",
+    "dead_injector_cylinder_misfire": "Measure injector solenoid resistance (typically 12-16 ohm). Open circuit or short confirms failure. Use noid light to verify ECM pulse signal. Replace dead injector. Verify: cylinder contribution test shows HC response when cylinder is disabled.",
+    "low_compression_mechanical_misfire": "Perform dry compression test on all cylinders \u00e2\u20ac\u201d any below 80% OEM spec or 689 kPa (100 psi) confirms. Perform wet test: if compression rises, ring seal is cause; if unchanged, valve seating is cause. Perform leak-down test to confirm and locate leak. Mechanical repair required.",
+    "gdi_intake_valve_carbon_buildup": "Perform borescope inspection of intake ports and valve heads \u00e2\u20ac\u201d heavy black carbon deposits confirm diagnosis. Perform walnut shell media blasting through intake ports with intake valves closed. Consider adding catch can to crankcase breather circuit. Document cleaning interval (60 000-100 000 km on GDI platforms).",
+    "upstream_o2_sensor_lazy_response": "Observe upstream O2 sensor switching frequency on a scan tool \u00e2\u20ac\u201d healthy sensor switches > 0.5 Hz at warm idle; lazy sensor < 0.25 Hz. Check O2 heater circuit resistance. Note: gas analyser lambda_chem is ground truth \u00e2\u20ac\u201d if near 1.0 but sensor signal is not switching normally, sensor is suspect. Replace the upstream O2 sensor and verify switching frequency returns to > 0.5 Hz.",
+    "upstream_o2_sensor_fixed_voltage": "Observe upstream O2 sensor voltage in scan tool live data \u00e2\u20ac\u201d stuck-rich > 0.7 V indefinitely; stuck-lean < 0.2 V indefinitely. Verify with gas analyser: if lambda_chem is normal but sensor reads stuck, sensor is confirmed dead. Check O2 heater circuit resistance. Replace the upstream O2 sensor. After replacement, verify sensor begins switching within 30 seconds of engine start."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "capture_commit": "28f23c8",
+  "capture_date": "2026-06-21",
+  "case_id": "COM-001",
+  "expected": {
+    "confidence": "HIGH_ASSURANCE",
+    "degradation_mode": "FULL_FUSION",
+    "fault_family": "no_fault",
+    "top_fault": "NF-001"
+  },
+  "request": {
+    "metadata": {"session_id": "11111111-1111-4111-8111-000000000001", "vin_dna_string": "1FA6P8CF0HXXXXXXX", "resolved_horizon": "HORIZON_MODERN", "cylinder_count": 4},
+    "gas_lab_output": {"chemical_state": "STOICHIOMETRIC_BURN", "gas_co": 0.05, "gas_hc": 8, "gas_co2": 14.8, "gas_o2": 0.3, "gas_nox": 15, "lambda_chem": 1.0, "sample_validity": "VALID"},
+    "obd_live_data": {"engine_warmed": true, "total_trim_correction_delta": 0.0, "normalized_obd_lambda": 1.0, "ve_pct": 72.0, "ve_validity": "VALID", "rpm_state_bucket": "STABILIZED_IDLE", "trim_analytics_gate": "VALID", "o2_failure_mode": "STUCK_LEAN", "maf_status": "REAL_SENSOR_FEED", "map_status": "REAL_SENSOR_FEED"},
+    "dtc_lab_output": {"active_mil": false, "mil_flashing": false, "historical_fault_context": "UNKNOWN", "freeze_frame": {"calculated_load_pct": 0.0, "engine_rpm": 0, "coolant_temp_c": 20.0, "short_term_ft1": 0.0, "long_term_ft1": 0.0, "manifold_pressure_kpa": 100.0, "vehicle_speed_kmh": 0, "ignition_advance_deg": 10.0, "intake_air_temp_c": 20.0, "maf_gps": 0.0, "throttle_pos_pct": 0.0, "fuel_system_status": "OL"}}
+  }
+}

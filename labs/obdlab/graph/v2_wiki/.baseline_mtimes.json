@@ -1,0 +1,18 @@
+﻿{
+    "graph\\v1_baseline":  {
+                               "count":  140,
+                               "maxWrite":  "2026-06-06T12:36:04.0000000+02:00"
+                           },
+    "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\graphify-out":  {
+                                                                         "count":  2119,
+                                                                         "maxWrite":  "2026-06-08T16:23:51.7488300+02:00"
+                                                                     },
+    "C:\\Users\\muto\\claude\\4DApp\\4DLab\\graphify-out":  {
+                                                                "count":  5998,
+                                                                "maxWrite":  "2026-06-08T16:14:01.9472317+02:00"
+                                                            },
+    "graph\\v2_current":  {
+                              "count":  64,
+                              "maxWrite":  "2026-06-06T18:38:55.1096685+02:00"
+                          }
+}

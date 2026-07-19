@@ -1,0 +1,53 @@
+# Era sensitivity masks — emitted by Script 1 and injected into upstream labs.
+# Per OrchestratorLabBP.md §"Era-to-EURO Mapping Matrix" (line 506).
+#
+# Each horizon defines pass/fail thresholds + which downstream rule packs to
+# activate. Tune these without touching Python.
+
+version: "0.1.0"
+
+horizons:
+
+  HORIZON_LEGACY:
+    # Euro 1 & 2, 1990-2000. Distributors, mechanical pressure regulators,
+    # early MAF / speed-density. Permissive limits.
+    description: "Euro 1 & 2 vehicles (~1990-2000)"
+    model_year_range: [1990, 2000]
+    gas_lab_thresholds:
+      gas_co_max_pct: 1.0
+      gas_hc_max_ppm: 150
+      lambda_tolerance: 0.10
+    rule_pack: "era_1_mechanical_rules"
+    deactivate_nodes:
+      - "turbo_boost_loop"
+      - "scr_efficiency_loop"
+      - "gdi_hpfp_seal_integrity"
+    routing_rigor: "LOW_PERMISSIVE"
+
+  HORIZON_ADAPTIVE:
+    # Euro 3 & 4, 2000-2010. COP, electronic throttle, early GDI, early VVT.
+    description: "Euro 3 & 4 vehicles (~2000-2010)"
+    model_year_range: [2000, 2010]
+    gas_lab_thresholds:
+      gas_co_max_pct: 0.5
+      gas_hc_max_ppm: 55
+      lambda_tolerance: 0.05
+    rule_pack: "era_2_electronic_overdrive_rules"
+    activate_nodes:
+      - "catalyst_oxygen_storage_capacity"
+      - "vvt_solenoid_drift"
+    routing_rigor: "MEDIUM"
+
+  HORIZON_MODERN:
+    # Euro 5 & 6, 2010-2020. Downsized turbos, multi-stage GDI, thermal mgmt.
+    # T-FX-PURGE-2: rule_pack deactivated; MODERN-only activate_nodes stripped.
+    # MODERN vehicles route to default lab settings (per T-FX-PURGE-1).
+    description: "Euro 5 & 6 vehicles (~2010-2020)"
+    model_year_range: [2010, 2020]
+    gas_lab_thresholds:
+      gas_co_max_pct: 0.2
+      gas_hc_max_ppm: 15
+      lambda_tolerance: 0.02
+    activate_nodes:
+      - "catalyst_oxygen_storage_capacity"
+    routing_rigor: "STRICT_HIGH"

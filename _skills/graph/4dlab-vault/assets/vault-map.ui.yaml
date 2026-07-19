@@ -1,0 +1,26 @@
+# UI design-corpus vault map.
+# Signal/noise: only notes with a named, existing consumer are framed.
+# The UI has no code/tests/wiki/graph; it maps to apps/wiredV2 UI (pending T-WV2-UI-*).
+
+lab: ui
+module: ui
+
+frame:
+  4DLab_UI_FieldMap.md:
+    node_type: design
+    subsystem: design-specs
+    implements: []
+    consumers:
+      - "apps/wiredV2 UI (pending T-WV2-UI-*): field-placement implementation (T-W-2)"
+      - "apps/wiredV2/wiredv2/composition.py: fuel trim and sensor wiring (T-W-1)"
+    drift_guards: []
+
+  StreamliteUI.md:
+    node_type: design
+    subsystem: rendering-patterns
+    implements: []
+    consumers:
+      - "apps/wiredV2 UI (pending T-WV2-UI-*): DNA-driven conditional layout (T-W-2)"
+    drift_guards: []
+
+plain: []

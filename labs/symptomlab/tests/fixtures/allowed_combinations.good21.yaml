@@ -1,0 +1,31 @@
+# Frozen test catalog for SEMANTIC_CONTRACT.md §4.2:
+# exactly 21 allowed (tier_1, tier_2) SymptomDNA pairs.
+combinations:
+  vehicle_starting_issues:
+    - no_crank_silent
+    - fast_crank_whining
+    - prolonged_crank_hard_start
+  rough_idle_shudder:
+    - constant_vibration_shudder
+    - surging_hunting_idle
+    - stalls_on_cold_start
+  lack_of_power_hesitation:
+    - flat_sluggish_always
+    - hesitation_throttle_tip_in
+    - sudden_jerk_stumble
+  poor_economy_fuel_odor_sound:
+    - just_poor_mpg
+    - strong_fuel_smell
+    - knock_pinging_under_load
+  engine_dies_or_stalls:
+    - when_coasting_to_stop
+    - intermittent_random_cutout
+    - backfire_loud_pop
+  visible_exhaust_smoke:
+    - black_smoke
+    - blue_oily_smell
+    - white_sweet_smell
+  oil_consumption:
+    - blue_smoke_on_cold_start_clears
+    - blue_smoke_under_acceleration
+    - oil_loss_no_visible_smoke

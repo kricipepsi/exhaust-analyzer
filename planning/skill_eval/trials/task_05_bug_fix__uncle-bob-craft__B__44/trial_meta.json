@@ -1,0 +1,10 @@
+{
+  "trial_id": "task_05_bug_fix__uncle-bob-craft__B__44",
+  "task_id": "task_05_bug_fix",
+  "skill_id": "uncle-bob-craft",
+  "arm": "B",
+  "seed": 44,
+  "model": "opus-4.7@t=0.0",
+  "no_gate": false,
+  "prepared_utc": "2026-06-09T21:14:56.164069+00:00"
+}

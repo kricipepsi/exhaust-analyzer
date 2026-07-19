@@ -1,0 +1,277 @@
+# GASLab vault map - architect-authored. Maps selected GAS notes to vault frontmatter.
+#
+# Signal/noise: only notes with a named, existing consumer are framed. Notes whose
+# only downstream story is proposal/future work are copied as plain markdown.
+
+lab: gaslab
+module: gaslab
+
+frame:
+  PRD_GASLab.md:
+    node_type: prd
+    subsystem: requirements
+    implements: []
+    consumers:
+      - "hld: labs/gaslab/docs/HLD_GASLab.md"
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py GasLabPayload boundary"
+    drift_guards: []
+
+  HLD_GASLab.md:
+    node_type: hld
+    subsystem: architecture
+    implements: []
+    consumers:
+      - "lld: labs/gaslab/docs/LLD_GASLab.md"
+      - "dld: labs/gaslab/docs/DLD_GASLab.md"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py chemical_state routing"
+    drift_guards: []
+
+  LLD_GASLab.md:
+    node_type: lld
+    subsystem: low-level-design
+    implements:
+      - "labs/gaslab/code/contracts.py"
+      - "labs/gaslab/code/brettschneider.py"
+      - "labs/gaslab/code/validity_gates.py"
+      - "labs/gaslab/code/rule_engine.py"
+      - "labs/gaslab/code/resolution.py"
+      - "labs/gaslab/code/ontology_loader.py"
+      - "labs/gaslab/code/audits.py"
+      - "labs/gaslab/code/dna_view.py"
+      - "labs/gaslab/code/process.py"
+      - "labs/gaslab/code/family_map.py"
+      - "labs/gaslab/code/ranking.py"
+      - "labs/gaslab/code/data/gas_lab_ontology.yaml"
+    consumers:
+      - "dld: labs/gaslab/docs/DLD_GASLab.md"
+      - "comlab: labs/comlab/comlab/analytics/power_loss_analytics.py lambda/gas analytics"
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py sample_validity/lambda aggregation"
+      - "comlab: labs/comlab/comlab/core/perception_contradiction.py lambda_measured fallback"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py chemical_state routing"
+    drift_guards:
+      - "labs/gaslab/tests/unit/test_contracts.py"
+      - "labs/gaslab/tests/unit/test_brettschneider.py"
+      - "labs/gaslab/tests/unit/test_validity_gates.py"
+      - "labs/gaslab/tests/unit/test_rule_engine.py"
+      - "labs/gaslab/tests/unit/test_resolution.py"
+      - "labs/gaslab/tests/unit/test_ontology.py"
+      - "labs/gaslab/tests/unit/test_validators.py"
+      - "labs/gaslab/tests/unit/test_dna_view.py"
+      - "labs/gaslab/tests/unit/test_process.py"
+      - "labs/gaslab/tests/unit/test_family_map.py"
+      - "labs/gaslab/tests/unit/test_rank_candidates.py"
+
+  DLD_GASLab.md:
+    node_type: dld
+    subsystem: detailed-design
+    implements:
+      - "labs/gaslab/code/contracts.py"
+      - "labs/gaslab/code/brettschneider.py"
+      - "labs/gaslab/code/validity_gates.py"
+      - "labs/gaslab/code/rule_engine.py"
+      - "labs/gaslab/code/resolution.py"
+      - "labs/gaslab/code/ontology_loader.py"
+      - "labs/gaslab/code/audits.py"
+      - "labs/gaslab/code/dna_view.py"
+      - "labs/gaslab/code/process.py"
+      - "labs/gaslab/code/family_map.py"
+      - "labs/gaslab/code/ranking.py"
+      - "labs/gaslab/code/data/gas_lab_ontology.yaml"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py chemical_state routing"
+      - "comlab: labs/comlab/comlab/analytics/power_loss_analytics.py gas_co/gas_hc/gas_o2/lambda_chem"
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py lambda_chem/lambda_measured/sample_validity"
+      - "comlab: labs/comlab/comlab/core/perception_contradiction.py lambda_measured"
+      - "comlab: labs/comlab/comlab/schemas/vocabulary.py sample_validity mirror"
+    drift_guards:
+      - "labs/gaslab/tests/unit/test_contracts.py"
+      - "labs/gaslab/tests/unit/test_brettschneider.py"
+      - "labs/gaslab/tests/unit/test_validity_gates.py"
+      - "labs/gaslab/tests/unit/test_rule_engine.py"
+      - "labs/gaslab/tests/unit/test_rule_engine_reachability.py"
+      - "labs/gaslab/tests/unit/test_resolution.py"
+      - "labs/gaslab/tests/unit/test_ontology.py"
+      - "labs/gaslab/tests/unit/test_validators.py"
+      - "labs/gaslab/tests/unit/test_process.py"
+      - "labs/gaslab/tests/test_cases.py"
+
+  01_role_boundaries_dna_ingestion.md:
+    node_type: wiki
+    subsystem: payload-boundary
+    implements:
+      - "labs/gaslab/code/contracts.py"
+      - "labs/gaslab/code/dna_view.py"
+      - "labs/gaslab/code/process.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py GasLabPayload ingestion"
+      - "comlab: labs/comlab/comlab/schemas/vocabulary.py sample_validity/ChemicalSignature mirror"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py chemical_state routing"
+    drift_guards:
+      - "labs/gaslab/tests/unit/test_contracts.py"
+      - "labs/gaslab/tests/unit/test_dna_view.py"
+      - "labs/gaslab/tests/unit/test_process.py"
+
+  02_combustion_foundations.md:
+    node_type: wiki
+    subsystem: lambda-model
+    implements:
+      - "labs/gaslab/code/brettschneider.py"
+      - "labs/gaslab/code/contracts.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/analytics/power_loss_analytics.py lambda_chem"
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py lambda_chem aggregation"
+      - "comlab: labs/comlab/comlab/core/perception_contradiction.py lambda_measured comparison"
+    drift_guards:
+      - "labs/gaslab/tests/unit/test_brettschneider.py"
+      - "labs/gaslab/tests/unit/test_contracts.py"
+
+  03_five_gases_reference.md:
+    node_type: wiki
+    subsystem: gas-payload
+    implements:
+      - "labs/gaslab/code/contracts.py"
+      - "labs/gaslab/code/data/gas_lab_ontology.yaml"
+    consumers:
+      - "comlab: labs/comlab/comlab/analytics/power_loss_analytics.py gas_co/gas_hc/gas_o2"
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py GasLabPayload forwarding"
+    drift_guards:
+      - "labs/gaslab/tests/unit/test_contracts.py"
+      - "labs/gaslab/tests/unit/test_ontology.py"
+
+  04_inter_gas_grammar_validity_gates.md:
+    node_type: wiki
+    subsystem: validity-grammar
+    implements:
+      - "labs/gaslab/code/validity_gates.py"
+      - "labs/gaslab/code/rule_engine.py"
+      - "labs/gaslab/code/resolution.py"
+      - "labs/gaslab/code/audits.py"
+      - "labs/gaslab/code/data/gas_lab_ontology.yaml"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py sample_validity"
+      - "comlab: labs/comlab/comlab/schemas/vocabulary.py sample_validity mirror"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py chemical_state routing"
+    drift_guards:
+      - "labs/gaslab/tests/unit/test_validity_gates.py"
+      - "labs/gaslab/tests/unit/test_rule_engine.py"
+      - "labs/gaslab/tests/unit/test_resolution.py"
+      - "labs/gaslab/tests/unit/test_validators.py"
+
+  05_fault_atlas_part_a.md:
+    node_type: wiki
+    subsystem: fault-atlas-core
+    implements:
+      - "labs/gaslab/code/rule_engine.py"
+      - "labs/gaslab/code/resolution.py"
+      - "labs/gaslab/code/data/gas_lab_ontology.yaml"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py chemical_state routing"
+      - "comlab: labs/comlab/comlab/analytics/power_loss_analytics.py gas_co/gas_hc/gas_o2"
+    drift_guards:
+      - "labs/gaslab/tests/unit/test_rule_engine.py"
+      - "labs/gaslab/tests/unit/test_rule_engine_reachability.py"
+      - "labs/gaslab/tests/unit/test_resolution.py"
+      - "labs/gaslab/tests/unit/test_validators.py"
+
+  06a_fault_atlas_oil_mechanical.md:
+    node_type: wiki
+    subsystem: mechanical-wear-atlas
+    implements:
+      - "labs/gaslab/code/rule_engine.py"
+      - "labs/gaslab/code/resolution.py"
+      - "labs/gaslab/code/family_map.py"
+      - "labs/gaslab/code/data/gas_lab_ontology.yaml"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py chemical_state routing"
+      - "comlab: labs/comlab/comlab/analytics/power_loss_analytics.py gas_co/gas_hc/gas_o2"
+    drift_guards:
+      - "labs/gaslab/tests/unit/test_rule_engine.py"
+      - "labs/gaslab/tests/unit/test_resolution.py"
+      - "labs/gaslab/tests/unit/test_family_map.py"
+
+  06b_fault_atlas_valvetrain_egr_combustion.md:
+    node_type: wiki
+    subsystem: valvetrain-egr-atlas
+    implements:
+      - "labs/gaslab/code/rule_engine.py"
+      - "labs/gaslab/code/resolution.py"
+      - "labs/gaslab/code/data/gas_lab_ontology.yaml"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py chemical_state routing"
+      - "comlab: labs/comlab/comlab/analytics/power_loss_analytics.py gas_co/gas_hc/gas_o2"
+    drift_guards:
+      - "labs/gaslab/tests/unit/test_rule_engine.py"
+      - "labs/gaslab/tests/unit/test_rule_engine_reachability.py"
+      - "labs/gaslab/tests/unit/test_resolution.py"
+      - "labs/gaslab/tests/unit/test_t_p8_7_hc_discriminator.py"
+
+  07_catalyst_postcat_logic.md:
+    node_type: wiki
+    subsystem: catalyst-logic
+    implements:
+      - "labs/gaslab/code/rule_engine.py"
+      - "labs/gaslab/code/resolution.py"
+      - "labs/gaslab/code/data/gas_lab_ontology.yaml"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py chemical_state routing"
+      - "comlab: labs/comlab/comlab/analytics/power_loss_analytics.py lambda_chem/gas_o2"
+    drift_guards:
+      - "labs/gaslab/tests/unit/test_rule_engine.py"
+      - "labs/gaslab/tests/unit/test_resolution.py"
+
+  08_diagnostic_tactics.md:
+    node_type: wiki
+    subsystem: diagnostic-tactics
+    implements:
+      - "labs/gaslab/code/rule_engine.py"
+      - "labs/gaslab/code/resolution.py"
+      - "labs/gaslab/code/process.py"
+    consumers:
+      - "gaslab: labs/gaslab/gaslab/rule_engine.py dual-reading and block-test path"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py chemical_state routing"
+      - "comlab: labs/comlab/comlab/core/perception_contradiction.py lambda mismatch comparison"
+    drift_guards:
+      - "labs/gaslab/tests/unit/test_rule_engine.py"
+      - "labs/gaslab/tests/unit/test_resolution.py"
+      - "labs/gaslab/tests/unit/test_process.py"
+
+  09_era_specific_patterns.md:
+    node_type: wiki
+    subsystem: era-thresholds
+    implements:
+      - "labs/gaslab/code/dna_view.py"
+      - "labs/gaslab/code/rule_engine.py"
+      - "labs/gaslab/code/resolution.py"
+    consumers:
+      - "gaslab: labs/gaslab/gaslab/rule_engine.py _coc_adjust_normal_bounds"
+      - "gaslab: labs/gaslab/gaslab/resolution.py _euro_thresholds"
+    drift_guards:
+      - "labs/gaslab/tests/unit/test_dna_view.py"
+      - "labs/gaslab/tests/unit/test_rule_engine.py"
+      - "labs/gaslab/tests/unit/test_resolution.py"
+
+  10_limited_scope_confidence.md:
+    node_type: wiki
+    subsystem: confidence-ranking
+    implements:
+      - "labs/gaslab/code/ranking.py"
+      - "labs/gaslab/code/dna_view.py"
+      - "labs/gaslab/code/rule_engine.py"
+      - "labs/gaslab/code/resolution.py"
+    consumers:
+      - "gaslab: labs/gaslab/gaslab/ranking.py top-3 confidence ceiling"
+      - "gaslab: labs/gaslab/gaslab/rule_engine.py DNA-scoped candidate suppression"
+    drift_guards:
+      - "labs/gaslab/tests/unit/test_rank_candidates.py"
+      - "labs/gaslab/tests/unit/test_classify_top3.py"
+      - "labs/gaslab/tests/unit/test_dna_view.py"
+      - "labs/gaslab/tests/unit/test_rule_engine.py"
+
+# Copied as plain markdown: browsable, but not framed as vault graph nodes.
+plain:
+  - ADR_GASLab.md
+  - BDD_GASLab.md
+  - GAS_VOCABULARY.md
+  - 00_index.md
+  - 11_sources_appendices.md
+  - CHANGE_v2.1_timing_taxonomy.md

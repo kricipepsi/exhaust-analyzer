@@ -1,0 +1,657 @@
+{
+  "task": "T-V3-P4-C2-PRE",
+  "generated": "2026-07-01",
+  "mode": "DISCLOSE only (read-only pre-author; no wiring, no score move)",
+  "purpose": "Freeze the cluster-agnostic reveal contract every signal-pack task (T-V3-P4-C*A / C*B) inherits, and resolve research(=logic)-vs-data(=per-case values) on the worked C2 instance.",
+  "reveal_contract_template": [
+    {
+      "key": "BUILDABLE_NOW",
+      "definition": "Producer/consumer logic + thresholds derivable from the cluster research answer; provable by unit tests on synthetic vectors, with no owner data."
+    },
+    {
+      "key": "SCORING_GATED",
+      "definition": "The per-case owner columns still required and which residual case_ids each unlocks; stays abstained until the owner supplies real measured values (no synthetic stand-in)."
+    },
+    {
+      "key": "CODE_LANDED_NEQ_SCORE_MOVED",
+      "definition": "Explicit separation of 'producer/consumer logic shipped' from 'top3_family delta'. Landing code proves the discriminator is wired; it does NOT move the score until gated data arrives. Never report the first as the second."
+    },
+    {
+      "key": "REGRESSION_FT8",
+      "definition": "The neighbour set the consumer edit touches (rules in the same family file + shared competition_group + their passes_cases), plus the no-regressed-family audit run on the full corpus at commit time."
+    },
+    {
+      "key": "ABSTAIN_FALLBACK",
+      "definition": "Cases whose discriminating signal the owner cannot supply stay abstained (MARGIN=0.02 dial), never guessed from the idle snapshot."
+    }
+  ],
+  "c2_instance": {
+    "cluster": "C2",
+    "title": "rich_mixture vs catalyst_failure",
+    "research_source": "v3/research/research_answers/cluster2.md",
+    "producer": {
+      "states": [
+        "GASLab CatalystConversionState",
+        "OBDLab CatalystMonitorState"
+      ],
+      "thresholds": [
+        {
+          "signal": "Total Fuel Trim (STFT+LTFT)",
+          "maneuver": "Curb idle, 60 s, 100 points",
+          "threshold": "<= -10%",
+          "verdict": "TRUE_RICH (rich fueling malfunction active)",
+          "producer_state": "GASLab CatalystConversionState / rich producer",
+          "cite": "cluster2.md Protocol step 4 + Quantitative Signatures (Fuel Trim, +/-10% Normal)"
+        },
+        {
+          "signal": "Mode $06 O2 index ratio",
+          "maneuver": "Steady-state downstream O2 switching",
+          "threshold": "<= 0.20",
+          "verdict": "catalyst PASS (healthy); high ratio => LOW_OSC_OR_HIGH_INDEX (deteriorated)",
+          "producer_state": "OBDLab CatalystMonitorState",
+          "cite": "cluster2.md Quantitative Signatures (Index Ratio <= 0.20 Pass)"
+        },
+        {
+          "signal": "OSC lag dt_osc",
+          "maneuver": "Fuel step-change (lean +6% 4.0 s -> rich -10% 3.0 s), transition at 0.45 V",
+          "threshold": "dt_osc < 0.5 s",
+          "verdict": "catalyst FAIL (low OSC / minimal delay)",
+          "producer_state": "OBDLab CatalystMonitorState",
+          "cite": "cluster2.md Quantitative Signatures (OSC/Lag dt_osc < 0.5 s Fail) + Protocol step 5"
+        },
+        {
+          "signal": "Decel 5-gas sweep CO",
+          "maneuver": "Deceleration 2500 rpm -> curb idle, continuous tailpipe CO",
+          "threshold": "CO > 0.8%",
+          "verdict": "catalyst FAIL (lazy/low conversion at idle enthalpy)",
+          "producer_state": "GASLab CatalystConversionState",
+          "cite": "cluster2.md Quantitative Signatures (5-Gas Sweep CO > 0.8% Fail) + Protocol step 6"
+        },
+        {
+          "signal": "Pre-gate: misfire (MID $A2/$A7) or pending heater (P0135) codes",
+          "maneuver": "Query DTCs before any catalyst read",
+          "threshold": "present => INVALID read",
+          "verdict": "ABSTAIN / repair-first (readings invalidated)",
+          "producer_state": "pre-gate on both producers",
+          "cite": "cluster2.md Diagnostic Acquisition Protocol step 1 (Architectural Pre-Gate)"
+        }
+      ]
+    },
+    "consumer": {
+      "rich_mixture": {
+        "file": "labs/comlab/registry/rules/rich_mixture.json",
+        "rules": [
+          "RM-001",
+          "RM-003",
+          "RM-004"
+        ],
+        "reads": "obd_evidence longft1/shrtft1 (fuel trims); the C2 TRUE_RICH producer state would gate/confirm these negative-trim rules."
+      },
+      "catalyst_failure": {
+        "file": "labs/comlab/registry/rules/catalyst_failure.json",
+        "rules": [
+          "CF-001",
+          "CF-002",
+          "CF-006",
+          "CF-007"
+        ],
+        "reads": "chemistry_evidence CATALYST_OVERWHELMED/NORMAL_OPERATION + obd_evidence; the C2 LOW_OSC_OR_HIGH_INDEX producer state would supply the catalyst-health discriminator these rules currently infer from tailpipe chemistry alone."
+      }
+    },
+    "case_split": {
+      "total": 22,
+      "buildable_now_reachable": [],
+      "buildable_now_count": 0,
+      "scoring_gated": [
+        {
+          "case_id": "CASE-015",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "catalyst_failure",
+          "predicted_family": "no_fault",
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "CSV-100",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "lean_condition",
+          "predicted_family": "rich_mixture",
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "CSV-121",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "catalyst_failure",
+          "predicted_family": "lean_condition",
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "CSV-122",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "catalyst_failure",
+          "predicted_family": "lean_condition",
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "EXP-N017",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "lean_condition",
+          "predicted_family": "rich_mixture",
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "EXT-232",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "catalyst_failure",
+          "predicted_family": "no_fault",
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "EXT-233",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "catalyst_failure",
+          "predicted_family": "lean_condition",
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "PDF-HI-006",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "catalyst_failure",
+          "predicted_family": "sensor_fault",
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "case_004",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "sensor_fault",
+          "predicted_family": "catalyst_failure",
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "era1_017",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "sensor_fault",
+          "predicted_family": "catalyst_failure",
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "era2_015",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "lean_condition",
+          "predicted_family": "rich_mixture",
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "CASE-023",
+          "bucket": "PRODUCER_GAP_SIGNAL_REQUIRED",
+          "expected_family": "rich_mixture",
+          "predicted_family": null,
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "CASE-029",
+          "bucket": "PRODUCER_GAP_SIGNAL_REQUIRED",
+          "expected_family": "rich_mixture",
+          "predicted_family": null,
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "CASE-040",
+          "bucket": "PRODUCER_GAP_SIGNAL_REQUIRED",
+          "expected_family": "rich_mixture",
+          "predicted_family": null,
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "EXT-217",
+          "bucket": "PRODUCER_GAP_SIGNAL_REQUIRED",
+          "expected_family": "rich_mixture",
+          "predicted_family": null,
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "PDF-HI-001",
+          "bucket": "PRODUCER_GAP_SIGNAL_REQUIRED",
+          "expected_family": "rich_mixture",
+          "predicted_family": null,
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "RULE-CO-1",
+          "bucket": "PRODUCER_GAP_SIGNAL_REQUIRED",
+          "expected_family": "rich_mixture",
+          "predicted_family": null,
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "YAML-PDF_HI_001",
+          "bucket": "PRODUCER_GAP_SIGNAL_REQUIRED",
+          "expected_family": "rich_mixture",
+          "predicted_family": null,
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "case_002",
+          "bucket": "PRODUCER_GAP_SIGNAL_REQUIRED",
+          "expected_family": "rich_mixture",
+          "predicted_family": null,
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "case_015",
+          "bucket": "PRODUCER_GAP_SIGNAL_REQUIRED",
+          "expected_family": "rich_mixture",
+          "predicted_family": null,
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "case_017",
+          "bucket": "PRODUCER_GAP_SIGNAL_REQUIRED",
+          "expected_family": "rich_mixture",
+          "predicted_family": null,
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        },
+        {
+          "case_id": "era2_019",
+          "bucket": "PRODUCER_GAP_SIGNAL_REQUIRED",
+          "expected_family": "rich_mixture",
+          "predicted_family": null,
+          "required_columns": [
+            "mode06_catalyst_margin_pct",
+            "catalyst_index_ratio",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "pre_post_cat_hc_delta_ppm",
+            "pre_post_cat_co_delta_pct"
+          ]
+        }
+      ],
+      "scoring_gated_count": 22,
+      "bucket_breakdown": {
+        "OUTRANKED_HARD": 11,
+        "PRODUCER_GAP_SIGNAL_REQUIRED": 11
+      },
+      "note": "All 22 C2 cases are SCORING_GATED and 0 are BUILDABLE_NOW-reachable: the discriminating columns (fuel trims + Mode $06 catalyst) are absent from the corpus by construction, which is why these rows are residual. Producer/consumer LOGIC is fully buildable now; the top3_family DELTA is not observable until the owner supplies values."
+    },
+    "ft8_neighbours": {
+      "touched_families": [
+        "rich_mixture",
+        "catalyst_failure"
+      ],
+      "touched_competition_groups": [
+        "rich_mixture",
+        "catalyst_failure"
+      ],
+      "rules": [
+        {
+          "rule_id": "RM-001",
+          "fault_family": "rich_mixture",
+          "competition_group": "rich_mixture",
+          "base_weight": 0.9,
+          "passes_cases": [
+            "CSV-018",
+            "EXP-N003",
+            "EXT-203",
+            "EXP-N013",
+            "EXT-227"
+          ]
+        },
+        {
+          "rule_id": "RM-002",
+          "fault_family": "rich_mixture",
+          "competition_group": "rich_mixture",
+          "base_weight": 0.75,
+          "passes_cases": [
+            "PDF-HI-001",
+            "PDF-4G-03",
+            "RULE-CO-1"
+          ]
+        },
+        {
+          "rule_id": "RM-003",
+          "fault_family": "rich_mixture",
+          "competition_group": "rich_mixture",
+          "base_weight": 0.7,
+          "passes_cases": [
+            "EXT-217",
+            "CASE-023",
+            "case_030"
+          ]
+        },
+        {
+          "rule_id": "RM-004",
+          "fault_family": "rich_mixture",
+          "competition_group": "rich_mixture",
+          "base_weight": 0.8,
+          "passes_cases": [
+            "CASE-031"
+          ]
+        },
+        {
+          "rule_id": "CF-001",
+          "fault_family": "catalyst_failure",
+          "competition_group": "catalyst_failure",
+          "base_weight": 0.851,
+          "passes_cases": [
+            "REAL-005",
+            "PDF-4G-01",
+            "case_010",
+            "case_034"
+          ]
+        },
+        {
+          "rule_id": "CF-002",
+          "fault_family": "catalyst_failure",
+          "competition_group": "catalyst_failure",
+          "base_weight": 0.701,
+          "passes_cases": [
+            "CSV-121",
+            "CSV-122",
+            "EXP-N008",
+            "EXT-232",
+            "EXT-233",
+            "CASE-015"
+          ]
+        },
+        {
+          "rule_id": "CF-003",
+          "fault_family": "catalyst_failure",
+          "competition_group": "catalyst_failure",
+          "base_weight": 0.8,
+          "passes_cases": [
+            "EXT-207",
+            "EXT-208",
+            "EXT-213",
+            "CASE-013",
+            "EXP-N012"
+          ]
+        },
+        {
+          "rule_id": "CF-004",
+          "fault_family": "catalyst_failure",
+          "competition_group": "catalyst_failure",
+          "base_weight": 0.7,
+          "passes_cases": [
+            "CASE-026"
+          ]
+        },
+        {
+          "rule_id": "CF-005",
+          "fault_family": "catalyst_failure",
+          "competition_group": "catalyst_failure",
+          "base_weight": 0.6,
+          "passes_cases": [
+            "PDF-HI-006",
+            "YAML-PDF_HI_006",
+            "YAML-PDF_4G_01"
+          ]
+        },
+        {
+          "rule_id": "CF-006",
+          "fault_family": "catalyst_failure",
+          "competition_group": "catalyst_failure",
+          "base_weight": 0.75,
+          "passes_cases": [
+            "PDF-HI-006",
+            "REAL-005",
+            "YAML-PDF_HI_006",
+            "YAML-PDF_4G_01"
+          ]
+        },
+        {
+          "rule_id": "CF-007",
+          "fault_family": "catalyst_failure",
+          "competition_group": "catalyst_failure",
+          "base_weight": 0.6,
+          "passes_cases": [
+            "CASE-016",
+            "case_024"
+          ]
+        }
+      ],
+      "passes_cases_union": [
+        "CASE-013",
+        "CASE-015",
+        "CASE-016",
+        "CASE-023",
+        "CASE-026",
+        "CASE-031",
+        "CSV-018",
+        "CSV-121",
+        "CSV-122",
+        "EXP-N003",
+        "EXP-N008",
+        "EXP-N012",
+        "EXP-N013",
+        "EXT-203",
+        "EXT-207",
+        "EXT-208",
+        "EXT-213",
+        "EXT-217",
+        "EXT-227",
+        "EXT-232",
+        "EXT-233",
+        "PDF-4G-01",
+        "PDF-4G-03",
+        "PDF-HI-001",
+        "PDF-HI-006",
+        "REAL-005",
+        "RULE-CO-1",
+        "YAML-PDF_4G_01",
+        "YAML-PDF_HI_006",
+        "case_010",
+        "case_024",
+        "case_030",
+        "case_034"
+      ],
+      "passes_cases_count": 33
+    },
+    "code_landed_neq_score_moved": "The C2 producer emit rule + consumer wiring are BUILDABLE_NOW from cluster2.md and unit-testable on synthetic trim/Mode-$06 vectors. That is CODE_LANDED. SCORE_MOVED (any top3_family delta on the 22) cannot be shown until the owner supplies real column values; the two must never be conflated in a pack report.",
+    "abstain_fallback": "If Mode $06 catalyst data and fuel trims are absent for a case, it stays abstained at MARGIN=0.02; a single downstream tailpipe snapshot is not a discriminator."
+  },
+  "owner_next_task_fork": {
+    "option_i": {
+      "label": "Build C2 producer/consumer code now (scoring deferred)",
+      "does": "Author + unit-test the C2 producer emit rule and consumer wiring on synthetic vectors; land BUILDABLE_NOW logic; leave all 22 cases abstained until data arrives.",
+      "cost": "Engine/registry code churn now that moves no score yet; risk of the logic drifting from the eventual real-data thresholds.",
+      "benefit": "Commit path is pre-validated; when C2 data lands only the scoring/FT-8 step remains."
+    },
+    "option_ii": {
+      "label": "Hold all pack code until C2 data lands",
+      "does": "Write no producer/consumer code until the owner supplies the 22 cases' trim + Mode $06 values; then run C2A dry-run -> C2B commit.",
+      "cost": "No forward progress on C2 until the owner-data wall clears.",
+      "benefit": "Thresholds are calibrated against real values, not research defaults; zero speculative code."
+    },
+    "decision": "OWNER DECIDES \u2014 not chosen here."
+  }
+}

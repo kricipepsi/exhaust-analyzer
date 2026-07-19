@@ -1,0 +1,70 @@
+# Symptom Prior Table — T-FX-DNA-3
+#
+# Maps CSV primary_symptom values to FaultFamily priors applied during
+# COMLab Phase 5 (confidence scoring).  Each entry carries a provenance
+# comment citing the P0 audit purity data.
+#
+# Signal/noise gate: a prior is only applied when the CSV primary_symptom
+# column is non-blank.  Blank/absent symptoms produce zero prior (neutral).
+#
+# Prior weight rationale (0.10):
+#   Small enough that a contradicting candidate with >= 0.10 score advantage
+#   still wins; large enough to break ties and lift a family from runner-up
+#   to winner when scores are close.  Derived from P0 audit: running_rough
+#   → misfire at 90% purity (42/281 cases).
+#
+# Source: P0 audit purity table (2026-06-02).
+# Consumer: fault_atlas_router.execute_triage_loop Phase 5 (bounded additive).
+# wiki: data_flow_report.md §5.3
+
+prior_weight: 0.10
+max_symptom_prior_weight: 0.65
+
+mappings:
+  running_rough:
+    family: misfire
+    # wiki: P0 audit — 42/281 cases (14.9%), 90% purity to misfire family.
+    #        Blank rows sit at 23% misfire base rate; the prior amplifies
+    #        an already-strong signal rather than creating a new one.
+    modifiers:
+      idle: 1.0
+      steady_cruise: 1.0
+      transient_acceleration: 1.5
+      coasting_deceleration: 0.8
+  non_starter:
+    family: non_starter
+    # wiki: P0 audit — 4/281 cases (1.4%), non-starter diagnosis.
+    #        Low coverage but high specificity.
+    modifiers:
+      idle: 1.0
+      steady_cruise: 0.5
+      transient_acceleration: 0.5
+      coasting_deceleration: 0.5
+  hard_start_cold:
+    family: rich_mixture
+    # wiki: P0 audit — 2/281 cases (0.7%), cold-start enrichment pattern.
+    #        Lowest coverage; prior magnitude same as others per task spec.
+    modifiers:
+      idle: 1.0
+      steady_cruise: 1.0
+      transient_acceleration: 1.0
+      coasting_deceleration: 1.0
+  knocking:
+    family: ignition_fault
+    # wiki: T-FX-DNA-5 enrichment — 3 cases, 67% purity to ignition_fault.
+    #        Audible knock/ping is an operator-observable ignition symptom.
+    modifiers:
+      idle: 0.5
+      steady_cruise: 1.0
+      transient_acceleration: 2.0
+      coasting_deceleration: 0.5
+  poor_acceleration:
+    family: cam_timing
+    # wiki: T-FX-DNA-5 enrichment — 4 cases, 75% purity to cam_timing
+    #        (VVT phaser sluggish / solenoid degradation). Operator feels
+    #        sluggish acceleration; the mechanical root is cam timing.
+    modifiers:
+      idle: 0.5
+      steady_cruise: 1.5
+      transient_acceleration: 1.5
+      coasting_deceleration: 0.5

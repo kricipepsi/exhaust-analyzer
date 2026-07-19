@@ -1,0 +1,71 @@
+{
+  "version": "2.0",
+  "fault_family": "invalid_input",
+  "rules": [
+    {
+      "rule_id": "II-001",
+      "fault_family": "invalid_input",
+      "description": "CO2 over physical maximum \u2014 exceeds the ~16% theoretical ceiling for gasoline stoichiometric combustion; physically impossible, therefore input data is invalid",
+      "chemistry_evidence": [],
+      "obd_evidence": [
+        {
+          "pid": "co2",
+          "operator": "gt",
+          "value": 16.0,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "master_gas_guide \u00a72"
+        }
+      ],
+      "dtc_evidence": [],
+      "base_weight": 0.95,
+      "competition_group": "invalid_input",
+      "confidence_ceiling": 0.95,
+      "passes_cases": [
+        "CSV-081",
+        "YAML-CSV81",
+        "YAML-RULE_CO2_1",
+        "CASE-046"
+      ],
+      "source_wiki_refs": [
+        "master_gas_guide \u00a72"
+      ]
+    },
+    {
+      "rule_id": "II-002",
+      "fault_family": "invalid_input",
+      "description": "Near-atmospheric oxygen with depleted CO2 \u2014 open-air or false-air signature indicating sample contamination, not combustion exhaust",
+      "chemistry_evidence": [],
+      "obd_evidence": [
+        {
+          "pid": "o2",
+          "operator": "gt",
+          "value": 18.0,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "master_gas_guide \u00a72"
+        },
+        {
+          "pid": "co2",
+          "operator": "lt",
+          "value": 5.0,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "master_gas_guide \u00a72"
+        }
+      ],
+      "dtc_evidence": [],
+      "base_weight": 0.95,
+      "competition_group": "invalid_input",
+      "confidence_ceiling": 0.95,
+      "passes_cases": [
+        "CSV-083",
+        "YAML-CSV83",
+        "CASE-047"
+      ],
+      "source_wiki_refs": [
+        "master_gas_guide \u00a72"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+# 4DLab vault — coverage map. Code a note implements vs the tests that guard it.
+# A note that implements code but lists no guard is untested or mis-mapped.
+# Consumes frontmatter: module, implements, drift_guards.
+filters:
+  and:
+    - 'file.ext == "md"'
+    - file.hasProperty("implements")
+    - '!implements.isEmpty()'
+    - '!file.inFolder("tasks")'  # tasks use tasks.base
+formulas:
+  guards: 'if(drift_guards.isEmpty(), "NONE", drift_guards.length.toString())'
+properties:
+  implements:
+    displayName: "Implements (code)"
+  drift_guards:
+    displayName: "Guarding tests"
+  formula.guards:
+    displayName: "# guards"
+views:
+  - type: table
+    name: Coverage
+    order:
+      - file.name
+      - module
+      - implements
+      - drift_guards
+      - formula.guards

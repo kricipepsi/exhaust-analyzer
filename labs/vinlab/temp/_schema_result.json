@@ -1,0 +1,226 @@
+{
+  "passanger_car_engines": [
+    {
+      "field": "row_id",
+      "type": "int"
+    },
+    {
+      "field": "id",
+      "type": "int"
+    },
+    {
+      "field": "engineid",
+      "type": "int"
+    }
+  ],
+  "passanger_car_prd": [
+    {
+      "field": "row_id",
+      "type": "int"
+    },
+    {
+      "field": "id",
+      "type": "int"
+    },
+    {
+      "field": "assemblygroupdescription",
+      "type": "text"
+    },
+    {
+      "field": "description",
+      "type": "text"
+    },
+    {
+      "field": "normalizeddescription",
+      "type": "text"
+    },
+    {
+      "field": "usagedescription",
+      "type": "text"
+    }
+  ],
+  "prd": [
+    {
+      "field": "row_id",
+      "type": "int"
+    },
+    {
+      "field": "id",
+      "type": "int"
+    },
+    {
+      "field": "assemblygroupdescription",
+      "type": "text"
+    },
+    {
+      "field": "description",
+      "type": "text"
+    },
+    {
+      "field": "normalizeddescription",
+      "type": "text"
+    },
+    {
+      "field": "usagedescription",
+      "type": "text"
+    }
+  ],
+  "passanger_cars": [
+    {
+      "field": "row_id",
+      "type": "int"
+    },
+    {
+      "field": "id",
+      "type": "int"
+    },
+    {
+      "field": "canbedisplayed",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "constructioninterval",
+      "type": "varchar(255)"
+    },
+    {
+      "field": "description",
+      "type": "varchar(255)"
+    },
+    {
+      "field": "fulldescription",
+      "type": "varchar(512)"
+    },
+    {
+      "field": "haslink",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "isaxle",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "iscommercialvehicle",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "iscvmanufacturerid",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "isengine",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "ismotorbike",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "ispassengercar",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "istransporter",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "modelid",
+      "type": "int"
+    }
+  ],
+  "engines": [
+    {
+      "field": "row_id",
+      "type": "int"
+    },
+    {
+      "field": "id",
+      "type": "int"
+    },
+    {
+      "field": "canbedisplayed",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "constructioninterval",
+      "type": "varchar(255)"
+    },
+    {
+      "field": "description",
+      "type": "varchar(255)"
+    },
+    {
+      "field": "fulldescription",
+      "type": "varchar(512)"
+    },
+    {
+      "field": "haslink",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "haslinkitem",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "isaxle",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "iscommercialvehicle",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "iscvmanufacturerid",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "isengine",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "ismotorbike",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "ispassengercar",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "istransporter",
+      "type": "varchar(10)"
+    },
+    {
+      "field": "manufacturerid",
+      "type": "int"
+    },
+    {
+      "field": "salesdescription",
+      "type": "text"
+    }
+  ],
+  "engine_prd": [
+    {
+      "field": "row_id",
+      "type": "int"
+    },
+    {
+      "field": "id",
+      "type": "int"
+    },
+    {
+      "field": "assemblygroupdescription",
+      "type": "text"
+    },
+    {
+      "field": "description",
+      "type": "text"
+    },
+    {
+      "field": "normalizeddescription",
+      "type": "text"
+    },
+    {
+      "field": "usagedescription",
+      "type": "text"
+    }
+  ]
+}

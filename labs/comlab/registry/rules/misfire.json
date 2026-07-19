@@ -1,0 +1,354 @@
+{
+  "version": "2.0",
+  "fault_family": "misfire",
+  "rules": [
+    {
+      "rule_id": "MF-001",
+      "fault_family": "misfire",
+      "description": "Classic ignition misfire from failed coil/plug/wire \u2014 high HC + high O2 with P0300-P0312 DTC confirmation",
+      "chemistry_evidence": [
+        {
+          "state": "IGNITION_MISFIRE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "ge",
+          "value": 200.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "o2",
+          "operator": "ge",
+          "value": 1.5,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.851,
+      "competition_group": "misfire",
+      "passes_cases": [
+        "CSV-101",
+        "CSV-102",
+        "CSV-103",
+        "CSV-104",
+        "EXT-234",
+        "EXT-235",
+        "EXT-236"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a72",
+        "GAS_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "MF-002",
+      "fault_family": "misfire",
+      "description": "Lean-induced misfire from vacuum leak or fuel starvation \u2014 lean chemistry with positive fuel trims and cylinder-fluid misfire evidence",
+      "chemistry_evidence": [
+        {
+          "state": "LEAN_MISFIRE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "longft1",
+          "operator": "ge",
+          "value": 8.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "shrtft1",
+          "operator": "ge",
+          "value": 5.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0171",
+            "P0174"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        },
+        {
+          "dtc_codes": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.8,
+      "competition_group": "misfire",
+      "passes_cases": [
+        "EXP-N021",
+        "PDF-HI-002",
+        "PDF-4G-04",
+        "CASE-038"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a72",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "MF-003",
+      "fault_family": "misfire",
+      "description": "Rich misfire from injector leak or compression loss \u2014 rich chemistry with negative fuel trims",
+      "chemistry_evidence": [
+        {
+          "state": "RICH_MISFIRE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "longft1",
+          "operator": "le",
+          "value": -5.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0172",
+            "P0175"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        },
+        {
+          "dtc_codes": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.8,
+      "competition_group": "misfire",
+      "passes_cases": [
+        "PDF-4G-02",
+        "PDF-4G-05",
+        "YAML-PDF_4G_02",
+        "YAML-PDF_4G_05"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a72",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "MF-004",
+      "fault_family": "misfire",
+      "description": "Ghost misfire \u2014 ECU hallucinates P0300 from electrical noise, loose ground, or flywheel play despite pristine combustion chemistry",
+      "chemistry_evidence": [
+        {
+          "state": "NORMAL_OPERATION",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "lt",
+          "value": 200.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.6,
+      "competition_group": "misfire",
+      "confidence_ceiling": 0.7,
+      "perception_flag": "perception_only",
+      "passes_cases": [
+        "CSV-066",
+        "CSV-107",
+        "CSV-108",
+        "ECU-007",
+        "EXT-225",
+        "EXT-226",
+        "EXT-228",
+        "EXP-N016"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "MF-005",
+      "fault_family": "misfire",
+      "description": "ECU blindness \u2014 gas chemistry ground-truth shows misfire but ECU misfire counter reads zero; Brettschneider override: chemistry is truth, ECU counter is perception",
+      "chemistry_evidence": [
+        {
+          "state": "IGNITION_MISFIRE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "ge",
+          "value": 200.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "o2",
+          "operator": "ge",
+          "value": 1.5,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304"
+          ],
+          "strategy": "none_present",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.75,
+      "competition_group": "misfire",
+      "perception_flag": "perception_only",
+      "passes_cases": [
+        "CSV-052",
+        "CSV-105",
+        "CSV-106",
+        "ECU-008",
+        "EXT-237"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a72",
+        "GAS_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "MF-006",
+      "fault_family": "misfire",
+      "description": "Marginal-sample misfire with retarded timing \u2014 sample quality is borderline AND gas signature shows ignition-misfire-like chemistry with knock-avoidance timing pull; closes SAMPLE_INVALID and TIMING_RETARDED gaps for misfire family",
+      "chemistry_evidence": [
+        {
+          "state": "SAMPLE_INVALID",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        },
+        {
+          "state": "IGNITION_MISFIRE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        },
+        {
+          "state": "TIMING_RETARDED",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.65,
+      "competition_group": "misfire",
+      "confidence_ceiling": 0.75,
+      "passes_cases": [
+        "CASE-021",
+        "CASE-024",
+        "CASE-033",
+        "CSV-022",
+        "case_005",
+        "case_022"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    }
+  ]
+}

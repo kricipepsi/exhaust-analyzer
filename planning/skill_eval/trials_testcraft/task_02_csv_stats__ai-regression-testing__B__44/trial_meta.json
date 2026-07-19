@@ -1,0 +1,10 @@
+{
+  "trial_id": "task_02_csv_stats__ai-regression-testing__B__44",
+  "task_id": "task_02_csv_stats",
+  "skill_id": "ai-regression-testing",
+  "arm": "B",
+  "seed": 44,
+  "model": "opus-4.7@t=0.0",
+  "no_gate": false,
+  "prepared_utc": "2026-06-09T21:45:40.041941+00:00"
+}

@@ -1,0 +1,8 @@
+﻿{
+    "eval_id":  0,
+    "assertions":  [
+
+                   ],
+    "prompt":  "Run probe then audit on code_fix/ package at C:\\\\tmp\\\\gfxskilltest\\\\code_fix\\\\",
+    "eval_name":  "4dlab-code-prep-probe-audit"
+}

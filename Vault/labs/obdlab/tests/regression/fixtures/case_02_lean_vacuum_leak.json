@@ -1,0 +1,41 @@
+{
+  "case_id": "case_02_lean_vacuum_leak",
+  "notes": "Lean condition (P0171-shaped): vacuum leak raises MAP, narrowband O2 reads lean (0.15 V), STFT +18% LTFT +11% — ECU adding fuel on confirmed lean. HIGH-confidence DNA. Expected: STABILIZED_IDLE, lambda=1.05 (lean zone), TFT=+29.0, ve_state_isValid=False (VE collapse < 50% with high MAP). Wiki ref: OBDLab_KG_Wiki.md §13 Profile 3 (LEAN_MIXTURE).",
+  "raw_user_inputs": {
+    "engine_rpm": 800,
+    "coolant_temp_c": 92.0,
+    "calculated_engine_load_pct": 25.0,
+    "mass_airflow_gps": 3.0,
+    "manifold_vacuum_kpa": 48.0,
+    "intake_air_temp_c": 35.0,
+    "shrtft1": 18.0,
+    "longft1": 11.0,
+    "number_of_banks": 1,
+    "fuel_sys_status": "Closed_Loop",
+    "pid_oxygen_sensor_volts": 0.15,
+    "active_dtcs": ["P0171"],
+    "drive_cycles_since_clear": 5
+  },
+  "dna_view_json": {
+    "engine_displacement_liters": 2.0,
+    "cylinder_count": 4,
+    "rated_rpm": 6500,
+    "stress_idle_rpm_target": 4000,
+    "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+    "upstream_o2_type": "NARROWBAND_0_TO_1V",
+    "induction_type": "NATURALLY_ASPIRATED",
+    "confidence": "HIGH"
+  },
+  "expected_payload_subset": {
+    "engine_warmed": true,
+    "rpm_state_bucket": "STABILIZED_IDLE",
+    "engine_rpm": 800,
+    "shrtft1": 18.0,
+    "longft1": 11.0,
+    "shrtft2": null,
+    "longft2": null,
+    "normalized_obd_lambda": 1.05,
+    "total_trim_correction_delta": 29.0,
+    "ve_validity": "FAULT_VE_IDLE_COLLAPSE"
+  }
+}

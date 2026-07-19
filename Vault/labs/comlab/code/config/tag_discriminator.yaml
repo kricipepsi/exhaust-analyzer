@@ -1,0 +1,117 @@
+# Routing-Tag Discriminator Table — T-FX-REG-3
+#
+# Maps DTCRoutingTag values to FaultFamily priors applied during COMLab
+# Phase 5 (confidence scoring).  Each entry carries a provenance comment
+# citing the REG-1 OUTRANKED manifest.
+#
+# Signal/noise gate: the discriminator is only applied when the routing_tag
+# is present in dtc_lab_output.routing_tags.  Absent/unmapped tags produce
+# zero lift (neutral).
+#
+# Discriminator weight rationale (0.10):
+#   Small enough that a contradicting candidate with >= 0.10 score advantage
+#   still wins; large enough to break ties and lift a family from runner-up
+#   to winner when scores are close.  Identical magnitude to the symptom
+#   prior (T-FX-DNA-3) for consistent bounded-additive semantics.
+#
+#   The 90 OUTRANKED cases (REG_FAILURE_TRIAGE.md §1) already have the correct
+#   rule present at phase.score but lose on score because generic high-base_weight
+#   rules outscore specific faults when no exact P-code matches.  The discriminator
+#   supplies the arch §4 "promote DTC routing_tags into the rank weight" lever.
+#
+# Source: REG_FAILURE_TRIAGE.md (2026-06-02).
+# Consumer: fault_atlas_router.execute_triage_loop Phase 5 (bounded additive).
+# wiki: data_flow_report.md §3 (DTCLab routing_tags consumer)
+
+discriminator_weight: 0.10
+
+mappings:
+  LEAN_HISTORY:
+    family: lean_condition
+    # wiki: REG-1 — 15 lean_condition OUTRANKED. LC-001 (1.0) outranks
+    #        specific lean rules that lack exact P-code match but have
+    #        LEAN_HISTORY tag present.  LEAN_HISTORY = P0171/P0174.
+
+  RICH_HISTORY:
+    family: rich_mixture
+    # wiki: REG-1 — 5 rich_mixture OUTRANKED. RM-001 (1.0) outranks
+    #        specific rich rules. RICH_HISTORY = P0172/P0175.
+
+  MISFIRE_HISTORY:
+    family: misfire
+    # wiki: REG-1 — 4 misfire OUTRANKED. MF-001 (0.95) outranks specific
+    #        misfire rules. MISFIRE_HISTORY = P0300-P0312.
+
+  CATALYST_HISTORY:
+    family: catalyst_failure
+    # wiki: REG-1 — 11 catalyst_failure OUTRANKED. CF-001 (0.9) + SF-002
+    #        (0.95) + NF-001 (0.93) outrank specific cat rules.
+    #        CATALYST_HISTORY = P0420/P0430.
+
+  O2_HISTORY:
+    family: sensor_fault
+    # wiki: REG-1 — 12 sensor_fault OUTRANKED. SF-001/SF-002 (0.95) +
+    #        LC-001 (1.0) + RM-001 (1.0) outrank specific sensor rules.
+    #        O2_HISTORY = P013x-P016x, P2196, P2A0x.
+
+  ECU_INTERNAL_HISTORY:
+    family: ecu_fault
+    # wiki: REG-1 — 22 ecu_fault OUTRANKED (largest bucket). LC-001 (1.0)
+    #        + SF-001 (0.95) + RM-001 (1.0) outrank ECU rules.
+    #        ECU_INTERNAL_HISTORY = P0601-P0606, P0641-P0651.
+
+  EGR_HISTORY:
+    family: exhaust_leak
+    # wiki: REG-1 — 9 exhaust_leak OUTRANKED. LC-001 (1.0) + SF-002
+    #        (0.95) outrank exhaust-leak rules.  EGR leaks present as
+    #        exhaust-system breaches in gas chemistry.
+
+  EVAP_HISTORY:
+    family: lean_condition
+    # wiki: REG-1 — EVAP system leaks introduce unmetered air post-MAF,
+    #        presenting as lean_condition (P0441-P0456, P0496).
+
+  VVT_HISTORY:
+    family: cam_timing
+    # wiki: REG-1 — 1 cam_timing OUTRANKED (PRUNED in REG-2).
+    #        VVT_HISTORY = P0010-P0016 (cam phaser/solenoid faults).
+
+  POA_HISTORY:
+    family: mechanical_wear
+    # wiki: REG-1 — 11 mechanical_wear OUTRANKED. SF-001 (0.95) + MF-001
+    #        (0.95) outrank mechanical-wear rules.  POA_HISTORY = P250C,
+    #        P0300 fallout (oil-burning markers).  Oil burning implies
+    #        ring/bore/valve-guide mechanical wear.
+
+  IDLE_CONTROL_HISTORY:
+    family: mechanical_wear
+    # wiki: REG-1 — idle air control faults often indicate throttle-body
+    #        or IACV mechanical degradation. IDLE_CONTROL_HISTORY =
+    #        P0505-P0507.
+
+  BOOST_HISTORY:
+    family: lean_condition
+    # wiki: REG-1 — turbo underboost (P0299) presents as lean during load
+    #        due to less air mass than ECU expects. BOOST_HISTORY =
+    #        P0234, P0299.
+
+  KNOCK_HISTORY:
+    family: sensor_fault
+    # wiki: REG-1 — knock sensor circuit faults (P0325/P0327/P0328) are
+    #        sensor faults, not ignition faults.  The sensor reports knock
+    #        that may or may not be present.
+
+  THERMAL_HISTORY:
+    family: mechanical_wear
+    # wiki: REG-1 — thermostat/coolant-temperature sensor faults (P0116,
+    #        P0128) often indicate cooling-system mechanical degradation.
+
+  COOLANT_SYSTEM_MALFUNCTION:
+    family: mechanical_wear
+    # wiki: REG-1 — coolant system malfunction (P0128/P0117 in OL_FAULT)
+    #        signals cooling-system mechanical wear.
+
+  CYLINDER_FLUID_MISFIRE:
+    family: misfire
+    # wiki: REG-1 — P030x in CL with coolant evidence; fluid-induced
+    #        misfire (head gasket leak into cylinder).

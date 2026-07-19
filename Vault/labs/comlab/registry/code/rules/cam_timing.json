@@ -1,0 +1,440 @@
+{
+  "version": "2.0",
+  "fault_family": "cam_timing",
+  "rules": [
+    {
+      "rule_id": "CT-001",
+      "fault_family": "cam_timing",
+      "description": "Mechanical base timing error (non-VVT): physical camshaft timing is incorrect due to belt/chain misalignment, independent of VVT system. Produces CAM_TIMING_RETARDED_MAF chemistry \u2014 elevated HC + CO with depressed CO2. No cam sensor DTC expected on non-VVT engines. v1 ERR-CT-001 reactivated, map_kpa constraint removed (no MAP data in curated corpus for any cam_timing case). This is the only cam_timing rule without a VVT precondition \u2014 closes the v1 gap where 4 of 5 rules required vvt_equipped",
+      "chemistry_evidence": [
+        {
+          "state": "CAM_TIMING_RETARDED_MAF",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [],
+      "base_weight": 0.8,
+      "competition_group": "cam_timing",
+      "precondition": "vvt_equipped: false OR vvt_equipped: unknown",
+      "passes_cases": [
+        "MECH-004"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73"
+      ]
+    },
+    {
+      "rule_id": "CT-002",
+      "fault_family": "cam_timing",
+      "description": "VVT phaser malfunction \u2014 retard / lag pattern: VVT phaser is sluggish, stuck retarded, or lagging under load. Produces VVT_FAILURE chemistry \u2014 elevated HC, depressed CO2, low NOx (<80 ppm). The low NOx differentiates cam_timing from lean_condition (NOx >800 ppm). Typically accompanied by P0011 (cam over-advanced) or P0012 (cam over-retarded). TIMING_RETARDED chemistry accepted as SUGGESTIVE evidence \u2014 closes the ~3-case Tier B gap for cam_timing. OBD evidence: fuel trims mildly elevated (stft > 2.0) as SUGGESTIVE \u2014 phaser lag causes the ECU to compensate with positive trims. v1 ERR-CT-003 reactivated with TIMING_RETARDED evidence added",
+      "chemistry_evidence": [
+        {
+          "state": "VVT_FAILURE",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        },
+        {
+          "state": "TIMING_RETARDED",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "stft_b1",
+          "operator": "ge",
+          "value": 2.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0011",
+            "P0012"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.8,
+      "competition_group": "cam_timing",
+      "passes_cases": [
+        "CSV-115",
+        "CSV-116",
+        "EXT-209",
+        "CASE-018",
+        "EXT-210",
+        "EXP-N007"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74",
+        "OBD_VOCABULARY \u00a710.3"
+      ]
+    },
+    {
+      "rule_id": "CT-003",
+      "fault_family": "cam_timing",
+      "description": "IGNITION_MISFIRE chemistry with cam timing: VVT phaser malfunction produces late combustion \u2192 incomplete burn \u2192 IGNITION_MISFIRE chemistry. The cam timing fault mimics misfire emissions (high HC, elevated CO, normal O2) but the root cause is valve timing, not ignition. Differentiated from misfire family by VVT DTC presence (P0011/P0012) as DEFINITIVE \u2014 the DTC is the key discriminator when chemistry is shared (FT-10). v1 ERR-CT-002 reactivated",
+      "chemistry_evidence": [
+        {
+          "state": "IGNITION_MISFIRE",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "nox",
+          "operator": "lt",
+          "value": 80.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "stft_b1",
+          "operator": "ge",
+          "value": 2.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0011",
+            "P0012"
+          ],
+          "strategy": "any_match",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.75,
+      "competition_group": "cam_timing",
+      "confidence_ceiling": 0.85,
+      "passes_cases": [
+        "CSV-115",
+        "CSV-116"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "CT-004",
+      "fault_family": "cam_timing",
+      "description": "VVT phaser stuck advanced with negative fuel trims: VVT phaser is over-advanced, causing knock and rich combustion. Produces VVT_FAILURE chemistry. Differentiated from CT-002 (retard pattern) by negative fuel trim evidence \u2014 the advance/knock pattern pushes trims negative as ECU pulls fuel. OBD: stft_b1 < -5.0 and ltft_b1 < -5.0 as SUGGESTIVE. Accompanied by P0011 or P0012. v1 ERR-CT-004 expanded with DTC and OBD evidence to replace the v1 GAS_ONLY at 0.55 confidence",
+      "chemistry_evidence": [
+        {
+          "state": "VVT_FAILURE",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "stft_b1",
+          "operator": "le",
+          "value": -5.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        },
+        {
+          "pid": "ltft_b1",
+          "operator": "le",
+          "value": -5.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0011",
+            "P0012"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.75,
+      "competition_group": "cam_timing",
+      "confidence_ceiling": 0.85,
+      "passes_cases": [
+        "case_042"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74",
+        "OBD_VOCABULARY \u00a710.3"
+      ]
+    },
+    {
+      "rule_id": "CT-005",
+      "fault_family": "cam_timing",
+      "description": "VVT solenoid/actuator electrical fault: VVT solenoid coil resistance drift or actuator circuit fault. Gated on VVT_HISTORY range DTCs (P0010-P0023) \u2014 at least one VVT DTC must be present. No chemistry requirement \u2014 the electrical nature of the fault means chemistry may be NORMAL_OPERATION or ambiguous. OBD: fuel trims near zero (stft_b1 in_range [-5,5], ltft_b1 in_range [-5,5]) as SUGGESTIVE \u2014 solenoid drift causes marginal trim response, not the saturation pattern seen in ecu_fault. Confidence ceiling applied \u2014 sole DTC-primary rule in the cam_timing set. EXP-N023 (no DTC, no MAP, no RPM) is NOT covered and is documented as an Unplanned follow-up",
+      "chemistry_evidence": [],
+      "obd_evidence": [
+        {
+          "pid": "stft_b1",
+          "operator": "in_range",
+          "range_low": -5.0,
+          "range_high": 5.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        },
+        {
+          "pid": "ltft_b1",
+          "operator": "in_range",
+          "range_low": -5.0,
+          "range_high": 5.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0010",
+            "P0011",
+            "P0012",
+            "P0013",
+            "P0014",
+            "P0015",
+            "P0016",
+            "P0017",
+            "P0018",
+            "P0019",
+            "P0020",
+            "P0021",
+            "P0022",
+            "P0023",
+            "P0024",
+            "P0025"
+          ],
+          "strategy": "any_match",
+          "tier": "GATING",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.7,
+      "competition_group": "cam_timing",
+      "confidence_ceiling": 0.85,
+      "passes_cases": [
+        "EXP-N007"
+      ],
+      "source_wiki_refs": [
+        "DTC_VOCABULARY \u00a74",
+        "OBD_VOCABULARY \u00a710.3"
+      ]
+    },
+    {
+      "rule_id": "CT-006",
+      "fault_family": "cam_timing",
+      "description": "TIMING_RETARDED chemistry with cam timing DTCs \u2014 Tier B gap closer: GASLab emits TIMING_RETARDED chemistry (elevated HC, depressed CO2, combustion phasing delayed) as a secondary effect of VVT phaser malfunction. Gated on VVT_HISTORY DTCs (P0011-P0024) \u2014 at least one VVT DTC must be present for this rule to evaluate. TIMING_RETARDED chemistry is SUGGESTIVE evidence, not a GATING condition \u2014 this rule competes with CT-002 on TIMING_RETARDED cases where VVT DTCs are also present. Confidence ceiling applied because TIMING_RETARDED chemistry is shared across 7 families and cam_timing is not the only consumer",
+      "chemistry_evidence": [
+        {
+          "state": "TIMING_RETARDED",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0011",
+            "P0012",
+            "P0013",
+            "P0014",
+            "P0021",
+            "P0022",
+            "P0023",
+            "P0024"
+          ],
+          "strategy": "any_match",
+          "tier": "GATING",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.7,
+      "competition_group": "cam_timing",
+      "confidence_ceiling": 0.85,
+      "passes_cases": [
+        "CSV-115",
+        "EXT-209"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "CT-007",
+      "fault_family": "cam_timing",
+      "description": "VVT-DTC bridge for shared bad-combustion chemistry: GASLab can emit INCOMPLETE_COMBUSTION, SAMPLE_INVALID, or VVT_FAILURE on cam timing cases that carry P0011/P0012. The VVT DTC is GATING so this rule cannot fire on generic misfire-like chemistry without cam timing evidence. FT-10",
+      "chemistry_evidence": [
+        {
+          "state": "INCOMPLETE_COMBUSTION",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        },
+        {
+          "state": "SAMPLE_INVALID",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        },
+        {
+          "state": "VVT_FAILURE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "ge",
+          "value": 180.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "co2",
+          "operator": "lt",
+          "value": 13.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "nox",
+          "operator": "lt",
+          "value": 80.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0011",
+            "P0012"
+          ],
+          "strategy": "any_match",
+          "tier": "GATING",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.8,
+      "competition_group": "cam_timing",
+      "passes_cases": [
+        "CSV-115",
+        "CSV-116",
+        "EXP-N007",
+        "EXT-209",
+        "EXT-210",
+        "CASE-018",
+        "case_042"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "GAS_VOCABULARY \u00a72",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "CT-008",
+      "fault_family": "cam_timing",
+      "description": "No-DTC non-VVT cam timing bridge: mechanical base timing error can surface as INCOMPLETE_COMBUSTION instead of CAM_TIMING_RETARDED_MAF. This rule is tightly bounded to the observed non-VVT gas window and gates out lean, misfire, and VVT DTC paths so it does not become a generic incomplete-combustion catch-all. FT-10",
+      "chemistry_evidence": [
+        {
+          "state": "INCOMPLETE_COMBUSTION",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "in_range",
+          "range_low": 250.0,
+          "range_high": 300.0,
+          "tier": "DEFINITIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "co2",
+          "operator": "in_range",
+          "range_low": 12.5,
+          "range_high": 13.0,
+          "tier": "DEFINITIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "o2",
+          "operator": "in_range",
+          "range_low": 1.5,
+          "range_high": 2.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "nox",
+          "operator": "lt",
+          "value": 40.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0171",
+            "P0172",
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304",
+            "P0011",
+            "P0012"
+          ],
+          "strategy": "none_present",
+          "tier": "GATING",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.8,
+      "competition_group": "cam_timing",
+      "passes_cases": [
+        "MECH-004"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "GAS_VOCABULARY \u00a72",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "__init__.py": {
+    "mtime": 1779186688.6088588,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "conftest.py": {
+    "mtime": 1781118799.574119,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "fixtures/__init__.py": {
+    "mtime": 1779205599.1576855,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "fixtures/descriptor.py": {
+    "mtime": 1780820120.7764194,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "fixtures/synthetic_grid.py": {
+    "mtime": 1779779602.2627954,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "fixtures/test_synthetic_grid_probes.py": {
+    "mtime": 1780562443.1491826,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "generative/test_boundary.py": {
+    "mtime": 1781118806.4989474,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "generative/test_combinatorial.py": {
+    "mtime": 1781118808.100782,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "generative/test_fuzz.py": {
+    "mtime": 1780820170.162493,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "generative/test_noise.py": {
+    "mtime": 1781118809.0177581,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "generative/test_overlap.py": {
+    "mtime": 1781118810.620763,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "test_cases.py": {
+    "mtime": 1780820172.828205,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "unit/__init__.py": {
+    "mtime": 1779803416.8005495,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "unit/test_brettschneider.py": {
+    "mtime": 1779200518.9589338,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "unit/test_classify_top3.py": {
+    "mtime": 1780562438.4899178,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "unit/test_contracts.py": {
+    "mtime": 1780558004.7217486,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "unit/test_dna_view.py": {
+    "mtime": 1780568317.8933494,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "unit/test_family_map.py": {
+    "mtime": 1780299871.5123646,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "unit/test_ontology.py": {
+    "mtime": 1780820174.9098244,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "unit/test_process.py": {
+    "mtime": 1780562431.364758,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "unit/test_rank_candidates.py": {
+    "mtime": 1780562432.8404295,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "unit/test_resolution.py": {
+    "mtime": 1780663627.2626276,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "unit/test_rule_engine.py": {
+    "mtime": 1781118685.198189,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "unit/test_rule_engine_reachability.py": {
+    "mtime": 1780671558.1034577,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "unit/test_t_p8_7_hc_discriminator.py": {
+    "mtime": 1780562440.0579588,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "unit/test_validators.py": {
+    "mtime": 1781118687.1138105,
+    "ast_hash": "",
+    "semantic_hash": ""
+  },
+  "unit/test_validity_gates.py": {
+    "mtime": 1780297290.7025168,
+    "ast_hash": "",
+    "semantic_hash": ""
+  }
+}

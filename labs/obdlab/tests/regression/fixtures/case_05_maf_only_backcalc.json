@@ -1,0 +1,41 @@
+{
+  "case_id": "case_05_maf_only_backcalc",
+  "notes": "MAF_ONLY routing: HIGH-confidence DNA with air_metering_strategy=MAF_ONLY, no MAP sensor (manifold_vacuum_kpa omitted from input). Expected: manifold_vacuum_kpa=null in payload, MAP back-calculated internally (NodeMAPStatus=BACK_CALCULATED), ve_state_isValid=False (VEValidity.UNKNOWN — no independent cross-check possible with single sensor). Wiki ref: OBDLab_KG_Wiki.md §10.2 MAF_ONLY branch, §6.4.",
+  "raw_user_inputs": {
+    "engine_rpm": 800,
+    "coolant_temp_c": 92.0,
+    "calculated_engine_load_pct": 22.0,
+    "mass_airflow_gps": 3.5,
+    "intake_air_temp_c": 35.0,
+    "shrtft1": -3.0,
+    "longft1": -5.0,
+    "number_of_banks": 1,
+    "fuel_sys_status": "Closed_Loop",
+    "pid_oxygen_sensor_volts": 0.45,
+    "active_dtcs": [],
+    "drive_cycles_since_clear": 5
+  },
+  "dna_view_json": {
+    "engine_displacement_liters": 2.0,
+    "cylinder_count": 4,
+    "rated_rpm": 6500,
+    "stress_idle_rpm_target": 4000,
+    "air_metering_strategy": "MAF_ONLY",
+    "upstream_o2_type": "NARROWBAND_0_TO_1V",
+    "induction_type": "NATURALLY_ASPIRATED",
+    "confidence": "HIGH"
+  },
+  "expected_payload_subset": {
+    "engine_warmed": true,
+    "rpm_state_bucket": "STABILIZED_IDLE",
+    "engine_rpm": 800,
+    "mass_airflow_gps": 3.5,
+    "manifold_vacuum_kpa": null,
+    "shrtft2": null,
+    "longft2": null,
+    "ve_validity": "UNKNOWN",
+    "map_status": "BACK_CALCULATED",
+    "normalized_obd_lambda": 1.0,
+    "total_trim_correction_delta": -8.0
+  }
+}

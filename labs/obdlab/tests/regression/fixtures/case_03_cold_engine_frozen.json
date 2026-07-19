@@ -1,0 +1,32 @@
+{
+  "case_id": "case_03_cold_engine_frozen",
+  "notes": "Cold engine (ECT=40°C < 75°C threshold). dna_view=None — demonstrates DNA-free path. Expected: COLD_OPEN_LOOP_INVALID, engine_warmed=False, analytics frozen (lambda=1.0 stoich default, TFT=0.0, ve_state_isValid=False), but payload still emitted with RPM/ECT. Wiki ref: OBDLab_KG_Wiki.md §4.1 thermal gate.",
+  "raw_user_inputs": {
+    "engine_rpm": 800,
+    "coolant_temp_c": 40.0,
+    "calculated_engine_load_pct": 22.0,
+    "mass_airflow_gps": 3.5,
+    "manifold_vacuum_kpa": 30.0,
+    "intake_air_temp_c": 15.0,
+    "shrtft1": -3.0,
+    "longft1": -5.0,
+    "number_of_banks": 1,
+    "fuel_sys_status": "Open_Loop_Cold",
+    "active_dtcs": [],
+    "drive_cycles_since_clear": 5
+  },
+  "dna_view_json": null,
+  "expected_payload_subset": {
+    "engine_warmed": false,
+    "rpm_state_bucket": "COLD_OPEN_LOOP_INVALID",
+    "engine_rpm": 800,
+    "coolant_temp_c": 40.0,
+    "calculated_engine_load_pct": 22.0,
+    "shrtft2": null,
+    "longft2": null,
+    "ve_validity": "UNKNOWN",
+    "ve_pct": 0.0,
+    "normalized_obd_lambda": 1.0,
+    "total_trim_correction_delta": 0.0
+  }
+}

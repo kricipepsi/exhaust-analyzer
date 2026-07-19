@@ -1,0 +1,43 @@
+{
+  "summary": {
+    "passed": 1,
+    "failed": 3,
+    "total": 4,
+    "pass_rate": 0.25
+  },
+  "expectations": [
+    {
+      "text": "appends ## Graph relations (explicit) and body bytes are append-only",
+      "passed": false,
+      "evidence": "dtc body hash append-only=False; trailer counts dtc=0 trim=0."
+    },
+    {
+      "text": "every appended relation line is traceable to fixture text; no invented edges",
+      "passed": false,
+      "evidence": "Found 0 relation-like lines; invented-edge marker present=False."
+    },
+    {
+      "text": "seeded doc-bug is written as an IS_NOT non-edge",
+      "passed": false,
+      "evidence": "Expected SUPPRESS_POST_CAT_TRIM IS_NOT a TrimAnalyticsGate value."
+    },
+    {
+      "text": "two enum spellings are unified to shipped canonical form",
+      "passed": true,
+      "evidence": "Expected trailer labels to use TrimAnalyticsGate.O2_FAULT_ACTIVE consistently."
+    }
+  ],
+  "timing": {
+    "total_duration_seconds": null,
+    "total_tokens": null
+  },
+  "execution_metrics": {
+    "total_tool_calls": 0,
+    "errors_encountered": 0
+  },
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  }
+}

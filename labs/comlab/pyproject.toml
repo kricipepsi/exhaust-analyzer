@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "comlab"
+version = "0.1.0"
+description = "ComLab — orchestrator layer of the 4DLab diagnostic app"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Mutolovsky" }]
+dependencies = [
+    "pydantic>=2.6,<3.0",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["comlab*"]
+exclude = ["tests*", "docs*", "scripts*"]
+
+[tool.setuptools.package-data]
+comlab = ["config/*.json", "config/*.yaml"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+# REG-V2-INTEGRATE: put the 4DLab root on sys.path so the sanctioned
+# `registry.integration_shim` boundary (fault_atlas_router.py:774) resolves
+# under bare pytest, matching the workspace PYTHONPATH. registry is a one-way
+# dependency (registry/__init__.py), not a forbidden cross-lab import.
+# v2 depth: labs/comlab → repo root is ../../.. (was ".." at v1 COMLab/).
+# registry/ stays at repo root until Stage 4 (D-V2-6).
+pythonpath = ["../../.."]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+markers = [
+    "e2e: end-to-end harness — slower, requires more components wired",
+    "integration: integration tests that exercise corpus tooling",
+]
+addopts = "-ra --strict-markers"
+
+[tool.pyright]
+# pythonVersion pins the language level so 3.14-only stdlib (e.g. enum.StrEnum) is not
+# false-flagged. Interpreter/package resolution is intentionally NOT hardcoded here: each
+# environment supplies its own adapted interpreter (see tasks/COMLAB_PYTHON_ENV_SETUP.md).
+# Run pyright from the ACTIVATED venv, or pass --pythonpath <your interpreter>, so imports
+# like `pydantic` resolve. Bare `pyright` with no environment reports phantom reportMissingImports.
+pythonVersion = "3.14"
+extraPaths = ["..", "../../..", "../../harness"]

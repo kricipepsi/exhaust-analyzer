@@ -1,0 +1,2101 @@
+[
+  {
+    "case_id": "pid_case_01_na_dual_nb_stoich_healthy",
+    "description": "1998 2.0L I4 NA (Ford Zetec), port injection \u2014 Stoich warm idle, dual MAF/MAP crosscheck, narrowband O2",
+    "fault_family": "no_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": -2.0,
+      "longft1": -4.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": -6.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 PID 0C/10/0B standard idle values for 2.0L NA engine",
+      "Ford Escort 1998 Service Manual"
+    ]
+  },
+  {
+    "case_id": "pid_case_02_na_map_wb_stoich_healthy",
+    "description": "2005 1.8L I4 NA (Mazda MZR), speed-density routing, wideband linear O2",
+    "fault_family": "no_fault",
+    "vehicle": "Mazda/3/2005/LF-DE-1.8L",
+    "dna_view": {
+      "engine_displacement_liters": 1.8,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "MAP_ONLY_SPEED_DENSITY",
+      "upstream_o2_type": "WIDEBAND_LINEAR",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 90.0,
+      "calculated_engine_load_pct": 25.0,
+      "manifold_vacuum_kpa": 35.0,
+      "intake_air_temp_c": 30.0,
+      "shrtft1": 1.0,
+      "longft1": 2.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_wideband_equivalence_ratio": 1.0,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 3.0,
+      "ve_validity": "UNKNOWN",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "Mazda 3 LF-DE Service Manual",
+      "SAE J1979 wideband PID 34 equivalence ratio definition"
+    ]
+  },
+  {
+    "case_id": "pid_case_03_turbo_maf_wbsim_stoich_healthy",
+    "description": "2003 2.5L I5 Turbo (Volvo B5254T2), MAF only routing, wideband NB-sim O2",
+    "fault_family": "no_fault",
+    "vehicle": "Volvo/S60/2003/B5254T2-2.5L",
+    "dna_view": {
+      "engine_displacement_liters": 2.5,
+      "cylinder_count": 5,
+      "rated_rpm": 6000,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "MAF_ONLY",
+      "upstream_o2_type": "WIDEBAND_NB_SIM",
+      "induction_type": "TURBOCHARGED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 750,
+      "coolant_temp_c": 88.0,
+      "calculated_engine_load_pct": 20.0,
+      "mass_airflow_gps": 4.2,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": -1.0,
+      "longft1": 1.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.46,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "UNKNOWN",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "Volvo S60 2.5T specifications",
+      "SAE J1979 Oxygen Sensor NB Simulation mode"
+    ]
+  },
+  {
+    "case_id": "pid_case_04_narrowband_lean",
+    "description": "2.0L I4 NA \u2014 narrowband O2 sensing lean state (0.2V)",
+    "fault_family": "lean_condition",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 12.0,
+      "longft1": 8.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.2,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.05,
+      "total_trim_correction_delta": 20.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 PID 14 narrowband O2 transfer function (volts <= 0.4V -> lean)"
+    ]
+  },
+  {
+    "case_id": "pid_case_05_narrowband_rich",
+    "description": "2.0L I4 NA \u2014 narrowband O2 sensing rich state (0.75V)",
+    "fault_family": "rich_condition",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": -10.0,
+      "longft1": -8.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.75,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 0.95,
+      "total_trim_correction_delta": -18.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 PID 14 narrowband O2 transfer function (volts > 0.5V -> rich)"
+    ]
+  },
+  {
+    "case_id": "pid_case_06_wideband_lean",
+    "description": "1.8L I4 NA \u2014 wideband O2 sensing lean state (lambda 1.15)",
+    "fault_family": "lean_condition",
+    "vehicle": "Mazda/3/2005/LF-DE-1.8L",
+    "dna_view": {
+      "engine_displacement_liters": 1.8,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "MAP_ONLY_SPEED_DENSITY",
+      "upstream_o2_type": "WIDEBAND_LINEAR",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 90.0,
+      "calculated_engine_load_pct": 25.0,
+      "manifold_vacuum_kpa": 35.0,
+      "intake_air_temp_c": 30.0,
+      "shrtft1": 15.0,
+      "longft1": 10.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_wideband_equivalence_ratio": 1.15,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.15,
+      "total_trim_correction_delta": 25.0,
+      "ve_validity": "UNKNOWN",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 wideband PID 34 equivalence ratio definition (direct lambda 1.15)"
+    ]
+  },
+  {
+    "case_id": "pid_case_07_wideband_rich",
+    "description": "1.8L I4 NA \u2014 wideband O2 sensing rich state (lambda 0.85)",
+    "fault_family": "rich_condition",
+    "vehicle": "Mazda/3/2005/LF-DE-1.8L",
+    "dna_view": {
+      "engine_displacement_liters": 1.8,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "MAP_ONLY_SPEED_DENSITY",
+      "upstream_o2_type": "WIDEBAND_LINEAR",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 90.0,
+      "calculated_engine_load_pct": 25.0,
+      "manifold_vacuum_kpa": 35.0,
+      "intake_air_temp_c": 30.0,
+      "shrtft1": -15.0,
+      "longft1": -10.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_wideband_equivalence_ratio": 0.85,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 0.85,
+      "total_trim_correction_delta": -25.0,
+      "ve_validity": "UNKNOWN",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 wideband PID 34 equivalence ratio definition (direct lambda 0.85)"
+    ]
+  },
+  {
+    "case_id": "pid_case_08_narrowband_clamp_lean",
+    "description": "2.0L I4 NA \u2014 narrowband O2 voltage below minimum threshold (0.05V), clamped to lean",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 2.0,
+      "longft1": 4.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.05,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.05,
+      "total_trim_correction_delta": 6.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": true,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a711.1 O2 clamp logic (volts < 0.1V -> clamp 1.05, STUCK_LEAN)"
+    ]
+  },
+  {
+    "case_id": "pid_case_09_narrowband_clamp_rich",
+    "description": "2.0L I4 NA \u2014 narrowband O2 voltage above maximum threshold (0.95V), clamped to rich",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": -2.0,
+      "longft1": -4.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.95,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 0.95,
+      "total_trim_correction_delta": -6.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": true,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a711.1 O2 clamp logic (volts > 0.9V -> clamp 0.95, STUCK_RICH)"
+    ]
+  },
+  {
+    "case_id": "pid_case_10_wideband_clamp_lean",
+    "description": "1.8L I4 NA \u2014 wideband equivalence ratio below minimum threshold (0.65), clamped to 0.7",
+    "fault_family": "sensor_fault",
+    "vehicle": "Mazda/3/2005/LF-DE-1.8L",
+    "dna_view": {
+      "engine_displacement_liters": 1.8,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "MAP_ONLY_SPEED_DENSITY",
+      "upstream_o2_type": "WIDEBAND_LINEAR",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 90.0,
+      "calculated_engine_load_pct": 25.0,
+      "manifold_vacuum_kpa": 35.0,
+      "intake_air_temp_c": 30.0,
+      "shrtft1": 1.0,
+      "longft1": 2.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_wideband_equivalence_ratio": 0.65,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 0.7,
+      "total_trim_correction_delta": 3.0,
+      "ve_validity": "UNKNOWN",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": true,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a711.2 wideband clamp logic (ratio < 0.7 -> clamp 0.7)"
+    ]
+  },
+  {
+    "case_id": "pid_case_11_wideband_clamp_rich",
+    "description": "1.8L I4 NA \u2014 wideband equivalence ratio above maximum threshold (1.35), clamped to 1.3",
+    "fault_family": "sensor_fault",
+    "vehicle": "Mazda/3/2005/LF-DE-1.8L",
+    "dna_view": {
+      "engine_displacement_liters": 1.8,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "MAP_ONLY_SPEED_DENSITY",
+      "upstream_o2_type": "WIDEBAND_LINEAR",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 90.0,
+      "calculated_engine_load_pct": 25.0,
+      "manifold_vacuum_kpa": 35.0,
+      "intake_air_temp_c": 30.0,
+      "shrtft1": 1.0,
+      "longft1": 2.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_wideband_equivalence_ratio": 1.35,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.3,
+      "total_trim_correction_delta": 3.0,
+      "ve_validity": "UNKNOWN",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": true,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a711.2 wideband clamp logic (ratio > 1.3 -> clamp 1.3)"
+    ]
+  },
+  {
+    "case_id": "pid_case_12_wbsim_clamp_lean",
+    "description": "2.5L I5 Turbo \u2014 wideband NB simulation voltage below minimum (0.05V), clamped to lean",
+    "fault_family": "sensor_fault",
+    "vehicle": "Volvo/S60/2003/B5254T2-2.5L",
+    "dna_view": {
+      "engine_displacement_liters": 2.5,
+      "cylinder_count": 5,
+      "rated_rpm": 6000,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "MAF_ONLY",
+      "upstream_o2_type": "WIDEBAND_NB_SIM",
+      "induction_type": "TURBOCHARGED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 750,
+      "coolant_temp_c": 88.0,
+      "calculated_engine_load_pct": 20.0,
+      "mass_airflow_gps": 4.2,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.05,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.05,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "UNKNOWN",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": true,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a711.3 wideband NB-sim clamp logic (volts < 0.1V -> clamp 1.05, STUCK_LEAN)"
+    ]
+  },
+  {
+    "case_id": "pid_case_13_wbsim_clamp_rich",
+    "description": "2.5L I5 Turbo \u2014 wideband NB simulation voltage above maximum (0.95V), clamped to rich",
+    "fault_family": "sensor_fault",
+    "vehicle": "Volvo/S60/2003/B5254T2-2.5L",
+    "dna_view": {
+      "engine_displacement_liters": 2.5,
+      "cylinder_count": 5,
+      "rated_rpm": 6000,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "MAF_ONLY",
+      "upstream_o2_type": "WIDEBAND_NB_SIM",
+      "induction_type": "TURBOCHARGED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 750,
+      "coolant_temp_c": 88.0,
+      "calculated_engine_load_pct": 20.0,
+      "mass_airflow_gps": 4.2,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.95,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 0.95,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "UNKNOWN",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": true,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a711.3 wideband NB-sim clamp logic (volts > 0.9V -> clamp 0.95, STUCK_RICH)"
+    ]
+  },
+  {
+    "case_id": "pid_case_14_large_positive_trim",
+    "description": "2.0L I4 NA \u2014 Large positive trim correction (vacuum leak)",
+    "fault_family": "lean_condition",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 10.0,
+      "longft1": 15.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 25.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 fuel trims (shrtft1 + longft1 > 15% indicates significant lean correction)"
+    ]
+  },
+  {
+    "case_id": "pid_case_15_large_negative_trim",
+    "description": "2.0L I4 NA \u2014 Large negative trim correction (leaking injector)",
+    "fault_family": "rich_condition",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": -10.0,
+      "longft1": -15.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": -25.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 fuel trims (shrtft1 + longft1 < -15% indicates significant rich correction)"
+    ]
+  },
+  {
+    "case_id": "pid_case_16_bank2_healthy",
+    "description": "2001 3.0L V6 NA, dual bank trim configuration (Ford Duratec 30)",
+    "fault_family": "no_fault",
+    "vehicle": "Ford/Taurus/2001/Duratec-30-3.0L",
+    "dna_view": {
+      "engine_displacement_liters": 3.0,
+      "cylinder_count": 6,
+      "rated_rpm": 6000,
+      "stress_idle_rpm_target": 4500,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 700,
+      "coolant_temp_c": 94.0,
+      "calculated_engine_load_pct": 18.0,
+      "mass_airflow_gps": 4.5,
+      "manifold_vacuum_kpa": 28.0,
+      "intake_air_temp_c": 40.0,
+      "shrtft1": 2.0,
+      "longft1": 3.0,
+      "shrtft2": -1.0,
+      "longft2": 4.0,
+      "number_of_banks": 2,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 5.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "Ford Taurus 2001 3.0L Duratec Service Manual",
+      "SAE J1979 Bank-2 PIDs (ShortFuelTrimBank2, LongFuelTrimBank2)"
+    ]
+  },
+  {
+    "case_id": "pid_case_17_ve_idle_collapse",
+    "description": "2.0L I4 NA \u2014 VE collapse at warm stabilized idle (VE < 50%, MAP > 45 kPa)",
+    "fault_family": "mechanical_wear",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 35.0,
+      "mass_airflow_gps": 2.0,
+      "manifold_vacuum_kpa": 55.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "FAULT_VE_IDLE_COLLAPSE",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a76.4 FAULT_VE_IDLE_COLLAPSE definition (VE < 50% at STABILIZED_IDLE, MAP > 45 kPa)"
+    ]
+  },
+  {
+    "case_id": "pid_case_18_maf_contamination",
+    "description": "2.0L I4 NA \u2014 MAF contamination at regulatory high idle (VE < 65% + positive total trim > 15%)",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 2400,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 25.0,
+      "mass_airflow_gps": 10.0,
+      "manifold_vacuum_kpa": 40.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 10.0,
+      "longft1": 10.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 20.0,
+      "ve_validity": "FAULT_MAF_CONTAMINATION",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "REGULATORY_HIGH_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a76.4 FAULT_MAF_CONTAMINATION definition (VE < 65% at stress/high idle, TFT > 15%)"
+    ]
+  },
+  {
+    "case_id": "pid_case_19_ve_sensor_skew",
+    "description": "2.0L I4 NA \u2014 VE sensor skew at warm stabilized idle (VE > 90% on NA engine)",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 5.0,
+      "manifold_vacuum_kpa": 32.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "FAULT_VE_SENSOR_SKEW",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a76.4 FAULT_VE_SENSOR_SKEW definition (VE > 90% at idle on NA engine)"
+    ]
+  },
+  {
+    "case_id": "pid_case_20_stabilized_warm_idle",
+    "description": "2.0L I4 NA \u2014 warm stabilized idle baseline",
+    "fault_family": "no_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a76.1 STABILIZED_IDLE definition (650\u2013900 RPM, load < 30%)"
+    ]
+  },
+  {
+    "case_id": "pid_case_21_regulatory_high_idle",
+    "description": "2.0L I4 NA \u2014 regulatory high idle (2500 RPM)",
+    "fault_family": "no_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 2500,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 11.0,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "REGULATORY_HIGH_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a76.1 REGULATORY_HIGH_IDLE definition (2200\u20132800 RPM, load < 30%)"
+    ]
+  },
+  {
+    "case_id": "pid_case_22_stress_idle",
+    "description": "2.0L I4 NA \u2014 stress idle (3800 RPM)",
+    "fault_family": "no_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 3800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 15.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STRESS_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a76.1 STRESS_IDLE definition (VIN-derived 3000-4500 RPM)"
+    ]
+  },
+  {
+    "case_id": "pid_case_23_cold_open_loop_invalid",
+    "description": "2.0L I4 NA \u2014 cold start thermal gate freeze (ECT < 75\u00b0C)",
+    "fault_family": "no_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 1100,
+      "coolant_temp_c": 40.0,
+      "calculated_engine_load_pct": 30.0,
+      "mass_airflow_gps": 5.0,
+      "manifold_vacuum_kpa": 35.0,
+      "intake_air_temp_c": 20.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Open_Loop_Cold",
+      "pid_oxygen_sensor_volts": 0.1,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "UNKNOWN",
+      "trim_analytics_gate": "ENGINE_COLD",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "COLD_OPEN_LOOP_INVALID"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a74.1 Thermal Gate definition (ECT < 75\u00b0C overrides state bucket to COLD_OPEN_LOOP_INVALID, freezes analytics)"
+    ]
+  },
+  {
+    "case_id": "pid_case_24_gate_engine_cold",
+    "description": "2.0L I4 NA \u2014 engine cold gate (coolant < 70\u00b0C but >= 75\u00b0C? Wait! ECT < 75 is COLD_OPEN_LOOP_INVALID, wait! If coolant_temp_c is 68, thermal gate eval evaluates ECT < 75, so it STILL overrides to COLD_OPEN_LOOP_INVALID and sets engine_warmed=false, and trim gate is ENGINE_COLD. Perfect!)",
+    "fault_family": "no_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 68.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "UNKNOWN",
+      "trim_analytics_gate": "ENGINE_COLD",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "COLD_OPEN_LOOP_INVALID"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a79 Gate 1 (coolant_temp_c < 70 -> ENGINE_COLD)"
+    ]
+  },
+  {
+    "case_id": "pid_case_25_gate_open_loop",
+    "description": "2.0L I4 NA \u2014 fuel status open loop gate (not Closed_Loop)",
+    "fault_family": "no_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Open_Loop_Fault",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "OPEN_LOOP",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a79 Gate 2 (fuel_sys_status != Closed_Loop -> OPEN_LOOP)"
+    ]
+  },
+  {
+    "case_id": "pid_case_26_gate_o2_fault_active",
+    "description": "2.0L I4 NA \u2014 active O2 sensor DTC gate",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [
+        "P0130"
+      ],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "O2_FAULT_ACTIVE",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a79 Gate 3 (O2 fault active DTC -> O2_FAULT_ACTIVE)"
+    ]
+  },
+  {
+    "case_id": "pid_case_27_gate_ckp_cmp_fault_active",
+    "description": "2.0L I4 NA \u2014 active CKP sensor DTC gate (P0335)",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [
+        "P0335"
+      ],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "CKP_CMP_FAULT_ACTIVE",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a79 Gate 4 (CKP/CMP fault active DTC -> CKP_CMP_FAULT_ACTIVE)"
+    ]
+  },
+  {
+    "case_id": "pid_case_28_gate_codes_recently_cleared",
+    "description": "2.0L I4 NA \u2014 codes recently cleared gate (drive cycles < 1)",
+    "fault_family": "no_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 0
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "CODES_RECENTLY_CLEARED",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a79 Gate 5 (drive_cycles_since_clear < 1 -> CODES_RECENTLY_CLEARED)"
+    ]
+  },
+  {
+    "case_id": "pid_case_29_gate_wot_active",
+    "description": "2.0L I4 NA \u2014 WOT gate active (throttle_pos >= 90%)",
+    "fault_family": "no_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5,
+      "throttle_pos": 95.0
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "WOT_ACTIVE",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a79 Gate 6 (throttle_pos >= 90% -> WOT_ACTIVE)"
+    ]
+  },
+  {
+    "case_id": "pid_case_30_gate_dfco_active",
+    "description": "2.0L I4 NA \u2014 DFCO gate active (decel fuel cut-off active)",
+    "fault_family": "no_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5,
+      "dfco_active": true
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "DFCO_ACTIVE",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a79 Gate 7 (dfco_active is True -> DFCO_ACTIVE)"
+    ]
+  },
+  {
+    "case_id": "pid_case_31_rej_maf_out_of_bounds",
+    "description": "2.0L I4 NA \u2014 mass airflow above J1979 physical limit",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 700.0,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_rejection": {
+      "error_type": "PIDValidationError",
+      "reason": "mass_airflow_gps=700.0 outside bounds [0.0, 655.35]"
+    },
+    "sources": [
+      "obd2-pid-table-service-01.csv PID 10 limits",
+      "physical_sensor_bounds.json limits"
+    ]
+  },
+  {
+    "case_id": "pid_case_32_rej_temp_out_of_bounds",
+    "description": "2.0L I4 NA \u2014 coolant temperature above physical limit",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 999.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_rejection": {
+      "error_type": "PIDValidationError",
+      "reason": "coolant_temp_c=999.0 outside bounds [-40.0, 140.0]"
+    },
+    "sources": [
+      "physical_sensor_bounds.json limits"
+    ]
+  },
+  {
+    "case_id": "pid_case_33_rej_vacuum_out_of_bounds",
+    "description": "2.0L I4 NA \u2014 manifold absolute pressure above physical limit",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 999.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_rejection": {
+      "error_type": "PIDValidationError",
+      "reason": "manifold_vacuum_kpa=999.0 outside bounds [0.0, 255.0]"
+    },
+    "sources": [
+      "physical_sensor_bounds.json limits"
+    ]
+  },
+  {
+    "case_id": "pid_case_34_rej_bank2_null_contract_violation",
+    "description": "2.0L I4 NA \u2014 bank-2 null contract violation (carrying shrtft2 on a 1-bank engine)",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "shrtft2": 2.0,
+      "longft2": null,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_rejection": {
+      "error_type": "PIDValidationError",
+      "reason": "shrtft2 must be null when number_of_banks == 1, got 2.0 \u2014 SEMANTIC_CONTRACT \u00a74.4 violation"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a73.1 bank-2 null contract"
+    ]
+  },
+  {
+    "case_id": "pid_case_35_rej_dna_rpm_limit_breach",
+    "description": "2.0L I4 NA \u2014 engine rpm breaches DNA rated rpm * 1.05",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6000,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 6500,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_rejection": {
+      "error_type": "PIDValidationError",
+      "reason": "engine_rpm 6500 exceeds DNA rated_rpm 6000 * 1.05 = 6300.0"
+    },
+    "sources": [
+      "NewArchProposal \u00a73.3 DNA-relative RPM check"
+    ]
+  },
+  {
+    "case_id": "pid_case_36_rej_physics_gate_1_violation",
+    "description": "2.0L I4 NA \u2014 moving vehicle with stalled engine (VSS > 10, RPM < 400)",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 200,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5,
+      "vss": 25.0
+    },
+    "expected_rejection": {
+      "error_type": "SemanticConsistencyError",
+      "reason": "Physics_Gate_1: vehicle moving (VSS=25.0 km/h) but engine stalled (RPM=200)"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a74 Physics_Gate_1"
+    ]
+  },
+  {
+    "case_id": "pid_case_37_rej_physics_gate_2_violation",
+    "description": "2.0L I4 NA \u2014 open loop cold fuel status when engine hot (ECT >= 80\u00b0C)",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 85.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Open_Loop_Cold",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_rejection": {
+      "error_type": "SemanticConsistencyError",
+      "reason": "Physics_Gate_2: ECT=85.0\u00b0C but fuel system is still Open_Loop_Cold \u2014 closed loop should be active"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a74 Physics_Gate_2"
+    ]
+  },
+  {
+    "case_id": "pid_case_38_ve_sensor_skew",
+    "description": "2.0L I4 NA — VE exceeds physical limit for NA engine at stabilized idle (VE > 90%), soft-flagged as sensor skew",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 5.0,
+      "manifold_vacuum_kpa": 32.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "FAULT_VE_SENSOR_SKEW",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "OBDLab_KG_Wiki.md \u00a76.4 VE validity FAULT_VE_SENSOR_SKEW"
+    ]
+  },
+  {
+    "case_id": "pid_case_39_misfire_active",
+    "description": "2.0L I4 NA \u2014 warm idle with active P0300 random misfire code (non-blocking for trim analytics)",
+    "fault_family": "misfire",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [
+        "P0300"
+      ],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 active misfire code P0300",
+      "OBDLab_KG_Wiki.md \u00a79"
+    ]
+  },
+  {
+    "case_id": "pid_case_40_catalyst_efficiency_low",
+    "description": "2.0L I4 NA \u2014 warm idle with active P0420 catalyst efficiency DTC",
+    "fault_family": "catalyst_failure",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [
+        "P0420"
+      ],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 catalyst code P0420"
+    ]
+  },
+  {
+    "case_id": "pid_case_41_evap_leak",
+    "description": "2.0L I4 NA \u2014 warm idle with active P0442 evaporative emission system leak",
+    "fault_family": "no_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [
+        "P0442"
+      ],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 EVAP leak code P0442"
+    ]
+  },
+  {
+    "case_id": "pid_case_42_egr_flow_low",
+    "description": "2.0L I4 NA \u2014 warm idle with active P0401 EGR flow insufficient",
+    "fault_family": "no_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [
+        "P0401"
+      ],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 EGR flow code P0401"
+    ]
+  },
+  {
+    "case_id": "pid_case_43_maf_circuit_fault",
+    "description": "2.0L I4 NA \u2014 warm idle with active P0103 MAF circuit high",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [
+        "P0103"
+      ],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 MAF circuit code P0103"
+    ]
+  },
+  {
+    "case_id": "pid_case_44_map_circuit_fault",
+    "description": "2.0L I4 NA \u2014 warm idle with active P0107 MAP circuit low",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [
+        "P0107"
+      ],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 MAP circuit code P0107"
+    ]
+  },
+  {
+    "case_id": "pid_case_45_ambient_temp_sensor_fault",
+    "description": "2.0L I4 NA \u2014 warm idle with active P0070 ambient temperature sensor fault",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [
+        "P0070"
+      ],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 ambient temp sensor code P0070"
+    ]
+  },
+  {
+    "case_id": "pid_case_46_throttle_pedal_sensor_fault",
+    "description": "2.0L I4 NA \u2014 warm idle with active P0220 throttle position sensor circuit fault",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [
+        "P0220"
+      ],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 TPS circuit code P0220"
+    ]
+  },
+  {
+    "case_id": "pid_case_47_transmission_fault",
+    "description": "2.0L I4 NA \u2014 warm idle with active P0700 transmission control system fault",
+    "fault_family": "no_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [
+        "P0700"
+      ],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "SAE J1979 transmission system code P0700"
+    ]
+  },
+  {
+    "case_id": "pid_case_48_warm_idle_stoich_volvo_s60",
+    "description": "2.5L I5 Turbo \u2014 additional warm idle stoich baseline for Volvo S60",
+    "fault_family": "no_fault",
+    "vehicle": "Volvo/S60/2003/B5254T2-2.5L",
+    "dna_view": {
+      "engine_displacement_liters": 2.5,
+      "cylinder_count": 5,
+      "rated_rpm": 6000,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "WIDEBAND_NB_SIM",
+      "induction_type": "TURBOCHARGED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 750,
+      "coolant_temp_c": 88.0,
+      "calculated_engine_load_pct": 20.0,
+      "mass_airflow_gps": 4.2,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.46,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "Volvo S60 2.5T specifications"
+    ]
+  },
+  {
+    "case_id": "pid_case_49_warm_idle_stoich_mazda_3",
+    "description": "1.8L I4 NA \u2014 additional warm idle stoich baseline for Mazda 3",
+    "fault_family": "no_fault",
+    "vehicle": "Mazda/3/2005/LF-DE-1.8L",
+    "dna_view": {
+      "engine_displacement_liters": 1.8,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "WIDEBAND_LINEAR",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 90.0,
+      "calculated_engine_load_pct": 25.0,
+      "mass_airflow_gps": 3.0,
+      "manifold_vacuum_kpa": 35.0,
+      "intake_air_temp_c": 30.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_wideband_equivalence_ratio": 1.0,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "Mazda 3 LF-DE Service Manual"
+    ]
+  },
+  {
+    "case_id": "pid_case_50_warm_idle_stoich_ford_escort",
+    "description": "2.0L I4 NA \u2014 additional warm idle stoich baseline for Ford Escort",
+    "fault_family": "no_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": 0.0,
+      "longft1": 0.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 0.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "sources": [
+      "Ford Escort 1998 Service Manual"
+    ]
+  }
+]

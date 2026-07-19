@@ -1,0 +1,25 @@
+case_id,family_hint,metadata_horizon,metadata_vin,metadata_cylinders,gas_scenario,obd_scenario,dtc_scenario,symptom_scenario,expected_top_fault,expected_fault_family,expected_degradation_mode,expected_confidence,gt_source
+COM-001,no_fault,HORIZON_MODERN,1FA6P8CF0HXXXXXXX,4,healthy_baseline,warm_idle_baseline,no_codes,neutral,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-002,lean_condition,HORIZON_MODERN,1FA6P8CF0HXXXXXXX,4,exhaust_air_leak,warm_idle_baseline,p0401_egr_stuck_open,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-003,rich_mixture,HORIZON_MODERN,1FA6P8CF0HXXXXXXX,4,rich_unmetered_intrusion,hpfp_leak_signature,p0172_rich_hpfp_leak,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-004,misfire,HORIZON_MODERN,1FA6P8CF0HXXXXXXX,4,ignition_misfire_heavy_hc,coil_arc_under_load,p0302_misfire_coil_arc,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-005,sensor_fault,HORIZON_MODERN,1FA6P8CF0HXXXXXXX,4,warm_idle_baseline,sensor_biased_high,p0131_o2_sensor,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-006,ecu_fault,HORIZON_MODERN,1FA6P8CF0HXXXXXXX,4,warm_idle_baseline,warm_idle_baseline,p0606_ecu_internal,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-007,catalyst_failure,HORIZON_MODERN,1FA6P8CF0HXXXXXXX,4,catalyst_overwhelmed,warm_idle_baseline,p0420_catalyst_below_threshold,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-008,exhaust_leak,HORIZON_ADAPTIVE,1FA6P8CF0HXXXXXXX,4,exhaust_air_leak,warm_idle_baseline,p0171_exhaust_leak_manifold,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-009,ignition_fault,HORIZON_MODERN,1FA6P8CF0HXXXXXXX,4,ignition_misfire_heavy_hc,coil_arc_under_load,p0351_ignition_coil_driver,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-010,mechanical_wear,HORIZON_ADAPTIVE,1FA6P8CF0HXXXXXXX,6,incomplete_combustion,warm_idle_baseline,p0300_mechanical_wear,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-011,cam_timing,HORIZON_MODERN,1FA6P8CF0HXXXXXXX,4,wrong_valve_timing,warm_idle_baseline,p0016_cam_timing_retard,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-012,non_starter,HORIZON_MODERN,1FA6P8CF0HXXXXXXX,4,incomplete_combustion,cold_engine,p0335_nonstarter,will_not_start,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-013,invalid_input,HORIZON_MODERN,1FA6P8CF0HXXXXXXX,4,warm_idle_baseline,warm_idle_baseline,malformed_dtc,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-014,gas_dominant,HORIZON_LEGACY,1FA6P8CF0HXXXXXXX,4,no_obd_legacy,none,no_codes,will_not_start,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-015,fatal_incomplete,HORIZON_MODERN,1FA6P8CF0HXXXXXXX,4,sample_invalid,warm_idle_baseline,no_codes,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-016,fatal_incomplete,HORIZON_ADAPTIVE,1FA6P8CF0HXXXXXXX,4,warm_idle_baseline,cold_engine,no_codes,cranking,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-017,sensor_fault,HORIZON_MODERN,1FA6P8CF0HXXXXXXX,4,warm_idle_baseline,sensor_biased_low,p0131_o2_sensor,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-018,no_fault,HORIZON_LEGACY,1FA6P8CF0HXXXXXXX,4,healthy_baseline,legacy_missing_trims,no_codes,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-019,rich_mixture,HORIZON_ADAPTIVE,1FA6P8CF0HXXXXXXX,8,rich_unmetered_intrusion,hpfp_leak_signature,p0172_rich_hpfp_leak,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-020,misfire,HORIZON_ADAPTIVE,1FA6P8CF0HXXXXXXX,6,ignition_misfire_heavy_hc,coil_arc_under_load,full_confirmed,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-021,catalyst_failure,HORIZON_ADAPTIVE,1FA6P8CF0HXXXXXXX,4,catalyst_overwhelmed,warm_idle_baseline,p0420_catalyst_below_threshold,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-022,cam_timing,HORIZON_LEGACY,1FA6P8CF0HXXXXXXX,4,wrong_valve_timing,legacy_missing_trims,p0016_cam_timing_retard,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-023,lean_condition,HORIZON_MODERN,1FA6P8CF0HXXXXXXX,4,exhaust_air_leak,sensor_biased_high,p0171_exhaust_leak_manifold,running,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts
+COM-024,no_fault,HORIZON_MODERN,1FA6P8CF0HXXXXXXX,4,warm_idle_baseline,warm_idle_baseline,none,neutral,,,,,gt_method=characterization; pinned_rows=24; assembled upstream verdicts

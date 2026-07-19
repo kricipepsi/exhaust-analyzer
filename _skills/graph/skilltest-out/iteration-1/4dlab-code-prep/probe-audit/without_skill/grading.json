@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "audit flags all seeded violations with correct file:line",
+      "passed": true,
+      "evidence": "Found all 3 violations. However, rule labeling was inconsistent: dynamic dispatch called 'Rule D' (skill uses 'Rule C'), runtime symbols called 'Rule R' (skill uses 'Rule S')."
+    },
+    {
+      "text": "probe produces three yes/no answers and E/R/D rules track probe results",
+      "passed": false,
+      "evidence": "Did not run probe. Did not mention probe or its role in scoping E/R/D rules."
+    },
+    {
+      "text": "skill makes no edits to fixture source",
+      "passed": true,
+      "evidence": "No source files were edited. Included recommended fixes in report body only."
+    },
+    {
+      "text": "audit has zero false positives on clean module",
+      "passed": true,
+      "evidence": "clean_module.py correctly identified as having 0 findings."
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 3,
+    "failed": 1,
+    "pass_rate": 0.75
+  }
+}

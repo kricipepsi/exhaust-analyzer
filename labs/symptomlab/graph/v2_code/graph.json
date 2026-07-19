@@ -1,0 +1,1295 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "init",
+      "community": 0,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "_get_validator()",
+      "file_type": "code",
+      "source_file": "__init__.py",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "init_get_validator",
+      "community": 0,
+      "norm_label": "_get_validator()"
+    },
+    {
+      "label": "Path",
+      "file_type": "code",
+      "source_file": "__init__.py",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "init_py_path",
+      "community": 0,
+      "norm_label": "path"
+    },
+    {
+      "label": "SymptomValidator",
+      "file_type": "code",
+      "source_file": "__init__.py",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "symptomvalidator",
+      "community": 0,
+      "norm_label": "symptomvalidator"
+    },
+    {
+      "label": "resolve()",
+      "file_type": "code",
+      "source_file": "__init__.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "init_resolve",
+      "community": 0,
+      "norm_label": "resolve()"
+    },
+    {
+      "label": "SymptomDNA",
+      "file_type": "code",
+      "source_file": "__init__.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "init_py_symptomdna",
+      "community": 0,
+      "norm_label": "symptomdna"
+    },
+    {
+      "label": "SymptomLab \u2014 Part B symptom-triage module for the 4DLab DNA system.",
+      "file_type": "rationale",
+      "source_file": "__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "init_rationale_1",
+      "community": 0,
+      "norm_label": "symptomlab \u2014 part b symptom-triage module for the 4dlab dna system."
+    },
+    {
+      "label": "Return a SymptomValidator for `allowed_path`. Cached per distinct path.",
+      "file_type": "rationale",
+      "source_file": "__init__.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "init_rationale_14",
+      "community": 0,
+      "norm_label": "return a symptomvalidator for `allowed_path`. cached per distinct path."
+    },
+    {
+      "label": "Validate a triage selection and package it as a SymptomDNA.      Per SEMANTIC_CO",
+      "file_type": "rationale",
+      "source_file": "__init__.py",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "init_rationale_28",
+      "community": 0,
+      "norm_label": "validate a triage selection and package it as a symptomdna.      per semantic_co"
+    },
+    {
+      "label": "models.py",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "models",
+      "community": 1,
+      "norm_label": "models.py"
+    },
+    {
+      "label": "SymptomValidationError",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "models_symptomvalidationerror",
+      "community": 3,
+      "norm_label": "symptomvalidationerror"
+    },
+    {
+      "label": "ValueError",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "valueerror",
+      "community": 3,
+      "norm_label": "valueerror"
+    },
+    {
+      "label": "OccursDuring",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "models_occursduring",
+      "community": 1,
+      "norm_label": "occursduring"
+    },
+    {
+      "label": "StrEnum",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "strenum",
+      "community": 1,
+      "norm_label": "strenum"
+    },
+    {
+      "label": "EngineState",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "models_enginestate",
+      "community": 1,
+      "norm_label": "enginestate"
+    },
+    {
+      "label": "LoadState",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "models_loadstate",
+      "community": 1,
+      "norm_label": "loadstate"
+    },
+    {
+      "label": "EnvironmentalConditions",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "models_environmentalconditions",
+      "community": 4,
+      "norm_label": "environmentalconditions"
+    },
+    {
+      "label": ".to_json_payload()",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "models_environmentalconditions_to_json_payload",
+      "community": 4,
+      "norm_label": ".to_json_payload()"
+    },
+    {
+      "label": "Any",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "any",
+      "community": 4,
+      "norm_label": "any"
+    },
+    {
+      "label": ".to_json()",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "models_environmentalconditions_to_json",
+      "community": 2,
+      "norm_label": ".to_json()"
+    },
+    {
+      "label": "SymptomDNA",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "models_symptomdna",
+      "community": 2,
+      "norm_label": "symptomdna"
+    },
+    {
+      "label": ".to_json_payload()",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L65",
+      "_origin": "ast",
+      "id": "models_symptomdna_to_json_payload",
+      "community": 2,
+      "norm_label": ".to_json_payload()"
+    },
+    {
+      "label": ".to_json()",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L74",
+      "_origin": "ast",
+      "id": "models_symptomdna_to_json",
+      "community": 2,
+      "norm_label": ".to_json()"
+    },
+    {
+      "label": ".from_json()",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L79",
+      "_origin": "ast",
+      "id": "models_symptomdna_from_json",
+      "community": 4,
+      "norm_label": ".from_json()"
+    },
+    {
+      "label": "Raised when (tier_1, tier_2) is not one of the 18 allowed combinations,     or e",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "models_rationale_9",
+      "community": 3,
+      "norm_label": "raised when (tier_1, tier_2) is not one of the 18 allowed combinations,     or e"
+    },
+    {
+      "label": "The 4-field Part B payload, per SEMANTIC_CONTRACT.md \u00a74.2.      No routing field",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "models_rationale_51",
+      "community": 2,
+      "norm_label": "the 4-field part b payload, per semantic_contract.md \u00a74.2.      no routing field"
+    },
+    {
+      "label": "Serialize to the JSON shape from contract \u00a74.2.",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "models_rationale_66",
+      "community": 2,
+      "norm_label": "serialize to the json shape from contract \u00a74.2."
+    },
+    {
+      "label": "Deserialize from the dict shape in SEMANTIC_CONTRACT.md \u00a74.2.          Raises Sy",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L80",
+      "_origin": "ast",
+      "id": "models_rationale_80",
+      "community": 4,
+      "norm_label": "deserialize from the dict shape in semantic_contract.md \u00a74.2.          raises sy"
+    },
+    {
+      "label": "# WHY: Pre-load_state payloads deserialize deterministically as",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L100",
+      "_origin": "ast",
+      "id": "models_rationale_100",
+      "community": 1,
+      "norm_label": "# why: pre-load_state payloads deserialize deterministically as"
+    },
+    {
+      "label": "validator.py",
+      "file_type": "code",
+      "source_file": "validator.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "validator",
+      "community": 5,
+      "norm_label": "validator.py"
+    },
+    {
+      "label": "SymptomValidator",
+      "file_type": "code",
+      "source_file": "validator.py",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "validator_symptomvalidator",
+      "community": 5,
+      "norm_label": "symptomvalidator"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "validator.py",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "validator_symptomvalidator_init",
+      "community": 3,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": "Path",
+      "file_type": "code",
+      "source_file": "validator.py",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "validator_py_path",
+      "community": 3,
+      "norm_label": "path"
+    },
+    {
+      "label": ".validate()",
+      "file_type": "code",
+      "source_file": "validator.py",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "validator_symptomvalidator_validate",
+      "community": 1,
+      "norm_label": ".validate()"
+    },
+    {
+      "label": "SymptomDNA",
+      "file_type": "code",
+      "source_file": "validator.py",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "validator_py_symptomdna",
+      "community": 1,
+      "norm_label": "symptomdna"
+    },
+    {
+      "label": "Validator for symptom selection against allowed combinations catalog.",
+      "file_type": "rationale",
+      "source_file": "validator.py",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "validator_rationale_17",
+      "community": 5,
+      "norm_label": "validator for symptom selection against allowed combinations catalog."
+    },
+    {
+      "label": "Load and parse the allowed combinations catalog from allowed_path.          Args",
+      "file_type": "rationale",
+      "source_file": "validator.py",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "validator_rationale_20",
+      "community": 3,
+      "norm_label": "load and parse the allowed combinations catalog from allowed_path.          args"
+    },
+    {
+      "label": "Validate a symptom selection against the catalog of 21 combinations.          Ar",
+      "file_type": "rationale",
+      "source_file": "validator.py",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "validator_rationale_51",
+      "community": 1,
+      "norm_label": "validate a symptom selection against the catalog of 21 combinations.          ar"
+    },
+    {
+      "label": "# WHY: allowed_combinations.yaml must define exactly 21 pairs (7 tier_1 \u00d7 3 tier",
+      "file_type": "rationale",
+      "source_file": "validator.py",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "validator_rationale_35",
+      "community": 5,
+      "norm_label": "# why: allowed_combinations.yaml must define exactly 21 pairs (7 tier_1 \u00d7 3 tier"
+    },
+    {
+      "label": "# WHY: reject any (tier_1, tier_2) pair not explicitly allowed in the catalog",
+      "file_type": "rationale",
+      "source_file": "validator.py",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "validator_rationale_67",
+      "community": 5,
+      "norm_label": "# why: reject any (tier_1, tier_2) pair not explicitly allowed in the catalog"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "init",
+      "target": "init_get_validator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "init",
+      "target": "init_resolve",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "init_rationale_1",
+      "target": "init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "init_get_validator",
+      "target": "init_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "init_get_validator",
+      "target": "symptomvalidator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "init_rationale_14",
+      "target": "init_get_validator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "init_resolve",
+      "target": "init_get_validator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "__init__.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "init_py_path",
+      "target": "models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "__init__.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "init_py_path",
+      "target": "models_loadstate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "__init__.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "init_py_path",
+      "target": "models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "__init__.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "init_py_path",
+      "target": "validator_symptomvalidator",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "init_resolve",
+      "target": "init_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "__init__.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "symptomvalidator",
+      "target": "models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "__init__.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "symptomvalidator",
+      "target": "models_loadstate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "__init__.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "symptomvalidator",
+      "target": "models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "__init__.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "symptomvalidator",
+      "target": "validator_symptomvalidator",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "init_rationale_28",
+      "target": "init_resolve",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "init_resolve",
+      "target": "init_py_symptomdna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "__init__.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "init_py_symptomdna",
+      "target": "models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "__init__.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "init_py_symptomdna",
+      "target": "models_loadstate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "__init__.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "init_py_symptomdna",
+      "target": "models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "__init__.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "init_py_symptomdna",
+      "target": "validator_symptomvalidator",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "models",
+      "target": "models_enginestate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "models",
+      "target": "models_environmentalconditions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "models",
+      "target": "models_loadstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "models",
+      "target": "models_occursduring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "models",
+      "target": "models_symptomdna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "models",
+      "target": "models_symptomvalidationerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "models_rationale_100",
+      "target": "models",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "models_rationale_9",
+      "target": "models_symptomvalidationerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "models_symptomdna_from_json",
+      "target": "models_symptomvalidationerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "models_symptomvalidationerror",
+      "target": "valueerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_py_path",
+      "target": "models_symptomvalidationerror",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_py_symptomdna",
+      "target": "models_symptomvalidationerror",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_symptomvalidator",
+      "target": "models_symptomvalidationerror",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "validator.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "validator_symptomvalidator_validate",
+      "target": "models_symptomvalidationerror"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "validator.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "validator_symptomvalidator_init",
+      "target": "valueerror"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "models_occursduring",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L98",
+      "weight": 1.0,
+      "source": "models_symptomdna_from_json",
+      "target": "models_occursduring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_py_path",
+      "target": "models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_py_symptomdna",
+      "target": "models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_symptomvalidator",
+      "target": "models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "validator.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "validator_symptomvalidator_validate",
+      "target": "models_occursduring"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "models_enginestate",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "models_loadstate",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "models_symptomdna_from_json",
+      "target": "models_enginestate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_py_path",
+      "target": "models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_py_symptomdna",
+      "target": "models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_symptomvalidator",
+      "target": "models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "validator.py",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "validator_symptomvalidator_validate",
+      "target": "models_enginestate"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "models_symptomdna_from_json",
+      "target": "models_loadstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_py_path",
+      "target": "models_loadstate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_py_symptomdna",
+      "target": "models_loadstate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_symptomvalidator",
+      "target": "models_loadstate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "validator.py",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "validator_symptomvalidator_validate",
+      "target": "models_loadstate"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "models_environmentalconditions",
+      "target": "models_environmentalconditions_to_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "models_environmentalconditions",
+      "target": "models_environmentalconditions_to_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "models_symptomdna_from_json",
+      "target": "models_environmentalconditions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_py_path",
+      "target": "models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_py_symptomdna",
+      "target": "models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_symptomvalidator",
+      "target": "models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "validator.py",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "validator_symptomvalidator_validate",
+      "target": "models_environmentalconditions"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "models_environmentalconditions_to_json_payload",
+      "target": "any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "models_symptomdna_from_json",
+      "target": "any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "models_symptomdna_to_json_payload",
+      "target": "any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "models_environmentalconditions_to_json",
+      "target": "models_symptomdna_to_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "models_rationale_51",
+      "target": "models_symptomdna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L79",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "models_symptomdna_from_json",
+      "target": "models_symptomdna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "models_symptomdna",
+      "target": "models_symptomdna_to_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "models_symptomdna",
+      "target": "models_symptomdna_to_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_py_path",
+      "target": "models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_py_symptomdna",
+      "target": "models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "validator_symptomvalidator",
+      "target": "models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "models_rationale_66",
+      "target": "models_symptomdna_to_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L76",
+      "weight": 1.0,
+      "source": "models_symptomdna_to_json",
+      "target": "models_symptomdna_to_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "models_rationale_80",
+      "target": "models_symptomdna_from_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "validator.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "validator",
+      "target": "validator_symptomvalidator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "validator.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "validator_rationale_35",
+      "target": "validator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "validator.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "validator_rationale_67",
+      "target": "validator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "validator.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "validator_rationale_17",
+      "target": "validator_symptomvalidator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "validator.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "validator_symptomvalidator",
+      "target": "validator_symptomvalidator_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "validator.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "validator_symptomvalidator",
+      "target": "validator_symptomvalidator_validate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "validator.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "validator_rationale_20",
+      "target": "validator_symptomvalidator_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "validator.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "validator_symptomvalidator_init",
+      "target": "validator_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "validator.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "validator_rationale_51",
+      "target": "validator_symptomvalidator_validate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "validator.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "validator_symptomvalidator_validate",
+      "target": "validator_py_symptomdna",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "f734acabe61e83c537c1d4835f41194c654f72e7"
+}

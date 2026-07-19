@@ -1,0 +1,90 @@
+[
+  {
+    "case_id": "pid_case_est_01_mild_wear_low_ve",
+    "description": "1.6L I4 NA \u2014 estimated mild cylinder wear causing low volumetric efficiency (VE \u2248 55% at stabilized idle)",
+    "fault_family": "mechanical_wear",
+    "vehicle": "Ford/Fiesta/2002/Zetec-1.6L",
+    "dna_view": {
+      "engine_displacement_liters": 1.6,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 850,
+      "coolant_temp_c": 90.0,
+      "calculated_engine_load_pct": 28.0,
+      "mass_airflow_gps": 2.2,
+      "manifold_vacuum_kpa": 38.0,
+      "intake_air_temp_c": 30.0,
+      "shrtft1": 2.0,
+      "longft1": 5.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": 7.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "estimated": true,
+    "reasoning": "Slightly reduced mass airflow and increased manifold absolute pressure for a 1.6L engine representing minor ring wear at idle.",
+    "sources": [
+      "Estimated based on typical mechanic forum diagnostic reports for mild low compression at idle"
+    ]
+  },
+  {
+    "case_id": "pid_case_est_02_sluggish_narrowband",
+    "description": "2.0L I4 NA \u2014 estimated sluggish narrowband sensor (slow cycle rate)",
+    "fault_family": "sensor_fault",
+    "vehicle": "Ford/Escort/1998/Zetec-2.0L",
+    "dna_view": {
+      "engine_displacement_liters": 2.0,
+      "cylinder_count": 4,
+      "rated_rpm": 6500,
+      "stress_idle_rpm_target": 4000,
+      "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+      "upstream_o2_type": "NARROWBAND_0_TO_1V",
+      "induction_type": "NATURALLY_ASPIRATED",
+      "confidence": "HIGH"
+    },
+    "raw_pids": {
+      "engine_rpm": 800,
+      "coolant_temp_c": 92.0,
+      "calculated_engine_load_pct": 22.0,
+      "mass_airflow_gps": 3.5,
+      "manifold_vacuum_kpa": 30.0,
+      "intake_air_temp_c": 35.0,
+      "shrtft1": -2.0,
+      "longft1": -4.0,
+      "number_of_banks": 1,
+      "fuel_sys_status": "Closed_Loop",
+      "pid_oxygen_sensor_volts": 0.45,
+      "active_dtcs": [],
+      "drive_cycles_since_clear": 5
+    },
+    "expected_obd_signature": {
+      "normalized_obd_lambda": 1.0,
+      "total_trim_correction_delta": -6.0,
+      "ve_validity": "VALID",
+      "trim_analytics_gate": "VALID",
+      "o2_channel_fault": false,
+      "rpm_state_bucket": "STABILIZED_IDLE"
+    },
+    "estimated": true,
+    "reasoning": "Sluggish narrowband behaviour is dynamic, so a static snapshot can only estimate the current mean voltage (~0.45V) with slightly wider trims.",
+    "sources": [
+      "Estimated from typical sluggish O2 sensor diagnostic waveforms"
+    ]
+  }
+]

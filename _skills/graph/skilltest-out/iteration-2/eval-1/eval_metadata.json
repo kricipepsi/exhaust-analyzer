@@ -1,0 +1,6 @@
+{
+  "eval_id": 1,
+  "name": "4dlab-wiki-prep relations-verify",
+  "prompt": "Prepare C:\\tmp\\gfxskilltest\\iteration-2\\wiki_fix markdown chunks for graphify wiki ingestion. With-skill runs must use 4dlab-wiki-prep; baseline runs must use no graph skill. Emit dtc_fault_map.md, trim_analytics.md, and verify_report.md. Sourced body bytes must remain append-only for with-skill runs."
+}
+

@@ -1,0 +1,296 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "clean_module.py",
+      "file_type": "code",
+      "source_file": "clean_module.py",
+      "source_location": "L1",
+      "id": "clean_module_py",
+      "community": 0,
+      "norm_label": "clean_module.py"
+    },
+    {
+      "label": "SensorState",
+      "file_type": "code",
+      "source_file": "clean_module.py",
+      "source_location": "L6",
+      "id": "code_fix_clean_module_sensorstate",
+      "community": 0,
+      "norm_label": "sensorstate"
+    },
+    {
+      "label": "StrEnum",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "strenum",
+      "community": 0,
+      "norm_label": "strenum"
+    },
+    {
+      "label": "normalize_reading()",
+      "file_type": "code",
+      "source_file": "clean_module.py",
+      "source_location": "L12",
+      "id": "code_fix_clean_module_normalize_reading",
+      "community": 0,
+      "norm_label": "normalize_reading()"
+    },
+    {
+      "label": "describe_sensor()",
+      "file_type": "code",
+      "source_file": "clean_module.py",
+      "source_location": "L18",
+      "id": "code_fix_clean_module_describe_sensor",
+      "community": 3,
+      "norm_label": "describe_sensor()"
+    },
+    {
+      "label": "Normalize O2 voltage into a 0..1 range.",
+      "file_type": "rationale",
+      "source_file": "clean_module.py",
+      "source_location": "L13",
+      "id": "code_fix_clean_module_rationale_13",
+      "community": 0,
+      "norm_label": "normalize o2 voltage into a 0..1 range."
+    },
+    {
+      "label": "Map a sensor state enum to the display string.",
+      "file_type": "rationale",
+      "source_file": "clean_module.py",
+      "source_location": "L19",
+      "id": "code_fix_clean_module_rationale_19",
+      "community": 3,
+      "norm_label": "map a sensor state enum to the display string."
+    },
+    {
+      "label": "# WHY: clamp sensor noise before state classification.",
+      "file_type": "rationale",
+      "source_file": "clean_module.py",
+      "source_location": "L14",
+      "id": "code_fix_clean_module_rationale_14",
+      "community": 0,
+      "norm_label": "# why: clamp sensor noise before state classification."
+    },
+    {
+      "label": "dirty_module.py",
+      "file_type": "code",
+      "source_file": "dirty_module.py",
+      "source_location": "L1",
+      "id": "dirty_module_py",
+      "community": 2,
+      "norm_label": "dirty_module.py"
+    },
+    {
+      "label": "calculate_ratio()",
+      "file_type": "code",
+      "source_file": "dirty_module.py",
+      "source_location": "L4",
+      "id": "code_fix_dirty_module_calculate_ratio",
+      "community": 2,
+      "norm_label": "calculate_ratio()"
+    },
+    {
+      "label": "dynamic_runtime.py",
+      "file_type": "code",
+      "source_file": "dynamic_runtime.py",
+      "source_location": "L1",
+      "id": "dynamic_runtime_py",
+      "community": 1,
+      "norm_label": "dynamic_runtime.py"
+    },
+    {
+      "label": "handler_a()",
+      "file_type": "code",
+      "source_file": "dynamic_runtime.py",
+      "source_location": "L4",
+      "id": "code_fix_dynamic_runtime_handler_a",
+      "community": 1,
+      "norm_label": "handler_a()"
+    },
+    {
+      "label": "handler_b()",
+      "file_type": "code",
+      "source_file": "dynamic_runtime.py",
+      "source_location": "L8",
+      "id": "code_fix_dynamic_runtime_handler_b",
+      "community": 1,
+      "norm_label": "handler_b()"
+    },
+    {
+      "label": "route_with_getattr()",
+      "file_type": "code",
+      "source_file": "dynamic_runtime.py",
+      "source_location": "L12",
+      "id": "code_fix_dynamic_runtime_route_with_getattr",
+      "community": 1,
+      "norm_label": "route_with_getattr()"
+    },
+    {
+      "label": "route_with_dispatch_dict()",
+      "file_type": "code",
+      "source_file": "dynamic_runtime.py",
+      "source_location": "L17",
+      "id": "code_fix_dynamic_runtime_route_with_dispatch_dict",
+      "community": 1,
+      "norm_label": "route_with_dispatch_dict()"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "__init__.py",
+      "source_location": "L1",
+      "id": "init_py",
+      "community": 2,
+      "norm_label": "__init__.py"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "clean_module.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "clean_module_py",
+      "target": "code_fix_clean_module_sensorstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "clean_module.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "clean_module_py",
+      "target": "code_fix_clean_module_normalize_reading",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "clean_module.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "clean_module_py",
+      "target": "code_fix_clean_module_describe_sensor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "clean_module.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "code_fix_clean_module_rationale_14",
+      "target": "clean_module_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "init_py",
+      "target": "clean_module_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "clean_module.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "code_fix_clean_module_sensorstate",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "clean_module.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "code_fix_clean_module_rationale_13",
+      "target": "code_fix_clean_module_normalize_reading",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "clean_module.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "code_fix_clean_module_rationale_19",
+      "target": "code_fix_clean_module_describe_sensor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "dirty_module.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "dirty_module_py",
+      "target": "code_fix_dirty_module_calculate_ratio",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "init_py",
+      "target": "dirty_module_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "dynamic_runtime.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "dynamic_runtime_py",
+      "target": "code_fix_dynamic_runtime_handler_a",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "dynamic_runtime.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "dynamic_runtime_py",
+      "target": "code_fix_dynamic_runtime_handler_b",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "dynamic_runtime.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "dynamic_runtime_py",
+      "target": "code_fix_dynamic_runtime_route_with_getattr",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "dynamic_runtime.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "dynamic_runtime_py",
+      "target": "code_fix_dynamic_runtime_route_with_dispatch_dict",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": []
+}

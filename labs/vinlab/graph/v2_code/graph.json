@@ -1,0 +1,3993 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "decoder.py",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L1",
+      "id": "decoder_py",
+      "community": 4,
+      "norm_label": "decoder.py"
+    },
+    {
+      "label": "VINDecodeError",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L39",
+      "id": "vinlab_decoder_vindecodeerror",
+      "community": 0,
+      "norm_label": "vindecodeerror"
+    },
+    {
+      "label": "ValueError",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "valueerror",
+      "community": 6,
+      "norm_label": "valueerror"
+    },
+    {
+      "label": "ChassisNumberError",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L43",
+      "id": "vinlab_decoder_chassisnumbererror",
+      "community": 0,
+      "norm_label": "chassisnumbererror"
+    },
+    {
+      "label": "_normalise_euro()",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L119",
+      "id": "vinlab_decoder_normalise_euro",
+      "community": 4,
+      "norm_label": "_normalise_euro()"
+    },
+    {
+      "label": "_is_non_petrol()",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L127",
+      "id": "vinlab_decoder_is_non_petrol",
+      "community": 4,
+      "norm_label": "_is_non_petrol()"
+    },
+    {
+      "label": "pre_clean_vin()",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L139",
+      "id": "vinlab_decoder_pre_clean_vin",
+      "community": 4,
+      "norm_label": "pre_clean_vin()"
+    },
+    {
+      "label": "RobustVINDecoder",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L157",
+      "id": "vinlab_decoder_robustvindecoder",
+      "community": 1,
+      "norm_label": "robustvindecoder"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L165",
+      "id": "vinlab_decoder_robustvindecoder_init",
+      "community": 1,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": "._is_non_nhtsa_wmi()",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L214",
+      "id": "vinlab_decoder_robustvindecoder_is_non_nhtsa_wmi",
+      "community": 1,
+      "norm_label": "._is_non_nhtsa_wmi()"
+    },
+    {
+      "label": "._engine_attrs_from_csv()",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L225",
+      "id": "vinlab_decoder_robustvindecoder_engine_attrs_from_csv",
+      "community": 1,
+      "norm_label": "._engine_attrs_from_csv()"
+    },
+    {
+      "label": "._apply_vref_techmask()",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L253",
+      "id": "vinlab_decoder_robustvindecoder_apply_vref_techmask",
+      "community": 0,
+      "norm_label": "._apply_vref_techmask()"
+    },
+    {
+      "label": "._cylinder_fallback()",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L415",
+      "id": "vinlab_decoder_robustvindecoder_cylinder_fallback",
+      "community": 1,
+      "norm_label": "._cylinder_fallback()"
+    },
+    {
+      "label": "._derive_air_metering()",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L449",
+      "id": "vinlab_decoder_robustvindecoder_derive_air_metering",
+      "community": 1,
+      "norm_label": "._derive_air_metering()"
+    },
+    {
+      "label": "._compute_confidence()",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L482",
+      "id": "vinlab_decoder_robustvindecoder_compute_confidence",
+      "community": 1,
+      "norm_label": "._compute_confidence()"
+    },
+    {
+      "label": ".decode_vin_payload()",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L495",
+      "id": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "community": 1,
+      "norm_label": ".decode_vin_payload()"
+    },
+    {
+      "label": ".validate_vin_checksum()",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L667",
+      "id": "vinlab_decoder_robustvindecoder_validate_vin_checksum",
+      "community": 1,
+      "norm_label": ".validate_vin_checksum()"
+    },
+    {
+      "label": "._resolve_wmi()",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L709",
+      "id": "vinlab_decoder_robustvindecoder_resolve_wmi",
+      "community": 1,
+      "norm_label": "._resolve_wmi()"
+    },
+    {
+      "label": "._resolve_year()",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L729",
+      "id": "vinlab_decoder_robustvindecoder_resolve_year",
+      "community": 1,
+      "norm_label": "._resolve_year()"
+    },
+    {
+      "label": "._resolve_engine()",
+      "file_type": "code",
+      "source_file": "decoder.py",
+      "source_location": "L765",
+      "id": "vinlab_decoder_robustvindecoder_resolve_engine",
+      "community": 1,
+      "norm_label": "._resolve_engine()"
+    },
+    {
+      "label": "RobustVINDecoder \u2014 per VINlookup.md (patched) with overlay rules.  Adaptive VIN",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L1",
+      "id": "vinlab_decoder_rationale_1",
+      "community": 4,
+      "norm_label": "robustvindecoder \u2014 per vinlookup.md (patched) with overlay rules.  adaptive vin"
+    },
+    {
+      "label": "Raised when a VIN cannot be decoded within VINLab's supported scope.",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L40",
+      "id": "vinlab_decoder_rationale_40",
+      "community": 0,
+      "norm_label": "raised when a vin cannot be decoded within vinlab's supported scope."
+    },
+    {
+      "label": "Raised when input length != 17 \u2014 likely a pre-VIN chassis/frame number.      Cal",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L44",
+      "id": "vinlab_decoder_rationale_44",
+      "community": 0,
+      "norm_label": "raised when input length != 17 \u2014 likely a pre-vin chassis/frame number.      cal"
+    },
+    {
+      "label": "Normalise a raw euro_norm string to the contract enum form.",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L120",
+      "id": "vinlab_decoder_rationale_120",
+      "community": 4,
+      "norm_label": "normalise a raw euro_norm string to the contract enum form."
+    },
+    {
+      "label": "Check any value for non-petrol fuel keywords (H1 guard).",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L128",
+      "id": "vinlab_decoder_rationale_128",
+      "community": 4,
+      "norm_label": "check any value for non-petrol fuel keywords (h1 guard)."
+    },
+    {
+      "label": "Substitute visually ambiguous characters before VIN validation.      Replaces ``",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L140",
+      "id": "vinlab_decoder_rationale_140",
+      "community": 4,
+      "norm_label": "substitute visually ambiguous characters before vin validation.      replaces ``"
+    },
+    {
+      "label": "Adaptive VIN decoder with position-8 fallback and L-year disambiguation.      Lo",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L158",
+      "id": "vinlab_decoder_rationale_158",
+      "community": 1,
+      "norm_label": "adaptive vin decoder with position-8 fallback and l-year disambiguation.      lo"
+    },
+    {
+      "label": "Return True if checksum validation should be skipped for this VIN.          Chec",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L215",
+      "id": "vinlab_decoder_rationale_215",
+      "community": 1,
+      "norm_label": "return true if checksum validation should be skipped for this vin.          chec"
+    },
+    {
+      "label": "Extract displacement, cylinders, and bank count from CSV engine_row.",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L228",
+      "id": "vinlab_decoder_rationale_228",
+      "community": 1,
+      "norm_label": "extract displacement, cylinders, and bank count from csv engine_row."
+    },
+    {
+      "label": "Apply the tech-mask and CoC measurements from vref.db or fall back to CSV-only d",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L287",
+      "id": "vinlab_decoder_rationale_287",
+      "community": 0,
+      "norm_label": "apply the tech-mask and coc measurements from vref.db or fall back to csv-only d"
+    },
+    {
+      "label": "Apply last-resort cylinder heuristic fallback (T-VL-7).          Fires only as l",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L424",
+      "id": "vinlab_decoder_rationale_424",
+      "community": 1,
+      "norm_label": "apply last-resort cylinder heuristic fallback (t-vl-7).          fires only as l"
+    },
+    {
+      "label": "Derive air metering strategy and architecture from DB dict, fuel system, and ind",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L456",
+      "id": "vinlab_decoder_rationale_456",
+      "community": 1,
+      "norm_label": "derive air metering strategy and architecture from db dict, fuel system, and ind"
+    },
+    {
+      "label": "Compute VIN decode confidence based on collection of confidence flags.",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L483",
+      "id": "vinlab_decoder_rationale_483",
+      "community": 1,
+      "norm_label": "compute vin decode confidence based on collection of confidence flags."
+    },
+    {
+      "label": "Decode a 17-char VIN into a VinDNA dataclass.          Zero network, zero MySQL.",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L496",
+      "id": "vinlab_decoder_rationale_496",
+      "community": 1,
+      "norm_label": "decode a 17-char vin into a vindna dataclass.          zero network, zero mysql."
+    },
+    {
+      "label": "NHTSA modulo-11 checksum with bypass paths.          Per VINlookup.md \u00a71: the NH",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L668",
+      "id": "vinlab_decoder_rationale_668",
+      "community": 1,
+      "norm_label": "nhtsa modulo-11 checksum with bypass paths.          per vinlookup.md \u00a71: the nh"
+    },
+    {
+      "label": "Resolve WMI with low-volume manufacturer rule (SAE J853).          When vin[2] =",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L710",
+      "id": "vinlab_decoder_rationale_710",
+      "community": 1,
+      "norm_label": "resolve wmi with low-volume manufacturer rule (sae j853).          when vin[2] ="
+    },
+    {
+      "label": "Resolve model year from vin[9]; return None for passthrough chars.          SAE",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L732",
+      "id": "vinlab_decoder_rationale_732",
+      "community": 1,
+      "norm_label": "resolve model year from vin[9]; return none for passthrough chars.          sae"
+    },
+    {
+      "label": "Two-path engine resolution per VINlookup.md \u00a72.          Path A: match vds_full",
+      "file_type": "rationale",
+      "source_file": "decoder.py",
+      "source_location": "L766",
+      "id": "vinlab_decoder_rationale_766",
+      "community": 1,
+      "norm_label": "two-path engine resolution per vinlookup.md \u00a72.          path a: match vds_full"
+    },
+    {
+      "label": "models.py",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L1",
+      "id": "models_py",
+      "community": 0,
+      "norm_label": "models.py"
+    },
+    {
+      "label": "Horizon",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L38",
+      "id": "vinlab_models_horizon",
+      "community": 0,
+      "norm_label": "horizon"
+    },
+    {
+      "label": "StrEnum",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "strenum",
+      "community": 0,
+      "norm_label": "strenum"
+    },
+    {
+      "label": "EuroEmissionCategory",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L46",
+      "id": "vinlab_models_euroemissioncategory",
+      "community": 0,
+      "norm_label": "euroemissioncategory"
+    },
+    {
+      "label": "InductionType",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L58",
+      "id": "vinlab_models_inductiontype",
+      "community": 0,
+      "norm_label": "inductiontype"
+    },
+    {
+      "label": "AirMeteringStrategy",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L66",
+      "id": "vinlab_models_airmeteringstrategy",
+      "community": 0,
+      "norm_label": "airmeteringstrategy"
+    },
+    {
+      "label": "PrimaryLoadCalculation",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L74",
+      "id": "vinlab_models_primaryloadcalculation",
+      "community": 0,
+      "norm_label": "primaryloadcalculation"
+    },
+    {
+      "label": "FuelDeliveryType",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L82",
+      "id": "vinlab_models_fueldeliverytype",
+      "community": 0,
+      "norm_label": "fueldeliverytype"
+    },
+    {
+      "label": "UpstreamO2Type",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L90",
+      "id": "vinlab_models_upstreamo2type",
+      "community": 0,
+      "norm_label": "upstreamo2type"
+    },
+    {
+      "label": "VinConfidence",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L106",
+      "id": "vinlab_models_vinconfidence",
+      "community": 0,
+      "norm_label": "vinconfidence"
+    },
+    {
+      "label": "DownstreamTrimRole",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L114",
+      "id": "vinlab_models_downstreamtrimrole",
+      "community": 0,
+      "norm_label": "downstreamtrimrole"
+    },
+    {
+      "label": "_derive_horizon_from_euro()",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L127",
+      "id": "vinlab_models_derive_horizon_from_euro",
+      "community": 0,
+      "norm_label": "_derive_horizon_from_euro()"
+    },
+    {
+      "label": "AirMeteringArchitecture",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L148",
+      "id": "vinlab_models_airmeteringarchitecture",
+      "community": 0,
+      "norm_label": "airmeteringarchitecture"
+    },
+    {
+      "label": "Emissions",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L162",
+      "id": "vinlab_models_emissions",
+      "community": 0,
+      "norm_label": "emissions"
+    },
+    {
+      "label": "VinDNA",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L180",
+      "id": "vinlab_models_vindna",
+      "community": 7,
+      "norm_label": "vindna"
+    },
+    {
+      "label": ".to_json_payload()",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L242",
+      "id": "vinlab_models_vindna_to_json_payload",
+      "community": 7,
+      "norm_label": ".to_json_payload()"
+    },
+    {
+      "label": ".to_json()",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L251",
+      "id": "vinlab_models_vindna_to_json",
+      "community": 7,
+      "norm_label": ".to_json()"
+    },
+    {
+      "label": "from_json()",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L256",
+      "id": "vinlab_models_from_json",
+      "community": 0,
+      "norm_label": "from_json()"
+    },
+    {
+      "label": "_coerce_enum_values()",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L317",
+      "id": "vinlab_models_coerce_enum_values",
+      "community": 7,
+      "norm_label": "_coerce_enum_values()"
+    },
+    {
+      "label": "VinDNA dataclass and enum vocabulary.  The VinDNA is the sole output of vinlab.d",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L1",
+      "id": "vinlab_models_rationale_1",
+      "community": 0,
+      "norm_label": "vindna dataclass and enum vocabulary.  the vindna is the sole output of vinlab.d"
+    },
+    {
+      "label": "Architecture horizon derived from euro_emission_category per contract \u00a76.4.",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L39",
+      "id": "vinlab_models_rationale_39",
+      "community": 0,
+      "norm_label": "architecture horizon derived from euro_emission_category per contract \u00a76.4."
+    },
+    {
+      "label": "Emission standard per contract \u00a74.1.",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L47",
+      "id": "vinlab_models_rationale_47",
+      "community": 0,
+      "norm_label": "emission standard per contract \u00a74.1."
+    },
+    {
+      "label": "Mechanical induction classifier per contract \u00a76.1.",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L59",
+      "id": "vinlab_models_rationale_59",
+      "community": 0,
+      "norm_label": "mechanical induction classifier per contract \u00a76.1."
+    },
+    {
+      "label": "OBDLab-canonical air metering strategy per contract \u00a76.2.",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L67",
+      "id": "vinlab_models_rationale_67",
+      "community": 0,
+      "norm_label": "obdlab-canonical air metering strategy per contract \u00a76.2."
+    },
+    {
+      "label": "Developer-friendly load calculation label per contract \u00a76.2.",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L75",
+      "id": "vinlab_models_rationale_75",
+      "community": 0,
+      "norm_label": "developer-friendly load calculation label per contract \u00a76.2."
+    },
+    {
+      "label": "Fuel delivery method per contract \u00a78.",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L83",
+      "id": "vinlab_models_rationale_83",
+      "community": 0,
+      "norm_label": "fuel delivery method per contract \u00a78."
+    },
+    {
+      "label": "Pre-cat O2 sensor type per contract \u00a76.3.      WIDEBAND_NB_SIM: aftermarket WB c",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L91",
+      "id": "vinlab_models_rationale_91",
+      "community": 0,
+      "norm_label": "pre-cat o2 sensor type per contract \u00a76.3.      wideband_nb_sim: aftermarket wb c"
+    },
+    {
+      "label": "Decode confidence per contract \u00a78.",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L107",
+      "id": "vinlab_models_rationale_107",
+      "community": 0,
+      "norm_label": "decode confidence per contract \u00a78."
+    },
+    {
+      "label": "Role of the downstream O2 sensor in the ECU's closed-loop strategy.      VINLab",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L115",
+      "id": "vinlab_models_rationale_115",
+      "community": 0,
+      "norm_label": "role of the downstream o2 sensor in the ecu's closed-loop strategy.      vinlab"
+    },
+    {
+      "label": "Back-compat: derive Horizon from euro_emission_category per contract \u00a76.4.",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L128",
+      "id": "vinlab_models_rationale_128",
+      "community": 0,
+      "norm_label": "back-compat: derive horizon from euro_emission_category per contract \u00a76.4."
+    },
+    {
+      "label": "Air metering sensor inventory and derived strategy.      Contract \u00a76.2: VinDNA s",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L149",
+      "id": "vinlab_models_rationale_149",
+      "community": 0,
+      "norm_label": "air metering sensor inventory and derived strategy.      contract \u00a76.2: vindna s"
+    },
+    {
+      "label": "Emissions control equipment inventory per contract \u00a74.1.",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L163",
+      "id": "vinlab_models_rationale_163",
+      "community": 0,
+      "norm_label": "emissions control equipment inventory per contract \u00a74.1."
+    },
+    {
+      "label": "Decoded vehicle profile produced by vinlab.decode().      Schema governed by SEM",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L181",
+      "id": "vinlab_models_rationale_181",
+      "community": 7,
+      "norm_label": "decoded vehicle profile produced by vinlab.decode().      schema governed by sem"
+    },
+    {
+      "label": "Serialize to a JSON-safe dict matching SEMANTIC_CONTRACT.md \u00a74.1.          Uses",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L243",
+      "id": "vinlab_models_rationale_243",
+      "community": 7,
+      "norm_label": "serialize to a json-safe dict matching semantic_contract.md \u00a74.1.          uses"
+    },
+    {
+      "label": "Deserialize from the dict shape in SEMANTIC_CONTRACT.md \u00a74.1.          Required",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L257",
+      "id": "vinlab_models_rationale_257",
+      "community": 20,
+      "norm_label": "deserialize from the dict shape in semantic_contract.md \u00a74.1.          required"
+    },
+    {
+      "label": "Recursively convert Enum members to their .value form.",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L318",
+      "id": "vinlab_models_rationale_318",
+      "community": 7,
+      "norm_label": "recursively convert enum members to their .value form."
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "__init__.py",
+      "source_location": "L1",
+      "id": "init_py",
+      "community": 10,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "_get_decoder()",
+      "file_type": "code",
+      "source_file": "__init__.py",
+      "source_location": "L27",
+      "id": "vinlab_init_get_decoder",
+      "community": 10,
+      "norm_label": "_get_decoder()"
+    },
+    {
+      "label": "decode()",
+      "file_type": "code",
+      "source_file": "__init__.py",
+      "source_location": "L32",
+      "id": "vinlab_init_decode",
+      "community": 10,
+      "norm_label": "decode()"
+    },
+    {
+      "label": "VINLab \u2014 VIN decoder module.  Decodes a 17-character VIN into a structured VinDN",
+      "file_type": "rationale",
+      "source_file": "__init__.py",
+      "source_location": "L1",
+      "id": "vinlab_init_rationale_1",
+      "community": 10,
+      "norm_label": "vinlab \u2014 vin decoder module.  decodes a 17-character vin into a structured vindn"
+    },
+    {
+      "label": "Return a RobustVINDecoder for `data_dir`. Cached per distinct data_dir.",
+      "file_type": "rationale",
+      "source_file": "__init__.py",
+      "source_location": "L28",
+      "id": "vinlab_init_rationale_28",
+      "community": 10,
+      "norm_label": "return a robustvindecoder for `data_dir`. cached per distinct data_dir."
+    },
+    {
+      "label": "Decode a 17-char VIN into a VinDNA. Offline, no network, no MySQL.",
+      "file_type": "rationale",
+      "source_file": "__init__.py",
+      "source_location": "L33",
+      "id": "vinlab_init_rationale_33",
+      "community": 10,
+      "norm_label": "decode a 17-char vin into a vindna. offline, no network, no mysql."
+    },
+    {
+      "label": "tecdoc_query.py",
+      "file_type": "code",
+      "source_file": "db/tecdoc_query.py",
+      "source_location": "L1",
+      "id": "db_tecdoc_query_py",
+      "community": 8,
+      "norm_label": "tecdoc_query.py"
+    },
+    {
+      "label": "lookup_engine_ref()",
+      "file_type": "code",
+      "source_file": "db/tecdoc_query.py",
+      "source_location": "L16",
+      "id": "db_tecdoc_query_lookup_engine_ref",
+      "community": 8,
+      "norm_label": "lookup_engine_ref()"
+    },
+    {
+      "label": "open_vref_readonly()",
+      "file_type": "code",
+      "source_file": "db/tecdoc_query.py",
+      "source_location": "L38",
+      "id": "db_tecdoc_query_open_vref_readonly",
+      "community": 8,
+      "norm_label": "open_vref_readonly()"
+    },
+    {
+      "label": "SQL isolation layer for vref.db \u2014 all SQL strings live here (H8).  The decoder c",
+      "file_type": "rationale",
+      "source_file": "db/tecdoc_query.py",
+      "source_location": "L1",
+      "id": "db_tecdoc_query_rationale_1",
+      "community": 8,
+      "norm_label": "sql isolation layer for vref.db \u2014 all sql strings live here (h8).  the decoder c"
+    },
+    {
+      "label": "Query vref.db engine_ref for tech-mask and CoC measurements.      Args:",
+      "file_type": "rationale",
+      "source_file": "db/tecdoc_query.py",
+      "source_location": "L17",
+      "id": "db_tecdoc_query_rationale_17",
+      "community": 8,
+      "norm_label": "query vref.db engine_ref for tech-mask and coc measurements.      args:"
+    },
+    {
+      "label": "Open vref.db in read-only mode via URI.      The decoder calls this once in __in",
+      "file_type": "rationale",
+      "source_file": "db/tecdoc_query.py",
+      "source_location": "L39",
+      "id": "db_tecdoc_query_rationale_39",
+      "community": 8,
+      "norm_label": "open vref.db in read-only mode via uri.      the decoder calls this once in __in"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "db/__init__.py",
+      "source_location": "L1",
+      "id": "db_init_py",
+      "community": 13,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "Database query layer; all SQL lives here (H8).",
+      "file_type": "rationale",
+      "source_file": "db/__init__.py",
+      "source_location": "L1",
+      "id": "db_init_rationale_1",
+      "community": 13,
+      "norm_label": "database query layer; all sql lives here (h8)."
+    },
+    {
+      "label": "air_metering.py",
+      "file_type": "code",
+      "source_file": "overlay/air_metering.py",
+      "source_location": "L1",
+      "id": "overlay_air_metering_py",
+      "community": 9,
+      "norm_label": "air_metering.py"
+    },
+    {
+      "label": "AirMeteringClassification",
+      "file_type": "code",
+      "source_file": "overlay/air_metering.py",
+      "source_location": "L17",
+      "id": "overlay_air_metering_airmeteringclassification",
+      "community": 9,
+      "norm_label": "airmeteringclassification"
+    },
+    {
+      "label": "classify_air_metering()",
+      "file_type": "code",
+      "source_file": "overlay/air_metering.py",
+      "source_location": "L29",
+      "id": "overlay_air_metering_classify_air_metering",
+      "community": 9,
+      "norm_label": "classify_air_metering()"
+    },
+    {
+      "label": "Air metering classification \u2014 single deep module replacing two parallel switches",
+      "file_type": "rationale",
+      "source_file": "overlay/air_metering.py",
+      "source_location": "L1",
+      "id": "overlay_air_metering_rationale_1",
+      "community": 9,
+      "norm_label": "air metering classification \u2014 single deep module replacing two parallel switches"
+    },
+    {
+      "label": "One classification for the (has_maf, has_map) fact.      Contract \u00a78:       prim",
+      "file_type": "rationale",
+      "source_file": "overlay/air_metering.py",
+      "source_location": "L18",
+      "id": "overlay_air_metering_rationale_18",
+      "community": 9,
+      "norm_label": "one classification for the (has_maf, has_map) fact.      contract \u00a78:       prim"
+    },
+    {
+      "label": "Return both air-metering labels from a single classification of (has_maf, has_ma",
+      "file_type": "rationale",
+      "source_file": "overlay/air_metering.py",
+      "source_location": "L30",
+      "id": "overlay_air_metering_rationale_30",
+      "community": 9,
+      "norm_label": "return both air-metering labels from a single classification of (has_maf, has_ma"
+    },
+    {
+      "label": "cylinder_heuristic.py",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L1",
+      "id": "overlay_cylinder_heuristic_py",
+      "community": 2,
+      "norm_label": "cylinder_heuristic.py"
+    },
+    {
+      "label": "CylinderHint",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L26",
+      "id": "overlay_cylinder_heuristic_cylinderhint",
+      "community": 5,
+      "norm_label": "cylinderhint"
+    },
+    {
+      "label": "_displacement_fallback()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L48",
+      "id": "overlay_cylinder_heuristic_displacement_fallback",
+      "community": 3,
+      "norm_label": "_displacement_fallback()"
+    },
+    {
+      "label": "_is_turbo_bmw()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L68",
+      "id": "overlay_cylinder_heuristic_is_turbo_bmw",
+      "community": 2,
+      "norm_label": "_is_turbo_bmw()"
+    },
+    {
+      "label": "_induction()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L77",
+      "id": "overlay_cylinder_heuristic_induction",
+      "community": 2,
+      "norm_label": "_induction()"
+    },
+    {
+      "label": "_make_disp_hint_with_induction()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L91",
+      "id": "overlay_cylinder_heuristic_make_disp_hint_with_induction",
+      "community": 2,
+      "norm_label": "_make_disp_hint_with_induction()"
+    },
+    {
+      "label": "_infer_bmw()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L109",
+      "id": "overlay_cylinder_heuristic_infer_bmw",
+      "community": 2,
+      "norm_label": "_infer_bmw()"
+    },
+    {
+      "label": "_infer_hyundai_kia()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L144",
+      "id": "overlay_cylinder_heuristic_infer_hyundai_kia",
+      "community": 5,
+      "norm_label": "_infer_hyundai_kia()"
+    },
+    {
+      "label": "_infer_honda()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L154",
+      "id": "overlay_cylinder_heuristic_infer_honda",
+      "community": 5,
+      "norm_label": "_infer_honda()"
+    },
+    {
+      "label": "_infer_toyota()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L171",
+      "id": "overlay_cylinder_heuristic_infer_toyota",
+      "community": 3,
+      "norm_label": "_infer_toyota()"
+    },
+    {
+      "label": "_infer_volvo()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L185",
+      "id": "overlay_cylinder_heuristic_infer_volvo",
+      "community": 15,
+      "norm_label": "_infer_volvo()"
+    },
+    {
+      "label": "_infer_mercedes()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L220",
+      "id": "overlay_cylinder_heuristic_infer_mercedes",
+      "community": 3,
+      "norm_label": "_infer_mercedes()"
+    },
+    {
+      "label": "_infer_vw_audi()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L231",
+      "id": "overlay_cylinder_heuristic_infer_vw_audi",
+      "community": 2,
+      "norm_label": "_infer_vw_audi()"
+    },
+    {
+      "label": "_infer_nissan()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L251",
+      "id": "overlay_cylinder_heuristic_infer_nissan",
+      "community": 16,
+      "norm_label": "_infer_nissan()"
+    },
+    {
+      "label": "_infer_mitsubishi()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L265",
+      "id": "overlay_cylinder_heuristic_infer_mitsubishi",
+      "community": 17,
+      "norm_label": "_infer_mitsubishi()"
+    },
+    {
+      "label": "_infer_mazda()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L278",
+      "id": "overlay_cylinder_heuristic_infer_mazda",
+      "community": 5,
+      "norm_label": "_infer_mazda()"
+    },
+    {
+      "label": "_infer_subaru()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L291",
+      "id": "overlay_cylinder_heuristic_infer_subaru",
+      "community": 14,
+      "norm_label": "_infer_subaru()"
+    },
+    {
+      "label": "_infer_renault()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L307",
+      "id": "overlay_cylinder_heuristic_infer_renault",
+      "community": 3,
+      "norm_label": "_infer_renault()"
+    },
+    {
+      "label": "_infer_psa()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L319",
+      "id": "overlay_cylinder_heuristic_infer_psa",
+      "community": 18,
+      "norm_label": "_infer_psa()"
+    },
+    {
+      "label": "infer_cylinder()",
+      "file_type": "code",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L365",
+      "id": "overlay_cylinder_heuristic_infer_cylinder",
+      "community": 3,
+      "norm_label": "infer_cylinder()"
+    },
+    {
+      "label": "Cylinder-count inference from engine code + displacement + brand.  Last-resort r",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L1",
+      "id": "overlay_cylinder_heuristic_rationale_1",
+      "community": 2,
+      "norm_label": "cylinder-count inference from engine code + displacement + brand.  last-resort r"
+    },
+    {
+      "label": "Inferred engine attributes from brand naming + displacement fallback.      Args:",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L27",
+      "id": "overlay_cylinder_heuristic_rationale_27",
+      "community": 5,
+      "norm_label": "inferred engine attributes from brand naming + displacement fallback.      args:"
+    },
+    {
+      "label": "Return conservative cylinder guess from displacement alone.",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L49",
+      "id": "overlay_cylinder_heuristic_rationale_49",
+      "community": 3,
+      "norm_label": "return conservative cylinder guess from displacement alone."
+    },
+    {
+      "label": "BMW turbo families: N54, N55, B58, S55, S63.",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L69",
+      "id": "overlay_cylinder_heuristic_rationale_69",
+      "community": 2,
+      "norm_label": "bmw turbo families: n54, n55, b58, s55, s63."
+    },
+    {
+      "label": "Induction heuristic (brand-aware).",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L78",
+      "id": "overlay_cylinder_heuristic_rationale_78",
+      "community": 2,
+      "norm_label": "induction heuristic (brand-aware)."
+    },
+    {
+      "label": "Displacement fallback with brand-aware induction applied on top.",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L94",
+      "id": "overlay_cylinder_heuristic_rationale_94",
+      "community": 2,
+      "norm_label": "displacement fallback with brand-aware induction applied on top."
+    },
+    {
+      "label": "BMW: [NBMS]XX pattern \u2014 first of the two digits encodes cylinders.      2\u21924, 4\u21924",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L110",
+      "id": "overlay_cylinder_heuristic_rationale_110",
+      "community": 2,
+      "norm_label": "bmw: [nbms]xx pattern \u2014 first of the two digits encodes cylinders.      2\u21924, 4\u21924"
+    },
+    {
+      "label": "Hyundai/Kia: G[cyl] prefix \u2014 second char is the cylinder digit.",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L145",
+      "id": "overlay_cylinder_heuristic_rationale_145",
+      "community": 5,
+      "norm_label": "hyundai/kia: g[cyl] prefix \u2014 second char is the cylinder digit."
+    },
+    {
+      "label": "Honda: J-series (\u22653.0L) is V6; most others are I4.",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L155",
+      "id": "overlay_cylinder_heuristic_rationale_155",
+      "community": 5,
+      "norm_label": "honda: j-series (\u22653.0l) is v6; most others are i4."
+    },
+    {
+      "label": "Toyota: family prefix \u2192 cylinder count.",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L172",
+      "id": "overlay_cylinder_heuristic_rationale_172",
+      "community": 3,
+      "norm_label": "toyota: family prefix \u2192 cylinder count."
+    },
+    {
+      "label": "Volvo: B[cyl]... \u2014 digit after B is the cylinder count; T suffix = turbo.",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L186",
+      "id": "overlay_cylinder_heuristic_rationale_186",
+      "community": 15,
+      "norm_label": "volvo: b[cyl]... \u2014 digit after b is the cylinder count; t suffix = turbo."
+    },
+    {
+      "label": "Mercedes: MXXX engine-code lookup table.",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L221",
+      "id": "overlay_cylinder_heuristic_rationale_221",
+      "community": 3,
+      "norm_label": "mercedes: mxxx engine-code lookup table."
+    },
+    {
+      "label": "VW/Audi: use displacement bands (code prefixes are unreliable).      Per T-VL-7",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L232",
+      "id": "overlay_cylinder_heuristic_rationale_232",
+      "community": 2,
+      "norm_label": "vw/audi: use displacement bands (code prefixes are unreliable).      per t-vl-7"
+    },
+    {
+      "label": "Nissan: family prefix \u2192 cylinder count.",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L252",
+      "id": "overlay_cylinder_heuristic_rationale_252",
+      "community": 16,
+      "norm_label": "nissan: family prefix \u2192 cylinder count."
+    },
+    {
+      "label": "Mitsubishi: leading digit = cylinder count (4Gxx \u2192 4, 6Gxx \u2192 6).",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L266",
+      "id": "overlay_cylinder_heuristic_rationale_266",
+      "community": 17,
+      "norm_label": "mitsubishi: leading digit = cylinder count (4gxx \u2192 4, 6gxx \u2192 6)."
+    },
+    {
+      "label": "Mazda: B/F/P/K prefix \u2192 I4.",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L279",
+      "id": "overlay_cylinder_heuristic_rationale_279",
+      "community": 5,
+      "norm_label": "mazda: b/f/p/k prefix \u2192 i4."
+    },
+    {
+      "label": "Subaru: EJ/FA/FB/EE \u2192 BOXER_4; EZ \u2192 BOXER_6.",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L292",
+      "id": "overlay_cylinder_heuristic_rationale_292",
+      "community": 14,
+      "norm_label": "subaru: ej/fa/fb/ee \u2192 boxer_4; ez \u2192 boxer_6."
+    },
+    {
+      "label": "Renault/Dacia: family lookup table.",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L308",
+      "id": "overlay_cylinder_heuristic_rationale_308",
+      "community": 3,
+      "norm_label": "renault/dacia: family lookup table."
+    },
+    {
+      "label": "PSA (Peugeot/Citroen): XU/ES/EW prefix \u2192 I4.",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L320",
+      "id": "overlay_cylinder_heuristic_rationale_320",
+      "community": 18,
+      "norm_label": "psa (peugeot/citroen): xu/es/ew prefix \u2192 i4."
+    },
+    {
+      "label": "Infer cylinder_count, engine_configuration, induction from engine code.      Ret",
+      "file_type": "rationale",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L366",
+      "id": "overlay_cylinder_heuristic_rationale_366",
+      "community": 3,
+      "norm_label": "infer cylinder_count, engine_configuration, induction from engine code.      ret"
+    },
+    {
+      "label": "horizon.py",
+      "file_type": "code",
+      "source_file": "overlay/horizon.py",
+      "source_location": "L1",
+      "id": "overlay_horizon_py",
+      "community": 6,
+      "norm_label": "horizon.py"
+    },
+    {
+      "label": "euro_to_horizon()",
+      "file_type": "code",
+      "source_file": "overlay/horizon.py",
+      "source_location": "L10",
+      "id": "overlay_horizon_euro_to_horizon",
+      "community": 6,
+      "norm_label": "euro_to_horizon()"
+    },
+    {
+      "label": "_year_to_horizon()",
+      "file_type": "code",
+      "source_file": "overlay/horizon.py",
+      "source_location": "L28",
+      "id": "overlay_horizon_year_to_horizon",
+      "community": 6,
+      "norm_label": "_year_to_horizon()"
+    },
+    {
+      "label": "euro_emission_category -> Horizon enum mapping per SEMANTIC_CONTRACT \u00a76.4.",
+      "file_type": "rationale",
+      "source_file": "overlay/horizon.py",
+      "source_location": "L1",
+      "id": "overlay_horizon_rationale_1",
+      "community": 6,
+      "norm_label": "euro_emission_category -> horizon enum mapping per semantic_contract \u00a76.4."
+    },
+    {
+      "label": "Map EuroEmissionCategory to architecture horizon per contract \u00a76.4.      EURO_1,",
+      "file_type": "rationale",
+      "source_file": "overlay/horizon.py",
+      "source_location": "L11",
+      "id": "overlay_horizon_rationale_11",
+      "community": 6,
+      "norm_label": "map euroemissioncategory to architecture horizon per contract \u00a76.4.      euro_1,"
+    },
+    {
+      "label": "Map a calendar year to its architecture horizon.      Used only when euro_emissi",
+      "file_type": "rationale",
+      "source_file": "overlay/horizon.py",
+      "source_location": "L29",
+      "id": "overlay_horizon_rationale_29",
+      "community": 6,
+      "norm_label": "map a calendar year to its architecture horizon.      used only when euro_emissi"
+    },
+    {
+      "label": "stress_rpm.py",
+      "file_type": "code",
+      "source_file": "overlay/stress_rpm.py",
+      "source_location": "L1",
+      "id": "overlay_stress_rpm_py",
+      "community": 11,
+      "norm_label": "stress_rpm.py"
+    },
+    {
+      "label": "stress_idle_rpm()",
+      "file_type": "code",
+      "source_file": "overlay/stress_rpm.py",
+      "source_location": "L19",
+      "id": "overlay_stress_rpm_stress_idle_rpm",
+      "community": 11,
+      "norm_label": "stress_idle_rpm()"
+    },
+    {
+      "label": "engine class -> stress_idle_rpm_target mapping.  Per OBD_VOCABULARY.md \u00a73.2: the",
+      "file_type": "rationale",
+      "source_file": "overlay/stress_rpm.py",
+      "source_location": "L1",
+      "id": "overlay_stress_rpm_rationale_1",
+      "community": 11,
+      "norm_label": "engine class -> stress_idle_rpm_target mapping.  per obd_vocabulary.md \u00a73.2: the"
+    },
+    {
+      "label": "Return the stress-idle RPM target for a given vehicle profile.      Args:",
+      "file_type": "rationale",
+      "source_file": "overlay/stress_rpm.py",
+      "source_location": "L26",
+      "id": "overlay_stress_rpm_rationale_26",
+      "community": 11,
+      "norm_label": "return the stress-idle rpm target for a given vehicle profile.      args:"
+    },
+    {
+      "label": "switches.py",
+      "file_type": "code",
+      "source_file": "overlay/switches.py",
+      "source_location": "L1",
+      "id": "overlay_switches_py",
+      "community": 12,
+      "norm_label": "switches.py"
+    },
+    {
+      "label": "derive_upstream_o2_type()",
+      "file_type": "code",
+      "source_file": "overlay/switches.py",
+      "source_location": "L12",
+      "id": "overlay_switches_derive_upstream_o2_type",
+      "community": 12,
+      "norm_label": "derive_upstream_o2_type()"
+    },
+    {
+      "label": "Derived field computation for upstream O2 sensor type.",
+      "file_type": "rationale",
+      "source_file": "overlay/switches.py",
+      "source_location": "L1",
+      "id": "overlay_switches_rationale_1",
+      "community": 12,
+      "norm_label": "derived field computation for upstream o2 sensor type."
+    },
+    {
+      "label": "Return the upstream O2 sensor type per contract \u00a78 UpstreamO2Type enum.      Arg",
+      "file_type": "rationale",
+      "source_file": "overlay/switches.py",
+      "source_location": "L13",
+      "id": "overlay_switches_rationale_13",
+      "community": 12,
+      "norm_label": "return the upstream o2 sensor type per contract \u00a78 upstreamo2type enum.      arg"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "overlay/__init__.py",
+      "source_location": "L1",
+      "id": "overlay_init_py",
+      "community": 19,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "Overlay rules applied after base decode.",
+      "file_type": "rationale",
+      "source_file": "overlay/__init__.py",
+      "source_location": "L1",
+      "id": "overlay_init_rationale_1",
+      "community": 19,
+      "norm_label": "overlay rules applied after base decode."
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "decoder_py",
+      "target": "vinlab_decoder_vindecodeerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "decoder_py",
+      "target": "vinlab_decoder_chassisnumbererror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L119",
+      "weight": 1.0,
+      "source": "decoder_py",
+      "target": "vinlab_decoder_normalise_euro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "decoder_py",
+      "target": "vinlab_decoder_is_non_petrol",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "decoder_py",
+      "target": "vinlab_decoder_pre_clean_vin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L157",
+      "weight": 1.0,
+      "source": "decoder_py",
+      "target": "vinlab_decoder_robustvindecoder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_1",
+      "target": "decoder_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "vinlab_decoder_vindecodeerror",
+      "target": "valueerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "vinlab_decoder_chassisnumbererror",
+      "target": "vinlab_decoder_vindecodeerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L515",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "vinlab_decoder_vindecodeerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L727",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_resolve_wmi",
+      "target": "vinlab_decoder_vindecodeerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L749",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_resolve_year",
+      "target": "vinlab_decoder_vindecodeerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_40",
+      "target": "vinlab_decoder_vindecodeerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_vindecodeerror",
+      "target": "vinlab_models_airmeteringarchitecture",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_vindecodeerror",
+      "target": "vinlab_models_airmeteringstrategy",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_vindecodeerror",
+      "target": "vinlab_models_emissions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_vindecodeerror",
+      "target": "vinlab_models_euroemissioncategory",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_vindecodeerror",
+      "target": "vinlab_models_fueldeliverytype",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_vindecodeerror",
+      "target": "vinlab_models_inductiontype",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_vindecodeerror",
+      "target": "vinlab_models_vinconfidence",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_vindecodeerror",
+      "target": "vinlab_models_vindna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "overlay/horizon.py",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "overlay_horizon_euro_to_horizon",
+      "target": "valueerror"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L510",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "vinlab_decoder_chassisnumbererror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_44",
+      "target": "vinlab_decoder_chassisnumbererror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_chassisnumbererror",
+      "target": "vinlab_models_airmeteringarchitecture",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_chassisnumbererror",
+      "target": "vinlab_models_airmeteringstrategy",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_chassisnumbererror",
+      "target": "vinlab_models_emissions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_chassisnumbererror",
+      "target": "vinlab_models_euroemissioncategory",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_chassisnumbererror",
+      "target": "vinlab_models_fueldeliverytype",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_chassisnumbererror",
+      "target": "vinlab_models_inductiontype",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_chassisnumbererror",
+      "target": "vinlab_models_vinconfidence",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_chassisnumbererror",
+      "target": "vinlab_models_vindna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L337",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_apply_vref_techmask",
+      "target": "vinlab_decoder_normalise_euro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_120",
+      "target": "vinlab_decoder_normalise_euro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L538",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "vinlab_decoder_is_non_petrol",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L128",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_128",
+      "target": "vinlab_decoder_is_non_petrol",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L508",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "vinlab_decoder_pre_clean_vin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L140",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_140",
+      "target": "vinlab_decoder_pre_clean_vin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L165",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_decoder_robustvindecoder_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L214",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_decoder_robustvindecoder_is_non_nhtsa_wmi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L225",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_decoder_robustvindecoder_engine_attrs_from_csv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L253",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_decoder_robustvindecoder_apply_vref_techmask",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L415",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_decoder_robustvindecoder_cylinder_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L449",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_decoder_robustvindecoder_derive_air_metering",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L482",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_decoder_robustvindecoder_compute_confidence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L495",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L667",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_decoder_robustvindecoder_validate_vin_checksum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L709",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_decoder_robustvindecoder_resolve_wmi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L729",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_decoder_robustvindecoder_resolve_year",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L765",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_decoder_robustvindecoder_resolve_engine",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L158",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_158",
+      "target": "vinlab_decoder_robustvindecoder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_models_airmeteringarchitecture",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_models_airmeteringstrategy",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_models_emissions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_models_euroemissioncategory",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_models_fueldeliverytype",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_models_inductiontype",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_models_vinconfidence",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "decoder.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "source": "vinlab_decoder_robustvindecoder",
+      "target": "vinlab_models_vindna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "__init__.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "vinlab_init_get_decoder",
+      "target": "vinlab_decoder_robustvindecoder"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L679",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_validate_vin_checksum",
+      "target": "vinlab_decoder_robustvindecoder_is_non_nhtsa_wmi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L215",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_215",
+      "target": "vinlab_decoder_robustvindecoder_is_non_nhtsa_wmi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L566",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "vinlab_decoder_robustvindecoder_engine_attrs_from_csv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L228",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_228",
+      "target": "vinlab_decoder_robustvindecoder_engine_attrs_from_csv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L591",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "vinlab_decoder_robustvindecoder_apply_vref_techmask",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L287",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_287",
+      "target": "vinlab_decoder_robustvindecoder_apply_vref_techmask",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "decoder.py",
+      "source_location": "L294",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_apply_vref_techmask",
+      "target": "vinlab_models_emissions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "decoder.py",
+      "source_location": "L321",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_apply_vref_techmask",
+      "target": "vinlab_models_inductiontype"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "decoder.py",
+      "source_location": "L326",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_apply_vref_techmask",
+      "target": "vinlab_models_fueldeliverytype"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "decoder.py",
+      "source_location": "L336",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_apply_vref_techmask",
+      "target": "vinlab_models_euroemissioncategory"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "decoder.py",
+      "source_location": "L342",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_apply_vref_techmask",
+      "target": "overlay_switches_derive_upstream_o2_type"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L603",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "vinlab_decoder_robustvindecoder_cylinder_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L424",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_424",
+      "target": "vinlab_decoder_robustvindecoder_cylinder_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "decoder.py",
+      "source_location": "L439",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_cylinder_fallback",
+      "target": "vinlab_models_inductiontype"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L612",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "vinlab_decoder_robustvindecoder_derive_air_metering",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L456",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_456",
+      "target": "vinlab_decoder_robustvindecoder_derive_air_metering",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "decoder.py",
+      "source_location": "L473",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_derive_air_metering",
+      "target": "overlay_air_metering_classify_air_metering"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "decoder.py",
+      "source_location": "L474",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_derive_air_metering",
+      "target": "vinlab_models_airmeteringarchitecture"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L629",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "vinlab_decoder_robustvindecoder_compute_confidence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L483",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_483",
+      "target": "vinlab_decoder_robustvindecoder_compute_confidence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L518",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "vinlab_decoder_robustvindecoder_validate_vin_checksum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L522",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "vinlab_decoder_robustvindecoder_resolve_wmi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L526",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "vinlab_decoder_robustvindecoder_resolve_year",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L533",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "vinlab_decoder_robustvindecoder_resolve_engine",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L496",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_496",
+      "target": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "decoder.py",
+      "source_location": "L550",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "db_tecdoc_query_lookup_engine_ref"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "decoder.py",
+      "source_location": "L620",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "overlay_horizon_euro_to_horizon"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "decoder.py",
+      "source_location": "L621",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "overlay_stress_rpm_stress_idle_rpm"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "decoder.py",
+      "source_location": "L631",
+      "weight": 1.0,
+      "source": "vinlab_decoder_robustvindecoder_decode_vin_payload",
+      "target": "vinlab_models_vindna"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L668",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_668",
+      "target": "vinlab_decoder_robustvindecoder_validate_vin_checksum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L710",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_710",
+      "target": "vinlab_decoder_robustvindecoder_resolve_wmi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L732",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_732",
+      "target": "vinlab_decoder_robustvindecoder_resolve_year",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "decoder.py",
+      "source_location": "L766",
+      "weight": 1.0,
+      "source": "vinlab_decoder_rationale_766",
+      "target": "vinlab_decoder_robustvindecoder_resolve_engine",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "models_py",
+      "target": "vinlab_models_horizon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "models_py",
+      "target": "vinlab_models_euroemissioncategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "models_py",
+      "target": "vinlab_models_inductiontype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "models_py",
+      "target": "vinlab_models_airmeteringstrategy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "models_py",
+      "target": "vinlab_models_primaryloadcalculation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "source": "models_py",
+      "target": "vinlab_models_fueldeliverytype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "models_py",
+      "target": "vinlab_models_upstreamo2type",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L106",
+      "weight": 1.0,
+      "source": "models_py",
+      "target": "vinlab_models_vinconfidence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "models_py",
+      "target": "vinlab_models_downstreamtrimrole",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "models_py",
+      "target": "vinlab_models_derive_horizon_from_euro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L148",
+      "weight": 1.0,
+      "source": "models_py",
+      "target": "vinlab_models_airmeteringarchitecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L162",
+      "weight": 1.0,
+      "source": "models_py",
+      "target": "vinlab_models_emissions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L180",
+      "weight": 1.0,
+      "source": "models_py",
+      "target": "vinlab_models_vindna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L256",
+      "weight": 1.0,
+      "source": "models_py",
+      "target": "vinlab_models_from_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L317",
+      "weight": 1.0,
+      "source": "models_py",
+      "target": "vinlab_models_coerce_enum_values",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_1",
+      "target": "models_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "vinlab_models_horizon",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L293",
+      "weight": 1.0,
+      "source": "vinlab_models_from_json",
+      "target": "vinlab_models_horizon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_39",
+      "target": "vinlab_models_horizon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "vinlab_models_euroemissioncategory",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "vinlab_models_inductiontype",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "vinlab_models_airmeteringstrategy",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "vinlab_models_primaryloadcalculation",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "source": "vinlab_models_fueldeliverytype",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "vinlab_models_upstreamo2type",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L106",
+      "weight": 1.0,
+      "source": "vinlab_models_vinconfidence",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "vinlab_models_downstreamtrimrole",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L291",
+      "weight": 1.0,
+      "source": "vinlab_models_from_json",
+      "target": "vinlab_models_euroemissioncategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_47",
+      "target": "vinlab_models_euroemissioncategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L271",
+      "weight": 1.0,
+      "source": "vinlab_models_from_json",
+      "target": "vinlab_models_inductiontype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_59",
+      "target": "vinlab_models_inductiontype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L299",
+      "weight": 1.0,
+      "source": "vinlab_models_from_json",
+      "target": "vinlab_models_airmeteringstrategy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_67",
+      "target": "vinlab_models_airmeteringstrategy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "overlay/air_metering.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "source": "overlay_air_metering_airmeteringclassification",
+      "target": "vinlab_models_airmeteringstrategy",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L276",
+      "weight": 1.0,
+      "source": "vinlab_models_from_json",
+      "target": "vinlab_models_primaryloadcalculation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_75",
+      "target": "vinlab_models_primaryloadcalculation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "overlay/air_metering.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "source": "overlay_air_metering_airmeteringclassification",
+      "target": "vinlab_models_primaryloadcalculation",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L272",
+      "weight": 1.0,
+      "source": "vinlab_models_from_json",
+      "target": "vinlab_models_fueldeliverytype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_83",
+      "target": "vinlab_models_fueldeliverytype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L281",
+      "weight": 1.0,
+      "source": "vinlab_models_from_json",
+      "target": "vinlab_models_upstreamo2type",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_91",
+      "target": "vinlab_models_upstreamo2type",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L300",
+      "weight": 1.0,
+      "source": "vinlab_models_from_json",
+      "target": "vinlab_models_vinconfidence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_107",
+      "target": "vinlab_models_vinconfidence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L285",
+      "weight": 1.0,
+      "source": "vinlab_models_from_json",
+      "target": "vinlab_models_downstreamtrimrole",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_115",
+      "target": "vinlab_models_downstreamtrimrole",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L295",
+      "weight": 1.0,
+      "source": "vinlab_models_from_json",
+      "target": "vinlab_models_derive_horizon_from_euro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L128",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_128",
+      "target": "vinlab_models_derive_horizon_from_euro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L273",
+      "weight": 1.0,
+      "source": "vinlab_models_from_json",
+      "target": "vinlab_models_airmeteringarchitecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L149",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_149",
+      "target": "vinlab_models_airmeteringarchitecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L280",
+      "weight": 1.0,
+      "source": "vinlab_models_from_json",
+      "target": "vinlab_models_emissions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L163",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_163",
+      "target": "vinlab_models_emissions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L242",
+      "weight": 1.0,
+      "source": "vinlab_models_vindna",
+      "target": "vinlab_models_vindna_to_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L251",
+      "weight": 1.0,
+      "source": "vinlab_models_vindna",
+      "target": "vinlab_models_vindna_to_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L181",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_181",
+      "target": "vinlab_models_vindna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L249",
+      "weight": 1.0,
+      "source": "vinlab_models_vindna_to_json_payload",
+      "target": "vinlab_models_coerce_enum_values",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L253",
+      "weight": 1.0,
+      "source": "vinlab_models_vindna_to_json",
+      "target": "vinlab_models_vindna_to_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L243",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_243",
+      "target": "vinlab_models_vindna_to_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L318",
+      "weight": 1.0,
+      "source": "vinlab_models_rationale_318",
+      "target": "vinlab_models_coerce_enum_values",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "init_py",
+      "target": "vinlab_init_get_decoder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "init_py",
+      "target": "vinlab_init_decode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "vinlab_init_rationale_1",
+      "target": "init_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "vinlab_init_decode",
+      "target": "vinlab_init_get_decoder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "vinlab_init_rationale_28",
+      "target": "vinlab_init_get_decoder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "vinlab_init_rationale_33",
+      "target": "vinlab_init_decode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "db/tecdoc_query.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "db_tecdoc_query_py",
+      "target": "db_tecdoc_query_lookup_engine_ref",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "db/tecdoc_query.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "db_tecdoc_query_py",
+      "target": "db_tecdoc_query_open_vref_readonly",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "db/tecdoc_query.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "db_tecdoc_query_rationale_1",
+      "target": "db_tecdoc_query_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "db/tecdoc_query.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "db_tecdoc_query_rationale_17",
+      "target": "db_tecdoc_query_lookup_engine_ref",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "db/tecdoc_query.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "db_tecdoc_query_rationale_39",
+      "target": "db_tecdoc_query_open_vref_readonly",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "db/__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "db_init_rationale_1",
+      "target": "db_init_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/air_metering.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "overlay_air_metering_py",
+      "target": "overlay_air_metering_airmeteringclassification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/air_metering.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "overlay_air_metering_py",
+      "target": "overlay_air_metering_classify_air_metering",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/air_metering.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "overlay_air_metering_rationale_1",
+      "target": "overlay_air_metering_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/air_metering.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "overlay_air_metering_classify_air_metering",
+      "target": "overlay_air_metering_airmeteringclassification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/air_metering.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "overlay_air_metering_rationale_18",
+      "target": "overlay_air_metering_airmeteringclassification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/air_metering.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "overlay_air_metering_rationale_30",
+      "target": "overlay_air_metering_classify_air_metering",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_is_turbo_bmw",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_induction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_make_disp_hint_with_induction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_infer_bmw",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L144",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_infer_hyundai_kia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L154",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_infer_honda",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L171",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_infer_toyota",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L185",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_infer_volvo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L220",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_infer_mercedes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L231",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_infer_vw_audi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L251",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_infer_nissan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L265",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_infer_mitsubishi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L278",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_infer_mazda",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L291",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_infer_subaru",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L307",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_infer_renault",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L319",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_infer_psa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L365",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_py",
+      "target": "overlay_cylinder_heuristic_infer_cylinder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_1",
+      "target": "overlay_cylinder_heuristic_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_displacement_fallback",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L98",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_make_disp_hint_with_induction",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_bmw",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_hyundai_kia",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L158",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_honda",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L177",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_toyota",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L198",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_volvo",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L227",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_mercedes",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L240",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_vw_audi",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L257",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_nissan",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L271",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_mitsubishi",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L282",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_mazda",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L297",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_subaru",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L313",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_renault",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L323",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_psa",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_27",
+      "target": "overlay_cylinder_heuristic_cylinderhint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L95",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_make_disp_hint_with_induction",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L141",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_bmw",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L151",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_hyundai_kia",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L162",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_honda",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L182",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_toyota",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L199",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_volvo",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L228",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_mercedes",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L237",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_vw_audi",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L262",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_nissan",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L275",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_mitsubishi",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L283",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_mazda",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L300",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_subaru",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L316",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_renault",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L328",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_psa",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L384",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_cylinder",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_49",
+      "target": "overlay_cylinder_heuristic_displacement_fallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_induction",
+      "target": "overlay_cylinder_heuristic_is_turbo_bmw",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_69",
+      "target": "overlay_cylinder_heuristic_is_turbo_bmw",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_make_disp_hint_with_induction",
+      "target": "overlay_cylinder_heuristic_induction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_bmw",
+      "target": "overlay_cylinder_heuristic_induction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L242",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_vw_audi",
+      "target": "overlay_cylinder_heuristic_induction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L78",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_78",
+      "target": "overlay_cylinder_heuristic_induction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L130",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_infer_bmw",
+      "target": "overlay_cylinder_heuristic_make_disp_hint_with_induction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_94",
+      "target": "overlay_cylinder_heuristic_make_disp_hint_with_induction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_110",
+      "target": "overlay_cylinder_heuristic_infer_bmw",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L145",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_145",
+      "target": "overlay_cylinder_heuristic_infer_hyundai_kia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L155",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_155",
+      "target": "overlay_cylinder_heuristic_infer_honda",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L172",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_172",
+      "target": "overlay_cylinder_heuristic_infer_toyota",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L186",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_186",
+      "target": "overlay_cylinder_heuristic_infer_volvo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L221",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_221",
+      "target": "overlay_cylinder_heuristic_infer_mercedes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L232",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_232",
+      "target": "overlay_cylinder_heuristic_infer_vw_audi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L252",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_252",
+      "target": "overlay_cylinder_heuristic_infer_nissan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L266",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_266",
+      "target": "overlay_cylinder_heuristic_infer_mitsubishi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L279",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_279",
+      "target": "overlay_cylinder_heuristic_infer_mazda",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L292",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_292",
+      "target": "overlay_cylinder_heuristic_infer_subaru",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L308",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_308",
+      "target": "overlay_cylinder_heuristic_infer_renault",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L320",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_320",
+      "target": "overlay_cylinder_heuristic_infer_psa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/cylinder_heuristic.py",
+      "source_location": "L366",
+      "weight": 1.0,
+      "source": "overlay_cylinder_heuristic_rationale_366",
+      "target": "overlay_cylinder_heuristic_infer_cylinder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/horizon.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "overlay_horizon_py",
+      "target": "overlay_horizon_euro_to_horizon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/horizon.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "overlay_horizon_py",
+      "target": "overlay_horizon_year_to_horizon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/horizon.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "overlay_horizon_rationale_1",
+      "target": "overlay_horizon_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/horizon.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "overlay_horizon_rationale_11",
+      "target": "overlay_horizon_euro_to_horizon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/horizon.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "overlay_horizon_rationale_29",
+      "target": "overlay_horizon_year_to_horizon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/stress_rpm.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "overlay_stress_rpm_py",
+      "target": "overlay_stress_rpm_stress_idle_rpm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/stress_rpm.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "overlay_stress_rpm_rationale_1",
+      "target": "overlay_stress_rpm_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/stress_rpm.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "overlay_stress_rpm_rationale_26",
+      "target": "overlay_stress_rpm_stress_idle_rpm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/switches.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "overlay_switches_py",
+      "target": "overlay_switches_derive_upstream_o2_type",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/switches.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "overlay_switches_rationale_1",
+      "target": "overlay_switches_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/switches.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "overlay_switches_rationale_13",
+      "target": "overlay_switches_derive_upstream_o2_type",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "overlay/__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "overlay_init_rationale_1",
+      "target": "overlay_init_py",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "76ea4405cb5f7375ffbbdc1e6fdd59c54358b3b1"
+}

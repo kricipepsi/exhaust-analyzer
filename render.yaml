@@ -1,0 +1,16 @@
+# Render deployment configuration — 4DLabV2 (replaces the V2 exhaust-analyzer app).
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: 4d-diagnostic-engine-v2
+    env: python
+    region: oregon
+    plan: free
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.14.3"
+      - key: STREAMLIT_SERVER_HEADLESS
+        value: "true"

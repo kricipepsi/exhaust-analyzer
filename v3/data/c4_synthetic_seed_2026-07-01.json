@@ -1,0 +1,370 @@
+{
+  "task": "T-V3-P4-C4-SYNTH",
+  "generated": "2026-07-01",
+  "mode": "provisional-synthetic-seed (side file; live corpus untouched)",
+  "policy": "4DLab_CLAUDE.md \u00a7Provisional synthetic signals",
+  "no_backsolve": "generator keys only on corpus expected_fault_family (oracle) + value4.1 band table; does not read exhaust_leak.json / lean_condition.json / sensor_fault.json thresholds or any case rank/prediction",
+  "research_limits_cluster4": {
+    "delta_stft_leak_limit_le": -8.0,
+    "co2_idle_dilution_limit_lt": 12.0,
+    "o2_elevation_limit_gt": 2.5,
+    "downstream_o2_bias_limit_gt": 0.7,
+    "propane_trim_shift_responsive_le": -20.0
+  },
+  "band_table": {
+    "exhaust_leak": {
+      "band_id": "C4-LEAK",
+      "c4_separable": true,
+      "signature": "Exhaust leak: STFT falls idle->2500 + diluted CO2 at idle + elevated tailpipe O2",
+      "trim_bands": {
+        "stft_idle_pct": [
+          6.0,
+          12.0,
+          1.73
+        ],
+        "ltft_idle_pct": [
+          8.0,
+          16.0,
+          2.31
+        ],
+        "delta_stft": [
+          -15.0,
+          -5.0,
+          2.89
+        ],
+        "ltft_2500_pct": [
+          1.0,
+          6.0,
+          1.44
+        ]
+      },
+      "c4_distinct_bands": {
+        "co2_idle_pct": [
+          8.0,
+          13.0,
+          1.44
+        ],
+        "tailpipe_o2_elevation_pct": [
+          1.0,
+          5.0,
+          1.15
+        ],
+        "downstream_o2_v": [
+          0.05,
+          0.4,
+          0.1
+        ],
+        "propane_trim_shift_pct": [
+          -30.0,
+          -15.0,
+          4.33
+        ]
+      }
+    },
+    "lean_condition": {
+      "band_id": "C4-LEAN",
+      "c4_separable": true,
+      "signature": "True lean: trims persist positive idle->2500 + normal CO2 + normal O2",
+      "trim_bands": {
+        "stft_idle_pct": [
+          3.0,
+          8.0,
+          1.44
+        ],
+        "ltft_idle_pct": [
+          9.0,
+          18.0,
+          2.6
+        ],
+        "delta_stft": [
+          -5.0,
+          0.0,
+          1.44
+        ],
+        "ltft_2500_pct": [
+          1.0,
+          6.0,
+          1.44
+        ]
+      },
+      "c4_distinct_bands": {
+        "co2_idle_pct": [
+          14.0,
+          15.5,
+          0.43
+        ],
+        "tailpipe_o2_elevation_pct": [
+          0.1,
+          0.8,
+          0.2
+        ],
+        "downstream_o2_v": [
+          0.05,
+          0.4,
+          0.1
+        ],
+        "propane_trim_shift_pct": [
+          -30.0,
+          -15.0,
+          4.33
+        ]
+      }
+    },
+    "sensor_fault": {
+      "band_id": "C4-BIAS",
+      "c4_separable": true,
+      "signature": "Biased upstream O2: trims persist positive + normal CO2/O2 + high downstream O2 V + poor propane shift",
+      "trim_bands": {
+        "stft_idle_pct": [
+          3.0,
+          8.0,
+          1.44
+        ],
+        "ltft_idle_pct": [
+          9.0,
+          18.0,
+          2.6
+        ],
+        "delta_stft": [
+          -5.0,
+          0.0,
+          1.44
+        ],
+        "ltft_2500_pct": [
+          1.0,
+          6.0,
+          1.44
+        ]
+      },
+      "c4_distinct_bands": {
+        "co2_idle_pct": [
+          14.0,
+          15.5,
+          0.43
+        ],
+        "tailpipe_o2_elevation_pct": [
+          0.1,
+          0.8,
+          0.2
+        ],
+        "downstream_o2_v": [
+          0.6,
+          0.95,
+          0.1
+        ],
+        "propane_trim_shift_pct": [
+          -14.0,
+          -2.0,
+          3.46
+        ]
+      }
+    }
+  },
+  "citations": {
+    "delta_stft_leak": "Two-point \u0394STFT is an anecdotal/textbook diagnostic heuristic to separate exhaust leaks from true lean or sensor bias. A drop of >=8 percentage points indicates a leak. value4.1.md",
+    "co2_idle_dilution": "Measured tailpipe CO2 drops below 12% under exhaust system air dilution. Textbook / 5-gas practice (Bridge Analyzers). value4.1.md",
+    "o2_elevation": "Tailpipe O2 is elevated by 1.0% to 5.0% due to air leakage. Manufacturer-typical / 5-gas standard. value4.1.md",
+    "downstream_o2_bias": "Steady high downstream O2 voltage (>0.7 V) in the presence of positive fuel trims suggests an upstream O2 sensor bias. OEM diagnostic (Chrysler service manuals). value4.1.md",
+    "propane_trim_shift": "Propane enrichment test: if trims drop by >=20% during controlled propane enrichment, the O2 sensor is responsive. Sluggish or biased sensors fail to show this response. Industry practice (ALLDATA). value4.1.md"
+  },
+  "cases": {
+    "CASE-020": {
+      "case_id": "CASE-020",
+      "oracle_fault": "lean_condition",
+      "band_id": "C4-LEAN",
+      "c4_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": 18.6,
+      "total_2500_trim_pct": 3.2,
+      "delta_stft_idle_2500_pct": -3.0,
+      "stft_idle_pct": 4.8,
+      "ltft_idle_pct": 13.8,
+      "stft_2500_pct": 1.8,
+      "ltft_2500_pct": 1.4,
+      "co2_idle_pct": 14.0,
+      "tailpipe_o2_elevation_pct": 0.3,
+      "downstream_o2_v": 0.1,
+      "propane_trim_shift_pct": -26.9
+    },
+    "CASE-022": {
+      "case_id": "CASE-022",
+      "oracle_fault": "sensor_fault",
+      "band_id": "C4-BIAS",
+      "c4_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": 20.9,
+      "total_2500_trim_pct": 2.3,
+      "delta_stft_idle_2500_pct": -3.4,
+      "stft_idle_pct": 3.8,
+      "ltft_idle_pct": 17.1,
+      "stft_2500_pct": 0.4,
+      "ltft_2500_pct": 1.9,
+      "co2_idle_pct": 14.4,
+      "tailpipe_o2_elevation_pct": 0.6,
+      "downstream_o2_v": 0.72,
+      "propane_trim_shift_pct": -3.2
+    },
+    "CSV-129": {
+      "case_id": "CSV-129",
+      "oracle_fault": "exhaust_leak",
+      "band_id": "C4-LEAK",
+      "c4_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": 25.4,
+      "total_2500_trim_pct": 6.3,
+      "delta_stft_idle_2500_pct": -8.5,
+      "stft_idle_pct": 9.7,
+      "ltft_idle_pct": 15.7,
+      "stft_2500_pct": 1.2,
+      "ltft_2500_pct": 5.1,
+      "co2_idle_pct": 8.6,
+      "tailpipe_o2_elevation_pct": 3.4,
+      "downstream_o2_v": 0.1,
+      "propane_trim_shift_pct": -22.2
+    },
+    "CSV-130": {
+      "case_id": "CSV-130",
+      "oracle_fault": "exhaust_leak",
+      "band_id": "C4-LEAK",
+      "c4_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": 16.3,
+      "total_2500_trim_pct": -0.4,
+      "delta_stft_idle_2500_pct": -11.6,
+      "stft_idle_pct": 6.4,
+      "ltft_idle_pct": 9.9,
+      "stft_2500_pct": -5.2,
+      "ltft_2500_pct": 4.8,
+      "co2_idle_pct": 10.2,
+      "tailpipe_o2_elevation_pct": 3.8,
+      "downstream_o2_v": 0.14,
+      "propane_trim_shift_pct": -16.0
+    },
+    "EXT-211": {
+      "case_id": "EXT-211",
+      "oracle_fault": "lean_condition",
+      "band_id": "C4-LEAN",
+      "c4_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": 14.7,
+      "total_2500_trim_pct": 9.0,
+      "delta_stft_idle_2500_pct": -2.5,
+      "stft_idle_pct": 5.5,
+      "ltft_idle_pct": 9.2,
+      "stft_2500_pct": 3.0,
+      "ltft_2500_pct": 6.0,
+      "co2_idle_pct": 14.2,
+      "tailpipe_o2_elevation_pct": 0.1,
+      "downstream_o2_v": 0.38,
+      "propane_trim_shift_pct": -25.7
+    },
+    "EXT-212": {
+      "case_id": "EXT-212",
+      "oracle_fault": "lean_condition",
+      "band_id": "C4-LEAN",
+      "c4_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": 17.4,
+      "total_2500_trim_pct": 7.5,
+      "delta_stft_idle_2500_pct": -4.7,
+      "stft_idle_pct": 6.3,
+      "ltft_idle_pct": 11.1,
+      "stft_2500_pct": 1.6,
+      "ltft_2500_pct": 5.9,
+      "co2_idle_pct": 15.4,
+      "tailpipe_o2_elevation_pct": 0.6,
+      "downstream_o2_v": 0.18,
+      "propane_trim_shift_pct": -25.1
+    },
+    "EXT-238": {
+      "case_id": "EXT-238",
+      "oracle_fault": "exhaust_leak",
+      "band_id": "C4-LEAK",
+      "c4_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": 21.9,
+      "total_2500_trim_pct": 6.9,
+      "delta_stft_idle_2500_pct": -7.4,
+      "stft_idle_pct": 11.5,
+      "ltft_idle_pct": 10.4,
+      "stft_2500_pct": 4.1,
+      "ltft_2500_pct": 2.8,
+      "co2_idle_pct": 11.5,
+      "tailpipe_o2_elevation_pct": 1.4,
+      "downstream_o2_v": 0.26,
+      "propane_trim_shift_pct": -23.1
+    },
+    "EXT-239": {
+      "case_id": "EXT-239",
+      "oracle_fault": "exhaust_leak",
+      "band_id": "C4-LEAK",
+      "c4_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": 22.8,
+      "total_2500_trim_pct": 4.5,
+      "delta_stft_idle_2500_pct": -7.1,
+      "stft_idle_pct": 8.2,
+      "ltft_idle_pct": 14.6,
+      "stft_2500_pct": 1.1,
+      "ltft_2500_pct": 3.4,
+      "co2_idle_pct": 9.3,
+      "tailpipe_o2_elevation_pct": 2.7,
+      "downstream_o2_v": 0.09,
+      "propane_trim_shift_pct": -18.2
+    },
+    "PDF-HI-007": {
+      "case_id": "PDF-HI-007",
+      "oracle_fault": "exhaust_leak",
+      "band_id": "C4-LEAK",
+      "c4_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": 23.3,
+      "total_2500_trim_pct": -1.3,
+      "delta_stft_idle_2500_pct": -14.5,
+      "stft_idle_pct": 8.8,
+      "ltft_idle_pct": 14.5,
+      "stft_2500_pct": -5.7,
+      "ltft_2500_pct": 4.4,
+      "co2_idle_pct": 12.9,
+      "tailpipe_o2_elevation_pct": 1.1,
+      "downstream_o2_v": 0.2,
+      "propane_trim_shift_pct": -19.4
+    },
+    "TC-048": {
+      "case_id": "TC-048",
+      "oracle_fault": "exhaust_leak",
+      "band_id": "C4-LEAK",
+      "c4_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": 24.3,
+      "total_2500_trim_pct": 5.5,
+      "delta_stft_idle_2500_pct": -5.9,
+      "stft_idle_pct": 9.0,
+      "ltft_idle_pct": 15.3,
+      "stft_2500_pct": 3.1,
+      "ltft_2500_pct": 2.4,
+      "co2_idle_pct": 12.3,
+      "tailpipe_o2_elevation_pct": 4.7,
+      "downstream_o2_v": 0.3,
+      "propane_trim_shift_pct": -16.2
+    },
+    "YAML-CSV95": {
+      "case_id": "YAML-CSV95",
+      "oracle_fault": "exhaust_leak",
+      "band_id": "C4-LEAK",
+      "c4_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": 22.7,
+      "total_2500_trim_pct": 1.5,
+      "delta_stft_idle_2500_pct": -10.1,
+      "stft_idle_pct": 9.3,
+      "ltft_idle_pct": 13.4,
+      "stft_2500_pct": -0.8,
+      "ltft_2500_pct": 2.3,
+      "co2_idle_pct": 12.4,
+      "tailpipe_o2_elevation_pct": 3.6,
+      "downstream_o2_v": 0.35,
+      "propane_trim_shift_pct": -15.8
+    }
+  }
+}

@@ -1,0 +1,12 @@
+case_id,oracle_fault_family,oracle_fault_code,oracle_fault_name,band_id,c9_separable,stay_abstained,synthetic,readiness_supported_complete_bool,stored_dtc_count,pending_dtc_count,permanent_dtc_count,mode06_min_margin_pct,warmup_cycles_since_clear,miles_since_clear,stft_idle_pct,ltft_idle_pct,stft_2500_pct,ltft_2500_pct,gas_delta_hc_ppm,gas_delta_co_pct,gas_delta_co2_pct,gas_delta_o2_pct
+CSV-127,no_fault,OPTIMAL_HEALTH,no_fault,C9-HEALTHY,True,False,True,True,0,0,0,93.2,26,636,0.4,-5.8,-0.8,-2.0,9,0.066,0.34,0.31
+CSV-128,no_fault,OPTIMAL_HEALTH,no_fault,C9-HEALTHY,True,False,True,True,0,0,0,65.4,8,660,-0.8,-0.3,-3.5,-0.5,5,-0.081,0.38,-0.2
+EXT-216,no_fault,OPTIMAL_HEALTH,no_fault,C9-HEALTHY,True,False,True,True,0,0,0,58.1,25,568,-0.7,3.9,-1.0,-0.4,6,-0.138,0.8,-0.41
+PDF-HI-005,no_fault,OPTIMAL_HEALTH,no_fault,C9-HEALTHY,True,False,True,True,0,0,0,76.1,21,722,-2.8,1.9,0.5,-5.0,9,-0.112,0.57,-0.45
+PDF-HI-010,no_fault,OPTIMAL_HEALTH,no_fault,C9-HEALTHY,True,False,True,True,0,0,0,67.4,12,234,3.9,-4.2,-0.1,4.4,-5,0.018,0.63,0.2
+YAML-PDF_HI_005,no_fault,OPTIMAL_HEALTH,no_fault,C9-HEALTHY,True,False,True,True,0,0,0,82.6,9,609,3.9,0.1,-2.0,1.8,8,-0.029,0.31,0.23
+YAML-PDF_HI_010,no_fault,OPTIMAL_HEALTH,no_fault,C9-HEALTHY,True,False,True,True,0,0,0,84.7,11,681,-3.5,-5.9,-3.6,-5.4,-2,0.08,0.54,-0.05
+YAML-TC1,no_fault,OPTIMAL_HEALTH,no_fault,C9-HEALTHY,True,False,True,True,0,0,0,29.0,25,714,3.8,1.6,-1.4,4.9,-3,-0.032,0.63,0.18
+case_014,no_fault,OPTIMAL_HEALTH,no_fault,C9-HEALTHY,True,False,True,True,0,0,0,72.9,36,696,-2.8,0.7,3.4,-4.4,-9,-0.051,0.44,-0.28
+era2_016,misfire,ERR-MF-008,misfire_lookalike,C9-MISFIRE-LOOKALIKE,False,True,True,True,0,1,0,1.9,28,282,8.5,11.5,3.5,6.1,40,0.495,-0.81,0.77
+era3_014,no_fault,OPTIMAL_HEALTH,no_fault,C9-HEALTHY,True,False,True,True,0,0,0,91.8,13,737,-1.5,-6.0,0.2,-5.7,2,0.144,0.72,-0.18

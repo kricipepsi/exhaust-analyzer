@@ -1,0 +1,29 @@
+{
+  "scan_root": "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\gaslab",
+  "total_files": 12,
+  "total_words": 0,
+  "files": {
+    "code": [
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\gaslab\\__init__.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\gaslab\\audits.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\gaslab\\brettschneider.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\gaslab\\contracts.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\gaslab\\dna_view.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\gaslab\\family_map.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\gaslab\\ontology_loader.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\gaslab\\process.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\gaslab\\ranking.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\gaslab\\resolution.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\gaslab\\rule_engine.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\gaslab\\validity_gates.py"
+    ],
+    "document": [],
+    "paper": [],
+    "image": [],
+    "video": []
+  },
+  "skipped_sensitive": [],
+  "ast_supplements": [
+    "python_enum_member"
+  ]
+}

@@ -1,0 +1,451 @@
+{
+  "version": "2.0",
+  "fault_family": "sensor_fault",
+  "rules": [
+    {
+      "rule_id": "SF-001",
+      "fault_family": "sensor_fault",
+      "description": "Upstream O2 sensor slow/lazy response \u2014 biased high: gas analyser confirms stoichiometric chemistry (normal operation) while OBD lambda perception is biased high (sensor reads falsely lean, ECU over-fuels). Sensor still switches but cross-counts are sluggish. No circuit DTC \u2014 the sensor works, just too slowly. v1 ERR-SF-001 perception_flag path, v2 evidence-tier form",
+      "chemistry_evidence": [
+        {
+          "state": "O2_SENSOR_BIASED_HIGH",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "gt",
+          "value": 0.03,
+          "tier": "DEFINITIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "o2_voltage",
+          "operator": "ge",
+          "value": 0.55,
+          "tier": "DEFINITIVE",
+          "units": "V",
+          "wiki_ref": "OBD_VOCABULARY \u00a712.1"
+        }
+      ],
+      "base_weight": 0.85,
+      "competition_group": "sensor_fault",
+      "perception_flag": "O2_SENSOR_BIASED_HIGH",
+      "precondition": "o2_voltage sourced from freeze_frame o2_voltage_b1s1 (SAE J1979 PID 0114); not in OBDLivePayload",
+      "passes_cases": [
+        "CSV-025",
+        "TC-046",
+        "YAML-CSV25",
+        "EXT-229",
+        "CASE-014"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a712.1"
+      ]
+    },
+    {
+      "rule_id": "SF-002",
+      "fault_family": "sensor_fault",
+      "description": "Upstream O2 sensor slow/lazy response \u2014 biased low: gas analyser confirms stoichiometric chemistry (normal operation) while OBD lambda perception is biased low (sensor reads falsely rich, ECU under-fuels). Sensor still switches but cross-counts are sluggish. v1 ERR-SF-001 second perception-flag variant, v2 evidence-tier form",
+      "chemistry_evidence": [
+        {
+          "state": "O2_SENSOR_BIASED_LOW",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "lt",
+          "value": -0.03,
+          "tier": "DEFINITIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "o2_voltage",
+          "operator": "le",
+          "value": 0.35,
+          "tier": "DEFINITIVE",
+          "units": "V",
+          "wiki_ref": "OBD_VOCABULARY \u00a712.1"
+        }
+      ],
+      "base_weight": 0.85,
+      "competition_group": "sensor_fault",
+      "perception_flag": "O2_SENSOR_BIASED_LOW",
+      "precondition": "o2_voltage sourced from freeze_frame o2_voltage_b1s1 (SAE J1979 PID 0114); not in OBDLivePayload",
+      "passes_cases": [
+        "YAML-TC46",
+        "EXT-230",
+        "EXP-N015"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a712.1"
+      ]
+    },
+    {
+      "rule_id": "SF-003",
+      "fault_family": "sensor_fault",
+      "description": "Upstream O2 sensor fixed voltage / dead element: sensor output is pegged with no switching. Circuit DTC (P0131/P0132/P0134) confirms electrical failure. Stuck lean (pegged < 0.20 V) or stuck rich (pegged > 0.80 V) \u2014 either condition gates the rule. v1 ERR-SF-002, v2 evidence-tier form",
+      "chemistry_evidence": [
+        {
+          "state": "NORMAL_OPERATION",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "gt",
+          "value": 0.05,
+          "tier": "SUGGESTIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "lt",
+          "value": -0.05,
+          "tier": "SUGGESTIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "o2_voltage",
+          "operator": "ge",
+          "value": 0.8,
+          "tier": "GATING",
+          "units": "V",
+          "wiki_ref": "OBD_VOCABULARY \u00a712.1"
+        },
+        {
+          "pid": "o2_voltage",
+          "operator": "le",
+          "value": 0.2,
+          "tier": "GATING",
+          "units": "V",
+          "wiki_ref": "OBD_VOCABULARY \u00a712.1"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0131",
+            "P0132",
+            "P0134"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.82,
+      "competition_group": "sensor_fault",
+      "confidence_ceiling": 0.9,
+      "precondition": "o2_voltage sourced from freeze_frame o2_voltage_b1s1 (SAE J1979 PID 0114); not in OBDLivePayload",
+      "passes_cases": [
+        "case_025",
+        "case_026",
+        "case_039"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a712.1",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "SF-004",
+      "fault_family": "sensor_fault",
+      "description": "MAF sensor fault \u2014 reading error (over-report or under-read): faulty MAF sensor element corrupts load calculation, causing incorrect fuel delivery and trim drift. No chemistry gate \u2014 the primary signal is OBD MAF reading deviation from expected idle baseline (~1 g/s/L, OBD_VOCABULARY \u00a716.2). v1 orphan ERR-SF-003 reactivated as OBD-primary rule",
+      "chemistry_evidence": [],
+      "obd_evidence": [
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "gt",
+          "value": 0.03,
+          "tier": "SUGGESTIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "lt",
+          "value": -0.03,
+          "tier": "SUGGESTIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "maf",
+          "operator": "ge",
+          "value": 3.5,
+          "tier": "SUGGESTIVE",
+          "units": "g/s",
+          "wiki_ref": "OBD_VOCABULARY \u00a716.2"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0172"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.72,
+      "competition_group": "sensor_fault",
+      "confidence_ceiling": 0.8,
+      "passes_cases": [
+        "EXT-219"
+      ],
+      "source_wiki_refs": [
+        "OBD_VOCABULARY \u00a716.2",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "SF-005",
+      "fault_family": "sensor_fault",
+      "description": "MAP sensor calibration drift: MAP reads incorrect absolute pressure, causing ECU to calculate wrong load, leading to timing and fuel adaptation. TIMING_RETARDED chemistry may appear as a secondary symptom when the ECU retards timing in response to incorrect load. v1 orphan ERR-SF-004 reactivated",
+      "chemistry_evidence": [
+        {
+          "state": "TIMING_RETARDED",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "gt",
+          "value": 0.03,
+          "tier": "SUGGESTIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "lt",
+          "value": -0.03,
+          "tier": "SUGGESTIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "map_kpa",
+          "operator": "lt",
+          "value": 35.0,
+          "tier": "SUGGESTIVE",
+          "units": "kPa",
+          "wiki_ref": "OBD_VOCABULARY \u00a73"
+        }
+      ],
+      "base_weight": 0.65,
+      "competition_group": "sensor_fault",
+      "confidence_ceiling": 0.8,
+      "passes_cases": [
+        "EXP-N006",
+        "case_041",
+        "EXP-N020"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a73"
+      ]
+    },
+    {
+      "rule_id": "SF-006",
+      "fault_family": "sensor_fault",
+      "description": "ECT sensor stuck cold / downstream O2 sensor contaminated: coolant temp sensor reads stuck cold causing permanent enrichment, or downstream O2 sensor signal is contaminated giving false post-cat readings. OBD-primary rule \u2014 chemistry is a secondary signal. v1 orphans ERR-SF-005 and ERR-SF-006 merged into one OBD-driven rule (both share the stuck/wrong sensor reading pattern)",
+      "chemistry_evidence": [
+        {
+          "state": "TIMING_RETARDED",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "gt",
+          "value": 0.03,
+          "tier": "SUGGESTIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "lt",
+          "value": -0.03,
+          "tier": "SUGGESTIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "ect_c",
+          "operator": "le",
+          "value": 60.0,
+          "tier": "SUGGESTIVE",
+          "units": "degC",
+          "wiki_ref": "OBD_VOCABULARY \u00a711.4"
+        },
+        {
+          "pid": "o2_downstream",
+          "operator": "ge",
+          "value": 0.6,
+          "tier": "SUGGESTIVE",
+          "units": "V",
+          "wiki_ref": "OBD_VOCABULARY \u00a712.1"
+        }
+      ],
+      "base_weight": 0.6,
+      "competition_group": "sensor_fault",
+      "confidence_ceiling": 0.75,
+      "passes_cases": [
+        "case_004"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a711.4",
+        "OBD_VOCABULARY \u00a712.1"
+      ]
+    },
+    {
+      "rule_id": "SF-007",
+      "fault_family": "sensor_fault",
+      "description": "O2 sensor heater circuit fault: heater resistance out of spec (open or shorted) prevents sensor from reaching operating temperature, causing cold-sensor sluggishness or no activity. P0053 is the heater circuit DTC for Bank 1 Sensor 1. No chemistry gate \u2014 heater faults are detected via DTC and OBD voltage evidence, not gas chemistry. Distinct from SF-001/SF-002 (bias drift) per OBD_VOCABULARY \u00a712.4 O2FailureMode taxonomy",
+      "chemistry_evidence": [],
+      "obd_evidence": [
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "gt",
+          "value": 0.03,
+          "tier": "SUGGESTIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "lt",
+          "value": -0.03,
+          "tier": "SUGGESTIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "o2_voltage",
+          "operator": "le",
+          "value": 0.2,
+          "tier": "GATING",
+          "units": "V",
+          "wiki_ref": "OBD_VOCABULARY \u00a712.1"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0053"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.65,
+      "competition_group": "sensor_fault",
+      "confidence_ceiling": 0.8,
+      "precondition": "o2_voltage sourced from freeze_frame o2_voltage_b1s1 (SAE J1979 PID 0114); not in OBDLivePayload",
+      "passes_cases": [
+        "EXP-N028",
+        "case_009",
+        "case_037"
+      ],
+      "source_wiki_refs": [
+        "OBD_VOCABULARY \u00a712.1",
+        "OBD_VOCABULARY \u00a712.4",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "SF-008",
+      "fault_family": "sensor_fault",
+      "description": "Sensor fault \u2014 perception contradiction with trim response: OBD lambda diverges from GASLab ground truth (perception-contradiction detector confirmed), and ECU fuel trims are actively compensating. No chemistry or O2-voltage gate \u2014 catches sensor fault cases where freeze-frame o2_voltage is absent and GASLab cannot classify the mixture. v2-only catch-all for the no-evidence sensor_fault gap identified in FT-8",
+      "chemistry_evidence": [],
+      "obd_evidence": [
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "gt",
+          "value": 0.03,
+          "tier": "DEFINITIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "lt",
+          "value": -0.03,
+          "tier": "DEFINITIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "shrtft1",
+          "operator": "gt",
+          "value": 5.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        },
+        {
+          "pid": "shrtft1",
+          "operator": "lt",
+          "value": -5.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        },
+        {
+          "pid": "longft1",
+          "operator": "gt",
+          "value": 3.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        },
+        {
+          "pid": "longft1",
+          "operator": "lt",
+          "value": -3.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        }
+      ],
+      "base_weight": 0.76,
+      "competition_group": "sensor_fault",
+      "confidence_ceiling": 0.88,
+      "passes_cases": [
+        "CSV-025",
+        "YAML-CSV25",
+        "TC-046",
+        "EXT-230",
+        "case_046"
+      ],
+      "source_wiki_refs": [
+        "T-FX-6 \u00a7PerceptionContradictionResult",
+        "OBD_VOCABULARY \u00a710.3"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+# OBDLab vault map — architect-authored. Maps wiki notes to graph-node frontmatter.
+#
+# Signal/noise: only notes with a NAMEABLE downstream consumer are framed (given
+# frontmatter). Wiki files not listed under `frame:` are copied as plain markdown
+# (browsable, not graph nodes). `consumers` here are authored, never auto-derived.
+#
+# Paths are vault-relative (labs/<lab>/...). Common fields (lab, module, source,
+# tags skeleton) are injected by build_lab_vault.py; this file supplies the
+# semantic fields (subsystem, implements, consumers, drift_guards, node_type).
+
+lab: obdlab
+module: obd_live_lab
+
+frame:
+  PRD_OBDLab.md:
+    node_type: prd
+    subsystem: requirements
+    implements: []
+    consumers:
+      - "hld: labs/obdlab/docs/HLD_OBDLab.md"
+    drift_guards: []
+
+  HLD_OBDLab.md:
+    node_type: hld
+    subsystem: architecture
+    implements: []
+    consumers:
+      - "lld: labs/obdlab/docs/LLD_OBDLab.md"
+      - "dld: labs/obdlab/docs/DLD_OBDLab.md"
+    drift_guards: []
+
+  LLD_OBDLab.md:
+    node_type: lld
+    subsystem: detailed-design
+    implements:
+      - "labs/obdlab/code/core/ve_engine.py"
+      - "labs/obdlab/code/core/o2_normalizer.py"
+      - "labs/obdlab/code/core/trim_vector_aggregator.py"
+    consumers:
+      - "dld: labs/obdlab/docs/DLD_OBDLab.md"
+    drift_guards:
+      - "labs/obdlab/tests/unit/test_ve_engine.py"
+      - "labs/obdlab/tests/unit/test_o2_normalizer.py"
+      - "labs/obdlab/tests/unit/test_trim_vector_aggregator.py"
+
+  DLD_OBDLab.md:
+    node_type: dld
+    subsystem: detailed-design
+    implements:
+      - "labs/obdlab/code/core/analytics_preconditions.py"
+      - "labs/obdlab/code/core/maf_linearity.py"
+      - "labs/obdlab/code/core/o2_normalizer.py"
+      - "labs/obdlab/code/core/pid_ingestion_validator.py"
+      - "labs/obdlab/code/core/semantic_consistency_checker.py"
+      - "labs/obdlab/code/core/sensor_signal_translator.py"
+      - "labs/obdlab/code/core/state_bucketing.py"
+      - "labs/obdlab/code/core/trim_vector_aggregator.py"
+      - "labs/obdlab/code/core/ve_engine.py"
+      - "labs/obdlab/code/schemas/dna_view.py"
+      - "labs/obdlab/code/schemas/payload.py"
+      - "labs/obdlab/code/schemas/vocabulary.py"
+    consumers:
+      - "comlab: fault_atlas fusion (perception channel)"
+    drift_guards:
+      - "labs/obdlab/tests/unit/test_analytics_preconditions.py"
+      - "labs/obdlab/tests/unit/test_maf_linearity.py"
+      - "labs/obdlab/tests/unit/test_o2_normalizer.py"
+      - "labs/obdlab/tests/unit/test_pid_ingestion_validator.py"
+      - "labs/obdlab/tests/unit/test_semantic_consistency_checker.py"
+      - "labs/obdlab/tests/unit/test_sensor_signal_translator.py"
+      - "labs/obdlab/tests/unit/test_trim_vector_aggregator.py"
+      - "labs/obdlab/tests/unit/test_ve_engine.py"
+      - "labs/obdlab/tests/unit/test_dna_view.py"
+      - "labs/obdlab/tests/unit/test_payload.py"
+      - "labs/obdlab/tests/unit/test_vocabulary.py"
+      - "labs/obdlab/tests/integration/test_pipeline_smoke.py"
+
+  o2-logic/README.md:
+    node_type: wiki
+    subsystem: o2-lambda-perception
+    implements:
+      - "labs/obdlab/code/core/o2_normalizer.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/perception_contradiction.py — O2/lambda bias-vs-truth comparison"
+      - "comlab: labs/comlab/comlab/analytics/power_loss_analytics.py — mixture scoring"
+    drift_guards:
+      - "labs/obdlab/tests/unit/test_o2_normalizer.py"
+
+  fuel-trim/README.md:
+    node_type: wiki
+    subsystem: fuel-trim-reasoning
+    implements:
+      - "labs/obdlab/code/core/trim_vector_aggregator.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/perception_contradiction.py — Total Fuel Trim evaluation"
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py — OBD payload intake"
+    drift_guards:
+      - "labs/obdlab/tests/unit/test_trim_vector_aggregator.py"
+
+  delta-relations/README.md:
+    node_type: wiki
+    subsystem: delta-vector-scoring
+    implements:
+      - "labs/obdlab/code/core/ve_engine.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/analytics/delta_engine.py (two-operating-point DeltaSignature)"
+      - "comlab: labs/comlab/comlab/analytics/delta_engine.py (two-operating-point DeltaSignature)"
+    drift_guards:
+      - "labs/obdlab/tests/unit/test_ve_engine.py"
+
+  ecu-diagnosis/README.md:
+    node_type: wiki
+    subsystem: ecu-hardware
+    implements:
+      - "labs/obdlab/code/core/semantic_consistency_checker.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/ecu_hardware_checker.py — ECU driver/rail fault checks"
+    drift_guards:
+      - "labs/obdlab/tests/unit/test_semantic_consistency_checker.py"
+
+  pids-protocol/README.md:
+    node_type: wiki
+    subsystem: pid-mode06-readiness
+    implements:
+      - "labs/obdlab/code/core/pid_ingestion_validator.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py (mode_06_monitors / Mode06MonitorState)"
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py"
+    drift_guards:
+      - "labs/obdlab/tests/unit/test_pid_ingestion_validator.py"
+
+  taxonomy/README.md:
+    node_type: wiki
+    subsystem: emission-era-taxonomy
+    implements:
+      - "labs/obdlab/code/schemas/dna_view.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/horizon_context_injector.py + core/fault_atlas_router.py (era/horizon-mask checks)"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py (era/horizon-mask checks) + core/horizon_context_injector.py"
+    drift_guards:
+      - "labs/obdlab/tests/unit/test_dna_view.py"
+
+  truth-perception/README.md:
+    node_type: wiki
+    subsystem: truth-vs-perception
+    implements:
+      - "labs/obdlab/code/core/sensor_signal_translator.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/perception_contradiction.py — truth-vs-perception override core"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py RULE_SYMPTOM_PRIOR (capped 0.65)"
+    drift_guards:
+      - "labs/obdlab/tests/unit/test_sensor_signal_translator.py"
+
+# Copied as plain markdown (no nameable downstream consumer → not framed):
+plain:
+  - PIDresearch.md
+  - PID_LOGSET_RESEARCH_PROMPT.md
+  - drift_inventory_2026-05-25.md
+

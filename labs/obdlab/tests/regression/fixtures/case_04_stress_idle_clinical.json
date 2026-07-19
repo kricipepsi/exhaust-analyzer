@@ -1,0 +1,41 @@
+{
+  "case_id": "case_04_stress_idle_clinical",
+  "notes": "STRESS_IDLE clinical test: HIGH-confidence DNA with stress_idle_rpm_target=4000, inputs at 4000 RPM with 50% load. Expected: STRESS_IDLE bucket, engine_warmed=True, analytics active. Wiki ref: OBDLab_KG_Wiki.md §8.1 STRESS_IDLE definition, OBD_VOCABULARY.md §3.2.",
+  "raw_user_inputs": {
+    "engine_rpm": 4000,
+    "coolant_temp_c": 94.0,
+    "calculated_engine_load_pct": 50.0,
+    "mass_airflow_gps": 18.0,
+    "manifold_vacuum_kpa": 45.0,
+    "intake_air_temp_c": 40.0,
+    "shrtft1": -5.0,
+    "longft1": -8.0,
+    "number_of_banks": 1,
+    "fuel_sys_status": "Closed_Loop",
+    "pid_oxygen_sensor_volts": 0.52,
+    "active_dtcs": [],
+    "drive_cycles_since_clear": 5
+  },
+  "dna_view_json": {
+    "engine_displacement_liters": 2.0,
+    "cylinder_count": 4,
+    "rated_rpm": 6500,
+    "stress_idle_rpm_target": 4000,
+    "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+    "upstream_o2_type": "NARROWBAND_0_TO_1V",
+    "induction_type": "NATURALLY_ASPIRATED",
+    "confidence": "HIGH"
+  },
+  "expected_payload_subset": {
+    "engine_warmed": true,
+    "rpm_state_bucket": "STRESS_IDLE",
+    "engine_rpm": 4000,
+    "coolant_temp_c": 94.0,
+    "calculated_engine_load_pct": 50.0,
+    "shrtft1": -5.0,
+    "longft1": -8.0,
+    "shrtft2": null,
+    "longft2": null,
+    "total_trim_correction_delta": -13.0
+  }
+}

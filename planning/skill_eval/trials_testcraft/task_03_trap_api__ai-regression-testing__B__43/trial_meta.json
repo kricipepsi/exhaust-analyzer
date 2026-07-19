@@ -1,0 +1,10 @@
+{
+  "trial_id": "task_03_trap_api__ai-regression-testing__B__43",
+  "task_id": "task_03_trap_api",
+  "skill_id": "ai-regression-testing",
+  "arm": "B",
+  "seed": 43,
+  "model": "opus-4.7@t=0.0",
+  "no_gate": false,
+  "prepared_utc": "2026-06-09T21:45:40.050674+00:00"
+}

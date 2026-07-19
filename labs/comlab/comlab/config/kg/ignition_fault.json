@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0",
+  "fault_family": "ignition_fault",
+  "nodes": {
+    "ERR-IF-001": {
+      "fault_name": "ignition_coil_driver_fault",
+      "fault_family": "ignition_fault",
+      "component_group": "Ignition System \u00e2\u20ac\u201d ECU Ignition Driver Transistor / Coil Primary Circuit",
+      "impacted_subsystems": [
+        "ECU Ignition Driver Output Stage",
+        "Ignition Coil Primary Winding",
+        "Crankshaft Acceleration Misfire Monitor"
+      ],
+      "mechanical_failure_mode": "ECU ignition driver transistor degrades thermally, failing to switch coil primary current. Coil fires intermittently or not at all \u00e2\u20ac\u201d misfire stays on cylinder after coil swap, confirming fault is upstream in ECU. Common with high under-hood thermal exposure.",
+      "ui_remediation_steps": [
+        "Swap the suspect cylinder's ignition coil with a known-good cylinder \u00e2\u20ac\u201d if the misfire stays on the original cylinder (does not follow the coil), the fault is upstream of the coil: wiring, connector, or ECU driver.",
+        "Back-probe the coil primary control wire with a lab scope \u00e2\u20ac\u201d look for a clean 0\u00e2\u2020\u201912V\u00e2\u2020\u20190 V switching event. A rounded falling edge, missing event, or erratic timing indicates a driver fault.",
+        "Check the primary circuit wiring between the ECU connector and the coil connector \u00e2\u20ac\u201d resistance should be < 0.5 \u00ce\u00a9. Any green corrosion at the ECU connector pin suggests water intrusion.",
+        "If the driver transistor is confirmed failed, the ECU must be replaced or repaired by an ECU specialist. Do not attempt to drive the transistor with an external circuit \u00e2\u20ac\u201d it is part of the ECU's dwell control logic.",
+        "After ECU replacement, perform the immobiliser relearn and crank-angle sensor relearn procedures per the manufacturer's service information.",
+        "Verify repair: no misfire DTC, secondary ignition waveform clean across all cylinders, Mode $06 misfire counts at zero."
+      ],
+      "differential_siblings": [
+        "ERR-IF-002",
+        "ERR-MF-004",
+        "ERR-EF-001"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-IF-002": {
+      "fault_name": "ignition_switch_voltage_drop",
+      "fault_family": "ignition_fault",
+      "component_group": "Ignition System \u00e2\u20ac\u201d Ignition Switch and Primary Power Supply Path",
+      "impacted_subsystems": [
+        "Ignition Switch Contact Assembly",
+        "Coil Primary Supply Voltage Rail",
+        "ECU Ignition Supply Monitor"
+      ],
+      "mechanical_failure_mode": "Worn ignition switch contacts create resistive voltage drop in coil primary supply. At cranking or under load, coil voltage drops below 10.5 V, starving coil of dwell current, producing weak or absent spark. Intermittent \u00e2\u20ac\u201d worse hot or with headlights/blower running.",
+      "ui_remediation_steps": [
+        "Measure voltage at the coil primary supply terminal (usually the coil connector's B+ pin) during cranking \u00e2\u20ac\u201d should be \u00e2\u2030\u00a5 10.5 V. Below 10.0 V confirms a supply-side voltage drop.",
+        "Perform a voltage-drop test across the ignition switch: one probe at battery positive, one probe at the ignition coil supply fuse output, key ON engine running \u00e2\u20ac\u201d drop should be < 0.3 V.",
+        "Back-probe each side of the ignition switch connector \u00e2\u20ac\u201d if the drop occurs across the switch itself (not the wiring), the switch contacts are worn or corroded.",
+        "Check that the problem is not caused by aftermarket accessories tapped into the ignition supply circuit (alarm, remote start, stereo) \u00e2\u20ac\u201d these add load and accelerate switch wear.",
+        "Replace the ignition switch if the voltage drop across the switch exceeds 0.3 V. If the switch is integrated with the immobiliser antenna, a dealer-level key relearn may be required.",
+        "Verify repair: coil primary voltage \u00e2\u2030\u00a5 10.5 V during cranking, no voltage drop across the switch > 0.3 V, misfire counts at zero across all operating conditions."
+      ],
+      "differential_siblings": [
+        "ERR-IF-001",
+        "ERR-MF-004"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-IF-003": {
+      "fault_name": "ckp_sensor_intermittent_dropout",
+      "fault_family": "ignition_fault",
+      "component_group": "Ignition System \u00e2\u20ac\u201d Crankshaft Position Sensor and Trigger Wheel",
+      "impacted_subsystems": [
+        "Crankshaft Position (CKP) Hall-Effect or VR Sensor",
+        "ECU Ignition Timing Reference",
+        "Crankshaft-to-Flexplate Trigger Wheel"
+      ],
+      "mechanical_failure_mode": "CKP sensor signal drops out: failing Hall-effect sensor (thermal), cracked VR magnet, excessive air gap, or damaged trigger-wheel tooth. ECU loses crank position reference each dropout, causing random no-spark events registered as P0300 without cylinder-specific DTC.",
+      "ui_remediation_steps": [
+        "Monitor CKP sensor output with a lab scope while heat-soaking the sensor with a heat gun \u00e2\u20ac\u201d a failing Hall sensor will show dropout or erratic square-wave edges above ~80 \u00c2\u00b0C.",
+        "Check the CKP sensor air gap with a feeler gauge against the manufacturer specification (typically 0.5\u00e2\u20ac\u201c1.5 mm). A loose mounting bolt allows the gap to open beyond the sensor's detection range.",
+        "Inspect the trigger wheel for a damaged, bent, or missing tooth \u00e2\u20ac\u201d rotate the engine by hand and visually confirm every tooth through the sensor port.",
+        "If the sensor is a VR (variable reluctance) type, measure coil resistance and check for cracked magnet \u00e2\u20ac\u201d a cracked magnet produces a weak or missing AC signal at low RPM.",
+        "Replace the CKP sensor if confirmed faulty. Always perform a crank-angle sensor relearn (CASE relearn) after replacement on vehicles that require it.",
+        "Verify repair: clean CKP signal at all RPM and temperature conditions, no P0300 or P0335 DTC, misfire counts at zero."
+      ],
+      "differential_siblings": [
+        "ERR-IF-001",
+        "ERR-MF-006",
+        "ERR-SF-004"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-IF-005": {
+      "fault_name": "ignition_weak_spark_partial_combustion",
+      "fault_family": "ignition_fault",
+      "component_group": "Ignition System \u2014 Coil Primary Supply Circuit and Ignition Relay Assembly",
+      "impacted_subsystems": [
+        "Ignition Coil Primary Supply Voltage Rail",
+        "Ignition Relay Contact Assembly",
+        "ECU Ignition Supply Monitor"
+      ],
+      "mechanical_failure_mode": "Weak spark from compromised coil primary voltage supply \u2014 corroded relay contacts, failing ignition switch, or high-resistance ground. Coil receives insufficient dwell current, producing a weak spark that can ionise the gap but cannot sustain a full flame kernel. Partial combu...",
+      "ui_remediation_steps": [
+        "Measure coil primary supply voltage at the coil connector B+ pin during engine running \u2014 should be within 0.5 V of battery voltage. A drop > 1.0 V confirms supply-side resistance.",
+        "Voltage-drop test across the ignition relay: one probe at battery positive, one probe at the coil supply fuse output. Drop should be < 0.3 V. Replace the relay if drop exceeds specification.",
+        "Inspect the ignition relay socket for signs of overheating (melted plastic, discoloured terminals) \u2014 high resistance at the relay contacts generates heat and accelerates oxidation.",
+        "Check the coil ground circuit: measure resistance between the coil ground terminal and battery negative \u2014 should be < 0.5 ohm. Clean ground points if high resistance is found.",
+        "If all supply-side checks pass, test the ignition coil itself with an adjustable spark tester \u2014 spark should jump a 20 mm gap with a bright blue-white arc. Weak orange spark that fails at > 10 mm confirms coil degradation.",
+        "Verify repair: coil supply voltage within 0.5 V of battery voltage under load, Mode 06 misfire counts at zero, HC within normal range (< 100 ppm) at idle."
+      ],
+      "differential_siblings": [
+        "ERR-IF-002",
+        "ERR-MF-004"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-IF-004": {
+      "fault_name": "ignition_coil_secondary_breakdown",
+      "fault_family": "ignition_fault",
+      "component_group": "Ignition System \u2014 Ignition Coil Secondary Winding and Spark Plug Interface",
+      "impacted_subsystems": [
+        "Ignition Coil Secondary Winding",
+        "Spark Plug Electrode Gap",
+        "Crankshaft Acceleration Misfire Monitor"
+      ],
+      "mechanical_failure_mode": "Ignition coil secondary winding insulation breaks down under heat soak \u2014 spark energy collapses when the coil reaches operating temperature. Cold start is normal; engine stalls or misfires when hot. Swap coil to confirm: misfire follows the coil to the new cylinder.",
+      "ui_remediation_steps": [
+        "Swap the suspect cylinder's ignition coil with a known-good cylinder \u2014 if the misfire follows the coil, the coil is confirmed faulty.",
+        "Heat-soak test: run engine to operating temperature, monitor Mode 06 misfire counts. Rising counts on the suspect cylinder as temperature increases confirms thermal breakdown.",
+        "Measure coil secondary resistance (typically 5-15 kohm at 20 C) \u2014 compare to the manufacturer specification. An open circuit or resistance outside specification confirms failure.",
+        "Replace the failed ignition coil with an OEM-quality replacement. Replace the spark plug on the affected cylinder if it shows fuel fouling from the misfire.",
+        "If the replacement coil also fails within a short interval, check the coil primary supply voltage and ECU coil driver circuit for the root cause.",
+        "Verify repair: no misfire DTC, Mode 06 misfire counts at zero across all cylinders, engine runs smoothly hot and cold."
+      ],
+      "differential_siblings": [
+        "ERR-IF-001",
+        "ERR-MF-004"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-IF-006": {
+      "fault_name": "ignition_failure_no_combustion_no_start",
+      "fault_family": "ignition_fault",
+      "component_group": "Ignition System \u2014 Crankshaft Position Sensor and ECU Ignition Control Circuit",
+      "impacted_subsystems": [
+        "Crankshaft Position (CKP) Sensor",
+        "ECU Ignition Control Output Stage",
+        "Ignition System Power Supply"
+      ],
+      "mechanical_failure_mode": "Complete ignition system failure \u2014 no spark on any cylinder despite normal cranking RPM. CKP sensor signal loss, ignition relay failure, or ECU power-supply fault prevents all coil firing. Engine cranks but produces zero combustion \u2014 gas analyser reads ambient air (O2 ~20.9%, ...",
+      "ui_remediation_steps": [
+        "Read cranking RPM PID during cranking \u2014 0 RPM despite audible cranking confirms CKP sensor failure. Check CKP sensor connector, harness, and sensor air gap.",
+        "If cranking RPM is normal, disable the fuel pump (pull fuse or relay) and crank while testing for spark with an adjustable spark tester at 20 mm gap. Zero spark on all cylinders confirms global ignition failure.",
+        "Check the ignition relay: swap with an identical relay from a non-critical circuit (horn, accessory). If spark returns, replace the failed relay.",
+        "Verify ECU power supply: check for battery voltage at the ECU main power and ignition-switched power pins. Check ECU ground integrity with a voltage-drop test under load.",
+        "If CKP sensor is confirmed faulty, replace it and perform a crank-angle sensor relearn (CASE relearn) if required by the vehicle manufacturer.",
+        "Verify repair: engine starts and runs, no CKP DTC (P0335), Mode 06 misfire counts at zero."
+      ],
+      "differential_siblings": [
+        "ERR-IF-003",
+        "ERR-NS-004"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-IF-007": {
+      "fault_name": "ignition_fault_intermittent_not_active",
+      "fault_family": "ignition_fault",
+      "component_group": "Ignition System \u2014 Intermittent Fault Diagnosis",
+      "impacted_subsystems": [
+        "Ignition Coil Assembly (Thermal Intermittent)",
+        "CKP Sensor (Thermal Dropout)",
+        "Ignition Switch Contact Assembly"
+      ],
+      "mechanical_failure_mode": "Intermittent ignition fault not active during the diagnostic session. Engine runs normally at time of test. Root cause is typically thermal (coil or CKP sensor fails when hot, recovers when cool), moisture-related (distributor cap or coil housing crack), or mechanical (intermi...",
+      "ui_remediation_steps": [
+        "Heat-soak suspect components with a heat gun while monitoring Mode 06 misfire counts \u2014 a rising count on a specific cylinder as temperature increases confirms a thermal-intermittent coil or sensor.",
+        "Review freeze-frame data from any stored misfire DTCs \u2014 note the engine temperature, RPM, and load at the moment the fault occurred to identify the triggering condition.",
+        "Inspect all ignition-related connectors for pin fretting, corrosion, or loose terminal tension \u2014 an intermittent connection can produce a random misfire that is difficult to reproduce.",
+        "Wiggle-test the ignition wiring harness with the engine running \u2014 listen for RPM drop or misfire counts spiking when a specific connector or harness section is moved.",
+        "Check for moisture ingress: remove the coil cover or distributor cap and inspect for condensation, carbon tracking, or cracks. A hairline crack allows moisture in, creating a conductive path to ground that disappears when dry.",
+        "If the fault cannot be reproduced, document the diagnostic session as inconclusive for ignition and advise the patient to return when the symptom is actively present for a hot-engine re-test."
+      ],
+      "differential_siblings": [
+        "ERR-IF-001",
+        "ERR-MF-008"
+      ],
+      "editor_severity_hint": "WATCH"
+    }
+  }
+}

@@ -1,0 +1,231 @@
+# DTCLab vault map - architect-authored. Maps selected DTC notes to vault frontmatter.
+#
+# Signal/noise: only notes with a named, existing consumer are framed. Notes whose
+# only downstream story is proposal/future work are copied as plain markdown.
+
+lab: dtclab
+module: dtclab
+
+frame:
+  PRD_DTCLab.md:
+    node_type: prd
+    subsystem: requirements
+    implements: []
+    consumers:
+      - "hld: labs/dtclab/docs/HLD_DTCLab.md"
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py DTCLabPayload ingestion"
+    drift_guards: []
+
+  HLD_DTCLab.md:
+    node_type: hld
+    subsystem: architecture
+    implements: []
+    consumers:
+      - "lld: labs/dtclab/docs/LLD_DTCLab.md"
+      - "dld: labs/dtclab/docs/DLD_DTCLab.md"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py DTCRoutingTag routing"
+    drift_guards: []
+
+  LLD_DTCLab.md:
+    node_type: lld
+    subsystem: low-level-design
+    implements:
+      - "labs/dtclab/dtclab/core/dtc_ingestion_gate.py"
+      - "labs/dtclab/dtclab/core/historical_context_classifier.py"
+      - "labs/dtclab/dtclab/core/mode06_evaluator.py"
+      - "labs/dtclab/dtclab/core/freeze_frame_extractor.py"
+      - "labs/dtclab/dtclab/core/routing_tag_mapper.py"
+      - "labs/dtclab/dtclab/core/data_fusion_sanitizer.py"
+      - "labs/dtclab/dtclab/family_map.py"
+      - "labs/dtclab/dtclab/ranking.py"
+      - "labs/dtclab/dtclab/schemas/vocabulary.py"
+      - "labs/dtclab/dtclab/schemas/dna_view.py"
+      - "labs/dtclab/dtclab/schemas/payload.py"
+      - "labs/dtclab/dtclab/schemas/freeze_frame.py"
+      - "labs/dtclab/dtclab/schemas/mode06_result.py"
+      - "labs/dtclab/dtclab/config/routing_tag_map.yaml"
+      - "labs/dtclab/dtclab/config/mode_06_hex_dictionary.json"
+    consumers:
+      - "dld: labs/dtclab/docs/DLD_DTCLab.md"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py DTCRoutingTag routing"
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py DTCLabPayload integration"
+      - "comlab: labs/comlab/comlab/core/perception_contradiction.py rich_dtc_present (P0172/P0175) gate"
+      - "wired (pending T-WIRE-1): apps/wired/wired/composition.py DTCLabPayload mapping"
+    drift_guards:
+      - "labs/dtclab/tests/unit/test_dtc_ingestion_gate.py"
+      - "labs/dtclab/tests/unit/test_freeze_frame_extractor.py"
+      - "labs/dtclab/tests/unit/test_historical_context_classifier.py"
+      - "labs/dtclab/tests/unit/test_mode06_evaluator.py"
+      - "labs/dtclab/tests/unit/test_routing_tag_mapper.py"
+      - "labs/dtclab/tests/unit/test_classify_top3.py"
+      - "labs/dtclab/tests/unit/test_rank_candidates.py"
+      - "labs/dtclab/tests/unit/test_family_map.py"
+      - "labs/dtclab/tests/unit/test_payload.py"
+      - "labs/dtclab/tests/unit/test_vocabulary.py"
+      - "labs/dtclab/tests/unit/test_dna_view.py"
+      - "labs/dtclab/tests/integration/test_dtclab_pipeline.py"
+
+  DLD_DTCLab.md:
+    node_type: dld
+    subsystem: detailed-design
+    implements:
+      - "labs/dtclab/dtclab/core/dtc_ingestion_gate.py"
+      - "labs/dtclab/dtclab/core/historical_context_classifier.py"
+      - "labs/dtclab/dtclab/core/mode06_evaluator.py"
+      - "labs/dtclab/dtclab/core/freeze_frame_extractor.py"
+      - "labs/dtclab/dtclab/core/routing_tag_mapper.py"
+      - "labs/dtclab/dtclab/core/data_fusion_sanitizer.py"
+      - "labs/dtclab/dtclab/family_map.py"
+      - "labs/dtclab/dtclab/ranking.py"
+      - "labs/dtclab/dtclab/schemas/vocabulary.py"
+      - "labs/dtclab/dtclab/schemas/dna_view.py"
+      - "labs/dtclab/dtclab/schemas/payload.py"
+      - "labs/dtclab/dtclab/schemas/freeze_frame.py"
+      - "labs/dtclab/dtclab/schemas/mode06_result.py"
+      - "labs/dtclab/dtclab/config/routing_tag_map.yaml"
+      - "labs/dtclab/dtclab/config/mode_06_hex_dictionary.json"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py DTCRoutingTag routing"
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py DTCLabPayload integration"
+      - "comlab: labs/comlab/comlab/core/perception_contradiction.py rich_dtc_present (P0172/P0175) gate"
+      - "wired (pending T-WIRE-1): apps/wired/wired/composition.py DTCLabPayload mapping"
+    drift_guards:
+      - "labs/dtclab/tests/unit/test_dtc_ingestion_gate.py"
+      - "labs/dtclab/tests/unit/test_freeze_frame_extractor.py"
+      - "labs/dtclab/tests/unit/test_historical_context_classifier.py"
+      - "labs/dtclab/tests/unit/test_mode06_evaluator.py"
+      - "labs/dtclab/tests/unit/test_routing_tag_mapper.py"
+      - "labs/dtclab/tests/unit/test_classify_top3.py"
+      - "labs/dtclab/tests/unit/test_rank_candidates.py"
+      - "labs/dtclab/tests/unit/test_family_map.py"
+      - "labs/dtclab/tests/unit/test_payload.py"
+      - "labs/dtclab/tests/unit/test_vocabulary.py"
+      - "labs/dtclab/tests/unit/test_dna_view.py"
+      - "labs/dtclab/tests/integration/test_dtclab_pipeline.py"
+
+  01_dtc_state_lifecycle.md:
+    node_type: wiki
+    subsystem: dtc-lifecycle
+    implements:
+      - "labs/dtclab/dtclab/schemas/vocabulary.py"
+      - "labs/dtclab/dtclab/core/data_fusion_sanitizer.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py DTCLabPayload (mil_flashing, confirmed_dtcs, codes_cleared)"
+      - "dtclab: labs/dtclab/dtclab/core/freeze_frame_extractor.py (codes_cleared -> ff_codes_cleared_invalidated)"
+    drift_guards:
+      - "labs/dtclab/tests/unit/test_vocabulary.py"
+      - "labs/dtclab/tests/unit/test_freeze_frame_extractor.py"
+
+  02_freeze_frame_validity.md:
+    node_type: wiki
+    subsystem: freeze-frame-validation
+    implements:
+      - "labs/dtclab/dtclab/schemas/freeze_frame.py"
+      - "labs/dtclab/dtclab/core/freeze_frame_extractor.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py DTCLabPayload freeze_frame integration"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py freeze_frame.calculated_load_pct PID source / FuelSystemStatus.CL gate"
+    drift_guards:
+      - "labs/dtclab/tests/unit/test_freeze_frame_extractor.py"
+      - "labs/dtclab/tests/unit/test_payload.py"
+
+  03_fuel_trim_grammar.md:
+    node_type: wiki
+    subsystem: fuel-trim-reasoning
+    implements:
+      - "labs/dtclab/dtclab/schemas/freeze_frame.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/perception_contradiction.py total_trim_correction_delta + rich_dtc_present compensated-rich gate"
+    drift_guards:
+      - "labs/dtclab/tests/unit/test_freeze_frame_extractor.py"
+
+  04_mode06_monitors.md:
+    node_type: wiki
+    subsystem: mode-06-monitoring
+    implements:
+      - "labs/dtclab/dtclab/schemas/mode06_result.py"
+      - "labs/dtclab/dtclab/core/mode06_evaluator.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py mode_06_monitors no-start branch"
+    drift_guards:
+      - "labs/dtclab/tests/unit/test_mode06_evaluator.py"
+
+  05_fuel_air_metering.md:
+    node_type: wiki
+    subsystem: fuel-air-routing
+    implements:
+      - "labs/dtclab/dtclab/config/routing_tag_map.yaml"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py DTCRoutingTag routing"
+    drift_guards:
+      - "labs/dtclab/tests/unit/test_routing_tag_mapper.py"
+
+  06_ignition_misfire.md:
+    node_type: wiki
+    subsystem: ignition-misfire-routing
+    implements:
+      - "labs/dtclab/dtclab/config/routing_tag_map.yaml"
+      - "labs/dtclab/dtclab/core/freeze_frame_extractor.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py DTCRoutingTag routing"
+    drift_guards:
+      - "labs/dtclab/tests/unit/test_routing_tag_mapper.py"
+      - "labs/dtclab/tests/unit/test_freeze_frame_extractor.py"
+
+  07_catalyst_egr_evap.md:
+    node_type: wiki
+    subsystem: emissions-routing
+    implements:
+      - "labs/dtclab/dtclab/config/routing_tag_map.yaml"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py DTCRoutingTag routing"
+    drift_guards:
+      - "labs/dtclab/tests/unit/test_routing_tag_mapper.py"
+
+  08_forced_induction_gdi.md:
+    node_type: wiki
+    subsystem: turbo-gdi-routing
+    implements:
+      - "labs/dtclab/dtclab/config/routing_tag_map.yaml"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py DTCRoutingTag routing"
+    drift_guards:
+      - "labs/dtclab/tests/unit/test_routing_tag_mapper.py"
+
+  09_gas_reverse_lookup.md:
+    node_type: wiki
+    subsystem: gas-perception-link
+    implements:
+      - "labs/dtclab/dtclab/schemas/vocabulary.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py POA_HISTORY injection in execute_triage_loop"
+    drift_guards:
+      - "labs/dtclab/tests/unit/test_vocabulary.py"
+
+  10_nonstart_diagnostics.md:
+    node_type: wiki
+    subsystem: non-start-routing
+    implements:
+      - "labs/dtclab/dtclab/config/routing_tag_map.yaml"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py DTCRoutingTag routing"
+    drift_guards:
+      - "labs/dtclab/tests/unit/test_routing_tag_mapper.py"
+
+  12_ranking_discriminator.md:
+    node_type: wiki
+    subsystem: fault-ranking
+    implements:
+      - "labs/dtclab/dtclab/config/routing_tag_map.yaml"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py routing-tag discriminator rank step"
+    drift_guards:
+      - "labs/dtclab/tests/unit/test_classify_top3.py"
+      - "labs/dtclab/tests/unit/test_rank_candidates.py"
+
+plain:
+  - ADR_DTCLab.md
+  - BDD_DTCLab.md
+  - DTC_VOCABULARY.md
+  - 00_INDEX.md
+  - 11_proposals_register.md

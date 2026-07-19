@@ -1,0 +1,475 @@
+5
+ Advanced Python Techniques I Finally Understood And My Code Got 10× 
+Better | by Ahmad Nadeem | CodeToDeploy | Jan, 2026 | Medium
+Sitemap
+Open in app
+Sidebar menu
+Medium Logo
+Write
+Search
+Notifications
+Sidebar menu
+Medium Logo
+Home
+Library
+Profile
+Stories
+Stats
+Following
+Find writers and publications to follow.
+See suggestions
+CodeToDeploy
+·
+Follow publication
+Where Tech People Learn, Build, And Grow.
+Follow publication
+Press enter or click to view image in full size
+Member-only story
+5 Advanced Python Techniques I Finally Understood And My Code Got 10× Better
+What clicked, what failed, and why mastering these features was a turning point in my career.
+Ahmad Nadeem
+Follow
+4 min read
+·
+Jan 22, 2026
+112
+1
+Listen
+Share
+More
+CodeToDeploy
+A Publication Where Tech People Learn, Build, And Grow. Follow To Join Our 500k+ Monthly Readers
+medium.com
+A quick story before we start
+Four years ago, I was proud of my Python code.
+It worked.
+It shipped.
+It paid the bills.
+And yet… it was
+heavy
+.
+ Every new feature felt like dragging a sofa up the stairs alone. 
+Automation scripts broke silently. Performance issues showed up at the 
+worst possible time. Refactors felt risky, so I avoided them.
+Then one weekend, while debugging a script that
+should have been simple
+, something snapped.
+The problem wasn’t Python.
+It was
+how I was using it
+.
+What
+ followed wasn’t a rewrite. It was a series of small “ohhh” moments — 
+the kind that don’t show up in beginner tutorials, but once you see 
+them, you can’t unsee them.
+These
+ five techniques are exactly that. Nothing flashy. No hype. But after 
+truly understanding them, my automation code became faster, safer, and 
+dramatically easier to reason about.
+If you already “know Python,” this is for you.
+Hello I am Ahmad
+1. Context Managers Beyond
+with open()
+Most people stop learning context managers after file handling.
+That’s a mistake.
+A
+context manager is a contract
+:
+ enter cleanly, exit cleanly — no matter what explodes in between. Once I
+ internalized that, my automation scripts stopped leaking resources and 
+started behaving like adults.
+Why this mattered for automation
+Automation scripts fail. Networks drop. APIs timeout. Files lock. If cleanup logic lives in
+finally
+blocks scattered everywhere, you
+will
+forget one.
+Context managers centralize correctness.
+Real example: timing and safe rollback
+import
+time
+from
+contextlib
+import
+contextmanager
+@contextmanager
+def
+timed_step
+(
+name
+):
+start = time.perf_counter()
+try
+:
+yield
+finally
+:
+duration = time.perf_counter() - start
+print
+(
+f"
+{name}
+took
+{duration:
+.2
+f}
+s"
+)
+with
+timed_step(
+"data_sync"
+):
+sync_remote_data()
+No decorators. No global state. No boilerplate.
+Pro tip:
+“If setup and teardown belong together, they belong in a context manager.”
+Once I started writing my own, my automation code became predictable under failure — which is the only time it really matters.
+2.
+__slots__
+for Memory-Heavy Automation
+This one humbled me.
+I
+ assumed memory optimization was “premature.” Then one of my 
+long-running automation jobs started eating RAM like it was Ramadan 
+iftari.
+The fix wasn’t multiprocessing.
+It wasn’t caching.
+It was
+object layout
+.
+The click moment
+By
+ default, Python objects store attributes in a dictionary. That 
+flexibility costs memory. In data-heavy automation pipelines, that cost 
+multiplies fast.
+The fix
+class
+JobResult
+:
+__slots__ = (
+"job_id"
+,
+"status"
+,
+"duration"
+)
+def
+__init__
+(
+self
+, job_id, status, duration
+):
+self
+.job_id = job_id
+self
+.status = status
+self
+.duration = duration
+Same behavior.
+Less memory.
+Faster attribute access.
+This single change reduced memory usage in one automation worker by
+over 40%
+.
+Not theoretical. Measured.
+If you create thousands (or millions) of similar objects,
+__slots__
+is not optional — it’s professional hygiene.
+3. Generator Pipelines Instead of Lists Everywhere
+I used to treat generators as a “nice-to-have.”
+Then I built a file-processing automation that had to scan tens of thousands of files.
+Lists nearly killed it.
+The mental shift
+Lists
+store
+.
+Generators
+flow
+.
+Automation is about flow.
+Before (bad idea)
+files = [process_file(f)
+for
+f
+in
+all_files]
+upload_results(files)
+After (correct idea)
+def
+processed_files
+(
+files
+):
+for
+f
+in
+files:
+yield
+process_file(f)
+upload_results(processed_files(all_files))
+No peak memory spike.
+No waiting for everything to finish before starting uploads.
+Cleaner failure behavior.
+Once I started thinking in streams instead of containers, my automation pipelines became faster
+and
+simpler.
+4.
+functools.singledispatch
+for Clean Automation Logic
+This one felt like cheating when I finally used it correctly.
+Automation often deals with
+different input types
+: files, URLs, database records, raw strings. Most people solve this with
+if/elif
+jungles.
+I did too. Until it got ugly.
+The better pattern
+from
+functools
+import
+singledispatch
+@singledispatch
+def
+normalize
+(
+value
+):
+raise
+TypeError(
+"Unsupported type"
+)
+@normalize.register
+def
+_
+(
+value:
+str
+):
+return
+value.strip().lower()
+@normalize.register
+def
+_
+(
+value:
+int
+):
+return
+str
+(value)
+normalize(
+"  Hello "
+)
+normalize(
+42
+)
+No conditionals.
+No bloated functions.
+Each behavior lives where it belongs.
+For automation frameworks, this is gold. Adding new behavior doesn’t break old logic — it
+extends
+it.
+5. Designing Idempotent Automation Functions
+This isn’t a Python feature.
+It’s a mindset — and it took me years to respect it.
+The painful lesson
+I once ran a deployment script twice.
+The second run corrupted data.
+That day taught me the most important rule of automation:
+“If running it twice breaks things, it’s not automation — it’s gambling.”
+The fix: idempotency by design
+import
+os
+def
+ensure_directory
+(
+path
+):
+if
+not
+os.path.exists(path):
+os.makedirs(path)
+Not clever.
+Not fancy.
+But
+safe
+.
+Every automation function I write now follows this rule:
+Running it twice should either do nothing or produce the same result.
+This single discipline reduced my production incidents more than any library ever did.
+What actually changed my career
+None of these techniques are trendy.
+You won’t see them in “Python in 10 minutes” videos.
+But once I understood them deeply, three things happened:
+My automation scripts stopped waking me up at night.
+Refactoring became safe instead of scary.
+People started trusting my code without reading it line by line.
+That’s the real upgrade.
+Not syntax.
+Not speed.
+Trust.
+If you’re already comfortable with Python and want your code to feel
+engineered
+instead of stitched together — start here.
+Build fewer things.
+Understand them deeper.
+And yes, your code will quietly get 10× better.
+Python
+Python Programming
+Technology
+Programming
+Libraries
+112
+112
+1
+Follow
+Published in
+CodeToDeploy
+2.9K followers
+·
+Last published
+17 hours ago
+Where Tech People Learn, Build, And Grow.
+Follow
+Follow
+Written by
+Ahmad Nadeem
+53 followers
+·
+27 following
+Freelancer,
+ Entrepreneur. Writing about coding, technology, and digital innovation,
+ helping developers and creators turn ideas into real-world solutions.
+Follow
+Responses (
+1
+)
+Bolha
+What are your thoughts?
+﻿
+Cancel
+Respond
+Mark Mansell
+Jan 30
+upload_results ( process_file(f) for f in all_files )
+1
+Reply
+More from Ahmad Nadeem and CodeToDeploy
+In
+CodeToDeploy
+by
+Vijayasekhar Deepak
+Top 15 Web Developer 👨‍💻 Software & 🛠️ Tools for 2026
+What to use and why
+Jan 17
+A clap icon
+203
+A response icon
+3
+In
+CodeToDeploy
+by
+Jaytech
+🚀 Java & Spring Boot in 2026: 12 Shifts Every Backend Developer Should Be Ready For
+A real developer’s perspective…
+Jan 3
+A clap icon
+314
+A response icon
+1
+In
+CodeToDeploy
+by
+Robi Kumar Tomar
+Mistral OCR 3 Changed OCR Overnight — It’s Now AI Infrastructure
+For
+ most of my career, OCR was the boring part of the stack — necessary 
+plumbing you bolted on so smarter systems could do their work.
+Dec 24, 2025
+A clap icon
+217
+In
+CodeToDeploy
+by
+Gulam Ali H.
+5 Underused C# Features That Make Defensive Code Obsolete
+Modern C# is better at protecting your invariants than you are
+Jan 22
+A clap icon
+201
+A response icon
+5
+See all from Ahmad Nadeem
+See all from CodeToDeploy
+Recommended from Medium
+In
+Python in Plain English
+by
+Arslan Qutab
+7 Python Libraries That Taught Me Better Coding Without Tutorials
+For a long time, I thought becoming a better Python developer meant watching more tutorials.
+Jan 23
+A clap icon
+142
+In
+Women in Technology
+by
+Alina Kovtun✨
+Stop Memorizing Design Patterns: Use This Decision Tree Instead
+Choose design patterns based on pain points: apply the right pattern with minimal over-engineering in any OO language.
+Jan 29
+A clap icon
+4.7K
+A response icon
+38
+Jacob Bennett
+The 5 paid subscriptions I actually use in 2026 as a Staff Software Engineer
+Tools I use that are (usually) cheaper than Netflix
+Jan 19
+A clap icon
+3.3K
+A response icon
+82
+In
+AI Software Engineer
+by
+Joe Njenga
+Anthropic Just Released Claude Code Course (And I Earned My Certificate)
+Anthropic just launched their Claude Code in Action course, and I’ve just passed — how about you?
+Jan 21
+A clap icon
+3.1K
+A response icon
+41
+Agent Native
+Local LLMs That Can Replace Claude Code
+Small
+ team of engineers can easily burn >$2K/mo on Anthropic’s Claude Code
+ (Sonnet/Opus 4.5). As budgets are tight, you might be wondering…
+Jan 20
+A clap icon
+1.4K
+A response icon
+40
+In
+Level Up Coding
+by
+Teja Kusireddy
+I Stopped Using ChatGPT for 30 Days. What Happened to My Brain Was Terrifying.
+91% of you will abandon 2026 resolutions by January 10th. Here’s how to be in the 9% who actually win.
+Dec 28, 2025
+A clap icon
+7.8K
+A response icon
+297
+See more recommendations
+Help
+Status
+About
+Careers
+Press
+Blog
+Privacy
+Rules
+Terms
+Text to speech

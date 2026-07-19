@@ -1,0 +1,98 @@
+I show 11 Tips and Tricks to Write Better Python code! I show a lot of best practices that improve your code by making your code much cleaner and more Pythonic. Python Tips In this tutorial I show 11 Tips and Tricks to write better Python code! I show a lot of best practices that improve your code by making your code much cleaner and more Pythonic. Here's the overview of all the tips: 1) Iterate with enumerate() instead of range(len()) 2) Use list comprehension instead of raw for-loops 3) Sort complex iterables with the built-in sorted() method 4) Store unique values with Sets 5) Save Memory With Generators 6) Define default values in Dictionaries with .get() and .setdefault() 7) Count hashable objects with collections.Counter 8) Format Strings with f-Strings (Python 3.6+) 9) Concatenate Strings with .join() 10) Merge dictionaries with the double asterisk syntax ** (Python 3.5+) 11) Simplify if-statements with if x in list instead of checking each item separately 1) Iterate with enumerate() instead of range(len())¶ If we need to iterate over a list and need to track both the index and the current item, most people would use the range(len) syntax. In this example we want to iterate over a list, check if the current item is negative, and set the value in our list to 0 in this case. While the range(len) syntax works it's much nicer to use the built-in enumerate function here. This returns both the current index and the current item as a tuple. So we can directly check the value here and also access the item with the index. data = [1, 2, -3, -4]
+# weak:
+for i in range(len(data)):
+ if data[i] < 0:
+ data[i] = 0
+
+# better:
+data = [1, 2, -3, -4]
+for idx, num in enumerate(data):
+ if num < 0:
+ data[idx] = 0
+ 2) Use list comprehension instead of raw for-loops¶ Let's say we want to create a list with certain values, in this case a list with all the squared numbers between 0 and 9. The tedious way would be to create an empty list, then use a for loop, do our calculation, and append it to the list: squares = []
+for i in range(10):
+ squares.append(i*i)
+ A simpler way to do this is list comprehension. Here we only need one line to achieve the same thing: # better:
+squares = [i*i for i in range(10)]
+ List comprehension can be really powerful, and even include if-statements. If you want to learn more about the syntax and good use cases, I have a whole tutorial about list comprehension here. Note that the usage of list comprehension is a little bit debatable. It should not be overused, especially not if it impairs the readability of the code. But I personally think this syntax is clear and concise. 3) Sort complex iterables with the built-in sorted() method¶ If we need to sort some iterable, e.g., a list, a tuple, or a dictionary, we don't need to implement the sorting algorithm ourselves. We can simply use the built-in sorted function. This automatically sorts the numbers in ascending order and returns a new list. If we want to have the result in descending order, we can use the argument reverse=True. As I said, this works on any iterable, so here we could also use a tuple. But note that the result is a list again! data = (3, 5, 1, 10, 9)
+sorted_data = sorted(data, reverse=True) # [10, 9, 5, 3, 1]
+ Now let's say we have a complex iterable. Here a list, and inside the list we have dictionaries, and we want to sort the list according to the age in the dictionary. For this we can also use the sorted function and then pass in the key argument that should be used for sorting. The key must be a function, so here we can use a lambda and use a one line function that returns the age. data = [{"name": "Max", "age": 6},
+ {"name": "Lisa", "age": 20},
+ {"name": "Ben", "age": 9}
+ ]
+sorted_data = sorted(data, key=lambda x: x["age"])
+ 4) Store unique values with Sets¶ If we have a list with multiple values and need to have only unique values, a nice trick is to convert our list to a set. A Set is an unordered collection data type that has no duplicate elements, so in this case it removes all the duplicates. my_list = [1,2,3,4,5,6,7,7,7]
+my_set = set(my_list) # removes duplicates
+ If we already know that we want unique elements, like here the prime numbers, we can create a set right away with curly braces. This allows Python to make some internal optimizations, and it also has some handy methods for calculating the intersections and differences between two sets. primes = {2,3,5,7,11,13,17,19}
+ 5) Save Memory With Generators¶ In tip #2 I showed you list comprehension. But a list is not always the best choice. Let's say we have a very large list with 10000 items and we want to calculate the sum over all the items. We can of course do this with a list, but we might run into memory issues. This is a perfect example where we can use generators. Similar to list comprehension we can use generator comprehension that has the same syntax but with parenthesis instead of square brackets. A generator computes our elements lazily, i.e., it produces only one item at a time and only when asked for it. If we calculate the sum over this generator, we see that we get the same correct result. # list comprehension
+my_list = [i for i in range(10000)]
+print(sum(my_list)) # 49995000
+
+# generator comprehension
+my_gen = (i for i in range(10000))
+print(sum(my_gen)) # 49995000
+ Now let's inspect the size of both the list and the generator with the built-in sys.getsizeof() method. For the list we get over 80000 bytes and for the generator we only get approximately 128 bytes because it only generates one item at a time. This can make a huge difference when working with large data, so it's always good to keep the generator in mind! import sys
+
+my_list = [i for i in range(10000)]
+print(sys.getsizeof(my_list), 'bytes') # 87616 bytes
+
+my_gen = (i for i in range(10000))
+print(sys.getsizeof(my_gen), 'bytes') # 128 bytes
+ 6) Define default values in Dictionaries with .get() and .setdefault()¶ Let's say we have a dictionary with different keys like the item and the price of the item. At some point in our code we want to get the count of the items and we assume that this key is also contained in the dictionary. When we simply try to access the key, it will crash our code and raise a KeyError. So a better way is to use the .get() method on the dictionary. This also returns the value for the key, but it will not raise a KeyError if the key is not available. Instead it returns the default value that we specified, or None if we didn't specify it. my_dict = {'item': 'football', 'price': 10.00}
+count = my_dict['count'] # KeyError!
+
+# better:
+count = my_dict.get('count', 0) # optional default value
+ If we want to ask our dictionary for the count and we also want to update the dictionary and put the count into the dictionary if it's not available, we can use the .setdefault() method. This returns the default value that we specified, and the next time we check the dictionary the used key is now available in our dictionary. count = my_dict.setdefault('count', 0)
+print(count) # 0
+print(my_dict) # {'item': 'football', 'price': 10.00, 'count': 0}
+ 7) Count hashable objects with collections.Counter¶ If we need to count the number of elements in a list, there is a very handy tool in the collections module that does exactly this. We just need to import the Counter from collections, and then create our counter object with the list as argument. If we print this, then for each item in our list we see the according number of times that this item appears, and it's also already sorted with the most common item being in front. This is much nicer to calculate it on our own. If we the want to get the count for a certain item, we can simply access this item, and it will return the corresponding count. If the item is not included, then it returns 0. from collections import Counter
+
+my_list = [10, 10, 10, 5, 5, 2, 9, 9, 9, 9, 9, 9]
+counter = Counter(my_list)
+
+print(counter) # Counter({9: 6, 10: 3, 5: 2, 2: 1})
+print(counter[10]) # 3
+ It also has a very handy method to return the most common items, which - no surprise - is called most_common(). We can specify if we just want the very most common item, or also the second most and so on by passing in a number. Note that this returns a list of tuples. Each tuple has the value as first value and the count as second value. So if we just want to have the value of the very most common item, we call this method and then we access index 0 in our list (this returns the first tuple) and then again access index 0 to get the value. from collections import Counter
+
+my_list = [10, 10, 10, 5, 5, 2, 9, 9, 9, 9, 9, 9]
+counter = Counter(my_list)
+
+most_common = counter.most_common(2)
+print(most_common) # [(9, 6), (10, 3)]
+print(most_common[0]) # (9, 6)
+print(most_common[0][0]) # 9
+ 8) Format Strings with f-Strings (Python 3.6+)¶ This is new since Python 3.6 and in my opinion is the best way to format a string. We just have to write an f before our string, and then inside the string we can use curly braces and access variables. This is much simpler and more concise compared to the old formatting rules, and it's also faster. Moreover, we can write expressions in the braces that are evaluated at runtime. So here for example we want to print the squared number of our variable i, and we can simply write this operation in our f-String. name = "Alex"
+my_string = f"Hello {name}"
+print(my_string) # Hello Alex
+
+i = 10
+print(f"{i} squared is {i*i}") # 10 squared is 100
+ 9) Concatenate Strings with .join()¶ Let's say we have a list with different strings, and we want to combine all elements to one string, separated by a space between each word. The bad way is to do it like this: list_of_strings = ["Hello", "my", "friend"]
+
+# BAD:
+my_string = ""
+for i in list_of_strings:
+ my_string += i + " "
+ We defined an empty string, then iterated over the list, and then appended the word and a space to the string. As you should know, a string is an immutable element, so here we have to create new strings each time. This code can be very slow for large lists, so you should immediately forget this approach! Much better, much faster, and also much more concise is to the .join() method: # GOOD:
+list_of_strings = ["Hello", "my", "friend"]
+my_string = " ".join(list_of_strings)
+ This combines all the elements into one string and uses the string in the beginning as a separator. So here we use a string with only a space. If we were for example to use a comma here, then the final string has a comma between each word. This syntax is the recommended way to combine a list of strings into one string. 10) Merge dictionaries with the double asterisk syntax ** (Python 3.5+)¶ This syntax is new since Python 3.5. If we have two dictionaries and want to merge them, we can use curly braces and double asterisks for both dictionaries. So here dictionary 1 has a name and an age, and dictionary 2 also has the name and then the city. After merging with this concise syntax our final dictionary has all 3 keys in it. d1 = {'name': 'Alex', 'age': 25}
+d2 = {'name': 'Alex', 'city': 'New York'}
+merged_dict = {**d1, **d2}
+print(merged_dict) # {'name': 'Alex', 'age': 25, 'city': 'New York'}
+ 11) Simplify if-statements with if x in list instead of checking each item separately¶ Let's say we have a list with main colors red, green, and blue. And somewhere in our code we have a new variable that contains some color, so here c = red. Then we want to check if this is a color from our main colors. We could of course check this against each item in our list like so: colors = ["red", "green", "blue"]
+
+c = "red"
+
+# cumbersome and error-prone
+if c == "red" or c == "green" or c == "blue":
+ print("is main color")
+ But this can become very cumbersome, and we can easily make mistakes, for example if we have a typo here for red. Much simpler and much better is just to use the syntax if x in list: colors = ["red", "green", "blue"]
+
+c = "red"
+
+# better:
+if c in colors:
+ print("is main color")
+ Conclusion¶ I hope you enjoyed those tips and learned a few new things! If you have any feedback or other tips you can recommend, please reach out on Twitter or YouTube! FREE VS Code / PyCharm Extensions I Use ✅ Write cleaner code with Sourcery, instant refactoring suggestions: Link* Python Problem-Solving Bootcamp 🚀 Solve 42 programming puzzles over the course of 21 days: Link* * These are affiliate link. By clicking on it you will not have any additional costs. Instead, you will support my project. Thank you! 🙏

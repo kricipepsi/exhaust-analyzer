@@ -1,0 +1,328 @@
+{
+  "schema_version": "1.0",
+  "fault_family": "mechanical_wear",
+  "nodes": {
+    "ERR-MW-001": {
+      "fault_name": "head_gasket_fire_ring_failure",
+      "fault_family": "mechanical_wear",
+      "component_group": "Engine Mechanical \u00e2\u20ac\u201d Cylinder Head Gasket Fire Ring Assembly",
+      "impacted_subsystems": [
+        "Head Gasket Fire Ring Seal (Cylinder-to-Cylinder Barrier)",
+        "Adjacent Cylinder Compression Integrity",
+        "Crankshaft Vacuum Reference"
+      ],
+      "mechanical_failure_mode": "Head gasket fire ring breached between two adjacent cylinders. Combustion pressure crosses the gasket land during compression and power strokes \u00e2\u20ac\u201d each cylinder leaks into its neighbour. Compression test shows two adjacent cylinders 30\u00e2\u20ac\u201c60 psi below the bank average.",
+      "ui_remediation_steps": [
+        "Compression test all cylinders with throttle wide open \u00e2\u20ac\u201d two adjacent cylinders both reading low (typically 30\u00e2\u20ac\u201c60 psi below bank average) is the hallmark of a fire-ring breach between them.",
+        "Leak-down test on each low cylinder: listen at the adjacent spark-plug hole (with that plug removed) \u00e2\u20ac\u201d air escaping confirms the gasket land between them has failed.",
+        "Vacuum gauge at warm idle: a regular low-to-high swing that matches half engine speed confirms the two affected cylinders are fighting each other through the breach.",
+        "Block test (chemical) on the cooling system: if positive, the gasket has also breached into a coolant passage \u00e2\u20ac\u201d replace the head gasket immediately to prevent hydrolock.",
+        "Remove the cylinder head. Inspect the gasket fire ring for a burned-through or crushed section between the two low cylinders. Check the head and block deck for flatness \u00e2\u20ac\u201d resurface if beyond specification.",
+        "Replace the head gasket with a new MLS or composite gasket per the manufacturer's specification. Torque the head bolts in the correct sequence and to the correct angle specification. Verify repair: compression even across all cylinders, vacuum gauge steady at 17\u00e2\u20ac\u201c22 inHg."
+      ],
+      "differential_siblings": [
+        "ERR-MW-002",
+        "ERR-MW-005",
+        "ERR-MF-006"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-MW-002": {
+      "fault_name": "head_gasket_coolant_passage_leak",
+      "fault_family": "mechanical_wear",
+      "component_group": "Engine Mechanical \u00e2\u20ac\u201d Cylinder Head Gasket Coolant Passage Seal",
+      "impacted_subsystems": [
+        "Head Gasket Coolant Passage Seal",
+        "Engine Cooling System Pressure Integrity",
+        "Combustion Chamber Seal"
+      ],
+      "mechanical_failure_mode": "Head gasket breached between a combustion chamber and an adjacent coolant passage. During the power stroke, combustion gas (CO2, HC) is forced into the cooling system at 500+ psi, displacing coolant and over-pressurising the system.",
+      "ui_remediation_steps": [
+        "Cold engine: remove the radiator cap and start the engine. Watch for a continuous stream of bubbles in the coolant \u00e2\u20ac\u201d this is combustion gas entering the cooling system through the gasket breach.",
+        "Block test (chemical combustion leak detector): draw air from the radiator neck through the test fluid using the supplied bulb. Fluid colour change from blue to yellow confirms combustion gas dissolved in the coolant.",
+        "Pressure-test the cooling system to 1.0 bar with the engine off. A rapid pressure drop without an external leak suggests coolant is entering a cylinder through the gasket breach.",
+        "Check for white exhaust smoke (steam) under load \u00e2\u20ac\u201d coolant entering the combustion chamber vaporises and exits the tailpipe. The exhaust will smell faintly sweet (glycol).",
+        "Remove the spark plugs after the engine has sat overnight and crank the engine briefly \u00e2\u20ac\u201d coolant droplets ejected from a plug hole confirm that cylinder's gasket has breached to coolant.",
+        "Replace the head gasket. Flush the cooling system thoroughly to remove any combustion residue. Change the engine oil \u00e2\u20ac\u201d coolant contamination thins the oil and destroys bearing protection. Verify repair: block test negative, no bubbles in coolant, no white smoke under load, cooling system holds pressure."
+      ],
+      "differential_siblings": [
+        "ERR-MW-001",
+        "ERR-MW-005"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-MW-003": {
+      "fault_name": "worn_piston_rings",
+      "fault_family": "mechanical_wear",
+      "component_group": "Engine Mechanical \u00e2\u20ac\u201d Piston Ring and Cylinder Bore Assembly",
+      "impacted_subsystems": [
+        "Piston Compression Ring Set (Top and Second Ring)",
+        "Oil Control Ring Assembly",
+        "Crankcase Ventilation (PCV) System"
+      ],
+      "mechanical_failure_mode": "Piston rings worn beyond specification \u00e2\u20ac\u201d compression ring face lost its barrel profile, oil control ring drain-back holes carbon-plugged, or ring tension collapsed from overheat detensioning.",
+      "ui_remediation_steps": [
+        "Compression test (dry) all cylinders \u00e2\u20ac\u201d affected cylinders read below specification. Record the dry values per cylinder.",
+        "Wet compression test: add ~1 teaspoon of clean engine oil to each low cylinder through the spark-plug hole and re-test. If compression rises \u00e2\u2030\u00a5 20 psi, the rings are worn \u00e2\u20ac\u201d the oil temporarily sealed the ring-to-bore gap. If compression stays low, the leak path is valves or head gasket.",
+        "Cylinder leak-down test: pressurise each cylinder at TDC compression stroke. Listen at the oil filler cap \u00e2\u20ac\u201d air hissing from the crankcase confirms ring blow-by. Quantify leakage: > 20 % is significant wear.",
+        "Check crankcase blow-by: remove the oil filler cap with the engine running and hold your hand over the opening. Excessive positive pressure pulsing confirms ring blow-by. A properly sealed engine produces a steady light vacuum at the filler cap.",
+        "Inspect the PCV system first \u00e2\u20ac\u201d a stuck-closed PCV valve forces crankcase pressure past the rings and mimics ring blow-by. Replace the PCV valve if suspect and re-test before condemning the rings.",
+        "If rings are confirmed worn: the engine requires a bottom-end rebuild (piston rings, cylinder hone or bore, possibly pistons). This is a major mechanical repair. Verify after rebuild: compression even across all cylinders within 10 %, leak-down < 10 %, no visible blow-by at the oil filler."
+      ],
+      "differential_siblings": [
+        "ERR-MW-004",
+        "ERR-MW-005",
+        "ERR-RM-002",
+        "ERR-MF-006"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-MW-004": {
+      "fault_name": "worn_valve_stem_seals",
+      "fault_family": "mechanical_wear",
+      "component_group": "Engine Mechanical \u00e2\u20ac\u201d Cylinder Head Valve Stem Seal and Guide Assembly",
+      "impacted_subsystems": [
+        "Valve Stem Oil Seal (Intake and Exhaust)",
+        "Valve Guide Bore",
+        "Catalytic Converter (oil contamination risk)"
+      ],
+      "mechanical_failure_mode": "Valve stem seals hardened, cracked, or worn \u00e2\u20ac\u201d the lip seal no longer wipes oil from the valve stem during guide travel. Oil pools on the back of the valve head when the engine sits, then enters the combustion chamber at startup producing a characteristic blue smoke puff",
+      "ui_remediation_steps": [
+        "Cold start observation: a distinct puff of blue-white oil smoke from the tailpipe that lasts 2\u00e2\u20ac\u201c5 seconds then clears completely is the hallmark of valve stem seal leakage. Oil pooled on valve heads during the sit period burns off immediately at startup.",
+        "Snap-throttle test at operating temperature: hold RPM at ~2500, snap the throttle closed, then snap it open. A plume of blue smoke on the re-open confirms oil was drawn past the intake valve seals during the high-vacuum deceleration phase.",
+        "Compression test: typically normal across all cylinders. This is the key discriminator vs worn rings \u00e2\u20ac\u201d valve seals leak oil without leaking compression pressure.",
+        "Leak-down test: air escapes from the intake or exhaust port (not the crankcase), confirming the valve is the leak path. However, this identifies valve seat leakage, not seal leakage \u00e2\u20ac\u201d combined with the smoke pattern, the diagnosis is complete.",
+        "If only valve stem seals are confirmed: the repair is a cylinder-head-on job \u00e2\u20ac\u201d replace all valve stem seals as a set (intake and exhaust). Inspect valve guides for excessive clearance while the seals are off. Worn guides will destroy new seals within weeks.",
+        "Verify repair: no blue smoke on cold start, no smoke on snap-throttle, HC at idle within normal range (< 100 ppm). Catalytic converter not poisoned \u00e2\u20ac\u201d if oil consumption was prolonged, check cat efficiency."
+      ],
+      "differential_siblings": [
+        "ERR-MW-003",
+        "ERR-RM-001"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-MW-005": {
+      "fault_name": "low_compression_multi_cylinder",
+      "fault_family": "mechanical_wear",
+      "component_group": "Engine Mechanical \u00e2\u20ac\u201d Piston, Ring, and Cylinder Bore Assembly (Global)",
+      "impacted_subsystems": [
+        "All Cylinder Compression Sealing",
+        "Engine Vacuum Reference at Idle",
+        "Combustion Efficiency Across All Cylinders"
+      ],
+      "mechanical_failure_mode": "Uniformly low compression across all or most cylinders \u00e2\u20ac\u201d typically 60\u00e2\u20ac\u201c80 psi across the board from high-mileage ring/cylinder wear, a jumped timing belt/chain, or a severely overheated engine that detensioned all rings simultaneously.",
+      "ui_remediation_steps": [
+        "Compression test all cylinders dry: if all read uniformly low (e.g. 60\u00e2\u20ac\u201c80 psi vs 120\u00e2\u20ac\u201c180 psi expected), the fault is global \u00e2\u20ac\u201d rings, timing, or a severely overheated engine. Individual low cylinders would point to specific failures.",
+        "Wet compression test on 2\u00e2\u20ac\u201c3 representative cylinders: if wet readings rise significantly, rings are the cause of the global low compression. If wet readings do NOT rise, suspect valve timing (jumped belt/chain) or camshaft wear.",
+        "Check cam timing: rotate the engine to TDC on cylinder 1 and verify that the camshaft timing marks align with the crank timing mark. A jumped timing belt or stretched chain retards cam timing globally, reducing compression across all cylinders.",
+        "Vacuum gauge at warm idle: a steady but abnormally low reading (10\u00e2\u20ac\u201c15 inHg instead of 17\u00e2\u20ac\u201c22 inHg) confirms globally reduced volumetric efficiency from late valve timing or widespread ring wear.",
+        "If timing is correct and rings are confirmed worn: the engine requires a full rebuild (rings, hone, possibly oversize pistons, bearings). This is an engine-out major repair.",
+        "Verify repair: compression 120\u00e2\u20ac\u201c180 psi across all cylinders within 10 %, vacuum gauge steady 17\u00e2\u20ac\u201c22 inHg at warm idle, engine idles smoothly, power restored under load."
+      ],
+      "differential_siblings": [
+        "ERR-MW-003",
+        "ERR-MW-006",
+        "ERR-MF-006",
+        "ERR-CT-001"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-MW-006": {
+      "fault_name": "cylinder_bore_scoring",
+      "fault_family": "mechanical_wear",
+      "component_group": "Engine Mechanical \u00e2\u20ac\u201d Piston, Ring, and Cylinder Bore (Single Cylinder)",
+      "impacted_subsystems": [
+        "Single Cylinder Bore Wall Integrity",
+        "Piston Skirt-to-Bore Clearance",
+        "Oil Control Ring on Affected Cylinder"
+      ],
+      "mechanical_failure_mode": "One cylinder bore scored \u00e2\u20ac\u201d vertical gouges in the cylinder wall from debris ingestion (broken spark plug electrode, carbon chunk), detonation-eroded piston material smeared on the bore, or oil-starved piston seizure.",
+      "ui_remediation_steps": [
+        "Compression test all cylinders: one cylinder reads dramatically lower than the rest (30\u00e2\u20ac\u201c50 psi deficit). Adjacent cylinders are normal \u00e2\u20ac\u201d this is a single-cylinder mechanical fault, not a global issue.",
+        "Wet compression test on the low cylinder: if compression rises only slightly (< 10 psi increase), oil cannot seal the damage because the bore is physically gouged \u00e2\u20ac\u201d this rules out worn rings and points to bore scoring.",
+        "Leak-down test on the affected cylinder: listen at the oil filler cap for pronounced crankcase hiss. Quantify: > 30 % leakage confirms severe sealing loss on that cylinder.",
+        "Borescope inspection through the spark-plug hole: examine the cylinder bore for vertical score marks, aluminium transfer from the piston skirt, or embedded debris. A scored bore is visually unmistakable.",
+        "Remove the spark plug from the affected cylinder and compare to the others \u00e2\u20ac\u201d the affected plug will show heavy oil ash deposits (grey-white crust) while the other plugs are normal. This confirms cylinder-specific oil consumption.",
+        "If bore scoring is confirmed: the engine requires at minimum a bottom-end rebuild on the affected cylinder (bore, oversize piston, rings). In severe cases, a replacement engine may be more economical. Verify repair: compression even across all cylinders, no oil consumption, clean spark plug on the repaired cylinder."
+      ],
+      "differential_siblings": [
+        "ERR-MW-003",
+        "ERR-MW-005",
+        "ERR-MF-006"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-MW-008": {
+      "fault_name": "mechanical_wear_compression_loss_misfire",
+      "fault_family": "mechanical_wear",
+      "component_group": "Engine Mechanical \u2014 Piston, Ring, and Cylinder Bore (Compression Loss)",
+      "impacted_subsystems": [
+        "Cylinder Compression Sealing",
+        "Ignition System (Secondary \u2014 Fouled by Oil or Coolant)",
+        "Crankshaft Acceleration Misfire Monitor"
+      ],
+      "mechanical_failure_mode": "Compression loss from mechanical wear producing an ignition-misfire gas signature. Low compression prevents the air-fuel mixture from reaching the temperature and pressure needed for complete combustion. Raw unburned fuel and oxygen pass through to the exhaust, indistinguishab...",
+      "ui_remediation_steps": [
+        "Compression test all cylinders dry \u2014 any cylinder below 80% of the manufacturer specification or 100 psi confirms compression loss. Record the dry values per cylinder.",
+        "Wet compression test on low cylinders: if compression rises > 20 psi, ring wear is confirmed. If compression does NOT rise, the leak is through the valves or head gasket.",
+        "Cylinder leak-down test to pinpoint the leak path: listen at the oil filler (rings), intake (intake valve), exhaust (exhaust valve), or radiator (head gasket to coolant).",
+        "Inspect the spark plug from the low-compression cylinder \u2014 an oil-fouled plug (wet, black, oily deposit) confirms oil ingress. A steam-cleaned plug (very clean, white) confirms coolant ingress from a head gasket breach.",
+        "If compression loss is confirmed: rule out the ignition and fuel systems first to avoid misdiagnosis. The gas signature alone cannot distinguish compression loss from ignition failure.",
+        "Once mechanical wear is confirmed: the repair depends on the leak path \u2014 rings require a bottom-end rebuild, valves require a cylinder-head rebuild, head gasket requires replacement. This is a major mechanical repair."
+      ],
+      "differential_siblings": [
+        "ERR-MW-005",
+        "ERR-MW-006",
+        "ERR-MF-006"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-MW-007": {
+      "fault_name": "mechanical_wear_oil_burning",
+      "fault_family": "mechanical_wear",
+      "component_group": "Engine Mechanical \u2014 Piston Ring, Valve Guide, and Cylinder Bore Assembly",
+      "impacted_subsystems": [
+        "Piston Oil Control Ring Set",
+        "Valve Stem Seal and Guide Assembly",
+        "Crankcase Ventilation (PCV) System"
+      ],
+      "mechanical_failure_mode": "Oil consumption from mechanical engine wear producing POA_SIGNATURE chemistry: HC normal to moderately elevated (150-500 ppm), CO low (< 0.5%), lambda near 1.0. Oil enters the combustion chamber past worn rings, valve guides, or seals. Blue-white exhaust smoke is the confirmin...",
+      "ui_remediation_steps": [
+        "Confirm oil consumption: check the oil level and service history. Consumption > 1 L per 1000 km is significant mechanical wear. Blue-white exhaust smoke confirms oil burning.",
+        "Cold-start observation: a puff of blue smoke that clears within 2-5 seconds points to valve stem seals. Smoke that persists or worsens under load points to piston rings.",
+        "Compression test all cylinders dry. Record values. Perform wet compression test on any low cylinders \u2014 a rise > 20 psi confirms ring wear. No rise with low compression points to valve sealing or head gasket.",
+        "Cylinder leak-down test: pressurise each cylinder at TDC compression. Listen at the oil filler cap \u2014 air hissing confirms ring blow-by. Listen at the intake or exhaust for valve leakage.",
+        "Inspect the PCV system before condemning the rings \u2014 a stuck-closed PCV valve forces crankcase pressure past the rings and causes oil consumption that resolves when the PCV system is repaired.",
+        "If rings or valve guides are confirmed worn: the repair is a bottom-end rebuild (rings, hone, possibly pistons) or cylinder-head rebuild (valve seals, guides). This is a major mechanical repair."
+      ],
+      "differential_siblings": [
+        "ERR-MW-003",
+        "ERR-MW-004",
+        "ERR-RM-002"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "P_NEW_09": {
+      "fault_name": "oil_consumption_worn_piston_rings",
+      "fault_family": "mechanical_wear",
+      "component_group": "Engine Mechanical (Piston Rings)",
+      "impacted_subsystems": [
+        "Piston Compression Rings",
+        "Oil Control Rings",
+        "Cylinder Bore Seal"
+      ],
+      "mechanical_failure_mode": "Oil passes worn piston rings under acceleration and load, producing blue smoke and a loaded HC rise while compression/blow-by tests confirm ring leakage.",
+      "ui_remediation_steps": [
+        "Confirm blue smoke worsens under acceleration or load.",
+        "Perform dry and wet compression tests; a wet-test rise supports ring leakage.",
+        "Run cylinder leak-down and listen at the oil filler for crankcase blow-by.",
+        "Inspect PCV operation before authorising teardown.",
+        "Repair confirmed ring wear with bottom-end overhaul, hone/bore, and ring replacement."
+      ],
+      "differential_siblings": [
+        "ERR-MW-003",
+        "P_NEW_10",
+        "P_NEW_11",
+        "P_NEW_13"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "P_NEW_10": {
+      "fault_name": "oil_consumption_worn_valve_stem_seals",
+      "fault_family": "mechanical_wear",
+      "component_group": "Engine Mechanical (Valve Stem Seals)",
+      "impacted_subsystems": [
+        "Valve Stem Seals",
+        "Valve Guides",
+        "Cylinder Head Oil Control"
+      ],
+      "mechanical_failure_mode": "Hardened valve-stem seals let pooled oil enter the chamber on cold start, causing a brief blue cloud that clears as the engine runs.",
+      "ui_remediation_steps": [
+        "Observe cold start after an overnight soak for blue smoke that clears quickly.",
+        "Run a snap-throttle decel/reopen smoke check at operating temperature.",
+        "Verify compression remains normal to separate seal leakage from ring wear.",
+        "Replace valve stem seals and inspect valve-guide clearance.",
+        "Verify no cold-start or snap-throttle blue smoke remains."
+      ],
+      "differential_siblings": [
+        "ERR-MW-004",
+        "P_NEW_09",
+        "P_NEW_13"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "P_NEW_11": {
+      "fault_name": "oil_consumption_pcv_stuck_open",
+      "fault_family": "mechanical_wear",
+      "component_group": "Engine Mechanical (PCV/Crankcase)",
+      "impacted_subsystems": [
+        "PCV Valve",
+        "Crankcase Ventilation",
+        "Intake Manifold Vacuum"
+      ],
+      "mechanical_failure_mode": "A stuck-open PCV valve draws oil vapour at high manifold vacuum, causing oil loss with little smoke and a low-idle rich/HC signature that clears at high idle.",
+      "ui_remediation_steps": [
+        "Inspect PCV valve, hoses, and oil separator for stuck-open flow or oil pooling.",
+        "Compare low-idle and high-idle HC/CO; PCV should improve as vacuum falls.",
+        "Check intake tract for oil carryover before condemning rings.",
+        "Replace the PCV valve or separator assembly and clear oil residue.",
+        "Re-test oil consumption and idle emissions before teardown decisions."
+      ],
+      "differential_siblings": [
+        "P_NEW_09",
+        "P_NEW_13",
+        "ERR-MW-007"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "P_NEW_12": {
+      "fault_name": "oil_consumption_head_gasket_oil_breach",
+      "fault_family": "mechanical_wear",
+      "component_group": "Engine Mechanical (Head Gasket)",
+      "impacted_subsystems": [
+        "Head Gasket Oil Passage Seal",
+        "Combustion Chamber Seal",
+        "Cooling System Cross-Contamination"
+      ],
+      "mechanical_failure_mode": "Head-gasket breach from an oil passage into the bore, often with coolant involvement, creates white sweet smoke, oil/coolant emulsion, and COOLANT_LEAK_INTERNAL chemistry.",
+      "ui_remediation_steps": [
+        "Check for white sweet smoke, milky oil, and coolant/oil cross-contamination.",
+        "Run a cooling-system block test and pressure test.",
+        "Inspect spark plugs for steam cleaning or oily deposits on the affected cylinder.",
+        "Remove the head and inspect gasket oil and coolant passage seals.",
+        "Replace the gasket, flush oil/coolant systems, and verify no emulsion returns."
+      ],
+      "differential_siblings": [
+        "ERR-MW-002",
+        "P_NEW_09",
+        "P_NEW_10"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "P_NEW_13": {
+      "fault_name": "oil_consumption_turbo_turbine_seal_leak",
+      "fault_family": "mechanical_wear",
+      "component_group": "Engine Mechanical (Turbo Oil Seal)",
+      "impacted_subsystems": [
+        "Turbocharger Turbine Seal",
+        "Exhaust Housing",
+        "Catalyst Feed Gas"
+      ],
+      "mechanical_failure_mode": "Turbo turbine seal leaks oil into the hot exhaust after combustion, giving extreme HC with near-stoichiometric lambda and little CO on forced-induction engines.",
+      "ui_remediation_steps": [
+        "Confirm the engine is forced-induction before using this branch.",
+        "Check for blue smoke under boost or after idle-to-acceleration transitions.",
+        "Inspect turbo shaft play, turbine housing oil wetness, and drain restriction.",
+        "Use gas data: high HC with stoichiometric lambda and low CO supports post-cylinder oil cracking.",
+        "Repair turbo oil seal/drain faults and verify HC returns to normal."
+      ],
+      "differential_siblings": [
+        "P_NEW_09",
+        "P_NEW_10",
+        "P_NEW_11",
+        "ERR-CF-006"
+      ],
+      "editor_severity_hint": "REPAIR"
+    }
+  }
+}

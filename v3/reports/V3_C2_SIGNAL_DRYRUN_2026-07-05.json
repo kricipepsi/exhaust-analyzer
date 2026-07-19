@@ -1,0 +1,396 @@
+{
+  "task": "T-V3-P4-C2A",
+  "mode": "provisional-synthetic-simulated (side file; live corpus untouched)",
+  "summary": {
+    "baseline_top3_passes": 197,
+    "simulated_top3_passes": 212,
+    "newly_passing_count": 15,
+    "regression_count": 0,
+    "denominator": 294,
+    "abstained_count": 80,
+    "coverage": 0.7279,
+    "top3_on_covered": 0.9907,
+    "would_bank": [
+      "era2_019",
+      "CASE-015",
+      "CASE-029",
+      "CASE-040",
+      "CSV-121",
+      "CSV-122",
+      "EXT-232",
+      "EXT-233",
+      "PDF-HI-001",
+      "PDF-HI-006",
+      "RULE-CO-1",
+      "YAML-PDF_HI_001",
+      "case_002",
+      "case_015",
+      "case_017"
+    ],
+    "already_pass": [
+      "era2_015",
+      "CASE-023",
+      "EXP-N017",
+      "EXT-217"
+    ],
+    "still_short": [
+      "era1_017",
+      "CSV-100",
+      "case_004"
+    ],
+    "regressions": []
+  },
+  "c2_cases_details": [
+    {
+      "case_id": "era1_017",
+      "expected_family": "sensor_fault",
+      "c2_state": "LOW_OSC_OR_HIGH_INDEX",
+      "baseline_hit": false,
+      "top3_hit": false,
+      "winner_id": "CF-001",
+      "winner_family": "catalyst_failure",
+      "winner_score": 1.0,
+      "top3_families": [
+        "cam_timing",
+        "lean_condition",
+        "catalyst_failure"
+      ],
+      "outcome": "STILL_SHORT"
+    },
+    {
+      "case_id": "era2_015",
+      "expected_family": "lean_condition",
+      "c2_state": "NORMAL",
+      "baseline_hit": true,
+      "top3_hit": true,
+      "winner_id": "MF-001",
+      "winner_family": "misfire",
+      "winner_score": 0.9600000000000001,
+      "top3_families": [
+        "misfire",
+        "lean_condition",
+        "sensor_fault"
+      ],
+      "outcome": "ALREADY_PASS"
+    },
+    {
+      "case_id": "era2_019",
+      "expected_family": "rich_mixture",
+      "c2_state": "TRUE_RICH",
+      "baseline_hit": false,
+      "top3_hit": true,
+      "winner_id": "MF-001",
+      "winner_family": "misfire",
+      "winner_score": 1.0,
+      "top3_families": [
+        "rich_mixture",
+        "misfire"
+      ],
+      "outcome": "WOULD_BANK"
+    },
+    {
+      "case_id": "CASE-015",
+      "expected_family": "catalyst_failure",
+      "c2_state": "LOW_OSC_OR_HIGH_INDEX",
+      "baseline_hit": false,
+      "top3_hit": true,
+      "winner_id": "CF-001",
+      "winner_family": "catalyst_failure",
+      "winner_score": 0.951,
+      "top3_families": [
+        "no_fault",
+        "lean_condition",
+        "catalyst_failure"
+      ],
+      "outcome": "WOULD_BANK"
+    },
+    {
+      "case_id": "CASE-023",
+      "expected_family": "rich_mixture",
+      "c2_state": "TRUE_RICH",
+      "baseline_hit": true,
+      "top3_hit": true,
+      "winner_id": "RM-001",
+      "winner_family": "rich_mixture",
+      "winner_score": 1.0,
+      "top3_families": [
+        "rich_mixture",
+        "cam_timing",
+        "misfire"
+      ],
+      "outcome": "ALREADY_PASS"
+    },
+    {
+      "case_id": "CASE-029",
+      "expected_family": "rich_mixture",
+      "c2_state": "TRUE_RICH",
+      "baseline_hit": false,
+      "top3_hit": true,
+      "winner_id": "LC-001",
+      "winner_family": "lean_condition",
+      "winner_score": 1.0,
+      "top3_families": [
+        "rich_mixture",
+        "lean_condition",
+        "exhaust_leak"
+      ],
+      "outcome": "WOULD_BANK"
+    },
+    {
+      "case_id": "CASE-040",
+      "expected_family": "rich_mixture",
+      "c2_state": "TRUE_RICH",
+      "baseline_hit": false,
+      "top3_hit": true,
+      "winner_id": "RM-001",
+      "winner_family": "rich_mixture",
+      "winner_score": 1.0,
+      "top3_families": [
+        "rich_mixture",
+        "no_fault",
+        "lean_condition"
+      ],
+      "outcome": "WOULD_BANK"
+    },
+    {
+      "case_id": "CSV-100",
+      "expected_family": "lean_condition",
+      "c2_state": "NORMAL",
+      "baseline_hit": false,
+      "top3_hit": false,
+      "winner_id": "SF-001",
+      "winner_family": "sensor_fault",
+      "winner_score": 0.95,
+      "top3_families": [
+        "rich_mixture",
+        "misfire",
+        "sensor_fault"
+      ],
+      "outcome": "STILL_SHORT"
+    },
+    {
+      "case_id": "CSV-121",
+      "expected_family": "catalyst_failure",
+      "c2_state": "LOW_OSC_OR_HIGH_INDEX",
+      "baseline_hit": false,
+      "top3_hit": true,
+      "winner_id": "CF-001",
+      "winner_family": "catalyst_failure",
+      "winner_score": 0.951,
+      "top3_families": [
+        "exhaust_leak",
+        "lean_condition",
+        "catalyst_failure"
+      ],
+      "outcome": "WOULD_BANK"
+    },
+    {
+      "case_id": "CSV-122",
+      "expected_family": "catalyst_failure",
+      "c2_state": "LOW_OSC_OR_HIGH_INDEX",
+      "baseline_hit": false,
+      "top3_hit": true,
+      "winner_id": "CF-001",
+      "winner_family": "catalyst_failure",
+      "winner_score": 0.951,
+      "top3_families": [
+        "exhaust_leak",
+        "lean_condition",
+        "catalyst_failure"
+      ],
+      "outcome": "WOULD_BANK"
+    },
+    {
+      "case_id": "EXP-N017",
+      "expected_family": "lean_condition",
+      "c2_state": "NORMAL",
+      "baseline_hit": true,
+      "top3_hit": true,
+      "winner_id": "MF-001",
+      "winner_family": "misfire",
+      "winner_score": 0.9600000000000001,
+      "top3_families": [
+        "misfire",
+        "lean_condition",
+        "sensor_fault"
+      ],
+      "outcome": "ALREADY_PASS"
+    },
+    {
+      "case_id": "EXT-217",
+      "expected_family": "rich_mixture",
+      "c2_state": "TRUE_RICH",
+      "baseline_hit": true,
+      "top3_hit": true,
+      "winner_id": "RM-001",
+      "winner_family": "rich_mixture",
+      "winner_score": 1.0,
+      "top3_families": [
+        "rich_mixture",
+        "cam_timing",
+        "misfire"
+      ],
+      "outcome": "ALREADY_PASS"
+    },
+    {
+      "case_id": "EXT-232",
+      "expected_family": "catalyst_failure",
+      "c2_state": "LOW_OSC_OR_HIGH_INDEX",
+      "baseline_hit": false,
+      "top3_hit": true,
+      "winner_id": "CF-001",
+      "winner_family": "catalyst_failure",
+      "winner_score": 0.951,
+      "top3_families": [
+        "no_fault",
+        "lean_condition",
+        "catalyst_failure"
+      ],
+      "outcome": "WOULD_BANK"
+    },
+    {
+      "case_id": "EXT-233",
+      "expected_family": "catalyst_failure",
+      "c2_state": "LOW_OSC_OR_HIGH_INDEX",
+      "baseline_hit": false,
+      "top3_hit": true,
+      "winner_id": "CF-001",
+      "winner_family": "catalyst_failure",
+      "winner_score": 0.951,
+      "top3_families": [
+        "no_fault",
+        "lean_condition",
+        "catalyst_failure"
+      ],
+      "outcome": "WOULD_BANK"
+    },
+    {
+      "case_id": "PDF-HI-001",
+      "expected_family": "rich_mixture",
+      "c2_state": "TRUE_RICH",
+      "baseline_hit": false,
+      "top3_hit": true,
+      "winner_id": "RM-001",
+      "winner_family": "rich_mixture",
+      "winner_score": 1.0,
+      "top3_families": [
+        "rich_mixture",
+        "misfire",
+        "sensor_fault"
+      ],
+      "outcome": "WOULD_BANK"
+    },
+    {
+      "case_id": "PDF-HI-006",
+      "expected_family": "catalyst_failure",
+      "c2_state": "LOW_OSC_OR_HIGH_INDEX",
+      "baseline_hit": false,
+      "top3_hit": true,
+      "winner_id": "CF-001",
+      "winner_family": "catalyst_failure",
+      "winner_score": 0.951,
+      "top3_families": [
+        "sensor_fault",
+        "ecu_fault",
+        "catalyst_failure"
+      ],
+      "outcome": "WOULD_BANK"
+    },
+    {
+      "case_id": "RULE-CO-1",
+      "expected_family": "rich_mixture",
+      "c2_state": "TRUE_RICH",
+      "baseline_hit": false,
+      "top3_hit": true,
+      "winner_id": "RM-001",
+      "winner_family": "rich_mixture",
+      "winner_score": 1.0,
+      "top3_families": [
+        "ecu_fault",
+        "rich_mixture",
+        "sensor_fault"
+      ],
+      "outcome": "WOULD_BANK"
+    },
+    {
+      "case_id": "YAML-PDF_HI_001",
+      "expected_family": "rich_mixture",
+      "c2_state": "TRUE_RICH",
+      "baseline_hit": false,
+      "top3_hit": true,
+      "winner_id": "RM-001",
+      "winner_family": "rich_mixture",
+      "winner_score": 1.0,
+      "top3_families": [
+        "rich_mixture",
+        "misfire",
+        "sensor_fault"
+      ],
+      "outcome": "WOULD_BANK"
+    },
+    {
+      "case_id": "case_002",
+      "expected_family": "rich_mixture",
+      "c2_state": "TRUE_RICH",
+      "baseline_hit": false,
+      "top3_hit": true,
+      "winner_id": "RM-001",
+      "winner_family": "rich_mixture",
+      "winner_score": 1.0,
+      "top3_families": [
+        "rich_mixture",
+        "misfire",
+        "sensor_fault"
+      ],
+      "outcome": "WOULD_BANK"
+    },
+    {
+      "case_id": "case_004",
+      "expected_family": "sensor_fault",
+      "c2_state": "LOW_OSC_OR_HIGH_INDEX",
+      "baseline_hit": false,
+      "top3_hit": false,
+      "winner_id": "CF-001",
+      "winner_family": "catalyst_failure",
+      "winner_score": 1.0,
+      "top3_families": [
+        "ecu_fault",
+        "lean_condition",
+        "catalyst_failure"
+      ],
+      "outcome": "STILL_SHORT"
+    },
+    {
+      "case_id": "case_015",
+      "expected_family": "rich_mixture",
+      "c2_state": "TRUE_RICH",
+      "baseline_hit": false,
+      "top3_hit": true,
+      "winner_id": "RM-001",
+      "winner_family": "rich_mixture",
+      "winner_score": 1.0,
+      "top3_families": [
+        "ecu_fault",
+        "rich_mixture",
+        "sensor_fault"
+      ],
+      "outcome": "WOULD_BANK"
+    },
+    {
+      "case_id": "case_017",
+      "expected_family": "rich_mixture",
+      "c2_state": "TRUE_RICH",
+      "baseline_hit": false,
+      "top3_hit": true,
+      "winner_id": "RM-001",
+      "winner_family": "rich_mixture",
+      "winner_score": 1.0,
+      "top3_families": [
+        "rich_mixture",
+        "cam_timing",
+        "misfire"
+      ],
+      "outcome": "WOULD_BANK"
+    }
+  ]
+}

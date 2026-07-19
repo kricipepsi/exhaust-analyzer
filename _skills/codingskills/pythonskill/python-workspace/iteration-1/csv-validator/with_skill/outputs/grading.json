@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "Has type hints on function parameters and return type",
+      "passed": true,
+      "evidence": "Type hints present in function signatures"
+    },
+    {
+      "text": "Uses logging module, not print statements",
+      "passed": true,
+      "evidence": "logging imported; no print() calls found"
+    },
+    {
+      "text": "Handles file-not-found and malformed CSV with specific exceptions (not bare except)",
+      "passed": true,
+      "evidence": "Specific exceptions caught, no bare except"
+    },
+    {
+      "text": "Validates both name (non-empty) and age (int, 0-120) with clear error messages",
+      "passed": true,
+      "evidence": "Both name and age validated with 0-120 range check"
+    },
+    {
+      "text": "Uses pathlib.Path or accepts Path objects for the file path",
+      "passed": true,
+      "evidence": "pathlib.Path used"
+    },
+    {
+      "text": "Has a docstring explaining parameters and return value",
+      "passed": true,
+      "evidence": "Docstring with Args and Returns sections found"
+    },
+    {
+      "text": "No mutable default arguments",
+      "passed": true,
+      "evidence": "No mutable default arguments found"
+    },
+    {
+      "text": "Uses f-strings for string formatting",
+      "passed": true,
+      "evidence": "f-strings used"
+    }
+  ]
+}

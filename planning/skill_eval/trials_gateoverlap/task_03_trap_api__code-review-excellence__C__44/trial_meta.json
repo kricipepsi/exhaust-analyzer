@@ -1,0 +1,10 @@
+{
+  "trial_id": "task_03_trap_api__code-review-excellence__C__44",
+  "task_id": "task_03_trap_api",
+  "skill_id": "code-review-excellence",
+  "arm": "C",
+  "seed": 44,
+  "model": "opus-4.7@t=0.0",
+  "no_gate": true,
+  "prepared_utc": "2026-06-10T06:39:31.713813+00:00"
+}

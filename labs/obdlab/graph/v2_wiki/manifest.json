@@ -1,0 +1,317 @@
+{
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\delta-relations\\01_delta-method-and-formula.md": {
+    "mtime": 1780944153.622684,
+    "ast_hash": "cbd5e959600cd1b889da03b7f4e0ef60",
+    "semantic_hash": "cbd5e959600cd1b889da03b7f4e0ef60"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\delta-relations\\02_profile-vacuum-leak.md": {
+    "mtime": 1780944153.623684,
+    "ast_hash": "cd48b3780530bde6613dd1735e98937e",
+    "semantic_hash": "cd48b3780530bde6613dd1735e98937e"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\delta-relations\\03_profile-fuel-starvation.md": {
+    "mtime": 1780944153.623684,
+    "ast_hash": "2c9c3e9cd39c2526ddf3d79d42c89e39",
+    "semantic_hash": "2c9c3e9cd39c2526ddf3d79d42c89e39"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\delta-relations\\04_profile-maf-underreport.md": {
+    "mtime": 1780944153.6246843,
+    "ast_hash": "3a151f855f074de1e197caaa945e4fdb",
+    "semantic_hash": "3a151f855f074de1e197caaa945e4fdb"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\delta-relations\\05_profile-exhaust-backpressure.md": {
+    "mtime": 1780944153.6256835,
+    "ast_hash": "35226e1514e24dc7cf32659314387222",
+    "semantic_hash": "35226e1514e24dc7cf32659314387222"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\delta-relations\\06_architecture-modifiers.md": {
+    "mtime": 1780944153.6266837,
+    "ast_hash": "1ae24e510dd5357dc54aac80fc1609e2",
+    "semantic_hash": "1ae24e510dd5357dc54aac80fc1609e2"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\delta-relations\\07_gas-transition-matrix-2speed.md": {
+    "mtime": 1780944153.6282442,
+    "ast_hash": "d127dc813a1cea0102f7c4b85c1ba882",
+    "semantic_hash": "d127dc813a1cea0102f7c4b85c1ba882"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\delta-relations\\08_vsum-sample-validity-gate.md": {
+    "mtime": 1780944153.6282442,
+    "ast_hash": "165ccc8d755c61ebb063f3c4c4773d2b",
+    "semantic_hash": "165ccc8d755c61ebb063f3c4c4773d2b"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\delta-relations\\README.md": {
+    "mtime": 1780944153.6292412,
+    "ast_hash": "826eee283cea796852d652171adf6474",
+    "semantic_hash": "826eee283cea796852d652171adf6474"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\ecu-diagnosis\\01_method-load-pct-and-idle-bands.md": {
+    "mtime": 1780944231.7573183,
+    "ast_hash": "c4a4d3da468df95ba440dc46f1809099",
+    "semantic_hash": "c4a4d3da468df95ba440dc46f1809099"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\ecu-diagnosis\\02_capacitor-leakage-trace-corrosion.md": {
+    "mtime": 1780944231.758317,
+    "ast_hash": "2f97e0044530b746da8518be83a372f1",
+    "semantic_hash": "2f97e0044530b746da8518be83a372f1"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\ecu-diagnosis\\03_injector-driver-open-and-short.md": {
+    "mtime": 1780944231.7593622,
+    "ast_hash": "aac83998a170e8b7c8025cfa856d3f63",
+    "semantic_hash": "aac83998a170e8b7c8025cfa856d3f63"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\ecu-diagnosis\\04_coil-driver-transistor-failure.md": {
+    "mtime": 1780944231.7598732,
+    "ast_hash": "040deb646ea652ba5ef846c3d30c911e",
+    "semantic_hash": "040deb646ea652ba5ef846c3d30c911e"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\ecu-diagnosis\\05_sensor-ground-trace-open.md": {
+    "mtime": 1780944231.7608716,
+    "ast_hash": "4a5ec9c400cebad2d5f0f5882133b9d7",
+    "semantic_hash": "4a5ec9c400cebad2d5f0f5882133b9d7"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\ecu-diagnosis\\06_5v-regulator-rail-collapse.md": {
+    "mtime": 1780944231.7623756,
+    "ast_hash": "78905a6998bff243a29e5c4ee6d8a155",
+    "semantic_hash": "78905a6998bff243a29e5c4ee6d8a155"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\ecu-diagnosis\\07_comparative-signature-tables.md": {
+    "mtime": 1780944231.7628891,
+    "ast_hash": "dc7f7d8ffeec674c400eb265fddd053b",
+    "semantic_hash": "dc7f7d8ffeec674c400eb265fddd053b"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\ecu-diagnosis\\08_t15-startup-lambda-logic.md": {
+    "mtime": 1780944231.7648876,
+    "ast_hash": "23a5608f147095c11559de226741ced3",
+    "semantic_hash": "23a5608f147095c11559de226741ced3"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\ecu-diagnosis\\09_control-module-voltage.md": {
+    "mtime": 1780944231.7668886,
+    "ast_hash": "fe2f1aaa0b738b366e9c2d159db9c8c1",
+    "semantic_hash": "fe2f1aaa0b738b366e9c2d159db9c8c1"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\ecu-diagnosis\\README.md": {
+    "mtime": 1780944231.7678895,
+    "ast_hash": "aec916ec80927c25f6b4076517c74504",
+    "semantic_hash": "aec916ec80927c25f6b4076517c74504"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\01_stft-ltft-fundamentals.md": {
+    "mtime": 1780944309.8781908,
+    "ast_hash": "3ae0ff8178a5cd55f506a86a1417c9e8",
+    "semantic_hash": "3ae0ff8178a5cd55f506a86a1417c9e8"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\02_sign-convention.md": {
+    "mtime": 1780944309.8791912,
+    "ast_hash": "23de232dc730f4bdf097ce1f2a9a97df",
+    "semantic_hash": "23de232dc730f4bdf097ce1f2a9a97df"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\03_normal-ranges-and-dtc-thresholds.md": {
+    "mtime": 1780944309.8801918,
+    "ast_hash": "aff367138bb246dc51d345b545fc5af1",
+    "semantic_hash": "aff367138bb246dc51d345b545fc5af1"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\04_trim-pattern-decision-tree.md": {
+    "mtime": 1780944309.8811913,
+    "ast_hash": "88cc181be23191871d7674ea17215231",
+    "semantic_hash": "88cc181be23191871d7674ea17215231"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\05_bank-to-bank-comparison.md": {
+    "mtime": 1780944309.8811913,
+    "ast_hash": "74e436eac402ca34e1ef4626cf155c05",
+    "semantic_hash": "74e436eac402ca34e1ef4626cf155c05"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\06_trim-rails-and-sentinels.md": {
+    "mtime": 1780944309.8821936,
+    "ast_hash": "cb838f9365b2163d6832a4026a75a49d",
+    "semantic_hash": "cb838f9365b2163d6832a4026a75a49d"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\07_trim-vs-gas-chemistry-crosscheck.md": {
+    "mtime": 1780944309.883191,
+    "ast_hash": "19124875899bf492fed984dd8e0657cb",
+    "semantic_hash": "19124875899bf492fed984dd8e0657cb"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\08_validity-preconditions.md": {
+    "mtime": 1780944309.885192,
+    "ast_hash": "4d97e864aef13aa5242ec879000df1a2",
+    "semantic_hash": "4d97e864aef13aa5242ec879000df1a2"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\09_fault-family-case-matrix.md": {
+    "mtime": 1780944309.886192,
+    "ast_hash": "5255e509c1569418c3d53f33022a2c57",
+    "semantic_hash": "5255e509c1569418c3d53f33022a2c57"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\10_air-fuel-metering-injector-cases.md": {
+    "mtime": 1780944382.3780806,
+    "ast_hash": "c7756576b2a40c77257d1a2f2f984e93",
+    "semantic_hash": "c7756576b2a40c77257d1a2f2f984e93"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\11_ignition-misfire-cases-and-trim-discriminator.md": {
+    "mtime": 1780944382.3790803,
+    "ast_hash": "68ee6d266eb78229c745fa3ee414b4e8",
+    "semantic_hash": "68ee6d266eb78229c745fa3ee414b4e8"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\12_emissions-egr-evap-catalyst-idle-module-cases.md": {
+    "mtime": 1780944382.3810794,
+    "ast_hash": "baad80e6ccd8b79102a43ac80f903382",
+    "semantic_hash": "baad80e6ccd8b79102a43ac80f903382"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\13_ltft-load-cell-matrix.md": {
+    "mtime": 1780944382.3820815,
+    "ast_hash": "aa5650df6c72a268479e5c8db54539c1",
+    "semantic_hash": "aa5650df6c72a268479e5c8db54539c1"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\14_dtc-enable-criteria-and-blocking-codes.md": {
+    "mtime": 1780944382.3830807,
+    "ast_hash": "6795fd31e9a3b53e15e3eb986208ba74",
+    "semantic_hash": "6795fd31e9a3b53e15e3eb986208ba74"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\15_pcm-memory-freezeframe-verification.md": {
+    "mtime": 1780944382.3841188,
+    "ast_hash": "ebccb7baed90a937a4f53b648cb9fe9e",
+    "semantic_hash": "ebccb7baed90a937a4f53b648cb9fe9e"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\16_three-speed-trim-test.md": {
+    "mtime": 1780944382.3851967,
+    "ast_hash": "24887686e3cd88d203a6b8a5774b31ff",
+    "semantic_hash": "24887686e3cd88d203a6b8a5774b31ff"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\17_per-cylinder-misfire-counts.md": {
+    "mtime": 1780944382.3861544,
+    "ast_hash": "0c47cd96b82816d44a563de44b5abf7d",
+    "semantic_hash": "0c47cd96b82816d44a563de44b5abf7d"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\fuel-trim\\README.md": {
+    "mtime": 1780944382.3871548,
+    "ast_hash": "b9eaa53bf67428dfe5b867987f96935e",
+    "semantic_hash": "b9eaa53bf67428dfe5b867987f96935e"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\o2-logic\\01_sensor-types-and-physics.md": {
+    "mtime": 1780944458.226905,
+    "ast_hash": "4a06537e3b9eba0777117963daa91d4d",
+    "semantic_hash": "4a06537e3b9eba0777117963daa91d4d"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\o2-logic\\02_upstream-vs-downstream-roles.md": {
+    "mtime": 1780944458.2279024,
+    "ast_hash": "548594e89b47b2fc388b721f979ef442",
+    "semantic_hash": "548594e89b47b2fc388b721f979ef442"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\o2-logic\\03_failure-modes-taxonomy.md": {
+    "mtime": 1780944458.2289026,
+    "ast_hash": "930829bf6fc32a871b622751f1de6632",
+    "semantic_hash": "930829bf6fc32a871b622751f1de6632"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\o2-logic\\04_normalized-lambda-translation.md": {
+    "mtime": 1780944458.2305138,
+    "ast_hash": "b19edf35bbca6e3abbafca65ebf29d1f",
+    "semantic_hash": "b19edf35bbca6e3abbafca65ebf29d1f"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\o2-logic\\05_bias-vs-real-truth-perception.md": {
+    "mtime": 1780944458.231511,
+    "ast_hash": "2ba31fc3883781f61f0c3fee05b70503",
+    "semantic_hash": "2ba31fc3883781f61f0c3fee05b70503"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\o2-logic\\06_downstream-trim-suppression.md": {
+    "mtime": 1780944458.231511,
+    "ast_hash": "5410ea55300168069cc08007a538972b",
+    "semantic_hash": "5410ea55300168069cc08007a538972b"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\o2-logic\\07_o2-dtc-families.md": {
+    "mtime": 1780944458.23251,
+    "ast_hash": "cf03a6366569945537b282c7f260f019",
+    "semantic_hash": "cf03a6366569945537b282c7f260f019"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\o2-logic\\08_wideband-pumping-current-logic.md": {
+    "mtime": 1780944458.2335112,
+    "ast_hash": "8b581aeff62ff0efecdcc54f7b49b24f",
+    "semantic_hash": "8b581aeff62ff0efecdcc54f7b49b24f"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\o2-logic\\README.md": {
+    "mtime": 1780944458.2345104,
+    "ast_hash": "44452fce631d9394ce6749fcfda3a1df",
+    "semantic_hash": "44452fce631d9394ce6749fcfda3a1df"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\pids-protocol\\01_mode06-freezeframe-nostart-method.md": {
+    "mtime": 1780944536.2666066,
+    "ast_hash": "bf5cae7ffb85ce5c8e118910892741e2",
+    "semantic_hash": "bf5cae7ffb85ce5c8e118910892741e2"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\pids-protocol\\02_maf-map-tps-rationality-p0068.md": {
+    "mtime": 1780944536.2676067,
+    "ast_hash": "62bdc8158101b609e4ac65921aaa709f",
+    "semantic_hash": "62bdc8158101b609e4ac65921aaa709f"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\pids-protocol\\03_secondary-ignition-waveform-forensics.md": {
+    "mtime": 1780944536.2676067,
+    "ast_hash": "6b0c8bad05f37dbd008e83aacdb28687",
+    "semantic_hash": "6b0c8bad05f37dbd008e83aacdb28687"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\pids-protocol\\04_gdi-highpressure-fuel-pids.md": {
+    "mtime": 1780944536.268607,
+    "ast_hash": "efa74f25234e7d11405d9489547f8cf5",
+    "semantic_hash": "efa74f25234e7d11405d9489547f8cf5"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\pids-protocol\\05_maf-linearity-theoretical-airflow.md": {
+    "mtime": 1780944536.270145,
+    "ast_hash": "6869e9092337f4d049366c795abd635c",
+    "semantic_hash": "6869e9092337f4d049366c795abd635c"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\pids-protocol\\06_readiness-monitors-and-absence-of-dtc-trust.md": {
+    "mtime": 1780944536.2711408,
+    "ast_hash": "96b3ff6fc5115d4bca084a86056b29cf",
+    "semantic_hash": "96b3ff6fc5115d4bca084a86056b29cf"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\pids-protocol\\07_fmem-limp-home-substituted-values.md": {
+    "mtime": 1780944536.2721426,
+    "ast_hash": "2e60615ffda4ebfcf70a810979262ef1",
+    "semantic_hash": "2e60615ffda4ebfcf70a810979262ef1"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\pids-protocol\\08_dtc-state-machine-and-confidence-weighting.md": {
+    "mtime": 1780944536.2731414,
+    "ast_hash": "c1505d67e4a13cd9f75aec613d0701a9",
+    "semantic_hash": "c1505d67e4a13cd9f75aec613d0701a9"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\pids-protocol\\README.md": {
+    "mtime": 1780944536.2731414,
+    "ast_hash": "430af548d41032928abb6e3c4080a6a3",
+    "semantic_hash": "430af548d41032928abb6e3c4080a6a3"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\taxonomy\\01_euro-emission-standards-eras.md": {
+    "mtime": 1780944536.2741416,
+    "ast_hash": "f68a88acedfb768a549a7b72ecd41ab0",
+    "semantic_hash": "f68a88acedfb768a549a7b72ecd41ab0"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\taxonomy\\02_era-fault-case-catalogue.md": {
+    "mtime": 1780944536.2751424,
+    "ast_hash": "5d2f61ae04c69148fab9765276000335",
+    "semantic_hash": "5d2f61ae04c69148fab9765276000335"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\taxonomy\\README.md": {
+    "mtime": 1780944536.2757473,
+    "ast_hash": "fe1ac2ddac685a62dd2f2e4b6f350b56",
+    "semantic_hash": "fe1ac2ddac685a62dd2f2e4b6f350b56"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\truth-perception\\01_five-tier-l1-l5-architecture.md": {
+    "mtime": 1780944536.2767434,
+    "ast_hash": "6002840fa079944eefb85373ae5b2617",
+    "semantic_hash": "6002840fa079944eefb85373ae5b2617"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\truth-perception\\02_lambda-delta-vector-and-scoring.md": {
+    "mtime": 1780944536.2767434,
+    "ast_hash": "c343d7da50a71f1c2ba7f837d30ea318",
+    "semantic_hash": "c343d7da50a71f1c2ba7f837d30ea318"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\truth-perception\\03_thirty-case-liar-library.md": {
+    "mtime": 1780944536.2777433,
+    "ast_hash": "689ca4a870ac42f24d098ba452b2fc23",
+    "semantic_hash": "689ca4a870ac42f24d098ba452b2fc23"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\truth-perception\\04_combustion-integrity-oxygen-usage.md": {
+    "mtime": 1780944536.278744,
+    "ast_hash": "87c336698e211f051811fa2ebb966578",
+    "semantic_hash": "87c336698e211f051811fa2ebb966578"
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\obdlab\\research\\chunks\\truth-perception\\README.md": {
+    "mtime": 1780944536.2797437,
+    "ast_hash": "eb46b0d052af618299fa10674221b2c9",
+    "semantic_hash": "eb46b0d052af618299fa10674221b2c9"
+  }
+}

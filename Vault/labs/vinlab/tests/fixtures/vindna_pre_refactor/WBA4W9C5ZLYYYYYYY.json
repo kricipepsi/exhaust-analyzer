@@ -1,0 +1,41 @@
+{
+  "air_metering_architecture": {
+    "has_maf_sensor": false,
+    "has_map_sensor": false,
+    "primary_load_calculation": "MAP_ONLY"
+  },
+  "air_metering_strategy": "MAP_ONLY_SPEED_DENSITY",
+  "co2_type_approval": 265.0,
+  "co_high_idle": 0.01,
+  "co_low_idle": null,
+  "co_type_approval": 0.196,
+  "confidence": "PARTIAL",
+  "cylinder_count": 6,
+  "emissions": {
+    "downstream_o2_present": true,
+    "downstream_trim_role": "NONE",
+    "egr_equipped": true,
+    "has_catalyst": true,
+    "upstream_o2_type": "WIDEBAND_AFR"
+  },
+  "engine_displacement_liters": 2.998,
+  "euro_emission_category": "EURO_6",
+  "resolved_horizon": "HORIZON_MODERN",
+  "fuel_delivery_type": "GDI",
+  "hc_nox_type_approval": 0.042,
+  "hc_type_approval": 0.036,
+  "idle_rpm_low": 714,
+  "induction_type": "TURBOCHARGED",
+  "make": "BMW",
+  "model_year": 2020,
+  "noise_driving_dba": 71.0,
+  "noise_rpm": 3750,
+  "noise_stationary_dba": 85.55,
+  "nox_type_approval": 0.02,
+  "number_of_banks": 1,
+  "stress_idle_rpm_target": 4500,
+  "target_lambda_v112": 1.003,
+  "target_rpm_u2": 2477,
+  "vin": "WBA4W9C5ZLYYYYYYY",
+  "rated_rpm": 5500
+}

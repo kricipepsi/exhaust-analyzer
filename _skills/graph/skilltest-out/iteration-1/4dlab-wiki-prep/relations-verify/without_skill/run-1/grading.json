@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Appends ## Graph relations (explicit) block; body bytes above trailer are byte-identical",
+      "passed": false,
+      "evidence": "Body text was rewritten: added 'Explicit KG Relationships' section inline, moved 'Diagnostic Flow' section, added 'Gate Enum Reference' and 'Cross-Reference' sections. Also removed SUPPRESS_POST_CAT_TRIM from Available Gates list. No append-only trailer pattern used."
+    },
+    {
+      "text": "Every appended relation line is traceable to fixture text — no invented edges",
+      "passed": false,
+      "evidence": "Invented edge: 'DTC P0131 is associated with downstream O2 sensor validation' — this is not a graph edge, it's a prose narrative. Also added cross-file reference edges not present in source."
+    },
+    {
+      "text": "Seeded doc-bug written as non-edge (IS_NOT), not asserted as relation",
+      "passed": true,
+      "evidence": "SUPPRESS_POST_CAT_TRIM correctly documented as phantom member in 'Known Documentation Bug' section. However, it was also removed from the Available Gates list instead of being preserved with a non-edge annotation."
+    },
+    {
+      "text": "Two spellings of enum value unified to canonical form",
+      "passed": false,
+      "evidence": "Guessed canonical form as camelCase 'o2_fault_active' without grepping the live enum. The fixture shows O2_FAULT_ACTIVE in the enum definition. The skill's rule to grep before guessing prevents this."
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 1,
+    "failed": 3,
+    "pass_rate": 0.25
+  }
+}

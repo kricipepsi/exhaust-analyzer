@@ -1,0 +1,304 @@
+{
+  "schema_version": "1.0",
+  "fault_family": "rich_mixture",
+  "nodes": {
+    "ERR-RM-001": {
+      "fault_name": "worn_valve_stem_seals",
+      "fault_family": "rich_mixture",
+      "component_group": "Engine Cylinder Head Assembly",
+      "impacted_subsystems": [
+        "Valve Guide Stem Seals",
+        "Combustion Ports",
+        "Intake Manifold Vacuum"
+      ],
+      "mechanical_failure_mode": "High intake manifold vacuum at idle draws engine oil down worn valve guides directly into combustion ports, producing HC spike and oil-smoke signature.",
+      "ui_remediation_steps": [
+        "Perform a wet/dry compression test on all cylinders to isolate whether ring wear is also present.",
+        "Inspect the valve cover gasket area and breather hoses for oil weeping \u00e2\u20ac\u201d confirms oil is migrating.",
+        "Perform a cylinder-contribution test (cut each cylinder and monitor HC change) to localise the worst guide(s).",
+        "Remove cylinder head; measure valve-to-guide oil clearance against OEM specification.",
+        "Replace valve stem seals. Replace valve guides if clearance exceeds OEM tolerance.",
+        "Verify repair: retest HC at idle and confirm drop below 120 ppm."
+      ],
+      "differential_siblings": [
+        "ERR-RM-002",
+        "ERR-MF-006"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-RM-002": {
+      "fault_name": "worn_piston_rings",
+      "fault_family": "rich_mixture",
+      "component_group": "Engine Block Assembly",
+      "impacted_subsystems": [
+        "Piston Compression Rings",
+        "Crankcase Ventilation System",
+        "Combustion Chamber Sealing"
+      ],
+      "mechanical_failure_mode": "Worn piston ring lands allow combustion blow-by and oil passage past the rings into the combustion chamber, generating HC and oil smoke at all RPM points.",
+      "ui_remediation_steps": [
+        "Perform a wet/dry compression test: low dry compression confirmed with wet step (oil seals rings) confirms ring wear.",
+        "Check crankcase ventilation \u00e2\u20ac\u201d excessive blow-by pressure (pop-up dipstick, white smoke from breather) confirms ring leakage.",
+        "Perform a leak-down test to quantify ring seal percentage per cylinder.",
+        "If compression < 80 % of OEM spec or leak-down > 20 %, engine requires overhaul (rings/bore resizing).",
+        "Assess cylinder bore for scoring or out-of-round using bore gauge before specifying rings alone.",
+        "Consider smoke test of crankcase vent circuit before teardown to rule out PCV valve blockage mimicking symptoms."
+      ],
+      "differential_siblings": [
+        "ERR-RM-001",
+        "ERR-MF-006"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-RM-003": {
+      "fault_name": "leaking_fuel_injector",
+      "fault_family": "rich_mixture",
+      "component_group": "Fuel Delivery System",
+      "impacted_subsystems": [
+        "Fuel Injector Assembly",
+        "Intake Manifold (Port Injection)",
+        "Combustion Chamber"
+      ],
+      "mechanical_failure_mode": "Degraded injector needle seat allows fuel to drip into the intake port or cylinder when closed, producing a persistent rich over-fuelling on the affected cylinder(s).",
+      "ui_remediation_steps": [
+        "Perform an injector balance test (KOEO fuel pressure drop per cylinder) to identify the leaking injector.",
+        "Remove injectors and bench-test flow and leak-back \u00e2\u20ac\u201d a leaking seat drips more than 1 drop per 30 seconds at rail pressure.",
+        "Check fuel rail pressure hold-down after pump off \u00e2\u20ac\u201d rapid pressure loss confirms internal injector leak.",
+        "Replace the leaking injector(s). Replace O-ring seals on reinstallation.",
+        "Recheck with scan tool: short-term fuel trim should return to within \u00c2\u00b15 % after replacement.",
+        "If all injectors are leaking, suspect contaminated fuel or injector age \u00e2\u20ac\u201d consider full set replacement."
+      ],
+      "differential_siblings": [
+        "ERR-RM-007",
+        "ERR-RM-004"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-RM-004": {
+      "fault_name": "evap_purge_valve_stuck_open",
+      "fault_family": "rich_mixture",
+      "component_group": "Evaporative Emission Control System",
+      "impacted_subsystems": [
+        "EVAP Purge Solenoid Valve",
+        "Carbon Canister",
+        "Intake Manifold Vacuum Circuit"
+      ],
+      "mechanical_failure_mode": "Stuck-open EVAP purge solenoid continuously feeds fuel vapour from the carbon canister into the intake manifold, producing uncontrolled over-fuelling independent of ECU fuel commands.",
+      "ui_remediation_steps": [
+        "Disconnect the EVAP purge hose from the intake manifold port; if the engine smooths and trims recover toward 0 %, the purge valve is confirmed stuck open.",
+        "Apply vacuum to the purge valve solenoid with the ignition off \u00e2\u20ac\u201d a healthy valve should hold vacuum indefinitely; a stuck valve bleeds down.",
+        "Inspect the purge solenoid for sticking or carbon contamination internally.",
+        "Replace the EVAP purge solenoid valve.",
+        "Check the carbon canister for saturation (fuel-soaked canister vents fuel not vapour \u00e2\u20ac\u201d replace canister if saturated).",
+        "After repair, verify EVAP system integrity with a smoke test and confirm trim recovery within \u00c2\u00b15 %."
+      ],
+      "differential_siblings": [
+        "ERR-RM-003",
+        "ERR-LC-004"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-RM-005": {
+      "fault_name": "gdi_hpfp_internal_seal_leak",
+      "fault_family": "rich_mixture",
+      "component_group": "High-Pressure Fuel System (GDI)",
+      "impacted_subsystems": [
+        "High-Pressure Fuel Pump (HPFP)",
+        "Engine Oil Sump",
+        "Crankcase Lubrication Circuit"
+      ],
+      "mechanical_failure_mode": "Internal HPFP drive-shaft seal rupture allows high-pressure fuel to migrate past the seal into the engine oil, producing unmetered fuel intrusion and severe crankcase contamination.",
+      "ui_remediation_steps": [
+        "Do not drive the vehicle \u00e2\u20ac\u201d continued operation with fuel-contaminated oil causes bearing and cylinder wall damage.",
+        "Pull dipstick and check oil level and smell \u00e2\u20ac\u201d fuel-contaminated oil smells of raw petrol and the level will be elevated above the max mark.",
+        "Change engine oil immediately to remove fuel contamination before any further diagnosis.",
+        "Replace the High-Pressure Fuel Pump (HPFP) assembly \u00e2\u20ac\u201d the internal seal is not serviceable separately on most GDI applications.",
+        "After HPFP replacement, change oil again after the first 500 km to clear any remaining contamination.",
+        "Verify repair: long-term fuel trim should return to within \u00c2\u00b15 % and oil smell should be absent."
+      ],
+      "differential_siblings": [
+        "ERR-RM-003",
+        "ERR-RM-007"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-RM-006": {
+      "fault_name": "coolant_temp_sensor_bias_cold",
+      "fault_family": "rich_mixture",
+      "component_group": "Engine Management Sensor Suite",
+      "impacted_subsystems": [
+        "Engine Coolant Temperature (ECT) Sensor",
+        "Fuel Injection Open-Loop Enrichment Map",
+        "Closed-Loop Readiness Gate"
+      ],
+      "mechanical_failure_mode": "ECT sensor internal resistance shifts high, reporting falsely cold coolant temperature to the ECU, forcing continuous open-loop cold-start enrichment even when the engine is fully warm.",
+      "ui_remediation_steps": [
+        "Measure actual coolant temperature with a contact thermometer or infrared gun at the thermostat housing \u00e2\u20ac\u201d compare to the ECT sensor reading on the scan tool.",
+        "If the scan tool ECT reads < 60 \u00c2\u00b0C while the actual coolant is > 80 \u00c2\u00b0C, the sensor is confirmed biased.",
+        "Check ECT sensor connector and wiring for corrosion or water ingress before replacing the sensor.",
+        "Replace the ECT sensor. Verify the new sensor reads within 3 \u00c2\u00b0C of the contact thermometer at operating temperature.",
+        "After replacement, confirm the ECU enters closed-loop (fuel system status = CL on OBD-II) and trims recover toward \u00c2\u00b15 %.",
+        "Monitor over one full drive cycle \u00e2\u20ac\u201d if trim normalises, repair is complete."
+      ],
+      "differential_siblings": [
+        "ERR-SF-005",
+        "ERR-RM-003"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-RM-007": {
+      "fault_name": "fpr_diaphragm_rupture",
+      "fault_family": "rich_mixture",
+      "component_group": "Fuel Delivery System",
+      "impacted_subsystems": [
+        "Fuel Pressure Regulator (Vacuum-Referenced)",
+        "Intake Manifold Vacuum Circuit",
+        "Fuel Rail"
+      ],
+      "mechanical_failure_mode": "Ruptured FPR diaphragm allows fuel rail pressure to vent directly into the intake manifold vacuum reference port, delivering unmetered liquid fuel into the intake charge.",
+      "ui_remediation_steps": [
+        "With engine running at idle, disconnect the vacuum hose from the FPR vacuum port \u00e2\u20ac\u201d if raw fuel or strong fuel smell emerges from the hose, the diaphragm is confirmed ruptured.",
+        "Check the intake manifold for fuel pooling at the FPR vacuum port connection point.",
+        "Replace the fuel pressure regulator assembly (diaphragm is not separately serviceable).",
+        "Inspect and replace the vacuum line if fuel contamination has softened or swollen it.",
+        "After replacement, verify fuel pressure holds at 3.0\u00e2\u20ac\u201c3.5 bar (or OEM spec) at idle with vacuum hose connected.",
+        "Recheck fuel trims \u00e2\u20ac\u201d should return to within \u00c2\u00b15 % within one drive cycle."
+      ],
+      "differential_siblings": [
+        "ERR-RM-003",
+        "ERR-RM-005"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-RM-008": {
+      "fault_name": "rich_mixture_timing_retarded",
+      "fault_family": "rich_mixture",
+      "component_group": "Fuel System - Mixture Formation",
+      "impacted_subsystems": [
+        "fuel_delivery",
+        "fuel_control",
+        "evap_system"
+      ],
+      "mechanical_failure_mode": "True rich combustion confirmed by gas analyser. Air-fuel ratio below stoichiometric from excess fuel delivery, injector leakage, EVAP purge fault, or sensor-bias-induced fuel trim correction.",
+      "ui_remediation_steps": [
+        "Check fuel pressure at the rail. Elevated pressure drives rich mixture.",
+        "Perform injector leak-down test. Dripping injector delivers excess fuel.",
+        "Inspect EVAP purge valve for stuck-open condition.",
+        "Verify ECT sensor reading against mechanical thermostat temperature.",
+        "Check O2 sensor switching and fuel trims for sensor-bias-induced rich correction."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-RM-009": {
+      "fault_name": "rich_mixture_vvt_context",
+      "fault_family": "rich_mixture",
+      "component_group": "Fuel System - Mixture Formation",
+      "impacted_subsystems": [
+        "fuel_delivery",
+        "fuel_control",
+        "evap_system"
+      ],
+      "mechanical_failure_mode": "True rich combustion confirmed by gas analyser. Air-fuel ratio below stoichiometric from excess fuel delivery, injector leakage, EVAP purge fault, or sensor-bias-induced fuel trim correction.",
+      "ui_remediation_steps": [
+        "Check fuel pressure at the rail. Elevated pressure drives rich mixture.",
+        "Perform injector leak-down test. Dripping injector delivers excess fuel.",
+        "Inspect EVAP purge valve for stuck-open condition.",
+        "Verify ECT sensor reading against mechanical thermostat temperature.",
+        "Check O2 sensor switching and fuel trims for sensor-bias-induced rich correction."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-RM-010": {
+      "fault_name": "rich_mixture_invalid_sample",
+      "fault_family": "rich_mixture",
+      "component_group": "Fuel System - Mixture Formation",
+      "impacted_subsystems": [
+        "fuel_delivery",
+        "fuel_control",
+        "evap_system"
+      ],
+      "mechanical_failure_mode": "True rich combustion confirmed by gas analyser. Air-fuel ratio below stoichiometric from excess fuel delivery, injector leakage, EVAP purge fault, or sensor-bias-induced fuel trim correction.",
+      "ui_remediation_steps": [
+        "Check fuel pressure at the rail. Elevated pressure drives rich mixture.",
+        "Perform injector leak-down test. Dripping injector delivers excess fuel.",
+        "Inspect EVAP purge valve for stuck-open condition.",
+        "Verify ECT sensor reading against mechanical thermostat temperature.",
+        "Check O2 sensor switching and fuel trims for sensor-bias-induced rich correction."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-RM-011": {
+      "fault_name": "rich_mixture_incomplete_combustion",
+      "fault_family": "rich_mixture",
+      "component_group": "Fuel System - Mixture Formation",
+      "impacted_subsystems": [
+        "fuel_delivery",
+        "fuel_control",
+        "evap_system"
+      ],
+      "mechanical_failure_mode": "True rich combustion confirmed by gas analyser. Air-fuel ratio below stoichiometric from excess fuel delivery, injector leakage, EVAP purge fault, or sensor-bias-induced fuel trim correction.",
+      "ui_remediation_steps": [
+        "Check fuel pressure at the rail. Elevated pressure drives rich mixture.",
+        "Perform injector leak-down test. Dripping injector delivers excess fuel.",
+        "Inspect EVAP purge valve for stuck-open condition.",
+        "Verify ECT sensor reading against mechanical thermostat temperature.",
+        "Check O2 sensor switching and fuel trims for sensor-bias-induced rich correction."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-RM-012": {
+      "fault_name": "rich_mixture_lean_overshoot_context",
+      "fault_family": "rich_mixture",
+      "component_group": "Fuel System \u2014 Fuel Pressure Regulation and EVAP Purge Control",
+      "impacted_subsystems": [
+        "Fuel Pressure Regulator Assembly",
+        "EVAP Purge Solenoid and Charcoal Canister",
+        "Closed-Loop Fuel Trim Control"
+      ],
+      "mechanical_failure_mode": "Rich-mixture root cause with lean overshoot at idle from aggressive ECU fuel-trim correction. An underlying rich condition (elevated fuel pressure, leaking injector, or EVAP vapour intrusion) drives LTFT strongly negative. At idle \u2014 the lowest fuel-demand operating point \u2014 the...",
+      "ui_remediation_steps": [
+        "Check fuel pressure at the rail at idle and under load: elevated pressure (above specification) confirms a fuel-pressure regulator fault or restricted return line. A vacuum-referenced regulator should drop pressure by ~0.3 bar when vacuum is applied.",
+        "Perform an injector leak-down test: pressurise the fuel rail (KOEO), then observe pressure decay over 10 minutes. A rapid pressure drop with no external leak confirms an injector is dripping into the intake.",
+        "Inspect the EVAP purge valve: disconnect the purge hose at the intake manifold and apply vacuum. A valve that holds vacuum (does not release when de-energised) is stuck open, allowing continuous fuel vapour into the intake.",
+        "Check LTFT: strongly negative LTFT (< -15%) with the gas analyser reading lean at idle is the signature of this pattern \u2014 the ECU is over-correcting a rich condition, overshooting into lean at low fuel demand.",
+        "Repair the identified root cause (replace the fuel-pressure regulator, clean or replace the leaking injector, replace the stuck-open EVAP purge valve). Clear fuel trims and re-test.",
+        "Verify repair: fuel pressure within specification, LTFT returns to within +/-10%, gas analyser shows stoichiometric lambda at both idle and under load, EVAP monitor passes without DTC."
+      ],
+      "differential_siblings": [
+        "ERR-RM-003",
+        "ERR-RM-004",
+        "ERR-LC-009"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-RM-013": {
+      "fault_name": "rich_mixture_misfire_context",
+      "fault_family": "rich_mixture",
+      "component_group": "Ignition System / Fuel System \u2014 Misfire Differential Diagnosis",
+      "impacted_subsystems": [
+        "Ignition Coil and Spark Plug Assembly",
+        "Fuel Injector Pintle Seal",
+        "Cylinder Compression Integrity"
+      ],
+      "mechanical_failure_mode": "Ignition misfire producing a rich-perceived gas signature. A dead cylinder passes the full intake charge (air + unburned fuel) directly into the exhaust, where the gas analyser reads raw hydrocarbons (HC 1000+ ppm) and depressed oxygen \u2014 the classic rich-mixture pattern on a n...",
+      "ui_remediation_steps": [
+        "Identify the dead cylinder: use Mode 06 misfire counts, a cylinder-balance test, or an infrared thermometer on the exhaust manifold runners (the dead cylinder's runner will be significantly cooler).",
+        "Confirm spark on the dead cylinder: remove the spark plug, reconnect it to the coil, ground the plug body, and crank. A bright blue-white spark confirms the ignition system is functioning \u2014 the fault is fuel or mechanical.",
+        "If spark is present: check fuel delivery to the dead cylinder with a noid light during cranking. A flashing noid light confirms the ECU is commanding injection. Measure injector resistance or swap with a known-good injector.",
+        "If both spark and fuel are confirmed: perform a compression test. A cylinder that has spark and fuel but does not fire has a mechanical fault \u2014 zero compression from a holed piston, stuck valve, or severe head-gasket breach.",
+        "Once the root cause of the misfire is corrected, the rich-appearing gas signature resolves \u2014 the analyser was seeing unburned fuel from the dead cylinder, not a true rich mixture.",
+        "Verify repair: all cylinders firing, Mode 06 misfire counts at zero, HC below 100 ppm at idle, lambda at stoichiometric, no fuel smell in the exhaust."
+      ],
+      "differential_siblings": [
+        "ERR-MF-001",
+        "ERR-RM-001",
+        "ERR-RM-002"
+      ],
+      "editor_severity_hint": "REPAIR"
+    }
+  }
+}

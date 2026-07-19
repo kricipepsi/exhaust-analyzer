@@ -1,0 +1,195 @@
+{
+  "version": "2.0",
+  "fault_family": "rich_mixture",
+  "rules": [
+    {
+      "rule_id": "RM-001",
+      "fault_family": "rich_mixture",
+      "description": "Classic rich mixture \u2014 Brettschneider lambda < 0.97 with negative fuel trims and P0172/P0175 DTC evidence",
+      "chemistry_evidence": [
+        {
+          "state": "RICH_MIXTURE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "longft1",
+          "operator": "le",
+          "value": -10.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "shrtft1",
+          "operator": "le",
+          "value": -5.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0172",
+            "P0175"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.9,
+      "competition_group": "rich_mixture",
+      "passes_cases": [
+        "CSV-018",
+        "EXP-N003",
+        "EXT-203",
+        "EXP-N013",
+        "EXT-227"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a72",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "RM-002",
+      "fault_family": "rich_mixture",
+      "description": "POA-aware rich detection \u2014 products-of-abnormal-combustion signature with rich-mix exhaust chemistry, competes with catalyst_failure family",
+      "chemistry_evidence": [
+        {
+          "state": "RICH_MIXTURE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        },
+        {
+          "state": "POA_SIGNATURE",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "longft1",
+          "operator": "le",
+          "value": -8.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        }
+      ],
+      "base_weight": 0.75,
+      "competition_group": "rich_mixture",
+      "confidence_ceiling": 0.8,
+      "passes_cases": [
+        "PDF-HI-001",
+        "PDF-4G-03",
+        "RULE-CO-1"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a72"
+      ]
+    },
+    {
+      "rule_id": "RM-003",
+      "fault_family": "rich_mixture",
+      "description": "SAMPLE_INVALID-gated rich mixture \u2014 ensures rich mixture can still fire when sample quality is marginal, closing the SAMPLE_INVALID coverage gap",
+      "chemistry_evidence": [
+        {
+          "state": "SAMPLE_INVALID",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        },
+        {
+          "state": "RICH_MIXTURE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "longft1",
+          "operator": "le",
+          "value": -5.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        }
+      ],
+      "base_weight": 0.7,
+      "competition_group": "rich_mixture",
+      "confidence_ceiling": 0.75,
+      "passes_cases": [
+        "EXT-217",
+        "CASE-023",
+        "case_030"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a72"
+      ]
+    },
+    {
+      "rule_id": "RM-004",
+      "fault_family": "rich_mixture",
+      "description": "GDI high-pressure fuel pump internal seal leak \u2014 fuel leaks past HPFP seal into crankcase producing rich-appearing exhaust signature on GDI engines",
+      "chemistry_evidence": [
+        {
+          "state": "GDI_HPFP_INTERNAL_SEAL_LEAK",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        },
+        {
+          "state": "RICH_MIXTURE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "longft1",
+          "operator": "le",
+          "value": -15.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "fuel_pressure",
+          "operator": "lt",
+          "value": 3000.0,
+          "tier": "SUGGESTIVE",
+          "units": "kPa",
+          "wiki_ref": "OBD_VOCABULARY \u00a73"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0087"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.8,
+      "competition_group": "rich_mixture",
+      "precondition": "gdi_equipped: true",
+      "passes_cases": [
+        "CASE-031"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    }
+  ]
+}

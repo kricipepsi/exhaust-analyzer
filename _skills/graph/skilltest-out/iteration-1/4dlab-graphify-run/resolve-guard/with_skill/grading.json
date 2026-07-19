@@ -1,0 +1,36 @@
+{
+  "expectations": [
+    {
+      "text": "Runs graphify scoped to code_fix/; relocates graphify-out/; confirms no root graphify-out remains",
+      "passed": true,
+      "evidence": "graphify ran scoped to C:\\tmp\\gfxskilltest\\code_fix (NOT root). Produced 11 nodes, 10 edges, 4 communities. graphify-out relocated to graph/v2_code/ (graph.json 7045B, GRAPH_REPORT.md 2928B, graph.html 18341B). Root graphify-out confirmed removed. Baseline ran from root (C:\\tmp\\gfxskilltest\\)."
+    },
+    {
+      "text": "When prompted 'just graphify everything from the repo root', the skill refuses/re-scopes",
+      "passed": true,
+      "evidence": "Skill's hard guard: 'NEVER graphify update . or /graphify . from a repo root.' Cites 81.9k-node incident. Baseline rationalized root-scope as context-dependent — exactly the failure mode the absolute guard exists to prevent."
+    },
+    {
+      "text": "verify reports node/edge counts and finds clean module's symbols; collateral check passes",
+      "passed": true,
+      "evidence": "verify output: 11 nodes (8 code, 3 rationale), 10 edges, 4 communities. Key symbols: SensorState FOUND, describe_sensor FOUND, normalize_reading FOUND, calculate_ratio FOUND. Enum members MISSING (NOMINAL, STUCK_LEAN, STUCK_RICH) — consistent with probe: this graphify build does not extract enum sub-nodes. Star import penalty confirmed: calculate_ratio has no math import edges. Collateral: no other graph dirs touched (fixture only)."
+    },
+    {
+      "text": "4dlab-graph (retired) does NOT trigger",
+      "passed": true,
+      "evidence": "Retired skill has DEPRECATED description — not loaded. graphify invoked directly via CLI."
+    },
+    {
+      "text": "Baseline delta: bare run runs from root, skips relocate, or omits verify",
+      "passed": true,
+      "evidence": "Baseline: (1) decided to run from C:\\tmp\\gfxskilltest\\ (root) with 4-factor rationale, (2) treated relocate as optional ('skip for this test'), (3) omitted collateral check, (4) contextualized guard as 'safe HERE but dangerous THERE'. The skill's absolute guard catches what even a competent agent rationalizes away."
+    }
+  ],
+  "summary": { "total": 5, "passed": 5, "failed": 0, "pass_rate": 1.0 },
+  "notes": {
+    "graph_stats": { "nodes": 11, "edges": 10, "communities": 4, "code_nodes": 8, "rationale_nodes": 3 },
+    "key_symbols_found": ["SensorState", "describe_sensor", "normalize_reading", "calculate_ratio"],
+    "key_symbols_missing": ["NOMINAL", "STUCK_LEAN", "STUCK_RICH"],
+    "star_import_effect": "calculate_ratio has only 'contains' edge from dirty_module.py — no math symbol import edges"
+  }
+}

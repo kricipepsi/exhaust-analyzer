@@ -1,0 +1,157 @@
+{
+  "version": "2.0",
+  "fault_family": "vacuum_leak",
+  "rules": [
+    {
+      "rule_id": "VL-001",
+      "fault_family": "vacuum_leak",
+      "description": "Classic vacuum leak \u2014 LEAN_MIXTURE chemistry with elevated fuel trims at idle and elevated MAP (weak manifold vacuum)",
+      "chemistry_evidence": [
+        {
+          "state": "LEAN_MIXTURE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "longft1",
+          "operator": "ge",
+          "value": 10.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "shrtft1",
+          "operator": "ge",
+          "value": 5.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "map_kpa",
+          "operator": "gt",
+          "value": 40.0,
+          "tier": "SUGGESTIVE",
+          "units": "kPa",
+          "wiki_ref": "OBD_VOCABULARY \u00a73"
+        }
+      ],
+      "base_weight": 0.8,
+      "competition_group": "vacuum_leak",
+      "confidence_ceiling": 0.85,
+      "passes_cases": [
+        "NEW-vacuum_leak-01",
+        "NEW-vacuum_leak-04"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a72",
+        "OBD_VOCABULARY \u00a73"
+      ]
+    },
+    {
+      "rule_id": "VL-002",
+      "fault_family": "vacuum_leak",
+      "description": "DTC-driven vacuum leak \u2014 P0171/P0174 system-too-lean DTC with confirming LEAN_MIXTURE chemistry and fuel-trim evidence",
+      "chemistry_evidence": [
+        {
+          "state": "LEAN_MIXTURE",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "longft1",
+          "operator": "ge",
+          "value": 8.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "shrtft1",
+          "operator": "ge",
+          "value": 3.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0171",
+            "P0174"
+          ],
+          "strategy": "any_match",
+          "tier": "GATING",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.75,
+      "competition_group": "vacuum_leak",
+      "confidence_ceiling": 0.8,
+      "passes_cases": [
+        "NEW-vacuum_leak-02"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a72",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "VL-003",
+      "fault_family": "vacuum_leak",
+      "description": "Large-bore vacuum leak \u2014 extreme MAP elevation at idle (near atmospheric) with LEAN_MIXTURE chemistry and very high fuel trims",
+      "chemistry_evidence": [
+        {
+          "state": "LEAN_MIXTURE",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "map_kpa",
+          "operator": "gt",
+          "value": 50.0,
+          "tier": "GATING",
+          "units": "kPa",
+          "wiki_ref": "OBD_VOCABULARY \u00a73"
+        },
+        {
+          "pid": "longft1",
+          "operator": "ge",
+          "value": 15.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "shrtft1",
+          "operator": "ge",
+          "value": 10.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        }
+      ],
+      "base_weight": 0.85,
+      "competition_group": "vacuum_leak",
+      "confidence_ceiling": 0.8,
+      "passes_cases": [
+        "NEW-vacuum_leak-03"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a72",
+        "OBD_VOCABULARY \u00a73"
+      ]
+    }
+  ]
+}

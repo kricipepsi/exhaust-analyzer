@@ -1,0 +1,15 @@
+# GRAPH ROLLOUT — ledger
+| ID | Task file | Owner | Status | Blocked by | Verification |
+|---|---|---|---|---|---|
+| T-GR-1 | tasks/T-GR-1_vault_query_wiki_and_cli_canon.md | — | done | — | vault_query health PASS, wiki/grep commands, AGENTS.md |
+| T-GR-2 <!--ARCHITECT LANE--> | tasks/T-GR-2_graphifyy_upgrade_097.md | Architect | done | — | 0.9.7 in .venv-wired (+mcp extras); smoke 0 dangling; old graphs readable (4 probes); serve present; built_at_commit key gone in new builds; rollback pinned. |
+| T-GR-3 <!--ARCHITECT LANE--> | tasks/T-GR-3_docs_tier_gaslab.md | Architect | done | — | v2_docs offline 344n/273e; 0 dangling/0 isolated; 100% EXTRACTED/0 INFERRED; 3 spot-checks resolve file+line PASS; no collateral. Predicate layer deferred to LLM `extract`. |
+| T-GR-4 <!--ARCHITECT LANE--> | tasks/T-GR-4_docs_tier_dtclab.md | Architect | done | — | v2_docs offline 375n/300e; 0 dangling/0 isolated; 100% EXTRACTED/0 INFERRED; 3 spot-checks resolve file+line PASS; no collateral. Predicate layer deferred to LLM `extract`. |
+| T-GR-5 <!--ARCHITECT LANE--> | tasks/T-GR-5_docs_tier_vinlab.md | Architect | done | — | v2_docs offline 396n/328e; 0 dangling/0 isolated; 100% EXTRACTED/0 INFERRED; 3 spot-checks resolve file+line PASS; no collateral. Predicate layer deferred to LLM `extract`. |
+| T-GR-6 <!--ARCHITECT LANE--> | tasks/T-GR-6_docs_tier_dnalab.md | Architect | done | — | v2_docs offline 215n/164e; 0 dangling/0 isolated; 100% EXTRACTED/0 INFERRED; 3 spot-checks resolve file+line PASS; no collateral. Predicate layer deferred to LLM `extract`. |
+| T-GR-7 <!--ARCHITECT LANE--> | tasks/T-GR-7_docs_tier_comlab_main.md | Architect | done | — | v2_docs offline 445n/365e; 0 dangling/0 isolated; 100% EXTRACTED/0 INFERRED; 3 spot-checks resolve file+line PASS; no collateral. Predicate layer deferred to LLM `extract`. |
+| T-GR-8 <!--ARCHITECT LANE--> | tasks/T-GR-8_mcp_serve_pilot.md | Architect | done | — | stdio pilot: 10 tools; 5 lookups MCP 4–31ms vs CLI ~380–410ms (warm vs cold-load); results agree; 0 residual proc. **Rec: adopt-for-architect-only — CLI stays baseline; no coder-config wiring, no HTTP.** Report: REPORT_T-GR-8_mcp_pilot.md |
+| T-GR-9 <!--ARCHITECT LANE--> | tasks/T-GR-9_staleness_refresh_post_c5b.md | Architect | done | — | 6 tiers refreshed (comlab code/tests/current, registry code/tests, obdlab tests); 0 dangling all; probes LeanRootCauseState/SensorDynamicsState → integration_shim.py L178/L170 in registry v2_code (criterion-2 probe graph corrected — see note Deviation 1); sha-sweep: only named tiers differ. **Built with 0.8.36 rollback pin: 0.9.7 zero-nodes JSON files (#1666) — do not rebuild JSON-bearing corpora on 0.9.7.** |
+| T-GR-10 <!--NEMO LANE--> | tasks/T-GR-10_llm_extract_pilot_gaslab.md | Nemo | pending | owner hold until 2026-07-07 (DeepSeek off-peak); backend per task file (deepseek or authed claude-cli); prompt ready: NEMO_PROMPT_T-GR-10.md | — |
+| T-GR-11 <!--NEMO LANE--> | tasks/T-GR-11_llm_extract_rollout_remaining.md | Nemo | pending | T-GR-10 + owner promotion decision (A/B/C) | — |
+**Status values:** pending · in_progress · done · blocked · waived.

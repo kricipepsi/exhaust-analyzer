@@ -1,0 +1,199 @@
+{
+  "schema_version": "1.0",
+  "fault_family": "exhaust_leak",
+  "nodes": {
+    "ERR-EL-001": {
+      "fault_name": "exhaust_manifold_gasket_leak",
+      "fault_family": "exhaust_leak",
+      "component_group": "Exhaust System \u00e2\u20ac\u201d Manifold-to-Head Gasket Assembly",
+      "impacted_subsystems": [
+        "Exhaust Manifold Gasket Seal",
+        "Upstream O2 Sensor Signal Path",
+        "Closed-Loop Fuel Trim Integrity"
+      ],
+      "mechanical_failure_mode": "Failed manifold-to-head gasket admits air into exhaust stream between cylinder pulses via venturi effect. Upstream O2 reads false-lean, driving positive fuel trim. CO2 stays near normal \u00e2\u20ac\u201d combustion is stoichiometric; only the sample is diluted by the leak.",
+      "ui_remediation_steps": [
+        "Cold-engine listening test: a ticking/chuffing sound from the manifold-to-head area that diminishes as the engine warms (metal expansion closes the gap) is the hallmark of a manifold gasket leak.",
+        "Use an exhaust gas analyser probe near each manifold runner-to-head junction \u00e2\u20ac\u201d HC detection at the joint confirms escaping combustion gas before the O2 sensor.",
+        "Inspect all manifold gasket faces for carbon soot trails or visible blowout marks.",
+        "Perform a smoke test via the tailpipe with the engine off \u00e2\u20ac\u201d smoke escaping at the manifold-to-head joint confirms the leak path.",
+        "Replace the failed exhaust manifold gasket. Inspect the manifold flange for flatness \u00e2\u20ac\u201d a warped flange will cause the new gasket to fail within weeks.",
+        "Verify repair: O2 sensor switching pattern normalises at 2500 RPM, fuel trims return to within \u00c2\u00b110 %, cross-counts \u00e2\u2030\u00a5 8 in 10 seconds."
+      ],
+      "differential_siblings": [
+        "ERR-EL-002",
+        "ERR-LC-001",
+        "ERR-SF-001"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-EL-002": {
+      "fault_name": "exhaust_manifold_crack",
+      "fault_family": "exhaust_leak",
+      "component_group": "Exhaust System \u00e2\u20ac\u201d Exhaust Manifold Assembly",
+      "impacted_subsystems": [
+        "Exhaust Manifold (Cast Iron or Tubular Steel)",
+        "Upstream O2 Sensor Signal Path",
+        "Turbocharger Wastegate Control (if equipped)"
+      ],
+      "mechanical_failure_mode": "Crack in cast-iron or tubular-steel manifold opens under thermal cycling, admitting air pre-O2 sensor. Cast-iron cracks from thermal shock; tubular headers crack at weld stress risers. Leak is pulse-synchronous and louder when cold before expansion closes the gap.",
+      "ui_remediation_steps": [
+        "Cold-engine start: listen for a loud, sharp ticking that is synchronised with cylinder firing (half engine speed). The noise should diminish or disappear as the manifold heats up and the crack closes.",
+        "Spray a small amount of soapy water near suspected crack points with the engine running cold \u00e2\u20ac\u201d exhaust gas bubbling through the solution confirms the crack location.",
+        "Exhaust analyser probe: sniff each manifold runner for HC trace at the suspected crack point.",
+        "Remove the exhaust manifold heatshield (if fitted) and visually inspect for carbon trails radiating from the crack \u00e2\u20ac\u201d a black soot line tracing from the fracture confirms the leak.",
+        "Cast-iron manifolds can sometimes be welded by a specialist; replacement is the standard repair. Replace flange gaskets and hardware as part of the job.",
+        "Verify repair: after manifold replacement or weld, O2 sensor switching returns to normal, fuel trims stabilise within \u00c2\u00b110 %, no exhaust noise."
+      ],
+      "differential_siblings": [
+        "ERR-EL-001",
+        "ERR-EL-003"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-EL-003": {
+      "fault_name": "downpipe_flange_leak",
+      "fault_family": "exhaust_leak",
+      "component_group": "Exhaust System \u00e2\u20ac\u201d Manifold-to-Downpipe Flange Joint",
+      "impacted_subsystems": [
+        "Manifold-to-Downpipe Bolted Flange",
+        "Pre-Catalyst O2 Sensor (if sensor is downstream of the flange)",
+        "Turbocharger Spool Response (turbo vehicles)"
+      ],
+      "mechanical_failure_mode": "Bolted flange between manifold outlet and downpipe/cat develops gasket leak. NA engines with O2 in manifold: leak is post-O2 (noise, no trim). Turbo engines with O2 in downpipe: pre-O2 dilution drives false-lean correction and delayed spool from exhaust pressure loss.",
+      "ui_remediation_steps": [
+        "Cold-engine listening: a sharp metallic ticking at the manifold-to-downpipe flange joint. The noise is loudest at the joint \u00e2\u20ac\u201d use a mechanic's stethoscope or hose to isolate.",
+        "Exhaust analyser probe: sniff the flange joint area for HC trace. If the O2 sensor is downstream of the leak, expect false-lean trim offset (positive LTFT).",
+        "Inspect the flange hardware \u00e2\u20ac\u201d loose or missing bolts, or a visibly displaced gasket, are common on vehicles with a history of exhaust work.",
+        "If the gasket has failed, replace the flange gasket. Check the flange faces for flatness \u00e2\u20ac\u201d pitting or warping requires resurfacing.",
+        "On turbo vehicles: check that the leak has not caused the turbo to overspeed (compensating for lost exhaust energy). Verify wastegate actuator stroke after repair.",
+        "Verify repair: no exhaust noise at the flange, O2 sensor behaviour normal (if applicable), turbo spool within specification."
+      ],
+      "differential_siblings": [
+        "ERR-EL-001",
+        "ERR-EL-006"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-EL-004": {
+      "fault_name": "flex_pipe_rupture",
+      "fault_family": "exhaust_leak",
+      "component_group": "Exhaust System \u00e2\u20ac\u201d Flex Pipe Section (Downstream of Catalyst)",
+      "impacted_subsystems": [
+        "Exhaust Flex Pipe Bellows",
+        "Cabin NVH and Exhaust Noise",
+        "Tailpipe Emission Sampling (probe downstream of the leak)"
+      ],
+      "mechanical_failure_mode": "Stainless-steel flex bellows (post-cat) ruptures from engine rocking, corrosion, or impact. Post-cat and post-O2 \u00e2\u20ac\u201d no fuel trim disturbance. Primary symptoms: exhaust noise and cabin fume entry. Check engine mounts: excessive movement causes repeat failure.",
+      "ui_remediation_steps": [
+        "Start the engine and listen for a loud exhaust rumble or blatting noise from underneath the vehicle, typically near the flex section location (forward of the centre resonator).",
+        "Have an assistant hold a rag over the tailpipe with the engine running \u00e2\u20ac\u201d listen for hissing at the flex pipe as exhaust gas escapes through the rupture instead of exiting the tailpipe.",
+        "Visually inspect the flex pipe braiding for broken wires, rust-through, carbon soot marks, or visible tears in the bellows.",
+        "Check engine mounts before replacing the flex pipe \u00e2\u20ac\u201d excessive engine movement is the root cause of repeated flex pipe failure.",
+        "Replace the flex pipe section (cut-and-weld or bolt-in depending on the vehicle). Ensure the replacement has adequate flexibility for the vehicle's engine movement range.",
+        "Verify repair: no exhaust noise from the flex section, tailpipe sample unaffected, no cabin fumes during stationary operation."
+      ],
+      "differential_siblings": [
+        "ERR-EL-003",
+        "ERR-EL-006"
+      ],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-EL-005": {
+      "fault_name": "egr_feed_tube_leak",
+      "fault_family": "exhaust_leak",
+      "component_group": "Exhaust System \u00e2\u20ac\u201d EGR Feed Tube Assembly",
+      "impacted_subsystems": [
+        "EGR Feed Tube (Exhaust Manifold to EGR Valve)",
+        "Upstream O2 Sensor (false-lean from pre-O2 leak)"
+      ],
+      "mechanical_failure_mode": "EGR feed tube (manifold to EGR valve) develops crack or pinhole at weld or flex section. Exhaust escapes before EGR valve, reducing flow. Pre-O2: venturi air ingress drives false-lean O2 readings. Post-O2: noise and reduced EGR flow without fuel trim disturbance.",
+      "ui_remediation_steps": [
+        "Listen for a ticking noise near the EGR tube routing path. The noise is often quieter than a manifold leak because the tube diameter is smaller.",
+        "Inspect the EGR feed tube visually for carbon soot marks, rust-through, or cracks at the corrugated flex section and at the flare nut connections.",
+        "If the leak is pre-O2: check LTFT for positive offset from false-lean correction. Post-O2: no trim effect \u00e2\u20ac\u201d diagnose by noise and visual inspection.",
+        "Replace the EGR feed tube. Ensure the new tube is correctly torqued at both flare nuts \u00e2\u20ac\u201d over-tightening cracks the flare; under-tightening leaks.",
+        "After replacement, clear DTCs and verify the EGR monitor completes during a drive cycle without setting P0401 (insufficient flow) or P0402 (excessive flow).",
+        "Verify repair: no exhaust noise, LTFT within \u00c2\u00b110 % (if pre-O2), EGR monitor passes."
+      ],
+      "differential_siblings": [
+        "ERR-EL-001",
+        "ERR-LC-005"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-EL-006": {
+      "fault_name": "exhaust_joint_donut_failure",
+      "fault_family": "exhaust_leak",
+      "component_group": "Exhaust System \u00e2\u20ac\u201d Slip-Joint or Flange Compression Seal",
+      "impacted_subsystems": [
+        "Exhaust Flange Donut Gasket",
+        "Exhaust Joint Spring Bolts",
+        "Tailpipe Emission Integrity"
+      ],
+      "mechanical_failure_mode": "Graphite or metal-core donut gasket at slip-joint or spring-bolted flange deteriorates from heat cycling, losing compression seal. Joint opens under load when exhaust flexes, causing dilution or noise. Common at manifold-to-downpipe, downpipe-to-cat, cat-to-catback joints.",
+      "ui_remediation_steps": [
+        "Load the engine against the torque converter (foot firmly on brake, brief throttle in Drive) and listen for an exhaust blat at the suspect joint \u00e2\u20ac\u201d the joint opens under load when the engine rocks.",
+        "Visually inspect the donut gasket at each flange connection. Look for carbon soot tracks radiating from the flange, a deformed or flattened gasket, or broken spring bolts.",
+        "If the joint uses spring-loaded bolts, verify both springs are intact and have not lost tension \u00e2\u20ac\u201d a broken spring bolt allows the joint to open under engine movement.",
+        "Replace the donut gasket. Replace spring bolts and springs as a set if any are broken or corroded.",
+        "Apply a thin layer of high-temperature exhaust assembly paste to the new donut if specified by the vehicle manufacturer.",
+        "Verify repair: no exhaust noise at the joint under load, no carbon soot track re-formation, tailpipe sample integrity maintained."
+      ],
+      "differential_siblings": [
+        "ERR-EL-001",
+        "ERR-EL-003",
+        "ERR-EL-004"
+      ],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-EL-008": {
+      "fault_name": "exhaust_leak_sample_contamination",
+      "fault_family": "exhaust_leak",
+      "component_group": "Exhaust System \u2014 Post-Catalyst Exhaust Leak and Tailpipe Sampling Integrity",
+      "impacted_subsystems": [
+        "Tailpipe and Muffler Assembly",
+        "Exhaust Gas Sampling Probe Seal",
+        "Gas Analyser Sample Integrity"
+      ],
+      "mechanical_failure_mode": "Severe post-catalyst exhaust leak or sampling-probe seal failure contaminating the gas analyser sample with ambient air. The sum-of-gases check (CO+CO2+O2) falls outside the 14-18% validation window, producing a SAMPLE_INVALID verdict from GASLab. The chemistry is unclassifiab...",
+      "ui_remediation_steps": [
+        "Verify the gas analyser sampling probe is fully inserted into the tailpipe and the probe cone or stopper seals against the tailpipe opening. A loose probe is the most common cause of SAMPLE_INVALID.",
+        "Check for visible exhaust leaks downstream of the catalyst: look for carbon soot marks at muffler seams, pipe joints, and the tailpipe-to-muffler connection.",
+        "With the engine running, have an assistant hold a rag over the tailpipe to create backpressure \u2014 listen for hissing at any downstream joint that indicates an exhaust gas escape path.",
+        "If a post-catalyst leak is confirmed: replace the failed gasket, clamp, or pipe section. Post-catalyst leaks do not affect O2 sensor or fuel trim, but they do corrupt the gas sample.",
+        "Run the gas analyser calibration verification routine on a known reference gas before re-testing \u2014 a drifted analyser can produce a SAMPLE_INVALID verdict on a perfectly valid sample.",
+        "Verify repair: CO+CO2+O2 sum returns to within 14-18% window, GASLab sample_validity returns VALID, gas analyser chemistry is classifiable."
+      ],
+      "differential_siblings": [
+        "ERR-EL-004",
+        "ERR-EL-006"
+      ],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-EL-007": {
+      "fault_name": "exhaust_leak_incomplete_combustion",
+      "fault_family": "exhaust_leak",
+      "component_group": "Exhaust System \u2014 Pre-O2 Sensor Exhaust Leak Path",
+      "impacted_subsystems": [
+        "Exhaust Manifold / Header Assembly",
+        "Upstream O2 Sensor Signal Integrity",
+        "Closed-Loop Fuel Trim Accuracy"
+      ],
+      "mechanical_failure_mode": "Pre-O2 exhaust leak admitting atmospheric air into the exhaust stream between cylinder pulses via the venturi effect. Upstream O2 sensor reads false-lean, driving positive fuel trim that over-fuels the engine. The gas analyser sees raw fuel + diluted O2 as a partial-burn (inco...",
+      "ui_remediation_steps": [
+        "Cold-engine listening test: a sharp ticking noise that is synchronised with cylinder firing and diminishes as the engine warms confirms a manifold-area exhaust leak.",
+        "Smoke test via the tailpipe with the engine off: smoke escaping at any pre-O2 joint, gasket, or crack confirms the leak path directly.",
+        "Exhaust analyser probe: sniff each exhaust joint and manifold runner for HC trace while the engine is running. HC detection at a joint confirms combustion gas escape before the O2 sensor.",
+        "Check LTFT for positive offset (> +10%) \u2014 the ECU's false-lean correction is the tell that the leak is upstream of the O2 sensor.",
+        "Repair the identified leak: replace the gasket, weld the crack, or tighten the flange hardware as appropriate. Replace hardware if corroded or stretched.",
+        "Verify repair: O2 sensor switching pattern returns to normal, fuel trims stabilise within +/-10%, gas analyser chemistry normalises, no exhaust noise at the repair point."
+      ],
+      "differential_siblings": [
+        "ERR-EL-001",
+        "ERR-EL-002"
+      ],
+      "editor_severity_hint": "REPAIR"
+    }
+  }
+}

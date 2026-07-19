@@ -1,0 +1,2189 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "assembly.py",
+      "file_type": "code",
+      "source_file": "dnalab/assembly.py",
+      "source_location": "L1",
+      "id": "dnalab_assembly_py",
+      "community": 1,
+      "norm_label": "assembly.py"
+    },
+    {
+      "label": "build_vehicle_dna()",
+      "file_type": "code",
+      "source_file": "dnalab/assembly.py",
+      "source_location": "L14",
+      "id": "dnalab_assembly_build_vehicle_dna",
+      "community": 1,
+      "norm_label": "build_vehicle_dna()"
+    },
+    {
+      "label": "DNALab assembly \u2014 build_vehicle_dna() orchestration.",
+      "file_type": "rationale",
+      "source_file": "dnalab/assembly.py",
+      "source_location": "L1",
+      "id": "dnalab_assembly_rationale_1",
+      "community": 1,
+      "norm_label": "dnalab assembly \u2014 build_vehicle_dna() orchestration."
+    },
+    {
+      "label": "Decode VIN and triage selection, combine into one VehicleDNA.      Args:",
+      "file_type": "rationale",
+      "source_file": "dnalab/assembly.py",
+      "source_location": "L15",
+      "id": "dnalab_assembly_rationale_15",
+      "community": 1,
+      "norm_label": "decode vin and triage selection, combine into one vehicledna.      args:"
+    },
+    {
+      "label": "models.py",
+      "file_type": "code",
+      "source_file": "dnalab/models.py",
+      "source_location": "L1",
+      "id": "dnalab_models_py",
+      "community": 2,
+      "norm_label": "models.py"
+    },
+    {
+      "label": "VehicleDNA",
+      "file_type": "code",
+      "source_file": "dnalab/models.py",
+      "source_location": "L22",
+      "id": "dnalab_models_vehicledna",
+      "community": 2,
+      "norm_label": "vehicledna"
+    },
+    {
+      "label": "new()",
+      "file_type": "code",
+      "source_file": "dnalab/models.py",
+      "source_location": "L36",
+      "id": "dnalab_models_new",
+      "community": 2,
+      "norm_label": "new()"
+    },
+    {
+      "label": ".to_json_payload()",
+      "file_type": "code",
+      "source_file": "dnalab/models.py",
+      "source_location": "L55",
+      "id": "dnalab_models_vehicledna_to_json_payload",
+      "community": 2,
+      "norm_label": ".to_json_payload()"
+    },
+    {
+      "label": ".to_json()",
+      "file_type": "code",
+      "source_file": "dnalab/models.py",
+      "source_location": "L69",
+      "id": "dnalab_models_vehicledna_to_json",
+      "community": 2,
+      "norm_label": ".to_json()"
+    },
+    {
+      "label": "from_json_payload()",
+      "file_type": "code",
+      "source_file": "dnalab/models.py",
+      "source_location": "L73",
+      "id": "dnalab_models_from_json_payload",
+      "community": 2,
+      "norm_label": "from_json_payload()"
+    },
+    {
+      "label": "VehicleDNA \u2014 the combined Part A + Part B payload.  Schema governed by SEMANTIC_",
+      "file_type": "rationale",
+      "source_file": "dnalab/models.py",
+      "source_location": "L1",
+      "id": "dnalab_models_rationale_1",
+      "community": 2,
+      "norm_label": "vehicledna \u2014 the combined part a + part b payload.  schema governed by semantic_"
+    },
+    {
+      "label": "Combined Part A (VinDNA) + Part B (SymptomDNA) + session metadata.      The JSON",
+      "file_type": "rationale",
+      "source_file": "dnalab/models.py",
+      "source_location": "L23",
+      "id": "dnalab_models_rationale_23",
+      "community": 2,
+      "norm_label": "combined part a (vindna) + part b (symptomdna) + session metadata.      the json"
+    },
+    {
+      "label": "Serialize to the dict layout from SEMANTIC_CONTRACT.md \u00a74.3.          Top-level",
+      "file_type": "rationale",
+      "source_file": "dnalab/models.py",
+      "source_location": "L56",
+      "id": "dnalab_models_rationale_56",
+      "community": 2,
+      "norm_label": "serialize to the dict layout from semantic_contract.md \u00a74.3.          top-level"
+    },
+    {
+      "label": "Inverse of to_json_payload(). Delegates to each model's from_json.          Rais",
+      "file_type": "rationale",
+      "source_file": "dnalab/models.py",
+      "source_location": "L74",
+      "id": "dnalab_models_rationale_74",
+      "community": 10,
+      "norm_label": "inverse of to_json_payload(). delegates to each model's from_json.          rais"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "dnalab/__init__.py",
+      "source_location": "L1",
+      "id": "dnalab_init_py",
+      "community": 9,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "DNALab \u2014 the umbrella lab that composes VinDNA + SymptomDNA into VehicleDNA.",
+      "file_type": "rationale",
+      "source_file": "dnalab/__init__.py",
+      "source_location": "L1",
+      "id": "dnalab_init_rationale_1",
+      "community": 9,
+      "norm_label": "dnalab \u2014 the umbrella lab that composes vindna + symptomdna into vehicledna."
+    },
+    {
+      "label": "conftest.py",
+      "file_type": "code",
+      "source_file": "tests/conftest.py",
+      "source_location": "L1",
+      "id": "tests_conftest_py",
+      "community": 8,
+      "norm_label": "conftest.py"
+    },
+    {
+      "label": "sample_vin()",
+      "file_type": "code",
+      "source_file": "tests/conftest.py",
+      "source_location": "L11",
+      "id": "tests_conftest_sample_vin",
+      "community": 8,
+      "norm_label": "sample_vin()"
+    },
+    {
+      "label": "sample_triage()",
+      "file_type": "code",
+      "source_file": "tests/conftest.py",
+      "source_location": "L16",
+      "id": "tests_conftest_sample_triage",
+      "community": 8,
+      "norm_label": "sample_triage()"
+    },
+    {
+      "label": "sample_dna()",
+      "file_type": "code",
+      "source_file": "tests/conftest.py",
+      "source_location": "L26",
+      "id": "tests_conftest_sample_dna",
+      "community": 8,
+      "norm_label": "sample_dna()"
+    },
+    {
+      "label": "invalid_vin()",
+      "file_type": "code",
+      "source_file": "tests/conftest.py",
+      "source_location": "L33",
+      "id": "tests_conftest_invalid_vin",
+      "community": 8,
+      "norm_label": "invalid_vin()"
+    },
+    {
+      "label": "DNALab test fixtures.",
+      "file_type": "rationale",
+      "source_file": "tests/conftest.py",
+      "source_location": "L1",
+      "id": "tests_conftest_rationale_1",
+      "community": 8,
+      "norm_label": "dnalab test fixtures."
+    },
+    {
+      "label": "test_assembly.py",
+      "file_type": "code",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L1",
+      "id": "tests_test_assembly_py",
+      "community": 2,
+      "norm_label": "test_assembly.py"
+    },
+    {
+      "label": "TestBuildVehicleDNA",
+      "file_type": "code",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L31",
+      "id": "tests_test_assembly_testbuildvehicledna",
+      "community": 1,
+      "norm_label": "testbuildvehicledna"
+    },
+    {
+      "label": ".test_happy_path_returns_vehicle_dna()",
+      "file_type": "code",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L32",
+      "id": "tests_test_assembly_testbuildvehicledna_test_happy_path_returns_vehicle_dna",
+      "community": 1,
+      "norm_label": ".test_happy_path_returns_vehicle_dna()"
+    },
+    {
+      "label": ".test_session_id_format()",
+      "file_type": "code",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L38",
+      "id": "tests_test_assembly_testbuildvehicledna_test_session_id_format",
+      "community": 1,
+      "norm_label": ".test_session_id_format()"
+    },
+    {
+      "label": ".test_timestamp_iso8601_utc()",
+      "file_type": "code",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L41",
+      "id": "tests_test_assembly_testbuildvehicledna_test_timestamp_iso8601_utc",
+      "community": 1,
+      "norm_label": ".test_timestamp_iso8601_utc()"
+    },
+    {
+      "label": ".test_contract_top_level_keys()",
+      "file_type": "code",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L45",
+      "id": "tests_test_assembly_testbuildvehicledna_test_contract_top_level_keys",
+      "community": 1,
+      "norm_label": ".test_contract_top_level_keys()"
+    },
+    {
+      "label": ".test_vin_dna_keys_superset()",
+      "file_type": "code",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L52",
+      "id": "tests_test_assembly_testbuildvehicledna_test_vin_dna_keys_superset",
+      "community": 1,
+      "norm_label": ".test_vin_dna_keys_superset()"
+    },
+    {
+      "label": ".test_symptom_dna_keys_exact()",
+      "file_type": "code",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L58",
+      "id": "tests_test_assembly_testbuildvehicledna_test_symptom_dna_keys_exact",
+      "community": 1,
+      "norm_label": ".test_symptom_dna_keys_exact()"
+    },
+    {
+      "label": ".test_round_trip_json_payload()",
+      "file_type": "code",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L63",
+      "id": "tests_test_assembly_testbuildvehicledna_test_round_trip_json_payload",
+      "community": 1,
+      "norm_label": ".test_round_trip_json_payload()"
+    },
+    {
+      "label": ".test_invalid_vin_propagates()",
+      "file_type": "code",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L73",
+      "id": "tests_test_assembly_testbuildvehicledna_test_invalid_vin_propagates",
+      "community": 1,
+      "norm_label": ".test_invalid_vin_propagates()"
+    },
+    {
+      "label": ".test_missing_triage_key_raises_symptom_validation_error()",
+      "file_type": "code",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L77",
+      "id": "tests_test_assembly_testbuildvehicledna_test_missing_triage_key_raises_symptom_validation_error",
+      "community": 1,
+      "norm_label": ".test_missing_triage_key_raises_symptom_validation_error()"
+    },
+    {
+      "label": ".test_invalid_triage_propagates()",
+      "file_type": "code",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L82",
+      "id": "tests_test_assembly_testbuildvehicledna_test_invalid_triage_propagates",
+      "community": 1,
+      "norm_label": ".test_invalid_triage_propagates()"
+    },
+    {
+      "label": "TestSchemaVersion",
+      "file_type": "code",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L93",
+      "id": "tests_test_assembly_testschemaversion",
+      "community": 2,
+      "norm_label": "testschemaversion"
+    },
+    {
+      "label": ".test_schema_version_constant()",
+      "file_type": "code",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L94",
+      "id": "tests_test_assembly_testschemaversion_test_schema_version_constant",
+      "community": 2,
+      "norm_label": ".test_schema_version_constant()"
+    },
+    {
+      "label": "Integration and contract tests for build_vehicle_dna.",
+      "file_type": "rationale",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L1",
+      "id": "tests_test_assembly_rationale_1",
+      "community": 2,
+      "norm_label": "integration and contract tests for build_vehicle_dna."
+    },
+    {
+      "label": "test_models.py",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L1",
+      "id": "tests_test_models_py",
+      "community": 0,
+      "norm_label": "test_models.py"
+    },
+    {
+      "label": "_make_vin_dna()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L17",
+      "id": "tests_test_models_make_vin_dna",
+      "community": 0,
+      "norm_label": "_make_vin_dna()"
+    },
+    {
+      "label": "_make_symptom_dna()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L45",
+      "id": "tests_test_models_make_symptom_dna",
+      "community": 0,
+      "norm_label": "_make_symptom_dna()"
+    },
+    {
+      "label": "TestVehicleDNAConstruction",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L57",
+      "id": "tests_test_models_testvehiclednaconstruction",
+      "community": 0,
+      "norm_label": "testvehiclednaconstruction"
+    },
+    {
+      "label": ".test_new_constructs_successfully()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L58",
+      "id": "tests_test_models_testvehiclednaconstruction_test_new_constructs_successfully",
+      "community": 0,
+      "norm_label": ".test_new_constructs_successfully()"
+    },
+    {
+      "label": ".test_explicit_session_id_and_timestamp()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L66",
+      "id": "tests_test_models_testvehiclednaconstruction_test_explicit_session_id_and_timestamp",
+      "community": 0,
+      "norm_label": ".test_explicit_session_id_and_timestamp()"
+    },
+    {
+      "label": ".test_from_json_payload_rejects_wrong_schema_version()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L80",
+      "id": "tests_test_models_testvehiclednaconstruction_test_from_json_payload_rejects_wrong_schema_version",
+      "community": 0,
+      "norm_label": ".test_from_json_payload_rejects_wrong_schema_version()"
+    },
+    {
+      "label": "TestVehicleDNASerialization",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L88",
+      "id": "tests_test_models_testvehiclednaserialization",
+      "community": 0,
+      "norm_label": "testvehiclednaserialization"
+    },
+    {
+      "label": ".test_to_json_payload_keys_exactly_five()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L89",
+      "id": "tests_test_models_testvehiclednaserialization_test_to_json_payload_keys_exactly_five",
+      "community": 0,
+      "norm_label": ".test_to_json_payload_keys_exactly_five()"
+    },
+    {
+      "label": ".test_schema_version_value()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L96",
+      "id": "tests_test_models_testvehiclednaserialization_test_schema_version_value",
+      "community": 0,
+      "norm_label": ".test_schema_version_value()"
+    },
+    {
+      "label": ".test_to_json_returns_string()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L100",
+      "id": "tests_test_models_testvehiclednaserialization_test_to_json_returns_string",
+      "community": 0,
+      "norm_label": ".test_to_json_returns_string()"
+    },
+    {
+      "label": ".test_no_part_heading_strings_in_payload()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L108",
+      "id": "tests_test_models_testvehiclednaserialization_test_no_part_heading_strings_in_payload",
+      "community": 0,
+      "norm_label": ".test_no_part_heading_strings_in_payload()"
+    },
+    {
+      "label": ".test_round_trip_json_payload()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L118",
+      "id": "tests_test_models_testvehiclednaserialization_test_round_trip_json_payload",
+      "community": 0,
+      "norm_label": ".test_round_trip_json_payload()"
+    },
+    {
+      "label": ".test_vin_dna_nested_shape()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L137",
+      "id": "tests_test_models_testvehiclednaserialization_test_vin_dna_nested_shape",
+      "community": 0,
+      "norm_label": ".test_vin_dna_nested_shape()"
+    },
+    {
+      "label": ".test_symptom_dna_nested_shape()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L146",
+      "id": "tests_test_models_testvehiclednaserialization_test_symptom_dna_nested_shape",
+      "community": 0,
+      "norm_label": ".test_symptom_dna_nested_shape()"
+    },
+    {
+      "label": "Round-trip and contract tests for VehicleDNA.",
+      "file_type": "rationale",
+      "source_file": "tests/test_models.py",
+      "source_location": "L1",
+      "id": "tests_test_models_rationale_1",
+      "community": 0,
+      "norm_label": "round-trip and contract tests for vehicledna."
+    },
+    {
+      "label": "test_vehicledna_roundtrip.py",
+      "file_type": "code",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L1",
+      "id": "tests_test_vehicledna_roundtrip_py",
+      "community": 4,
+      "norm_label": "test_vehicledna_roundtrip.py"
+    },
+    {
+      "label": "_make_vin_dna()",
+      "file_type": "code",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L20",
+      "id": "tests_test_vehicledna_roundtrip_make_vin_dna",
+      "community": 4,
+      "norm_label": "_make_vin_dna()"
+    },
+    {
+      "label": "_make_symptom_dna()",
+      "file_type": "code",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L48",
+      "id": "tests_test_vehicledna_roundtrip_make_symptom_dna",
+      "community": 4,
+      "norm_label": "_make_symptom_dna()"
+    },
+    {
+      "label": "TestVehicleDNARoundTrip",
+      "file_type": "code",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L60",
+      "id": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip",
+      "community": 4,
+      "norm_label": "testvehiclednaroundtrip"
+    },
+    {
+      "label": ".test_full_round_trip_envelope()",
+      "file_type": "code",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L61",
+      "id": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_envelope",
+      "community": 4,
+      "norm_label": ".test_full_round_trip_envelope()"
+    },
+    {
+      "label": ".test_full_round_trip_vin_dna()",
+      "file_type": "code",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L69",
+      "id": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_vin_dna",
+      "community": 4,
+      "norm_label": ".test_full_round_trip_vin_dna()"
+    },
+    {
+      "label": ".test_full_round_trip_vin_dna_nested()",
+      "file_type": "code",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L87",
+      "id": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_vin_dna_nested",
+      "community": 4,
+      "norm_label": ".test_full_round_trip_vin_dna_nested()"
+    },
+    {
+      "label": ".test_full_round_trip_symptom_dna()",
+      "file_type": "code",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L101",
+      "id": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_symptom_dna",
+      "community": 4,
+      "norm_label": ".test_full_round_trip_symptom_dna()"
+    },
+    {
+      "label": ".test_full_round_trip_json_string()",
+      "file_type": "code",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L112",
+      "id": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_json_string",
+      "community": 4,
+      "norm_label": ".test_full_round_trip_json_string()"
+    },
+    {
+      "label": "Explicit round-trip test for VehicleDNA JSON serialization.  Build a VehicleDNA,",
+      "file_type": "rationale",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L1",
+      "id": "tests_test_vehicledna_roundtrip_rationale_1",
+      "community": 4,
+      "norm_label": "explicit round-trip test for vehicledna json serialization.  build a vehicledna,"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "tests/__init__.py",
+      "source_location": "L1",
+      "id": "tests_init_py",
+      "community": 11,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "0001-naming-contract.md",
+      "file_type": "document",
+      "source_file": "docs/adr/0001-naming-contract.md",
+      "source_location": "L1",
+      "id": "docs_adr_0001_naming_contract_md",
+      "community": 5,
+      "norm_label": "0001-naming-contract.md"
+    },
+    {
+      "label": "ADR 0001 \u2014 Naming Contract: VinDNA / SymptomDNA / VehicleDNA",
+      "file_type": "document",
+      "source_file": "docs/adr/0001-naming-contract.md",
+      "source_location": "L1",
+      "id": "adr_0001_naming_contract_adr_0001_naming_contract_vindna_symptomdna_vehicledna",
+      "community": 5,
+      "norm_label": "adr 0001 \u2014 naming contract: vindna / symptomdna / vehicledna"
+    },
+    {
+      "label": "Status",
+      "file_type": "document",
+      "source_file": "docs/adr/0001-naming-contract.md",
+      "source_location": "L3",
+      "id": "adr_0001_naming_contract_status",
+      "community": 5,
+      "norm_label": "status"
+    },
+    {
+      "label": "Date",
+      "file_type": "document",
+      "source_file": "docs/adr/0001-naming-contract.md",
+      "source_location": "L7",
+      "id": "adr_0001_naming_contract_date",
+      "community": 5,
+      "norm_label": "date"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/adr/0001-naming-contract.md",
+      "source_location": "L11",
+      "id": "adr_0001_naming_contract_context",
+      "community": 5,
+      "norm_label": "context"
+    },
+    {
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "docs/adr/0001-naming-contract.md",
+      "source_location": "L15",
+      "id": "adr_0001_naming_contract_decision",
+      "community": 5,
+      "norm_label": "decision"
+    },
+    {
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "docs/adr/0001-naming-contract.md",
+      "source_location": "L23",
+      "id": "adr_0001_naming_contract_consequences",
+      "community": 5,
+      "norm_label": "consequences"
+    },
+    {
+      "label": "Sources",
+      "file_type": "document",
+      "source_file": "docs/adr/0001-naming-contract.md",
+      "source_location": "L29",
+      "id": "adr_0001_naming_contract_sources",
+      "community": 5,
+      "norm_label": "sources"
+    },
+    {
+      "label": "0002-dnalab-only-importer.md",
+      "file_type": "document",
+      "source_file": "docs/adr/0002-dnalab-only-importer.md",
+      "source_location": "L1",
+      "id": "docs_adr_0002_dnalab_only_importer_md",
+      "community": 6,
+      "norm_label": "0002-dnalab-only-importer.md"
+    },
+    {
+      "label": "ADR 0002 \u2014 DNALab Is the Only Lab That Imports Other Labs",
+      "file_type": "document",
+      "source_file": "docs/adr/0002-dnalab-only-importer.md",
+      "source_location": "L1",
+      "id": "adr_0002_dnalab_only_importer_adr_0002_dnalab_is_the_only_lab_that_imports_other_labs",
+      "community": 6,
+      "norm_label": "adr 0002 \u2014 dnalab is the only lab that imports other labs"
+    },
+    {
+      "label": "Status",
+      "file_type": "document",
+      "source_file": "docs/adr/0002-dnalab-only-importer.md",
+      "source_location": "L3",
+      "id": "adr_0002_dnalab_only_importer_status",
+      "community": 6,
+      "norm_label": "status"
+    },
+    {
+      "label": "Date",
+      "file_type": "document",
+      "source_file": "docs/adr/0002-dnalab-only-importer.md",
+      "source_location": "L7",
+      "id": "adr_0002_dnalab_only_importer_date",
+      "community": 6,
+      "norm_label": "date"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/adr/0002-dnalab-only-importer.md",
+      "source_location": "L11",
+      "id": "adr_0002_dnalab_only_importer_context",
+      "community": 6,
+      "norm_label": "context"
+    },
+    {
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "docs/adr/0002-dnalab-only-importer.md",
+      "source_location": "L15",
+      "id": "adr_0002_dnalab_only_importer_decision",
+      "community": 6,
+      "norm_label": "decision"
+    },
+    {
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "docs/adr/0002-dnalab-only-importer.md",
+      "source_location": "L19",
+      "id": "adr_0002_dnalab_only_importer_consequences",
+      "community": 6,
+      "norm_label": "consequences"
+    },
+    {
+      "label": "Sources",
+      "file_type": "document",
+      "source_file": "docs/adr/0002-dnalab-only-importer.md",
+      "source_location": "L25",
+      "id": "adr_0002_dnalab_only_importer_sources",
+      "community": 6,
+      "norm_label": "sources"
+    },
+    {
+      "label": "0003-string-typed-enum-fields.md",
+      "file_type": "document",
+      "source_file": "docs/adr/0003-string-typed-enum-fields.md",
+      "source_location": "L1",
+      "id": "docs_adr_0003_string_typed_enum_fields_md",
+      "community": 7,
+      "norm_label": "0003-string-typed-enum-fields.md"
+    },
+    {
+      "label": "ADR 0003 \u2014 String-Typed Enum Fields",
+      "file_type": "document",
+      "source_file": "docs/adr/0003-string-typed-enum-fields.md",
+      "source_location": "L1",
+      "id": "adr_0003_string_typed_enum_fields_adr_0003_string_typed_enum_fields",
+      "community": 7,
+      "norm_label": "adr 0003 \u2014 string-typed enum fields"
+    },
+    {
+      "label": "Status",
+      "file_type": "document",
+      "source_file": "docs/adr/0003-string-typed-enum-fields.md",
+      "source_location": "L3",
+      "id": "adr_0003_string_typed_enum_fields_status",
+      "community": 7,
+      "norm_label": "status"
+    },
+    {
+      "label": "Date",
+      "file_type": "document",
+      "source_file": "docs/adr/0003-string-typed-enum-fields.md",
+      "source_location": "L7",
+      "id": "adr_0003_string_typed_enum_fields_date",
+      "community": 7,
+      "norm_label": "date"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/adr/0003-string-typed-enum-fields.md",
+      "source_location": "L11",
+      "id": "adr_0003_string_typed_enum_fields_context",
+      "community": 7,
+      "norm_label": "context"
+    },
+    {
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "docs/adr/0003-string-typed-enum-fields.md",
+      "source_location": "L17",
+      "id": "adr_0003_string_typed_enum_fields_decision",
+      "community": 7,
+      "norm_label": "decision"
+    },
+    {
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "docs/adr/0003-string-typed-enum-fields.md",
+      "source_location": "L23",
+      "id": "adr_0003_string_typed_enum_fields_consequences",
+      "community": 7,
+      "norm_label": "consequences"
+    },
+    {
+      "label": "Sources",
+      "file_type": "document",
+      "source_file": "docs/adr/0003-string-typed-enum-fields.md",
+      "source_location": "L30",
+      "id": "adr_0003_string_typed_enum_fields_sources",
+      "community": 7,
+      "norm_label": "sources"
+    },
+    {
+      "label": "0004-enum-typed-fields.md",
+      "file_type": "document",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L1",
+      "id": "docs_adr_0004_enum_typed_fields_md",
+      "community": 3,
+      "norm_label": "0004-enum-typed-fields.md"
+    },
+    {
+      "label": "ADR 0004 \u2014 Enum-Typed Fields",
+      "file_type": "document",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L1",
+      "id": "adr_0004_enum_typed_fields_adr_0004_enum_typed_fields",
+      "community": 3,
+      "norm_label": "adr 0004 \u2014 enum-typed fields"
+    },
+    {
+      "label": "Status",
+      "file_type": "document",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L3",
+      "id": "adr_0004_enum_typed_fields_status",
+      "community": 3,
+      "norm_label": "status"
+    },
+    {
+      "label": "Supersedes",
+      "file_type": "document",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L7",
+      "id": "adr_0004_enum_typed_fields_supersedes",
+      "community": 3,
+      "norm_label": "supersedes"
+    },
+    {
+      "label": "Date",
+      "file_type": "document",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L11",
+      "id": "adr_0004_enum_typed_fields_date",
+      "community": 3,
+      "norm_label": "date"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L15",
+      "id": "adr_0004_enum_typed_fields_context",
+      "community": 3,
+      "norm_label": "context"
+    },
+    {
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L27",
+      "id": "adr_0004_enum_typed_fields_decision",
+      "community": 3,
+      "norm_label": "decision"
+    },
+    {
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L35",
+      "id": "adr_0004_enum_typed_fields_consequences",
+      "community": 3,
+      "norm_label": "consequences"
+    },
+    {
+      "label": "Future cut-over to comlab.schemas.vocabulary",
+      "file_type": "document",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L43",
+      "id": "adr_0004_enum_typed_fields_future_cut_over_to_comlab_schemas_vocabulary",
+      "community": 3,
+      "norm_label": "future cut-over to comlab.schemas.vocabulary"
+    },
+    {
+      "label": "Sources",
+      "file_type": "document",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L51",
+      "id": "adr_0004_enum_typed_fields_sources",
+      "community": 3,
+      "norm_label": "sources"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "dnalab/assembly.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "dnalab_assembly_py",
+      "target": "dnalab_assembly_build_vehicle_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "dnalab/assembly.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "dnalab_assembly_rationale_1",
+      "target": "dnalab_assembly_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "dnalab/assembly.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "dnalab_assembly_rationale_15",
+      "target": "dnalab_assembly_build_vehicle_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/conftest.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "tests_conftest_sample_dna",
+      "target": "dnalab_assembly_build_vehicle_dna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "tests_test_assembly_testbuildvehicledna_test_happy_path_returns_vehicle_dna",
+      "target": "dnalab_assembly_build_vehicle_dna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "tests_test_assembly_testbuildvehicledna_test_invalid_vin_propagates",
+      "target": "dnalab_assembly_build_vehicle_dna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "tests_test_assembly_testbuildvehicledna_test_missing_triage_key_raises_symptom_validation_error",
+      "target": "dnalab_assembly_build_vehicle_dna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "tests_test_assembly_testbuildvehicledna_test_invalid_triage_propagates",
+      "target": "dnalab_assembly_build_vehicle_dna"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "dnalab/models.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "dnalab_models_py",
+      "target": "dnalab_models_vehicledna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "dnalab/models.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "dnalab_models_py",
+      "target": "dnalab_models_new",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "dnalab/models.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "dnalab_models_py",
+      "target": "dnalab_models_from_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "dnalab/models.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "dnalab_models_rationale_1",
+      "target": "dnalab_models_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "dnalab/models.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "dnalab_models_vehicledna",
+      "target": "dnalab_models_vehicledna_to_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "dnalab/models.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "dnalab_models_vehicledna",
+      "target": "dnalab_models_vehicledna_to_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "dnalab/models.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "dnalab_models_rationale_23",
+      "target": "dnalab_models_vehicledna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L12",
+      "weight": 0.8,
+      "source": "tests_test_assembly_testbuildvehicledna",
+      "target": "dnalab_models_vehicledna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L12",
+      "weight": 0.8,
+      "source": "tests_test_assembly_testschemaversion",
+      "target": "dnalab_models_vehicledna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L14",
+      "weight": 0.8,
+      "source": "tests_test_models_testvehiclednaconstruction",
+      "target": "dnalab_models_vehicledna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L14",
+      "weight": 0.8,
+      "source": "tests_test_models_testvehiclednaserialization",
+      "target": "dnalab_models_vehicledna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L17",
+      "weight": 0.8,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip",
+      "target": "dnalab_models_vehicledna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "dnalab/models.py",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "dnalab_models_vehicledna_to_json",
+      "target": "dnalab_models_vehicledna_to_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "dnalab/models.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "dnalab_models_rationale_56",
+      "target": "dnalab_models_vehicledna_to_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "dnalab/__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "dnalab_init_rationale_1",
+      "target": "dnalab_init_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/conftest.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "tests_conftest_py",
+      "target": "tests_conftest_sample_vin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/conftest.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "tests_conftest_py",
+      "target": "tests_conftest_sample_triage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/conftest.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "tests_conftest_py",
+      "target": "tests_conftest_sample_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/conftest.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "tests_conftest_py",
+      "target": "tests_conftest_invalid_vin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/conftest.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_conftest_rationale_1",
+      "target": "tests_conftest_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "tests_test_assembly_py",
+      "target": "tests_test_assembly_testbuildvehicledna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "tests_test_assembly_py",
+      "target": "tests_test_assembly_testschemaversion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_assembly_rationale_1",
+      "target": "tests_test_assembly_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "tests_test_assembly_testbuildvehicledna",
+      "target": "tests_test_assembly_testbuildvehicledna_test_happy_path_returns_vehicle_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "tests_test_assembly_testbuildvehicledna",
+      "target": "tests_test_assembly_testbuildvehicledna_test_session_id_format",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "tests_test_assembly_testbuildvehicledna",
+      "target": "tests_test_assembly_testbuildvehicledna_test_timestamp_iso8601_utc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "tests_test_assembly_testbuildvehicledna",
+      "target": "tests_test_assembly_testbuildvehicledna_test_contract_top_level_keys",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "tests_test_assembly_testbuildvehicledna",
+      "target": "tests_test_assembly_testbuildvehicledna_test_vin_dna_keys_superset",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "tests_test_assembly_testbuildvehicledna",
+      "target": "tests_test_assembly_testbuildvehicledna_test_symptom_dna_keys_exact",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "tests_test_assembly_testbuildvehicledna",
+      "target": "tests_test_assembly_testbuildvehicledna_test_round_trip_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "tests_test_assembly_testbuildvehicledna",
+      "target": "tests_test_assembly_testbuildvehicledna_test_invalid_vin_propagates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "tests_test_assembly_testbuildvehicledna",
+      "target": "tests_test_assembly_testbuildvehicledna_test_missing_triage_key_raises_symptom_validation_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "source": "tests_test_assembly_testbuildvehicledna",
+      "target": "tests_test_assembly_testbuildvehicledna_test_invalid_triage_propagates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_assembly.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "tests_test_assembly_testschemaversion",
+      "target": "tests_test_assembly_testschemaversion_test_schema_version_constant",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "tests_test_models_py",
+      "target": "tests_test_models_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "tests_test_models_py",
+      "target": "tests_test_models_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "tests_test_models_py",
+      "target": "tests_test_models_testvehiclednaconstruction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "tests_test_models_py",
+      "target": "tests_test_models_testvehiclednaserialization",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_models_rationale_1",
+      "target": "tests_test_models_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaconstruction_test_new_constructs_successfully",
+      "target": "tests_test_models_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaconstruction_test_explicit_session_id_and_timestamp",
+      "target": "tests_test_models_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaconstruction_test_from_json_payload_rejects_wrong_schema_version",
+      "target": "tests_test_models_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization_test_to_json_payload_keys_exactly_five",
+      "target": "tests_test_models_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization_test_schema_version_value",
+      "target": "tests_test_models_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization_test_to_json_returns_string",
+      "target": "tests_test_models_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization_test_no_part_heading_strings_in_payload",
+      "target": "tests_test_models_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L119",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization_test_round_trip_json_payload",
+      "target": "tests_test_models_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization_test_vin_dna_nested_shape",
+      "target": "tests_test_models_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L147",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization_test_symptom_dna_nested_shape",
+      "target": "tests_test_models_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaconstruction_test_new_constructs_successfully",
+      "target": "tests_test_models_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaconstruction_test_explicit_session_id_and_timestamp",
+      "target": "tests_test_models_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaconstruction_test_from_json_payload_rejects_wrong_schema_version",
+      "target": "tests_test_models_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization_test_to_json_payload_keys_exactly_five",
+      "target": "tests_test_models_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization_test_schema_version_value",
+      "target": "tests_test_models_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization_test_to_json_returns_string",
+      "target": "tests_test_models_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization_test_no_part_heading_strings_in_payload",
+      "target": "tests_test_models_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L119",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization_test_round_trip_json_payload",
+      "target": "tests_test_models_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization_test_vin_dna_nested_shape",
+      "target": "tests_test_models_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L147",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization_test_symptom_dna_nested_shape",
+      "target": "tests_test_models_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaconstruction",
+      "target": "tests_test_models_testvehiclednaconstruction_test_new_constructs_successfully",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaconstruction",
+      "target": "tests_test_models_testvehiclednaconstruction_test_explicit_session_id_and_timestamp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaconstruction",
+      "target": "tests_test_models_testvehiclednaconstruction_test_from_json_payload_rejects_wrong_schema_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization",
+      "target": "tests_test_models_testvehiclednaserialization_test_to_json_payload_keys_exactly_five",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L96",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization",
+      "target": "tests_test_models_testvehiclednaserialization_test_schema_version_value",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization",
+      "target": "tests_test_models_testvehiclednaserialization_test_to_json_returns_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L108",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization",
+      "target": "tests_test_models_testvehiclednaserialization_test_no_part_heading_strings_in_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L118",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization",
+      "target": "tests_test_models_testvehiclednaserialization_test_round_trip_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L137",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization",
+      "target": "tests_test_models_testvehiclednaserialization_test_vin_dna_nested_shape",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L146",
+      "weight": 1.0,
+      "source": "tests_test_models_testvehiclednaserialization",
+      "target": "tests_test_models_testvehiclednaserialization_test_symptom_dna_nested_shape",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_py",
+      "target": "tests_test_vehicledna_roundtrip_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_py",
+      "target": "tests_test_vehicledna_roundtrip_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_py",
+      "target": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_rationale_1",
+      "target": "tests_test_vehicledna_roundtrip_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_envelope",
+      "target": "tests_test_vehicledna_roundtrip_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_vin_dna",
+      "target": "tests_test_vehicledna_roundtrip_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_vin_dna_nested",
+      "target": "tests_test_vehicledna_roundtrip_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_symptom_dna",
+      "target": "tests_test_vehicledna_roundtrip_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L113",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_json_string",
+      "target": "tests_test_vehicledna_roundtrip_make_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_envelope",
+      "target": "tests_test_vehicledna_roundtrip_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_vin_dna",
+      "target": "tests_test_vehicledna_roundtrip_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_vin_dna_nested",
+      "target": "tests_test_vehicledna_roundtrip_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_symptom_dna",
+      "target": "tests_test_vehicledna_roundtrip_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L113",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_json_string",
+      "target": "tests_test_vehicledna_roundtrip_make_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip",
+      "target": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_envelope",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip",
+      "target": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip",
+      "target": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_vin_dna_nested",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip",
+      "target": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_vehicledna_roundtrip.py",
+      "source_location": "L112",
+      "weight": 1.0,
+      "source": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip",
+      "target": "tests_test_vehicledna_roundtrip_testvehiclednaroundtrip_test_full_round_trip_json_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0001-naming-contract.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_adr_0001_naming_contract_md",
+      "target": "adr_0001_naming_contract_adr_0001_naming_contract_vindna_symptomdna_vehicledna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0001-naming-contract.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "adr_0001_naming_contract_adr_0001_naming_contract_vindna_symptomdna_vehicledna",
+      "target": "adr_0001_naming_contract_status",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0001-naming-contract.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "adr_0001_naming_contract_adr_0001_naming_contract_vindna_symptomdna_vehicledna",
+      "target": "adr_0001_naming_contract_date",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0001-naming-contract.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "adr_0001_naming_contract_adr_0001_naming_contract_vindna_symptomdna_vehicledna",
+      "target": "adr_0001_naming_contract_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0001-naming-contract.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "adr_0001_naming_contract_adr_0001_naming_contract_vindna_symptomdna_vehicledna",
+      "target": "adr_0001_naming_contract_decision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0001-naming-contract.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "adr_0001_naming_contract_adr_0001_naming_contract_vindna_symptomdna_vehicledna",
+      "target": "adr_0001_naming_contract_consequences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0001-naming-contract.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "adr_0001_naming_contract_adr_0001_naming_contract_vindna_symptomdna_vehicledna",
+      "target": "adr_0001_naming_contract_sources",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0002-dnalab-only-importer.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_adr_0002_dnalab_only_importer_md",
+      "target": "adr_0002_dnalab_only_importer_adr_0002_dnalab_is_the_only_lab_that_imports_other_labs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0002-dnalab-only-importer.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "adr_0002_dnalab_only_importer_adr_0002_dnalab_is_the_only_lab_that_imports_other_labs",
+      "target": "adr_0002_dnalab_only_importer_status",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0002-dnalab-only-importer.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "adr_0002_dnalab_only_importer_adr_0002_dnalab_is_the_only_lab_that_imports_other_labs",
+      "target": "adr_0002_dnalab_only_importer_date",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0002-dnalab-only-importer.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "adr_0002_dnalab_only_importer_adr_0002_dnalab_is_the_only_lab_that_imports_other_labs",
+      "target": "adr_0002_dnalab_only_importer_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0002-dnalab-only-importer.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "adr_0002_dnalab_only_importer_adr_0002_dnalab_is_the_only_lab_that_imports_other_labs",
+      "target": "adr_0002_dnalab_only_importer_decision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0002-dnalab-only-importer.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "adr_0002_dnalab_only_importer_adr_0002_dnalab_is_the_only_lab_that_imports_other_labs",
+      "target": "adr_0002_dnalab_only_importer_consequences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0002-dnalab-only-importer.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "adr_0002_dnalab_only_importer_adr_0002_dnalab_is_the_only_lab_that_imports_other_labs",
+      "target": "adr_0002_dnalab_only_importer_sources",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0003-string-typed-enum-fields.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_adr_0003_string_typed_enum_fields_md",
+      "target": "adr_0003_string_typed_enum_fields_adr_0003_string_typed_enum_fields",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0003-string-typed-enum-fields.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "adr_0003_string_typed_enum_fields_adr_0003_string_typed_enum_fields",
+      "target": "adr_0003_string_typed_enum_fields_status",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0003-string-typed-enum-fields.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "adr_0003_string_typed_enum_fields_adr_0003_string_typed_enum_fields",
+      "target": "adr_0003_string_typed_enum_fields_date",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0003-string-typed-enum-fields.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "adr_0003_string_typed_enum_fields_adr_0003_string_typed_enum_fields",
+      "target": "adr_0003_string_typed_enum_fields_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0003-string-typed-enum-fields.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "adr_0003_string_typed_enum_fields_adr_0003_string_typed_enum_fields",
+      "target": "adr_0003_string_typed_enum_fields_decision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0003-string-typed-enum-fields.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "adr_0003_string_typed_enum_fields_adr_0003_string_typed_enum_fields",
+      "target": "adr_0003_string_typed_enum_fields_consequences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0003-string-typed-enum-fields.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "adr_0003_string_typed_enum_fields_adr_0003_string_typed_enum_fields",
+      "target": "adr_0003_string_typed_enum_fields_sources",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_adr_0004_enum_typed_fields_md",
+      "target": "adr_0004_enum_typed_fields_adr_0004_enum_typed_fields",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "adr_0004_enum_typed_fields_adr_0004_enum_typed_fields",
+      "target": "adr_0004_enum_typed_fields_status",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "adr_0004_enum_typed_fields_adr_0004_enum_typed_fields",
+      "target": "adr_0004_enum_typed_fields_supersedes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "adr_0004_enum_typed_fields_adr_0004_enum_typed_fields",
+      "target": "adr_0004_enum_typed_fields_date",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "adr_0004_enum_typed_fields_adr_0004_enum_typed_fields",
+      "target": "adr_0004_enum_typed_fields_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "adr_0004_enum_typed_fields_adr_0004_enum_typed_fields",
+      "target": "adr_0004_enum_typed_fields_decision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "adr_0004_enum_typed_fields_adr_0004_enum_typed_fields",
+      "target": "adr_0004_enum_typed_fields_consequences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "adr_0004_enum_typed_fields_adr_0004_enum_typed_fields",
+      "target": "adr_0004_enum_typed_fields_future_cut_over_to_comlab_schemas_vocabulary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0004-enum-typed-fields.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "adr_0004_enum_typed_fields_adr_0004_enum_typed_fields",
+      "target": "adr_0004_enum_typed_fields_sources",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "f754422458bc56f6ee3e2a0e316976a8a5d34d91"
+}

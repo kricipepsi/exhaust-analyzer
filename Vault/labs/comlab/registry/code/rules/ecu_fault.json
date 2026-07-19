@@ -1,0 +1,278 @@
+{
+  "version": "2.0",
+  "fault_family": "ecu_fault",
+  "rules": [
+    {
+      "rule_id": "EF-001",
+      "fault_family": "ecu_fault",
+      "description": "Fuel trim saturated \u2014 positive (max enrichment): ECU has adapted fuel trims to maximum positive limit, adding fuel against a perceived lean condition that contradicts the gas analyser. Long-term and short-term trims both pegged high. Typically accompanied by P0171 (System Too Lean) but the gas analyser shows rich or stoichiometric \u2014 the ECU is being deceived. Truth-vs-perception: ECU perceives lean, gas analyser shows rich or normal. v1 orphan ERR-EF-001 (fuel_trim_saturated) reactivated, positive polarity",
+      "chemistry_evidence": [],
+      "obd_evidence": [
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "gt",
+          "value": 0.02,
+          "tier": "DEFINITIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "longft1",
+          "operator": "ge",
+          "value": 14.0,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        },
+        {
+          "pid": "shrtft1",
+          "operator": "ge",
+          "value": 20.0,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0171"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.8,
+      "competition_group": "ecu_fault",
+      "confidence_ceiling": 0.9,
+      "precondition": "longft1 and shrtft1 prefer live OBD (OBDLivePayload), fall back to freeze-frame",
+      "passes_cases": [
+        "CSV-041",
+        "ECU-001",
+        "EXP-N002",
+        "EXP-N004",
+        "EXT-221",
+        "case_001",
+        "case_033",
+        "YAML-CSV41"
+      ],
+      "source_wiki_refs": [
+        "OBD_VOCABULARY \u00a710.3",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "EF-002",
+      "fault_family": "ecu_fault",
+      "description": "Fuel trim saturated \u2014 negative (max enleanment): ECU has adapted fuel trims to maximum negative limit, pulling fuel against a perceived rich condition that contradicts the gas analyser. Long-term and short-term trims both pegged low. Typically accompanied by P0172 (System Too Rich) but the gas analyser shows lean or stoichiometric \u2014 the ECU is being deceived by a biased sensor. Truth-vs-perception: ECU perceives rich, gas analyser shows lean or normal. v1 orphan ERR-EF-001 (fuel_trim_saturated) reactivated, negative polarity",
+      "chemistry_evidence": [],
+      "obd_evidence": [
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "lt",
+          "value": -0.02,
+          "tier": "DEFINITIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "longft1",
+          "operator": "le",
+          "value": -10.0,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        },
+        {
+          "pid": "shrtft1",
+          "operator": "le",
+          "value": -15.0,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0172"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.8,
+      "competition_group": "ecu_fault",
+      "confidence_ceiling": 0.9,
+      "precondition": "longft1 and shrtft1 prefer live OBD (OBDLivePayload), fall back to freeze-frame",
+      "passes_cases": [
+        "CSV-123",
+        "case_013",
+        "CSV-124"
+      ],
+      "source_wiki_refs": [
+        "OBD_VOCABULARY \u00a710.3",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "EF-003",
+      "fault_family": "ecu_fault",
+      "description": "Closed-loop fuel control disabled / trims frozen: ECU has disabled closed-loop fuel control \u2014 both long-term and short-term fuel trims are frozen at or near zero because the ECU cannot trust its sensor inputs. Accompanied by DTCs indicating ECU-level faults (P0606 ECU internal), sensor circuit faults that force open-loop (P0113 IAT circuit high, P0118 ECT circuit high), injector driver faults (P0201-P0206), or coolant thermostat faults (P0128). The ECU has given up adapting \u2014 the trims tell the story. v1 orphan ERR-EF-002 (closed_loop_fuel_control_disabled) reactivated",
+      "chemistry_evidence": [],
+      "obd_evidence": [
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "gt",
+          "value": 0.03,
+          "tier": "DEFINITIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "lambda_perception_delta",
+          "operator": "lt",
+          "value": -0.03,
+          "tier": "DEFINITIVE",
+          "units": "lambda",
+          "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
+        },
+        {
+          "pid": "longft1",
+          "operator": "in_range",
+          "range_low": -5.0,
+          "range_high": 5.0,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        },
+        {
+          "pid": "shrtft1",
+          "operator": "in_range",
+          "range_low": -5.0,
+          "range_high": 5.0,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a710.3"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0113",
+            "P0201",
+            "P0202",
+            "P0203",
+            "P0204",
+            "P0606",
+            "P0128"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.75,
+      "competition_group": "ecu_fault",
+      "confidence_ceiling": 0.85,
+      "precondition": "longft1 and shrtft1 prefer live OBD (OBDLivePayload), fall back to freeze-frame",
+      "passes_cases": [
+        "CSV-043",
+        "CSV-045",
+        "CSV-072",
+        "CSV-125",
+        "CSV-126",
+        "ECU-002",
+        "ECU-003",
+        "ECU-009",
+        "EXP-N005",
+        "EXP-N027",
+        "TC-021",
+        "case_027",
+        "YAML-CSV43",
+        "YAML-CSV45",
+        "YAML-CSV72",
+        "YAML-TC22",
+        "YAML-TC47"
+      ],
+      "source_wiki_refs": [
+        "OBD_VOCABULARY \u00a710.3",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "EF-004",
+      "fault_family": "ecu_fault",
+      "description": "ECU internal fault \u2014 DTC-driven: ECU has logged an internal hardware or software fault (P0600-P0699 range, ECU_INTERNAL_HISTORY). These are processor, memory, or calibration integrity faults detected by the ECU's own self-diagnostics. TIMING_RETARDED chemistry may appear as a secondary symptom when the ECU limits ignition timing in response to the internal fault (~10 ecu_fault cases produce this chemistry in the curated corpus). No OBD gate \u2014 the ECU internal DTC alone gates this rule. This is the only ecu_fault rule that carries a chemistry evidence slot (TIMING_RETARDED SUGGESTIVE), closing the Tier B gap for ecu_fault",
+      "chemistry_evidence": [
+        {
+          "state": "TIMING_RETARDED",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0606"
+          ],
+          "strategy": "any_match",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.85,
+      "competition_group": "ecu_fault",
+      "passes_cases": [
+        "CSV-072",
+        "case_027",
+        "YAML-CSV72"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "EF-005",
+      "fault_family": "ecu_fault",
+      "description": "SAMPLE_INVALID with ECU fault: GASLab's triangle-gate rejects the sample as unphysical (CO+CO2+O2 outside [14,16]), typically because the ECU fault has corrupted sensor data or caused a measurement anomaly. SAMPLE_INVALID chemistry gates this rule \u2014 it only evaluates when GASLab emits SAMPLE_INVALID. When the triangle fails AND ECU-fault-indicative DTCs are present (P0171/P0172 fuel trim codes or P0606 ECU internal), the unphysical gas reading is attributed to ECU control failure rather than an analyser problem. Covers the ~2 SAMPLE_INVALID ecu_fault cases identified in the chemistry coverage matrix",
+      "chemistry_evidence": [
+        {
+          "state": "SAMPLE_INVALID",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0171",
+            "P0172",
+            "P0606"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.7,
+      "competition_group": "ecu_fault",
+      "confidence_ceiling": 0.8,
+      "passes_cases": [
+        "CSV-041",
+        "CSV-123",
+        "ECU-001",
+        "case_001"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    }
+  ]
+}

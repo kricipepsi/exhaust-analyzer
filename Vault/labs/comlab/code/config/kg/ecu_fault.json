@@ -1,0 +1,215 @@
+{
+  "schema_version": "1.0",
+  "fault_family": "ecu_fault",
+  "nodes": {
+    "ERR-EF-001": {
+      "fault_name": "fuel_trim_saturated",
+      "fault_family": "ecu_fault",
+      "component_group": "ECU Fuel Adaptation System",
+      "impacted_subsystems": [
+        "Short-Term Fuel Trim (STFT)",
+        "Long-Term Fuel Trim (LTFT)",
+        "Closed-Loop Fuel Authority"
+      ],
+      "mechanical_failure_mode": "Fuel trim adaptation has reached its authority limit (typically \u00c2\u00b125%) in one direction and is holding at the rail \u00e2\u20ac\u201d the ECU can no longer correct the mixture error, confirming a root-cause fault of sufficient magnitude to exceed the trim system's correction range.",
+      "ui_remediation_steps": [
+        "Record the trim direction: positive saturation (STFT/LTFT pegged at +20 to +25 %) means a lean root cause \u00e2\u20ac\u201d look for vacuum leak, fuel starvation, MAF under-read, injector clog. Negative saturation (pegged at \u00e2\u02c6\u201920 to \u00e2\u02c6\u201925 %) means a rich root cause \u00e2\u20ac\u201d look for fuel pressure excess, leaking injector, ECT sensor bias, EVAP purge stuck open.",
+        "ERR-EF-001 is a secondary fault \u00e2\u20ac\u201d it does not replace the root-cause diagnosis; it tells you the correction system is exhausted. Always chase the primary fault first.",
+        "Check whether trim saturation is bank-specific (STFT1/LTFT1 vs STFT2/LTFT2). Bank-specific saturation points to an injector, coil, or cylinder-specific fault. Global saturation (both banks equal) points to a global air or fuel pressure fault.",
+        "With the root cause corrected, clear adaptive fuel maps and allow one full warm drive cycle for trim to relearn. Trim should return within \u00c2\u00b110 % if the fix was complete.",
+        "If trim does not recover within \u00c2\u00b110 % after root cause repair, suspect a second independent fault or incomplete repair."
+      ],
+      "differential_siblings": [
+        "ERR-EF-002",
+        "ERR-LC-001",
+        "ERR-RM-003"
+      ],
+      "editor_severity_hint": "INFORMATIONAL"
+    },
+    "ERR-EF-002": {
+      "fault_name": "closed_loop_fuel_control_disabled",
+      "fault_family": "ecu_fault",
+      "component_group": "ECU Fuel Adaptation System",
+      "impacted_subsystems": [
+        "Closed-Loop Fuel Control Module",
+        "Short-Term Fuel Trim (STFT)",
+        "O2 Sensor Feedback Authority"
+      ],
+      "mechanical_failure_mode": "ECU fuel control is operating in open-loop mode \u00e2\u20ac\u201d the O2 sensor feedback loop is not active \u00e2\u20ac\u201d causing the engine to run at the base calibration map value without trim correction, producing a fixed mixture that is biased by calibration accuracy alone.",
+      "ui_remediation_steps": [
+        "Confirm open-loop status on scan tool: fuel system status PID should show OL (open loop). If showing CL (closed loop) but trim is frozen at 0 %, suspect a sensor fault (ERR-SF-001, ERR-SF-002) rather than a control system failure.",
+        "Check for DTC P0140 (O2 sensor no activity \u00e2\u20ac\u201d bank 1) or P0160 (bank 2) \u00e2\u20ac\u201d these specifically flag that the ECU declared the O2 sensor inactive and exited closed-loop.",
+        "Verify engine coolant temperature: the ECU will remain in open-loop until the ECT sensor reads above the closed-loop entry threshold (typically 70 \u00c2\u00b0C). Confirm `engine_warmed = true` has been reached (see ERR-SF-005 and ERR-RM-006 for ECT faults that prevent warm-up).",
+        "Check the upstream O2 sensor heater circuit \u00e2\u20ac\u201d a cold sensor (failed heater) will never produce a switching signal, which is interpreted by many ECUs as sensor absence \u00e2\u2020\u2019 closed-loop disabled.",
+        "If coolant temp is normal and O2 sensor heater is functional, suspect ECU software fault or calibration corruption. Check for TSBs.",
+        "After resolving root cause, verify fuel system status transitions to CL within 5 minutes of reaching operating temperature."
+      ],
+      "differential_siblings": [
+        "ERR-EF-001",
+        "ERR-SF-002",
+        "ERR-SF-005"
+      ],
+      "editor_severity_hint": "INFORMATIONAL"
+    },
+    "ERR-ECU-001": {
+      "fault_name": "ecu_internal_processor_fault",
+      "fault_family": "ecu_fault",
+      "component_group": "Engine Control Module (ECM/PCM) \u00e2\u20ac\u201d Processor and Memory Subsystem",
+      "impacted_subsystems": [
+        "ECM Central Processor (CPU)",
+        "ECM Non-Volatile Memory (ROM / Flash)",
+        "ECM Keep-Alive Memory (KAM)",
+        "5V Sensor Reference Voltage Circuit",
+        "CAN Communication Bus"
+      ],
+      "mechanical_failure_mode": "ECM internal processor integrity self-check failure \u00e2\u20ac\u201d watchdog timeout, ROM checksum mismatch, KAM corruption, or internal memory fault. ECU self-reports P0606 when its self-test detects a hardware-level fault in the processor or memory subsystem.",
+      "ui_remediation_steps": [
+        "Verify battery voltage is stable \u00e2\u20ac\u201d check charging system output (13.5\u00e2\u20ac\u201c14.5 V at 2000 RPM) and battery resting voltage (\u00e2\u2030\u00a5 12.4 V). A failing alternator or weak battery can cause intermittent ECU voltage dropout that triggers phantom P0606.",
+        "Check for companion DTCs \u00e2\u20ac\u201d P0562 (system voltage low), P0563 (system voltage high), P0641 (5V reference open), P0642 (5V reference low), or P0643 (5V reference high) suggest the root cause is power-supply, not the ECU itself.",
+        "Inspect ECU ground points and harness connectors for corrosion, loose terminals, or water ingress. A poor ground or intermittent connection can mimic an internal ECU fault.",
+        "Clear DTCs and re-test under the same operating conditions. If P0606 returns immediately with no companion power-supply DTCs, the ECU internal fault is genuine.",
+        "Before replacing the ECU, verify the latest ECU calibration/flash is installed \u00e2\u20ac\u201d an incomplete or corrupt flash can set P0606. Re-flash with the latest OEM calibration and re-test.",
+        "If P0606 persists after re-flash and power-supply faults are ruled out, replace the ECM. Perform immobiliser pairing, CASE relearn (if applicable), and verify all monitors complete one drive cycle without DTC recurrence."
+      ],
+      "differential_siblings": [
+        "ERR-EF-001",
+        "ERR-EF-002",
+        "ERR-SF-004",
+        "ERR-SF-005"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-EF-003": {
+      "fault_name": "ecu_fault_vvt_context",
+      "fault_family": "ecu_fault",
+      "component_group": "Engine Management - ECU",
+      "impacted_subsystems": [
+        "ecu_power_supply",
+        "sensor_grounds",
+        "actuator_drivers"
+      ],
+      "mechanical_failure_mode": "ECU internal driver circuit degradation. Weak or intermittent signal to actuator causing partial system function without setting a DTC.",
+      "ui_remediation_steps": [
+        "Verify ECU power and ground circuits with voltage drop test under load.",
+        "Back-probe suspect actuator control wire with oscilloscope for waveform integrity.",
+        "Swap actuator with known-good unit to isolate ECU vs actuator fault.",
+        "Check for ECU TSBs or firmware updates addressing the symptom pattern.",
+        "Replace or repair ECU if driver circuit is confirmed failed."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-EF-004": {
+      "fault_name": "ecu_fault_incomplete_oxidation_context",
+      "fault_family": "ecu_fault",
+      "component_group": "Engine Management - ECU",
+      "impacted_subsystems": [
+        "ecu_power_supply",
+        "sensor_grounds",
+        "actuator_drivers"
+      ],
+      "mechanical_failure_mode": "ECU internal driver circuit degradation. Weak or intermittent signal to actuator causing partial system function without setting a DTC.",
+      "ui_remediation_steps": [
+        "Verify ECU power and ground circuits with voltage drop test under load.",
+        "Back-probe suspect actuator control wire with oscilloscope for waveform integrity.",
+        "Swap actuator with known-good unit to isolate ECU vs actuator fault.",
+        "Check for ECU TSBs or firmware updates addressing the symptom pattern.",
+        "Replace or repair ECU if driver circuit is confirmed failed."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-EF-005": {
+      "fault_name": "ecu_fault_incomplete_combustion_context",
+      "fault_family": "ecu_fault",
+      "component_group": "Engine Management - ECU",
+      "impacted_subsystems": [
+        "ecu_power_supply",
+        "sensor_grounds",
+        "actuator_drivers"
+      ],
+      "mechanical_failure_mode": "ECU internal driver circuit degradation. Weak or intermittent signal to actuator causing partial system function without setting a DTC.",
+      "ui_remediation_steps": [
+        "Verify ECU power and ground circuits with voltage drop test under load.",
+        "Back-probe suspect actuator control wire with oscilloscope for waveform integrity.",
+        "Swap actuator with known-good unit to isolate ECU vs actuator fault.",
+        "Check for ECU TSBs or firmware updates addressing the symptom pattern.",
+        "Replace or repair ECU if driver circuit is confirmed failed."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-EF-008": {
+      "fault_name": "ecu_fault_intermittent_normal_test",
+      "fault_family": "ecu_fault",
+      "component_group": "Engine Management \u2014 ECU Intermittent Fault Diagnosis",
+      "impacted_subsystems": [
+        "ECU Power and Ground Integrity",
+        "ECU Connector Pin Contact",
+        "ECU Internal Self-Diagnostic (P0606 Monitor)"
+      ],
+      "mechanical_failure_mode": "Intermittent ECU fault not active during the diagnostic session. Engine runs normally at time of test. Root cause is typically thermal (ECU internal fault appears above a certain temperature), mechanical (connector pin fretting or water ingress), or electrical (intermittent po...",
+      "ui_remediation_steps": [
+        "Check for stored DTCs \u2014 P0606 (ECU internal processor fault), P0601 (memory checksum error), or U-codes (CAN communication faults). Even a single historical occurrence confirms an ECU-side event.",
+        "Review freeze-frame data for any stored ECU DTCs: note the engine temperature, battery voltage, and vehicle speed at the moment of fault set \u2014 this often reveals the triggering condition.",
+        "Voltage-drop test on the ECU power and ground circuits under load (headlights, blower, rear defroster on): should be < 0.1 V on the ground side and < 0.3 V on the power side. A marginal ground causes random ECU resets.",
+        "Inspect the ECU connector for pin fretting (microscopic wear on the terminal contact surface), corrosion (green or white deposits), or water staining. Clean with electrical contact cleaner and apply dielectric grease to the connector seal.",
+        "Heat-soak the ECU with a heat gun (do not exceed 80 C) while monitoring for DTCs or engine-running faults \u2014 a temperature-sensitive internal fault will trigger when the ECU reaches its failure threshold.",
+        "If the ECU is confirmed intermittently faulty: replace the ECU. An intermittent ECU fault is a safety-critical failure (random engine stall in traffic). Verify repair: no ECU DTCs return after one week of normal driving."
+      ],
+      "differential_siblings": [
+        "ERR-EF-001",
+        "ERR-ECU-001"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-EF-007": {
+      "fault_name": "ecu_fault_rich_bias",
+      "fault_family": "ecu_fault",
+      "component_group": "Engine Management \u2014 ECU Injector Driver and MAP Sensor Circuit",
+      "impacted_subsystems": [
+        "ECU Injector Driver Output Stage",
+        "MAP Sensor 5V Reference and Signal Circuit",
+        "Closed-Loop Fuel Trim Control"
+      ],
+      "mechanical_failure_mode": "ECU injector-driver leakage or MAP sensor 5V-reference over-voltage causing systematic rich bias. The ECU perceives a leaner mixture than actual, adding fuel until the engine runs truly rich (lambda < 0.98). Gas analyser confirms rich chemistry while ECU data shows positive fu...",
+      "ui_remediation_steps": [
+        "Scope the injector control signal at a convenient injector connector: look for a clean square-wave with correct pulse width at idle (typically 2-5 ms). A stuck-on signal (constant 12V) or erratic pulse width confirms driver fault.",
+        "Measure the MAP sensor 5V reference at the MAP sensor connector: should be 5.00 +/- 0.10 V. Above 5.20 V causes the sensor to read higher than actual manifold pressure, which the ECU interprets as higher load, triggering more fuel.",
+        "Check for coolant contamination at the ECU connector (common on vehicles where the coolant temperature sensor shares a connector with the ECU harness) \u2014 wicking coolant creates a conductive path between pins.",
+        "If the injector driver is confirmed faulty: the ECU must be replaced or repaired. Verify that the injector itself is not shorted (measure injector resistance, typically 12-16 ohm) \u2014 a shorted injector can damage the new ECU driver.",
+        "If the MAP sensor reference is over-voltage: check if any other sensor on the same 5V reference circuit is shorted (pull each sensor connector one at a time and re-measure). If all sensors are disconnected and the reference is still high, the ECU voltage regulator is failed.",
+        "Verify repair: injector waveform clean and correct pulse width, MAP 5V reference within specification, fuel trims within +/-10%, gas analyser shows stoichiometric lambda."
+      ],
+      "differential_siblings": [
+        "ERR-EF-001",
+        "ERR-SF-008"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-EF-006": {
+      "fault_name": "ecu_fault_lean_bias",
+      "fault_family": "ecu_fault",
+      "component_group": "Engine Management \u2014 ECU Sensor Reference and Ground Circuit",
+      "impacted_subsystems": [
+        "ECU 5V Sensor Reference Supply",
+        "ECU Sensor Ground Circuit",
+        "MAF/MAP Sensor Signal Path"
+      ],
+      "mechanical_failure_mode": "ECU sensor-ground offset or 5V-reference drift causing systematic lean bias in the fuel control calculation. The ECU perceives a richer mixture than actual (sensor signals shifted higher), pulling fuel trim negative until the engine runs truly lean. Gas analyser confirms lean ...",
+      "ui_remediation_steps": [
+        "Measure the ECU 5V reference voltage at a convenient sensor (MAF, MAP, or TPS): should be 5.00 +/- 0.10 V. A reading below 4.80 V or above 5.20 V confirms the reference is out of specification.",
+        "Voltage-drop test on the ECU sensor ground circuit: measure voltage between the sensor ground pin at a sensor connector and battery negative with the engine running. Should be < 0.05 V. Higher values confirm a ground offset.",
+        "Check for aftermarket accessories tapped into the sensor reference or ground circuits \u2014 piggyback tuning modules, fuel savers, or remote-start systems are common sources of reference-voltage corruption.",
+        "If the ECU 5V reference or sensor ground is confirmed faulty: inspect the ECU connector for pin corrosion, water ingress, or pin fretting. Clean and re-seat the connector. If the fault persists, the ECU internal voltage regulator or ground plane may be damaged.",
+        "If the ECU is confirmed faulty: replace or repair the ECU. Do not attempt to compensate with a piggyback signal modifier \u2014 it masks the fault and creates a secondary failure point.",
+        "Verify repair: ECU 5V reference within specification, sensor ground offset < 0.05 V, fuel trims return to within +/-10%, gas analyser shows stoichiometric lambda."
+      ],
+      "differential_siblings": [
+        "ERR-EF-001",
+        "ERR-SF-007"
+      ],
+      "editor_severity_hint": "URGENT"
+    }
+  }
+}

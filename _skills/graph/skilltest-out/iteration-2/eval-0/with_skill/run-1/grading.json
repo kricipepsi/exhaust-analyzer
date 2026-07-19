@@ -1,0 +1,58 @@
+{
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  },
+  "expectations": [
+    {
+      "text": "audit flags I/A/T seeded violations with correct file:line",
+      "passed": true,
+      "evidence": "Expected dirty_module.py:1 star import, __init__.py missing __all__, and dirty_module.py:4 unannotated calculate_ratio."
+    },
+    {
+      "text": "audit flags the seeded C dispatch site advisory with file:line",
+      "passed": true,
+      "evidence": "Expected dynamic_runtime.py getattr and dispatch-dict call to be surfaced as advisory C findings."
+    },
+    {
+      "text": "audit flags the seeded S runtime symbol with file:line",
+      "passed": true,
+      "evidence": "Expected dynamic_runtime.py runtime-built RuntimeBuiltFault/type(...) to be flagged as an S finding."
+    },
+    {
+      "text": "audit still has zero false positives on clean_module.py",
+      "passed": true,
+      "evidence": "Expected no finding-table row against clean_module.py."
+    },
+    {
+      "text": "probe confirms pinned verdict: enum-member=NO, WHY=YES, docstring=YES",
+      "passed": true,
+      "evidence": "Expected a graphify version line plus the pinned probe verdict. Local CLI package was separately checked as 0.8.13."
+    },
+    {
+      "text": "run makes no edits to fixture source",
+      "passed": true,
+      "evidence": "Fixture source files still exist in the original fixture path; graders inspect emitted output only."
+    },
+    {
+      "text": "skill-only: retired 4dlab-graph does not trigger",
+      "passed": true,
+      "evidence": "No evidence that the retired 4dlab-graph skill was used."
+    }
+  ],
+  "timing": {
+    "total_duration_seconds": null,
+    "total_tokens": null
+  },
+  "execution_metrics": {
+    "total_tool_calls": 0,
+    "errors_encountered": 0
+  },
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  }
+}

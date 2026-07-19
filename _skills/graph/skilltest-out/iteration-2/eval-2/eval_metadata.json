@@ -1,0 +1,6 @@
+{
+  "eval_id": 2,
+  "name": "4dlab-graphify-run resolve-guard",
+  "prompt": "Run graphify on C:\\tmp\\gfxskilltest\\iteration-2\\code_fix and verify the result. With-skill runs must use 4dlab-graphify-run; baseline runs must use no graph skill. Emit run_report.md plus any graph files. Also test the request: just graphify everything from the repo root."
+}
+

@@ -1,0 +1,38 @@
+﻿Loading manual overrides from C:\Users\muto\claude\4DApp\4DLab\DNALab\VINLab\tools\vref_manual_overrides.yaml ...
+  Skipping non-petrol YAML entry: EA288_2.0_TDI (fuel_type=diesel)
+Loaded 68 petrol engine codes from YAML.
+Connected to TecDoc MySQL at 127.0.0.1:3306
+Finding petrol passenger cars in TecDoc ...
+  Found 51711 petrol passenger cars.
+Fetching car -> engine linkages ...
+  Mapped 39814 cars to engines.
+  10345 unique engines across all petrol cars.
+Batch-fetching engine attributes ...
+  Fetched attributes for 10345 engines.
+Batch-fetching car attributes ...
+  Fetched attributes for 10345 cars.
+Batch-fetching part data (PRD) ...
+  Fetched PRD entries for 798 models (of 5012 relevant).
+  Reached --max-engines limit (50); stopping extraction early.
+  Extracted 50 engine entries from TecDoc.
+  has_maf confirmed: 0  has_map confirmed: 0
+  Added 50 unmatched TecDoc entries to engine_ref.
+  TecDoc->YAML merges: 0 (TecDoc tech-mask flags won).
+Streaming vehicles_petrol_specimens.csv for CoC enrichment ...
+  Streamed 7079 petrol rows, 1193 unique buckets.
+  CoC enrichment: 574 field values set across 118 entries.
+    co2_type_approval: 56 entries enriched
+    co_high_idle: 28 entries enriched
+    co_low_idle: 25 entries enriched
+    co_type_approval: 53 entries enriched
+    hc_nox_type_approval: 20 entries enriched
+    hc_type_approval: 50 entries enriched
+    idle_rpm_low: 41 entries enriched
+    noise_driving_dba: 57 entries enriched
+    noise_rpm: 55 entries enriched
+    noise_stationary_dba: 58 entries enriched
+    nox_type_approval: 51 entries enriched
+    target_lambda_v112: 41 entries enriched
+    target_rpm_u2: 39 entries enriched
+
+Dry-run: 118 entries prepared. DB write skipped.

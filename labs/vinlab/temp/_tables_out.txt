@@ -1,0 +1,11 @@
+﻿ALL TABLES:
+  engine_attributes
+  engine_prd
+  engines
+  manufacturers
+  models
+  passanger_car_attributes
+  passanger_car_engines
+  passanger_car_prd
+  passanger_cars
+  prd

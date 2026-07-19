@@ -1,0 +1,880 @@
+{
+  "task": "T-V3-P4-C9-PRE",
+  "generated": "2026-07-06",
+  "mode": "DISCLOSE only (read-only pre-author; no wiring, no score move)",
+  "purpose": "Instance the frozen reveal contract for C9 \u2014 independent healthy-confirm. Surfaces HealthConfirmationState gates, consumer mapping, C6 interaction/pruning, C3 interaction, 11-case split, live FT-8 neighbours, column audit, confounders, and baseline pin.",
+  "reveal_contract_template": [
+    {
+      "key": "BUILDABLE_NOW",
+      "definition": "Producer/consumer logic + thresholds derivable from the cluster research answer; provable by unit tests on synthetic vectors, with no owner data."
+    },
+    {
+      "key": "SCORING_GATED",
+      "definition": "The per-case owner columns still required and which residual case_ids each unlocks; stays abstained until the owner supplies real measured values."
+    },
+    {
+      "key": "CODE_LANDED_NEQ_SCORE_MOVED",
+      "definition": "Explicit separation of producer/consumer logic shipped from top3_family delta. Landing code proves the discriminator is wired; it does not move score until gated data exists."
+    },
+    {
+      "key": "REGRESSION_FT8",
+      "definition": "The neighbour set the consumer edit touches, plus the no-regressed-family audit run on the full corpus at commit time."
+    },
+    {
+      "key": "ABSTAIN_FALLBACK",
+      "definition": "Cases whose discriminating signal the owner cannot supply stay abstained at MARGIN=0.02, never guessed from static idle data."
+    }
+  ],
+  "baseline": {
+    "yardstick": "V3_YARDSTICK_2026-07-06-C5B",
+    "csv_hash": "c49c17af1182a3eb07056a3fbf27c101378a32f35e375b18b3104d3928d8c7fd",
+    "oracle_hash": "3088a7c3",
+    "scorer": "apps/wired/v7/run_suite.py (hash-locked, untouched)",
+    "named_run": "POST_T_V3_P4_C5B",
+    "run_dir": "apps/wired/v7/runs/POST_T_V3_P4_C5B/results.json",
+    "note": "All C9 sizing references this current post-C5B baseline. If any commit lands first, stop and re-pin before C9-SYNTH/C9A."
+  },
+  "c9_instance": {
+    "cluster": "C9",
+    "title": "independent healthy-confirm",
+    "research_source": "v3/research/research_answers/cluster9.1.md",
+    "producer": {
+      "states": [
+        "OBDLab HealthConfirmationState"
+      ],
+      "emit_condition": "Emit SYSTEM_HEALTH_CONFIRMED when all readiness monitors are complete, no stored/pending/permanent DTCs are present, Mode $06 margins are >= 10%, fuel trims are within +/-7% and stable (delta <= 5%), and 2-point gas deltas are stable. Emit SENSOR_HEALTH_UNPROVEN_ABSTAIN otherwise.",
+      "thresholds": [
+        {
+          "signal": "OBD readiness monitor completeness",
+          "maneuver": "Read Mode $01 PID 0x01",
+          "threshold": "All supported non-continuous monitors = COMPLETE / READY",
+          "verdict": "SYSTEM_HEALTH_CONFIRMED gate",
+          "producer_state": "OBDLab HealthConfirmationState",
+          "evidence_fields": "readiness_supported_complete_bool",
+          "cite": "cluster9.1.md \u00a72; SAE J1979",
+          "grounding": "standardized (CARB/EPA)",
+          "feasibility_tier": "Tier A: generic OBD-II live data"
+        },
+        {
+          "signal": "OBD emission-related DTC count",
+          "maneuver": "Read Mode $03, Mode $07, and Mode $0A (where supported)",
+          "threshold": "Stored, pending, and permanent DTCs = 0",
+          "verdict": "SYSTEM_HEALTH_CONFIRMED gate",
+          "producer_state": "OBDLab HealthConfirmationState",
+          "evidence_fields": "stored_dtc_count, pending_dtc_count, permanent_dtc_count",
+          "cite": "cluster9.1.md \u00a72; SAE J1979",
+          "grounding": "standardized (SAE J1979)",
+          "feasibility_tier": "Tier A: generic OBD-II live data"
+        },
+        {
+          "signal": "OBD Mode $06 monitor test margins",
+          "maneuver": "Read Mode $06 test value and limit for non-continuous monitors",
+          "threshold": "Test value must be inside limit with margin >= 10% of limit range",
+          "verdict": "SYSTEM_HEALTH_CONFIRMED gate",
+          "producer_state": "OBDLab HealthConfirmationState",
+          "evidence_fields": "mode06_min_margin_pct",
+          "cite": "value9.md \u00a71; cluster9.1.md \u00a72; SAE J1979",
+          "grounding": "standardized (regulatory cut)",
+          "feasibility_tier": "Tier A: generic OBD-II Mode $06 data"
+        },
+        {
+          "signal": "OBD warm-up cycles since DTCs cleared",
+          "maneuver": "Read Mode $01 PID 0x30 / 0x4D",
+          "threshold": "Warm-up cycles since clear >= 5",
+          "verdict": "SYSTEM_HEALTH_CONFIRMED gate",
+          "producer_state": "OBDLab HealthConfirmationState",
+          "evidence_fields": "warmup_cycles_since_clear",
+          "cite": "value9.md \u00a71; EPA/CARB",
+          "grounding": "standardized (EPA/CARB)",
+          "feasibility_tier": "Tier A: generic OBD-II live data"
+        },
+        {
+          "signal": "OBD distance traveled since DTCs cleared",
+          "maneuver": "Read Mode $01 PID 0x31 / 0x4E",
+          "threshold": "Distance since clear >= 200 miles",
+          "verdict": "SYSTEM_HEALTH_CONFIRMED gate",
+          "producer_state": "OBDLab HealthConfirmationState",
+          "evidence_fields": "miles_since_clear",
+          "cite": "value9.md \u00a71; CARB",
+          "grounding": "standardized (CARB)",
+          "feasibility_tier": "Tier A: generic OBD-II live data"
+        },
+        {
+          "signal": "Short-Term Fuel Trim (STFT)",
+          "maneuver": "Warm idle and steady 2500 RPM no load",
+          "threshold": "STFT within +/-5% (P10-P90: -4% to +4%)",
+          "verdict": "SYSTEM_HEALTH_CONFIRMED gate",
+          "producer_state": "OBDLab HealthConfirmationState",
+          "evidence_fields": "stft_idle_pct, stft_2500_pct",
+          "cite": "value9.md \u00a71; SAE J1979",
+          "grounding": "standardized (OEM/SAE J1979)",
+          "feasibility_tier": "Tier A: generic OBD-II live trims"
+        },
+        {
+          "signal": "Long-Term Fuel Trim (LTFT)",
+          "maneuver": "Warm idle and steady 2500 RPM no load",
+          "threshold": "LTFT within +/-7% (P10-P90: -6% to +6%)",
+          "verdict": "SYSTEM_HEALTH_CONFIRMED gate",
+          "producer_state": "OBDLab HealthConfirmationState",
+          "evidence_fields": "ltft_idle_pct, ltft_2500_pct",
+          "cite": "value9.md \u00a71 (WIDEN); SAE J1979",
+          "grounding": "standardized (OEM/SAE J1979)",
+          "feasibility_tier": "Tier A: generic OBD-II live trims"
+        },
+        {
+          "signal": "Fuel trim delta between idle and 2500 RPM",
+          "maneuver": "Transition from idle to 2500 RPM",
+          "threshold": "Delta of fuel trim <= +/-5%",
+          "verdict": "SYSTEM_HEALTH_CONFIRMED gate",
+          "producer_state": "OBDLab HealthConfirmationState",
+          "evidence_fields": "stft_idle_pct, ltft_idle_pct, stft_2500_pct, ltft_2500_pct",
+          "cite": "value9.md \u00a71; Workshop practice",
+          "grounding": "manufacturer-typical",
+          "feasibility_tier": "Tier A: generic OBD-II live trims"
+        },
+        {
+          "signal": "Two-point gas delta: HC",
+          "maneuver": "Two-point tailpipe gas capture (idle to 2500 RPM no load)",
+          "threshold": "Delta HC within -10 to +15 ppm",
+          "verdict": "SYSTEM_HEALTH_CONFIRMED gate",
+          "producer_state": "OBDLab HealthConfirmationState",
+          "evidence_fields": "gas_delta_hc_ppm",
+          "cite": "value9.md \u00a71 (TIGHTEN); EPA/BAR",
+          "grounding": "anecdotal / workshop norm",
+          "feasibility_tier": "Tier B: 5-gas two-point capture"
+        },
+        {
+          "signal": "Two-point gas delta: CO",
+          "maneuver": "Two-point tailpipe gas capture (idle to 2500 RPM no load)",
+          "threshold": "Delta CO within -0.15 to +0.15%",
+          "verdict": "SYSTEM_HEALTH_CONFIRMED gate",
+          "producer_state": "OBDLab HealthConfirmationState",
+          "evidence_fields": "gas_delta_co_pct",
+          "cite": "value9.md \u00a71 (TIGHTEN); EPA/BAR",
+          "grounding": "anecdotal / workshop norm",
+          "feasibility_tier": "Tier B: 5-gas two-point capture"
+        },
+        {
+          "signal": "Two-point gas delta: CO2",
+          "maneuver": "Two-point tailpipe gas capture (idle to 2500 RPM no load)",
+          "threshold": "Delta CO2 typically positive, within +0.3 to +0.8%",
+          "verdict": "SYSTEM_HEALTH_CONFIRMED gate",
+          "producer_state": "OBDLab HealthConfirmationState",
+          "evidence_fields": "gas_delta_co2_pct",
+          "cite": "value9.md \u00a71 (SHIFT); EPA/BAR",
+          "grounding": "anecdotal / workshop norm",
+          "feasibility_tier": "Tier B: 5-gas two-point capture"
+        },
+        {
+          "signal": "Two-point gas delta: O2",
+          "maneuver": "Two-point tailpipe gas capture (idle to 2500 RPM no load)",
+          "threshold": "Delta O2 within -0.5 to +0.4%",
+          "verdict": "SYSTEM_HEALTH_CONFIRMED gate",
+          "producer_state": "OBDLab HealthConfirmationState",
+          "evidence_fields": "gas_delta_o2_pct",
+          "cite": "value9.md \u00a71; EPA/BAR",
+          "grounding": "anecdotal / workshop norm",
+          "feasibility_tier": "Tier B: 5-gas two-point capture"
+        },
+        {
+          "signal": "Unsupported, incomplete, or marginal OBD health evidence",
+          "maneuver": "Any operating state",
+          "threshold": "Any gate check fails or is missing; emit SENSOR_HEALTH_UNPROVEN_ABSTAIN",
+          "verdict": "SENSOR_HEALTH_UNPROVEN_ABSTAIN",
+          "producer_state": "OBDLab HealthConfirmationState",
+          "evidence_fields": "absence of complete OBD/trim/gas-delta confirmation",
+          "cite": "cluster9.1.md \u00a7Bottom Line; V3_SIGNAL_ACQUISITION_SPEC_2026-07-01.md \u00a7C9.6 line 67",
+          "grounding": "physics/regulatory rationale (provenance required)",
+          "feasibility_tier": "Abstain fallback"
+        }
+      ],
+      "corpus_columns": [
+        "readiness_supported_complete_bool",
+        "stored_dtc_count",
+        "pending_dtc_count",
+        "permanent_dtc_count",
+        "mode06_min_margin_pct",
+        "warmup_cycles_since_clear",
+        "miles_since_clear",
+        "stft_idle_pct",
+        "ltft_idle_pct",
+        "stft_2500_pct",
+        "ltft_2500_pct",
+        "gas_delta_hc_ppm",
+        "gas_delta_co_pct",
+        "gas_delta_co2_pct",
+        "gas_delta_o2_pct"
+      ]
+    },
+    "column_audit": {
+      "total_contract_columns": 15,
+      "live_columns": [
+        "ltft_2500_pct",
+        "ltft_idle_pct",
+        "stft_2500_pct",
+        "stft_idle_pct"
+      ],
+      "live_columns_count": 4,
+      "new_columns": [
+        "gas_delta_co2_pct",
+        "gas_delta_co_pct",
+        "gas_delta_hc_ppm",
+        "gas_delta_o2_pct",
+        "miles_since_clear",
+        "mode06_min_margin_pct",
+        "pending_dtc_count",
+        "permanent_dtc_count",
+        "readiness_supported_complete_bool",
+        "stored_dtc_count",
+        "warmup_cycles_since_clear"
+      ],
+      "new_columns_count": 11,
+      "note": "Of the 15 required C9 columns, 4 already exist in the live schema (4 trims from C2B/C5B). The genuinely new ask is shrank to 11 columns. For C9 rows, the live columns exist in the schema but are currently empty/null."
+    },
+    "consumer": {
+      "no_fault": {
+        "file": "labs/comlab/registry/rules/no_fault.json",
+        "rules": [
+          "NF-001",
+          "NF-002"
+        ],
+        "reads": "NF-001/NF-002 consume readiness, DTC counts, Mode $06, and trim columns. In C9B, they will gate on the C9 state output SYSTEM_HEALTH_CONFIRMED.",
+        "evidence_fields": [
+          "readiness_supported_complete_bool",
+          "stored_dtc_count",
+          "pending_dtc_count",
+          "permanent_dtc_count",
+          "mode06_min_margin_pct",
+          "warmup_cycles_since_clear",
+          "miles_since_clear",
+          "stft_idle_pct",
+          "ltft_idle_pct",
+          "stft_2500_pct",
+          "ltft_2500_pct",
+          "gas_delta_hc_ppm",
+          "gas_delta_co_pct",
+          "gas_delta_co2_pct",
+          "gas_delta_o2_pct"
+        ]
+      }
+    },
+    "c6_interaction": {
+      "description": "C6B prunes NF-001/NF-002 when SensorDynamicsState is in decisive sensor-fault states (O2_LAZY_OR_BIASED or MAF_UNDERREAD).",
+      "interaction_rule": "The C6 sensor-fault prune of NF-001/NF-002 must take precedence over any C9 healthy-confirm boost. If c6_decisive is true, NF-001/NF-002 must remain pruned (return None) to prevent a degraded/lazy sensor from being overridden by a C9 boost.",
+      "live_shim_reference": "integration_shim.py::_score_rule lines 685-691 evaluates c6_decisive and returns None for NF-001/NF-002."
+    },
+    "c3_interaction": {
+      "live_c3_state": "ControlPlausibilityState.CONTROL_REFERENCE_FAULT",
+      "live_c3_reader": "integration_shim.py::_control_plausibility_state",
+      "live_c3_effect": "integration_shim.py::_score_rule boosts EF-001/002/003 and prunes SF-001/002 (unless c6_decisive) when CONTROL_REFERENCE_FAULT is present.",
+      "required_precedence_for_c9b": "C3 control-reference faults also prune SF-001/002 under C3 precedence. Since no_fault rules (NF-001/002) require clean OBD health, they are naturally inactive/pruned if any DTC is present, but C3 precedence is preserved: a C3 active control reference fault inherently invalidates any C9 no_fault call."
+    },
+    "case_split": {
+      "total": 11,
+      "buildable_now_reachable": [],
+      "buildable_now_count": 0,
+      "scoring_gated": [
+        {
+          "case_id": "CSV-127",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "no_fault",
+          "predicted_family": "catalyst_failure",
+          "source_detail": "OBD no-fault evidence bundle (not a current v7 CSV scalar column)",
+          "required_columns": [
+            "readiness_supported_complete_bool",
+            "stored_dtc_count",
+            "pending_dtc_count",
+            "permanent_dtc_count",
+            "mode06_min_margin_pct",
+            "warmup_cycles_since_clear",
+            "miles_since_clear",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "gas_delta_hc_ppm",
+            "gas_delta_co_pct",
+            "gas_delta_co2_pct",
+            "gas_delta_o2_pct"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "CSV-128",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "no_fault",
+          "predicted_family": "catalyst_failure",
+          "source_detail": "OBD no-fault evidence bundle (not a current v7 CSV scalar column)",
+          "required_columns": [
+            "readiness_supported_complete_bool",
+            "stored_dtc_count",
+            "pending_dtc_count",
+            "permanent_dtc_count",
+            "mode06_min_margin_pct",
+            "warmup_cycles_since_clear",
+            "miles_since_clear",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "gas_delta_hc_ppm",
+            "gas_delta_co_pct",
+            "gas_delta_co2_pct",
+            "gas_delta_o2_pct"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "EXT-216",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "no_fault",
+          "predicted_family": "rich_mixture",
+          "source_detail": "OBD no-fault evidence bundle (not a current v7 CSV scalar column)",
+          "required_columns": [
+            "readiness_supported_complete_bool",
+            "stored_dtc_count",
+            "pending_dtc_count",
+            "permanent_dtc_count",
+            "mode06_min_margin_pct",
+            "warmup_cycles_since_clear",
+            "miles_since_clear",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "gas_delta_hc_ppm",
+            "gas_delta_co_pct",
+            "gas_delta_co2_pct",
+            "gas_delta_o2_pct"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "PDF-HI-005",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "no_fault",
+          "predicted_family": "sensor_fault",
+          "source_detail": "OBD lambda / sensor-dynamics evidence bundle",
+          "required_columns": [
+            "readiness_supported_complete_bool",
+            "stored_dtc_count",
+            "pending_dtc_count",
+            "permanent_dtc_count",
+            "mode06_min_margin_pct",
+            "warmup_cycles_since_clear",
+            "miles_since_clear",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "gas_delta_hc_ppm",
+            "gas_delta_co_pct",
+            "gas_delta_co2_pct",
+            "gas_delta_o2_pct"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "PDF-HI-010",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "no_fault",
+          "predicted_family": "sensor_fault",
+          "source_detail": "OBD lambda / sensor-dynamics evidence bundle",
+          "required_columns": [
+            "readiness_supported_complete_bool",
+            "stored_dtc_count",
+            "pending_dtc_count",
+            "permanent_dtc_count",
+            "mode06_min_margin_pct",
+            "warmup_cycles_since_clear",
+            "miles_since_clear",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "gas_delta_hc_ppm",
+            "gas_delta_co_pct",
+            "gas_delta_co2_pct",
+            "gas_delta_o2_pct"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "YAML-PDF_HI_005",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "no_fault",
+          "predicted_family": "ecu_fault",
+          "source_detail": "OBD lambda / sensor-dynamics evidence bundle",
+          "required_columns": [
+            "readiness_supported_complete_bool",
+            "stored_dtc_count",
+            "pending_dtc_count",
+            "permanent_dtc_count",
+            "mode06_min_margin_pct",
+            "warmup_cycles_since_clear",
+            "miles_since_clear",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "gas_delta_hc_ppm",
+            "gas_delta_co_pct",
+            "gas_delta_co2_pct",
+            "gas_delta_o2_pct"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "YAML-PDF_HI_010",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "no_fault",
+          "predicted_family": "catalyst_failure",
+          "source_detail": "OBD no-fault evidence bundle (not a current v7 CSV scalar column)",
+          "required_columns": [
+            "readiness_supported_complete_bool",
+            "stored_dtc_count",
+            "pending_dtc_count",
+            "permanent_dtc_count",
+            "mode06_min_margin_pct",
+            "warmup_cycles_since_clear",
+            "miles_since_clear",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "gas_delta_hc_ppm",
+            "gas_delta_co_pct",
+            "gas_delta_co2_pct",
+            "gas_delta_o2_pct"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "YAML-TC1",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "no_fault",
+          "predicted_family": "ecu_fault",
+          "source_detail": "OBD lambda / sensor-dynamics evidence bundle",
+          "required_columns": [
+            "readiness_supported_complete_bool",
+            "stored_dtc_count",
+            "pending_dtc_count",
+            "permanent_dtc_count",
+            "mode06_min_margin_pct",
+            "warmup_cycles_since_clear",
+            "miles_since_clear",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "gas_delta_hc_ppm",
+            "gas_delta_co_pct",
+            "gas_delta_co2_pct",
+            "gas_delta_o2_pct"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "case_014",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "no_fault",
+          "predicted_family": "sensor_fault",
+          "source_detail": "OBD no-fault evidence bundle (not a current v7 CSV scalar column)",
+          "required_columns": [
+            "readiness_supported_complete_bool",
+            "stored_dtc_count",
+            "pending_dtc_count",
+            "permanent_dtc_count",
+            "mode06_min_margin_pct",
+            "warmup_cycles_since_clear",
+            "miles_since_clear",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "gas_delta_hc_ppm",
+            "gas_delta_co_pct",
+            "gas_delta_co2_pct",
+            "gas_delta_o2_pct"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "era2_016",
+          "bucket": "TUNABLE_HELD",
+          "expected_family": "misfire",
+          "predicted_family": "no_fault",
+          "source_detail": "**RISKY**; Regresses: ['ECU-003']",
+          "required_columns": [
+            "readiness_supported_complete_bool",
+            "stored_dtc_count",
+            "pending_dtc_count",
+            "permanent_dtc_count",
+            "mode06_min_margin_pct",
+            "warmup_cycles_since_clear",
+            "miles_since_clear",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "gas_delta_hc_ppm",
+            "gas_delta_co_pct",
+            "gas_delta_co2_pct",
+            "gas_delta_o2_pct"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "era3_014",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "no_fault",
+          "predicted_family": "catalyst_failure",
+          "source_detail": "OBD no-fault evidence bundle (not a current v7 CSV scalar column)",
+          "required_columns": [
+            "readiness_supported_complete_bool",
+            "stored_dtc_count",
+            "pending_dtc_count",
+            "permanent_dtc_count",
+            "mode06_min_margin_pct",
+            "warmup_cycles_since_clear",
+            "miles_since_clear",
+            "stft_idle_pct",
+            "ltft_idle_pct",
+            "stft_2500_pct",
+            "ltft_2500_pct",
+            "gas_delta_hc_ppm",
+            "gas_delta_co_pct",
+            "gas_delta_co2_pct",
+            "gas_delta_o2_pct"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        }
+      ],
+      "scoring_gated_count": 11,
+      "bucket_breakdown": {
+        "DATA_GAP_ACQUISITION_GAP": 10,
+        "TUNABLE_HELD": 1
+      },
+      "expected_family_mix": {
+        "misfire": 1,
+        "no_fault": 10
+      },
+      "predicted_family_mix": {
+        "catalyst_failure": 4,
+        "ecu_fault": 2,
+        "no_fault": 1,
+        "rich_mixture": 1,
+        "sensor_fault": 3
+      },
+      "note": "All 11 C9 rows are SCORING_GATED. The producer/consumer logic is buildable from research, but the top3_family delta is unknowable until readiness/DTC/trim/gas-delta values exist."
+    },
+    "ft8_neighbours": {
+      "touched_families": [
+        "no_fault"
+      ],
+      "touched_competition_groups": [
+        "no_fault"
+      ],
+      "rules": [
+        {
+          "rule_id": "NF-001",
+          "fault_family": "no_fault",
+          "source_file": "labs/comlab/registry/rules/no_fault.json",
+          "competition_group": "no_fault",
+          "base_weight": 0.93,
+          "passes_cases": [
+            "CSV-001",
+            "CSV-005",
+            "PDF-HI-005",
+            "PDF-HI-010",
+            "YAML-TC1",
+            "YAML-CSV5",
+            "YAML-PDF_HI_005",
+            "EXT-220",
+            "EXT-231",
+            "CASE-009",
+            "case_012",
+            "case_028"
+          ]
+        },
+        {
+          "rule_id": "NF-002",
+          "fault_family": "no_fault",
+          "source_file": "labs/comlab/registry/rules/no_fault.json",
+          "competition_group": "no_fault",
+          "base_weight": 0.96,
+          "passes_cases": [
+            "case_049"
+          ]
+        }
+      ],
+      "passes_cases_union": [
+        "CASE-009",
+        "CASE-032",
+        "CSV-001",
+        "CSV-005",
+        "EXT-220",
+        "EXT-231",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "YAML-CSV1",
+        "YAML-CSV5",
+        "YAML-PDF_HI_005",
+        "YAML-TC1",
+        "case_012",
+        "case_028",
+        "case_049",
+        "era2_016",
+        "era3_009"
+      ],
+      "passes_cases_count": 17,
+      "static_passes_cases": [
+        "CASE-009",
+        "CSV-001",
+        "CSV-005",
+        "EXT-220",
+        "EXT-231",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "YAML-CSV5",
+        "YAML-PDF_HI_005",
+        "YAML-TC1",
+        "case_012",
+        "case_028",
+        "case_049"
+      ],
+      "runtime_passes_cases": [
+        "CASE-009",
+        "CASE-032",
+        "CSV-001",
+        "CSV-005",
+        "EXT-220",
+        "EXT-231",
+        "YAML-CSV1",
+        "YAML-CSV5",
+        "case_028",
+        "era2_016",
+        "era3_009"
+      ],
+      "risk_note": "NF rules touch no-fault cases. A C9 boost could resurrect a no_fault verdict on cases that have active sensor or ECU faults. Thus, the live C6B prunes must take precedence."
+    },
+    "dual_target_and_neighbour": [
+      "PDF-HI-005",
+      "PDF-HI-010",
+      "YAML-PDF_HI_005",
+      "YAML-TC1",
+      "era2_016"
+    ],
+    "confounder_disclosure": {
+      "confounders": [
+        {
+          "confounder": "Catalyst masking",
+          "mechanism": "A healthy catalyst downstream strongly attenuates emissions, meaning tailpipe gas alone cannot diagnose engine-out or sensor degradation upstream. Separated by requiring complete OBD readiness, DTC absence, and Mode $06 margins rather than tailpipe gas alone.",
+          "cite": "cluster9.1.md \u00a72; cluster9.2.md \u00a7Technical characterization"
+        },
+        {
+          "confounder": "Lazy oxygen sensor / sensor under-detection",
+          "mechanism": "A degraded O2 sensor transitions slowly, delaying fuel correction without setting a DTC. Clean tailpipe gas masks the latency. Separated by O2 sensor dynamics (transition time < 150 ms, amplitude swing min/max) and fuel trim stability.",
+          "cite": "cluster9.1.md \u00a72; value9.md \u00a71"
+        },
+        {
+          "confounder": "Freshly cleared OBD memory",
+          "mechanism": "BATTERY_DISCONNECT or scan tool clear makes readiness incomplete and DTC count zero, creating a blind spot where active faults are temporarily hidden. Separated by requiring warm-up cycles >= 5 and miles since clear >= 200.",
+          "cite": "value9.md \u00a71; cluster9.1.md \u00a7Bottom Line"
+        },
+        {
+          "confounder": "Marginal emissions systems",
+          "mechanism": "Components that pass OBD but operate near malfunction limits can be missed. Separated by requiring Mode $06 monitor margins >= 10% of the limit range.",
+          "cite": "cluster9.1.md \u00a72; value9.md \u00a71"
+        }
+      ],
+      "mimic_risk_per_case": [
+        {
+          "case_id": "CSV-127",
+          "expected_family": "no_fault",
+          "predicted_family": "catalyst_failure",
+          "mimic_risk": "catalyst_failure lookalike; needs complete readiness, DTC absence, and Mode $06 margins to confirm health"
+        },
+        {
+          "case_id": "CSV-128",
+          "expected_family": "no_fault",
+          "predicted_family": "catalyst_failure",
+          "mimic_risk": "catalyst_failure lookalike; needs complete readiness, DTC absence, and Mode $06 margins to confirm health"
+        },
+        {
+          "case_id": "EXT-216",
+          "expected_family": "no_fault",
+          "predicted_family": "rich_mixture",
+          "mimic_risk": "rich_mixture lookalike; needs normal STFT/LTFT trims to confirm health"
+        },
+        {
+          "case_id": "PDF-HI-005",
+          "expected_family": "no_fault",
+          "predicted_family": "sensor_fault",
+          "mimic_risk": "sensor_fault lookalike; needs O2 sensor dynamics (amplitude, switch rate) to confirm health"
+        },
+        {
+          "case_id": "PDF-HI-010",
+          "expected_family": "no_fault",
+          "predicted_family": "sensor_fault",
+          "mimic_risk": "sensor_fault lookalike; needs O2 sensor dynamics (amplitude, switch rate) to confirm health"
+        },
+        {
+          "case_id": "YAML-PDF_HI_005",
+          "expected_family": "no_fault",
+          "predicted_family": "ecu_fault",
+          "mimic_risk": "ecu_fault lookalike; needs normal OBD communication and DTC absence to confirm health"
+        },
+        {
+          "case_id": "YAML-PDF_HI_010",
+          "expected_family": "no_fault",
+          "predicted_family": "catalyst_failure",
+          "mimic_risk": "catalyst_failure lookalike; needs complete readiness, DTC absence, and Mode $06 margins to confirm health"
+        },
+        {
+          "case_id": "YAML-TC1",
+          "expected_family": "no_fault",
+          "predicted_family": "ecu_fault",
+          "mimic_risk": "ecu_fault lookalike; needs normal OBD communication and DTC absence to confirm health"
+        },
+        {
+          "case_id": "case_014",
+          "expected_family": "no_fault",
+          "predicted_family": "sensor_fault",
+          "mimic_risk": "sensor_fault lookalike; needs O2 sensor dynamics (amplitude, switch rate) to confirm health"
+        },
+        {
+          "case_id": "era2_016",
+          "expected_family": "misfire",
+          "predicted_family": "no_fault",
+          "mimic_risk": "RISKY FALSE-HEALTHY LOOKALIKE; currently misclassified. Needs OBD check (DTCs or Mode $06) to separate."
+        },
+        {
+          "case_id": "era3_014",
+          "expected_family": "no_fault",
+          "predicted_family": "catalyst_failure",
+          "mimic_risk": "catalyst_failure lookalike; needs complete readiness, DTC absence, and Mode $06 margins to confirm health"
+        }
+      ],
+      "c4_dependency": "C9 is theprove-healthy cluster and is independent of C4, but it is placed next in the sequence (C2 -> C3 -> C6 -> C5 -> C4 -> C9 -> C8 -> C1 -> C7) because C9 is the highest remaining yield research-independent pack."
+    },
+    "grounding_strength": [
+      {
+        "signal": "OBD readiness monitor completeness",
+        "threshold": "All supported non-continuous monitors = COMPLETE / READY",
+        "grounding": "standardized (CARB/EPA)",
+        "feasibility_tier": "Tier A: generic OBD-II live data",
+        "risk_note": "Readiness, DTC counts, and reset-age counters are SAE/CARB standards; physically and operationally decisive."
+      },
+      {
+        "signal": "OBD emission-related DTC count",
+        "threshold": "Stored, pending, and permanent DTCs = 0",
+        "grounding": "standardized (SAE J1979)",
+        "feasibility_tier": "Tier A: generic OBD-II live data",
+        "risk_note": "Readiness, DTC counts, and reset-age counters are SAE/CARB standards; physically and operationally decisive."
+      },
+      {
+        "signal": "OBD Mode $06 monitor test margins",
+        "threshold": "Test value must be inside limit with margin >= 10% of limit range",
+        "grounding": "standardized (regulatory cut)",
+        "feasibility_tier": "Tier A: generic OBD-II Mode $06 data",
+        "risk_note": "Mode $06 10% margin is a standard regulatory cut, but healthy populations vary widely above it."
+      },
+      {
+        "signal": "OBD warm-up cycles since DTCs cleared",
+        "threshold": "Warm-up cycles since clear >= 5",
+        "grounding": "standardized (EPA/CARB)",
+        "feasibility_tier": "Tier A: generic OBD-II live data",
+        "risk_note": "Readiness, DTC counts, and reset-age counters are SAE/CARB standards; physically and operationally decisive."
+      },
+      {
+        "signal": "OBD distance traveled since DTCs cleared",
+        "threshold": "Distance since clear >= 200 miles",
+        "grounding": "standardized (CARB)",
+        "feasibility_tier": "Tier A: generic OBD-II live data",
+        "risk_note": "Readiness, DTC counts, and reset-age counters are SAE/CARB standards; physically and operationally decisive."
+      },
+      {
+        "signal": "Short-Term Fuel Trim (STFT)",
+        "threshold": "STFT within +/-5% (P10-P90: -4% to +4%)",
+        "grounding": "standardized (OEM/SAE J1979)",
+        "feasibility_tier": "Tier A: generic OBD-II live trims",
+        "risk_note": "Readiness, DTC counts, and reset-age counters are SAE/CARB standards; physically and operationally decisive."
+      },
+      {
+        "signal": "Long-Term Fuel Trim (LTFT)",
+        "threshold": "LTFT within +/-7% (P10-P90: -6% to +6%)",
+        "grounding": "standardized (OEM/SAE J1979)",
+        "feasibility_tier": "Tier A: generic OBD-II live trims",
+        "risk_note": "Readiness, DTC counts, and reset-age counters are SAE/CARB standards; physically and operationally decisive."
+      },
+      {
+        "signal": "Fuel trim delta between idle and 2500 RPM",
+        "threshold": "Delta of fuel trim <= +/-5%",
+        "grounding": "manufacturer-typical",
+        "feasibility_tier": "Tier A: generic OBD-II live trims",
+        "risk_note": "Fuel trim delta is highly typical but can vary slightly across speed-density vs MAF architectures."
+      },
+      {
+        "signal": "Two-point gas delta: HC",
+        "threshold": "Delta HC within -10 to +15 ppm",
+        "grounding": "anecdotal / workshop norm",
+        "feasibility_tier": "Tier B: 5-gas two-point capture",
+        "risk_note": "Gas deltas are derived from workshop norms; healthy deltas tend to be tight, but no regulatory cut exists."
+      },
+      {
+        "signal": "Two-point gas delta: CO",
+        "threshold": "Delta CO within -0.15 to +0.15%",
+        "grounding": "anecdotal / workshop norm",
+        "feasibility_tier": "Tier B: 5-gas two-point capture",
+        "risk_note": "Gas deltas are derived from workshop norms; healthy deltas tend to be tight, but no regulatory cut exists."
+      },
+      {
+        "signal": "Two-point gas delta: CO2",
+        "threshold": "Delta CO2 typically positive, within +0.3 to +0.8%",
+        "grounding": "anecdotal / workshop norm",
+        "feasibility_tier": "Tier B: 5-gas two-point capture",
+        "risk_note": "Gas deltas are derived from workshop norms; healthy deltas tend to be tight, but no regulatory cut exists."
+      },
+      {
+        "signal": "Two-point gas delta: O2",
+        "threshold": "Delta O2 within -0.5 to +0.4%",
+        "grounding": "anecdotal / workshop norm",
+        "feasibility_tier": "Tier B: 5-gas two-point capture",
+        "risk_note": "Gas deltas are derived from workshop norms; healthy deltas tend to be tight, but no regulatory cut exists."
+      },
+      {
+        "signal": "Unsupported, incomplete, or marginal OBD health evidence",
+        "threshold": "Any gate check fails or is missing; emit SENSOR_HEALTH_UNPROVEN_ABSTAIN",
+        "grounding": "physics/regulatory rationale (provenance required)",
+        "feasibility_tier": "Abstain fallback",
+        "risk_note": "Unsupported/incomplete data defaults to SENSOR_HEALTH_UNPROVEN_ABSTAIN."
+      }
+    ],
+    "code_landed_neq_score_moved": "The C9 producer emit logic and consumer map are buildable from cluster9.1.md; any top3_family score movement cannot be shown until owner/synthetic C9 values are populated.",
+    "abstain_fallback": "If any OBD readiness monitor is incomplete, DTCs are present, Mode $06 margins are too narrow (<10%), fuel trims are unstable, or OBD history is too recently cleared, the case must stay abstained at MARGIN=0.02. Vehicles with unproven health must not be guessed."
+  },
+  "provenance": {
+    "read_only": true,
+    "corpus_changed": false,
+    "yardstick_minted": false,
+    "rules_edited": false,
+    "producers_wired": false,
+    "values_synthesized": false,
+    "abstain_dial_changed": false,
+    "run_suite_touched": false,
+    "vault_touched": false,
+    "graphify_run": false
+  }
+}

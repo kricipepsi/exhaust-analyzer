@@ -1,0 +1,552 @@
+{
+  "cases": [
+    {
+      "case_id": "EXP-N023",
+      "emitted_candidates": [
+        "VVT_FAILURE"
+      ],
+      "emitted_state": "SAMPLE_INVALID",
+      "expected_code": "ERR-CT-005",
+      "expected_family": "cam_timing",
+      "missing_quantity": "cam/VVT evidence that can separate a real timing fault from chemically non-normal exhaust",
+      "predicted_family": "sensor_fault",
+      "required_state": "NORMAL_OPERATION",
+      "research_cluster": "Cluster 7 \u2014 cam timing / VVT",
+      "resolved_candidates": [
+        "VVT_FAILURE"
+      ],
+      "threshold_evidence": "fails hc=420 in [0,35]; co=0.4 in [0.1,0.2]; co2=13 in [14.5,16]; o2=0.4 in [0,0.35]; lambda=0.941 in [0.998,1.008] (passes nox=75 in [0,100]); sample_validity=INVALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "era1_011",
+      "emitted_candidates": [
+        "POA_SIGNATURE",
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION",
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "emitted_state": "INCOMPLETE_COMBUSTION",
+      "expected_code": "ERR-CT-001",
+      "expected_family": "cam_timing",
+      "missing_quantity": "idle\u21922500 cam/VVT discriminator satisfying the retarded-MAP rich-normalising vector",
+      "predicted_family": "misfire",
+      "required_state": "CAM_TIMING_RETARDED_MAP",
+      "research_cluster": "Cluster 7 \u2014 cam timing / VVT",
+      "resolved_candidates": [
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION",
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "threshold_evidence": "fails co=0.8 in [3.5,7]; co2=11.5 in [8,10.5]; o2=2 in [0,0.5]; nox=40 in [0,10]; lambda=0.998 in [0.75,0.88] (passes hc=650 in [400,1200]); sample_validity=VALID; high-idle present; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "era2_008",
+      "emitted_candidates": [
+        "VVT_FAILURE"
+      ],
+      "emitted_state": "SAMPLE_INVALID",
+      "expected_code": "ERR-CT-004",
+      "expected_family": "cam_timing",
+      "missing_quantity": null,
+      "predicted_family": "sensor_fault",
+      "required_state": "VVT_FAILURE",
+      "research_cluster": null,
+      "resolved_candidates": [
+        "VVT_FAILURE"
+      ],
+      "threshold_evidence": "passes required bound signature: hc=420 in [0,20000]; co=0.4 in [0,15]; co2=13 in [0,16]; o2=0.4 in [0,22]; nox=75 in [0,5000]; lambda=0.941 in [0.5,2.5]; sample_validity=INVALID; required state reachable from row inputs",
+      "verdict": "CLASSIFIER_FIXABLE"
+    },
+    {
+      "case_id": "CASE-039",
+      "emitted_candidates": [
+        "POA_SIGNATURE",
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION"
+      ],
+      "emitted_state": "EGR_STUCK_OPEN",
+      "expected_code": "ERR-EF-002",
+      "expected_family": "ecu_fault",
+      "missing_quantity": null,
+      "predicted_family": "sensor_fault",
+      "required_state": "POA_SIGNATURE",
+      "research_cluster": null,
+      "resolved_candidates": [
+        "POA_SIGNATURE",
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION"
+      ],
+      "threshold_evidence": "passes required bound signature: hc=600 in [500,20000]; co=2.5 in [0,15]; co2=11.5 in [0,14.5]; o2=0.5 in [0,22]; nox=45 in [0,5000]; lambda=0.855 in [0.5,2.5]; sample_validity=VALID; required state reachable from row inputs",
+      "verdict": "CLASSIFIER_FIXABLE"
+    },
+    {
+      "case_id": "CSV-125",
+      "emitted_candidates": [
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE"
+      ],
+      "emitted_state": "EGR_STUCK_OPEN",
+      "expected_code": "ERR-ECU-001",
+      "expected_family": "ecu_fault",
+      "missing_quantity": "ECU/control evidence with chemically normal exhaust",
+      "predicted_family": "catalyst_failure",
+      "required_state": "NORMAL_OPERATION",
+      "research_cluster": "Cluster 3 \u2014 ECU/control fault",
+      "resolved_candidates": [
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE"
+      ],
+      "threshold_evidence": "fails hc=420 in [0,35]; co=1.8 in [0.1,0.2]; co2=13.2 in [14.5,16]; o2=1.3 in [0,0.35]; lambda=0.96 in [0.998,1.008] (passes nox=38 in [0,100]); sample_validity=EXTERNAL_O2_SUSPECT; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "CSV-126",
+      "emitted_candidates": [
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION"
+      ],
+      "emitted_state": "EGR_STUCK_OPEN",
+      "expected_code": "ERR-ECU-001",
+      "expected_family": "ecu_fault",
+      "missing_quantity": "ECU/control evidence with chemically normal exhaust",
+      "predicted_family": "misfire",
+      "required_state": "NORMAL_OPERATION",
+      "research_cluster": "Cluster 3 \u2014 ECU/control fault",
+      "resolved_candidates": [
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION"
+      ],
+      "threshold_evidence": "fails hc=450 in [0,35]; co=2 in [0.1,0.2]; co2=13 in [14.5,16]; o2=1.5 in [0,0.35]; lambda=0.961 in [0.998,1.008] (passes nox=35 in [0,100]); sample_validity=EXTERNAL_O2_SUSPECT; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "YAML-RULE_NOx_1",
+      "emitted_candidates": [
+        "VVT_FAILURE"
+      ],
+      "emitted_state": "VVT_FAILURE",
+      "expected_code": "ERR-ECU-001",
+      "expected_family": "ecu_fault",
+      "missing_quantity": "ECU/control evidence with chemically normal exhaust",
+      "predicted_family": "catalyst_failure",
+      "required_state": "NORMAL_OPERATION",
+      "research_cluster": "Cluster 3 \u2014 ECU/control fault",
+      "resolved_candidates": [
+        "VVT_FAILURE"
+      ],
+      "threshold_evidence": "fails hc=100 in [0,35]; co=0.5 in [0.1,0.2]; co2=13 in [14.5,16]; o2=1 in [0,0.35]; nox=500 in [0,100]; lambda=1.04 in [0.998,1.008]; sample_validity=VALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "CSV-117",
+      "emitted_candidates": [
+        "POA_SIGNATURE",
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION"
+      ],
+      "emitted_state": "EGR_STUCK_OPEN",
+      "expected_code": "ERR-MW-004",
+      "expected_family": "mechanical_wear",
+      "missing_quantity": "mechanical-wear high-idle/transient HC discriminator",
+      "predicted_family": "sensor_fault",
+      "required_state": "WORN_VALVE_SEALS",
+      "research_cluster": "Cluster 1 \u2014 mechanical vs misfire",
+      "resolved_candidates": [
+        "POA_SIGNATURE",
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION"
+      ],
+      "threshold_evidence": "fails hc=950 in [75,250]; co=0.6 in [0,0.5]; o2=1.4 in [0,0.5]; lambda=0.918 in [0.97,1.03] (passes co2=12.5 in [11,14.5]; nox=70 in [0,100]); sample_validity=VALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "EXP-N030",
+      "emitted_candidates": [
+        "VACUUM_REGULATOR_DIAPHRAGM_RUPTURE",
+        "GDI_HPFP_INTERNAL_SEAL_LEAK",
+        "POA_SIGNATURE",
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION"
+      ],
+      "emitted_state": "GDI_HPFP_INTERNAL_SEAL_LEAK",
+      "expected_code": "ERR-MW-002",
+      "expected_family": "mechanical_wear",
+      "missing_quantity": "positive block-test / coolant-combustion marker",
+      "predicted_family": "lean_condition",
+      "required_state": "COOLANT_LEAK_INTERNAL",
+      "research_cluster": "Cluster 1 \u2014 mechanical vs misfire",
+      "resolved_candidates": [
+        "GDI_HPFP_INTERNAL_SEAL_LEAK",
+        "POA_SIGNATURE",
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION"
+      ],
+      "threshold_evidence": "fails co=4.5 in [0,0.5]; lambda=0.774 in [1,2.5] (passes hc=800 in [300,20000]; co2=11 in [0,12]; o2=0.3 in [0,22]); sample_validity=VALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "MECH-001",
+      "emitted_candidates": [
+        "POA_SIGNATURE",
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE"
+      ],
+      "emitted_state": "EGR_STUCK_OPEN",
+      "expected_code": "ERR-MW-003",
+      "expected_family": "mechanical_wear",
+      "missing_quantity": "mechanical-wear high-idle/load HC discriminator",
+      "predicted_family": "sensor_fault",
+      "required_state": "WORN_PISTON_RINGS",
+      "research_cluster": "Cluster 1 \u2014 mechanical vs misfire",
+      "resolved_candidates": [
+        "POA_SIGNATURE",
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE"
+      ],
+      "threshold_evidence": "fails hc=1.2e+03 in [0,100]; co=0.8 in [0,0.5]; co2=13.5 in [14.5,16]; o2=1.2 in [0,0.5]; lambda=0.873 in [0.97,1.03] (passes nox=80 in [0,100]); sample_validity=VALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "REAL-001",
+      "emitted_candidates": [],
+      "emitted_state": "SAMPLE_INVALID",
+      "expected_code": "ERR-NS-001",
+      "expected_family": "non_starter",
+      "missing_quantity": "non-starter cranking/misfire evidence beyond ambient-air sample",
+      "predicted_family": "misfire",
+      "required_state": "IGNITION_MISFIRE",
+      "research_cluster": "Cluster 8 \u2014 no-start root cause",
+      "resolved_candidates": [],
+      "threshold_evidence": "fails lambda=0.397 in [1,2.5] (passes hc=2e+04 in [1000,20000]; co=0.006 in [0,0.5]; co2=0.16 in [0,10]); sample_validity=INVALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "REAL-003",
+      "emitted_candidates": [],
+      "emitted_state": "SAMPLE_INVALID",
+      "expected_code": "ERR-NS-003",
+      "expected_family": "non_starter",
+      "missing_quantity": "non-starter live OBD/fuel-air evidence beyond ambient-air sample",
+      "predicted_family": "misfire",
+      "required_state": "LEAN_MIXTURE",
+      "research_cluster": "Cluster 8 \u2014 no-start root cause",
+      "resolved_candidates": [],
+      "threshold_evidence": "fails hc=2e+04 in [0,300]; co=3.24 in [0,0.1]; lambda=0.318 in [1.05,2.5] (passes co2=1.16 in [0,13]; o2=14.5 in [2.5,22]; nox=30 in [0,5000]); sample_validity=INVALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "case_007",
+      "emitted_candidates": [],
+      "emitted_state": "SAMPLE_INVALID",
+      "expected_code": "ERR-NS-004",
+      "expected_family": "non_starter",
+      "missing_quantity": "non-starter combustion/no-combustion evidence beyond invalid sample",
+      "predicted_family": "misfire",
+      "required_state": "INCOMPLETE_COMBUSTION",
+      "research_cluster": "Cluster 8 \u2014 no-start root cause",
+      "resolved_candidates": [],
+      "threshold_evidence": "fails co=0.02 in [0.5,5]; lambda=4.19 in [0.97,1.5] (passes hc=300 in [200,20000]; co2=4 in [0,13]; o2=16 in [0,22]); sample_validity=INVALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "case_040",
+      "emitted_candidates": [],
+      "emitted_state": "SAMPLE_INVALID",
+      "expected_code": "ERR-NS-001",
+      "expected_family": "non_starter",
+      "missing_quantity": "non-starter cranking/misfire evidence beyond ambient-air sample",
+      "predicted_family": "invalid_input",
+      "required_state": "IGNITION_MISFIRE",
+      "research_cluster": "Cluster 8 \u2014 no-start root cause",
+      "resolved_candidates": [],
+      "threshold_evidence": "fails hc=0 in [1000,20000]; lambda=523 in [1,2.5] (passes co=0 in [0,0.5]; co2=0.04 in [0,10]; o2=20.9 in [3,22]); sample_validity=INVALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "CASE-023",
+      "emitted_candidates": [
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "EVAP_CANISTER_SATURATED",
+        "INCOMPLETE_OXIDATION",
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "emitted_state": "INCOMPLETE_COMBUSTION",
+      "expected_code": "ERR-RM-006",
+      "expected_family": "rich_mixture",
+      "missing_quantity": "rich-mixture discriminator not present in the single idle chemistry row",
+      "predicted_family": "catalyst_failure",
+      "required_state": "RICH_MIXTURE",
+      "research_cluster": "Cluster 2 \u2014 rich vs catalyst",
+      "resolved_candidates": [
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "EVAP_CANISTER_SATURATED",
+        "INCOMPLETE_OXIDATION",
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "threshold_evidence": "fails lambda=0.975 in [0.5,0.97] (passes hc=220 in [0,300]; co=0.6 in [0.5,15]; co2=13 in [0,13]); sample_validity=VALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "CASE-029",
+      "emitted_candidates": [
+        "LEAN_MIXTURE",
+        "VVT_FAILURE"
+      ],
+      "emitted_state": "LEAN_MIXTURE",
+      "expected_code": "ERR-RM-003",
+      "expected_family": "rich_mixture",
+      "missing_quantity": "rich-mixture discriminator not present in the single idle chemistry row",
+      "predicted_family": "lean_condition",
+      "required_state": "RICH_MIXTURE",
+      "research_cluster": "Cluster 2 \u2014 rich vs catalyst",
+      "resolved_candidates": [
+        "LEAN_MIXTURE",
+        "VVT_FAILURE"
+      ],
+      "threshold_evidence": "fails co=0.03 in [0.5,15]; o2=4 in [0,1]; nox=280 in [0,100]; lambda=1.32 in [0.5,0.97] (passes hc=80 in [0,300]; co2=11.5 in [0,13]); sample_validity=VALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "CASE-040",
+      "emitted_candidates": [
+        "TIMING_RETARDED",
+        "FLAT_CAMSHAFT",
+        "WORN_PISTON_RINGS",
+        "VVT_FAILURE"
+      ],
+      "emitted_state": "TIMING_RETARDED",
+      "expected_code": "ERR-RM-003",
+      "expected_family": "rich_mixture",
+      "missing_quantity": "rich-mixture discriminator not present in the single idle chemistry row",
+      "predicted_family": "no_fault",
+      "required_state": "RICH_MIXTURE",
+      "research_cluster": "Cluster 2 \u2014 rich vs catalyst",
+      "resolved_candidates": [
+        "TIMING_RETARDED",
+        "FLAT_CAMSHAFT",
+        "VVT_FAILURE"
+      ],
+      "threshold_evidence": "fails co=0.06 in [0.5,15]; co2=15.2 in [0,13]; lambda=1.01 in [0.5,0.97] (passes hc=12 in [0,300]; o2=0.2 in [0,1]; nox=22 in [0,100]); sample_validity=VALID; high-idle present; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "EXT-217",
+      "emitted_candidates": [
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "EVAP_CANISTER_SATURATED",
+        "INCOMPLETE_OXIDATION",
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "emitted_state": "INCOMPLETE_COMBUSTION",
+      "expected_code": "ERR-RM-006",
+      "expected_family": "rich_mixture",
+      "missing_quantity": "rich-mixture discriminator not present in the single idle chemistry row",
+      "predicted_family": "catalyst_failure",
+      "required_state": "RICH_MIXTURE",
+      "research_cluster": "Cluster 2 \u2014 rich vs catalyst",
+      "resolved_candidates": [
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "EVAP_CANISTER_SATURATED",
+        "INCOMPLETE_OXIDATION",
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "threshold_evidence": "fails lambda=0.975 in [0.5,0.97] (passes hc=220 in [0,300]; co=0.6 in [0.5,15]; co2=13 in [0,13]); sample_validity=VALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "PDF-HI-001",
+      "emitted_candidates": [
+        "VACUUM_REGULATOR_DIAPHRAGM_RUPTURE",
+        "GDI_HPFP_INTERNAL_SEAL_LEAK",
+        "POA_SIGNATURE",
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION"
+      ],
+      "emitted_state": "GDI_HPFP_INTERNAL_SEAL_LEAK",
+      "expected_code": "ERR-RM-003",
+      "expected_family": "rich_mixture",
+      "missing_quantity": "rich-mixture discriminator not present in the single idle chemistry row",
+      "predicted_family": "sensor_fault",
+      "required_state": "RICH_MIXTURE",
+      "research_cluster": "Cluster 2 \u2014 rich vs catalyst",
+      "resolved_candidates": [
+        "GDI_HPFP_INTERNAL_SEAL_LEAK",
+        "POA_SIGNATURE",
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION"
+      ],
+      "threshold_evidence": "fails hc=650 in [0,300] (passes co=4 in [0.5,15]; co2=11 in [0,13]; o2=0.3 in [0,1]); sample_validity=VALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "RULE-CO-1",
+      "emitted_candidates": [
+        "VVT_FAILURE"
+      ],
+      "emitted_state": "VVT_FAILURE",
+      "expected_code": "ERR-RM-003",
+      "expected_family": "rich_mixture",
+      "missing_quantity": "rich-mixture discriminator not present in the single idle chemistry row",
+      "predicted_family": "catalyst_failure",
+      "required_state": "RICH_MIXTURE",
+      "research_cluster": "Cluster 2 \u2014 rich vs catalyst",
+      "resolved_candidates": [
+        "VVT_FAILURE"
+      ],
+      "threshold_evidence": "fails nox=500 in [0,100]; lambda=1.02 in [0.5,0.97] (passes hc=100 in [0,300]; co=1 in [0.5,15]; co2=13 in [0,13]); sample_validity=VALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "YAML-PDF_HI_001",
+      "emitted_candidates": [
+        "VACUUM_REGULATOR_DIAPHRAGM_RUPTURE",
+        "GDI_HPFP_INTERNAL_SEAL_LEAK",
+        "POA_SIGNATURE",
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION"
+      ],
+      "emitted_state": "GDI_HPFP_INTERNAL_SEAL_LEAK",
+      "expected_code": "ERR-RM-003",
+      "expected_family": "rich_mixture",
+      "missing_quantity": "rich-mixture discriminator not present in the single idle chemistry row",
+      "predicted_family": "sensor_fault",
+      "required_state": "RICH_MIXTURE",
+      "research_cluster": "Cluster 2 \u2014 rich vs catalyst",
+      "resolved_candidates": [
+        "GDI_HPFP_INTERNAL_SEAL_LEAK",
+        "POA_SIGNATURE",
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION"
+      ],
+      "threshold_evidence": "fails hc=650 in [0,300] (passes co=4 in [0.5,15]; co2=11 in [0,13]; o2=0.3 in [0,1]); sample_validity=VALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "case_002",
+      "emitted_candidates": [
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION"
+      ],
+      "emitted_state": "SAMPLE_INVALID",
+      "expected_code": "ERR-RM-003",
+      "expected_family": "rich_mixture",
+      "missing_quantity": "rich-mixture discriminator not present in the single idle chemistry row",
+      "predicted_family": "sensor_fault",
+      "required_state": "RICH_MIXTURE",
+      "research_cluster": "Cluster 2 \u2014 rich vs catalyst",
+      "resolved_candidates": [
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION"
+      ],
+      "threshold_evidence": "fails hc=450 in [0,300]; o2=1.2 in [0,1] (passes co=2.1 in [0.5,15]; co2=10.5 in [0,13]; nox=80 in [0,100]); sample_validity=INVALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "case_015",
+      "emitted_candidates": [
+        "VVT_FAILURE"
+      ],
+      "emitted_state": "VVT_FAILURE",
+      "expected_code": "ERR-RM-003",
+      "expected_family": "rich_mixture",
+      "missing_quantity": "rich-mixture discriminator not present in the single idle chemistry row",
+      "predicted_family": "catalyst_failure",
+      "required_state": "RICH_MIXTURE",
+      "research_cluster": "Cluster 2 \u2014 rich vs catalyst",
+      "resolved_candidates": [
+        "VVT_FAILURE"
+      ],
+      "threshold_evidence": "fails co2=13.5 in [0,13]; nox=300 in [0,100]; lambda=1.04 in [0.5,0.97] (passes hc=80 in [0,300]; co=0.5 in [0.5,15]; o2=1 in [0,1]); sample_validity=VALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "case_017",
+      "emitted_candidates": [
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION",
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "emitted_state": "INCOMPLETE_COMBUSTION",
+      "expected_code": "ERR-RM-003",
+      "expected_family": "rich_mixture",
+      "missing_quantity": "rich-mixture discriminator not present in the single idle chemistry row",
+      "predicted_family": "catalyst_failure",
+      "required_state": "RICH_MIXTURE",
+      "research_cluster": "Cluster 2 \u2014 rich vs catalyst",
+      "resolved_candidates": [
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION",
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "threshold_evidence": "fails lambda=0.982 in [0.5,0.97] (passes hc=200 in [0,300]; co=1.5 in [0.5,15]; co2=12 in [0,13]); sample_validity=VALID; high-idle absent; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    },
+    {
+      "case_id": "era2_019",
+      "emitted_candidates": [
+        "EGR_STUCK_OPEN",
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION",
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "emitted_state": "INCOMPLETE_COMBUSTION",
+      "expected_code": "ERR-RM-004",
+      "expected_family": "rich_mixture",
+      "missing_quantity": "rich-mixture discriminator not present in the single idle chemistry row",
+      "predicted_family": "misfire",
+      "required_state": "RICH_MIXTURE",
+      "research_cluster": "Cluster 2 \u2014 rich vs catalyst",
+      "resolved_candidates": [
+        "VVT_FAILURE",
+        "INCOMPLETE_OXIDATION",
+        "INCOMPLETE_COMBUSTION"
+      ],
+      "threshold_evidence": "fails lambda=0.991 in [0.5,0.97] (passes hc=250 in [0,300]; co=0.6 in [0.5,15]; co2=13 in [0,13]); sample_validity=VALID; high-idle present; required state not reachable from row inputs",
+      "verdict": "SIGNAL_REQUIRED"
+    }
+  ],
+  "metadata": {
+    "corpus_csv": "apps/wired/v7/data/cases_petrol_v7.csv",
+    "engine_lab_source_edits": false,
+    "generated_utc": "2026-07-01T08:07:23+00:00",
+    "localization": "apps/wired/fl_tasks/reports/FL_LOCALIZATION_2026-06-30.md",
+    "method": "read-only replay of each PRODUCER_GAP row through GASLab/OBDLab query mode, then bound/grammar inspection of required GASLab state",
+    "task": "T-V3-D2",
+    "upstream_evidence": "apps/wired/fl_tasks/reports/FL_UPSTREAM_2026-06-30.json"
+  },
+  "summary": {
+    "CLASSIFIER_FIXABLE": 2,
+    "SIGNAL_REQUIRED": 23,
+    "research_clusters": {
+      "Cluster 1 \u2014 mechanical vs misfire": 3,
+      "Cluster 2 \u2014 rich vs catalyst": 11,
+      "Cluster 3 \u2014 ECU/control fault": 3,
+      "Cluster 7 \u2014 cam timing / VVT": 2,
+      "Cluster 8 \u2014 no-start root cause": 4
+    },
+    "total": 25
+  }
+}

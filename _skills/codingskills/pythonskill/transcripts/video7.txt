@@ -1,0 +1,709 @@
+today I'm going to show you one of the
+coolest features that python has and I
+guarantee that after you watch this
+video you're going to look at python
+code completely differently so let's get
+into it and talk about Dunder or magic
+methods now Dunder stands for double
+underscore and they look something like
+this double underscore a knit and then
+double underscore now you've probably
+seen this method before if you've done
+object-oriented programming in Python
+but there are a ton of other ones and
+these are reserved or special methods in
+Python that map to some kind of behavior
+so in the case of a nit you probably
+know what this does it's used to
+construct or create a new object so when
+we Define this inp method we're defining
+what we want to happen when a new
+instance of an object is created here
+look at this quick example we have a
+rectangle we Define some a nit and this
+now means that when I Define something
+like rect and I pass values 2 and three
+we're going to implicitly call this a
+knit function or this a knit method and
+we're going to create or initialize the
+object
+okay so this double underscore method
+maps to the behavior when we create or
+construct initialize whatever you want
+to call a brand new object but the thing
+is we have many other double underscore
+methods and I'm going to explain to you
+how they work okay so let's have a look
+at some basic types in Python let's have
+something like string one equal to hello
+and something like string 2 and let's
+fix our quotation marks here equal to
+world now in order for you to really
+understand how these magic methods work
+work what you need to know is that
+everything you create in Python is
+really an object so something like this
+string is an object something like an
+integer five this is an object of type
+int something like a function yes even a
+function this is an object as well of
+type function now if you don't believe
+me you can simply print out the type of
+anything that you want so we can even
+print out the type of something like a
+function so let's define one Define Funk
+let's just make a very simple one here
+and you'll notice that if I print the
+type of funk and I run my code here that
+it says class function this tells us
+that this is an object of instance of
+the class function okay it's just
+important to understand this because
+this is how python deals with behavior
+and actually performing different
+operations okay so now that we
+understand that everything in Python
+really is an instance of a class or an
+object what we want to look at is how we
+perform different operations with these
+types so why is it in Python that I'm
+able to add string one and string two
+well we just take for granted the fact
+that we can perform this operation but
+the reason why we can do this is because
+these objects are of the same type and
+Python's actually implemented this
+behavior in something known as a double
+underscore method so I can do something
+like you know newcore string is equal to
+string 1 plus string 2 we know this is
+going to give us hello world but did you
+know that when I use this plus operator
+what this is actually doing is mapping
+to a double underscore method something
+that's actually defined and written on
+the string class remember that
+everything we have in Python is an
+object that means there's some kind of
+class behind it defining all of its
+behavior and well on the string class
+which these are both instances of
+there's actually a special method called
+add and this add method defines what
+happens when you try to add two strings
+together now in this case what it does
+is concatenates them and let me show you
+how it works so I'm going to say print
+newcore string okay we're going to run
+this and we get hello world but there's
+another way that we can execute this
+rather than using this plus operator we
+can actually call the double uncore
+method we can call the do add okay let's
+go here and watch and notice I get the
+exact same thing now let's take it a
+step further of course we know that we
+can get something like the length of a
+string so I can look at the length of
+string one right and if we do that we
+see that we get five but did you know
+that this lend function actually maps to
+a double _ method as well the reason why
+we can use this Len function is because
+on the string class again kind of the
+blueprint for this object there is aore
+uncore Lenore uncore method let me show
+you what I mean I can actually go string
+onecore Lenore I can explicitly call
+this method and when I run this we get
+five now I know this isn't 100% clear
+yet but what I'm trying to illustrate to
+you is that every single operation all
+of the behavior that exists in Python
+exists because all of the things in
+Python are objects those objects have
+some class behind them defining their
+behavior and on that class we have these
+special magic methods like Len add a
+knit Dell I'm going to show you a bunch
+of them in this video and that maps to
+The Operators or the behavior that we
+use in our python code so even adding
+two numbers together 1 + 12 the reason
+why this works is because there's a
+special ad method that exists on the int
+class that defines what we should do
+when we add these two types together so
+now what I want to do is I want to show
+you how we write our own custom double
+underscore methods so you can really
+understand how this works and how we can
+use it to make some really cool
+functionality now before we go any
+further let's talk about boot dodev
+today's sponsor and an online platform
+that's redefining how you learn backend
+development what makes this platform
+special is that it's designed to keep
+you engaged boot dodev uses techniques
+from Modern game design to make learning
+backend skills not just effective but
+genuinely fun and it's also free to view
+all of the content now here's how it
+works you progress through Hands-On
+lessons that guide you step by step
+building real world projects along the
+way there's no endless video watching
+here boot dodev is all about Interactive
+Learning and coding directly in your
+browser plus it's focused entirely on
+backend development so you'll Master
+skills like databases apis and serers
+side programming in depth specifically
+in languages like python and go one
+thing that I love is that it's
+structured like a game you'll level up
+along the way unlocking new content to
+stay motivated and hit your goals you'll
+do tons of exercises and projects and
+that's so important because you can't
+learn how to code without writing a ton
+of code and working on real world
+projects if you're serious about
+becoming a software engineer or leveling
+up your backend skills then go to boot
+dodev and use my code Tech with Tim for
+25% off your first year if you choose an
+annual plan I tried it myself and it's
+genuinely a fantastic way to learn how
+to code and I can't recommend it enough
+okay so welcome back and we're going to
+look at this simple example now notice
+that I have a class counter on the class
+I have an a knit double underscore
+method we already know how this one
+works and then we have a count up in a
+countdown method now this is fine this
+allows us to count up and countdown and
+keep track of some kind of value but
+what happens if I want to do something
+like add two counters together or view
+the value of a counter maybe as a string
+or maybe I want to subtract counters
+there's all kinds of operations I might
+want to perform on this type and right
+now I'm not able to do that so let me
+show you what I mean we have two
+counters we count both of them up so
+they're both going to be at two because
+we start the value at one we can then
+print them out and we can try to add
+them together now watch what happens
+when I run this you can see that we get
+this main counter object and then we get
+another main counter object that's kind
+of useless doesn't really tell us
+anything and then when I try to add
+these two counters together well of
+course we get an error it says we don't
+have have a supported oper end for
+counter and counter so let's see how we
+can fix this by using double underscore
+methods so first things first when I
+print out my counts I don't want to see
+just this counter object I want to see
+what the count actually is so to do that
+we can Implement a special method called
+uncore string now this string method is
+automatically going to be called
+whenever we try to print out some type
+of object and this is kind of a human
+readable version of our object and what
+we can do is return some string that
+represents this object or that kind of
+shows us some information that's human
+readable right that would make sense in
+the terminal or the console so what I'm
+going to do here is I'm just going to
+put an F string and I'm going to say
+return and I'll just say count is equal
+to and then self. value okay so now
+let's go back here let's run and notice
+that we get count equals 2 and count
+equals 2 Okay so this
+string method is called whenever the
+string function is used on some kind of
+type so in this case string count one
+will map to this string double uncore
+method but what the print function does
+is it will call this string function on
+anything it's trying to print to First
+convert it to a string so it's going to
+use this double underscore method okay
+so that's great but we're still going to
+get that issue when we try to add the
+two types together so what we're going
+to do now to implement that behavior is
+we're going to define the ad method now
+what I can do in the ad method is I can
+take self and I can take what the right
+side operand is pretty much what that
+means is the thing that comes after the
+plus sign so in this case we have count
+and then we do plus whenever we see a
+plus coming after some type of object
+it's going to go and look at this class
+so the class of whatever this object on
+the left is and look for this add double
+uncore method okay then the parameter
+that we put here which is typically
+denoted as other is going to be whatever
+is on the right side of the plus okay so
+we always look to the left side operon
+to find this add method and then we have
+other which is passed as a parameter and
+that's the right side operand okay
+hopefully that makes sense so here if I
+want to add two counts together I have
+some different options and I can
+implement this behavior however I want
+but I can return and then I can say
+self. Value Plus other. value now this
+assumes that the other type is going to
+be a count object or a counter object we
+can look at that in 1 second but now
+Watch What Happens let's bring up our
+terminal and run our code and you see
+that we get four okay so now we don't
+get an issue because we implemented this
+add method which now means this plus
+sign or the addition operator is valid
+to use on our counter type now of course
+if we try to do something like count 1 +
+2 we're going to get an issue here
+because it says attribute error in
+object has no attribute value because
+int gets passed in as other and then we
+try to access value in that that doesn't
+exist so typically what you do if you're
+implementing these types of methods
+where you're dealing with multiple
+objects together is you check the type
+before you perform this operation so you
+can say something like if and then this
+is is instance and you can say other and
+then this is type counter then it's fine
+to do this otherwise you can raise some
+kind of exception so you can say raise
+exception
+invalid type okay so now if we run this
+you'll see that we get the exception
+invalid type but if we changed it back
+to be the counter object then this would
+be fine because this is an instance of
+counter okay so I just want to show you
+a simple example here of how you write
+your own double underscore methods and
+how they can be useful because here you
+see we just added this plus
+functionality now I'm going to go
+through a bunch more examples that show
+some more complex situations so stay
+tuned so here's a quick example that
+explains the differences between the
+string and the wrapper double uncore
+methods now you may have seen these
+before but these are very popular and
+almost anytime you write a python class
+you'll want to be writing these methods
+on them now the string method we already
+looked at this is a userfriendly output
+something that will maybe print to the
+terminal and by default when you call
+the print function on some type of
+object it's going to look for this
+string double uncore method so in this
+case we have some car and we just print
+out the year the make and the model kind
+of in a human readable format right
+something that makes sense however we
+have another method that's pretty
+important as well and this is the repper
+or the representation method now what
+this is used for is debugging okay so
+this is something you would see while
+you're debugging the code this is meant
+to be for kind of like a developer
+output and something that defines what
+the type is and maybe all of the
+different fields or values okay so if
+you use repper you can actually trigger
+this double underscore method by calling
+the repper function it's going to give
+you a developer friendly output at least
+that's the way you should implement it
+so we would get car make equals Toyota
+model equals Corolla and year equals
+2021 this is kind of the standard format
+you're going to write whatever the name
+of the class is and then you're going to
+write all of the different properties
+and their values okay I just wanted to
+quickly show this to you I'm not going
+to run the code the point is you should
+always Implement a repper and a string
+method when you're defining your own
+custom classes so that you can debug
+this easily and you can also have some
+kind of useful output if you print this
+to something like the console all right
+so now we're going to look at an example
+that uses all of the different
+arithmetic operators that you can
+Implement as double underscore methods
+now before we just looked at the ad
+method but of course we can Implement
+double underscore methods for pretty
+much every single operator so of course
+we have a nit here we have repper and
+what we're doing is just defining a
+simple inventory item okay now what
+we've done is we've added add sub mole
+true div equals LT GT I'm going to
+explain what all of these are on this
+inventory item to allow us to use the
+standard operators in Python with this
+type so the ad method is pretty
+straightforward this tells us what
+happens if we use the plus op operator
+so notice that what we've done here is
+we've just made sure that it's safe to
+perform an operation before we actually
+return a new inventory item so we've
+said if is instance of other an
+inventory item and self. name is equal
+to other dotes if these objects have the
+same name indicating that they're the
+same inventory item then what we can do
+is return a new inventory item with the
+same name and the quantity plus one so
+if we have an inventory item that has
+seven quantity and another inventory
+item with the same name that has five
+quantity we would return a new inventory
+item with the quantity 12 okay otherwise
+we have a value error and we say it
+cannot add items of different types
+great next thing we have sub now this is
+subtraction right this is the minus
+operator so same thing here we do our
+checks we make sure that the quantity is
+greater than the other quantity and then
+we return a new inventory item with the
+subtracted quantities we then have mole
+this stands for multiplication or the
+asterisk operator right same thing you
+can see that now we mult multiply by
+some kind of factor and this Factor can
+be an INT or a float so we don't need to
+be doing operations with the same types
+but we should Define what types are
+valid to perform these operations on
+then we have true division now true
+division is just the one slash you also
+have the ability to do floor division
+which is two slashes but for now we just
+did one okay so this is just normal
+Division and then we move into the
+comparison operators so just like we can
+perform addition and subtraction
+multiplication we can also compare
+objects using the compar operators now
+the equal here is simply the double
+equal sign the less than is the less
+than operator the greater than is the
+greater than operator and you also have
+the ability to add other ones we can say
+Define underscore GTE this is greater
+than or equal to okay we can double
+underscore here and that's perfectly
+fine same thing with less than or equal
+to and then that would give us the less
+than or equal to operator okay I don't
+want to go through all of them because I
+think it's fairly straightforward but if
+we go here you can see some example
+Usage Now of this inventory item because
+of the fact that we've added these
+double underscore methods we have three
+items notice that two of them have the
+same name this means that we can
+actually add these together and now we
+will get a new inventory item that has
+name apple and quantity 880 because we
+added these two values together same
+thing for subtraction you could see that
+if we subtracted then we would get a
+quantity of 20 in a new inventory item
+we can multiply them you'd see we would
+get apple with 100 and then we can do
+our different comparisons so we can
+compare items and see which one has a
+higher quantity okay now if we try to do
+something like add item one and item
+three which don't have the same names
+you see that we would get a value error
+we could catch that and then handle it
+same thing if we do a subtraction here
+and then we have a negative quantity
+just a quick example here showing you
+that there's a bunch of useful methods
+for the arithmetic operators as well as
+for the comparison operators there's a
+few other ones I didn't show you here
+like for example we could do the not
+equal to so rather than underscore EQ
+this is going to be NE okay that stands
+for not equal to and then you could
+check the comparison here okay so there
+you go let's move on to another example
+now if you thought what I just showed
+you was cool wait until you have a look
+at an implementation of a linked list
+that actually uses the index operator
+now you've probably seen before that if
+you define something like a list in
+Python so like LST is equal to 1 2 3
+then you can perform operations like a
+slice or you can grab maybe the negative
+1 index you can grab the zero withth
+index and you can use that on this type
+what if I told you even this operation
+is actually mapped back to double uncore
+method that you can Implement yourself
+okay so let's have a look at this we've
+just made a linked list so I have a node
+I have a linked list class I Define my
+initialization and then notice I Define
+my lend method now this allows me to get
+the size of the linked list so we just
+return self. size so if we were to call
+now the Len function that would map back
+to this Lenore method but now we've
+added what's known as the index syntax
+or kind of the index um double
+underscore methods so we have a get item
+set item and delete item this allows us
+to do something like object and then a
+set of square brackets and whatever we
+put inside of the square brackets will
+be passed as our index so here if we
+want to index our link list that's what
+we're trying to do we can check if the
+index is valid if it is we can then Loop
+through the linked list and get that
+element now same thing with setting an
+item we can do object at index is equal
+to some kind of value and the syntax
+looks like this not going to run through
+all of this this but you get the point
+next we have delete item so if I want to
+Dell something using the Dell keyword
+same thing we can grab the index we can
+make sure it's valid and we can delete
+that from the linked list and then we
+have even contains now contains is
+what's going to be mapped if you use the
+in operator so if I say something like
+you know for in and then some linked
+list assuming LL is an object of type
+linked list this will allow me to check
+if four is in the linked list okay and
+it will return true or false and go into
+this Dunder method now we added a normal
+method notice it's highlighted in green
+not blue this is not a d method this is
+just an a pen method so we can add
+something to the linked list and then
+we've added our string method so that
+when we print this out we can see what
+the linked list looks like so you can
+see here that we can append some values
+to the linked list we can get the length
+of it this is because we implemented the
+Len Dunder method we can grab ll at
+index one we can do a set here index one
+is equal to 25 we can do a deletion and
+we can check if something is in the
+linked list because we've added all of
+this functionality so just to prove to
+you that I'm not crazy let's go python
+link list and you can see that all of
+the output is printed here very good
+let's move on to the next example so now
+let's go a step further and let's talk
+about something known as context
+managers now I have entire videos on my
+channel breaking this down so I'm not
+going to get into it too much but I just
+want to show you that again all of the
+syntax you see in Python pretty much
+Maps back to some kind of Dunder method
+so look you might have seen this before
+we have some kind of with this is known
+as a context manager and we use an
+instance of some kind of class and then
+we say as some variable in this case as
+DB now when we do this what we're doing
+is we're utilizing a context manager and
+a context manager exists when some class
+has the following methods uncore uncore
+enter and underscore uncore exit now by
+writing these different methods here
+this allows us to use this with syntax
+with an object of this class and what it
+does is it calls this enter function as
+soon as we enter the width then this
+exit function is called as soon as the
+width is exited whether there's an
+exception or not now you may have seen a
+context manager before with something
+like opening a new file but we can write
+our own context managers to handle
+resource usage so in this case we're
+simulating a database connection so if
+we want to connect to the database okay
+we're going to go into this enter method
+we're going to say that yes we've
+connected we're going to print out some
+kind of logging message like we
+connected to the database and then
+return ourself and when we return
+ourself that's what this variable will
+be equal to we also could return an
+instance of a new class we can return
+anything that we want okay then we have
+the exit now the exit is triggered as
+soon as we exit the context manager and
+the important thing here is that this
+will be called whether an exception
+occurs or not so you can see that we can
+take the exception type the exception
+value and also the traceback of the
+exception and we can either handle that
+exception or we can raise it if we want
+so we'll say that we're disconnected now
+so self. connected is equal to false
+we'll print out some kind of logging
+message and then we can handle different
+exceptions so we can say if there's some
+kind of exception type that we're going
+to print an exception occurred and when
+we return true this means that we're
+going to suppress the exception so we're
+not going to crash the program but if we
+were to return false this would mean
+that we would raise that exception or
+kind of pass it up to the context
+manager so then we would actually have
+to handle it anyways the point is that
+this is some more syntax that you can
+use and some more advanced double uncore
+methods that map to context managers now
+continuing we also have an iterator have
+you ever wondered how certain types in
+Python are iterable for example you
+iterate through something like a list or
+a string and you can write it in a for
+Loop right you can say four number in
+and then the list and you can grab all
+of the values that exist inside of it
+well the reason why those are iterable
+is because they have the iter and the
+next method defined on them now if
+something defines the method that means
+it can be used directly inside of
+something like a for Loop also a list
+comprehension there's a bunch of other
+places where the iterator can be used
+because what happens implicitly when you
+use a for Loop in Python is you actually
+call the iter method on whatever you're
+trying to Loop through that returns some
+value and then you continually call the
+next function on that value until stop
+iteration is raised now I'm going
+quickly here because I have again entire
+videos on my channel breaking down how
+iterators work but the basic idea works
+like this when you call the for Loop the
+first thing that happens is we call
+theore uncore _ uncore Dunder method on
+whatever it is that we're iterating
+through so in this case it's countdown
+with five this then returns something in
+this case it just Returns the same
+countdown object but it could return a
+new object and then what we do is we
+continually call the next function or
+the double uncore next uh method on this
+object
+okay so
+countdown of five this then would return
+five right then we call this again and
+again and again and we get four three
+and then eventually what happens is we
+raise a stop iteration and then the for
+Loop stops okay I know this might be
+confusing if you never seen this before
+but the way the for Loop works is you
+call this eater Dunder method that
+returns something in this case it's just
+returning this countdown object now the
+thing that's returned needs to have this
+next method defined on it because then
+what we do is we continually call next
+to iterate through that object so a for
+Loop isn't just magic it's calling this
+method it returns some value so it
+returns five we print five right then we
+call next again it returns four we print
+four then we call next again returns
+three we print three and we keep going
+until eventually we hit this raise stop
+iteration and as soon as this exception
+is occurred the for Loop exits that's
+how iteration Works in Python in this
+this is why you can actually build your
+own iterators like we just did here by
+implementing the iter and the next
+method now again just to prove to you
+that I'm not crazy let's run this code
+and you can see that we get 5 4 3 2 1
+and then it stops because we raised stop
+iteration and that's pretty much it now
+there are a ton of other double
+underscore methods that you can use in
+Python but I wanted to show you some of
+the more common ones and really instead
+of getting you to memorize these methods
+just make sure that you're aware that
+they do exist and understand how they
+map back to different Behavior
+everything in Python is an object those
+objects have some kind of class that
+defines their behavior and on the class
+you have various double underscore
+methods which allow you to use the
+different python syntax features things
+like for Loops context managers addition
+operators length functions string
+functions repper functions all of those
+work because of the underlying double
+underscore or magic method
+implementation with that said guys I
+will wrap it up here if you enjoyed make
+sure to leave a like subscribe to the
+channel and I will see you in the next
+one
+[Music]

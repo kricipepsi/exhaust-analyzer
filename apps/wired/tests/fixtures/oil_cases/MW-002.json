@@ -1,0 +1,27 @@
+{
+  "_case_id": "MW-002",
+  "_provenance": "OilburnCases.md §P_NEW_10; OIL_CASE_SIGNATURES_5FR.md §1; archived T-WV2-2 routed baseline",
+  "vin": "WBA4W9C5ZLYYYYYYY",
+  "triage": {
+    "tier_1": "rough_idle_shudder",
+    "tier_2": "constant_vibration_shudder",
+    "occurs_during": "always",
+    "engine_state": "running",
+    "load_state": "idle",
+    "csv_primary_symptom": "blue_smoke_on_cold_start_clears"
+  },
+  "gas": {
+    "hc": 500,
+    "co": 0.9,
+    "co2": 13.0,
+    "o2": 0.2,
+    "nox": 50,
+    "hc_high": 30,
+    "co_high": 0.15,
+    "co2_high": 15.2,
+    "o2_high": 0.1,
+    "nox_high": 50,
+    "engine_state": "STABILIZED_IDLE",
+    "lambda_measured": 0.95
+  }
+}

@@ -1,0 +1,314 @@
+How's it going everyone? In today's
+video, we're going to learn about five
+tips and tricks to make your life a bit
+easier in Python. Starting with one of
+the most popular tricks, the underscore
+formatting trick. Suppose you have a big
+number such as a billion and scientific
+notation scares you, so you decide to
+type that number out by hand. For
+example, here we might have 1 billion,
+which will equal 1 billion.
+And I'm being very careful when I type
+this out because it's quite easy to mix
+up these zeros. Now, this is perfectly
+acceptable, but considering it requires
+you to manually count these zeros, it
+can be quite easy to mess this up. So,
+instead, a better approach would be to
+use underscores. Underscores allow you
+to easily format your number, which
+makes it much easier to read without
+affecting your code in any way. That
+means that if you were to use this
+number in any operation such as when you
+are printing something, it will ignore
+the underscores. Also, if you're doing
+math, it's going to ignore those
+underscores. And this also works with
+decimal numbers such as pi, which could
+equal 3.14_15
+92_65.
+There's not really any reason to format
+it like this, but just to show you that
+you can do it, I decided to do it with
+pi. And it doesn't have to be every
+three zeros either. You can choose your
+own rules when it comes to how you'd
+like to place the underscore with a few
+exceptions being that they cannot be
+placed directly next to each other.
+Also, your number cannot end with an
+underscore or begin with an underscore.
+Otherwise, you can get as crazy as you
+like with them. Something else that's
+quite cool is that you can also use it
+with fstrings. So if you were to type in
+my number of type int equals 1 2 3 4 5 6
+7 8 9 and zero. If you were to print
+this inside an fstring and provide an
+underscore, it would give you the output
+with underscores. The alternative to
+this is the comma, but I'm not really
+covering that. I'm just covering the
+underscore right now. The second trick
+that I use on a daily basis is a
+formatting trick used for quick
+debugging. Let's take a look at how it
+works. For this example, I'm going to
+create a variable of type integer which
+will equal 10 and a name of type string
+which will equal Bob. Usually, if you
+would like to debug this, you would
+either print the name directly or you
+could also type in name equals name. And
+when you run this, what you should get
+as an output is the variable value.
+Personally, I would never do this
+because something that's much more
+simple is typing in your variable inside
+some curly braces and passing in an
+equals. And with this, I'm also going to
+paste in the variable. And when we run
+it, what you should notice as an output
+is the variable name plus the variable's
+value. And this actually works with any
+expression. For example, if I were to
+duplicate the name and pass in the
+length of the name, when we run this,
+what we're going to get as an output is
+the length of name equals 3. Otherwise,
+we can also type in let's say 10 + 10
+equals and we're going to get the result
+back. To make this easier to understand,
+you might choose to put parenthesis
+there so it's much more readable. Or
+another approach would be to add some
+spaces around the equals. And when you
+run it, you should get something a bit
+more legible. What's important to note
+here is that all of the spaces here are
+maintained. So you can add a lot of
+spaces in random places. And when you
+run it, it's going to maintain those
+spaces. It's up to you how you want to
+customize this. Moving on, I have
+another quick tip that will give you
+more control over your frings. I'm going
+to show you how you can nest curly
+brackets so that you can control format
+specifiers with variables instead of
+having to hardcode them each time. First
+of all, let's create a user called Bob.
+Next, we're going to print the fing of
+the user and I'm going to use the colon
+carrot 11. And what this does is insert
+this symbol around Bob. And it's going
+to occupy 11 characters of space and
+center Bob. So when we run this, we're
+going to end up with something like
+this. As you can see, the symbol is the
+underscore. Bob is centered as we
+defined with the carrot. And this
+occupies a total of 11 characters. We
+could also change it with a different
+symbol such as the at sign, but I much
+prefer the underscore. Anyway, we can
+also do this with the right angle
+bracket and the left angle bracket and
+we will get this as an output. Now, this
+is quite cool, but what if you want to
+change the total amount of characters
+later on in the program? Obviously, the
+last thing we want to do is change each
+one of these individually. So, what
+we're going to do instead is create a
+variable called width which will be of
+type integer and specify the value of
+20. Now inside here instead of
+specifying 11 we can pass in the width
+in curly brackets and we can just copy
+and paste that for the rest. Now when we
+run this we should get the desired width
+as an output for all of them and we only
+need to change it in one place. And this
+can also be quite useful for other
+format specifiers such as imagine you
+have a float called pi which will equal
+3.1415
+9265
+because that's all I can remember and we
+want to round this to two decimal
+places. Well, here we can create a
+variable called places of type integer
+and specify that to be two. So that when
+we print the fstring of pi and we say we
+want to round this to two decimal
+places, we won't have to hardcode this
+value. We can just change this two
+places. Now when we run this, it should
+get rounded to two decimal places. And
+we can also change this to four if
+that's what we want. The fourth tip of
+the day has to do with accessing values
+from a dictionary. And this is something
+that all Python devs should be familiar
+with because it really simplifies our
+lives. So for this example, we're going
+to create a dictionary of users and it's
+going to be of type integer to string,
+which means the keys are integers and
+the values are strings. Now, if we ever
+want to access a user, we could just
+print that user at the specified key. So
+we can print users at the index of zero
+if we want to get Bob. And that's going
+to give us back Bob. And this approach
+works, but it's quite risky because if
+you were to provide a key that doesn't
+exist, you would end up with a key
+error. Now, you might be saying
+indently, you silly cocoon. Why don't
+you type in if zero in users print user
+found and pass in that user, which will
+be at the index of zero. This check will
+help us avoid the error if zero doesn't
+exist. Now if we were to run this, our
+program will be able to print Bob if Bob
+exists in the user database. If we were
+to pass in four, this if expression
+would return false and would avoid
+calling this code which would surely
+raise an exception. And once again,
+there's nothing wrong with that. But
+there's another way which can be seen as
+much more convenient. And what we're
+going to use here is something called
+get. And this method changed my world
+when I was first learning Python because
+here you can specify a key and if it
+exists, it's going to return that
+element or that value. If the key
+doesn't exist, it's going to return
+none. So if you prefer to work with the
+none type, use the get method.
+Otherwise, we also have the option to
+use a method called set default, which
+is another one of my favorite methods
+because here you can specify the key
+that you're trying to use and a default
+value. Here we can type in unknown which
+will be returned each time we pass in a
+key which does not exist in our
+dictionary. Right now if we were to run
+this we would get unknown back.
+Otherwise if we were to pass in two we
+would get Sandre back. And if you don't
+specify anything and pass in four you
+will get none back by default. It's
+actually quite interesting that Pyite is
+complaining because apparently the
+default value is not required, but the
+static type checker thinks it is
+required. Interesting. Anyway, it's
+better to specify a default value here
+because otherwise you should just use
+the get method.
+And finally, the last trick slashtip of
+the day is something that I absolutely
+recommend you get into the habit of
+doing to really make sure you avoid
+unexpected bugs and surprises when
+developing a program. When jotting down
+ideas, you might start off by creating a
+bunch of placeholders such as these
+ones. And this is a perfectly acceptable
+approach when you are planning a
+project. Obviously, it's quite hard to
+code every single function at once. So
+in general, you would like to create a
+skeleton that kind of gives you an idea
+of how the program should function. And
+since you can't really leave a function
+empty, your first instinct is going to
+be to use the built-in pass keyword. But
+there's an approach I recommend much
+more because it's much safer and won't
+give you any ugly surprises. So instead
+of passing, I recommend you pass in
+raise not implemented error. And for
+now, we're just going to copy and paste
+it and pass it into everything else. And
+you might be asking, why do I recommend
+using this overpass?
+Well, right now, if we were to call any
+of this code, such as connect, what
+we're going to get as an output is a
+notimplemented error. And this tells us
+that the function is not finished. It's
+not implemented. It's something that we
+need to work on. Otherwise, it's going
+to crash our program immediately or
+raise an exception. If we were to just
+use pass here, the program would not
+crash. It would not raise an exception.
+And in a small script, that might not
+really be an issue because you know
+exactly where you use pass. But as your
+projects grow in complexity, if you have
+this in a different file, you might just
+be waiting randomly for connect to do
+something. But since nothing was
+implemented, you'll have no idea that
+you forgot to add the functionality to
+that function. And that's why I
+recommend you raise a notimplemented
+error whenever you can because it's
+extra explicit. It tells whoever is
+working on this program that that
+function still needs to be worked on.
+And even better, if you're working on a
+different file and you try to call this
+function, it's going to tell whoever is
+working on this immediately that
+something's wrong, that the function is
+not finished. Also, this is the bare
+minimum, but you might also want to
+provide a message if you want to give
+whoever is working on this some extra
+context such as I don't know. I will do
+this later, Bob. Since Bob is kind of
+lazy. Now, the next time you run it,
+you'll see that little message. If you
+have nothing important to say, you can
+exclude it. But if you have a reason on
+why it's not implemented, feel free to
+add it. Personally, I have a shortcut
+that fills this out for me when I create
+a function. All I have to do is type in
+defaf and when I tap on enter here I get
+to type in the name of my new function
+such as connect. And at the end it fills
+out everything for me. Although this
+message might be seen as quite
+redundant. Personally I like it. So I'm
+leaving it but you're not required to do
+this. I'm just showing you what I do.
+And let's call this so you can see it.
+Connect. As you can see here, we tried
+to call connect and we encountered a
+notimplemented error that connect was
+not implemented. Personally, I like this
+more because I can read the message once
+again down here rather than relying on
+the error message up here. Anyway,
+that's actually all I wanted to cover in
+today's video. Do let me know in the
+comment section down below which one of
+these tips you enjoyed the most or
+whether you have any tips of your own. I
+would love to hear about it in the
+comment section down below. But
+otherwise, with all that being said, as
+always, thanks for watching and I'll see
+you in the next video.

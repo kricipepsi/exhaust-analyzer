@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "Identifies the mutable default argument bug (filter=[]) and explains the shared state problem",
+      "passed": true,
+      "evidence": "Mutable default argument discussed"
+    },
+    {
+      "text": "Points out bare except: and explains why it hides bugs",
+      "passed": true,
+      "evidence": "Bare except anti-pattern called out"
+    },
+    {
+      "text": "Identifies string concatenation with += in a loop and suggests join()",
+      "passed": true,
+      "evidence": "String concatenation issue identified"
+    },
+    {
+      "text": "Identifies range(len()) and suggests enumerate()",
+      "passed": true,
+      "evidence": "range(len()) anti-pattern identified"
+    },
+    {
+      "text": "Refactored code has type hints on all functions",
+      "passed": true,
+      "evidence": "Type hints present in refactored code"
+    },
+    {
+      "text": "Refactored code uses None as default instead of mutable list",
+      "passed": true,
+      "evidence": "None default used, no mutable list defaults"
+    },
+    {
+      "text": "Refactored code does not use bare except",
+      "passed": true,
+      "evidence": "No bare except in refactored code"
+    },
+    {
+      "text": "Refactored code uses join() for string building",
+      "passed": true,
+      "evidence": "join() used for string building"
+    }
+  ]
+}

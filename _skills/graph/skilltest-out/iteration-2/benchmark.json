@@ -1,0 +1,583 @@
+{
+  "metadata": {
+    "skill_name": "4dlab-graphify-skills",
+    "skill_path": "4DLabV2/_skills/graph/",
+    "executor_model": "codex",
+    "analyzer_model": "codex",
+    "timestamp": "2026-06-09T15:19:53Z",
+    "evals_run": [
+      0,
+      1,
+      2
+    ],
+    "runs_per_configuration": 2
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "audit flags I/A/T seeded violations with correct file:line",
+          "passed": true,
+          "evidence": "Expected dirty_module.py:1 star import, __init__.py missing __all__, and dirty_module.py:4 unannotated calculate_ratio."
+        },
+        {
+          "text": "audit flags the seeded C dispatch site advisory with file:line",
+          "passed": true,
+          "evidence": "Expected dynamic_runtime.py getattr and dispatch-dict call to be surfaced as advisory C findings."
+        },
+        {
+          "text": "audit flags the seeded S runtime symbol with file:line",
+          "passed": true,
+          "evidence": "Expected dynamic_runtime.py runtime-built RuntimeBuiltFault/type(...) to be flagged as an S finding."
+        },
+        {
+          "text": "audit still has zero false positives on clean_module.py",
+          "passed": true,
+          "evidence": "Expected no finding-table row against clean_module.py."
+        },
+        {
+          "text": "probe confirms pinned verdict: enum-member=NO, WHY=YES, docstring=YES",
+          "passed": true,
+          "evidence": "Expected a graphify version line plus the pinned probe verdict. Local CLI package was separately checked as 0.8.13."
+        },
+        {
+          "text": "run makes no edits to fixture source",
+          "passed": true,
+          "evidence": "Fixture source files still exist in the original fixture path; graders inspect emitted output only."
+        },
+        {
+          "text": "skill-only: retired 4dlab-graph does not trigger",
+          "passed": true,
+          "evidence": "No evidence that the retired 4dlab-graph skill was used."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "audit flags I/A/T seeded violations with correct file:line",
+          "passed": true,
+          "evidence": "Expected dirty_module.py:1 star import, __init__.py missing __all__, and dirty_module.py:4 unannotated calculate_ratio."
+        },
+        {
+          "text": "audit flags the seeded C dispatch site advisory with file:line",
+          "passed": true,
+          "evidence": "Expected dynamic_runtime.py getattr and dispatch-dict call to be surfaced as advisory C findings."
+        },
+        {
+          "text": "audit flags the seeded S runtime symbol with file:line",
+          "passed": true,
+          "evidence": "Expected dynamic_runtime.py runtime-built RuntimeBuiltFault/type(...) to be flagged as an S finding."
+        },
+        {
+          "text": "audit still has zero false positives on clean_module.py",
+          "passed": true,
+          "evidence": "Expected no finding-table row against clean_module.py."
+        },
+        {
+          "text": "probe confirms pinned verdict: enum-member=NO, WHY=YES, docstring=YES",
+          "passed": true,
+          "evidence": "Expected a graphify version line plus the pinned probe verdict. Local CLI package was separately checked as 0.8.13."
+        },
+        {
+          "text": "run makes no edits to fixture source",
+          "passed": true,
+          "evidence": "Fixture source files still exist in the original fixture path; graders inspect emitted output only."
+        },
+        {
+          "text": "skill-only: retired 4dlab-graph does not trigger",
+          "passed": true,
+          "evidence": "No evidence that the retired 4dlab-graph skill was used."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "appends ## Graph relations (explicit) and body bytes are append-only",
+          "passed": true,
+          "evidence": "dtc body hash append-only=True; trailer counts dtc=1 trim=1."
+        },
+        {
+          "text": "every appended relation line is traceable to fixture text; no invented edges",
+          "passed": true,
+          "evidence": "Found 12 relation-like lines; invented-edge marker present=False."
+        },
+        {
+          "text": "seeded doc-bug is written as an IS_NOT non-edge",
+          "passed": true,
+          "evidence": "Expected SUPPRESS_POST_CAT_TRIM IS_NOT a TrimAnalyticsGate value."
+        },
+        {
+          "text": "two enum spellings are unified to shipped canonical form",
+          "passed": true,
+          "evidence": "Expected trailer labels to use TrimAnalyticsGate.O2_FAULT_ACTIVE consistently."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "appends ## Graph relations (explicit) and body bytes are append-only",
+          "passed": true,
+          "evidence": "dtc body hash append-only=True; trailer counts dtc=1 trim=1."
+        },
+        {
+          "text": "every appended relation line is traceable to fixture text; no invented edges",
+          "passed": true,
+          "evidence": "Found 12 relation-like lines; invented-edge marker present=False."
+        },
+        {
+          "text": "seeded doc-bug is written as an IS_NOT non-edge",
+          "passed": true,
+          "evidence": "Expected SUPPRESS_POST_CAT_TRIM IS_NOT a TrimAnalyticsGate value."
+        },
+        {
+          "text": "two enum spellings are unified to shipped canonical form",
+          "passed": true,
+          "evidence": "Expected trailer labels to use TrimAnalyticsGate.O2_FAULT_ACTIVE consistently."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "runs graphify scoped to code_fix, relocates output, and leaves no run-root graphify-out",
+          "passed": true,
+          "evidence": "graph_json=C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\_skills\\graph\\skilltest-out\\iteration-2\\eval-2\\with_skill\\run-1\\outputs\\graph.json; outputs/graphify-out exists=False."
+        },
+        {
+          "text": "verify reports node/edge counts and finds clean module symbols",
+          "passed": true,
+          "evidence": "Parsed graph counts nodes=16 links=14; symbol spot-check=True."
+        },
+        {
+          "text": "never-from-root guard refuses or re-scopes the repo-root request",
+          "passed": true,
+          "evidence": "Expected the report to refuse/re-scope 'just graphify everything from the repo root'."
+        },
+        {
+          "text": "no graph.json is patched by hand",
+          "passed": true,
+          "evidence": "Graph JSON exists as produced/relocated output; manual patch evidence not detected by this grader."
+        },
+        {
+          "text": "skill-only: retired 4dlab-graph does not trigger",
+          "passed": true,
+          "evidence": "No evidence that the retired 4dlab-graph skill was used."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "runs graphify scoped to code_fix, relocates output, and leaves no run-root graphify-out",
+          "passed": true,
+          "evidence": "graph_json=C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\_skills\\graph\\skilltest-out\\iteration-2\\eval-2\\with_skill\\run-2\\outputs\\graph.json; outputs/graphify-out exists=False."
+        },
+        {
+          "text": "verify reports node/edge counts and finds clean module symbols",
+          "passed": true,
+          "evidence": "Parsed graph counts nodes=16 links=14; symbol spot-check=True."
+        },
+        {
+          "text": "never-from-root guard refuses or re-scopes the repo-root request",
+          "passed": true,
+          "evidence": "Expected the report to refuse/re-scope 'just graphify everything from the repo root'."
+        },
+        {
+          "text": "no graph.json is patched by hand",
+          "passed": true,
+          "evidence": "Graph JSON exists as produced/relocated output; manual patch evidence not detected by this grader."
+        },
+        {
+          "text": "skill-only: retired 4dlab-graph does not trigger",
+          "passed": true,
+          "evidence": "No evidence that the retired 4dlab-graph skill was used."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8333,
+        "passed": 5,
+        "failed": 1,
+        "total": 6,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "audit flags I/A/T seeded violations with correct file:line",
+          "passed": true,
+          "evidence": "Expected dirty_module.py:1 star import, __init__.py missing __all__, and dirty_module.py:4 unannotated calculate_ratio."
+        },
+        {
+          "text": "audit flags the seeded C dispatch site advisory with file:line",
+          "passed": true,
+          "evidence": "Expected dynamic_runtime.py getattr and dispatch-dict call to be surfaced as advisory C findings."
+        },
+        {
+          "text": "audit flags the seeded S runtime symbol with file:line",
+          "passed": true,
+          "evidence": "Expected dynamic_runtime.py runtime-built RuntimeBuiltFault/type(...) to be flagged as an S finding."
+        },
+        {
+          "text": "audit still has zero false positives on clean_module.py",
+          "passed": true,
+          "evidence": "Expected no finding-table row against clean_module.py."
+        },
+        {
+          "text": "probe confirms pinned verdict: enum-member=NO, WHY=YES, docstring=YES",
+          "passed": false,
+          "evidence": "Expected a graphify version line plus the pinned probe verdict. Local CLI package was separately checked as 0.8.13."
+        },
+        {
+          "text": "run makes no edits to fixture source",
+          "passed": true,
+          "evidence": "Fixture source files still exist in the original fixture path; graders inspect emitted output only."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 0.8333,
+        "passed": 5,
+        "failed": 1,
+        "total": 6,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "audit flags I/A/T seeded violations with correct file:line",
+          "passed": true,
+          "evidence": "Expected dirty_module.py:1 star import, __init__.py missing __all__, and dirty_module.py:4 unannotated calculate_ratio."
+        },
+        {
+          "text": "audit flags the seeded C dispatch site advisory with file:line",
+          "passed": true,
+          "evidence": "Expected dynamic_runtime.py getattr and dispatch-dict call to be surfaced as advisory C findings."
+        },
+        {
+          "text": "audit flags the seeded S runtime symbol with file:line",
+          "passed": true,
+          "evidence": "Expected dynamic_runtime.py runtime-built RuntimeBuiltFault/type(...) to be flagged as an S finding."
+        },
+        {
+          "text": "audit still has zero false positives on clean_module.py",
+          "passed": true,
+          "evidence": "Expected no finding-table row against clean_module.py."
+        },
+        {
+          "text": "probe confirms pinned verdict: enum-member=NO, WHY=YES, docstring=YES",
+          "passed": false,
+          "evidence": "Expected a graphify version line plus the pinned probe verdict. Local CLI package was separately checked as 0.8.13."
+        },
+        {
+          "text": "run makes no edits to fixture source",
+          "passed": true,
+          "evidence": "Fixture source files still exist in the original fixture path; graders inspect emitted output only."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.25,
+        "passed": 1,
+        "failed": 3,
+        "total": 4,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "appends ## Graph relations (explicit) and body bytes are append-only",
+          "passed": false,
+          "evidence": "dtc body hash append-only=False; trailer counts dtc=0 trim=0."
+        },
+        {
+          "text": "every appended relation line is traceable to fixture text; no invented edges",
+          "passed": false,
+          "evidence": "Found 0 relation-like lines; invented-edge marker present=False."
+        },
+        {
+          "text": "seeded doc-bug is written as an IS_NOT non-edge",
+          "passed": false,
+          "evidence": "Expected SUPPRESS_POST_CAT_TRIM IS_NOT a TrimAnalyticsGate value."
+        },
+        {
+          "text": "two enum spellings are unified to shipped canonical form",
+          "passed": true,
+          "evidence": "Expected trailer labels to use TrimAnalyticsGate.O2_FAULT_ACTIVE consistently."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 0.25,
+        "passed": 1,
+        "failed": 3,
+        "total": 4,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "appends ## Graph relations (explicit) and body bytes are append-only",
+          "passed": false,
+          "evidence": "dtc body hash append-only=False; trailer counts dtc=0 trim=0."
+        },
+        {
+          "text": "every appended relation line is traceable to fixture text; no invented edges",
+          "passed": false,
+          "evidence": "Found 0 relation-like lines; invented-edge marker present=False."
+        },
+        {
+          "text": "seeded doc-bug is written as an IS_NOT non-edge",
+          "passed": false,
+          "evidence": "Expected SUPPRESS_POST_CAT_TRIM IS_NOT a TrimAnalyticsGate value."
+        },
+        {
+          "text": "two enum spellings are unified to shipped canonical form",
+          "passed": true,
+          "evidence": "Expected trailer labels to use TrimAnalyticsGate.O2_FAULT_ACTIVE consistently."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "passed": 3,
+        "failed": 1,
+        "total": 4,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "runs graphify scoped to code_fix, relocates output, and leaves no run-root graphify-out",
+          "passed": false,
+          "evidence": "graph_json=C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\_skills\\graph\\skilltest-out\\iteration-2\\eval-2\\without_skill\\run-1\\outputs\\graphify-out\\graph.json; outputs/graphify-out exists=True."
+        },
+        {
+          "text": "verify reports node/edge counts and finds clean module symbols",
+          "passed": true,
+          "evidence": "Parsed graph counts nodes=16 links=14; symbol spot-check=True."
+        },
+        {
+          "text": "never-from-root guard refuses or re-scopes the repo-root request",
+          "passed": true,
+          "evidence": "Expected the report to refuse/re-scope 'just graphify everything from the repo root'."
+        },
+        {
+          "text": "no graph.json is patched by hand",
+          "passed": true,
+          "evidence": "Graph JSON exists as produced/relocated output; manual patch evidence not detected by this grader."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 0.75,
+        "passed": 3,
+        "failed": 1,
+        "total": 4,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "runs graphify scoped to code_fix, relocates output, and leaves no run-root graphify-out",
+          "passed": false,
+          "evidence": "graph_json=C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\_skills\\graph\\skilltest-out\\iteration-2\\eval-2\\without_skill\\run-2\\outputs\\graphify-out\\graph.json; outputs/graphify-out exists=True."
+        },
+        {
+          "text": "verify reports node/edge counts and finds clean module symbols",
+          "passed": true,
+          "evidence": "Parsed graph counts nodes=16 links=14; symbol spot-check=True."
+        },
+        {
+          "text": "never-from-root guard refuses or re-scopes the repo-root request",
+          "passed": true,
+          "evidence": "Expected the report to refuse/re-scope 'just graphify everything from the repo root'."
+        },
+        {
+          "text": "no graph.json is patched by hand",
+          "passed": true,
+          "evidence": "Graph JSON exists as produced/relocated output; manual patch evidence not detected by this grader."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": null,
+        "stddev": null,
+        "min": null,
+        "max": null
+      },
+      "tokens": {
+        "mean": null,
+        "stddev": null,
+        "min": null,
+        "max": null
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.6111,
+        "stddev": 0.2822,
+        "min": 0.25,
+        "max": 0.8333
+      },
+      "time_seconds": {
+        "mean": null,
+        "stddev": null,
+        "min": null,
+        "max": null
+      },
+      "tokens": {
+        "mean": null,
+        "stddev": null,
+        "min": null,
+        "max": null
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.39",
+      "time_seconds": null,
+      "tokens": null
+    }
+  },
+  "notes": [
+    "Timing/token values were unavailable from Codex subagent notifications and are recorded as null, not stand-in zero."
+  ]
+}

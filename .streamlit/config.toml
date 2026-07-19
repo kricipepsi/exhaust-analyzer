@@ -1,0 +1,13 @@
+# Theme pin for the published UI (from apps/ui/sampleUI reference config).
+# apps/ui/app.py hard-codes light-theme CSS; without this pin Streamlit follows
+# the visitor's dark-mode preference and the UI becomes unreadable.
+# Streamlit reads this from the process CWD = repo root on Render.
+[theme]
+primaryColor = "#1f77b4"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f0f2f6"
+textColor = "#31333F"
+font = "sans serif"
+
+[browser]
+gatherUsageStats = false

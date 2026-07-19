@@ -1,0 +1,803 @@
+{
+  "task": "T-V3-P4-C6-PRE",
+  "generated": "2026-07-05",
+  "mode": "DISCLOSE only (read-only pre-author; no wiring, no score move)",
+  "purpose": "Instance the frozen reveal contract for C6 — sensor fault under-detection. Surfaces SensorDynamicsState gates, consumer mapping, C3 interaction, 14-case split, live FT-8 neighbours, confounders, and baseline pin.",
+  "reveal_contract_template": [
+    {
+      "key": "BUILDABLE_NOW",
+      "definition": "Producer/consumer logic + thresholds derivable from the cluster research answer; provable by unit tests on synthetic vectors, with no owner data."
+    },
+    {
+      "key": "SCORING_GATED",
+      "definition": "The per-case owner columns still required and which residual case_ids each unlocks; stays abstained until the owner supplies real measured values."
+    },
+    {
+      "key": "CODE_LANDED_NEQ_SCORE_MOVED",
+      "definition": "Explicit separation of producer/consumer logic shipped from top3_family delta. Landing code proves the discriminator is wired; it does not move score until gated data exists."
+    },
+    {
+      "key": "REGRESSION_FT8",
+      "definition": "The neighbour set the consumer edit touches, plus the no-regressed-family audit run on the full corpus at commit time."
+    },
+    {
+      "key": "ABSTAIN_FALLBACK",
+      "definition": "Cases whose discriminating signal the owner cannot supply stay abstained at MARGIN=0.02, never guessed from static idle data."
+    }
+  ],
+  "baseline": {
+    "yardstick": "V3_YARDSTICK_2026-07-05-C3B",
+    "csv_hash": "9f530695dc3cf5586c9248a2b9de2f474950170326dcf5f62c1aefc36683e283",
+    "oracle_hash": "3088a7c3",
+    "scorer": "apps/wired/v7/run_suite.py (hash-locked, untouched)",
+    "named_run": "POST_T_V3_P4_C3B",
+    "run_dir": "apps/wired/v7/runs/POST_T_V3_P4_C3B/results.json",
+    "note": "All C6 sizing references this current post-C3B baseline. If any commit lands first, stop and re-pin before C6-SYNTH/C6A."
+  },
+  "c6_instance": {
+    "cluster": "C6",
+    "title": "sensor fault under-detection",
+    "research_source": "v3/research/research_answers/cluster6.md",
+    "producer": {
+      "states": [
+        "OBDLab SensorDynamicsState"
+      ],
+      "emit_condition": "Emit O2_LAZY_OR_BIASED from decisive Mode $06 or active O2 response evidence; emit MAF_UNDERREAD from sustained 10-15% actual-vs-calculated shortfall at idle and 2500; emit SENSOR_HEALTH_UNPROVEN_ABSTAIN for static-only evidence.",
+      "thresholds": [
+        {
+          "signal": "Mode $06 oxygen-sensor monitor margin",
+          "maneuver": "Warm closed loop; retrieve Mode $06 current result and min/max limits",
+          "threshold": "Use the ECU's stored min/max acceptable band; low or exceeded margin to the vehicle-specific limit emits O2_LAZY_OR_BIASED",
+          "verdict": "O2_LAZY_OR_BIASED",
+          "producer_state": "OBDLab SensorDynamicsState",
+          "evidence_fields": "mode06_o2_response_margin_pct",
+          "cite": "cluster6.md §Question One Answer lines 114-115; §Question Four Answer line 155; Candidate Signature Table line 171",
+          "grounding": "standardized-transport / manufacturer-specific numeric limit",
+          "feasibility_tier": "Tier A: generic OBD-II Mode $06 where exposed"
+        },
+        {
+          "signal": "Forced rich→lean / lean→rich O2 response timing",
+          "maneuver": "Stabilize at about 2500 rpm no-load; decel fuel cut for rich→lean; controlled return/enrichment for lean→rich",
+          "threshold": "Prefer vehicle Mode $06/OEM limit; absent that, longer-than-expected transition is positive evidence. Research names the direction, not a fleet-wide millisecond fail line; 849 ms / <150 ms examples must not be treated as universal.",
+          "verdict": "O2_LAZY_OR_BIASED",
+          "producer_state": "OBDLab SensorDynamicsState",
+          "evidence_fields": "o2_rich_to_lean_ms, o2_lean_to_rich_ms",
+          "cite": "cluster6.md §Question Three Answer lines 147-151; §Question Four Answer line 157; Candidate Signature Table line 172",
+          "grounding": "manufacturer-typical (direction strong, universal ms bound weak)",
+          "feasibility_tier": "Tier A if ECU monitor decisive; Tier C if scope timing required"
+        },
+        {
+          "signal": "MAF actual vs calculated airflow plausibility",
+          "maneuver": "Warm idle and steady 2500 rpm no-load; compare measured MAF to modeled airflow",
+          "threshold": "Sustained measured-MAF shortfall greater than roughly 10-15% versus modeled airflow at BOTH points emits MAF_UNDERREAD",
+          "verdict": "MAF_UNDERREAD",
+          "producer_state": "OBDLab SensorDynamicsState",
+          "evidence_fields": "maf_actual_calc_delta_pct_idle, maf_actual_calc_delta_pct_2500, maf_gps_idle, maf_gps_2500, calc_airflow_gps_idle, calc_airflow_gps_2500",
+          "cite": "cluster6.md §Question One Answer lines 117-118; §Question Three Answer line 149; §Question Four Answer line 161; Candidate Signature Table line 174",
+          "grounding": "empirical-inferred (component accuracy anchored; vehicle threshold provisional)",
+          "feasibility_tier": "Tier A if PID set available; otherwise Tier C modeled-airflow support"
+        },
+        {
+          "signal": "Static-only O2/MAF evidence",
+          "maneuver": "Single static O2 voltage, AFR, or MAF value only",
+          "threshold": "Static-only values are rejected as a separator; emit SENSOR_HEALTH_UNPROVEN_ABSTAIN",
+          "verdict": "SENSOR_HEALTH_UNPROVEN_ABSTAIN",
+          "producer_state": "OBDLab SensorDynamicsState",
+          "evidence_fields": "absence of decisive dynamic Mode $06/O2 timing/MAF plausibility evidence",
+          "cite": "cluster6.md §Question One Answer lines 126-129; V3_SIGNAL_ACQUISITION_SPEC_2026-07-01.md §C6.6 line 93",
+          "grounding": "physics/regulatory rationale (dynamic inconsistency required)",
+          "feasibility_tier": "Abstain fallback"
+        }
+      ],
+      "corpus_columns": [
+        "mode06_o2_response_margin_pct",
+        "o2_rich_to_lean_ms",
+        "o2_lean_to_rich_ms",
+        "maf_actual_calc_delta_pct_idle",
+        "maf_actual_calc_delta_pct_2500",
+        "maf_gps_idle",
+        "maf_gps_2500",
+        "calc_airflow_gps_idle",
+        "calc_airflow_gps_2500"
+      ]
+    },
+    "consumer": {
+      "sensor_fault": {
+        "file": "labs/comlab/registry/rules/sensor_fault.json",
+        "rules": [
+          "SF-005",
+          "SF-008",
+          "SF-001",
+          "SF-002"
+        ],
+        "reads": "SF-005/SF-008 consume dynamic O2/MAF evidence; SF-001/SF-002 consume bias/perception fields and must obey C3 interaction precedence.",
+        "evidence_fields": [
+          "mode06_o2_response_margin_pct",
+          "o2_rich_to_lean_ms",
+          "o2_lean_to_rich_ms",
+          "maf_actual_calc_delta_pct_idle",
+          "maf_actual_calc_delta_pct_2500",
+          "maf_gps_idle",
+          "maf_gps_2500",
+          "calc_airflow_gps_idle",
+          "calc_airflow_gps_2500"
+        ]
+      },
+      "no_fault": {
+        "file": "labs/comlab/registry/rules/no_fault.json",
+        "rules": [
+          "NF-001",
+          "NF-002"
+        ],
+        "reads": "Healthy-vs-under-detected split reads decisive no-fault evidence: wide Mode $06 margin, normal response timing, and no sustained MAF shortfall.",
+        "evidence_fields": [
+          "mode06_o2_response_margin_pct",
+          "o2_rich_to_lean_ms",
+          "o2_lean_to_rich_ms",
+          "maf_actual_calc_delta_pct_idle",
+          "maf_actual_calc_delta_pct_2500",
+          "maf_gps_idle",
+          "maf_gps_2500",
+          "calc_airflow_gps_idle",
+          "calc_airflow_gps_2500"
+        ]
+      }
+    },
+    "c3_interaction": {
+      "live_c3_state": "ControlPlausibilityState.CONTROL_REFERENCE_FAULT",
+      "live_c3_reader": "integration_shim.py::_control_plausibility_state lines 540-557",
+      "live_c3_effect": "integration_shim.py::_score_rule lines 562-569 boosts EF-001/002/003 by +0.10 and prunes SF-001/SF-002 when CONTROL_REFERENCE_FAULT is present.",
+      "c6_future_effect": "C6 will boost sensor/no-fault consumers from SensorDynamicsState: O2_LAZY_OR_BIASED, MAF_UNDERREAD, or SENSOR_HEALTH_UNPROVEN_ABSTAIN.",
+      "column_population_today": "C3 columns and C6 columns are disjoint in the current corpus.",
+      "required_precedence_for_c6b": "If a future row carries both C3 control-reference columns and C6 sensor-dynamics columns, C3 control-reference pruning must run first for SF-001/SF-002. Only a decisive C6 dynamic sensor fault may re-enable/boost sensor rules; static-only C6 evidence must preserve abstain/prune behavior. This prevents a control-reference fault from being relabelled as a lazy O2 sensor."
+    },
+    "case_split": {
+      "total": 14,
+      "buildable_now_reachable": [],
+      "buildable_now_count": 0,
+      "scoring_gated": [
+        {
+          "case_id": "CASE-014",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "sensor_fault",
+          "predicted_family": "lean_condition",
+          "source_detail": "expected_rank=6; expected_rule=SF-008; winner_rule=LC-001",
+          "required_columns": [
+            "mode06_o2_response_margin_pct",
+            "o2_rich_to_lean_ms",
+            "o2_lean_to_rich_ms",
+            "maf_actual_calc_delta_pct_idle",
+            "maf_actual_calc_delta_pct_2500",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "calc_airflow_gps_idle",
+            "calc_airflow_gps_2500"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "CASE-045",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "sensor_fault",
+          "predicted_family": "misfire",
+          "source_detail": "rule-specific corroborating OBD/DTC evidence",
+          "required_columns": [
+            "mode06_o2_response_margin_pct",
+            "o2_rich_to_lean_ms",
+            "o2_lean_to_rich_ms",
+            "maf_actual_calc_delta_pct_idle",
+            "maf_actual_calc_delta_pct_2500",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "calc_airflow_gps_idle",
+            "calc_airflow_gps_2500"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "CASE-048",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "sensor_fault",
+          "predicted_family": "misfire",
+          "source_detail": "rule-specific corroborating OBD/DTC evidence",
+          "required_columns": [
+            "mode06_o2_response_margin_pct",
+            "o2_rich_to_lean_ms",
+            "o2_lean_to_rich_ms",
+            "maf_actual_calc_delta_pct_idle",
+            "maf_actual_calc_delta_pct_2500",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "calc_airflow_gps_idle",
+            "calc_airflow_gps_2500"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "CSV-025",
+          "bucket": "TUNABLE_HELD",
+          "expected_family": "sensor_fault",
+          "predicted_family": "no_fault",
+          "source_detail": "**HARD**; ",
+          "required_columns": [
+            "mode06_o2_response_margin_pct",
+            "o2_rich_to_lean_ms",
+            "o2_lean_to_rich_ms",
+            "maf_actual_calc_delta_pct_idle",
+            "maf_actual_calc_delta_pct_2500",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "calc_airflow_gps_idle",
+            "calc_airflow_gps_2500"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "EXP-N020",
+          "bucket": "TUNABLE_HELD",
+          "expected_family": "sensor_fault",
+          "predicted_family": "rich_mixture",
+          "source_detail": "**HARD**; ",
+          "required_columns": [
+            "mode06_o2_response_margin_pct",
+            "o2_rich_to_lean_ms",
+            "o2_lean_to_rich_ms",
+            "maf_actual_calc_delta_pct_idle",
+            "maf_actual_calc_delta_pct_2500",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "calc_airflow_gps_idle",
+            "calc_airflow_gps_2500"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "EXT-229",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "sensor_fault",
+          "predicted_family": "lean_condition",
+          "source_detail": "expected_rank=6; expected_rule=SF-008; winner_rule=LC-001",
+          "required_columns": [
+            "mode06_o2_response_margin_pct",
+            "o2_rich_to_lean_ms",
+            "o2_lean_to_rich_ms",
+            "maf_actual_calc_delta_pct_idle",
+            "maf_actual_calc_delta_pct_2500",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "calc_airflow_gps_idle",
+            "calc_airflow_gps_2500"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "EXT-230",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "sensor_fault",
+          "predicted_family": "no_fault",
+          "source_detail": "expected_rank=9; expected_rule=SF-005; winner_rule=NF-001",
+          "required_columns": [
+            "mode06_o2_response_margin_pct",
+            "o2_rich_to_lean_ms",
+            "o2_lean_to_rich_ms",
+            "maf_actual_calc_delta_pct_idle",
+            "maf_actual_calc_delta_pct_2500",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "calc_airflow_gps_idle",
+            "calc_airflow_gps_2500"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "PDF-4G-05",
+          "bucket": "TUNABLE_HELD",
+          "expected_family": "misfire",
+          "predicted_family": "sensor_fault",
+          "source_detail": "**RISKY**; Regresses: ['CASE-023', 'ECU-003', 'EXP-N014', 'EXT-217']",
+          "required_columns": [
+            "mode06_o2_response_margin_pct",
+            "o2_rich_to_lean_ms",
+            "o2_lean_to_rich_ms",
+            "maf_actual_calc_delta_pct_idle",
+            "maf_actual_calc_delta_pct_2500",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "calc_airflow_gps_idle",
+            "calc_airflow_gps_2500"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "TC-046",
+          "bucket": "TUNABLE_HELD",
+          "expected_family": "sensor_fault",
+          "predicted_family": "no_fault",
+          "source_detail": "**HARD**; ",
+          "required_columns": [
+            "mode06_o2_response_margin_pct",
+            "o2_rich_to_lean_ms",
+            "o2_lean_to_rich_ms",
+            "maf_actual_calc_delta_pct_idle",
+            "maf_actual_calc_delta_pct_2500",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "calc_airflow_gps_idle",
+            "calc_airflow_gps_2500"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "YAML-CSV25",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "sensor_fault",
+          "predicted_family": "no_fault",
+          "source_detail": "expected_rank=9; expected_rule=SF-005; winner_rule=NF-001",
+          "required_columns": [
+            "mode06_o2_response_margin_pct",
+            "o2_rich_to_lean_ms",
+            "o2_lean_to_rich_ms",
+            "maf_actual_calc_delta_pct_idle",
+            "maf_actual_calc_delta_pct_2500",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "calc_airflow_gps_idle",
+            "calc_airflow_gps_2500"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "YAML-TC46",
+          "bucket": "DATA_GAP_ACQUISITION_GAP",
+          "expected_family": "sensor_fault",
+          "predicted_family": "misfire",
+          "source_detail": "rule-specific corroborating OBD/DTC evidence",
+          "required_columns": [
+            "mode06_o2_response_margin_pct",
+            "o2_rich_to_lean_ms",
+            "o2_lean_to_rich_ms",
+            "maf_actual_calc_delta_pct_idle",
+            "maf_actual_calc_delta_pct_2500",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "calc_airflow_gps_idle",
+            "calc_airflow_gps_2500"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "case_046",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "sensor_fault",
+          "predicted_family": "no_fault",
+          "source_detail": "expected_rank=6; expected_rule=SF-005; winner_rule=NF-001",
+          "required_columns": [
+            "mode06_o2_response_margin_pct",
+            "o2_rich_to_lean_ms",
+            "o2_lean_to_rich_ms",
+            "maf_actual_calc_delta_pct_idle",
+            "maf_actual_calc_delta_pct_2500",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "calc_airflow_gps_idle",
+            "calc_airflow_gps_2500"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "era1_006",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "sensor_fault",
+          "predicted_family": "no_fault",
+          "source_detail": "expected_rank=6; expected_rule=SF-005; winner_rule=NF-001",
+          "required_columns": [
+            "mode06_o2_response_margin_pct",
+            "o2_rich_to_lean_ms",
+            "o2_lean_to_rich_ms",
+            "maf_actual_calc_delta_pct_idle",
+            "maf_actual_calc_delta_pct_2500",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "calc_airflow_gps_idle",
+            "calc_airflow_gps_2500"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        },
+        {
+          "case_id": "era2_012",
+          "bucket": "TUNABLE_HELD",
+          "expected_family": "sensor_fault",
+          "predicted_family": "catalyst_failure",
+          "source_detail": "**HARD**; ",
+          "required_columns": [
+            "mode06_o2_response_margin_pct",
+            "o2_rich_to_lean_ms",
+            "o2_lean_to_rich_ms",
+            "maf_actual_calc_delta_pct_idle",
+            "maf_actual_calc_delta_pct_2500",
+            "maf_gps_idle",
+            "maf_gps_2500",
+            "calc_airflow_gps_idle",
+            "calc_airflow_gps_2500"
+          ],
+          "buildable_now": false,
+          "abstain_if_absent": true
+        }
+      ],
+      "scoring_gated_count": 14,
+      "bucket_breakdown": {
+        "DATA_GAP_ACQUISITION_GAP": 3,
+        "OUTRANKED_HARD": 6,
+        "TUNABLE_HELD": 5
+      },
+      "expected_family_mix": {
+        "misfire": 1,
+        "sensor_fault": 13
+      },
+      "predicted_family_mix": {
+        "catalyst_failure": 1,
+        "lean_condition": 2,
+        "misfire": 3,
+        "no_fault": 6,
+        "rich_mixture": 1,
+        "sensor_fault": 1
+      },
+      "note": "All 14 C6 rows are SCORING_GATED. The producer/consumer logic is buildable from research, but the top3_family delta is unknowable until Mode $06/O2 timing/MAF plausibility values exist."
+    },
+    "ft8_neighbours": {
+      "touched_families": [
+        "sensor_fault",
+        "no_fault"
+      ],
+      "touched_competition_groups": [
+        "sensor_fault",
+        "no_fault"
+      ],
+      "rules": [
+        {
+          "rule_id": "SF-001",
+          "fault_family": "sensor_fault",
+          "source_file": "labs/comlab/registry/rules/sensor_fault.json",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.85,
+          "passes_cases": [
+            "CSV-025",
+            "TC-046",
+            "YAML-CSV25",
+            "EXT-229",
+            "CASE-014"
+          ]
+        },
+        {
+          "rule_id": "SF-002",
+          "fault_family": "sensor_fault",
+          "source_file": "labs/comlab/registry/rules/sensor_fault.json",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.85,
+          "passes_cases": [
+            "YAML-TC46",
+            "EXT-230",
+            "EXP-N015"
+          ]
+        },
+        {
+          "rule_id": "SF-003",
+          "fault_family": "sensor_fault",
+          "source_file": "labs/comlab/registry/rules/sensor_fault.json",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.82,
+          "passes_cases": [
+            "case_025",
+            "case_026",
+            "case_039"
+          ]
+        },
+        {
+          "rule_id": "SF-004",
+          "fault_family": "sensor_fault",
+          "source_file": "labs/comlab/registry/rules/sensor_fault.json",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.72,
+          "passes_cases": [
+            "EXT-219"
+          ]
+        },
+        {
+          "rule_id": "SF-005",
+          "fault_family": "sensor_fault",
+          "source_file": "labs/comlab/registry/rules/sensor_fault.json",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.65,
+          "passes_cases": [
+            "EXP-N006",
+            "case_041",
+            "EXP-N020"
+          ]
+        },
+        {
+          "rule_id": "SF-006",
+          "fault_family": "sensor_fault",
+          "source_file": "labs/comlab/registry/rules/sensor_fault.json",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.6,
+          "passes_cases": [
+            "case_004"
+          ]
+        },
+        {
+          "rule_id": "SF-007",
+          "fault_family": "sensor_fault",
+          "source_file": "labs/comlab/registry/rules/sensor_fault.json",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.65,
+          "passes_cases": [
+            "EXP-N028",
+            "case_009",
+            "case_037"
+          ]
+        },
+        {
+          "rule_id": "SF-008",
+          "fault_family": "sensor_fault",
+          "source_file": "labs/comlab/registry/rules/sensor_fault.json",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.76,
+          "passes_cases": [
+            "CSV-025",
+            "YAML-CSV25",
+            "TC-046",
+            "EXT-230",
+            "case_046"
+          ]
+        },
+        {
+          "rule_id": "NF-001",
+          "fault_family": "no_fault",
+          "source_file": "labs/comlab/registry/rules/no_fault.json",
+          "competition_group": "no_fault",
+          "base_weight": 0.93,
+          "passes_cases": [
+            "CSV-001",
+            "CSV-005",
+            "PDF-HI-005",
+            "PDF-HI-010",
+            "YAML-TC1",
+            "YAML-CSV5",
+            "YAML-PDF_HI_005",
+            "EXT-220",
+            "EXT-231",
+            "CASE-009",
+            "case_012",
+            "case_028"
+          ]
+        },
+        {
+          "rule_id": "NF-002",
+          "fault_family": "no_fault",
+          "source_file": "labs/comlab/registry/rules/no_fault.json",
+          "competition_group": "no_fault",
+          "base_weight": 0.96,
+          "passes_cases": [
+            "case_049"
+          ]
+        }
+      ],
+      "passes_cases_union": [
+        "CASE-009",
+        "CASE-014",
+        "CSV-001",
+        "CSV-005",
+        "CSV-025",
+        "EXP-N006",
+        "EXP-N015",
+        "EXP-N020",
+        "EXP-N028",
+        "EXT-219",
+        "EXT-220",
+        "EXT-229",
+        "EXT-230",
+        "EXT-231",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "TC-046",
+        "YAML-CSV25",
+        "YAML-CSV5",
+        "YAML-PDF_HI_005",
+        "YAML-TC1",
+        "YAML-TC46",
+        "case_004",
+        "case_009",
+        "case_012",
+        "case_025",
+        "case_026",
+        "case_028",
+        "case_037",
+        "case_039",
+        "case_041",
+        "case_046",
+        "case_049"
+      ],
+      "passes_cases_count": 33,
+      "risk_note": "NF rules touch healthy/no-fault cases. A false C6 boost that regresses NF-001/NF-002 is high-cost because it turns a healthy case into a fault."
+    },
+    "dual_target_and_neighbour": [
+      "CASE-014",
+      "CSV-025",
+      "EXP-N020",
+      "EXT-229",
+      "EXT-230",
+      "TC-046",
+      "YAML-CSV25",
+      "YAML-TC46",
+      "case_046"
+    ],
+    "confounder_disclosure": {
+      "confounders": [
+        {
+          "confounder": "Upstream exhaust leak or intake tract disconnection",
+          "mechanism": "Cluster6 pre-gate requires no obvious upstream exhaust leak or intake tract disconnection. Either can distort O2 or airflow plausibility and mimic lazy-O2/MAF-underread behavior.",
+          "cite": "cluster6.md §Question Three Answer line 145"
+        },
+        {
+          "confounder": "MAF architecture / speed-density vehicle",
+          "mechanism": "If no MAF is fitted, the MAF_UNDERREAD branch is not applicable; the case needs O2 dynamics or abstain, not an invented MAF comparison.",
+          "cite": "cluster6.md §Question Three Answer line 145 and flow lines 215-220"
+        },
+        {
+          "confounder": "Wideband versus switching O2 architecture",
+          "mechanism": "If the upstream sensor is wideband, cross-count logic is not applicable; Mode $06/OEM limits or appropriate active dynamics must drive the decision.",
+          "cite": "cluster6.md §Question Three Answer line 145"
+        },
+        {
+          "confounder": "C4 exhaust-leak / true-lean overlap",
+          "mechanism": "C4 consumes these same C6 O2/MAF dynamics columns to separate exhaust leak, true lean, and biased-O2 lookalikes. C6-SYNTH must mark cases outside sensor/no-fault separability as stay-abstained candidates.",
+          "cite": "V3_SIGNAL_ACQUISITION_SPEC_2026-07-01.md lines 106-112"
+        }
+      ],
+      "mimic_risk_per_case": [
+        {
+          "case_id": "CASE-014",
+          "expected_family": "sensor_fault",
+          "predicted_family": "lean_condition",
+          "mimic_risk": "lean_condition lookalike; dynamic C6 data needed or stay abstained"
+        },
+        {
+          "case_id": "CASE-045",
+          "expected_family": "sensor_fault",
+          "predicted_family": "misfire",
+          "mimic_risk": "misfire lookalike; dynamic C6 data needed or stay abstained"
+        },
+        {
+          "case_id": "CASE-048",
+          "expected_family": "sensor_fault",
+          "predicted_family": "misfire",
+          "mimic_risk": "misfire lookalike; dynamic C6 data needed or stay abstained"
+        },
+        {
+          "case_id": "CSV-025",
+          "expected_family": "sensor_fault",
+          "predicted_family": "no_fault",
+          "mimic_risk": "healthy-vs-under-detected split; NF regression exposure is direct"
+        },
+        {
+          "case_id": "EXP-N020",
+          "expected_family": "sensor_fault",
+          "predicted_family": "rich_mixture",
+          "mimic_risk": "C6-SYNTH must decide separability from oracle fault, not current rank"
+        },
+        {
+          "case_id": "EXT-229",
+          "expected_family": "sensor_fault",
+          "predicted_family": "lean_condition",
+          "mimic_risk": "lean_condition lookalike; dynamic C6 data needed or stay abstained"
+        },
+        {
+          "case_id": "EXT-230",
+          "expected_family": "sensor_fault",
+          "predicted_family": "no_fault",
+          "mimic_risk": "healthy-vs-under-detected split; NF regression exposure is direct"
+        },
+        {
+          "case_id": "PDF-4G-05",
+          "expected_family": "misfire",
+          "predicted_family": "sensor_fault",
+          "mimic_risk": "oracle is misfire lookalike; C6 should not back-solve into sensor fault"
+        },
+        {
+          "case_id": "TC-046",
+          "expected_family": "sensor_fault",
+          "predicted_family": "no_fault",
+          "mimic_risk": "healthy-vs-under-detected split; NF regression exposure is direct"
+        },
+        {
+          "case_id": "YAML-CSV25",
+          "expected_family": "sensor_fault",
+          "predicted_family": "no_fault",
+          "mimic_risk": "healthy-vs-under-detected split; NF regression exposure is direct"
+        },
+        {
+          "case_id": "YAML-TC46",
+          "expected_family": "sensor_fault",
+          "predicted_family": "misfire",
+          "mimic_risk": "misfire lookalike; dynamic C6 data needed or stay abstained"
+        },
+        {
+          "case_id": "case_046",
+          "expected_family": "sensor_fault",
+          "predicted_family": "no_fault",
+          "mimic_risk": "healthy-vs-under-detected split; NF regression exposure is direct"
+        },
+        {
+          "case_id": "era1_006",
+          "expected_family": "sensor_fault",
+          "predicted_family": "no_fault",
+          "mimic_risk": "healthy-vs-under-detected split; NF regression exposure is direct"
+        },
+        {
+          "case_id": "era2_012",
+          "expected_family": "sensor_fault",
+          "predicted_family": "catalyst_failure",
+          "mimic_risk": "catalyst_failure lookalike; dynamic C6 data needed or stay abstained"
+        }
+      ],
+      "c4_dependency": "C4B consumes the C6 O2/MAF dynamics columns; landing C6 unblocks half of C4B's column ask but does not itself decide C4."
+    },
+    "grounding_strength": [
+      {
+        "signal": "Mode $06 oxygen-sensor monitor margin",
+        "threshold": "Use the ECU's stored min/max acceptable band; low or exceeded margin to the vehicle-specific limit emits O2_LAZY_OR_BIASED",
+        "grounding": "standardized-transport / manufacturer-specific numeric limit",
+        "feasibility_tier": "Tier A: generic OBD-II Mode $06 where exposed",
+        "risk_note": "Strong transport standard; numeric pass/fail limit remains vehicle-specific."
+      },
+      {
+        "signal": "Forced rich→lean / lean→rich O2 response timing",
+        "threshold": "Prefer vehicle Mode $06/OEM limit; absent that, longer-than-expected transition is positive evidence. Research names the direction, not a fleet-wide millisecond fail line; 849 ms / <150 ms examples must not be treated as universal.",
+        "grounding": "manufacturer-typical (direction strong, universal ms bound weak)",
+        "feasibility_tier": "Tier A if ECU monitor decisive; Tier C if scope timing required",
+        "risk_note": "Direction is strong; do not freeze a universal millisecond threshold."
+      },
+      {
+        "signal": "MAF actual vs calculated airflow plausibility",
+        "threshold": "Sustained measured-MAF shortfall greater than roughly 10-15% versus modeled airflow at BOTH points emits MAF_UNDERREAD",
+        "grounding": "empirical-inferred (component accuracy anchored; vehicle threshold provisional)",
+        "feasibility_tier": "Tier A if PID set available; otherwise Tier C modeled-airflow support",
+        "risk_note": "Provisional producer-tuning risk; validate 10-15% band on real vehicles."
+      },
+      {
+        "signal": "Static-only O2/MAF evidence",
+        "threshold": "Static-only values are rejected as a separator; emit SENSOR_HEALTH_UNPROVEN_ABSTAIN",
+        "grounding": "physics/regulatory rationale (dynamic inconsistency required)",
+        "feasibility_tier": "Abstain fallback",
+        "risk_note": "Static-only inputs are insufficient; abstain is the intended outcome."
+      }
+    ],
+    "code_landed_neq_score_moved": "The C6 producer emit rule + consumer map are BUILDABLE_NOW from cluster6.md and unit-testable on synthetic SensorDynamicsState vectors. That is CODE_LANDED. SCORE_MOVED on these 14 cannot be shown until owner/synthetic C6 values exist; the two must never be conflated.",
+    "abstain_fallback": "If only static O2/MAF values are supplied, the case stays abstained at MARGIN=0.02. Dynamic inconsistency is the separator for C6."
+  },
+  "provenance": {
+    "read_only": true,
+    "corpus_changed": false,
+    "yardstick_minted": false,
+    "rules_edited": false,
+    "producers_wired": false,
+    "values_synthesized": false,
+    "abstain_dial_changed": false,
+    "run_suite_touched": false,
+    "vault_touched": false,
+    "graphify_run": false
+  }
+}

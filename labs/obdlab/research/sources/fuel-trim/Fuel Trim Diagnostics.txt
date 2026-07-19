@@ -1,0 +1,399 @@
+Fuel Trim Diagnostics
+Using Fuel Trims during a diagnostic plays an important function in
+plotting a trend, be it either a RICH or LEAN trend. Being able to
+interpret your scanner Fuel Trim Data requires a basic knowledge of the
+interaction of Short Term Fuel Trim and Long Term Fuel Trim data.
+For the purpose of this discussion paper, we will use references to the
+GMH VT Commodore V8 and the VT Series II Gen III V8.
+OBD 1
+Pre OBDII GMH injection systems provided a means of fuel monitoring by the Electro nic
+Control Unit (ECU).
+The fuel monitoring system allowed for corrections to the base fuel injection “On Time” of the
+injectors over time i.e. as the engine run parameters altered over the life of the engine , the
+systems fuelling would adapt to suit those running conditions.
+Scanners used two data streams which represented the ECU recorded fuel monitor:
+ Integrator
+ Block Learn
+The Integrator value is the referenced Short Term Fuel Correction and the Block Learn is
+the referenced Long Term Fuel Correctio n.
+Hence, we could now reference the two data streams as:
+ Integrator = Short Term Fuel Trim
+ Block Learn = Long Term Fuel Trim
+The data stream represented by the scan tool is expressed as a numeric value of 0 to 255.
+If there was no fuel correction occur ring in either Block Learn or Integrator, the numeric value
+would centre at 128.
+If the ECU had to ADD fuel to either the Integrator or the Block Learn to maintain a
+stoichiometric balance (Air/Fuel Ratio), the numeric value would be between 129 and 255.
+If the ECU had t o SUBTRACT fuel from either the Integrator or Block Learn, the numeric
+value would be between 0 and 127.
+Numeric Fuel Trim Corrections
+Subtract Fuel 128 Add Fuel
+154 179 205 230
+255
+102775126
+0
+
+OBD II
+The implementation of increased of vehicle tailpipe emis sion control led to a change in
+industry standards.
+A vehicles computer power inc reased, the number of Oxygen Sensors fitted to vehicles
+increased, vehicle globalisation was growing etc. so a new recognised set of rules was
+required. Thus, the OBD II standards were introduced.
+With the OBD II standards in plac e, new nomenclature was also introduced. Terms such as
+Block Learn and Integrator and the way these were viewed and measured on your scanner
+also changed.
+However, the transition to new naming and viewed measurements uses an application of the
+same set of general rules as used by OBD 1.
+Block Learn is now known as Long Term Fuel Trim (LTFT) and Integrator as Short Term Fuel
+Trim (STFT).
+ Block Learn = LTFT
+ Integrator = STFT
+The measurement values are now expressed as a percentage when viewed on your scanner.
+Instead of using a range of 0 to 255, the range is now 0 to -100% and 0 to +100%
+Percentage Chart
+Fuel Trim Correction as a Percentage
+-100% 0% 100%
+-80% -60% -40% -20% +20% +40%+60%+80%
+Subtract Fuel Add Fuel
+Numeric and Percentage Comparison Chart
+Numeric Fuel Trim Corrections
+Subtract Fuel 128 Add Fuel
+154 179 205 230
+255
+102775126
+0
+Fuel Trim Correction as a Percentage
+-100% 0% 100%
+-80%-60% -40% -20% +20%+40%+60%+80%
+Subtract Fuel Add Fuel
+
+OBD II has specific monitoring of the fuel trim corrections. If the system detects problems with
+the air/fuel ratio, the syst em will log a Data Trouble Code (DTC) and turn on the vehicle
+dashboard Malfunction Indicator Lamp (MIL).
+Note: OBD II fuel trim data is also stored in your s canner Freeze Frame Data mode if the
+system is true OBD II. Many Australian vehicles may incorpor ate the OBD II 16 pin connector
+but that does not necessarily mean the system is OBD II compliant. Always check the
+scanner Freeze Frame mode to see if the system supports the Fuel Trim data. If it is not
+supported, then the system is unlikely to be OBD II compliant.
+Comparison of Fuel Trim data for V type engines when the system utilises fuel system
+monitoring is a good way to see if a problem exists on one bank or is affecting both banks.
+STFT and LTFT values will be displayed by number e.g. STFT B1, STFT B2.
+Remember, Fuel Trim data contained in either scanner Freeze Frame mode , or, that
+contained in Enhanced Data mode is of vital importance , so always check both scanner
+modes during diagnostics.
+Fuel Trim Data Storage
+To enable the correct air/f uel ratio , (stoichiometry = 14.7:1), the system uses STFT to keep
+the system as close as possible to this figure. STFT is known as a volatile value. STFT values
+are usually erased when the ignition is switched off. Upon engine start and run, the STFT
+values are restarted.
+LTFT is a learned value and stored in the Power Train Control Module (PCM) Keep Alive
+Memory (KAM). The LTFT values stay stored unless there is an interruption to the PCM
+power supply or you use your scanner to reset the LTFT values.
+ STFT = Values are volatile (erasable)
+ LTFT = Values stay in PCM KAM
+STFT and LTFT Operation
+STFT relies on the PCM receiving input data from the Oxygen Sensors. To keep the fuel
+system as near as possible to the air/fuel ratio (stoichiometric), PCM STFT operation makes
+constant adjustments to the injection system i.e. injector or injectors ms ‘ON’ time. STFT
+corrections are made when the system enters CLOSED LOOP operation.
+If the Oxygen Sensor (O²) data input to the PCM indicates a decrease in the O² volt age, an
+increase in STFT will occur.
+If the O² Sensor data input to the PCM indicates an increase in the O² voltage, a decrease in
+STFT will occur.
+ Decrease in O² voltage = Increase in STFT
+ Increase in O² voltage = Decrease in STFT
+
+To examine this in its context, let us consider this example:
+The vehicles fuel pump begins to fail, delivering less and less fuel. The PCM is monitoring the
+general trend and to compensate , shifts the STFT to add more fuel by keeping the injector or
+injectors’ ms ‘ON’ time longer and longer.
+If the PCM detects that the trend is adding fuel all the time, the PCM compensates by moving
+the STFT corrections to an earlier start point in the enrichment correction. By doing so, the
+STFT corrections call for the PCM to calcul ate and enable LTFT , which in this example ,
+allows the LTFT to shift richer.
+Now we can see that LTFT follows STFT and if we monitor the trims trend s carefully, the
+trends provide powerful data to help in the diagnostic.
+If the combined trim corrections e xceed the pre programmed allowable limits the dashboard
+MIL will illuminate and a DTC will store in the PCM.
+This is known as Adaptive Limits.
+Combined STFT and LTFT correction can compensate for rich and lean trends , but, only to a
+certain point. PCM pre determined control is programmed, and, when that limit is reached and
+a severe imbalance with the air/fuel ratio still persists, the PCM will store the appropriate DTC.
+ LTFT follows STFT
+ Monitor fuel trim data with these options; use your Hanatech sc anner to
+record/playback the trim data, use the Hanatech scanner graphing mode or use
+the Hanatech Host-Pro PC programme to record/playback trim data.
++100% ADD FUEL
+-100% SUBTRACT FUEL
+0%
+STFT LTFT
+DTC SET AREA
+DTC SET AREA
+STFT – LTFT ADAPTION CHART
+
+General Information – GMH
+Now that you are aware of the basics of STF T and LTFT, let us look at the way the trims are
+handled with a GMH vehicle. For the purpose of this general discussion we will use
+references to the VT V8 and VT Series II Gen III.
+STFT
+To recap: STFT represents injector ms ’ON’ time being corrected bas ed on data input to the
+PCM from the O² sensors.
+During an engine cold start the system is in ‘Open Loop’ mode. Base fuel calculations by the
+PCM from various sensors , (TPS, RPM, ECT, MAF etc.), allows for injector ms ‘ON’ time until
+the O² sensors reach an operating temperature of approximately 315°C.
+At this time STFT and LTFT are disabled. Your Hanatech scanner will show the trims as
+reading ‘0%’, ‘Disabled’ etc.
+At approximately 600°C, the O² sensors normal operating temperature, the O² sensor being
+positioned to sample oxygen after combustion in the exhaust gas stream, produces a varying
+voltage which is sent to the PCM. The PCM uses the voltage dat a as an indication as to what
+has happening during combustion in the engine cylinders combustion chambe rs.
+At this point the PCM will change from ‘Open Loop’ mode to ‘Closed Loop’ mode. Watch your
+scanner data to see the data stream change modes. PCM STFT mode will now constantly
+monitor the O² data signal so that the PCM can control inject or ms with greater accuracy than
+when the PCM has control during ‘Open Loop’.
+ To maintain the air/fuel ratio, (stoichiometric = 14.7:1), and aid in keeping
+correct catalytic converter efficiency, STFT corrections are based on O² sensor
+data input to the PCM.
+ A STFT valu e of ‘O%’ is the same as an Air/Fuel Ratio of 14.7:1 and an average
+O² Sensor reading of 450 mV.
+Any change in the STFT position of ‘0%, (+ or -), is an indicatio n the base fuel injector ms is
+being corrected. The theoretical normal operating range o f STFT is between -22% and +25%
+and any %value outside of this range normally indicates a malfunction.
+note: the above statement contains the word theoretical. Real world application of the range
+of -22% to +25% of STFT is not absolute. We have found a range of -10% to +25% to be a
+worthwhile range to monitor.
+Within this range we have found that there is further range within in the -10% to +25% to aid
+in diagnostics.
+We know that a STFT reading a (minus -) value is telling us the system is reducing fuel and a
+(plus +) % value is adding fuel. But the question is why? I s it because of a particular fault with
+fuelling or could it be caused by a mechanical or ignition failure?
+Here is the range of STFT that will help to decide your path in the diagnostic. Use t his as a
+sort of ‘Rule of Thumb’ if you will.
+For ignition/mechanical miss-fire: - 10% to +15% and fuelling: -10% to +15% / +25%.
+Lets us examine this a little further; a miss -fire condition results in an excess in O² in th e
+exhaust gas stream. During miss-fire, blasts of O ² are detected by the O² sensor. The O²
+
+voltage will drop to a low voltage. The PCM will interpret this low voltage as a low air/fuel ratio
+and drive the injector ms ‘ON’ time wider to add fuel to maintain the correct air/fuel ratio. So in
+effect a +% of t he STFT is occurring. The result? Addition of fuel! A nd if this condition were
+constant enough, a high STFT % value would occur.
+What would occur if the miss -fire were intermittent? STFT corrections would include (plus +)
+corrections and (minus -) corrections. This would result in a lesser STFT % correction and the
+STFT % value would be of a lower value.
+Another question; if in a V type engine and the engine banks have O² sensors for each bank,
+could the influence of one bank O² affect the other the inject ion ms ‘ON’ time of the other
+bank?
+The answer is yes, if the systems control programming strategy is so designed. So, be aware
+of this and monitor multi STFT and LTFT modes and the relevant injector ms ‘ON’ times.
+Another example of fuel trim correction ; the fuel filter has become restrictive. Fuel pressure
+and flow gradually becomes less and less. The lack of Hydrocarbon s, (HC), during
+combustion will result in excess O² in the exhaust stream causing the O² sensor voltage data
+to the PCM to recognise a ‘LEAN’ air/fuel ratio that is not correct for the particular drive mode.
+The PCM will shift the STFT to a +% value thus allowing injector ms ‘ON’ time to allow more
+fuel to be injected. If the enrichment trend continues, the PCM will try to maintain fuel control,
+resetting of STFT % value to 0% until the O² sensor data reaches above 450mV. This is a
+PCM strategy that continues until the pre -programmed Adaptive Limit is reached i.e. the
+PCM no longer is able to control the air/fuel Ratio.
+Interaction of STFT and LTFT – GMH
+As we kno w from the basic introduction to STFT and LTFT , they are PCM monitored trends.
+LTFT trend follows the STFT trend.
+To recap: LTFT is used for adjustment to engine aging, engine variation and fuel control over
+time. LTFT correction only occurs during ‘Closed Loop’ mode.
+Using the previous example of a restricted fuel filter; As STFT correction attempts made by
+the PCM climb above 0%, (let’s say +2% ) and stays there for period a time , the STFT will
+scale back to 0% as the PCM attempts to maintain the correct air/fuel ratio.
+If the fuel flow is restrictive enough and the STFT +% trend exceeds the adaptive threshold,
+(let’s say +8%), and the pre programmed criteria is met for the time held for this value, the
+PCM will shift the LTFT % value, (let’s say to +10%) , and wait to see if the STFT % value will
+go back to 0%. If after set period time this does not occur, STFT and LTFT limits will reach
+their respective limits and a DTC will set.
+In the case of the VT V8, DTC’ s set could be DTC 44, (RH Lean Exhaust Indicated), 45 (RH
+Rich Exhaust Indicated ), DTC 64 (RH Lean Exhaust Indicated), DTC 65 (LH Rich Exhaust
+Indicated). If these DTC’s are set, the PCM will revert to ‘Open Loop’ mode. In our restricted
+fuel filter example, if the reduced flow was great enough, the ‘Lean’ DTC’s would be set.
+note: The PCM will set and hold the STFT to 0% during power enrichment , (Wide Open
+Throttle – WOT), this is done to prevent PCM LTFT correction while WOT is occurring.
+The PCM retains learned LTFT values in its LTFT memory cells. The VT V8 uses data from
+the Mass Air Flow sensor , (MAF), and engine rpm to determine whic h LTFT cell in which to
+operate. An interruption to PCM power supply, scanner reset of LTFT or DTC erasure will
+reset PCM learned LFTF to 0%.
+
+The VT Series II Gen III PCM system operation follows the basic strategy of the VT V8 but
+uses variations in system control.
+Being a Speed Density System, let u s review a few basics with a description of a Speed
+Density System.
+The Gen III PCM requires specific sensors data input s for basic fuel management : engine
+speed, manifold absolute pressure and inlet air temperature.
+Engine speed is derived from the ignition system, (rpm), air density is derived from the
+temperature of the air entering the engine (Inlet Air Temperature Sensor - (IAT) and Manifold
+Absolute Pressure (MAP) sensor.
+The IAT sensor works in conjunction with the MAP to establish the air density.
+As inlet air temperature changes and inlet manifold changes occur, the sensors data is used
+by the PCM to control injector pulse width.
+The speed density system is also used to monitor Mass Air Flow (MAF) operation i.e.
+ To check for MAF malfunctions.
+ To allow the PCM to take control of fuel management when there is a malfunction of
+the MAF.
+STFT fuel corrections of -99% to +99% are the theoretical % values to which can be observed
+with scanner data. A deviation from 0% +99% equals ‘l ean’ and a deviation from 0% to -99%
+equals ‘rich’.
+STFT values changes the injector pulse width by var ying the ‘Closed Loop’ injector base
+pulse width equation.
+As STFT corrections take place and if the corrections exceed a pre determined % value and
+time held, the following DTC’s will set:
+ DTC P0171 (Bank 1 too lean)
+ DTC P0172 (Bank 2 too rich)
+ DTC P0174 (Bank 2 too lean)
+ DTC P0175 (bank 2 too rich)
+If LTFT correction exceeds the pre determined % value and time held, the following DTC’s will
+set:
+ DTC P0171 (Bank 1 too lean)
+ DTC P0172 (Bank 1 too rich)
+ DTC P0174 (Bank 1 too lean)
+ DTC P0175 (Bank 2 too rich)
+Under WOT conditions, the PCM resets STFT to 0% and is held there so as to not allow the
+‘Closed Loop’ factor and LTFT to influence and correct for the power enrichment mode.
+When a PCM DTC is set there will be DTC data stored in Freeze Frame mode. Re member to
+check both History DTC mode, Enhanced data mode and Freeze Frame mode. Do not erase
+DTC’s without first taking a notation the stored DTC data.
+note: The Gen III PCM utilises programmed software to enable ‘Field Service Mode’. If the
+diagnostic test terminal, (16 pin), is grounded while the engine is running, Field Service mode
+will be activated and you can run diagnostics without setting new DTC’s.
+
+GMH Long Term Fuel Trim Cell Descriptive
+The PCM LTFT % as we know allows for (plus + ), and (m inus -) corrections. The PCM
+software programmed LTFT is divided into a matrix of cells and these cells are arranged by
+MAF and Engine Speed.
+Each cell is arranged so that each parameter (MAF and RPM) corresponds to a region on a
+MAF versus RPM table. The nominated value of 0% is given to LTFT for each region.
+As the engine is accelerated or decelerated the LTFT calibration will shift into a different cell.
+STFT will follow into the shifted cell. However, STFT corrections will only be of a lesser time
+value for what ever cell the LTFT has moved to.
+Typically for the VT V8 when the engine is in idle mode you will see one of two cell values on
+your Hanatech scanner while viewing the data stream.
+Vehicles with automatic transmission and if canister purge mode is in eff ect, you will see cell
+0 and if canister purge mode is not operational, you will see cell 17.
+Respectively, for manual transmission vehicles , you will see cell 16 or cell 33 during engine
+idle mode.
+Whatever cell the engine is operating in, the PCM will monitor the LTFT value of that cell and
+attempt to correct the injector ms ‘ON’ time. Typically if STFT stays above/below 0%, LTF T %
+values will be higher in all cells.
+Remember, use STFT % values for real time correction and LTFT % values (for each cell) to
+see if a trend is developing with the fuel control over time.
+LTFT is the learned value , so look at the LTFT % value throughout the engines entire modes
+of operation. If the LTFT % value shows rich/lean only at part throttle, concentrate on those
+components that would affect the part throttle operating range.
+Know the STFT and LTFT DTC Setting Criteria
+DTC’s are set according to predetermined software programming for the PCM. We need the
+correct information on the DTC setting criteria and also a di agnostic path to analyse why the
+DTC set and the ‘fix’ to effect the correct repair for the particular DTC or range of stored
+DTC’s.
+Technical reference information (manuals, CD’s etc.) provides that means. Not only will you
+learn the system control, you will also learn the correct diagnostic approach and repair
+techniques.
+Mount AutoEquip supports a full range of technical references. Use the Technical Support
+page form or phone Mount AutoEquip to reference pricing and availability of technical
+resources.
+Let’s examine a typical dia gnostic for DTC P0171 , DTC P0174 on a VT Series II Gen III
+engine.
+DTC P0171 (Fuel System Lean Bank 1)
+We know DTC P0171 sets because a fuel trim +% value has been adding fuel due to lean
+condition i.e. longer injector ms ‘ON’ time enrichment correction due to ‘lean’ run problems.
+
+note: DTC P0174 (Fuel System Lean Bank 2) may also set with a DTC P0171.
+We must be aware of any PCM DTC run conditions (predetermined PCM programmed
+conditions) before attempting a repair for DTC P0171 - DTC P0174.
+DTC P0171/4 requires a range of DTC’s not to be present before attempting a diagnostic. If
+any of the DTC’s below are set, note them down and carry out the appropriate repairs.
+P0101, P0102, P0103, P0107 P0108, P0112, P0112, P0113, P0117, P0118, P0121, P0122,
+P0123, P0335, P0336, P0351, P0352, P0353, P0354, P0355, P0356, P0357, P0358, P1111,
+P1112, P1258 - (refer to a fault code chart for DTC’s definitions).
+Other PCM DTC run conditions:
+ Engine coolant temperature between 50°C and 115°C
+ Barometric pressure is more than 74kPa
+ Mass air flow is between 5 g/s and 90 g/s
+ Manifold pressure is between 26 kPa and 90 kPa
+ Intake air temperature is between -20°C and 90°C
+ Engine rpm is between 400 rpm and 3000 rpm
+ Throttle Position Switch (TPS) angle is less than 90%
+ Vehicle speed is less than 137 km/h
+The technical resource information on DTC P0171 /4 as provided by GMH is quite
+comprehensive and any qual ity technical resource should include the same DTC run criteria.
+Contact Mount AutoEquip for pricing and availability of technical resources.
+The above run criteria (less the noted DTC’s) will set the DTC P0171 /4 if all the above
+required run conditions are present for 6 seconds AND if the average LTFT cells % values are
+above a predetermined threshold.
+The action the PCM will carry out on a failure during the diagnostic run is: Dashboard MIL is
+illuminated and the PCM will record data parameters in Freeze Frame mode during the failure
+condition.
+Now we know the importance of scanner Freeze Frame data referred to earlier in this
+discussion paper. Recorded data in Freeze Frame mode should be noted down. If the
+problem is of an intermittent type, you can operate the vehicle according to the saved Freeze
+Frame data in an attempt to replicate the conditions that is causing the DTC’s to set.
+note: If after 3 consecutive vehicle trips and the PCM diagnostic check does not see a failure
+with the system within the same conditions for running the DTC as it last saw, the PCM will
+turn the dashboard MIL off. So again, if the DTC was tripped by the PCM and later the 3 trip
+detection was proved to have corrected itself by the PCM , please look at the both DTC
+History mode and Freeze Frame mode during a diagnostic.
+However, be aware that the dashboard MIL may remain ‘ON’ longer than the 3 trips if the last
+PCM diagnostic records a failure during a non typical driving condition. Check the Freeze
+Frame data for the last failure conditions.
+The DTC History mode /Freeze Frame mode can provide valuable diagnostic information,
+especially, when you are trying to trace an intermittent problem.
+Also of note; the PCM programming allows for History DTC’s to be automatically erased after
+40 consecutive warm up cycles, if no emission related PCM diagnostic failures are detected
+during this time.
+
+Diagnostic Direction
+If DTC P0171 and P0174 are set together:
+The DTC’s descriptions are that both engine banks are operating ‘LEAN’. This would indicate
+that the PCM has been using Fuel Trim s to add fuel in an attempt to correct the air/fuel ratio
+but has reached adaptive limits thus logging the DTC’s.
+Any time these DTC’s are set together could indicate: Incorrect delivery of fuel, the fuel supply
+is very low, engine vacuum leaks.
+Before you attempt repairs, we advise that you confirm that the fault is indeed present.
+Power up your Hanatech scanner and with the correc t vehicle system selected . Start the
+engine. Allow the engine to reach operating temperature. Monitor relevant sensor data until
+‘Closed Loop’ mode is attained.
+Use the many options available with yo ur Hanatech scanner to monitor the scanner data
+stream (record/playback, Graph Mode, Host-pro etc.).
+As a further option you should also monitor the vehicles exhaust tailpipe emissions. The
+Hanatech 4/5 Gas Analyser is the ideal tool to compliment your Hanatech scanner. Contact
+Mount AutoEquip for further details.
+Once the system has reached ‘Closed Loop ’, check LTFT to see if PCM has reached
+adaptive limit (+25% LTFT). If the LTFT is at the limit, turn the engine ‘OFF’.
+With the ignition turned ‘ON’ and the engine not running, select Freeze Frame data to check
+the parameters recorded. You could also check live data during the L TFT adaptive check
+phase, but, if the problem is intermittent and adaptive limit is not reached , the DTC’s will not
+set. However, you will still be able to plot the STFT and LTFT trend.
+At this point, your Freeze Frame data record shows DTC’s P0171 and P0174 and the
+conditions that they set at. We know both engine banks are lean so we would check anything
+that will affect both banks.
+Vacuum leaks, fuel supply would require investigation for these two DTC’s.
+Smoke Detector , Gas Analyser, Fuel Pressure gauge, Low Current Clamp and Oscilloscope
+are the recommended tooling for the systems analysis/repair.
+Let’s suppose the s ystem has a vacuum leak at the T hrottle Body. Both engine banks would
+be affected. A visual inspection does not readily find the leak. Your Hanatech Smoke Detector
+is the ideal tool to use in this instance.
+Power up the Hanatech Smoke Detector, see the applied smoke leaking from the p erforated
+hose. How simple is that!
+Contact Mount AutoEquip for details on the Hanatech Smoke Tester.
+Let’s suppose the system has a fuel supply problem . You could monitor fuel supply with the
+Fuel Pressure Gauge, (some times this will be the only way) , but a far easier and cleaner way
+to approach this is to use ‘Current Ramping’. The Low Current Probe and O scilloscope can
+find fuel pump problem s in minutes. Incorrect current waveform s depicting pump bru sh,
+bearing, commutator wear, incorrect amperage (high/low) and fuel pump speed are just a few
+things you can do with the Low Current Probe and Oscilloscope.
+Contact Mount AutoEquip for details on available current probes and oscilloscopes.
+
+If your testing finds incorrect fuel pump operation or fuel supply restrictions and/or vacuum
+leaks, effect the appropriate repairs.
+Power up your scanner and clear any DTC information.
+Re run the vehicle simulating your previous test parameters.
+If the DTC’s do not re set, consider this an effective repair.
+Obviously this discussion paper hasn ’t the scope to cover every aspect of these two DTC ’s
+but is intended to give the viewer a basic overall look at GMH STFT and LTFT interaction,
+Tooling, Diagnostic Direction etc.
+© Mount AutoEquip
+Acknowledgment – GMH Australia
+Composer – Kevin Greenfield – Hanatech Australia – Technical Assistance

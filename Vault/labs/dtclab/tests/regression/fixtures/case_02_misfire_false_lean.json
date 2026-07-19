@@ -1,0 +1,42 @@
+{
+  "_description": "P0300 random misfire + P0171 false-lean masking. Unburned O2 from misfire reaches upstream sensor, drives STFT positive, and produces P0171 as a secondary code. Both MISFIRE_HISTORY and LEAN_HISTORY are expected; severe timing retard flag is set.",
+  "_source_case": "cases/FFFT$06.md",
+  "raw_dtcs": {
+    "$03": ["P0300", "P0171"],
+    "$07": [],
+    "$0A": []
+  },
+  "raw_freeze_frame": {
+    "calculated_load_pct": 55.0,
+    "engine_rpm": 3200,
+    "coolant_temp_c": 88.0,
+    "short_term_ft1": 25.0,
+    "long_term_ft1": 5.0,
+    "manifold_pressure_kpa": 65.0,
+    "vehicle_speed_kmh": 80,
+    "ignition_advance_deg": -15.0,
+    "intake_air_temp_c": 30.0,
+    "maf_gps": 12.0,
+    "throttle_pos_pct": 35.0,
+    "fuel_system_status": "CL"
+  },
+  "raw_mode06": {
+    "MID_A2_TID_0B": 8.0
+  },
+  "dna_view_json": null,
+  "sanitize_kwargs": {
+    "codes_cleared": false,
+    "active_mil": true,
+    "mil_flashing": false,
+    "chemical_state": null
+  },
+  "expected_routing_tags": ["MISFIRE_HISTORY", "LEAN_HISTORY", "CYLINDER_FLUID_MISFIRE"],
+  "expected_hfc": "HISTORICAL_LOAD_FAULT",
+  "expected_flags": {
+    "ff_open_loop_at_fault": false,
+    "ff_ect_warmup": false,
+    "ff_timing_retard_severe": true,
+    "ff_load_high_at_low_rpm": false,
+    "ff_codes_cleared_invalidated": false
+  }
+}

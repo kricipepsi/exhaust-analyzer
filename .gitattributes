@@ -1,0 +1,19 @@
+# Line-ending normalization — see CLAUDE.md "Environment Rules".
+# Store and check out LF so the workspace is LF everywhere (incl. the sandbox
+# view of the mounted host tree). Windows editors handle display/CRLF locally.
+* text=auto eol=lf
+
+# Binary files git must never normalize.
+*.db    binary
+*.sqlite binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary
+*.gz    binary
+*.zip   binary
+*.xlsx  binary
+*.pptx  binary
+*.docx  binary

@@ -1,0 +1,242 @@
+hey guys today I want to show you 11
+tips that instantly improve your Python
+code I show a lot of best practices that
+make your code much cleaner and more
+pythonic if you find these tips helpful
+please please leave me a like and
+consider subscribing to the channel
+this helps me more than you think so
+let's jump right into it
+number one iterate with enumerate
+instead of range Ling if you need to
+iterate over a list and need to track
+both the index and the current item most
+people would use the range Leng syntax
+so in this example we want to iterate
+over a list check if the current item is
+negative and set the value in our list
+to zero in this case while this syntax
+works it's much nicer to use the
+built-in enumerate function here this
+will return both the current index and
+the current item as a tuple so we can
+directly check the value here and also
+access the item with the index number to
+use list comprehension instead of raw
+for loops let's say we want to create a
+list with certain values in this case a
+list with all the squared numbers
+between 0 and 9 the tedious way would be
+to create an empty list then use a for
+loop to do the iteration do our
+calculation and append the new result to
+the list so a simpler way and also
+faster way to do this is list
+comprehension here we only need one line
+to achieve the same thing in list
+comprehension can be really powerful and
+even include if statements if you want
+to learn more about the syntax and good
+use cases I have a whole tutorial about
+list comprehension that I will link in
+the description number 3 sort complex
+iterables with a built in sorted method
+if you need to sort some iterables so
+for example a list a tuple or a
+dictionary you don't need to implement
+the sorting algorithm yourself you can
+just use the built in sorted function
+this will automatically sort the numbers
+in ascending order it returns a new list
+so if you want to have the
+in descending order you can just use the
+argument reverse equals true as I said
+this works on any iterable so here for
+example we can also use a tuple but note
+that the result will be a list now let's
+say we have a complex iterable so here
+we have a list and inside the list we
+have dictionaries and then we want to
+sort the list according to the H in the
+dictionary for this we can also use the
+sorted function and then pass in the key
+argument that should be used for sorting
+so the key must be a function so here we
+can use a lambda and use a one-line
+function that returns the H number for
+store unique values with sets if you
+have a list with multiple values and
+need to have only unique values a nice
+trick is to convert our list to a set
+like so a set is an unordered collection
+data type that has no duplicate elements
+so in this case it removes all the
+duplicate elements if you know right
+away that you want unique elements like
+here the prime numbers you can create a
+set with curly braces this allows Python
+to make some optimizations and it also
+has some handy methods for calculating
+the intersections and differences
+between two sets number five save memory
+with generators in tip number two I
+showed you list comprehension but the
+list is not always the best choice so
+let's say we have a very large list so
+here we have 10,000 items and we want to
+calculate the sum over all the items we
+can of course do this with a list but we
+might get in trouble with the memory so
+this is a perfect example where we can
+use generators instead similar to list
+comprehension we can use generator
+comprehension that has the same syntax
+but using parentheses instead of square
+brackets a generator computes our
+elements lazily so it produces only one
+item at a time and only when asked for
+it so
+we calculate the sum over this generator
+we see that we get the same correct
+result
+but now let's inspect the size of both
+the list and the generator with a
+built-in sis
+off method for the list we get almost
+90,000 bytes and for the generator we
+will only get 128 bytes because it only
+generates one item at a time so this can
+make a huge difference when working with
+large data so it's always good to keep
+the generator in mind number 6 define
+default values in dictionaries with get
+and dot set default let's say we have a
+dictionary with different keys like the
+item and the price of the item at some
+point in our code we want to get the
+count of the items and we assume that
+this key is also contained in the
+dictionary when we simply try to access
+the key this will crash our code and
+raise a key error so a better way is to
+use the dot gap method on the dictionary
+this will also return the value for the
+key but it will not raise a key error if
+the key is not available instead it
+returns a default value in this case and
+if we don't specify the default it will
+simply return none if you want to ask
+our dictionary for the count and we also
+want to update the dictionary and put in
+the count if it's not available we can
+use the dot set default method this
+returns the default value that we
+specified and the next time we check the
+dictionary this count key is now
+available in our dictionary number 7
+count hashable objects with collections
+counter if you need to count the number
+of elements in your list there is a very
+handy tool in the collections module
+that does exactly this you just need to
+import the counter from the collections
+module and then create your counter
+object with your list as argument if we
+print this then for each item in our
+list we see the according number of
+items that this item appears and it's
+also already sorted with the most common
+item being in front
+this is much nicer than to calculate it
+on our own if you want to get the count
+for a certain item we can simply access
+this item and it will return the
+corresponding count if the item is not
+included and it returns zero it also has
+a very handy method to return the most
+common items which no surprise is called
+most underscore common we can specify if
+you just want the very most common item
+or also the second most common item and
+so on by passing in a number note that
+this will return a list of tuples each
+tuple has the value as first item and
+the count a second item so if you just
+want to have the value of the very most
+common item we first call the most
+common method with argument one we then
+access index 0 in our lists this returns
+the first tuple and then again we access
+index 0 to get the value number 8 format
+strings with F strings this is new since
+Python 3.6 and in my opinion is the best
+way to format a string now we just have
+to write an F before our string and then
+inside the string we can use curly
+braces and XS variables I think this is
+much simpler and more concise compared
+to the old formatting rules and it's
+also faster what's also nice is that we
+can write expressions in the braces that
+are evaluated at runtime so here for
+example we want to print the square
+number of our variable I then we can
+simply write this operation in our F
+string number 9 concatenate strings with
+dot join let's say we have a list with
+different strings and we want to combine
+all elements to one string separated by
+a space between each word the bad way is
+to do it like this define an empty
+string then iterate over the list and
+then append the word and the space to
+the string as you should know a string
+is an immutable element so here we have
+to create new strings each time this
+code can be very
+slow for large lists so you should
+immediately forget this and a much
+better much faster and also much more
+concise way is to use the dot joint
+method this combines all the elements
+into one string and uses the string in
+the beginning as a separator so here we
+use a string with only a space if for
+example we were to use a comma here then
+the final string has a comma between
+each word so yet this syntax is the
+recommended way to combine a list of
+strings into one string number ten merge
+dictionaries with a double asterisk
+syntax this syntax is new since Python
+3.5
+if we have two dictionaries and want to
+merge them into one dictionary we can
+use curly braces and double asterisks
+for both dictionaries so here dictionary
+one has a name and an H and dictionary
+two also has two name and then the city
+if we merge these two dictionaries with
+this concise syntax then our final
+dictionary has all three keys in it
+number 11 simplify if statements with if
+X in list instead of checking each item
+separately let's say we have a list with
+main colors red green and blue and
+somewhere in our code we have a new
+variable that contains some color so
+here C equals red then we want to check
+if this is a color from our main colors
+we could of course check this against
+each item in our list like so but this
+can become very cumbersome and we can
+easily make mistakes for example if we
+have a typo here for red much simpler
+and much better is to use the syntax if
+X in list so here if C in colors this
+will return the correct result as well
+okay so these are all the tips I wanted
+to show you I hope you enjoyed it and
+learned a few new things if you have any
+other good tips please let me know in
+the comments and see you next time bye

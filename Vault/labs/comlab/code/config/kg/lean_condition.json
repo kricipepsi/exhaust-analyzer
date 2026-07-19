@@ -1,0 +1,237 @@
+{
+  "schema_version": "1.0",
+  "fault_family": "lean_condition",
+  "nodes": {
+    "ERR-LC-001": {
+      "fault_name": "vacuum_leak_post_maf",
+      "fault_family": "lean_condition",
+      "component_group": "Air Induction System",
+      "impacted_subsystems": [
+        "Intake Manifold Gaskets",
+        "Vacuum Hose Network",
+        "Throttle Body Gasket"
+      ],
+      "mechanical_failure_mode": "Atmospheric air enters the intake system after the MAF sensor measurement point, adding unmetered air that the ECU cannot account for, causing a permanent lean fuel condition.",
+      "ui_remediation_steps": [
+        "With engine at idle, spray propane or carburetor cleaner carefully around all vacuum hose junctions, intake manifold gasket mating faces, and the throttle body gasket \u00e2\u20ac\u201d RPM change or trim shift confirms the leak location.",
+        "Use a smoke machine to pressurise the intake downstream of the MAF sensor \u00e2\u20ac\u201d visible smoke escaping identifies the leak point without open-flame risk.",
+        "Inspect all vacuum hoses for cracking, hardening, or disconnection, particularly those on the back face of the intake manifold.",
+        "Inspect intake manifold gaskets for distortion (warped plastic intake on high-mileage engines).",
+        "Replace the leaking component. Torque manifold bolts to OEM specification in the correct sequence.",
+        "Verify repair: fuel trim should recover to within \u00c2\u00b15 % within 10 minutes of idle."
+      ],
+      "differential_siblings": [
+        "ERR-LC-002",
+        "ERR-SF-003"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-LC-002": {
+      "fault_name": "maf_sensor_contaminated",
+      "fault_family": "lean_condition",
+      "component_group": "Air Induction System",
+      "impacted_subsystems": [
+        "Mass Airflow (MAF) Sensor Element",
+        "Air Filter Housing",
+        "Fuel Injection Quantity Map"
+      ],
+      "mechanical_failure_mode": "Contamination on the MAF sensor hot-wire or film element reduces its sensitivity, causing it to under-report actual airflow; the ECU injects insufficient fuel for the true air mass, creating a consistent lean condition.",
+      "ui_remediation_steps": [
+        "Inspect the MAF sensor element visually (requires removal from housing) \u00e2\u20ac\u201d look for oil film, dust coating, or spider webs on the hot-wire or film.",
+        "Clean the MAF element with dedicated MAF sensor cleaner spray. Do not use brake cleaner or contact cleaner \u00e2\u20ac\u201d they leave residue.",
+        "Re-test after cleaning: if trims normalise within \u00c2\u00b15 %, contamination was the cause.",
+        "If trims do not normalise after cleaning, the element sensitivity is permanently degraded \u00e2\u20ac\u201d replace the MAF sensor.",
+        "Inspect and replace the air filter if it was bypassed or overloaded (source of contamination).",
+        "Check for oil from a crankcase breather or turbo recirculation hose contaminating the air path before the MAF."
+      ],
+      "differential_siblings": [
+        "ERR-LC-001",
+        "ERR-SF-003"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-LC-003": {
+      "fault_name": "fuel_pump_low_pressure",
+      "fault_family": "lean_condition",
+      "component_group": "Fuel Delivery System",
+      "impacted_subsystems": [
+        "In-Tank Electric Fuel Pump",
+        "Fuel Pressure Regulator",
+        "Fuel Filter"
+      ],
+      "mechanical_failure_mode": "Degraded fuel pump delivers insufficient fuel pressure at the rail, causing fuel starvation under demand \u00e2\u20ac\u201d most severe at stress-idle RPM when fuel flow requirements peak.",
+      "ui_remediation_steps": [
+        "Measure fuel rail static pressure (key-on engine-off) and compare to OEM specification (typically 3.0\u00e2\u20ac\u201c3.5 bar port injection).",
+        "Measure fuel pressure at idle and at 2500 RPM \u00e2\u20ac\u201d if pressure drops more than 0.3 bar under load, the pump is confirmed weak.",
+        "Check the fuel filter first (if accessible and age unknown) \u00e2\u20ac\u201d a clogged filter produces the same low-pressure signature before the pump.",
+        "Perform a fuel pump current draw test \u00e2\u20ac\u201d a pump drawing more than spec current while producing low pressure indicates impeller wear.",
+        "Replace the in-tank fuel pump (and filter if serviceable separately).",
+        "Verify repair: pressure holds at OEM spec at 2500 RPM under load."
+      ],
+      "differential_siblings": [
+        "ERR-LC-004",
+        "ERR-LC-001"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-LC-004": {
+      "fault_name": "clogged_fuel_injector",
+      "fault_family": "lean_condition",
+      "component_group": "Fuel Delivery System",
+      "impacted_subsystems": [
+        "Fuel Injector Nozzle Assembly",
+        "Combustion Chamber (affected cylinder)",
+        "Fuel Trim Balance (Bank-Specific)"
+      ],
+      "mechanical_failure_mode": "Carbon and varnish deposits partially block the injector nozzle orifice, reducing fuel flow below the ECU's commanded quantity and causing a lean mixture on the affected cylinder(s).",
+      "ui_remediation_steps": [
+        "Perform an injector balance test (KOEO pressure drop per cylinder) to identify which injector has restricted flow.",
+        "Perform a cylinder contribution test at idle \u00e2\u20ac\u201d the affected cylinder shows less HC change when disabled.",
+        "Attempt ultrasonic injector cleaning on a bench before replacement \u00e2\u20ac\u201d mild deposits can be cleared.",
+        "If flow rate after cleaning is still > 10 % less than the mean of the set, replace the injector.",
+        "Add a quality fuel injector cleaner to the fuel tank and re-run one full heat cycle before deciding on replacement if symptoms are borderline.",
+        "After replacement, recheck balance test and confirm all cylinders within 5 % of each other."
+      ],
+      "differential_siblings": [
+        "ERR-LC-003",
+        "ERR-MF-005"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-LC-005": {
+      "fault_name": "egr_stuck_open",
+      "fault_family": "lean_condition",
+      "component_group": "Exhaust Gas Recirculation System",
+      "impacted_subsystems": [
+        "EGR Valve Assembly",
+        "EGR Port (Intake Manifold)",
+        "Combustion Charge Composition"
+      ],
+      "mechanical_failure_mode": "Carbon-jammed EGR valve remains open at idle, flooding the intake charge with inert exhaust gas that dilutes the combustible mixture and reduces combustion efficiency.",
+      "ui_remediation_steps": [
+        "Command the EGR valve closed via scan tool (actuator test) and monitor idle quality \u00e2\u20ac\u201d if idle smooths immediately, the valve is confirmed stuck open.",
+        "Remove the EGR valve and inspect the pintle and seat for heavy carbon deposits preventing closure.",
+        "Clean the EGR pintle and housing with carbon solvent if deposits are not hardened. Replace valve if pintle seat is damaged.",
+        "Inspect the EGR cooler (if fitted) for internal leaks \u00e2\u20ac\u201d coolant in the exhaust path produces similar dilution.",
+        "Clean the EGR intake manifold port to remove accumulated carbon deposits that can hold the valve open.",
+        "After repair, run a functional EGR test at 2500 RPM \u00e2\u20ac\u201d a healthy EGR valve causes a slight drop in RPM when commanded open at that speed."
+      ],
+      "differential_siblings": [
+        "ERR-LC-001"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-LC-006": {
+      "fault_name": "exhaust_leak_pre_upstream_o2",
+      "fault_family": "lean_condition",
+      "component_group": "Exhaust System Assembly",
+      "impacted_subsystems": [
+        "Exhaust Manifold",
+        "Exhaust Manifold Gaskets",
+        "Upstream O2 Sensor Signal Path"
+      ],
+      "mechanical_failure_mode": "A crack or failed gasket in the exhaust path upstream of the oxygen sensor allows atmospheric air to enter via venturi pulsing, falsely elevating the O2 sensor reading and driving the ECU into unnecessary rich correction.",
+      "ui_remediation_steps": [
+        "With the engine idling cold, listen for a 'ticking' or 'chuffing' sound from the exhaust manifold area \u00e2\u20ac\u201d exhaust gas escaping through a crack is louder when cold (metal not yet expanded).",
+        "Use an exhaust gas analyser probe near the suspected leak point \u00e2\u20ac\u201d HC reading at the crack (not the tailpipe) confirms escaping combustion gas.",
+        "Inspect all exhaust manifold gaskets visually for carbon soot marks or blowout traces.",
+        "Perform an exhaust system leak test using compressed air with the engine stopped (or smoke machine via the tailpipe with the probe blocked).",
+        "Replace the failed exhaust manifold gasket or weld the cracked manifold as appropriate.",
+        "Verify: after repair, O2 sensor switching pattern should normalise and fuel trims return to \u00c2\u00b15 %."
+      ],
+      "differential_siblings": [
+        "ERR-LC-001",
+        "ERR-SF-001"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-LC-008": {
+      "fault_name": "lean_condition_worn_valve_seals",
+      "fault_family": "lean_condition",
+      "component_group": "Fuel System - Mixture Formation",
+      "impacted_subsystems": [
+        "fuel_delivery",
+        "air_induction",
+        "intake_manifold"
+      ],
+      "mechanical_failure_mode": "True lean combustion confirmed by gas analyser. Air-fuel ratio above stoichiometric from unmetered air entry, insufficient fuel delivery, or sensor-bias-induced fuel trim correction.",
+      "ui_remediation_steps": [
+        "Smoke-test the intake system for vacuum leaks post-MAF.",
+        "Check fuel pressure at idle and under load against OEM spec.",
+        "Inspect fuel filter and pump for flow restriction.",
+        "Verify MAF/MAP sensor readings against known-good values.",
+        "Check O2 sensor switching and fuel trims for sensor-bias-induced lean correction."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-LC-009": {
+      "fault_name": "lean_condition_rich_chemistry",
+      "fault_family": "lean_condition",
+      "component_group": "Fuel System - Mixture Formation",
+      "impacted_subsystems": [
+        "fuel_delivery",
+        "air_induction",
+        "intake_manifold"
+      ],
+      "mechanical_failure_mode": "True lean combustion confirmed by gas analyser. Air-fuel ratio above stoichiometric from unmetered air entry, insufficient fuel delivery, or sensor-bias-induced fuel trim correction.",
+      "ui_remediation_steps": [
+        "Smoke-test the intake system for vacuum leaks post-MAF.",
+        "Check fuel pressure at idle and under load against OEM spec.",
+        "Inspect fuel filter and pump for flow restriction.",
+        "Verify MAF/MAP sensor readings against known-good values.",
+        "Check O2 sensor switching and fuel trims for sensor-bias-induced lean correction."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-LC-010": {
+      "fault_name": "lean_condition_timing_retarded_context",
+      "fault_family": "lean_condition",
+      "component_group": "Engine Mechanical \u2014 Ignition and Cam Timing Assembly",
+      "impacted_subsystems": [
+        "Ignition Timing Control",
+        "Camshaft-to-Crankshaft Phasing",
+        "Timing Chain / Belt and Tensioner Assembly"
+      ],
+      "mechanical_failure_mode": "Retarded ignition or cam timing producing lean-perceived gas chemistry. Late combustion reduces peak cylinder pressure and temperature, leaving unreacted oxygen in the exhaust that the gas analyser reads as excess air (lambda > 1.02). The engine is not truly lean \u2014 combustion ...",
+      "ui_remediation_steps": [
+        "Check base ignition timing with a timing light on cylinder 1 \u2014 compare to the manufacturer specification at warm idle. Retarded timing > 5 degrees from specification confirms the timing is late.",
+        "Verify cam/crank correlation: rotate the engine to TDC on cylinder 1 and confirm that the camshaft timing marks align with the crankshaft timing mark. A misalignment of even one tooth retards all valve events.",
+        "Vacuum gauge at warm idle: a steady but low reading (10-15 inHg) with minimal needle fluctuation is characteristic of retarded valve timing \u2014 the intake valve closes late, reducing the effective compression stroke.",
+        "Inspect the timing chain/belt, tensioner, and guides: a stretched chain shows as a tensioner plunger extended beyond its normal range. A worn belt tensioner allows the belt to flap under load.",
+        "Replace the timing chain/belt, tensioner, guides, and cam/crank sprockets as a complete kit. Re-time the engine to the manufacturer specification after replacement.",
+        "Verify repair: timing marks aligned at TDC, vacuum gauge reads 17-22 inHg at warm idle, gas analyser shows stoichiometric lambda, engine idles smoothly and power is restored under load."
+      ],
+      "differential_siblings": [
+        "ERR-CT-001",
+        "ERR-CT-007"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-LC-011": {
+      "fault_name": "lean_condition_misfire_masked",
+      "fault_family": "lean_condition",
+      "component_group": "Ignition System / Fuel System \u2014 Misfire Differential Diagnosis",
+      "impacted_subsystems": [
+        "Ignition Coil and Spark Plug Assembly",
+        "Fuel Injector Spray Pattern and Flow Rate",
+        "Cylinder Compression Sealing"
+      ],
+      "mechanical_failure_mode": "Ignition misfire producing a lean-appearing gas signature. A cylinder that does not fire leaves the intake charge (air + fuel) unreacted \u2014 the oxygen passes through to the exhaust analyser, creating a lean reading (elevated O2, lambda > 1.02) that mimics a lean-mixture fault. ...",
+      "ui_remediation_steps": [
+        "Identify the misfiring cylinder: use Mode 06 misfire counts or a cylinder-balance test (disable one injector at a time and observe the RPM drop \u2014 the dead cylinder shows no RPM change).",
+        "Swap the ignition coil from the misfiring cylinder to a known-good cylinder \u2014 if the misfire moves, the coil is faulty. If the misfire stays, swap the spark plug next.",
+        "If coil and plug are ruled out: check the fuel injector for the affected cylinder. A noid light confirms the ECU is commanding injection. Measure injector resistance (typically 12-16 ohm) \u2014 an open circuit confirms a dead injector.",
+        "If ignition and fuel are ruled out: perform a compression test. A single low cylinder points to a mechanical fault (valve, ring, head gasket) on that cylinder.",
+        "Once the root cause of the misfire is identified and repaired, the lean-appearing gas signature will resolve \u2014 the analyser was seeing unreacted oxygen from the dead cylinder, not a true lean mixture.",
+        "Verify repair: all cylinders contributing equally (cylinder-balance test), Mode 06 misfire counts at zero, gas analyser shows stoichiometric lambda, HC within normal range (< 100 ppm)."
+      ],
+      "differential_siblings": [
+        "ERR-MF-001",
+        "ERR-LC-004"
+      ],
+      "editor_severity_hint": "REPAIR"
+    }
+  }
+}

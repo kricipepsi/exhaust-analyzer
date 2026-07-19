@@ -1,0 +1,1 @@
+﻿FUEL_TYPE_VALUES: ERROR: 'charmap' codec can't encode characters in position 10-15: character maps to <undefined>

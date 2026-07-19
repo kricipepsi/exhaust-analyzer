@@ -1,0 +1,3 @@
+age: count=4, mean=28.75, min=25.00, max=32.00
+score: count=4, mean=91.45, min=88.00, max=95.50
+temp: count=4, mean=98.60, min=97.80, max=99.10

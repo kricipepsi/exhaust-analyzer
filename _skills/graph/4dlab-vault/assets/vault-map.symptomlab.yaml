@@ -1,0 +1,136 @@
+# SymptomLab vault map - architect-authored. Maps selected SymptomLab notes to vault frontmatter.
+#
+# Signal/noise: only notes with a named, existing consumer are framed. Consumers are the
+# grep-confirmed LIVE readers of SymptomLab's output:
+#   - dnalab/dnalab/assembly.py  -> `from symptomlab import resolve` (VehicleDNA Part B)
+#   - dnalab/dnalab/models.py    -> `SymptomDNA.from_json` (VehicleDNA.symptom_dna field)
+#   - comlab/comlab/core/symptom_router.py -> `route_symptom()` reads
+#       environmental_conditions.{engine_state, occurs_during}
+#   - symptomlab/validator.py    -> `SymptomValidator.validate` (21-pair catalog + axis enums)
+# The quantitative routing/weighting material (COMLab-A/B/F/G) is PROPOSAL-only in the COMLab
+# proposals registry and is NEVER framed here as a live consumer (signal/noise breach).
+
+lab: symptomlab
+module: symptomlab
+
+frame:
+  # ---- design docs (docs/ tier) ----
+  PRD_SymptomLab.md:
+    node_type: prd
+    subsystem: requirements
+    implements: []
+    consumers:
+      - "hld: labs/symptomlab/docs/HLD_SymptomLab.md"
+      - "dnalab: labs/dnalab/dnalab/assembly.py build_vehicle_dna (Part-B producer contract)"
+    drift_guards: []
+
+  HLD_SymptomLab.md:
+    node_type: hld
+    subsystem: architecture
+    implements: []
+    consumers:
+      - "lld: labs/symptomlab/docs/LLD_SymptomLab.md"
+      - "dld: labs/symptomlab/docs/DLD_SymptomLab.md"
+      - "dnalab: labs/dnalab/dnalab/assembly.py resolve() integration"
+      - "comlab: labs/comlab/comlab/core/symptom_router.py route_symptom (SymptomDNA env conditions)"
+    drift_guards: []
+
+  LLD_SymptomLab.md:
+    node_type: lld
+    subsystem: low-level-design
+    implements:
+      - "labs/symptomlab/symptomlab/__init__.py"
+      - "labs/symptomlab/symptomlab/models.py"
+      - "labs/symptomlab/symptomlab/validator.py"
+      - "labs/symptomlab/symptomlab/data/allowed_combinations.yaml"
+    consumers:
+      - "dld: labs/symptomlab/docs/DLD_SymptomLab.md"
+      - "dnalab: labs/dnalab/dnalab/assembly.py resolve() -> VehicleDNA Part B"
+      - "comlab: labs/comlab/comlab/core/symptom_router.py route_symptom (environmental_conditions)"
+    drift_guards:
+      - "labs/symptomlab/tests/unit/test_validator.py"
+      - "labs/symptomlab/tests/unit/test_models.py"
+      - "labs/symptomlab/tests/unit/test_symptomdna_from_json.py"
+      - "labs/symptomlab/tests/unit/test_resolve_isolation.py"
+      - "labs/symptomlab/tests/unit/test_drift_guard.py"
+
+  DLD_SymptomLab.md:
+    node_type: dld
+    subsystem: detailed-design
+    implements:
+      - "labs/symptomlab/symptomlab/__init__.py"
+      - "labs/symptomlab/symptomlab/models.py"
+      - "labs/symptomlab/symptomlab/validator.py"
+      - "labs/symptomlab/symptomlab/data/allowed_combinations.yaml"
+    consumers:
+      - "dnalab: labs/dnalab/dnalab/assembly.py resolve() -> VehicleDNA Part B"
+      - "dnalab: labs/dnalab/dnalab/models.py SymptomDNA.from_json -> VehicleDNA.symptom_dna"
+      - "comlab: labs/comlab/comlab/core/symptom_router.py route_symptom (environmental_conditions)"
+    drift_guards:
+      - "labs/symptomlab/tests/unit/test_validator.py"
+      - "labs/symptomlab/tests/unit/test_models.py"
+      - "labs/symptomlab/tests/unit/test_symptomdna_from_json.py"
+      - "labs/symptomlab/tests/unit/test_resolve_isolation.py"
+      - "labs/symptomlab/tests/unit/test_drift_guard.py"
+
+  # ---- wiki notes (wiki/ tier) ----
+  00_index.md:
+    node_type: wiki
+    subsystem: wiki-index
+    implements: []
+    consumers:
+      - "vault: Vault/_bases/modules.base (routing index over SYMWIKI-01..04 framed notes)"
+    drift_guards: []
+
+  01_symptom_catalog.md:
+    node_type: wiki
+    subsystem: symptom-catalog
+    implements:
+      - "labs/symptomlab/symptomlab/data/allowed_combinations.yaml"
+      - "labs/symptomlab/symptomlab/validator.py"
+    consumers:
+      - "symptomlab: labs/symptomlab/symptomlab/validator.py SymptomValidator.validate (21-pair catalog enforcement)"
+      - "dnalab: labs/dnalab/dnalab/assembly.py resolve() (catalog-validated triage selection)"
+    drift_guards:
+      - "labs/symptomlab/tests/unit/test_validator.py"
+      - "labs/symptomlab/tests/unit/test_drift_guard.py"
+
+  02_environmental_axes.md:
+    node_type: wiki
+    subsystem: environmental-axes
+    implements:
+      - "labs/symptomlab/symptomlab/models.py"
+    consumers:
+      - "symptomlab: labs/symptomlab/symptomlab/validator.py SymptomValidator.validate (axis-enum validation)"
+      - "comlab: labs/comlab/comlab/core/symptom_router.py route_symptom (engine_state / occurs_during)"
+    drift_guards:
+      - "labs/symptomlab/tests/unit/test_validator.py"
+      - "labs/symptomlab/tests/unit/test_models.py"
+
+  03_symptom_dna_payload.md:
+    node_type: wiki
+    subsystem: payload-contract
+    implements:
+      - "labs/symptomlab/symptomlab/models.py"
+    consumers:
+      - "dnalab: labs/dnalab/dnalab/models.py SymptomDNA.from_json -> VehicleDNA.symptom_dna"
+      - "dnalab: labs/dnalab/dnalab/assembly.py resolve() -> VehicleDNA Part B"
+      - "comlab: labs/comlab/comlab/core/symptom_router.py route_symptom (SymptomDNA dict payload)"
+    drift_guards:
+      - "labs/symptomlab/tests/unit/test_models.py"
+      - "labs/symptomlab/tests/unit/test_symptomdna_from_json.py"
+
+  04_catalog_changelog.md:
+    node_type: wiki
+    subsystem: catalog-provenance
+    implements:
+      - "labs/symptomlab/symptomlab/data/allowed_combinations.yaml"
+    consumers:
+      - "symptomlab: labs/symptomlab/symptomlab/validator.py SymptomValidator (provenance for the live 21-pair invariant)"
+    drift_guards:
+      - "labs/symptomlab/tests/unit/test_drift_guard.py"
+
+plain:
+  - ADR_SymptomLab.md
+  - BDD_SymptomLab.md
+  - SYMPTOM_VOCABULARY.md

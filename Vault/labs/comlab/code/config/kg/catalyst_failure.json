@@ -1,0 +1,227 @@
+{
+  "schema_version": "1.0",
+  "fault_family": "catalyst_failure",
+  "nodes": {
+    "ERR-CF-001": {
+      "fault_name": "catalyst_efficiency_below_threshold",
+      "fault_family": "catalyst_failure",
+      "component_group": "Exhaust Aftertreatment \u00e2\u20ac\u201d Three-Way Catalyst Assembly",
+      "impacted_subsystems": [
+        "Catalyst Washcoat Oxygen Storage Capacity (OSC)",
+        "Post-Catalyst O2 Sensor Switching",
+        "Closed-Loop Fuel Trim Integrity"
+      ],
+      "mechanical_failure_mode": "Degraded cerium-oxide washcoat reduces oxygen storage capacity so the post-cat O2 sensor switching ratio approaches 1:1 (mirrors pre-cat), setting P0420/P0430. OSC is depleted through thermal sintering, oil-phosphorus poisoning, or silicon contamination.",
+      "ui_remediation_steps": [
+        "Rule out feed-gas problems first \u00e2\u20ac\u201d confirm no active P0300\u00e2\u20ac\u201cP0312 (misfire), fuel trims within \u00c2\u00b110 %, no exhaust leak before the rear O2 sensor.",
+        "Verify the catalyst monitor enable conditions held during the freeze frame: ECT \u00e2\u2030\u00a5 70 \u00c2\u00b0C, steady 2000\u00e2\u20ac\u201c3000 RPM, closed loop, no misfire DTC.",
+        "Run Mode $06 catalyst monitor data \u00e2\u20ac\u201d compare the test value to the manufacturer threshold. Within 10 % = borderline; 50 %+ from threshold = genuine failure.",
+        "Perform IR temperature delta test: outlet weld-ring should be \u00e2\u2030\u00a5 20 \u00c2\u00b0C hotter than inlet at operating temperature. Outlet \u00e2\u2030\u00a4 inlet = dead catalyst.",
+        "If feed-gas is clean and IR delta fails, replace the catalytic converter.",
+        "After replacement, complete one drive cycle and verify catalyst monitor completes without setting P0420/P0430."
+      ],
+      "differential_siblings": [
+        "ERR-CF-004",
+        "ERR-CF-005",
+        "ERR-RM-004"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-CF-002": {
+      "fault_name": "catalyst_substrate_meltdown",
+      "fault_family": "catalyst_failure",
+      "component_group": "Exhaust Aftertreatment \u00e2\u20ac\u201d Three-Way Catalyst Assembly",
+      "impacted_subsystems": [
+        "Catalyst Ceramic Substrate",
+        "Pre-Catalyst O2 Sensor",
+        "Ignition System (misfire root cause)"
+      ],
+      "mechanical_failure_mode": "Sustained misfire (> 1 % of combustion events) or persistent rich mixture dumps raw fuel into the catalyst, where exothermic reaction raises substrate temperature above 1000 \u00c2\u00b0C. The ceramic honeycomb melts, collapses, and creates high exhaust backpressure.",
+      "ui_remediation_steps": [
+        "Inspect catalyst housing for external discolouration (blue/purple heat staining) \u00e2\u20ac\u201d confirms overheat event.",
+        "Perform backpressure test at idle and 2500 RPM: idle < 1.5 psi, 2500 RPM < 3.0 psi. Above 3.0 psi at 2500 RPM = confirmed substrate restriction.",
+        "Remove pre-cat O2 sensor and inspect substrate face with borescope \u00e2\u20ac\u201d look for glassy/glazed or collapsed honeycomb.",
+        "Identify and repair the root cause that dumped fuel into the catalyst (misfire, leaking injector, HPFP seal) before replacing the converter.",
+        "Replace the catalytic converter. Replace the pre-cat and post-cat O2 sensors if they were exposed to > 1000 \u00c2\u00b0C.",
+        "Verify repair: backpressure within spec, tailpipe CO2 \u00e2\u2030\u00a5 14.5 %, catalyst monitor completes clean."
+      ],
+      "differential_siblings": [
+        "ERR-CF-001",
+        "ERR-CF-003",
+        "ERR-MF-001"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-CF-003": {
+      "fault_name": "catalyst_flow_restriction",
+      "fault_family": "catalyst_failure",
+      "component_group": "Exhaust Aftertreatment \u00e2\u20ac\u201d Catalytic Converter",
+      "impacted_subsystems": [
+        "Exhaust Backpressure Profile",
+        "Engine Volumetric Efficiency",
+        "Turbocharger Wastegate (if equipped)"
+      ],
+      "mechanical_failure_mode": "Partially collapsed substrate or carbon-clogged honeycomb restricts exhaust flow. Manifold vacuum drops; engine struggles to breathe under load. CO2 collapses at 2500 RPM as volumetric efficiency tanks.",
+      "ui_remediation_steps": [
+        "Perform backpressure test at idle (should be < 1.5 psi) and 2500 RPM (should be < 3.0 psi). Snap-throttle peak \u00e2\u2030\u00a4 5 psi.",
+        "Inspect substrate face through pre-cat O2 port with borescope \u00e2\u20ac\u201d look for soot plugging or collapsed honeycomb.",
+        "If carbon-clogged (not melted), evaluate root cause of carbon loading (oil burn, rich mixture, short-trip driving) before replacement.",
+        "Replace the restricted catalytic converter if backpressure remains above spec or if substrate is structurally damaged.",
+        "Verify repair: backpressure at 2500 RPM \u00e2\u2030\u00a4 1.5 psi, tailpipe CO2 \u00e2\u2030\u00a5 14.5 %, no power loss under load."
+      ],
+      "differential_siblings": [
+        "ERR-CF-002",
+        "ERR-CF-001"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-CF-004": {
+      "fault_name": "dead_catalyst_hc_nox_breakthrough",
+      "fault_family": "catalyst_failure",
+      "component_group": "Exhaust Aftertreatment \u00e2\u20ac\u201d Three-Way Catalyst Assembly",
+      "impacted_subsystems": [
+        "Catalyst Oxidation/Reduction Efficiency",
+        "Tailpipe Emissions Compliance",
+        "Post-Catalyst O2 Sensor"
+      ],
+      "mechanical_failure_mode": "Catalyst has lost all conversion capability \u00e2\u20ac\u201d oxidation (CO/HC \u00e2\u2020\u2019 CO2/H2O) and reduction (NOx \u00e2\u2020\u2019 N2) both fail. Tailpipe HC exceeds 250 ppm with-cat, CO above 1.5 %, and NOx breaks through. Post-cat O2 signal is flat at ~0.45 V (atmospheric reference).",
+      "ui_remediation_steps": [
+        "Confirm dead cat with tailpipe gas analyser: with-cat HC > 250 ppm at 2500 RPM, CO > 1.5 %, CO2 < 13 %. Compare to reference values in master_catalyst_guide.md \u00c2\u00a77.",
+        "Verify the problem is the catalyst, not feed-gas: check pre-cat emissions are within normal range (CO ~0.6 %, HC ~100 ppm). If pre-cat is also out of range, the engine is the root cause.",
+        "IR temperature test: outlet weld-ring temperature \u00e2\u2030\u00a4 inlet temperature confirms no conversion is occurring.",
+        "Check for catalyst poisoning source (oil consumption, coolant leak, RTV silicone) \u00e2\u20ac\u201d identify and repair the poisoning source before replacing the converter.",
+        "Replace the catalytic converter. Replace post-cat O2 sensor if contaminated.",
+        "Verify repair: tailpipe HC \u00e2\u2030\u00a4 50 ppm, CO \u00e2\u2030\u00a4 0.5 %, CO2 \u00e2\u2030\u00a5 14.5 % at 2500 RPM. Catalyst monitor completes clean."
+      ],
+      "differential_siblings": [
+        "ERR-CF-001",
+        "ERR-CF-006",
+        "ERR-RM-002"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-CF-005": {
+      "fault_name": "catalyst_masking_rich_engine",
+      "fault_family": "catalyst_failure",
+      "component_group": "Exhaust Aftertreatment \u00e2\u20ac\u201d Diagnostic Logic / Feed-Gas Discrimination",
+      "impacted_subsystems": [
+        "Pre-Catalyst vs Post-Catalyst Gas Differential",
+        "Closed-Loop Fuel Trim Authority",
+        "Catalyst Oxygen Storage Buffer"
+      ],
+      "mechanical_failure_mode": "A rich-running engine produces high feed-gas HC and CO, but a healthy catalyst uses stored O2 to oxidise the excess into CO2 and H2O, presenting a clean tailpipe that masks the root engine fault. Strongly negative LTFT confirms the rich feed-gas the catalyst is hiding.",
+      "ui_remediation_steps": [
+        "Check LTFT \u00e2\u20ac\u201d strongly negative LTFT (< \u00e2\u02c6\u201910 %) with clean tailpipe gases is the hallmark of catalyst masking. The cat is scrubbing evidence.",
+        "Do NOT replace the catalyst. The catalyst is healthy \u00e2\u20ac\u201d it is doing its job. The root cause is upstream (leaking injector, high fuel pressure, EVAP purge stuck open).",
+        "Run the rich-mixture diagnostic path: check fuel pressure, injector leak-down, EVAP purge function, and HPFP seal integrity (GDI).",
+        "After repairing the root cause, verify LTFT returns to within \u00c2\u00b110 % and tailpipe gases remain clean.",
+        "If the cat has been masking a rich condition for an extended period (> 1000 km), check OSC afterwards \u00e2\u20ac\u201d prolonged rich exposure may have depleted the washcoat."
+      ],
+      "differential_siblings": [
+        "ERR-CF-001",
+        "ERR-RM-003",
+        "ERR-RM-005"
+      ],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-CF-006": {
+      "fault_name": "catalyst_oil_poisoning",
+      "fault_family": "catalyst_failure",
+      "component_group": "Exhaust Aftertreatment \u00e2\u20ac\u201d Three-Way Catalyst Assembly",
+      "impacted_subsystems": [
+        "Catalyst Washcoat Phosphorus/Zinc Contamination",
+        "Engine Oil Consumption Path",
+        "Post-Catalyst O2 Sensor"
+      ],
+      "mechanical_failure_mode": "Engine oil entering the combustion chamber carries phosphorus and zinc from the oil additive package into the exhaust. These elements form a glassy coating on the catalyst washcoat, permanently blocking OSC sites. Gradual P0420 onset over months.",
+      "ui_remediation_steps": [
+        "Identify the oil consumption path: wet/dry compression test (rings), cylinder-contribution test (valve seals), PCV system inspection.",
+        "Confirm poisoning with borescope inspection of the catalyst face \u00e2\u20ac\u201d look for glassy/glazed coating on the washcoat.",
+        "Repair the oil consumption root cause before replacing the converter \u00e2\u20ac\u201d a new cat will be poisoned within weeks if the oil path is not closed.",
+        "Replace the catalytic converter. The poisoned washcoat cannot be regenerated.",
+        "Replace post-cat O2 sensor if it shows signs of contamination (white/grey coating on the sensor tip).",
+        "Verify repair: oil consumption resolved, catalyst monitor completes clean, tailpipe HC \u00e2\u2030\u00a4 50 ppm after one drive cycle."
+      ],
+      "differential_siblings": [
+        "ERR-CF-001",
+        "ERR-CF-004",
+        "ERR-RM-001",
+        "ERR-RM-002"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-CF-007": {
+      "fault_name": "catalyst_below_lightoff_temperature",
+      "fault_family": "catalyst_failure",
+      "component_group": "Exhaust Aftertreatment \u00e2\u20ac\u201d Catalyst Thermal Management System",
+      "impacted_subsystems": [
+        "Catalyst Light-Off Thermal Window (250\u00e2\u20ac\u201c300 \u00c2\u00b0C)",
+        "Pre-Catalyst O2 Sensor Heater Circuit",
+        "ECU Cold-Start Enrichment Strategy"
+      ],
+      "mechanical_failure_mode": "Catalyst fails to reach or maintain light-off temperature (> 250 \u00c2\u00b0C). Below light-off, CO/HC oxidation and NOx reduction both stall \u00e2\u20ac\u201d the cat passes feed-gas through unconverted. Common causes: failed O2 sensor heater, thermostat stuck open, or short-trip driving pattern.",
+      "ui_remediation_steps": [
+        "Check pre-cat O2 sensor heater circuit resistance \u00e2\u20ac\u201d failed heater prevents closed-loop entry and delays catalyst warm-up.",
+        "Verify thermostat opening temperature \u00e2\u20ac\u201d a thermostat stuck open keeps coolant and engine below operating temperature, extending the cold-start enrichment window.",
+        "Use IR thermometer to measure catalyst inlet weld-ring temperature after 10 minutes of idle \u00e2\u20ac\u201d should exceed 250 \u00c2\u00b0C. Below 200 \u00c2\u00b0C = cat never lit off.",
+        "If the vehicle is used primarily for short trips (< 5 km), the catalyst may never reach light-off \u00e2\u20ac\u201d this is an operating pattern issue, not a fault. Document and advise.",
+        "If a failed O2 sensor heater or thermostat is found, replace the faulty component.",
+        "Verify repair: catalyst reaches > 250 \u00c2\u00b0C within 5 minutes of cold start, closed loop achieved, catalyst monitor completes during drive cycle."
+      ],
+      "differential_siblings": [
+        "ERR-CF-001",
+        "ERR-SF-001"
+      ],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-CF-009": {
+      "fault_name": "catalyst_failure_rich_breakthrough",
+      "fault_family": "catalyst_failure",
+      "component_group": "Exhaust Aftertreatment \u2014 Three-Way Catalytic Converter",
+      "impacted_subsystems": [
+        "Catalyst Hydrocarbon Oxidation Capability",
+        "Catalyst Carbon Monoxide Oxidation Capability",
+        "Post-Catalyst O2 Sensor Switching Ratio"
+      ],
+      "mechanical_failure_mode": "Failed catalytic converter allowing raw fuel to pass through. The catalyst's oxidation capability is destroyed \u2014 hydrocarbons and carbon monoxide pass through unreacted. The gas analyser reads rich (HC 500+ ppm, CO > 1.0%, lambda < 0.98) at the tailpipe while the pre-cat mixtu...",
+      "ui_remediation_steps": [
+        "Pre-cat vs post-cat gas comparison: take a gas sample before and after the catalyst. Pre-cat stoichiometric + post-cat rich (HC and CO breakthrough) = catalyst oxidation capability is destroyed. The catalyst is no longer converting fuel.",
+        "Post-cat O2 sensor switching: observe the pre-cat and post-cat O2 sensor waveforms on a scan tool. A healthy catalyst damps the post-cat signal to a nearly flat line. Post-cat switching that mirrors the pre-cat (1:1 switching ratio) confirms the catalyst has no oxygen storage capacity.",
+        "Check for a P0420/P0430 DTC \u2014 the OBD monitor sets this code when the post-cat O2 switching ratio approaches 1:1, indicating the catalyst OSC has dropped below the fail threshold.",
+        "Rule out the post-cat O2 sensor as the cause: a lazy or biased post-cat sensor can produce the same switching pattern as a dead catalyst. Swap the post-cat sensor with a known-good sensor or test the sensor response on a gas bench.",
+        "If the catalyst is confirmed dead and the feed-gas fault is corrected: replace the catalytic converter and both O2 sensors. A catalyst that has seen raw fuel may have a melted or collapsed substrate \u2014 inspect the old catalyst face with a borescope.",
+        "Verify repair: post-cat O2 flat at ~0.6-0.7 V, tailpipe HC < 50 ppm, CO < 0.5%, lambda at stoichiometric, Mode 06 catalyst monitor passes."
+      ],
+      "differential_siblings": [
+        "ERR-CF-001",
+        "ERR-CF-002",
+        "ERR-CF-004"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-CF-008": {
+      "fault_name": "catalyst_failure_lean_breakthrough",
+      "fault_family": "catalyst_failure",
+      "component_group": "Exhaust Aftertreatment \u2014 Three-Way Catalytic Converter",
+      "impacted_subsystems": [
+        "Catalyst Oxygen Storage Capacity (OSC)",
+        "Post-Catalyst O2 Sensor",
+        "Tailpipe Emission Integrity"
+      ],
+      "mechanical_failure_mode": "Failed catalytic converter producing a lean tailpipe signature. A dead catalyst that has lost its oxygen storage capacity cannot oxidise CO and HC \u2014 unreacted oxygen from the combustion process passes straight through to the tailpipe. The gas analyser reads elevated O2 with no...",
+      "ui_remediation_steps": [
+        "Pre-cat vs post-cat gas comparison: take a gas sample before the catalyst (via an exhaust port or pre-cat probe port) and compare to the tailpipe sample. Pre-cat stoichiometric + post-cat lean = dead catalyst.",
+        "Mode 06 catalyst monitor data: review the catalyst monitor test results (typically TID $01-$09, CID $01-$99). A passing catalyst has OSC well above the fail threshold; a marginal or failed catalyst is near or below the threshold.",
+        "Catalyst temperature test with an infrared thermometer: measure the inlet and outlet temperature of the catalyst at 2500 RPM. A healthy catalyst has an outlet 30-100 C hotter than the inlet (exothermic reaction). Equal or cooler outlet = no reaction = dead catalyst.",
+        "Rule out feed-gas faults before condemning the catalyst: a rich misfire, leaking injector, or stuck-open EVAP purge will kill a healthy catalyst within weeks. Fix the feed-gas fault first, then re-test the catalyst.",
+        "If the catalyst is confirmed dead: replace the catalytic converter and both O2 sensors (pre- and post-cat). A new catalyst with old sensors inherits any sensor drift that contributed to the original failure.",
+        "Verify repair: post-cat O2 switching stabilised (flat line near 0.6-0.7 V at steady cruise), Mode 06 catalyst monitor passes, tailpipe emissions within specification."
+      ],
+      "differential_siblings": [
+        "ERR-CF-001",
+        "ERR-CF-004"
+      ],
+      "editor_severity_hint": "URGENT"
+    }
+  }
+}

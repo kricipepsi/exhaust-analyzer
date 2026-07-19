@@ -1,0 +1,1 @@
+{"eval_id": 0, "eval_name": "csv-validator", "config": "with_skill", "summary": "Comprehensive CSV validator with row validation for name (non-empty string) and age (0-120 integer), efficient streaming support for large files, detailed error logging per invalid row, full type hints, and docstrings following Python best practices."}

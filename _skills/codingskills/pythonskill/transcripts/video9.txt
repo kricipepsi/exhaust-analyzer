@@ -1,0 +1,131 @@
+let's dive into seven performance hacks
+that will not only boost your code but
+also really make you look like a python
+Pro tip number one use slots to save
+memory and speed things up python
+classes use dictionaries to store
+instance attributes super flexible but
+also super greedy when it comes to
+memory consider this class let's measure
+how much memory one instance uses in
+this case it's a chunky 520 bytes why so
+much because python creates a dictionary
+for every object letting you add
+attributes dynamically it's great for
+flexibility but bad for memory inner
+slots this little tweak swaps out the
+bloated dictionary and adds a leaner
+data structure same class same
+functionality but now it only uses 120
+bytes per instance that's a memory cut
+of nearly 80% and if you're managing
+thousands of objects your RAM will thank
+you attribute access is faster too less
+Ram more speed what could be better tip
+number two two replace loops with list
+comprehensions let's talk Loops sure a
+good oldfashioned for Loop works just
+fine but it's not exactly Speedy here in
+our code is a classic example creating a
+list of squares with a loop it's okay
+but all that manual pending adds
+unnecessary overhead running our timer
+we'll set a baseline for performance now
+let's rewrite it with a list
+comprehension it's just over one line
+super clean and python optimizes it
+under the hood making the the code run
+faster comparing the result to our
+traditional Loop and our side by side
+list comprehension smokes the loop in
+performance it's one of those why wasn't
+I doing this all along moments tip
+number three cache results with lru
+cache ever written a function that
+repeats the same calculations over and
+over painful right take our example code
+it's a basic recursive Fibonacci
+function wunning the code we see it
+works just fine but as the input grows
+so does the waiting time exponentially
+enter lru cache we'll add this decorator
+to our improved version of the function
+and like magic it remembers previous
+results no more redundant
+calculations let's run both versions of
+the code and look at that the lru cache
+version finishes in a split second with
+caching you're shaving off precious
+seconds or even minutes of execution
+time use this for any function that gets
+called repeatedly with the same inputs
+and your code will feel like it had an
+espresso shot tip number four use
+generators for Big Data let's say you're
+working with a massive data set we can
+simulate that here with our list python
+lists are great until they're not
+especially when the program crashes
+because you run out of ram instead of
+creating a giant list a generator
+produces one item at a time it's memory
+efficient and perfect for handling large
+streams of data running both versions of
+the code we get the same output
+regardless of the technique we use let's
+see how much memory they consume with a
+new list and Generator in a side-by-side
+memory test the generator barely makes
+the dent while the list Hogs all the
+resources tip number five go fast with
+numpy when it comes to heavy math or
+massive data sets Python's built-in
+tools just don't cut it try handling
+large numerical arrays with regular
+lists and you'll see what I mean in our
+before example we square a list of
+numbers and retrieve the first 10 items
+let's run it to establish a baseline
+time not bad we can do better now let's
+switch to numpy and square every element
+running the two versions of the code we
+can see that numpy is more than 15 times
+faster than the original code if you're
+into data science machine learning or
+anything number heavy this is your new
+best friend tip number six ditch Global
+variables Global variables seem
+convenient until they're not they are
+debugging Nightmare and on top of that
+they're slower to access because python
+has to dig through the global namespace
+to find them in our timing example it
+takes a quarter of a second to find our
+variable 10,000 times let's rewrite that
+code with the local variable instead in
+a quick performance test the local
+version consistently beats the global
+one cutting the time almost in half
+bottom line save time shop local tip
+number seven Embrace built-in functions
+Python's built-in functions like some
+map and filter aren't just there for
+show they're written in C so they're
+faster than anything you could whip up
+in Python take summing up numbers you
+could write a custom function like we
+have here but why python sum does the
+same thing in less time and with much
+less effort running the two examples
+side by side we see the built-in
+function takes less than half the time
+to run as the custom code built-ins are
+faster simpler and way more readable so
+next time skip the DIY and use what
+python gives you want to take your
+python skills even further learn how to
+turn your Python scripts into standalone
+executables no interpreter needed click
+here to check out my step-by-step guide
+and start sharing your python programs
+like a pro see you there

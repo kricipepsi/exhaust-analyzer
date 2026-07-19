@@ -1,0 +1,2760 @@
+30 Cool Python Tricks For Better Code With Examples | DataCamp
+Get 50% off unlimited learning
+Buy Now
+DataCamp and our partners use cookies to improve your 
+learning experience, offer content relevant to your interests and show 
+more relevant advertisements. You can change your mind at any time (
+learn more & configure
+).
+Accept
+Skip to main content
+EN
+English
+Español
+Português
+Deutsch
+Beta
+Français
+Beta
+More Information
+Found an Error?
+Log in
+Get Started
+Tutorials
+Blogs
+Tutorials
+docs
+Podcasts
+Cheat Sheets
+code-alongs
+Newsletter
+Category
+Category
+Technologies
+Discover content by tools and technology
+AI Agents
+AI News
+Artificial Intelligence
+AWS
+Azure
+Business Intelligence
+ChatGPT
+Databricks
+dbt
+Docker
+Excel
+Generative AI
+Git
+Google Cloud Platform
+Hugging Face
+Java
+Julia
+Kafka
+Kubernetes
+Large Language Models
+MongoDB
+MySQL
+NoSQL
+OpenAI
+PostgreSQL
+Power BI
+PySpark
+Python
+R
+Scala
+Snowflake
+Spreadsheets
+SQL
+SQLite
+Tableau
+Category
+Topics
+Discover content by data science topics
+AI for Business
+Big Data
+Career Services
+Cloud
+Data Analysis
+Data Engineering
+Data Literacy
+Data Science
+Data Visualization
+DataLab
+Deep Learning
+Machine Learning
+MLOps
+Natural Language Processing
+Vector Databases
+Browse Courses
+category
+Home
+Tutorials
+Python
+30 Cool Python Tricks For Better Code With Examples
+We've curated 30 cool Python tricks you could use to improve your code and develop your Python skills.
+List
+Contents
+Oct 20, 2022
+·
+15 min
+read
+Contents
+#1 Slicing
+#2 Inplace Swap / Simultaneous Assignment
+#3 List vs. Tuples
+#4 Generators
+#5 Aliasing
+#6 The ‘not’ Operator
+#7 F-strings
+#8 The Print Functions ‘end’ Parameter
+#9 Append to Tuple
+#10 Merging Dictionaries
+#11 Ternary Operator / Condition Expressions
+#12 Remove Duplicates From Lists
+#13 Standalone Underscore
+#14 Underscore to Ignore Values
+#15 Trailing Underscores
+#16 Leading Underscores
+#17 Underscore Visual
+#18 __name__ == “__main__”
+#19 The ‘setdefault’ Method
+#20 Matching Regex
+#21 Regex Pipe
+#22 The Print Function ‘sep’ Parameter
+#23 Lambda Functions
+#24 The ‘swapcase’ Method
+#25 The ‘isalnum’ Method
+#26 Exception Handling
+#27 Identifying the Differences in Lists
+#28 Args & Kwargs
+#29 The Ellipsis
+#30 List Comprehension
+Group
+Training more people?
+Get your team access to the full DataCamp for business platform.
+For Business
+For a bespoke solution
+book a demo
+.
+Python
+ coding skills have grown in demand in recent years. To aid you in 
+developing your Python programming skills, we have curated 30 cool 
+Python tricks you could use to
+improve your code
+. Try to learn one every day for the next 30 days, and check out our
+Python best practices
+post to ensure your code is best-in-class.
+If your Python skills are not up to scratch, you can also sharpen them up with our
+Python Skill Track
+.
+#1 Slicing
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+›
+⌄
+a
+=
+"Hello World!"
+print
+(
+a
+[
+::
+-
+1
+]
+)
+"""
+!dlroW olleH
+"""
+Run code
+Explain code
+Powered by
+Slicing is a feature in Python that relies on 
+indexing to allow users to access a subset of a sequence. An index is 
+simply the position of an element in a sequence. If the sequence type is
+ mutable, you can use slicing to extract and modify data.
+Note
+:
+We may also use slicing on an immutable sequence, but trying to modify the slice will raise a TypeError.
+The format in which slices are implemented is:
+sequence[start:stop:step]
+. If no values are specified in the
+start
+,
+stop
+, and
+step
+parameters, then the sequence will implement the defaults. The defaults are:
+"start" defaults to 0
+"stop" defaults to the length of the sequence
+"step" defaults to 1 if they are not specified.
+When provided with
+sequence[start:stop]
+the elements returned will be from the starting index up to the
+stop
+- 1 (the stop index is not included).
+We can also pass negative indices, which may be used
+ to reverse the sequence. For example, in a list of 4 elements, the 0th 
+index is also the -4 index, and the last index is also -1. In the 
+example code above, this knowledge was applied to the
+step
+parameter of the sequence. Consequently, the string was printed 
+backward, starting from the end of the sequence to index 
+0.
+#2 Inplace Swap / Simultaneous Assignment
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+›
+⌄
+⌄
+a
+=
+10
+b
+=
+5
+print
+(
+f"First:
+{
+a
+,
+b
+}
+"
+)
+"""
+First: (10, 5)
+"""
+a
+,
+b
+=
+b
+,
+a
++
+2
+print
+(
+f"Second:
+{
+a
+,
+b
+}
+"
+)
+"""
+Second: (5, 12)
+"""
+Run code
+Explain code
+Powered by
+If your initial impression was that the value of b 
+would be 7 instead of 12, you have fallen into the trap of in-place 
+swapping.
+In Python, we can unpack iterables to variables in a single assignment using automatic unpacking. For instance:
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+›
+⌄
+a
+,
+b
+,
+c
+=
+[
+1
+,
+2
+,
+3
+]
+print
+(
+a
+)
+print
+(
+b
+)
+print
+(
+c
+)
+"""
+1
+2
+3
+"""
+Run code
+Explain code
+Powered by
+We can also collect several values into a single variable using
+*
+– this Python trick is called packing. Below is an example of packing.
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+›
+⌄
+a
+,
+*
+b
+=
+1
+,
+2
+,
+3
+print
+(
+a
+,
+b
+)
+"""
+1 [2, 3]
+"""
+Run code
+Explain code
+Powered by
+Combining automatic packing and unpacking gives rise
+ to a technique known as simultaneous assignment. We can use 
+simultaneous assignment to assign a series of values to a series of 
+variables.
+#3 List vs. Tuples
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+›
+⌄
+import
+sys
+a
+=
+[
+1
+,
+2
+,
+3
+,
+4
+,
+5
+]
+b
+=
+(
+1
+,
+2
+,
+3
+,
+4
+,
+5
+)
+print
+(
+f"List size:
+{
+sys
+.
+getsizeof
+(
+a
+)
+}
+bytes"
+)
+print
+(
+f"Tuple size:
+{
+sys
+.
+getsizeof
+(
+b
+)
+}
+bytes"
+)
+"""
+List size: 52 bytes
+Tuple size: 40 bytes
+"""
+Run code
+Explain code
+Powered by
+Most Python programmers are familiar with the list data structure. The same can't be said of
+tuples
+.
+ They're both iterables, allow indexing, and permit storage of 
+heterogeneous data types. But there are situations in which the use of a
+ tuple may be preferred over a list.
+First of all, lists are mutable, which means we can modify them as we wish:
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+7
+›
+⌄
+a
+=
+[
+1
+,
+2
+,
+3
+,
+4
+,
+5
+]
+a
+[
+2
+]
+=
+8
+print
+(
+a
+)
+"""
+[1,2,8,4,5]
+"""
+Run code
+Explain code
+Powered by
+Tuples, on the other hand, are immutable, which means trying to modify them will raise a
+TypeError
+.
+For this reason, tuples are more memory efficient 
+since Python can allocate the right memory block required for the data. 
+In contrast, in a list, extra memory has to be allocated just in case we
+ extend it - this is called dynamic memory allocation.
+TLDR
+; In scenarios where you do not
+ want the data to be changed, then a tuple data structure should be 
+preferred over a list for memory reasons. Tuples are also faster than 
+lists.
+Learn more about
+Python Data Structures
+in this tutorial.
+#4 Generators
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+›
+⌄
+a
+=
+[
+x
+*
+2
+for
+x
+in
+range
+(
+10
+)
+]
+b
+=
+(
+x
+*
+2
+for
+x
+in
+range
+(
+10
+)
+)
+print
+(
+a
+)
+print
+(
+b
+)
+"""
+[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+<generator object <genexpr> at 0x7f61f8808b50>
+"""
+Run code
+Explain code
+Powered by
+List comprehensions are the pythonic way of creating
+ a list from another iterable - It's much faster than using a for loop. 
+But what happens if you accidentally change the brackets from
+[]
+to
+()
+? You get a generator object.
+In Python, rounded brackets with list comprehension 
+logic create what is known as a generator object. Generators are a 
+special kind of iterable. Unlike lists, they do not store their items. 
+Instead, they store instructions to generate each element in order and 
+the current state of iterations.
+Each element is only generated upon request using a technique called
+lazy evaluation
+.
+ The main benefit of this Python tip using a generator is that it uses 
+less memory since the entire sequence is not built at once.
+#5 Aliasing
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+›
+⌄
+a
+=
+[
+1
+,
+2
+,
+3
+,
+4
+,
+5
+]
+b
+=
+a
+# Change the 4th index in b
+b
+[
+4
+]
+=
+7
+print
+(
+id
+(
+a
+)
+)
+print
+(
+id
+(
+b
+)
+)
+print
+(
+a
+)
+# Remember we did not explicitly make changes to a.
+"""
+15136008
+15136008
+[1, 2, 3, 4, 7]
+"""
+Run code
+Explain code
+Powered by
+Python is an object-oriented programming language - 
+everything is an object. Thus, assigning an object to an identifier is 
+creating a reference to the object.
+When we assign one identifier to another identifier,
+ we end up with two identifiers that reference the same object. This is a
+ concept known as aliasing. Changes in one alias will affect the other. 
+Sometimes this behavior is desired, but often, it catches us off 
+guard.
+One way around it is to refrain from aliasing when 
+using mutable objects. Another solution could be to create a clone of 
+the original object rather than a reference.
+The most straightforward way to create a clone is to leverage slicing:
+b = a[:]
+Powered By
+Was this AI assistant helpful?
+Yes
+No
+This will create a new reference to a list object in the b identifier.
+You could devise many other solutions, like calling
+list(a)
+when assigning the data to another identifier and using the
+copy()
+method.
+#6 The ‘not’ Operator
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+›
+⌄
+a
+=
+[
+]
+print
+(
+not
+a
+)
+"""
+True
+"""
+Run code
+Explain code
+Powered by
+Our next Python tip is the easiest way to check if your data structure is empty by using the not operator. Python's built-in
+not
+is a logical operator that returns True if the expression is not true, 
+or else it will return False – it inverts the truth value of Boolean 
+expressions and objects.
+Another way you may see it used is in an if statement:
+if not a:
+#
+do something...
+Powered By
+Was this AI assistant helpful?
+Yes
+No
+When
+a
+is
+True
+then the
+not
+operator will return
+False
+, and vice versa.
+It's tricky to wrap your head around, so give it a go.
+#7 F-strings
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+7
+8
+›
+⌄
+first_name
+=
+"John"
+age
+=
+19
+print
+(
+f"Hi, I'm
+{
+first_name
+}
+and I'm
+{
+age
+}
+years old!"
+)
+"""
+Hi, I'm John and I'm 19 years old!
+"""
+Run code
+Explain code
+Powered by
+Occasionally, we may need to format a string object;
+ Python 3.6 introduced a cool feature called f-strings to simplify this 
+process. It helps to understand how strings were formatted before the 
+new release to appreciate the new method better.
+Here's how strings used to be formatted:
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+7
+8
+›
+⌄
+first_name
+=
+"John"
+age
+=
+19
+print
+(
+"Hi, I'm {} and I'm {} years old!"
+.
+format
+(
+first_name
+,
+age
+)
+)
+"""
+Hi, I'm John and I'm 19 years old!
+"""
+Run code
+Explain code
+Powered by
+Essentially, the new way of formatting is faster, more readable, more concise, and harder to get wrong.
+Another use of f-strings is to print an identifier name along with the value. This was introduced in Python 3.8.
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+7
+›
+⌄
+x
+=
+10
+y
+=
+20
+print
+(
+f"
+{
+x
+=
+}
+,
+{
+y
+=
+}
+"
+)
+"""
+x = 10, y = 20
+"""
+Run code
+Explain code
+Powered by
+Check out this tutorial on
+F-string Formatting in Python
+to learn more.
+#8 The Print Functions ‘end’ Parameter
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+›
+⌄
+languages
+=
+[
+"english"
+,
+"french"
+,
+"spanish"
+,
+"german"
+,
+"twi"
+]
+print
+(
+' '
+.
+join
+(
+languages
+)
+)
+"""
+english french spanish german twi
+"""
+Run code
+Explain code
+Powered by
+It is quite common to use a
+print
+statement without defining any of its optional parameters. 
+Consequently, several Pythonistas are unaware that you can control the 
+output to some degree.
+One optional parameter we can change is
+end
+. The
+end
+parameter specifies what should be shown at the end of a call to a
+print
+statement.
+The default of
+end
+is
+"\n"
+which tells Python to start a new line. In the code above, we changed 
+it to space. Thus, the output returned all the elements of our list are 
+printed on the same line.
+#9 Append to Tuple
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+7
+›
+⌄
+a
+=
+(
+1
+,
+2
+,
+[
+1
+,
+2
+,
+3
+]
+)
+a
+[
+2
+]
+.
+append
+(
+4
+)
+print
+(
+a
+)
+"""
+(1, 2, [1, 2, 3, 4])
+"""
+Run code
+Explain code
+Powered by
+We already know tuples are immutable – see Python trick
+#3 List vs. Tuples
+. Attempting to change the state of a tuple would throw a
+TypeError
+.
+ But, if you think of a tuple object as a sequence of names with 
+bindings to objects that cannot be changed, you may see things 
+differently.
+The first two elements of our tuple are integers - 
+they are immutable. The last element of our tuple is a list, a mutable 
+object in Python.
+If we consider our list to be just another name in a
+ sequence with a binding to an object that cannot be changed, then we 
+would realize that the list can still be modified from within the tuple.
+Would we recommend you do this in practice? Probably not, but it is one of those nice-to-know things!
+#10 Merging Dictionaries
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+7
+8
+9
+›
+⌄
+a
+=
+{
+"a"
+:
+1
+,
+"b"
+:
+2
+}
+b
+=
+{
+"c"
+:
+3
+,
+"d"
+:
+4
+}
+a_and_b
+=
+a
+|
+b
+print
+(
+a_and_b
+)
+"""
+{"a": 1, "b": 2, "c": 3, "d": 4}
+"""
+Run code
+Explain code
+Powered by
+In Python 3.9 and above, it is possible to merge dictionaries using
+|
+(bitewise OR). There is not much else to say about this particular 
+Python trick other than it is a much more readable solution!
+#11 Ternary Operator / Condition Expressions
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+7
+8
+›
+⌄
+condition
+=
+True
+name
+=
+"John"
+if
+condition
+else
+"Doe"
+print
+(
+name
+)
+"""
+John
+"""
+Run code
+Explain code
+Powered by
+In the code above, you can see what is known as a 
+ternary operator - it is also referred to as a conditional expression 
+among names. We use ternary operators to evaluate things based on 
+whether a condition is
+True
+or
+False
+.
+Another way we could have written our code above is as follows:
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+›
+⌄
+⌄
+⌄
+condition
+=
+True
+if
+condition
+:
+name
+=
+"John"
+else
+:
+name
+=
+"Doe"
+print
+(
+name
+)
+"""
+John
+"""
+Run code
+Explain code
+Powered by
+Although both sets of code result in the same 
+output, notice how the ternary conditional permits us to write much 
+shorter and clearer code. It's what Pythonistas would call the more 
+'Pythonic' way to write code.
+#12 Remove Duplicates From Lists
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+›
+⌄
+a
+=
+[
+1
+,
+1
+,
+2
+,
+3
+,
+4
+,
+5
+,
+5
+,
+5
+,
+6
+,
+7
+,
+2
+,
+2
+]
+print
+(
+list
+(
+set
+(
+a
+)
+)
+)
+"""
+[1, 2, 3, 4, 5, 6, 7]
+"""
+Run code
+Explain code
+Powered by
+The simplest way to remove duplicate elements from a list is to convert the list into a set (then back to a list if you wish).
+Based on mutability, sets and lists are quite 
+similar in Python. We can add and remove elements from both data 
+structures at will, but they are still extremely different.
+Lists are ordered, zero-based indexed, and mutable. 
+Sets are unordered and unindexed. The elements in a set must be of an 
+immutable type, even though the set itself is mutable - trying to 
+retrieve an element via an index or modify an element will raise an 
+error.
+Another key difference between sets and lists is 
+that sets cannot contain duplicates. This is what helped us remove the 
+duplicate elements from our list.
+#13 Standalone Underscore
+>>
+>
+print
+(
+_
+)
+Traceback
+(
+most recent call last
+)
+:
+  File
+"<stdin>"
+, line
+1
+,
+in
+<
+module
+>
+>>
+>
+1
++
+2
+3
+>>
+>
+print
+(
+_
+)
+3
+Powered By
+Was this AI assistant helpful?
+Yes
+No
+Underscore (_) is a legal identifier in Python, 
+thus, it's possible to use it to reference an object. But underscore 
+also has another responsibility: to store the result of the last 
+evaluation.
+The documentation states that "the interactive interpreter makes the result of the last evaluation available in the variable
+_
+. (It is stored in the builtins module, alongside built-in functions like print)."
+Since we did not assign underscore an object before 
+calling it on the first line, we got an error. However, when we 
+calculated the output of 1 + 2, the interactive interpreter stored the 
+result in the
+_
+identifier for us.
+#14 Underscore to Ignore Values
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+7
+8
+›
+⌄
+⌄
+for
+_
+in
+range
+(
+100
+)
+:
+print
+(
+"The index doesn't matter"
+)
+"""
+The index doesn't matter
+The index doesn't matter
+...
+"""
+Run code
+Explain code
+Powered by
+In Python tip #13, we discovered the interactive 
+interpreter makes the last result of an evaluation available in the 
+underscore (_) identifier, but that's not its only use case.
+We may also use it to represent objects we don't 
+care about or wouldn't use at a later point in the program. This is 
+important because using an identifier instead of an underscore (_) will 
+raise an F841 error when we attempt to do linting on our program. An 
+F841 error simply states that a local variable name has been assigned 
+but was not used in the program, which is a bad practice.
+#15 Trailing Underscores
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+›
+list_
+=
+[
+0
+,
+1
+,
+2
+,
+3
+,
+4
+]
+global_
+=
+"Hi there"
+Run code
+Explain code
+Powered by
+Continuing from the past two tricks, Python's 
+underscore (_) usage, another purpose of it is to avoid conflicts with 
+Python keywords.
+PEP 8
+mentions that a trailing underscore (_) should be "used by convention 
+to avoid conflicts with Python keywords." It also states that "it is 
+generally better to append a single trailing underscore rather than use 
+an abbreviation or spelling corruption. Thus
+list_
+is better than
+lst
+."
+#16 Leading Underscores
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+›
+⌄
+⌄
+class
+Example
+:
+def
+__init__
+(
+self
+)
+:
+self
+.
+_internal
+=
+2
+self
+.
+external
+=
+20
+Run code
+Explain code
+Powered by
+You would often find experienced Python programmers 
+tend to prefix an underscore to an identifier or method name - and for 
+good reason.
+The underscore prefixed to an identifier or method 
+has a hidden meaning: this variable or method is only meant for internal
+ usage. Essentially, it is a disclaimer to other programmers that have 
+been defined in PEP 8 but is not enforced by Python. Thus, leading 
+underscores are a weak indicator.
+Unlike Java, Python doesn't have a strong 
+distinction between private and public variables. In other words, it 
+only has meaning because the Python community has agreed for it to have 
+meaning. Their inclusion does not impact the behavior of your programs.
+#17 Underscore Visual
+Here is the last tip on underscores; So far, we have
+ covered three different use cases for the underscore, but you can check
+ out our tutorial to learn more about the
+Role of Underscore(_) in Python
+.
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+›
+⌄
+number
+=
+1_500_000
+print
+(
+number
+)
+"""
+15000000
+"""
+Run code
+Explain code
+Powered by
+Another way we could use the underscore is as a 
+visual separator for digit grouping in integral, floating-point, and 
+complex number literals – this was introduced in Python 3.6.
+The idea was to aid the readability of long 
+literals, or literals whose value should clearly be separated into parts
+ – you can read more about it in PEP 515.
+#18 __name__ == “__main__”
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+›
+⌄
+⌄
+if
+__name__
+==
+"__main__"
+:
+print
+(
+"Read on to understand what is going on when you do this."
+)
+"""
+print("Read on to understand what is going on when you do this.")
+"""
+Run code
+Explain code
+Powered by
+There's a high chance you've seen this syntax in several Python programs; Python uses a special name called
+"__main__"
+and sets it to an identifier called
+__name__
+if the Python file being run is the main program.
+If we decide to import the module displayed in the 
+screenshot into another module (Python file) and run that file, the 
+truth of the expression in our code will be false. This is because when 
+we import from another module, the
+__name__
+identifier is set to the name of the module (Python file).
+#19 The ‘setdefault’ Method
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+›
+⌄
+⌄
+import
+pprint
+text
+=
+"It's the first of April. It's still cold in the UK. But I'm going to the museum so it should be a wonderful day"
+counts
+=
+{
+}
+for
+word
+in
+text
+.
+split
+(
+)
+:
+counts
+.
+setdefault
+(
+word
+,
+0
+)
+counts
+[
+word
+]
++=
+1
+pprint
+.
+pprint
+(
+counts
+)
+"""
+{'April.': 1,
+'But': 1,
+"I'm": 1,
+"It's": 2,
+'UK.': 1,
+'a': 1,
+'be': 1,
+'cold': 1,
+'day': 1,
+'first': 1,
+'going': 1,
+'in': 1,
+'it': 1,
+'museum': 1,
+'of': 1,
+'should': 1,
+'so': 1,
+'still': 1,
+'the': 3,
+'to': 1,
+'wonderful': 1}
+"""
+Run code
+Explain code
+Powered by
+You may wish to set a value for various keys in a 
+dictionary. For example, when you're tracking the counts of words in a 
+corpus. The common way to do this is as follows:
+Check if the key exists in the dictionary
+If it does, increment the value by 1.
+If it does not, add it and set the value to 1.
+This is how it looks in code:
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+›
+⌄
+⌄
+⌄
+counts
+=
+{
+}
+for
+word
+in
+text
+.
+split
+(
+)
+:
+if
+word
+in
+counts
+:
+counts
+[
+word
+]
++=
+1
+else
+:
+counts
+[
+word
+]
+=
+1
+Run code
+Explain code
+Powered by
+A more concise way to do this is to use the
+setdefault()
+method on your dictionary object.
+The first argument passed to the method is the key 
+we want to check for. The second argument passed is the value to set the
+ key to if the key does not already exist in the dictionary - if the key
+ exists, then the method would return the key value. Thus, it would not 
+be changed.
+#20 Matching Regex
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+›
+⌄
+import
+re
+number
+=
+re
+.
+compile
+(
+r"(0)?(\+44)?\d{10}"
+)
+num_1
+=
+number
+.
+search
+(
+"My number is +447999999999"
+)
+num_2
+=
+number
+.
+search
+(
+"My number is 07999999999"
+)
+print
+(
+num_1
+.
+group
+(
+)
+)
+print
+(
+num_2
+.
+group
+(
+)
+)
+"""
+'+447999999999'
+'07999999999'
+"""
+Run code
+Explain code
+Powered by
+Regular expressions
+allow you to specify a pattern of text to search for; The majority of 
+people know we can search for things using CTRL + F (Windows), but if 
+you don't know the exact thing you're searching for, how could you find 
+it? The answer is to search for patterns.
+For example, UK numbers follow a similar pattern: 
+they will have a zero at the beginning plus ten numbers or +44 instead 
+of zero and ten numbers – the second instance indicates it's in its 
+international format.
+Regular expressions are a major time saver. If we 
+were to code rules to catch the instances in our image instead of regex,
+ it could take up to 10+ lines of code.
+Learning how regular expressions work is vital even 
+if you don't write code. Most modern text editors and word processors 
+permit you to use regular expressions to find and replace features.
+#21 Regex Pipe
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+›
+⌄
+import
+re
+heros
+=
+re
+.
+compile
+(
+r"Super(man|woman|human)"
+)
+h1
+=
+heros
+.
+search
+(
+"This will find Superman"
+)
+h2
+=
+heros
+.
+search
+(
+"This will find Superwoman"
+)
+h3
+=
+heros
+.
+search
+(
+"This will find Superhuman"
+)
+print
+(
+h1
+.
+group
+(
+)
+)
+print
+(
+h2
+.
+group
+(
+)
+)
+print
+(
+h3
+.
+group
+(
+)
+)
+"""
+Superman
+Superwoman
+Superhuman
+"""
+Run code
+Explain code
+Powered by
+Regular expressions have a special character called pipe (
+|
+)
+ that allows you to match one of many expressions, and they can be used 
+anywhere. This is super handy for when you've got several similar 
+patterns.
+For example, 'Superman,' 'Superwoman,' and 
+'Superhuman' all have the same prefix. Thus, you could leverage the pipe
+ to retain the part of the pattern that is recurring and change the 
+parts you need to be different. Once again, saving you precious time.
+Mind the gotcha
+:
+if all of the 
+expressions you wish to match occur in the same text, the first 
+occurrence of text to match would be returned - i.e., "An example text 
+containing Superwoman, Superman, Superhuman," would return Superwoman.
+#22 The Print Function ‘sep’ Parameter
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+›
+⌄
+day
+=
+"04"
+month
+=
+"10"
+year
+=
+"2022"
+print
+(
+day
+,
+month
+,
+year
+)
+print
+(
+day
+,
+month
+,
+year
+,
+sep
+=
+""
+)
+print
+(
+day
+,
+month
+,
+year
+,
+sep
+=
+"."
+)
+"""
+04 10 2022
+04/10/2022
+04.10.2022
+"""
+Run code
+Explain code
+Powered by
+The number of Python programmers that aren't aware of the
+print()
+function's full capabilities is scary; If “Hello World” was your first program, the
+print()
+function was probably one of the first built-in functions you covered when learning Python. We use
+print()
+to display formatted messages on the screen, but there's a whole lot more to the
+print()
+function.
+In the code above, we've shown different ways to display our formatted message. The
+sep
+parameter is an optional argument in the
+print()
+function that allows us to specify how objects should be separated if we include more than one.
+The default is to separate them with a space, but we've changed this functionality with our print statements - one where
+sep
+is set to
+""
+and another where sep is set to
+"."
+.
+#23 Lambda Functions
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+›
+⌄
+⌄
+⌄
+def
+square
+(
+num
+:
+int
+)
+->
+int
+:
+return
+num
+**
+2
+print
+(
+f"Function call:
+{
+square
+(
+4
+)
+}
+"
+)
+"""
+Function call: 16
+"""
+square_lambda
+=
+lambda
+x
+:
+x
+**
+2
+print
+(
+f"Lambda function:
+{
+square_lambda
+(
+4
+)
+}
+"
+)
+"""
+Lambda functional: 16
+"""
+Run code
+Explain code
+Powered by
+Lambda functions
+take you to the more intermediate-advanced level things you could do with Python – learn
+Intermediate Python
+with this course. They look complicated at first glance, but they are quite simple.
+In our example code, we only used one argument, but we could have used multiple if we wanted:
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+›
+⌄
+square
+=
+lambda
+a
+,
+b
+:
+a
+**
+b
+print
+(
+f"Lambda function:
+{
+square
+(
+4
+,
+2
+)
+}
+"
+)
+"""
+16
+"""
+Run code
+Explain code
+Powered by
+In essence, the lambda keyword permits us to create 
+small, restricted, anonymous functions in one line. They behave as a 
+regular function declared with a def keyword, except these functions do 
+not have a name.
+#24 The ‘swapcase’ Method
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+›
+⌄
+string
+=
+"SoMe RaNDoM sTriNg"
+print
+(
+string
+.
+swapcase
+(
+)
+)
+"""
+sOmE rAndOm StRInG
+"""
+Run code
+Explain code
+Powered by
+The
+swapcase()
+method is applied to a string object to allow us to change the upper 
+case letters to lower case and vice versa in a single line of code. 
+There are not many use cases for the
+swapcase()
+method, but it is nice to know.
+#25 The ‘isalnum’ Method
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+›
+⌄
+password
+=
+"ABCabc123"
+print
+(
+password
+.
+isalnum
+(
+)
+)
+"""
+True
+"""
+Run code
+Explain code
+Powered by
+Let's say we're creating a program that requires 
+users to input a password, but it must have a combination of numbers and
+ letters. We can do this in one line of code by calling the
+isalnum()
+on the string instance.
+The method checks if all the characters are part of 
+the alphabet (A-Za-z) and numeric (0-9). A space or symbol (!#%$&? 
+etc.) will return
+False
+.
+#26 Exception Handling
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+›
+⌄
+⌄
+⌄
+⌄
+def
+get_ration
+(
+x
+:
+int
+,
+y
+:
+int
+)
+->
+int
+:
+try
+:
+ratio
+=
+x
+/
+y
+except
+ZeroDivisionError
+:
+y
+=
+y
++
+1
+ratio
+=
+x
+/
+y
+return
+ratio
+print
+(
+get_ration
+(
+x
+=
+400
+,
+y
+=
+0
+)
+)
+"""
+400.0
+"""
+Run code
+Explain code
+Powered by
+Python programs terminate when they encounter an error.
+Sometimes, we don't want this behavior, like when we
+ have an end-user interacting with our code. How bad would it be if our 
+code terminated prematurely in such an instance?
+There are a few ways of thought on how to deal with 
+the exceptional case. Most Python programmers typically embrace the 
+thought that it's easier to
+ask for forgiveness than it is to get permission
+.
+ This means they would rather catch a raised error by providing 
+surrounding context that is capable of handling an exception. The idea 
+behind this thought is that there's no point in wasting time trying to 
+safeguard against all the various exceptional cases.
+But this only holds when there is a mechanism for coping with a problem after it occurs.
+#27 Identifying the Differences in Lists
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+›
+⌄
+list_1
+=
+[
+1
+,
+3
+,
+5
+,
+7
+,
+8
+]
+list_2
+=
+[
+1
+,
+2
+,
+3
+,
+4
+,
+5
+,
+6
+,
+7
+,
+8
+,
+9
+]
+solution_1
+=
+list
+(
+set
+(
+list_2
+)
+-
+set
+(
+list_1
+)
+)
+solution_2
+=
+list
+(
+set
+(
+list_1
+)
+^
+set
+(
+list_2
+)
+)
+solution_3
+=
+list
+(
+set
+(
+list_1
+)
+.
+symmetric_difference
+(
+set
+(
+list_2
+)
+)
+)
+print
+(
+f"Solution 1:
+{
+solution_1
+}
+"
+)
+print
+(
+f"Solution 2:
+{
+solution_2
+}
+"
+)
+print
+(
+f"Solution 3:
+{
+solution_3
+}
+"
+)
+"""
+Solution 1: [9, 2, 4, 6]
+Solution 2: [2, 4, 6, 9]
+Solution 3: [2, 4, 6, 9]
+"""
+Run code
+Explain code
+Powered by
+Here are three different methods to compare the difference between two lists in Python.
+Note
+:
+Unless you know for a fact that
+list_1
+is a subset of
+list_2
+, then solution 1 is not the same as the other two solutions.
+#28 Args & Kwargs
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+›
+⌄
+⌄
+def
+some_function
+(
+*
+args
+,
+**
+kwargs
+)
+:
+print
+(
+f"Args:
+{
+args
+}
+"
+)
+print
+(
+f"Kwargs:
+{
+kwargs
+}
+"
+)
+some_function
+(
+1
+,
+2
+,
+3
+,
+a
+=
+4
+,
+b
+=
+5
+,
+c
+=
+6
+)
+"""
+Args: (1, 2, 3)
+Kwargs: {'a': 4, 'b': 5, 'c': 6}
+"""
+Run code
+Explain code
+Powered by
+We use
+*args
+and
+**kwargs
+as parameters to a function when we are unaware of the number of variables our function should expect.
+The
+*args
+parameter permits us to pass a variable number of parameters to a 
+function when it’s non-keyworded (i.e., the parameters we pass do not 
+require an associated name). On the other hand, the
+**kwargs
+parameter enables us to pass an arbitrary number of keyworded parameters to a function.
+In truth, the words *args and **kwargs are not so 
+magical: the true magic is in the asterisks (*). This means we could 
+have used any word after the astericks, but the use of
+args
+and
+kwargs
+is common practice, and it is enforced among Python developers.
+#29 The Ellipsis
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+›
+⌄
+⌄
+⌄
+print
+(
+...
+)
+"""
+Ellipsis
+"""
+def
+some_function
+(
+)
+:
+...
+# Alternative solution
+def
+another_function
+(
+)
+:
+pass
+Run code
+Explain code
+Powered by
+The Ellipsis is a Python object that can be called 
+by providing a sequence of three dots (...) or calling the object itself
+ (Ellipsis).
+Its most notable usage is for accessing and slicing multidimensional arrays in NumPy, for example:
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+99
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+›
+⌄
+⌄
+import
+numpy
+as
+np
+arr
+=
+np
+.
+array
+(
+[
+[
+2
+,
+3
+]
+,
+[
+1
+,
+2
+]
+,
+[
+9
+,
+8
+]
+]
+)
+print
+(
+arr
+[
+...
+,
+0
+]
+)
+"""
+[2 1 9]
+"""
+print
+(
+arr
+[
+...
+]
+)
+"""
+[[2 3]
+[1 2]
+[9 8]]
+"""
+Run code
+Explain code
+Powered by
+But another usage of Ellipsis is as a placeholder in an unimplemented function.
+This means you could pass Ellipsis,
+...
+, or pass, and they would all still be valid.
+#30 List Comprehension
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+6
+›
+⌄
+even_numbers
+=
+[
+x
+for
+x
+in
+range
+(
+10
+)
+if
+x
+%
+2
+==
+0
+and
+x
+!=
+0
+]
+print
+(
+even_numbers
+)
+"""
+[2, 4, 6, 8]
+"""
+Run code
+Explain code
+Powered by
+Our final Python trick is list comprehensions, an 
+elegant way to create a list out of another sequence. They allow you to 
+perform sophisticated logic and filtering as we've done in the code 
+above.
+There are other ways to achieve the same goal; for example, we could have used a lambda function as follows:
+Learn-by-Example editor, press Tab to Enter. Press Escape and then Tab or Shift+Tab to navigate out.
+9
+1
+2
+3
+4
+5
+›
+⌄
+even_numbers
+=
+list
+(
+filter
+(
+lambda
+x
+:
+x
+%
+2
+==
+0
+and
+x
+!=
+0
+,
+range
+(
+10
+)
+)
+)
+print
+(
+even_numbers
+)
+"""
+[0, 2, 4, 6, 8]
+"""
+Run code
+Explain code
+Powered by
+But several Pythonistas would argue this solution is much less readable than the list comprehension.
+Check out this Tutorial to learn more about
+Python List Comprehensions
+.
+Topics
+Python
+Kurtis Pykes
+Data Science & AI Blogger | Top 1000 Medium Writers on AI and Data Science
+Topics
+Python
+6 Python Best Practices for Better Code
+5 Python Challenges to Develop Your Skills
+60+ Python Projects for All Levels of Expertise
+Scikit-Learn Cheat Sheet: Python Machine Learning
+21 Essential Python Tools
+Python Try-Except Tutorial: Best Practices and Real-World Examples
+Top Python Courses
+Course
+Intermediate Python
+4 hr
+1.3M
+Level up your data science skills by creating visualizations using Matplotlib and manipulating DataFrames with pandas.
+See Details
+Right Arrow
+Start Course
+Course
+Writing Efficient Python Code
+4 hr
+149.3K
+Learn to write efficient code that executes quickly and allocates resources skillfully to avoid unnecessary overhead.
+See Details
+Right Arrow
+Start Course
+Course
+Writing Functions in Python
+4 hr
+108K
+Learn to use best practices to write maintainable, reusable, complex functions with good documentation.
+See Details
+Right Arrow
+Start Course
+See More
+Right Arrow
+Related
+blog
+6 Python Best Practices for Better Code
+Discover the Python coding best practices for writing best-in-class Python scripts.
+Javier Canales Luna
+13 min
+blog
+5 Python Challenges to Develop Your Skills
+Level
+ up your Python skills with these five Python coding challenges. Put 
+yourself to the test to see if you can complete one within a week!
+DataCamp Team
+5 min
+blog
+60+ Python Projects for All Levels of Expertise
+60 data science project ideas that data scientists can use to build a strong portfolio regardless of their expertise.
+Bekhruz Tuychiev
+15 min
+cheat-sheet
+Scikit-Learn Cheat Sheet: Python Machine Learning
+A handy scikit-learn cheat sheet to machine learning with Python, including some code examples.
+Karlijn Willems
+Tutorial
+21 Essential Python Tools
+Learn
+ about the essential Python tools for software development, web scraping
+ and development, data analysis and visualization, and machine learning.
+Abid Ali Awan
+Tutorial
+Python Try-Except Tutorial: Best Practices and Real-World Examples
+Learn
+ Python try-except with real-world examples, best practices, and common 
+pitfalls. Write cleaner, more reliable error-handling code.
+Derrick Mwiti
+See More
+See More
+Grow your data skills with DataCamp for Mobile
+Make progress on the go with our mobile courses and daily 5-minute coding challenges.
+Download on the App Store
+Get it on Google Play
+Learn
+Learn Python
+Learn AI
+Learn Power BI
+Learn Data Engineering
+Assessments
+Career Tracks
+Skill Tracks
+Courses
+Data Science Roadmap
+Data Courses
+Python Courses
+R Courses
+SQL Courses
+Power BI Courses
+Tableau Courses
+Alteryx Courses
+Azure Courses
+AWS Courses
+Google Sheets Courses
+Excel Courses
+AI Courses
+Data Analysis Courses
+Data Visualization Courses
+Machine Learning Courses
+Data Engineering Courses
+Probability & Statistics Courses
+DataLab
+Get Started
+Pricing
+Security
+Documentation
+Certification
+Certifications
+Data Scientist
+Data Analyst
+Data Engineer
+SQL Associate
+Power BI Data Analyst
+Tableau Certified Data Analyst
+Azure Fundamentals
+AI Fundamentals
+Resources
+Resource Center
+Upcoming Events
+Blog
+Code-Alongs
+Tutorials
+Docs
+Open Source
+RDocumentation
+Book a Demo with DataCamp for Business
+Data Portfolio
+Plans
+Pricing
+For Students
+For Business
+For Universities
+Discounts, Promos & Sales
+Expense DataCamp
+DataCamp Donates
+For Business
+Business Pricing
+Teams Plan
+Data & AI Unlimited Plan
+Customer Stories
+Partner Program
+About
+About Us
+Learner Stories
+Careers
+Become an Instructor
+Press
+Leadership
+Contact Us
+DataCamp Español
+DataCamp Português
+DataCamp Deutsch
+DataCamp Français
+Support
+Help Center
+Become an Affiliate
+Facebook
+Twitter
+LinkedIn
+YouTube
+Instagram
+Privacy Policy
+Cookie Notice
+Do Not Sell My Personal Information
+Accessibility
+Security
+Terms of Use
+© 2026 DataCamp, Inc. All Rights Reserved.

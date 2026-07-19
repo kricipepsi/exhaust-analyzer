@@ -1,0 +1,827 @@
+# Registry vault map - architect-authored. Maps prepared registry docs to vault frontmatter.
+#
+# Signal/noise: only doc-prepped notes with named registry/COMLab consumers are framed.
+# The registry is copied under Vault/labs/comlab/registry/ because COMLab consumes it.
+
+lab: registry
+module: registry
+
+frame:
+  "CHEMISTRY_COVERAGE/00_Preamble.md":
+    node_type: wiki
+    subsystem: "chemistry-coverage-matrix"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/rules/lean_condition.json"
+      - "labs/comlab/registry/code/rules/rich_mixture.json"
+      - "labs/comlab/registry/code/rules/misfire.json"
+      - "labs/comlab/registry/code/rules/catalyst_failure.json"
+      - "labs/comlab/registry/code/rules/sensor_fault.json"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_lean_condition_rules.py"
+      - "labs/comlab/registry/tests/test_rich_mixture_rules.py"
+      - "labs/comlab/registry/tests/test_misfire_rules.py"
+      - "labs/comlab/registry/tests/test_catalyst_failure_rules.py"
+      - "labs/comlab/registry/tests/test_sensor_fault_rules.py"
+
+  "CHEMISTRY_COVERAGE/1._Executive_Summary.md":
+    node_type: wiki
+    subsystem: "chemistry-coverage-matrix"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/rules/lean_condition.json"
+      - "labs/comlab/registry/code/rules/rich_mixture.json"
+      - "labs/comlab/registry/code/rules/misfire.json"
+      - "labs/comlab/registry/code/rules/catalyst_failure.json"
+      - "labs/comlab/registry/code/rules/sensor_fault.json"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_lean_condition_rules.py"
+      - "labs/comlab/registry/tests/test_rich_mixture_rules.py"
+      - "labs/comlab/registry/tests/test_misfire_rules.py"
+      - "labs/comlab/registry/tests/test_catalyst_failure_rules.py"
+      - "labs/comlab/registry/tests/test_sensor_fault_rules.py"
+
+  "CHEMISTRY_COVERAGE/2._Chemistry_States_Observed_in_the_Curated_Corpus.md":
+    node_type: wiki
+    subsystem: "chemistry-coverage-matrix"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/rules/lean_condition.json"
+      - "labs/comlab/registry/code/rules/rich_mixture.json"
+      - "labs/comlab/registry/code/rules/misfire.json"
+      - "labs/comlab/registry/code/rules/catalyst_failure.json"
+      - "labs/comlab/registry/code/rules/sensor_fault.json"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_lean_condition_rules.py"
+      - "labs/comlab/registry/tests/test_rich_mixture_rules.py"
+      - "labs/comlab/registry/tests/test_misfire_rules.py"
+      - "labs/comlab/registry/tests/test_catalyst_failure_rules.py"
+      - "labs/comlab/registry/tests/test_sensor_fault_rules.py"
+
+  "CHEMISTRY_COVERAGE/3._Full_Chemistry_×_Fault_Family_Matrix.md":
+    node_type: wiki
+    subsystem: "chemistry-coverage-matrix"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/rules/lean_condition.json"
+      - "labs/comlab/registry/code/rules/rich_mixture.json"
+      - "labs/comlab/registry/code/rules/misfire.json"
+      - "labs/comlab/registry/code/rules/catalyst_failure.json"
+      - "labs/comlab/registry/code/rules/sensor_fault.json"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_lean_condition_rules.py"
+      - "labs/comlab/registry/tests/test_rich_mixture_rules.py"
+      - "labs/comlab/registry/tests/test_misfire_rules.py"
+      - "labs/comlab/registry/tests/test_catalyst_failure_rules.py"
+      - "labs/comlab/registry/tests/test_sensor_fault_rules.py"
+
+  "CHEMISTRY_COVERAGE/4._Gap_Analysis.md":
+    node_type: wiki
+    subsystem: "chemistry-coverage-matrix"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/rules/lean_condition.json"
+      - "labs/comlab/registry/code/rules/rich_mixture.json"
+      - "labs/comlab/registry/code/rules/misfire.json"
+      - "labs/comlab/registry/code/rules/catalyst_failure.json"
+      - "labs/comlab/registry/code/rules/sensor_fault.json"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_lean_condition_rules.py"
+      - "labs/comlab/registry/tests/test_rich_mixture_rules.py"
+      - "labs/comlab/registry/tests/test_misfire_rules.py"
+      - "labs/comlab/registry/tests/test_catalyst_failure_rules.py"
+      - "labs/comlab/registry/tests/test_sensor_fault_rules.py"
+
+  "CHEMISTRY_COVERAGE/5._Cross-Reference_REGISTRY_AUDIT.md_§2.2_v1_Chemistry_States.md":
+    node_type: wiki
+    subsystem: "chemistry-coverage-matrix"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/rules/lean_condition.json"
+      - "labs/comlab/registry/code/rules/rich_mixture.json"
+      - "labs/comlab/registry/code/rules/misfire.json"
+      - "labs/comlab/registry/code/rules/catalyst_failure.json"
+      - "labs/comlab/registry/code/rules/sensor_fault.json"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_lean_condition_rules.py"
+      - "labs/comlab/registry/tests/test_rich_mixture_rules.py"
+      - "labs/comlab/registry/tests/test_misfire_rules.py"
+      - "labs/comlab/registry/tests/test_catalyst_failure_rules.py"
+      - "labs/comlab/registry/tests/test_sensor_fault_rules.py"
+
+  "CHEMISTRY_COVERAGE/6._Prioritized_REG-V2-AUTHOR-{family}_Task_Order.md":
+    node_type: wiki
+    subsystem: "chemistry-coverage-matrix"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/rules/lean_condition.json"
+      - "labs/comlab/registry/code/rules/rich_mixture.json"
+      - "labs/comlab/registry/code/rules/misfire.json"
+      - "labs/comlab/registry/code/rules/catalyst_failure.json"
+      - "labs/comlab/registry/code/rules/sensor_fault.json"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_lean_condition_rules.py"
+      - "labs/comlab/registry/tests/test_rich_mixture_rules.py"
+      - "labs/comlab/registry/tests/test_misfire_rules.py"
+      - "labs/comlab/registry/tests/test_catalyst_failure_rules.py"
+      - "labs/comlab/registry/tests/test_sensor_fault_rules.py"
+
+  "CHEMISTRY_COVERAGE/7._Bottom_Line.md":
+    node_type: wiki
+    subsystem: "chemistry-coverage-matrix"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/rules/lean_condition.json"
+      - "labs/comlab/registry/code/rules/rich_mixture.json"
+      - "labs/comlab/registry/code/rules/misfire.json"
+      - "labs/comlab/registry/code/rules/catalyst_failure.json"
+      - "labs/comlab/registry/code/rules/sensor_fault.json"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_lean_condition_rules.py"
+      - "labs/comlab/registry/tests/test_rich_mixture_rules.py"
+      - "labs/comlab/registry/tests/test_misfire_rules.py"
+      - "labs/comlab/registry/tests/test_catalyst_failure_rules.py"
+      - "labs/comlab/registry/tests/test_sensor_fault_rules.py"
+
+  "CORPUS_AUDIT/00_Preamble.md":
+    node_type: wiki
+    subsystem: "curated-corpus"
+    implements:
+      - "labs/comlab/registry/code/corpus_curated.csv"
+      - "labs/comlab/registry/code/corpus_meta.json"
+      - "labs/comlab/registry/code/tools/build_corpus.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py produces corpus_curated.csv and corpus_meta.json"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py reads corpus_curated.csv for case-library docs"
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_build_corpus.py"
+      - "labs/comlab/registry/tests/test_render_case_library.py"
+
+  "CORPUS_AUDIT/1._Executive_Summary.md":
+    node_type: wiki
+    subsystem: "curated-corpus"
+    implements:
+      - "labs/comlab/registry/code/corpus_curated.csv"
+      - "labs/comlab/registry/code/corpus_meta.json"
+      - "labs/comlab/registry/code/tools/build_corpus.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py produces corpus_curated.csv and corpus_meta.json"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py reads corpus_curated.csv for case-library docs"
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_build_corpus.py"
+      - "labs/comlab/registry/tests/test_render_case_library.py"
+
+  "CORPUS_AUDIT/2._Keep_Drop_Add_Summary_by_Fault_Family.md":
+    node_type: wiki
+    subsystem: "curated-corpus"
+    implements:
+      - "labs/comlab/registry/code/corpus_curated.csv"
+      - "labs/comlab/registry/code/corpus_meta.json"
+      - "labs/comlab/registry/code/tools/build_corpus.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py produces corpus_curated.csv and corpus_meta.json"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py reads corpus_curated.csv for case-library docs"
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_build_corpus.py"
+      - "labs/comlab/registry/tests/test_render_case_library.py"
+
+  "CORPUS_AUDIT/3._Dispositions_Accepted_vs._Overruled.md":
+    node_type: wiki
+    subsystem: "curated-corpus"
+    implements:
+      - "labs/comlab/registry/code/corpus_curated.csv"
+      - "labs/comlab/registry/code/corpus_meta.json"
+      - "labs/comlab/registry/code/tools/build_corpus.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py produces corpus_curated.csv and corpus_meta.json"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py reads corpus_curated.csv for case-library docs"
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_build_corpus.py"
+      - "labs/comlab/registry/tests/test_render_case_library.py"
+
+  "CORPUS_AUDIT/4._Pipeline-Bug_Cases_Retained.md":
+    node_type: wiki
+    subsystem: "curated-corpus"
+    implements:
+      - "labs/comlab/registry/code/corpus_curated.csv"
+      - "labs/comlab/registry/code/corpus_meta.json"
+      - "labs/comlab/registry/code/tools/build_corpus.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py produces corpus_curated.csv and corpus_meta.json"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py reads corpus_curated.csv for case-library docs"
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_build_corpus.py"
+      - "labs/comlab/registry/tests/test_render_case_library.py"
+
+  "CORPUS_AUDIT/5._Per-Case_Disposition_Table.md":
+    node_type: wiki
+    subsystem: "curated-corpus"
+    implements:
+      - "labs/comlab/registry/code/corpus_curated.csv"
+      - "labs/comlab/registry/code/corpus_meta.json"
+      - "labs/comlab/registry/code/tools/build_corpus.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py produces corpus_curated.csv and corpus_meta.json"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py reads corpus_curated.csv for case-library docs"
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_build_corpus.py"
+      - "labs/comlab/registry/tests/test_render_case_library.py"
+
+  "CORPUS_AUDIT/6._New_Cases_Proposed_11.md":
+    node_type: wiki
+    subsystem: "curated-corpus"
+    implements:
+      - "labs/comlab/registry/code/corpus_curated.csv"
+      - "labs/comlab/registry/code/corpus_meta.json"
+      - "labs/comlab/registry/code/tools/build_corpus.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py produces corpus_curated.csv and corpus_meta.json"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py reads corpus_curated.csv for case-library docs"
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_build_corpus.py"
+      - "labs/comlab/registry/tests/test_render_case_library.py"
+
+  "CORPUS_AUDIT/7._Discovery_Clause_—_Jaeger_Trace_Analysis.md":
+    node_type: wiki
+    subsystem: "curated-corpus"
+    implements:
+      - "labs/comlab/registry/code/corpus_curated.csv"
+      - "labs/comlab/registry/code/corpus_meta.json"
+      - "labs/comlab/registry/code/tools/build_corpus.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py produces corpus_curated.csv and corpus_meta.json"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py reads corpus_curated.csv for case-library docs"
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_build_corpus.py"
+      - "labs/comlab/registry/tests/test_render_case_library.py"
+
+  "CORPUS_AUDIT/8._Bottom_Line.md":
+    node_type: wiki
+    subsystem: "curated-corpus"
+    implements:
+      - "labs/comlab/registry/code/corpus_curated.csv"
+      - "labs/comlab/registry/code/corpus_meta.json"
+      - "labs/comlab/registry/code/tools/build_corpus.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py produces corpus_curated.csv and corpus_meta.json"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py reads corpus_curated.csv for case-library docs"
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_build_corpus.py"
+      - "labs/comlab/registry/tests/test_render_case_library.py"
+
+  "CORPUS_AUDIT/9._Artefacts_Produced.md":
+    node_type: wiki
+    subsystem: "curated-corpus"
+    implements:
+      - "labs/comlab/registry/code/corpus_curated.csv"
+      - "labs/comlab/registry/code/corpus_meta.json"
+      - "labs/comlab/registry/code/tools/build_corpus.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py produces corpus_curated.csv and corpus_meta.json"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py reads corpus_curated.csv for case-library docs"
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_build_corpus.py"
+      - "labs/comlab/registry/tests/test_render_case_library.py"
+
+  "REGISTRY_AUDIT/00_Preamble.md":
+    node_type: wiki
+    subsystem: "rule-inventory-and-rebuild"
+    implements:
+      - "labs/comlab/registry/code/rules/lean_condition.json"
+      - "labs/comlab/registry/code/rules/rich_mixture.json"
+      - "labs/comlab/registry/code/rules/misfire.json"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py loads rebuilt v2 rule data instead of v1 inventory"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py delegates v2 routing to registry.integration_shim"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+      - "labs/comlab/registry/tests/test_lean_condition_rules.py"
+      - "labs/comlab/registry/tests/test_rich_mixture_rules.py"
+      - "labs/comlab/registry/tests/test_misfire_rules.py"
+
+  "REGISTRY_AUDIT/1._Executive_Summary.md":
+    node_type: wiki
+    subsystem: "rule-inventory-and-rebuild"
+    implements:
+      - "labs/comlab/registry/code/rules/lean_condition.json"
+      - "labs/comlab/registry/code/rules/rich_mixture.json"
+      - "labs/comlab/registry/code/rules/misfire.json"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py loads rebuilt v2 rule data instead of v1 inventory"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py delegates v2 routing to registry.integration_shim"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+      - "labs/comlab/registry/tests/test_lean_condition_rules.py"
+      - "labs/comlab/registry/tests/test_rich_mixture_rules.py"
+      - "labs/comlab/registry/tests/test_misfire_rules.py"
+
+  "REGISTRY_AUDIT/2._Rule_Inventory.md":
+    node_type: wiki
+    subsystem: "rule-inventory-and-rebuild"
+    implements:
+      - "labs/comlab/registry/code/rules/lean_condition.json"
+      - "labs/comlab/registry/code/rules/rich_mixture.json"
+      - "labs/comlab/registry/code/rules/misfire.json"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py loads rebuilt v2 rule data instead of v1 inventory"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py delegates v2 routing to registry.integration_shim"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+      - "labs/comlab/registry/tests/test_lean_condition_rules.py"
+      - "labs/comlab/registry/tests/test_rich_mixture_rules.py"
+      - "labs/comlab/registry/tests/test_misfire_rules.py"
+
+  "REGISTRY_AUDIT/3._Firing_Matrix.md":
+    node_type: wiki
+    subsystem: "rule-inventory-and-rebuild"
+    implements:
+      - "labs/comlab/registry/code/rules/lean_condition.json"
+      - "labs/comlab/registry/code/rules/rich_mixture.json"
+      - "labs/comlab/registry/code/rules/misfire.json"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py loads rebuilt v2 rule data instead of v1 inventory"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py delegates v2 routing to registry.integration_shim"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+      - "labs/comlab/registry/tests/test_lean_condition_rules.py"
+      - "labs/comlab/registry/tests/test_rich_mixture_rules.py"
+      - "labs/comlab/registry/tests/test_misfire_rules.py"
+
+  "REGISTRY_AUDIT/4._Patch_vs_Rebuild_Decision.md":
+    node_type: wiki
+    subsystem: "rule-inventory-and-rebuild"
+    implements:
+      - "labs/comlab/registry/code/rules/lean_condition.json"
+      - "labs/comlab/registry/code/rules/rich_mixture.json"
+      - "labs/comlab/registry/code/rules/misfire.json"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py loads rebuilt v2 rule data instead of v1 inventory"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py delegates v2 routing to registry.integration_shim"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+      - "labs/comlab/registry/tests/test_lean_condition_rules.py"
+      - "labs/comlab/registry/tests/test_rich_mixture_rules.py"
+      - "labs/comlab/registry/tests/test_misfire_rules.py"
+
+  "REGISTRY_AUDIT/5._Bottom_Line.md":
+    node_type: wiki
+    subsystem: "rule-inventory-and-rebuild"
+    implements:
+      - "labs/comlab/registry/code/rules/lean_condition.json"
+      - "labs/comlab/registry/code/rules/rich_mixture.json"
+      - "labs/comlab/registry/code/rules/misfire.json"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py loads rebuilt v2 rule data instead of v1 inventory"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py delegates v2 routing to registry.integration_shim"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+      - "labs/comlab/registry/tests/test_lean_condition_rules.py"
+      - "labs/comlab/registry/tests/test_rich_mixture_rules.py"
+      - "labs/comlab/registry/tests/test_misfire_rules.py"
+
+  "SCHEMA_V2_SPEC/00_Preamble.md":
+    node_type: wiki
+    subsystem: "schema-v2-contract"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py validates rule JSON through schema_v2 models"
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py and render_case_library.py consume curated schema/corpus contracts"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py consumes rendered v2 registry output"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+
+  "SCHEMA_V2_SPEC/1._What_Changed_from_v1.md":
+    node_type: wiki
+    subsystem: "schema-v2-contract"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py validates rule JSON through schema_v2 models"
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py and render_case_library.py consume curated schema/corpus contracts"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py consumes rendered v2 registry output"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+
+  "SCHEMA_V2_SPEC/10._Maintenance.md":
+    node_type: wiki
+    subsystem: "schema-v2-contract"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py validates rule JSON through schema_v2 models"
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py and render_case_library.py consume curated schema/corpus contracts"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py consumes rendered v2 registry output"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+
+  "SCHEMA_V2_SPEC/2._Evidence_Tier_Model.md":
+    node_type: wiki
+    subsystem: "schema-v2-contract"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py validates rule JSON through schema_v2 models"
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py and render_case_library.py consume curated schema/corpus contracts"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py consumes rendered v2 registry output"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+
+  "SCHEMA_V2_SPEC/3._Rule_Structure.md":
+    node_type: wiki
+    subsystem: "schema-v2-contract"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py validates rule JSON through schema_v2 models"
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py and render_case_library.py consume curated schema/corpus contracts"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py consumes rendered v2 registry output"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+
+  "SCHEMA_V2_SPEC/4._Competition_Groups.md":
+    node_type: wiki
+    subsystem: "schema-v2-contract"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py validates rule JSON through schema_v2 models"
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py and render_case_library.py consume curated schema/corpus contracts"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py consumes rendered v2 registry output"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+
+  "SCHEMA_V2_SPEC/5._Confidence_Ceilings_No_Solo_Survivor.md":
+    node_type: wiki
+    subsystem: "schema-v2-contract"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py validates rule JSON through schema_v2 models"
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py and render_case_library.py consume curated schema/corpus contracts"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py consumes rendered v2 registry output"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+
+  "SCHEMA_V2_SPEC/6._Vocabulary_Enums.md":
+    node_type: wiki
+    subsystem: "schema-v2-contract"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py validates rule JSON through schema_v2 models"
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py and render_case_library.py consume curated schema/corpus contracts"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py consumes rendered v2 registry output"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+
+  "SCHEMA_V2_SPEC/7._Worked_Example_—_lean_condition_Family.md":
+    node_type: wiki
+    subsystem: "schema-v2-contract"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py validates rule JSON through schema_v2 models"
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py and render_case_library.py consume curated schema/corpus contracts"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py consumes rendered v2 registry output"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+
+  "SCHEMA_V2_SPEC/8._Authoring_Checklist_for_REG-V2-AUTHOR-{family}_tasks.md":
+    node_type: wiki
+    subsystem: "schema-v2-contract"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py validates rule JSON through schema_v2 models"
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py and render_case_library.py consume curated schema/corpus contracts"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py consumes rendered v2 registry output"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+
+  "SCHEMA_V2_SPEC/9._Integration_Notes_for_REG-V2-INTEGRATE.md":
+    node_type: wiki
+    subsystem: "schema-v2-contract"
+    implements:
+      - "labs/comlab/registry/code/schema_v2.py"
+      - "labs/comlab/registry/code/integration_shim.py"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py validates rule JSON through schema_v2 models"
+      - "registry: labs/comlab/registry/code/tools/build_corpus.py and render_case_library.py consume curated schema/corpus contracts"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py consumes rendered v2 registry output"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_schema_v2.py"
+      - "labs/comlab/registry/tests/test_integration_shim.py"
+
+  "case_library/00_Preamble.md":
+    node_type: wiki
+    subsystem: "case-library-00_Preamble"
+    implements:
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_render_case_library.py"
+
+  "case_library/cam_timing.md":
+    node_type: wiki
+    subsystem: "case-library-cam_timing"
+    implements:
+      - "labs/comlab/registry/code/rules/cam_timing.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_cam_timing_rules.py"
+
+  "case_library/catalyst_failure.md":
+    node_type: wiki
+    subsystem: "case-library-catalyst_failure"
+    implements:
+      - "labs/comlab/registry/code/rules/catalyst_failure.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_catalyst_failure_rules.py"
+
+  "case_library/charging_system.md":
+    node_type: wiki
+    subsystem: "case-library-charging_system"
+    implements:
+      - "labs/comlab/registry/code/rules/charging_system.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_charging_system_rules.py"
+
+  "case_library/ecu_fault.md":
+    node_type: wiki
+    subsystem: "case-library-ecu_fault"
+    implements:
+      - "labs/comlab/registry/code/rules/ecu_fault.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_ecu_fault_rules.py"
+
+  "case_library/exhaust_leak.md":
+    node_type: wiki
+    subsystem: "case-library-exhaust_leak"
+    implements:
+      - "labs/comlab/registry/code/rules/exhaust_leak.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_exhaust_leak_rules.py"
+
+  "case_library/ignition_fault.md":
+    node_type: wiki
+    subsystem: "case-library-ignition_fault"
+    implements:
+      - "labs/comlab/registry/code/rules/ignition_fault.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_ignition_fault_rules.py"
+
+  "case_library/invalid_input.md":
+    node_type: wiki
+    subsystem: "case-library-invalid_input"
+    implements:
+      - "labs/comlab/registry/code/rules/invalid_input.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_invalid_input_rules.py"
+
+  "case_library/lean_condition.md":
+    node_type: wiki
+    subsystem: "case-library-lean_condition"
+    implements:
+      - "labs/comlab/registry/code/rules/lean_condition.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_lean_condition_rules.py"
+
+  "case_library/mechanical_wear.md":
+    node_type: wiki
+    subsystem: "case-library-mechanical_wear"
+    implements:
+      - "labs/comlab/registry/code/rules/mechanical_wear.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_mechanical_wear_rules.py"
+
+  "case_library/misfire.md":
+    node_type: wiki
+    subsystem: "case-library-misfire"
+    implements:
+      - "labs/comlab/registry/code/rules/misfire.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_misfire_rules.py"
+
+  "case_library/no_family.md":
+    node_type: wiki
+    subsystem: "case-library-invalid_input"
+    implements:
+      - "labs/comlab/registry/code/rules/invalid_input.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_invalid_input_rules.py"
+
+  "case_library/no_fault.md":
+    node_type: wiki
+    subsystem: "case-library-no_fault"
+    implements:
+      - "labs/comlab/registry/code/rules/no_fault.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_no_fault_rules.py"
+
+  "case_library/non_starter.md":
+    node_type: wiki
+    subsystem: "case-library-non_starter"
+    implements:
+      - "labs/comlab/registry/code/rules/non_starter.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_non_starter_rules.py"
+
+  "case_library/overheating.md":
+    node_type: wiki
+    subsystem: "case-library-overheating"
+    implements:
+      - "labs/comlab/registry/code/rules/overheating.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_overheating_rules.py"
+
+  "case_library/rich_mixture.md":
+    node_type: wiki
+    subsystem: "case-library-rich_mixture"
+    implements:
+      - "labs/comlab/registry/code/rules/rich_mixture.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_rich_mixture_rules.py"
+
+  "case_library/sensor_fault.md":
+    node_type: wiki
+    subsystem: "case-library-sensor_fault"
+    implements:
+      - "labs/comlab/registry/code/rules/sensor_fault.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_sensor_fault_rules.py"
+
+  "case_library/vacuum_leak.md":
+    node_type: wiki
+    subsystem: "case-library-vacuum_leak"
+    implements:
+      - "labs/comlab/registry/code/rules/vacuum_leak.json"
+      - "labs/comlab/registry/code/corpus_curated.csv"
+    consumers:
+      - "registry: labs/comlab/registry/code/integration_shim.py route_case_with_diagnostics loads and scores registry rules"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py v2 path imports registry.integration_shim behind USE_V2_REGISTRY"
+      - "registry: labs/comlab/registry/code/tools/render_case_library.py groups curated cases by fault family"
+    drift_guards:
+      - "labs/comlab/registry/tests/test_vacuum_leak_rules.py"
+
+plain: []

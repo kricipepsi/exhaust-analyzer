@@ -1,0 +1,138 @@
+[
+  {
+    "type": "video",
+    "original_url": "https://www.youtube.com/watch?v=3cUkvFKYbHE&t=16s",
+    "saved_path": "transcripts/video1.txt",
+    "title": "Video 1 - Transcript not available (transcribe_youtube tool missing)",
+    "status": "failed",
+    "reason": "transcribe_youtube tool not available in current tool set"
+  },
+  {
+    "type": "video",
+    "original_url": "https://www.youtube.com/watch?v=8OKTAedgFYg&t=22s",
+    "saved_path": "transcripts/video2.txt",
+    "title": "Video 2 - Transcript not available (transcribe_youtube tool missing)",
+    "status": "failed",
+    "reason": "transcribe_youtube tool not available in current tool set"
+  },
+  {
+    "type": "video",
+    "original_url": "https://www.youtube.com/watch?v=zml0rTMJVXg&t=15s",
+    "saved_path": "transcripts/video3.txt",
+    "title": "Video 3 - Transcript not available (transcribe_youtube tool missing)",
+    "status": "failed",
+    "reason": "transcribe_youtube tool not available in current tool set"
+  },
+  {
+    "type": "video",
+    "original_url": "https://www.youtube.com/watch?v=73FRQspzFzo&t=7s",
+    "saved_path": "transcripts/video4.txt",
+    "title": "Video 4 - Transcript not available (transcribe_youtube tool missing)",
+    "status": "failed",
+    "reason": "transcribe_youtube tool not available in current tool set"
+  },
+  {
+    "type": "video",
+    "original_url": "https://www.youtube.com/watch?v=I72uD8ED73U&t=25s",
+    "saved_path": "transcripts/video5.txt",
+    "title": "Video 5 - Transcript not available (transcribe_youtube tool missing)",
+    "status": "failed",
+    "reason": "transcribe_youtube tool not available in current tool set"
+  },
+  {
+    "type": "video",
+    "original_url": "https://www.youtube.com/watch?v=6ViGc5NgdSw&t=12s",
+    "saved_path": "transcripts/video6.txt",
+    "title": "Video 6 - Transcript not available (transcribe_youtube tool missing)",
+    "status": "failed",
+    "reason": "transcribe_youtube tool not available in current tool set"
+  },
+  {
+    "type": "video",
+    "original_url": "https://www.youtube.com/watch?v=qqp6QN20CpE&t=32s",
+    "saved_path": "transcripts/video7.txt",
+    "title": "Video 7 - Transcript not available (transcribe_youtube tool missing)",
+    "status": "failed",
+    "reason": "transcribe_youtube tool not available in current tool set"
+  },
+  {
+    "type": "video",
+    "original_url": "https://www.youtube.com/watch?v=Gx5qb1uHss4&t=23s",
+    "saved_path": "transcripts/video8.txt",
+    "title": "Video 8 - Transcript not available (transcribe_youtube tool missing)",
+    "status": "failed",
+    "reason": "transcribe_youtube tool not available in current tool set"
+  },
+  {
+    "type": "video",
+    "original_url": "https://www.youtube.com/watch?v=cEe9_F0Sh4o&t=20s",
+    "saved_path": "transcripts/video9.txt",
+    "title": "Video 9 - Transcript not available (transcribe_youtube tool missing)",
+    "status": "failed",
+    "reason": "transcribe_youtube tool not available in current tool set"
+  },
+  {
+    "type": "video",
+    "original_url": "https://www.youtube.com/watch?v=qUeud6DvOWI&t=39s",
+    "saved_path": "transcripts/video10.txt",
+    "title": "Video 10 - Transcript not available (transcribe_youtube tool missing)",
+    "status": "failed",
+    "reason": "transcribe_youtube tool not available in current tool set"
+  },
+  {
+    "type": "article",
+    "original_url": "https://www.python-engineer.com/posts/11-tips-to-write-better-python-code/",
+    "saved_path": "articles/article1.txt",
+    "title": "11 Tips And Tricks To Write Better Python Code - Python Engineer"
+  },
+  {
+    "type": "article",
+    "original_url": "https://www.datacamp.com/tutorial/python-tips-examples",
+    "saved_path": "articles/article2.txt",
+    "title": "Article 2 - Access denied (403 Forbidden)",
+    "status": "failed",
+    "reason": "HTTP 403 error - site may require authentication"
+  },
+  {
+    "type": "article",
+    "original_url": "https://www.reddit.com/r/Python/comments/13e5oxw/15_tips_and_tricks_for_writing_better_python/",
+    "saved_path": "articles/article3.txt",
+    "title": "Limited content: 15 tips and tricks for different learning levels from basic to advanced"
+  },
+  {
+    "type": "article",
+    "original_url": "https://www.geeksforgeeks.org/python/10-essential-python-tips-tricks-programmers/",
+    "saved_path": "articles/article4.txt",
+    "title": "Essential Python Tips And Tricks For Programmers - GeeksforGeeks"
+  },
+  {
+    "type": "article",
+    "original_url": "https://dev.to/srijan-xi/0-to-100-python-tips-tricks-for-every-developer-407o",
+    "saved_path": "articles/article5.txt",
+    "title": "0 to 100: Python Tips & Tricks for Every Developer"
+  },
+  {
+    "type": "article",
+    "original_url": "https://wiki.python.org/moin/PythonSpeed/PerformanceTips",
+    "saved_path": "articles/article6.txt",
+    "title": "PythonSpeed/PerformanceTips"
+  },
+  {
+    "type": "article",
+    "original_url": "https://medium.com/codetodeploy/5-advanced-python-techniques-i-finally-understood-and-my-code-got-10-better-aed980ee3200",
+    "saved_path": "articles/article7.txt",
+    "title": "Limited content: Member-only story introduction only"
+  },
+  {
+    "type": "article",
+    "original_url": "https://www.reddit.com/r/Python/comments/1g5xswk/advanced_python_tips_libraries_or_best_practices/",
+    "saved_path": "articles/article8.txt",
+    "title": "Limited content: Question post about advanced Python tips"
+  },
+  {
+    "type": "article",
+    "original_url": "https://blog.edward-li.com/tech/advanced-python-features/",
+    "saved_path": "articles/article9.txt",
+    "title": "14 Advanced Python Features"
+  }
+]

@@ -1,0 +1,620 @@
+{
+  "task": "T-V3-P4-C2-SYNTH",
+  "generated": "2026-07-01",
+  "mode": "provisional-synthetic-seed (side file; live corpus untouched)",
+  "policy": "4DLab_CLAUDE.md \u00a7Provisional synthetic signals",
+  "no_backsolve": "generator keys only on corpus expected_fault_family (oracle) + web-validated band table; does not read rich_mixture.json / catalyst_failure.json thresholds or any case rank/prediction",
+  "research_limits_cluster2": {
+    "rich_total_trim_pct_le": -10.0,
+    "catalyst_index_pass_le": 0.2,
+    "decel_co_fail_gt": 0.8
+  },
+  "band_table": {
+    "rich_mixture": {
+      "band_id": "C2-RICH",
+      "c2_separable": true,
+      "signature": "TRUE_RICH: sustained negative fuel trim; catalyst itself healthy",
+      "catalyst_state": "healthy",
+      "trim_bands": {
+        "stft_idle_pct": [
+          -10.0,
+          -4.0,
+          1.73
+        ],
+        "ltft_idle_pct": [
+          -15.0,
+          -8.0,
+          2.02
+        ],
+        "stft_2500_pct": [
+          -8.0,
+          -3.0,
+          1.44
+        ],
+        "ltft_2500_pct": [
+          -13.0,
+          -7.0,
+          1.73
+        ]
+      },
+      "catalyst_bands": {
+        "catalyst_index_ratio": [
+          0.05,
+          0.18,
+          0.04
+        ],
+        "decel_co_pct": [
+          0.05,
+          0.6,
+          0.16
+        ],
+        "pre_post_cat_hc_delta_ppm": [
+          300.0,
+          900.0,
+          173.21
+        ],
+        "pre_post_cat_co_delta_pct": [
+          0.5,
+          2.0,
+          0.43
+        ]
+      }
+    },
+    "catalyst_failure": {
+      "band_id": "C2-CAT",
+      "c2_separable": true,
+      "signature": "Catalyst deteriorated: trims near zero (no fueling fault) + high index/CO",
+      "catalyst_state": "failed",
+      "trim_bands": {
+        "stft_idle_pct": [
+          -3.0,
+          3.0,
+          1.73
+        ],
+        "ltft_idle_pct": [
+          -4.0,
+          4.0,
+          2.31
+        ],
+        "stft_2500_pct": [
+          -3.0,
+          3.0,
+          1.73
+        ],
+        "ltft_2500_pct": [
+          -4.0,
+          4.0,
+          2.31
+        ]
+      },
+      "catalyst_bands": {
+        "catalyst_index_ratio": [
+          0.55,
+          0.9,
+          0.1
+        ],
+        "decel_co_pct": [
+          0.9,
+          2.2,
+          0.38
+        ],
+        "pre_post_cat_hc_delta_ppm": [
+          10.0,
+          120.0,
+          31.75
+        ],
+        "pre_post_cat_co_delta_pct": [
+          0.0,
+          0.25,
+          0.07
+        ]
+      }
+    },
+    "lean_condition": {
+      "band_id": "C2-LEAN",
+      "c2_separable": false,
+      "signature": "Lean: positive trim, high at idle / corrects at 2500 rpm (vacuum-leak shape)",
+      "catalyst_state": "healthy",
+      "trim_bands": {
+        "stft_idle_pct": [
+          3.0,
+          8.0,
+          1.44
+        ],
+        "ltft_idle_pct": [
+          9.0,
+          18.0,
+          2.6
+        ],
+        "stft_2500_pct": [
+          0.0,
+          4.0,
+          1.15
+        ],
+        "ltft_2500_pct": [
+          1.0,
+          6.0,
+          1.44
+        ]
+      },
+      "catalyst_bands": {
+        "catalyst_index_ratio": [
+          0.05,
+          0.18,
+          0.04
+        ],
+        "decel_co_pct": [
+          0.05,
+          0.6,
+          0.16
+        ],
+        "pre_post_cat_hc_delta_ppm": [
+          300.0,
+          900.0,
+          173.21
+        ],
+        "pre_post_cat_co_delta_pct": [
+          0.5,
+          2.0,
+          0.43
+        ]
+      }
+    },
+    "sensor_fault": {
+      "band_id": "C2-SENSOR",
+      "c2_separable": false,
+      "signature": "O2/ground skew: erratic trims + falsely-elevated index (mimics catalyst)",
+      "catalyst_state": "ambiguous",
+      "trim_bands": {
+        "stft_idle_pct": [
+          -4.0,
+          8.0,
+          3.46
+        ],
+        "ltft_idle_pct": [
+          -4.0,
+          8.0,
+          3.46
+        ],
+        "stft_2500_pct": [
+          -4.0,
+          8.0,
+          3.46
+        ],
+        "ltft_2500_pct": [
+          -4.0,
+          8.0,
+          3.46
+        ]
+      },
+      "catalyst_bands": {
+        "catalyst_index_ratio": [
+          0.28,
+          0.55,
+          0.08
+        ],
+        "decel_co_pct": [
+          0.3,
+          0.9,
+          0.17
+        ],
+        "pre_post_cat_hc_delta_ppm": [
+          150.0,
+          400.0,
+          72.17
+        ],
+        "pre_post_cat_co_delta_pct": [
+          0.2,
+          0.6,
+          0.12
+        ]
+      }
+    }
+  },
+  "citations": {
+    "fuel_trim_normal_pm10": "LTFT normally -10%..+10%; approaching -20% indicates rich (P0172 'System Too Rich'). ricksfreeautorepairadvice.com/what-does-negative-fuel-trim-mean-expert-diagnosis-guide/; engineerfix.com/what-should-long-term-and-short-term-fuel-trim-be/",
+    "rich_negative_trim": "Negative trim = ECU pulling fuel because engine runs rich; both STFT+LTFT negative = sustained rich; fuel-delivery cause is consistent across RPM. foxwelldiag.com/blogs/car-diagnostic/understanding-long-term-fuel-trim-bank-1-and-how-to-diagnose-issues",
+    "catalyst_index_ratio": "Mode $06 rear/front O2 switch ratio: healthy cat = low ratio (downstream flatlines); failed cat = ratio approaches 1:1 (documented 0.76 set P0430). brakeandfrontend.com/obd-ii-diagnostics-checking-into-mode-06/",
+    "decel_co": "Healthy cat reduces CO 70-90% (near-zero tailpipe CO, often <0.5% at idle); dead cat / rich engine pushes idle CO into several-percent range. aa1car.com/library/converter.htm; ipdusa.com/Articles/770/Diagnosing-Faulty-Catalytic-Converters",
+    "lean_positive_trim": "Positive trim = ECU adding fuel for a lean condition; +20% documented (case +22/+20), ECU compensates up to ~+25%; vacuum-leak signature is high-at-idle / corrects at 1500-2500 rpm. vehicleservicepros.com/.../fuel-trim-finding-a-vacuum-leak...; xerodrive.com/auto-guides/long-term-fuel-trim-high-at-idle/",
+    "sensor_skew": "A bad O2 sensor / ground-voltage drop skews the Mode $06 ratio and fuel trim, causing false catalyst codes (P0420/P0430) \u2014 replace O2 before condemning the cat. brakeandfrontend.com/obd-ii-diagnostics-checking-into-mode-06/"
+  },
+  "cases": {
+    "CASE-015": {
+      "case_id": "CASE-015",
+      "oracle_fault": "catalyst_failure",
+      "band_id": "C2-CAT",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": 5.4,
+      "total_2500_trim_pct": 6.2,
+      "stft_idle_pct": 2.9,
+      "ltft_idle_pct": 2.5,
+      "stft_2500_pct": 2.8,
+      "ltft_2500_pct": 3.4,
+      "catalyst_index_ratio": 0.71,
+      "mode06_catalyst_margin_pct": -255.0,
+      "decel_co_pct": 1.07,
+      "pre_post_cat_hc_delta_ppm": 42.0,
+      "pre_post_cat_co_delta_pct": 0.08
+    },
+    "CASE-023": {
+      "case_id": "CASE-023",
+      "oracle_fault": "rich_mixture",
+      "band_id": "C2-RICH",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": -15.3,
+      "total_2500_trim_pct": -18.6,
+      "stft_idle_pct": -5.2,
+      "ltft_idle_pct": -10.1,
+      "stft_2500_pct": -5.9,
+      "ltft_2500_pct": -12.7,
+      "catalyst_index_ratio": 0.145,
+      "mode06_catalyst_margin_pct": 27.5,
+      "decel_co_pct": 0.14,
+      "pre_post_cat_hc_delta_ppm": 457.0,
+      "pre_post_cat_co_delta_pct": 1.85
+    },
+    "CASE-029": {
+      "case_id": "CASE-029",
+      "oracle_fault": "rich_mixture",
+      "band_id": "C2-RICH",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": -15.7,
+      "total_2500_trim_pct": -15.1,
+      "stft_idle_pct": -6.6,
+      "ltft_idle_pct": -9.1,
+      "stft_2500_pct": -6.8,
+      "ltft_2500_pct": -8.3,
+      "catalyst_index_ratio": 0.059,
+      "mode06_catalyst_margin_pct": 70.5,
+      "decel_co_pct": 0.26,
+      "pre_post_cat_hc_delta_ppm": 751.0,
+      "pre_post_cat_co_delta_pct": 0.74
+    },
+    "CASE-040": {
+      "case_id": "CASE-040",
+      "oracle_fault": "rich_mixture",
+      "band_id": "C2-RICH",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": -23.5,
+      "total_2500_trim_pct": -15.5,
+      "stft_idle_pct": -8.6,
+      "ltft_idle_pct": -14.9,
+      "stft_2500_pct": -5.2,
+      "ltft_2500_pct": -10.3,
+      "catalyst_index_ratio": 0.096,
+      "mode06_catalyst_margin_pct": 52.0,
+      "decel_co_pct": 0.06,
+      "pre_post_cat_hc_delta_ppm": 380.0,
+      "pre_post_cat_co_delta_pct": 1.94
+    },
+    "CSV-100": {
+      "case_id": "CSV-100",
+      "oracle_fault": "lean_condition",
+      "band_id": "C2-LEAN",
+      "c2_separable": false,
+      "synthetic": true,
+      "total_idle_trim_pct": 14.9,
+      "total_2500_trim_pct": 8.1,
+      "stft_idle_pct": 3.9,
+      "ltft_idle_pct": 11.0,
+      "stft_2500_pct": 3.1,
+      "ltft_2500_pct": 5.0,
+      "catalyst_index_ratio": 0.155,
+      "mode06_catalyst_margin_pct": 22.5,
+      "decel_co_pct": 0.4,
+      "pre_post_cat_hc_delta_ppm": 592.0,
+      "pre_post_cat_co_delta_pct": 0.7
+    },
+    "CSV-121": {
+      "case_id": "CSV-121",
+      "oracle_fault": "catalyst_failure",
+      "band_id": "C2-CAT",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": 5.0,
+      "total_2500_trim_pct": 0.5,
+      "stft_idle_pct": 1.0,
+      "ltft_idle_pct": 4.0,
+      "stft_2500_pct": -1.8,
+      "ltft_2500_pct": 2.3,
+      "catalyst_index_ratio": 0.801,
+      "mode06_catalyst_margin_pct": -300.5,
+      "decel_co_pct": 0.93,
+      "pre_post_cat_hc_delta_ppm": 97.0,
+      "pre_post_cat_co_delta_pct": 0.17
+    },
+    "CSV-122": {
+      "case_id": "CSV-122",
+      "oracle_fault": "catalyst_failure",
+      "band_id": "C2-CAT",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": 4.5,
+      "total_2500_trim_pct": 5.3,
+      "stft_idle_pct": 0.8,
+      "ltft_idle_pct": 3.7,
+      "stft_2500_pct": 1.9,
+      "ltft_2500_pct": 3.4,
+      "catalyst_index_ratio": 0.701,
+      "mode06_catalyst_margin_pct": -250.5,
+      "decel_co_pct": 1.91,
+      "pre_post_cat_hc_delta_ppm": 40.0,
+      "pre_post_cat_co_delta_pct": 0.08
+    },
+    "EXP-N017": {
+      "case_id": "EXP-N017",
+      "oracle_fault": "lean_condition",
+      "band_id": "C2-LEAN",
+      "c2_separable": false,
+      "synthetic": true,
+      "total_idle_trim_pct": 18.2,
+      "total_2500_trim_pct": 7.7,
+      "stft_idle_pct": 5.6,
+      "ltft_idle_pct": 12.6,
+      "stft_2500_pct": 3.4,
+      "ltft_2500_pct": 4.3,
+      "catalyst_index_ratio": 0.144,
+      "mode06_catalyst_margin_pct": 28.0,
+      "decel_co_pct": 0.16,
+      "pre_post_cat_hc_delta_ppm": 740.0,
+      "pre_post_cat_co_delta_pct": 2.0
+    },
+    "EXT-217": {
+      "case_id": "EXT-217",
+      "oracle_fault": "rich_mixture",
+      "band_id": "C2-RICH",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": -14.3,
+      "total_2500_trim_pct": -15.2,
+      "stft_idle_pct": -4.7,
+      "ltft_idle_pct": -9.6,
+      "stft_2500_pct": -6.4,
+      "ltft_2500_pct": -8.8,
+      "catalyst_index_ratio": 0.117,
+      "mode06_catalyst_margin_pct": 41.5,
+      "decel_co_pct": 0.2,
+      "pre_post_cat_hc_delta_ppm": 733.0,
+      "pre_post_cat_co_delta_pct": 1.01
+    },
+    "EXT-232": {
+      "case_id": "EXT-232",
+      "oracle_fault": "catalyst_failure",
+      "band_id": "C2-CAT",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": -4.3,
+      "total_2500_trim_pct": -5.7,
+      "stft_idle_pct": -1.6,
+      "ltft_idle_pct": -2.7,
+      "stft_2500_pct": -2.7,
+      "ltft_2500_pct": -3.0,
+      "catalyst_index_ratio": 0.831,
+      "mode06_catalyst_margin_pct": -315.5,
+      "decel_co_pct": 1.1,
+      "pre_post_cat_hc_delta_ppm": 53.0,
+      "pre_post_cat_co_delta_pct": 0.13
+    },
+    "EXT-233": {
+      "case_id": "EXT-233",
+      "oracle_fault": "catalyst_failure",
+      "band_id": "C2-CAT",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": -3.2,
+      "total_2500_trim_pct": 2.4,
+      "stft_idle_pct": -2.6,
+      "ltft_idle_pct": -0.6,
+      "stft_2500_pct": 2.5,
+      "ltft_2500_pct": -0.1,
+      "catalyst_index_ratio": 0.809,
+      "mode06_catalyst_margin_pct": -304.5,
+      "decel_co_pct": 0.99,
+      "pre_post_cat_hc_delta_ppm": 112.0,
+      "pre_post_cat_co_delta_pct": 0.06
+    },
+    "PDF-HI-001": {
+      "case_id": "PDF-HI-001",
+      "oracle_fault": "rich_mixture",
+      "band_id": "C2-RICH",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": -21.1,
+      "total_2500_trim_pct": -13.1,
+      "stft_idle_pct": -9.8,
+      "ltft_idle_pct": -11.3,
+      "stft_2500_pct": -3.4,
+      "ltft_2500_pct": -9.7,
+      "catalyst_index_ratio": 0.15,
+      "mode06_catalyst_margin_pct": 25.0,
+      "decel_co_pct": 0.21,
+      "pre_post_cat_hc_delta_ppm": 761.0,
+      "pre_post_cat_co_delta_pct": 1.57
+    },
+    "PDF-HI-006": {
+      "case_id": "PDF-HI-006",
+      "oracle_fault": "catalyst_failure",
+      "band_id": "C2-CAT",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": 0.7,
+      "total_2500_trim_pct": 1.8,
+      "stft_idle_pct": 1.4,
+      "ltft_idle_pct": -0.7,
+      "stft_2500_pct": 0.3,
+      "ltft_2500_pct": 1.5,
+      "catalyst_index_ratio": 0.792,
+      "mode06_catalyst_margin_pct": -296.0,
+      "decel_co_pct": 1.91,
+      "pre_post_cat_hc_delta_ppm": 18.0,
+      "pre_post_cat_co_delta_pct": 0.19
+    },
+    "RULE-CO-1": {
+      "case_id": "RULE-CO-1",
+      "oracle_fault": "rich_mixture",
+      "band_id": "C2-RICH",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": -15.8,
+      "total_2500_trim_pct": -11.0,
+      "stft_idle_pct": -7.2,
+      "ltft_idle_pct": -8.6,
+      "stft_2500_pct": -3.0,
+      "ltft_2500_pct": -8.0,
+      "catalyst_index_ratio": 0.125,
+      "mode06_catalyst_margin_pct": 37.5,
+      "decel_co_pct": 0.47,
+      "pre_post_cat_hc_delta_ppm": 751.0,
+      "pre_post_cat_co_delta_pct": 1.12
+    },
+    "YAML-PDF_HI_001": {
+      "case_id": "YAML-PDF_HI_001",
+      "oracle_fault": "rich_mixture",
+      "band_id": "C2-RICH",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": -17.3,
+      "total_2500_trim_pct": -13.9,
+      "stft_idle_pct": -4.1,
+      "ltft_idle_pct": -13.2,
+      "stft_2500_pct": -4.4,
+      "ltft_2500_pct": -9.5,
+      "catalyst_index_ratio": 0.178,
+      "mode06_catalyst_margin_pct": 11.0,
+      "decel_co_pct": 0.23,
+      "pre_post_cat_hc_delta_ppm": 402.0,
+      "pre_post_cat_co_delta_pct": 1.23
+    },
+    "case_002": {
+      "case_id": "case_002",
+      "oracle_fault": "rich_mixture",
+      "band_id": "C2-RICH",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": -22.6,
+      "total_2500_trim_pct": -17.5,
+      "stft_idle_pct": -9.1,
+      "ltft_idle_pct": -13.5,
+      "stft_2500_pct": -6.2,
+      "ltft_2500_pct": -11.3,
+      "catalyst_index_ratio": 0.1,
+      "mode06_catalyst_margin_pct": 50.0,
+      "decel_co_pct": 0.4,
+      "pre_post_cat_hc_delta_ppm": 553.0,
+      "pre_post_cat_co_delta_pct": 1.51
+    },
+    "case_004": {
+      "case_id": "case_004",
+      "oracle_fault": "sensor_fault",
+      "band_id": "C2-SENSOR",
+      "c2_separable": false,
+      "synthetic": true,
+      "total_idle_trim_pct": 2.6,
+      "total_2500_trim_pct": 5.1,
+      "stft_idle_pct": 1.4,
+      "ltft_idle_pct": 1.2,
+      "stft_2500_pct": 5.6,
+      "ltft_2500_pct": -0.5,
+      "catalyst_index_ratio": 0.407,
+      "mode06_catalyst_margin_pct": -103.5,
+      "decel_co_pct": 0.44,
+      "pre_post_cat_hc_delta_ppm": 399.0,
+      "pre_post_cat_co_delta_pct": 0.31
+    },
+    "case_015": {
+      "case_id": "case_015",
+      "oracle_fault": "rich_mixture",
+      "band_id": "C2-RICH",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": -13.8,
+      "total_2500_trim_pct": -13.5,
+      "stft_idle_pct": -5.4,
+      "ltft_idle_pct": -8.4,
+      "stft_2500_pct": -6.1,
+      "ltft_2500_pct": -7.4,
+      "catalyst_index_ratio": 0.139,
+      "mode06_catalyst_margin_pct": 30.5,
+      "decel_co_pct": 0.59,
+      "pre_post_cat_hc_delta_ppm": 382.0,
+      "pre_post_cat_co_delta_pct": 1.11
+    },
+    "case_017": {
+      "case_id": "case_017",
+      "oracle_fault": "rich_mixture",
+      "band_id": "C2-RICH",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": -22.4,
+      "total_2500_trim_pct": -14.9,
+      "stft_idle_pct": -9.5,
+      "ltft_idle_pct": -12.9,
+      "stft_2500_pct": -6.6,
+      "ltft_2500_pct": -8.3,
+      "catalyst_index_ratio": 0.134,
+      "mode06_catalyst_margin_pct": 33.0,
+      "decel_co_pct": 0.26,
+      "pre_post_cat_hc_delta_ppm": 575.0,
+      "pre_post_cat_co_delta_pct": 0.69
+    },
+    "era1_017": {
+      "case_id": "era1_017",
+      "oracle_fault": "sensor_fault",
+      "band_id": "C2-SENSOR",
+      "c2_separable": false,
+      "synthetic": true,
+      "total_idle_trim_pct": 5.9,
+      "total_2500_trim_pct": 3.8,
+      "stft_idle_pct": 4.6,
+      "ltft_idle_pct": 1.3,
+      "stft_2500_pct": -2.6,
+      "ltft_2500_pct": 6.4,
+      "catalyst_index_ratio": 0.444,
+      "mode06_catalyst_margin_pct": -122.0,
+      "decel_co_pct": 0.68,
+      "pre_post_cat_hc_delta_ppm": 223.0,
+      "pre_post_cat_co_delta_pct": 0.42
+    },
+    "era2_015": {
+      "case_id": "era2_015",
+      "oracle_fault": "lean_condition",
+      "band_id": "C2-LEAN",
+      "c2_separable": false,
+      "synthetic": true,
+      "total_idle_trim_pct": 21.0,
+      "total_2500_trim_pct": 3.8,
+      "stft_idle_pct": 3.7,
+      "ltft_idle_pct": 17.3,
+      "stft_2500_pct": 1.9,
+      "ltft_2500_pct": 1.9,
+      "catalyst_index_ratio": 0.083,
+      "mode06_catalyst_margin_pct": 58.5,
+      "decel_co_pct": 0.44,
+      "pre_post_cat_hc_delta_ppm": 626.0,
+      "pre_post_cat_co_delta_pct": 0.62
+    },
+    "era2_019": {
+      "case_id": "era2_019",
+      "oracle_fault": "rich_mixture",
+      "band_id": "C2-RICH",
+      "c2_separable": true,
+      "synthetic": true,
+      "total_idle_trim_pct": -16.6,
+      "total_2500_trim_pct": -14.0,
+      "stft_idle_pct": -5.9,
+      "ltft_idle_pct": -10.7,
+      "stft_2500_pct": -4.3,
+      "ltft_2500_pct": -9.7,
+      "catalyst_index_ratio": 0.129,
+      "mode06_catalyst_margin_pct": 35.5,
+      "decel_co_pct": 0.14,
+      "pre_post_cat_hc_delta_ppm": 505.0,
+      "pre_post_cat_co_delta_pct": 1.65
+    }
+  }
+}

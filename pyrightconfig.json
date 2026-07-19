@@ -1,0 +1,15 @@
+{
+  "venvPath": "/agent_workspace",
+  "venv": ".venv-wired",
+  "extraPaths": [
+    "apps/ui",
+    "apps/wired",
+    "labs/vinlab",
+    "labs/comlab",
+    "labs/gaslab",
+    "labs/obdlab",
+    "labs/dtclab",
+    "labs/symptomlab",
+    "labs/dnalab"
+  ]
+}

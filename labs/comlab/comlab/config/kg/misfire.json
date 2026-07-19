@@ -1,0 +1,246 @@
+{
+  "schema_version": "1.0",
+  "fault_family": "misfire",
+  "nodes": {
+    "ERR-MF-001": {
+      "fault_name": "coil_on_plug_insulation_arc",
+      "fault_family": "misfire",
+      "component_group": "Ignition System \u00e2\u20ac\u201d Coil-on-Plug Assembly",
+      "impacted_subsystems": [
+        "Coil-on-Plug (COP) High-Voltage Winding",
+        "Spark Plug Boot and Terminal",
+        "Cylinder Ignition Event"
+      ],
+      "mechanical_failure_mode": "Internal insulation breakdown in the COP winding allows high-voltage ignition energy to arc to engine ground through the coil body, starving the spark plug of energy and causing an ignition-type misfire.",
+      "ui_remediation_steps": [
+        "Swap the suspect COP coil to a known-good cylinder and confirm the misfire DTC follows the coil \u00e2\u20ac\u201d this eliminates injector and compression variables.",
+        "Inspect the coil boot for white or black tracking marks (carbon arc traces) on the external surface \u00e2\u20ac\u201d visible tracking confirms insulation breakdown.",
+        "Inspect the spark plug well for moisture, oil, or carbon dust which accelerates arc path formation.",
+        "Replace the faulty COP coil. Replace the spark plug on the affected cylinder simultaneously \u00e2\u20ac\u201d arc events often erode the spark plug gap.",
+        "If tracking marks appear on multiple coils, inspect the ignition system for shared ground issue or coolant ingress to plug wells.",
+        "Clear all DTCs and verify no misfire returns over one full drive cycle."
+      ],
+      "differential_siblings": [
+        "ERR-MF-004",
+        "ERR-MF-002"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-MF-002": {
+      "fault_name": "spark_plug_carbon_fouled",
+      "fault_family": "misfire",
+      "component_group": "Ignition System \u00e2\u20ac\u201d Spark Plugs",
+      "impacted_subsystems": [
+        "Spark Plug Electrodes",
+        "Ignition Spark Gap",
+        "Combustion Chamber"
+      ],
+      "mechanical_failure_mode": "Carbon or oil deposits bridging the spark plug electrode gap create a low-resistance shunt path that bleeds ignition energy, preventing a reliable spark and causing intermittent cylinder misfire.",
+      "ui_remediation_steps": [
+        "Remove all spark plugs and inspect \u00e2\u20ac\u201d a carbon-fouled plug shows black matte or oily black deposits across the electrode and insulator nose.",
+        "Identify the fouled plug(s) by their appearance relative to healthy plugs (which should show light grey or tan deposits).",
+        "Replace all fouled spark plugs with OEM-specified plugs (correct heat range, gap, and electrode type).",
+        "Investigate the root cause of fouling: rich running (ERR-RM-001 through ERR-RM-004) causes dry carbon fouling; oil consumption (ERR-RM-001, ERR-RM-002) causes wet oily fouling.",
+        "Address the root cause \u00e2\u20ac\u201d replacing plugs without fixing the rich or oil-burn condition will cause recurrence within weeks.",
+        "Verify repair: no misfire DTCs after one full drive cycle; check fuel trim normalisation."
+      ],
+      "differential_siblings": [
+        "ERR-MF-001",
+        "ERR-MF-003"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-MF-003": {
+      "fault_name": "spark_plug_gap_erosion",
+      "fault_family": "misfire",
+      "component_group": "Ignition System \u00e2\u20ac\u201d Spark Plugs",
+      "impacted_subsystems": [
+        "Spark Plug Centre and Ground Electrodes",
+        "Ignition Coil Secondary Voltage Demand",
+        "Combustion Cylinder (affected)"
+      ],
+      "mechanical_failure_mode": "Electrode metal erosion gradually widens the spark plug gap beyond the ignition coil's secondary voltage capability, causing voltage to exceed the coil's capacity at low RPM/low load and producing lean-type misfires at idle.",
+      "ui_remediation_steps": [
+        "Remove and measure spark plug gap with a feeler gauge \u00e2\u20ac\u201d a gap more than 0.2 mm above OEM specification confirms erosion.",
+        "Inspect electrode condition: eroded plugs show a rounded, worn centre electrode and a cupped or pitted ground electrode.",
+        "Replace all spark plugs simultaneously \u00e2\u20ac\u201d if one is eroded, the others are typically near end of life.",
+        "Use OEM-specified replacement plugs (heat range and electrode type matter; avoid substituting iridium for copper without checking coil compatibility).",
+        "Check ignition coil secondary voltage capacity \u00e2\u20ac\u201d an aged coil may not produce enough peak voltage to fire a correctly-gapped new plug if the coil is also degraded.",
+        "Verify: misfire DTCs should clear and HC should return to < 100 ppm after one drive cycle."
+      ],
+      "differential_siblings": [
+        "ERR-MF-002",
+        "ERR-LC-004"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-MF-004": {
+      "fault_name": "ignition_coil_primary_winding_failure",
+      "fault_family": "misfire",
+      "component_group": "Ignition System \u00e2\u20ac\u201d Ignition Coil",
+      "impacted_subsystems": [
+        "Ignition Coil Primary Winding",
+        "Coil Drive Circuit (ECM)",
+        "Cylinder Combustion Event"
+      ],
+      "mechanical_failure_mode": "Open or shorted primary winding in the ignition coil prevents the ECM from energising the coil; with no stored magnetic field, the secondary cannot produce high voltage and the cylinder fires no spark.",
+      "ui_remediation_steps": [
+        "Measure primary winding resistance with a multimeter across the coil's primary terminals \u00e2\u20ac\u201d compare to OEM specification (typically 0.5\u00e2\u20ac\u201c2.0 ohms). An open circuit (\u00e2\u02c6\u017e) or short (< 0.3 ohm) confirms failure.",
+        "Swap the suspect coil to a known-good cylinder and confirm the misfire DTC follows the coil.",
+        "Inspect the coil electrical connector for corrosion, pushed-back pins, or moisture ingress.",
+        "Replace the failed ignition coil.",
+        "Check the ECM coil driver circuit output \u00e2\u20ac\u201d repeated coil primary failures may indicate a failing ECM driver transistor over-driving the coil.",
+        "Clear all DTCs and verify the misfire does not return after one drive cycle."
+      ],
+      "differential_siblings": [
+        "ERR-MF-001",
+        "ERR-MF-005"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-MF-005": {
+      "fault_name": "dead_injector_cylinder_misfire",
+      "fault_family": "misfire",
+      "component_group": "Fuel Delivery System",
+      "impacted_subsystems": [
+        "Fuel Injector Solenoid Winding",
+        "Injector Drive Circuit (ECM)",
+        "Combustion Chamber (affected cylinder)"
+      ],
+      "mechanical_failure_mode": "Open circuit in the fuel injector solenoid winding or injector driver circuit prevents any fuel delivery to the affected cylinder, causing a lean misfire on every combustion cycle.",
+      "ui_remediation_steps": [
+        "Measure injector solenoid resistance with a multimeter \u00e2\u20ac\u201d compare to OEM specification (typically 12\u00e2\u20ac\u201c16 ohms for high-impedance injectors). An open circuit or < 2 ohms (short) confirms failure.",
+        "Check injector wiring harness connector for corrosion, damage, or pushed-back pins at the suspected cylinder.",
+        "Use a test light or noid light to verify ECM pulse signal reaches the injector \u00e2\u20ac\u201d absence of signal suggests ECM driver failure.",
+        "Replace the dead injector.",
+        "Verify repair: cylinder contribution test should show HC response when cylinder is disabled; no response before repair confirms no fuel delivery.",
+        "Clear DTCs and verify no misfire return after one drive cycle."
+      ],
+      "differential_siblings": [
+        "ERR-MF-004",
+        "ERR-LC-004"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-MF-006": {
+      "fault_name": "low_compression_mechanical_misfire",
+      "fault_family": "misfire",
+      "component_group": "Engine Block Assembly",
+      "impacted_subsystems": [
+        "Piston Compression Rings",
+        "Cylinder Head Valve and Seat",
+        "Cylinder Bore"
+      ],
+      "mechanical_failure_mode": "Severe compression loss from ring, valve, or bore degradation prevents adequate charge compression; without sufficient pressure, ignition occurs weakly or fails, producing a mechanical misfire unresponsive to ignition or fuel system repairs.",
+      "ui_remediation_steps": [
+        "Perform a dry compression test on all cylinders \u00e2\u20ac\u201d any cylinder below 80 % of OEM specification or below 689 kPa (100 psi) confirms the problem cylinder.",
+        "Perform a wet compression test (add oil to the cylinder) \u00e2\u20ac\u201d if compression rises significantly when wet, ring seal is the cause; if no change, valve seating is the cause.",
+        "Perform a leak-down test to quantify the leak \u00e2\u20ac\u201d listen for air escaping from the intake (valve), exhaust (exhaust valve), or oil cap (rings/bore).",
+        "If ring failure: assess whether the bore is serviceable for oversize rings, or whether full engine replacement is required.",
+        "If valve seating: remove cylinder head and assess valve and seat condition; re-cut or replace as required.",
+        "This fault requires mechanical repair \u00e2\u20ac\u201d no fuel, ignition, or ECU solution will resolve it."
+      ],
+      "differential_siblings": [
+        "ERR-RM-002",
+        "ERR-MF-004"
+      ],
+      "editor_severity_hint": "URGENT"
+    },
+    "ERR-MF-007": {
+      "fault_name": "gdi_intake_valve_carbon_buildup",
+      "fault_family": "misfire",
+      "component_group": "Engine Cylinder Head Assembly \u00e2\u20ac\u201d GDI Variant",
+      "impacted_subsystems": [
+        "Intake Valve Stems and Heads (GDI)",
+        "Intake Port Flow",
+        "Combustion Charge Tumble and Swirl"
+      ],
+      "mechanical_failure_mode": "Carbon deposits accumulate on GDI intake valves due to absent port fuel washing, reducing intake flow area and disrupting charge motion, causing lean misfire at idle and part-load.",
+      "ui_remediation_steps": [
+        "Perform a bore scope inspection of the intake ports and valve heads through the intake manifold \u00e2\u20ac\u201d heavy black carbon deposits confirm the diagnosis.",
+        "Perform walnut shell media blasting through the intake ports with the intake valves closed to remove deposits without disassembly.",
+        "If media blasting is unavailable, chemical intake valve cleaning using direct-solvent injection through the intake is a less thorough alternative.",
+        "Consider adding a catch can to the crankcase breather circuit to reduce oil mist reaching the intake valves post-cleaning.",
+        "Document the cleaning interval \u00e2\u20ac\u201d GDI intake valve carbon typically requires service every 60 000\u00e2\u20ac\u201c100 000 km on affected platforms.",
+        "Verify repair: idle quality should improve and misfire DTCs should not return after one drive cycle."
+      ],
+      "differential_siblings": [
+        "ERR-MF-003",
+        "ERR-LC-001"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-MF-008": {
+      "fault_name": "misfire_intermittent_normal_test",
+      "fault_family": "misfire",
+      "component_group": "Ignition / Fuel System \u2014 Intermittent Misfire Diagnosis",
+      "impacted_subsystems": [
+        "Ignition Coil Assembly (Thermal Intermittent)",
+        "Spark Plug Condition and Gap",
+        "Fuel Injector (Intermittent Sticking)"
+      ],
+      "mechanical_failure_mode": "Intermittent misfire not active during the diagnostic session. Engine runs smoothly at time of test. Root cause is typically a component with early-stage degradation: coil secondary winding developing shorted turns (works cold, fails hot), spark plug gap eroding toward the coi...",
+      "ui_remediation_steps": [
+        "Review Mode 06 misfire counts per cylinder \u2014 even if no DTC is set (counts are below the P0300 threshold), a cylinder with significantly higher counts than the others identifies the suspect. A healthy cylinder should show near-zero counts.",
+        "Remove and inspect all spark plugs: measure the gap with a feeler gauge. A gap more than 0.2 mm above OEM specification confirms erosion \u2014 the coil must produce higher voltage to ionise the wider gap, and may fail under load or at high RPM.",
+        "If spark plugs are within specification: swap the ignition coil from the highest-count cylinder with a known-good cylinder. Ask the patient to drive for one week and return for a Mode 06 re-check \u2014 if the counts moved to the new cylinder, the coil is failing intermittently.",
+        "For fuel-related intermittent misfire: perform an injector balance test (measure the fuel-pressure drop when each injector is pulsed for a fixed duration). An injector with a significantly different pressure drop confirms a flow problem \u2014 sticky pintle, partial clog, or leaking O-ring.",
+        "Check for pending DTCs (Mode 07) \u2014 these are DTCs that have failed once but not yet completed the required number of drive cycles for MIL illumination. A pending P0300-P0308 confirms the misfire is real and recurring.",
+        "If no fault can be identified: document the diagnostic session and advise the patient to note the exact conditions when the misfire occurs (cold start, hot restart, wet weather, under load, at specific RPM) to guide the next diagnostic session."
+      ],
+      "differential_siblings": [
+        "ERR-MF-004",
+        "ERR-IF-007"
+      ],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-MF-010": {
+      "fault_name": "misfire_rich_fouled_plug_no_dtc",
+      "fault_family": "misfire",
+      "component_group": "Ignition System \u2014 Spark Plug / Fuel System \u2014 Mixture Control",
+      "impacted_subsystems": [
+        "Spark Plug Insulator and Electrode",
+        "Fuel Mixture Control (Rich Condition)",
+        "OBD Misfire Monitor (Mode 06)"
+      ],
+      "mechanical_failure_mode": "Rich-mixture misfire from carbon-fouled spark plug that has not yet tripped the OBD misfire monitor. Persistent rich running deposits conductive carbon on the plug insulator, creating a shunt path that bleeds spark energy to ground instead of across the electrode gap. Mode 06 ...",
+      "ui_remediation_steps": [
+        "Remove the spark plug from the misfiring cylinder and inspect: black matte or velvety carbon deposits across the insulator nose and electrode confirm rich fouling. A dry, sooty appearance (not wet or oily) distinguishes rich fouling from oil fouling.",
+        "Review Mode 06 misfire counts: if counts are elevated but below the P0300 threshold, the misfire is real but the OBD monitor has not yet accumulated enough events to set a DTC. The vehicle may be early in the fault progression.",
+        "Diagnose the root cause of the rich condition BEFORE replacing the plug: check fuel pressure, injector leak-down, EVAP purge function, ECT sensor reading, and MAF sensor calibration. A new plug will foul again within days if the rich condition is not corrected.",
+        "Once the rich condition is identified and repaired, replace the fouled spark plug on the affected cylinder(s). If all plugs are uniformly carbon-fouled, replace the full set.",
+        "Clear fuel trims and allow the ECU to re-learn after the repair. Monitor Mode 06 misfire counts over one drive cycle \u2014 counts should return to near zero.",
+        "Verify repair: spark plugs show normal light tan/grey coloration after one tank of fuel, Mode 06 misfire counts at zero, fuel trims within +/-10%, gas analyser shows stoichiometric lambda, no rich-mixture or misfire DTC."
+      ],
+      "differential_siblings": [
+        "ERR-MF-002",
+        "ERR-RM-006"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-MF-009": {
+      "fault_name": "misfire_coolant_fouled_spark",
+      "fault_family": "misfire",
+      "component_group": "Engine Mechanical \u2014 Head Gasket Coolant Passage Seal / Ignition Interface",
+      "impacted_subsystems": [
+        "Cylinder Head Gasket (Combustion-to-Coolant Breach)",
+        "Spark Plug (Coolant Fouled)",
+        "Engine Cooling System Pressure Integrity"
+      ],
+      "mechanical_failure_mode": "Internal coolant leak into a combustion chamber through a breached head gasket coolant passage. Coolant enters the cylinder during the intake stroke when cylinder pressure is below cooling-system pressure. The coolant wets the spark plug, quenching the spark and causing cylind...",
+      "ui_remediation_steps": [
+        "Remove all spark plugs and compare \u2014 the plug from the misfiring cylinder will be notably cleaner than the others, with a white, steam-cleaned appearance. This is the single most reliable indicator of coolant entering that cylinder.",
+        "Block test (chemical combustion leak detector) on the cooling system: draw air from the radiator neck through the test fluid. A colour change from blue to yellow confirms combustion gas in the coolant, verifying a head-gasket-to-coolant breach.",
+        "Pressure-test the cooling system to 1.0 bar with the engine off and the spark plugs removed. A rapid pressure drop + coolant appearing at a spark-plug hole confirms the gasket has breached between the coolant passage and that cylinder.",
+        "Check for white exhaust smoke (steam) that smells faintly sweet (glycol) \u2014 this confirms coolant is being vaporised in the combustion chamber and exiting the tailpipe.",
+        "If the head gasket coolant breach is confirmed: the cylinder head must be removed and the gasket replaced. Inspect the head and block deck for flatness \u2014 an overheated engine often warps the head, requiring resurfacing.",
+        "Verify repair: block test negative, cooling system holds pressure, no white smoke, spark plugs show normal coloration across all cylinders, Mode 06 misfire counts at zero, compression even across all cylinders."
+      ],
+      "differential_siblings": [
+        "ERR-MW-002",
+        "ERR-MF-006"
+      ],
+      "editor_severity_hint": "URGENT"
+    }
+  }
+}

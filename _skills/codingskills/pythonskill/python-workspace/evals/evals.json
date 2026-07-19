@@ -1,0 +1,56 @@
+{
+  "skill_name": "python",
+  "evals": [
+    {
+      "id": 0,
+      "name": "csv-validator",
+      "prompt": "Write a Python function that reads a CSV file, validates that each row has a 'name' (non-empty string) and 'age' (positive integer between 0 and 120) column, and returns a list of valid records as dicts. Invalid rows should be logged with a warning showing the row number and the specific validation error, and skipped. Make it handle large files efficiently. Include type hints and a docstring.",
+      "expected_output": "A Python function with: type hints on all params/return, docstring, proper logging (not print), generator or streaming for large files, specific exception handling, named constants for limits, and clear validation messages.",
+      "assertions": [
+        "Has type hints on function parameters and return type",
+        "Uses logging module, not print statements",
+        "Handles file-not-found and malformed CSV with specific exceptions (not bare except)",
+        "Validates both name (non-empty) and age (int, 0-120) with clear error messages",
+        "Uses pathlib.Path or accepts Path objects for the file path",
+        "Has a docstring explaining parameters and return value",
+        "No mutable default arguments",
+        "Uses f-strings for string formatting"
+      ],
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "code-refactor",
+      "prompt": "Please review and refactor this Python code:\n\n```python\ndef get_users(db, filter=[]):\n    results = []\n    for i in range(len(db['users'])):\n        user = db['users'][i]\n        try:\n            if len(filter) > 0:\n                for f in filter:\n                    if f in user['name']:\n                        results.append(user)\n            else:\n                results.append(user)\n        except:\n            pass\n    return results\n\ndef make_report(users):\n    report = ''\n    for u in users:\n        report = report + 'Name: ' + u['name'] + ', Age: ' + str(u['age']) + '\\n'\n    print(report)\n```\n\nPoint out every issue, explain why each is a problem, and provide a fully refactored version.",
+      "expected_output": "Review identifies: mutable default argument, range(len()) anti-pattern, bare except swallowing errors, string concatenation in loop, print instead of return/logging, no type hints, no docstrings. Refactored version fixes all of these with clear explanation.",
+      "assertions": [
+        "Identifies the mutable default argument bug (filter=[]) and explains the shared state problem",
+        "Points out bare except: and explains why it hides bugs",
+        "Identifies string concatenation with += in a loop and suggests join()",
+        "Identifies range(len()) and suggests enumerate()",
+        "Refactored code has type hints on all functions",
+        "Refactored code uses None as default instead of mutable list",
+        "Refactored code does not use bare except",
+        "Refactored code uses join() for string building"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "flask-api",
+      "prompt": "Write a Flask API endpoint POST /api/contacts that accepts a JSON body with 'email' (required, valid email format) and 'message' (required, 1-500 chars) fields and saves them to a SQLite database. Include proper input validation, error handling, parameterised SQL queries, appropriate HTTP status codes, and logging. The code should be production-quality.",
+      "expected_output": "Flask route with: input validation (not just truthy checks), parameterised SQL (no f-string interpolation), specific status codes (400 for validation, 201 for success, 500 for server errors), logging with logger not print, no SQL injection vulnerability, proper error response shape.",
+      "assertions": [
+        "Uses parameterised SQL queries (?, not f-string interpolation)",
+        "Validates email format (regex or library), not just truthy check",
+        "Validates message length (1-500 chars)",
+        "Returns 201 on success, 400 on validation failure, 500 on server error",
+        "Uses logging module, not print statements",
+        "Has consistent JSON response shape for both success and error",
+        "No bare except — catches specific exceptions",
+        "Uses context manager (with) for database connection"
+      ],
+      "files": []
+    }
+  ]
+}

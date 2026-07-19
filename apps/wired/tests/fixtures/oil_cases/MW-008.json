@@ -1,0 +1,27 @@
+{
+  "_case_id": "MW-008",
+  "_provenance": "OilburnCases.md §P_NEW_11; OIL_CASE_SIGNATURES_5FR.md §1; RINGS_PCV_TRIAGE_RULING.md known-blocked",
+  "vin": "XXXXXXXXXXXXXXXXX",
+  "triage": {
+    "tier_1": "rough_idle_shudder",
+    "tier_2": "constant_vibration_shudder",
+    "occurs_during": "always",
+    "engine_state": "running",
+    "load_state": "idle",
+    "csv_primary_symptom": "oil_loss_no_visible_smoke"
+  },
+  "gas": {
+    "hc": 610,
+    "co": 3.0,
+    "co2": 10.0,
+    "o2": 1.0,
+    "nox": 50,
+    "hc_high": 170,
+    "co_high": 0.45,
+    "co2_high": 14.0,
+    "o2_high": 0.3,
+    "nox_high": 20,
+    "engine_state": "STABILIZED_IDLE",
+    "lambda_measured": 0.925
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://4dapp/comlab/kg/_kg_schema.json",
+  "title": "COMLab Fault-Atlas KG family file",
+  "description": "JSON Schema for one kg/<family>.json file. Mirrors comlab.schemas.kg.KGFile. Source: COMLab_LLD.md §3.4.",
+  "type": "object",
+  "required": ["schema_version", "fault_family", "nodes"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "fault_family": {
+      "$ref": "#/definitions/FaultFamilyLit"
+    },
+    "nodes": {
+      "type": "object",
+      "patternProperties": {
+        "^.+$": { "$ref": "#/definitions/KGNode" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "definitions": {
+    "FaultFamilyLit": {
+      "type": "string",
+      "enum": [
+        "lean_condition",
+        "rich_mixture",
+        "misfire",
+        "sensor_fault",
+        "ecu_fault",
+        "catalyst_failure",
+        "exhaust_leak",
+        "ignition_fault",
+        "mechanical_wear",
+        "cam_timing",
+        "non_starter",
+        "no_fault",
+        "invalid_input",
+        "vacuum_leak",
+        "overheating",
+        "charging_system"
+      ]
+    },
+    "FaultEnrichmentSeverity": {
+      "type": "string",
+      "enum": ["INFORMATIONAL", "WATCH", "REPAIR", "URGENT"]
+    },
+    "KGNode": {
+      "type": "object",
+      "required": [
+        "fault_name",
+        "fault_family",
+        "component_group",
+        "impacted_subsystems",
+        "mechanical_failure_mode",
+        "ui_remediation_steps"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "fault_name": { "type": "string" },
+        "fault_family": { "$ref": "#/definitions/FaultFamilyLit" },
+        "component_group": { "type": "string" },
+        "impacted_subsystems": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": { "type": "string" }
+        },
+        "mechanical_failure_mode": {
+          "type": "string",
+          "maxLength": 280
+        },
+        "ui_remediation_steps": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": { "type": "string" }
+        },
+        "differential_siblings": {
+          "type": "array",
+          "maxItems": 5,
+          "default": [],
+          "items": { "type": "string" }
+        },
+        "editor_severity_hint": {
+          "$ref": "#/definitions/FaultEnrichmentSeverity"
+        }
+      }
+    }
+  }
+}

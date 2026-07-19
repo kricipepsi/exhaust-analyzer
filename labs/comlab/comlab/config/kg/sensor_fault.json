@@ -1,0 +1,198 @@
+{
+  "schema_version": "1.0",
+  "fault_family": "sensor_fault",
+  "nodes": {
+    "ERR-SF-001": {
+      "fault_name": "upstream_o2_sensor_lazy_response",
+      "fault_family": "sensor_fault",
+      "component_group": "Exhaust Gas Sensing System",
+      "impacted_subsystems": [
+        "Upstream O2 Sensor (Lambda Sensor)",
+        "Closed-Loop Fuel Control",
+        "Fuel Trim Accuracy"
+      ],
+      "mechanical_failure_mode": "Degraded upstream O2 sensor element responds slowly to exhaust mixture changes, causing the ECU's closed-loop fuel control to oscillate sluggishly and over-correct, producing erratic trim behaviour without a true rich or lean condition.",
+      "ui_remediation_steps": [
+        "Observe the upstream O2 sensor switching frequency on a scan tool in live data \u00e2\u20ac\u201d a healthy narrowband sensor should switch > 0.5 Hz (ideally 1\u00e2\u20ac\u201c2 Hz) at warm idle; a lazy sensor switches < 0.25 Hz or holds mid-voltage.",
+        "Check O2 sensor heating circuit \u00e2\u20ac\u201d if the heater has failed, the sensor runs colder and responds slower; measure heater circuit resistance.",
+        "Note: the gas analyser lambda_chem value is the ground truth. If lambda_chem is near 1.0 but the O2 sensor signal is not switching normally, the sensor is suspect.",
+        "Replace the upstream O2 sensor.",
+        "After replacement, verify switching frequency returns to > 0.5 Hz and fuel trim settles within \u00c2\u00b15 % at warm idle.",
+        "Verify the downstream O2 sensor shows normal differential from upstream (confirms catalyst is also healthy)."
+      ],
+      "differential_siblings": [
+        "ERR-SF-002",
+        "ERR-LC-006"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-SF-002": {
+      "fault_name": "upstream_o2_sensor_fixed_voltage",
+      "fault_family": "sensor_fault",
+      "component_group": "Exhaust Gas Sensing System",
+      "impacted_subsystems": [
+        "Upstream O2 Sensor (Lambda Sensor)",
+        "ECU Closed-Loop Gate",
+        "Fuel Trim Adaptation"
+      ],
+      "mechanical_failure_mode": "Dead upstream O2 sensor element locks at a fixed output voltage, forcing the ECU into an erroneous fixed-mixture belief and either opening the loop or driving extreme trim adaptation in one direction continuously.",
+      "ui_remediation_steps": [
+        "Observe the upstream O2 sensor voltage in scan tool live data \u00e2\u20ac\u201d a stuck-rich sensor reads > 0.7 V indefinitely; a stuck-lean sensor reads < 0.2 V indefinitely. No switching occurs.",
+        "Verify with the gas analyser: if lambda_chem is normal but the sensor reads stuck, the sensor is confirmed dead.",
+        "Check O2 sensor heater circuit \u00e2\u20ac\u201d a failed heater that never brings the sensor to operating temperature (> 300 \u00c2\u00b0C) causes a stuck near-zero voltage from a cold element (cold O2 sensor = lean voltage).",
+        "Replace the upstream O2 sensor.",
+        "After replacement, verify the sensor begins switching within 30 seconds of engine start (heater brings it to temp quickly on a new sensor).",
+        "Recheck fuel trim: should normalise from pegged values within one warm-up cycle."
+      ],
+      "differential_siblings": [
+        "ERR-SF-001",
+        "ERR-EF-002"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-SF-003": {
+      "fault_name": "maf_sensor_under_reading",
+      "fault_family": "sensor_fault",
+      "component_group": "Air Induction System",
+      "impacted_subsystems": [
+        "Mass Airflow (MAF) Sensor Element",
+        "Fuel Injection Quantity Map",
+        "Closed-Loop Fuel Authority"
+      ],
+      "mechanical_failure_mode": "Degraded or failed MAF sensor electronics produce a consistently low airflow signal that does not correspond to actual airflow, causing the ECU to under-fuel and generating a persistent lean condition with associated DTCs.",
+      "ui_remediation_steps": [
+        "Compare the MAF reading (g/s) on the scan tool to the expected value for the engine's idle RPM and displacement \u00e2\u20ac\u201d typical idle MAF is 2\u00e2\u20ac\u201c8 g/s per litre of displacement.",
+        "Check MAF signal plausibility: if the MAF reads low at idle AND the engine is running lean (trim > +15 %), suspect MAF hardware failure.",
+        "Try cleaning the MAF element with dedicated MAF cleaner first \u00e2\u20ac\u201d if contamination is the cause, trim will recover (see ERR-LC-002).",
+        "If cleaning does not restore correct readings, replace the MAF sensor.",
+        "After replacement, verify g/s reading matches expected for the engine size and trim returns to \u00c2\u00b15 %.",
+        "Check that the new MAF sensor matches the OEM part number \u00e2\u20ac\u201d aftermarket MAF sensors are a known source of persistent lean codes."
+      ],
+      "differential_siblings": [
+        "ERR-LC-001",
+        "ERR-LC-002"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-SF-004": {
+      "fault_name": "map_sensor_calibration_drift",
+      "fault_family": "sensor_fault",
+      "component_group": "Engine Management Sensor Suite",
+      "impacted_subsystems": [
+        "Manifold Absolute Pressure (MAP) Sensor",
+        "Speed-Density Fuel Calculation",
+        "Boost Pressure Monitoring (Turbocharged)"
+      ],
+      "mechanical_failure_mode": "MAP sensor internal reference pressure cell shifts from calibration, reporting a biased manifold pressure that corrupts the speed-density fuel calculation and produces a sustained lean or rich mixture depending on drift direction.",
+      "ui_remediation_steps": [
+        "With ignition on, engine off: MAP sensor should read close to barometric pressure (typically 100\u00e2\u20ac\u201c103 kPa at sea level). Any reading more than 3 kPa off is suspect.",
+        "With engine at warm idle: MAP should read 30\u00e2\u20ac\u201c50 kPa (naturally aspirated idle vacuum). A reading significantly higher or lower at known-good idle conditions confirms drift.",
+        "Compare MAP reading to expected vacuum on the fuel trim graph \u00e2\u20ac\u201d if the MAP is high (under-reading vacuum) when trims are positive, a lean bias from the MAP is confirmed.",
+        "Replace the MAP sensor.",
+        "After replacement, re-verify key-on reading and idle vacuum reading against known-good values.",
+        "Clear adaptive fuel maps and allow the ECU to relearn over one full drive cycle before re-evaluating trims."
+      ],
+      "differential_siblings": [
+        "ERR-LC-001",
+        "ERR-SF-003"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-SF-005": {
+      "fault_name": "coolant_temp_sensor_stuck_cold",
+      "fault_family": "sensor_fault",
+      "component_group": "Engine Management Sensor Suite",
+      "impacted_subsystems": [
+        "Engine Coolant Temperature (ECT) Sensor",
+        "Fuel Enrichment Open-Loop Map",
+        "Closed-Loop Entry Gate"
+      ],
+      "mechanical_failure_mode": "ECT sensor reports below-operating-temperature coolant regardless of actual engine temperature, permanently preventing ECU closed-loop entry and forcing continuous cold-start enrichment.",
+      "ui_remediation_steps": [
+        "Compare ECT sensor reading on scan tool to actual coolant temperature measured with a contact thermometer at the thermostat housing \u00e2\u20ac\u201d a > 15 \u00c2\u00b0C discrepancy confirms sensor failure.",
+        "Check ECT sensor connector for corrosion, water ingress, or pushed-back pin causing a high-resistance fault.",
+        "Inspect the thermostat: a thermostat stuck open produces genuinely cold coolant (the sensor reads correctly but the engine never warms up) \u00e2\u20ac\u201d feel the upper radiator hose. Hot hose at idle = thermostat open (mechanical fault). Cold hose = sensor fault (sensor wrong, engine actually warming normally).",
+        "Replace the ECT sensor.",
+        "After replacement, verify ECT on scan tool matches contact thermometer within 5 \u00c2\u00b0C at operating temperature.",
+        "Confirm ECU enters closed-loop (fuel system status = CL) within 5 minutes of reaching normal operating temperature."
+      ],
+      "differential_siblings": [
+        "ERR-RM-006",
+        "ERR-SF-001"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-SF-006": {
+      "fault_name": "downstream_o2_sensor_contaminated",
+      "fault_family": "sensor_fault",
+      "component_group": "Exhaust Gas Sensing System",
+      "impacted_subsystems": [
+        "Downstream O2 Sensor (Post-Catalyst)",
+        "Catalyst Efficiency Monitor",
+        "OBD-II Readiness Flag"
+      ],
+      "mechanical_failure_mode": "Contaminated downstream O2 sensor produces a signal pattern that mimics a failed catalyst \u00e2\u20ac\u201d switching where it should be flat \u00e2\u20ac\u201d triggering false P0420/P0430 catalyst efficiency DTCs when the catalyst is mechanically intact.",
+      "ui_remediation_steps": [
+        "Verify catalyst efficiency test conditions: coolant temp > 80 \u00c2\u00b0C, no misfire DTCs, no fuel trim beyond \u00c2\u00b110 %. If any precondition is broken, fix it first and retest \u00e2\u20ac\u201d false P0420 is common when fuel trim is skewed.",
+        "Compare upstream vs downstream O2 sensor waveforms in live data. A healthy catalyst: downstream is nearly flat (< 0.5 Hz switching). A contaminated downstream sensor: switching at nearly the same frequency as the upstream sensor.",
+        "Inspect downstream O2 sensor connector and bung for moisture, oil residue, or coolant seepage \u00e2\u20ac\u201d these are the common contamination routes.",
+        "Substitute a known-good downstream sensor (or a new one) and retest \u00e2\u20ac\u201d if P0420 does not return over one complete drive cycle, the original sensor was the fault.",
+        "If P0420 returns after sensor replacement, the catalyst itself is confirmed defective (ERR-EF-003 boundary \u00e2\u20ac\u201d out of scope v1).",
+        "Clear DTCs after repair and complete one full drive cycle to confirm OBD-II readiness clears."
+      ],
+      "differential_siblings": [
+        "ERR-SF-001",
+        "ERR-SF-002"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-SF-007": {
+      "fault_name": "sensor_fault_lean_bias",
+      "fault_family": "sensor_fault",
+      "component_group": "Engine Management \u2014 Air Metering and Temperature Sensors",
+      "impacted_subsystems": [
+        "Mass Air Flow (MAF) Sensor",
+        "Manifold Absolute Pressure (MAP) Sensor",
+        "Intake Air Temperature (IAT) Sensor"
+      ],
+      "mechanical_failure_mode": "Air-metering or temperature sensor under-reading, causing the ECU to under-fuel and create true lean combustion. MAF hot-wire contamination (dirt, oil, or debris insulating the sensing element), MAP sensor vacuum leak at the sensor port, or IAT sensor reading artificially high...",
+      "ui_remediation_steps": [
+        "Compare MAF reading at warm idle against the manufacturer specification (typically 2-6 g/s for a 2.0 L engine). A reading consistently below specification with normal idle quality suggests sensor under-read.",
+        "Clean the MAF sensor hot-wire with a dedicated MAF cleaner spray \u2014 do NOT use brake cleaner, carb cleaner, or any solvent that leaves a residue. Allow to dry completely before re-installing.",
+        "Check the MAP sensor vacuum hose for cracks, kinks, or oil contamination \u2014 a restricted vacuum signal causes the MAP sensor to under-report manifold pressure, which the ECU interprets as lower load.",
+        "Compare IAT reading at cold start against the ambient temperature and ECT reading \u2014 all three should agree within a few degrees. An IAT reading that is consistently higher than the other two confirms sensor drift.",
+        "If cleaning does not restore correct readings: replace the affected sensor with an OEM-quality replacement. Aftermarket MAF sensors with different calibration curves will cause new fuel-trim errors.",
+        "Verify repair: MAF/MAP/IAT readings within specification, fuel trims within +/-10%, gas analyser shows stoichiometric lambda, no lean-mixture DTC returns."
+      ],
+      "differential_siblings": [
+        "ERR-SF-001",
+        "ERR-LC-001"
+      ],
+      "editor_severity_hint": "REPAIR"
+    },
+    "ERR-SF-008": {
+      "fault_name": "sensor_fault_rich_bias",
+      "fault_family": "sensor_fault",
+      "component_group": "Engine Management \u2014 Temperature and Pressure Sensors",
+      "impacted_subsystems": [
+        "Engine Coolant Temperature (ECT) Sensor",
+        "Fuel Rail Pressure Sensor",
+        "MAF Sensor (Over-Reading from Oil Contamination)"
+      ],
+      "mechanical_failure_mode": "Temperature or pressure sensor over-reading, causing the ECU to over-fuel and create true rich combustion. ECT sensor biased cold (stuck at low resistance, reading -40 C on a warm engine), fuel-rail pressure sensor reading high, or MAF over-reading from oil-saturated hot-wire ...",
+      "ui_remediation_steps": [
+        "Compare ECT reading on a scan tool against the mechanical thermostat housing temperature (infrared thermometer) on a fully warmed engine \u2014 should agree within 5 C. An ECT reading significantly colder confirms sensor drift.",
+        "Measure ECT sensor resistance and compare to the manufacturer's temperature/resistance table \u2014 a sensor that reads 2-3 kohm at 90 C should read > 10 kohm at 20 C. A stuck-low resistance (cold reading) forces cold-start enrichment continuously.",
+        "Check the fuel-rail pressure sensor reading against a mechanical fuel-pressure gauge \u2014 if the sensor reads higher than actual, the ECU reduces injector pulse width thinking pressure is higher, but the error is typically in the opposite direction. A sensor reading low drives the ECU to increase pulse width, creating rich.",
+        "Inspect the MAF sensor for oil contamination from an over-oiled aftermarket air filter \u2014 the oil film on the hot-wire insulates it, causing the sensor to over-read air mass, which the ECU compensates with more fuel.",
+        "Replace the confirmed-faulty sensor with an OEM-quality replacement. After replacement, clear fuel trims and allow the ECU to re-learn. Verify that the replacement sensor reading matches the known-good reference.",
+        "Verify repair: sensor readings within specification against known-good references, fuel trims return to within +/-10%, gas analyser shows stoichiometric lambda, no rich-mixture DTC returns."
+      ],
+      "differential_siblings": [
+        "ERR-SF-002",
+        "ERR-RM-006"
+      ],
+      "editor_severity_hint": "REPAIR"
+    }
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "prd_ids": [
+    3890,
+    3891,
+    3892,
+    3893,
+    3894,
+    3895,
+    3896,
+    3897,
+    3898,
+    3899
+  ],
+  "model_3890": "(3890, 'MATIZ (KLYA)', 185)",
+  "model_3891": "(3891, '166 (936_)', 2)",
+  "model_3892": "(3892, 'PICK UP (D22)', 80)",
+  "model_3893": "(3893, 'SAFRANE II (B54_)', 93)",
+  "model_3894": "(3894, 'ESTAFETTE (213_)', 93)",
+  "model_3895": null,
+  "model_3896": "(3896, 'ACCORD VI (CK, CG, CH, CF8)', 45)",
+  "model_3897": "(3897, 'LEGEND II (KA)', 45)",
+  "model_3898": "(3898, 'F 90 Unterflur', 69)",
+  "model_3899": "(3899, 'TOLEDO II (1M2)', 104)",
+  "sample_cars": [
+    {
+      "car_id": 1,
+      "modelid": 5598,
+      "desc": "1.4"
+    },
+    {
+      "car_id": 2,
+      "modelid": 164,
+      "desc": "1502"
+    },
+    {
+      "car_id": 3,
+      "modelid": 7867,
+      "desc": "2.0 TCe (DZ1N)"
+    },
+    {
+      "car_id": 4,
+      "modelid": 164,
+      "desc": "1602"
+    },
+    {
+      "car_id": 5,
+      "modelid": 164,
+      "desc": "1802"
+    },
+    {
+      "car_id": 6,
+      "modelid": 164,
+      "desc": "2002"
+    },
+    {
+      "car_id": 7,
+      "modelid": 1608,
+      "desc": "2002"
+    },
+    {
+      "car_id": 8,
+      "modelid": 164,
+      "desc": "2002 Tii"
+    },
+    {
+      "car_id": 9,
+      "modelid": 164,
+      "desc": "2002 Turbo"
+    },
+    {
+      "car_id": 10,
+      "modelid": 187,
+      "desc": "2000"
+    }
+  ],
+  "car_1_model_5598": {
+    "prd_rows": 0,
+    "mixture_rows": 0,
+    "map_rows": 0
+  },
+  "car_2_model_164": {
+    "prd_rows": 1,
+    "mixture_rows": 0,
+    "map_rows": 0
+  },
+  "car_3_model_7867": {
+    "prd_rows": 0,
+    "mixture_rows": 0,
+    "map_rows": 0
+  },
+  "car_4_model_164": {
+    "prd_rows": 1,
+    "mixture_rows": 0,
+    "map_rows": 0
+  },
+  "car_5_model_164": {
+    "prd_rows": 1,
+    "mixture_rows": 0,
+    "map_rows": 0
+  },
+  "car_6_model_164": {
+    "prd_rows": 1,
+    "mixture_rows": 0,
+    "map_rows": 0
+  },
+  "car_7_model_1608": {
+    "prd_rows": 1,
+    "mixture_rows": 0,
+    "map_rows": 0
+  },
+  "car_8_model_164": {
+    "prd_rows": 1,
+    "mixture_rows": 0,
+    "map_rows": 0
+  },
+  "car_9_model_164": {
+    "prd_rows": 1,
+    "mixture_rows": 0,
+    "map_rows": 0
+  },
+  "car_10_model_187": {
+    "prd_rows": 0,
+    "mixture_rows": 0,
+    "map_rows": 0
+  },
+  "eng_id_matches_car_id": [
+    [
+      28251,
+      28251
+    ],
+    [
+      28251,
+      28251
+    ],
+    [
+      58731,
+      58731
+    ],
+    [
+      58731,
+      58731
+    ],
+    [
+      119512,
+      119512
+    ]
+  ],
+  "pce_sample_ids": [
+    119512,
+    28251,
+    28251,
+    58731,
+    58731
+  ],
+  "passanger_cars_max_id": 128301,
+  "models_max_id": 65011,
+  "passanger_car_engines_max_id": 128301,
+  "passanger_car_prd_max_id": 8029
+}

@@ -1,0 +1,8 @@
+﻿{
+    "eval_id":  2,
+    "assertions":  [
+
+                   ],
+    "prompt":  "Run resolve -\u003e run -\u003e relocate -\u003e verify on code_fix/ at C:\\\\tmp\\\\gfxskilltest\\\\code_fix\\\\; also test never-from-root guard",
+    "eval_name":  "4dlab-graphify-run-resolve-guard"
+}

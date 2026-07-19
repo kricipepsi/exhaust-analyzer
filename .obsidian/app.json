@@ -1,0 +1,13 @@
+{
+  "newLinkFormat": "shortest",
+  "userIgnoreFilters": [
+    "ARCHIVE/",
+    "harness/",
+    "planning/",
+    "scratch/",
+    "_skills/",
+    "graphify-out/",
+    "Vault/",
+    "ARCHIVE/"
+  ]
+}

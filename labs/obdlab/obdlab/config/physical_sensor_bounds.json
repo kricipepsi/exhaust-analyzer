@@ -1,0 +1,74 @@
+{
+  "source_wiki": "OBDLab_KG_Wiki.md §3.1",
+  "bounds": {
+    "engine_rpm": {
+      "min": 0,
+      "max": 8000,
+      "unit": "RPM"
+    },
+    "coolant_temp_c": {
+      "min": -40.0,
+      "max": 140.0,
+      "unit": "°C"
+    },
+    "calculated_engine_load_pct": {
+      "min": 0.0,
+      "max": 100.0,
+      "unit": "%"
+    },
+    "mass_airflow_gps": {
+      "min": 0.0,
+      "max": 655.35,
+      "unit": "g/s"
+    },
+    "manifold_vacuum_kpa": {
+      "min": 0.0,
+      "max": 255.0,
+      "unit": "kPa"
+    },
+    "shrtft1": {
+      "min": -127.0,
+      "max": 127.0,
+      "unit": "%",
+      "note": "Widened from OBD nominal [-100, 99.22] to accommodate OBD rail/sensor-fault sentinel values (-127, +127). Rail values are a sensor_fault signal consumed by COMLab trim-evidence scoring."
+    },
+    "longft1": {
+      "min": -127.0,
+      "max": 127.0,
+      "unit": "%",
+      "note": "Widened from OBD nominal [-100, 99.22] to accommodate OBD rail/sensor-fault sentinel values (-127, +127)."
+    },
+    "shrtft2": {
+      "min": -127.0,
+      "max": 127.0,
+      "unit": "%",
+      "note": "Only validated when number_of_banks == 2. Must be null when number_of_banks == 1. Widened to accommodate OBD rail values."
+    },
+    "longft2": {
+      "min": -127.0,
+      "max": 127.0,
+      "unit": "%",
+      "note": "Only validated when number_of_banks == 2. Must be null when number_of_banks == 1. Widened to accommodate OBD rail values."
+    },
+    "intake_air_temp_c": {
+      "min": -40.0,
+      "max": 140.0,
+      "unit": "°C"
+    },
+    "throttle_pos_pct": {
+      "min": 0.0,
+      "max": 100.0,
+      "unit": "%"
+    },
+    "control_module_voltage_v": {
+      "min": 0.0,
+      "max": 18.0,
+      "unit": "V",
+      "note": "Supply voltage at the PCM pins per OBDLab_KG_Wiki.md §3.1 / ecu-diagnosis/09."
+    }
+  },
+  "bank_2_null_contract": {
+    "source_wiki": "OBDLab_KG_Wiki.md §3.1",
+    "rule": "shrtft2 and longft2 must be null (not 0.0) when number_of_banks == 1. Emitting 0.0 for absent bank fields is a SEMANTIC_CONTRACT violation."
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "_case_id": "MW-009",
+  "_provenance": "OilburnCases.md §P_NEW_13; OIL_CASE_SIGNATURES_5FR.md §1; archived T-WV2-2 routed baseline",
+  "vin": "WBA4W9C5ZLYYYYYYY",
+  "triage": {
+    "tier_1": "rough_idle_shudder",
+    "tier_2": "constant_vibration_shudder",
+    "occurs_during": "always",
+    "engine_state": "running",
+    "load_state": "idle",
+    "csv_primary_symptom": "oil_loss_no_visible_smoke"
+  },
+  "gas": {
+    "hc": 720,
+    "co": 0.07,
+    "co2": 13.5,
+    "o2": 1.8,
+    "nox": 50,
+    "hc_high": 130,
+    "co_high": 0.07,
+    "co2_high": 14.5,
+    "o2_high": 0.4,
+    "nox_high": 50,
+    "engine_state": "STABILIZED_IDLE",
+    "lambda_measured": 1.0
+  }
+}

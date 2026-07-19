@@ -1,0 +1,333 @@
+{
+  "skill_name": "python",
+  "iteration": 1,
+  "configs": [
+    {
+      "name": "with_skill",
+      "mean_pass_rate": 1.0,
+      "mean_duration_seconds": 33.43333333333334,
+      "mean_tokens": 26780.0
+    },
+    {
+      "name": "without_skill",
+      "mean_pass_rate": 0.8333333333333334,
+      "mean_duration_seconds": 26.233333333333334,
+      "mean_tokens": 21777.0
+    }
+  ],
+  "per_eval": [
+    {
+      "eval_id": 0,
+      "eval_name": "csv-validator",
+      "config": "with_skill",
+      "pass_rate": 1.0,
+      "passed": 8,
+      "total": 8,
+      "duration_seconds": 24.1,
+      "total_tokens": 26058,
+      "expectations": [
+        {
+          "text": "Has type hints on function parameters and return type",
+          "passed": true,
+          "evidence": "Type hints present in function signatures"
+        },
+        {
+          "text": "Uses logging module, not print statements",
+          "passed": true,
+          "evidence": "logging imported; no print() calls found"
+        },
+        {
+          "text": "Handles file-not-found and malformed CSV with specific exceptions (not bare except)",
+          "passed": true,
+          "evidence": "Specific exceptions caught, no bare except"
+        },
+        {
+          "text": "Validates both name (non-empty) and age (int, 0-120) with clear error messages",
+          "passed": true,
+          "evidence": "Both name and age validated with 0-120 range check"
+        },
+        {
+          "text": "Uses pathlib.Path or accepts Path objects for the file path",
+          "passed": true,
+          "evidence": "pathlib.Path used"
+        },
+        {
+          "text": "Has a docstring explaining parameters and return value",
+          "passed": true,
+          "evidence": "Docstring with Args and Returns sections found"
+        },
+        {
+          "text": "No mutable default arguments",
+          "passed": true,
+          "evidence": "No mutable default arguments found"
+        },
+        {
+          "text": "Uses f-strings for string formatting",
+          "passed": true,
+          "evidence": "f-strings used"
+        }
+      ]
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "csv-validator",
+      "config": "without_skill",
+      "pass_rate": 0.75,
+      "passed": 6,
+      "total": 8,
+      "duration_seconds": 13.9,
+      "total_tokens": 20407,
+      "expectations": [
+        {
+          "text": "Has type hints on function parameters and return type",
+          "passed": false,
+          "evidence": "Type hints present in function signatures"
+        },
+        {
+          "text": "Uses logging module, not print statements",
+          "passed": false,
+          "evidence": "print() found or logging missing"
+        },
+        {
+          "text": "Handles file-not-found and malformed CSV with specific exceptions (not bare except)",
+          "passed": true,
+          "evidence": "Specific exceptions caught, no bare except"
+        },
+        {
+          "text": "Validates both name (non-empty) and age (int, 0-120) with clear error messages",
+          "passed": true,
+          "evidence": "Both name and age validated with 0-120 range check"
+        },
+        {
+          "text": "Uses pathlib.Path or accepts Path objects for the file path",
+          "passed": true,
+          "evidence": "pathlib.Path used"
+        },
+        {
+          "text": "Has a docstring explaining parameters and return value",
+          "passed": true,
+          "evidence": "Docstring with Args and Returns sections found"
+        },
+        {
+          "text": "No mutable default arguments",
+          "passed": true,
+          "evidence": "No mutable default arguments found"
+        },
+        {
+          "text": "Uses f-strings for string formatting",
+          "passed": true,
+          "evidence": "f-strings used"
+        }
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "code-refactor",
+      "config": "with_skill",
+      "pass_rate": 1.0,
+      "passed": 8,
+      "total": 8,
+      "duration_seconds": 47.8,
+      "total_tokens": 27925,
+      "expectations": [
+        {
+          "text": "Identifies the mutable default argument bug (filter=[]) and explains the shared state problem",
+          "passed": true,
+          "evidence": "Mutable default argument discussed"
+        },
+        {
+          "text": "Points out bare except: and explains why it hides bugs",
+          "passed": true,
+          "evidence": "Bare except anti-pattern called out"
+        },
+        {
+          "text": "Identifies string concatenation with += in a loop and suggests join()",
+          "passed": true,
+          "evidence": "String concatenation issue identified"
+        },
+        {
+          "text": "Identifies range(len()) and suggests enumerate()",
+          "passed": true,
+          "evidence": "range(len()) anti-pattern identified"
+        },
+        {
+          "text": "Refactored code has type hints on all functions",
+          "passed": true,
+          "evidence": "Type hints present in refactored code"
+        },
+        {
+          "text": "Refactored code uses None as default instead of mutable list",
+          "passed": true,
+          "evidence": "None default used, no mutable list defaults"
+        },
+        {
+          "text": "Refactored code does not use bare except",
+          "passed": true,
+          "evidence": "No bare except in refactored code"
+        },
+        {
+          "text": "Refactored code uses join() for string building",
+          "passed": true,
+          "evidence": "join() used for string building"
+        }
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "code-refactor",
+      "config": "without_skill",
+      "pass_rate": 1.0,
+      "passed": 8,
+      "total": 8,
+      "duration_seconds": 37.7,
+      "total_tokens": 22525,
+      "expectations": [
+        {
+          "text": "Identifies the mutable default argument bug (filter=[]) and explains the shared state problem",
+          "passed": true,
+          "evidence": "Mutable default argument discussed"
+        },
+        {
+          "text": "Points out bare except: and explains why it hides bugs",
+          "passed": true,
+          "evidence": "Bare except anti-pattern called out"
+        },
+        {
+          "text": "Identifies string concatenation with += in a loop and suggests join()",
+          "passed": true,
+          "evidence": "String concatenation issue identified"
+        },
+        {
+          "text": "Identifies range(len()) and suggests enumerate()",
+          "passed": true,
+          "evidence": "range(len()) anti-pattern identified"
+        },
+        {
+          "text": "Refactored code has type hints on all functions",
+          "passed": true,
+          "evidence": "Type hints present in refactored code"
+        },
+        {
+          "text": "Refactored code uses None as default instead of mutable list",
+          "passed": true,
+          "evidence": "None default used, no mutable list defaults"
+        },
+        {
+          "text": "Refactored code does not use bare except",
+          "passed": true,
+          "evidence": "No bare except in refactored code"
+        },
+        {
+          "text": "Refactored code uses join() for string building",
+          "passed": true,
+          "evidence": "join() used for string building"
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "flask-api",
+      "config": "with_skill",
+      "pass_rate": 1.0,
+      "passed": 8,
+      "total": 8,
+      "duration_seconds": 28.4,
+      "total_tokens": 26357,
+      "expectations": [
+        {
+          "text": "Uses parameterised SQL queries (?, not f-string interpolation)",
+          "passed": true,
+          "evidence": "Parameterised ? placeholders found; no f-string SQL"
+        },
+        {
+          "text": "Validates email format (regex or library), not just truthy check",
+          "passed": true,
+          "evidence": "Regex email validation present"
+        },
+        {
+          "text": "Validates message length (1-500 chars)",
+          "passed": true,
+          "evidence": "500-char limit enforced with len() check"
+        },
+        {
+          "text": "Returns 201 on success, 400 on validation failure, 500 on server error",
+          "passed": true,
+          "evidence": "Status codes 201, 400, 500 all present"
+        },
+        {
+          "text": "Uses logging module, not print statements",
+          "passed": true,
+          "evidence": "logger calls present; no print() calls"
+        },
+        {
+          "text": "Has consistent JSON response shape for both success and error",
+          "passed": true,
+          "evidence": "Consistent 'success' key in responses"
+        },
+        {
+          "text": "No bare except \u2014 catches specific exceptions",
+          "passed": true,
+          "evidence": "No bare except found"
+        },
+        {
+          "text": "Uses context manager (with) for database connection",
+          "passed": true,
+          "evidence": "with statement used for DB connection"
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "flask-api",
+      "config": "without_skill",
+      "pass_rate": 0.75,
+      "passed": 6,
+      "total": 8,
+      "duration_seconds": 27.1,
+      "total_tokens": 22399,
+      "expectations": [
+        {
+          "text": "Uses parameterised SQL queries (?, not f-string interpolation)",
+          "passed": false,
+          "evidence": "Parameterised ? placeholders found; no f-string SQL"
+        },
+        {
+          "text": "Validates email format (regex or library), not just truthy check",
+          "passed": true,
+          "evidence": "Regex email validation present"
+        },
+        {
+          "text": "Validates message length (1-500 chars)",
+          "passed": true,
+          "evidence": "500-char limit enforced with len() check"
+        },
+        {
+          "text": "Returns 201 on success, 400 on validation failure, 500 on server error",
+          "passed": true,
+          "evidence": "Status codes 201, 400, 500 all present"
+        },
+        {
+          "text": "Uses logging module, not print statements",
+          "passed": true,
+          "evidence": "logger calls present; no print() calls"
+        },
+        {
+          "text": "Has consistent JSON response shape for both success and error",
+          "passed": true,
+          "evidence": "Consistent 'success' key in responses"
+        },
+        {
+          "text": "No bare except \u2014 catches specific exceptions",
+          "passed": true,
+          "evidence": "No bare except found"
+        },
+        {
+          "text": "Uses context manager (with) for database connection",
+          "passed": false,
+          "evidence": "with statement used for DB connection"
+        }
+      ]
+    }
+  ],
+  "delta_pass_rate": 0.16666666666666663
+}

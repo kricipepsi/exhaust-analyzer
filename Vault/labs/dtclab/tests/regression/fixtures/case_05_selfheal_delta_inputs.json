@@ -1,0 +1,40 @@
+{
+  "_description": "P0171 loose gas cap — self-healing delta inputs. Freeze frame captures STFT +22% / LTFT +11% at idle. DTCLab emits both trim values so COMLab can compute delta_Healing = |FF_Total_Trim| - |Mode$06_Current_Correction|.",
+  "_source_case": "cases/DTCcase2.md",
+  "raw_dtcs": {
+    "$03": ["P0171"],
+    "$07": [],
+    "$0A": []
+  },
+  "raw_freeze_frame": {
+    "calculated_load_pct": 18.0,
+    "engine_rpm": 820,
+    "coolant_temp_c": 86.0,
+    "short_term_ft1": 22.0,
+    "long_term_ft1": 11.0,
+    "manifold_pressure_kpa": 30.0,
+    "vehicle_speed_kmh": 0,
+    "ignition_advance_deg": 10.0,
+    "intake_air_temp_c": 28.0,
+    "maf_gps": 2.0,
+    "throttle_pos_pct": 5.0,
+    "fuel_system_status": "CL"
+  },
+  "raw_mode06": {},
+  "dna_view_json": null,
+  "sanitize_kwargs": {
+    "codes_cleared": true,
+    "active_mil": true,
+    "mil_flashing": false,
+    "chemical_state": null
+  },
+  "expected_routing_tags": ["LEAN_HISTORY"],
+  "expected_hfc": "HISTORICAL_IDLE_FAULT",
+  "expected_flags": {
+    "ff_open_loop_at_fault": false,
+    "ff_ect_warmup": false,
+    "ff_timing_retard_severe": false,
+    "ff_load_high_at_low_rpm": false,
+    "ff_codes_cleared_invalidated": true
+  }
+}

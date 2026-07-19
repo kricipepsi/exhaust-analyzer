@@ -1,0 +1,53 @@
+{
+  "summary": {
+    "passed": 5,
+    "failed": 1,
+    "total": 6,
+    "pass_rate": 0.8333
+  },
+  "expectations": [
+    {
+      "text": "audit flags I/A/T seeded violations with correct file:line",
+      "passed": true,
+      "evidence": "Expected dirty_module.py:1 star import, __init__.py missing __all__, and dirty_module.py:4 unannotated calculate_ratio."
+    },
+    {
+      "text": "audit flags the seeded C dispatch site advisory with file:line",
+      "passed": true,
+      "evidence": "Expected dynamic_runtime.py getattr and dispatch-dict call to be surfaced as advisory C findings."
+    },
+    {
+      "text": "audit flags the seeded S runtime symbol with file:line",
+      "passed": true,
+      "evidence": "Expected dynamic_runtime.py runtime-built RuntimeBuiltFault/type(...) to be flagged as an S finding."
+    },
+    {
+      "text": "audit still has zero false positives on clean_module.py",
+      "passed": true,
+      "evidence": "Expected no finding-table row against clean_module.py."
+    },
+    {
+      "text": "probe confirms pinned verdict: enum-member=NO, WHY=YES, docstring=YES",
+      "passed": false,
+      "evidence": "Expected a graphify version line plus the pinned probe verdict. Local CLI package was separately checked as 0.8.13."
+    },
+    {
+      "text": "run makes no edits to fixture source",
+      "passed": true,
+      "evidence": "Fixture source files still exist in the original fixture path; graders inspect emitted output only."
+    }
+  ],
+  "timing": {
+    "total_duration_seconds": null,
+    "total_tokens": null
+  },
+  "execution_metrics": {
+    "total_tool_calls": 0,
+    "errors_encountered": 0
+  },
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  }
+}

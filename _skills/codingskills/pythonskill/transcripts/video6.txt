@@ -1,0 +1,1217 @@
+today I'm teaching you 10 Advanced
+python features that you need to know
+they get more and more complicated
+throughout the video so see if you can
+stick around and understand all 10 now
+the first feature I'm going to go over
+is Advanced unpacking methods and just
+as an FYI when I unpack the different
+features in this video for you I'm
+aiming to give you a quick snapshot of
+the feature and encourage you to dive in
+deeper so don't freak out if I don't
+cover everything and remember there's
+some more details I'm just trying to
+show you a ton of different features as
+quickly as I possibly can anyways
+feature one is Advanced unpacking now
+unpacking refers to splitting up an
+iterable object and grabbing its
+individual elements let's look at this
+example where we have a comma B comma c
+equal to 1 2 3 now all this does is
+assign the value 1 2 and 3 to the
+variables a b and c respectively and
+this is a way to unpack something like a
+list but this would work with a tupple
+or maybe something like a string as well
+if we wanted to do that because those
+are iterable objects now if we continue
+down here you can see that we can do
+something a bit more advanced where we
+use this asteris operator now the
+asterisk operator allows us to collect
+multiple elements as a list or we can
+actually use it in another way which
+I'll show you later on to kind of split
+up a list into its individual elements
+so when I do a comma b asteris c here
+that means a will be 1 B will be 2 and c
+will be 3 four and five but what's
+interesting is that I can actually put
+the asteris here and then I get a
+similar result I get a equal to 1 B will
+will be 2 3 and four and c will be five
+so let's execute this code to have a
+look at it here and you can see that we
+have A1 B is the list of 2 3 4 and C is
+five now we can change that and put that
+in kind of any order that we want and
+python will automatically give us the
+elements that we needan okay next we
+have ignoring values using the anonymous
+variable now the underscore is kind of a
+um convention when you need to put a
+variable somewhere but you don't
+actually want to access the variable
+later on so rather than me writing in b
+having an unused variable I just put an
+underscore which is known as the
+anonymous variable and now what I'm able
+to do is assign a to one and then the
+underscore would be assigned to two but
+we don't actually use this so we won't
+get any kind of error saying unused
+variable and then we have c equal to
+three now we could put this in any order
+that we want and we could use it
+multiple times so I could say underscore
+underscore comma C and then C would
+simply be equal to three and you can see
+why we need to use that in this case in
+order to unpack this iterable if we just
+want to grab value C
+next we can unpack nested structures so
+for example maybe we have a nested Tuple
+and we want to grab the name age and
+profession we name of course will be the
+first element but the second element is
+actually this entire tupple so if I want
+to go inside of that and grab the other
+variables so age and profession I need
+to actually put a set of parentheses
+here when I do the unpacking if I don't
+do that I'll show you what happens so if
+I just do it like this which um might
+you might think would work you can see
+that it says n enough values to unpack
+okay now if we just do something like
+name and then we just put age here
+thinking okay maybe I'll just grab the
+age same thing if I run this and then I
+try to grab variable age is actually the
+entire tupal so what I need to do again
+instead is add that set of parenthesis
+and then age and profession like that
+although I believe I spell profession
+incorrectly now the next thing we can do
+is unpacking in function arguments using
+this asteris operator now similar to up
+here where we saw the asteris what it
+does when it's attached to a function
+argument or function parameter sorry is
+it allows us to collect any number of
+positional arguments so positional
+arguments are just ones that are placed
+in some order so in this case we have
+Alice Bob and Charlie and that aren't
+associated with something like a keyword
+equals blah blah blah okay so here in
+this case I can accept any number it
+could be zero could be one could be 10
+in this case it's three and then it'll
+get stored as a tuple and we're able to
+access all of those individual elements
+and print them out so if I run this code
+here you can see that we get Bob Alice
+and Charlie or Alice Bob and Charlie in
+that order next we're able to use the
+asteris operator here to combine
+different elements uh inside of
+something like a list so here you can
+see I have list one and list two now of
+course I could concatenate these
+together but if I don't want to do a
+list concatenation I can use this syntax
+the way that this works is it kind of
+unpacks this into its individual
+elements so rather than having the
+entire list inside of here like what
+would happen if I just wrote list one
+and list two it actually splits the
+elements similar to the spread operator
+in JavaScript if you've ever seen that
+before so that means that I kind of have
+like one two three being placed here and
+then same thing I would have 456 and you
+can use this asteris operator in
+different cases so sometimes you want to
+print out all of the elements inside of
+a list so I'm just trying to get back to
+the original example here and what you
+can do if you don't want to have uh the
+list kind of bracket showing up is you
+could say print and then list one now
+what this would do here is just print at
+one space two space three because it's
+actually passing each of these
+individual elements as an element to the
+print function where then they'll be
+separated by a space automatically so
+let me just show you here if I run this
+you can see that I get one two three
+which is kind of what I'm illustrating
+that we're passing each of these as an
+individual argument and then that works
+the same way if we wanted to combine
+elements inside of this iterable anyways
+let's quit that and go on to the next
+example now we can do a similar thing
+here with dictionaries so with
+dictionaries rather than one asteris you
+use two and same thing it's going to
+kind of write the uh the key value pair
+for you so we'll write a uh one and then
+b 2 and you can use this in function
+calls as well to pass uh keyword
+arguments now I'm not going to show an
+example of that because I have all kinds
+of videos on this channel demonstrating
+that uh and you can kind of look at this
+more if you want next we have swapping
+variables using unpacking so I have X
+and Y and maybe I want to swap them now
+typically if I would want to swap these
+values I would need to use a temporary
+variable that you might have seen before
+but actually what I can do is what
+what's known as an inline swap uh using
+unpacking so I can say x comma Y is
+equal to Y comma X and now these values
+will swap without the need for a
+temporary variable so let's go ahead and
+run this and you can see that we get uh
+our before swap X is 10 Y is 20 and then
+after X is 20 and Y is 10 there you go
+let's move on to the next feature so
+we're moving on to the next feature here
+which is dynamic code execution however
+at this point you've probably realized
+that if you want to understand this
+video you first need to understand some
+basic Python and in order to do that you
+obviously can check out my Channel or
+you can utilize the sponsor of this
+video brilliant which can help you
+massively Brilliance is where you learn
+by doing with thousands of interactive
+lessons in math data analysis
+programming and AI they use a first
+principles approach meaning you'll get
+the why behind everything each lesson is
+interactive and filled with Hands-On
+problem solving which is six times more
+effective than just watching lectures
+the content is created by award winning
+teachers researchers and pros from
+places like MIT Caltech and Google
+brilliant focuses on improving your
+critical thinking skills through problem
+solving not memorizing while you're
+learning specific topics you're also
+training your brain to think better
+learning a bit every day is super
+important and Brilliant makes it easy
+their fun bite-sized lessons fit into
+any schedule helping you gain real
+knowledge in just minutes a day is a
+great alternative to Mindless scrolling
+brilliant even has an entire Suite of
+computer science plus p python courses
+that take you from complete beginner to
+expert with Hands-On lessons that cover
+the important Concepts you need to
+master to try everything brilliant has
+to offer for free for a full 30 days
+visit brilliant.org techwithtim or click
+the link in the description you'll also
+get 20% off an annual premium
+subscription so moving on to Dynamic
+code execution now this involves
+executing code that is dynamically
+written or that we don't have kind of
+written in our python script now there's
+two main functions we can use to do that
+the first is exec and the second is eval
+now these are a little bit dangerous so
+be careful using these especially in any
+production code because it allows people
+to execute what code that you haven't
+already written which might not
+necessarily be safe so be very careful
+especially if for using this in some
+kind of back end but I am going to show
+them to you because they are kind of
+cool and a more advanced feature so
+let's say that we have some code snippet
+here that's written in something like a
+string maybe the user wants to ex
+execute some code and they're kind of
+writing in some input prompt and giving
+it to us well we can actually execute
+that and have it interact with our own
+code now the way we do that is with this
+exec function now this exact function
+actually executes code within the
+current context of globals and locals
+what that means is that if something
+like a local variable is defined or a
+function is defined we can actually
+access it afterwards in our python code
+and same thing with globals there's just
+two Scopes right so the global scope is
+like the entire python file and the
+local scope is the scope in which we've
+executed this function which in this
+case would be this function right here
+anyways I know that's a little bit
+confusing but the point is that exec
+allows us to execute some code and then
+access what's in the scope afterwards it
+doesn't return any value or any result
+as you can see here it just kind of
+executes the code so what I'm able to do
+is execute this python function or this
+code which defines a python function for
+me and then in my local scope which I'm
+have in a variable here sorry local
+scope I can access the GRE function so
+I'm doing that from the local scope and
+then I can call the Greet function using
+Alice or using really any argument that
+I want so if I go down here you can see
+that I have demonstrate exec so let's
+just execute this and uh sorry that's
+not the way that I wanted to execute
+this let's just run the code and you can
+see that it says hello Alice so I can
+execute really any code that I want and
+then later on anything that was defined
+here like a function variable class I
+can access from the scope it was defined
+within the reason why this is stored in
+the local scope is because when we
+execute code we're inside of a function
+here since we're inside of the function
+it means we're defining this function
+inside of this function like it's a
+nested function so local to the current
+scope which is the scope of this
+function is where this function belongs
+if this was defined globally then it
+would be in the global scope which is
+this object right here I know a little
+bit confusing but that's how it works
+okay next let's go on to eval so let me
+just call this demonstrate eval function
+and let's look at what it does so for
+eval what we can do is type in some kind
+of expression which we can get directly
+from the user and then we can just
+evaluate that and get the result now
+eval is used for evaluating a single
+python expression so typically something
+that will give you some kind of result
+although it's not always used in that
+case so let me just show you what it
+looks like here because I have eval
+expression so I can run the code I'm
+going to type some expression like print
+and oops we go hello world okay and when
+I do that you can see that it says hello
+world and the result of the evaluation
+was none now if I run this code again
+maybe I do something like one * uh or we
+don't want to do one probably let's do 3
+* 9 and you can see that we get the
+result of the evaluation was 27 so the
+point is I can evaluate any python
+expression and what's interesting about
+eval is that I can use this to access
+other pieces of code that's what makes
+it a little bit dangerous so for example
+I could actually call this function so
+let's execute our code again and let me
+try to uh call the demonstrate exact
+function which is defined above now I
+can do that and it actually executes
+that function hello Alis and obviously
+there's no return value from that but
+that's why you want to be careful how
+you use eval because if you use it
+incorrectly you could have someone
+that's like calling other functions or
+modifying your code from this
+evaluation anyways let's go to
+demonstrate safe eval this is a safe way
+to use the evaluation function and this
+actually involves defining what
+variables the the user will have access
+to if they're using eval so similar to
+how we have the global and local scope
+here in this eval function we're able to
+actually pass a local and Global scope
+that will be used when we do an
+evaluation so this time what's going to
+happen is same thing I'm going to ask
+for some expression but I'm only going
+to Define three variables a b and c and
+I'm going to pass those in the local
+scope and this means that when we do the
+evaluation it only has access to what's
+been defined here so I'm not going to be
+able to access the other function I'm
+not going able to access any other
+variables or code and it limits what I'm
+able to mess with because I'm just
+defining what this evaluation should
+have access to so let's run this here
+and you'll see how it works so if I try
+to call let's just copy this again
+demonstrate exact this time you'll see
+that it says it's undefined right and
+it's undefined because it's not defined
+in the scope that we passed to the eil
+function so if we run this again but we
+can use the variable a b and c because
+those are defined you do something like
+a plus b plus C and you see we get the
+result of the safe evaluation was nine
+so that is how you do Dynamic code
+execution using eval and exec again be
+very very careful with these functions
+but they are cool to mess around with
+moving on we are looking at function and
+variable annotations now this is super
+useful when you're writing production
+grade python code and you want to
+document the code while you write it now
+these are features that don't actually
+enforce anything so it doesn't enforce
+that something needs to be a string or
+an INT or a Boolean it just indicates
+that it should be to give developers a
+better autocomplete and experience when
+they utilize your code this can be good
+for yourself or for teams but I want to
+show it to you because it is quite
+useful so you can see here that when I
+Define a variable I have the option to
+actually annotate or Define what type I
+want it to be so I can do name and then
+I can use the colon when I do the colon
+that indicates that I'm going to have an
+annotation here and I can Define this as
+something like a string now again that
+doesn't enforce that this has to be a
+string I could make this any type that I
+want and I'm not going to get an error
+because python is a dynamically typed
+language but I do have the option to
+make The annotation and now if I look at
+name it indicates that this is going to
+be a literal or a string named Alice I
+can do the same thing with age student
+and I can use my own classes I don't
+have to use built-in python objects for
+this now what's more useful is when you
+do this with something like a function
+so you can see here that I've defined
+the Greet function so I've greet and
+I've annotated the different parameters
+so in this case person should be string
+age should be an INT and I've defined
+that I want the return type to be a
+string there's more advanced annotations
+obviously that you can use but this is
+just a start and this is how you
+indicate a return type if you want to
+have none as the return type then you
+can indicate none like that okay now
+what we do inside of here is we write
+what's known as a doc string now a doc
+string is kind of what it describes it's
+a document string so it's defining what
+the function actually does giving some
+documentation for it and python can
+actually automatically pick that up and
+use it in a a meaningful way so the
+first line of a doc string is typically
+a short description of what the function
+does and then afterwards we can define
+various parameters and return types now
+look at how the parameters are defined
+we have a colon we have param we have
+the name of the parameter corresponding
+with The annotation and then we have a
+description of what the parameter should
+be same thing for the other parameter
+and then we have the return now notice
+when I hover over greets here because
+we've added that dock string and because
+we've added the an notations we're able
+to actually see a description of how the
+function works we have greets a person
+by name we have the parameters person
+and age and we have the return type now
+if I even just remove the M here and I
+go back to this you'll see that now that
+other parameters is not showing up
+because it's not correctly formatted and
+python or our autocomplete here in VSS
+code isn't able to pick that up so if
+you want to write code that's well
+documented then make sure you write it
+in this format you can use triple
+quotation marks you can do a multi-line
+string and then you can write a doc
+string for your function and of course
+you can have annotation for the
+different function parameters if you
+want to look at the annotations you're
+able to do that by calling it directly
+on the function itself or you can look
+at all the annotations that are in the
+global scope moving on the next feature
+I have for you is known as the
+descriptor protocol but really what this
+means is overriding the repper and
+string Dunder methods now if you're not
+aware when you work with an object in
+Python they have some built-in
+functionality for example if I try to
+convert an integer into a string so like
+string of one this just works right and
+it gives me the string of one this works
+on pretty much all your built-in python
+uh objects and the reason it works is
+because behind the scenes the class that
+defines an integer actually implements a
+method called string now this underscore
+uncore string method is what's called
+implicitly when you try to convert
+something into a string now that can be
+done directly when you're using the
+string function or when you're printing
+something something out so for example
+when you try to print a list the list
+class itself actually has a string
+method and that string method is called
+in order to print out the list and give
+kind of a good representation of what it
+actually is I know this a little bit
+confusing if this is the first time that
+you're seeing it but these Dunder
+methods or double underscore methods
+which is what they're referred to in
+Python are kind of these hidden methods
+that are activated when you use
+particular syntax with an instance of an
+object so in this case I can create my
+own class so I have class person I have
+of course my initialization method which
+is called implicitly when I create a new
+instance of person and then I have two
+new Dunder methods that I've defined the
+first is repper or representation and
+the second is string now these are a
+part of the descriptor protocol which
+are things you should always add to all
+of your python classes and the reason
+for that is so that they can be used
+properly within the python kind of
+ecosystem or language so let's quickly
+go over the difference between repper
+and string because these are commonly
+kind of misconstrued so I have repper is
+meant to provide an unambiguous string
+representation of the object it's often
+used for debugging and should ideally
+return a string that could be used to
+recreate the object so you can see that
+if I were to copy what's returned by
+repper here this would really be the
+initialization line for my object and
+it's useful when I'm debugging and
+trying to kind of look into the code
+where a string is meant to provide a
+readable string representation something
+that maybe a user will see or that print
+out into the terminal so whenever you're
+defining your objects you should
+implement the repper in the string
+Methods and when you do that that allows
+you to directly print out instances so I
+could now print out person and when I do
+that and run my code you see that I get
+Alice 30 years old whereas now if I call
+the repper method on this which just
+returns a string it doesn't print it out
+so let me call repper on python you can
+see that we get this unambiguous version
+where I can now copy this and use it to
+create a new version of this instance
+now there's all kind kind of other
+really useful double underscore methods
+that allow you to really hook into some
+Advanced functionality within the Python
+language I don't have enough time for
+them in this video but I'll leave a
+video on screen that goes over them in
+case you want to check them out further
+now the next feature for me to cover is
+a decorator now this is a little bit
+more advanced so if you want an entire
+video that's a bit longer and more
+detailed I'll link that on screen but
+for now I'll try to explain this pretty
+quickly so a decorator is simply a
+function that modifies another function
+a lot of times when you're writing code
+there's an operation that you may want
+to perform multiple times and you may
+actually want to do that for a function
+so for example every time you call
+function a you want to maybe time how
+long it takes to run now chances are you
+may want to use that timer later on for
+function b c d Etc or maybe you want to
+take the result from a function maybe
+it's a string and you want to strip some
+characters off of it or you want to
+parse it in a particular way and you
+want to use that multiple times there's
+all kinds of reasons you may want to
+modify what's being turned or the way in
+which a function is being called now in
+order to do that you can use decorators
+that are built into python that look
+something like this or you can write
+your own custom decorator which I'm
+going to show you right here now keep in
+mind what a decorator does is modify the
+function call and potentially what's
+being returned so let's have a look at
+an example of my own custom decorator up
+here and kind of how this works so
+really what a decorator function does is
+return another function now this
+function is what will be called instead
+of the function that's being decorated
+so you can see that I have my decorator
+which is used with this at syntax so I
+say at my decorator when I do that I'm
+saying okay I want to modify this
+function here with this decorator so my
+decorator function itself so like the
+actual decorator that I'm writing what
+it does is it defines a function inside
+of it this is the wrapper function or
+what's actually going to be called
+instead of the say hello function now
+this decorator function takes in the
+function that it needs to modify then
+the wrapper function inside of here will
+take in any number of positional and any
+number of keyword arguments really all
+this means is it will take any arguments
+at all that you could possibly pass to a
+function so that this will work for any
+type of function then what I'm doing is
+I'm going to say okay print before the
+function execution then I'm going to
+call the original function that we're
+modifying and I'm going to pass all of
+the arguments and keyword arguments that
+were passed to it originally then I'm
+going to print after the function
+execution and I'm going to return the
+result that came from this function I
+know it's still a little bit confusing
+just bear with me what I do from The
+Decorator function itself is I return
+the wrapper which is this new function
+that will be called instead and then it
+essentially modifies the function that
+I've decorated so let me just get rid of
+one of these so that this is a little
+bit more clear okay so you can see that
+I have say hello which is this function
+and I'm passing Alice to it now let's
+just run it quickly and see what we get
+and notice it says before the function
+execution hello Alice and then after the
+function execution so really what ended
+up happening was this wrapper function
+got called and because the wrapper
+function got called we printed out this
+we called the original function we
+printed out this and we returned the
+result which we then could uh print here
+now obviously this didn't return
+anything but we would have got that
+return type so what happened when I
+called say hello Alice is since this was
+decorated python said hey we have this
+decorator here so we need to actually
+get a new function to call instead so it
+called my decorator function and it
+passed this function as the function
+argument then what happened was we
+returned this wrapper function so it
+returned that and it said okay we need
+to call the wrapper function instead so
+we called the wrapper function and we
+passed as an argument Alice which is
+just passed in here as star arcs we then
+printed this we called the original say
+hello function with whatever the
+argument was which was Alice and then we
+store the result we printed after the
+function function execution sorry and we
+returned the result so now I have a
+decorator that works for any function
+now just to make this more clear what
+I'm really doing when I add that
+decorator on top of say hello is the
+following I'm saying saycore hello is
+actually equal to and this is my
+decorator with say hello so this is
+effectively the exact same thing as
+adding that decorator syntax and when I
+run this notice we get the exact same
+code as before so maybe that helps you
+visualize what's going on but we're
+changing the function definition here so
+rather than being the original function
+it's actually whatever this wrapper
+function is that's returned from The
+Decorator and inside of the wrapper you
+can modify the function however you want
+by doing something beforehand you can
+maybe validate the different arguments
+you could validate the return type you
+can do anything you want inside of The
+Decorator function that's applicable to
+well any function so again the short
+hand is just to put the at symbol and
+then the name of the function that you
+want to use as a decorator you can use
+built-in decorators from python or you
+can write your own like I did here how
+many of you have seen code that looks
+like this you have this width that you
+probably don't know what it's doing you
+have something like opening a file which
+is pretty common maybe you save that as
+a variable and then you write to the
+file now what this actually is is a cont
+text manager and I'm going to show you
+what this is doing behind the scenes so
+you can understand why it's useful to
+use and potentially how to create your
+own now this context manager what it
+actually does is it handles the
+processing of a file whether it's
+opening reading Etc specifically it will
+handle automatically closing the file
+for you whether an error occurs or you
+are successfully able to perform your
+operation so it's typically considered
+good practice to open a file in this way
+because the context manager which is
+just what's handling all of this when
+you use wi automatically opens it for
+you and then closes it for you without
+you having to do anything too
+complicated now if we didn't use this
+and instead we just did something like f
+is equal to open we could potentially
+run into some issues when we try to
+operate on the file where the file could
+stay open and cause a memory leak so if
+I didn't close the file for example like
+I forgot to close it or an error
+occurred before I could close it then
+this would be problematic and that's why
+we use the context manager now let me
+show you my own context manager that
+kind of mimics that open function so you
+can see how it works so here I've said
+class file manager what I've done is to
+find an initialization will we take in a
+file name and a mode and then store some
+internal state which is the file itself
+again very similar to that open function
+now when we write our own context
+managers we have to override an enter
+and an exit function now these functions
+allow us to use that with syntax when we
+have that first line we say with and in
+this case it would be file manager what
+will happen is we'll automatically call
+this enter function the enter function
+will perform some initial setup
+operations and then clearly down here
+the exit function will do the tear down
+operations when we exit the context
+manager so inside of enter we can open
+the file right so we open the file using
+the open function and we just print out
+some information so we can see what's
+going on now we can also return this and
+when we return this that allows us to
+use that as syntax we can say you know
+open as F the reason we can do that is
+because we're returning some value so
+that'll be stored in the as okay now we
+have the exit this is the cleanup
+operation of what happens when we exit
+the context what we take for exit is an
+exception type an exception value and an
+exception Trace back now these values
+could be none but they are possibly
+going to pop up so inside of the context
+manager if an error occurs this exit
+function will still be called which is
+one of the main advant ages of using it
+and if it's called when an exception
+occurs then these values will store uh
+the appropriate kind of values I guess
+that were the cause of the exception so
+inside of exit well I want to close the
+file I want to clean it up and make sure
+this is good so I'm going to print out
+that I'm closing the file and then if
+there's an exception I'm going to handle
+that here so I'm going to say if some
+exception type then let's print out what
+the exception is now I could handle this
+and maybe do some fancy operation
+otherwise I'll just return true and this
+will suppress the exception so what that
+means is that if an exception occurred
+or it didn't occurred it doesn't matter
+by returning true we're not going to
+actually cause the program to crash
+whereas if I return false then this is
+going to show the exceptions in the
+console and it will cause the program to
+crash or we need to manually handle the
+exception outside of the context manager
+okay let's look at how we can use this
+here so you can see that we have with
+file manager we pass the name of a file
+we're going to open this in right mode
+then we say as file now we can write to
+the file and then we have this line file
+ridden successfully now this uses the
+context manager which means as soon as
+this line is invoked we're going to
+automatically call this enter function
+this enter function is going to open the
+file for us it's going to return that
+file and allow us to use it then as soon
+as we're done with the context so as
+soon as we get to this line right here
+where my cursor is or where my mouse is
+I'm not sure if you guys can see that
+we're going to automatically call the
+exit function and clean up and close the
+file now we can do the same thing with
+this here so we say with file manager we
+can open this in read mode we can try to
+read the contents and then we can print
+out what the content is now if there's
+an exception within this block it will
+be handled by the exit function
+automatically and it will uh
+automatically close the file and we can
+print that out so maybe I'm going to say
+raise exception and we'll just raise
+some exception here to see what happens
+and let's run this and see what we get
+okay so you can see it says opening file
+example.txt file ridden successfully
+closing says opening file example txt
+closing file and then an exception
+occurred hello okay so there you go now
+the reason that worked is again because
+the exception occurred since the
+exception occurred we went directly into
+the exit block we saw that we did have
+this exception so we printed out what it
+was but we suppressed the uh Exception
+by returning true so that is the
+advantage of using a context manager you
+can control what happens when you are
+invoking the context and when you are
+exiting the context and this is a useful
+way again just to have some more control
+on what's going on especially if you're
+working with things like files or you
+need to make sure things are opened or
+closed or you have kind of a setup and
+tear down operation moving on to the
+next feature I have iterators now an
+iterator is something that can provide a
+sequence of values to us and it's often
+used without actually knowing that it's
+being used and a lot of times you might
+hear me actually saying something like
+an iterable object and you might be
+wondering what that is and this feature
+here is going to help break down how
+that works so I've ridden my own custom
+iterator here but we're not going to
+look at that quite yet for now I want to
+look at kind of a default or vanilla
+python example so you can see what an
+iterator actually is so what I can do
+here is uh grab this range function so
+I'm going to say R is equal to range and
+then pass 10 now range itself is not an
+iterator but it can be converted into an
+iterator when it's used in something
+like a for Loop so what I can do is say
+ITR is equal to iter and then pass R
+here and what this does is return an
+iterator now an iterator is simply a
+python class that contains two Dunder
+methods the dunder methods are next
+which gives you the next value in a
+sequence and dot dot or uncore uncore _
+uncore now the iter function is what's
+called when you call this iter which is
+what I'm doing right here and this is
+going to set up the iterator and
+initialize all of the values the next
+function is what gives you the next
+value in the sequence and these are
+actually the functions that a for Loop
+will use implicitly so let me show you
+kind of Step by Step here what I'm going
+to do is I'm going to print next on ITR
+and we're going to do this two times
+okay so let's go here and execute the
+code and notice that we get zero and one
+now that's coming directly from the
+range that we've set up and if we wanted
+to we could modify this to maybe start
+at 10 stop at uh sorry start at two stop
+at 10 and now notice we're getting two
+and three okay so the next function
+gives you the next value from the
+iterator and you can keep using this
+next function until what's known as a
+stop iteration exception is raised so
+for example if I go two and three and we
+stop at that value but don't include it
+when I do this notice I get two and then
+I get a stop iteration exception okay so
+that's kind of how the next function
+works you can call this on an iterator
+or something that hasore uncore next to
+find which are a lot of things in Python
+that you probably don't know about and
+eventually when there's no more values
+to get it returns stop iteration or
+raises that exception now behind the
+scenes means when you use a for Loop
+that's exactly what python is doing so
+if I do something like 4 I in range and
+then maybe we go up to three here and I
+print out I what's actually happening
+behind the scenes is we're calling the
+iter function on Range that eer function
+returns an iterator that iterator has
+that next function so theore uncore next
+and that next function is used as we
+cycle through all of the values in the
+range and as soon as we have stop
+iteration the for Loop stops executing
+and it just moves on to the next line so
+that's how an iterator actually works
+and that's how python utilizes it by
+utilizing that next function and that
+iter function to set it up so hopefully
+that makes a little bit of sense but
+what I did before when I called those
+next functions for you is it was
+manually making the for Loop so in fact
+if we wanted to manually make the for
+loop with the w Loop we could just say
+while uh true and we could say value is
+equal to next from from ITR we're going
+to put this in a tri block though okay
+we're going to say
+accept stop iteration and we're just
+going to break and then we're just going
+to
+print the value here okay so now let's
+go 2 to 10 we have our W loop we're
+going to get the next value print the
+value and then as soon as we have a stop
+iteration we'll break and when I run
+this you see that we get all the values
+and we've just built our own for Loop
+essentially that uses this iteration
+there you go okay so that's how that
+works now let me show you my own custom
+iterator we'll go through it kind of
+quickly because I explained a lot of the
+main features so I have an iterator here
+called my range this takes in
+initialization or has an initialization
+where we can take a current and an end
+okay then we have iter what iter does is
+just return an object that has this next
+method defined on it in this case we're
+returning ourself but we could return an
+instance of another class we just need
+to return something that has this
+underscore uncore next method because
+that's what will be used to grab the
+next values from the iterator okay now
+instead of the next method I say if
+self. current is less than self. end
+then I'm going to say the value is equal
+to this increment the value return the
+value otherwise raise stop iteration and
+now I can actually use my own iterator
+in the for Loop so I can say four number
+in my range and then we can print out
+the values so if I do this you see that
+we get 1 2 3 4 because exactly how the
+for Loop works it calls this next
+function until get stop iteration and
+then it stops and when it first looks at
+my range here it calls this iter
+function grabs this itself which has
+next on it and there you go okay that is
+an iterator hopefully that makes sense
+moving on we're talking about generators
+now generators are really just a more
+modern version of the iterator and they
+work by using a yield keyword inside of
+a python function Now using this yield
+keyword actually allows you to pause the
+execution of this function and only
+execute a little bit of code return a
+value and then pause and wait until
+you're asked for the next value to
+generate I'm going to show you an
+example here but generators are
+typically used when you want space
+efficient kind of execution or
+calculations to be done so for example
+let's say we want to count up to 10
+million well if I want to count to 10
+million I don't actually need to First
+generate a list of one to 10 million now
+I could right I could generate all of
+the different values but that means I'm
+going to be storing 10 10 million values
+inside of a list and since I'm only
+using the values one at a time I don't
+need access to all of them at the exact
+same time there's not really any point
+in me generating all of them and putting
+them in this sequence and then maybe
+looping over them and using them later
+on so rather than doing that we can use
+a generator now the generator can give
+us each value One By One and Only Store
+one value at a time when we need to use
+it now this is kind of a silly example
+because we're just counting but imagine
+there's an Advanced calculation and
+maybe we need to do that a million times
+well again we don't need to First do the
+million time calculation store all
+Million results and then use them we can
+just do the calculation on the specific
+value that we need at that time so we
+only store one value in memory at a time
+anyways let me show you how the
+generator works and I'll actually link a
+video on screen that goes more in detail
+in case you're curious about it okay so
+I have count up to Max now this is a
+generator function as you can see here
+and the reason why it's a generator is
+because we have yield as soon as you use
+yield it becomes a generator now I have
+current equal to one I have while
+current is less than the maximum value
+and then I yield the current value now
+this yielded value is grabbed by using
+the next function now this looks
+familiar because it's the exact same way
+that we used an iterator so I can print
+the
+next on counter and you're going to see
+as long as I comment out the for Loop
+here and I run the code that we simply
+get the value one
+now I could do next again I just want to
+show you that we're getting the next
+value and we get the next value which is
+two okay so we are yielding a value and
+as soon as we yield a value we actually
+pause the execution of this function and
+we wait at this yield line until the
+next value is requested so we go next
+counter okay we execute up to here then
+we wait we see next counter again we
+then execute the current plus equals 1
+current is now equal to two we go back
+into the wall Loop we yield the next
+current value and then we pause and we
+wait okay that's really how the
+generator is working and by using this
+yield keyword this next function is
+automatically created for us or it's
+automatically kind of implemented
+allowing us to use it to grab that next
+value that's it that's really all you
+need to know about how the generator
+works now what we can do is we can use
+it in something like a for Loop okay so
+let me get rid of this comment and run
+it and you can see now that this will
+just count all the way up to 10 million
+and we don't need to actually generate
+all 10 million values in order to do
+that we just get one by one obviously
+this is not the most useful thing in the
+world to do but a lot of times you need
+to do some more advanced calculations
+and again rather than doing all of them
+storing them in memory you create a
+generator that can just do it one by one
+and then you just yield the values as
+you need them so you only ever store one
+value in memory okay so that is a
+generator again I'm going to put video
+on screen that goes more in detail now
+let's move on to the next feature moving
+on to the next feature I have the iter
+tools library now this is more just to
+encourage you to check it out because it
+is super cool but the iter tools library
+is really what allows you to take
+advantage of more advanced iterators in
+Python now I just have three simple
+examples here to show you but there are
+tons of others that you can check out
+again please look at this after the
+video so you can see that what I can do
+with the iter tools library is create
+things like infinite iterators where I
+actually can infinitely count up in a
+sequence similar to what I could do
+actually with the generator that you saw
+before so I have infinite counter
+starting at 10 increasing by two and now
+I can just use this iterator as many
+times as I want infinitely without ever
+having to stop it or tear it down next I
+have something like cycling through a
+finite sequence so I have iter tools.
+cycle and then I have next next next
+next and I can just keep going and cycle
+through this sequence next I have things
+like ability to create all of the
+combinations or permutations of a
+particular iterable so in this case I
+have ABC and I want to create all of the
+combinations of two so AB AC BC Etc and
+I can list all of those different
+combinations out this will actually give
+me an iterator that contains them so
+rather than returning all of the values
+at once it gives them to me one by one
+so I can process them as I need them but
+if I want to just print them out I can
+print out a list of the combinations
+there are a million other things you can
+do with the iter tools Library so please
+look at it if you do need to do anything
+that is more advanced with iterators and
+now let's move on to the last feature
+so now we're moving on to the final
+feature which is asynchronous
+programming now this utilizes the async
+iio library which is a relatively new
+library at least in one of the newer
+versions of python and this is an easier
+way to handle multiple concurrent tasks
+rather than using something like
+threading now I'm not going to do
+asynchronous programming Justice in this
+video by explaining it in just a few
+minutes so I am going to link a video on
+screen right now that you can check out
+that breaks down everything you need to
+know about asynchronous programming in
+Python shows you all the syntax walks
+you through the various features but I
+will quickly explain an example where
+you would want to use async iio so you
+can see the benefit of it now I have
+some code here just in case you want to
+look at like some of the main features
+I'm not really going to explain it but
+the point is with async IO uh we might
+have the following situation let's say
+we're writing some code and we want to
+do something like send a network request
+we want to go to a website and maybe
+grab some data we want to post some data
+there um something that isn't really
+dependent on our computer or our code
+we're asking some other system for
+something right maybe it's the operating
+system uh maybe it's the user to type in
+some input we're just waiting on
+something that we don't really have
+control over we don't know how long
+exactly it's going to take now if that's
+the case while we're waiting for that
+operation to complete we potentially
+want to complete something else maybe we
+want to process some other data or we
+want to allow the user to be interacting
+with our program while we're waiting for
+this network request to finish or this
+email to send or whatever is happening
+in order to actually do that we need to
+use asynchronous programming if we don't
+use asynchronous programming what would
+happen is maybe we want to set a network
+request well now we need to wait for the
+network request to send before we can do
+anything else so even if that's not a
+blocking operation and we can continue
+in our code or our program or our game
+or whatever we just have to sit there
+and wait and we can't do anything else
+until we get the result back a
+synchronous programming allows us to
+handle the timing of different events we
+can respond to things when data comes in
+we can set up multiple different tasks
+and schedule those to run at the exact
+same time and allows us to more
+efficiently write code so that's the
+advantage definitely need to learn it
+and again I'm going to link that video
+so that you guys can check it out and
+really get a full taste of what a syn
+iio is with that said guys I'm going to
+wrap up the video here I hope you found
+this helpful if you did leave a like
+subscribe and I will see you in the next
+one
+[Music]

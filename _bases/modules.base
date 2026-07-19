@@ -1,0 +1,26 @@
+# 4DLab vault — module map. Groups every framed note by lab, then module.
+# Consumes frontmatter: lab, module, subsystem, node_type, tags.
+filters:
+  and:
+    - 'file.ext == "md"'
+    - file.inFolder("labs")
+    - file.hasProperty("module")
+properties:
+  node_type:
+    displayName: Type
+  module:
+    displayName: Module
+  subsystem:
+    displayName: Subsystem
+views:
+  - type: table
+    name: All modules
+    groupBy:
+      property: lab
+      direction: ASC
+    order:
+      - file.name
+      - module
+      - subsystem
+      - node_type
+      - tags

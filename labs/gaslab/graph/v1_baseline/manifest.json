@@ -1,0 +1,462 @@
+{
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\docs\\wiki\\GAS_VOCABULARY.md": {
+    "mtime": 1780296813.4882617,
+    "ast_hash": "06caec6f61eec47ec19413d3c2033df9",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\docs\\wiki\\GAS_WIKI.md": {
+    "mtime": 1780299151.5725286,
+    "ast_hash": "aa3453ef3eb04e5613bd42f299f04f95",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab\\audits.py": {
+    "mtime": 1779211405.669615,
+    "ast_hash": "12676cdda940f478f55b256cbf01be30",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab\\brettschneider.py": {
+    "mtime": 1779557014.868764,
+    "ast_hash": "19b0d043395014f3a9f83b0601173844",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab\\contracts.py": {
+    "mtime": 1779786938.6441786,
+    "ast_hash": "1cd2856f382d5914c48e421d54fc8be8",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab\\dna_view.py": {
+    "mtime": 1779198016.224835,
+    "ast_hash": "bf2caca65221935c03e09bfcdf6fc144",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab\\family_map.py": {
+    "mtime": 1780299926.2002382,
+    "ast_hash": "b209de104920eed109dd438cb113e343",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab\\ontology_loader.py": {
+    "mtime": 1779201876.873603,
+    "ast_hash": "0cb0de49f1028b9f4e94f4a4bf305162",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab\\process.py": {
+    "mtime": 1779783879.736699,
+    "ast_hash": "c532d9d0561fed66f69e6daa1ea645e5",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab\\resolution.py": {
+    "mtime": 1780297993.8335605,
+    "ast_hash": "1c3eabbf5a550d01fedfb2243a9c80fe",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab\\rule_engine.py": {
+    "mtime": 1780300843.7748551,
+    "ast_hash": "e6b8ff4f1816a90b0b966b0abdb73d1a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab\\validity_gates.py": {
+    "mtime": 1779200084.7652972,
+    "ast_hash": "6fd9ca7f54dfb7e4108bfb5ebfb43209",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab\\__init__.py": {
+    "mtime": 1779204399.2482333,
+    "ast_hash": "ea10e2a940d5aff6f530faefca535b54",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\test_brettschneider.py": {
+    "mtime": 1779200518.9589338,
+    "ast_hash": "8631ea77fb3cff3667dee4898c5585eb",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\test_contracts.py": {
+    "mtime": 1779786933.459334,
+    "ast_hash": "1b24800fc3b40c6b9118feba8a3127bf",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\test_dna_view.py": {
+    "mtime": 1779198158.7076838,
+    "ast_hash": "71b28317d59da5737282853c45c4cf89",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\test_family_map.py": {
+    "mtime": 1780299871.5123646,
+    "ast_hash": "8c227e942f4c6c274775e0e6bc3a6f70",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\test_ontology.py": {
+    "mtime": 1779787052.2356815,
+    "ast_hash": "b38ac6c3aa7f91faa50d00aa629884b4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\test_process.py": {
+    "mtime": 1779204641.6500895,
+    "ast_hash": "c30525c4ce6dbed38d119a474f213ede",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\test_resolution.py": {
+    "mtime": 1779787092.0577123,
+    "ast_hash": "a53cce68c248ec83250dc0dd37cb127a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\test_rule_engine.py": {
+    "mtime": 1780297917.4591022,
+    "ast_hash": "14dd8427bf97e1192edda7a70abe76ae",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\test_t_p8_7_hc_discriminator.py": {
+    "mtime": 1779799337.672858,
+    "ast_hash": "9689494e3072cac20921146da2b4c35f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\test_validators.py": {
+    "mtime": 1779787225.360637,
+    "ast_hash": "97d9cd36fb4cccd4618e30da7e6f2685",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\test_validity_gates.py": {
+    "mtime": 1780297290.7025168,
+    "ast_hash": "52e7dba1905b5cd229e6c5ffec76aa5f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\__init__.py": {
+    "mtime": 1779186688.6088588,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\fixtures\\synthetic_grid.py": {
+    "mtime": 1779779602.2627954,
+    "ast_hash": "9e92268f7eb3b40393481d0b572324f5",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\fixtures\\test_synthetic_grid_probes.py": {
+    "mtime": 1779779517.4745574,
+    "ast_hash": "f0c4b4d985c1105ff58ab707c933f31e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\fixtures\\__init__.py": {
+    "mtime": 1779205599.1576855,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\unit\\test_rule_engine_reachability.py": {
+    "mtime": 1779803480.933363,
+    "ast_hash": "b9011c12b14e4e9878be842d95c0108b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\unit\\__init__.py": {
+    "mtime": 1779803416.8005495,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\GASLAB_AUDIT_2026-05-19.md": {
+    "mtime": 1779207966.2830963,
+    "ast_hash": "6c2a083646d2cc090c44e9f94873b66c",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\GASLAB_PROGRESS.md": {
+    "mtime": 1780068981.0103357,
+    "ast_hash": "0080dcec6a794f42dbd10990a32e3dbd",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\GASLAB_START_HERE.md": {
+    "mtime": 1780075925.7408874,
+    "ast_hash": "57fe27c9e0e92e71648b02491a02d9d1",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\graph_patch_prompt.md": {
+    "mtime": 1779260466.4571073,
+    "ast_hash": "236429f56e9215394a7864cf8aed9bac",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\docs\\CoolantLeakSig.md": {
+    "mtime": 1779780321.621356,
+    "ast_hash": "331add8e062e1e2f12ba5160afcd3877",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab\\data\\gas_lab_ontology.yaml": {
+    "mtime": 1780298001.9666433,
+    "ast_hash": "8fcc843d1e528af8f151091ca18e95ee",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P0-1_scaffold_and_archive_confirm.md": {
+    "mtime": 1779183790.2008598,
+    "ast_hash": "cca727939978e77cf9ead5f74c53d6e0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P1-1_schemas_and_enums.md": {
+    "mtime": 1779184069.2327394,
+    "ast_hash": "e43867c1f6ef673d742816fd2eb59d7e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P2-1_brettschneider_and_gates.md": {
+    "mtime": 1779183838.2628002,
+    "ast_hash": "883b42e4488f8c009a9bb9e0b23fc309",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P2-2_yaml_ontology.md": {
+    "mtime": 1779210101.5147345,
+    "ast_hash": "8502a231caa8d4dca265ea4c7fba82e2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P3-1_entity_resolution.md": {
+    "mtime": 1779189600.0953636,
+    "ast_hash": "a7968022b5459884591bdb941c85e7e3",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P4-1_rule_engine.md": {
+    "mtime": 1779189602.093552,
+    "ast_hash": "a0672f06d4195a63ae747030d78c5c8d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P5-1_validation_suite.md": {
+    "mtime": 1779189604.1107519,
+    "ast_hash": "8238485995ab7b48a19b3873416aafde",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P6-0_fix_task_spec_dna_gate_count.md": {
+    "mtime": 1779208323.6750855,
+    "ast_hash": "39037fb97aa3f9b37c7e59b2e21b8205",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P6-1_housekeeping_ledger_and_gitignore.md": {
+    "mtime": 1779208350.6625373,
+    "ast_hash": "3f4da9a32831b5220f16c3f54baa69d8",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P6-2_catch_all_signature_flag.md": {
+    "mtime": 1779208389.1024926,
+    "ast_hash": "f74ffd626d201ceacc70d76e8b42f317",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P6-3_wrong_valve_timing_rule.md": {
+    "mtime": 1779208424.5543463,
+    "ast_hash": "f5f1945773b53590c3cf5fd82cff543d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P6-4_specificity_differentiator_edges.md": {
+    "mtime": 1779208465.038766,
+    "ast_hash": "052e33dee361b85806123c140497048f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P6-5_rpm_differential_via_engine_state.md": {
+    "mtime": 1779208497.378099,
+    "ast_hash": "132607a0b410c2996d0a193cb0b96301",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P6-6_reachability_probe_coverage.md": {
+    "mtime": 1779208535.9170654,
+    "ast_hash": "b72c9de9d5943f035346ee394bf3fdd1",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P7-1_kg_audit_inferred_edges_verification.md": {
+    "mtime": 1779313226.5222313,
+    "ast_hash": "7a605dede23f37a61b3f80c64cb855b6",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P8-1_mint_incomplete_combustion.md": {
+    "mtime": 1779778171.2884052,
+    "ast_hash": "e3682b06232538c189b5b52e17472da4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P8-2_mint_coolant_leak_internal.md": {
+    "mtime": 1779778192.0731664,
+    "ast_hash": "7b6c9049f3395aaf44596f880da4fd0a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P8-3_mint_non_starter_no_exhaust.md": {
+    "mtime": 1779778215.931759,
+    "ast_hash": "bc45e2903f525b5c45c8aade0c05fc65",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P8-4b_misfire_bucket_resolution.md": {
+    "mtime": 1780068981.0743353,
+    "ast_hash": "5a55c0360d88bf1f3c840128dfedea6e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P8-4_ignition_lean_misfire_emission.md": {
+    "mtime": 1780068981.0743353,
+    "ast_hash": "a00e121bc213d27b18a9e78ed914c4a7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P8-5_vvt_failure_overemission_fix.md": {
+    "mtime": 1779794076.15602,
+    "ast_hash": "cb9716ca888ec145ff12b5880f97264d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P8-6_unreachable_signature_resolution.md": {
+    "mtime": 1780068981.075335,
+    "ast_hash": "bf250ad9e6120dcff7f08383f5da704c",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\T-P8-7_exhaust_air_leak_misfire_investigation.md": {
+    "mtime": 1780068981.075335,
+    "ast_hash": "3fdf71d8a661cee17590fe3f4b92d206",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\README.md": {
+    "mtime": 1779183963.742403,
+    "ast_hash": "7bcb23fd5da9393e55f7b4fa53a7a6d4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P0-1.md": {
+    "mtime": 1779187079.7220335,
+    "ast_hash": "8fa677a6575abd124a8d6d2bcd09ea9a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P1-1.md": {
+    "mtime": 1779198439.9078045,
+    "ast_hash": "ce21cfd5dad0498ba1ecdb338ee6626d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P2-1.md": {
+    "mtime": 1779200724.3775413,
+    "ast_hash": "b6c9d9f493f30bc9ea5fcf9c69c827f3",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P2-2.md": {
+    "mtime": 1779210108.839536,
+    "ast_hash": "467641dfd6795cd7b4cfb0040b74ba36",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P3-1.md": {
+    "mtime": 1779203716.7262673,
+    "ast_hash": "342122fa2244a219ecc0e2c0ec9899cb",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P4-1.md": {
+    "mtime": 1779205111.6814501,
+    "ast_hash": "098013af095c6ae17a0e42e08e29e021",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P5-1.md": {
+    "mtime": 1779206873.81825,
+    "ast_hash": "b80cca41141b112fdca0ce5b6f177549",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P6-0.md": {
+    "mtime": 1779210437.3172956,
+    "ast_hash": "5f10afa333af90b2688924968cfbbb1d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P6-1.md": {
+    "mtime": 1779211052.4855158,
+    "ast_hash": "11814ad4b9a1b4fc81b417c4c3262b9e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P6-2.md": {
+    "mtime": 1779211849.6354084,
+    "ast_hash": "c71196236ae05d5de1d2db3866c49c92",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P6-3.md": {
+    "mtime": 1779212642.1339612,
+    "ast_hash": "a37efad659139af396ae75e720337cbd",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P6-4.md": {
+    "mtime": 1779213966.4454522,
+    "ast_hash": "9086ecc9624c9343eed9badad46b5f7d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P6-5.md": {
+    "mtime": 1779214950.2675667,
+    "ast_hash": "f712d58875a7faa3bcb4ab3df65472a7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P6-6.md": {
+    "mtime": 1779216700.289667,
+    "ast_hash": "8a8ad2b20c4df8e07b34ac14c346664e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P7-1.md": {
+    "mtime": 1779376213.2351594,
+    "ast_hash": "062555f197ca485a0090eb1e2b057f39",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P8-1.md": {
+    "mtime": 1779779957.1520996,
+    "ast_hash": "4a06c96b93eb59c63c38d47d6560ba8f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P8-2.md": {
+    "mtime": 1779787473.3556263,
+    "ast_hash": "76b963f1ccfa9f7aa64572e4afa04ba9",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P8-3.md": {
+    "mtime": 1779789658.4762607,
+    "ast_hash": "63e18ad43dc081c2e6a7c0cd5e08741a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P8-4.md": {
+    "mtime": 1779797087.1126268,
+    "ast_hash": "52380da0115530ec4463988df7be46af",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P8-4b.md": {
+    "mtime": 1780068981.0113378,
+    "ast_hash": "91260a592c3a1617df5c271b692304e2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P8-5.md": {
+    "mtime": 1779801791.3068588,
+    "ast_hash": "2146f0999c44ff4f50e77b410f464a25",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P8-6.md": {
+    "mtime": 1779803619.1280656,
+    "ast_hash": "f379a5eec2801eb2477e537941fe4da9",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab_tasks\\progress_notes\\T-P8-7.md": {
+    "mtime": 1779799447.2896092,
+    "ast_hash": "855f510c6638a4e40521cad5cd861105",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\_gaslab_skills\\_INDEX.md": {
+    "mtime": 1779623717.5327902,
+    "ast_hash": "f72ac58fcda62383271ffe55b7c07f0f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\_gaslab_skills\\gaslab-code-review\\SKILL.md": {
+    "mtime": 1779183730.3265245,
+    "ast_hash": "83935a06420e012e0003c36254db454a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\_gaslab_skills\\gaslab-python\\SKILL.md": {
+    "mtime": 1780068981.0113378,
+    "ast_hash": "2bd63ab634478caba0190c098f5645f7",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\_gaslab_skills\\gaslab-suite-contract\\SKILL.md": {
+    "mtime": 1779623695.5582457,
+    "ast_hash": "1a1ecaa90332e6739879c3a0c1bc426a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\_gaslab_skills\\gaslab-verification-loop\\SKILL.md": {
+    "mtime": 1779183711.8240101,
+    "ast_hash": "953b950c1174619c87a057e782438123",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\_gaslab_skills\\gaslab-wiki-provenance\\SKILL.md": {
+    "mtime": 1779183763.023144,
+    "ast_hash": "0a68b4bc2753d92231164c92140474e0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\gaslab\\ranking.py": {
+    "mtime": 1780301701.9285333,
+    "ast_hash": "62c4be7203b39a25583c6b92b493cb52",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\test_rank_candidates.py": {
+    "mtime": 1780300973.46597,
+    "ast_hash": "3f78ada9306a7c54fa2c56e17c91467d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\GASLab\\tests\\test_classify_top3.py": {
+    "mtime": 1780301632.303857,
+    "ast_hash": "9c0ea347ed747b95b4c637683a32091d",
+    "semantic_hash": ""
+  }
+}

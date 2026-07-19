@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dnalab"
+version = "1.0.0"
+requires-python = ">=3.12"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["dnalab*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: real sibling-pipeline smoke tests",
+]
+
+[tool.ruff]
+target-version = "py312"
+exclude = ["VINLab", "SymptomLab"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+
+[tool.pyright]
+pythonVersion = "3.12"
+typeCheckingMode = "standard"
+extraPaths = ["../vinlab", "../symptomlab"]

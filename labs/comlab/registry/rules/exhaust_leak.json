@@ -1,0 +1,135 @@
+{
+  "version": "2.0",
+  "fault_family": "exhaust_leak",
+  "rules": [
+    {
+      "rule_id": "EL-001",
+      "fault_family": "exhaust_leak",
+      "description": "Pre-cat exhaust leak \u2014 false air enters before upstream O2 sensor at manifold flange or header gasket: O2 sensor reads lean, ECU compensates with positive LTFT, chemistry confirms air dilution via elevated O2. Collapses v1's four LTFT-threshold variants (ERR-EL-001/002/003/005) into one evidence-accumulation rule",
+      "chemistry_evidence": [
+        {
+          "state": "EXHAUST_AIR_LEAK",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "longft1",
+          "operator": "ge",
+          "value": 8.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0171",
+            "P0174"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.851,
+      "competition_group": "exhaust_leak",
+      "passes_cases": [
+        "CSV-095",
+        "TC-048",
+        "YAML-CSV95"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a72",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "EL-002",
+      "fault_family": "exhaust_leak",
+      "description": "Post-cat exhaust leak \u2014 leak between upstream and downstream O2 sensors: downstream O2 sees excess oxygen (lean), confounds catalyst efficiency diagnosis, P2096/P2098 'Post Catalyst Fuel Trim System Too Lean' DTC sets. Chemistry confirms air dilution; downstream O2 lean signal is the anatomical differentiator from pre-cat leaks",
+      "chemistry_evidence": [
+        {
+          "state": "EXHAUST_AIR_LEAK",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "o2_downstream",
+          "operator": "ge",
+          "value": 0.45,
+          "tier": "SUGGESTIVE",
+          "units": "V",
+          "wiki_ref": "OBD_VOCABULARY \u00a76"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P2096",
+            "P2098"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.75,
+      "competition_group": "exhaust_leak",
+      "confidence_ceiling": 0.85,
+      "passes_cases": [
+        "case_045"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a76",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "EL-003",
+      "fault_family": "exhaust_leak",
+      "description": "Probe-tip or manifold leak \u2014 false air enters at sample probe, header flange, or exhaust joint: HC and O2 both read elevated from dilution (ambient air mixes with exhaust sample). No DTC required \u2014 the gas chemistry is the primary signal. Differentiated from EL-001 by HC elevation and absence of mandatory LTFT or DTC evidence",
+      "chemistry_evidence": [
+        {
+          "state": "EXHAUST_AIR_LEAK",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "ge",
+          "value": 200.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "o2",
+          "operator": "ge",
+          "value": 3.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "base_weight": 0.65,
+      "competition_group": "exhaust_leak",
+      "confidence_ceiling": 0.8,
+      "passes_cases": [
+        "PDF-HI-007"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "GAS_VOCABULARY \u00a72"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+# COMLab vault map - architect-authored. Maps selected COMLab notes to vault frontmatter.
+#
+# Signal/noise: only notes with a named, EXISTING consumer are framed. Notes whose
+# only downstream story is a proposal (comlab/config/proposals/, EP-*, COMLab-*) or a
+# default-off / Gate-gated capability are copied as plain markdown.
+#
+# COMLab is the TERMINAL FUSION SPINE: its consumers are COMLab-internal
+# (core/, analytics/, schemas/) or the APP LAYER (apps/wired/). NEVER another
+# diagnostic lab - the emitter labs (GAS/OBD/DTC) and DNALab are INPUTS, not consumers.
+
+lab: comlab
+module: comlab
+
+frame:
+  # ---- design docs (node_types prd/hld/lld/dld -> docs/ tier) --------------------
+  COMLab_PRD.md:
+    node_type: prd
+    subsystem: requirements
+    implements: []
+    consumers:
+      - "hld: labs/comlab/docs/COMLab_HLD.md"
+      - "wired (pending T-WIRE-1): apps/wired/wired/composition.py LabPipelineAggregator integration"
+    drift_guards: []
+
+  COMLab_HLD.md:
+    node_type: hld
+    subsystem: architecture
+    implements: []
+    consumers:
+      - "lld: labs/comlab/docs/COMLab_LLD.md"
+      - "dld: labs/comlab/docs/COMLab_DLD.md"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py family-routing architecture"
+    drift_guards: []
+
+  COMLab_LLD.md:
+    node_type: lld
+    subsystem: low-level-design
+    implements:
+      - "labs/comlab/comlab/core/lab_pipeline_aggregator.py"
+      - "labs/comlab/comlab/core/fault_atlas_router.py"
+      - "labs/comlab/comlab/core/fault_atlas_kg.py"
+      - "labs/comlab/comlab/core/ecu_hardware_checker.py"
+      - "labs/comlab/comlab/core/horizon_context_injector.py"
+      - "labs/comlab/comlab/core/perception_contradiction.py"
+      - "labs/comlab/comlab/core/symptom_router.py"
+      - "labs/comlab/comlab/analytics/delta_engine.py"
+      - "labs/comlab/comlab/analytics/power_loss_analytics.py"
+      - "labs/comlab/comlab/projection.py"
+      - "labs/comlab/comlab/schemas/ingestion.py"
+      - "labs/comlab/comlab/schemas/response.py"
+      - "labs/comlab/comlab/schemas/vocabulary.py"
+      - "labs/comlab/comlab/schemas/lab_dna_views.py"
+      - "labs/comlab/comlab/schemas/kg.py"
+    consumers:
+      - "dld: labs/comlab/docs/COMLab_DLD.md"
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py five-phase pipeline implementation"
+      - "wired (pending T-WIRE-1): apps/wired/wired/composition.py LabPipelineAggregator import"
+    drift_guards:
+      - "labs/comlab/tests/unit/test_lab_pipeline_aggregator.py"
+      - "labs/comlab/tests/unit/test_fault_atlas_router.py"
+      - "labs/comlab/tests/unit/test_fault_atlas_kg.py"
+      - "labs/comlab/tests/unit/test_ecu_hardware_checker.py"
+      - "labs/comlab/tests/unit/test_horizon_context_injector.py"
+      - "labs/comlab/tests/unit/test_perception_contradiction.py"
+      - "labs/comlab/tests/unit/test_symptom_router.py"
+      - "labs/comlab/tests/unit/test_delta_engine.py"
+      - "labs/comlab/tests/unit/test_power_loss_analytics.py"
+      - "labs/comlab/tests/unit/test_projection.py"
+      - "labs/comlab/tests/unit/test_vocabulary.py"
+      - "labs/comlab/tests/e2e/test_diagnostic_engine.py"
+
+  COMLab_DLD.md:
+    node_type: dld
+    subsystem: detailed-design
+    implements:
+      - "labs/comlab/comlab/core/lab_pipeline_aggregator.py"
+      - "labs/comlab/comlab/core/fault_atlas_router.py"
+      - "labs/comlab/comlab/core/fault_atlas_kg.py"
+      - "labs/comlab/comlab/observability/_tracer.py"
+      - "labs/comlab/comlab/analytics/power_loss_analytics.py"
+      - "labs/comlab/comlab/schemas/ingestion.py"
+      - "labs/comlab/comlab/schemas/response.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py deployment / latency-budget / observability surfaces"
+      - "wired (pending T-WIRE-1): apps/wired/wired/composition.py LabPipelineAggregator import"
+    drift_guards:
+      - "labs/comlab/tests/unit/test_lab_pipeline_aggregator.py"
+      - "labs/comlab/tests/unit/test_fatal_gate_wiring.py"
+      - "labs/comlab/tests/e2e/test_pipeline_round_trip.py"
+      - "labs/comlab/tests/e2e/test_error_codes.py"
+
+  # ---- wiki chunks with live, named COMLab-internal consumers --------------------
+  01_role_boundaries_fusion_spine.md:
+    node_type: wiki
+    subsystem: fusion-spine
+    implements:
+      - "labs/comlab/comlab/core/fault_atlas_router.py"
+      - "labs/comlab/comlab/schemas/ingestion.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py .process fusion-spine orchestration"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py family-map verdict"
+      - "wired (pending T-WIRE-1): apps/wired/wired/composition.py LabPipelineAggregator import"
+    drift_guards:
+      - "labs/comlab/tests/unit/test_fault_atlas_router.py"
+      - "labs/comlab/tests/unit/test_lab_pipeline_aggregator.py"
+
+  02_lab_input_contract.md:
+    node_type: wiki
+    subsystem: input-contract
+    implements:
+      - "labs/comlab/comlab/schemas/ingestion.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py chemical_state / total_trim_correction_delta / confirmed_dtcs routing"
+      - "comlab: labs/comlab/comlab/core/ecu_hardware_checker.py OBD-rail evidence (intake_air_temp_c / coolant_temp_c / throttle_pos_pct / total_trim_correction_delta / per_bank_trim_delta)"
+      - "comlab: labs/comlab/comlab/core/symptom_router.py route_symptom engine_state suppression"
+    drift_guards:
+      - "labs/comlab/tests/unit/test_ingestion_high_idle.py"
+      - "labs/comlab/tests/unit/test_fuel_system_gate.py"
+      - "labs/comlab/tests/unit/test_fault_atlas_router.py"
+
+  03_vehicle_dna_pruning.md:
+    node_type: wiki
+    subsystem: hardware-pruning
+    implements:
+      - "labs/comlab/comlab/core/ecu_hardware_checker.py"
+      - "labs/comlab/comlab/schemas/lab_dna_views.py"
+      - "labs/comlab/comlab/projection.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/ecu_hardware_checker.py ECU-hardware digital-lie evidence (fault_atlas_router.py:1312, ecu_fault family)"
+      - "comlab: labs/comlab/comlab/analytics/delta_engine.py VE polymorph selection"
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py vin_confidence==NONE fatal gate (ERR-ABORT-004)"
+    drift_guards:
+      - "labs/comlab/tests/unit/test_ecu_hardware_checker.py"
+      - "labs/comlab/tests/unit/test_projection.py"
+
+  04_horizon_eras.md:
+    node_type: wiki
+    subsystem: horizon-context
+    implements:
+      - "labs/comlab/comlab/core/horizon_context_injector.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/horizon_context_injector.py RULE_HORIZON_PRUNE / era-mask thresholds"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py per-era RULE_SCORING thresholds"
+    drift_guards:
+      - "labs/comlab/tests/unit/test_horizon_context_injector.py"
+
+  05_fault_taxonomy.md:
+    node_type: wiki
+    subsystem: fault-taxonomy
+    implements:
+      - "labs/comlab/comlab/core/fault_atlas_router.py"
+      - "labs/comlab/comlab/config/global_fault_registry.json"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py RULE_GAS_ROUTE / taxonomy-table routing"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_kg.py fault_id enrichment"
+    drift_guards:
+      - "labs/comlab/tests/unit/test_fault_atlas_router.py"
+      - "labs/comlab/tests/e2e/test_kg_registry_consistency.py"
+
+  06_fault_atlas_families.md:
+    node_type: wiki
+    subsystem: fault-atlas-kg
+    implements:
+      - "labs/comlab/comlab/core/fault_atlas_kg.py"
+      - "labs/comlab/comlab/config/kg/rich_mixture.json"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_kg.py 12-family JSON loading"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py family routing"
+      - "comlab: labs/comlab/comlab/analytics/delta_engine.py collision-set -> delta motivation"
+    drift_guards:
+      - "labs/comlab/tests/unit/test_fault_atlas_kg.py"
+      - "labs/comlab/tests/unit/test_kg_schema.py"
+      - "labs/comlab/tests/unit/test_kg_population.py"
+
+  07_pipeline_stages.md:
+    node_type: wiki
+    subsystem: pipeline-orchestration
+    implements:
+      - "labs/comlab/comlab/core/lab_pipeline_aggregator.py"
+      - "labs/comlab/comlab/core/fault_atlas_router.py"
+      - "labs/comlab/comlab/core/fault_atlas_kg.py"
+      - "labs/comlab/comlab/analytics/power_loss_analytics.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py Stage A-D orchestration"
+      - "comlab: labs/comlab/comlab/analytics/power_loss_analytics.py Stage D severity"
+      - "wired (pending T-WIRE-1): apps/wired/wired/composition.py LabPipelineAggregator import"
+    drift_guards:
+      - "labs/comlab/tests/unit/test_lab_pipeline_aggregator.py"
+      - "labs/comlab/tests/unit/test_fatal_gate_wiring.py"
+      - "labs/comlab/tests/unit/test_power_loss_analytics.py"
+      - "labs/comlab/tests/e2e/test_diagnostic_engine.py"
+
+  10_differential_and_symptom_prior.md:
+    node_type: wiki
+    subsystem: differential-output
+    implements:
+      - "labs/comlab/comlab/core/lab_pipeline_aggregator.py"
+      - "labs/comlab/comlab/core/symptom_router.py"
+      - "labs/comlab/comlab/schemas/response.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py CONCEPT_DIFFERENTIAL / RULE_TOPK"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py RULE_SYMPTOM_PRIOR (capped 0.65)"
+      - "wired (pending T-WIRE-1): apps/wired/wired/composition.py OrchestratorFinalUIOutput rendering"
+    drift_guards:
+      - "labs/comlab/tests/unit/test_symptom_router.py"
+      - "labs/comlab/tests/unit/test_symptom_prior.py"
+      - "labs/comlab/tests/unit/test_lab_pipeline_aggregator.py"
+
+# Plain copies - intentionally NOT framed (signal/noise). The build copies the whole
+# wiki/ + docs/ tree regardless; this list documents WHY each is left unframed.
+plain:
+  # wiki: index + proposal/Gate-gated/validation-only notes (no live code consumer)
+  - 00_index.md                       # index, no consumer
+  - 08_scoring_to_fusion_rework.md    # FUSE_* fusion rework all (proposed)
+  - 09_calibration_confidence.md      # CONCEPT_CALIBRATION/CONF_TIER/CONFORMAL all (proposed)
+  - 11_two_point_delta.md             # two-point delta default-off, LIVE_GATED_ON GATE_CAPTURE
+  - 12_corpus_eval_discipline.md      # consumers are "COMLab validation", not code paths
+  - 13_proposals_register.md          # proposals register (EP-* / COMLab-*)
+  - 14_sources_appendices.md          # sources / glossary, no code consumer
+  # docs: BDD + ADRs + cross-lab notes + vocab mirrors (vocab homed in _vocabulary/)
+  - COMLab_BDD.md
+  - CROSS_LAB_DEPENDENCIES.md

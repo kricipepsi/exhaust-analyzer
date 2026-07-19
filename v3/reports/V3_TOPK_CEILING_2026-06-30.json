@@ -1,0 +1,9273 @@
+{
+  "summary": {
+    "n": 294,
+    "top1": 141,
+    "top2": 161,
+    "top3": 175,
+    "top1_pct": 47.96,
+    "top2_pct": 54.76,
+    "top3_pct": 59.52,
+    "outranked_outside_top3": 69,
+    "outranked_ids": [
+      "CASE-014",
+      "CASE-015",
+      "CASE-020",
+      "CASE-022",
+      "CSV-025",
+      "CSV-041",
+      "CSV-045",
+      "CSV-095",
+      "CSV-100",
+      "CSV-113",
+      "CSV-114",
+      "CSV-121",
+      "CSV-122",
+      "CSV-123",
+      "CSV-124",
+      "CSV-129",
+      "CSV-130",
+      "ECU-001",
+      "ECU-009",
+      "EXP-N002",
+      "EXP-N004",
+      "EXP-N005",
+      "EXP-N014",
+      "EXP-N017",
+      "EXP-N018",
+      "EXP-N019",
+      "EXP-N020",
+      "EXP-N027",
+      "EXT-207",
+      "EXT-211",
+      "EXT-212",
+      "EXT-221",
+      "EXT-229",
+      "EXT-230",
+      "EXT-232",
+      "EXT-233",
+      "EXT-238",
+      "EXT-239",
+      "PDF-4G-04",
+      "PDF-4G-05",
+      "PDF-HI-006",
+      "PDF-HI-007",
+      "REAL-004",
+      "TC-021",
+      "TC-046",
+      "TC-048",
+      "YAML-CSV25",
+      "YAML-CSV41",
+      "YAML-CSV45",
+      "YAML-CSV95",
+      "YAML-PDF_4G_01",
+      "YAML-TC47",
+      "case_001",
+      "case_004",
+      "case_006",
+      "case_013",
+      "case_044",
+      "case_046",
+      "era1_001",
+      "era1_006",
+      "era1_016",
+      "era1_017",
+      "era2_011",
+      "era2_012",
+      "era2_015",
+      "era2_016",
+      "era3_007",
+      "era3_015",
+      "era3_019"
+    ]
+  },
+  "family_stats": {
+    "cam_timing": {
+      "n": 11,
+      "t1": 7,
+      "t2": 9,
+      "t3": 9
+    },
+    "catalyst_failure": {
+      "n": 23,
+      "t1": 9,
+      "t2": 12,
+      "t3": 15
+    },
+    "ecu_fault": {
+      "n": 31,
+      "t1": 4,
+      "t2": 8,
+      "t3": 9
+    },
+    "exhaust_leak": {
+      "n": 10,
+      "t1": 0,
+      "t2": 0,
+      "t3": 0
+    },
+    "ignition_fault": {
+      "n": 4,
+      "t1": 1,
+      "t2": 3,
+      "t3": 3
+    },
+    "lean_condition": {
+      "n": 62,
+      "t1": 37,
+      "t2": 41,
+      "t3": 43
+    },
+    "mechanical_wear": {
+      "n": 14,
+      "t1": 0,
+      "t2": 1,
+      "t3": 1
+    },
+    "misfire": {
+      "n": 54,
+      "t1": 46,
+      "t2": 47,
+      "t3": 51
+    },
+    "no_fault": {
+      "n": 18,
+      "t1": 8,
+      "t2": 8,
+      "t3": 8
+    },
+    "non_starter": {
+      "n": 5,
+      "t1": 0,
+      "t2": 0,
+      "t3": 0
+    },
+    "rich_mixture": {
+      "n": 37,
+      "t1": 23,
+      "t2": 24,
+      "t3": 27
+    },
+    "sensor_fault": {
+      "n": 25,
+      "t1": 6,
+      "t2": 8,
+      "t3": 9
+    }
+  },
+  "per_case": [
+    {
+      "case_id": "era1_001",
+      "expected_family": "lean_condition",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_002",
+      "expected_family": "mechanical_wear",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "ORACLE_SUSPECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-003",
+          0.9500000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_003",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "MF-003",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_004",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_005",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_006",
+      "expected_family": "sensor_fault",
+      "winner_id": "NF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_007",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_008",
+      "expected_family": "catalyst_failure",
+      "winner_id": "CF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "CF-001",
+          1.0
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.88
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_009",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "MF-003",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_011",
+      "expected_family": "cam_timing",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_012",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "LC-001",
+          0.9500000000000001
+        ],
+        [
+          "MF-005",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_013",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "MF-003",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_014",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          0.9
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "CT-002",
+          0.8500000000000001
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_015",
+      "expected_family": "mechanical_wear",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "ORACLE_SUSPECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_016",
+      "expected_family": "exhaust_leak",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_017",
+      "expected_family": "sensor_fault",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "CT-002",
+          0.8
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_018",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_019",
+      "expected_family": "lean_condition",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "OV-001",
+          0.85
+        ],
+        [
+          "CT-002",
+          0.8
+        ],
+        [
+          "LC-003",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "era1_020",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "MF-003",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-003",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_001",
+      "expected_family": "catalyst_failure",
+      "winner_id": "CF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "CF-001",
+          1.0
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_002",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "RM-004",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_003",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-002",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "CT-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_004",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "LC-001",
+          0.9500000000000001
+        ],
+        [
+          "MF-005",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_005",
+      "expected_family": "sensor_fault",
+      "winner_id": "RM-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "RM-001",
+          0.9500000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_006",
+      "expected_family": "lean_condition",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "CT-002",
+          0.8500000000000001
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_008",
+      "expected_family": "cam_timing",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CT-007",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_009",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "RM-004",
+          0.9500000000000001
+        ],
+        [
+          "MF-003",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_010",
+      "expected_family": "sensor_fault",
+      "winner_id": "SF-002",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "RM-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.88
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_011",
+      "expected_family": "lean_condition",
+      "winner_id": "CT-008",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "CT-008",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_012",
+      "expected_family": "sensor_fault",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "RM-001",
+          0.9
+        ],
+        [
+          "CT-008",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_013",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_014",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_015",
+      "expected_family": "lean_condition",
+      "winner_id": "RM-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "RM-004",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_016",
+      "expected_family": "misfire",
+      "winner_id": "NF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_017",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-002",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9500000000000002
+        ],
+        [
+          "LC-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-004",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_019",
+      "expected_family": "rich_mixture",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era2_020",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_001",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "RM-004",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_002",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-002",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "OV-001",
+          0.85
+        ],
+        [
+          "LC-003",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_003",
+      "expected_family": "ignition_fault",
+      "winner_id": "IF-002",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "IF-002",
+          1.0
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_004",
+      "expected_family": "sensor_fault",
+      "winner_id": "SF-002",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "EF-003",
+          0.85
+        ],
+        [
+          "CT-002",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_005",
+      "expected_family": "rich_mixture",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "RM-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_006",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_007",
+      "expected_family": "lean_condition",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "EF-003",
+          0.85
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_008",
+      "expected_family": "lean_condition",
+      "winner_id": "MF-002",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "LC-002",
+          0.9500000000000002
+        ],
+        [
+          "LC-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "EF-004",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_009",
+      "expected_family": "lean_condition",
+      "winner_id": "NF-001",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_011",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_013",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          0.9500000000000001
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_014",
+      "expected_family": "no_fault",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "CT-002",
+          0.8
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_015",
+      "expected_family": "lean_condition",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "CT-002",
+          0.8500000000000001
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_016",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_017",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          0.9500000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_018",
+      "expected_family": "cam_timing",
+      "winner_id": "CT-008",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "CT-008",
+          0.9
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_019",
+      "expected_family": "exhaust_leak",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "era3_020",
+      "expected_family": "ecu_fault",
+      "winner_id": "EF-004",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "EF-004",
+          1.0
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "EF-003",
+          0.85
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-009",
+      "expected_family": "no_fault",
+      "winner_id": "NF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "EF-003",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-010",
+      "expected_family": "sensor_fault",
+      "winner_id": "SF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-011",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-012",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          0.9500000000000002
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-013",
+      "expected_family": "catalyst_failure",
+      "winner_id": "LC-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-014",
+      "expected_family": "sensor_fault",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "EL-001",
+          0.8500000000000001
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "VL-001",
+          0.85
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-015",
+      "expected_family": "catalyst_failure",
+      "winner_id": "NF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "EL-001",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-016",
+      "expected_family": "catalyst_failure",
+      "winner_id": "CF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ],
+        [
+          "CT-002",
+          0.8500000000000001
+        ],
+        [
+          "CF-006",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-017",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-018",
+      "expected_family": "cam_timing",
+      "winner_id": "CT-007",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "CT-007",
+          0.9500000000000002
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-019",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-020",
+      "expected_family": "lean_condition",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-021",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-022",
+      "expected_family": "sensor_fault",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "LC-003",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-023",
+      "expected_family": "rich_mixture",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": true,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "RM-001",
+          0.9
+        ],
+        [
+          "CT-008",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-024",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-025",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-003",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-026",
+      "expected_family": "catalyst_failure",
+      "winner_id": "CF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ],
+        [
+          "OV-001",
+          0.85
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-027",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-003",
+          0.9000000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-028",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-029",
+      "expected_family": "rich_mixture",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "LC-003",
+          0.9500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-030",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-002",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "CT-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-031",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "RM-004",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-032",
+      "expected_family": "lean_condition",
+      "winner_id": "NF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "EF-003",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-033",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-034",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-002",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "OV-001",
+          0.85
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-035",
+      "expected_family": "ignition_fault",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "IF-002",
+          0.91
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "RM-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-036",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          0.9500000000000002
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-037",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "RM-004",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-038",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "LC-001",
+          0.9500000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-039",
+      "expected_family": "ecu_fault",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "RM-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.88
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-040",
+      "expected_family": "rich_mixture",
+      "winner_id": "NF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "SF-004",
+          0.77
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-045",
+      "expected_family": "sensor_fault",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "EL-003",
+          0.7500000000000001
+        ],
+        [
+          "MW-006",
+          0.7
+        ]
+      ]
+    },
+    {
+      "case_id": "CASE-048",
+      "expected_family": "sensor_fault",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "CF-004",
+          0.75
+        ],
+        [
+          "EL-003",
+          0.7000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-001",
+      "expected_family": "no_fault",
+      "winner_id": "NF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "EF-003",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-005",
+      "expected_family": "no_fault",
+      "winner_id": "NF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "EF-003",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-016",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "LC-003",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-018",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "MF-003",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "RM-004",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-022",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-005",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-003",
+          0.9000000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-025",
+      "expected_family": "sensor_fault",
+      "winner_id": "NF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "RM-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-041",
+      "expected_family": "ecu_fault",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "RM-001",
+          0.95
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-043",
+      "expected_family": "ecu_fault",
+      "winner_id": "LC-002",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "EF-003",
+          0.8
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-045",
+      "expected_family": "ecu_fault",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-052",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-066",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-068",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-002",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "EL-001",
+          0.8500000000000001
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-072",
+      "expected_family": "ecu_fault",
+      "winner_id": "EF-004",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "EF-004",
+          0.95
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "EF-003",
+          0.8
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-095",
+      "expected_family": "exhaust_leak",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-100",
+      "expected_family": "lean_condition",
+      "winner_id": "RM-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "MF-003",
+          0.9000000000000001
+        ],
+        [
+          "RM-004",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-101",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-102",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-103",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "MF-005",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-003",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-104",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "LC-001",
+          0.9500000000000001
+        ],
+        [
+          "MF-005",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-105",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-106",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-107",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-108",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-109",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "LC-003",
+          0.9500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-110",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "LC-003",
+          0.9500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-111",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "LC-003",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-112",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "LC-003",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-113",
+      "expected_family": "lean_condition",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-003",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-114",
+      "expected_family": "lean_condition",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-003",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-115",
+      "expected_family": "cam_timing",
+      "winner_id": "CT-007",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "CT-007",
+          1.0
+        ],
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-116",
+      "expected_family": "cam_timing",
+      "winner_id": "CT-007",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "CT-007",
+          1.0
+        ],
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-117",
+      "expected_family": "mechanical_wear",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-118",
+      "expected_family": "mechanical_wear",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "ORACLE_SUSPECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-119",
+      "expected_family": "mechanical_wear",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "ORACLE_SUSPECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-120",
+      "expected_family": "mechanical_wear",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "ORACLE_SUSPECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MW-007",
+          1.0
+        ],
+        [
+          "MF-005",
+          1.0
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-121",
+      "expected_family": "catalyst_failure",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          0.9500000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "EL-001",
+          0.8500000000000001
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "VL-001",
+          0.85
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-122",
+      "expected_family": "catalyst_failure",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          0.9500000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ],
+        [
+          "EL-001",
+          0.8500000000000001
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-123",
+      "expected_family": "ecu_fault",
+      "winner_id": "RM-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "LC-002",
+          0.9500000000000001
+        ],
+        [
+          "LC-001",
+          0.95
+        ],
+        [
+          "SF-002",
+          0.95
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-124",
+      "expected_family": "ecu_fault",
+      "winner_id": "RM-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "LC-002",
+          0.9500000000000001
+        ],
+        [
+          "LC-001",
+          0.95
+        ],
+        [
+          "SF-002",
+          0.95
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-125",
+      "expected_family": "ecu_fault",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "RM-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-126",
+      "expected_family": "ecu_fault",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "RM-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-127",
+      "expected_family": "no_fault",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "CT-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "VL-001",
+          0.85
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-128",
+      "expected_family": "no_fault",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-129",
+      "expected_family": "exhaust_leak",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "CSV-130",
+      "expected_family": "exhaust_leak",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "ECU-001",
+      "expected_family": "ecu_fault",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "RM-001",
+          0.95
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "ECU-002",
+      "expected_family": "ecu_fault",
+      "winner_id": "LC-002",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "EF-003",
+          0.8
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "ECU-003",
+      "expected_family": "ecu_fault",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "EF-003",
+          0.8
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "ECU-007",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "ECU-008",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "ECU-009",
+      "expected_family": "ecu_fault",
+      "winner_id": "RM-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "RM-001",
+          0.95
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "RM-004",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N001",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          1.0
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N002",
+      "expected_family": "ecu_fault",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N003",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "MF-003",
+          0.9000000000000001
+        ],
+        [
+          "RM-004",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N004",
+      "expected_family": "ecu_fault",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N005",
+      "expected_family": "ecu_fault",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N006",
+      "expected_family": "sensor_fault",
+      "winner_id": "SF-002",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "RM-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "EF-003",
+          0.85
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N007",
+      "expected_family": "cam_timing",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CT-007",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N008",
+      "expected_family": "catalyst_failure",
+      "winner_id": "CF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "CT-002",
+          0.8500000000000001
+        ],
+        [
+          "EL-001",
+          0.8500000000000001
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N009",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "LC-003",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N010",
+      "expected_family": "rich_mixture",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "RM-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N011",
+      "expected_family": "lean_condition",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N012",
+      "expected_family": "catalyst_failure",
+      "winner_id": "CF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "EF-003",
+          0.75
+        ],
+        [
+          "MW-006",
+          0.7
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N013",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "RM-004",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-003",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N014",
+      "expected_family": "misfire",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.88
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N015",
+      "expected_family": "sensor_fault",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N016",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N017",
+      "expected_family": "lean_condition",
+      "winner_id": "RM-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "RM-004",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N018",
+      "expected_family": "ecu_fault",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N019",
+      "expected_family": "ecu_fault",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N020",
+      "expected_family": "sensor_fault",
+      "winner_id": "RM-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "RM-001",
+          0.9500000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N021",
+      "expected_family": "misfire",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N022",
+      "expected_family": "lean_condition",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "EF-003",
+          0.75
+        ],
+        [
+          "MW-006",
+          0.7
+        ],
+        [
+          "MF-004",
+          0.65
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N023",
+      "expected_family": "cam_timing",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N025",
+      "expected_family": "catalyst_failure",
+      "winner_id": "LC-002",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.81
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N026",
+      "expected_family": "ignition_fault",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "IF-002",
+          0.91
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N027",
+      "expected_family": "rich_mixture",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "RM-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N028",
+      "expected_family": "sensor_fault",
+      "winner_id": "SF-002",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N029",
+      "expected_family": "lean_condition",
+      "winner_id": "MW-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "MW-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ],
+        [
+          "EF-003",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "EXP-N030",
+      "expected_family": "mechanical_wear",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-201",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-202",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-203",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-003",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "EF-002",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-204",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          0.9500000000000002
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-205",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          0.9500000000000002
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-206",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-003",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "EF-002",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-207",
+      "expected_family": "catalyst_failure",
+      "winner_id": "LC-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-208",
+      "expected_family": "catalyst_failure",
+      "winner_id": "LC-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-209",
+      "expected_family": "cam_timing",
+      "winner_id": "CT-007",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "CT-007",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "RM-001",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-210",
+      "expected_family": "cam_timing",
+      "winner_id": "CT-007",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "CT-007",
+          0.9500000000000002
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-211",
+      "expected_family": "lean_condition",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-212",
+      "expected_family": "lean_condition",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-213",
+      "expected_family": "catalyst_failure",
+      "winner_id": "LC-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-214",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-215",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-003",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-216",
+      "expected_family": "no_fault",
+      "winner_id": "RM-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "MF-003",
+          0.9000000000000001
+        ],
+        [
+          "RM-004",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-217",
+      "expected_family": "rich_mixture",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": true,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "RM-001",
+          0.9
+        ],
+        [
+          "CT-008",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-218",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "LC-003",
+          0.9500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-219",
+      "expected_family": "sensor_fault",
+      "winner_id": "RM-001",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-003",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "EF-002",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-220",
+      "expected_family": "no_fault",
+      "winner_id": "NF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "CF-002",
+          0.8
+        ],
+        [
+          "EF-003",
+          0.75
+        ],
+        [
+          "CF-004",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-221",
+      "expected_family": "ecu_fault",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "RM-001",
+          0.95
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-222",
+      "expected_family": "mechanical_wear",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "ORACLE_SUSPECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "CT-008",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-223",
+      "expected_family": "mechanical_wear",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "ORACLE_SUSPECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-224",
+      "expected_family": "mechanical_wear",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "ORACLE_SUSPECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-003",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-225",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-226",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-227",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "MF-003",
+          0.9000000000000001
+        ],
+        [
+          "RM-004",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-228",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-229",
+      "expected_family": "sensor_fault",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "EL-001",
+          0.8500000000000001
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "VL-001",
+          0.85
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-230",
+      "expected_family": "sensor_fault",
+      "winner_id": "NF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "EF-003",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-231",
+      "expected_family": "no_fault",
+      "winner_id": "NF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "EF-003",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-232",
+      "expected_family": "catalyst_failure",
+      "winner_id": "NF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "EL-001",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-233",
+      "expected_family": "catalyst_failure",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          0.9500000000000001
+        ],
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-004",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-234",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "CT-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-235",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-236",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "LC-001",
+          0.9500000000000001
+        ],
+        [
+          "MF-005",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-237",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-238",
+      "expected_family": "exhaust_leak",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-239",
+      "expected_family": "exhaust_leak",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "EXT-240",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "RM-004",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "MECH-001",
+      "expected_family": "mechanical_wear",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "MECH-002",
+      "expected_family": "mechanical_wear",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "ORACLE_SUSPECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "MF-003",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "MECH-003",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "MECH-004",
+      "expected_family": "cam_timing",
+      "winner_id": "CT-008",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "CT-008",
+          1.0
+        ],
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "MECH-005",
+      "expected_family": "misfire",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "MECH-006",
+      "expected_family": "mechanical_wear",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "ORACLE_SUSPECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "MF-003",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "PDF-4G-01",
+      "expected_family": "catalyst_failure",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "EF-003",
+          0.85
+        ],
+        [
+          "CT-002",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "PDF-4G-02",
+      "expected_family": "misfire",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "PDF-4G-03",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          0.95
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "RM-004",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "PDF-4G-04",
+      "expected_family": "ignition_fault",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "PDF-4G-05",
+      "expected_family": "misfire",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "MW-002",
+          0.85
+        ],
+        [
+          "EF-003",
+          0.85
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "PDF-HI-001",
+      "expected_family": "rich_mixture",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "PDF-HI-002",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-005",
+          1.0
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "PDF-HI-005",
+      "expected_family": "no_fault",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "EF-003",
+          0.85
+        ]
+      ]
+    },
+    {
+      "case_id": "PDF-HI-006",
+      "expected_family": "catalyst_failure",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "EF-003",
+          0.85
+        ],
+        [
+          "MW-001",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "PDF-HI-007",
+      "expected_family": "exhaust_leak",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          0.95
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "PDF-HI-008",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-003",
+          0.9000000000000001
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "PDF-HI-010",
+      "expected_family": "no_fault",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "EF-003",
+          0.85
+        ]
+      ]
+    },
+    {
+      "case_id": "REAL-001",
+      "expected_family": "non_starter",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "II-002",
+          0.95
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-003",
+          0.9000000000000001
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "REAL-002",
+      "expected_family": "lean_condition",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-003",
+          0.9000000000000001
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "REAL-003",
+      "expected_family": "non_starter",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-003",
+          0.9000000000000001
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "REAL-004",
+      "expected_family": "lean_condition",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-003",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "REAL-005",
+      "expected_family": "catalyst_failure",
+      "winner_id": "CF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "CF-001",
+          1.0
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "RULE-CO-1",
+      "expected_family": "rich_mixture",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "EF-003",
+          0.85
+        ],
+        [
+          "CT-002",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "TC-011",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "TC-021",
+      "expected_family": "ecu_fault",
+      "winner_id": "RM-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "RM-001",
+          0.95
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "RM-004",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "TC-046",
+      "expected_family": "sensor_fault",
+      "winner_id": "NF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "RM-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "TC-048",
+      "expected_family": "exhaust_leak",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-CSV1",
+      "expected_family": "no_fault",
+      "winner_id": "NF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "EF-003",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-CSV18",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "RM-004",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-CSV22",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-005",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-003",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-CSV25",
+      "expected_family": "sensor_fault",
+      "winner_id": "NF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "EF-003",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-CSV41",
+      "expected_family": "ecu_fault",
+      "winner_id": "RM-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "RM-001",
+          0.95
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "RM-004",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-CSV43",
+      "expected_family": "ecu_fault",
+      "winner_id": "LC-002",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "EF-003",
+          0.8
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-CSV45",
+      "expected_family": "ecu_fault",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-CSV5",
+      "expected_family": "no_fault",
+      "winner_id": "NF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "EF-003",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-CSV52",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-CSV66",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-CSV68",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-002",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "EL-001",
+          0.8500000000000001
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-CSV72",
+      "expected_family": "ecu_fault",
+      "winner_id": "EF-004",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "EF-004",
+          0.95
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "EF-003",
+          0.8
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-CSV95",
+      "expected_family": "exhaust_leak",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-PDF_4G_01",
+      "expected_family": "catalyst_failure",
+      "winner_id": "CT-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "CT-002",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "CT-004",
+          0.75
+        ],
+        [
+          "CF-002",
+          0.75
+        ],
+        [
+          "CF-004",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-PDF_4G_02",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-003",
+          0.9
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-PDF_4G_03",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "RM-004",
+          0.9
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "RM-002",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-PDF_4G_04",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-PDF_4G_05",
+      "expected_family": "misfire",
+      "winner_id": "EF-004",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "CF-002",
+          0.75
+        ],
+        [
+          "CF-004",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-PDF_HI_001",
+      "expected_family": "rich_mixture",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-PDF_HI_002",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-003",
+          0.9000000000000001
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-PDF_HI_005",
+      "expected_family": "no_fault",
+      "winner_id": "EF-004",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "CF-002",
+          0.75
+        ],
+        [
+          "CF-004",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-PDF_HI_006",
+      "expected_family": "catalyst_failure",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "CT-002",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-PDF_HI_010",
+      "expected_family": "no_fault",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "CT-002",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "CT-004",
+          0.75
+        ],
+        [
+          "CF-002",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-RULE_CO_1",
+      "expected_family": "misfire",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "CT-002",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "CT-004",
+          0.75
+        ],
+        [
+          "CF-004",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-RULE_NOx_1",
+      "expected_family": "ecu_fault",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "CT-002",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-TC1",
+      "expected_family": "no_fault",
+      "winner_id": "EF-004",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "CF-002",
+          0.75
+        ],
+        [
+          "CF-004",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-TC12",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "RM-004",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-TC22",
+      "expected_family": "ecu_fault",
+      "winner_id": "LC-002",
+      "top1_ok": false,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "EF-003",
+          0.8
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-TC36",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "MF-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-TC37",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-005",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-003",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-TC46",
+      "expected_family": "sensor_fault",
+      "winner_id": "MF-005",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "CF-002",
+          0.8
+        ],
+        [
+          "CF-004",
+          0.75
+        ],
+        [
+          "MW-006",
+          0.7
+        ],
+        [
+          "MF-004",
+          0.7
+        ]
+      ]
+    },
+    {
+      "case_id": "YAML-TC47",
+      "expected_family": "ecu_fault",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "case_001",
+      "expected_family": "ecu_fault",
+      "winner_id": "LC-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "EL-001",
+          0.9000000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "case_002",
+      "expected_family": "rich_mixture",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "case_003",
+      "expected_family": "lean_condition",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "case_004",
+      "expected_family": "sensor_fault",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ],
+        [
+          "CF-006",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "case_005",
+      "expected_family": "misfire",
+      "winner_id": "MF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "MF-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "case_006",
+      "expected_family": "non_starter",
+      "winner_id": "II-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "II-002",
+          0.95
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-003",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "case_007",
+      "expected_family": "non_starter",
+      "winner_id": "MF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-003",
+          0.9000000000000001
+        ],
+        [
+          "MF-005",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "case_008",
+      "expected_family": "lean_condition",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ]
+      ]
+    },
+    {
+      "case_id": "case_009",
+      "expected_family": "sensor_fault",
+      "winner_id": "SF-002",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "EF-003",
+          0.85
+        ],
+        [
+          "CT-002",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "case_010",
+      "expected_family": "catalyst_failure",
+      "winner_id": "CF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "CF-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ],
+        [
+          "CT-002",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "case_013",
+      "expected_family": "ecu_fault",
+      "winner_id": "RM-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "MF-003",
+          0.9000000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "case_014",
+      "expected_family": "no_fault",
+      "winner_id": "SF-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "case_015",
+      "expected_family": "rich_mixture",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "EF-003",
+          0.85
+        ],
+        [
+          "CT-002",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "case_016",
+      "expected_family": "lean_condition",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "DATA_GAP",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "EF-003",
+          0.85
+        ],
+        [
+          "CT-002",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "case_017",
+      "expected_family": "rich_mixture",
+      "winner_id": "CF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "CT-008",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ],
+        [
+          "EF-003",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "case_018",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "MF-001",
+          1.0
+        ],
+        [
+          "MF-002",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "SF-001",
+          0.95
+        ]
+      ]
+    },
+    {
+      "case_id": "case_019",
+      "expected_family": "lean_condition",
+      "winner_id": "LC-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "LC-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "LC-003",
+          0.9500000000000001
+        ],
+        [
+          "SF-002",
+          0.95
+        ]
+      ]
+    },
+    {
+      "case_id": "case_022",
+      "expected_family": "misfire",
+      "winner_id": "MF-002",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "MF-002",
+          0.9500000000000002
+        ],
+        [
+          "LC-001",
+          0.9500000000000001
+        ],
+        [
+          "MF-001",
+          0.9500000000000001
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "case_023",
+      "expected_family": "rich_mixture",
+      "winner_id": "RM-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "RM-001",
+          1.0
+        ],
+        [
+          "CF-001",
+          0.9500000000000001
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "RM-004",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.8600000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "case_027",
+      "expected_family": "ecu_fault",
+      "winner_id": "EF-004",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "EF-004",
+          1.0
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-003",
+          0.8
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    },
+    {
+      "case_id": "case_028",
+      "expected_family": "no_fault",
+      "winner_id": "NF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-002",
+          0.8500000000000001
+        ],
+        [
+          "MF-005",
+          0.8
+        ],
+        [
+          "EF-003",
+          0.75
+        ]
+      ]
+    },
+    {
+      "case_id": "case_034",
+      "expected_family": "catalyst_failure",
+      "winner_id": "CF-001",
+      "top1_ok": true,
+      "top2_ok": true,
+      "top3_ok": true,
+      "mode": "SURFACE_DEFECT",
+      "top5_rules": [
+        [
+          "CF-001",
+          1.0
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "LC-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "CF-003",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "case_040",
+      "expected_family": "non_starter",
+      "winner_id": "II-002",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "PRODUCER_GAP",
+      "top5_rules": [
+        [
+          "II-002",
+          0.95
+        ],
+        [
+          "SF-002",
+          0.95
+        ],
+        [
+          "CF-003",
+          0.9000000000000001
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ]
+      ]
+    },
+    {
+      "case_id": "case_044",
+      "expected_family": "mechanical_wear",
+      "winner_id": "SF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "SF-001",
+          0.95
+        ],
+        [
+          "CF-001",
+          0.9
+        ],
+        [
+          "MF-001",
+          0.9
+        ],
+        [
+          "SF-008",
+          0.86
+        ],
+        [
+          "MF-005",
+          0.8500000000000001
+        ]
+      ]
+    },
+    {
+      "case_id": "case_046",
+      "expected_family": "sensor_fault",
+      "winner_id": "NF-001",
+      "top1_ok": false,
+      "top2_ok": false,
+      "top3_ok": false,
+      "mode": "OUTRANKED",
+      "top5_rules": [
+        [
+          "NF-001",
+          0.93
+        ],
+        [
+          "LC-002",
+          0.9000000000000001
+        ],
+        [
+          "EF-004",
+          0.9
+        ],
+        [
+          "LC-003",
+          0.8
+        ],
+        [
+          "MF-005",
+          0.8
+        ]
+      ]
+    }
+  ]
+}

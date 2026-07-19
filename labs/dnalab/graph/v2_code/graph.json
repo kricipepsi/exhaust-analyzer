@@ -1,0 +1,663 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "init",
+      "community": 4,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "DNALab \u2014 the umbrella lab that composes VinDNA + SymptomDNA into VehicleDNA.",
+      "file_type": "rationale",
+      "source_file": "__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "init_rationale_1",
+      "community": 4,
+      "norm_label": "dnalab \u2014 the umbrella lab that composes vindna + symptomdna into vehicledna."
+    },
+    {
+      "label": "assembly.py",
+      "file_type": "code",
+      "source_file": "assembly.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "assembly",
+      "community": 1,
+      "norm_label": "assembly.py"
+    },
+    {
+      "label": "build_vehicle_dna()",
+      "file_type": "code",
+      "source_file": "assembly.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "assembly_build_vehicle_dna",
+      "community": 1,
+      "norm_label": "build_vehicle_dna()"
+    },
+    {
+      "label": "Any",
+      "file_type": "code",
+      "source_file": "assembly.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "assembly_py_any",
+      "community": 1,
+      "norm_label": "any"
+    },
+    {
+      "label": "VehicleDNA",
+      "file_type": "code",
+      "source_file": "assembly.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "vehicledna",
+      "community": 1,
+      "norm_label": "vehicledna"
+    },
+    {
+      "label": "DNALab assembly \u2014 build_vehicle_dna() orchestration.",
+      "file_type": "rationale",
+      "source_file": "assembly.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "assembly_rationale_1",
+      "community": 1,
+      "norm_label": "dnalab assembly \u2014 build_vehicle_dna() orchestration."
+    },
+    {
+      "label": "Decode VIN and triage selection, combine into one VehicleDNA.      Args:",
+      "file_type": "rationale",
+      "source_file": "assembly.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "assembly_rationale_15",
+      "community": 1,
+      "norm_label": "decode vin and triage selection, combine into one vehicledna.      args:"
+    },
+    {
+      "label": "# WHY: symptomlab.resolve() requires all five keys; a missing key would",
+      "file_type": "rationale",
+      "source_file": "assembly.py",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "assembly_rationale_33",
+      "community": 1,
+      "norm_label": "# why: symptomlab.resolve() requires all five keys; a missing key would"
+    },
+    {
+      "label": "models.py",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "models",
+      "community": 3,
+      "norm_label": "models.py"
+    },
+    {
+      "label": "VehicleDNA",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "models_vehicledna",
+      "community": 0,
+      "norm_label": "vehicledna"
+    },
+    {
+      "label": ".new()",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "models_vehicledna_new",
+      "community": 2,
+      "norm_label": ".new()"
+    },
+    {
+      "label": "VinDNA",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "vindna",
+      "community": 2,
+      "norm_label": "vindna"
+    },
+    {
+      "label": "SymptomDNA",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "symptomdna",
+      "community": 2,
+      "norm_label": "symptomdna"
+    },
+    {
+      "label": "datetime",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "datetime",
+      "community": 2,
+      "norm_label": "datetime"
+    },
+    {
+      "label": ".to_json_payload()",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "models_vehicledna_to_json_payload",
+      "community": 0,
+      "norm_label": ".to_json_payload()"
+    },
+    {
+      "label": "Any",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "models_py_any",
+      "community": 0,
+      "norm_label": "any"
+    },
+    {
+      "label": ".to_json()",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L78",
+      "_origin": "ast",
+      "id": "models_vehicledna_to_json",
+      "community": 0,
+      "norm_label": ".to_json()"
+    },
+    {
+      "label": ".from_json_payload()",
+      "file_type": "code",
+      "source_file": "models.py",
+      "source_location": "L86",
+      "_origin": "ast",
+      "id": "models_vehicledna_from_json_payload",
+      "community": 0,
+      "norm_label": ".from_json_payload()"
+    },
+    {
+      "label": "VehicleDNA \u2014 the combined Part A + Part B payload.  Schema governed by SEMANTIC_",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "models_rationale_1",
+      "community": 3,
+      "norm_label": "vehicledna \u2014 the combined part a + part b payload.  schema governed by semantic_"
+    },
+    {
+      "label": "Combined Part A (VinDNA) + Part B (SymptomDNA) + session metadata.      The JSON",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "models_rationale_23",
+      "community": 0,
+      "norm_label": "combined part a (vindna) + part b (symptomdna) + session metadata.      the json"
+    },
+    {
+      "label": "Create a VehicleDNA with auto-generated session metadata.          Args:",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L45",
+      "_origin": "ast",
+      "id": "models_rationale_45",
+      "community": 2,
+      "norm_label": "create a vehicledna with auto-generated session metadata.          args:"
+    },
+    {
+      "label": "Serialize to the dict layout from SEMANTIC_CONTRACT.md \u00a74.3.          Top-level",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L65",
+      "_origin": "ast",
+      "id": "models_rationale_65",
+      "community": 0,
+      "norm_label": "serialize to the dict layout from semantic_contract.md \u00a74.3.          top-level"
+    },
+    {
+      "label": "Serialize to a JSON string via to_json_payload().          Forwards **dumps_kwar",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L79",
+      "_origin": "ast",
+      "id": "models_rationale_79",
+      "community": 0,
+      "norm_label": "serialize to a json string via to_json_payload().          forwards **dumps_kwar"
+    },
+    {
+      "label": "Inverse of to_json_payload(). Delegates to each model's from_json.          Rais",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L87",
+      "_origin": "ast",
+      "id": "models_rationale_87",
+      "community": 0,
+      "norm_label": "inverse of to_json_payload(). delegates to each model's from_json.          rais"
+    },
+    {
+      "label": "# WHY: strict-match gate \u2014 mismatched schema_version means the payload",
+      "file_type": "rationale",
+      "source_file": "models.py",
+      "source_location": "L94",
+      "_origin": "ast",
+      "id": "models_rationale_94",
+      "community": 3,
+      "norm_label": "# why: strict-match gate \u2014 mismatched schema_version means the payload"
+    }
+  ],
+  "links": [
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "init_rationale_1",
+      "target": "init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assembly.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "assembly",
+      "target": "assembly_build_vehicle_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "assembly.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "assembly_rationale_1",
+      "target": "assembly",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "assembly.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "assembly_rationale_33",
+      "target": "assembly",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "assembly.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "assembly_build_vehicle_dna",
+      "target": "assembly_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "assembly.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "assembly_build_vehicle_dna",
+      "target": "vehicledna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "assembly.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "assembly_rationale_15",
+      "target": "assembly_build_vehicle_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "assembly.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "source": "assembly_py_any",
+      "target": "models_vehicledna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "assembly.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "source": "vehicledna",
+      "target": "models_vehicledna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "models",
+      "target": "datetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "models",
+      "target": "models_vehicledna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "models_rationale_1",
+      "target": "models",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "models_rationale_94",
+      "target": "models",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "models_rationale_23",
+      "target": "models_vehicledna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L86",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "models_vehicledna_from_json_payload",
+      "target": "models_vehicledna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "models_vehicledna_new",
+      "target": "models_vehicledna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L78",
+      "weight": 1.0,
+      "source": "models_vehicledna",
+      "target": "models_vehicledna_to_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "models_vehicledna",
+      "target": "models_vehicledna_to_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "models.py",
+      "source_location": "L15",
+      "weight": 0.8,
+      "source": "models_vehicledna",
+      "target": "symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "models.py",
+      "source_location": "L16",
+      "weight": 0.8,
+      "source": "models_vehicledna",
+      "target": "vindna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "models_rationale_45",
+      "target": "models_vehicledna_new",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "models_vehicledna_new",
+      "target": "datetime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "models_vehicledna_new",
+      "target": "symptomdna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "models_vehicledna_new",
+      "target": "vindna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "models.py",
+      "source_location": "L16",
+      "weight": 0.8,
+      "source": "datetime",
+      "target": "vindna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "models.py",
+      "source_location": "L16",
+      "weight": 0.8,
+      "source": "models_py_any",
+      "target": "vindna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "models.py",
+      "source_location": "L16",
+      "weight": 0.8,
+      "source": "symptomdna",
+      "target": "vindna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "models.py",
+      "source_location": "L16",
+      "weight": 0.8,
+      "source": "vindna",
+      "target": "vindna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "models.py",
+      "source_location": "L15",
+      "weight": 0.8,
+      "source": "datetime",
+      "target": "symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "models.py",
+      "source_location": "L15",
+      "weight": 0.8,
+      "source": "models_py_any",
+      "target": "symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "models.py",
+      "source_location": "L15",
+      "weight": 0.8,
+      "source": "symptomdna",
+      "target": "symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "models_rationale_65",
+      "target": "models_vehicledna_to_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "models_vehicledna_to_json",
+      "target": "models_vehicledna_to_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "models_vehicledna_to_json_payload",
+      "target": "models_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "models_vehicledna_from_json_payload",
+      "target": "models_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L78",
+      "weight": 1.0,
+      "source": "models_vehicledna_to_json",
+      "target": "models_py_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "models_rationale_79",
+      "target": "models_vehicledna_to_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "models.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "models_rationale_87",
+      "target": "models_vehicledna_from_json_payload",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "ce6b7736320effb3e5559bcd5669492d6952f974"
+}

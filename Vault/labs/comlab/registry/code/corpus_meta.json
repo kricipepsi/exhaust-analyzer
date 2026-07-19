@@ -1,0 +1,3564 @@
+{
+  "generated_at": "2026-05-27T12:25:36.924426+00:00",
+  "master_csv_total": 281,
+  "curated_count": 252,
+  "dropped_count": 40,
+  "relabel_count": 0,
+  "new_count": 11,
+  "cases": [
+    {
+      "case_id": "CSV-001",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'no_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-005",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'no_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-016",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-018",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-022",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0302"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-025",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-041",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-043",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0113"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-045",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0201"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-052",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-066",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-068",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-072",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0606"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-081",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Kept as one of the 2\u00e2\u20ac\u201c3 representative sentinel/validation cases per cvsgaps.md guidance. Tests input-validation path.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-083",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "CSV-095",
+      "expected_top_fault_family": "exhaust_leak",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'exhaust_leak' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-100",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "REAL-001",
+      "expected_top_fault_family": "non_starter",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_gaslab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: gas_hc out of range: 20200",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "REAL-002",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "REAL-003",
+      "expected_top_fault_family": "non_starter",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_gaslab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: gas_hc out of range: 26710",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "REAL-004",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0401"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "REAL-005",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0420"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "MECH-001",
+      "expected_top_fault_family": "mechanical_wear",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'rich_mixture' at phase 'comlab.aggregate'. Core diagnostic case for family 'mechanical_wear' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "MECH-002",
+      "expected_top_fault_family": "mechanical_wear",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'mechanical_wear' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "MECH-003",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "MECH-004",
+      "expected_top_fault_family": "cam_timing",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'mechanical_wear' at phase 'comlab.aggregate'. Core diagnostic case for family 'cam_timing' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "MECH-005",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'rich_mixture' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "MECH-006",
+      "expected_top_fault_family": "mechanical_wear",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'mechanical_wear' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "ECU-001",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "ECU-002",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0113"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "ECU-003",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0201"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "ECU-007",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "ECU-008",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "ECU-009",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "TC-011",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "TC-021",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "TC-046",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "TC-048",
+      "expected_top_fault_family": "exhaust_leak",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'exhaust_leak' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "PDF-HI-001",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "PDF-HI-002",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "PDF-HI-005",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Kept as one of the 2\u00e2\u20ac\u201c3 representative healthy-baseline cases per cvsgaps.md guidance.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "PDF-HI-006",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'mechanical_wear' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "PDF-HI-007",
+      "expected_top_fault_family": "exhaust_leak",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'exhaust_leak' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "PDF-HI-008",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "PDF-HI-010",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Kept as one of the 2\u00e2\u20ac\u201c3 representative healthy-baseline cases per cvsgaps.md guidance.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "PDF-4G-01",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "PDF-4G-02",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "PDF-4G-03",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "PDF-4G-04",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "PDF-4G-05",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'mechanical_wear' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "RULE-CO-1",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "RULE-NOx-1",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "YAML-TC1",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Kept as one of the 2\u00e2\u20ac\u201c3 representative healthy-baseline cases per cvsgaps.md guidance.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-TC11",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "YAML-TC12",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-TC21",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "YAML-TC22",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0113"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-TC36",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-TC37",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0302"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-TC46",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-TC47",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0201"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-TC48",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "YAML-CSV1",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Duplicate or over-represented scenario \u00e2\u20ac\u201d covered by other cases in the corpus.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'unknown' \u00e2\u20ac\u201d cvsgaps drop (duplicate_baseline) applied."
+    },
+    {
+      "case_id": "YAML-CSV5",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'no_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-CSV16",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "YAML-CSV18",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-CSV22",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0302"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-CSV25",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-CSV41",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-CSV43",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0113"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-CSV45",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0201"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-CSV52",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-CSV66",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-CSV68",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-CSV72",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0606"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-CSV81",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "YAML-CSV83",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "YAML-CSV95",
+      "expected_top_fault_family": "exhaust_leak",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'exhaust_leak' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-CSV100",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "YAML-RULE_CO_1",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-RULE_CO2_1",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "YAML-RULE_NOx_1",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "YAML-PDF_HI_001",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-PDF_HI_002",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'rich_mixture' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-PDF_HI_005",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'no_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-PDF_HI_006",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-PDF_HI_007",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "YAML-PDF_HI_008",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "YAML-PDF_HI_010",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'no_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-PDF_4G_01",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-PDF_4G_02",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-PDF_4G_03",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-PDF_4G_04",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "YAML-PDF_4G_05",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-101",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0301"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-102",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0303"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-103",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-104",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-105",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-106",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-107",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-108",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-109",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-110",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-111",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0174"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-112",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-113",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0401"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-114",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0401"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-115",
+      "expected_top_fault_family": "cam_timing",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'mechanical_wear' at phase 'comlab.aggregate'. Core diagnostic case for family 'cam_timing' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0011"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-116",
+      "expected_top_fault_family": "cam_timing",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'mechanical_wear' at phase 'comlab.aggregate'. Core diagnostic case for family 'cam_timing' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0011"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-117",
+      "expected_top_fault_family": "mechanical_wear",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'rich_mixture' at phase 'comlab.aggregate'. Core diagnostic case for family 'mechanical_wear' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-118",
+      "expected_top_fault_family": "mechanical_wear",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'rich_mixture' at phase 'comlab.aggregate'. Core diagnostic case for family 'mechanical_wear' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-119",
+      "expected_top_fault_family": "mechanical_wear",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'mechanical_wear' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-120",
+      "expected_top_fault_family": "mechanical_wear",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'mechanical_wear' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-121",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'mechanical_wear' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-122",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-123",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-124",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-125",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0201"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-126",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0201"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-127",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'no_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-128",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'no_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CSV-129",
+      "expected_top_fault_family": "exhaust_leak",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Obsolete or extremely rare hardware: leaded fuel, SAI, GPF, swirl flaps \u00e2\u20ac\u201d out of petrol v1 scope.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0411"
+      ],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (obsolete_hardware) applied."
+    },
+    {
+      "case_id": "CSV-130",
+      "expected_top_fault_family": "exhaust_leak",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Obsolete or extremely rare hardware: leaded fuel, SAI, GPF, swirl flaps \u00e2\u20ac\u201d out of petrol v1 scope.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0411"
+      ],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (obsolete_hardware) applied."
+    },
+    {
+      "case_id": "EXP-N001",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N002",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N003",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N004",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'mechanical_wear' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N005",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N006",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N007",
+      "expected_top_fault_family": "cam_timing",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'cam_timing' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0011"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N008",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N009",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N010",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0441"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N011",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N012",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N013",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N014",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'rich_mixture' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N015",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N016",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N017",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0299"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N018",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Hybrid-only edge case \u00e2\u20ac\u201d out of petrol v1 scope per PRD \u00c2\u00a75.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (hybrid_only) applied."
+    },
+    {
+      "case_id": "EXP-N019",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Overly contrived or extremely low-probability multi-fault combination.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (contrived_multifault) applied."
+    },
+    {
+      "case_id": "EXP-N020",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N021",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'misfire' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N022",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Overly contrived or extremely low-probability multi-fault combination.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (contrived_multifault) applied."
+    },
+    {
+      "case_id": "EXP-N023",
+      "expected_top_fault_family": "cam_timing",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'cam_timing' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N025",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Obsolete or extremely rare hardware: leaded fuel, SAI, GPF, swirl flaps \u00e2\u20ac\u201d out of petrol v1 scope.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P2452"
+      ],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (obsolete_hardware) applied."
+    },
+    {
+      "case_id": "EXP-N026",
+      "expected_top_fault_family": "ignition_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'rich_mixture' at phase 'comlab.aggregate'. Core diagnostic case for family 'ignition_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0324"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N027",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'mechanical_wear' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0128"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N028",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0053"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXP-N029",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Obsolete or extremely rare hardware: leaded fuel, SAI, GPF, swirl flaps \u00e2\u20ac\u201d out of petrol v1 scope.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (obsolete_hardware) applied."
+    },
+    {
+      "case_id": "EXP-N030",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Overly contrived or extremely low-probability multi-fault combination.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (contrived_multifault) applied."
+    },
+    {
+      "case_id": "EXT-201",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-202",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-203",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-204",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-205",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-206",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-207",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0420"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-208",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0420"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-209",
+      "expected_top_fault_family": "cam_timing",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'mechanical_wear' at phase 'comlab.aggregate'. Core diagnostic case for family 'cam_timing' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0011"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-210",
+      "expected_top_fault_family": "cam_timing",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'cam_timing' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0012"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-211",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'rich_mixture' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0401"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-212",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'rich_mixture' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0401"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-213",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0420"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-214",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-215",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-216",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'rich_mixture' at phase 'comlab.aggregate'. Core diagnostic case for family 'no_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-217",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0128"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-218",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-219",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-220",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'no_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-221",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-222",
+      "expected_top_fault_family": "mechanical_wear",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'mechanical_wear' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-223",
+      "expected_top_fault_family": "mechanical_wear",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'rich_mixture' at phase 'comlab.aggregate'. Core diagnostic case for family 'mechanical_wear' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-224",
+      "expected_top_fault_family": "mechanical_wear",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-225",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-226",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-227",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-228",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-229",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'mechanical_wear' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-230",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-231",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'no_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-232",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-233",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-234",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0301"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-235",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0303"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-236",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-237",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "EXT-238",
+      "expected_top_fault_family": "exhaust_leak",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Obsolete or extremely rare hardware: leaded fuel, SAI, GPF, swirl flaps \u00e2\u20ac\u201d out of petrol v1 scope.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0411"
+      ],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (obsolete_hardware) applied."
+    },
+    {
+      "case_id": "EXT-239",
+      "expected_top_fault_family": "exhaust_leak",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Obsolete or extremely rare hardware: leaded fuel, SAI, GPF, swirl flaps \u00e2\u20ac\u201d out of petrol v1 scope.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0411"
+      ],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (obsolete_hardware) applied."
+    },
+    {
+      "case_id": "EXT-240",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0441"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-009",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'no_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-010",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Obsolete or extremely rare hardware: leaded fuel, SAI, GPF, swirl flaps \u00e2\u20ac\u201d out of petrol v1 scope.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0134"
+      ],
+      "notes": "Phase 'unknown' \u00e2\u20ac\u201d cvsgaps drop (obsolete_hardware) applied."
+    },
+    {
+      "case_id": "CASE-011",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-012",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-013",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0420"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-014",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'mechanical_wear' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-015",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-016",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'mechanical_wear' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0420"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-017",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-018",
+      "expected_top_fault_family": "cam_timing",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'cam_timing' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0011"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-019",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-020",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'rich_mixture' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0401"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-021",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-022",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Altitude/BARO edge case \u00e2\u20ac\u201d low real-world diagnostic impact, context-dependent.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (altitude_baro_edge) applied."
+    },
+    {
+      "case_id": "CASE-023",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0128"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-024",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0304"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-025",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-026",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0420"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-027",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0101"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-028",
+      "expected_top_fault_family": "misfire",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Overly contrived or extremely low-probability multi-fault combination.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": "Phase '_run_dtclab' \u00e2\u20ac\u201d cvsgaps drop (contrived_multifault) applied."
+    },
+    {
+      "case_id": "CASE-029",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Overly contrived or extremely low-probability multi-fault combination.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": "Phase 'unknown' \u00e2\u20ac\u201d cvsgaps drop (contrived_multifault) applied."
+    },
+    {
+      "case_id": "CASE-030",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0507"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-031",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0087"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-032",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-033",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-034",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0299"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-035",
+      "expected_top_fault_family": "ignition_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ignition_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0324"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-036",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-037",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0234"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-038",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-039",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Hybrid-only edge case \u00e2\u20ac\u201d out of petrol v1 scope per PRD \u00c2\u00a75.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (hybrid_only) applied."
+    },
+    {
+      "case_id": "CASE-040",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0234"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-041",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Duplicate or over-represented scenario \u00e2\u20ac\u201d covered by other cases in the corpus.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (duplicate_baseline) applied."
+    },
+    {
+      "case_id": "CASE-043",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "CASE-045",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "CASE-046",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Kept as one of the 2\u00e2\u20ac\u201c3 representative sentinel/validation cases per cvsgaps.md guidance. Tests input-validation path.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "CASE-047",
+      "expected_top_fault_family": "invalid_input",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "CASE-048",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "case_001",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_002",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "case_003",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "case_004",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0420"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_005",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0301"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_006",
+      "expected_top_fault_family": "non_starter",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'non_starter' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0230"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_007",
+      "expected_top_fault_family": "non_starter",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'non_starter' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "case_008",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0174"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_009",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0053"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_010",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0420"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_011",
+      "expected_top_fault_family": "",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Kept as one of the 2\u00e2\u20ac\u201c3 representative sentinel/validation cases per cvsgaps.md guidance. Tests input-validation path.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "GARBAGE"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_012",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'no_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "case_013",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_014",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Altitude/BARO edge case \u00e2\u20ac\u201d low real-world diagnostic impact, context-dependent.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'unknown' \u00e2\u20ac\u201d cvsgaps drop (altitude_baro_edge) applied."
+    },
+    {
+      "case_id": "case_015",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "case_016",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "case_017",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'mechanical_wear' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "case_018",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171|P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_019",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0401"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_020",
+      "expected_top_fault_family": "",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'lab.obdlab.translate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "case_021",
+      "expected_top_fault_family": "",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Analyser or probe error, not an engine fault. Sentinel/validation-only case.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'lab.obdlab.translate' \u00e2\u20ac\u201d cvsgaps drop (sentinel_invalid_input) applied."
+    },
+    {
+      "case_id": "case_022",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0301"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_023",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0420"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_024",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0420"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_025",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0131"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_026",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0132"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_027",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0606"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_028",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'no_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "case_029",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'sensor_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "case_030",
+      "expected_top_fault_family": "rich_mixture",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'rich_mixture' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "case_031",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_032",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_033",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'ecu_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_034",
+      "expected_top_fault_family": "catalyst_failure",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'catalyst_failure' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0420"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_035",
+      "expected_top_fault_family": "misfire",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1 pipeline bug at '_run_dtclab' \u00e2\u20ac\u201d being fixed separately (Tier 1 schema fixes). Ground-truth label is correct. Jaeger: 1 validation error for DTCLabPayload",
+      "source": "jaeger",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0300"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_036",
+      "expected_top_fault_family": "ignition_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'rich_mixture' at phase 'comlab.aggregate'. Core diagnostic case for family 'ignition_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "case_037",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0053"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_038",
+      "expected_top_fault_family": "ecu_fault",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Overly contrived or extremely low-probability multi-fault combination.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0172"
+      ],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (contrived_multifault) applied."
+    },
+    {
+      "case_id": "case_039",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0134"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_040",
+      "expected_top_fault_family": "non_starter",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Duplicate or over-represented scenario \u00e2\u20ac\u201d covered by other cases in the corpus.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0335"
+      ],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (duplicate_baseline) applied."
+    },
+    {
+      "case_id": "case_041",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0106"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_042",
+      "expected_top_fault_family": "cam_timing",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'cam_timing' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0011"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_043",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "drop",
+      "relabel_to": null,
+      "rationale": "Duplicate or over-represented scenario \u00e2\u20ac\u201d covered by other cases in the corpus.",
+      "source": "cvsgaps",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Phase 'comlab.aggregate' \u00e2\u20ac\u201d cvsgaps drop (duplicate_baseline) applied."
+    },
+    {
+      "case_id": "case_044",
+      "expected_top_fault_family": "mechanical_wear",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'rich_mixture' at phase 'comlab.aggregate'. Core diagnostic case for family 'mechanical_wear' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": null
+    },
+    {
+      "case_id": "case_045",
+      "expected_top_fault_family": "exhaust_leak",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'exhaust_leak' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P2096"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_046",
+      "expected_top_fault_family": "sensor_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'sensor_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0190"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_047",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0455|P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_048",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171|P0174"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_049",
+      "expected_top_fault_family": "no_fault",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "Core diagnostic case for family 'no_fault' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "case_050",
+      "expected_top_fault_family": "lean_condition",
+      "disposition": "keep",
+      "relabel_to": null,
+      "rationale": "v1: MISMATCH \u00e2\u2020\u2019 predicted 'no_fault' at phase 'comlab.aggregate'. Core diagnostic case for family 'lean_condition' \u00e2\u20ac\u201d retained in curated v2 corpus.",
+      "source": "csv",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0171|P0102"
+      ],
+      "notes": null
+    },
+    {
+      "case_id": "NEW-vacuum_leak-01",
+      "expected_top_fault_family": "vacuum_leak",
+      "disposition": "new",
+      "relabel_to": null,
+      "rationale": "Vacuum leak is the most frequent root cause of lean-condition DTCs. Dedicated family enables precise evaluation of a separate diagnostic pathway distinct from fuel-delivery lean.",
+      "source": "new",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Populated during REG-V2-AUTHOR-vacuum_leak \u00e2\u20ac\u201d moderate leak, no DTC, lambda 1.08 idle \u00e2\u2020\u2019 1.01 at 2500 RPM"
+    },
+    {
+      "case_id": "NEW-vacuum_leak-02",
+      "expected_top_fault_family": "vacuum_leak",
+      "disposition": "new",
+      "relabel_to": null,
+      "rationale": "Vacuum leak is the most frequent root cause of lean-condition DTCs. Dedicated family enables precise evaluation of a separate diagnostic pathway distinct from fuel-delivery lean.",
+      "source": "new",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Populated during REG-V2-AUTHOR-vacuum_leak \u00e2\u20ac\u201d small leak with P0171 DTC, lambda 1.04 idle \u00e2\u2020\u2019 1.00 at 2500 RPM"
+    },
+    {
+      "case_id": "NEW-vacuum_leak-03",
+      "expected_top_fault_family": "vacuum_leak",
+      "disposition": "new",
+      "relabel_to": null,
+      "rationale": "Vacuum leak is the most frequent root cause of lean-condition DTCs. Dedicated family enables precise evaluation of a separate diagnostic pathway distinct from fuel-delivery lean.",
+      "source": "new",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Populated during REG-V2-AUTHOR-vacuum_leak \u00e2\u20ac\u201d large-bore leak (brake booster/PCV), lambda 1.15 idle \u00e2\u2020\u2019 1.03 at 2500 RPM, MAP 60 kPa"
+    },
+    {
+      "case_id": "NEW-vacuum_leak-04",
+      "expected_top_fault_family": "vacuum_leak",
+      "disposition": "new",
+      "relabel_to": null,
+      "rationale": "Vacuum leak is the most frequent root cause of lean-condition DTCs. Dedicated family enables precise evaluation of a separate diagnostic pathway distinct from fuel-delivery lean.",
+      "source": "new",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Populated during REG-V2-AUTHOR-vacuum_leak \u00e2\u20ac\u201d moderate leak bank 2 only with P0174 DTC, lambda 1.06 idle \u00e2\u2020\u2019 1.01 at 2500 RPM"
+    },
+    {
+      "case_id": "NEW-overheating-01",
+      "expected_top_fault_family": "overheating",
+      "disposition": "new",
+      "relabel_to": null,
+      "rationale": "Cooling system faults are a leading engine problem. Minimal dedicated testing exists in the current corpus.",
+      "source": "new",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Populated during REG-V2-AUTHOR-overheating \u00e2\u20ac\u201d thermostat stuck partially closed, ECT 112C OVERHEATING_THRESHOLD, RPM 1050 ECU_COOLING_IDLE, no DTC."
+    },
+    {
+      "case_id": "NEW-overheating-02",
+      "expected_top_fault_family": "overheating",
+      "disposition": "new",
+      "relabel_to": null,
+      "rationale": "Cooling system faults are a leading engine problem. Minimal dedicated testing exists in the current corpus.",
+      "source": "new",
+      "chemistry_signature": null,
+      "dtcs": [
+        "P0128"
+      ],
+      "notes": "Populated during REG-V2-AUTHOR-overheating \u00e2\u20ac\u201d thermostat failure with P0128 DTC, ECT 108C at OVERHEATING_THRESHOLD boundary, RPM 950 normal."
+    },
+    {
+      "case_id": "NEW-overheating-03",
+      "expected_top_fault_family": "overheating",
+      "disposition": "new",
+      "relabel_to": null,
+      "rationale": "Cooling system faults are a leading engine problem. Minimal dedicated testing exists in the current corpus.",
+      "source": "new",
+      "chemistry_signature": "COOLANT_LEAK_INTERNAL",
+      "dtcs": [
+        "P0117"
+      ],
+      "notes": "Populated during REG-V2-AUTHOR-overheating \u00e2\u20ac\u201d head gasket / internal coolant leak, ECT 120C CRITICAL_OVERHEAT, P0117 from steam-exposed sensor, steam-quench gas fingerprint."
+    },
+    {
+      "case_id": "NEW-overheating-04",
+      "expected_top_fault_family": "overheating",
+      "disposition": "new",
+      "relabel_to": null,
+      "rationale": "Cooling system faults are a leading engine problem. Minimal dedicated testing exists in the current corpus.",
+      "source": "new",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Populated during REG-V2-AUTHOR-overheating \u00e2\u20ac\u201d silent electric fan failure, ECT 106C ELEVATED_TEMP, RPM 850 normal (ECU has not detected overheat), no DTC."
+    },
+    {
+      "case_id": "NEW-charging_system-01",
+      "expected_top_fault_family": "charging_system",
+      "disposition": "new",
+      "relabel_to": null,
+      "rationale": "Alternator and battery are crucial for modern ECUs. Sensor drift or noise from a failing alternator can trigger spurious faults.",
+      "source": "new",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Populated during REG-V2-AUTHOR-charging_system \u2014 system voltage low (P0562, undervolt). Covered by CS-001."
+    },
+    {
+      "case_id": "NEW-charging_system-02",
+      "expected_top_fault_family": "charging_system",
+      "disposition": "new",
+      "relabel_to": null,
+      "rationale": "Alternator and battery are crucial for modern ECUs. Sensor drift or noise from a failing alternator can trigger spurious faults.",
+      "source": "new",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Populated during REG-V2-AUTHOR-charging_system \u2014 system voltage high / overcharging (P0563). Covered by CS-001."
+    },
+    {
+      "case_id": "NEW-charging_system-03",
+      "expected_top_fault_family": "charging_system",
+      "disposition": "new",
+      "relabel_to": null,
+      "rationale": "Alternator and battery are crucial for modern ECUs. Sensor drift or noise from a failing alternator can trigger spurious faults.",
+      "source": "new",
+      "chemistry_signature": null,
+      "dtcs": [],
+      "notes": "Populated during REG-V2-AUTHOR-charging_system \u2014 charging-induced ghost misfire (P0562 + P0300, NORMAL chemistry). Covered by CS-002."
+    }
+  ]
+}

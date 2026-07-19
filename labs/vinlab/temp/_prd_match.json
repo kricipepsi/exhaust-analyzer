@@ -1,0 +1,115 @@
+{
+  "petrol_cars": 48260,
+  "prd_cars": 2166,
+  "petrol_cars_with_prd": 1809,
+  "petrol_cars_with_mixture_prep": 88,
+  "petrol_cars_with_map_sensor": 2,
+  "sample_engine_car_ids": [
+    [
+      119512,
+      33687
+    ],
+    [
+      28251,
+      21036
+    ],
+    [
+      28251,
+      31895
+    ],
+    [
+      58731,
+      24772
+    ],
+    [
+      58731,
+      31896
+    ],
+    [
+      120080,
+      33163
+    ],
+    [
+      33667,
+      21036
+    ],
+    [
+      33667,
+      31895
+    ],
+    [
+      33667,
+      31896
+    ],
+    [
+      126961,
+      31895
+    ]
+  ],
+  "car_119512": {
+    "prd_rows": 0,
+    "mixture_rows": 0
+  },
+  "car_28251": {
+    "prd_rows": 0,
+    "mixture_rows": 0
+  },
+  "car_58731": {
+    "prd_rows": 0,
+    "mixture_rows": 0
+  },
+  "car_120080": {
+    "prd_rows": 0,
+    "mixture_rows": 0
+  },
+  "car_33667": {
+    "prd_rows": 0,
+    "mixture_rows": 0
+  },
+  "car_126961": {
+    "prd_rows": 0,
+    "mixture_rows": 0
+  },
+  "cars_with_mixture_prep": [
+    [
+      3890,
+      1
+    ],
+    [
+      3891,
+      1
+    ],
+    [
+      3892,
+      1
+    ],
+    [
+      3893,
+      1
+    ],
+    [
+      3894,
+      1
+    ],
+    [
+      3895,
+      1
+    ],
+    [
+      3896,
+      1
+    ],
+    [
+      3897,
+      1
+    ],
+    [
+      3898,
+      1
+    ],
+    [
+      3899,
+      1
+    ]
+  ]
+}

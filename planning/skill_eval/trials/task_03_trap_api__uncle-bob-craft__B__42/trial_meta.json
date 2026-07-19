@@ -1,0 +1,10 @@
+{
+  "trial_id": "task_03_trap_api__uncle-bob-craft__B__42",
+  "task_id": "task_03_trap_api",
+  "skill_id": "uncle-bob-craft",
+  "arm": "B",
+  "seed": 42,
+  "model": "opus-4.7@t=0.0",
+  "no_gate": false,
+  "prepared_utc": "2026-06-09T21:13:23.824325+00:00"
+}

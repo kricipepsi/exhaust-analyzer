@@ -1,0 +1,153 @@
+{
+  "version": "2.0",
+  "fault_family": "overheating",
+  "rules": [
+    {
+      "rule_id": "OV-001",
+      "fault_family": "overheating",
+      "description": "Classic overheating \u2014 thermostat stuck closed (no DTC required). OBD-primary: elevated ECT above the OVERHEATING_THRESHOLD with ECU-elevated idle RPM indicating the ECU has detected the heat and entered the cooling-idle target. No chemistry signal \u2014 HIGH_COMBUSTION_TEMP requires NOx \u2265 1500 ppm which is unreachable at idle on a street engine (GAS_VOCABULARY \u00a710.5).",
+      "chemistry_evidence": [],
+      "obd_evidence": [
+        {
+          "pid": "ect_c",
+          "operator": "gt",
+          "value": 110.0,
+          "tier": "DEFINITIVE",
+          "units": "degC",
+          "wiki_ref": "OBD_VOCABULARY \u00a723.1"
+        },
+        {
+          "pid": "rpm",
+          "operator": "gt",
+          "value": 1000.0,
+          "tier": "SUGGESTIVE",
+          "units": "rpm",
+          "wiki_ref": "OBD_VOCABULARY \u00a723.2"
+        }
+      ],
+      "base_weight": 0.8,
+      "competition_group": "overheating",
+      "confidence_ceiling": 0.85,
+      "passes_cases": [
+        "NEW-overheating-01"
+      ],
+      "source_wiki_refs": [
+        "OBD_VOCABULARY \u00a723.1",
+        "OBD_VOCABULARY \u00a723.2"
+      ]
+    },
+    {
+      "rule_id": "OV-002",
+      "fault_family": "overheating",
+      "description": "DTC-driven thermostat failure \u2014 P0128 (coolant thermostat malfunction) gates the rule, with ELEVATED_TEMP ECT confirming. The ECU has detected the thermostat problem and stored the code, but idle may not yet be elevated. No chemistry \u2014 overheating diagnostics are OBD/DTC-primary at idle.",
+      "chemistry_evidence": [],
+      "obd_evidence": [
+        {
+          "pid": "ect_c",
+          "operator": "gt",
+          "value": 105.0,
+          "tier": "SUGGESTIVE",
+          "units": "degC",
+          "wiki_ref": "OBD_VOCABULARY \u00a723.1"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0128"
+          ],
+          "strategy": "any_match",
+          "tier": "GATING",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.75,
+      "competition_group": "overheating",
+      "confidence_ceiling": 0.85,
+      "passes_cases": [
+        "NEW-overheating-02"
+      ],
+      "source_wiki_refs": [
+        "OBD_VOCABULARY \u00a723.1",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "OV-003",
+      "fault_family": "overheating",
+      "description": "Coolant loss / head gasket internal leak \u2014 SEVERE_OVERHEAT ECT plus P0117 (ECT circuit low; coolant loss exposes the sensor to steam pockets). Chemistry SUGGESTIVE COOLANT_LEAK_INTERNAL: the gas fingerprint (CO\u2082 displaced by steam, NOx suppressed by steam quench) is consistent but emission by GASLab's engine is not guaranteed at these synthetic values, so the tier is SUGGESTIVE not DEFINITIVE and the ceiling is lowered.",
+      "chemistry_evidence": [
+        {
+          "state": "COOLANT_LEAK_INTERNAL",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "ect_c",
+          "operator": "gt",
+          "value": 115.0,
+          "tier": "DEFINITIVE",
+          "units": "degC",
+          "wiki_ref": "OBD_VOCABULARY \u00a723.1"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0117"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.8,
+      "competition_group": "overheating",
+      "confidence_ceiling": 0.82,
+      "passes_cases": [
+        "NEW-overheating-03"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a723.1",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "OV-004",
+      "fault_family": "overheating",
+      "description": "Silent fan failure \u2014 ELEVATED_TEMP ECT but RPM stays in NORMAL_HOT_IDLE because the ECU has not detected the overheat (radiator-side fan failure where the ECT sensor position misses the hot spot, or gradual coolant loss below sensor threshold). No DTC, no idle elevation \u2014 RPM lt 1000 is the discriminator from OV-001's ECU_COOLING_IDLE pattern. Weakest signal of the four, lowest ceiling.",
+      "chemistry_evidence": [],
+      "obd_evidence": [
+        {
+          "pid": "ect_c",
+          "operator": "gt",
+          "value": 105.0,
+          "tier": "DEFINITIVE",
+          "units": "degC",
+          "wiki_ref": "OBD_VOCABULARY \u00a723.1"
+        },
+        {
+          "pid": "rpm",
+          "operator": "lt",
+          "value": 1000.0,
+          "tier": "SUGGESTIVE",
+          "units": "rpm",
+          "wiki_ref": "OBD_VOCABULARY \u00a723.2"
+        }
+      ],
+      "base_weight": 0.65,
+      "competition_group": "overheating",
+      "confidence_ceiling": 0.7,
+      "passes_cases": [
+        "NEW-overheating-04"
+      ],
+      "source_wiki_refs": [
+        "OBD_VOCABULARY \u00a723.1",
+        "OBD_VOCABULARY \u00a723.2"
+      ]
+    }
+  ]
+}

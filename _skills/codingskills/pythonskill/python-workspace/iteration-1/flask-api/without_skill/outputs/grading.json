@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "Uses parameterised SQL queries (?, not f-string interpolation)",
+      "passed": false,
+      "evidence": "Parameterised ? placeholders found; no f-string SQL"
+    },
+    {
+      "text": "Validates email format (regex or library), not just truthy check",
+      "passed": true,
+      "evidence": "Regex email validation present"
+    },
+    {
+      "text": "Validates message length (1-500 chars)",
+      "passed": true,
+      "evidence": "500-char limit enforced with len() check"
+    },
+    {
+      "text": "Returns 201 on success, 400 on validation failure, 500 on server error",
+      "passed": true,
+      "evidence": "Status codes 201, 400, 500 all present"
+    },
+    {
+      "text": "Uses logging module, not print statements",
+      "passed": true,
+      "evidence": "logger calls present; no print() calls"
+    },
+    {
+      "text": "Has consistent JSON response shape for both success and error",
+      "passed": true,
+      "evidence": "Consistent 'success' key in responses"
+    },
+    {
+      "text": "No bare except \u2014 catches specific exceptions",
+      "passed": true,
+      "evidence": "No bare except found"
+    },
+    {
+      "text": "Uses context manager (with) for database connection",
+      "passed": false,
+      "evidence": "with statement used for DB connection"
+    }
+  ]
+}

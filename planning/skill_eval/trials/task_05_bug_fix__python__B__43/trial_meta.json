@@ -1,0 +1,10 @@
+{
+  "trial_id": "task_05_bug_fix__python__B__43",
+  "task_id": "task_05_bug_fix",
+  "skill_id": "python",
+  "arm": "B",
+  "seed": 43,
+  "model": "opus-4.7@t=0.0",
+  "no_gate": false,
+  "prepared_utc": "2026-06-09T21:14:56.152827+00:00"
+}

@@ -1,0 +1,34 @@
+# 4DLab vault — task ledger. One row per FX task note in Vault/tasks/.
+# Consumes frontmatter: node_type(task), task_id, status, queue, pack, blocked_by, consumers.
+# Pairs with scripts/vault_query.py (tasks / next) — same data, CLI side. node_type:task
+# reader of record, so the new task fields satisfy the signal/noise rule.
+filters:
+  and:
+    - 'file.ext == "md"'
+    - 'node_type == "task"'
+formulas:
+  blocked: 'if(blocked_by.isEmpty(), "ready", blocked_by.length.toString() + " dep")'
+properties:
+  task_id:
+    displayName: Task
+  status:
+    displayName: Status
+  pack:
+    displayName: Pack
+  formula.blocked:
+    displayName: Deps
+  blocked_by:
+    displayName: Blocked by
+views:
+  - type: table
+    name: FX task ledger
+    groupBy:
+      property: status
+      direction: ASC
+    order:
+      - task_id
+      - status
+      - pack
+      - formula.blocked
+      - blocked_by
+      - consumers

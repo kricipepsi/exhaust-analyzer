@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wired"
+version = "0.1.0"
+description = "wired — composition layer for 4DLab diagnostic labs"
+requires-python = ">=3.14"
+dependencies = [
+    "comlab",
+    "dnalab",
+    "dtclab",
+    "gaslab",
+    "obdlab",
+    "vinlab",
+    "symptomlab",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["wired*"]
+exclude = ["wired_tasks*", "wiring_prep_tasks*", "tests*"]
+
+[tool.ruff]
+target-version = "py314"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["E501"]
+
+[tool.pyright]
+pythonVersion = "3.14"
+typeCheckingMode = "basic"
+reportMissingImports = true
+reportMissingTypeStubs = false
+extraPaths = [
+    "../../labs/comlab",
+    "../../labs/dnalab",
+    "../../labs/dtclab",
+    "../../labs/gaslab",
+    "../../labs/obdlab",
+    "../../labs/symptomlab",
+    "../../labs/vinlab",
+    "../..",
+]
+include = ["wired", "tests"]
+exclude = ["_jaeger", "harness"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [
+    ".",
+    "../../labs/comlab",
+    "../../labs/dnalab",
+    "../../labs/dtclab",
+    "../../labs/gaslab",
+    "../../labs/obdlab",
+    "../../labs/symptomlab",
+    "../../labs/vinlab",
+    "../..",
+]

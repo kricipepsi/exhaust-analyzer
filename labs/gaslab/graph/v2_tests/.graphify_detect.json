@@ -1,0 +1,43 @@
+{
+  "scan_root": "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests",
+  "total_files": 24,
+  "total_words": 0,
+  "files": {
+    "code": [
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\conftest.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\fixtures\\descriptor.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\fixtures\\synthetic_grid.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\fixtures\\test_synthetic_grid_probes.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\generative\\test_boundary.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\generative\\test_combinatorial.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\generative\\test_fuzz.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\generative\\test_noise.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\generative\\test_overlap.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\test_cases.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\unit\\test_brettschneider.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\unit\\test_classify_top3.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\unit\\test_contracts.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\unit\\test_dna_view.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\unit\\test_family_map.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\unit\\test_ontology.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\unit\\test_process.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\unit\\test_rank_candidates.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\unit\\test_resolution.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\unit\\test_rule_engine.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\unit\\test_rule_engine_reachability.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\unit\\test_t_p8_7_hc_discriminator.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\unit\\test_validators.py",
+      "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\unit\\test_validity_gates.py"
+    ],
+    "document": [],
+    "paper": [],
+    "image": [],
+    "video": []
+  },
+  "skipped_sensitive": [],
+  "skipped_empty": [
+    "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\__init__.py",
+    "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\fixtures\\__init__.py",
+    "C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\labs\\gaslab\\tests\\unit\\__init__.py"
+  ]
+}

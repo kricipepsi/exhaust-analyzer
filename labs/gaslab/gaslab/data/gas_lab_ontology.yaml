@@ -1,0 +1,576 @@
+# GASLab Declarative Ontology — hand-crafted knowledge graph.
+#
+# Every entry carries a citation: key pointing to GAS_WIKI.md or GAS_VOCABULARY.md.
+# The 32 fault entries map 1:1 to ChemicalSignature values (GAS_VOCABULARY §3).
+# Per-gas thresholds derive from GAS_VOCABULARY §10.1–§10.5.
+#
+# Format version 1.0.  Do not edit without a matching wiki change.
+
+version: "1.0"
+scope: "Petrol 1990-2020 / 5-gas / warm-only"
+
+# ---------------------------------------------------------------------------
+# Validity gates — wiki: GAS_WIKI §6
+# ---------------------------------------------------------------------------
+
+validity_gates:
+  exhaust_gas_triangle:
+    citation: "GAS_WIKI §6.1"
+    description: >
+      Invariant CO + CO2 + O2 sum.  Outside [14, 18] halts evaluation.
+      Source: GAS_WIKI §6.1; thresholds from GAS_VOCABULARY §10.6.
+    sum_valid_min: 14.0       # wiki: GAS_WIKI §6.1, vocab: GAS_VOCABULARY §10.6
+    sum_valid_max: 16.0       # wiki: GAS_WIKI §6.1, vocab: GAS_VOCABULARY §10.6
+    sum_external_o2_max: 18.0 # wiki: GAS_WIKI §6.1, vocab: GAS_VOCABULARY §10.6
+
+  dilution_screen:
+    citation: "GAS_WIKI §6.2"
+    description: >
+      Rapid sanity check: CO + CO2 must exceed 6 % in an undiluted sample.
+    co_plus_co2_floor: 6.0    # wiki: GAS_WIKI §6.2, vocab: GAS_VOCABULARY §10.6
+
+# ---------------------------------------------------------------------------
+# Reasoning grammar — wiki: GAS_WIKI §8
+# ---------------------------------------------------------------------------
+
+reasoning_grammar:
+  collision_rule:
+    citation: "GAS_WIKI §8.5"
+    description: >
+      CO and O2 both elevated is physically impossible in a single balanced
+      combustion event.  Disambiguated by the triangle: sum ~15 → RICH_MISFIRE;
+      sum > 16 → EXHAUST_AIR_LEAK.  EXHAUST_AIR_LEAK path additionally requires
+      HC Normal (§7.7) — high HC with the collision pattern is RICH_MISFIRE.
+    co_tier_max: 0.45             # vocab: GAS_VOCABULARY §10.2 — Euro 4 with cat
+    o2_threshold: 2.0             # wiki: GAS_WIKI §8.5
+    triangle_sum_threshold: 16.0  # wiki: GAS_WIKI §8.5 — sum > 16 → EXHAUST_AIR_LEAK, ≤ 16 → RICH_MISFIRE
+    hc_max: 100                   # wiki: GAS_WIKI §7.7 — EXHAUST_AIR_LEAK requires HC Normal; vocab: GAS_VOCABULARY §10.1 normal_borderline.max
+
+  masking_rule:
+    citation: "GAS_WIKI §8.4"
+    description: >
+      High HC + high O2 + low NOx → IGNITION_MISFIRE override.
+      No combustion means no heat, killing NOx despite the air looking lean.
+    hc_threshold: 1000        # vocab: GAS_VOCABULARY §10.1 — ignition_misfire_floor
+    o2_threshold: 3.0         # wiki: GAS_WIKI §8.4
+    nox_threshold: 50         # vocab: GAS_VOCABULARY §10.5 — misfire_suppression max
+
+  cam_timing_rule:
+    citation: "GAS_WIKI §8.6"
+    description: >
+      HC > 1000 ppm AND CO present AND O₂ > 2.0 % ⇒ CAM_TIMING_RETARDED_MAF or CAM_TIMING_ADVANCED.
+      Priority 82 per GAS_VOCABULARY §14 — between masking (85) and collision (80).
+    hc_threshold: 1000        # vocab: GAS_VOCABULARY §10.1 — ignition_misfire_floor
+    o2_threshold: 2.0         # wiki: GAS_WIKI §8.6
+
+  coolant_intrusion_rule:
+    citation: "GAS_WIKI §8.7"
+    description: >
+      Depressed CO₂ (≤ 12.0 %) from water-vapour dilution + elevated HC (≥ 300 ppm)
+      from ethylene-glycol hydrocarbon flash + positive chemical block test ⇒
+      COOLANT_LEAK_INTERNAL. Priority 87 — above masking (85) because liquid water
+      intrusion completely halts normal combustion physics.
+      Source: CoolantLeakSig.md §1–§3; GAS_WIKI §8.7.
+    co2_threshold: 12.0       # wiki: GAS_WIKI §8.7 — dilution floor; CoolantLeakSig.md §3
+    hc_threshold: 300.0       # wiki: GAS_WIKI §8.7 — ethylene-glycol HC flash floor; CoolantLeakSig.md §3
+
+# ---------------------------------------------------------------------------
+# Fault signature atlas — wiki: GAS_WIKI §7.1 – §7.28
+# ---------------------------------------------------------------------------
+# Keys match ChemicalSignature StrEnum values exactly (GAS_VOCABULARY §3).
+# signature: per-gas {min, max} bounds from the baseline Euro 4 / warm / cat
+#   reference.  dna_gate, rpm_dependent, clears_at_2500_rpm are optional.
+#   differentiator_edges is populated by T-P3-1.
+
+faults:
+
+  # --- §7.1 ----------------------------------------------------------------
+  NORMAL_OPERATION:
+    citation: "GAS_WIKI §7.1"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 0,   max: 35 }     # vocab: GAS_VOCABULARY §10.1 normal_with_cat
+      co:  { min: 0.1, max: 0.45 }   # vocab: GAS_VOCABULARY §10.2 normal_with_cat
+      co2: { min: 14.5, max: 16.0 }  # vocab: GAS_VOCABULARY §10.3 peak_efficiency
+      o2:  { min: 0.0, max: 0.35 }   # vocab: GAS_VOCABULARY §10.4 normal_post_cat
+      nox: { min: 0,   max: 100 }    # vocab: GAS_VOCABULARY §10.5 normal_idle
+      lambda: { min: 0.995, max: 1.005 }  # vocab: GAS_VOCABULARY §10.7 catalyst_peak_efficiency
+
+  # --- §7.2 ----------------------------------------------------------------
+  RICH_MIXTURE:
+    citation: "GAS_WIKI §7.2"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 0,   max: 300 }     # wiki: GAS_WIKI §7.2 — normal–moderate
+      co:  { min: 0.5, max: 15.0 }    # vocab: GAS_VOCABULARY §10.2 mild_rich floor
+      co2: { min: 0.0, max: 13.0 }    # wiki: GAS_WIKI §7.2 — < 13 %
+      o2:  { min: 0.0, max: 1.0 }     # vocab: GAS_VOCABULARY §10.4 normal_pre_cat low end — rich mixture may show residual O₂ from incomplete combustion
+      nox: { min: 0,   max: 100 }     # vocab: GAS_VOCABULARY §10.5 normal_idle max
+      lambda: { min: 0.5, max: 0.97 } # vocab: GAS_VOCABULARY §10.7 borderline_rich max
+
+  # --- §7.3 ----------------------------------------------------------------
+  LEAN_MIXTURE:
+    citation: "GAS_WIKI §7.3"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 0,   max: 300 }     # wiki: GAS_WIKI §7.3 — < 300 ppm
+      co:  { min: 0.0, max: 0.1 }     # wiki: GAS_WIKI §7.3 — < 0.1 %
+      co2: { min: 0.0, max: 13.0 }    # wiki: GAS_WIKI §7.3 — < 13 %
+      o2:  { min: 2.5, max: 22.0 }    # wiki: GAS_WIKI §7.3 — > 2.5 %, vocab: GAS_VOCABULARY §10.4 mild_lean
+      nox: { min: 0,   max: 5000 }    # wiki: GAS_WIKI §7.3 — very high under load; variable at idle
+      lambda: { min: 1.05, max: 2.5 } # wiki: GAS_WIKI §7.3 — > 1.05, vocab: GAS_VOCABULARY §10.7
+
+  # --- §7.4 ----------------------------------------------------------------
+  IGNITION_MISFIRE:
+    citation: "GAS_WIKI §7.4"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 1000, max: 20000 }  # vocab: GAS_VOCABULARY §10.1 ignition_misfire_floor
+      co:  { min: 0.0,  max: 0.5 }    # wiki: GAS_WIKI §7.4 — normal–low
+      co2: { min: 0.0,  max: 10.0 }   # wiki: GAS_WIKI §7.4 — < 10 %
+      o2:  { min: 3.0,  max: 22.0 }   # wiki: GAS_WIKI §7.4 — > 3.0 %
+      nox: { min: 0,    max: 50 }     # vocab: GAS_VOCABULARY §10.5 misfire_suppression
+      lambda: { min: 1.0, max: 2.5 }  # wiki: GAS_WIKI §7.4 — ≥ 1.0 (false-lean)
+
+  # --- §7.5 ----------------------------------------------------------------
+  LEAN_MISFIRE:
+    citation: "GAS_WIKI §7.5"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 200, max: 600 }     # wiki: GAS_WIKI §7.5, vocab: GAS_VOCABULARY §10.1 lean_misfire_range
+      co:  { min: 0.0, max: 0.2 }     # wiki: GAS_WIKI §7.5 — < 0.2 %
+      co2: { min: 0.0, max: 12.0 }    # wiki: GAS_WIKI §7.5 — < 12 %
+      o2:  { min: 4.0, max: 22.0 }    # wiki: GAS_WIKI §7.5 — > 4 %, vocab: GAS_VOCABULARY §10.4 severe_lean_or_misfire
+      nox: { min: 0,   max: 5000 }    # wiki: GAS_WIKI §7.5 — variable
+      lambda: { min: 1.15, max: 2.5 } # wiki: GAS_WIKI §7.5 — > 1.15
+
+  # --- §7.6 ----------------------------------------------------------------
+  RICH_MISFIRE:
+    citation: "GAS_WIKI §7.6"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 300, max: 20000 }   # wiki: GAS_WIKI §7.6 — high, vocab: GAS_VOCABULARY §10.1 real_combustion_fault
+      co:  { min: 1.0, max: 15.0 }    # wiki: GAS_WIKI §7.6 — > 1.0 %
+      co2: { min: 0.0, max: 13.0 }    # wiki: GAS_WIKI §7.6 — low
+      o2:  { min: 2.0, max: 22.0 }    # wiki: GAS_WIKI §7.6 — > 2.0 %
+      nox: { min: 0,   max: 100 }     # wiki: GAS_WIKI §7.6 — low
+      lambda: { min: 0.5, max: 1.0 }  # wiki: GAS_WIKI §7.6 — < 1.0
+
+  # --- §7.7 ----------------------------------------------------------------
+  EXHAUST_AIR_LEAK:
+    citation: "GAS_WIKI §7.7"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 0,   max: 100 }     # wiki: GAS_WIKI §7.7 — normal
+      co:  { min: 0.1, max: 0.5 }     # wiki: GAS_WIKI §7.7 — normal
+      co2: { min: 0.0, max: 13.0 }    # wiki: GAS_WIKI §7.7 — low
+      o2:  { min: 2.0, max: 22.0 }    # wiki: GAS_WIKI §7.7 — > 2 %
+      nox: { min: 0,   max: 100 }     # wiki: GAS_WIKI §7.7 — low
+      lambda: { min: 1.05, max: 2.5 } # wiki: GAS_WIKI §7.7 — falsely > 1.05
+
+  # --- §7.8 ----------------------------------------------------------------
+  HIGH_COMBUSTION_TEMP:
+    citation: "GAS_WIKI §7.8"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 0,   max: 100 }     # wiki: GAS_WIKI §7.8 — normal
+      co:  { min: 0.1, max: 0.5 }     # wiki: GAS_WIKI §7.8 — normal
+      co2: { min: 13.0, max: 16.0 }   # wiki: GAS_WIKI §7.8 — normal–high
+      o2:  { min: 0.0, max: 0.5 }     # wiki: GAS_WIKI §7.8 — normal
+      nox: { min: 1000, max: 5000 }   # vocab: GAS_VOCABULARY §10.5 high_combustion_temp
+      lambda: { min: 0.97, max: 1.03 }  # wiki: GAS_WIKI §7.8 — ≈ 1.0, vocab: GAS_VOCABULARY §10.7 stoichiometric
+    differentiator_edges:
+      - type: dna
+        field: emissions.egr_equipped
+        equals: false                                     # wiki: GAS_WIKI §7.25 — overlap disambiguation vs EGR_STUCK_CLOSED
+
+  # --- §7.9 ----------------------------------------------------------------
+  CATALYST_NOT_LIGHTING_OFF:
+    citation: "GAS_WIKI §7.9"
+    operating_state: "STABILIZED_IDLE"
+    dna_gate:
+      field: "emissions.has_catalyst"
+      value: true                    # vocab: GAS_VOCABULARY §3.1
+    signature:
+      hc:  { min: 75,  max: 125 }    # wiki: GAS_WIKI §7.9
+      co:  { min: 0.5, max: 0.9 }    # wiki: GAS_WIKI §7.9, vocab: GAS_VOCABULARY §10.2 cat_not_lit_band
+      co2: { min: 13.5, max: 14.5 }  # wiki: GAS_WIKI §7.9, vocab: GAS_VOCABULARY §10.3 cat_not_lit_band
+      o2:  { min: 0.3, max: 0.7 }    # wiki: GAS_WIKI §7.9, vocab: GAS_VOCABULARY §10.4 cat_not_lit_band
+      nox: { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.9 — normal
+      lambda: { min: 0.995, max: 1.005 }  # wiki: GAS_WIKI §7.9, vocab: GAS_VOCABULARY §10.7 catalyst_peak_efficiency
+
+  # --- §7.10 ---------------------------------------------------------------
+  CATALYST_OVERWHELMED:
+    citation: "GAS_WIKI §7.10"
+    operating_state: "STABILIZED_IDLE"
+    dna_gate:
+      field: "emissions.has_catalyst"
+      value: true                    # vocab: GAS_VOCABULARY §3.1
+    signature:
+      hc:  { min: 200, max: 20000 }  # wiki: GAS_WIKI §7.10 — > 200 ppm, vocab: GAS_VOCABULARY §10.1 real_combustion_fault
+      co:  { min: 1.0, max: 15.0 }   # wiki: GAS_WIKI §7.10 — > 1.0 %
+      co2: { min: 0.0, max: 12.0 }   # wiki: GAS_WIKI §7.10 — < 12 %
+      o2:  { min: 0.0, max: 22.0 }   # wiki: GAS_WIKI §7.10 — variable
+      nox: { min: 500, max: 5000 }   # wiki: GAS_WIKI §7.10 — > 500 ppm, vocab: GAS_VOCABULARY §10.5 elevated_idle
+      lambda: { min: 0.5, max: 2.5 } # wiki: GAS_WIKI §7.10 — variable
+
+  # --- §7.11 ---------------------------------------------------------------
+  SAMPLE_INVALID:
+    citation: "GAS_WIKI §7.11"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 0, max: 20000 }    # wiki: GAS_WIKI §7.11 — no specific signature; gate-halted
+      co:  { min: 0.0, max: 15.0 }
+      co2: { min: 0.0, max: 22.0 }
+      o2:  { min: 0.0, max: 22.0 }
+      nox: { min: 0, max: 5000 }
+      lambda: { min: 0.5, max: 2.5 }
+
+  # --- §7.12 ---------------------------------------------------------------
+  TIMING_OVER_ADVANCED:
+    citation: "GAS_WIKI §7.12"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.12 — slight increase
+      co:  { min: 0.0, max: 0.5 }    # wiki: GAS_WIKI §7.12 — no change / slight decrease
+      co2: { min: 13.0, max: 16.0 }  # wiki: GAS_WIKI §7.12 — no change
+      o2:  { min: 0.0, max: 0.5 }    # wiki: GAS_WIKI §7.12 — no change
+      nox: { min: 1000, max: 5000 }  # wiki: GAS_WIKI §7.12 — very high, vocab: GAS_VOCABULARY §10.5 high_combustion_temp
+      lambda: { min: 0.97, max: 1.03 }  # wiki: GAS_WIKI §7.12 — ≈ 1.0
+
+  # --- §7.13 ---------------------------------------------------------------
+  TIMING_RETARDED:
+    citation: "GAS_WIKI §7.13"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.13 — slight increase
+      co:  { min: 0.0, max: 0.5 }    # wiki: GAS_WIKI §7.13 — no change / slight increase
+      co2: { min: 11.0, max: 16.0 }  # wiki: GAS_WIKI §7.13 — no change to moderate drop, vocab: GAS_VOCABULARY §10.3 combustion_deficit
+      o2:  { min: 0.0, max: 0.5 }    # wiki: GAS_WIKI §7.13 — no change
+      nox: { min: 0,   max: 50 }     # wiki: GAS_WIKI §7.13 — very low, vocab: GAS_VOCABULARY §10.5 misfire_suppression
+      lambda: { min: 0.97, max: 1.03 }  # wiki: GAS_WIKI §7.13 — ≈ 1.0
+
+  # --- §7.14 ---------------------------------------------------------------
+  O2_SENSOR_BIASED_LOW:
+    citation: "GAS_WIKI §7.14"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.14 — slight increase
+      co:  { min: 0.5, max: 3.0 }    # wiki: GAS_WIKI §7.14 — moderate–high increase, vocab: GAS_VOCABULARY §10.2 mild_rich
+      co2: { min: 13.0, max: 16.0 }  # wiki: GAS_WIKI §7.14 — slight decrease
+      o2:  { min: 0.0, max: 0.3 }    # wiki: GAS_WIKI §7.14 — low
+      nox: { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.14 — slight decrease
+      lambda: { min: 0.5, max: 1.0 } # wiki: GAS_WIKI §7.14 — < 1.0 (rich)
+    differentiator_edges:
+      - type: physical_check
+        key: O2_SENSOR_VOLTAGE_SWING_TEST                  # wiki: GAS_WIKI §7.14
+      - type: rpm_differential
+        note: "sensor bias is RPM-flat; mechanical faults vary with load"  # wiki: GAS_WIKI §7.14, §11.2
+
+  # --- §7.15 ---------------------------------------------------------------
+  O2_SENSOR_BIASED_HIGH:
+    citation: "GAS_WIKI §7.15"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.15 — slight increase
+      co:  { min: 0.0, max: 0.2 }    # wiki: GAS_WIKI §7.15 — low
+      co2: { min: 13.0, max: 16.0 }  # wiki: GAS_WIKI §7.15 — slight decrease
+      o2:  { min: 0.5, max: 2.0 }    # wiki: GAS_WIKI §7.15 — slight increase, vocab: GAS_VOCABULARY §10.4
+      nox: { min: 0,   max: 500 }    # wiki: GAS_WIKI §7.15 — slight increase, vocab: GAS_VOCABULARY §10.5 elevated_idle
+      lambda: { min: 1.0, max: 2.5 } # wiki: GAS_WIKI §7.15 — > 1.0 (lean)
+
+  # --- §7.16 ---------------------------------------------------------------
+  WORN_ENGINE:
+    citation: "GAS_WIKI §7.16"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 35,  max: 300 }    # wiki: GAS_WIKI §7.16 — slight–moderate increase, vocab: GAS_VOCABULARY §10.1 minor_inefficiency
+      co:  { min: 0.1, max: 1.0 }    # wiki: GAS_WIKI §7.16 — slight increase
+      co2: { min: 13.0, max: 16.0 }  # wiki: GAS_WIKI §7.16 — slight decrease
+      o2:  { min: 0.0, max: 0.3 }    # wiki: GAS_WIKI §7.16 — slight decrease
+      nox: { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.16 — no change / slight decrease
+      lambda: { min: 0.97, max: 1.03 }  # wiki: GAS_WIKI §7.16 — ≈ 1.0
+
+  # --- §7.17 ---------------------------------------------------------------
+  FLAT_CAMSHAFT:
+    citation: "GAS_WIKI §7.17"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.17 — no change / slight decrease
+      co:  { min: 0.0, max: 0.5 }    # wiki: GAS_WIKI §7.17 — slight decrease
+      co2: { min: 13.0, max: 16.0 }  # wiki: GAS_WIKI §7.17 — slight decrease
+      o2:  { min: 0.0, max: 0.5 }    # wiki: GAS_WIKI §7.17 — no change / slight decrease
+      nox: { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.17 — no change / slight decrease
+      lambda: { min: 0.97, max: 1.03 }  # wiki: GAS_WIKI §7.17 — ≈ 1.0
+    differentiator_edges:
+      - type: physical_check
+        key: CYLINDER_CONTRIBUTION_TEST                   # wiki: GAS_WIKI §7.17
+      - type: rpm_differential
+        note: "cam timing degrades across RPM bands; flat at low idle"  # wiki: GAS_WIKI §7.17, §11.2
+
+  # --- §7.18 ---------------------------------------------------------------
+  GDI_INTAKE_VALVE_CARBON:
+    citation: "GAS_WIKI §7.18"
+    operating_state: "STABILIZED_IDLE"
+    dna_gate:
+      field: "fuel_delivery_type"
+      value: "GDI"                   # vocab: GAS_VOCABULARY §3.1
+    clears_at_2500_rpm: true         # wiki: GAS_WIKI §7.18 — clears substantially at 2500 RPM
+    signature:
+      hc:  { min: 100, max: 20000 }  # wiki: GAS_WIKI §7.18 — > 100 ppm at idle, vocab: GAS_VOCABULARY §10.1 real_combustion_fault
+      co:  { min: 0.0, max: 1.5 }    # wiki: GAS_WIKI §7.18 — low–moderate
+      co2: { min: 11.0, max: 16.0 }  # wiki: GAS_WIKI §7.18 — low–moderate
+      o2:  { min: 2.0, max: 22.0 }   # wiki: GAS_WIKI §7.18 — high
+      nox: { min: 0,   max: 5000 }   # wiki: GAS_WIKI §7.18 — variable
+      lambda: { min: 1.0, max: 2.5 } # wiki: GAS_WIKI §7.18 — > 1.0 at idle
+    differentiator_edges:
+      - type: rpm_differential
+        note: "clears_at_2500_rpm per GAS_WIKI §7.18"    # wiki: GAS_WIKI §7.18
+
+  # --- §7.19 ---------------------------------------------------------------
+  VACUUM_REGULATOR_DIAPHRAGM_RUPTURE:
+    citation: "GAS_WIKI §7.19"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 300, max: 20000 }  # wiki: GAS_WIKI §7.19 — high
+      co:  { min: 3.0, max: 15.0 }   # wiki: GAS_WIKI §7.19 — > 3.0 %, vocab: GAS_VOCABULARY §10.2 very_rich
+      co2: { min: 0.0, max: 13.0 }   # wiki: GAS_WIKI §7.19 — low
+      o2:  { min: 0.0, max: 0.3 }    # wiki: GAS_WIKI §7.19 — very low
+      nox: { min: 0,   max: 50 }     # wiki: GAS_WIKI §7.19 — very low, vocab: GAS_VOCABULARY §10.5 misfire_suppression
+      lambda: { min: 0.5, max: 0.85 }  # wiki: GAS_WIKI §7.19 — < 0.85
+    differentiator_edges:
+      - type: dna
+        field: fuel_delivery_type
+        equals: NON_GDI                                   # wiki: GAS_WIKI §7.19 — overlap disambiguation vs GDI_HPFP_INTERNAL_SEAL_LEAK
+
+  # --- §7.20 ---------------------------------------------------------------
+  GDI_HPFP_INTERNAL_SEAL_LEAK:
+    citation: "GAS_WIKI §7.20"
+    operating_state: "STABILIZED_IDLE"
+    dna_gate:
+      field: "fuel_delivery_type"
+      value: "GDI"                   # vocab: GAS_VOCABULARY §3.1
+    signature:
+      hc:  { min: 300, max: 20000 }  # wiki: GAS_WIKI §7.20 — high (same tailpipe as §7.19)
+      co:  { min: 3.0, max: 15.0 }   # wiki: GAS_WIKI §7.20 — > 3.0 %
+      co2: { min: 0.0, max: 13.0 }   # wiki: GAS_WIKI §7.20 — low
+      o2:  { min: 0.0, max: 0.3 }    # wiki: GAS_WIKI §7.20 — very low
+      nox: { min: 0,   max: 50 }     # wiki: GAS_WIKI §7.20 — very low
+      lambda: { min: 0.5, max: 0.85 }  # wiki: GAS_WIKI §7.20 — < 0.85
+    differentiator_edges:
+      - type: dna
+        field: fuel_delivery_type
+        equals: GDI                                       # wiki: GAS_WIKI §7.20 — overlap disambiguation vs VACUUM_REGULATOR_DIAPHRAGM_RUPTURE
+      - type: physical_check
+        key: OIL_DIPSTICK_FUEL_SMELL                      # wiki: GAS_WIKI §7.20
+
+  # --- §7.21 ---------------------------------------------------------------
+  WORN_VALVE_SEALS:
+    citation: "GAS_WIKI §7.21"
+    operating_state: "STABILIZED_IDLE"
+    rpm_dependent: true              # wiki: GAS_WIKI §7.21 — idle vs 2500 RPM matrix
+    clears_at_2500_rpm: true         # wiki: GAS_WIKI §7.21 — HC drops sharply at 2500 RPM
+    signature:
+      hc:  { min: 75,  max: 250 }    # wiki: GAS_WIKI §7.21, vocab: GAS_VOCABULARY §10.1 minor_inefficiency
+      co:  { min: 0.0, max: 0.5 }    # wiki: GAS_WIKI §7.21 — low
+      co2: { min: 11.0, max: 14.5 }  # wiki: GAS_WIKI §7.21 — low–moderate
+      o2:  { min: 0.0, max: 0.5 }    # wiki: GAS_WIKI §7.21 — low
+      nox: { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.21 — low
+      lambda: { min: 0.97, max: 1.03 }  # wiki: GAS_WIKI §7.21 — ~ 1.0
+    differentiator_edges: []         # T-P3-1 populates
+
+  # --- §7.22 ---------------------------------------------------------------
+  WORN_PISTON_RINGS:
+    citation: "GAS_WIKI §7.22"
+    operating_state: "STABILIZED_IDLE"
+    rpm_dependent: true              # wiki: GAS_WIKI §7.22 — worsens at 2500 RPM
+    signature:
+      hc:  { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.22 — < 100 ppm at idle
+      co:  { min: 0.0, max: 0.5 }    # wiki: GAS_WIKI §7.22 — low–normal at idle
+      co2: { min: 14.5, max: 16.0 }  # wiki: GAS_WIKI §7.22 — normal at idle
+      o2:  { min: 0.0, max: 0.5 }    # wiki: GAS_WIKI §7.22 — normal at idle
+      nox: { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.22 — low
+      lambda: { min: 0.97, max: 1.03 }  # wiki: GAS_WIKI §7.22 — ~ 1.0
+    differentiator_edges:
+      - type: physical_check
+        key: CYLINDER_CONTRIBUTION_TEST                   # wiki: GAS_WIKI §7.22
+      - type: rpm_differential
+        note: "rings worse at high idle (2500 RPM); cam flat at low idle"  # wiki: GAS_WIKI §7.22, §11.2
+        route_when_matched: true                          # wiki: GAS_WIKI §7.23.1 — route oil-burning high-idle load row to WORN_PISTON_RINGS
+        routes_to: WORN_PISTON_RINGS                      # vocab: GAS_VOCABULARY §3
+        route_appears_in_states: [REGULATORY_HIGH_IDLE]   # vocab: GAS_VOCABULARY §7 — 2500 RPM / high-idle bucket
+        signature:
+          hc: { min: 250, max: 20000 }                    # wiki: GAS_WIKI §7.23.1 — 2500 RPM row > 250 ppm; vocab: GAS_VOCABULARY §2 analyser max
+          co: { min: 0.8, max: 15.0 }                     # wiki: GAS_WIKI §7.23.1 — 2500 RPM row > 0.8 %; vocab: GAS_VOCABULARY §2 analyser max
+          lambda: { min: 0.97, max: 1.03 }                # wiki: GAS_WIKI §7.23.1 — λ ~ 1.0
+
+  # --- §7.23 ---------------------------------------------------------------
+  POA_SIGNATURE:
+    citation: "GAS_WIKI §7.23"
+    operating_state: "STABILIZED_IDLE"
+    signature_type: catch_all         # wiki: GAS_WIKI §7.23 — catch-all for lower-RPM artefacts
+    signature:
+      hc:  { min: 500, max: 20000 }  # wiki: GAS_WIKI §7.23 — > 500 ppm persists across RPM, vocab: GAS_VOCABULARY §10.1 severe_misfire
+      co:  { min: 0.0, max: 15.0 }   # wiki: GAS_WIKI §7.23 — variable across sub-modes
+      co2: { min: 0.0, max: 14.5 }   # wiki: GAS_WIKI §7.23 — variable; λ mismatch
+      o2:  { min: 0.0, max: 22.0 }   # wiki: GAS_WIKI §7.23 — variable
+      nox: { min: 0,   max: 5000 }   # wiki: GAS_WIKI §7.23 — variable
+      lambda: { min: 0.5, max: 2.5 } # wiki: GAS_WIKI §7.23 — variable; λ mismatch
+
+  # --- §7.24 ---------------------------------------------------------------
+  CAM_TIMING_RETARDED_MAP:
+    citation: "GAS_WIKI §7.24"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 400, max: 1200 }    # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §10.1
+      co:  { min: 3.5, max: 7.0 }     # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §10.2
+      co2: { min: 8.0, max: 10.5 }    # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §10.3
+      o2:  { min: 0.0, max: 0.5 }     # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §10.4
+      nox: { min: 0,   max: 10 }      # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §10.5
+      lambda: { min: 0.75, max: 0.88 } # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §6
+    differentiator_edges: []
+
+  CAM_TIMING_RETARDED_MAF:
+    citation: "GAS_WIKI §7.24"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 300, max: 900 }     # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §10.1
+      co:  { min: 0.10, max: 0.50 }   # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §10.2
+      co2: { min: 9.0, max: 11.5 }    # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §10.3
+      o2:  { min: 2.0, max: 4.5 }     # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §10.4
+      nox: { min: 0,   max: 15 }      # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §10.5
+      lambda: { min: 1.08, max: 1.18 } # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §6
+    differentiator_edges: []
+
+  CAM_TIMING_ADVANCED:
+    citation: "GAS_WIKI §7.24"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 250, max: 600 }     # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §10.1
+      co:  { min: 0.20, max: 0.80 }   # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §10.2
+      co2: { min: 10.0, max: 12.5 }   # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §10.3
+      o2:  { min: 1.20, max: 2.50 }   # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §10.4
+      nox: { min: 10,   max: 40 }     # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §10.5
+      lambda: { min: 1.03, max: 1.08 } # wiki: GAS_WIKI §7.24, vocab: GAS_VOCABULARY §6
+    differentiator_edges: []
+
+  # --- §7.25 ---------------------------------------------------------------
+  EGR_STUCK_CLOSED:
+    citation: "GAS_WIKI §7.25"
+    operating_state: "STABILIZED_IDLE"
+    dna_gate:
+      field: "emissions.egr_equipped"
+      value: true                    # vocab: GAS_VOCABULARY §3.1
+    signature:
+      hc:  { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.25 — normal
+      co:  { min: 0.1, max: 0.5 }    # wiki: GAS_WIKI §7.25 — normal
+      co2: { min: 14.5, max: 16.0 }  # wiki: GAS_WIKI §7.25 — normal
+      o2:  { min: 0.0, max: 0.5 }    # wiki: GAS_WIKI §7.25 — normal
+      nox: { min: 1000, max: 5000 }  # wiki: GAS_WIKI §7.25 — > 1000 ppm under load, vocab: GAS_VOCABULARY §10.5 high_combustion_temp
+      lambda: { min: 0.97, max: 1.03 }  # wiki: GAS_WIKI §7.25 — same pattern as §7.8
+    differentiator_edges:
+      - type: dna
+        field: emissions.egr_equipped
+        equals: true                                      # wiki: GAS_WIKI §7.25 — overlap disambiguation vs HIGH_COMBUSTION_TEMP
+
+  # --- §7.26 ---------------------------------------------------------------
+  EGR_STUCK_OPEN:
+    citation: "GAS_WIKI §7.26"
+    operating_state: "STABILIZED_IDLE"
+    dna_gate:
+      field: "emissions.egr_equipped"
+      value: true                    # vocab: GAS_VOCABULARY §3.1
+    signature:
+      hc:  { min: 100, max: 20000 }  # wiki: GAS_WIKI §7.26 — ↑ (rough idle)
+      co:  { min: 0.5, max: 15.0 }   # wiki: GAS_WIKI §7.26 — ↑
+      co2: { min: 0.0, max: 14.5 }   # wiki: GAS_WIKI §7.26 — ↓
+      o2:  { min: 0.0, max: 22.0 }   # wiki: GAS_WIKI §7.26 — inert gas crowds out air; O₂ variable
+      nox: { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.26 — low
+      lambda: { min: 0.5, max: 2.5 } # wiki: GAS_WIKI §7.26 — variable
+    differentiator_edges:
+      - type: dna
+        field: emissions.egr_equipped
+        equals: true                                      # wiki: GAS_WIKI §7.26
+
+  # --- §7.27 ---------------------------------------------------------------
+  VVT_FAILURE:
+    citation: "GAS_WIKI §7.27"
+    operating_state: "STABILIZED_IDLE"
+    signature_type: catch_all         # wiki: GAS_WIKI §7.27 — catch-all for variable valve-timing patterns
+    signature:
+      hc:  { min: 0, max: 20000 }    # wiki: GAS_WIKI §7.27 — up at idle OR normal
+      co:  { min: 0.0, max: 15.0 }   # wiki: GAS_WIKI §7.27 — variable by mode
+      co2: { min: 0.0, max: 16.0 }   # wiki: GAS_WIKI §7.27 — variable
+      o2:  { min: 0.0, max: 22.0 }   # wiki: GAS_WIKI §7.27 — variable
+      nox: { min: 0, max: 5000 }     # wiki: GAS_WIKI §7.27 — up under load OR normal
+      lambda: { min: 0.5, max: 2.5 } # wiki: GAS_WIKI §7.27 — variable
+    differentiator_edges: []         # T-P3-1 populates
+
+  # --- §7.28 ---------------------------------------------------------------
+  EVAP_CANISTER_SATURATED:
+    citation: "GAS_WIKI §7.28"
+    operating_state: "STABILIZED_IDLE"
+    signature_type: catch_all         # wiki: GAS_WIKI §7.28 — catch-all for wide evaporative bands
+    signature:
+      hc:  { min: 100, max: 500 }    # wiki: GAS_WIKI §7.28 — moderate, vocab: GAS_VOCABULARY §10.1 minor_inefficiency
+      co:  { min: 0.5, max: 3.0 }    # wiki: GAS_WIKI §7.28 — moderate–high, vocab: GAS_VOCABULARY §10.2 mild_rich
+      co2: { min: 0.0, max: 13.0 }   # wiki: GAS_WIKI §7.28 — low
+      o2:  { min: 0.0, max: 0.5 }    # wiki: GAS_WIKI §7.28 — low
+      nox: { min: 0, max: 5000 }     # wiki: GAS_WIKI §7.28 — not specified
+      lambda: { min: 0.5, max: 1.0 } # wiki: GAS_WIKI §7.28 — unmetered fuel vapour → rich-side
+
+  # --- §7.29 ---------------------------------------------------------------
+  EGR_DILUTION_MISFIRE:
+    citation: "GAS_WIKI §7.29"
+    operating_state: "STABILIZED_IDLE"
+    requires_dtc: true               # wiki: GAS_WIKI §7.29 — EGR dilution misfire requires EGR_HISTORY DTC evidence
+    signature:
+      hc:  { min: 500, max: 20000 }  # wiki: GAS_WIKI §7.29 — elevated from dilution-induced incomplete burn
+      co:  { min: 1.5, max: 15.0 }   # wiki: GAS_WIKI §7.29 — combustion occurring; key differentiator from dead-cylinder misfire
+      co2: { min: 0.0, max: 14.0 }   # wiki: GAS_WIKI §7.29 — diluted by inert exhaust gas
+      o2:  { min: 0.0, max: 22.0 }   # wiki: GAS_WIKI §7.29 — variable; inert gas crowds out fresh air
+      nox: { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.29 — flame temp suppressed by inert gas dilution
+      lambda: { min: 0.97, max: 1.03 }  # wiki: GAS_WIKI §7.29 — AFR correct; dilution not mixture problem
+    differentiator_edges:
+      - type: rpm_differential
+        note: "EGR dilution misfire clears at high RPM (EGR flow proportionally smaller); rich misfire persists across RPM"  # wiki: GAS_WIKI §7.29
+
+  # --- §7.30 ---------------------------------------------------------------
+  INCOMPLETE_OXIDATION:
+    citation: "GAS_WIKI §7.30"
+    operating_state: "STABILIZED_IDLE"
+    signature_type: catch_all         # wiki: GAS_WIKI §7.30 — catch-all for partial-burn patterns
+    signature:
+      hc:  { min: 200, max: 20000 }  # wiki: GAS_WIKI §7.30 — unburned fuel from incomplete combustion
+      co:  { min: 0.5, max: 15.0 }   # wiki: GAS_WIKI §7.30 — partial oxidation; CO→CO₂ conversion incomplete
+      co2: { min: 0.0, max: 13.0 }   # wiki: GAS_WIKI §7.30 — low; incomplete conversion efficiency
+      o2:  { min: 0.0, max: 22.0 }   # wiki: GAS_WIKI §7.30 — variable; some consumed, some passes through
+      nox: { min: 0,   max: 5000 }   # wiki: GAS_WIKI §7.30 — variable; depends on peak combustion temp
+      lambda: { min: 0.5, max: 2.5 } # wiki: GAS_WIKI §7.30 — variable; depends on underlying cause
+    differentiator_edges: []         # T-P3-1 populates
+
+  # --- §7.31 ---------------------------------------------------------------
+  INCOMPLETE_COMBUSTION:
+    citation: "GAS_WIKI §7.31"
+    operating_state: "STABILIZED_IDLE"
+    signature:
+      hc:  { min: 200, max: 20000 }  # wiki: GAS_WIKI §7.31 — elevated from partial burn; compression loss
+      co:  { min: 0.5, max: 5.0 }    # wiki: GAS_WIKI §7.31 — partial oxidation; combustion occurring, differentiator from dead misfire
+      co2: { min: 0.0, max: 13.0 }   # wiki: GAS_WIKI §7.31 — depressed; incomplete conversion efficiency
+      o2:  { min: 0.0, max: 22.0 }   # wiki: GAS_WIKI §7.31 — variable; some consumed, some passes through unburned
+      nox: { min: 0,   max: 100 }    # wiki: GAS_WIKI §7.31 — low; peak combustion temperature suppressed by compression loss
+      lambda: { min: 0.97, max: 1.50 }  # wiki: GAS_WIKI §7.31 — mixture correct or slightly lean; not a mixture fault
+    differentiator_edges: []         # T-P3-1 populates
+
+  # --- §7.32 ---------------------------------------------------------------
+  COOLANT_LEAK_INTERNAL:
+    citation: "GAS_WIKI §8.7"
+    operating_state: "STABILIZED_IDLE"
+    requires_block_test: true        # wiki: GAS_WIKI §8.7 — grammar-gated; requires positive chemical block test
+    signature:
+      hc:  { min: 300, max: 20000 }  # wiki: GAS_WIKI §8.7 — ethylene-glycol HC flash floor; CoolantLeakSig.md §3
+      co:  { min: 0.0, max: 0.5 }    # wiki: GAS_WIKI §8.7 — low; not a fueling issue; CoolantLeakSig.md §2
+      co2: { min: 0.0, max: 12.0 }   # wiki: GAS_WIKI §8.7 — depressed by water-vapour dilution; CoolantLeakSig.md §2
+      o2:  { min: 0.0, max: 22.0 }   # wiki: GAS_WIKI §8.7 — variable; H₂O dissociation adds O₂; CoolantLeakSig.md §1
+      nox: { min: 0,   max: 100 }    # wiki: GAS_WIKI §8.7 — low; combustion temp suppressed by water vapour; CoolantLeakSig.md §2
+      lambda: { min: 1.0, max: 2.5 } # wiki: GAS_WIKI §8.7 — artificially lean from H₂ shift; CoolantLeakSig.md §1

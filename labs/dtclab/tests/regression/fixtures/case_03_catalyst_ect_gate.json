@@ -1,0 +1,54 @@
+{
+  "_description": "P0420 catalyst efficiency with ECT < 70 C at freeze-frame capture. Catalyst monitor ran before light-off — ECT warmup flag is set, CATALYST_HISTORY is emitted. HIGH-confidence DNA with has_catalyst=True.",
+  "_source_case": "cases/DTCcases1.md",
+  "raw_dtcs": {
+    "$03": ["P0420"],
+    "$07": [],
+    "$0A": []
+  },
+  "raw_freeze_frame": {
+    "calculated_load_pct": 35.0,
+    "engine_rpm": 2200,
+    "coolant_temp_c": 45.0,
+    "short_term_ft1": 2.0,
+    "long_term_ft1": -3.0,
+    "manifold_pressure_kpa": 50.0,
+    "vehicle_speed_kmh": 60,
+    "ignition_advance_deg": 28.0,
+    "intake_air_temp_c": 10.0,
+    "maf_gps": 8.0,
+    "throttle_pos_pct": 22.0,
+    "fuel_system_status": "CL"
+  },
+  "raw_mode06": {
+    "MID_21_TID_81": 12.0
+  },
+  "dna_view_json": {
+    "make": "Toyota",
+    "model": "Corolla",
+    "model_year": 2010,
+    "euro_emission_category": "EURO_4",
+    "air_metering_strategy": "MAF",
+    "resolved_horizon": "HORIZON_CLASSIC",
+    "emissions": {
+      "has_catalyst": true,
+      "egr_equipped": false
+    },
+    "confidence": "HIGH"
+  },
+  "sanitize_kwargs": {
+    "codes_cleared": false,
+    "active_mil": true,
+    "mil_flashing": false,
+    "chemical_state": null
+  },
+  "expected_routing_tags": ["CATALYST_HISTORY"],
+  "expected_hfc": "COLD_START_TRANSIT_FAULT",
+  "expected_flags": {
+    "ff_open_loop_at_fault": false,
+    "ff_ect_warmup": true,
+    "ff_timing_retard_severe": false,
+    "ff_load_high_at_low_rpm": false,
+    "ff_codes_cleared_invalidated": false
+  }
+}

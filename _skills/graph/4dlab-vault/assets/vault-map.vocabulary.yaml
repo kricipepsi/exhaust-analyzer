@@ -1,0 +1,130 @@
+# 4DLab shared vocabulary area — architect-authored consumer map.
+# Each entry maps a vocab note to its canonical source + semantic fields.
+# The build script reads this map, copies the canonical body, and injects frontmatter.
+
+vocabulary:
+  OBD_VOCABULARY.md:
+    node_type: wiki
+    lab: obdlab
+    module: semantic-vocabulary
+    subsystem: obd-enums
+    canonical: "labs/semantic/vocabul/OBD_VOCABULARY.md"
+    implements:
+      - "labs/obdlab/code/schemas/vocabulary.py"
+    consumers:
+      - "comlab: fault_atlas_router (fuel_system_status routing)"
+      - "comlab: T-COMV2-O2OFFSET-1 (O2FailureMode.WIDEBAND_OFFSET_CANDIDATE)"
+      - "dtclab: freeze_frame_extractor (FuelSystemStatus open-loop derivation)"
+    drift_guards:
+      - "labs/obdlab/tests/unit/test_vocabulary.py"
+    tags: [vocabulary, obd, semantic, finished]
+    source: "labs/semantic/vocabul/OBD_VOCABULARY.md"
+
+  GAS_VOCABULARY.md:
+    node_type: wiki
+    lab: gaslab
+    module: semantic-vocabulary
+    subsystem: gas-enums-thresholds
+    canonical: "labs/gaslab/docs/GAS_VOCABULARY.md"
+    implements:
+      - "labs/gaslab/code/contracts.py"
+      - "labs/gaslab/code/data/gas_lab_ontology.yaml"
+    consumers:
+      - "gaslab: labs/gaslab/gaslab/contracts.py ChemicalSignature/GasLabPayload"
+      - "gaslab: labs/gaslab/gaslab/audits.py parse_vocabulary_thresholds"
+      - "comlab: labs/comlab/comlab/schemas/vocabulary.py enum mirror"
+    drift_guards:
+      - "labs/gaslab/tests/unit/test_contracts.py"
+      - "labs/gaslab/tests/unit/test_ontology.py"
+      - "labs/gaslab/tests/unit/test_validators.py"
+    tags: [vocabulary, gas, semantic, finished]
+    source: "labs/gaslab/docs/GAS_VOCABULARY.md"
+  DTC_VOCABULARY.md:
+    node_type: wiki
+    lab: dtclab
+    module: semantic-vocabulary
+    subsystem: dtc-enums-thresholds
+    canonical: "labs/dtclab/docs/DTC_VOCABULARY.md"
+    implements:
+      - "labs/dtclab/dtclab/schemas/vocabulary.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py DTCRoutingTag routing"
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py DTCLabPayload integration"
+      - "comlab: labs/comlab/comlab/core/perception_contradiction.py HistoricalFaultContext / FuelSystemStatus comparison"
+    drift_guards:
+      - "labs/dtclab/tests/unit/test_vocabulary.py"
+    tags: [vocabulary, dtc, semantic, finished]
+    source: "labs/dtclab/docs/DTC_VOCABULARY.md"
+
+  SYMPTOM_VOCABULARY.md:
+    node_type: wiki
+    lab: symptomlab
+    module: semantic-vocabulary
+    subsystem: symptom-enums-catalog
+    canonical: "labs/symptomlab/docs/SYMPTOM_VOCABULARY.md"
+    implements:
+      - "labs/symptomlab/symptomlab/models.py"
+      - "labs/symptomlab/symptomlab/data/allowed_combinations.yaml"
+    consumers:
+      - "symptomlab: labs/symptomlab/symptomlab/validator.py SymptomValidator.validate (catalog + axis-enum vocabulary)"
+      - "dnalab: labs/dnalab/dnalab/models.py SymptomDNA.from_json (axis-enum membership)"
+      - "comlab: labs/comlab/comlab/core/symptom_router.py route_symptom (engine_state / occurs_during literals)"
+    drift_guards:
+      - "labs/symptomlab/tests/unit/test_validator.py"
+      - "labs/symptomlab/tests/unit/test_models.py"
+    tags: [vocabulary, symptom, semantic, finished]
+    source: "labs/symptomlab/docs/SYMPTOM_VOCABULARY.md"
+
+  VIN_VOCABULARY.md:
+    node_type: wiki
+    lab: vinlab
+    module: semantic-vocabulary
+    subsystem: vin-enums-thresholds
+    canonical: "labs/vinlab/docs/VIN_VOCABULARY.md"
+    implements:
+      - "labs/vinlab/vinlab/models.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/schemas/lab_dna_views.py ObdLabDnaView mirror"
+      - "obdlab: labs/obdlab/obdlab/core/pid_ingestion_validator.py _check_dna_rpm"
+      - "dnalab: labs/dnalab/dnalab/assembly.py triage required keys (load_state / engine_state)"
+      - "gaslab: CoC threshold tables via projector (Emissions / CoC fields)"
+    drift_guards:
+      - "labs/vinlab/tests/unit/test_models.py"
+    tags: [vocabulary, vin, semantic, finished]
+    source: "labs/vinlab/docs/VIN_VOCABULARY.md"
+
+  DNA_VOCABULARY.md:
+    node_type: wiki
+    lab: dnalab
+    module: semantic-vocabulary
+    subsystem: dna-envelope
+    canonical: "labs/dnalab/docs/DNA_VOCABULARY.md"
+    implements:
+      - "labs/dnalab/dnalab/models.py"
+    consumers:
+      - "comlab: OrchestratorInboundRequest.vehicle_dna ingestion"
+    drift_guards:
+      - "labs/dnalab/tests/unit/test_models.py"
+    tags: [vocabulary, dna, semantic, finished]
+    source: "labs/dnalab/docs/DNA_VOCABULARY.md"
+
+  SEMANTIC_CONTRACT.md:
+    node_type: wiki
+    lab: comlab
+    module: semantic-vocabulary
+    subsystem: cross-lab-boundary-contract
+    canonical: "labs/semantic/vocabul/SEMANTIC_CONTRACT.md"
+    implements:
+      - "labs/comlab/comlab/schemas/vocabulary.py"
+      - "labs/comlab/comlab/schemas/lab_dna_views.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/schemas/vocabulary.py enum/field definitions (SEMANTIC_CONTRACT §4/§6.4/§8/§10 cites)"
+      - "comlab: labs/comlab/comlab/schemas/lab_dna_views.py GasLabDnaView/ObdLabDnaView field mirror (§5.1)"
+      - "comlab: labs/comlab/comlab/core/horizon_context_injector.py EuroEmissionCategory mapping (§6.4)"
+    drift_guards:
+      - "labs/comlab/tests/unit/test_vocabulary.py"
+      - "labs/comlab/tests/unit/test_vocabulary_sae_iso_conformance.py"
+    tags: [vocabulary, semantic, contract, finished]
+    source: "labs/semantic/vocabul/SEMANTIC_CONTRACT.md"
+
+

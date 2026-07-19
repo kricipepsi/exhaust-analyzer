@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dtclab"
+version = "0.1.0"
+description = "DTCLab — Digital Diagnostic Fault Compiler (4DLab)"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.5",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+    "pyright",
+]
+
+# v2 flat lab layout: package sits beside wiki/ and graph/ — restrict discovery to the package
+# so setuptools doesn't try to package wiki/graph (the "multiple top-level packages" error).
+[tool.setuptools.packages.find]
+include = ["dtclab*"]
+
+[tool.ruff]
+target-version = "py311"
+
+[tool.pyright]
+pythonVersion = "3.11"
+include = ["dtclab", "tests"]
+extraPaths = ["../../harness"]
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

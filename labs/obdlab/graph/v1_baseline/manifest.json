@@ -1,0 +1,452 @@
+{
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\family_map.py": {
+    "mtime": 1780306310.1880574,
+    "ast_hash": "7739eef64ae4b8f0e41fa15a26f92166",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\ranking.py": {
+    "mtime": 1780316847.648933,
+    "ast_hash": "11fcc0459ea2a7109b2f671f522c2cb8",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\__init__.py": {
+    "mtime": 1779344397.011044,
+    "ast_hash": "d444af05bc50db0df51893aad68eb49c",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\config\\physical_sensor_bounds.json": {
+    "mtime": 1780068983.1447902,
+    "ast_hash": "c887df2ed0098d09f6a3403b88209c07",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\core\\analytics_preconditions.py": {
+    "mtime": 1779342012.9150138,
+    "ast_hash": "0984fca3dd8082d38e35d2c605b10782",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\core\\exceptions.py": {
+    "mtime": 1779311579.9342842,
+    "ast_hash": "9efd61cbd6bf78c1b831a72703e6a253",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\core\\o2_normalizer.py": {
+    "mtime": 1780068983.1453078,
+    "ast_hash": "e7919a178ec7b86fb8a9160f8b5e2463",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\core\\pid_ingestion_validator.py": {
+    "mtime": 1779310930.7330334,
+    "ast_hash": "c0ecb2f1d7eafe0e35f0211536bb30c6",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\core\\semantic_consistency_checker.py": {
+    "mtime": 1780068983.1458275,
+    "ast_hash": "2018e1ff008ba0457c3a15b4220717fc",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\core\\sensor_signal_translator.py": {
+    "mtime": 1780068983.1463432,
+    "ast_hash": "b9e208f1787529cf2de4507bb6b08cf2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\core\\state_bucketing.py": {
+    "mtime": 1779344343.3333354,
+    "ast_hash": "6e15a9fde2de5b1dba38914c80111543",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\core\\trim_vector_aggregator.py": {
+    "mtime": 1779359406.5996807,
+    "ast_hash": "2d00773249b9345cf85ada4386076ebf",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\core\\ve_engine.py": {
+    "mtime": 1780068983.1468658,
+    "ast_hash": "90b997ce72a067d0d21d465bd273a4b1",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\core\\__init__.py": {
+    "mtime": 1779309153.6842673,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\schemas\\dna_view.py": {
+    "mtime": 1779352318.1909275,
+    "ast_hash": "e4449edc4d1cdb95736ddc2d061d7db5",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\schemas\\payload.py": {
+    "mtime": 1780068983.1473904,
+    "ast_hash": "f3ac31f756586924b812176e0c124000",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\schemas\\vocabulary.py": {
+    "mtime": 1780068983.1479135,
+    "ast_hash": "80f59497ea73fc42f1f697f900770c2e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\schemas\\__init__.py": {
+    "mtime": 1779309151.6406434,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\__init__.py": {
+    "mtime": 1779309157.6401627,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\integration\\test_pipeline_smoke.py": {
+    "mtime": 1779521342.2982335,
+    "ast_hash": "cb75a57d40436f507a296c9f1045746e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\integration\\__init__.py": {
+    "mtime": 1779346344.3908806,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\regression\\test_obdlab_regression.py": {
+    "mtime": 1779521438.991696,
+    "ast_hash": "a83de721b3fda6ce03fb1e337e0ce8e2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\regression\\__init__.py": {
+    "mtime": 1779346342.1551828,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\regression\\fixtures\\case_01_stabilised_idle_healthy.json": {
+    "mtime": 1779521404.5942285,
+    "ast_hash": "32132f8700e213000d38285bbd20ea8d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\regression\\fixtures\\case_02_lean_vacuum_leak.json": {
+    "mtime": 1779521406.7821703,
+    "ast_hash": "7d52409d5335017c355983fcfbf4fc28",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\regression\\fixtures\\case_03_cold_engine_frozen.json": {
+    "mtime": 1779521409.4527802,
+    "ast_hash": "450b57adc9b4f4cfbbefe3d7af472c1e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\regression\\fixtures\\case_04_stress_idle_clinical.json": {
+    "mtime": 1779346429.472373,
+    "ast_hash": "bd3272e5e04a9c9eb281a66dd6b1f0c3",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\regression\\fixtures\\case_05_maf_only_backcalc.json": {
+    "mtime": 1779521412.0373306,
+    "ast_hash": "3152c8672c6994759e26153842f28eb0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\regression\\fixtures\\case_06_partial_dna_confidence.json": {
+    "mtime": 1779521414.1674416,
+    "ast_hash": "34aa83cf6c7d23ca972cc7facf298593",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\unit\\test_analytics_preconditions.py": {
+    "mtime": 1779364723.4606106,
+    "ast_hash": "ed316f0f74296952b7a204c780b3b9b2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\unit\\test_dna_view.py": {
+    "mtime": 1779352593.441713,
+    "ast_hash": "0598cb46298f47af608cf7d6135c79c2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\unit\\test_family_map.py": {
+    "mtime": 1780306277.2397516,
+    "ast_hash": "4d8baeea87b3c9d059f8fbcbd8f153e9",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\unit\\test_o2_normalizer.py": {
+    "mtime": 1779521254.6119764,
+    "ast_hash": "8386757a303a1af94e9ec6399bd56bbc",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\unit\\test_payload.py": {
+    "mtime": 1780068983.1489632,
+    "ast_hash": "ca8f58793224562851ac656b46cbdecd",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\unit\\test_pid_ingestion_validator.py": {
+    "mtime": 1780068983.1489964,
+    "ast_hash": "1c8f2fb95f1ef995804f977a32c026ba",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\unit\\test_ranking.py": {
+    "mtime": 1780316788.7669933,
+    "ast_hash": "50f899e4d7f8fdf6e04b169cfb82f5da",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\unit\\test_semantic_consistency_checker.py": {
+    "mtime": 1780068983.1495187,
+    "ast_hash": "a8aaedbab20faa44cd6a8bcd77d68360",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\unit\\test_sensor_bounds.py": {
+    "mtime": 1780068983.1500401,
+    "ast_hash": "0a963bb63719c17539273696441c7536",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\unit\\test_sensor_signal_translator.py": {
+    "mtime": 1779521767.723125,
+    "ast_hash": "1cb6fe5f552f97c9616087e534cc8676",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\unit\\test_trim_vector_aggregator.py": {
+    "mtime": 1779364723.4606106,
+    "ast_hash": "ae931a1bf36010ad52345c1c7f09f7be",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\unit\\test_ve_engine.py": {
+    "mtime": 1779361020.2382512,
+    "ast_hash": "724b7faa780d6c9e1d0956c4b10d8a32",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\unit\\test_vocabulary.py": {
+    "mtime": 1779521515.1756701,
+    "ast_hash": "ad770e95bb4e6fb2ab936d0b1e425cee",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\tests\\unit\\__init__.py": {
+    "mtime": 1779309159.638835,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\scripts\\patch_step2.py": {
+    "mtime": 1779308573.4025075,
+    "ast_hash": "1c5c13fe97b03903dd3358fe1a5e1160",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\answ2.md": {
+    "mtime": 1779519685.3656352,
+    "ast_hash": "14479e141b951c2fdc0355beb751a220",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\dtcprocess.md": {
+    "mtime": 1779130180.6232061,
+    "ast_hash": "336c1f512b0d81b8eb3e46b7c874e6d8",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\OBDLab_Audit_Report.md": {
+    "mtime": 1779358010.5091732,
+    "ast_hash": "a65424cac0d74b4f8bd2183e2040c41f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\OBDLab_KG_Wiki.md": {
+    "mtime": 1779819985.0107298,
+    "ast_hash": "266c20f2e3454317caf0df4d58ed4393",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\OBDLAB_PROGRESS.md": {
+    "mtime": 1779521895.9432833,
+    "ast_hash": "18ed4be126c3fcb5267511a7429b1985",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\OBDLAB_START_HERE.md": {
+    "mtime": 1779885401.237135,
+    "ast_hash": "59761fa9e5e4074f117ac53964125962",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\prompt.md": {
+    "mtime": 1779261483.788545,
+    "ast_hash": "18e474464b9e696b2f11b22d0b9ed705",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\bp\\OBDlab.md": {
+    "mtime": 1778931905.0469363,
+    "ast_hash": "681241017a52d5cb281493c457774dbe",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab\\config\\obd_translation_rules.yaml": {
+    "mtime": 1779344293.9986587,
+    "ast_hash": "f759b2c9cbb35f70981f1a4d15ce72e1",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\code\\obdlab_tasks\\progress_notes\\T-OBD-WIRE-1.md": {
+    "mtime": 1779521831.1454535,
+    "ast_hash": "cb5cfd66f8441b1c160dd95de0915bc5",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\T-FX-1_trim_vector_bank_split.md": {
+    "mtime": 1779358969.4225485,
+    "ast_hash": "dbe30b80bed63764d37aba14dc65efe4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\T-FX-2_ve_validity_gate_wiring.md": {
+    "mtime": 1779359015.3516736,
+    "ast_hash": "bb4cac8829e13c7cbe5dc4ec0ca15892",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\T-FX-3_o2_degrade_not_abort.md": {
+    "mtime": 1779359059.1196842,
+    "ast_hash": "d3ddfd078700ad16f68f65415aa1c095",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\T-FX-4_lint_and_dead_code.md": {
+    "mtime": 1779359081.2025344,
+    "ast_hash": "fec7ccef60151b8bb48658761c5d8519",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\T-OBD-WIRE-1_surface_payload_analytics_fields.md": {
+    "mtime": 1779519921.0234723,
+    "ast_hash": "d89f44e0ab1fdd050108c6ffc54950cb",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\T-P0-1_scaffold_and_enums.md": {
+    "mtime": 1779306023.1524096,
+    "ast_hash": "66c8142a92b14dccfd730670910c9ea2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\T-P0-2_dna_view_schema.md": {
+    "mtime": 1779306050.1106107,
+    "ast_hash": "5d962f63527b5dae175f69b15192d594",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\T-P0-3_pid_ingestion_validator.md": {
+    "mtime": 1779306081.832507,
+    "ast_hash": "5c2db9063a917339fca9b900d1099703",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\T-P0-4_semantic_consistency_checker.md": {
+    "mtime": 1779306106.7118063,
+    "ast_hash": "5057394a58674ff200bc83e756de49c4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\T-P0-5_ve_computation_polymorphic.md": {
+    "mtime": 1779306135.1632378,
+    "ast_hash": "7585bd2f6d27ed28d0227dc2562db26f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\T-P0-6_o2_normalization_layer.md": {
+    "mtime": 1779306160.5555089,
+    "ast_hash": "6a397759ef58f0bca98ea27af62a7f08",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\T-P0-7_trim_vector_and_preconditions.md": {
+    "mtime": 1779306185.9101677,
+    "ast_hash": "7f7435ed1c0bf9ced08fec2fa0c21177",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\T-P0-8_payload_and_sanitizer.md": {
+    "mtime": 1779306218.8362064,
+    "ast_hash": "38cc61b08f9ada103b7cd02e3bf1820b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\T-P0-9_integration_and_regression.md": {
+    "mtime": 1779306246.7321272,
+    "ast_hash": "94abbfb223b5c51767e9234e21ea96f8",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\T-PREP-2_kg_audit_remediation.md": {
+    "mtime": 1779305997.9984944,
+    "ast_hash": "c9ead234d54e9931d5292f4e6eccfe2d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\progress_notes\\README.md": {
+    "mtime": 1779306386.9696019,
+    "ast_hash": "cc0aeb6490f413778bce3f0560c7c335",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\progress_notes\\T-FX-1.md": {
+    "mtime": 1779359765.8201063,
+    "ast_hash": "e0f18c998a1848ba22f43e588389b31b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\progress_notes\\T-FX-2.md": {
+    "mtime": 1779361071.6715477,
+    "ast_hash": "271117c71ef36f3c4a66218a62f01c36",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\progress_notes\\T-FX-3.md": {
+    "mtime": 1779364503.3740551,
+    "ast_hash": "fcf63eda7f84976a88a0e46e9f038a06",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\progress_notes\\T-FX-4.md": {
+    "mtime": 1779364857.2038145,
+    "ast_hash": "9beadd1e6ab5a56c88c4424f372b6d29",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\progress_notes\\T-P0-1.md": {
+    "mtime": 1779309389.3442912,
+    "ast_hash": "3dfa28f98e5ff0fb314f00dbde0d1c7d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\progress_notes\\T-P0-2.md": {
+    "mtime": 1779310322.4603903,
+    "ast_hash": "bb4d6c759c13eb88509df2a4dd60a099",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\progress_notes\\T-P0-3.md": {
+    "mtime": 1779311241.2960384,
+    "ast_hash": "d446786b5f0e50434cd269646f5ec71b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\progress_notes\\T-P0-4.md": {
+    "mtime": 1779312077.3524616,
+    "ast_hash": "1ed83b98aa0705102278de6715989f3f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\progress_notes\\T-P0-5.md": {
+    "mtime": 1779313659.7690022,
+    "ast_hash": "86f233472c17664c86880b216ed5d7b3",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\progress_notes\\T-P0-6.md": {
+    "mtime": 1779314253.8772254,
+    "ast_hash": "5e100cc19b3c4df6ea374a48fe7a6a82",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\progress_notes\\T-P0-7.md": {
+    "mtime": 1779342272.564741,
+    "ast_hash": "fc5a800c1c9fffc8e14a094f641078ac",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\progress_notes\\T-P0-8.md": {
+    "mtime": 1779344743.7696505,
+    "ast_hash": "91b016eba5333675fcef604dfd80b8c8",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\progress_notes\\T-P0-9.md": {
+    "mtime": 1779346721.030069,
+    "ast_hash": "7d088a470e7f6f3eef8a0bba2c8c7923",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\obdlab_tasks\\progress_notes\\T-PREP-2.md": {
+    "mtime": 1779308872.2506988,
+    "ast_hash": "621f563be5cf3c15fde534ec1a5935ed",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\_obdlab_skills\\_INDEX.md": {
+    "mtime": 1779689551.642064,
+    "ast_hash": "6681cb4fd92f00d67cea4196bf3e64e3",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\_obdlab_skills\\obdlab-code-review\\SKILL.md": {
+    "mtime": 1779305867.5168495,
+    "ast_hash": "ff69620a1e3d577a05bfc859bbde1a74",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\_obdlab_skills\\obdlab-python\\SKILL.md": {
+    "mtime": 1779885298.3788788,
+    "ast_hash": "6662e66773365cf4a29011bba501bfab",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\_obdlab_skills\\obdlab-suite-contract\\SKILL.md": {
+    "mtime": 1779689542.3742983,
+    "ast_hash": "68b64886cf0f5f454dd744042779aea1",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\_obdlab_skills\\obdlab-verification-loop\\SKILL.md": {
+    "mtime": 1779885368.7176561,
+    "ast_hash": "a8b28c8ea46b9d3298333c116d85ad1e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\muto\\claude\\4DApp\\4DLab\\OBDLab\\_obdlab_skills\\obdlab-vocabulary\\SKILL.md": {
+    "mtime": 1779305939.3317153,
+    "ast_hash": "4f2d6243db6d7602c94336ae2c0d3cd0",
+    "semantic_hash": ""
+  }
+}

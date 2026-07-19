@@ -1,0 +1,18 @@
+{
+  "capture_commit": "pending-T-COMV2-FATAL-1",
+  "capture_date": "2026-06-21",
+  "case_id": "COM-023",
+  "expected": {
+    "confidence": "LOW_CERTAINTY",
+    "degradation_mode": "FATAL_INCOMPLETE",
+    "fault_family": "invalid_input",
+    "top_fault": "ERR-ABORT-001"
+  },
+  "request": {
+    "metadata": {"session_id": "11111111-1111-4111-8111-000000000023", "vin_dna_string": "1FA6P8CF0HXXXXXXX", "resolved_horizon": "HORIZON_MODERN", "cylinder_count": 4},
+    "gas_lab_output": {"chemical_state": "NORMAL_OPERATION", "gas_co": 0.5, "gas_hc": 50, "gas_co2": 14.0, "gas_o2": 1.0, "gas_nox": 200, "lambda_chem": 1.0, "sample_validity": "INVALID"},
+    "obd_live_data": {"engine_warmed": true, "total_trim_correction_delta": -5.0, "ve_pct": 75.0, "ve_validity": "VALID", "rpm_state_bucket": "STABILIZED_IDLE", "trim_analytics_gate": "VALID", "o2_failure_mode": "STUCK_LEAN", "maf_status": "REAL_SENSOR_FEED", "map_status": "REAL_SENSOR_FEED"},
+    "dtc_lab_output": {"active_mil": false, "mil_flashing": false, "confirmed_dtcs": [], "pending_dtcs": [], "permanent_dtcs": [], "routing_tags": [], "mode_06_monitors": {}, "historical_fault_context": "UNKNOWN", "freeze_frame": {"calculated_load_pct": 20.0, "engine_rpm": 750, "coolant_temp_c": 90.0, "short_term_ft1": -3.0, "long_term_ft1": -5.0, "manifold_pressure_kpa": 30.0, "vehicle_speed_kmh": 0, "ignition_advance_deg": 10.0, "intake_air_temp_c": 25.0, "maf_gps": 3.5, "throttle_pos_pct": 5.0, "fuel_system_status": "CL", "o2_voltage_b1s1": 0.45}},
+    "symptom_dna": {}
+  }
+}

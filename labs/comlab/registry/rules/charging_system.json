@@ -1,0 +1,76 @@
+{
+  "version": "2.0",
+  "fault_family": "charging_system",
+  "rules": [
+    {
+      "rule_id": "CS-001",
+      "fault_family": "charging_system",
+      "description": "System voltage fault (low or high) \u2014 P0562 (system voltage low) or P0563 (system voltage high) is the pathognomonic charging-system DTC. DTC-only diagnosis; the schema does not capture battery voltage telemetry.",
+      "chemistry_evidence": [],
+      "obd_evidence": [],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0562",
+            "P0563"
+          ],
+          "strategy": "any_match",
+          "tier": "GATING",
+          "wiki_ref": "DTC_VOCABULARY \u00a715"
+        }
+      ],
+      "base_weight": 0.75,
+      "competition_group": "charging_system",
+      "confidence_ceiling": 0.85,
+      "passes_cases": [
+        "NEW-charging_system-01",
+        "NEW-charging_system-02"
+      ],
+      "source_wiki_refs": [
+        "DTC_VOCABULARY \u00a715"
+      ]
+    },
+    {
+      "rule_id": "CS-002",
+      "fault_family": "charging_system",
+      "description": "Charging-induced ghost misfire \u2014 ECU reports P0300 random misfire on a vehicle with a charging-system DTC and clean combustion chemistry. The misfire is electrical-sensor noise from voltage instability, not a real combustion failure. NORMAL_OPERATION chemistry at tier GATING is the discriminator from misfire-family rule MF-004 (which gates on NORMAL chemistry DEFINITIVE without requiring a charging DTC).",
+      "chemistry_evidence": [
+        {
+          "state": "NORMAL_OPERATION",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0562",
+            "P0563"
+          ],
+          "strategy": "any_match",
+          "tier": "GATING",
+          "wiki_ref": "DTC_VOCABULARY \u00a715"
+        },
+        {
+          "dtc_codes": [
+            "P0300"
+          ],
+          "strategy": "any_match",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a715"
+        }
+      ],
+      "base_weight": 0.7,
+      "competition_group": "charging_system",
+      "confidence_ceiling": 0.75,
+      "passes_cases": [
+        "NEW-charging_system-03"
+      ],
+      "source_wiki_refs": [
+        "DTC_VOCABULARY \u00a715",
+        "GAS_VOCABULARY \u00a73"
+      ]
+    }
+  ]
+}

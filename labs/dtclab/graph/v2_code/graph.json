@@ -1,0 +1,4869 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "family_map.py",
+      "file_type": "code",
+      "source_file": "family_map.py",
+      "source_location": "L1",
+      "community": 13,
+      "norm_label": "family_map.py",
+      "id": "family_map_py"
+    },
+    {
+      "label": "families_for_tags()",
+      "file_type": "code",
+      "source_file": "family_map.py",
+      "source_location": "L83",
+      "community": 13,
+      "norm_label": "families_for_tags()",
+      "id": "dtclab_family_map_families_for_tags"
+    },
+    {
+      "label": "Canonical family mapping for DTCLab routing tags.  Maps each DTCRoutingTag (18-v",
+      "file_type": "rationale",
+      "source_file": "family_map.py",
+      "source_location": "L1",
+      "community": 13,
+      "norm_label": "canonical family mapping for dtclab routing tags.  maps each dtcroutingtag (18-v",
+      "id": "dtclab_family_map_rationale_1"
+    },
+    {
+      "label": "Return deduplicated, ordered canonical families for active routing tags.      St",
+      "file_type": "rationale",
+      "source_file": "family_map.py",
+      "source_location": "L84",
+      "community": 13,
+      "norm_label": "return deduplicated, ordered canonical families for active routing tags.      st",
+      "id": "dtclab_family_map_rationale_84"
+    },
+    {
+      "label": "ranking.py",
+      "file_type": "code",
+      "source_file": "ranking.py",
+      "source_location": "L1",
+      "community": 4,
+      "norm_label": "ranking.py",
+      "id": "ranking_py"
+    },
+    {
+      "label": "MatchType",
+      "file_type": "code",
+      "source_file": "ranking.py",
+      "source_location": "L42",
+      "community": 9,
+      "norm_label": "matchtype",
+      "id": "dtclab_ranking_matchtype"
+    },
+    {
+      "label": "StrEnum",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "community": 6,
+      "norm_label": "strenum",
+      "id": "strenum"
+    },
+    {
+      "label": "CandidateScore",
+      "file_type": "code",
+      "source_file": "ranking.py",
+      "source_location": "L60",
+      "community": 9,
+      "norm_label": "candidatescore",
+      "id": "dtclab_ranking_candidatescore"
+    },
+    {
+      "label": "_load_routing_rules()",
+      "file_type": "code",
+      "source_file": "ranking.py",
+      "source_location": "L89",
+      "community": 4,
+      "norm_label": "_load_routing_rules()",
+      "id": "dtclab_ranking_load_routing_rules"
+    },
+    {
+      "label": "_build_family_index()",
+      "file_type": "code",
+      "source_file": "ranking.py",
+      "source_location": "L122",
+      "community": 4,
+      "norm_label": "_build_family_index()",
+      "id": "dtclab_ranking_build_family_index"
+    },
+    {
+      "label": "_dna_factor_for_family()",
+      "file_type": "code",
+      "source_file": "ranking.py",
+      "source_location": "L153",
+      "community": 4,
+      "norm_label": "_dna_factor_for_family()",
+      "id": "dtclab_ranking_dna_factor_for_family"
+    },
+    {
+      "label": "_match_type_for_weight()",
+      "file_type": "code",
+      "source_file": "ranking.py",
+      "source_location": "L186",
+      "community": 4,
+      "norm_label": "_match_type_for_weight()",
+      "id": "dtclab_ranking_match_type_for_weight"
+    },
+    {
+      "label": "rank_candidates()",
+      "file_type": "code",
+      "source_file": "ranking.py",
+      "source_location": "L207",
+      "community": 4,
+      "norm_label": "rank_candidates()",
+      "id": "dtclab_ranking_rank_candidates"
+    },
+    {
+      "label": "classify_top3()",
+      "file_type": "code",
+      "source_file": "ranking.py",
+      "source_location": "L330",
+      "community": 4,
+      "norm_label": "classify_top3()",
+      "id": "dtclab_ranking_classify_top3"
+    },
+    {
+      "label": "DTCLab Phase 2 scorer \u2014 per-family confidence from \u00a716 weights + \u00a714.2 DNA gatin",
+      "file_type": "rationale",
+      "source_file": "ranking.py",
+      "source_location": "L1",
+      "community": 4,
+      "norm_label": "dtclab phase 2 scorer \u2014 per-family confidence from \u00a716 weights + \u00a714.2 dna gatin",
+      "id": "dtclab_ranking_rationale_1"
+    },
+    {
+      "label": "Evidence-strength tier derived from the strongest contributing source.      Sour",
+      "file_type": "rationale",
+      "source_file": "ranking.py",
+      "source_location": "L43",
+      "community": 9,
+      "norm_label": "evidence-strength tier derived from the strongest contributing source.      sour",
+      "id": "dtclab_ranking_rationale_43"
+    },
+    {
+      "label": "Single fault-family candidate with raw confidence and evidence tier.      Fields",
+      "file_type": "rationale",
+      "source_file": "ranking.py",
+      "source_location": "L61",
+      "community": 9,
+      "norm_label": "single fault-family candidate with raw confidence and evidence tier.      fields",
+      "id": "dtclab_ranking_rationale_61"
+    },
+    {
+      "label": "Load and compile routing rules from dtclab/config/routing_tag_map.yaml.      Cac",
+      "file_type": "rationale",
+      "source_file": "ranking.py",
+      "source_location": "L90",
+      "community": 4,
+      "norm_label": "load and compile routing rules from dtclab/config/routing_tag_map.yaml.      cac",
+      "id": "dtclab_ranking_rationale_90"
+    },
+    {
+      "label": "Build family \u2192 tags and family \u2192 dna_gate_names indices.      Returns:         (",
+      "file_type": "rationale",
+      "source_file": "ranking.py",
+      "source_location": "L123",
+      "community": 4,
+      "norm_label": "build family \u2192 tags and family \u2192 dna_gate_names indices.      returns:         (",
+      "id": "dtclab_ranking_rationale_123"
+    },
+    {
+      "label": "Return the DNA confidence multiplier for *family*.      Ungated families always",
+      "file_type": "rationale",
+      "source_file": "ranking.py",
+      "source_location": "L158",
+      "community": 4,
+      "norm_label": "return the dna confidence multiplier for *family*.      ungated families always",
+      "id": "dtclab_ranking_rationale_158"
+    },
+    {
+      "label": "Map a \u00a716 confidence weight to its MatchType evidence tier.",
+      "file_type": "rationale",
+      "source_file": "ranking.py",
+      "source_location": "L187",
+      "community": 4,
+      "norm_label": "map a \u00a716 confidence weight to its matchtype evidence tier.",
+      "id": "dtclab_ranking_rationale_187"
+    },
+    {
+      "label": "Score each fault family observed in *payload* using \u00a716 weights + \u00a714.2 DNA gati",
+      "file_type": "rationale",
+      "source_file": "ranking.py",
+      "source_location": "L212",
+      "community": 4,
+      "norm_label": "score each fault family observed in *payload* using \u00a716 weights + \u00a714.2 dna gati",
+      "id": "dtclab_ranking_rationale_212"
+    },
+    {
+      "label": "Top-3 (family, confidence\u2208[0,1]) candidates for Bayesian fusion (FU-1).      Cal",
+      "file_type": "rationale",
+      "source_file": "ranking.py",
+      "source_location": "L335",
+      "community": 4,
+      "norm_label": "top-3 (family, confidence\u2208[0,1]) candidates for bayesian fusion (fu-1).      cal",
+      "id": "dtclab_ranking_rationale_335"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "__init__.py",
+      "source_location": "L1",
+      "community": 15,
+      "norm_label": "__init__.py",
+      "id": "init_py"
+    },
+    {
+      "label": "DTCLab package entry point (wiki: DTC_VOCABULARY.md).",
+      "file_type": "rationale",
+      "source_file": "__init__.py",
+      "source_location": "L1",
+      "community": 15,
+      "norm_label": "dtclab package entry point (wiki: dtc_vocabulary.md).",
+      "id": "dtclab_init_rationale_1"
+    },
+    {
+      "label": "mode_06_hex_dictionary.json",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L1",
+      "community": 0,
+      "norm_label": "mode_06_hex_dictionary.json",
+      "id": "config_mode_06_hex_dictionary_json"
+    },
+    {
+      "label": "_source_wiki",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L2",
+      "community": 0,
+      "norm_label": "_source_wiki",
+      "id": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "label": "_description",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L3",
+      "community": 0,
+      "norm_label": "_description",
+      "id": "config_mode_06_hex_dictionary_description"
+    },
+    {
+      "label": "01",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L4",
+      "community": 0,
+      "norm_label": "01",
+      "id": "config_mode_06_hex_dictionary_01"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L4",
+      "community": 0,
+      "norm_label": "name",
+      "id": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "label": "02",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L5",
+      "community": 0,
+      "norm_label": "02",
+      "id": "config_mode_06_hex_dictionary_02"
+    },
+    {
+      "label": "05",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L6",
+      "community": 0,
+      "norm_label": "05",
+      "id": "config_mode_06_hex_dictionary_05"
+    },
+    {
+      "label": "06",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L7",
+      "community": 0,
+      "norm_label": "06",
+      "id": "config_mode_06_hex_dictionary_06"
+    },
+    {
+      "label": "13",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L8",
+      "community": 0,
+      "norm_label": "13",
+      "id": "config_mode_06_hex_dictionary_13"
+    },
+    {
+      "label": "21",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L9",
+      "community": 0,
+      "norm_label": "21",
+      "id": "config_mode_06_hex_dictionary_21"
+    },
+    {
+      "label": "22",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L10",
+      "community": 0,
+      "norm_label": "22",
+      "id": "config_mode_06_hex_dictionary_22"
+    },
+    {
+      "label": "31",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L11",
+      "community": 0,
+      "norm_label": "31",
+      "id": "config_mode_06_hex_dictionary_31"
+    },
+    {
+      "label": "32",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L12",
+      "community": 0,
+      "norm_label": "32",
+      "id": "config_mode_06_hex_dictionary_32"
+    },
+    {
+      "label": "33",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L13",
+      "community": 0,
+      "norm_label": "33",
+      "id": "config_mode_06_hex_dictionary_33"
+    },
+    {
+      "label": "34",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L14",
+      "community": 0,
+      "norm_label": "34",
+      "id": "config_mode_06_hex_dictionary_34"
+    },
+    {
+      "label": "35",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L15",
+      "community": 0,
+      "norm_label": "35",
+      "id": "config_mode_06_hex_dictionary_35"
+    },
+    {
+      "label": "36",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L16",
+      "community": 0,
+      "norm_label": "36",
+      "id": "config_mode_06_hex_dictionary_36"
+    },
+    {
+      "label": "37",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L17",
+      "community": 0,
+      "norm_label": "37",
+      "id": "config_mode_06_hex_dictionary_37"
+    },
+    {
+      "label": "38",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L18",
+      "community": 0,
+      "norm_label": "38",
+      "id": "config_mode_06_hex_dictionary_38"
+    },
+    {
+      "label": "39",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L19",
+      "community": 0,
+      "norm_label": "39",
+      "id": "config_mode_06_hex_dictionary_39"
+    },
+    {
+      "label": "3A",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L20",
+      "community": 0,
+      "norm_label": "3a",
+      "id": "config_mode_06_hex_dictionary_3a"
+    },
+    {
+      "label": "3B",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L21",
+      "community": 0,
+      "norm_label": "3b",
+      "id": "config_mode_06_hex_dictionary_3b"
+    },
+    {
+      "label": "3C",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L22",
+      "community": 0,
+      "norm_label": "3c",
+      "id": "config_mode_06_hex_dictionary_3c"
+    },
+    {
+      "label": "3D",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L23",
+      "community": 0,
+      "norm_label": "3d",
+      "id": "config_mode_06_hex_dictionary_3d"
+    },
+    {
+      "label": "71",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L24",
+      "community": 0,
+      "norm_label": "71",
+      "id": "config_mode_06_hex_dictionary_71"
+    },
+    {
+      "label": "81",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L25",
+      "community": 0,
+      "norm_label": "81",
+      "id": "config_mode_06_hex_dictionary_81"
+    },
+    {
+      "label": "82",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L26",
+      "community": 0,
+      "norm_label": "82",
+      "id": "config_mode_06_hex_dictionary_82"
+    },
+    {
+      "label": "A1",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L27",
+      "community": 0,
+      "norm_label": "a1",
+      "id": "config_mode_06_hex_dictionary_a1"
+    },
+    {
+      "label": "A2",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L28",
+      "community": 0,
+      "norm_label": "a2",
+      "id": "config_mode_06_hex_dictionary_a2"
+    },
+    {
+      "label": "A3",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L29",
+      "community": 0,
+      "norm_label": "a3",
+      "id": "config_mode_06_hex_dictionary_a3"
+    },
+    {
+      "label": "A4",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L30",
+      "community": 0,
+      "norm_label": "a4",
+      "id": "config_mode_06_hex_dictionary_a4"
+    },
+    {
+      "label": "A5",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L31",
+      "community": 0,
+      "norm_label": "a5",
+      "id": "config_mode_06_hex_dictionary_a5"
+    },
+    {
+      "label": "A6",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L32",
+      "community": 0,
+      "norm_label": "a6",
+      "id": "config_mode_06_hex_dictionary_a6"
+    },
+    {
+      "label": "A7",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L33",
+      "community": 0,
+      "norm_label": "a7",
+      "id": "config_mode_06_hex_dictionary_a7"
+    },
+    {
+      "label": "A8",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L34",
+      "community": 0,
+      "norm_label": "a8",
+      "id": "config_mode_06_hex_dictionary_a8"
+    },
+    {
+      "label": "A9",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L35",
+      "community": 0,
+      "norm_label": "a9",
+      "id": "config_mode_06_hex_dictionary_a9"
+    },
+    {
+      "label": "E1",
+      "file_type": "code",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L36",
+      "community": 0,
+      "norm_label": "e1",
+      "id": "config_mode_06_hex_dictionary_e1"
+    },
+    {
+      "label": "data_fusion_sanitizer.py",
+      "file_type": "code",
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L1",
+      "community": 5,
+      "norm_label": "data_fusion_sanitizer.py",
+      "id": "core_data_fusion_sanitizer_py"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L49",
+      "community": 5,
+      "norm_label": ".__init__()",
+      "id": "core_data_fusion_sanitizer_datafusionsanitizer_init"
+    },
+    {
+      "label": ".sanitize()",
+      "file_type": "code",
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L57",
+      "community": 3,
+      "norm_label": ".sanitize()",
+      "id": "core_data_fusion_sanitizer_datafusionsanitizer_sanitize"
+    },
+    {
+      "label": "DataFusionSanitizer \u2014 public surface that wires the full DTCLab pipeline.  Inges",
+      "file_type": "rationale",
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L1",
+      "community": 5,
+      "norm_label": "datafusionsanitizer \u2014 public surface that wires the full dtclab pipeline.  inges",
+      "id": "core_data_fusion_sanitizer_rationale_1"
+    },
+    {
+      "label": "Wires the full DTCLab compilation pipeline into a single public surface.      Co",
+      "file_type": "rationale",
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L39",
+      "community": 5,
+      "norm_label": "wires the full dtclab compilation pipeline into a single public surface.      co",
+      "id": "core_data_fusion_sanitizer_rationale_39"
+    },
+    {
+      "label": "Compile raw OBD-II inputs into a validated ``DTCLabPayload``.          Args:",
+      "file_type": "rationale",
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L67",
+      "community": 3,
+      "norm_label": "compile raw obd-ii inputs into a validated ``dtclabpayload``.          args:",
+      "id": "core_data_fusion_sanitizer_rationale_67"
+    },
+    {
+      "label": "dtc_ingestion_gate.py",
+      "file_type": "code",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L1",
+      "community": 3,
+      "norm_label": "dtc_ingestion_gate.py",
+      "id": "core_dtc_ingestion_gate_py"
+    },
+    {
+      "label": "DTCFormatError",
+      "file_type": "code",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L17",
+      "community": 3,
+      "norm_label": "dtcformaterror",
+      "id": "core_dtc_ingestion_gate_dtcformaterror"
+    },
+    {
+      "label": "ValueError",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "community": 3,
+      "norm_label": "valueerror",
+      "id": "valueerror"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L24",
+      "community": 3,
+      "norm_label": ".__init__()",
+      "id": "core_dtc_ingestion_gate_dtcformaterror_init"
+    },
+    {
+      "label": "validate_dtc_list()",
+      "file_type": "code",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L32",
+      "community": 3,
+      "norm_label": "validate_dtc_list()",
+      "id": "core_dtc_ingestion_gate_validate_dtc_list"
+    },
+    {
+      "label": "DTC ingestion gate \u2014 validates raw DTC strings against the canonical regex.  Sou",
+      "file_type": "rationale",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L1",
+      "community": 3,
+      "norm_label": "dtc ingestion gate \u2014 validates raw dtc strings against the canonical regex.  sou",
+      "id": "core_dtc_ingestion_gate_rationale_1"
+    },
+    {
+      "label": "Raised when a DTC string does not match the canonical regex.      Source: DTC_VO",
+      "file_type": "rationale",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L18",
+      "community": 3,
+      "norm_label": "raised when a dtc string does not match the canonical regex.      source: dtc_vo",
+      "id": "core_dtc_ingestion_gate_rationale_18"
+    },
+    {
+      "label": "Validate every code in *codes* against the canonical DTC regex.      Args:",
+      "file_type": "rationale",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L33",
+      "community": 3,
+      "norm_label": "validate every code in *codes* against the canonical dtc regex.      args:",
+      "id": "core_dtc_ingestion_gate_rationale_33"
+    },
+    {
+      "label": "freeze_frame_extractor.py",
+      "file_type": "code",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L1",
+      "community": 1,
+      "norm_label": "freeze_frame_extractor.py",
+      "id": "core_freeze_frame_extractor_py"
+    },
+    {
+      "label": "FreezeFrameIncompleteError",
+      "file_type": "code",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L31",
+      "community": 1,
+      "norm_label": "freezeframeincompleteerror",
+      "id": "core_freeze_frame_extractor_freezeframeincompleteerror"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L34",
+      "community": 1,
+      "norm_label": ".__init__()",
+      "id": "core_freeze_frame_extractor_freezeframeincompleteerror_init"
+    },
+    {
+      "label": "extract_freeze_frame()",
+      "file_type": "code",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L41",
+      "community": 1,
+      "norm_label": "extract_freeze_frame()",
+      "id": "core_freeze_frame_extractor_extract_freeze_frame"
+    },
+    {
+      "label": "_derive_open_loop()",
+      "file_type": "code",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L116",
+      "community": 1,
+      "norm_label": "_derive_open_loop()",
+      "id": "core_freeze_frame_extractor_derive_open_loop"
+    },
+    {
+      "label": "_derive_load_high_low_rpm()",
+      "file_type": "code",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L129",
+      "community": 1,
+      "norm_label": "_derive_load_high_low_rpm()",
+      "id": "core_freeze_frame_extractor_derive_load_high_low_rpm"
+    },
+    {
+      "label": "_derive_iat_ect_bias()",
+      "file_type": "code",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L137",
+      "community": 1,
+      "norm_label": "_derive_iat_ect_bias()",
+      "id": "core_freeze_frame_extractor_derive_iat_ect_bias"
+    },
+    {
+      "label": "evaluate_coolant_dtc_context()",
+      "file_type": "code",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L147",
+      "community": 3,
+      "norm_label": "evaluate_coolant_dtc_context()",
+      "id": "core_freeze_frame_extractor_evaluate_coolant_dtc_context"
+    },
+    {
+      "label": "Freeze-frame extractor \u2014 validates Mode $02 data and derives symptom flags.  Sou",
+      "file_type": "rationale",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L1",
+      "community": 1,
+      "norm_label": "freeze-frame extractor \u2014 validates mode $02 data and derives symptom flags.  sou",
+      "id": "core_freeze_frame_extractor_rationale_1"
+    },
+    {
+      "label": "Raised when one or more mandatory freeze-frame PIDs are missing.",
+      "file_type": "rationale",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L32",
+      "community": 1,
+      "norm_label": "raised when one or more mandatory freeze-frame pids are missing.",
+      "id": "core_freeze_frame_extractor_rationale_32"
+    },
+    {
+      "label": "Validate mandatory PIDs and derive 6 symptom flags from *raw*.      Args:",
+      "file_type": "rationale",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L44",
+      "community": 1,
+      "norm_label": "validate mandatory pids and derive 6 symptom flags from *raw*.      args:",
+      "id": "core_freeze_frame_extractor_rationale_44"
+    },
+    {
+      "label": "ff_open_loop_at_fault: loop status is open-loop, open-loop drive, or     open-lo",
+      "file_type": "rationale",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L117",
+      "community": 1,
+      "norm_label": "ff_open_loop_at_fault: loop status is open-loop, open-loop drive, or     open-lo",
+      "id": "core_freeze_frame_extractor_rationale_117"
+    },
+    {
+      "label": "ff_load_high_at_low_rpm: high load at low RPM.      wiki: DTC_VOCABULARY.md \u00a712.",
+      "file_type": "rationale",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L130",
+      "community": 1,
+      "norm_label": "ff_load_high_at_low_rpm: high load at low rpm.      wiki: dtc_vocabulary.md \u00a712.",
+      "id": "core_freeze_frame_extractor_rationale_130"
+    },
+    {
+      "label": "ff_iat_ect_biased: IAT/ECT delta > 30 \u00b0C at zero RPM.      wiki: DTC_VOCABULARY.",
+      "file_type": "rationale",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L140",
+      "community": 1,
+      "norm_label": "ff_iat_ect_biased: iat/ect delta > 30 \u00b0c at zero rpm.      wiki: dtc_vocabulary.",
+      "id": "core_freeze_frame_extractor_rationale_140"
+    },
+    {
+      "label": "Evaluate cross-field DTC + fuel status for fluid intrusion signatures.      Retu",
+      "file_type": "rationale",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L151",
+      "community": 3,
+      "norm_label": "evaluate cross-field dtc + fuel status for fluid intrusion signatures.      retu",
+      "id": "core_freeze_frame_extractor_rationale_151"
+    },
+    {
+      "label": "historical_context_classifier.py",
+      "file_type": "code",
+      "source_file": "core/historical_context_classifier.py",
+      "source_location": "L1",
+      "community": 3,
+      "norm_label": "historical_context_classifier.py",
+      "id": "core_historical_context_classifier_py"
+    },
+    {
+      "label": "classify_historical_context()",
+      "file_type": "code",
+      "source_file": "core/historical_context_classifier.py",
+      "source_location": "L12",
+      "community": 3,
+      "norm_label": "classify_historical_context()",
+      "id": "core_historical_context_classifier_classify_historical_context"
+    },
+    {
+      "label": "Historical fault context classifier.  Derives a HistoricalFaultContext enum valu",
+      "file_type": "rationale",
+      "source_file": "core/historical_context_classifier.py",
+      "source_location": "L1",
+      "community": 3,
+      "norm_label": "historical fault context classifier.  derives a historicalfaultcontext enum valu",
+      "id": "core_historical_context_classifier_rationale_1"
+    },
+    {
+      "label": "Classify the historical context at the moment a DTC was stored.      Priority or",
+      "file_type": "rationale",
+      "source_file": "core/historical_context_classifier.py",
+      "source_location": "L17",
+      "community": 3,
+      "norm_label": "classify the historical context at the moment a dtc was stored.      priority or",
+      "id": "core_historical_context_classifier_rationale_17"
+    },
+    {
+      "label": "mode06_evaluator.py",
+      "file_type": "code",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L1",
+      "community": 7,
+      "norm_label": "mode06_evaluator.py",
+      "id": "core_mode06_evaluator_py"
+    },
+    {
+      "label": "classify_margin()",
+      "file_type": "code",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L23",
+      "community": 7,
+      "norm_label": "classify_margin()",
+      "id": "core_mode06_evaluator_classify_margin"
+    },
+    {
+      "label": "_lookup_component()",
+      "file_type": "code",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L45",
+      "community": 7,
+      "norm_label": "_lookup_component()",
+      "id": "core_mode06_evaluator_lookup_component"
+    },
+    {
+      "label": "_load_dictionary()",
+      "file_type": "code",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L57",
+      "community": 7,
+      "norm_label": "_load_dictionary()",
+      "id": "core_mode06_evaluator_load_dictionary"
+    },
+    {
+      "label": "evaluate_monitor()",
+      "file_type": "code",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L67",
+      "community": 7,
+      "norm_label": "evaluate_monitor()",
+      "id": "core_mode06_evaluator_evaluate_monitor"
+    },
+    {
+      "label": "Mode $06 on-board monitor evaluator \u2014 margin tri-state classifier.  Source: DTC_",
+      "file_type": "rationale",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L1",
+      "community": 7,
+      "norm_label": "mode $06 on-board monitor evaluator \u2014 margin tri-state classifier.  source: dtc_",
+      "id": "core_mode06_evaluator_rationale_1"
+    },
+    {
+      "label": "Classify a Mode $06 margin percentage into its tri-state.      Source: DTC_VOCAB",
+      "file_type": "rationale",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L24",
+      "community": 7,
+      "norm_label": "classify a mode $06 margin percentage into its tri-state.      source: dtc_vocab",
+      "id": "core_mode06_evaluator_rationale_24"
+    },
+    {
+      "label": "Return the target component name for *mid_hex* from the dictionary.      Returns",
+      "file_type": "rationale",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L46",
+      "community": 7,
+      "norm_label": "return the target component name for *mid_hex* from the dictionary.      returns",
+      "id": "core_mode06_evaluator_rationale_46"
+    },
+    {
+      "label": "Return the parsed Mode $06 hex dictionary at *path*.      Cached per distinct *p",
+      "file_type": "rationale",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L58",
+      "community": 7,
+      "norm_label": "return the parsed mode $06 hex dictionary at *path*.      cached per distinct *p",
+      "id": "core_mode06_evaluator_rationale_58"
+    },
+    {
+      "label": "Evaluate a single Mode $06 monitor result.      Args:         mid_key: The MID/T",
+      "file_type": "rationale",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L72",
+      "community": 7,
+      "norm_label": "evaluate a single mode $06 monitor result.      args:         mid_key: the mid/t",
+      "id": "core_mode06_evaluator_rationale_72"
+    },
+    {
+      "label": "routing_tag_mapper.py",
+      "file_type": "code",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L1",
+      "community": 5,
+      "norm_label": "routing_tag_mapper.py",
+      "id": "core_routing_tag_mapper_py"
+    },
+    {
+      "label": "_RoutingRule",
+      "file_type": "code",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L27",
+      "community": 5,
+      "norm_label": "_routingrule",
+      "id": "core_routing_tag_mapper_routingrule"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L42",
+      "community": 5,
+      "norm_label": ".__init__()",
+      "id": "core_routing_tag_mapper_routingtagmapper_init"
+    },
+    {
+      "label": ".map()",
+      "file_type": "code",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L52",
+      "community": 11,
+      "norm_label": ".map()",
+      "id": "core_routing_tag_mapper_routingtagmapper_map"
+    },
+    {
+      "label": "._load_map()",
+      "file_type": "code",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L78",
+      "community": 5,
+      "norm_label": "._load_map()",
+      "id": "core_routing_tag_mapper_routingtagmapper_load_map"
+    },
+    {
+      "label": "._gate_allows()",
+      "file_type": "code",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L93",
+      "community": 11,
+      "norm_label": "._gate_allows()",
+      "id": "core_routing_tag_mapper_routingtagmapper_gate_allows"
+    },
+    {
+      "label": "._check_high_confidence_gate()",
+      "file_type": "code",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L122",
+      "community": 11,
+      "norm_label": "._check_high_confidence_gate()",
+      "id": "core_routing_tag_mapper_routingtagmapper_check_high_confidence_gate"
+    },
+    {
+      "label": "_matches_any()",
+      "file_type": "code",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L143",
+      "community": 11,
+      "norm_label": "_matches_any()",
+      "id": "core_routing_tag_mapper_matches_any"
+    },
+    {
+      "label": "DNA-gated routing-tag engine.  map() \u2014 pure DTC-to-tag function. No external inp",
+      "file_type": "rationale",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L1",
+      "community": 5,
+      "norm_label": "dna-gated routing-tag engine.  map() \u2014 pure dtc-to-tag function. no external inp",
+      "id": "core_routing_tag_mapper_rationale_1"
+    },
+    {
+      "label": "Single DTC-pattern \u2192 tag mapping with optional DNA gate.",
+      "file_type": "rationale",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L28",
+      "community": 5,
+      "norm_label": "single dtc-pattern \u2192 tag mapping with optional dna gate.",
+      "id": "core_routing_tag_mapper_rationale_28"
+    },
+    {
+      "label": "Maps confirmed DTC codes to DTCRoutingTag values with DNA-gate filtering.      C",
+      "file_type": "rationale",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L36",
+      "community": 5,
+      "norm_label": "maps confirmed dtc codes to dtcroutingtag values with dna-gate filtering.      c",
+      "id": "core_routing_tag_mapper_rationale_36"
+    },
+    {
+      "label": "Return the deduplicated routing tags for *confirmed_dtcs*.          Args:",
+      "file_type": "rationale",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L53",
+      "community": 11,
+      "norm_label": "return the deduplicated routing tags for *confirmed_dtcs*.          args:",
+      "id": "core_routing_tag_mapper_rationale_53"
+    },
+    {
+      "label": "Return True if *tag* is allowed through its DNA gate.          No gate \u2192 always",
+      "file_type": "rationale",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L94",
+      "community": 11,
+      "norm_label": "return true if *tag* is allowed through its dna gate.          no gate \u2192 always",
+      "id": "core_routing_tag_mapper_rationale_94"
+    },
+    {
+      "label": "Evaluate the strict hardware-presence check for HIGH confidence.",
+      "file_type": "rationale",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L123",
+      "community": 11,
+      "norm_label": "evaluate the strict hardware-presence check for high confidence.",
+      "id": "core_routing_tag_mapper_rationale_123"
+    },
+    {
+      "label": "True if *dtc* matches at least one compiled regex in *patterns*.",
+      "file_type": "rationale",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L144",
+      "community": 11,
+      "norm_label": "true if *dtc* matches at least one compiled regex in *patterns*.",
+      "id": "core_routing_tag_mapper_rationale_144"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "core/__init__.py",
+      "source_location": "L1",
+      "community": 14,
+      "norm_label": "__init__.py",
+      "id": "core_init_py"
+    },
+    {
+      "label": "DTCLab core utilities (wiki: DTC_VOCABULARY.md).",
+      "file_type": "rationale",
+      "source_file": "core/__init__.py",
+      "source_location": "L1",
+      "community": 14,
+      "norm_label": "dtclab core utilities (wiki: dtc_vocabulary.md).",
+      "id": "core_init_rationale_1"
+    },
+    {
+      "label": "dna_view.py",
+      "file_type": "code",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L1",
+      "community": 6,
+      "norm_label": "dna_view.py",
+      "id": "schemas_dna_view_py"
+    },
+    {
+      "label": "EuroEmissionCategory",
+      "file_type": "code",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L19",
+      "community": 6,
+      "norm_label": "euroemissioncategory",
+      "id": "schemas_dna_view_euroemissioncategory"
+    },
+    {
+      "label": "AirMeteringStrategy",
+      "file_type": "code",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L35",
+      "community": 6,
+      "norm_label": "airmeteringstrategy",
+      "id": "schemas_dna_view_airmeteringstrategy"
+    },
+    {
+      "label": "ResolvedHorizon",
+      "file_type": "code",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L46",
+      "community": 6,
+      "norm_label": "resolvedhorizon",
+      "id": "schemas_dna_view_resolvedhorizon"
+    },
+    {
+      "label": "VinConfidence",
+      "file_type": "code",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L57",
+      "community": 6,
+      "norm_label": "vinconfidence",
+      "id": "schemas_dna_view_vinconfidence"
+    },
+    {
+      "label": "DtcEmissionsView",
+      "file_type": "code",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L73",
+      "community": 8,
+      "norm_label": "dtcemissionsview",
+      "id": "schemas_dna_view_dtcemissionsview"
+    },
+    {
+      "label": "BaseModel",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "community": 8,
+      "norm_label": "basemodel",
+      "id": "basemodel"
+    },
+    {
+      "label": "DtcLabDnaView",
+      "file_type": "code",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L84",
+      "community": 9,
+      "norm_label": "dtclabdnaview",
+      "id": "schemas_dna_view_dtclabdnaview"
+    },
+    {
+      "label": "DTCLab-owned DNA view schema \u2014 typed replacement for the loose dict form.  Every",
+      "file_type": "rationale",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L1",
+      "community": 6,
+      "norm_label": "dtclab-owned dna view schema \u2014 typed replacement for the loose dict form.  every",
+      "id": "schemas_dna_view_rationale_1"
+    },
+    {
+      "label": "Euro emissions standard tier for the identified vehicle.      Source: DTC_VOCABU",
+      "file_type": "rationale",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L20",
+      "community": 6,
+      "norm_label": "euro emissions standard tier for the identified vehicle.      source: dtc_vocabu",
+      "id": "schemas_dna_view_rationale_20"
+    },
+    {
+      "label": "Primary air-metering strategy of the identified vehicle.      Source: DTC_VOCABU",
+      "file_type": "rationale",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L36",
+      "community": 6,
+      "norm_label": "primary air-metering strategy of the identified vehicle.      source: dtc_vocabu",
+      "id": "schemas_dna_view_rationale_36"
+    },
+    {
+      "label": "Vehicle technology horizon resolved from VIN decoding.      Source: DTC_VOCABULA",
+      "file_type": "rationale",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L47",
+      "community": 6,
+      "norm_label": "vehicle technology horizon resolved from vin decoding.      source: dtc_vocabula",
+      "id": "schemas_dna_view_rationale_47"
+    },
+    {
+      "label": "Confidence tier of the VIN-to-DNA resolution.      Source: DTC_VOCABULARY.md \u00a714",
+      "file_type": "rationale",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L58",
+      "community": 6,
+      "norm_label": "confidence tier of the vin-to-dna resolution.      source: dtc_vocabulary.md \u00a714",
+      "id": "schemas_dna_view_rationale_58"
+    },
+    {
+      "label": "Emissions-equipment flags that gate DNA-screened routing tags.      Source: DTC_",
+      "file_type": "rationale",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L74",
+      "community": 8,
+      "norm_label": "emissions-equipment flags that gate dna-screened routing tags.      source: dtc_",
+      "id": "schemas_dna_view_rationale_74"
+    },
+    {
+      "label": "Slim VehicleDNA projection consumed by DTCLab.      Source: DTC_VOCABULARY.md \u00a71",
+      "file_type": "rationale",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L85",
+      "community": 9,
+      "norm_label": "slim vehicledna projection consumed by dtclab.      source: dtc_vocabulary.md \u00a71",
+      "id": "schemas_dna_view_rationale_85"
+    },
+    {
+      "label": "freeze_frame.py",
+      "file_type": "code",
+      "source_file": "schemas/freeze_frame.py",
+      "source_location": "L1",
+      "community": 1,
+      "norm_label": "freeze_frame.py",
+      "id": "schemas_freeze_frame_py"
+    },
+    {
+      "label": "FreezeFrameRecord",
+      "file_type": "code",
+      "source_file": "schemas/freeze_frame.py",
+      "source_location": "L14",
+      "community": 1,
+      "norm_label": "freezeframerecord",
+      "id": "schemas_freeze_frame_freezeframerecord"
+    },
+    {
+      "label": "FreezeFrameRecord \u2014 Mode $02 snapshot at fault confirmation.  Every field name i",
+      "file_type": "rationale",
+      "source_file": "schemas/freeze_frame.py",
+      "source_location": "L1",
+      "community": 1,
+      "norm_label": "freezeframerecord \u2014 mode $02 snapshot at fault confirmation.  every field name i",
+      "id": "schemas_freeze_frame_rationale_1"
+    },
+    {
+      "label": "Mode $02 freeze-frame snapshot captured at DTC confirmation.      Source: DTC_VO",
+      "file_type": "rationale",
+      "source_file": "schemas/freeze_frame.py",
+      "source_location": "L15",
+      "community": 1,
+      "norm_label": "mode $02 freeze-frame snapshot captured at dtc confirmation.      source: dtc_vo",
+      "id": "schemas_freeze_frame_rationale_15"
+    },
+    {
+      "label": "mode06_result.py",
+      "file_type": "code",
+      "source_file": "schemas/mode06_result.py",
+      "source_location": "L1",
+      "community": 8,
+      "norm_label": "mode06_result.py",
+      "id": "schemas_mode06_result_py"
+    },
+    {
+      "label": "Mode06MonitorResult",
+      "file_type": "code",
+      "source_file": "schemas/mode06_result.py",
+      "source_location": "L14",
+      "community": 8,
+      "norm_label": "mode06monitorresult",
+      "id": "schemas_mode06_result_mode06monitorresult"
+    },
+    {
+      "label": "Mode06MonitorResult \u2014 Mode $06 on-board monitor test result.  Every field source",
+      "file_type": "rationale",
+      "source_file": "schemas/mode06_result.py",
+      "source_location": "L1",
+      "community": 8,
+      "norm_label": "mode06monitorresult \u2014 mode $06 on-board monitor test result.  every field source",
+      "id": "schemas_mode06_result_rationale_1"
+    },
+    {
+      "label": "Single Mode $06 monitor test result.      Source: DTC_VOCABULARY.md \u00a713.",
+      "file_type": "rationale",
+      "source_file": "schemas/mode06_result.py",
+      "source_location": "L15",
+      "community": 8,
+      "norm_label": "single mode $06 monitor test result.      source: dtc_vocabulary.md \u00a713.",
+      "id": "schemas_mode06_result_rationale_15"
+    },
+    {
+      "label": "payload.py",
+      "file_type": "code",
+      "source_file": "schemas/payload.py",
+      "source_location": "L1",
+      "community": 12,
+      "norm_label": "payload.py",
+      "id": "schemas_payload_py"
+    },
+    {
+      "label": "DTCLabPayload",
+      "file_type": "code",
+      "source_file": "schemas/payload.py",
+      "source_location": "L32",
+      "community": 8,
+      "norm_label": "dtclabpayload",
+      "id": "schemas_payload_dtclabpayload"
+    },
+    {
+      "label": "_validate_dtc_list()",
+      "file_type": "code",
+      "source_file": "schemas/payload.py",
+      "source_location": "L73",
+      "community": 12,
+      "norm_label": "_validate_dtc_list()",
+      "id": "schemas_payload_validate_dtc_list"
+    },
+    {
+      "label": "DTCLabPayload \u2014 top-level JSON contract emitted to COMLab.  Every field and cons",
+      "file_type": "rationale",
+      "source_file": "schemas/payload.py",
+      "source_location": "L1",
+      "community": 12,
+      "norm_label": "dtclabpayload \u2014 top-level json contract emitted to comlab.  every field and cons",
+      "id": "schemas_payload_rationale_1"
+    },
+    {
+      "label": "Top-level DTCLab output \u2014 the single JSON payload at the COMLab boundary.      S",
+      "file_type": "rationale",
+      "source_file": "schemas/payload.py",
+      "source_location": "L33",
+      "community": 8,
+      "norm_label": "top-level dtclab output \u2014 the single json payload at the comlab boundary.      s",
+      "id": "schemas_payload_rationale_33"
+    },
+    {
+      "label": "Validate routing tags.",
+      "file_type": "rationale",
+      "source_file": "schemas/payload.py",
+      "source_location": "L88",
+      "community": 12,
+      "norm_label": "validate routing tags.",
+      "id": "schemas_payload_rationale_88"
+    },
+    {
+      "label": "Validate monitor keys.",
+      "file_type": "rationale",
+      "source_file": "schemas/payload.py",
+      "source_location": "L103",
+      "community": 12,
+      "norm_label": "validate monitor keys.",
+      "id": "schemas_payload_rationale_103"
+    },
+    {
+      "label": "vocabulary.py",
+      "file_type": "code",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L1",
+      "community": 10,
+      "norm_label": "vocabulary.py",
+      "id": "schemas_vocabulary_py"
+    },
+    {
+      "label": "DTCRoutingTag",
+      "file_type": "code",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L16",
+      "community": 5,
+      "norm_label": "dtcroutingtag",
+      "id": "schemas_vocabulary_dtcroutingtag"
+    },
+    {
+      "label": "DTCSeverityClass",
+      "file_type": "code",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L42",
+      "community": 10,
+      "norm_label": "dtcseverityclass",
+      "id": "schemas_vocabulary_dtcseverityclass"
+    },
+    {
+      "label": "DTCState",
+      "file_type": "code",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L54",
+      "community": 10,
+      "norm_label": "dtcstate",
+      "id": "schemas_vocabulary_dtcstate"
+    },
+    {
+      "label": "Mode06MonitorState",
+      "file_type": "code",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L69",
+      "community": 9,
+      "norm_label": "mode06monitorstate",
+      "id": "schemas_vocabulary_mode06monitorstate"
+    },
+    {
+      "label": "FuelSystemStatus",
+      "file_type": "code",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L80",
+      "community": 1,
+      "norm_label": "fuelsystemstatus",
+      "id": "schemas_vocabulary_fuelsystemstatus"
+    },
+    {
+      "label": "HistoricalFaultContext",
+      "file_type": "code",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L92",
+      "community": 10,
+      "norm_label": "historicalfaultcontext",
+      "id": "schemas_vocabulary_historicalfaultcontext"
+    },
+    {
+      "label": "DTCLab canonical vocabulary \u2014 StrEnums, DTC_REGEX, and confidence weights.  All",
+      "file_type": "rationale",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L1",
+      "community": 10,
+      "norm_label": "dtclab canonical vocabulary \u2014 strenums, dtc_regex, and confidence weights.  all",
+      "id": "schemas_vocabulary_rationale_1"
+    },
+    {
+      "label": "Fault-family routing hint derived from confirmed DTCs.      Source: DTC_VOCABULA",
+      "file_type": "rationale",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L17",
+      "community": 5,
+      "norm_label": "fault-family routing hint derived from confirmed dtcs.      source: dtc_vocabula",
+      "id": "schemas_vocabulary_rationale_17"
+    },
+    {
+      "label": "DTC severity tier per SAE J2012 \u00a76.      Source: DTC_VOCABULARY.md \u00a75.",
+      "file_type": "rationale",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L43",
+      "community": 10,
+      "norm_label": "dtc severity tier per sae j2012 \u00a76.      source: dtc_vocabulary.md \u00a75.",
+      "id": "schemas_vocabulary_rationale_43"
+    },
+    {
+      "label": "OBD-II DTC confirmation state \u2014 reserved contract surface.      Not consumed by",
+      "file_type": "rationale",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L55",
+      "community": 10,
+      "norm_label": "obd-ii dtc confirmation state \u2014 reserved contract surface.      not consumed by",
+      "id": "schemas_vocabulary_rationale_55"
+    },
+    {
+      "label": "Mode $06 on-board monitor test result tri-state.      Source: DTC_VOCABULARY.md",
+      "file_type": "rationale",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L70",
+      "community": 9,
+      "norm_label": "mode $06 on-board monitor test result tri-state.      source: dtc_vocabulary.md",
+      "id": "schemas_vocabulary_rationale_70"
+    },
+    {
+      "label": "Fuel system loop status at freeze-frame capture.      Source: DTC_VOCABULARY.md",
+      "file_type": "rationale",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L81",
+      "community": 1,
+      "norm_label": "fuel system loop status at freeze-frame capture.      source: dtc_vocabulary.md",
+      "id": "schemas_vocabulary_rationale_81"
+    },
+    {
+      "label": "Load / thermal context at the moment the DTC was stored.      Source: DTC_VOCABU",
+      "file_type": "rationale",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L93",
+      "community": 10,
+      "norm_label": "load / thermal context at the moment the dtc was stored.      source: dtc_vocabu",
+      "id": "schemas_vocabulary_rationale_93"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "schemas/__init__.py",
+      "source_location": "L1",
+      "community": 16,
+      "norm_label": "__init__.py",
+      "id": "schemas_init_py"
+    },
+    {
+      "label": "DTCLab schema contracts (wiki: DTC_VOCABULARY.md).",
+      "file_type": "rationale",
+      "source_file": "schemas/__init__.py",
+      "source_location": "L1",
+      "community": 16,
+      "norm_label": "dtclab schema contracts (wiki: dtc_vocabulary.md).",
+      "id": "schemas_init_rationale_1"
+    },
+    {
+      "label": "DTC to Routing Tag Map",
+      "file_type": "code",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "dtc to routing tag map",
+      "id": "routing_tag_map_yaml"
+    },
+    {
+      "label": "VVT History",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "vvt history",
+      "id": "routing_tag_map_vvt_history"
+    },
+    {
+      "label": "Lean History",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "lean history",
+      "id": "routing_tag_map_lean_history"
+    },
+    {
+      "label": "Thermal History",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "thermal history",
+      "id": "routing_tag_map_thermal_history"
+    },
+    {
+      "label": "O2 History",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "o2 history",
+      "id": "routing_tag_map_o2_history"
+    },
+    {
+      "label": "Rich History",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "rich history",
+      "id": "routing_tag_map_rich_history"
+    },
+    {
+      "label": "Injector History",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "injector history",
+      "id": "routing_tag_map_injector_history"
+    },
+    {
+      "label": "Boost History",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "boost history",
+      "id": "routing_tag_map_boost_history"
+    },
+    {
+      "label": "Misfire History",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "misfire history",
+      "id": "routing_tag_map_misfire_history"
+    },
+    {
+      "label": "Knock History",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "knock history",
+      "id": "routing_tag_map_knock_history"
+    },
+    {
+      "label": "EGR History",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "egr history",
+      "id": "routing_tag_map_egr_history"
+    },
+    {
+      "label": "Catalyst History",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "catalyst history",
+      "id": "routing_tag_map_catalyst_history"
+    },
+    {
+      "label": "EVAP History",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "evap history",
+      "id": "routing_tag_map_evap_history"
+    },
+    {
+      "label": "Idle Control History",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "idle control history",
+      "id": "routing_tag_map_idle_control_history"
+    },
+    {
+      "label": "ECU Internal History",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "ecu internal history",
+      "id": "routing_tag_map_ecu_internal_history"
+    },
+    {
+      "label": "DTC Vocabulary Document",
+      "file_type": "document",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "dtc vocabulary document",
+      "id": "dtc_vocabulary_md"
+    },
+    {
+      "label": "Has Catalyst",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "has catalyst",
+      "id": "routing_tag_map_has_catalyst"
+    },
+    {
+      "label": "EGR Equipped",
+      "file_type": "concept",
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "egr equipped",
+      "id": "routing_tag_map_egr_equipped"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "family_map.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "family_map_py",
+      "target": "dtclab_family_map_families_for_tags"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "family_map.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_family_map_rationale_1",
+      "target": "family_map_py"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "family_map.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_family_map_rationale_84",
+      "target": "dtclab_family_map_families_for_tags"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ranking_py",
+      "target": "dtclab_ranking_matchtype"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ranking_py",
+      "target": "dtclab_ranking_candidatescore"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L89",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ranking_py",
+      "target": "dtclab_ranking_load_routing_rules"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ranking_py",
+      "target": "dtclab_ranking_build_family_index"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L153",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ranking_py",
+      "target": "dtclab_ranking_dna_factor_for_family"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L186",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ranking_py",
+      "target": "dtclab_ranking_match_type_for_weight"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L207",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ranking_py",
+      "target": "dtclab_ranking_rank_candidates"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L330",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "ranking_py",
+      "target": "dtclab_ranking_classify_top3"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_rationale_1",
+      "target": "ranking_py"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_matchtype",
+      "target": "strenum"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_rationale_43",
+      "target": "dtclab_ranking_matchtype"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "ranking.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "dtclab_ranking_matchtype",
+      "target": "schemas_dna_view_dtclabdnaview"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "ranking.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "dtclab_ranking_matchtype",
+      "target": "schemas_dna_view_vinconfidence"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "ranking.py",
+      "source_location": "L21",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "dtclab_ranking_matchtype",
+      "target": "schemas_payload_dtclabpayload"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "ranking.py",
+      "source_location": "L22",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "dtclab_ranking_matchtype",
+      "target": "schemas_vocabulary_dtcroutingtag"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "ranking.py",
+      "source_location": "L22",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "dtclab_ranking_matchtype",
+      "target": "schemas_vocabulary_mode06monitorstate"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_euroemissioncategory",
+      "target": "strenum"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_airmeteringstrategy",
+      "target": "strenum"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_resolvedhorizon",
+      "target": "strenum"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_vinconfidence",
+      "target": "strenum"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_dtcroutingtag",
+      "target": "strenum"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_dtcseverityclass",
+      "target": "strenum"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_dtcstate",
+      "target": "strenum"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_mode06monitorstate",
+      "target": "strenum"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_fuelsystemstatus",
+      "target": "strenum"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L92",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_historicalfaultcontext",
+      "target": "strenum"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L313",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_rank_candidates",
+      "target": "dtclab_ranking_candidatescore"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_rationale_61",
+      "target": "dtclab_ranking_candidatescore"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "ranking.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "dtclab_ranking_candidatescore",
+      "target": "schemas_dna_view_dtclabdnaview"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "ranking.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "dtclab_ranking_candidatescore",
+      "target": "schemas_dna_view_vinconfidence"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "ranking.py",
+      "source_location": "L21",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "dtclab_ranking_candidatescore",
+      "target": "schemas_payload_dtclabpayload"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "ranking.py",
+      "source_location": "L22",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "dtclab_ranking_candidatescore",
+      "target": "schemas_vocabulary_dtcroutingtag"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "ranking.py",
+      "source_location": "L22",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "dtclab_ranking_candidatescore",
+      "target": "schemas_vocabulary_mode06monitorstate"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L133",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_build_family_index",
+      "target": "dtclab_ranking_load_routing_rules"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L232",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_rank_candidates",
+      "target": "dtclab_ranking_load_routing_rules"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_rationale_90",
+      "target": "dtclab_ranking_load_routing_rules"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "ranking.py",
+      "source_location": "L104",
+      "weight": 1.0,
+      "source": "dtclab_ranking_load_routing_rules",
+      "target": "schemas_vocabulary_dtcroutingtag"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L233",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_rank_candidates",
+      "target": "dtclab_ranking_build_family_index"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L123",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_rationale_123",
+      "target": "dtclab_ranking_build_family_index"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L307",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_rank_candidates",
+      "target": "dtclab_ranking_dna_factor_for_family"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L158",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_rationale_158",
+      "target": "dtclab_ranking_dna_factor_for_family"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L263",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_rank_candidates",
+      "target": "dtclab_ranking_match_type_for_weight"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L187",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_rationale_187",
+      "target": "dtclab_ranking_match_type_for_weight"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L356",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_classify_top3",
+      "target": "dtclab_ranking_rank_candidates"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L212",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_rationale_212",
+      "target": "dtclab_ranking_rank_candidates"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "ranking.py",
+      "source_location": "L335",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_ranking_rationale_335",
+      "target": "dtclab_ranking_classify_top3"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dtclab_init_rationale_1",
+      "target": "init_py"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_description"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_01"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_02"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_05"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_06"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_13"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_21"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_22"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_31"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_32"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_33"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_34"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_35"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_36"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_37"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_38"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_39"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_3a"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_3b"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_3c"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_3d"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_71"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_81"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_82"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_a1"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_a2"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_a3"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L30",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_a4"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_a5"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L32",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_a6"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_a7"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L34",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_a8"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_a9"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_json",
+      "target": "config_mode_06_hex_dictionary_e1"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_01",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_02",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_05",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_06",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_13",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_21",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_22",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_31",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_32",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_33",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_34",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_35",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_36",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_37",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_38",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_39",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_3a",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_3b",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_3c",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_3d",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_71",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_81",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_82",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a1",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a2",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a3",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L30",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a4",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a5",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L32",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a6",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a7",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L34",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a8",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a9",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_e1",
+      "target": "config_mode_06_hex_dictionary_source_wiki"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_01",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_02",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_05",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_06",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_13",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_21",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_22",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_31",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_32",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_33",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_34",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_35",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_36",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_37",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_38",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_39",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_3a",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_3b",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_3c",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_3d",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_71",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_81",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_82",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a1",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a2",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a3",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L30",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a4",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a5",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L32",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a6",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a7",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L34",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a8",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_a9",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "config/mode_06_hex_dictionary.json",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "config_mode_06_hex_dictionary_e1",
+      "target": "config_mode_06_hex_dictionary_01_name"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_data_fusion_sanitizer_py",
+      "target": "core_data_fusion_sanitizer_datafusionsanitizer_init"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_data_fusion_sanitizer_py",
+      "target": "core_data_fusion_sanitizer_datafusionsanitizer_sanitize"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_data_fusion_sanitizer_rationale_1",
+      "target": "core_data_fusion_sanitizer_py"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_data_fusion_sanitizer_rationale_39",
+      "target": "core_data_fusion_sanitizer_py"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L24",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "core_data_fusion_sanitizer_py",
+      "target": "core_routing_tag_mapper_py"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L25",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "core_data_fusion_sanitizer_py",
+      "target": "schemas_dna_view_dtclabdnaview"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L26",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "core_data_fusion_sanitizer_py",
+      "target": "schemas_payload_dtclabpayload"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L27",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "core_data_fusion_sanitizer_py",
+      "target": "schemas_vocabulary_dtcroutingtag"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "core_data_fusion_sanitizer_datafusionsanitizer_init",
+      "target": "core_routing_tag_mapper_py"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_data_fusion_sanitizer_rationale_67",
+      "target": "core_data_fusion_sanitizer_datafusionsanitizer_sanitize"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "core_data_fusion_sanitizer_datafusionsanitizer_sanitize",
+      "target": "core_dtc_ingestion_gate_validate_dtc_list"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L95",
+      "weight": 1.0,
+      "source": "core_data_fusion_sanitizer_datafusionsanitizer_sanitize",
+      "target": "core_freeze_frame_extractor_extract_freeze_frame"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L98",
+      "weight": 1.0,
+      "source": "core_data_fusion_sanitizer_datafusionsanitizer_sanitize",
+      "target": "core_historical_context_classifier_classify_historical_context"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "core_data_fusion_sanitizer_datafusionsanitizer_sanitize",
+      "target": "core_mode06_evaluator_evaluate_monitor"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L118",
+      "weight": 1.0,
+      "source": "core_data_fusion_sanitizer_datafusionsanitizer_sanitize",
+      "target": "core_freeze_frame_extractor_evaluate_coolant_dtc_context"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "core/data_fusion_sanitizer.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "core_data_fusion_sanitizer_datafusionsanitizer_sanitize",
+      "target": "schemas_vocabulary_dtcroutingtag"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_dtc_ingestion_gate_py",
+      "target": "core_dtc_ingestion_gate_dtcformaterror"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_dtc_ingestion_gate_py",
+      "target": "core_dtc_ingestion_gate_validate_dtc_list"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_dtc_ingestion_gate_rationale_1",
+      "target": "core_dtc_ingestion_gate_py"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_dtc_ingestion_gate_dtcformaterror",
+      "target": "valueerror"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_dtc_ingestion_gate_dtcformaterror",
+      "target": "core_dtc_ingestion_gate_dtcformaterror_init"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_dtc_ingestion_gate_validate_dtc_list",
+      "target": "core_dtc_ingestion_gate_dtcformaterror"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_dtc_ingestion_gate_rationale_18",
+      "target": "core_dtc_ingestion_gate_dtcformaterror"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_dtc_ingestion_gate_validate_dtc_list",
+      "target": "valueerror"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_freezeframeincompleteerror",
+      "target": "valueerror"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/dtc_ingestion_gate.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_dtc_ingestion_gate_rationale_33",
+      "target": "core_dtc_ingestion_gate_validate_dtc_list"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_py",
+      "target": "core_freeze_frame_extractor_freezeframeincompleteerror"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_py",
+      "target": "core_freeze_frame_extractor_extract_freeze_frame"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L116",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_py",
+      "target": "core_freeze_frame_extractor_derive_open_loop"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L129",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_py",
+      "target": "core_freeze_frame_extractor_derive_load_high_low_rpm"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L137",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_py",
+      "target": "core_freeze_frame_extractor_derive_iat_ect_bias"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L147",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_py",
+      "target": "core_freeze_frame_extractor_evaluate_coolant_dtc_context"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_rationale_1",
+      "target": "core_freeze_frame_extractor_py"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_freezeframeincompleteerror",
+      "target": "core_freeze_frame_extractor_freezeframeincompleteerror_init"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_extract_freeze_frame",
+      "target": "core_freeze_frame_extractor_freezeframeincompleteerror"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_rationale_32",
+      "target": "core_freeze_frame_extractor_freezeframeincompleteerror"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "core_freeze_frame_extractor_freezeframeincompleteerror",
+      "target": "schemas_freeze_frame_freezeframerecord"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "core_freeze_frame_extractor_freezeframeincompleteerror",
+      "target": "schemas_vocabulary_fuelsystemstatus"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L92",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_extract_freeze_frame",
+      "target": "core_freeze_frame_extractor_derive_open_loop"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L95",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_extract_freeze_frame",
+      "target": "core_freeze_frame_extractor_derive_load_high_low_rpm"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L99",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_extract_freeze_frame",
+      "target": "core_freeze_frame_extractor_derive_iat_ect_bias"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_rationale_44",
+      "target": "core_freeze_frame_extractor_extract_freeze_frame"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "core_freeze_frame_extractor_extract_freeze_frame",
+      "target": "schemas_freeze_frame_freezeframerecord"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L117",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_rationale_117",
+      "target": "core_freeze_frame_extractor_derive_open_loop"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L130",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_rationale_130",
+      "target": "core_freeze_frame_extractor_derive_load_high_low_rpm"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L140",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_rationale_140",
+      "target": "core_freeze_frame_extractor_derive_iat_ect_bias"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/freeze_frame_extractor.py",
+      "source_location": "L151",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_freeze_frame_extractor_rationale_151",
+      "target": "core_freeze_frame_extractor_evaluate_coolant_dtc_context"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/historical_context_classifier.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_historical_context_classifier_py",
+      "target": "core_historical_context_classifier_classify_historical_context"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/historical_context_classifier.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_historical_context_classifier_rationale_1",
+      "target": "core_historical_context_classifier_py"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/historical_context_classifier.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_historical_context_classifier_rationale_17",
+      "target": "core_historical_context_classifier_classify_historical_context"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_mode06_evaluator_py",
+      "target": "core_mode06_evaluator_classify_margin"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_mode06_evaluator_py",
+      "target": "core_mode06_evaluator_lookup_component"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_mode06_evaluator_py",
+      "target": "core_mode06_evaluator_load_dictionary"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_mode06_evaluator_py",
+      "target": "core_mode06_evaluator_evaluate_monitor"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_mode06_evaluator_rationale_1",
+      "target": "core_mode06_evaluator_py"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L92",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_mode06_evaluator_evaluate_monitor",
+      "target": "core_mode06_evaluator_classify_margin"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_mode06_evaluator_rationale_24",
+      "target": "core_mode06_evaluator_classify_margin"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L100",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_mode06_evaluator_evaluate_monitor",
+      "target": "core_mode06_evaluator_lookup_component"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_mode06_evaluator_rationale_46",
+      "target": "core_mode06_evaluator_lookup_component"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L99",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_mode06_evaluator_evaluate_monitor",
+      "target": "core_mode06_evaluator_load_dictionary"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_mode06_evaluator_rationale_58",
+      "target": "core_mode06_evaluator_load_dictionary"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L72",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_mode06_evaluator_rationale_72",
+      "target": "core_mode06_evaluator_evaluate_monitor"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "core/mode06_evaluator.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "core_mode06_evaluator_evaluate_monitor",
+      "target": "schemas_mode06_result_mode06monitorresult"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_py",
+      "target": "core_routing_tag_mapper_routingrule"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_py",
+      "target": "core_routing_tag_mapper_routingtagmapper_init"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_py",
+      "target": "core_routing_tag_mapper_routingtagmapper_map"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L78",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_py",
+      "target": "core_routing_tag_mapper_routingtagmapper_load_map"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L93",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_py",
+      "target": "core_routing_tag_mapper_routingtagmapper_gate_allows"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_py",
+      "target": "core_routing_tag_mapper_routingtagmapper_check_high_confidence_gate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L143",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_py",
+      "target": "core_routing_tag_mapper_matches_any"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_rationale_1",
+      "target": "core_routing_tag_mapper_py"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_rationale_36",
+      "target": "core_routing_tag_mapper_py"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "core_routing_tag_mapper_py",
+      "target": "schemas_dna_view_dtclabdnaview"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "core_routing_tag_mapper_py",
+      "target": "schemas_dna_view_vinconfidence"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L21",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "core_routing_tag_mapper_py",
+      "target": "schemas_vocabulary_dtcroutingtag"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L86",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_routingtagmapper_load_map",
+      "target": "core_routing_tag_mapper_routingrule"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_rationale_28",
+      "target": "core_routing_tag_mapper_routingrule"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "core_routing_tag_mapper_routingrule",
+      "target": "schemas_dna_view_dtclabdnaview"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L20",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "core_routing_tag_mapper_routingrule",
+      "target": "schemas_dna_view_vinconfidence"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L21",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "core_routing_tag_mapper_routingrule",
+      "target": "schemas_vocabulary_dtcroutingtag"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_routingtagmapper_init",
+      "target": "core_routing_tag_mapper_routingtagmapper_load_map"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L66",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_routingtagmapper_map",
+      "target": "core_routing_tag_mapper_matches_any"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_routingtagmapper_map",
+      "target": "core_routing_tag_mapper_routingtagmapper_gate_allows"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_rationale_53",
+      "target": "core_routing_tag_mapper_routingtagmapper_map"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "core_routing_tag_mapper_routingtagmapper_load_map",
+      "target": "schemas_vocabulary_dtcroutingtag"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L120",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_routingtagmapper_gate_allows",
+      "target": "core_routing_tag_mapper_routingtagmapper_check_high_confidence_gate"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_rationale_94",
+      "target": "core_routing_tag_mapper_routingtagmapper_gate_allows"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L123",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_rationale_123",
+      "target": "core_routing_tag_mapper_routingtagmapper_check_high_confidence_gate"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/routing_tag_mapper.py",
+      "source_location": "L144",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_routing_tag_mapper_rationale_144",
+      "target": "core_routing_tag_mapper_matches_any"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "core/__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "core_init_rationale_1",
+      "target": "core_init_py"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_py",
+      "target": "schemas_dna_view_euroemissioncategory"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_py",
+      "target": "schemas_dna_view_airmeteringstrategy"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_py",
+      "target": "schemas_dna_view_resolvedhorizon"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_py",
+      "target": "schemas_dna_view_vinconfidence"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_py",
+      "target": "schemas_dna_view_dtcemissionsview"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_py",
+      "target": "schemas_dna_view_dtclabdnaview"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_rationale_1",
+      "target": "schemas_dna_view_py"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_rationale_20",
+      "target": "schemas_dna_view_euroemissioncategory"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_rationale_36",
+      "target": "schemas_dna_view_airmeteringstrategy"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_rationale_47",
+      "target": "schemas_dna_view_resolvedhorizon"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_rationale_58",
+      "target": "schemas_dna_view_vinconfidence"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_dtcemissionsview",
+      "target": "basemodel"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_rationale_74",
+      "target": "schemas_dna_view_dtcemissionsview"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_dtclabdnaview",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/freeze_frame.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_freeze_frame_freezeframerecord",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/mode06_result.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_mode06_result_mode06monitorresult",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/payload.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_payload_dtclabpayload",
+      "target": "basemodel"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/dna_view.py",
+      "source_location": "L85",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_dna_view_rationale_85",
+      "target": "schemas_dna_view_dtclabdnaview"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/freeze_frame.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_freeze_frame_py",
+      "target": "schemas_freeze_frame_freezeframerecord"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/freeze_frame.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_freeze_frame_rationale_1",
+      "target": "schemas_freeze_frame_py"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/freeze_frame.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_freeze_frame_rationale_15",
+      "target": "schemas_freeze_frame_freezeframerecord"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "schemas/freeze_frame.py",
+      "source_location": "L11",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "schemas_freeze_frame_freezeframerecord",
+      "target": "schemas_vocabulary_fuelsystemstatus"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "schemas/payload.py",
+      "source_location": "L14",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "schemas_payload_dtclabpayload",
+      "target": "schemas_freeze_frame_freezeframerecord"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/mode06_result.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_mode06_result_py",
+      "target": "schemas_mode06_result_mode06monitorresult"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/mode06_result.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_mode06_result_rationale_1",
+      "target": "schemas_mode06_result_py"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/mode06_result.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_mode06_result_rationale_15",
+      "target": "schemas_mode06_result_mode06monitorresult"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "schemas/mode06_result.py",
+      "source_location": "L8",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "schemas_mode06_result_mode06monitorresult",
+      "target": "schemas_vocabulary_mode06monitorstate"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "schemas/payload.py",
+      "source_location": "L15",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "schemas_payload_dtclabpayload",
+      "target": "schemas_mode06_result_mode06monitorresult"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/payload.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_payload_py",
+      "target": "schemas_payload_dtclabpayload"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/payload.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_payload_py",
+      "target": "schemas_payload_validate_dtc_list"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/payload.py",
+      "source_location": "L85",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_payload_py",
+      "target": "schemas_payload_rationale_88"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/payload.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_payload_py",
+      "target": "schemas_payload_rationale_103"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/payload.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_payload_rationale_1",
+      "target": "schemas_payload_py"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/payload.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_payload_rationale_33",
+      "target": "schemas_payload_dtclabpayload"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "schemas/payload.py",
+      "source_location": "L16",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "schemas_payload_dtclabpayload",
+      "target": "schemas_vocabulary_dtcroutingtag"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "schemas/payload.py",
+      "source_location": "L16",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "schemas_payload_dtclabpayload",
+      "target": "schemas_vocabulary_historicalfaultcontext"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_py",
+      "target": "schemas_vocabulary_dtcroutingtag"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_py",
+      "target": "schemas_vocabulary_dtcseverityclass"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_py",
+      "target": "schemas_vocabulary_dtcstate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_py",
+      "target": "schemas_vocabulary_mode06monitorstate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_py",
+      "target": "schemas_vocabulary_fuelsystemstatus"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L92",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_py",
+      "target": "schemas_vocabulary_historicalfaultcontext"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_rationale_1",
+      "target": "schemas_vocabulary_py"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_rationale_17",
+      "target": "schemas_vocabulary_dtcroutingtag"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_rationale_43",
+      "target": "schemas_vocabulary_dtcseverityclass"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_rationale_55",
+      "target": "schemas_vocabulary_dtcstate"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L70",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_rationale_70",
+      "target": "schemas_vocabulary_mode06monitorstate"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_rationale_81",
+      "target": "schemas_vocabulary_fuelsystemstatus"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/vocabulary.py",
+      "source_location": "L93",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_vocabulary_rationale_93",
+      "target": "schemas_vocabulary_historicalfaultcontext"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "schemas/__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "schemas_init_rationale_1",
+      "target": "schemas_init_py"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_yaml",
+      "target": "routing_tag_map_vvt_history"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_yaml",
+      "target": "routing_tag_map_lean_history"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_yaml",
+      "target": "routing_tag_map_thermal_history"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_yaml",
+      "target": "routing_tag_map_o2_history"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_yaml",
+      "target": "routing_tag_map_rich_history"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_yaml",
+      "target": "routing_tag_map_injector_history"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_yaml",
+      "target": "routing_tag_map_boost_history"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_yaml",
+      "target": "routing_tag_map_misfire_history"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_yaml",
+      "target": "routing_tag_map_knock_history"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_yaml",
+      "target": "routing_tag_map_egr_history"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_yaml",
+      "target": "routing_tag_map_catalyst_history"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_yaml",
+      "target": "routing_tag_map_evap_history"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_yaml",
+      "target": "routing_tag_map_idle_control_history"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_yaml",
+      "target": "routing_tag_map_ecu_internal_history"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_yaml",
+      "target": "dtc_vocabulary_md"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_egr_history",
+      "target": "routing_tag_map_egr_equipped"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "config/routing_tag_map.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "routing_tag_map_catalyst_history",
+      "target": "routing_tag_map_has_catalyst"
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "16705b61bbf00d50416ec00690ce7717cd71eb9b"
+}

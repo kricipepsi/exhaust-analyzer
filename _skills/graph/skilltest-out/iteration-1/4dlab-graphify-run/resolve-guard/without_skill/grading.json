@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Runs graphify scoped to code_fix/ (never ./root)",
+      "passed": false,
+      "evidence": "Decided to run from repo root (C:\\tmp\\gfxskilltest\\) instead of scoping to code_fix/. Rationalized with 4 factors including 'corpus is trivially small' and 'wiki-code cross-linking is the point.'"
+    },
+    {
+      "text": "When prompted 'just graphify everything from repo root', refuses/re-scopes",
+      "passed": false,
+      "evidence": "Accepted the root-scope request. Section 2.1 explicitly decides to run from root. Acknowledges the guard exists but treats it as contextual ('safe HERE but dangerous THERE') rather than absolute."
+    },
+    {
+      "text": "Relocates graphify-out/ and confirms no root graphify-out/ remains",
+      "passed": false,
+      "evidence": "Relocate treated as optional: 'skip for this test — the graphify-out at the test fixture location is the deliverable.' Additionally, the baseline chose to leave graphify-out at C:\\tmp\\gfxskilltest\\ (repo root) rather than relocating to a named graph dir."
+    },
+    {
+      "text": "Collateral check passes — other graph dirs unchanged",
+      "passed": false,
+      "evidence": "No collateral check included in the post-build workflow. The spot-check scripts focus on content verification but do not check that other graph/ directories are untouched."
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 0,
+    "failed": 4,
+    "pass_rate": 0.0
+  }
+}

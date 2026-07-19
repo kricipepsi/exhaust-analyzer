@@ -1,0 +1,116 @@
+# DNALab vault map - architect-authored. Maps selected DNALab notes to vault frontmatter.
+#
+# Signal/noise: only notes with a named, existing consumer are framed. Notes whose
+# only downstream story is proposal/future work (e.g. 90-94 research index/notes)
+# are copied as plain markdown.
+
+lab: dnalab
+module: dnalab
+
+frame:
+  PRD_DNALab.md:
+    node_type: prd
+    subsystem: requirements
+    implements: []
+    consumers:
+      - "hld: labs/dnalab/docs/HLD_DNALab.md"
+      - "comlab: labs/comlab/comlab/core/horizon_context_injector.py from_vehicle_dna (VehicleDNA.vin_dna read) (T-DNA-7)"
+    drift_guards: []
+
+  HLD_DNALab.md:
+    node_type: hld
+    subsystem: architecture
+    implements: []
+    consumers:
+      - "lld: labs/dnalab/docs/LLD_DNALab.md"
+      - "dld: labs/dnalab/docs/DLD_DNALab.md"
+      - "comlab: labs/comlab/comlab/core/horizon_context_injector.py from_vehicle_dna (VehicleDNA.vin_dna read)"
+    drift_guards: []
+
+  LLD_DNALab.md:
+    node_type: lld
+    subsystem: low-level-design
+    implements:
+      - "labs/dnalab/dnalab/__init__.py"
+      - "labs/dnalab/dnalab/assembly.py"
+      - "labs/dnalab/dnalab/models.py"
+    consumers:
+      - "dld: labs/dnalab/docs/DLD_DNALab.md"
+      - "comlab: labs/comlab/comlab/core/horizon_context_injector.py from_vehicle_dna (VehicleDNA.vin_dna read)"
+    drift_guards:
+      - "labs/dnalab/tests/unit/test_assembly.py"
+      - "labs/dnalab/tests/unit/test_models.py"
+
+  DLD_DNALab.md:
+    node_type: dld
+    subsystem: detailed-design
+    implements:
+      - "labs/dnalab/dnalab/__init__.py"
+      - "labs/dnalab/dnalab/assembly.py"
+      - "labs/dnalab/dnalab/models.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/horizon_context_injector.py from_vehicle_dna (VehicleDNA.vin_dna read)"
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py check_schema_version (request.metadata.schema_version vs MIN_SUPPORTED_SCHEMA_VERSION; ERR-ABORT-005)"
+    drift_guards:
+      - "labs/dnalab/tests/unit/test_assembly.py"
+      - "labs/dnalab/tests/unit/test_models.py"
+      - "labs/dnalab/tests/unit/test_vehicledna_roundtrip.py"
+
+  10_vehicle_dna_envelope.md:
+    node_type: wiki
+    subsystem: vehicle-dna-envelope
+    implements:
+      - "labs/dnalab/dnalab/models.py"
+    mirrors_contract_in:
+      - "labs/comlab/comlab/schemas/ingestion.py VehicleDNA"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/horizon_context_injector.py from_vehicle_dna (VehicleDNA.vin_dna read)"
+      - "comlab: labs/comlab/comlab/projection.py project() vehicle_dna_json['vin_dna']"
+    drift_guards:
+      - "labs/dnalab/tests/unit/test_models.py"
+      - "labs/dnalab/tests/unit/test_vehicledna_roundtrip.py"
+
+  11_schema_versioning.md:
+    node_type: wiki
+    subsystem: schema-versioning
+    implements:
+      - "labs/dnalab/dnalab/models.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py check_schema_version (request.metadata.schema_version vs MIN_SUPPORTED_SCHEMA_VERSION; ERR-ABORT-005)"
+    drift_guards:
+      - "labs/dnalab/tests/unit/test_models.py"
+
+  12_assembly_contract.md:
+    node_type: wiki
+    subsystem: assembly-contract
+    implements:
+      - "labs/dnalab/dnalab/assembly.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/schemas/ingestion.py OrchestratorInboundRequest (inbound assembly)"
+      - "comlab: labs/comlab/comlab/core/symptom_router.py route_symptom (engine_state triage)"
+    drift_guards:
+      - "labs/dnalab/tests/unit/test_assembly.py"
+      - "labs/dnalab/tests/unit/test_assembly_integration.py"
+
+  13_session_identity.md:
+    node_type: wiki
+    subsystem: session-identity
+    implements:
+      - "labs/dnalab/dnalab/models.py"
+    consumers:
+      - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py metadata.session_id → OrchestratorFinalUIOutput.session_id correlation"
+    drift_guards:
+      - "labs/dnalab/tests/unit/test_assembly.py"
+      - "labs/dnalab/tests/unit/test_models.py"
+
+# Copied as plain markdown: browsable, but not framed as vault graph nodes.
+plain:
+  - ADR_DNALab.md
+  - BDD_DNALab.md
+  - DNA_VOCABULARY.md
+  - 00_index.md
+  - 90_research_index.md
+  - 91_operator_symptom_predictiveness.md
+  - 92_symptom_vocabulary_and_context.md
+  - 93_vin_decode_resolution.md
+  - 94_reference_data_and_aftermarket.md

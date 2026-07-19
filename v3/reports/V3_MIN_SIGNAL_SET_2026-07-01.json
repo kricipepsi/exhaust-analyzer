@@ -1,0 +1,3519 @@
+{
+  "actions": [
+    {
+      "action_id": "A1_TRIMS",
+      "buckets_reached": [
+        "DATA_GAP_ACQUISITION_GAP",
+        "OUTRANKED_HARD",
+        "PRODUCER_GAP_SIGNAL_REQUIRED",
+        "TUNABLE_HELD"
+      ],
+      "case_count_reached": 54,
+      "cases_reached": [
+        "CASE-015",
+        "CASE-020",
+        "CASE-022",
+        "CASE-023",
+        "CASE-029",
+        "CASE-040",
+        "CSV-100",
+        "CSV-113",
+        "CSV-114",
+        "CSV-121",
+        "CSV-122",
+        "CSV-127",
+        "CSV-128",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N011",
+        "EXP-N017",
+        "EXP-N022",
+        "EXP-N029",
+        "EXT-211",
+        "EXT-212",
+        "EXT-216",
+        "EXT-217",
+        "EXT-232",
+        "EXT-233",
+        "EXT-238",
+        "EXT-239",
+        "PDF-HI-001",
+        "PDF-HI-005",
+        "PDF-HI-006",
+        "PDF-HI-007",
+        "PDF-HI-010",
+        "REAL-004",
+        "RULE-CO-1",
+        "TC-048",
+        "YAML-CSV95",
+        "YAML-PDF_HI_001",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "era1_001",
+        "era1_017",
+        "era2_015",
+        "era2_016",
+        "era2_019",
+        "era3_014",
+        "era3_015"
+      ],
+      "clusters_reached": [
+        "C2",
+        "C4",
+        "C5",
+        "C9"
+      ],
+      "columns": [
+        "stft_idle_pct",
+        "ltft_idle_pct",
+        "stft_2500_pct",
+        "ltft_2500_pct"
+      ],
+      "cost": 1,
+      "full_unlock_case_count": 0,
+      "full_unlock_cases": [],
+      "name": "Enable live fuel trims at idle and 2500 rpm",
+      "notes": "Shared OBD Mode $01 start point; reaches C2/C4/C5/C9 but is not alone decisive for any cluster.",
+      "reach_per_cost": 54.0,
+      "research_basis": "RESEARCH_PROMPT output item 3; cluster4.md \u00a71.7; cluster5.md \u00a7Multi-Point Diagnostic Acquisition Protocol",
+      "tier": "a"
+    },
+    {
+      "action_id": "A2_MODE06_EMISSIONS",
+      "buckets_reached": [
+        "DATA_GAP_ACQUISITION_GAP",
+        "OUTRANKED_HARD",
+        "PRODUCER_GAP_SIGNAL_REQUIRED",
+        "TUNABLE_HELD"
+      ],
+      "case_count_reached": 63,
+      "cases_reached": [
+        "CASE-014",
+        "CASE-015",
+        "CASE-020",
+        "CASE-022",
+        "CASE-023",
+        "CASE-029",
+        "CASE-040",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-100",
+        "CSV-117",
+        "CSV-121",
+        "CSV-122",
+        "CSV-127",
+        "CSV-128",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N017",
+        "EXP-N020",
+        "EXP-N030",
+        "EXT-211",
+        "EXT-212",
+        "EXT-216",
+        "EXT-217",
+        "EXT-229",
+        "EXT-230",
+        "EXT-232",
+        "EXT-233",
+        "EXT-238",
+        "EXT-239",
+        "MECH-001",
+        "PDF-4G-04",
+        "PDF-4G-05",
+        "PDF-HI-001",
+        "PDF-HI-005",
+        "PDF-HI-006",
+        "PDF-HI-007",
+        "PDF-HI-010",
+        "RULE-CO-1",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-PDF_HI_001",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "YAML-TC46",
+        "case_002",
+        "case_004",
+        "case_014",
+        "case_015",
+        "case_017",
+        "case_044",
+        "case_046",
+        "era1_006",
+        "era1_017",
+        "era2_012",
+        "era2_015",
+        "era2_016",
+        "era2_019",
+        "era3_014"
+      ],
+      "clusters_reached": [
+        "C1",
+        "C2",
+        "C4",
+        "C6",
+        "C9"
+      ],
+      "columns": [
+        "mode06_catalyst_margin_pct",
+        "catalyst_index_ratio",
+        "mode06_min_margin_pct",
+        "mode06_o2_response_margin_pct",
+        "mode06_misfire_counts_json",
+        "misfire_cold_start_seconds"
+      ],
+      "cost": 1,
+      "full_unlock_case_count": 0,
+      "full_unlock_cases": [],
+      "name": "Read Mode $06 catalyst, O2, no-fault, and misfire monitors",
+      "notes": "Cheap scan-tool read before any code clear; decisive only when paired with each cluster's corroborating columns.",
+      "reach_per_cost": 63.0,
+      "research_basis": "cluster2.md \u00a7Instrumentation Feasibility Tiers; cluster6.md \u00a7Question One Answer; cluster1.md \u00a7On-Board Diagnostics Mode 06",
+      "tier": "a"
+    },
+    {
+      "action_id": "A3_OBD_HEALTH",
+      "buckets_reached": [
+        "DATA_GAP_ACQUISITION_GAP",
+        "TUNABLE_HELD"
+      ],
+      "case_count_reached": 11,
+      "cases_reached": [
+        "CSV-127",
+        "CSV-128",
+        "EXT-216",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_014",
+        "era2_016",
+        "era3_014"
+      ],
+      "clusters_reached": [
+        "C9"
+      ],
+      "columns": [
+        "readiness_supported_complete_bool",
+        "stored_dtc_count",
+        "pending_dtc_count",
+        "permanent_dtc_count",
+        "warmup_cycles_since_clear",
+        "miles_since_clear"
+      ],
+      "cost": 1,
+      "full_unlock_case_count": 0,
+      "full_unlock_cases": [],
+      "name": "Capture OBD health/readiness and reset-age counters",
+      "notes": "No-fault gate; supports C9 only, and unsupported/freshly reset vehicles remain abstained.",
+      "reach_per_cost": 11.0,
+      "research_basis": "cluster9.1.md \u00a7Bottom Line/Decision Rule and cluster9.2.md \u00a7Recommended decision rule",
+      "tier": "a"
+    },
+    {
+      "action_id": "A4_MAF_LOAD",
+      "buckets_reached": [
+        "DATA_GAP_ACQUISITION_GAP",
+        "OUTRANKED_HARD",
+        "TUNABLE_HELD"
+      ],
+      "case_count_reached": 35,
+      "cases_reached": [
+        "CASE-014",
+        "CASE-020",
+        "CASE-022",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-113",
+        "CSV-114",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N011",
+        "EXP-N020",
+        "EXP-N022",
+        "EXP-N029",
+        "EXT-211",
+        "EXT-212",
+        "EXT-229",
+        "EXT-230",
+        "EXT-238",
+        "EXT-239",
+        "PDF-4G-05",
+        "PDF-HI-007",
+        "REAL-004",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-TC46",
+        "case_003",
+        "case_016",
+        "case_046",
+        "era1_001",
+        "era1_006",
+        "era2_012",
+        "era3_015"
+      ],
+      "clusters_reached": [
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "columns": [
+        "maf_gps_idle",
+        "maf_gps_2500",
+        "calc_airflow_gps_idle",
+        "calc_airflow_gps_2500",
+        "maf_actual_calc_delta_pct_idle",
+        "maf_actual_calc_delta_pct_2500",
+        "calc_load_wot_pct",
+        "stft_load_pct",
+        "ltft_load_pct",
+        "wideband_lambda_wot"
+      ],
+      "cost": 1,
+      "full_unlock_case_count": 0,
+      "full_unlock_cases": [],
+      "name": "Log MAF/load/airflow plausibility at idle, 2500 rpm, and load",
+      "notes": "Shared OBD live-PID action for lean/sensor/exhaust-leak splits; WOT/load parts are safety- and vehicle-dependent.",
+      "reach_per_cost": 35.0,
+      "research_basis": "cluster5.md \u00a7Bottom Line Diagnostic Recommendation; cluster6.md \u00a7Question Three/Four Answers",
+      "tier": "a"
+    },
+    {
+      "action_id": "A5_CONTROL_PLAUSIBILITY",
+      "buckets_reached": [
+        "OUTRANKED_HARD",
+        "PRODUCER_GAP_SIGNAL_REQUIRED"
+      ],
+      "case_count_reached": 22,
+      "cases_reached": [
+        "CASE-039",
+        "CSV-041",
+        "CSV-045",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N018",
+        "EXP-N019",
+        "EXT-221",
+        "TC-021",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-RULE_NOx_1",
+        "YAML-TC47",
+        "case_001",
+        "case_013"
+      ],
+      "clusters_reached": [
+        "C3"
+      ],
+      "columns": [
+        "koeo_map_baro_delta_kpa",
+        "module_voltage_loaded_v",
+        "dlc_signal_ground_drop_v",
+        "gas_obd_lambda_delta",
+        "lambda_perception_delta",
+        "bidirectional_fuel_response_ok_bool"
+      ],
+      "cost": 3,
+      "full_unlock_case_count": 22,
+      "full_unlock_cases": [
+        "CASE-039",
+        "CSV-041",
+        "CSV-045",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N018",
+        "EXP-N019",
+        "EXT-221",
+        "TC-021",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-RULE_NOx_1",
+        "YAML-TC47",
+        "case_001",
+        "case_013"
+      ],
+      "name": "Run KOEO MAP/BARO plus control-module voltage/lambda plausibility",
+      "notes": "C3 decisive bundle; includes Tier-a/b observations but true confirmation may need DMM/breakout or bidirectional response.",
+      "reach_per_cost": 7.33,
+      "research_basis": "cluster3.md \u00a7Acquisition Protocols/Quantitative Diagnostic Signature Mapping; V3_P4_CLASSIFIER_FIXABLE_RECHECK CASE-039 reroute",
+      "tier": "a/b/c"
+    },
+    {
+      "action_id": "A6_TWO_POINT_5GAS",
+      "buckets_reached": [
+        "DATA_GAP_ACQUISITION_GAP",
+        "OUTRANKED_HARD",
+        "PRODUCER_GAP_SIGNAL_REQUIRED",
+        "TUNABLE_HELD"
+      ],
+      "case_count_reached": 60,
+      "cases_reached": [
+        "CASE-015",
+        "CASE-023",
+        "CASE-029",
+        "CASE-039",
+        "CASE-040",
+        "CSV-041",
+        "CSV-045",
+        "CSV-100",
+        "CSV-117",
+        "CSV-121",
+        "CSV-122",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "CSV-127",
+        "CSV-128",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N017",
+        "EXP-N018",
+        "EXP-N019",
+        "EXP-N030",
+        "EXT-216",
+        "EXT-217",
+        "EXT-221",
+        "EXT-232",
+        "EXT-233",
+        "MECH-001",
+        "PDF-4G-04",
+        "PDF-HI-001",
+        "PDF-HI-005",
+        "PDF-HI-006",
+        "PDF-HI-010",
+        "RULE-CO-1",
+        "TC-021",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-PDF_HI_001",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-RULE_NOx_1",
+        "YAML-TC1",
+        "YAML-TC47",
+        "case_001",
+        "case_002",
+        "case_004",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_017",
+        "case_044",
+        "era1_017",
+        "era2_015",
+        "era2_016",
+        "era2_019",
+        "era3_014"
+      ],
+      "clusters_reached": [
+        "C1",
+        "C2",
+        "C3",
+        "C9"
+      ],
+      "columns": [
+        "pre_post_cat_hc_delta_ppm",
+        "pre_post_cat_co_delta_pct",
+        "gas_delta_hc_ppm",
+        "gas_delta_co_pct",
+        "gas_delta_co2_pct",
+        "gas_delta_o2_pct",
+        "gas_obd_lambda_delta",
+        "lambda_perception_delta",
+        "cooling_headspace_hc_ppm",
+        "two_point_hc_delta_ppm",
+        "tailpipe_o2_2500_pct"
+      ],
+      "cost": 2,
+      "full_unlock_case_count": 0,
+      "full_unlock_cases": [],
+      "name": "Use existing 5-gas analyzer differently: two-point/delta/pre-post catalyst/headspace",
+      "notes": "Reuses the gas bench; completes parts of C1/C2/C3/C9 that static idle gas cannot decide.",
+      "reach_per_cost": 30.0,
+      "research_basis": "cluster1.md \u00a7Comparative Framework; cluster2.md \u00a7Protocol; cluster3.md \u00a7Quantitative Diagnostic Signature Mapping",
+      "tier": "b"
+    },
+    {
+      "action_id": "A7_CRANKING_BUNDLE",
+      "buckets_reached": [
+        "DATA_GAP_ACQUISITION_GAP",
+        "OUTRANKED_HARD",
+        "PRODUCER_GAP_SIGNAL_REQUIRED"
+      ],
+      "case_count_reached": 11,
+      "cases_reached": [
+        "CSV-117",
+        "EXP-N030",
+        "MECH-001",
+        "PDF-4G-04",
+        "REAL-001",
+        "REAL-002",
+        "REAL-003",
+        "case_006",
+        "case_007",
+        "case_040",
+        "case_044"
+      ],
+      "clusters_reached": [
+        "C1",
+        "C8"
+      ],
+      "columns": [
+        "crank_rpm",
+        "cranking_vacuum_inhg",
+        "koeo_fuel_pressure_kpa",
+        "cranking_fuel_pressure_kpa",
+        "injector_pulse_ms",
+        "spark_present_bool",
+        "immobilizer_active_bool",
+        "relative_compression_min_pct"
+      ],
+      "cost": 3,
+      "full_unlock_case_count": 6,
+      "full_unlock_cases": [
+        "REAL-001",
+        "REAL-002",
+        "REAL-003",
+        "case_006",
+        "case_007",
+        "case_040"
+      ],
+      "name": "Collect cranking no-start evidence bundle",
+      "notes": "Special-case no-start workflow; warm-idle gas cannot exist for these rows.",
+      "reach_per_cost": 3.67,
+      "research_basis": "cluster8.md \u00a7Diagnostic Acquisition Protocol/Signature Table",
+      "tier": "a/c"
+    },
+    {
+      "action_id": "A8_COMPRESSION_LEAKDOWN",
+      "buckets_reached": [
+        "DATA_GAP_ACQUISITION_GAP",
+        "OUTRANKED_HARD",
+        "PRODUCER_GAP_SIGNAL_REQUIRED"
+      ],
+      "case_count_reached": 11,
+      "cases_reached": [
+        "CSV-117",
+        "EXP-N030",
+        "MECH-001",
+        "PDF-4G-04",
+        "REAL-001",
+        "REAL-002",
+        "REAL-003",
+        "case_006",
+        "case_007",
+        "case_040",
+        "case_044"
+      ],
+      "clusters_reached": [
+        "C1",
+        "C8"
+      ],
+      "columns": [
+        "relative_compression_min_pct",
+        "leakdown_pct"
+      ],
+      "cost": 3,
+      "full_unlock_case_count": 0,
+      "full_unlock_cases": [],
+      "name": "Compression/leak-down or relative-compression mechanical check",
+      "notes": "Expensive but needed for mechanical-loss separation when Mode $06/headspace/two-point gas is insufficient.",
+      "reach_per_cost": 3.67,
+      "research_basis": "cluster1.md \u00a7Comparative Framework/Critical Signal Evaluation",
+      "tier": "c"
+    },
+    {
+      "action_id": "A9_O2_SCOPE_FALLBACK",
+      "buckets_reached": [
+        "DATA_GAP_ACQUISITION_GAP",
+        "OUTRANKED_HARD",
+        "TUNABLE_HELD"
+      ],
+      "case_count_reached": 25,
+      "cases_reached": [
+        "CASE-014",
+        "CASE-020",
+        "CASE-022",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N020",
+        "EXT-211",
+        "EXT-212",
+        "EXT-229",
+        "EXT-230",
+        "EXT-238",
+        "EXT-239",
+        "PDF-4G-05",
+        "PDF-HI-007",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-TC46",
+        "case_046",
+        "era1_006",
+        "era2_012"
+      ],
+      "clusters_reached": [
+        "C4",
+        "C6"
+      ],
+      "columns": [
+        "o2_rich_to_lean_ms",
+        "o2_lean_to_rich_ms"
+      ],
+      "cost": 3,
+      "full_unlock_case_count": 0,
+      "full_unlock_cases": [],
+      "name": "Scope or active rich\u2194lean O2 response fallback",
+      "notes": "Escalation when Mode $06 O2 dynamics are absent/equivocal or scan-tool timing is too coarse.",
+      "reach_per_cost": 8.33,
+      "research_basis": "cluster6.md \u00a7Question One/Three/Four Answers",
+      "tier": "c"
+    },
+    {
+      "action_id": "A10_VVT_CAM",
+      "buckets_reached": [
+        "PRODUCER_GAP_SIGNAL_REQUIRED",
+        "TUNABLE_HELD"
+      ],
+      "case_count_reached": 3,
+      "cases_reached": [
+        "EXP-N023",
+        "era1_011",
+        "era2_011"
+      ],
+      "clusters_reached": [
+        "C7"
+      ],
+      "columns": [
+        "vvt_command_deg",
+        "vvt_actual_deg",
+        "vvt_tracking_error_deg",
+        "cam_crank_correlation_deg",
+        "ve_idle_pct",
+        "ve_2500_load_pct",
+        "maf_gps_2500_load"
+      ],
+      "cost": 3,
+      "full_unlock_case_count": 3,
+      "full_unlock_cases": [
+        "EXP-N023",
+        "era1_011",
+        "era2_011"
+      ],
+      "name": "VVT command/actual, cam correlation, and loaded VE capture",
+      "notes": "Low-yield but decisive for the cam/VVT residuals; may require OEM tool or scope on generic-PID-poor vehicles.",
+      "reach_per_cost": 1.0,
+      "research_basis": "cluster7.md \u00a7Evaluation/Acquisition Protocol",
+      "tier": "a/c"
+    },
+    {
+      "action_id": "A11_FUEL_PRESSURE_LOAD",
+      "buckets_reached": [
+        "DATA_GAP_ACQUISITION_GAP",
+        "OUTRANKED_HARD",
+        "TUNABLE_HELD"
+      ],
+      "case_count_reached": 21,
+      "cases_reached": [
+        "CASE-020",
+        "CASE-022",
+        "CSV-113",
+        "CSV-114",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N011",
+        "EXP-N022",
+        "EXP-N029",
+        "EXT-211",
+        "EXT-212",
+        "EXT-238",
+        "EXT-239",
+        "PDF-HI-007",
+        "REAL-004",
+        "TC-048",
+        "YAML-CSV95",
+        "case_003",
+        "case_016",
+        "era1_001",
+        "era3_015"
+      ],
+      "clusters_reached": [
+        "C4",
+        "C5"
+      ],
+      "columns": [
+        "fuel_rail_pressure_load_kpa"
+      ],
+      "cost": 3,
+      "full_unlock_case_count": 0,
+      "full_unlock_cases": [],
+      "name": "Fuel-pressure-under-load confirmation where rail PID is absent",
+      "notes": "Escalates C5/C4 lean-source cases when live PIDs cannot prove fuel delivery shortfall.",
+      "reach_per_cost": 7.0,
+      "research_basis": "cluster5.md \u00a7Multi-Point Diagnostic Acquisition Protocol/Signal Evaluation",
+      "tier": "c"
+    },
+    {
+      "action_id": "A12_BIDIRECTIONAL_RESPONSE",
+      "buckets_reached": [
+        "OUTRANKED_HARD",
+        "PRODUCER_GAP_SIGNAL_REQUIRED"
+      ],
+      "case_count_reached": 22,
+      "cases_reached": [
+        "CASE-039",
+        "CSV-041",
+        "CSV-045",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N018",
+        "EXP-N019",
+        "EXT-221",
+        "TC-021",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-RULE_NOx_1",
+        "YAML-TC47",
+        "case_001",
+        "case_013"
+      ],
+      "clusters_reached": [
+        "C3"
+      ],
+      "columns": [
+        "bidirectional_fuel_response_ok_bool"
+      ],
+      "cost": 3,
+      "full_unlock_case_count": 0,
+      "full_unlock_cases": [],
+      "name": "Bidirectional fuel-response check if passive C3 evidence is contradictory",
+      "notes": "Already included in C3 full bundle; listed separately so costly escalation is visible.",
+      "reach_per_cost": 7.33,
+      "research_basis": "cluster3.md \u00a7Evaluation and Ranking of Diagnostic Candidates",
+      "tier": "c"
+    }
+  ],
+  "attributed_case_count": 104,
+  "case_039_overlay": {
+    "cluster": "C3",
+    "columns": [
+      "koeo_map_baro_delta_kpa",
+      "module_voltage_loaded_v",
+      "dlc_signal_ground_drop_v",
+      "gas_obd_lambda_delta",
+      "lambda_perception_delta",
+      "bidirectional_fuel_response_ok_bool"
+    ],
+    "source": "V3_P4_CLASSIFIER_FIXABLE_RECHECK_2026-07-01.md"
+  },
+  "column_index": [
+    {
+      "actions": [
+        "A12_BIDIRECTIONAL_RESPONSE",
+        "A5_CONTROL_PLAUSIBILITY"
+      ],
+      "case_count": 22,
+      "cases": [
+        "CASE-039",
+        "CSV-041",
+        "CSV-045",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N018",
+        "EXP-N019",
+        "EXT-221",
+        "TC-021",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-RULE_NOx_1",
+        "YAML-TC47",
+        "case_001",
+        "case_013"
+      ],
+      "clusters": [
+        "C3"
+      ],
+      "column": "bidirectional_fuel_response_ok_bool"
+    },
+    {
+      "actions": [
+        "A4_MAF_LOAD"
+      ],
+      "case_count": 25,
+      "cases": [
+        "CASE-014",
+        "CASE-020",
+        "CASE-022",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N020",
+        "EXT-211",
+        "EXT-212",
+        "EXT-229",
+        "EXT-230",
+        "EXT-238",
+        "EXT-239",
+        "PDF-4G-05",
+        "PDF-HI-007",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-TC46",
+        "case_046",
+        "era1_006",
+        "era2_012"
+      ],
+      "clusters": [
+        "C4",
+        "C6"
+      ],
+      "column": "calc_airflow_gps_2500"
+    },
+    {
+      "actions": [
+        "A4_MAF_LOAD"
+      ],
+      "case_count": 25,
+      "cases": [
+        "CASE-014",
+        "CASE-020",
+        "CASE-022",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N020",
+        "EXT-211",
+        "EXT-212",
+        "EXT-229",
+        "EXT-230",
+        "EXT-238",
+        "EXT-239",
+        "PDF-4G-05",
+        "PDF-HI-007",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-TC46",
+        "case_046",
+        "era1_006",
+        "era2_012"
+      ],
+      "clusters": [
+        "C4",
+        "C6"
+      ],
+      "column": "calc_airflow_gps_idle"
+    },
+    {
+      "actions": [
+        "A4_MAF_LOAD"
+      ],
+      "case_count": 21,
+      "cases": [
+        "CASE-020",
+        "CASE-022",
+        "CSV-113",
+        "CSV-114",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N011",
+        "EXP-N022",
+        "EXP-N029",
+        "EXT-211",
+        "EXT-212",
+        "EXT-238",
+        "EXT-239",
+        "PDF-HI-007",
+        "REAL-004",
+        "TC-048",
+        "YAML-CSV95",
+        "case_003",
+        "case_016",
+        "era1_001",
+        "era3_015"
+      ],
+      "clusters": [
+        "C4",
+        "C5"
+      ],
+      "column": "calc_load_wot_pct"
+    },
+    {
+      "actions": [
+        "A10_VVT_CAM"
+      ],
+      "case_count": 3,
+      "cases": [
+        "EXP-N023",
+        "era1_011",
+        "era2_011"
+      ],
+      "clusters": [
+        "C7"
+      ],
+      "column": "cam_crank_correlation_deg"
+    },
+    {
+      "actions": [
+        "A2_MODE06_EMISSIONS"
+      ],
+      "case_count": 22,
+      "cases": [
+        "CASE-015",
+        "CASE-023",
+        "CASE-029",
+        "CASE-040",
+        "CSV-100",
+        "CSV-121",
+        "CSV-122",
+        "EXP-N017",
+        "EXT-217",
+        "EXT-232",
+        "EXT-233",
+        "PDF-HI-001",
+        "PDF-HI-006",
+        "RULE-CO-1",
+        "YAML-PDF_HI_001",
+        "case_002",
+        "case_004",
+        "case_015",
+        "case_017",
+        "era1_017",
+        "era2_015",
+        "era2_019"
+      ],
+      "clusters": [
+        "C2"
+      ],
+      "column": "catalyst_index_ratio"
+    },
+    {
+      "actions": [
+        "A6_TWO_POINT_5GAS"
+      ],
+      "case_count": 5,
+      "cases": [
+        "CSV-117",
+        "EXP-N030",
+        "MECH-001",
+        "PDF-4G-04",
+        "case_044"
+      ],
+      "clusters": [
+        "C1"
+      ],
+      "column": "cooling_headspace_hc_ppm"
+    },
+    {
+      "actions": [
+        "A7_CRANKING_BUNDLE"
+      ],
+      "case_count": 6,
+      "cases": [
+        "REAL-001",
+        "REAL-002",
+        "REAL-003",
+        "case_006",
+        "case_007",
+        "case_040"
+      ],
+      "clusters": [
+        "C8"
+      ],
+      "column": "crank_rpm"
+    },
+    {
+      "actions": [
+        "A7_CRANKING_BUNDLE"
+      ],
+      "case_count": 6,
+      "cases": [
+        "REAL-001",
+        "REAL-002",
+        "REAL-003",
+        "case_006",
+        "case_007",
+        "case_040"
+      ],
+      "clusters": [
+        "C8"
+      ],
+      "column": "cranking_fuel_pressure_kpa"
+    },
+    {
+      "actions": [
+        "A7_CRANKING_BUNDLE"
+      ],
+      "case_count": 6,
+      "cases": [
+        "REAL-001",
+        "REAL-002",
+        "REAL-003",
+        "case_006",
+        "case_007",
+        "case_040"
+      ],
+      "clusters": [
+        "C8"
+      ],
+      "column": "cranking_vacuum_inhg"
+    },
+    {
+      "actions": [
+        "A5_CONTROL_PLAUSIBILITY"
+      ],
+      "case_count": 22,
+      "cases": [
+        "CASE-039",
+        "CSV-041",
+        "CSV-045",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N018",
+        "EXP-N019",
+        "EXT-221",
+        "TC-021",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-RULE_NOx_1",
+        "YAML-TC47",
+        "case_001",
+        "case_013"
+      ],
+      "clusters": [
+        "C3"
+      ],
+      "column": "dlc_signal_ground_drop_v"
+    },
+    {
+      "actions": [
+        "A11_FUEL_PRESSURE_LOAD"
+      ],
+      "case_count": 21,
+      "cases": [
+        "CASE-020",
+        "CASE-022",
+        "CSV-113",
+        "CSV-114",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N011",
+        "EXP-N022",
+        "EXP-N029",
+        "EXT-211",
+        "EXT-212",
+        "EXT-238",
+        "EXT-239",
+        "PDF-HI-007",
+        "REAL-004",
+        "TC-048",
+        "YAML-CSV95",
+        "case_003",
+        "case_016",
+        "era1_001",
+        "era3_015"
+      ],
+      "clusters": [
+        "C4",
+        "C5"
+      ],
+      "column": "fuel_rail_pressure_load_kpa"
+    },
+    {
+      "actions": [
+        "A6_TWO_POINT_5GAS"
+      ],
+      "case_count": 11,
+      "cases": [
+        "CSV-127",
+        "CSV-128",
+        "EXT-216",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_014",
+        "era2_016",
+        "era3_014"
+      ],
+      "clusters": [
+        "C9"
+      ],
+      "column": "gas_delta_co2_pct"
+    },
+    {
+      "actions": [
+        "A6_TWO_POINT_5GAS"
+      ],
+      "case_count": 11,
+      "cases": [
+        "CSV-127",
+        "CSV-128",
+        "EXT-216",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_014",
+        "era2_016",
+        "era3_014"
+      ],
+      "clusters": [
+        "C9"
+      ],
+      "column": "gas_delta_co_pct"
+    },
+    {
+      "actions": [
+        "A6_TWO_POINT_5GAS"
+      ],
+      "case_count": 11,
+      "cases": [
+        "CSV-127",
+        "CSV-128",
+        "EXT-216",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_014",
+        "era2_016",
+        "era3_014"
+      ],
+      "clusters": [
+        "C9"
+      ],
+      "column": "gas_delta_hc_ppm"
+    },
+    {
+      "actions": [
+        "A6_TWO_POINT_5GAS"
+      ],
+      "case_count": 11,
+      "cases": [
+        "CSV-127",
+        "CSV-128",
+        "EXT-216",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_014",
+        "era2_016",
+        "era3_014"
+      ],
+      "clusters": [
+        "C9"
+      ],
+      "column": "gas_delta_o2_pct"
+    },
+    {
+      "actions": [
+        "A5_CONTROL_PLAUSIBILITY",
+        "A6_TWO_POINT_5GAS"
+      ],
+      "case_count": 22,
+      "cases": [
+        "CASE-039",
+        "CSV-041",
+        "CSV-045",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N018",
+        "EXP-N019",
+        "EXT-221",
+        "TC-021",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-RULE_NOx_1",
+        "YAML-TC47",
+        "case_001",
+        "case_013"
+      ],
+      "clusters": [
+        "C3"
+      ],
+      "column": "gas_obd_lambda_delta"
+    },
+    {
+      "actions": [
+        "A7_CRANKING_BUNDLE"
+      ],
+      "case_count": 6,
+      "cases": [
+        "REAL-001",
+        "REAL-002",
+        "REAL-003",
+        "case_006",
+        "case_007",
+        "case_040"
+      ],
+      "clusters": [
+        "C8"
+      ],
+      "column": "immobilizer_active_bool"
+    },
+    {
+      "actions": [
+        "A7_CRANKING_BUNDLE"
+      ],
+      "case_count": 6,
+      "cases": [
+        "REAL-001",
+        "REAL-002",
+        "REAL-003",
+        "case_006",
+        "case_007",
+        "case_040"
+      ],
+      "clusters": [
+        "C8"
+      ],
+      "column": "injector_pulse_ms"
+    },
+    {
+      "actions": [
+        "A7_CRANKING_BUNDLE"
+      ],
+      "case_count": 6,
+      "cases": [
+        "REAL-001",
+        "REAL-002",
+        "REAL-003",
+        "case_006",
+        "case_007",
+        "case_040"
+      ],
+      "clusters": [
+        "C8"
+      ],
+      "column": "koeo_fuel_pressure_kpa"
+    },
+    {
+      "actions": [
+        "A5_CONTROL_PLAUSIBILITY"
+      ],
+      "case_count": 22,
+      "cases": [
+        "CASE-039",
+        "CSV-041",
+        "CSV-045",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N018",
+        "EXP-N019",
+        "EXT-221",
+        "TC-021",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-RULE_NOx_1",
+        "YAML-TC47",
+        "case_001",
+        "case_013"
+      ],
+      "clusters": [
+        "C3"
+      ],
+      "column": "koeo_map_baro_delta_kpa"
+    },
+    {
+      "actions": [
+        "A5_CONTROL_PLAUSIBILITY",
+        "A6_TWO_POINT_5GAS"
+      ],
+      "case_count": 22,
+      "cases": [
+        "CASE-039",
+        "CSV-041",
+        "CSV-045",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N018",
+        "EXP-N019",
+        "EXT-221",
+        "TC-021",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-RULE_NOx_1",
+        "YAML-TC47",
+        "case_001",
+        "case_013"
+      ],
+      "clusters": [
+        "C3"
+      ],
+      "column": "lambda_perception_delta"
+    },
+    {
+      "actions": [
+        "A8_COMPRESSION_LEAKDOWN"
+      ],
+      "case_count": 5,
+      "cases": [
+        "CSV-117",
+        "EXP-N030",
+        "MECH-001",
+        "PDF-4G-04",
+        "case_044"
+      ],
+      "clusters": [
+        "C1"
+      ],
+      "column": "leakdown_pct"
+    },
+    {
+      "actions": [
+        "A1_TRIMS"
+      ],
+      "case_count": 54,
+      "cases": [
+        "CASE-015",
+        "CASE-020",
+        "CASE-022",
+        "CASE-023",
+        "CASE-029",
+        "CASE-040",
+        "CSV-100",
+        "CSV-113",
+        "CSV-114",
+        "CSV-121",
+        "CSV-122",
+        "CSV-127",
+        "CSV-128",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N011",
+        "EXP-N017",
+        "EXP-N022",
+        "EXP-N029",
+        "EXT-211",
+        "EXT-212",
+        "EXT-216",
+        "EXT-217",
+        "EXT-232",
+        "EXT-233",
+        "EXT-238",
+        "EXT-239",
+        "PDF-HI-001",
+        "PDF-HI-005",
+        "PDF-HI-006",
+        "PDF-HI-007",
+        "PDF-HI-010",
+        "REAL-004",
+        "RULE-CO-1",
+        "TC-048",
+        "YAML-CSV95",
+        "YAML-PDF_HI_001",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "era1_001",
+        "era1_017",
+        "era2_015",
+        "era2_016",
+        "era2_019",
+        "era3_014",
+        "era3_015"
+      ],
+      "clusters": [
+        "C2",
+        "C4",
+        "C5",
+        "C9"
+      ],
+      "column": "ltft_2500_pct"
+    },
+    {
+      "actions": [
+        "A1_TRIMS"
+      ],
+      "case_count": 54,
+      "cases": [
+        "CASE-015",
+        "CASE-020",
+        "CASE-022",
+        "CASE-023",
+        "CASE-029",
+        "CASE-040",
+        "CSV-100",
+        "CSV-113",
+        "CSV-114",
+        "CSV-121",
+        "CSV-122",
+        "CSV-127",
+        "CSV-128",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N011",
+        "EXP-N017",
+        "EXP-N022",
+        "EXP-N029",
+        "EXT-211",
+        "EXT-212",
+        "EXT-216",
+        "EXT-217",
+        "EXT-232",
+        "EXT-233",
+        "EXT-238",
+        "EXT-239",
+        "PDF-HI-001",
+        "PDF-HI-005",
+        "PDF-HI-006",
+        "PDF-HI-007",
+        "PDF-HI-010",
+        "REAL-004",
+        "RULE-CO-1",
+        "TC-048",
+        "YAML-CSV95",
+        "YAML-PDF_HI_001",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "era1_001",
+        "era1_017",
+        "era2_015",
+        "era2_016",
+        "era2_019",
+        "era3_014",
+        "era3_015"
+      ],
+      "clusters": [
+        "C2",
+        "C4",
+        "C5",
+        "C9"
+      ],
+      "column": "ltft_idle_pct"
+    },
+    {
+      "actions": [
+        "A4_MAF_LOAD"
+      ],
+      "case_count": 21,
+      "cases": [
+        "CASE-020",
+        "CASE-022",
+        "CSV-113",
+        "CSV-114",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N011",
+        "EXP-N022",
+        "EXP-N029",
+        "EXT-211",
+        "EXT-212",
+        "EXT-238",
+        "EXT-239",
+        "PDF-HI-007",
+        "REAL-004",
+        "TC-048",
+        "YAML-CSV95",
+        "case_003",
+        "case_016",
+        "era1_001",
+        "era3_015"
+      ],
+      "clusters": [
+        "C4",
+        "C5"
+      ],
+      "column": "ltft_load_pct"
+    },
+    {
+      "actions": [
+        "A4_MAF_LOAD"
+      ],
+      "case_count": 25,
+      "cases": [
+        "CASE-014",
+        "CASE-020",
+        "CASE-022",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N020",
+        "EXT-211",
+        "EXT-212",
+        "EXT-229",
+        "EXT-230",
+        "EXT-238",
+        "EXT-239",
+        "PDF-4G-05",
+        "PDF-HI-007",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-TC46",
+        "case_046",
+        "era1_006",
+        "era2_012"
+      ],
+      "clusters": [
+        "C4",
+        "C6"
+      ],
+      "column": "maf_actual_calc_delta_pct_2500"
+    },
+    {
+      "actions": [
+        "A4_MAF_LOAD"
+      ],
+      "case_count": 25,
+      "cases": [
+        "CASE-014",
+        "CASE-020",
+        "CASE-022",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N020",
+        "EXT-211",
+        "EXT-212",
+        "EXT-229",
+        "EXT-230",
+        "EXT-238",
+        "EXT-239",
+        "PDF-4G-05",
+        "PDF-HI-007",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-TC46",
+        "case_046",
+        "era1_006",
+        "era2_012"
+      ],
+      "clusters": [
+        "C4",
+        "C6"
+      ],
+      "column": "maf_actual_calc_delta_pct_idle"
+    },
+    {
+      "actions": [
+        "A4_MAF_LOAD"
+      ],
+      "case_count": 35,
+      "cases": [
+        "CASE-014",
+        "CASE-020",
+        "CASE-022",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-113",
+        "CSV-114",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N011",
+        "EXP-N020",
+        "EXP-N022",
+        "EXP-N029",
+        "EXT-211",
+        "EXT-212",
+        "EXT-229",
+        "EXT-230",
+        "EXT-238",
+        "EXT-239",
+        "PDF-4G-05",
+        "PDF-HI-007",
+        "REAL-004",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-TC46",
+        "case_003",
+        "case_016",
+        "case_046",
+        "era1_001",
+        "era1_006",
+        "era2_012",
+        "era3_015"
+      ],
+      "clusters": [
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "column": "maf_gps_2500"
+    },
+    {
+      "actions": [
+        "A10_VVT_CAM"
+      ],
+      "case_count": 3,
+      "cases": [
+        "EXP-N023",
+        "era1_011",
+        "era2_011"
+      ],
+      "clusters": [
+        "C7"
+      ],
+      "column": "maf_gps_2500_load"
+    },
+    {
+      "actions": [
+        "A4_MAF_LOAD"
+      ],
+      "case_count": 35,
+      "cases": [
+        "CASE-014",
+        "CASE-020",
+        "CASE-022",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-113",
+        "CSV-114",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N011",
+        "EXP-N020",
+        "EXP-N022",
+        "EXP-N029",
+        "EXT-211",
+        "EXT-212",
+        "EXT-229",
+        "EXT-230",
+        "EXT-238",
+        "EXT-239",
+        "PDF-4G-05",
+        "PDF-HI-007",
+        "REAL-004",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-TC46",
+        "case_003",
+        "case_016",
+        "case_046",
+        "era1_001",
+        "era1_006",
+        "era2_012",
+        "era3_015"
+      ],
+      "clusters": [
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "column": "maf_gps_idle"
+    },
+    {
+      "actions": [
+        "A3_OBD_HEALTH"
+      ],
+      "case_count": 11,
+      "cases": [
+        "CSV-127",
+        "CSV-128",
+        "EXT-216",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_014",
+        "era2_016",
+        "era3_014"
+      ],
+      "clusters": [
+        "C9"
+      ],
+      "column": "miles_since_clear"
+    },
+    {
+      "actions": [
+        "A2_MODE06_EMISSIONS"
+      ],
+      "case_count": 5,
+      "cases": [
+        "CSV-117",
+        "EXP-N030",
+        "MECH-001",
+        "PDF-4G-04",
+        "case_044"
+      ],
+      "clusters": [
+        "C1"
+      ],
+      "column": "misfire_cold_start_seconds"
+    },
+    {
+      "actions": [
+        "A2_MODE06_EMISSIONS"
+      ],
+      "case_count": 22,
+      "cases": [
+        "CASE-015",
+        "CASE-023",
+        "CASE-029",
+        "CASE-040",
+        "CSV-100",
+        "CSV-121",
+        "CSV-122",
+        "EXP-N017",
+        "EXT-217",
+        "EXT-232",
+        "EXT-233",
+        "PDF-HI-001",
+        "PDF-HI-006",
+        "RULE-CO-1",
+        "YAML-PDF_HI_001",
+        "case_002",
+        "case_004",
+        "case_015",
+        "case_017",
+        "era1_017",
+        "era2_015",
+        "era2_019"
+      ],
+      "clusters": [
+        "C2"
+      ],
+      "column": "mode06_catalyst_margin_pct"
+    },
+    {
+      "actions": [
+        "A2_MODE06_EMISSIONS"
+      ],
+      "case_count": 11,
+      "cases": [
+        "CSV-127",
+        "CSV-128",
+        "EXT-216",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_014",
+        "era2_016",
+        "era3_014"
+      ],
+      "clusters": [
+        "C9"
+      ],
+      "column": "mode06_min_margin_pct"
+    },
+    {
+      "actions": [
+        "A2_MODE06_EMISSIONS"
+      ],
+      "case_count": 5,
+      "cases": [
+        "CSV-117",
+        "EXP-N030",
+        "MECH-001",
+        "PDF-4G-04",
+        "case_044"
+      ],
+      "clusters": [
+        "C1"
+      ],
+      "column": "mode06_misfire_counts_json"
+    },
+    {
+      "actions": [
+        "A2_MODE06_EMISSIONS"
+      ],
+      "case_count": 25,
+      "cases": [
+        "CASE-014",
+        "CASE-020",
+        "CASE-022",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N020",
+        "EXT-211",
+        "EXT-212",
+        "EXT-229",
+        "EXT-230",
+        "EXT-238",
+        "EXT-239",
+        "PDF-4G-05",
+        "PDF-HI-007",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-TC46",
+        "case_046",
+        "era1_006",
+        "era2_012"
+      ],
+      "clusters": [
+        "C4",
+        "C6"
+      ],
+      "column": "mode06_o2_response_margin_pct"
+    },
+    {
+      "actions": [
+        "A5_CONTROL_PLAUSIBILITY"
+      ],
+      "case_count": 22,
+      "cases": [
+        "CASE-039",
+        "CSV-041",
+        "CSV-045",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N018",
+        "EXP-N019",
+        "EXT-221",
+        "TC-021",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-RULE_NOx_1",
+        "YAML-TC47",
+        "case_001",
+        "case_013"
+      ],
+      "clusters": [
+        "C3"
+      ],
+      "column": "module_voltage_loaded_v"
+    },
+    {
+      "actions": [
+        "A9_O2_SCOPE_FALLBACK"
+      ],
+      "case_count": 25,
+      "cases": [
+        "CASE-014",
+        "CASE-020",
+        "CASE-022",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N020",
+        "EXT-211",
+        "EXT-212",
+        "EXT-229",
+        "EXT-230",
+        "EXT-238",
+        "EXT-239",
+        "PDF-4G-05",
+        "PDF-HI-007",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-TC46",
+        "case_046",
+        "era1_006",
+        "era2_012"
+      ],
+      "clusters": [
+        "C4",
+        "C6"
+      ],
+      "column": "o2_lean_to_rich_ms"
+    },
+    {
+      "actions": [
+        "A9_O2_SCOPE_FALLBACK"
+      ],
+      "case_count": 25,
+      "cases": [
+        "CASE-014",
+        "CASE-020",
+        "CASE-022",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N020",
+        "EXT-211",
+        "EXT-212",
+        "EXT-229",
+        "EXT-230",
+        "EXT-238",
+        "EXT-239",
+        "PDF-4G-05",
+        "PDF-HI-007",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-TC46",
+        "case_046",
+        "era1_006",
+        "era2_012"
+      ],
+      "clusters": [
+        "C4",
+        "C6"
+      ],
+      "column": "o2_rich_to_lean_ms"
+    },
+    {
+      "actions": [
+        "A3_OBD_HEALTH"
+      ],
+      "case_count": 11,
+      "cases": [
+        "CSV-127",
+        "CSV-128",
+        "EXT-216",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_014",
+        "era2_016",
+        "era3_014"
+      ],
+      "clusters": [
+        "C9"
+      ],
+      "column": "pending_dtc_count"
+    },
+    {
+      "actions": [
+        "A3_OBD_HEALTH"
+      ],
+      "case_count": 11,
+      "cases": [
+        "CSV-127",
+        "CSV-128",
+        "EXT-216",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_014",
+        "era2_016",
+        "era3_014"
+      ],
+      "clusters": [
+        "C9"
+      ],
+      "column": "permanent_dtc_count"
+    },
+    {
+      "actions": [
+        "A6_TWO_POINT_5GAS"
+      ],
+      "case_count": 22,
+      "cases": [
+        "CASE-015",
+        "CASE-023",
+        "CASE-029",
+        "CASE-040",
+        "CSV-100",
+        "CSV-121",
+        "CSV-122",
+        "EXP-N017",
+        "EXT-217",
+        "EXT-232",
+        "EXT-233",
+        "PDF-HI-001",
+        "PDF-HI-006",
+        "RULE-CO-1",
+        "YAML-PDF_HI_001",
+        "case_002",
+        "case_004",
+        "case_015",
+        "case_017",
+        "era1_017",
+        "era2_015",
+        "era2_019"
+      ],
+      "clusters": [
+        "C2"
+      ],
+      "column": "pre_post_cat_co_delta_pct"
+    },
+    {
+      "actions": [
+        "A6_TWO_POINT_5GAS"
+      ],
+      "case_count": 22,
+      "cases": [
+        "CASE-015",
+        "CASE-023",
+        "CASE-029",
+        "CASE-040",
+        "CSV-100",
+        "CSV-121",
+        "CSV-122",
+        "EXP-N017",
+        "EXT-217",
+        "EXT-232",
+        "EXT-233",
+        "PDF-HI-001",
+        "PDF-HI-006",
+        "RULE-CO-1",
+        "YAML-PDF_HI_001",
+        "case_002",
+        "case_004",
+        "case_015",
+        "case_017",
+        "era1_017",
+        "era2_015",
+        "era2_019"
+      ],
+      "clusters": [
+        "C2"
+      ],
+      "column": "pre_post_cat_hc_delta_ppm"
+    },
+    {
+      "actions": [
+        "A3_OBD_HEALTH"
+      ],
+      "case_count": 11,
+      "cases": [
+        "CSV-127",
+        "CSV-128",
+        "EXT-216",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_014",
+        "era2_016",
+        "era3_014"
+      ],
+      "clusters": [
+        "C9"
+      ],
+      "column": "readiness_supported_complete_bool"
+    },
+    {
+      "actions": [
+        "A7_CRANKING_BUNDLE",
+        "A8_COMPRESSION_LEAKDOWN"
+      ],
+      "case_count": 11,
+      "cases": [
+        "CSV-117",
+        "EXP-N030",
+        "MECH-001",
+        "PDF-4G-04",
+        "REAL-001",
+        "REAL-002",
+        "REAL-003",
+        "case_006",
+        "case_007",
+        "case_040",
+        "case_044"
+      ],
+      "clusters": [
+        "C1",
+        "C8"
+      ],
+      "column": "relative_compression_min_pct"
+    },
+    {
+      "actions": [
+        "A7_CRANKING_BUNDLE"
+      ],
+      "case_count": 6,
+      "cases": [
+        "REAL-001",
+        "REAL-002",
+        "REAL-003",
+        "case_006",
+        "case_007",
+        "case_040"
+      ],
+      "clusters": [
+        "C8"
+      ],
+      "column": "spark_present_bool"
+    },
+    {
+      "actions": [
+        "A1_TRIMS"
+      ],
+      "case_count": 54,
+      "cases": [
+        "CASE-015",
+        "CASE-020",
+        "CASE-022",
+        "CASE-023",
+        "CASE-029",
+        "CASE-040",
+        "CSV-100",
+        "CSV-113",
+        "CSV-114",
+        "CSV-121",
+        "CSV-122",
+        "CSV-127",
+        "CSV-128",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N011",
+        "EXP-N017",
+        "EXP-N022",
+        "EXP-N029",
+        "EXT-211",
+        "EXT-212",
+        "EXT-216",
+        "EXT-217",
+        "EXT-232",
+        "EXT-233",
+        "EXT-238",
+        "EXT-239",
+        "PDF-HI-001",
+        "PDF-HI-005",
+        "PDF-HI-006",
+        "PDF-HI-007",
+        "PDF-HI-010",
+        "REAL-004",
+        "RULE-CO-1",
+        "TC-048",
+        "YAML-CSV95",
+        "YAML-PDF_HI_001",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "era1_001",
+        "era1_017",
+        "era2_015",
+        "era2_016",
+        "era2_019",
+        "era3_014",
+        "era3_015"
+      ],
+      "clusters": [
+        "C2",
+        "C4",
+        "C5",
+        "C9"
+      ],
+      "column": "stft_2500_pct"
+    },
+    {
+      "actions": [
+        "A1_TRIMS"
+      ],
+      "case_count": 54,
+      "cases": [
+        "CASE-015",
+        "CASE-020",
+        "CASE-022",
+        "CASE-023",
+        "CASE-029",
+        "CASE-040",
+        "CSV-100",
+        "CSV-113",
+        "CSV-114",
+        "CSV-121",
+        "CSV-122",
+        "CSV-127",
+        "CSV-128",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N011",
+        "EXP-N017",
+        "EXP-N022",
+        "EXP-N029",
+        "EXT-211",
+        "EXT-212",
+        "EXT-216",
+        "EXT-217",
+        "EXT-232",
+        "EXT-233",
+        "EXT-238",
+        "EXT-239",
+        "PDF-HI-001",
+        "PDF-HI-005",
+        "PDF-HI-006",
+        "PDF-HI-007",
+        "PDF-HI-010",
+        "REAL-004",
+        "RULE-CO-1",
+        "TC-048",
+        "YAML-CSV95",
+        "YAML-PDF_HI_001",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "era1_001",
+        "era1_017",
+        "era2_015",
+        "era2_016",
+        "era2_019",
+        "era3_014",
+        "era3_015"
+      ],
+      "clusters": [
+        "C2",
+        "C4",
+        "C5",
+        "C9"
+      ],
+      "column": "stft_idle_pct"
+    },
+    {
+      "actions": [
+        "A4_MAF_LOAD"
+      ],
+      "case_count": 21,
+      "cases": [
+        "CASE-020",
+        "CASE-022",
+        "CSV-113",
+        "CSV-114",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N011",
+        "EXP-N022",
+        "EXP-N029",
+        "EXT-211",
+        "EXT-212",
+        "EXT-238",
+        "EXT-239",
+        "PDF-HI-007",
+        "REAL-004",
+        "TC-048",
+        "YAML-CSV95",
+        "case_003",
+        "case_016",
+        "era1_001",
+        "era3_015"
+      ],
+      "clusters": [
+        "C4",
+        "C5"
+      ],
+      "column": "stft_load_pct"
+    },
+    {
+      "actions": [
+        "A3_OBD_HEALTH"
+      ],
+      "case_count": 11,
+      "cases": [
+        "CSV-127",
+        "CSV-128",
+        "EXT-216",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_014",
+        "era2_016",
+        "era3_014"
+      ],
+      "clusters": [
+        "C9"
+      ],
+      "column": "stored_dtc_count"
+    },
+    {
+      "actions": [
+        "A6_TWO_POINT_5GAS"
+      ],
+      "case_count": 5,
+      "cases": [
+        "CSV-117",
+        "EXP-N030",
+        "MECH-001",
+        "PDF-4G-04",
+        "case_044"
+      ],
+      "clusters": [
+        "C1"
+      ],
+      "column": "tailpipe_o2_2500_pct"
+    },
+    {
+      "actions": [
+        "A6_TWO_POINT_5GAS"
+      ],
+      "case_count": 5,
+      "cases": [
+        "CSV-117",
+        "EXP-N030",
+        "MECH-001",
+        "PDF-4G-04",
+        "case_044"
+      ],
+      "clusters": [
+        "C1"
+      ],
+      "column": "two_point_hc_delta_ppm"
+    },
+    {
+      "actions": [
+        "A10_VVT_CAM"
+      ],
+      "case_count": 3,
+      "cases": [
+        "EXP-N023",
+        "era1_011",
+        "era2_011"
+      ],
+      "clusters": [
+        "C7"
+      ],
+      "column": "ve_2500_load_pct"
+    },
+    {
+      "actions": [
+        "A10_VVT_CAM"
+      ],
+      "case_count": 3,
+      "cases": [
+        "EXP-N023",
+        "era1_011",
+        "era2_011"
+      ],
+      "clusters": [
+        "C7"
+      ],
+      "column": "ve_idle_pct"
+    },
+    {
+      "actions": [
+        "A10_VVT_CAM"
+      ],
+      "case_count": 3,
+      "cases": [
+        "EXP-N023",
+        "era1_011",
+        "era2_011"
+      ],
+      "clusters": [
+        "C7"
+      ],
+      "column": "vvt_actual_deg"
+    },
+    {
+      "actions": [
+        "A10_VVT_CAM"
+      ],
+      "case_count": 3,
+      "cases": [
+        "EXP-N023",
+        "era1_011",
+        "era2_011"
+      ],
+      "clusters": [
+        "C7"
+      ],
+      "column": "vvt_command_deg"
+    },
+    {
+      "actions": [
+        "A10_VVT_CAM"
+      ],
+      "case_count": 3,
+      "cases": [
+        "EXP-N023",
+        "era1_011",
+        "era2_011"
+      ],
+      "clusters": [
+        "C7"
+      ],
+      "column": "vvt_tracking_error_deg"
+    },
+    {
+      "actions": [
+        "A3_OBD_HEALTH"
+      ],
+      "case_count": 11,
+      "cases": [
+        "CSV-127",
+        "CSV-128",
+        "EXT-216",
+        "PDF-HI-005",
+        "PDF-HI-010",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "case_014",
+        "era2_016",
+        "era3_014"
+      ],
+      "clusters": [
+        "C9"
+      ],
+      "column": "warmup_cycles_since_clear"
+    },
+    {
+      "actions": [
+        "A4_MAF_LOAD"
+      ],
+      "case_count": 21,
+      "cases": [
+        "CASE-020",
+        "CASE-022",
+        "CSV-113",
+        "CSV-114",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N011",
+        "EXP-N022",
+        "EXP-N029",
+        "EXT-211",
+        "EXT-212",
+        "EXT-238",
+        "EXT-239",
+        "PDF-HI-007",
+        "REAL-004",
+        "TC-048",
+        "YAML-CSV95",
+        "case_003",
+        "case_016",
+        "era1_001",
+        "era3_015"
+      ],
+      "clusters": [
+        "C4",
+        "C5"
+      ],
+      "column": "wideband_lambda_wot"
+    }
+  ],
+  "corrected_cluster_order": [
+    {
+      "cluster": "C2",
+      "effective_count_with_case_039": 22,
+      "note": "",
+      "spec_count": 22
+    },
+    {
+      "cluster": "C3",
+      "effective_count_with_case_039": 22,
+      "note": "includes CASE-039 overlay",
+      "spec_count": 21
+    },
+    {
+      "cluster": "C6",
+      "effective_count_with_case_039": 14,
+      "note": "",
+      "spec_count": 14
+    },
+    {
+      "cluster": "C9",
+      "effective_count_with_case_039": 11,
+      "note": "",
+      "spec_count": 11
+    },
+    {
+      "cluster": "C4",
+      "effective_count_with_case_039": 11,
+      "note": "",
+      "spec_count": 11
+    },
+    {
+      "cluster": "C5",
+      "effective_count_with_case_039": 10,
+      "note": "",
+      "spec_count": 10
+    },
+    {
+      "cluster": "C8",
+      "effective_count_with_case_039": 6,
+      "note": "",
+      "spec_count": 6
+    },
+    {
+      "cluster": "C1",
+      "effective_count_with_case_039": 5,
+      "note": "",
+      "spec_count": 5
+    },
+    {
+      "cluster": "C7",
+      "effective_count_with_case_039": 3,
+      "note": "",
+      "spec_count": 3
+    }
+  ],
+  "greedy_order": [
+    {
+      "action_id": "A2_MODE06_EMISSIONS",
+      "buckets_reached": [
+        "DATA_GAP_ACQUISITION_GAP",
+        "OUTRANKED_HARD",
+        "PRODUCER_GAP_SIGNAL_REQUIRED",
+        "TUNABLE_HELD"
+      ],
+      "case_count_reached": 63,
+      "cases_reached": [
+        "CASE-014",
+        "CASE-015",
+        "CASE-020",
+        "CASE-022",
+        "CASE-023",
+        "CASE-029",
+        "CASE-040",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-100",
+        "CSV-117",
+        "CSV-121",
+        "CSV-122",
+        "CSV-127",
+        "CSV-128",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N017",
+        "EXP-N020",
+        "EXP-N030",
+        "EXT-211",
+        "EXT-212",
+        "EXT-216",
+        "EXT-217",
+        "EXT-229",
+        "EXT-230",
+        "EXT-232",
+        "EXT-233",
+        "EXT-238",
+        "EXT-239",
+        "MECH-001",
+        "PDF-4G-04",
+        "PDF-4G-05",
+        "PDF-HI-001",
+        "PDF-HI-005",
+        "PDF-HI-006",
+        "PDF-HI-007",
+        "PDF-HI-010",
+        "RULE-CO-1",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-PDF_HI_001",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "YAML-TC46",
+        "case_002",
+        "case_004",
+        "case_014",
+        "case_015",
+        "case_017",
+        "case_044",
+        "case_046",
+        "era1_006",
+        "era1_017",
+        "era2_012",
+        "era2_015",
+        "era2_016",
+        "era2_019",
+        "era3_014"
+      ],
+      "clusters_reached": [
+        "C1",
+        "C2",
+        "C4",
+        "C6",
+        "C9"
+      ],
+      "columns": [
+        "mode06_catalyst_margin_pct",
+        "catalyst_index_ratio",
+        "mode06_min_margin_pct",
+        "mode06_o2_response_margin_pct",
+        "mode06_misfire_counts_json",
+        "misfire_cold_start_seconds"
+      ],
+      "cost": 1,
+      "cumulative_case_count": 63,
+      "cumulative_cases": [
+        "CASE-014",
+        "CASE-015",
+        "CASE-020",
+        "CASE-022",
+        "CASE-023",
+        "CASE-029",
+        "CASE-040",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-100",
+        "CSV-117",
+        "CSV-121",
+        "CSV-122",
+        "CSV-127",
+        "CSV-128",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N017",
+        "EXP-N020",
+        "EXP-N030",
+        "EXT-211",
+        "EXT-212",
+        "EXT-216",
+        "EXT-217",
+        "EXT-229",
+        "EXT-230",
+        "EXT-232",
+        "EXT-233",
+        "EXT-238",
+        "EXT-239",
+        "MECH-001",
+        "PDF-4G-04",
+        "PDF-4G-05",
+        "PDF-HI-001",
+        "PDF-HI-005",
+        "PDF-HI-006",
+        "PDF-HI-007",
+        "PDF-HI-010",
+        "RULE-CO-1",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-PDF_HI_001",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "YAML-TC46",
+        "case_002",
+        "case_004",
+        "case_014",
+        "case_015",
+        "case_017",
+        "case_044",
+        "case_046",
+        "era1_006",
+        "era1_017",
+        "era2_012",
+        "era2_015",
+        "era2_016",
+        "era2_019",
+        "era3_014"
+      ],
+      "full_unlock_case_count": 0,
+      "full_unlock_cases": [],
+      "marginal_case_count": 63,
+      "marginal_cases": [
+        "CASE-014",
+        "CASE-015",
+        "CASE-020",
+        "CASE-022",
+        "CASE-023",
+        "CASE-029",
+        "CASE-040",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-100",
+        "CSV-117",
+        "CSV-121",
+        "CSV-122",
+        "CSV-127",
+        "CSV-128",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N017",
+        "EXP-N020",
+        "EXP-N030",
+        "EXT-211",
+        "EXT-212",
+        "EXT-216",
+        "EXT-217",
+        "EXT-229",
+        "EXT-230",
+        "EXT-232",
+        "EXT-233",
+        "EXT-238",
+        "EXT-239",
+        "MECH-001",
+        "PDF-4G-04",
+        "PDF-4G-05",
+        "PDF-HI-001",
+        "PDF-HI-005",
+        "PDF-HI-006",
+        "PDF-HI-007",
+        "PDF-HI-010",
+        "RULE-CO-1",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-PDF_HI_001",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-TC1",
+        "YAML-TC46",
+        "case_002",
+        "case_004",
+        "case_014",
+        "case_015",
+        "case_017",
+        "case_044",
+        "case_046",
+        "era1_006",
+        "era1_017",
+        "era2_012",
+        "era2_015",
+        "era2_016",
+        "era2_019",
+        "era3_014"
+      ],
+      "marginal_per_cost": 63.0,
+      "name": "Read Mode $06 catalyst, O2, no-fault, and misfire monitors",
+      "notes": "Cheap scan-tool read before any code clear; decisive only when paired with each cluster's corroborating columns.",
+      "reach_per_cost": 63.0,
+      "research_basis": "cluster2.md \u00a7Instrumentation Feasibility Tiers; cluster6.md \u00a7Question One Answer; cluster1.md \u00a7On-Board Diagnostics Mode 06",
+      "tier": "a"
+    },
+    {
+      "action_id": "A6_TWO_POINT_5GAS",
+      "buckets_reached": [
+        "DATA_GAP_ACQUISITION_GAP",
+        "OUTRANKED_HARD",
+        "PRODUCER_GAP_SIGNAL_REQUIRED",
+        "TUNABLE_HELD"
+      ],
+      "case_count_reached": 60,
+      "cases_reached": [
+        "CASE-015",
+        "CASE-023",
+        "CASE-029",
+        "CASE-039",
+        "CASE-040",
+        "CSV-041",
+        "CSV-045",
+        "CSV-100",
+        "CSV-117",
+        "CSV-121",
+        "CSV-122",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "CSV-127",
+        "CSV-128",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N017",
+        "EXP-N018",
+        "EXP-N019",
+        "EXP-N030",
+        "EXT-216",
+        "EXT-217",
+        "EXT-221",
+        "EXT-232",
+        "EXT-233",
+        "MECH-001",
+        "PDF-4G-04",
+        "PDF-HI-001",
+        "PDF-HI-005",
+        "PDF-HI-006",
+        "PDF-HI-010",
+        "RULE-CO-1",
+        "TC-021",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-PDF_HI_001",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-RULE_NOx_1",
+        "YAML-TC1",
+        "YAML-TC47",
+        "case_001",
+        "case_002",
+        "case_004",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_017",
+        "case_044",
+        "era1_017",
+        "era2_015",
+        "era2_016",
+        "era2_019",
+        "era3_014"
+      ],
+      "clusters_reached": [
+        "C1",
+        "C2",
+        "C3",
+        "C9"
+      ],
+      "columns": [
+        "pre_post_cat_hc_delta_ppm",
+        "pre_post_cat_co_delta_pct",
+        "gas_delta_hc_ppm",
+        "gas_delta_co_pct",
+        "gas_delta_co2_pct",
+        "gas_delta_o2_pct",
+        "gas_obd_lambda_delta",
+        "lambda_perception_delta",
+        "cooling_headspace_hc_ppm",
+        "two_point_hc_delta_ppm",
+        "tailpipe_o2_2500_pct"
+      ],
+      "cost": 2,
+      "cumulative_case_count": 85,
+      "cumulative_cases": [
+        "CASE-014",
+        "CASE-015",
+        "CASE-020",
+        "CASE-022",
+        "CASE-023",
+        "CASE-029",
+        "CASE-039",
+        "CASE-040",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-041",
+        "CSV-045",
+        "CSV-100",
+        "CSV-117",
+        "CSV-121",
+        "CSV-122",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "CSV-127",
+        "CSV-128",
+        "CSV-129",
+        "CSV-130",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N017",
+        "EXP-N018",
+        "EXP-N019",
+        "EXP-N020",
+        "EXP-N030",
+        "EXT-211",
+        "EXT-212",
+        "EXT-216",
+        "EXT-217",
+        "EXT-221",
+        "EXT-229",
+        "EXT-230",
+        "EXT-232",
+        "EXT-233",
+        "EXT-238",
+        "EXT-239",
+        "MECH-001",
+        "PDF-4G-04",
+        "PDF-4G-05",
+        "PDF-HI-001",
+        "PDF-HI-005",
+        "PDF-HI-006",
+        "PDF-HI-007",
+        "PDF-HI-010",
+        "RULE-CO-1",
+        "TC-021",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-CSV95",
+        "YAML-PDF_HI_001",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-RULE_NOx_1",
+        "YAML-TC1",
+        "YAML-TC46",
+        "YAML-TC47",
+        "case_001",
+        "case_002",
+        "case_004",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_017",
+        "case_044",
+        "case_046",
+        "era1_006",
+        "era1_017",
+        "era2_012",
+        "era2_015",
+        "era2_016",
+        "era2_019",
+        "era3_014"
+      ],
+      "full_unlock_case_count": 0,
+      "full_unlock_cases": [],
+      "marginal_case_count": 22,
+      "marginal_cases": [
+        "CASE-039",
+        "CSV-041",
+        "CSV-045",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N018",
+        "EXP-N019",
+        "EXT-221",
+        "TC-021",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-RULE_NOx_1",
+        "YAML-TC47",
+        "case_001",
+        "case_013"
+      ],
+      "marginal_per_cost": 11.0,
+      "name": "Use existing 5-gas analyzer differently: two-point/delta/pre-post catalyst/headspace",
+      "notes": "Reuses the gas bench; completes parts of C1/C2/C3/C9 that static idle gas cannot decide.",
+      "reach_per_cost": 30.0,
+      "research_basis": "cluster1.md \u00a7Comparative Framework; cluster2.md \u00a7Protocol; cluster3.md \u00a7Quantitative Diagnostic Signature Mapping",
+      "tier": "b"
+    },
+    {
+      "action_id": "A4_MAF_LOAD",
+      "buckets_reached": [
+        "DATA_GAP_ACQUISITION_GAP",
+        "OUTRANKED_HARD",
+        "TUNABLE_HELD"
+      ],
+      "case_count_reached": 35,
+      "cases_reached": [
+        "CASE-014",
+        "CASE-020",
+        "CASE-022",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-113",
+        "CSV-114",
+        "CSV-129",
+        "CSV-130",
+        "EXP-N011",
+        "EXP-N020",
+        "EXP-N022",
+        "EXP-N029",
+        "EXT-211",
+        "EXT-212",
+        "EXT-229",
+        "EXT-230",
+        "EXT-238",
+        "EXT-239",
+        "PDF-4G-05",
+        "PDF-HI-007",
+        "REAL-004",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV95",
+        "YAML-TC46",
+        "case_003",
+        "case_016",
+        "case_046",
+        "era1_001",
+        "era1_006",
+        "era2_012",
+        "era3_015"
+      ],
+      "clusters_reached": [
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "columns": [
+        "maf_gps_idle",
+        "maf_gps_2500",
+        "calc_airflow_gps_idle",
+        "calc_airflow_gps_2500",
+        "maf_actual_calc_delta_pct_idle",
+        "maf_actual_calc_delta_pct_2500",
+        "calc_load_wot_pct",
+        "stft_load_pct",
+        "ltft_load_pct",
+        "wideband_lambda_wot"
+      ],
+      "cost": 1,
+      "cumulative_case_count": 95,
+      "cumulative_cases": [
+        "CASE-014",
+        "CASE-015",
+        "CASE-020",
+        "CASE-022",
+        "CASE-023",
+        "CASE-029",
+        "CASE-039",
+        "CASE-040",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-041",
+        "CSV-045",
+        "CSV-100",
+        "CSV-113",
+        "CSV-114",
+        "CSV-117",
+        "CSV-121",
+        "CSV-122",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "CSV-127",
+        "CSV-128",
+        "CSV-129",
+        "CSV-130",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N011",
+        "EXP-N017",
+        "EXP-N018",
+        "EXP-N019",
+        "EXP-N020",
+        "EXP-N022",
+        "EXP-N029",
+        "EXP-N030",
+        "EXT-211",
+        "EXT-212",
+        "EXT-216",
+        "EXT-217",
+        "EXT-221",
+        "EXT-229",
+        "EXT-230",
+        "EXT-232",
+        "EXT-233",
+        "EXT-238",
+        "EXT-239",
+        "MECH-001",
+        "PDF-4G-04",
+        "PDF-4G-05",
+        "PDF-HI-001",
+        "PDF-HI-005",
+        "PDF-HI-006",
+        "PDF-HI-007",
+        "PDF-HI-010",
+        "REAL-004",
+        "RULE-CO-1",
+        "TC-021",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-CSV95",
+        "YAML-PDF_HI_001",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-RULE_NOx_1",
+        "YAML-TC1",
+        "YAML-TC46",
+        "YAML-TC47",
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_044",
+        "case_046",
+        "era1_001",
+        "era1_006",
+        "era1_017",
+        "era2_012",
+        "era2_015",
+        "era2_016",
+        "era2_019",
+        "era3_014",
+        "era3_015"
+      ],
+      "full_unlock_case_count": 0,
+      "full_unlock_cases": [],
+      "marginal_case_count": 10,
+      "marginal_cases": [
+        "CSV-113",
+        "CSV-114",
+        "EXP-N011",
+        "EXP-N022",
+        "EXP-N029",
+        "REAL-004",
+        "case_003",
+        "case_016",
+        "era1_001",
+        "era3_015"
+      ],
+      "marginal_per_cost": 10.0,
+      "name": "Log MAF/load/airflow plausibility at idle, 2500 rpm, and load",
+      "notes": "Shared OBD live-PID action for lean/sensor/exhaust-leak splits; WOT/load parts are safety- and vehicle-dependent.",
+      "reach_per_cost": 35.0,
+      "research_basis": "cluster5.md \u00a7Bottom Line Diagnostic Recommendation; cluster6.md \u00a7Question Three/Four Answers",
+      "tier": "a"
+    },
+    {
+      "action_id": "A8_COMPRESSION_LEAKDOWN",
+      "buckets_reached": [
+        "DATA_GAP_ACQUISITION_GAP",
+        "OUTRANKED_HARD",
+        "PRODUCER_GAP_SIGNAL_REQUIRED"
+      ],
+      "case_count_reached": 11,
+      "cases_reached": [
+        "CSV-117",
+        "EXP-N030",
+        "MECH-001",
+        "PDF-4G-04",
+        "REAL-001",
+        "REAL-002",
+        "REAL-003",
+        "case_006",
+        "case_007",
+        "case_040",
+        "case_044"
+      ],
+      "clusters_reached": [
+        "C1",
+        "C8"
+      ],
+      "columns": [
+        "relative_compression_min_pct",
+        "leakdown_pct"
+      ],
+      "cost": 3,
+      "cumulative_case_count": 101,
+      "cumulative_cases": [
+        "CASE-014",
+        "CASE-015",
+        "CASE-020",
+        "CASE-022",
+        "CASE-023",
+        "CASE-029",
+        "CASE-039",
+        "CASE-040",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-041",
+        "CSV-045",
+        "CSV-100",
+        "CSV-113",
+        "CSV-114",
+        "CSV-117",
+        "CSV-121",
+        "CSV-122",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "CSV-127",
+        "CSV-128",
+        "CSV-129",
+        "CSV-130",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N011",
+        "EXP-N017",
+        "EXP-N018",
+        "EXP-N019",
+        "EXP-N020",
+        "EXP-N022",
+        "EXP-N029",
+        "EXP-N030",
+        "EXT-211",
+        "EXT-212",
+        "EXT-216",
+        "EXT-217",
+        "EXT-221",
+        "EXT-229",
+        "EXT-230",
+        "EXT-232",
+        "EXT-233",
+        "EXT-238",
+        "EXT-239",
+        "MECH-001",
+        "PDF-4G-04",
+        "PDF-4G-05",
+        "PDF-HI-001",
+        "PDF-HI-005",
+        "PDF-HI-006",
+        "PDF-HI-007",
+        "PDF-HI-010",
+        "REAL-001",
+        "REAL-002",
+        "REAL-003",
+        "REAL-004",
+        "RULE-CO-1",
+        "TC-021",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-CSV95",
+        "YAML-PDF_HI_001",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-RULE_NOx_1",
+        "YAML-TC1",
+        "YAML-TC46",
+        "YAML-TC47",
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_006",
+        "case_007",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_040",
+        "case_044",
+        "case_046",
+        "era1_001",
+        "era1_006",
+        "era1_017",
+        "era2_012",
+        "era2_015",
+        "era2_016",
+        "era2_019",
+        "era3_014",
+        "era3_015"
+      ],
+      "full_unlock_case_count": 0,
+      "full_unlock_cases": [],
+      "marginal_case_count": 6,
+      "marginal_cases": [
+        "REAL-001",
+        "REAL-002",
+        "REAL-003",
+        "case_006",
+        "case_007",
+        "case_040"
+      ],
+      "marginal_per_cost": 2.0,
+      "name": "Compression/leak-down or relative-compression mechanical check",
+      "notes": "Expensive but needed for mechanical-loss separation when Mode $06/headspace/two-point gas is insufficient.",
+      "reach_per_cost": 3.67,
+      "research_basis": "cluster1.md \u00a7Comparative Framework/Critical Signal Evaluation",
+      "tier": "c"
+    },
+    {
+      "action_id": "A10_VVT_CAM",
+      "buckets_reached": [
+        "PRODUCER_GAP_SIGNAL_REQUIRED",
+        "TUNABLE_HELD"
+      ],
+      "case_count_reached": 3,
+      "cases_reached": [
+        "EXP-N023",
+        "era1_011",
+        "era2_011"
+      ],
+      "clusters_reached": [
+        "C7"
+      ],
+      "columns": [
+        "vvt_command_deg",
+        "vvt_actual_deg",
+        "vvt_tracking_error_deg",
+        "cam_crank_correlation_deg",
+        "ve_idle_pct",
+        "ve_2500_load_pct",
+        "maf_gps_2500_load"
+      ],
+      "cost": 3,
+      "cumulative_case_count": 104,
+      "cumulative_cases": [
+        "CASE-014",
+        "CASE-015",
+        "CASE-020",
+        "CASE-022",
+        "CASE-023",
+        "CASE-029",
+        "CASE-039",
+        "CASE-040",
+        "CASE-045",
+        "CASE-048",
+        "CSV-025",
+        "CSV-041",
+        "CSV-045",
+        "CSV-100",
+        "CSV-113",
+        "CSV-114",
+        "CSV-117",
+        "CSV-121",
+        "CSV-122",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "CSV-127",
+        "CSV-128",
+        "CSV-129",
+        "CSV-130",
+        "ECU-001",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N011",
+        "EXP-N017",
+        "EXP-N018",
+        "EXP-N019",
+        "EXP-N020",
+        "EXP-N022",
+        "EXP-N023",
+        "EXP-N029",
+        "EXP-N030",
+        "EXT-211",
+        "EXT-212",
+        "EXT-216",
+        "EXT-217",
+        "EXT-221",
+        "EXT-229",
+        "EXT-230",
+        "EXT-232",
+        "EXT-233",
+        "EXT-238",
+        "EXT-239",
+        "MECH-001",
+        "PDF-4G-04",
+        "PDF-4G-05",
+        "PDF-HI-001",
+        "PDF-HI-005",
+        "PDF-HI-006",
+        "PDF-HI-007",
+        "PDF-HI-010",
+        "REAL-001",
+        "REAL-002",
+        "REAL-003",
+        "REAL-004",
+        "RULE-CO-1",
+        "TC-021",
+        "TC-046",
+        "TC-048",
+        "YAML-CSV25",
+        "YAML-CSV41",
+        "YAML-CSV45",
+        "YAML-CSV95",
+        "YAML-PDF_HI_001",
+        "YAML-PDF_HI_005",
+        "YAML-PDF_HI_010",
+        "YAML-RULE_NOx_1",
+        "YAML-TC1",
+        "YAML-TC46",
+        "YAML-TC47",
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_006",
+        "case_007",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_040",
+        "case_044",
+        "case_046",
+        "era1_001",
+        "era1_006",
+        "era1_011",
+        "era1_017",
+        "era2_011",
+        "era2_012",
+        "era2_015",
+        "era2_016",
+        "era2_019",
+        "era3_014",
+        "era3_015"
+      ],
+      "full_unlock_case_count": 3,
+      "full_unlock_cases": [
+        "EXP-N023",
+        "era1_011",
+        "era2_011"
+      ],
+      "marginal_case_count": 3,
+      "marginal_cases": [
+        "EXP-N023",
+        "era1_011",
+        "era2_011"
+      ],
+      "marginal_per_cost": 1.0,
+      "name": "VVT command/actual, cam correlation, and loaded VE capture",
+      "notes": "Low-yield but decisive for the cam/VVT residuals; may require OEM tool or scope on generic-PID-poor vehicles.",
+      "reach_per_cost": 1.0,
+      "research_basis": "cluster7.md \u00a7Evaluation/Acquisition Protocol",
+      "tier": "a/c"
+    }
+  ],
+  "mode": "DISCLOSE_ONLY_NO_ENGINE_CHANGE",
+  "operating_case_count": 104,
+  "recommended_first_acquisition": "A1_TRIMS plus A2_MODE06_EMISSIONS for the C2 producer path",
+  "recommended_first_pack": "T-V3-P4-C2",
+  "shared_column_caveat": "A shared column lowers acquisition cost but does not independently unlock a case; the cluster's decisive producer signal must be present.",
+  "source_case_count": 103,
+  "source_spec": "v3/reports/V3_SIGNAL_ACQUISITION_SPEC_2026-07-01.json",
+  "task": "T-V3-P4-2",
+  "uncovered_cases": []
+}

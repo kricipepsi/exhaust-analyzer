@@ -1,0 +1,136 @@
+# VINLab vault map - architect-authored. Maps selected VINLab notes to vault frontmatter.
+#
+# Signal/noise: only notes with a named, existing consumer are framed. Notes whose
+# only downstream story is proposal/future work are copied as plain markdown.
+
+lab: vinlab
+module: vinlab
+
+frame:
+  PRD_VINLab.md:
+    node_type: prd
+    subsystem: requirements
+    implements: []
+    consumers:
+      - "hld: labs/vinlab/docs/HLD_VINLab.md"
+      - "dnalab: labs/dnalab/dnalab/assembly.py build_vehicle_dna (VehicleDNA Part-A producer contract)"
+    drift_guards: []
+
+  HLD_VINLab.md:
+    node_type: hld
+    subsystem: architecture
+    implements: []
+    consumers:
+      - "lld: labs/vinlab/docs/LLD_VINLab.md"
+      - "dld: labs/vinlab/docs/DLD_VINLab.md"
+      - "dnalab: labs/dnalab/dnalab/assembly.py build_vehicle_dna (vinlab.decode → VehicleDNA.vin_dna, Part A)"
+      - "comlab: labs/comlab/comlab/projection.py project() (VehicleDNA → LabDnaView, reads vin_dna)"
+    drift_guards: []
+
+  LLD_VINLab.md:
+    node_type: lld
+    subsystem: low-level-design
+    implements:
+      - "labs/vinlab/vinlab/__init__.py"
+      - "labs/vinlab/vinlab/decoder.py"
+      - "labs/vinlab/vinlab/models.py"
+      - "labs/vinlab/vinlab/db/tecdoc_query.py"
+      - "labs/vinlab/vinlab/overlay/air_metering.py"
+      - "labs/vinlab/vinlab/overlay/cylinder_heuristic.py"
+      - "labs/vinlab/vinlab/overlay/horizon.py"
+      - "labs/vinlab/vinlab/overlay/stress_rpm.py"
+      - "labs/vinlab/vinlab/overlay/switches.py"
+    consumers:
+      - "dld: labs/vinlab/docs/DLD_VINLab.md"
+      - "dnalab: labs/dnalab/dnalab/assembly.py build_vehicle_dna (vinlab.decode → VehicleDNA.vin_dna, Part A)"
+      - "comlab: labs/comlab/comlab/projection.py project() (VehicleDNA → LabDnaView, reads vin_dna)"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py vin_confidence (request.metadata.vin_confidence, :2239)"
+    drift_guards:
+      - "labs/vinlab/tests/unit/test_decoder.py"
+      - "labs/vinlab/tests/unit/test_models.py"
+      - "labs/vinlab/tests/unit/test_horizon.py"
+      - "labs/vinlab/tests/unit/test_stress_rpm.py"
+      - "labs/vinlab/tests/unit/test_switches.py"
+      - "labs/vinlab/tests/unit/test_cylinder_heuristic.py"
+      - "labs/vinlab/tests/unit/test_air_metering.py"
+      - "labs/vinlab/tests/unit/test_contract_conformance.py"
+      - "labs/vinlab/tests/unit/test_vindna_from_json.py"
+
+  DLD_VINLab.md:
+    node_type: dld
+    subsystem: detailed-design
+    implements:
+      - "labs/vinlab/vinlab/__init__.py"
+      - "labs/vinlab/vinlab/decoder.py"
+      - "labs/vinlab/vinlab/models.py"
+      - "labs/vinlab/vinlab/db/tecdoc_query.py"
+      - "labs/vinlab/vinlab/overlay/air_metering.py"
+      - "labs/vinlab/vinlab/overlay/cylinder_heuristic.py"
+      - "labs/vinlab/vinlab/overlay/horizon.py"
+      - "labs/vinlab/vinlab/overlay/stress_rpm.py"
+      - "labs/vinlab/vinlab/overlay/switches.py"
+    consumers:
+      - "dnalab: labs/dnalab/dnalab/assembly.py build_vehicle_dna (vinlab.decode → VehicleDNA.vin_dna, Part A)"
+      - "dnalab: labs/dnalab/dnalab/models.py VinDNA.from_json -> VehicleDNA.vin_dna"
+      - "comlab: labs/comlab/comlab/projection.py project() (VehicleDNA → LabDnaView, reads vin_dna)"
+      - "comlab: labs/comlab/comlab/core/fault_atlas_router.py vin_confidence (request.metadata.vin_confidence, :2239)"
+    drift_guards:
+      - "labs/vinlab/tests/unit/test_decoder.py"
+      - "labs/vinlab/tests/unit/test_models.py"
+      - "labs/vinlab/tests/unit/test_horizon.py"
+      - "labs/vinlab/tests/unit/test_stress_rpm.py"
+      - "labs/vinlab/tests/unit/test_switches.py"
+      - "labs/vinlab/tests/unit/test_cylinder_heuristic.py"
+      - "labs/vinlab/tests/unit/test_air_metering.py"
+      - "labs/vinlab/tests/unit/test_contract_conformance.py"
+      - "labs/vinlab/tests/unit/test_vindna_from_json.py"
+
+  10_decode_scope_rules.md:
+    node_type: wiki
+    subsystem: decode-scope-rules
+    implements:
+      - "labs/vinlab/vinlab/decoder.py"
+    consumers:
+      - "vinlab: labs/vinlab/vinlab/decoder.py RobustVINDecoder.decode_vin_payload"
+      - "vinlab: labs/vinlab/vinlab/decoder.py _is_non_petrol"
+      - "vinlab: labs/vinlab/vinlab/decoder.py validate_vin_checksum"
+    drift_guards:
+      - "labs/vinlab/tests/unit/test_decoder.py"
+
+  11_engine_resolution.md:
+    node_type: wiki
+    subsystem: identity-resolution
+    implements:
+      - "labs/vinlab/vinlab/decoder.py"
+      - "labs/vinlab/vinlab/models.py"
+      - "labs/vinlab/vinlab/overlay/horizon.py"
+      - "labs/vinlab/vinlab/overlay/stress_rpm.py"
+      - "labs/vinlab/vinlab/overlay/switches.py"
+    consumers:
+      - "vinlab: labs/vinlab/vinlab/decoder.py RobustVINDecoder._resolve_wmi"
+      - "vinlab: labs/vinlab/vinlab/decoder.py RobustVINDecoder._resolve_year"
+      - "vinlab: labs/vinlab/vinlab/decoder.py RobustVINDecoder._resolve_engine"
+      - "vinlab: labs/vinlab/vinlab/overlay/horizon.py euro_to_horizon"
+      - "comlab: labs/comlab/comlab/projection.py project() vin.get(\"rated_rpm\") → LabDnaView.rated_rpm"
+      - "obdlab: ObdLabDnaView.rated_rpm RPM ceiling (rated_rpm)"
+    drift_guards:
+      - "labs/vinlab/tests/unit/test_horizon.py"
+      - "labs/vinlab/tests/unit/test_models.py"
+      - "labs/vinlab/tests/unit/test_decoder.py"
+
+  12_brand_cylinder_rules.md:
+    node_type: wiki
+    subsystem: brand-cylinder-rules
+    implements:
+      - "labs/vinlab/vinlab/overlay/cylinder_heuristic.py"
+    consumers:
+      - "vinlab: labs/vinlab/vinlab/overlay/cylinder_heuristic.py infer_cylinder"
+    drift_guards:
+      - "labs/vinlab/tests/unit/test_cylinder_heuristic.py"
+
+# Copied as plain markdown: browsable, but not framed as vault graph nodes.
+plain:
+  - ADR_VINLab.md
+  - BDD_VINLab.md
+  - VIN_VOCABULARY.md
+  - 00_index.md

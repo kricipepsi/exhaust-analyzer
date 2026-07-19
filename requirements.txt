@@ -1,0 +1,12 @@
+# Render build manifest — 4DLabV2 publish UI (apps/ui/app.py via root app.py shim).
+# Labs + wired installed editable from this repo; third-party deps resolve transitively
+# (pydantic, pyyaml). Streamlit pinned to the version smoke-tested in-repo.
+streamlit==1.59.0
+-e labs/comlab
+-e labs/dnalab
+-e labs/dtclab
+-e labs/gaslab
+-e labs/obdlab
+-e labs/symptomlab
+-e labs/vinlab
+-e apps/wired

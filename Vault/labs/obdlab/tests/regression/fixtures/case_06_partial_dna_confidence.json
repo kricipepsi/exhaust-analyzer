@@ -1,0 +1,36 @@
+{
+  "case_id": "case_06_partial_dna_confidence",
+  "notes": "PARTIAL DNA confidence: same lean inputs as Case 02 but with VinConfidence=PARTIAL. Expected: pipeline runs normally with DNA-relative checks downgraded to log-and-fallback (three-branch pattern). STABILIZED_IDLE, lambda=1.05, TFT=+29.0. Wiki ref: NewArchProposal §3.3, obdlab-python §6.6 DNA confidence three-branch pattern.",
+  "raw_user_inputs": {
+    "engine_rpm": 800,
+    "coolant_temp_c": 92.0,
+    "calculated_engine_load_pct": 25.0,
+    "mass_airflow_gps": 3.0,
+    "manifold_vacuum_kpa": 48.0,
+    "intake_air_temp_c": 35.0,
+    "shrtft1": 18.0,
+    "longft1": 11.0,
+    "number_of_banks": 1,
+    "fuel_sys_status": "Closed_Loop",
+    "pid_oxygen_sensor_volts": 0.15,
+    "active_dtcs": ["P0171"],
+    "drive_cycles_since_clear": 5
+  },
+  "dna_view_json": {
+    "engine_displacement_liters": 2.0,
+    "cylinder_count": 4,
+    "rated_rpm": 6500,
+    "stress_idle_rpm_target": 4000,
+    "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+    "upstream_o2_type": "NARROWBAND_0_TO_1V",
+    "induction_type": "NATURALLY_ASPIRATED",
+    "confidence": "PARTIAL"
+  },
+  "expected_payload_subset": {
+    "engine_warmed": true,
+    "rpm_state_bucket": "STABILIZED_IDLE",
+    "normalized_obd_lambda": 1.05,
+    "total_trim_correction_delta": 29.0,
+    "ve_validity": "FAULT_VE_IDLE_COLLAPSE"
+  }
+}

@@ -1,0 +1,458 @@
+{
+  "version": "2.0",
+  "fault_family": "mechanical_wear",
+  "rules": [
+    {
+      "rule_id": "MW-001",
+      "fault_family": "mechanical_wear",
+      "description": "Worn piston rings / oil consumption: oil slips past rings into combustion chamber, elevating HC. At higher RPM ring flutter improves sealing and HC drops \u2014 the opposite pattern of lean_condition where HC rises with RPM. Chemistry-primary rule: WORN_PISTON_RINGS as GATING evidence. v1 ERR-MW-003 reactivated with the shrtft1 IN_RANGE [-10,10] constraint removed \u2014 oil burning can foul O2 sensors, making trim-based constraints unreliable for ring-wear detection. OBD: hc > 200 ppm DEFINITIVE \u2014 ring-wear HC elevation exceeds the misfire hc>200 SUGGESTIVE, giving MW a structural advantage on high-HC cases (FT-10)",
+      "chemistry_evidence": [
+        {
+          "state": "WORN_PISTON_RINGS",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "ge",
+          "value": 200.0,
+          "tier": "DEFINITIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "co2",
+          "operator": "lt",
+          "value": 13.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "o2",
+          "operator": "ge",
+          "value": 1.5,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [],
+      "base_weight": 0.8,
+      "competition_group": "mechanical_wear",
+      "passes_cases": [
+        "MECH-001",
+        "EXT-223",
+        "CSV-117",
+        "case_044"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73"
+      ]
+    },
+    {
+      "rule_id": "MW-002",
+      "fault_family": "mechanical_wear",
+      "description": "Worn valve stem seals: oil leaks past valve stem seals into combustion chamber under high vacuum (snap-throttle closed / deceleration). Produces WORN_VALVE_SEALS chemistry \u2014 transient HC plume, not steady-state elevation. Differentiated from ring wear (MW-001) by the transient/snap-throttle HC pattern vs steady elevated HC. v1 ERR-MW-004 reactivated (v1 was GAS_ONLY at 0.70). confidence_ceiling applied because this is the only WORN_VALVE_SEALS-gated rule in the competition group",
+      "chemistry_evidence": [
+        {
+          "state": "WORN_VALVE_SEALS",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "ge",
+          "value": 200.0,
+          "tier": "DEFINITIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "co2",
+          "operator": "lt",
+          "value": 13.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [],
+      "base_weight": 0.85,
+      "competition_group": "mechanical_wear",
+      "confidence_ceiling": 0.95,
+      "passes_cases": [
+        "CSV-118"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73"
+      ]
+    },
+    {
+      "rule_id": "MW-003",
+      "fault_family": "mechanical_wear",
+      "description": "Coolant in combustion / head gasket breach: coolant enters combustion chamber through failed head gasket, quenching combustion. Produces COOLANT_LEAK_INTERNAL chemistry \u2014 elevated HC + elevated O2 + depressed CO2 simultaneously. OBD: ect_c > 95.0 degC as SUGGESTIVE (coolant loss concentrates heat in remaining coolant, raising sensor reading). v1 ERR-MW-002 expanded (v1 had ect_c > 90.0 only; v2 tightens to 95.0 and adds chemistry-primary architecture)",
+      "chemistry_evidence": [
+        {
+          "state": "COOLANT_LEAK_INTERNAL",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "ect_c",
+          "operator": "gt",
+          "value": 95.0,
+          "tier": "SUGGESTIVE",
+          "units": "degC",
+          "wiki_ref": "OBD_VOCABULARY \u00a78"
+        }
+      ],
+      "dtc_evidence": [],
+      "base_weight": 0.9,
+      "competition_group": "mechanical_wear",
+      "passes_cases": [
+        "MECH-002",
+        "CSV-119",
+        "CSV-120",
+        "EXT-224"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a78"
+      ]
+    },
+    {
+      "rule_id": "MW-004",
+      "fault_family": "mechanical_wear",
+      "description": "Low compression / worn engine (general wear): cylinder sealing failure from worn rings, scored bores, or burned valves produces WORN_ENGINE chemistry \u2014 severely depressed CO2 (<12%) from incomplete combustion. OBD: map_kpa < 30.0 kPa as SUGGESTIVE (low intake vacuum at idle from weak cylinders unable to pull a strong vacuum stroke). v1 ERR-MW-006 expanded with MAP evidence (v1 had no OBD constraints). INCOMPLETE_COMBUSTION is DEFINITIVE \u2014 mechanical_wear is the primary consumer of this chemistry; misfire has no INCOMPLETE_COMBUSTION rule (FT-10 differentiation). MW-005 competes",
+      "chemistry_evidence": [
+        {
+          "state": "WORN_ENGINE",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        },
+        {
+          "state": "INCOMPLETE_COMBUSTION",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "map_kpa",
+          "operator": "lt",
+          "value": 30.0,
+          "tier": "SUGGESTIVE",
+          "units": "kPa",
+          "wiki_ref": "OBD_VOCABULARY \u00a76"
+        }
+      ],
+      "dtc_evidence": [],
+      "base_weight": 0.8,
+      "competition_group": "mechanical_wear",
+      "passes_cases": [
+        "MECH-006",
+        "EXT-222"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a76"
+      ]
+    },
+    {
+      "rule_id": "MW-005",
+      "fault_family": "mechanical_wear",
+      "description": "INCOMPLETE_COMBUSTION chemistry with running-engine precondition: combustion is occurring but is inefficient due to mechanical sealing failure. Differentiated from non_starter family (which shares INCOMPLETE_COMBUSTION chemistry) by the running-engine gate \u2014 OBD rpm > 600 as GATING (non_starter cases never reach running RPM). confidence_ceiling applied because INCOMPLETE_COMBUSTION chemistry is shared with non_starter. v1 ERR-MW-001 reactivated with running-engine gate and non_starter competition awareness",
+      "chemistry_evidence": [
+        {
+          "state": "INCOMPLETE_COMBUSTION",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "rpm",
+          "operator": "gt",
+          "value": 600,
+          "tier": "GATING",
+          "units": "RPM",
+          "wiki_ref": "OBD_VOCABULARY \u00a75"
+        },
+        {
+          "pid": "co2",
+          "operator": "lt",
+          "value": 13.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "o2",
+          "operator": "ge",
+          "value": 1.5,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "hc",
+          "operator": "ge",
+          "value": 200.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [],
+      "base_weight": 0.75,
+      "competition_group": "mechanical_wear",
+      "confidence_ceiling": 0.85,
+      "passes_cases": [
+        "MECH-006",
+        "EXT-222"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a75"
+      ]
+    },
+    {
+      "rule_id": "MW-006",
+      "fault_family": "mechanical_wear",
+      "description": "TIMING_RETARDED chemistry overlap \u2014 Tier B gap closer: low compression from mechanical wear causes late/incomplete combustion \u2192 TIMING_RETARDED chemistry as a secondary effect. Chemistry: TIMING_RETARDED as SUGGESTIVE evidence. Gated on DTC none_present for VVT_HISTORY range (P0010-P0025) \u2014 NO VVT DTCs may be present. This is the cam_timing differentiator: cam_timing TIMING_RETARDED cases carry VVT codes; mechanical_wear TIMING_RETARDED cases do not (the timing retardation is from sealing failure, not VVT malfunction). confidence_ceiling applied because TIMING_RETARDED chemistry is shared across 7 families. v1 had no equivalent rule (TIMING_RETARDED had zero v1 registrations)",
+      "chemistry_evidence": [
+        {
+          "state": "TIMING_RETARDED",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0010",
+            "P0011",
+            "P0012",
+            "P0013",
+            "P0014",
+            "P0015",
+            "P0016",
+            "P0017",
+            "P0018",
+            "P0019",
+            "P0020",
+            "P0021",
+            "P0022",
+            "P0023",
+            "P0024",
+            "P0025"
+          ],
+          "strategy": "none_present",
+          "tier": "GATING",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.7,
+      "competition_group": "mechanical_wear",
+      "confidence_ceiling": 0.85,
+      "passes_cases": [
+        "MECH-006",
+        "EXT-222"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "MW-007",
+      "fault_family": "mechanical_wear",
+      "description": "IGNITION_MISFIRE chemistry with mechanical-wear discriminators: GASLab classifies the combustion as misfire-type, but absence of P030x DTCs and depressed CO2 with low NOx point to mechanical sealing failure, not ignition. Differentiated from misfire by P0300-P0304 none_present DEFINITIVE, hc > 200 DEFINITIVE, and o2 < 4.0 GATING; the O2 gate excludes high-O2 no-DTC true misfire while preserving the CSV-120 mechanical-wear signature. FT-10",
+      "chemistry_evidence": [
+        {
+          "state": "IGNITION_MISFIRE",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "ge",
+          "value": 200.0,
+          "tier": "DEFINITIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "co2",
+          "operator": "lt",
+          "value": 13.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "nox",
+          "operator": "lt",
+          "value": 80.0,
+          "tier": "SUGGESTIVE",
+          "units": "ppm",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "o2",
+          "operator": "lt",
+          "value": 4.0,
+          "tier": "GATING",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0300",
+            "P0301",
+            "P0302",
+            "P0303",
+            "P0304"
+          ],
+          "strategy": "none_present",
+          "tier": "DEFINITIVE",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.8,
+      "competition_group": "mechanical_wear",
+      "passes_cases": [
+        "CSV-120"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a76",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    },
+    {
+      "rule_id": "MW-008",
+      "fault_family": "mechanical_wear",
+      "description": "Faulty PCV (stuck open) / oil consumption: Stuck-open PCV valve draws crankcase gases directly under high intake vacuum (idle), burning oil and enriching the mixture. Differentiated from piston rings by the low-idle to high-idle HC drop and rich lambda at idle.",
+      "chemistry_evidence": [
+        {
+          "state": "POA_SIGNATURE",
+          "tier": "GATING",
+          "wiki_ref": "OilburnCases.md \u00a7P_NEW_11"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "ge",
+          "value": 500.0,
+          "tier": "DEFINITIVE",
+          "units": "ppm",
+          "wiki_ref": "OilburnCases.md \u00a7P_NEW_11"
+        },
+        {
+          "pid": "high_idle_hc",
+          "operator": "lt",
+          "value": 250.0,
+          "tier": "GATING",
+          "units": "ppm",
+          "wiki_ref": "OilburnCases.md \u00a7P_NEW_11"
+        },
+        {
+          "pid": "lambda_chem",
+          "operator": "lt",
+          "value": 0.94,
+          "tier": "SUGGESTIVE",
+          "units": "lambda",
+          "wiki_ref": "OilburnCases.md \u00a7P_NEW_11"
+        }
+      ],
+      "dtc_evidence": [],
+      "base_weight": 0.82,
+      "competition_group": "mechanical_wear",
+      "passes_cases": [
+        "case_044"
+      ],
+      "source_wiki_refs": [
+        "OilburnCases.md \u00a7P_NEW_11",
+        "GAS_VOCABULARY \u00a73"
+      ]
+    },
+    {
+      "rule_id": "MW-009",
+      "fault_family": "mechanical_wear",
+      "description": "Worn turbocharger turbine seals / oil consumption: oil leaks directly into the hot exhaust turbine housing, where it cracks post-cylinder in the hot exhaust. Combustion in-cylinder remains stoichiometric. Differentiated from PCV (MW-008) by stoichiometric lambda and low carbon monoxide, and from piston rings by the low-idle to high-idle HC drop.",
+      "chemistry_evidence": [
+        {
+          "state": "POA_SIGNATURE",
+          "tier": "GATING",
+          "wiki_ref": "OilburnCases.md \u00a7P_NEW_13"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "hc",
+          "operator": "ge",
+          "value": 500.0,
+          "tier": "DEFINITIVE",
+          "units": "ppm",
+          "wiki_ref": "OilburnCases.md \u00a7P_NEW_13"
+        },
+        {
+          "pid": "co",
+          "operator": "lt",
+          "value": 0.15,
+          "tier": "DEFINITIVE",
+          "units": "%",
+          "wiki_ref": "OilburnCases.md \u00a7P_NEW_13"
+        },
+        {
+          "pid": "lambda_chem",
+          "operator": "ge",
+          "value": 0.99,
+          "tier": "GATING",
+          "units": "lambda",
+          "wiki_ref": "OilburnCases.md \u00a7P_NEW_13"
+        },
+        {
+          "pid": "lambda_chem",
+          "operator": "le",
+          "value": 1.01,
+          "tier": "DEFINITIVE",
+          "units": "lambda",
+          "wiki_ref": "OilburnCases.md \u00a7P_NEW_13"
+        },
+        {
+          "pid": "high_idle_hc",
+          "operator": "lt",
+          "value": 200.0,
+          "tier": "GATING",
+          "units": "ppm",
+          "wiki_ref": "OilburnCases.md \u00a7P_NEW_13"
+        }
+      ],
+      "dtc_evidence": [],
+      "base_weight": 0.82,
+      "competition_group": "mechanical_wear",
+      "passes_cases": [
+        "case_044"
+      ],
+      "source_wiki_refs": [
+        "OilburnCases.md \u00a7P_NEW_13",
+        "GAS_VOCABULARY \u00a73"
+      ]
+    }
+  ]
+}

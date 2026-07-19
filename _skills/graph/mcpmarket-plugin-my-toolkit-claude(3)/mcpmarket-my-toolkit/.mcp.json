@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "mcpmarket-my-toolkit": {
+      "url": "https://link.mcpmarket.com/kricipepsi/toolkits/my-toolkit/mcp",
+      "headers": {
+        "Authorization": "Bearer sk_user_Z93XHEwcV8b-YV8dENH-TBycyEbeRmVg"
+      }
+    }
+  }
+}

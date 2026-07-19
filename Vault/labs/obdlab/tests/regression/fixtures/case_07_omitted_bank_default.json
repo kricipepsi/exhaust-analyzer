@@ -1,0 +1,44 @@
+{
+  "case_id": "case_07_omitted_bank_default",
+  "notes": "Warm stabilised idle, closed-loop, balanced trims. Omitted number_of_banks to verify it default-validates and defaults to a 1-bank engine properly. Expected: STABILIZED_IDLE, engine_warmed=True, ve_state_isValid=True, lambda=1.00 (stoich), TFT=-8.0, shrtft2=null, longft2=null.",
+  "raw_user_inputs": {
+    "engine_rpm": 800,
+    "coolant_temp_c": 92.0,
+    "calculated_engine_load_pct": 22.0,
+    "mass_airflow_gps": 3.5,
+    "manifold_vacuum_kpa": 30.0,
+    "intake_air_temp_c": 35.0,
+    "shrtft1": -3.0,
+    "longft1": -5.0,
+    "fuel_sys_status": "Closed_Loop",
+    "pid_oxygen_sensor_volts": 0.45,
+    "active_dtcs": [],
+    "drive_cycles_since_clear": 5
+  },
+  "dna_view_json": {
+    "engine_displacement_liters": 2.0,
+    "cylinder_count": 4,
+    "rated_rpm": 6500,
+    "stress_idle_rpm_target": 4000,
+    "air_metering_strategy": "DUAL_MAF_MAP_CROSSCHECK",
+    "upstream_o2_type": "NARROWBAND_0_TO_1V",
+    "induction_type": "NATURALLY_ASPIRATED",
+    "confidence": "HIGH"
+  },
+  "expected_payload_subset": {
+    "engine_warmed": true,
+    "rpm_state_bucket": "STABILIZED_IDLE",
+    "engine_rpm": 800,
+    "coolant_temp_c": 92.0,
+    "calculated_engine_load_pct": 22.0,
+    "mass_airflow_gps": 3.5,
+    "manifold_vacuum_kpa": 30.0,
+    "shrtft1": -3.0,
+    "longft1": -5.0,
+    "shrtft2": null,
+    "longft2": null,
+    "ve_validity": "VALID",
+    "o2_failure_mode": "NO_FAULT",
+    "normalized_obd_lambda": 1.0
+  }
+}

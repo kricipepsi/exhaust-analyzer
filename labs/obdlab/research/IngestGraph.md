@@ -1,0 +1,8 @@
+Yes — Graphify is content with your current chunk format
+For .md docs Graphify doesn't regex-match a template. Pass 3 sends each file to an LLM subagent that emits nodes + edges semantically. Your chunks are actually a stronger input than the thin sample you pasted, because they already give the extractor everything it rewards: clear #/## headings, bolded canonical entities (**P0131**, **STUCK_LEAN**), entity tables (code → bank/sensor → failure-mode), [[wikilinks]] + related: frontmatter (these become cross-doc edges and feed Leiden community detection), Citation: provenance lines, and small 1–9 KB files that sit comfortably inside the token-budget batching. No reformat needed.
+Three low-risk recommendations worth applying
+The one mechanic that matters: Graphify tags every edge EXTRACTED (confidence 1.0) only when the relation is stated directly in the text; otherwise it's INFERRED (0.55–0.95) or AMBIGUOUS. So the goal isn't restructuring — it's making implied links explicit.
+
+State implied relations as explicit SUBJECT — PREDICATE — OBJECT lines. Where a relation currently lives only in table-adjacency or prose (e.g. P0131 ↔ STUCK_LEAN), add one line like **P0131** INDICATES **STUCK_LEAN**. That upgrades the edge from INFERRED to EXTRACTED. This is the single highest-leverage change and the real signal behind your sample's "Rule N" style.
+Keep entity labels byte-identical across files (STUCK_LEAN, P0171, TrimAnalyticsGate.O2_FAULT_ACTIVE). Graphify auto-merges some ghost duplicates at build time, but consistent casing/spelling prevents one entity forking into two nodes or landing as AMBIGUOUS.
+(Optional) a short ## Core Entities roster per chunk — gives the extractor an explicit checklist so nothing important is skipped.

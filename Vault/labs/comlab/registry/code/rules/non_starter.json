@@ -1,0 +1,227 @@
+{
+  "version": "2.0",
+  "fault_family": "non_starter",
+  "rules": [
+    {
+      "rule_id": "NS-001",
+      "fault_family": "non_starter",
+      "description": "LEAN_MISFIRE no-start: engine cranks but won't fire because insufficient or no fuel reaches the chamber. CO2 near-atmospheric (<5%) confirms no meaningful combustion occurred \u2014 the fuel either never arrived or never lit. Differentiated from misfire-family LEAN_MISFIRE by rpm < 600 and CO2 < 5% (running misfire cases have CO2 >= 10%). v1 had no equivalent LEAN_MISFIRE-gated rule for non_starter (ERR-NS-004 only gated on INCOMPLETE_COMBUSTION)",
+      "chemistry_evidence": [
+        {
+          "state": "LEAN_MISFIRE",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "rpm",
+          "operator": "lt",
+          "value": 600,
+          "tier": "SUGGESTIVE",
+          "units": "RPM",
+          "wiki_ref": "OBD_VOCABULARY \u00a75"
+        },
+        {
+          "pid": "co2",
+          "operator": "lt",
+          "value": 5.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "stft_b1",
+          "operator": "in_range",
+          "range_low": -1.0,
+          "range_high": 1.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a77"
+        },
+        {
+          "pid": "ltft_b1",
+          "operator": "in_range",
+          "range_low": -1.0,
+          "range_high": 1.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a77"
+        }
+      ],
+      "dtc_evidence": [],
+      "base_weight": 0.8,
+      "competition_group": "non_starter",
+      "confidence_ceiling": 0.85,
+      "passes_cases": [
+        "REAL-001",
+        "case_006",
+        "case_007"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a72",
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a75",
+        "OBD_VOCABULARY \u00a77"
+      ]
+    },
+    {
+      "rule_id": "NS-002",
+      "fault_family": "non_starter",
+      "description": "RICH_MISFIRE no-start (flooded): extreme cold enrichment floods the engine \u2014 fuel dumps into the chamber but won't light. CO2 near-atmospheric (<5%) confirms no meaningful combustion. ECT < 30 degC as SUGGESTIVE (REAL-003 is extreme cold enrichment). Differentiated from misfire-family RICH_MISFIRE by rpm < 600 and CO2 < 5% (running rich-misfire cases have CO2 >= 8% because some combustion IS occurring). v1 had no RICH_MISFIRE-gated rule for non_starter",
+      "chemistry_evidence": [
+        {
+          "state": "RICH_MISFIRE",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "rpm",
+          "operator": "lt",
+          "value": 600,
+          "tier": "SUGGESTIVE",
+          "units": "RPM",
+          "wiki_ref": "OBD_VOCABULARY \u00a75"
+        },
+        {
+          "pid": "co2",
+          "operator": "lt",
+          "value": 5.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        },
+        {
+          "pid": "ect_c",
+          "operator": "lt",
+          "value": 30.0,
+          "tier": "SUGGESTIVE",
+          "units": "degC",
+          "wiki_ref": "OBD_VOCABULARY \u00a78"
+        },
+        {
+          "pid": "stft_b1",
+          "operator": "in_range",
+          "range_low": -1.0,
+          "range_high": 1.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a77"
+        },
+        {
+          "pid": "ltft_b1",
+          "operator": "in_range",
+          "range_low": -1.0,
+          "range_high": 1.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "OBD_VOCABULARY \u00a77"
+        }
+      ],
+      "dtc_evidence": [],
+      "base_weight": 0.8,
+      "competition_group": "non_starter",
+      "confidence_ceiling": 0.85,
+      "passes_cases": [
+        "REAL-003"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a72",
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a75",
+        "OBD_VOCABULARY \u00a77",
+        "OBD_VOCABULARY \u00a78"
+      ]
+    },
+    {
+      "rule_id": "NS-003",
+      "fault_family": "non_starter",
+      "description": "INCOMPLETE_COMBUSTION no-start: partial/near-zero combustion yields incomplete combustion products. Chemistry-primary rule with rpm < 600 as GATING \u2014 this is the mechanical_wear differentiator (MW-005 gates on INCOMPLETE_COMBUSTION with rpm > 600 GATING). The rpm gate creates a clean binary split: engine running \u2192 mechanical_wear; engine not running \u2192 non_starter. v1 ERR-NS-004 reactivated with the rpm GATING gate added (v1 had no OBD evidence and no cross-family competition awareness)",
+      "chemistry_evidence": [
+        {
+          "state": "INCOMPLETE_COMBUSTION",
+          "tier": "GATING",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "rpm",
+          "operator": "lt",
+          "value": 600,
+          "tier": "GATING",
+          "units": "RPM",
+          "wiki_ref": "OBD_VOCABULARY \u00a75"
+        },
+        {
+          "pid": "co2",
+          "operator": "lt",
+          "value": 8.0,
+          "tier": "SUGGESTIVE",
+          "units": "%",
+          "wiki_ref": "GAS_VOCABULARY \u00a72"
+        }
+      ],
+      "dtc_evidence": [],
+      "base_weight": 0.75,
+      "competition_group": "non_starter",
+      "confidence_ceiling": 0.85,
+      "passes_cases": [
+        "REAL-001",
+        "REAL-003"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a72",
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a75"
+      ]
+    },
+    {
+      "rule_id": "NS-004",
+      "fault_family": "non_starter",
+      "description": "DTC-driven fuel-delivery no-start: fuel pump circuit failure (P0230), low rail pressure (P0087), or rail pressure sensor fault (P0190) directly explains a no-start. DTC-primary rule \u2014 the DTC any_match is GATING, no chemistry gate. Chemistry LEAN_MISFIRE accepted as SUGGESTIVE (lean no-start is consistent with fuel starvation). confidence_ceiling applied because DTC-only rules lack chemistry confirmation \u2014 this is a fallback path that should not outcompete chemistry-primary rules NS-001/NS-003. v1 had no equivalent DTC-driven non_starter rule",
+      "chemistry_evidence": [
+        {
+          "state": "LEAN_MISFIRE",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
+      "obd_evidence": [
+        {
+          "pid": "rpm",
+          "operator": "lt",
+          "value": 600,
+          "tier": "SUGGESTIVE",
+          "units": "RPM",
+          "wiki_ref": "OBD_VOCABULARY \u00a75"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0230",
+            "P0087",
+            "P0190"
+          ],
+          "strategy": "any_match",
+          "tier": "GATING",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.7,
+      "competition_group": "non_starter",
+      "confidence_ceiling": 0.8,
+      "passes_cases": [
+        "case_006"
+      ],
+      "source_wiki_refs": [
+        "GAS_VOCABULARY \u00a73",
+        "OBD_VOCABULARY \u00a75",
+        "DTC_VOCABULARY \u00a74"
+      ]
+    }
+  ]
+}

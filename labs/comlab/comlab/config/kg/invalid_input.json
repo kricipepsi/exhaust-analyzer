@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0",
+  "fault_family": "invalid_input",
+  "nodes": {
+    "ERR-II-001": {
+      "fault_name": "invalid_input_lean_mixture",
+      "fault_family": "invalid_input",
+      "component_group": "Diagnostic Process - Data Entry",
+      "impacted_subsystems": [
+        "technician_workflow",
+        "data_validation",
+        "session_configuration"
+      ],
+      "mechanical_failure_mode": "One or more technician-entered values (RPM, displacement, cylinder count, emission category, fuel type, or sensor configuration) are inconsistent with measured gas chemistry and vehicle specifications.",
+      "ui_remediation_steps": [
+        "Verify all technician-entered values against the vehicle VIN decode and under-hood labels.",
+        "Re-enter any values that disagree with vehicle specifications.",
+        "Check that the correct engine family, fuel type, and emission category are selected.",
+        "Re-run the diagnostic session with corrected inputs.",
+        "If chemistry remains inconsistent, flag for senior technician review."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-II-002": {
+      "fault_name": "invalid_input_timing_retarded",
+      "fault_family": "invalid_input",
+      "component_group": "Diagnostic Process - Data Entry",
+      "impacted_subsystems": [
+        "technician_workflow",
+        "data_validation",
+        "session_configuration"
+      ],
+      "mechanical_failure_mode": "One or more technician-entered values (RPM, displacement, cylinder count, emission category, fuel type, or sensor configuration) are inconsistent with measured gas chemistry and vehicle specifications.",
+      "ui_remediation_steps": [
+        "Verify all technician-entered values against the vehicle VIN decode and under-hood labels.",
+        "Re-enter any values that disagree with vehicle specifications.",
+        "Check that the correct engine family, fuel type, and emission category are selected.",
+        "Re-run the diagnostic session with corrected inputs.",
+        "If chemistry remains inconsistent, flag for senior technician review."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-II-003": {
+      "fault_name": "invalid_input_vvt_failure",
+      "fault_family": "invalid_input",
+      "component_group": "Diagnostic Process - Data Entry",
+      "impacted_subsystems": [
+        "technician_workflow",
+        "data_validation",
+        "session_configuration"
+      ],
+      "mechanical_failure_mode": "One or more technician-entered values (RPM, displacement, cylinder count, emission category, fuel type, or sensor configuration) are inconsistent with measured gas chemistry and vehicle specifications.",
+      "ui_remediation_steps": [
+        "Verify all technician-entered values against the vehicle VIN decode and under-hood labels.",
+        "Re-enter any values that disagree with vehicle specifications.",
+        "Check that the correct engine family, fuel type, and emission category are selected.",
+        "Re-run the diagnostic session with corrected inputs.",
+        "If chemistry remains inconsistent, flag for senior technician review."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-II-004": {
+      "fault_name": "invalid_input_incomplete_oxidation",
+      "fault_family": "invalid_input",
+      "component_group": "Diagnostic Process - Data Entry",
+      "impacted_subsystems": [
+        "technician_workflow",
+        "data_validation",
+        "session_configuration"
+      ],
+      "mechanical_failure_mode": "One or more technician-entered values (RPM, displacement, cylinder count, emission category, fuel type, or sensor configuration) are inconsistent with measured gas chemistry and vehicle specifications.",
+      "ui_remediation_steps": [
+        "Verify all technician-entered values against the vehicle VIN decode and under-hood labels.",
+        "Re-enter any values that disagree with vehicle specifications.",
+        "Check that the correct engine family, fuel type, and emission category are selected.",
+        "Re-run the diagnostic session with corrected inputs.",
+        "If chemistry remains inconsistent, flag for senior technician review."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-II-005": {
+      "fault_name": "invalid_input_sample_invalid",
+      "fault_family": "invalid_input",
+      "component_group": "Diagnostic Process - Data Entry",
+      "impacted_subsystems": [
+        "technician_workflow",
+        "data_validation",
+        "session_configuration"
+      ],
+      "mechanical_failure_mode": "One or more technician-entered values (RPM, displacement, cylinder count, emission category, fuel type, or sensor configuration) are inconsistent with measured gas chemistry and vehicle specifications.",
+      "ui_remediation_steps": [
+        "Verify all technician-entered values against the vehicle VIN decode and under-hood labels.",
+        "Re-enter any values that disagree with vehicle specifications.",
+        "Check that the correct engine family, fuel type, and emission category are selected.",
+        "Re-run the diagnostic session with corrected inputs.",
+        "If chemistry remains inconsistent, flag for senior technician review."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    },
+    "ERR-II-006": {
+      "fault_name": "invalid_input_rich_mixture",
+      "fault_family": "invalid_input",
+      "component_group": "Diagnostic Process - Data Entry",
+      "impacted_subsystems": [
+        "technician_workflow",
+        "data_validation",
+        "session_configuration"
+      ],
+      "mechanical_failure_mode": "One or more technician-entered values (RPM, displacement, cylinder count, emission category, fuel type, or sensor configuration) are inconsistent with measured gas chemistry and vehicle specifications.",
+      "ui_remediation_steps": [
+        "Verify all technician-entered values against the vehicle VIN decode and under-hood labels.",
+        "Re-enter any values that disagree with vehicle specifications.",
+        "Check that the correct engine family, fuel type, and emission category are selected.",
+        "Re-run the diagnostic session with corrected inputs.",
+        "If chemistry remains inconsistent, flag for senior technician review."
+      ],
+      "differential_siblings": [],
+      "editor_severity_hint": "WATCH"
+    }
+  }
+}

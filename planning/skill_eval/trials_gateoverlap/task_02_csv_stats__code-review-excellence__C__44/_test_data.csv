@@ -1,0 +1,6 @@
+name,age,score,temp,notes
+Alice,30,95.5,98.6,good
+Bob,25,88.0,99.1,ok
+Charlie,,92.3,98.9,
+Diana,28,invalid,97.8,excellent
+Eve,32,90.0,,fine

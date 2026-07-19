@@ -1,0 +1,132 @@
+{
+  "engine": {
+    "vin": "VF7SA5FR8AW511081",
+    "make": "CITROEN",
+    "engine_code": "5FR",
+    "displacement_l": 1.6,
+    "cylinders": 4,
+    "induction": "TURBOCHARGED",
+    "fuel": "GDI",
+    "euro": "EURO_5",
+    "idle_rpm": 700,
+    "high_idle_rpm": 2500,
+    "target_lambda": 1.0,
+    "upstream_o2": "WIDEBAND_AFR",
+    "downstream_o2": "NARROWBAND_0_TO_1V",
+    "downstream_trim_role": "SECONDARY_FUEL_TRIM"
+  },
+  "results": [
+    {
+      "case": "Worn piston rings",
+      "slug": "worn_piston_rings",
+      "expect": "MW-001",
+      "gas_state": "WORN_PISTON_RINGS",
+      "b1s2_signature": "FIXED_NEGATIVE",
+      "verdict": "MW-001",
+      "fault_name": "Worn piston rings",
+      "confidence": 0.88,
+      "pass": true,
+      "demand_score": 3.5,
+      "demand_reasons": [
+        "gas chemistry",
+        "requires post-cat B1S2 trim",
+        "historic cross-lab conflict (low-idle HC vs rule threshold)"
+      ],
+      "upstream_lambda_low": 1.002,
+      "upstream_lambda_high": 0.985,
+      "downstream_v": 0.8,
+      "stft_b1s2": -6,
+      "ltft_b1s2": -9,
+      "dfco_b1s2": -3
+    },
+    {
+      "case": "Worn valve stem seals",
+      "slug": "worn_valve_stem_seals",
+      "expect": "MW-002",
+      "gas_state": "WORN_VALVE_SEALS",
+      "b1s2_signature": "TRANSIENT_NEGATIVE",
+      "verdict": "MW-002",
+      "fault_name": "Worn valve stem seals",
+      "confidence": 0.9,
+      "pass": true,
+      "demand_score": 2.0,
+      "demand_reasons": [
+        "gas chemistry",
+        "requires post-cat B1S2 trim"
+      ],
+      "upstream_lambda_low": 0.962,
+      "upstream_lambda_high": 1.001,
+      "downstream_v": 0.85,
+      "stft_b1s2": -13,
+      "ltft_b1s2": -4,
+      "dfco_b1s2": -2
+    },
+    {
+      "case": "Blown head gasket (oil->cyl)",
+      "slug": "blown_head_gasket",
+      "expect": "MW-003",
+      "gas_state": "COOLANT_LEAK_INTERNAL",
+      "b1s2_signature": "NEUTRAL",
+      "verdict": "MW-003",
+      "fault_name": "Head gasket oil-to-cylinder breach",
+      "confidence": 0.93,
+      "pass": true,
+      "demand_score": 1.0,
+      "demand_reasons": [
+        "gas chemistry"
+      ],
+      "upstream_lambda_low": 1.085,
+      "upstream_lambda_high": 1.055,
+      "downstream_v": 0.28,
+      "stft_b1s2": 4,
+      "ltft_b1s2": 2,
+      "dfco_b1s2": 0
+    },
+    {
+      "case": "PCV stuck open",
+      "slug": "pcv_stuck_open",
+      "expect": "MW-008",
+      "gas_state": "POA_SIGNATURE",
+      "b1s2_signature": "DIVERGENT",
+      "verdict": "MW-008",
+      "fault_name": "PCV stuck open",
+      "confidence": 0.9,
+      "pass": true,
+      "demand_score": 4.0,
+      "demand_reasons": [
+        "gas chemistry",
+        "ambiguous POA family (needs post-cat to split)",
+        "requires SIMULTANEOUS upstream(+) & downstream(-) split"
+      ],
+      "upstream_lambda_low": 0.925,
+      "upstream_lambda_high": 0.988,
+      "downstream_v": 0.85,
+      "stft_b1s2": -16,
+      "ltft_b1s2": -9,
+      "dfco_b1s2": -4
+    },
+    {
+      "case": "Turbo turbine-seal leak",
+      "slug": "turbo_turbine-seal_leak",
+      "expect": "MW-009",
+      "gas_state": "POA_SIGNATURE",
+      "b1s2_signature": "DFCO_NEGATIVE",
+      "verdict": "MW-009",
+      "fault_name": "Turbo turbine-seal oil leak",
+      "confidence": 0.91,
+      "pass": true,
+      "demand_score": 4.0,
+      "demand_reasons": [
+        "gas chemistry",
+        "ambiguous POA family (needs post-cat to split)",
+        "requires DFCO (fuel-cut) transient capture, decoupled from combustion"
+      ],
+      "upstream_lambda_low": 1.0,
+      "upstream_lambda_high": 1.002,
+      "downstream_v": 0.8,
+      "stft_b1s2": -7,
+      "ltft_b1s2": -5,
+      "dfco_b1s2": -14
+    }
+  ]
+}

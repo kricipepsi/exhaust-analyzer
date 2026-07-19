@@ -1,0 +1,3801 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "00_Preamble.md",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/00_Preamble.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "adr_dnalab_00_preamble",
+      "community": 12,
+      "norm_label": "00_preamble.md"
+    },
+    {
+      "label": "Architecture Decision Records \u2014 DNALab (v2)",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/00_Preamble.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "adr_dnalab_00_preamble_architecture_decision_records_dnalab_v2",
+      "community": 12,
+      "norm_label": "architecture decision records \u2014 dnalab (v2)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/00_Preamble.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "adr_dnalab_00_preamble_graph_relations_explicit",
+      "community": 12,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "ADR-0001_DNALab_composes_it_does_not_decode.md",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0001_DNALab_composes_it_does_not_decode.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode",
+      "community": 3,
+      "norm_label": "adr-0001_dnalab_composes_it_does_not_decode.md"
+    },
+    {
+      "label": "ADR-0001: DNALab composes; it does not decode, validate, or route",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0001_DNALab_composes_it_does_not_decode.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_adr_0001_dnalab_composes_it_does_not_decode_validate_or_route",
+      "community": 3,
+      "norm_label": "adr-0001: dnalab composes; it does not decode, validate, or route"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0001_DNALab_composes_it_does_not_decode.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_context",
+      "community": 3,
+      "norm_label": "context"
+    },
+    {
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0001_DNALab_composes_it_does_not_decode.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_decision",
+      "community": 3,
+      "norm_label": "decision"
+    },
+    {
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0001_DNALab_composes_it_does_not_decode.md",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_consequences",
+      "community": 3,
+      "norm_label": "consequences"
+    },
+    {
+      "label": "Alternatives Considered",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0001_DNALab_composes_it_does_not_decode.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_alternatives_considered",
+      "community": 3,
+      "norm_label": "alternatives considered"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0001_DNALab_composes_it_does_not_decode.md",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_graph_relations_explicit",
+      "community": 3,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "ADR-0002_DNALab_is_the_only_infamily_importer.md",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0002_DNALab_is_the_only_infamily_importer.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer",
+      "community": 4,
+      "norm_label": "adr-0002_dnalab_is_the_only_infamily_importer.md"
+    },
+    {
+      "label": "ADR-0002: DNALab is the only in-family importer",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0002_DNALab_is_the_only_infamily_importer.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_adr_0002_dnalab_is_the_only_in_family_importer",
+      "community": 4,
+      "norm_label": "adr-0002: dnalab is the only in-family importer"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0002_DNALab_is_the_only_infamily_importer.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_context",
+      "community": 4,
+      "norm_label": "context"
+    },
+    {
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0002_DNALab_is_the_only_infamily_importer.md",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_decision",
+      "community": 4,
+      "norm_label": "decision"
+    },
+    {
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0002_DNALab_is_the_only_infamily_importer.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_consequences",
+      "community": 4,
+      "norm_label": "consequences"
+    },
+    {
+      "label": "Alternatives Considered",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0002_DNALab_is_the_only_infamily_importer.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_alternatives_considered",
+      "community": 4,
+      "norm_label": "alternatives considered"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0002_DNALab_is_the_only_infamily_importer.md",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_graph_relations_explicit",
+      "community": 4,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "ADR-0003_Versioned_envelope_with_a_hard_mismatch.md",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0003_Versioned_envelope_with_a_hard_mismatch.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch",
+      "community": 5,
+      "norm_label": "adr-0003_versioned_envelope_with_a_hard_mismatch.md"
+    },
+    {
+      "label": "ADR-0003: Versioned envelope with a hard mismatch guard",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0003_Versioned_envelope_with_a_hard_mismatch.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_adr_0003_versioned_envelope_with_a_hard_mismatch_guard",
+      "community": 5,
+      "norm_label": "adr-0003: versioned envelope with a hard mismatch guard"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0003_Versioned_envelope_with_a_hard_mismatch.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_context",
+      "community": 5,
+      "norm_label": "context"
+    },
+    {
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0003_Versioned_envelope_with_a_hard_mismatch.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_decision",
+      "community": 5,
+      "norm_label": "decision"
+    },
+    {
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0003_Versioned_envelope_with_a_hard_mismatch.md",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_consequences",
+      "community": 5,
+      "norm_label": "consequences"
+    },
+    {
+      "label": "Alternatives Considered",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0003_Versioned_envelope_with_a_hard_mismatch.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_alternatives_considered",
+      "community": 5,
+      "norm_label": "alternatives considered"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0003_Versioned_envelope_with_a_hard_mismatch.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_graph_relations_explicit",
+      "community": 5,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "ADR-0004_Delegate_serialization_to_each_producer_model.md",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0004_Delegate_serialization_to_each_producer_model.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model",
+      "community": 6,
+      "norm_label": "adr-0004_delegate_serialization_to_each_producer_model.md"
+    },
+    {
+      "label": "ADR-0004: Delegate serialization to each producer model",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0004_Delegate_serialization_to_each_producer_model.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_adr_0004_delegate_serialization_to_each_producer_model",
+      "community": 6,
+      "norm_label": "adr-0004: delegate serialization to each producer model"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0004_Delegate_serialization_to_each_producer_model.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_context",
+      "community": 6,
+      "norm_label": "context"
+    },
+    {
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0004_Delegate_serialization_to_each_producer_model.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_decision",
+      "community": 6,
+      "norm_label": "decision"
+    },
+    {
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0004_Delegate_serialization_to_each_producer_model.md",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_consequences",
+      "community": 6,
+      "norm_label": "consequences"
+    },
+    {
+      "label": "Alternatives Considered",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0004_Delegate_serialization_to_each_producer_model.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_alternatives_considered",
+      "community": 6,
+      "norm_label": "alternatives considered"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0004_Delegate_serialization_to_each_producer_model.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_graph_relations_explicit",
+      "community": 6,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "ADR-0005_Validate_triagekey_presence_before_the_VIN.md",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0005_Validate_triagekey_presence_before_the_VIN.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin",
+      "community": 7,
+      "norm_label": "adr-0005_validate_triagekey_presence_before_the_vin.md"
+    },
+    {
+      "label": "ADR-0005: Validate triage-key presence before the VIN decode",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0005_Validate_triagekey_presence_before_the_VIN.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_adr_0005_validate_triage_key_presence_before_the_vin_decode",
+      "community": 7,
+      "norm_label": "adr-0005: validate triage-key presence before the vin decode"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0005_Validate_triagekey_presence_before_the_VIN.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_context",
+      "community": 7,
+      "norm_label": "context"
+    },
+    {
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0005_Validate_triagekey_presence_before_the_VIN.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_decision",
+      "community": 7,
+      "norm_label": "decision"
+    },
+    {
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0005_Validate_triagekey_presence_before_the_VIN.md",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_consequences",
+      "community": 7,
+      "norm_label": "consequences"
+    },
+    {
+      "label": "Alternatives Considered",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0005_Validate_triagekey_presence_before_the_VIN.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_alternatives_considered",
+      "community": 7,
+      "norm_label": "alternatives considered"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0005_Validate_triagekey_presence_before_the_VIN.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_graph_relations_explicit",
+      "community": 7,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "ADR-0006_Autostamp_session_identity.md",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0006_Autostamp_session_identity.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0006_autostamp_session_identity",
+      "community": 8,
+      "norm_label": "adr-0006_autostamp_session_identity.md"
+    },
+    {
+      "label": "ADR-0006: Auto-stamp session identity",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0006_Autostamp_session_identity.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0006_autostamp_session_identity_adr_0006_auto_stamp_session_identity",
+      "community": 8,
+      "norm_label": "adr-0006: auto-stamp session identity"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0006_Autostamp_session_identity.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0006_autostamp_session_identity_context",
+      "community": 8,
+      "norm_label": "context"
+    },
+    {
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0006_Autostamp_session_identity.md",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0006_autostamp_session_identity_decision",
+      "community": 8,
+      "norm_label": "decision"
+    },
+    {
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0006_Autostamp_session_identity.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0006_autostamp_session_identity_consequences",
+      "community": 8,
+      "norm_label": "consequences"
+    },
+    {
+      "label": "Alternatives Considered",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0006_Autostamp_session_identity.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0006_autostamp_session_identity_alternatives_considered",
+      "community": 8,
+      "norm_label": "alternatives considered"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0006_Autostamp_session_identity.md",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0006_autostamp_session_identity_graph_relations_explicit",
+      "community": 8,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "ADR-0007_One_coordinating_schemabump_task_run_last.md",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0007_One_coordinating_schemabump_task_run_last.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last",
+      "community": 9,
+      "norm_label": "adr-0007_one_coordinating_schemabump_task_run_last.md"
+    },
+    {
+      "label": "ADR-0007: One coordinating schema-bump task, run last (T-DNA-7)",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0007_One_coordinating_schemabump_task_run_last.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_adr_0007_one_coordinating_schema_bump_task_run_last_t_dna_7",
+      "community": 9,
+      "norm_label": "adr-0007: one coordinating schema-bump task, run last (t-dna-7)"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0007_One_coordinating_schemabump_task_run_last.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_context",
+      "community": 9,
+      "norm_label": "context"
+    },
+    {
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0007_One_coordinating_schemabump_task_run_last.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_decision",
+      "community": 9,
+      "norm_label": "decision"
+    },
+    {
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0007_One_coordinating_schemabump_task_run_last.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_consequences",
+      "community": 9,
+      "norm_label": "consequences"
+    },
+    {
+      "label": "Alternatives Considered",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0007_One_coordinating_schemabump_task_run_last.md",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_alternatives_considered",
+      "community": 9,
+      "norm_label": "alternatives considered"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/ADR-0007_One_coordinating_schemabump_task_run_last.md",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_graph_relations_explicit",
+      "community": 9,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "References.md",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/References.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "adr_dnalab_references",
+      "community": 13,
+      "norm_label": "references.md"
+    },
+    {
+      "label": "References",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/References.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "adr_dnalab_references_references",
+      "community": 13,
+      "norm_label": "references"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "ADR_DNALab/References.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "adr_dnalab_references_graph_relations_explicit",
+      "community": 13,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "00_Preamble.md",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/00_Preamble.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "bdd_dnalab_00_preamble",
+      "community": 14,
+      "norm_label": "00_preamble.md"
+    },
+    {
+      "label": "BDD \u2014 DNALab (v2)",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/00_Preamble.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "bdd_dnalab_00_preamble_bdd_dnalab_v2",
+      "community": 14,
+      "norm_label": "bdd \u2014 dnalab (v2)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/00_Preamble.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "bdd_dnalab_00_preamble_graph_relations_explicit",
+      "community": 14,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "Feature_Composition_happy_path.md",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_Composition_happy_path.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_composition_happy_path",
+      "community": 15,
+      "norm_label": "feature_composition_happy_path.md"
+    },
+    {
+      "label": "Feature: Composition happy path",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_Composition_happy_path.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_composition_happy_path_feature_composition_happy_path",
+      "community": 15,
+      "norm_label": "feature: composition happy path"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_Composition_happy_path.md",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_composition_happy_path_graph_relations_explicit",
+      "community": 15,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "Feature_Contract_surface.md",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_Contract_surface.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_contract_surface",
+      "community": 16,
+      "norm_label": "feature_contract_surface.md"
+    },
+    {
+      "label": "Feature: Contract surface",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_Contract_surface.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_contract_surface_feature_contract_surface",
+      "community": 16,
+      "norm_label": "feature: contract surface"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_Contract_surface.md",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_contract_surface_graph_relations_explicit",
+      "community": 16,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "Feature_Failfast_and_exception_propagation.md",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_Failfast_and_exception_propagation.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_failfast_and_exception_propagation",
+      "community": 17,
+      "norm_label": "feature_failfast_and_exception_propagation.md"
+    },
+    {
+      "label": "Feature: Fail-fast and exception propagation",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_Failfast_and_exception_propagation.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_failfast_and_exception_propagation_feature_fail_fast_and_exception_propagation",
+      "community": 17,
+      "norm_label": "feature: fail-fast and exception propagation"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_Failfast_and_exception_propagation.md",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_failfast_and_exception_propagation_graph_relations_explicit",
+      "community": 17,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "Feature_Isolation_CIlevel_behaviour.md",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_Isolation_CIlevel_behaviour.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_isolation_cilevel_behaviour",
+      "community": 18,
+      "norm_label": "feature_isolation_cilevel_behaviour.md"
+    },
+    {
+      "label": "Feature: Isolation (CI-level behaviour)",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_Isolation_CIlevel_behaviour.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_isolation_cilevel_behaviour_feature_isolation_ci_level_behaviour",
+      "community": 18,
+      "norm_label": "feature: isolation (ci-level behaviour)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_Isolation_CIlevel_behaviour.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_isolation_cilevel_behaviour_graph_relations_explicit",
+      "community": 18,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "Feature_JSON_roundtrip.md",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_JSON_roundtrip.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_json_roundtrip",
+      "community": 19,
+      "norm_label": "feature_json_roundtrip.md"
+    },
+    {
+      "label": "Feature: JSON round-trip",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_JSON_roundtrip.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_json_roundtrip_feature_json_round_trip",
+      "community": 19,
+      "norm_label": "feature: json round-trip"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_JSON_roundtrip.md",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_json_roundtrip_graph_relations_explicit",
+      "community": 19,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "Feature_Version_guard.md",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_Version_guard.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_version_guard",
+      "community": 20,
+      "norm_label": "feature_version_guard.md"
+    },
+    {
+      "label": "Feature: Version guard",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_Version_guard.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_version_guard_feature_version_guard",
+      "community": 20,
+      "norm_label": "feature: version guard"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Feature_Version_guard.md",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "bdd_dnalab_feature_version_guard_graph_relations_explicit",
+      "community": 20,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "Traceability_summary.md",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Traceability_summary.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "bdd_dnalab_traceability_summary",
+      "community": 21,
+      "norm_label": "traceability_summary.md"
+    },
+    {
+      "label": "Traceability summary",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Traceability_summary.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "bdd_dnalab_traceability_summary_traceability_summary",
+      "community": 21,
+      "norm_label": "traceability summary"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "BDD_DNALab/Traceability_summary.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "bdd_dnalab_traceability_summary_graph_relations_explicit",
+      "community": 21,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "00_Preamble.md",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/00_Preamble.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "dld_dnalab_00_preamble",
+      "community": 22,
+      "norm_label": "00_preamble.md"
+    },
+    {
+      "label": "DLD \u2014 DNALab (v2)",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/00_Preamble.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "dld_dnalab_00_preamble_dld_dnalab_v2",
+      "community": 22,
+      "norm_label": "dld \u2014 dnalab (v2)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/00_Preamble.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "dld_dnalab_00_preamble_graph_relations_explicit",
+      "community": 22,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "1_Module_Map.md",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/1_Module_Map.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "dld_dnalab_1_module_map",
+      "community": 23,
+      "norm_label": "1_module_map.md"
+    },
+    {
+      "label": "1. Module Map",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/1_Module_Map.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "dld_dnalab_1_module_map_1_module_map",
+      "community": 23,
+      "norm_label": "1. module map"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/1_Module_Map.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "dld_dnalab_1_module_map_graph_relations_explicit",
+      "community": 23,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass",
+      "community": 1,
+      "norm_label": "2_modelspy_vehicledna_frozen_dataclass.md"
+    },
+    {
+      "label": "2. `models.py` \u2014 `VehicleDNA` (frozen dataclass)",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_2_models_py_vehicledna_frozen_dataclass",
+      "community": 1,
+      "norm_label": "2. `models.py` \u2014 `vehicledna` (frozen dataclass)"
+    },
+    {
+      "label": "Field: `session_id`",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_field_session_id",
+      "community": 1,
+      "norm_label": "field: `session_id`"
+    },
+    {
+      "label": "Field: `timestamp`",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_field_timestamp",
+      "community": 1,
+      "norm_label": "field: `timestamp`"
+    },
+    {
+      "label": "Field: `schema_version`",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_field_schema_version",
+      "community": 1,
+      "norm_label": "field: `schema_version`"
+    },
+    {
+      "label": "Field: `vin_dna`",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_field_vin_dna",
+      "community": 1,
+      "norm_label": "field: `vin_dna`"
+    },
+    {
+      "label": "Field: `symptom_dna`",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_field_symptom_dna",
+      "community": 1,
+      "norm_label": "field: `symptom_dna`"
+    },
+    {
+      "label": "Classmethods / methods",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_classmethods_methods",
+      "community": 1,
+      "norm_label": "classmethods / methods"
+    },
+    {
+      "label": "`VehicleDNA.new(vin_dna, symptom_dna, *, session_id=None, timestamp=None, schema_version=SCHEMA_VERSION)`",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_vehicledna_new_vin_dna_symptom_dna_session_id_none_timestamp_none_schema_version_schema_version",
+      "community": 1,
+      "norm_label": "`vehicledna.new(vin_dna, symptom_dna, *, session_id=none, timestamp=none, schema_version=schema_version)`"
+    },
+    {
+      "label": "`VehicleDNA.to_json_payload() \u2192 dict`",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_vehicledna_to_json_payload_dict",
+      "community": 1,
+      "norm_label": "`vehicledna.to_json_payload() \u2192 dict`"
+    },
+    {
+      "label": "`VehicleDNA.to_json(**dumps_kwargs) \u2192 str`",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_vehicledna_to_json_dumps_kwargs_str",
+      "community": 1,
+      "norm_label": "`vehicledna.to_json(**dumps_kwargs) \u2192 str`"
+    },
+    {
+      "label": "`VehicleDNA.from_json_payload(payload) \u2192 VehicleDNA`",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_vehicledna_from_json_payload_payload_vehicledna",
+      "community": 1,
+      "norm_label": "`vehicledna.from_json_payload(payload) \u2192 vehicledna`"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_graph_relations_explicit",
+      "community": 1,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "3_modelspy_fromjsonpayload_contract.md",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/3_modelspy_fromjsonpayload_contract.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "dld_dnalab_3_modelspy_fromjsonpayload_contract",
+      "community": 11,
+      "norm_label": "3_modelspy_fromjsonpayload_contract.md"
+    },
+    {
+      "label": "3. `models.py` \u2014 `from_json_payload` contract",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/3_modelspy_fromjsonpayload_contract.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "dld_dnalab_3_modelspy_fromjsonpayload_contract_3_models_py_from_json_payload_contract",
+      "community": 11,
+      "norm_label": "3. `models.py` \u2014 `from_json_payload` contract"
+    },
+    {
+      "label": "Failure: `schema_version` \u2260 `SCHEMA_VERSION`",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/3_modelspy_fromjsonpayload_contract.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "dld_dnalab_3_modelspy_fromjsonpayload_contract_failure_schema_version_schema_version",
+      "community": 11,
+      "norm_label": "failure: `schema_version` = `schema_version`"
+    },
+    {
+      "label": "Failure: missing required top-level key",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/3_modelspy_fromjsonpayload_contract.md",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "dld_dnalab_3_modelspy_fromjsonpayload_contract_failure_missing_required_top_level_key",
+      "community": 11,
+      "norm_label": "failure: missing required top-level key"
+    },
+    {
+      "label": "Failure: invalid `vin_dna` / `symptom_dna` shape",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/3_modelspy_fromjsonpayload_contract.md",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "dld_dnalab_3_modelspy_fromjsonpayload_contract_failure_invalid_vin_dna_symptom_dna_shape",
+      "community": 11,
+      "norm_label": "failure: invalid `vin_dna` / `symptom_dna` shape"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/3_modelspy_fromjsonpayload_contract.md",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "dld_dnalab_3_modelspy_fromjsonpayload_contract_graph_relations_explicit",
+      "community": 11,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "4_assemblypy_buildvehicledna.md",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/4_assemblypy_buildvehicledna.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "dld_dnalab_4_assemblypy_buildvehicledna",
+      "community": 24,
+      "norm_label": "4_assemblypy_buildvehicledna.md"
+    },
+    {
+      "label": "4. `assembly.py` \u2014 `build_vehicle_dna`",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/4_assemblypy_buildvehicledna.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "dld_dnalab_4_assemblypy_buildvehicledna_4_assembly_py_build_vehicle_dna",
+      "community": 24,
+      "norm_label": "4. `assembly.py` \u2014 `build_vehicle_dna`"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/4_assemblypy_buildvehicledna.md",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "dld_dnalab_4_assemblypy_buildvehicledna_graph_relations_explicit",
+      "community": 24,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "5_Exceptions_propagated_not_defined_here.md",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/5_Exceptions_propagated_not_defined_here.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "dld_dnalab_5_exceptions_propagated_not_defined_here",
+      "community": 10,
+      "norm_label": "5_exceptions_propagated_not_defined_here.md"
+    },
+    {
+      "label": "5. Exceptions (propagated, not defined here)",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/5_Exceptions_propagated_not_defined_here.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "dld_dnalab_5_exceptions_propagated_not_defined_here_5_exceptions_propagated_not_defined_here",
+      "community": 10,
+      "norm_label": "5. exceptions (propagated, not defined here)"
+    },
+    {
+      "label": "Exception: `SymptomValidationError`",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/5_Exceptions_propagated_not_defined_here.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "dld_dnalab_5_exceptions_propagated_not_defined_here_exception_symptomvalidationerror",
+      "community": 10,
+      "norm_label": "exception: `symptomvalidationerror`"
+    },
+    {
+      "label": "Exception: `VINDecodeError` (+ `ChassisNumberError`)",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/5_Exceptions_propagated_not_defined_here.md",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "dld_dnalab_5_exceptions_propagated_not_defined_here_exception_vindecodeerror_chassisnumbererror",
+      "community": 10,
+      "norm_label": "exception: `vindecodeerror` (+ `chassisnumbererror`)"
+    },
+    {
+      "label": "Exception: `ValueError`",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/5_Exceptions_propagated_not_defined_here.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "dld_dnalab_5_exceptions_propagated_not_defined_here_exception_valueerror",
+      "community": 10,
+      "norm_label": "exception: `valueerror`"
+    },
+    {
+      "label": "Exception: `KeyError`",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/5_Exceptions_propagated_not_defined_here.md",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "dld_dnalab_5_exceptions_propagated_not_defined_here_exception_keyerror",
+      "community": 10,
+      "norm_label": "exception: `keyerror`"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/5_Exceptions_propagated_not_defined_here.md",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "dld_dnalab_5_exceptions_propagated_not_defined_here_graph_relations_explicit",
+      "community": 10,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "6_Test_Coverage_current.md",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/6_Test_Coverage_current.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "dld_dnalab_6_test_coverage_current",
+      "community": 25,
+      "norm_label": "6_test_coverage_current.md"
+    },
+    {
+      "label": "6. Test Coverage (current)",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/6_Test_Coverage_current.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "dld_dnalab_6_test_coverage_current_6_test_coverage_current",
+      "community": 25,
+      "norm_label": "6. test coverage (current)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/6_Test_Coverage_current.md",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "dld_dnalab_6_test_coverage_current_graph_relations_explicit",
+      "community": 25,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "7_Related_docs_granular_ADRs.md",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/7_Related_docs_granular_ADRs.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "dld_dnalab_7_related_docs_granular_adrs",
+      "community": 26,
+      "norm_label": "7_related_docs_granular_adrs.md"
+    },
+    {
+      "label": "7. Related docs (granular ADRs)",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/7_Related_docs_granular_ADRs.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "dld_dnalab_7_related_docs_granular_adrs_7_related_docs_granular_adrs",
+      "community": 26,
+      "norm_label": "7. related docs (granular adrs)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "DLD_DNALab/7_Related_docs_granular_ADRs.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "dld_dnalab_7_related_docs_granular_adrs_graph_relations_explicit",
+      "community": 26,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "00_Preamble.md",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/00_Preamble.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "hld_dnalab_00_preamble",
+      "community": 27,
+      "norm_label": "00_preamble.md"
+    },
+    {
+      "label": "HLD \u2014 DNALab (v2)",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/00_Preamble.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "hld_dnalab_00_preamble_hld_dnalab_v2",
+      "community": 27,
+      "norm_label": "hld \u2014 dnalab (v2)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/00_Preamble.md",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "hld_dnalab_00_preamble_graph_relations_explicit",
+      "community": 27,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "1_Responsibility.md",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/1_Responsibility.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "hld_dnalab_1_responsibility",
+      "community": 28,
+      "norm_label": "1_responsibility.md"
+    },
+    {
+      "label": "1. Responsibility",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/1_Responsibility.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "hld_dnalab_1_responsibility_1_responsibility",
+      "community": 28,
+      "norm_label": "1. responsibility"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/1_Responsibility.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "hld_dnalab_1_responsibility_graph_relations_explicit",
+      "community": 28,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "2_Architecture_Position.md",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/2_Architecture_Position.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "hld_dnalab_2_architecture_position",
+      "community": 29,
+      "norm_label": "2_architecture_position.md"
+    },
+    {
+      "label": "2. Architecture Position",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/2_Architecture_Position.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "hld_dnalab_2_architecture_position_2_architecture_position",
+      "community": 29,
+      "norm_label": "2. architecture position"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/2_Architecture_Position.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "hld_dnalab_2_architecture_position_graph_relations_explicit",
+      "community": 29,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "3_Composition_Flow_buildvehicledna.md",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/3_Composition_Flow_buildvehicledna.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "hld_dnalab_3_composition_flow_buildvehicledna",
+      "community": 30,
+      "norm_label": "3_composition_flow_buildvehicledna.md"
+    },
+    {
+      "label": "3. Composition Flow (`build_vehicle_dna`)",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/3_Composition_Flow_buildvehicledna.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "hld_dnalab_3_composition_flow_buildvehicledna_3_composition_flow_build_vehicle_dna",
+      "community": 30,
+      "norm_label": "3. composition flow (`build_vehicle_dna`)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/3_Composition_Flow_buildvehicledna.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "hld_dnalab_3_composition_flow_buildvehicledna_graph_relations_explicit",
+      "community": 30,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "4_VehicleDNA_Envelope_VehicleDNAnew.md",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/4_VehicleDNA_Envelope_VehicleDNAnew.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "hld_dnalab_4_vehicledna_envelope_vehiclednanew",
+      "community": 31,
+      "norm_label": "4_vehicledna_envelope_vehiclednanew.md"
+    },
+    {
+      "label": "4. `VehicleDNA` Envelope (`VehicleDNA.new`)",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/4_VehicleDNA_Envelope_VehicleDNAnew.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "hld_dnalab_4_vehicledna_envelope_vehiclednanew_4_vehicledna_envelope_vehicledna_new",
+      "community": 31,
+      "norm_label": "4. `vehicledna` envelope (`vehicledna.new`)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/4_VehicleDNA_Envelope_VehicleDNAnew.md",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "hld_dnalab_4_vehicledna_envelope_vehiclednanew_graph_relations_explicit",
+      "community": 31,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "5_Serialization_Version_Guard.md",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/5_Serialization_Version_Guard.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "hld_dnalab_5_serialization_version_guard",
+      "community": 32,
+      "norm_label": "5_serialization_version_guard.md"
+    },
+    {
+      "label": "5. Serialization & Version Guard",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/5_Serialization_Version_Guard.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "hld_dnalab_5_serialization_version_guard_5_serialization_version_guard",
+      "community": 32,
+      "norm_label": "5. serialization & version guard"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/5_Serialization_Version_Guard.md",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "hld_dnalab_5_serialization_version_guard_graph_relations_explicit",
+      "community": 32,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "6_Downstream_Integration_Point_consumer.md",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/6_Downstream_Integration_Point_consumer.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "hld_dnalab_6_downstream_integration_point_consumer",
+      "community": 33,
+      "norm_label": "6_downstream_integration_point_consumer.md"
+    },
+    {
+      "label": "6. Downstream Integration Point (consumer)",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/6_Downstream_Integration_Point_consumer.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "hld_dnalab_6_downstream_integration_point_consumer_6_downstream_integration_point_consumer",
+      "community": 33,
+      "norm_label": "6. downstream integration point (consumer)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/6_Downstream_Integration_Point_consumer.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "hld_dnalab_6_downstream_integration_point_consumer_graph_relations_explicit",
+      "community": 33,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "7_NonFunctional_Requirements.md",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/7_NonFunctional_Requirements.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "hld_dnalab_7_nonfunctional_requirements",
+      "community": 34,
+      "norm_label": "7_nonfunctional_requirements.md"
+    },
+    {
+      "label": "7. Non-Functional Requirements",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/7_NonFunctional_Requirements.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "hld_dnalab_7_nonfunctional_requirements_7_non_functional_requirements",
+      "community": 34,
+      "norm_label": "7. non-functional requirements"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/7_NonFunctional_Requirements.md",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "hld_dnalab_7_nonfunctional_requirements_graph_relations_explicit",
+      "community": 34,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "8_Known_Gaps_Accepted_Behaviour.md",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/8_Known_Gaps_Accepted_Behaviour.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "hld_dnalab_8_known_gaps_accepted_behaviour",
+      "community": 35,
+      "norm_label": "8_known_gaps_accepted_behaviour.md"
+    },
+    {
+      "label": "8. Known Gaps / Accepted Behaviour",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/8_Known_Gaps_Accepted_Behaviour.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "hld_dnalab_8_known_gaps_accepted_behaviour_8_known_gaps_accepted_behaviour",
+      "community": 35,
+      "norm_label": "8. known gaps / accepted behaviour"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "HLD_DNALab/8_Known_Gaps_Accepted_Behaviour.md",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "hld_dnalab_8_known_gaps_accepted_behaviour_graph_relations_explicit",
+      "community": 35,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "00_Preamble.md",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/00_Preamble.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lld_dnalab_00_preamble",
+      "community": 36,
+      "norm_label": "00_preamble.md"
+    },
+    {
+      "label": "LLD \u2014 DNALab (v2)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/00_Preamble.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "lld_dnalab_00_preamble_lld_dnalab_v2",
+      "community": 36,
+      "norm_label": "lld \u2014 dnalab (v2)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/00_Preamble.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "lld_dnalab_00_preamble_graph_relations_explicit",
+      "community": 36,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "1_Schema_Version_modelspy.md",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/1_Schema_Version_modelspy.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lld_dnalab_1_schema_version_modelspy",
+      "community": 37,
+      "norm_label": "1_schema_version_modelspy.md"
+    },
+    {
+      "label": "1. Schema Version (`models.py`)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/1_Schema_Version_modelspy.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "lld_dnalab_1_schema_version_modelspy_1_schema_version_models_py",
+      "community": 37,
+      "norm_label": "1. schema version (`models.py`)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/1_Schema_Version_modelspy.md",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "lld_dnalab_1_schema_version_modelspy_graph_relations_explicit",
+      "community": 37,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "2_SessionID_Format_modelspyVehicleDNAnew.md",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/2_SessionID_Format_modelspyVehicleDNAnew.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lld_dnalab_2_sessionid_format_modelspyvehiclednanew",
+      "community": 38,
+      "norm_label": "2_sessionid_format_modelspyvehiclednanew.md"
+    },
+    {
+      "label": "2. Session-ID Format (`models.py::VehicleDNA.new`)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/2_SessionID_Format_modelspyVehicleDNAnew.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "lld_dnalab_2_sessionid_format_modelspyvehiclednanew_2_session_id_format_models_py_vehicledna_new",
+      "community": 38,
+      "norm_label": "2. session-id format (`models.py::vehicledna.new`)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/2_SessionID_Format_modelspyVehicleDNAnew.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "lld_dnalab_2_sessionid_format_modelspyvehiclednanew_graph_relations_explicit",
+      "community": 38,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "3_Timestamp_Format_modelspyVehicleDNAnew.md",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/3_Timestamp_Format_modelspyVehicleDNAnew.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lld_dnalab_3_timestamp_format_modelspyvehiclednanew",
+      "community": 39,
+      "norm_label": "3_timestamp_format_modelspyvehiclednanew.md"
+    },
+    {
+      "label": "3. Timestamp Format (`models.py::VehicleDNA.new`)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/3_Timestamp_Format_modelspyVehicleDNAnew.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "lld_dnalab_3_timestamp_format_modelspyvehiclednanew_3_timestamp_format_models_py_vehicledna_new",
+      "community": 39,
+      "norm_label": "3. timestamp format (`models.py::vehicledna.new`)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/3_Timestamp_Format_modelspyVehicleDNAnew.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "lld_dnalab_3_timestamp_format_modelspyvehiclednanew_graph_relations_explicit",
+      "community": 39,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "4_TopLevel_Key_Set_modelspytojsonpayload.md",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/4_TopLevel_Key_Set_modelspytojsonpayload.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lld_dnalab_4_toplevel_key_set_modelspytojsonpayload",
+      "community": 40,
+      "norm_label": "4_toplevel_key_set_modelspytojsonpayload.md"
+    },
+    {
+      "label": "4. Top-Level Key Set (`models.py::to_json_payload`)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/4_TopLevel_Key_Set_modelspytojsonpayload.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "lld_dnalab_4_toplevel_key_set_modelspytojsonpayload_4_top_level_key_set_models_py_to_json_payload",
+      "community": 40,
+      "norm_label": "4. top-level key set (`models.py::to_json_payload`)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/4_TopLevel_Key_Set_modelspytojsonpayload.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "lld_dnalab_4_toplevel_key_set_modelspytojsonpayload_graph_relations_explicit",
+      "community": 40,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "5_Required_Triage_Keys_assemblypy.md",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/5_Required_Triage_Keys_assemblypy.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lld_dnalab_5_required_triage_keys_assemblypy",
+      "community": 41,
+      "norm_label": "5_required_triage_keys_assemblypy.md"
+    },
+    {
+      "label": "5. Required Triage Keys (`assembly.py`)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/5_Required_Triage_Keys_assemblypy.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "lld_dnalab_5_required_triage_keys_assemblypy_5_required_triage_keys_assembly_py",
+      "community": 41,
+      "norm_label": "5. required triage keys (`assembly.py`)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/5_Required_Triage_Keys_assemblypy.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "lld_dnalab_5_required_triage_keys_assemblypy_graph_relations_explicit",
+      "community": 41,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "6_EnumCoercion_Path_delegated.md",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/6_EnumCoercion_Path_delegated.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lld_dnalab_6_enumcoercion_path_delegated",
+      "community": 42,
+      "norm_label": "6_enumcoercion_path_delegated.md"
+    },
+    {
+      "label": "6. Enum-Coercion Path (delegated)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/6_EnumCoercion_Path_delegated.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "lld_dnalab_6_enumcoercion_path_delegated_6_enum_coercion_path_delegated",
+      "community": 42,
+      "norm_label": "6. enum-coercion path (delegated)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/6_EnumCoercion_Path_delegated.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "lld_dnalab_6_enumcoercion_path_delegated_graph_relations_explicit",
+      "community": 42,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "7_Forbidden_Patterns_DNALabspecific.md",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/7_Forbidden_Patterns_DNALabspecific.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lld_dnalab_7_forbidden_patterns_dnalabspecific",
+      "community": 43,
+      "norm_label": "7_forbidden_patterns_dnalabspecific.md"
+    },
+    {
+      "label": "7. Forbidden Patterns (DNALab-specific)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/7_Forbidden_Patterns_DNALabspecific.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "lld_dnalab_7_forbidden_patterns_dnalabspecific_7_forbidden_patterns_dnalab_specific",
+      "community": 43,
+      "norm_label": "7. forbidden patterns (dnalab-specific)"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "LLD_DNALab/7_Forbidden_Patterns_DNALabspecific.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "lld_dnalab_7_forbidden_patterns_dnalabspecific_graph_relations_explicit",
+      "community": 43,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "00_Preamble.md",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/00_Preamble.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "prd_dnalab_00_preamble",
+      "community": 44,
+      "norm_label": "00_preamble.md"
+    },
+    {
+      "label": "PRD \u2014 DNALab",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/00_Preamble.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "prd_dnalab_00_preamble_prd_dnalab",
+      "community": 44,
+      "norm_label": "prd \u2014 dnalab"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/00_Preamble.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "prd_dnalab_00_preamble_graph_relations_explicit",
+      "community": 44,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "Section_1_Summary.md",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_1_Summary.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_1_summary",
+      "community": 45,
+      "norm_label": "section_1_summary.md"
+    },
+    {
+      "label": "Section 1 \u2014 Summary",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_1_Summary.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_1_summary_section_1_summary",
+      "community": 45,
+      "norm_label": "section 1 \u2014 summary"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_1_Summary.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_1_summary_graph_relations_explicit",
+      "community": 45,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "Section_2_Contacts.md",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_2_Contacts.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_2_contacts",
+      "community": 46,
+      "norm_label": "section_2_contacts.md"
+    },
+    {
+      "label": "Section 2 \u2014 Contacts",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_2_Contacts.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_2_contacts_section_2_contacts",
+      "community": 46,
+      "norm_label": "section 2 \u2014 contacts"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_2_Contacts.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_2_contacts_graph_relations_explicit",
+      "community": 46,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "Section_3_Background.md",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_3_Background.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_3_background",
+      "community": 47,
+      "norm_label": "section_3_background.md"
+    },
+    {
+      "label": "Section 3 \u2014 Background",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_3_Background.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_3_background_section_3_background",
+      "community": 47,
+      "norm_label": "section 3 \u2014 background"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_3_Background.md",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_3_background_graph_relations_explicit",
+      "community": 47,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "Section_4_Objective.md",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_4_Objective.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_4_objective",
+      "community": 48,
+      "norm_label": "section_4_objective.md"
+    },
+    {
+      "label": "Section 4 \u2014 Objective",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_4_Objective.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_4_objective_section_4_objective",
+      "community": 48,
+      "norm_label": "section 4 \u2014 objective"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_4_Objective.md",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_4_objective_graph_relations_explicit",
+      "community": 48,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "Section_5_Market_Segment.md",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_5_Market_Segment.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_5_market_segment",
+      "community": 49,
+      "norm_label": "section_5_market_segment.md"
+    },
+    {
+      "label": "Section 5 \u2014 Market Segment",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_5_Market_Segment.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_5_market_segment_section_5_market_segment",
+      "community": 49,
+      "norm_label": "section 5 \u2014 market segment"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_5_Market_Segment.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_5_market_segment_graph_relations_explicit",
+      "community": 49,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "Section_6_Value_Proposition.md",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_6_Value_Proposition.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_6_value_proposition",
+      "community": 50,
+      "norm_label": "section_6_value_proposition.md"
+    },
+    {
+      "label": "Section 6 \u2014 Value Proposition",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_6_Value_Proposition.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_6_value_proposition_section_6_value_proposition",
+      "community": 50,
+      "norm_label": "section 6 \u2014 value proposition"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_6_Value_Proposition.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_6_value_proposition_graph_relations_explicit",
+      "community": 50,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "Section_7_Solution.md",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_7_solution",
+      "community": 0,
+      "norm_label": "section_7_solution.md"
+    },
+    {
+      "label": "Section 7 \u2014 Solution",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_7_solution_section_7_solution",
+      "community": 0,
+      "norm_label": "section 7 \u2014 solution"
+    },
+    {
+      "label": "Key Features (all P0)",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_7_solution_key_features_all_p0",
+      "community": 0,
+      "norm_label": "key features (all p0)"
+    },
+    {
+      "label": "Technology",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_7_solution_technology",
+      "community": 0,
+      "norm_label": "technology"
+    },
+    {
+      "label": "`VehicleDNA` fields (5, contract \u00a74.3)",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_7_solution_vehicledna_fields_5_contract_4_3",
+      "community": 0,
+      "norm_label": "`vehicledna` fields (5, contract \u00a74.3)"
+    },
+    {
+      "label": "Field: `session_id`",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_7_solution_field_session_id",
+      "community": 0,
+      "norm_label": "field: `session_id`"
+    },
+    {
+      "label": "Field: `timestamp`",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_7_solution_field_timestamp",
+      "community": 0,
+      "norm_label": "field: `timestamp`"
+    },
+    {
+      "label": "Field: `schema_version`",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_7_solution_field_schema_version",
+      "community": 0,
+      "norm_label": "field: `schema_version`"
+    },
+    {
+      "label": "Field: `vin_dna`",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L45",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_7_solution_field_vin_dna",
+      "community": 0,
+      "norm_label": "field: `vin_dna`"
+    },
+    {
+      "label": "Field: `symptom_dna`",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_7_solution_field_symptom_dna",
+      "community": 0,
+      "norm_label": "field: `symptom_dna`"
+    },
+    {
+      "label": "Assumptions",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_7_solution_assumptions",
+      "community": 0,
+      "norm_label": "assumptions"
+    },
+    {
+      "label": "Assumption: Producers own their own validation",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_7_solution_assumption_producers_own_their_own_validation",
+      "community": 0,
+      "norm_label": "assumption: producers own their own validation"
+    },
+    {
+      "label": "Assumption: VehicleDNA shape is contract-owned",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_7_solution_assumption_vehicledna_shape_is_contract_owned",
+      "community": 0,
+      "norm_label": "assumption: vehicledna shape is contract-owned"
+    },
+    {
+      "label": "Assumption: Version moves in lockstep with producer field changes",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_7_solution_assumption_version_moves_in_lockstep_with_producer_field_changes",
+      "community": 0,
+      "norm_label": "assumption: version moves in lockstep with producer field changes"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L73",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_7_solution_graph_relations_explicit",
+      "community": 0,
+      "norm_label": "graph relations (explicit)"
+    },
+    {
+      "label": "Section_8_Release.md",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_8_Release.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_8_release",
+      "community": 2,
+      "norm_label": "section_8_release.md"
+    },
+    {
+      "label": "Section 8 \u2014 Release",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_8_Release.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_8_release_section_8_release",
+      "community": 2,
+      "norm_label": "section 8 \u2014 release"
+    },
+    {
+      "label": "v2 Scope",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_8_Release.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_8_release_v2_scope",
+      "community": 2,
+      "norm_label": "v2 scope"
+    },
+    {
+      "label": "Landed (DNA-family pack \u2014 see `tasks/PROGRESS.md`)",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_8_Release.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_8_release_landed_dna_family_pack_see_tasks_progress_md",
+      "community": 2,
+      "norm_label": "landed (dna-family pack \u2014 see `tasks/progress.md`)"
+    },
+    {
+      "label": "Dependency note (transitive \u2014 resolved)",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_8_Release.md",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_8_release_dependency_note_transitive_resolved",
+      "community": 2,
+      "norm_label": "dependency note (transitive \u2014 resolved)"
+    },
+    {
+      "label": "Decided",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_8_Release.md",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_8_release_decided",
+      "community": 2,
+      "norm_label": "decided"
+    },
+    {
+      "label": "Success Criteria",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_8_Release.md",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_8_release_success_criteria",
+      "community": 2,
+      "norm_label": "success criteria"
+    },
+    {
+      "label": "Graph relations (explicit)",
+      "file_type": "document",
+      "source_file": "PRD_DNALab/Section_8_Release.md",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "prd_dnalab_section_8_release_graph_relations_explicit",
+      "community": 2,
+      "norm_label": "graph relations (explicit)"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/00_Preamble.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "adr_dnalab_00_preamble",
+      "target": "adr_dnalab_00_preamble_architecture_decision_records_dnalab_v2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/00_Preamble.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "adr_dnalab_00_preamble_architecture_decision_records_dnalab_v2",
+      "target": "adr_dnalab_00_preamble_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0001_DNALab_composes_it_does_not_decode.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode",
+      "target": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_adr_0001_dnalab_composes_it_does_not_decode_validate_or_route",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0001_DNALab_composes_it_does_not_decode.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode",
+      "target": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0001_DNALab_composes_it_does_not_decode.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_adr_0001_dnalab_composes_it_does_not_decode_validate_or_route",
+      "target": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_alternatives_considered",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0001_DNALab_composes_it_does_not_decode.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_adr_0001_dnalab_composes_it_does_not_decode_validate_or_route",
+      "target": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_consequences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0001_DNALab_composes_it_does_not_decode.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_adr_0001_dnalab_composes_it_does_not_decode_validate_or_route",
+      "target": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0001_DNALab_composes_it_does_not_decode.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_adr_0001_dnalab_composes_it_does_not_decode_validate_or_route",
+      "target": "adr_dnalab_adr_0001_dnalab_composes_it_does_not_decode_decision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0002_DNALab_is_the_only_infamily_importer.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer",
+      "target": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_adr_0002_dnalab_is_the_only_in_family_importer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0002_DNALab_is_the_only_infamily_importer.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer",
+      "target": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0002_DNALab_is_the_only_infamily_importer.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_adr_0002_dnalab_is_the_only_in_family_importer",
+      "target": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_alternatives_considered",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0002_DNALab_is_the_only_infamily_importer.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_adr_0002_dnalab_is_the_only_in_family_importer",
+      "target": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_consequences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0002_DNALab_is_the_only_infamily_importer.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_adr_0002_dnalab_is_the_only_in_family_importer",
+      "target": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0002_DNALab_is_the_only_infamily_importer.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_adr_0002_dnalab_is_the_only_in_family_importer",
+      "target": "adr_dnalab_adr_0002_dnalab_is_the_only_infamily_importer_decision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0003_Versioned_envelope_with_a_hard_mismatch.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch",
+      "target": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_adr_0003_versioned_envelope_with_a_hard_mismatch_guard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0003_Versioned_envelope_with_a_hard_mismatch.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch",
+      "target": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0003_Versioned_envelope_with_a_hard_mismatch.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_adr_0003_versioned_envelope_with_a_hard_mismatch_guard",
+      "target": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_alternatives_considered",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0003_Versioned_envelope_with_a_hard_mismatch.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_adr_0003_versioned_envelope_with_a_hard_mismatch_guard",
+      "target": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_consequences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0003_Versioned_envelope_with_a_hard_mismatch.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_adr_0003_versioned_envelope_with_a_hard_mismatch_guard",
+      "target": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0003_Versioned_envelope_with_a_hard_mismatch.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_adr_0003_versioned_envelope_with_a_hard_mismatch_guard",
+      "target": "adr_dnalab_adr_0003_versioned_envelope_with_a_hard_mismatch_decision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0004_Delegate_serialization_to_each_producer_model.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model",
+      "target": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_adr_0004_delegate_serialization_to_each_producer_model",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0004_Delegate_serialization_to_each_producer_model.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model",
+      "target": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0004_Delegate_serialization_to_each_producer_model.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_adr_0004_delegate_serialization_to_each_producer_model",
+      "target": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_alternatives_considered",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0004_Delegate_serialization_to_each_producer_model.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_adr_0004_delegate_serialization_to_each_producer_model",
+      "target": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_consequences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0004_Delegate_serialization_to_each_producer_model.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_adr_0004_delegate_serialization_to_each_producer_model",
+      "target": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0004_Delegate_serialization_to_each_producer_model.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_adr_0004_delegate_serialization_to_each_producer_model",
+      "target": "adr_dnalab_adr_0004_delegate_serialization_to_each_producer_model_decision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0005_Validate_triagekey_presence_before_the_VIN.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin",
+      "target": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_adr_0005_validate_triage_key_presence_before_the_vin_decode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0005_Validate_triagekey_presence_before_the_VIN.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin",
+      "target": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0005_Validate_triagekey_presence_before_the_VIN.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_adr_0005_validate_triage_key_presence_before_the_vin_decode",
+      "target": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_alternatives_considered",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0005_Validate_triagekey_presence_before_the_VIN.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_adr_0005_validate_triage_key_presence_before_the_vin_decode",
+      "target": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_consequences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0005_Validate_triagekey_presence_before_the_VIN.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_adr_0005_validate_triage_key_presence_before_the_vin_decode",
+      "target": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0005_Validate_triagekey_presence_before_the_VIN.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_adr_0005_validate_triage_key_presence_before_the_vin_decode",
+      "target": "adr_dnalab_adr_0005_validate_triagekey_presence_before_the_vin_decision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0006_Autostamp_session_identity.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0006_autostamp_session_identity",
+      "target": "adr_dnalab_adr_0006_autostamp_session_identity_adr_0006_auto_stamp_session_identity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0006_Autostamp_session_identity.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0006_autostamp_session_identity",
+      "target": "adr_dnalab_adr_0006_autostamp_session_identity_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0006_Autostamp_session_identity.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0006_autostamp_session_identity_adr_0006_auto_stamp_session_identity",
+      "target": "adr_dnalab_adr_0006_autostamp_session_identity_alternatives_considered",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0006_Autostamp_session_identity.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0006_autostamp_session_identity_adr_0006_auto_stamp_session_identity",
+      "target": "adr_dnalab_adr_0006_autostamp_session_identity_consequences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0006_Autostamp_session_identity.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0006_autostamp_session_identity_adr_0006_auto_stamp_session_identity",
+      "target": "adr_dnalab_adr_0006_autostamp_session_identity_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0006_Autostamp_session_identity.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0006_autostamp_session_identity_adr_0006_auto_stamp_session_identity",
+      "target": "adr_dnalab_adr_0006_autostamp_session_identity_decision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0007_One_coordinating_schemabump_task_run_last.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last",
+      "target": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_adr_0007_one_coordinating_schema_bump_task_run_last_t_dna_7",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0007_One_coordinating_schemabump_task_run_last.md",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last",
+      "target": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0007_One_coordinating_schemabump_task_run_last.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_adr_0007_one_coordinating_schema_bump_task_run_last_t_dna_7",
+      "target": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_alternatives_considered",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0007_One_coordinating_schemabump_task_run_last.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_adr_0007_one_coordinating_schema_bump_task_run_last_t_dna_7",
+      "target": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_consequences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0007_One_coordinating_schemabump_task_run_last.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_adr_0007_one_coordinating_schema_bump_task_run_last_t_dna_7",
+      "target": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/ADR-0007_One_coordinating_schemabump_task_run_last.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_adr_0007_one_coordinating_schema_bump_task_run_last_t_dna_7",
+      "target": "adr_dnalab_adr_0007_one_coordinating_schemabump_task_run_last_decision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/References.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "adr_dnalab_references",
+      "target": "adr_dnalab_references_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ADR_DNALab/References.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "adr_dnalab_references",
+      "target": "adr_dnalab_references_references",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/00_Preamble.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "bdd_dnalab_00_preamble",
+      "target": "bdd_dnalab_00_preamble_bdd_dnalab_v2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/00_Preamble.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "bdd_dnalab_00_preamble_bdd_dnalab_v2",
+      "target": "bdd_dnalab_00_preamble_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/Feature_Composition_happy_path.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "bdd_dnalab_feature_composition_happy_path",
+      "target": "bdd_dnalab_feature_composition_happy_path_feature_composition_happy_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/Feature_Composition_happy_path.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "bdd_dnalab_feature_composition_happy_path",
+      "target": "bdd_dnalab_feature_composition_happy_path_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/Feature_Contract_surface.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "bdd_dnalab_feature_contract_surface",
+      "target": "bdd_dnalab_feature_contract_surface_feature_contract_surface",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/Feature_Contract_surface.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "bdd_dnalab_feature_contract_surface",
+      "target": "bdd_dnalab_feature_contract_surface_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/Feature_Failfast_and_exception_propagation.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "bdd_dnalab_feature_failfast_and_exception_propagation",
+      "target": "bdd_dnalab_feature_failfast_and_exception_propagation_feature_fail_fast_and_exception_propagation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/Feature_Failfast_and_exception_propagation.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "bdd_dnalab_feature_failfast_and_exception_propagation",
+      "target": "bdd_dnalab_feature_failfast_and_exception_propagation_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/Feature_Isolation_CIlevel_behaviour.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "bdd_dnalab_feature_isolation_cilevel_behaviour",
+      "target": "bdd_dnalab_feature_isolation_cilevel_behaviour_feature_isolation_ci_level_behaviour",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/Feature_Isolation_CIlevel_behaviour.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "bdd_dnalab_feature_isolation_cilevel_behaviour",
+      "target": "bdd_dnalab_feature_isolation_cilevel_behaviour_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/Feature_JSON_roundtrip.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "bdd_dnalab_feature_json_roundtrip",
+      "target": "bdd_dnalab_feature_json_roundtrip_feature_json_round_trip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/Feature_JSON_roundtrip.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "bdd_dnalab_feature_json_roundtrip",
+      "target": "bdd_dnalab_feature_json_roundtrip_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/Feature_Version_guard.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "bdd_dnalab_feature_version_guard",
+      "target": "bdd_dnalab_feature_version_guard_feature_version_guard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/Feature_Version_guard.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "bdd_dnalab_feature_version_guard",
+      "target": "bdd_dnalab_feature_version_guard_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/Traceability_summary.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "bdd_dnalab_traceability_summary",
+      "target": "bdd_dnalab_traceability_summary_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BDD_DNALab/Traceability_summary.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "bdd_dnalab_traceability_summary",
+      "target": "bdd_dnalab_traceability_summary_traceability_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/00_Preamble.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "dld_dnalab_00_preamble",
+      "target": "dld_dnalab_00_preamble_dld_dnalab_v2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/00_Preamble.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "dld_dnalab_00_preamble_dld_dnalab_v2",
+      "target": "dld_dnalab_00_preamble_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/1_Module_Map.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "dld_dnalab_1_module_map",
+      "target": "dld_dnalab_1_module_map_1_module_map",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/1_Module_Map.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "dld_dnalab_1_module_map",
+      "target": "dld_dnalab_1_module_map_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass",
+      "target": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_2_models_py_vehicledna_frozen_dataclass",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass",
+      "target": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_2_models_py_vehicledna_frozen_dataclass",
+      "target": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_classmethods_methods",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_2_models_py_vehicledna_frozen_dataclass",
+      "target": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_field_schema_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_2_models_py_vehicledna_frozen_dataclass",
+      "target": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_field_session_id",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_2_models_py_vehicledna_frozen_dataclass",
+      "target": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_field_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_2_models_py_vehicledna_frozen_dataclass",
+      "target": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_field_timestamp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_2_models_py_vehicledna_frozen_dataclass",
+      "target": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_field_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_classmethods_methods",
+      "target": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_vehicledna_from_json_payload_payload_vehicledna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_classmethods_methods",
+      "target": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_vehicledna_new_vin_dna_symptom_dna_session_id_none_timestamp_none_schema_version_schema_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_classmethods_methods",
+      "target": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_vehicledna_to_json_dumps_kwargs_str",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/2_modelspy_VehicleDNA_frozen_dataclass.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_classmethods_methods",
+      "target": "dld_dnalab_2_modelspy_vehicledna_frozen_dataclass_vehicledna_to_json_payload_dict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/3_modelspy_fromjsonpayload_contract.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "dld_dnalab_3_modelspy_fromjsonpayload_contract",
+      "target": "dld_dnalab_3_modelspy_fromjsonpayload_contract_3_models_py_from_json_payload_contract",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/3_modelspy_fromjsonpayload_contract.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "dld_dnalab_3_modelspy_fromjsonpayload_contract",
+      "target": "dld_dnalab_3_modelspy_fromjsonpayload_contract_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/3_modelspy_fromjsonpayload_contract.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "dld_dnalab_3_modelspy_fromjsonpayload_contract_3_models_py_from_json_payload_contract",
+      "target": "dld_dnalab_3_modelspy_fromjsonpayload_contract_failure_invalid_vin_dna_symptom_dna_shape",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/3_modelspy_fromjsonpayload_contract.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "dld_dnalab_3_modelspy_fromjsonpayload_contract_3_models_py_from_json_payload_contract",
+      "target": "dld_dnalab_3_modelspy_fromjsonpayload_contract_failure_missing_required_top_level_key",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/3_modelspy_fromjsonpayload_contract.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "dld_dnalab_3_modelspy_fromjsonpayload_contract_3_models_py_from_json_payload_contract",
+      "target": "dld_dnalab_3_modelspy_fromjsonpayload_contract_failure_schema_version_schema_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/4_assemblypy_buildvehicledna.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "dld_dnalab_4_assemblypy_buildvehicledna",
+      "target": "dld_dnalab_4_assemblypy_buildvehicledna_4_assembly_py_build_vehicle_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/4_assemblypy_buildvehicledna.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "dld_dnalab_4_assemblypy_buildvehicledna",
+      "target": "dld_dnalab_4_assemblypy_buildvehicledna_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/5_Exceptions_propagated_not_defined_here.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "dld_dnalab_5_exceptions_propagated_not_defined_here",
+      "target": "dld_dnalab_5_exceptions_propagated_not_defined_here_5_exceptions_propagated_not_defined_here",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/5_Exceptions_propagated_not_defined_here.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "dld_dnalab_5_exceptions_propagated_not_defined_here",
+      "target": "dld_dnalab_5_exceptions_propagated_not_defined_here_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/5_Exceptions_propagated_not_defined_here.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "dld_dnalab_5_exceptions_propagated_not_defined_here_5_exceptions_propagated_not_defined_here",
+      "target": "dld_dnalab_5_exceptions_propagated_not_defined_here_exception_keyerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/5_Exceptions_propagated_not_defined_here.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "dld_dnalab_5_exceptions_propagated_not_defined_here_5_exceptions_propagated_not_defined_here",
+      "target": "dld_dnalab_5_exceptions_propagated_not_defined_here_exception_symptomvalidationerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/5_Exceptions_propagated_not_defined_here.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "dld_dnalab_5_exceptions_propagated_not_defined_here_5_exceptions_propagated_not_defined_here",
+      "target": "dld_dnalab_5_exceptions_propagated_not_defined_here_exception_valueerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/5_Exceptions_propagated_not_defined_here.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "dld_dnalab_5_exceptions_propagated_not_defined_here_5_exceptions_propagated_not_defined_here",
+      "target": "dld_dnalab_5_exceptions_propagated_not_defined_here_exception_vindecodeerror_chassisnumbererror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/6_Test_Coverage_current.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "dld_dnalab_6_test_coverage_current",
+      "target": "dld_dnalab_6_test_coverage_current_6_test_coverage_current",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/6_Test_Coverage_current.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "dld_dnalab_6_test_coverage_current",
+      "target": "dld_dnalab_6_test_coverage_current_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/7_Related_docs_granular_ADRs.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "dld_dnalab_7_related_docs_granular_adrs",
+      "target": "dld_dnalab_7_related_docs_granular_adrs_7_related_docs_granular_adrs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DLD_DNALab/7_Related_docs_granular_ADRs.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "dld_dnalab_7_related_docs_granular_adrs",
+      "target": "dld_dnalab_7_related_docs_granular_adrs_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/00_Preamble.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "hld_dnalab_00_preamble",
+      "target": "hld_dnalab_00_preamble_hld_dnalab_v2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/00_Preamble.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "hld_dnalab_00_preamble_hld_dnalab_v2",
+      "target": "hld_dnalab_00_preamble_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/1_Responsibility.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "hld_dnalab_1_responsibility",
+      "target": "hld_dnalab_1_responsibility_1_responsibility",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/1_Responsibility.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "hld_dnalab_1_responsibility",
+      "target": "hld_dnalab_1_responsibility_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/2_Architecture_Position.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "hld_dnalab_2_architecture_position",
+      "target": "hld_dnalab_2_architecture_position_2_architecture_position",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/2_Architecture_Position.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "hld_dnalab_2_architecture_position",
+      "target": "hld_dnalab_2_architecture_position_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/3_Composition_Flow_buildvehicledna.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "hld_dnalab_3_composition_flow_buildvehicledna",
+      "target": "hld_dnalab_3_composition_flow_buildvehicledna_3_composition_flow_build_vehicle_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/3_Composition_Flow_buildvehicledna.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "hld_dnalab_3_composition_flow_buildvehicledna",
+      "target": "hld_dnalab_3_composition_flow_buildvehicledna_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/4_VehicleDNA_Envelope_VehicleDNAnew.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "hld_dnalab_4_vehicledna_envelope_vehiclednanew",
+      "target": "hld_dnalab_4_vehicledna_envelope_vehiclednanew_4_vehicledna_envelope_vehicledna_new",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/4_VehicleDNA_Envelope_VehicleDNAnew.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "hld_dnalab_4_vehicledna_envelope_vehiclednanew",
+      "target": "hld_dnalab_4_vehicledna_envelope_vehiclednanew_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/5_Serialization_Version_Guard.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "hld_dnalab_5_serialization_version_guard",
+      "target": "hld_dnalab_5_serialization_version_guard_5_serialization_version_guard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/5_Serialization_Version_Guard.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "hld_dnalab_5_serialization_version_guard",
+      "target": "hld_dnalab_5_serialization_version_guard_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/6_Downstream_Integration_Point_consumer.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "hld_dnalab_6_downstream_integration_point_consumer",
+      "target": "hld_dnalab_6_downstream_integration_point_consumer_6_downstream_integration_point_consumer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/6_Downstream_Integration_Point_consumer.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "hld_dnalab_6_downstream_integration_point_consumer",
+      "target": "hld_dnalab_6_downstream_integration_point_consumer_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/7_NonFunctional_Requirements.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "hld_dnalab_7_nonfunctional_requirements",
+      "target": "hld_dnalab_7_nonfunctional_requirements_7_non_functional_requirements",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/7_NonFunctional_Requirements.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "hld_dnalab_7_nonfunctional_requirements",
+      "target": "hld_dnalab_7_nonfunctional_requirements_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/8_Known_Gaps_Accepted_Behaviour.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "hld_dnalab_8_known_gaps_accepted_behaviour",
+      "target": "hld_dnalab_8_known_gaps_accepted_behaviour_8_known_gaps_accepted_behaviour",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HLD_DNALab/8_Known_Gaps_Accepted_Behaviour.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "hld_dnalab_8_known_gaps_accepted_behaviour",
+      "target": "hld_dnalab_8_known_gaps_accepted_behaviour_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/00_Preamble.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "lld_dnalab_00_preamble",
+      "target": "lld_dnalab_00_preamble_lld_dnalab_v2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/00_Preamble.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "lld_dnalab_00_preamble_lld_dnalab_v2",
+      "target": "lld_dnalab_00_preamble_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/1_Schema_Version_modelspy.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "lld_dnalab_1_schema_version_modelspy",
+      "target": "lld_dnalab_1_schema_version_modelspy_1_schema_version_models_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/1_Schema_Version_modelspy.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "lld_dnalab_1_schema_version_modelspy",
+      "target": "lld_dnalab_1_schema_version_modelspy_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/2_SessionID_Format_modelspyVehicleDNAnew.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "lld_dnalab_2_sessionid_format_modelspyvehiclednanew",
+      "target": "lld_dnalab_2_sessionid_format_modelspyvehiclednanew_2_session_id_format_models_py_vehicledna_new",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/2_SessionID_Format_modelspyVehicleDNAnew.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "lld_dnalab_2_sessionid_format_modelspyvehiclednanew",
+      "target": "lld_dnalab_2_sessionid_format_modelspyvehiclednanew_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/3_Timestamp_Format_modelspyVehicleDNAnew.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "lld_dnalab_3_timestamp_format_modelspyvehiclednanew",
+      "target": "lld_dnalab_3_timestamp_format_modelspyvehiclednanew_3_timestamp_format_models_py_vehicledna_new",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/3_Timestamp_Format_modelspyVehicleDNAnew.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "lld_dnalab_3_timestamp_format_modelspyvehiclednanew",
+      "target": "lld_dnalab_3_timestamp_format_modelspyvehiclednanew_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/4_TopLevel_Key_Set_modelspytojsonpayload.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "lld_dnalab_4_toplevel_key_set_modelspytojsonpayload",
+      "target": "lld_dnalab_4_toplevel_key_set_modelspytojsonpayload_4_top_level_key_set_models_py_to_json_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/4_TopLevel_Key_Set_modelspytojsonpayload.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "lld_dnalab_4_toplevel_key_set_modelspytojsonpayload",
+      "target": "lld_dnalab_4_toplevel_key_set_modelspytojsonpayload_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/5_Required_Triage_Keys_assemblypy.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "lld_dnalab_5_required_triage_keys_assemblypy",
+      "target": "lld_dnalab_5_required_triage_keys_assemblypy_5_required_triage_keys_assembly_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/5_Required_Triage_Keys_assemblypy.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "lld_dnalab_5_required_triage_keys_assemblypy",
+      "target": "lld_dnalab_5_required_triage_keys_assemblypy_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/6_EnumCoercion_Path_delegated.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "lld_dnalab_6_enumcoercion_path_delegated",
+      "target": "lld_dnalab_6_enumcoercion_path_delegated_6_enum_coercion_path_delegated",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/6_EnumCoercion_Path_delegated.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "lld_dnalab_6_enumcoercion_path_delegated",
+      "target": "lld_dnalab_6_enumcoercion_path_delegated_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/7_Forbidden_Patterns_DNALabspecific.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "lld_dnalab_7_forbidden_patterns_dnalabspecific",
+      "target": "lld_dnalab_7_forbidden_patterns_dnalabspecific_7_forbidden_patterns_dnalab_specific",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LLD_DNALab/7_Forbidden_Patterns_DNALabspecific.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "lld_dnalab_7_forbidden_patterns_dnalabspecific",
+      "target": "lld_dnalab_7_forbidden_patterns_dnalabspecific_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/00_Preamble.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "prd_dnalab_00_preamble",
+      "target": "prd_dnalab_00_preamble_prd_dnalab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/00_Preamble.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "prd_dnalab_00_preamble_prd_dnalab",
+      "target": "prd_dnalab_00_preamble_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_1_Summary.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_1_summary",
+      "target": "prd_dnalab_section_1_summary_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_1_Summary.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_1_summary",
+      "target": "prd_dnalab_section_1_summary_section_1_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_2_Contacts.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_2_contacts",
+      "target": "prd_dnalab_section_2_contacts_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_2_Contacts.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_2_contacts",
+      "target": "prd_dnalab_section_2_contacts_section_2_contacts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_3_Background.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_3_background",
+      "target": "prd_dnalab_section_3_background_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_3_Background.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_3_background",
+      "target": "prd_dnalab_section_3_background_section_3_background",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_4_Objective.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_4_objective",
+      "target": "prd_dnalab_section_4_objective_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_4_Objective.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_4_objective",
+      "target": "prd_dnalab_section_4_objective_section_4_objective",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_5_Market_Segment.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_5_market_segment",
+      "target": "prd_dnalab_section_5_market_segment_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_5_Market_Segment.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_5_market_segment",
+      "target": "prd_dnalab_section_5_market_segment_section_5_market_segment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_6_Value_Proposition.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_6_value_proposition",
+      "target": "prd_dnalab_section_6_value_proposition_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_6_Value_Proposition.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_6_value_proposition",
+      "target": "prd_dnalab_section_6_value_proposition_section_6_value_proposition",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_7_solution",
+      "target": "prd_dnalab_section_7_solution_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_7_solution",
+      "target": "prd_dnalab_section_7_solution_section_7_solution",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_7_solution_section_7_solution",
+      "target": "prd_dnalab_section_7_solution_assumptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_7_solution_section_7_solution",
+      "target": "prd_dnalab_section_7_solution_key_features_all_p0",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_7_solution_section_7_solution",
+      "target": "prd_dnalab_section_7_solution_technology",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_7_solution_section_7_solution",
+      "target": "prd_dnalab_section_7_solution_vehicledna_fields_5_contract_4_3",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_7_solution_vehicledna_fields_5_contract_4_3",
+      "target": "prd_dnalab_section_7_solution_field_schema_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_7_solution_vehicledna_fields_5_contract_4_3",
+      "target": "prd_dnalab_section_7_solution_field_session_id",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_7_solution_vehicledna_fields_5_contract_4_3",
+      "target": "prd_dnalab_section_7_solution_field_symptom_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_7_solution_vehicledna_fields_5_contract_4_3",
+      "target": "prd_dnalab_section_7_solution_field_timestamp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_7_solution_vehicledna_fields_5_contract_4_3",
+      "target": "prd_dnalab_section_7_solution_field_vin_dna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_7_solution_assumptions",
+      "target": "prd_dnalab_section_7_solution_assumption_producers_own_their_own_validation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_7_solution_assumptions",
+      "target": "prd_dnalab_section_7_solution_assumption_vehicledna_shape_is_contract_owned",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_7_Solution.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_7_solution_assumptions",
+      "target": "prd_dnalab_section_7_solution_assumption_version_moves_in_lockstep_with_producer_field_changes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_8_Release.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_8_release",
+      "target": "prd_dnalab_section_8_release_graph_relations_explicit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_8_Release.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_8_release",
+      "target": "prd_dnalab_section_8_release_section_8_release",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_8_Release.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_8_release_section_8_release",
+      "target": "prd_dnalab_section_8_release_decided",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_8_Release.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_8_release_section_8_release",
+      "target": "prd_dnalab_section_8_release_dependency_note_transitive_resolved",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_8_Release.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_8_release_section_8_release",
+      "target": "prd_dnalab_section_8_release_landed_dna_family_pack_see_tasks_progress_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_8_Release.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_8_release_section_8_release",
+      "target": "prd_dnalab_section_8_release_success_criteria",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PRD_DNALab/Section_8_Release.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "prd_dnalab_section_8_release_section_8_release",
+      "target": "prd_dnalab_section_8_release_v2_scope",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "7b7b2b9b99e4ca4c712f5c3ee96b1c8118961517"
+}

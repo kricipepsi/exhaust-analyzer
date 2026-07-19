@@ -1,0 +1,562 @@
+{
+  "task": "T-V3-P4-C3-SYNTH",
+  "generated": "2026-07-05",
+  "mode": "provisional-synthetic-seed (side file; live corpus untouched)",
+  "policy": "4DLab_CLAUDE.md \u00a7Provisional synthetic signals",
+  "oracle_discriminator": "all 22 C3 cases share expected_fault_family=ecu_fault; the band group is keyed on the finer expected_fault_code (answer key), resolved to a registry fault_name",
+  "no_backsolve": "generator keys only on corpus expected_fault_code (oracle) + the web-validated band table; does not read ecu_fault.json / sensor_fault.json thresholds or any case rank/prediction",
+  "research_limits_cluster3": {
+    "lambda_divergence_ge": 0.05,
+    "map_baro_split_ge_kpa": 5.0,
+    "ground_drop_gt_v": 0.2,
+    "module_voltage_min_v": 12.0,
+    "bidirectional_o2_delta_lt_v": 0.1
+  },
+  "grounding_tags": {
+    "gas_obd_lambda_delta": "empirical-anecdotal (\u0394\u03bb \u2265 0.05; practitioner heuristic)",
+    "lambda_perception_delta": "empirical-anecdotal (derived from the same divergence)",
+    "dlc_signal_ground_drop_v": "standardized (0.1/0.2 V DMM voltage-drop convention)",
+    "koeo_map_baro_delta_kpa": "manufacturer-typical (KOEO MAP=BARO plausibility)",
+    "module_voltage_loaded_v": "manufacturer-typical (KOEO supply \u2265 12.0 V pre-gate)",
+    "bidirectional_fuel_response_ok_bool": "manufacturer-typical; DETERMINISTIC per fault (not sampled) \u2014 only P0606 -> False"
+  },
+  "band_table": {
+    "ERR-EF-006": {
+      "band_id": "C3-LEAN-BIAS",
+      "fault_name": "ecu_fault_lean_bias",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "signature": "Sensor-ground offset: \u0394V_gnd shifts O2 reading, ECU perceives rich, pulls fuel negative -> engine runs physically lean; gas reads lean while OBD commands rich (divergence). MAP/BARO normal (not a ref fault).",
+      "bidirectional_ok": true,
+      "float_bands": {
+        "koeo_map_baro_delta_kpa": [
+          0.0,
+          3.5,
+          1.01
+        ],
+        "module_voltage_loaded_v": [
+          11.8,
+          13.6,
+          0.52
+        ],
+        "dlc_signal_ground_drop_v": [
+          0.22,
+          0.45,
+          0.066
+        ],
+        "gas_obd_lambda_delta": [
+          0.06,
+          0.14,
+          0.023
+        ],
+        "lambda_perception_delta": [
+          0.06,
+          0.15,
+          0.026
+        ]
+      }
+    },
+    "ERR-EF-007": {
+      "band_id": "C3-RICH-BIAS",
+      "fault_name": "ecu_fault_rich_bias",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "signature": "Injector-driver leakage / MAP 5V-ref over-voltage: ECU perceives lean, adds fuel -> engine runs physically rich; KOEO MAP-vs-BARO split from the ref drift; gas reads rich while OBD commands lean (divergence).",
+      "bidirectional_ok": true,
+      "float_bands": {
+        "koeo_map_baro_delta_kpa": [
+          5.5,
+          12.0,
+          1.876
+        ],
+        "module_voltage_loaded_v": [
+          13.0,
+          14.6,
+          0.462
+        ],
+        "dlc_signal_ground_drop_v": [
+          0.02,
+          0.09,
+          0.02
+        ],
+        "gas_obd_lambda_delta": [
+          0.06,
+          0.14,
+          0.023
+        ],
+        "lambda_perception_delta": [
+          0.06,
+          0.15,
+          0.026
+        ]
+      }
+    },
+    "ERR-ECU-001": {
+      "band_id": "C3-PROCESSOR",
+      "fault_name": "ecu_internal_processor_fault",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "signature": "P0606: internal processor/memory self-test failure. Engine runs normally (gas is sole ground truth) but ALL ECU-reported values are unreliable; the module cannot be trusted to execute a bidirectional fuel override -> no O2 response (bool False). Weak supply voltage a common trigger.",
+      "bidirectional_ok": false,
+      "float_bands": {
+        "koeo_map_baro_delta_kpa": [
+          0.0,
+          3.5,
+          1.01
+        ],
+        "module_voltage_loaded_v": [
+          9.5,
+          11.9,
+          0.693
+        ],
+        "dlc_signal_ground_drop_v": [
+          0.04,
+          0.16,
+          0.035
+        ],
+        "gas_obd_lambda_delta": [
+          0.06,
+          0.13,
+          0.02
+        ],
+        "lambda_perception_delta": [
+          0.06,
+          0.14,
+          0.023
+        ]
+      }
+    },
+    "ERR-EF-002": {
+      "band_id": "C3-POA-CONFOUNDER",
+      "fault_name": "ecu_fault_poa_context",
+      "c3_separable": false,
+      "stay_abstained": true,
+      "signature": "Oil-burning POA gas chemistry: a co-existing PHYSICAL exhaust-stream fault independently shifts chemistry, so gas and OBD AGREE (no gas-vs-OBD divergence). The \u0394\u03bb test fails to trigger -> C3 signal cannot separate. Seeded honestly BELOW every producer gate; STAYS ABSTAINED.",
+      "bidirectional_ok": true,
+      "float_bands": {
+        "koeo_map_baro_delta_kpa": [
+          0.0,
+          3.5,
+          1.01
+        ],
+        "module_voltage_loaded_v": [
+          12.4,
+          14.4,
+          0.577
+        ],
+        "dlc_signal_ground_drop_v": [
+          0.02,
+          0.09,
+          0.02
+        ],
+        "gas_obd_lambda_delta": [
+          0.0,
+          0.04,
+          0.012
+        ],
+        "lambda_perception_delta": [
+          0.0,
+          0.04,
+          0.012
+        ]
+      }
+    },
+    "ERR-EF-008": {
+      "band_id": "C3-INTERMITTENT",
+      "fault_name": "ecu_fault_intermittent_normal_test",
+      "c3_separable": false,
+      "stay_abstained": true,
+      "signature": "Intermittent ECU fault not active at test time; engine runs normally in the one idle snapshot. No control-plausibility signal present to measure -> seeded healthy BELOW every gate; STAYS ABSTAINED.",
+      "bidirectional_ok": true,
+      "float_bands": {
+        "koeo_map_baro_delta_kpa": [
+          0.0,
+          3.0,
+          0.866
+        ],
+        "module_voltage_loaded_v": [
+          12.4,
+          14.4,
+          0.577
+        ],
+        "dlc_signal_ground_drop_v": [
+          0.02,
+          0.08,
+          0.017
+        ],
+        "gas_obd_lambda_delta": [
+          0.0,
+          0.03,
+          0.009
+        ],
+        "lambda_perception_delta": [
+          0.0,
+          0.03,
+          0.009
+        ]
+      }
+    }
+  },
+  "citations": {
+    "ground_drop_standard": "Ground-circuit voltage drop max 0.1 V (0.2 V for a wire/cable run); computer/sensor grounds are the strictest \u2014 Fluke: any reading > 0.10 V on a computer ground is a fault, and as little as 0.30 V on a computer ground causes trouble; CARDONE ECM bulletin: allowable drop 0.1 V, > 0.3 V unacceptable. [STANDARDIZED] fluke.com/en-us/learn/blog/automotive/electrical-automotive-troubleshooting; aa1car.com/library/voltage_drop_testing.htm; cardone.com PT77-0008",
+    "ground_offset_lean_mechanism": "A positive ground offset raises the O2 voltage the ECU sees; the ECU reads a genuinely stoichiometric/lean mixture as RICH and commands negative fuel trim, driving the engine physically lean \u2014 the tell is the contradiction between sensor/OBD command and actual chemistry. [empirical/field] vehicleservicepros.com fuel-trims-downstream-o2; fordfiesta.org O2-sensors-reading-rich-fuel-trims-adding-more-fuel",
+    "koeo_map_baro": "With the key on, engine off, manifold pressure equals ambient barometric pressure (~98-102 kPa at sea level); MAP and BARO should read equal/very-similar at KOEO, and a significant MAP-vs-BARO difference sets a plausibility DTC (e.g. P0069). [manufacturer-typical] aa1car.com/library/map_sensors.htm; engineerfix.com/how-to-test-a-map-sensor-with-a-scan-tool; underhoodservice.com/follow-the-map-sensor",
+    "lambda_divergence": "Gas-to-OBD divergence \u0394\u03bb = |\u03bb_OBD \u2212 \u03bb_tailpipe| \u2265 0.05 flags a control-reference fault (exhaust analyzer reads lean while OBD trims command rich, or vice-versa). [EMPIRICAL-ANECDOTAL \u2014 practitioner heuristic, not an OEM/SAE constant] cluster3_prepped.md \u00a7Quantitative Diagnostic Signature Mapping line 183",
+    "processor_p0606": "P0606 = ECM internal CPU/RAM/ROM self-test failure; the module cannot correctly interpret its 50+ sensor inputs so ALL ECU-reported data is untrustworthy \u2014 yet the engine frequently runs normally (MIL only). Weak battery (< 12.4 V) / poor grounds are common triggers. [manufacturer-typical] obd-codes.com/p0606; fixdapp.com/blog/p0606-code; skanyx.com/codes/p0606",
+    "bidirectional_response": "Active bidirectional fuel-override (\u00b125% / \u221212.5% steps) with an O2 swing < 0.1 V indicates the loop is unresponsive to command; a healthy loop swings and the propane/override test confirms sensor responsiveness. [manufacturer-typical] cluster3_prepped.md \u00a7Quantitative Diagnostic Signature Mapping line 188"
+  },
+  "cases": {
+    "CASE-039": {
+      "case_id": "CASE-039",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-EF-002",
+      "oracle_fault_name": "ecu_fault_poa_context",
+      "band_id": "C3-POA-CONFOUNDER",
+      "c3_separable": false,
+      "stay_abstained": true,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 1.5,
+      "module_voltage_loaded_v": 12.97,
+      "dlc_signal_ground_drop_v": 0.084,
+      "gas_obd_lambda_delta": 0.025,
+      "lambda_perception_delta": 0.015,
+      "bidirectional_fuel_response_ok_bool": true
+    },
+    "CSV-041": {
+      "case_id": "CSV-041",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-EF-006",
+      "oracle_fault_name": "ecu_fault_lean_bias",
+      "band_id": "C3-LEAN-BIAS",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 1.9,
+      "module_voltage_loaded_v": 13.46,
+      "dlc_signal_ground_drop_v": 0.385,
+      "gas_obd_lambda_delta": 0.117,
+      "lambda_perception_delta": 0.12,
+      "bidirectional_fuel_response_ok_bool": true
+    },
+    "CSV-045": {
+      "case_id": "CSV-045",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-ECU-001",
+      "oracle_fault_name": "ecu_internal_processor_fault",
+      "band_id": "C3-PROCESSOR",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 2.7,
+      "module_voltage_loaded_v": 10.2,
+      "dlc_signal_ground_drop_v": 0.063,
+      "gas_obd_lambda_delta": 0.116,
+      "lambda_perception_delta": 0.116,
+      "bidirectional_fuel_response_ok_bool": false
+    },
+    "CSV-123": {
+      "case_id": "CSV-123",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-EF-007",
+      "oracle_fault_name": "ecu_fault_rich_bias",
+      "band_id": "C3-RICH-BIAS",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 7.3,
+      "module_voltage_loaded_v": 14.07,
+      "dlc_signal_ground_drop_v": 0.074,
+      "gas_obd_lambda_delta": 0.115,
+      "lambda_perception_delta": 0.101,
+      "bidirectional_fuel_response_ok_bool": true
+    },
+    "CSV-124": {
+      "case_id": "CSV-124",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-EF-007",
+      "oracle_fault_name": "ecu_fault_rich_bias",
+      "band_id": "C3-RICH-BIAS",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 7.5,
+      "module_voltage_loaded_v": 13.48,
+      "dlc_signal_ground_drop_v": 0.062,
+      "gas_obd_lambda_delta": 0.134,
+      "lambda_perception_delta": 0.143,
+      "bidirectional_fuel_response_ok_bool": true
+    },
+    "CSV-125": {
+      "case_id": "CSV-125",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-ECU-001",
+      "oracle_fault_name": "ecu_internal_processor_fault",
+      "band_id": "C3-PROCESSOR",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 2.1,
+      "module_voltage_loaded_v": 11.52,
+      "dlc_signal_ground_drop_v": 0.044,
+      "gas_obd_lambda_delta": 0.06,
+      "lambda_perception_delta": 0.101,
+      "bidirectional_fuel_response_ok_bool": false
+    },
+    "CSV-126": {
+      "case_id": "CSV-126",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-ECU-001",
+      "oracle_fault_name": "ecu_internal_processor_fault",
+      "band_id": "C3-PROCESSOR",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 2.4,
+      "module_voltage_loaded_v": 10.97,
+      "dlc_signal_ground_drop_v": 0.07,
+      "gas_obd_lambda_delta": 0.113,
+      "lambda_perception_delta": 0.107,
+      "bidirectional_fuel_response_ok_bool": false
+    },
+    "ECU-001": {
+      "case_id": "ECU-001",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-EF-006",
+      "oracle_fault_name": "ecu_fault_lean_bias",
+      "band_id": "C3-LEAN-BIAS",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 1.9,
+      "module_voltage_loaded_v": 13.49,
+      "dlc_signal_ground_drop_v": 0.32,
+      "gas_obd_lambda_delta": 0.119,
+      "lambda_perception_delta": 0.072,
+      "bidirectional_fuel_response_ok_bool": true
+    },
+    "ECU-009": {
+      "case_id": "ECU-009",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-EF-002",
+      "oracle_fault_name": "ecu_fault_poa_context",
+      "band_id": "C3-POA-CONFOUNDER",
+      "c3_separable": false,
+      "stay_abstained": true,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 0.8,
+      "module_voltage_loaded_v": 13.88,
+      "dlc_signal_ground_drop_v": 0.048,
+      "gas_obd_lambda_delta": 0.039,
+      "lambda_perception_delta": 0.022,
+      "bidirectional_fuel_response_ok_bool": true
+    },
+    "EXP-N002": {
+      "case_id": "EXP-N002",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-EF-006",
+      "oracle_fault_name": "ecu_fault_lean_bias",
+      "band_id": "C3-LEAN-BIAS",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 3.1,
+      "module_voltage_loaded_v": 11.96,
+      "dlc_signal_ground_drop_v": 0.234,
+      "gas_obd_lambda_delta": 0.089,
+      "lambda_perception_delta": 0.082,
+      "bidirectional_fuel_response_ok_bool": true
+    },
+    "EXP-N004": {
+      "case_id": "EXP-N004",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-EF-006",
+      "oracle_fault_name": "ecu_fault_lean_bias",
+      "band_id": "C3-LEAN-BIAS",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 3.2,
+      "module_voltage_loaded_v": 13.29,
+      "dlc_signal_ground_drop_v": 0.253,
+      "gas_obd_lambda_delta": 0.071,
+      "lambda_perception_delta": 0.085,
+      "bidirectional_fuel_response_ok_bool": true
+    },
+    "EXP-N005": {
+      "case_id": "EXP-N005",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-EF-008",
+      "oracle_fault_name": "ecu_fault_intermittent_normal_test",
+      "band_id": "C3-INTERMITTENT",
+      "c3_separable": false,
+      "stay_abstained": true,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 1.0,
+      "module_voltage_loaded_v": 13.27,
+      "dlc_signal_ground_drop_v": 0.048,
+      "gas_obd_lambda_delta": 0.023,
+      "lambda_perception_delta": 0.023,
+      "bidirectional_fuel_response_ok_bool": true
+    },
+    "EXP-N018": {
+      "case_id": "EXP-N018",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-EF-002",
+      "oracle_fault_name": "ecu_fault_poa_context",
+      "band_id": "C3-POA-CONFOUNDER",
+      "c3_separable": false,
+      "stay_abstained": true,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 2.2,
+      "module_voltage_loaded_v": 13.93,
+      "dlc_signal_ground_drop_v": 0.087,
+      "gas_obd_lambda_delta": 0.019,
+      "lambda_perception_delta": 0.014,
+      "bidirectional_fuel_response_ok_bool": true
+    },
+    "EXP-N019": {
+      "case_id": "EXP-N019",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-ECU-001",
+      "oracle_fault_name": "ecu_internal_processor_fault",
+      "band_id": "C3-PROCESSOR",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 0.7,
+      "module_voltage_loaded_v": 9.71,
+      "dlc_signal_ground_drop_v": 0.08,
+      "gas_obd_lambda_delta": 0.104,
+      "lambda_perception_delta": 0.124,
+      "bidirectional_fuel_response_ok_bool": false
+    },
+    "EXT-221": {
+      "case_id": "EXT-221",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-EF-006",
+      "oracle_fault_name": "ecu_fault_lean_bias",
+      "band_id": "C3-LEAN-BIAS",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 1.3,
+      "module_voltage_loaded_v": 12.83,
+      "dlc_signal_ground_drop_v": 0.302,
+      "gas_obd_lambda_delta": 0.083,
+      "lambda_perception_delta": 0.142,
+      "bidirectional_fuel_response_ok_bool": true
+    },
+    "TC-021": {
+      "case_id": "TC-021",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-EF-006",
+      "oracle_fault_name": "ecu_fault_lean_bias",
+      "band_id": "C3-LEAN-BIAS",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 1.2,
+      "module_voltage_loaded_v": 12.25,
+      "dlc_signal_ground_drop_v": 0.25,
+      "gas_obd_lambda_delta": 0.105,
+      "lambda_perception_delta": 0.107,
+      "bidirectional_fuel_response_ok_bool": true
+    },
+    "YAML-CSV41": {
+      "case_id": "YAML-CSV41",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-EF-006",
+      "oracle_fault_name": "ecu_fault_lean_bias",
+      "band_id": "C3-LEAN-BIAS",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 0.9,
+      "module_voltage_loaded_v": 13.1,
+      "dlc_signal_ground_drop_v": 0.282,
+      "gas_obd_lambda_delta": 0.088,
+      "lambda_perception_delta": 0.12,
+      "bidirectional_fuel_response_ok_bool": true
+    },
+    "YAML-CSV45": {
+      "case_id": "YAML-CSV45",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-ECU-001",
+      "oracle_fault_name": "ecu_internal_processor_fault",
+      "band_id": "C3-PROCESSOR",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 1.1,
+      "module_voltage_loaded_v": 10.28,
+      "dlc_signal_ground_drop_v": 0.143,
+      "gas_obd_lambda_delta": 0.11,
+      "lambda_perception_delta": 0.116,
+      "bidirectional_fuel_response_ok_bool": false
+    },
+    "YAML-RULE_NOx_1": {
+      "case_id": "YAML-RULE_NOx_1",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-ECU-001",
+      "oracle_fault_name": "ecu_internal_processor_fault",
+      "band_id": "C3-PROCESSOR",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 1.8,
+      "module_voltage_loaded_v": 9.61,
+      "dlc_signal_ground_drop_v": 0.131,
+      "gas_obd_lambda_delta": 0.082,
+      "lambda_perception_delta": 0.114,
+      "bidirectional_fuel_response_ok_bool": false
+    },
+    "YAML-TC47": {
+      "case_id": "YAML-TC47",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-ECU-001",
+      "oracle_fault_name": "ecu_internal_processor_fault",
+      "band_id": "C3-PROCESSOR",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 3.3,
+      "module_voltage_loaded_v": 10.61,
+      "dlc_signal_ground_drop_v": 0.12,
+      "gas_obd_lambda_delta": 0.107,
+      "lambda_perception_delta": 0.106,
+      "bidirectional_fuel_response_ok_bool": false
+    },
+    "case_001": {
+      "case_id": "case_001",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-EF-006",
+      "oracle_fault_name": "ecu_fault_lean_bias",
+      "band_id": "C3-LEAN-BIAS",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 3.0,
+      "module_voltage_loaded_v": 13.04,
+      "dlc_signal_ground_drop_v": 0.24,
+      "gas_obd_lambda_delta": 0.063,
+      "lambda_perception_delta": 0.12,
+      "bidirectional_fuel_response_ok_bool": true
+    },
+    "case_013": {
+      "case_id": "case_013",
+      "oracle_fault_family": "ecu_fault",
+      "oracle_fault_code": "ERR-EF-007",
+      "oracle_fault_name": "ecu_fault_rich_bias",
+      "band_id": "C3-RICH-BIAS",
+      "c3_separable": true,
+      "stay_abstained": false,
+      "synthetic": true,
+      "koeo_map_baro_delta_kpa": 11.6,
+      "module_voltage_loaded_v": 13.35,
+      "dlc_signal_ground_drop_v": 0.082,
+      "gas_obd_lambda_delta": 0.101,
+      "lambda_perception_delta": 0.136,
+      "bidirectional_fuel_response_ok_bool": true
+    }
+  }
+}

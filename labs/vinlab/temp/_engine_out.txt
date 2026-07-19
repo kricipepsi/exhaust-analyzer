@@ -1,0 +1,21 @@
+﻿engine_attributes columns: [('row_id', 'int'), ('engineid', 'int'), ('attributegroup', 'varchar(255)'), ('attributetype', 'varchar(255)'), ('displaytitle', 'varchar(255)'), ('displayvalue', 'text')]
+   (1, 31899, 'General', 'ConstructionInterval', 'Construction interval', ' - ')
+   (2, 31899, 'TechnicalData', 'Power', 'Power', '92 kW')
+   (3, 31899, 'TechnicalData', 'Power', 'Power', '125 PS')
+   (4, 31899, 'TechnicalData', 'Capacity', 'Capacity', '1995 ccm')
+python.exe : Traceback (most recent call last):
+At line:1 char:137
++ ... \4DApp\4DLab\DNALab\VINLab"; & $py temp/_check_engine.py 2>&1 | Out-F ...
++                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "C:\Users\muto\claude\4DApp\4DLab\DNALab\VINLab\temp\_check_engine.py", line 19, in <module>
+    print("  ", r)
+    ~~~~~^^^^^^^^^
+  File "C:\Users\muto\AppData\Roaming\uv\python\cpython-3.14-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in 
+encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 74-76: character maps to <undefined>
+   

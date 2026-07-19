@@ -1,0 +1,18 @@
+{
+  "capture_commit": "28f23c8",
+  "capture_date": "2026-06-21",
+  "case_id": "COM-022",
+  "expected": {
+    "confidence": "LOW_CERTAINTY",
+    "degradation_mode": "FULL_FUSION",
+    "fault_family": "misfire",
+    "top_fault": "MF-001"
+  },
+  "request": {
+    "metadata": {"session_id": "11111111-1111-4111-8111-000000000022", "vin_dna_string": "1FA6P8CF0HXXXXXXX", "resolved_horizon": "HORIZON_LEGACY", "cylinder_count": 4},
+    "gas_lab_output": {"chemical_state": "WRONG_VALVE_TIMING", "gas_co": 0.4, "gas_hc": 1100, "gas_co2": 11.0, "gas_o2": 5.5, "gas_nox": 30, "lambda_chem": 1.15, "sample_validity": "VALID"},
+    "obd_live_data": {"engine_warmed": true, "total_trim_correction_delta": 0.0, "normalized_obd_lambda": 1.0, "ve_pct": 0.0, "ve_validity": "UNKNOWN", "rpm_state_bucket": "STABILIZED_IDLE", "trim_analytics_gate": "VALID", "o2_failure_mode": "NO_FAULT", "maf_status": "VIRTUAL_EMULATION", "map_status": "BACK_CALCULATED"},
+    "dtc_lab_output": {"active_mil": true, "mil_flashing": false, "confirmed_dtcs": ["P0016"], "routing_tags": ["VVT_HISTORY"], "historical_fault_context": "UNKNOWN", "freeze_frame": {"calculated_load_pct": 0.0, "engine_rpm": 0, "coolant_temp_c": 20.0, "short_term_ft1": 0.0, "long_term_ft1": 0.0, "manifold_pressure_kpa": 25.0, "vehicle_speed_kmh": 0, "ignition_advance_deg": 10.0, "intake_air_temp_c": 20.0, "maf_gps": 0.0, "throttle_pos_pct": 0.0, "fuel_system_status": "OL"}},
+    "symptom_dna": {"environmental_conditions": {"engine_state": "running"}}
+  }
+}

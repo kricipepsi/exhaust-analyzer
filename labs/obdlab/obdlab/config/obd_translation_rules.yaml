@@ -1,0 +1,40 @@
+# OBDLab state bucketing rules per OBDLab_KG_Wiki.md §8.2 / §8.1.
+source_wiki: "OBDLab_KG_Wiki.md §8.2"
+
+state_bucketing_rules:
+  - bucket_id: "COLD_OPEN_LOOP_INVALID"
+    conditions:
+      - node: "coolant_temp_c"
+        operator: "LESS_THAN"
+        value: 75.0
+    priority: 1    # evaluated first regardless of RPM — wiki: §8.2
+
+  - bucket_id: "STABILIZED_IDLE"
+    conditions:
+      - node: "engine_rpm"
+        operator: "BETWEEN"
+        value: [650, 900]
+      - node: "calculated_engine_load_pct"
+        operator: "LESS_THAN"
+        value: 30.0
+
+  - bucket_id: "REGULATORY_HIGH_IDLE"
+    conditions:
+      - node: "engine_rpm"
+        operator: "BETWEEN"
+        value: [2200, 2800]
+      - node: "calculated_engine_load_pct"
+        operator: "BETWEEN"
+        value: [15.0, 40.0]
+    source_wiki: "OBDLab_KG_Wiki.md §8.1"
+
+  - bucket_id: "STRESS_IDLE"
+    conditions:
+      - node: "engine_rpm"
+        operator: "APPROXIMATELY"
+        value: "stress_idle_rpm_target"    # per-vehicle value from VinDNA — wiki: §3.2
+        tolerance_pct: 10
+      - node: "calculated_engine_load_pct"
+        operator: "BETWEEN"
+        value: [10.0, 60.0]
+    notes: "Supersedes former HIGH_IDLE_LOAD at 2200-2600 RPM"

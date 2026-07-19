@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "Appends ## Graph relations (explicit) block; body bytes above trailer are byte-identical",
+      "passed": true,
+      "evidence": "SHA256 pre-trailer verification: both dtc_fault_map.md and trim_analytics.md have body bytes identical to originals (SHA256 confirmed). Trailer appended cleanly after last body line."
+    },
+    {
+      "text": "Every appended relation line is traceable to fixture text — no invented edges",
+      "passed": true,
+      "evidence": "P0131→STUCK_LEAN (table row 10-11), P0132→STUCK_RICH (table row 10-12), P0133→sensor_response_degraded (table row 10-13), P0131 GATED_BY TrimAnalyticsGate.O2_FAULT_ACTIVE (prose line 14-16: 'controls when this diagnostic runs'), TrimAnalyticsGate ENUMERATES O2_FAULT_ACTIVE/FUEL_TRIM_ACTIVE (enum members list lines 10-11). All 7 relation lines traceable."
+    },
+    {
+      "text": "Seeded doc-bug written as non-edge (IS_NOT), not asserted as relation",
+      "passed": true,
+      "evidence": "trim_analytics.md trailer: '**SUPPRESS_POST_CAT_TRIM** IS_NOT a **TrimAnalyticsGate** value (doc bug O2-FU-2)'. Not asserted as a real edge."
+    },
+    {
+      "text": "Two spellings of enum value unified to canonical form in trailers",
+      "passed": true,
+      "evidence": "O2_FAULT_ACTIVE used consistently in all trailer entries. The lowercase variant 'o2_fault_active' in body text preserved (append-only rule), but all trailer references use the canonical uppercase form."
+    },
+    {
+      "text": "Baseline delta: bare run rewrites prose, invents edge, or leaves doc-bug asserted",
+      "passed": true,
+      "evidence": "without_skill baseline: (1) rewrote body prose by adding inline 'Explicit KG Relationships' and 'Gate Enum Reference' sections, (2) removed SUPPRESS_POST_CAT_TRIM from Available Gates list instead of appending non-edge, (3) added cross-reference sections inline, (4) used prose paragraphs instead of concise SUBJECT-PREDICATE-OBJECT format. All 3 delta conditions triggered: prose rewritten, structure altered, content removed."
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "pass_rate": 1.0
+  }
+}

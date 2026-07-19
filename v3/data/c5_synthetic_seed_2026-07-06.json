@@ -1,0 +1,414 @@
+{
+  "task": "T-V3-P4-C5-SYNTH",
+  "generated": "2026-07-06",
+  "mode": "provisional-synthetic-seed (side file; live corpus untouched)",
+  "policy": "4DLab_CLAUDE.md \u00a7Provisional synthetic signals",
+  "oracle_discriminator": "all 10 C5 cases share expected_fault_family=lean_condition; the band group is keyed on expected_fault_code, resolved to a registry fault_name",
+  "no_backsolve": "generator keys only on expected_fault_code (oracle) + the web-validated band table; does not read lean_condition.json / vacuum_leak.json consumer thresholds or any case rank/prediction",
+  "research_limits_cluster5": {
+    "trim_idle_min_pct": 15.0,
+    "trim_2500_max_pct": 10.0,
+    "trim_recovery_min_pct": 15.0,
+    "pressure_drop_min_kpa": 35.0,
+    "load_wot_max_pct": 80.0,
+    "lambda_wot_min": 1.05
+  },
+  "grounding_tags": {
+    "stft_idle_pct": "empirical (trim delta is empirical)",
+    "ltft_idle_pct": "empirical (trim delta is empirical)",
+    "stft_2500_pct": "empirical (trim delta is empirical)",
+    "ltft_2500_pct": "empirical (trim delta is empirical)",
+    "calc_load_wot_pct": "manufacturer-typical / empirical-inferred (altitude/VE variation)",
+    "fuel_rail_pressure_load_kpa": "manufacturer-typical (35 kPa WOT drop limit; port vs DI scales)",
+    "wideband_lambda_wot": "standardized (lambda > 1.05 failure to enrich limit)"
+  },
+  "band_table": {
+    "ERR-LC-001": {
+      "band_id": "C5-VACUUM-LEAK",
+      "fault_name": "vacuum_leak_post_maf",
+      "c5_separable": true,
+      "stay_abstained": false,
+      "signature": "Vacuum leak post MAF: elevated positive trims at idle (TFT >= 15%) that recover at 2500 RPM (reduction >= 15%). WOT load, fuel pressure, and lambda enrichment remain healthy/normal.",
+      "float_bands": {
+        "stft_idle_pct": [
+          5.0,
+          10.0,
+          1.443
+        ],
+        "ltft_idle_pct": [
+          15.0,
+          20.0,
+          1.443
+        ],
+        "stft_2500_pct": [
+          -3.0,
+          2.0,
+          1.443
+        ],
+        "ltft_2500_pct": [
+          0.0,
+          3.0,
+          0.866
+        ],
+        "stft_load_pct": [
+          -2.0,
+          2.0,
+          1.155
+        ],
+        "ltft_load_pct": [
+          0.0,
+          4.0,
+          1.155
+        ],
+        "calc_load_wot_pct": [
+          85.0,
+          95.0,
+          2.887
+        ],
+        "maf_gps_idle": [
+          2.2,
+          3.5,
+          0.375
+        ],
+        "maf_gps_2500": [
+          8.5,
+          12.5,
+          1.155
+        ],
+        "fuel_rail_pressure_load_kpa": [
+          320.0,
+          380.0,
+          17.321
+        ],
+        "wideband_lambda_wot": [
+          0.82,
+          0.88,
+          0.017
+        ]
+      }
+    },
+    "ERR-LC-005": {
+      "band_id": "C5-EGR-STUCK-OPEN-LOOKALIKIE",
+      "fault_name": "egr_stuck_open",
+      "c5_separable": false,
+      "stay_abstained": true,
+      "signature": "EGR stuck open lookalike: combustion dilution at idle mimics misfires, but without the unmetered air trim recovery pattern of a vacuum leak. Seed with normal/healthy C5 signals so it honestly stays abstained.",
+      "float_bands": {
+        "stft_idle_pct": [
+          -3.0,
+          3.0,
+          1.732
+        ],
+        "ltft_idle_pct": [
+          -3.0,
+          3.0,
+          1.732
+        ],
+        "stft_2500_pct": [
+          -3.0,
+          3.0,
+          1.732
+        ],
+        "ltft_2500_pct": [
+          -3.0,
+          3.0,
+          1.732
+        ],
+        "stft_load_pct": [
+          -3.0,
+          3.0,
+          1.732
+        ],
+        "ltft_load_pct": [
+          -3.0,
+          3.0,
+          1.732
+        ],
+        "calc_load_wot_pct": [
+          85.0,
+          95.0,
+          2.887
+        ],
+        "maf_gps_idle": [
+          2.2,
+          3.5,
+          0.375
+        ],
+        "maf_gps_2500": [
+          8.5,
+          12.5,
+          1.155
+        ],
+        "fuel_rail_pressure_load_kpa": [
+          320.0,
+          380.0,
+          17.321
+        ],
+        "wideband_lambda_wot": [
+          0.82,
+          0.88,
+          0.017
+        ]
+      }
+    }
+  },
+  "citations": {
+    "vacuum_leak_trim_recovery": "Comparing fuel trims at idle vs 2500 RPM is a standard diagnostic technique. Unmetered air represents a large percentage of total air at idle (low volume), raising trims (TFT >= 15%). At higher RPM, total air volume increases, reducing the unmetered air percentage, so trims recover to normal (TFT drops toward 0%). Under-reported MAF or fuel delivery faults remain high or worsen at 2500 RPM. [empirical/practitioner] motor.com; gearsmagazine.com. Corroborated: https://thegrouptrainingacademy.com/fuel-trim-diagnosis-o2-sensor-performance/",
+    "egr_stuck_open_idle_trims": "An EGR valve stuck open at idle recirculates inert exhaust gas, diluting the intake charge. This causes combustion instability/rough idle/misfires without introducing excess unmetered oxygen. The O2 sensor does not read a classic lean mixture at idle so trims do not swing highly positive; they stay normal or negative (false rich) unless severe misfires dump unburned oxygen. [empirical/field] scannerdanner.com; s2ki.com; mri-auto-diagnostics.com. Corroborated: https://scannerdanner.com",
+    "wot_calculated_engine_load": "Calculated Engine Load PID 04 represents current airflow relative to peak. Under WOT, Calculated Load should reach 90-100%. If Calculated Load is low (e.g. < 80%) at WOT while fuel trims are positive, it indicates a contaminated MAF sensor under-reporting air mass, causing the PCM to under-fuel. [manufacturer-typical] gearsmagazine.com; ls1tech.com. Corroborated: https://gearsmagazine.com/magazine/mass-air-flow-misconceptions/",
+    "wot_fuel_pressure_drop": "Fuel rail pressure drop under demand (WOT) indicates a physical fuel supply restriction. A drop of > 35 kPa (5 psi) below OEM specifications (normally 320-380 kPa for port injection, GDI operates higher at 150-200 bar) causes fuel starvation and a lean mixture at high RPM. [manufacturer-typical] motor.com; hpacademy.com. Corroborated: https://www.motor.com/magazine-summary/service-tips-for-gdi-engines/",
+    "wot_wideband_lambda_enrichment": "Under WOT, the ECU enters open-loop power enrichment, targeting a rich mixture (lambda ~0.85). If fuel starvation is present, lambda remains lean (> 1.05) under WOT due to insufficient fuel volume. [standardized] motor.com; miataturbo.net. Corroborated: https://www.hpacademy.com/forum/practical-dyno-tuning/show/set-up-lambda-target/"
+  },
+  "cases": {
+    "EXP-N011": {
+      "case_id": "EXP-N011",
+      "oracle_fault_family": "lean_condition",
+      "oracle_fault_code": "ERR-LC-001",
+      "oracle_fault_name": "vacuum_leak_post_maf",
+      "band_id": "C5-VACUUM-LEAK",
+      "emit_path": "VACUUM_LEAK_TRIM_PATTERN",
+      "c5_separable": true,
+      "stay_abstained": false,
+      "maf_equipped": true,
+      "rail_pressure_sensor": true,
+      "is_gdi": false,
+      "synthetic": true,
+      "stft_idle_pct": 5.9,
+      "ltft_idle_pct": 15.2,
+      "stft_2500_pct": 1.5,
+      "ltft_2500_pct": 0.3,
+      "stft_load_pct": 1.0,
+      "ltft_load_pct": 3.1,
+      "calc_load_wot_pct": 92.3,
+      "maf_gps_idle": 2.34,
+      "maf_gps_2500": 10.63,
+      "fuel_rail_pressure_load_kpa": 322.0,
+      "wideband_lambda_wot": 0.86
+    },
+    "EXP-N022": {
+      "case_id": "EXP-N022",
+      "oracle_fault_family": "lean_condition",
+      "oracle_fault_code": "ERR-LC-001",
+      "oracle_fault_name": "vacuum_leak_post_maf",
+      "band_id": "C5-VACUUM-LEAK",
+      "emit_path": "VACUUM_LEAK_TRIM_PATTERN",
+      "c5_separable": true,
+      "stay_abstained": false,
+      "maf_equipped": true,
+      "rail_pressure_sensor": false,
+      "is_gdi": false,
+      "synthetic": true,
+      "stft_idle_pct": 7.8,
+      "ltft_idle_pct": 17.1,
+      "stft_2500_pct": -0.2,
+      "ltft_2500_pct": 2.7,
+      "stft_load_pct": 0.5,
+      "ltft_load_pct": 2.0,
+      "calc_load_wot_pct": 92.5,
+      "maf_gps_idle": 3.21,
+      "maf_gps_2500": 9.16,
+      "fuel_rail_pressure_load_kpa": null,
+      "wideband_lambda_wot": 0.841
+    },
+    "EXP-N029": {
+      "case_id": "EXP-N029",
+      "oracle_fault_family": "lean_condition",
+      "oracle_fault_code": "ERR-LC-001",
+      "oracle_fault_name": "vacuum_leak_post_maf",
+      "band_id": "C5-VACUUM-LEAK",
+      "emit_path": "VACUUM_LEAK_TRIM_PATTERN",
+      "c5_separable": true,
+      "stay_abstained": false,
+      "maf_equipped": true,
+      "rail_pressure_sensor": true,
+      "is_gdi": false,
+      "synthetic": true,
+      "stft_idle_pct": 6.0,
+      "ltft_idle_pct": 15.6,
+      "stft_2500_pct": -2.0,
+      "ltft_2500_pct": 2.9,
+      "stft_load_pct": 0.7,
+      "ltft_load_pct": 2.3,
+      "calc_load_wot_pct": 86.4,
+      "maf_gps_idle": 2.21,
+      "maf_gps_2500": 11.22,
+      "fuel_rail_pressure_load_kpa": 350.6,
+      "wideband_lambda_wot": 0.864
+    },
+    "case_003": {
+      "case_id": "case_003",
+      "oracle_fault_family": "lean_condition",
+      "oracle_fault_code": "ERR-LC-001",
+      "oracle_fault_name": "vacuum_leak_post_maf",
+      "band_id": "C5-VACUUM-LEAK",
+      "emit_path": "VACUUM_LEAK_TRIM_PATTERN",
+      "c5_separable": true,
+      "stay_abstained": false,
+      "maf_equipped": true,
+      "rail_pressure_sensor": true,
+      "is_gdi": false,
+      "synthetic": true,
+      "stft_idle_pct": 5.5,
+      "ltft_idle_pct": 18.2,
+      "stft_2500_pct": -0.0,
+      "ltft_2500_pct": 2.8,
+      "stft_load_pct": 0.0,
+      "ltft_load_pct": 3.0,
+      "calc_load_wot_pct": 89.7,
+      "maf_gps_idle": 2.42,
+      "maf_gps_2500": 10.47,
+      "fuel_rail_pressure_load_kpa": 369.4,
+      "wideband_lambda_wot": 0.843
+    },
+    "case_016": {
+      "case_id": "case_016",
+      "oracle_fault_family": "lean_condition",
+      "oracle_fault_code": "ERR-LC-001",
+      "oracle_fault_name": "vacuum_leak_post_maf",
+      "band_id": "C5-VACUUM-LEAK",
+      "emit_path": "VACUUM_LEAK_TRIM_PATTERN",
+      "c5_separable": true,
+      "stay_abstained": false,
+      "maf_equipped": true,
+      "rail_pressure_sensor": true,
+      "is_gdi": false,
+      "synthetic": true,
+      "stft_idle_pct": 6.5,
+      "ltft_idle_pct": 18.8,
+      "stft_2500_pct": -0.9,
+      "ltft_2500_pct": 0.6,
+      "stft_load_pct": -1.4,
+      "ltft_load_pct": 1.7,
+      "calc_load_wot_pct": 88.5,
+      "maf_gps_idle": 2.84,
+      "maf_gps_2500": 10.91,
+      "fuel_rail_pressure_load_kpa": 342.7,
+      "wideband_lambda_wot": 0.863
+    },
+    "CSV-113": {
+      "case_id": "CSV-113",
+      "oracle_fault_family": "lean_condition",
+      "oracle_fault_code": "ERR-LC-005",
+      "oracle_fault_name": "egr_stuck_open",
+      "band_id": "C5-EGR-STUCK-OPEN-LOOKALIKIE",
+      "emit_path": "SENSOR_HEALTH_UNPROVEN_ABSTAIN",
+      "c5_separable": false,
+      "stay_abstained": true,
+      "maf_equipped": true,
+      "rail_pressure_sensor": true,
+      "is_gdi": false,
+      "synthetic": true,
+      "stft_idle_pct": 1.6,
+      "ltft_idle_pct": 1.4,
+      "stft_2500_pct": 0.6,
+      "ltft_2500_pct": -3.0,
+      "stft_load_pct": 1.2,
+      "ltft_load_pct": 0.2,
+      "calc_load_wot_pct": 90.3,
+      "maf_gps_idle": 3.24,
+      "maf_gps_2500": 11.22,
+      "fuel_rail_pressure_load_kpa": 343.1,
+      "wideband_lambda_wot": 0.851
+    },
+    "CSV-114": {
+      "case_id": "CSV-114",
+      "oracle_fault_family": "lean_condition",
+      "oracle_fault_code": "ERR-LC-005",
+      "oracle_fault_name": "egr_stuck_open",
+      "band_id": "C5-EGR-STUCK-OPEN-LOOKALIKIE",
+      "emit_path": "SENSOR_HEALTH_UNPROVEN_ABSTAIN",
+      "c5_separable": false,
+      "stay_abstained": true,
+      "maf_equipped": true,
+      "rail_pressure_sensor": true,
+      "is_gdi": false,
+      "synthetic": true,
+      "stft_idle_pct": -0.2,
+      "ltft_idle_pct": -0.5,
+      "stft_2500_pct": 2.7,
+      "ltft_2500_pct": -2.4,
+      "stft_load_pct": 2.5,
+      "ltft_load_pct": -0.5,
+      "calc_load_wot_pct": 93.2,
+      "maf_gps_idle": 3.02,
+      "maf_gps_2500": 11.6,
+      "fuel_rail_pressure_load_kpa": 352.1,
+      "wideband_lambda_wot": 0.879
+    },
+    "REAL-004": {
+      "case_id": "REAL-004",
+      "oracle_fault_family": "lean_condition",
+      "oracle_fault_code": "ERR-LC-005",
+      "oracle_fault_name": "egr_stuck_open",
+      "band_id": "C5-EGR-STUCK-OPEN-LOOKALIKIE",
+      "emit_path": "SENSOR_HEALTH_UNPROVEN_ABSTAIN",
+      "c5_separable": false,
+      "stay_abstained": true,
+      "maf_equipped": true,
+      "rail_pressure_sensor": true,
+      "is_gdi": false,
+      "synthetic": true,
+      "stft_idle_pct": 2.4,
+      "ltft_idle_pct": 1.8,
+      "stft_2500_pct": 2.9,
+      "ltft_2500_pct": 1.3,
+      "stft_load_pct": 2.6,
+      "ltft_load_pct": -1.7,
+      "calc_load_wot_pct": 86.4,
+      "maf_gps_idle": 2.35,
+      "maf_gps_2500": 11.43,
+      "fuel_rail_pressure_load_kpa": 371.1,
+      "wideband_lambda_wot": 0.835
+    },
+    "era1_001": {
+      "case_id": "era1_001",
+      "oracle_fault_family": "lean_condition",
+      "oracle_fault_code": "ERR-LC-005",
+      "oracle_fault_name": "egr_stuck_open",
+      "band_id": "C5-EGR-STUCK-OPEN-LOOKALIKIE",
+      "emit_path": "SENSOR_HEALTH_UNPROVEN_ABSTAIN",
+      "c5_separable": false,
+      "stay_abstained": true,
+      "maf_equipped": true,
+      "rail_pressure_sensor": false,
+      "is_gdi": false,
+      "synthetic": true,
+      "stft_idle_pct": -0.3,
+      "ltft_idle_pct": -2.3,
+      "stft_2500_pct": -1.8,
+      "ltft_2500_pct": 0.9,
+      "stft_load_pct": -2.8,
+      "ltft_load_pct": 2.1,
+      "calc_load_wot_pct": 94.2,
+      "maf_gps_idle": 2.58,
+      "maf_gps_2500": 10.64,
+      "fuel_rail_pressure_load_kpa": null,
+      "wideband_lambda_wot": 0.867
+    },
+    "era3_015": {
+      "case_id": "era3_015",
+      "oracle_fault_family": "lean_condition",
+      "oracle_fault_code": "ERR-LC-001",
+      "oracle_fault_name": "vacuum_leak_post_maf",
+      "band_id": "C5-VACUUM-LEAK",
+      "emit_path": "VACUUM_LEAK_TRIM_PATTERN",
+      "c5_separable": true,
+      "stay_abstained": false,
+      "maf_equipped": true,
+      "rail_pressure_sensor": true,
+      "is_gdi": true,
+      "synthetic": true,
+      "stft_idle_pct": 8.7,
+      "ltft_idle_pct": 16.5,
+      "stft_2500_pct": -0.0,
+      "ltft_2500_pct": 0.1,
+      "stft_load_pct": -1.9,
+      "ltft_load_pct": 1.6,
+      "calc_load_wot_pct": 89.6,
+      "maf_gps_idle": 2.94,
+      "maf_gps_2500": 10.94,
+      "fuel_rail_pressure_load_kpa": 15745.4,
+      "wideband_lambda_wot": 0.824
+    }
+  }
+}

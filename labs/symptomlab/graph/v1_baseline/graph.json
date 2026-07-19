@@ -1,0 +1,5412 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "models.py",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L1",
+      "id": "symptomlab_models_py",
+      "community": 1,
+      "norm_label": "models.py"
+    },
+    {
+      "label": "SymptomValidationError",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L8",
+      "id": "symptomlab_models_symptomvalidationerror",
+      "community": 1,
+      "norm_label": "symptomvalidationerror"
+    },
+    {
+      "label": "ValueError",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "valueerror",
+      "community": 1,
+      "norm_label": "valueerror"
+    },
+    {
+      "label": "OccursDuring",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L13",
+      "id": "symptomlab_models_occursduring",
+      "community": 1,
+      "norm_label": "occursduring"
+    },
+    {
+      "label": "StrEnum",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "strenum",
+      "community": 1,
+      "norm_label": "strenum"
+    },
+    {
+      "label": "EngineState",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L20",
+      "id": "symptomlab_models_enginestate",
+      "community": 1,
+      "norm_label": "enginestate"
+    },
+    {
+      "label": "EnvironmentalConditions",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L27",
+      "id": "symptomlab_models_environmentalconditions",
+      "community": 0,
+      "norm_label": "environmentalconditions"
+    },
+    {
+      "label": ".to_json()",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L31",
+      "id": "symptomlab_models_environmentalconditions_to_json",
+      "community": 0,
+      "norm_label": ".to_json()"
+    },
+    {
+      "label": "SymptomDNA",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L37",
+      "id": "symptomlab_models_symptomdna",
+      "community": 0,
+      "norm_label": "symptomdna"
+    },
+    {
+      "label": ".to_json()",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L52",
+      "id": "symptomlab_models_symptomdna_to_json",
+      "community": 0,
+      "norm_label": ".to_json()"
+    },
+    {
+      "label": "from_json()",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L62",
+      "id": "symptomlab_models_from_json",
+      "community": 1,
+      "norm_label": "from_json()"
+    },
+    {
+      "label": "Raised when (tier_1, tier_2) is not one of the 18 allowed combinations,     or e",
+      "file_type": "rationale",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L9",
+      "id": "symptomlab_models_rationale_9",
+      "community": 1,
+      "norm_label": "raised when (tier_1, tier_2) is not one of the 18 allowed combinations,     or e"
+    },
+    {
+      "label": "The 4-field Part B payload, per SEMANTIC_CONTRACT.md \u00a74.2.      No routing field",
+      "file_type": "rationale",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L38",
+      "id": "symptomlab_models_rationale_38",
+      "community": 0,
+      "norm_label": "the 4-field part b payload, per semantic_contract.md \u00a74.2.      no routing field"
+    },
+    {
+      "label": "Serialize to the JSON shape from contract \u00a74.2.",
+      "file_type": "rationale",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L53",
+      "id": "symptomlab_models_rationale_53",
+      "community": 0,
+      "norm_label": "serialize to the json shape from contract \u00a74.2."
+    },
+    {
+      "label": "Deserialize from the dict shape in SEMANTIC_CONTRACT.md \u00a74.2.          Raises Sy",
+      "file_type": "rationale",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L63",
+      "id": "symptomlab_models_rationale_63",
+      "community": 24,
+      "norm_label": "deserialize from the dict shape in semantic_contract.md \u00a74.2.          raises sy"
+    },
+    {
+      "label": "validator.py",
+      "file_type": "code",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L1",
+      "id": "symptomlab_validator_py",
+      "community": 1,
+      "norm_label": "validator.py"
+    },
+    {
+      "label": "SymptomValidator",
+      "file_type": "code",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L15",
+      "id": "symptomlab_validator_symptomvalidator",
+      "community": 1,
+      "norm_label": "symptomvalidator"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L16",
+      "id": "symptomlab_validator_symptomvalidator_init",
+      "community": 1,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": ".validate()",
+      "file_type": "code",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L31",
+      "id": "symptomlab_validator_symptomvalidator_validate",
+      "community": 1,
+      "norm_label": ".validate()"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L1",
+      "id": "symptomlab_init_py",
+      "community": 3,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "_get_validator()",
+      "file_type": "code",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L13",
+      "id": "symptomlab_init_get_validator",
+      "community": 3,
+      "norm_label": "_get_validator()"
+    },
+    {
+      "label": "resolve()",
+      "file_type": "code",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L18",
+      "id": "symptomlab_init_resolve",
+      "community": 3,
+      "norm_label": "resolve()"
+    },
+    {
+      "label": "SymptomLab \u2014 Part B symptom-triage module for the 4DLab DNA system.",
+      "file_type": "rationale",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L1",
+      "id": "symptomlab_init_rationale_1",
+      "community": 3,
+      "norm_label": "symptomlab \u2014 part b symptom-triage module for the 4dlab dna system."
+    },
+    {
+      "label": "Return a SymptomValidator for `allowed_path`. Cached per distinct path.",
+      "file_type": "rationale",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L14",
+      "id": "symptomlab_init_rationale_14",
+      "community": 3,
+      "norm_label": "return a symptomvalidator for `allowed_path`. cached per distinct path."
+    },
+    {
+      "label": "Validate a triage selection and package it as a SymptomDNA.      Per SEMANTIC_CO",
+      "file_type": "rationale",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L27",
+      "id": "symptomlab_init_rationale_27",
+      "community": 3,
+      "norm_label": "validate a triage selection and package it as a symptomdna.      per semantic_co"
+    },
+    {
+      "label": "conftest.py",
+      "file_type": "code",
+      "source_file": "tests/conftest.py",
+      "source_location": "L1",
+      "id": "tests_conftest_py",
+      "community": 1,
+      "norm_label": "conftest.py"
+    },
+    {
+      "label": "validator()",
+      "file_type": "code",
+      "source_file": "tests/conftest.py",
+      "source_location": "L13",
+      "id": "tests_conftest_validator",
+      "community": 1,
+      "norm_label": "validator()"
+    },
+    {
+      "label": "allowed_pairs()",
+      "file_type": "code",
+      "source_file": "tests/conftest.py",
+      "source_location": "L18",
+      "id": "tests_conftest_allowed_pairs",
+      "community": 1,
+      "norm_label": "allowed_pairs()"
+    },
+    {
+      "label": "test_drift_guard.py",
+      "file_type": "code",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L1",
+      "id": "tests_test_drift_guard_py",
+      "community": 18,
+      "norm_label": "test_drift_guard.py"
+    },
+    {
+      "label": "_load_yaml_pairs()",
+      "file_type": "code",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L39",
+      "id": "tests_test_drift_guard_load_yaml_pairs",
+      "community": 18,
+      "norm_label": "_load_yaml_pairs()"
+    },
+    {
+      "label": "test_yaml_matches_vehicledna_reference()",
+      "file_type": "code",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L49",
+      "id": "tests_test_drift_guard_test_yaml_matches_vehicledna_reference",
+      "community": 18,
+      "norm_label": "test_yaml_matches_vehicledna_reference()"
+    },
+    {
+      "label": "test_vehicledna_reference_matches_yaml()",
+      "file_type": "code",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L59",
+      "id": "tests_test_drift_guard_test_vehicledna_reference_matches_yaml",
+      "community": 18,
+      "norm_label": "test_vehicledna_reference_matches_yaml()"
+    },
+    {
+      "label": "Drift guard: allowed_combinations.yaml must match VehicleDNA.md \u00a7\"Complete Unive",
+      "file_type": "rationale",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L1",
+      "id": "tests_test_drift_guard_rationale_1",
+      "community": 18,
+      "norm_label": "drift guard: allowed_combinations.yaml must match vehicledna.md \u00a7\"complete unive"
+    },
+    {
+      "label": "Every pair in the YAML must be in the VehicleDNA.md reference table.",
+      "file_type": "rationale",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L50",
+      "id": "tests_test_drift_guard_rationale_50",
+      "community": 18,
+      "norm_label": "every pair in the yaml must be in the vehicledna.md reference table."
+    },
+    {
+      "label": "Every pair in the VehicleDNA.md reference table must be in the YAML.",
+      "file_type": "rationale",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L60",
+      "id": "tests_test_drift_guard_rationale_60",
+      "community": 18,
+      "norm_label": "every pair in the vehicledna.md reference table must be in the yaml."
+    },
+    {
+      "label": "test_models.py",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L1",
+      "id": "tests_test_models_py",
+      "community": 0,
+      "norm_label": "test_models.py"
+    },
+    {
+      "label": "test_symptom_dna_to_json_keys()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L6",
+      "id": "tests_test_models_test_symptom_dna_to_json_keys",
+      "community": 0,
+      "norm_label": "test_symptom_dna_to_json_keys()"
+    },
+    {
+      "label": "test_symptom_dna_is_frozen()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L28",
+      "id": "tests_test_models_test_symptom_dna_is_frozen",
+      "community": 0,
+      "norm_label": "test_symptom_dna_is_frozen()"
+    },
+    {
+      "label": "test_enum_values()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L42",
+      "id": "tests_test_models_test_enum_values",
+      "community": 0,
+      "norm_label": "test_enum_values()"
+    },
+    {
+      "label": "Sanity tests for SymptomLab models.",
+      "file_type": "rationale",
+      "source_file": "tests/test_models.py",
+      "source_location": "L1",
+      "id": "tests_test_models_rationale_1",
+      "community": 0,
+      "norm_label": "sanity tests for symptomlab models."
+    },
+    {
+      "label": "test_resolve_isolation.py",
+      "file_type": "code",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L1",
+      "id": "tests_test_resolve_isolation_py",
+      "community": 3,
+      "norm_label": "test_resolve_isolation.py"
+    },
+    {
+      "label": "_clear_validator_cache()",
+      "file_type": "code",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L14",
+      "id": "tests_test_resolve_isolation_clear_validator_cache",
+      "community": 3,
+      "norm_label": "_clear_validator_cache()"
+    },
+    {
+      "label": "test_same_allowed_path_returns_cached_instance()",
+      "file_type": "code",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L20",
+      "id": "tests_test_resolve_isolation_test_same_allowed_path_returns_cached_instance",
+      "community": 3,
+      "norm_label": "test_same_allowed_path_returns_cached_instance()"
+    },
+    {
+      "label": "test_different_allowed_path_returns_independent_instance()",
+      "file_type": "code",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L30",
+      "id": "tests_test_resolve_isolation_test_different_allowed_path_returns_independent_instance",
+      "community": 3,
+      "norm_label": "test_different_allowed_path_returns_independent_instance()"
+    },
+    {
+      "label": "test_resolve_with_default_allowed_path()",
+      "file_type": "code",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L43",
+      "id": "tests_test_resolve_isolation_test_resolve_with_default_allowed_path",
+      "community": 3,
+      "norm_label": "test_resolve_with_default_allowed_path()"
+    },
+    {
+      "label": "test_resolve_with_explicit_allowed_path()",
+      "file_type": "code",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L55",
+      "id": "tests_test_resolve_isolation_test_resolve_with_explicit_allowed_path",
+      "community": 3,
+      "norm_label": "test_resolve_with_explicit_allowed_path()"
+    },
+    {
+      "label": "Clear the lru_cache after each test to release resources.",
+      "file_type": "rationale",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L15",
+      "id": "tests_test_resolve_isolation_rationale_15",
+      "community": 3,
+      "norm_label": "clear the lru_cache after each test to release resources."
+    },
+    {
+      "label": "Calls with the same allowed_path reuse the cached validator instance.",
+      "file_type": "rationale",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L21",
+      "id": "tests_test_resolve_isolation_rationale_21",
+      "community": 3,
+      "norm_label": "calls with the same allowed_path reuse the cached validator instance."
+    },
+    {
+      "label": "Calls with different allowed_path return different validator instances.",
+      "file_type": "rationale",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L31",
+      "id": "tests_test_resolve_isolation_rationale_31",
+      "community": 3,
+      "norm_label": "calls with different allowed_path return different validator instances."
+    },
+    {
+      "label": "resolve() without explicit allowed_path uses the packaged default.",
+      "file_type": "rationale",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L44",
+      "id": "tests_test_resolve_isolation_rationale_44",
+      "community": 3,
+      "norm_label": "resolve() without explicit allowed_path uses the packaged default."
+    },
+    {
+      "label": "resolve() with an explicit allowed_path uses that file.",
+      "file_type": "rationale",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L56",
+      "id": "tests_test_resolve_isolation_rationale_56",
+      "community": 3,
+      "norm_label": "resolve() with an explicit allowed_path uses that file."
+    },
+    {
+      "label": "test_symptomdna_from_json.py",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L1",
+      "id": "tests_test_symptomdna_from_json_py",
+      "community": 4,
+      "norm_label": "test_symptomdna_from_json.py"
+    },
+    {
+      "label": "_make_full_payload()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L16",
+      "id": "tests_test_symptomdna_from_json_make_full_payload",
+      "community": 4,
+      "norm_label": "_make_full_payload()"
+    },
+    {
+      "label": "TestSymptomDNAFromJsonRoundTrip",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L29",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "community": 4,
+      "norm_label": "testsymptomdnafromjsonroundtrip"
+    },
+    {
+      "label": ".test_round_trip_full()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L30",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_full",
+      "community": 4,
+      "norm_label": ".test_round_trip_full()"
+    },
+    {
+      "label": ".test_round_trip_minimal()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L39",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_minimal",
+      "community": 0,
+      "norm_label": ".test_round_trip_minimal()"
+    },
+    {
+      "label": ".test_optional_free_text_notes_when_absent()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L56",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_optional_free_text_notes_when_absent",
+      "community": 4,
+      "norm_label": ".test_optional_free_text_notes_when_absent()"
+    },
+    {
+      "label": "TestSymptomDNAFromJsonMissingRequired",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L63",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "community": 4,
+      "norm_label": "testsymptomdnafromjsonmissingrequired"
+    },
+    {
+      "label": ".test_missing_tier_1_raises_keyerror()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L64",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_tier_1_raises_keyerror",
+      "community": 4,
+      "norm_label": ".test_missing_tier_1_raises_keyerror()"
+    },
+    {
+      "label": ".test_missing_tier_2_raises_validation_error()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L68",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_tier_2_raises_validation_error",
+      "community": 4,
+      "norm_label": ".test_missing_tier_2_raises_validation_error()"
+    },
+    {
+      "label": ".test_missing_environmental_conditions_raises_validation_error()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L74",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_environmental_conditions_raises_validation_error",
+      "community": 4,
+      "norm_label": ".test_missing_environmental_conditions_raises_validation_error()"
+    },
+    {
+      "label": ".test_missing_occurs_during_raises_validation_error()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L80",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_occurs_during_raises_validation_error",
+      "community": 4,
+      "norm_label": ".test_missing_occurs_during_raises_validation_error()"
+    },
+    {
+      "label": ".test_missing_engine_state_raises_validation_error()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L86",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_engine_state_raises_validation_error",
+      "community": 4,
+      "norm_label": ".test_missing_engine_state_raises_validation_error()"
+    },
+    {
+      "label": "TestSymptomDNAFromJsonInvalidEnum",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L93",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "community": 4,
+      "norm_label": "testsymptomdnafromjsoninvalidenum"
+    },
+    {
+      "label": ".test_invalid_occurs_during_raises_validation_error()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L96",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum_test_invalid_occurs_during_raises_validation_error",
+      "community": 4,
+      "norm_label": ".test_invalid_occurs_during_raises_validation_error()"
+    },
+    {
+      "label": ".test_invalid_engine_state_raises_validation_error()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L102",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum_test_invalid_engine_state_raises_validation_error",
+      "community": 4,
+      "norm_label": ".test_invalid_engine_state_raises_validation_error()"
+    },
+    {
+      "label": "TestSymptomDNAFromJsonNoPairValidation",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L109",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "community": 1,
+      "norm_label": "testsymptomdnafromjsonnopairvalidation"
+    },
+    {
+      "label": ".test_unknown_pair_accepted()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L114",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation_test_unknown_pair_accepted",
+      "community": 1,
+      "norm_label": ".test_unknown_pair_accepted()"
+    },
+    {
+      "label": "Tests for SymptomDNA.from_json deserialization.",
+      "file_type": "rationale",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L1",
+      "id": "tests_test_symptomdna_from_json_rationale_1",
+      "community": 4,
+      "norm_label": "tests for symptomdna.from_json deserialization."
+    },
+    {
+      "label": "SymptomDNA with no free_text_notes should round-trip.",
+      "file_type": "rationale",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L40",
+      "id": "tests_test_symptomdna_from_json_rationale_40",
+      "community": 0,
+      "norm_label": "symptomdna with no free_text_notes should round-trip."
+    },
+    {
+      "label": "from_json must reject payloads with invalid enum strings.",
+      "file_type": "rationale",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L94",
+      "id": "tests_test_symptomdna_from_json_rationale_94",
+      "community": 4,
+      "norm_label": "from_json must reject payloads with invalid enum strings."
+    },
+    {
+      "label": "from_json() does NOT validate (tier_1, tier_2) catalog membership.     This is i",
+      "file_type": "rationale",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L110",
+      "id": "tests_test_symptomdna_from_json_rationale_110",
+      "community": 1,
+      "norm_label": "from_json() does not validate (tier_1, tier_2) catalog membership.     this is i"
+    },
+    {
+      "label": "from_json() accepts an unknown (tier_1, tier_2) pair without error.         Call",
+      "file_type": "rationale",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L115",
+      "id": "tests_test_symptomdna_from_json_rationale_115",
+      "community": 1,
+      "norm_label": "from_json() accepts an unknown (tier_1, tier_2) pair without error.         call"
+    },
+    {
+      "label": "test_validator.py",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L1",
+      "id": "tests_test_validator_py",
+      "community": 0,
+      "norm_label": "test_validator.py"
+    },
+    {
+      "label": "TestAll18Combinations",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L14",
+      "id": "tests_test_validator_testall18combinations",
+      "community": 0,
+      "norm_label": "testall18combinations"
+    },
+    {
+      "label": ".test_all_pairs_validated()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L15",
+      "id": "tests_test_validator_testall18combinations_test_all_pairs_validated",
+      "community": 0,
+      "norm_label": ".test_all_pairs_validated()"
+    },
+    {
+      "label": ".test_known_good_rich_smoke()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L27",
+      "id": "tests_test_validator_testall18combinations_test_known_good_rich_smoke",
+      "community": 0,
+      "norm_label": ".test_known_good_rich_smoke()"
+    },
+    {
+      "label": "TestRejection",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L36",
+      "id": "tests_test_validator_testrejection",
+      "community": 0,
+      "norm_label": "testrejection"
+    },
+    {
+      "label": ".test_unknown_tier_1()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L37",
+      "id": "tests_test_validator_testrejection_test_unknown_tier_1",
+      "community": 0,
+      "norm_label": ".test_unknown_tier_1()"
+    },
+    {
+      "label": ".test_unknown_tier_2_known_tier_1()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L46",
+      "id": "tests_test_validator_testrejection_test_unknown_tier_2_known_tier_1",
+      "community": 0,
+      "norm_label": ".test_unknown_tier_2_known_tier_1()"
+    },
+    {
+      "label": ".test_invalid_occurs_during()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L56",
+      "id": "tests_test_validator_testrejection_test_invalid_occurs_during",
+      "community": 0,
+      "norm_label": ".test_invalid_occurs_during()"
+    },
+    {
+      "label": ".test_invalid_engine_state()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L63",
+      "id": "tests_test_validator_testrejection_test_invalid_engine_state",
+      "community": 0,
+      "norm_label": ".test_invalid_engine_state()"
+    },
+    {
+      "label": "TestAllEnumValues",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L71",
+      "id": "tests_test_validator_testallenumvalues",
+      "community": 0,
+      "norm_label": "testallenumvalues"
+    },
+    {
+      "label": "test_occurs_during_accepted()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L73",
+      "id": "tests_test_validator_test_occurs_during_accepted",
+      "community": 0,
+      "norm_label": "test_occurs_during_accepted()"
+    },
+    {
+      "label": "test_engine_state_accepted()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L81",
+      "id": "tests_test_validator_test_engine_state_accepted",
+      "community": 0,
+      "norm_label": "test_engine_state_accepted()"
+    },
+    {
+      "label": "TestFreeTextNotes",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L89",
+      "id": "tests_test_validator_testfreetextnotes",
+      "community": 0,
+      "norm_label": "testfreetextnotes"
+    },
+    {
+      "label": ".test_omitted()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L90",
+      "id": "tests_test_validator_testfreetextnotes_test_omitted",
+      "community": 0,
+      "norm_label": ".test_omitted()"
+    },
+    {
+      "label": ".test_explicit_none()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L97",
+      "id": "tests_test_validator_testfreetextnotes_test_explicit_none",
+      "community": 0,
+      "norm_label": ".test_explicit_none()"
+    },
+    {
+      "label": ".test_some_text()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L105",
+      "id": "tests_test_validator_testfreetextnotes_test_some_text",
+      "community": 0,
+      "norm_label": ".test_some_text()"
+    },
+    {
+      "label": "TestJSONShape",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L114",
+      "id": "tests_test_validator_testjsonshape",
+      "community": 0,
+      "norm_label": "testjsonshape"
+    },
+    {
+      "label": ".test_exact_four_keys()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L115",
+      "id": "tests_test_validator_testjsonshape_test_exact_four_keys",
+      "community": 0,
+      "norm_label": ".test_exact_four_keys()"
+    },
+    {
+      "label": ".test_no_extra_keys()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L128",
+      "id": "tests_test_validator_testjsonshape_test_no_extra_keys",
+      "community": 0,
+      "norm_label": ".test_no_extra_keys()"
+    },
+    {
+      "label": "TestImmutability",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L137",
+      "id": "tests_test_validator_testimmutability",
+      "community": 0,
+      "norm_label": "testimmutability"
+    },
+    {
+      "label": ".test_symptom_dna_frozen()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L138",
+      "id": "tests_test_validator_testimmutability_test_symptom_dna_frozen",
+      "community": 0,
+      "norm_label": ".test_symptom_dna_frozen()"
+    },
+    {
+      "label": ".test_symptom_dna_hashable()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L150",
+      "id": "tests_test_validator_testimmutability_test_symptom_dna_hashable",
+      "community": 0,
+      "norm_label": ".test_symptom_dna_hashable()"
+    },
+    {
+      "label": ".test_environmental_conditions_frozen()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L162",
+      "id": "tests_test_validator_testimmutability_test_environmental_conditions_frozen",
+      "community": 0,
+      "norm_label": ".test_environmental_conditions_frozen()"
+    },
+    {
+      "label": ".test_occurs_during_str_equality()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L170",
+      "id": "tests_test_validator_testimmutability_test_occurs_during_str_equality",
+      "community": 1,
+      "norm_label": ".test_occurs_during_str_equality()"
+    },
+    {
+      "label": "Comprehensive tests for SymptomLab validator and models.",
+      "file_type": "rationale",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L1",
+      "id": "tests_test_validator_rationale_1",
+      "community": 0,
+      "norm_label": "comprehensive tests for symptomlab validator and models."
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "tests/__init__.py",
+      "source_location": "L1",
+      "id": "tests_init_py",
+      "community": 25,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "CLAUDE_CODE_PROMPT.md",
+      "file_type": "document",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L1",
+      "id": "claude_code_prompt_md",
+      "community": 5,
+      "norm_label": "claude_code_prompt.md"
+    },
+    {
+      "label": "SymptomLab Build Prompt \u2014 for Claude Code",
+      "file_type": "document",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L1",
+      "id": "symptomlab_claude_code_prompt_symptomlab_build_prompt_for_claude_code",
+      "community": 5,
+      "norm_label": "symptomlab build prompt \u2014 for claude code"
+    },
+    {
+      "label": "ROLE ###",
+      "file_type": "document",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L8",
+      "id": "symptomlab_claude_code_prompt_role",
+      "community": 5,
+      "norm_label": "role ###"
+    },
+    {
+      "label": "CONTEXT \u2014 READ THESE FIRST ###",
+      "file_type": "document",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L16",
+      "id": "symptomlab_claude_code_prompt_context_read_these_first",
+      "community": 5,
+      "norm_label": "context \u2014 read these first ###"
+    },
+    {
+      "label": "ARCHITECTURE ###",
+      "file_type": "document",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L25",
+      "id": "symptomlab_claude_code_prompt_architecture",
+      "community": 5,
+      "norm_label": "architecture ###"
+    },
+    {
+      "label": "code:block1 (User selection \u2500\u2500\u25ba SymptomLab.resolve(tier_1, tier_2, env, n)",
+      "file_type": "document",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L27",
+      "id": "symptomlab_claude_code_prompt_codeblock_1",
+      "community": 5,
+      "norm_label": "code:block1 (user selection \u2500\u2500\u25ba symptomlab.resolve(tier_1, tier_2, env, n)"
+    },
+    {
+      "label": "TASK ###",
+      "file_type": "document",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L38",
+      "id": "symptomlab_claude_code_prompt_task",
+      "community": 5,
+      "norm_label": "task ###"
+    },
+    {
+      "label": "MODULE LAYOUT ###",
+      "file_type": "document",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L44",
+      "id": "symptomlab_claude_code_prompt_module_layout",
+      "community": 5,
+      "norm_label": "module layout ###"
+    },
+    {
+      "label": "code:block2 (SymptomLab/)",
+      "file_type": "document",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L46",
+      "id": "symptomlab_claude_code_prompt_codeblock_2",
+      "community": 5,
+      "norm_label": "code:block2 (symptomlab/)"
+    },
+    {
+      "label": "CONSTRAINTS \u2014 do not violate ###",
+      "file_type": "document",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L65",
+      "id": "symptomlab_claude_code_prompt_constraints_do_not_violate",
+      "community": 5,
+      "norm_label": "constraints \u2014 do not violate ###"
+    },
+    {
+      "label": "SUCCESS CRITERIA ###",
+      "file_type": "document",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L77",
+      "id": "symptomlab_claude_code_prompt_success_criteria",
+      "community": 5,
+      "norm_label": "success criteria ###"
+    },
+    {
+      "label": "PROGRESS.md",
+      "file_type": "document",
+      "source_file": "PROGRESS.md",
+      "source_location": "L1",
+      "id": "progress_md",
+      "community": 16,
+      "norm_label": "progress.md"
+    },
+    {
+      "label": "SymptomLab \u2014 Progress Ledger",
+      "file_type": "document",
+      "source_file": "PROGRESS.md",
+      "source_location": "L1",
+      "id": "symptomlab_progress_symptomlab_progress_ledger",
+      "community": 16,
+      "norm_label": "symptomlab \u2014 progress ledger"
+    },
+    {
+      "label": "Task log",
+      "file_type": "document",
+      "source_file": "PROGRESS.md",
+      "source_location": "L13",
+      "id": "symptomlab_progress_task_log",
+      "community": 16,
+      "norm_label": "task log"
+    },
+    {
+      "label": "Execution order",
+      "file_type": "document",
+      "source_file": "PROGRESS.md",
+      "source_location": "L29",
+      "id": "symptomlab_progress_execution_order",
+      "community": 16,
+      "norm_label": "execution order"
+    },
+    {
+      "label": "code:block1 (T-SL-1 (decision table YAML) \u2500\u2500\u2510)",
+      "file_type": "document",
+      "source_file": "PROGRESS.md",
+      "source_location": "L33",
+      "id": "symptomlab_progress_codeblock_1",
+      "community": 16,
+      "norm_label": "code:block1 (t-sl-1 (decision table yaml) \u2500\u2500\u2510)"
+    },
+    {
+      "label": "Unplanned follow-ups",
+      "file_type": "document",
+      "source_file": "PROGRESS.md",
+      "source_location": "L44",
+      "id": "symptomlab_progress_unplanned_follow_ups",
+      "community": 16,
+      "norm_label": "unplanned follow-ups"
+    },
+    {
+      "label": "Source-step coverage",
+      "file_type": "document",
+      "source_file": "PROGRESS.md",
+      "source_location": "L51",
+      "id": "symptomlab_progress_source_step_coverage",
+      "community": 16,
+      "norm_label": "source-step coverage"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "id": "readme_md",
+      "community": 6,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "SymptomLab",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "id": "symptomlab_readme_symptomlab",
+      "community": 6,
+      "norm_label": "symptomlab"
+    },
+    {
+      "label": "code:json ({)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L9",
+      "id": "symptomlab_readme_codeblock_1",
+      "community": 6,
+      "norm_label": "code:json ({)"
+    },
+    {
+      "label": "Strict naming (locked)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L21",
+      "id": "symptomlab_readme_strict_naming_locked",
+      "community": 6,
+      "norm_label": "strict naming (locked)"
+    },
+    {
+      "label": "What this lab is, in one paragraph",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L27",
+      "id": "symptomlab_readme_what_this_lab_is_in_one_paragraph",
+      "community": 6,
+      "norm_label": "what this lab is, in one paragraph"
+    },
+    {
+      "label": "Layout (will be created by task files)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L31",
+      "id": "symptomlab_readme_layout_will_be_created_by_task_files",
+      "community": 6,
+      "norm_label": "layout (will be created by task files)"
+    },
+    {
+      "label": "code:block2 (SymptomLab/)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L33",
+      "id": "symptomlab_readme_codeblock_2",
+      "community": 6,
+      "norm_label": "code:block2 (symptomlab/)"
+    },
+    {
+      "label": "Quickstart (after tasks T-SL-1..T-SL-4)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L45",
+      "id": "symptomlab_readme_quickstart_after_tasks_t_sl_1_t_sl_4",
+      "community": 6,
+      "norm_label": "quickstart (after tasks t-sl-1..t-sl-4)"
+    },
+    {
+      "label": "code:python (from symptomlab import resolve)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L47",
+      "id": "symptomlab_readme_codeblock_3",
+      "community": 6,
+      "norm_label": "code:python (from symptomlab import resolve)"
+    },
+    {
+      "label": "Next session",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L59",
+      "id": "symptomlab_readme_next_session",
+      "community": 6,
+      "norm_label": "next session"
+    },
+    {
+      "label": "START_HERE.md",
+      "file_type": "document",
+      "source_file": "START_HERE.md",
+      "source_location": "L1",
+      "id": "start_here_md",
+      "community": 15,
+      "norm_label": "start_here.md"
+    },
+    {
+      "label": "Role ###",
+      "file_type": "document",
+      "source_file": "START_HERE.md",
+      "source_location": "L1",
+      "id": "symptomlab_start_here_role",
+      "community": 15,
+      "norm_label": "role ###"
+    },
+    {
+      "label": "Mandatory bootstrap (in this exact order, before doing anything else) ###",
+      "file_type": "document",
+      "source_file": "START_HERE.md",
+      "source_location": "L13",
+      "id": "symptomlab_start_here_mandatory_bootstrap_in_this_exact_order_before_doing_anything_else",
+      "community": 15,
+      "norm_label": "mandatory bootstrap (in this exact order, before doing anything else) ###"
+    },
+    {
+      "label": "Working rules (apply throughout) ###",
+      "file_type": "document",
+      "source_file": "START_HERE.md",
+      "source_location": "L38",
+      "id": "symptomlab_start_here_working_rules_apply_throughout",
+      "community": 15,
+      "norm_label": "working rules (apply throughout) ###"
+    },
+    {
+      "label": "Session-end checklist ###",
+      "file_type": "document",
+      "source_file": "START_HERE.md",
+      "source_location": "L54",
+      "id": "symptomlab_start_here_session_end_checklist",
+      "community": 15,
+      "norm_label": "session-end checklist ###"
+    },
+    {
+      "label": "Prerequisites ###",
+      "file_type": "document",
+      "source_file": "START_HERE.md",
+      "source_location": "L65",
+      "id": "symptomlab_start_here_prerequisites",
+      "community": 15,
+      "norm_label": "prerequisites ###"
+    },
+    {
+      "label": "Now do step 1 of the bootstrap. ###",
+      "file_type": "document",
+      "source_file": "START_HERE.md",
+      "source_location": "L73",
+      "id": "symptomlab_start_here_now_do_step_1_of_the_bootstrap",
+      "community": 15,
+      "norm_label": "now do step 1 of the bootstrap. ###"
+    },
+    {
+      "label": "SymptomLab_Audit_Report.md",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L1",
+      "id": "symptomlab_audit_report_md",
+      "community": 2,
+      "norm_label": "symptomlab_audit_report.md"
+    },
+    {
+      "label": "SymptomLab \u2014 Code Audit Report",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L1",
+      "id": "symptomlab_symptomlab_audit_report_symptomlab_code_audit_report",
+      "community": 2,
+      "norm_label": "symptomlab \u2014 code audit report"
+    },
+    {
+      "label": "Verdict",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L11",
+      "id": "symptomlab_symptomlab_audit_report_verdict",
+      "community": 2,
+      "norm_label": "verdict"
+    },
+    {
+      "label": "Verification toolchain results",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L24",
+      "id": "symptomlab_symptomlab_audit_report_verification_toolchain_results",
+      "community": 2,
+      "norm_label": "verification toolchain results"
+    },
+    {
+      "label": "Findings",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L38",
+      "id": "symptomlab_symptomlab_audit_report_findings",
+      "community": 2,
+      "norm_label": "findings"
+    },
+    {
+      "label": "H1 \u2014 `StrEnum` requires Python 3.11; `pyproject.toml` declares `>=3.10`",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L42",
+      "id": "symptomlab_symptomlab_audit_report_h1_strenum_requires_python_3_11_pyproject_toml_declares_3_10",
+      "community": 2,
+      "norm_label": "h1 \u2014 `strenum` requires python 3.11; `pyproject.toml` declares `>=3.10`"
+    },
+    {
+      "label": "H2 \u2014 `black_sooty_rich` in the YAML contradicts `black_smoke` in both spec documents",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L56",
+      "id": "symptomlab_symptomlab_audit_report_h2_black_sooty_rich_in_the_yaml_contradicts_black_smoke_in_both_spec_documents",
+      "community": 2,
+      "norm_label": "h2 \u2014 `black_sooty_rich` in the yaml contradicts `black_smoke` in both spec documents"
+    },
+    {
+      "label": "M1 \u2014 `EngineState.WONT_NOT_START` is a double-negative Python name",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L73",
+      "id": "symptomlab_symptomlab_audit_report_m1_enginestate_wont_not_start_is_a_double_negative_python_name",
+      "community": 2,
+      "norm_label": "m1 \u2014 `enginestate.wont_not_start` is a double-negative python name"
+    },
+    {
+      "label": "code:python (class EngineState(StrEnum):)",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L77",
+      "id": "symptomlab_symptomlab_audit_report_codeblock_1",
+      "community": 2,
+      "norm_label": "code:python (class enginestate(strenum):)"
+    },
+    {
+      "label": "M2 \u2014 `SymptomDNA.from_json()` bypasses pair validation",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L88",
+      "id": "symptomlab_symptomlab_audit_report_m2_symptomdna_from_json_bypasses_pair_validation",
+      "community": 2,
+      "norm_label": "m2 \u2014 `symptomdna.from_json()` bypasses pair validation"
+    },
+    {
+      "label": "M3 \u2014 `from_json()` raises `KeyError` / raw `ValueError`; `validate()` raises `SymptomValidationError` \u2014 heterogeneous error contract",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L103",
+      "id": "symptomlab_symptomlab_audit_report_m3_from_json_raises_keyerror_raw_valueerror_validate_raises_symptomvalidationerror_heterogeneous_error_contract",
+      "community": 2,
+      "norm_label": "m3 \u2014 `from_json()` raises `keyerror` / raw `valueerror`; `validate()` raises `symptomvalidationerror` \u2014 heterogeneous error contract"
+    },
+    {
+      "label": "M4 \u2014 `pyproject.toml` has no `[tool.pyright]`, `[tool.ruff]`, or `[tool.pytest.ini_options]` sections",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L118",
+      "id": "symptomlab_symptomlab_audit_report_m4_pyproject_toml_has_no_tool_pyright_tool_ruff_or_tool_pytest_ini_options_sections",
+      "community": 2,
+      "norm_label": "m4 \u2014 `pyproject.toml` has no `[tool.pyright]`, `[tool.ruff]`, or `[tool.pytest.ini_options]` sections"
+    },
+    {
+      "label": "L1 \u2014 No drift guard linking the YAML catalog to VehicleDNA.md",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L132",
+      "id": "symptomlab_symptomlab_audit_report_l1_no_drift_guard_linking_the_yaml_catalog_to_vehicledna_md",
+      "community": 2,
+      "norm_label": "l1 \u2014 no drift guard linking the yaml catalog to vehicledna.md"
+    },
+    {
+      "label": "L2 \u2014 Hardcoded `18` in the startup invariant guard is untestable",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L140",
+      "id": "symptomlab_symptomlab_audit_report_l2_hardcoded_18_in_the_startup_invariant_guard_is_untestable",
+      "community": 2,
+      "norm_label": "l2 \u2014 hardcoded `18` in the startup invariant guard is untestable"
+    },
+    {
+      "label": "code:python (if len(self._allowed) != 18:)",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L144",
+      "id": "symptomlab_symptomlab_audit_report_codeblock_2",
+      "community": 2,
+      "norm_label": "code:python (if len(self._allowed) != 18:)"
+    },
+    {
+      "label": "L3 \u2014 `PROGRESS.md` source-step coverage table names a non-existent file",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L155",
+      "id": "symptomlab_symptomlab_audit_report_l3_progress_md_source_step_coverage_table_names_a_non_existent_file",
+      "community": 2,
+      "norm_label": "l3 \u2014 `progress.md` source-step coverage table names a non-existent file"
+    },
+    {
+      "label": "L4 \u2014 `START_HERE.md` records the wrong local root path",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L163",
+      "id": "symptomlab_symptomlab_audit_report_l4_start_here_md_records_the_wrong_local_root_path",
+      "community": 2,
+      "norm_label": "l4 \u2014 `start_here.md` records the wrong local root path"
+    },
+    {
+      "label": "What is done well",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L173",
+      "id": "symptomlab_symptomlab_audit_report_what_is_done_well",
+      "community": 2,
+      "norm_label": "what is done well"
+    },
+    {
+      "label": "Methodology",
+      "file_type": "document",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L186",
+      "id": "symptomlab_symptomlab_audit_report_methodology",
+      "community": 2,
+      "norm_label": "methodology"
+    },
+    {
+      "label": "T-SL-1.md",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-1.md",
+      "source_location": "L1",
+      "id": "progress_notes_t_sl_1_md",
+      "community": 20,
+      "norm_label": "t-sl-1.md"
+    },
+    {
+      "label": "T-SL-1 \u2014 Decision Table YAML",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-1.md",
+      "source_location": "L1",
+      "id": "progress_notes_t_sl_1_t_sl_1_decision_table_yaml",
+      "community": 20,
+      "norm_label": "t-sl-1 \u2014 decision table yaml"
+    },
+    {
+      "label": "Summary",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-1.md",
+      "source_location": "L6",
+      "id": "progress_notes_t_sl_1_summary",
+      "community": 20,
+      "norm_label": "summary"
+    },
+    {
+      "label": "Verification",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-1.md",
+      "source_location": "L9",
+      "id": "progress_notes_t_sl_1_verification",
+      "community": 20,
+      "norm_label": "verification"
+    },
+    {
+      "label": "Pythonskill checklist",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-1.md",
+      "source_location": "L15",
+      "id": "progress_notes_t_sl_1_pythonskill_checklist",
+      "community": 20,
+      "norm_label": "pythonskill checklist"
+    },
+    {
+      "label": "T-SL-2.md",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-2.md",
+      "source_location": "L1",
+      "id": "progress_notes_t_sl_2_md",
+      "community": 21,
+      "norm_label": "t-sl-2.md"
+    },
+    {
+      "label": "T-SL-2 \u2014 Module Scaffold",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-2.md",
+      "source_location": "L1",
+      "id": "progress_notes_t_sl_2_t_sl_2_module_scaffold",
+      "community": 21,
+      "norm_label": "t-sl-2 \u2014 module scaffold"
+    },
+    {
+      "label": "Summary",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-2.md",
+      "source_location": "L6",
+      "id": "progress_notes_t_sl_2_summary",
+      "community": 21,
+      "norm_label": "summary"
+    },
+    {
+      "label": "Verification",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-2.md",
+      "source_location": "L15",
+      "id": "progress_notes_t_sl_2_verification",
+      "community": 21,
+      "norm_label": "verification"
+    },
+    {
+      "label": "Pythonskill checklist",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-2.md",
+      "source_location": "L23",
+      "id": "progress_notes_t_sl_2_pythonskill_checklist",
+      "community": 21,
+      "norm_label": "pythonskill checklist"
+    },
+    {
+      "label": "T-SL-3.md",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-3.md",
+      "source_location": "L1",
+      "id": "progress_notes_t_sl_3_md",
+      "community": 22,
+      "norm_label": "t-sl-3.md"
+    },
+    {
+      "label": "T-SL-3 \u2014 Dispatcher (resolve)",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-3.md",
+      "source_location": "L1",
+      "id": "progress_notes_t_sl_3_t_sl_3_dispatcher_resolve",
+      "community": 22,
+      "norm_label": "t-sl-3 \u2014 dispatcher (resolve)"
+    },
+    {
+      "label": "Summary",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-3.md",
+      "source_location": "L6",
+      "id": "progress_notes_t_sl_3_summary",
+      "community": 22,
+      "norm_label": "summary"
+    },
+    {
+      "label": "Verification",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-3.md",
+      "source_location": "L14",
+      "id": "progress_notes_t_sl_3_verification",
+      "community": 22,
+      "norm_label": "verification"
+    },
+    {
+      "label": "Pythonskill checklist",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-3.md",
+      "source_location": "L23",
+      "id": "progress_notes_t_sl_3_pythonskill_checklist",
+      "community": 22,
+      "norm_label": "pythonskill checklist"
+    },
+    {
+      "label": "T-SL-4.md",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-4.md",
+      "source_location": "L1",
+      "id": "progress_notes_t_sl_4_md",
+      "community": 19,
+      "norm_label": "t-sl-4.md"
+    },
+    {
+      "label": "T-SL-4 \u2014 Tests",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-4.md",
+      "source_location": "L1",
+      "id": "progress_notes_t_sl_4_t_sl_4_tests",
+      "community": 19,
+      "norm_label": "t-sl-4 \u2014 tests"
+    },
+    {
+      "label": "Summary",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-4.md",
+      "source_location": "L6",
+      "id": "progress_notes_t_sl_4_summary",
+      "community": 19,
+      "norm_label": "summary"
+    },
+    {
+      "label": "Verification",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-4.md",
+      "source_location": "L12",
+      "id": "progress_notes_t_sl_4_verification",
+      "community": 19,
+      "norm_label": "verification"
+    },
+    {
+      "label": "Coverage details",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-4.md",
+      "source_location": "L18",
+      "id": "progress_notes_t_sl_4_coverage_details",
+      "community": 19,
+      "norm_label": "coverage details"
+    },
+    {
+      "label": "Pythonskill checklist",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-4.md",
+      "source_location": "L23",
+      "id": "progress_notes_t_sl_4_pythonskill_checklist",
+      "community": 19,
+      "norm_label": "pythonskill checklist"
+    },
+    {
+      "label": "T-SL-5.md",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-5.md",
+      "source_location": "L1",
+      "id": "progress_notes_t_sl_5_md",
+      "community": 9,
+      "norm_label": "t-sl-5.md"
+    },
+    {
+      "label": "T-SL-5 \u2014 Spec Alignment (Audit H1, H2, M1, L3, L4)",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-5.md",
+      "source_location": "L1",
+      "id": "progress_notes_t_sl_5_t_sl_5_spec_alignment_audit_h1_h2_m1_l3_l4",
+      "community": 9,
+      "norm_label": "t-sl-5 \u2014 spec alignment (audit h1, h2, m1, l3, l4)"
+    },
+    {
+      "label": "VERIFICATION GATE \u2014 T-SL-5",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-5.md",
+      "source_location": "L8",
+      "id": "progress_notes_t_sl_5_verification_gate_t_sl_5",
+      "community": 9,
+      "norm_label": "verification gate \u2014 t-sl-5"
+    },
+    {
+      "label": "code:block1 (Phase 1 (syntax):       PASS \u2014 python -m compileall symptoml)",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-5.md",
+      "source_location": "L10",
+      "id": "progress_notes_t_sl_5_codeblock_1",
+      "community": 9,
+      "norm_label": "code:block1 (phase 1 (syntax):       pass \u2014 python -m compileall symptoml)"
+    },
+    {
+      "label": "Explicit verification checks",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-5.md",
+      "source_location": "L20",
+      "id": "progress_notes_t_sl_5_explicit_verification_checks",
+      "community": 9,
+      "norm_label": "explicit verification checks"
+    },
+    {
+      "label": "CODE REVIEW \u2014 T-SL-5",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-5.md",
+      "source_location": "L34",
+      "id": "progress_notes_t_sl_5_code_review_t_sl_5",
+      "community": 9,
+      "norm_label": "code review \u2014 t-sl-5"
+    },
+    {
+      "label": "Files changed (T-SL-5 scope)",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-5.md",
+      "source_location": "L52",
+      "id": "progress_notes_t_sl_5_files_changed_t_sl_5_scope",
+      "community": 9,
+      "norm_label": "files changed (t-sl-5 scope)"
+    },
+    {
+      "label": "Immediate Checklist items applied",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-5.md",
+      "source_location": "L67",
+      "id": "progress_notes_t_sl_5_immediate_checklist_items_applied",
+      "community": 9,
+      "norm_label": "immediate checklist items applied"
+    },
+    {
+      "label": "T-SL-6.md",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-6.md",
+      "source_location": "L1",
+      "id": "progress_notes_t_sl_6_md",
+      "community": 13,
+      "norm_label": "t-sl-6.md"
+    },
+    {
+      "label": "T-SL-6 \u2014 Progress Notes",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-6.md",
+      "source_location": "L1",
+      "id": "progress_notes_t_sl_6_t_sl_6_progress_notes",
+      "community": 13,
+      "norm_label": "t-sl-6 \u2014 progress notes"
+    },
+    {
+      "label": "Changes",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-6.md",
+      "source_location": "L5",
+      "id": "progress_notes_t_sl_6_changes",
+      "community": 13,
+      "norm_label": "changes"
+    },
+    {
+      "label": "Verification",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-6.md",
+      "source_location": "L13",
+      "id": "progress_notes_t_sl_6_verification",
+      "community": 13,
+      "norm_label": "verification"
+    },
+    {
+      "label": "CODE REVIEW",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-6.md",
+      "source_location": "L26",
+      "id": "progress_notes_t_sl_6_code_review",
+      "community": 13,
+      "norm_label": "code review"
+    },
+    {
+      "label": "VERIFICATION GATE",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-6.md",
+      "source_location": "L35",
+      "id": "progress_notes_t_sl_6_verification_gate",
+      "community": 13,
+      "norm_label": "verification gate"
+    },
+    {
+      "label": "code:block1 (VERIFICATION GATE \u2014 T-SL-6)",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-6.md",
+      "source_location": "L37",
+      "id": "progress_notes_t_sl_6_codeblock_1",
+      "community": 13,
+      "norm_label": "code:block1 (verification gate \u2014 t-sl-6)"
+    },
+    {
+      "label": "T-SL-7.md",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-7.md",
+      "source_location": "L1",
+      "id": "progress_notes_t_sl_7_md",
+      "community": 14,
+      "norm_label": "t-sl-7.md"
+    },
+    {
+      "label": "T-SL-7 \u2014 Progress Notes",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-7.md",
+      "source_location": "L1",
+      "id": "progress_notes_t_sl_7_t_sl_7_progress_notes",
+      "community": 14,
+      "norm_label": "t-sl-7 \u2014 progress notes"
+    },
+    {
+      "label": "Changes",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-7.md",
+      "source_location": "L5",
+      "id": "progress_notes_t_sl_7_changes",
+      "community": 14,
+      "norm_label": "changes"
+    },
+    {
+      "label": "Verification",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-7.md",
+      "source_location": "L13",
+      "id": "progress_notes_t_sl_7_verification",
+      "community": 14,
+      "norm_label": "verification"
+    },
+    {
+      "label": "CODE REVIEW",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-7.md",
+      "source_location": "L25",
+      "id": "progress_notes_t_sl_7_code_review",
+      "community": 14,
+      "norm_label": "code review"
+    },
+    {
+      "label": "VERIFICATION GATE",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-7.md",
+      "source_location": "L34",
+      "id": "progress_notes_t_sl_7_verification_gate",
+      "community": 14,
+      "norm_label": "verification gate"
+    },
+    {
+      "label": "code:block1 (VERIFICATION GATE \u2014 T-SL-7)",
+      "file_type": "document",
+      "source_file": "progress_notes/T-SL-7.md",
+      "source_location": "L36",
+      "id": "progress_notes_t_sl_7_codeblock_1",
+      "community": 14,
+      "norm_label": "code:block1 (verification gate \u2014 t-sl-7)"
+    },
+    {
+      "label": "T-SL-1_decision_table.md",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-1_decision_table.md",
+      "source_location": "L1",
+      "id": "task_files_t_sl_1_decision_table_md",
+      "community": 17,
+      "norm_label": "t-sl-1_decision_table.md"
+    },
+    {
+      "label": "Goal ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-1_decision_table.md",
+      "source_location": "L1",
+      "id": "task_files_t_sl_1_decision_table_goal",
+      "community": 17,
+      "norm_label": "goal ###"
+    },
+    {
+      "label": "Context ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-1_decision_table.md",
+      "source_location": "L5",
+      "id": "task_files_t_sl_1_decision_table_context",
+      "community": 17,
+      "norm_label": "context ###"
+    },
+    {
+      "label": "Deliverables ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-1_decision_table.md",
+      "source_location": "L9",
+      "id": "task_files_t_sl_1_decision_table_deliverables",
+      "community": 17,
+      "norm_label": "deliverables ###"
+    },
+    {
+      "label": "code:yaml (# Source: VehicleDNA.md \u00a7\"Complete Universal Triage & Diagno)",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-1_decision_table.md",
+      "source_location": "L13",
+      "id": "task_files_t_sl_1_decision_table_codeblock_1",
+      "community": 17,
+      "norm_label": "code:yaml (# source: vehicledna.md \u00a7\"complete universal triage & diagno)"
+    },
+    {
+      "label": "Out of scope ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-1_decision_table.md",
+      "source_location": "L48",
+      "id": "task_files_t_sl_1_decision_table_out_of_scope",
+      "community": 17,
+      "norm_label": "out of scope ###"
+    },
+    {
+      "label": "Verification ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-1_decision_table.md",
+      "source_location": "L54",
+      "id": "task_files_t_sl_1_decision_table_verification",
+      "community": 17,
+      "norm_label": "verification ###"
+    },
+    {
+      "label": "T-SL-2_module_scaffold.md",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-2_module_scaffold.md",
+      "source_location": "L1",
+      "id": "task_files_t_sl_2_module_scaffold_md",
+      "community": 10,
+      "norm_label": "t-sl-2_module_scaffold.md"
+    },
+    {
+      "label": "Goal ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-2_module_scaffold.md",
+      "source_location": "L1",
+      "id": "task_files_t_sl_2_module_scaffold_goal",
+      "community": 10,
+      "norm_label": "goal ###"
+    },
+    {
+      "label": "Deliverables ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-2_module_scaffold.md",
+      "source_location": "L5",
+      "id": "task_files_t_sl_2_module_scaffold_deliverables",
+      "community": 10,
+      "norm_label": "deliverables ###"
+    },
+    {
+      "label": "code:block1 (SymptomLab/)",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-2_module_scaffold.md",
+      "source_location": "L9",
+      "id": "task_files_t_sl_2_module_scaffold_codeblock_1",
+      "community": 10,
+      "norm_label": "code:block1 (symptomlab/)"
+    },
+    {
+      "label": "code:python (from dataclasses import dataclass, asdict)",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-2_module_scaffold.md",
+      "source_location": "L26",
+      "id": "task_files_t_sl_2_module_scaffold_codeblock_2",
+      "community": 10,
+      "norm_label": "code:python (from dataclasses import dataclass, asdict)"
+    },
+    {
+      "label": "code:block3 (# Runtime)",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-2_module_scaffold.md",
+      "source_location": "L81",
+      "id": "task_files_t_sl_2_module_scaffold_codeblock_3",
+      "community": 10,
+      "norm_label": "code:block3 (# runtime)"
+    },
+    {
+      "label": "Out of scope ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-2_module_scaffold.md",
+      "source_location": "L92",
+      "id": "task_files_t_sl_2_module_scaffold_out_of_scope",
+      "community": 10,
+      "norm_label": "out of scope ###"
+    },
+    {
+      "label": "Verification ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-2_module_scaffold.md",
+      "source_location": "L97",
+      "id": "task_files_t_sl_2_module_scaffold_verification",
+      "community": 10,
+      "norm_label": "verification ###"
+    },
+    {
+      "label": "T-SL-3_dispatcher.md",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-3_dispatcher.md",
+      "source_location": "L1",
+      "id": "task_files_t_sl_3_dispatcher_md",
+      "community": 11,
+      "norm_label": "t-sl-3_dispatcher.md"
+    },
+    {
+      "label": "Goal ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-3_dispatcher.md",
+      "source_location": "L1",
+      "id": "task_files_t_sl_3_dispatcher_goal",
+      "community": 11,
+      "norm_label": "goal ###"
+    },
+    {
+      "label": "Context ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-3_dispatcher.md",
+      "source_location": "L5",
+      "id": "task_files_t_sl_3_dispatcher_context",
+      "community": 11,
+      "norm_label": "context ###"
+    },
+    {
+      "label": "Deliverables ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-3_dispatcher.md",
+      "source_location": "L9",
+      "id": "task_files_t_sl_3_dispatcher_deliverables",
+      "community": 11,
+      "norm_label": "deliverables ###"
+    },
+    {
+      "label": "code:python (from pathlib import Path)",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-3_dispatcher.md",
+      "source_location": "L13",
+      "id": "task_files_t_sl_3_dispatcher_codeblock_1",
+      "community": 11,
+      "norm_label": "code:python (from pathlib import path)"
+    },
+    {
+      "label": "code:python (from pathlib import Path)",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-3_dispatcher.md",
+      "source_location": "L76",
+      "id": "task_files_t_sl_3_dispatcher_codeblock_2",
+      "community": 11,
+      "norm_label": "code:python (from pathlib import path)"
+    },
+    {
+      "label": "Out of scope ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-3_dispatcher.md",
+      "source_location": "L103",
+      "id": "task_files_t_sl_3_dispatcher_out_of_scope",
+      "community": 11,
+      "norm_label": "out of scope ###"
+    },
+    {
+      "label": "Verification ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-3_dispatcher.md",
+      "source_location": "L109",
+      "id": "task_files_t_sl_3_dispatcher_verification",
+      "community": 11,
+      "norm_label": "verification ###"
+    },
+    {
+      "label": "T-SL-4_tests.md",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-4_tests.md",
+      "source_location": "L1",
+      "id": "task_files_t_sl_4_tests_md",
+      "community": 23,
+      "norm_label": "t-sl-4_tests.md"
+    },
+    {
+      "label": "Goal ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-4_tests.md",
+      "source_location": "L1",
+      "id": "task_files_t_sl_4_tests_goal",
+      "community": 23,
+      "norm_label": "goal ###"
+    },
+    {
+      "label": "Deliverables ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-4_tests.md",
+      "source_location": "L5",
+      "id": "task_files_t_sl_4_tests_deliverables",
+      "community": 23,
+      "norm_label": "deliverables ###"
+    },
+    {
+      "label": "Out of scope ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-4_tests.md",
+      "source_location": "L31",
+      "id": "task_files_t_sl_4_tests_out_of_scope",
+      "community": 23,
+      "norm_label": "out of scope ###"
+    },
+    {
+      "label": "Verification ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-4_tests.md",
+      "source_location": "L36",
+      "id": "task_files_t_sl_4_tests_verification",
+      "community": 23,
+      "norm_label": "verification ###"
+    },
+    {
+      "label": "T-SL-5_spec_alignment.md",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L1",
+      "id": "task_files_t_sl_5_spec_alignment_md",
+      "community": 7,
+      "norm_label": "t-sl-5_spec_alignment.md"
+    },
+    {
+      "label": "Goal ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L1",
+      "id": "task_files_t_sl_5_spec_alignment_goal",
+      "community": 7,
+      "norm_label": "goal ###"
+    },
+    {
+      "label": "Context ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L5",
+      "id": "task_files_t_sl_5_spec_alignment_context",
+      "community": 7,
+      "norm_label": "context ###"
+    },
+    {
+      "label": "Deliverables ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L15",
+      "id": "task_files_t_sl_5_spec_alignment_deliverables",
+      "community": 7,
+      "norm_label": "deliverables ###"
+    },
+    {
+      "label": "code:toml (requires-python = \">=3.11\")",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L19",
+      "id": "task_files_t_sl_5_spec_alignment_codeblock_1",
+      "community": 7,
+      "norm_label": "code:toml (requires-python = \">=3.11\")"
+    },
+    {
+      "label": "code:yaml (visible_exhaust_smoke:)",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L25",
+      "id": "task_files_t_sl_5_spec_alignment_codeblock_2",
+      "community": 7,
+      "norm_label": "code:yaml (visible_exhaust_smoke:)"
+    },
+    {
+      "label": "code:python (class EngineState(StrEnum):)",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L34",
+      "id": "task_files_t_sl_5_spec_alignment_codeblock_3",
+      "community": 7,
+      "norm_label": "code:python (class enginestate(strenum):)"
+    },
+    {
+      "label": "Out of scope ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L62",
+      "id": "task_files_t_sl_5_spec_alignment_out_of_scope",
+      "community": 7,
+      "norm_label": "out of scope ###"
+    },
+    {
+      "label": "Verification ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L68",
+      "id": "task_files_t_sl_5_spec_alignment_verification",
+      "community": 7,
+      "norm_label": "verification ###"
+    },
+    {
+      "label": "T-SL-6_from_json_contract.md",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-6_from_json_contract.md",
+      "source_location": "L1",
+      "id": "task_files_t_sl_6_from_json_contract_md",
+      "community": 12,
+      "norm_label": "t-sl-6_from_json_contract.md"
+    },
+    {
+      "label": "Goal ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-6_from_json_contract.md",
+      "source_location": "L1",
+      "id": "task_files_t_sl_6_from_json_contract_goal",
+      "community": 12,
+      "norm_label": "goal ###"
+    },
+    {
+      "label": "Context ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-6_from_json_contract.md",
+      "source_location": "L5",
+      "id": "task_files_t_sl_6_from_json_contract_context",
+      "community": 12,
+      "norm_label": "context ###"
+    },
+    {
+      "label": "Deliverables ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-6_from_json_contract.md",
+      "source_location": "L15",
+      "id": "task_files_t_sl_6_from_json_contract_deliverables",
+      "community": 12,
+      "norm_label": "deliverables ###"
+    },
+    {
+      "label": "code:python (@classmethod)",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-6_from_json_contract.md",
+      "source_location": "L21",
+      "id": "task_files_t_sl_6_from_json_contract_codeblock_1",
+      "community": 12,
+      "norm_label": "code:python (@classmethod)"
+    },
+    {
+      "label": "code:python (class TestSymptomDNAFromJsonNoPairValidation:)",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-6_from_json_contract.md",
+      "source_location": "L61",
+      "id": "task_files_t_sl_6_from_json_contract_codeblock_2",
+      "community": 12,
+      "norm_label": "code:python (class testsymptomdnafromjsonnopairvalidation:)"
+    },
+    {
+      "label": "Out of scope ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-6_from_json_contract.md",
+      "source_location": "L84",
+      "id": "task_files_t_sl_6_from_json_contract_out_of_scope",
+      "community": 12,
+      "norm_label": "out of scope ###"
+    },
+    {
+      "label": "Verification ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-6_from_json_contract.md",
+      "source_location": "L89",
+      "id": "task_files_t_sl_6_from_json_contract_verification",
+      "community": 12,
+      "norm_label": "verification ###"
+    },
+    {
+      "label": "T-SL-7_tooling_and_drift_guard.md",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L1",
+      "id": "task_files_t_sl_7_tooling_and_drift_guard_md",
+      "community": 8,
+      "norm_label": "t-sl-7_tooling_and_drift_guard.md"
+    },
+    {
+      "label": "Goal ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L1",
+      "id": "task_files_t_sl_7_tooling_and_drift_guard_goal",
+      "community": 8,
+      "norm_label": "goal ###"
+    },
+    {
+      "label": "Context ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L5",
+      "id": "task_files_t_sl_7_tooling_and_drift_guard_context",
+      "community": 8,
+      "norm_label": "context ###"
+    },
+    {
+      "label": "Deliverables ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L13",
+      "id": "task_files_t_sl_7_tooling_and_drift_guard_deliverables",
+      "community": 8,
+      "norm_label": "deliverables ###"
+    },
+    {
+      "label": "code:toml ([tool.pyright])",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L17",
+      "id": "task_files_t_sl_7_tooling_and_drift_guard_codeblock_1",
+      "community": 8,
+      "norm_label": "code:toml ([tool.pyright])"
+    },
+    {
+      "label": "code:python (if len(self._allowed) != 18:)",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L28",
+      "id": "task_files_t_sl_7_tooling_and_drift_guard_codeblock_2",
+      "community": 8,
+      "norm_label": "code:python (if len(self._allowed) != 18:)"
+    },
+    {
+      "label": "code:python (\"\"\"Drift guard: allowed_combinations.yaml must match Vehicle)",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L43",
+      "id": "task_files_t_sl_7_tooling_and_drift_guard_codeblock_3",
+      "community": 8,
+      "norm_label": "code:python (\"\"\"drift guard: allowed_combinations.yaml must match vehicle)"
+    },
+    {
+      "label": "Out of scope ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L112",
+      "id": "task_files_t_sl_7_tooling_and_drift_guard_out_of_scope",
+      "community": 8,
+      "norm_label": "out of scope ###"
+    },
+    {
+      "label": "Verification ###",
+      "file_type": "document",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L117",
+      "id": "task_files_t_sl_7_tooling_and_drift_guard_verification",
+      "community": 8,
+      "norm_label": "verification ###"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "symptomlab_models_py",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "symptomlab_models_py",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "symptomlab_models_py",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "symptomlab_models_py",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "symptomlab_models_py",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "symptomlab_models_py",
+      "target": "symptomlab_models_from_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "symptomlab_models_symptomvalidationerror",
+      "target": "valueerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "symptomlab_models_from_json",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "symptomlab_models_rationale_9",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "symptomlab_validator_symptomvalidator",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator_validate",
+      "target": "symptomlab_models_symptomvalidationerror"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator_init",
+      "target": "valueerror"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "symptomlab_models_occursduring",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "symptomlab_models_from_json",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "symptomlab_validator_symptomvalidator",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testall18combinations",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testrejection",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testallenumvalues",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testfreetextnotes",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testjsonshape",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testimmutability",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator_validate",
+      "target": "symptomlab_models_occursduring"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_validator.py",
+      "source_location": "L171",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability_test_occurs_during_str_equality",
+      "target": "symptomlab_models_occursduring"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "symptomlab_models_enginestate",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "source": "symptomlab_models_from_json",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "symptomlab_validator_symptomvalidator",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testall18combinations",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testrejection",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testallenumvalues",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testfreetextnotes",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testjsonshape",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testimmutability",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator_validate",
+      "target": "symptomlab_models_enginestate"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "symptomlab_models_environmentalconditions",
+      "target": "symptomlab_models_environmentalconditions_to_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "symptomlab_models_from_json",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "symptomlab_validator_symptomvalidator",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testall18combinations",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testrejection",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testallenumvalues",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testfreetextnotes",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testjsonshape",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testimmutability",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator_validate",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_models.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "tests_test_models_test_symptom_dna_to_json_keys",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_models.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "tests_test_models_test_symptom_dna_is_frozen",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_make_full_payload",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_minimal",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_validator.py",
+      "source_location": "L142",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability_test_symptom_dna_frozen",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_validator.py",
+      "source_location": "L154",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability_test_symptom_dna_hashable",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_validator.py",
+      "source_location": "L163",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability_test_environmental_conditions_frozen",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "symptomlab_models_symptomdna",
+      "target": "symptomlab_models_symptomdna_to_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "symptomlab_models_rationale_38",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "symptomlab_validator_symptomvalidator",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testall18combinations",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testrejection",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testallenumvalues",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testfreetextnotes",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testjsonshape",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testimmutability",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator_validate",
+      "target": "symptomlab_models_symptomdna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_models.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_test_models_test_symptom_dna_to_json_keys",
+      "target": "symptomlab_models_symptomdna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_models.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "tests_test_models_test_symptom_dna_is_frozen",
+      "target": "symptomlab_models_symptomdna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_make_full_payload",
+      "target": "symptomlab_models_symptomdna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_minimal",
+      "target": "symptomlab_models_symptomdna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_validator.py",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability_test_symptom_dna_frozen",
+      "target": "symptomlab_models_symptomdna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_validator.py",
+      "source_location": "L151",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability_test_symptom_dna_hashable",
+      "target": "symptomlab_models_symptomdna"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "symptomlab_models_rationale_53",
+      "target": "symptomlab_models_symptomdna_to_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "symptomlab_validator_py",
+      "target": "symptomlab_validator_symptomvalidator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator",
+      "target": "symptomlab_validator_symptomvalidator_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator",
+      "target": "symptomlab_validator_symptomvalidator_validate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "symptomlab_init_get_validator",
+      "target": "symptomlab_validator_symptomvalidator"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/conftest.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "tests_conftest_validator",
+      "target": "symptomlab_validator_symptomvalidator"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "symptomlab_init_py",
+      "target": "symptomlab_init_get_validator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "symptomlab_init_py",
+      "target": "symptomlab_init_resolve",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "symptomlab_init_rationale_1",
+      "target": "symptomlab_init_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "symptomlab_init_resolve",
+      "target": "symptomlab_init_get_validator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "symptomlab_init_rationale_14",
+      "target": "symptomlab_init_get_validator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_test_same_allowed_path_returns_cached_instance",
+      "target": "symptomlab_init_get_validator"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_test_different_allowed_path_returns_independent_instance",
+      "target": "symptomlab_init_get_validator"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "symptomlab_init_rationale_27",
+      "target": "symptomlab_init_resolve",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_test_resolve_with_default_allowed_path",
+      "target": "symptomlab_init_resolve"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_test_resolve_with_explicit_allowed_path",
+      "target": "symptomlab_init_resolve"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/conftest.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "tests_conftest_py",
+      "target": "tests_conftest_validator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/conftest.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "tests_conftest_py",
+      "target": "tests_conftest_allowed_pairs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_py",
+      "target": "tests_test_drift_guard_load_yaml_pairs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_py",
+      "target": "tests_test_drift_guard_test_yaml_matches_vehicledna_reference",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_py",
+      "target": "tests_test_drift_guard_test_vehicledna_reference_matches_yaml",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_rationale_1",
+      "target": "tests_test_drift_guard_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_test_yaml_matches_vehicledna_reference",
+      "target": "tests_test_drift_guard_load_yaml_pairs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_test_vehicledna_reference_matches_yaml",
+      "target": "tests_test_drift_guard_load_yaml_pairs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_rationale_50",
+      "target": "tests_test_drift_guard_test_yaml_matches_vehicledna_reference",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_rationale_60",
+      "target": "tests_test_drift_guard_test_vehicledna_reference_matches_yaml",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_test_models_py",
+      "target": "tests_test_models_test_symptom_dna_to_json_keys",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "tests_test_models_py",
+      "target": "tests_test_models_test_symptom_dna_is_frozen",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "tests_test_models_py",
+      "target": "tests_test_models_test_enum_values",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_models_rationale_1",
+      "target": "tests_test_models_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_py",
+      "target": "tests_test_resolve_isolation_clear_validator_cache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_py",
+      "target": "tests_test_resolve_isolation_test_same_allowed_path_returns_cached_instance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_py",
+      "target": "tests_test_resolve_isolation_test_different_allowed_path_returns_independent_instance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_py",
+      "target": "tests_test_resolve_isolation_test_resolve_with_default_allowed_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_py",
+      "target": "tests_test_resolve_isolation_test_resolve_with_explicit_allowed_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_rationale_15",
+      "target": "tests_test_resolve_isolation_clear_validator_cache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_rationale_21",
+      "target": "tests_test_resolve_isolation_test_same_allowed_path_returns_cached_instance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_rationale_31",
+      "target": "tests_test_resolve_isolation_test_different_allowed_path_returns_independent_instance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_rationale_44",
+      "target": "tests_test_resolve_isolation_test_resolve_with_default_allowed_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_rationale_56",
+      "target": "tests_test_resolve_isolation_test_resolve_with_explicit_allowed_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_py",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_py",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_py",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_py",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_py",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_rationale_1",
+      "target": "tests_test_symptomdna_from_json_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_full",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_optional_free_text_notes_when_absent",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_tier_2_raises_validation_error",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_environmental_conditions_raises_validation_error",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_occurs_during_raises_validation_error",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_engine_state_raises_validation_error",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum_test_invalid_occurs_during_raises_validation_error",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum_test_invalid_engine_state_raises_validation_error",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_full",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_minimal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_optional_free_text_notes_when_absent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_rationale_40",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_minimal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_tier_1_raises_keyerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_tier_2_raises_validation_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_environmental_conditions_raises_validation_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_occurs_during_raises_validation_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_engine_state_raises_validation_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L96",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum_test_invalid_occurs_during_raises_validation_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum_test_invalid_engine_state_raises_validation_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_rationale_94",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation_test_unknown_pair_accepted",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_rationale_110",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_rationale_115",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation_test_unknown_pair_accepted",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_testall18combinations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_testrejection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_testallenumvalues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_test_occurs_during_accepted",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_test_engine_state_accepted",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_testfreetextnotes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_testjsonshape",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L137",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_testimmutability",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_validator_rationale_1",
+      "target": "tests_test_validator_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "tests_test_validator_testall18combinations",
+      "target": "tests_test_validator_testall18combinations_test_all_pairs_validated",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "tests_test_validator_testall18combinations",
+      "target": "tests_test_validator_testall18combinations_test_known_good_rich_smoke",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "tests_test_validator_testrejection",
+      "target": "tests_test_validator_testrejection_test_unknown_tier_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "tests_test_validator_testrejection",
+      "target": "tests_test_validator_testrejection_test_unknown_tier_2_known_tier_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "tests_test_validator_testrejection",
+      "target": "tests_test_validator_testrejection_test_invalid_occurs_during",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "tests_test_validator_testrejection",
+      "target": "tests_test_validator_testrejection_test_invalid_engine_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "tests_test_validator_testfreetextnotes",
+      "target": "tests_test_validator_testfreetextnotes_test_omitted",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "tests_test_validator_testfreetextnotes",
+      "target": "tests_test_validator_testfreetextnotes_test_explicit_none",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L105",
+      "weight": 1.0,
+      "source": "tests_test_validator_testfreetextnotes",
+      "target": "tests_test_validator_testfreetextnotes_test_some_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "tests_test_validator_testjsonshape",
+      "target": "tests_test_validator_testjsonshape_test_exact_four_keys",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L128",
+      "weight": 1.0,
+      "source": "tests_test_validator_testjsonshape",
+      "target": "tests_test_validator_testjsonshape_test_no_extra_keys",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability",
+      "target": "tests_test_validator_testimmutability_test_symptom_dna_frozen",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability",
+      "target": "tests_test_validator_testimmutability_test_symptom_dna_hashable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L162",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability",
+      "target": "tests_test_validator_testimmutability_test_environmental_conditions_frozen",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L170",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability",
+      "target": "tests_test_validator_testimmutability_test_occurs_during_str_equality",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "claude_code_prompt_md",
+      "target": "symptomlab_claude_code_prompt_symptomlab_build_prompt_for_claude_code",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "symptomlab_claude_code_prompt_symptomlab_build_prompt_for_claude_code",
+      "target": "symptomlab_claude_code_prompt_role",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "symptomlab_claude_code_prompt_symptomlab_build_prompt_for_claude_code",
+      "target": "symptomlab_claude_code_prompt_context_read_these_first",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "symptomlab_claude_code_prompt_symptomlab_build_prompt_for_claude_code",
+      "target": "symptomlab_claude_code_prompt_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "symptomlab_claude_code_prompt_symptomlab_build_prompt_for_claude_code",
+      "target": "symptomlab_claude_code_prompt_task",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "symptomlab_claude_code_prompt_symptomlab_build_prompt_for_claude_code",
+      "target": "symptomlab_claude_code_prompt_module_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "symptomlab_claude_code_prompt_symptomlab_build_prompt_for_claude_code",
+      "target": "symptomlab_claude_code_prompt_constraints_do_not_violate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "symptomlab_claude_code_prompt_symptomlab_build_prompt_for_claude_code",
+      "target": "symptomlab_claude_code_prompt_success_criteria",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "symptomlab_claude_code_prompt_architecture",
+      "target": "symptomlab_claude_code_prompt_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE_CODE_PROMPT.md",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "symptomlab_claude_code_prompt_module_layout",
+      "target": "symptomlab_claude_code_prompt_codeblock_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROGRESS.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "progress_md",
+      "target": "symptomlab_progress_symptomlab_progress_ledger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROGRESS.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "symptomlab_progress_symptomlab_progress_ledger",
+      "target": "symptomlab_progress_task_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROGRESS.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "symptomlab_progress_symptomlab_progress_ledger",
+      "target": "symptomlab_progress_execution_order",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROGRESS.md",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "symptomlab_progress_symptomlab_progress_ledger",
+      "target": "symptomlab_progress_unplanned_follow_ups",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROGRESS.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "symptomlab_progress_symptomlab_progress_ledger",
+      "target": "symptomlab_progress_source_step_coverage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROGRESS.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "symptomlab_progress_execution_order",
+      "target": "symptomlab_progress_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "readme_md",
+      "target": "symptomlab_readme_symptomlab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "symptomlab_readme_symptomlab",
+      "target": "symptomlab_readme_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "symptomlab_readme_symptomlab",
+      "target": "symptomlab_readme_strict_naming_locked",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "symptomlab_readme_symptomlab",
+      "target": "symptomlab_readme_what_this_lab_is_in_one_paragraph",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "symptomlab_readme_symptomlab",
+      "target": "symptomlab_readme_layout_will_be_created_by_task_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "symptomlab_readme_symptomlab",
+      "target": "symptomlab_readme_quickstart_after_tasks_t_sl_1_t_sl_4",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "symptomlab_readme_symptomlab",
+      "target": "symptomlab_readme_next_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "symptomlab_readme_layout_will_be_created_by_task_files",
+      "target": "symptomlab_readme_codeblock_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "symptomlab_readme_quickstart_after_tasks_t_sl_1_t_sl_4",
+      "target": "symptomlab_readme_codeblock_3",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "START_HERE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "start_here_md",
+      "target": "symptomlab_start_here_role",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "START_HERE.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "start_here_md",
+      "target": "symptomlab_start_here_mandatory_bootstrap_in_this_exact_order_before_doing_anything_else",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "START_HERE.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "start_here_md",
+      "target": "symptomlab_start_here_working_rules_apply_throughout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "START_HERE.md",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "start_here_md",
+      "target": "symptomlab_start_here_session_end_checklist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "START_HERE.md",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "start_here_md",
+      "target": "symptomlab_start_here_prerequisites",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "START_HERE.md",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "start_here_md",
+      "target": "symptomlab_start_here_now_do_step_1_of_the_bootstrap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "symptomlab_audit_report_md",
+      "target": "symptomlab_symptomlab_audit_report_symptomlab_code_audit_report",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_symptomlab_code_audit_report",
+      "target": "symptomlab_symptomlab_audit_report_verdict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_symptomlab_code_audit_report",
+      "target": "symptomlab_symptomlab_audit_report_verification_toolchain_results",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_symptomlab_code_audit_report",
+      "target": "symptomlab_symptomlab_audit_report_findings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L173",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_symptomlab_code_audit_report",
+      "target": "symptomlab_symptomlab_audit_report_what_is_done_well",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L186",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_symptomlab_code_audit_report",
+      "target": "symptomlab_symptomlab_audit_report_methodology",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_findings",
+      "target": "symptomlab_symptomlab_audit_report_h1_strenum_requires_python_3_11_pyproject_toml_declares_3_10",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_findings",
+      "target": "symptomlab_symptomlab_audit_report_h2_black_sooty_rich_in_the_yaml_contradicts_black_smoke_in_both_spec_documents",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_findings",
+      "target": "symptomlab_symptomlab_audit_report_m1_enginestate_wont_not_start_is_a_double_negative_python_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_findings",
+      "target": "symptomlab_symptomlab_audit_report_m2_symptomdna_from_json_bypasses_pair_validation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_findings",
+      "target": "symptomlab_symptomlab_audit_report_m3_from_json_raises_keyerror_raw_valueerror_validate_raises_symptomvalidationerror_heterogeneous_error_contract",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L118",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_findings",
+      "target": "symptomlab_symptomlab_audit_report_m4_pyproject_toml_has_no_tool_pyright_tool_ruff_or_tool_pytest_ini_options_sections",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L132",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_findings",
+      "target": "symptomlab_symptomlab_audit_report_l1_no_drift_guard_linking_the_yaml_catalog_to_vehicledna_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L140",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_findings",
+      "target": "symptomlab_symptomlab_audit_report_l2_hardcoded_18_in_the_startup_invariant_guard_is_untestable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L155",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_findings",
+      "target": "symptomlab_symptomlab_audit_report_l3_progress_md_source_step_coverage_table_names_a_non_existent_file",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L163",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_findings",
+      "target": "symptomlab_symptomlab_audit_report_l4_start_here_md_records_the_wrong_local_root_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_m1_enginestate_wont_not_start_is_a_double_negative_python_name",
+      "target": "symptomlab_symptomlab_audit_report_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SymptomLab_Audit_Report.md",
+      "source_location": "L144",
+      "weight": 1.0,
+      "source": "symptomlab_symptomlab_audit_report_l2_hardcoded_18_in_the_startup_invariant_guard_is_untestable",
+      "target": "symptomlab_symptomlab_audit_report_codeblock_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-1.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_1_md",
+      "target": "progress_notes_t_sl_1_t_sl_1_decision_table_yaml",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-1.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_1_t_sl_1_decision_table_yaml",
+      "target": "progress_notes_t_sl_1_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-1.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_1_t_sl_1_decision_table_yaml",
+      "target": "progress_notes_t_sl_1_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-1.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_1_t_sl_1_decision_table_yaml",
+      "target": "progress_notes_t_sl_1_pythonskill_checklist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-2.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_2_md",
+      "target": "progress_notes_t_sl_2_t_sl_2_module_scaffold",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-2.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_2_t_sl_2_module_scaffold",
+      "target": "progress_notes_t_sl_2_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-2.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_2_t_sl_2_module_scaffold",
+      "target": "progress_notes_t_sl_2_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-2.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_2_t_sl_2_module_scaffold",
+      "target": "progress_notes_t_sl_2_pythonskill_checklist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-3.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_3_md",
+      "target": "progress_notes_t_sl_3_t_sl_3_dispatcher_resolve",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-3.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_3_t_sl_3_dispatcher_resolve",
+      "target": "progress_notes_t_sl_3_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-3.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_3_t_sl_3_dispatcher_resolve",
+      "target": "progress_notes_t_sl_3_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-3.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_3_t_sl_3_dispatcher_resolve",
+      "target": "progress_notes_t_sl_3_pythonskill_checklist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-4.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_4_md",
+      "target": "progress_notes_t_sl_4_t_sl_4_tests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-4.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_4_t_sl_4_tests",
+      "target": "progress_notes_t_sl_4_summary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-4.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_4_t_sl_4_tests",
+      "target": "progress_notes_t_sl_4_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-4.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_4_t_sl_4_tests",
+      "target": "progress_notes_t_sl_4_coverage_details",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-4.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_4_t_sl_4_tests",
+      "target": "progress_notes_t_sl_4_pythonskill_checklist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-5.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_5_md",
+      "target": "progress_notes_t_sl_5_t_sl_5_spec_alignment_audit_h1_h2_m1_l3_l4",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-5.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_5_t_sl_5_spec_alignment_audit_h1_h2_m1_l3_l4",
+      "target": "progress_notes_t_sl_5_verification_gate_t_sl_5",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-5.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_5_t_sl_5_spec_alignment_audit_h1_h2_m1_l3_l4",
+      "target": "progress_notes_t_sl_5_code_review_t_sl_5",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-5.md",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_5_t_sl_5_spec_alignment_audit_h1_h2_m1_l3_l4",
+      "target": "progress_notes_t_sl_5_files_changed_t_sl_5_scope",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-5.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_5_t_sl_5_spec_alignment_audit_h1_h2_m1_l3_l4",
+      "target": "progress_notes_t_sl_5_immediate_checklist_items_applied",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-5.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_5_verification_gate_t_sl_5",
+      "target": "progress_notes_t_sl_5_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-5.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_5_verification_gate_t_sl_5",
+      "target": "progress_notes_t_sl_5_explicit_verification_checks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-6.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_6_md",
+      "target": "progress_notes_t_sl_6_t_sl_6_progress_notes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-6.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_6_t_sl_6_progress_notes",
+      "target": "progress_notes_t_sl_6_changes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-6.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_6_t_sl_6_progress_notes",
+      "target": "progress_notes_t_sl_6_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-6.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_6_t_sl_6_progress_notes",
+      "target": "progress_notes_t_sl_6_code_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-6.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_6_t_sl_6_progress_notes",
+      "target": "progress_notes_t_sl_6_verification_gate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-6.md",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_6_verification_gate",
+      "target": "progress_notes_t_sl_6_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-7.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_7_md",
+      "target": "progress_notes_t_sl_7_t_sl_7_progress_notes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-7.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_7_t_sl_7_progress_notes",
+      "target": "progress_notes_t_sl_7_changes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-7.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_7_t_sl_7_progress_notes",
+      "target": "progress_notes_t_sl_7_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-7.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_7_t_sl_7_progress_notes",
+      "target": "progress_notes_t_sl_7_code_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-7.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_7_t_sl_7_progress_notes",
+      "target": "progress_notes_t_sl_7_verification_gate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "progress_notes/T-SL-7.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "progress_notes_t_sl_7_verification_gate",
+      "target": "progress_notes_t_sl_7_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-1_decision_table.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "task_files_t_sl_1_decision_table_md",
+      "target": "task_files_t_sl_1_decision_table_goal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-1_decision_table.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "task_files_t_sl_1_decision_table_md",
+      "target": "task_files_t_sl_1_decision_table_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-1_decision_table.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "task_files_t_sl_1_decision_table_md",
+      "target": "task_files_t_sl_1_decision_table_deliverables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-1_decision_table.md",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "task_files_t_sl_1_decision_table_md",
+      "target": "task_files_t_sl_1_decision_table_out_of_scope",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-1_decision_table.md",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "task_files_t_sl_1_decision_table_md",
+      "target": "task_files_t_sl_1_decision_table_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-1_decision_table.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "task_files_t_sl_1_decision_table_deliverables",
+      "target": "task_files_t_sl_1_decision_table_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-2_module_scaffold.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "task_files_t_sl_2_module_scaffold_md",
+      "target": "task_files_t_sl_2_module_scaffold_goal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-2_module_scaffold.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "task_files_t_sl_2_module_scaffold_md",
+      "target": "task_files_t_sl_2_module_scaffold_deliverables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-2_module_scaffold.md",
+      "source_location": "L92",
+      "weight": 1.0,
+      "source": "task_files_t_sl_2_module_scaffold_md",
+      "target": "task_files_t_sl_2_module_scaffold_out_of_scope",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-2_module_scaffold.md",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "task_files_t_sl_2_module_scaffold_md",
+      "target": "task_files_t_sl_2_module_scaffold_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-2_module_scaffold.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "task_files_t_sl_2_module_scaffold_deliverables",
+      "target": "task_files_t_sl_2_module_scaffold_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-2_module_scaffold.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "task_files_t_sl_2_module_scaffold_deliverables",
+      "target": "task_files_t_sl_2_module_scaffold_codeblock_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-2_module_scaffold.md",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "task_files_t_sl_2_module_scaffold_deliverables",
+      "target": "task_files_t_sl_2_module_scaffold_codeblock_3",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-3_dispatcher.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "task_files_t_sl_3_dispatcher_md",
+      "target": "task_files_t_sl_3_dispatcher_goal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-3_dispatcher.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "task_files_t_sl_3_dispatcher_md",
+      "target": "task_files_t_sl_3_dispatcher_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-3_dispatcher.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "task_files_t_sl_3_dispatcher_md",
+      "target": "task_files_t_sl_3_dispatcher_deliverables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-3_dispatcher.md",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "task_files_t_sl_3_dispatcher_md",
+      "target": "task_files_t_sl_3_dispatcher_out_of_scope",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-3_dispatcher.md",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "task_files_t_sl_3_dispatcher_md",
+      "target": "task_files_t_sl_3_dispatcher_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-3_dispatcher.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "task_files_t_sl_3_dispatcher_deliverables",
+      "target": "task_files_t_sl_3_dispatcher_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-3_dispatcher.md",
+      "source_location": "L76",
+      "weight": 1.0,
+      "source": "task_files_t_sl_3_dispatcher_deliverables",
+      "target": "task_files_t_sl_3_dispatcher_codeblock_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-4_tests.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "task_files_t_sl_4_tests_md",
+      "target": "task_files_t_sl_4_tests_goal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-4_tests.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "task_files_t_sl_4_tests_md",
+      "target": "task_files_t_sl_4_tests_deliverables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-4_tests.md",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "task_files_t_sl_4_tests_md",
+      "target": "task_files_t_sl_4_tests_out_of_scope",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-4_tests.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "task_files_t_sl_4_tests_md",
+      "target": "task_files_t_sl_4_tests_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "task_files_t_sl_5_spec_alignment_md",
+      "target": "task_files_t_sl_5_spec_alignment_goal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "task_files_t_sl_5_spec_alignment_md",
+      "target": "task_files_t_sl_5_spec_alignment_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "task_files_t_sl_5_spec_alignment_md",
+      "target": "task_files_t_sl_5_spec_alignment_deliverables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "task_files_t_sl_5_spec_alignment_md",
+      "target": "task_files_t_sl_5_spec_alignment_out_of_scope",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "task_files_t_sl_5_spec_alignment_md",
+      "target": "task_files_t_sl_5_spec_alignment_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "task_files_t_sl_5_spec_alignment_deliverables",
+      "target": "task_files_t_sl_5_spec_alignment_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "task_files_t_sl_5_spec_alignment_deliverables",
+      "target": "task_files_t_sl_5_spec_alignment_codeblock_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-5_spec_alignment.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "task_files_t_sl_5_spec_alignment_deliverables",
+      "target": "task_files_t_sl_5_spec_alignment_codeblock_3",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-6_from_json_contract.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "task_files_t_sl_6_from_json_contract_md",
+      "target": "task_files_t_sl_6_from_json_contract_goal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-6_from_json_contract.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "task_files_t_sl_6_from_json_contract_md",
+      "target": "task_files_t_sl_6_from_json_contract_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-6_from_json_contract.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "task_files_t_sl_6_from_json_contract_md",
+      "target": "task_files_t_sl_6_from_json_contract_deliverables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-6_from_json_contract.md",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "task_files_t_sl_6_from_json_contract_md",
+      "target": "task_files_t_sl_6_from_json_contract_out_of_scope",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-6_from_json_contract.md",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "task_files_t_sl_6_from_json_contract_md",
+      "target": "task_files_t_sl_6_from_json_contract_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-6_from_json_contract.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "task_files_t_sl_6_from_json_contract_deliverables",
+      "target": "task_files_t_sl_6_from_json_contract_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-6_from_json_contract.md",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "task_files_t_sl_6_from_json_contract_deliverables",
+      "target": "task_files_t_sl_6_from_json_contract_codeblock_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "task_files_t_sl_7_tooling_and_drift_guard_md",
+      "target": "task_files_t_sl_7_tooling_and_drift_guard_goal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "task_files_t_sl_7_tooling_and_drift_guard_md",
+      "target": "task_files_t_sl_7_tooling_and_drift_guard_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "task_files_t_sl_7_tooling_and_drift_guard_md",
+      "target": "task_files_t_sl_7_tooling_and_drift_guard_deliverables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L112",
+      "weight": 1.0,
+      "source": "task_files_t_sl_7_tooling_and_drift_guard_md",
+      "target": "task_files_t_sl_7_tooling_and_drift_guard_out_of_scope",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L117",
+      "weight": 1.0,
+      "source": "task_files_t_sl_7_tooling_and_drift_guard_md",
+      "target": "task_files_t_sl_7_tooling_and_drift_guard_verification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "task_files_t_sl_7_tooling_and_drift_guard_deliverables",
+      "target": "task_files_t_sl_7_tooling_and_drift_guard_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "task_files_t_sl_7_tooling_and_drift_guard_deliverables",
+      "target": "task_files_t_sl_7_tooling_and_drift_guard_codeblock_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "task_files/T-SL-7_tooling_and_drift_guard.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "task_files_t_sl_7_tooling_and_drift_guard_deliverables",
+      "target": "task_files_t_sl_7_tooling_and_drift_guard_codeblock_3",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "f754422458bc56f6ee3e2a0e316976a8a5d34d91"
+}

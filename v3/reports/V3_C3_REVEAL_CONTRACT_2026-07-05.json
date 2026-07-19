@@ -1,0 +1,889 @@
+{
+  "task": "T-V3-P4-C3-PRE",
+  "generated": "2026-07-05",
+  "mode": "DISCLOSE only (read-only pre-author; no wiring, no score move)",
+  "purpose": "Instance the frozen reveal contract for C3 — ECU/control-system fault. Surfaces producer thresholds (grounding-tagged), consumer mapping, 22-case split, FT-8 neighbours (derived live), confounder disclosure, and baseline pin.",
+  "reveal_contract_template": [
+    {
+      "key": "BUILDABLE_NOW",
+      "definition": "Producer/consumer logic + thresholds derivable from the cluster research answer; provable by unit tests on synthetic vectors, with no owner data."
+    },
+    {
+      "key": "SCORING_GATED",
+      "definition": "The per-case owner columns still required and which residual case_ids each unlocks; stays abstained until the owner supplies real measured values (no synthetic stand-in)."
+    },
+    {
+      "key": "CODE_LANDED_NEQ_SCORE_MOVED",
+      "definition": "Explicit separation of 'producer/consumer logic shipped' from 'top3_family delta'. Landing code proves the discriminator is wired; it does NOT move the score until gated data arrives. Never report the first as the second."
+    },
+    {
+      "key": "REGRESSION_FT8",
+      "definition": "The neighbour set the consumer edit touches (rules in the same family file + shared competition_group + their passes_cases), plus the no-regressed-family audit run on the full corpus at commit time."
+    },
+    {
+      "key": "ABSTAIN_FALLBACK",
+      "definition": "Cases whose discriminating signal the owner cannot supply stay abstained (MARGIN=0.02 dial), never guessed from the idle snapshot."
+    }
+  ],
+  "baseline": {
+    "yardstick": "V3_YARDSTICK_2026-07-05",
+    "csv_hash": "3df2e8cbd82a866c3b8f12a72fdee837ac35cc1f09a19db65a10baa499282ddc",
+    "oracle_hash": "3088a7c3",
+    "scorer": "apps/wired/v7/run_suite.py (hash-locked, untouched)",
+    "named_run": "POST_T_V3_P4_C2B",
+    "run_dir": "apps/wired/v7/runs/POST_T_V3_P4_C2B/results.json",
+    "note": "All sizing in this pack references this baseline. The C4A dry-run predates C2B and is known-stale — do not copy its numbers."
+  },
+  "c3_instance": {
+    "cluster": "C3",
+    "title": "ECU/control-system fault",
+    "research_source": "v3/research/research_answers/cluster3_prepped.md",
+    "producer": {
+      "states": [
+        "OBDLab ControlPlausibilityState"
+      ],
+      "emit_condition": "Emit CONTROL_REFERENCE_FAULT when electrical/reference or gas-vs-OBD divergence gates pass.",
+      "thresholds": [
+        {
+          "signal": "Gas-to-OBD Divergence (Δλ)",
+          "maneuver": "Warm engine idle (750 RPM), 60 s closed-loop window",
+          "threshold": "Δλ = |λ_OBD − λ_tailpipe| ≥ 0.05",
+          "verdict": "CONTROL_REFERENCE_FAULT (gas-vs-OBD disagree)",
+          "producer_state": "OBDLab ControlPlausibilityState",
+          "cite": "cluster3_prepped.md §Quantitative Diagnostic Signature Mapping line 183 (Diagnostic Parameter: Gas-to-OBD Divergence)",
+          "grounding": "empirical-anecdotal",
+          "feasibility_tier": "Tier B: 5-gas analyzer"
+        },
+        {
+          "signal": "Adaptive Fuel Trim Limits (LTFT railed)",
+          "maneuver": "Dynamic cruise (1500–2500 RPM)",
+          "threshold": "LTFT ≥ +25% or ≤ −25% with un-correlated tailpipe chemistry",
+          "verdict": "CONTROL_REFERENCE_FAULT (trims at correction limit)",
+          "producer_state": "OBDLab ControlPlausibilityState",
+          "cite": "cluster3_prepped.md §Quantitative Diagnostic Signature Mapping line 184 (Diagnostic Parameter: Adaptive Fuel Trim Limits)",
+          "grounding": "manufacturer-typical",
+          "feasibility_tier": "Tier A: Generic OBD-II"
+        },
+        {
+          "signal": "KOEO MAP-vs-BARO Correlation",
+          "maneuver": "KOEO (0 RPM), ignition ON",
+          "threshold": "|P_MAP − P_BARO| ≥ 5 kPa",
+          "verdict": "CONTROL_REFERENCE_FAULT (static pressure split)",
+          "producer_state": "OBDLab ControlPlausibilityState",
+          "cite": "cluster3_prepped.md §Quantitative Diagnostic Signature Mapping line 185 (Diagnostic Parameter: KOEO MAP-vs-BARO Correlation)",
+          "grounding": "manufacturer-typical",
+          "feasibility_tier": "Tier A: Generic OBD-II"
+        },
+        {
+          "signal": "DLC Signal Ground drop",
+          "maneuver": "Idle under high electrical load",
+          "threshold": "ΔV_gnd > 0.20 V (signal ground vs battery negative)",
+          "verdict": "CONTROL_REFERENCE_FAULT (ground offset)",
+          "producer_state": "OBDLab ControlPlausibilityState",
+          "cite": "cluster3_prepped.md §Quantitative Diagnostic Signature Mapping line 186 (Diagnostic Parameter: DLC Signal Ground drop)",
+          "grounding": "standardized",
+          "feasibility_tier": "Tier C: DMM / breakout box"
+        },
+        {
+          "signal": "Ground Path Voltage Drop",
+          "maneuver": "Idle under high electrical load",
+          "threshold": "ΔV > 0.10 V (ground joint) or > 0.20 V (wire/cable)",
+          "verdict": "CONTROL_REFERENCE_FAULT (chassis/engine ground degradation)",
+          "producer_state": "OBDLab ControlPlausibilityState",
+          "cite": "cluster3_prepped.md §Quantitative Diagnostic Signature Mapping line 187 (Diagnostic Parameter: Ground Path Voltage Drop)",
+          "grounding": "standardized",
+          "feasibility_tier": "Tier C: DMM"
+        },
+        {
+          "signal": "Active Overrides Response",
+          "maneuver": "Bidirectional fuel override at idle (+25% / −12.5%)",
+          "threshold": "O2 voltage delta < 0.1 V under ±25% fuel command steps",
+          "verdict": "CONTROL_REFERENCE_FAULT (sensor unresponsive to fuel command)",
+          "producer_state": "OBDLab ControlPlausibilityState",
+          "cite": "cluster3_prepped.md §Quantitative Diagnostic Signature Mapping line 188 (Diagnostic Parameter: Active Overrides Response)",
+          "grounding": "manufacturer-typical",
+          "feasibility_tier": "Tier C: Bidirectional scan tool"
+        }
+      ],
+      "corpus_columns": [
+        "koeo_map_baro_delta_kpa",
+        "module_voltage_loaded_v",
+        "dlc_signal_ground_drop_v",
+        "gas_obd_lambda_delta",
+        "lambda_perception_delta",
+        "bidirectional_fuel_response_ok_bool"
+      ]
+    },
+    "consumer": {
+      "ecu_fault": {
+        "file": "labs/comlab/registry/rules/ecu_fault.json",
+        "rules": [
+          "EF-001",
+          "EF-002",
+          "EF-003"
+        ],
+        "reads": "obd_evidence longft1/shrtft1 (fuel trims); the C3 ControlPlausibilityState would supply the control-reference discriminator (gas-vs-OBD divergence, ground voltage, MAP/BARO delta) that these rules currently lack — they fire only on trim saturation + DTC pattern."
+      },
+      "sensor_fault": {
+        "file": "labs/comlab/registry/rules/sensor_fault.json",
+        "rules": [
+          "SF-001",
+          "SF-002"
+        ],
+        "reads": "obd_evidence lambda_perception_delta, o2_voltage; the C3 state gates SF-001/SF-002 for cases where dispersion presents as sensor bias — separates a true lazy/biased O2 sensor from an ECU ground-offset that merely *looks* like sensor bias."
+      }
+    },
+    "case_split": {
+      "total": 22,
+      "buildable_now_reachable": [],
+      "buildable_now_count": 0,
+      "scoring_gated": [
+        {
+          "case_id": "CASE-039",
+          "bucket": "CLASSIFIER_FIXABLE_REROUTED",
+          "expected_family": "ecu_fault",
+          "predicted_family": "rich_mixture",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "CSV-041",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "lean_condition",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "CSV-045",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "sensor_fault",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "CSV-123",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "rich_mixture",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "CSV-124",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "rich_mixture",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "CSV-125",
+          "bucket": "PRODUCER_GAP_SIGNAL_REQUIRED",
+          "expected_family": "ecu_fault",
+          "predicted_family": null,
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "CSV-126",
+          "bucket": "PRODUCER_GAP_SIGNAL_REQUIRED",
+          "expected_family": "ecu_fault",
+          "predicted_family": null,
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "ECU-001",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "lean_condition",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "ECU-009",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "rich_mixture",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "EXP-N002",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "lean_condition",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "EXP-N004",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "lean_condition",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "EXP-N005",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "catalyst_failure",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "EXP-N018",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "sensor_fault",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "EXP-N019",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "catalyst_failure",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "EXT-221",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "lean_condition",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "TC-021",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "rich_mixture",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "YAML-CSV41",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "rich_mixture",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "YAML-CSV45",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "sensor_fault",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "YAML-RULE_NOx_1",
+          "bucket": "PRODUCER_GAP_SIGNAL_REQUIRED",
+          "expected_family": "ecu_fault",
+          "predicted_family": null,
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "YAML-TC47",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "sensor_fault",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "case_001",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "lean_condition",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        },
+        {
+          "case_id": "case_013",
+          "bucket": "OUTRANKED_HARD",
+          "expected_family": "ecu_fault",
+          "predicted_family": "rich_mixture",
+          "required_columns": [
+            "koeo_map_baro_delta_kpa",
+            "module_voltage_loaded_v",
+            "dlc_signal_ground_drop_v",
+            "gas_obd_lambda_delta",
+            "lambda_perception_delta",
+            "bidirectional_fuel_response_ok_bool"
+          ]
+        }
+      ],
+      "scoring_gated_count": 22,
+      "bucket_breakdown": {
+        "CLASSIFIER_FIXABLE_REROUTED": 1,
+        "OUTRANKED_HARD": 18,
+        "PRODUCER_GAP_SIGNAL_REQUIRED": 3
+      },
+      "note": "All 22 C3 cases (21 acq-spec §C3 + CASE-039 overlay) are SCORING_GATED and 0 are BUILDABLE_NOW-reachable: the discriminating columns (KOEO MAP/BARO, ground voltage, gas-vs-OBD lambda divergence, bidirectional response) are absent from the corpus by construction, which is why these rows are residual. Producer/consumer LOGIC is fully buildable now; the top3_family DELTA is not observable until the owner supplies values."
+    },
+    "ft8_neighbours": {
+      "touched_families": [
+        "ecu_fault",
+        "sensor_fault"
+      ],
+      "touched_competition_groups": [
+        "ecu_fault",
+        "sensor_fault"
+      ],
+      "rules": [
+        {
+          "rule_id": "EF-001",
+          "fault_family": "ecu_fault",
+          "competition_group": "ecu_fault",
+          "base_weight": 0.8,
+          "passes_cases": [
+            "CSV-041",
+            "ECU-001",
+            "EXP-N002",
+            "EXP-N004",
+            "EXT-221",
+            "case_001",
+            "case_033",
+            "YAML-CSV41"
+          ]
+        },
+        {
+          "rule_id": "EF-002",
+          "fault_family": "ecu_fault",
+          "competition_group": "ecu_fault",
+          "base_weight": 0.8,
+          "passes_cases": [
+            "CSV-123",
+            "case_013",
+            "CSV-124"
+          ]
+        },
+        {
+          "rule_id": "EF-003",
+          "fault_family": "ecu_fault",
+          "competition_group": "ecu_fault",
+          "base_weight": 0.75,
+          "passes_cases": [
+            "CSV-043",
+            "CSV-045",
+            "CSV-072",
+            "CSV-125",
+            "CSV-126",
+            "ECU-002",
+            "ECU-003",
+            "ECU-009",
+            "EXP-N005",
+            "EXP-N027",
+            "TC-021",
+            "case_027",
+            "YAML-CSV43",
+            "YAML-CSV45",
+            "YAML-CSV72",
+            "YAML-TC22",
+            "YAML-TC47"
+          ]
+        },
+        {
+          "rule_id": "EF-004",
+          "fault_family": "ecu_fault",
+          "competition_group": "ecu_fault",
+          "base_weight": 0.85,
+          "passes_cases": [
+            "CSV-072",
+            "case_027",
+            "YAML-CSV72"
+          ]
+        },
+        {
+          "rule_id": "EF-005",
+          "fault_family": "ecu_fault",
+          "competition_group": "ecu_fault",
+          "base_weight": 0.7,
+          "passes_cases": [
+            "CSV-041",
+            "CSV-123",
+            "ECU-001",
+            "case_001"
+          ]
+        },
+        {
+          "rule_id": "SF-001",
+          "fault_family": "sensor_fault",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.85,
+          "passes_cases": [
+            "CSV-025",
+            "TC-046",
+            "YAML-CSV25",
+            "EXT-229",
+            "CASE-014"
+          ]
+        },
+        {
+          "rule_id": "SF-002",
+          "fault_family": "sensor_fault",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.85,
+          "passes_cases": [
+            "YAML-TC46",
+            "EXT-230",
+            "EXP-N015"
+          ]
+        },
+        {
+          "rule_id": "SF-003",
+          "fault_family": "sensor_fault",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.82,
+          "passes_cases": [
+            "case_025",
+            "case_026",
+            "case_039"
+          ]
+        },
+        {
+          "rule_id": "SF-004",
+          "fault_family": "sensor_fault",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.72,
+          "passes_cases": [
+            "EXT-219"
+          ]
+        },
+        {
+          "rule_id": "SF-005",
+          "fault_family": "sensor_fault",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.65,
+          "passes_cases": [
+            "EXP-N006",
+            "case_041",
+            "EXP-N020"
+          ]
+        },
+        {
+          "rule_id": "SF-006",
+          "fault_family": "sensor_fault",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.6,
+          "passes_cases": [
+            "case_004"
+          ]
+        },
+        {
+          "rule_id": "SF-007",
+          "fault_family": "sensor_fault",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.65,
+          "passes_cases": [
+            "EXP-N028",
+            "case_009",
+            "case_037"
+          ]
+        },
+        {
+          "rule_id": "SF-008",
+          "fault_family": "sensor_fault",
+          "competition_group": "sensor_fault",
+          "base_weight": 0.76,
+          "passes_cases": [
+            "CSV-025",
+            "YAML-CSV25",
+            "TC-046",
+            "EXT-230",
+            "case_046"
+          ]
+        }
+      ],
+      "passes_cases_union": [
+        "CASE-014",
+        "CSV-025",
+        "CSV-041",
+        "CSV-043",
+        "CSV-045",
+        "CSV-072",
+        "CSV-123",
+        "CSV-124",
+        "CSV-125",
+        "CSV-126",
+        "ECU-001",
+        "ECU-002",
+        "ECU-003",
+        "ECU-009",
+        "EXP-N002",
+        "EXP-N004",
+        "EXP-N005",
+        "EXP-N006",
+        "EXP-N015",
+        "EXP-N020",
+        "EXP-N027",
+        "EXP-N028",
+        "EXT-219",
+        "EXT-221",
+        "EXT-229",
+        "EXT-230",
+        "TC-021",
+        "TC-046",
+        "YAML-CSV25",
+        "YAML-CSV41",
+        "YAML-CSV43",
+        "YAML-CSV45",
+        "YAML-CSV72",
+        "YAML-TC22",
+        "YAML-TC46",
+        "YAML-TC47",
+        "case_001",
+        "case_004",
+        "case_009",
+        "case_013",
+        "case_025",
+        "case_026",
+        "case_027",
+        "case_033",
+        "case_037",
+        "case_039",
+        "case_041",
+        "case_046"
+      ],
+      "passes_cases_count": 48
+    },
+    "dual_target_and_neighbour": [
+      "CSV-041",
+      "CSV-045",
+      "CSV-123",
+      "CSV-124",
+      "CSV-125",
+      "CSV-126",
+      "ECU-001",
+      "ECU-009",
+      "EXP-N002",
+      "EXP-N004",
+      "EXP-N005",
+      "EXT-221",
+      "TC-021",
+      "YAML-CSV41",
+      "YAML-CSV45",
+      "YAML-TC47",
+      "case_001",
+      "case_013"
+    ],
+    "confounder_disclosure": {
+      "confounders": [
+        {
+          "confounder": "Upstream Exhaust System Leaks",
+          "mechanism": "Outside air drawn into the exhaust causes excess O2 at the sensor; both tailpipe gas and OBD trims indicate lean — mimics a fuel-delivery or vacuum leak, not a control-system electrical offset. Gas-vs-OBD divergence is near-zero, so the C3 Δλ test fails to trigger.",
+          "cite": "cluster3_prepped.md §Conditions Under Which Signatures May Fail, bullet 1"
+        },
+        {
+          "confounder": "Severe Cylinder Misfires",
+          "mechanism": "A misfiring cylinder pumps raw oxygen and unburned fuel; the upstream O2 sensor drops, the ECU drives trims positive. Tailpipe gas shows high O2 + elevated HC — this can mimic a control-system or sensor bias fault because the O2 sensor response appears biased relative to actual combustion.",
+          "cite": "cluster3_prepped.md §Conditions Under Which Signatures May Fail, bullet 2"
+        }
+      ],
+      "mimic_risk_per_case": [
+        {
+          "case_id": "CASE-039",
+          "predicted_family": "rich_mixture",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "CSV-041",
+          "predicted_family": "lean_condition",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "CSV-045",
+          "predicted_family": "sensor_fault",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "CSV-123",
+          "predicted_family": "rich_mixture",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "CSV-124",
+          "predicted_family": "rich_mixture",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "CSV-125",
+          "predicted_family": null,
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "CSV-126",
+          "predicted_family": null,
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "ECU-001",
+          "predicted_family": "lean_condition",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "ECU-009",
+          "predicted_family": "rich_mixture",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "EXP-N002",
+          "predicted_family": "lean_condition",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "EXP-N004",
+          "predicted_family": "lean_condition",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "EXP-N005",
+          "predicted_family": "catalyst_failure",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "EXP-N018",
+          "predicted_family": "sensor_fault",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "EXP-N019",
+          "predicted_family": "catalyst_failure",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "EXT-221",
+          "predicted_family": "lean_condition",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "TC-021",
+          "predicted_family": "rich_mixture",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "YAML-CSV41",
+          "predicted_family": "rich_mixture",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "YAML-CSV45",
+          "predicted_family": "sensor_fault",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "YAML-RULE_NOx_1",
+          "predicted_family": null,
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "YAML-TC47",
+          "predicted_family": "sensor_fault",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "case_001",
+          "predicted_family": "lean_condition",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        },
+        {
+          "case_id": "case_013",
+          "predicted_family": "rich_mixture",
+          "mimic_risk": "no specific mimic risk from predicted family"
+        }
+      ]
+    },
+    "grounding_strength": [
+      {
+        "signal": "Gas-to-OBD Divergence (Δλ)",
+        "threshold": "Δλ = |λ_OBD − λ_tailpipe| ≥ 0.05",
+        "grounding": "empirical-anecdotal",
+        "feasibility_tier": "Tier B: 5-gas analyzer",
+        "risk_note": "PRODUCER-TUNING RISK — threshold is empirical-anecdotal; not a standardized/OEM constant; confirm against real vehicle data before committing"
+      },
+      {
+        "signal": "Adaptive Fuel Trim Limits (LTFT railed)",
+        "threshold": "LTFT ≥ +25% or ≤ −25% with un-correlated tailpipe chemistry",
+        "grounding": "manufacturer-typical",
+        "feasibility_tier": "Tier A: Generic OBD-II",
+        "risk_note": "Threshold basis is well-grounded"
+      },
+      {
+        "signal": "KOEO MAP-vs-BARO Correlation",
+        "threshold": "|P_MAP − P_BARO| ≥ 5 kPa",
+        "grounding": "manufacturer-typical",
+        "feasibility_tier": "Tier A: Generic OBD-II",
+        "risk_note": "Threshold basis is well-grounded"
+      },
+      {
+        "signal": "DLC Signal Ground drop",
+        "threshold": "ΔV_gnd > 0.20 V (signal ground vs battery negative)",
+        "grounding": "standardized",
+        "feasibility_tier": "Tier C: DMM / breakout box",
+        "risk_note": "Threshold basis is well-grounded"
+      },
+      {
+        "signal": "Ground Path Voltage Drop",
+        "threshold": "ΔV > 0.10 V (ground joint) or > 0.20 V (wire/cable)",
+        "grounding": "standardized",
+        "feasibility_tier": "Tier C: DMM",
+        "risk_note": "Threshold basis is well-grounded"
+      },
+      {
+        "signal": "Active Overrides Response",
+        "threshold": "O2 voltage delta < 0.1 V under ±25% fuel command steps",
+        "grounding": "manufacturer-typical",
+        "feasibility_tier": "Tier C: Bidirectional scan tool",
+        "risk_note": "Threshold basis is well-grounded"
+      }
+    ],
+    "code_landed_neq_score_moved": "The C3 producer emit rule + consumer wiring are BUILDABLE_NOW from cluster3_prepped.md and unit-testable on synthetic control-plausibility vectors. That is CODE_LANDED. SCORE_MOVED (any top3_family delta on the 22) cannot be shown until the owner supplies real column values; the two must never be conflated in a pack report.",
+    "abstain_fallback": "If no KOEO plausibility or voltage/divergence data are supplied, the case stays abstained at MARGIN=0.02; a single warm-idle gas snapshot cannot separate ECU/control faults from true chemistry deviations."
+  },
+  "provenance": {
+    "read_only": true,
+    "corpus_changed": false,
+    "yardstick_minted": false,
+    "rules_edited": false,
+    "producers_wired": false,
+    "values_synthesized": false,
+    "abstain_dial_changed": false,
+    "run_suite_touched": false,
+    "vault_touched": false,
+    "graphify_run": false
+  }
+}

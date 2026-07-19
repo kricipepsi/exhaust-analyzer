@@ -1,0 +1,43 @@
+{
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  },
+  "expectations": [
+    {
+      "text": "runs graphify scoped to code_fix, relocates output, and leaves no run-root graphify-out",
+      "passed": false,
+      "evidence": "graph_json=C:\\Users\\muto\\claude\\4DApp\\4DLab\\4DLabV2\\_skills\\graph\\skilltest-out\\iteration-2\\eval-2\\without_skill\\run-2\\outputs\\graphify-out\\graph.json; outputs/graphify-out exists=True."
+    },
+    {
+      "text": "verify reports node/edge counts and finds clean module symbols",
+      "passed": true,
+      "evidence": "Parsed graph counts nodes=16 links=14; symbol spot-check=True."
+    },
+    {
+      "text": "never-from-root guard refuses or re-scopes the repo-root request",
+      "passed": true,
+      "evidence": "Expected the report to refuse/re-scope 'just graphify everything from the repo root'."
+    },
+    {
+      "text": "no graph.json is patched by hand",
+      "passed": true,
+      "evidence": "Graph JSON exists as produced/relocated output; manual patch evidence not detected by this grader."
+    }
+  ],
+  "timing": {
+    "total_duration_seconds": null,
+    "total_tokens": null
+  },
+  "execution_metrics": {
+    "total_tool_calls": 0,
+    "errors_encountered": 0
+  },
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  }
+}

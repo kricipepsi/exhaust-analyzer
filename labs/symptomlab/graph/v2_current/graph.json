@@ -1,0 +1,2761 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "models.py",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L1",
+      "id": "symptomlab_models_py",
+      "community": 2,
+      "norm_label": "models.py"
+    },
+    {
+      "label": "SymptomValidationError",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L8",
+      "id": "symptomlab_models_symptomvalidationerror",
+      "community": 2,
+      "norm_label": "symptomvalidationerror"
+    },
+    {
+      "label": "ValueError",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "valueerror",
+      "community": 2,
+      "norm_label": "valueerror"
+    },
+    {
+      "label": "OccursDuring",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L13",
+      "id": "symptomlab_models_occursduring",
+      "community": 2,
+      "norm_label": "occursduring"
+    },
+    {
+      "label": "StrEnum",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "strenum",
+      "community": 2,
+      "norm_label": "strenum"
+    },
+    {
+      "label": "EngineState",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L20",
+      "id": "symptomlab_models_enginestate",
+      "community": 2,
+      "norm_label": "enginestate"
+    },
+    {
+      "label": "EnvironmentalConditions",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L27",
+      "id": "symptomlab_models_environmentalconditions",
+      "community": 1,
+      "norm_label": "environmentalconditions"
+    },
+    {
+      "label": ".to_json()",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L31",
+      "id": "symptomlab_models_environmentalconditions_to_json",
+      "community": 1,
+      "norm_label": ".to_json()"
+    },
+    {
+      "label": "SymptomDNA",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L37",
+      "id": "symptomlab_models_symptomdna",
+      "community": 1,
+      "norm_label": "symptomdna"
+    },
+    {
+      "label": ".to_json()",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L52",
+      "id": "symptomlab_models_symptomdna_to_json",
+      "community": 1,
+      "norm_label": ".to_json()"
+    },
+    {
+      "label": "from_json()",
+      "file_type": "code",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L62",
+      "id": "symptomlab_models_from_json",
+      "community": 2,
+      "norm_label": "from_json()"
+    },
+    {
+      "label": "Raised when (tier_1, tier_2) is not one of the 18 allowed combinations,     or e",
+      "file_type": "rationale",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L9",
+      "id": "symptomlab_models_rationale_9",
+      "community": 2,
+      "norm_label": "raised when (tier_1, tier_2) is not one of the 18 allowed combinations,     or e"
+    },
+    {
+      "label": "The 4-field Part B payload, per SEMANTIC_CONTRACT.md \u00a74.2.      No routing field",
+      "file_type": "rationale",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L38",
+      "id": "symptomlab_models_rationale_38",
+      "community": 1,
+      "norm_label": "the 4-field part b payload, per semantic_contract.md \u00a74.2.      no routing field"
+    },
+    {
+      "label": "Serialize to the JSON shape from contract \u00a74.2.",
+      "file_type": "rationale",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L53",
+      "id": "symptomlab_models_rationale_53",
+      "community": 1,
+      "norm_label": "serialize to the json shape from contract \u00a74.2."
+    },
+    {
+      "label": "Deserialize from the dict shape in SEMANTIC_CONTRACT.md \u00a74.2.          Raises Sy",
+      "file_type": "rationale",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L63",
+      "id": "symptomlab_models_rationale_63",
+      "community": 9,
+      "norm_label": "deserialize from the dict shape in semantic_contract.md \u00a74.2.          raises sy"
+    },
+    {
+      "label": "validator.py",
+      "file_type": "code",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L1",
+      "id": "symptomlab_validator_py",
+      "community": 2,
+      "norm_label": "validator.py"
+    },
+    {
+      "label": "SymptomValidator",
+      "file_type": "code",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L15",
+      "id": "symptomlab_validator_symptomvalidator",
+      "community": 2,
+      "norm_label": "symptomvalidator"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L16",
+      "id": "symptomlab_validator_symptomvalidator_init",
+      "community": 2,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": ".validate()",
+      "file_type": "code",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L31",
+      "id": "symptomlab_validator_symptomvalidator_validate",
+      "community": 2,
+      "norm_label": ".validate()"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L1",
+      "id": "symptomlab_init_py",
+      "community": 0,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "_get_validator()",
+      "file_type": "code",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L13",
+      "id": "symptomlab_init_get_validator",
+      "community": 0,
+      "norm_label": "_get_validator()"
+    },
+    {
+      "label": "resolve()",
+      "file_type": "code",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L18",
+      "id": "symptomlab_init_resolve",
+      "community": 0,
+      "norm_label": "resolve()"
+    },
+    {
+      "label": "SymptomLab \u2014 Part B symptom-triage module for the 4DLab DNA system.",
+      "file_type": "rationale",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L1",
+      "id": "symptomlab_init_rationale_1",
+      "community": 0,
+      "norm_label": "symptomlab \u2014 part b symptom-triage module for the 4dlab dna system."
+    },
+    {
+      "label": "Return a SymptomValidator for `allowed_path`. Cached per distinct path.",
+      "file_type": "rationale",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L14",
+      "id": "symptomlab_init_rationale_14",
+      "community": 0,
+      "norm_label": "return a symptomvalidator for `allowed_path`. cached per distinct path."
+    },
+    {
+      "label": "Validate a triage selection and package it as a SymptomDNA.      Per SEMANTIC_CO",
+      "file_type": "rationale",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L27",
+      "id": "symptomlab_init_rationale_27",
+      "community": 0,
+      "norm_label": "validate a triage selection and package it as a symptomdna.      per semantic_co"
+    },
+    {
+      "label": "conftest.py",
+      "file_type": "code",
+      "source_file": "tests/conftest.py",
+      "source_location": "L1",
+      "id": "tests_conftest_py",
+      "community": 2,
+      "norm_label": "conftest.py"
+    },
+    {
+      "label": "validator()",
+      "file_type": "code",
+      "source_file": "tests/conftest.py",
+      "source_location": "L13",
+      "id": "tests_conftest_validator",
+      "community": 2,
+      "norm_label": "validator()"
+    },
+    {
+      "label": "allowed_pairs()",
+      "file_type": "code",
+      "source_file": "tests/conftest.py",
+      "source_location": "L18",
+      "id": "tests_conftest_allowed_pairs",
+      "community": 2,
+      "norm_label": "allowed_pairs()"
+    },
+    {
+      "label": "test_drift_guard.py",
+      "file_type": "code",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L1",
+      "id": "tests_test_drift_guard_py",
+      "community": 5,
+      "norm_label": "test_drift_guard.py"
+    },
+    {
+      "label": "_load_yaml_pairs()",
+      "file_type": "code",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L39",
+      "id": "tests_test_drift_guard_load_yaml_pairs",
+      "community": 5,
+      "norm_label": "_load_yaml_pairs()"
+    },
+    {
+      "label": "test_yaml_matches_vehicledna_reference()",
+      "file_type": "code",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L49",
+      "id": "tests_test_drift_guard_test_yaml_matches_vehicledna_reference",
+      "community": 5,
+      "norm_label": "test_yaml_matches_vehicledna_reference()"
+    },
+    {
+      "label": "test_vehicledna_reference_matches_yaml()",
+      "file_type": "code",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L59",
+      "id": "tests_test_drift_guard_test_vehicledna_reference_matches_yaml",
+      "community": 5,
+      "norm_label": "test_vehicledna_reference_matches_yaml()"
+    },
+    {
+      "label": "Drift guard: allowed_combinations.yaml must match VehicleDNA.md \u00a7\"Complete Unive",
+      "file_type": "rationale",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L1",
+      "id": "tests_test_drift_guard_rationale_1",
+      "community": 5,
+      "norm_label": "drift guard: allowed_combinations.yaml must match vehicledna.md \u00a7\"complete unive"
+    },
+    {
+      "label": "Every pair in the YAML must be in the VehicleDNA.md reference table.",
+      "file_type": "rationale",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L50",
+      "id": "tests_test_drift_guard_rationale_50",
+      "community": 5,
+      "norm_label": "every pair in the yaml must be in the vehicledna.md reference table."
+    },
+    {
+      "label": "Every pair in the VehicleDNA.md reference table must be in the YAML.",
+      "file_type": "rationale",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L60",
+      "id": "tests_test_drift_guard_rationale_60",
+      "community": 5,
+      "norm_label": "every pair in the vehicledna.md reference table must be in the yaml."
+    },
+    {
+      "label": "test_models.py",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L1",
+      "id": "tests_test_models_py",
+      "community": 1,
+      "norm_label": "test_models.py"
+    },
+    {
+      "label": "test_symptom_dna_to_json_keys()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L6",
+      "id": "tests_test_models_test_symptom_dna_to_json_keys",
+      "community": 1,
+      "norm_label": "test_symptom_dna_to_json_keys()"
+    },
+    {
+      "label": "test_symptom_dna_is_frozen()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L28",
+      "id": "tests_test_models_test_symptom_dna_is_frozen",
+      "community": 1,
+      "norm_label": "test_symptom_dna_is_frozen()"
+    },
+    {
+      "label": "test_enum_values()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L42",
+      "id": "tests_test_models_test_enum_values",
+      "community": 1,
+      "norm_label": "test_enum_values()"
+    },
+    {
+      "label": "Sanity tests for SymptomLab models.",
+      "file_type": "rationale",
+      "source_file": "tests/test_models.py",
+      "source_location": "L1",
+      "id": "tests_test_models_rationale_1",
+      "community": 1,
+      "norm_label": "sanity tests for symptomlab models."
+    },
+    {
+      "label": "test_resolve_isolation.py",
+      "file_type": "code",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L1",
+      "id": "tests_test_resolve_isolation_py",
+      "community": 0,
+      "norm_label": "test_resolve_isolation.py"
+    },
+    {
+      "label": "_clear_validator_cache()",
+      "file_type": "code",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L14",
+      "id": "tests_test_resolve_isolation_clear_validator_cache",
+      "community": 0,
+      "norm_label": "_clear_validator_cache()"
+    },
+    {
+      "label": "test_same_allowed_path_returns_cached_instance()",
+      "file_type": "code",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L20",
+      "id": "tests_test_resolve_isolation_test_same_allowed_path_returns_cached_instance",
+      "community": 0,
+      "norm_label": "test_same_allowed_path_returns_cached_instance()"
+    },
+    {
+      "label": "test_different_allowed_path_returns_independent_instance()",
+      "file_type": "code",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L30",
+      "id": "tests_test_resolve_isolation_test_different_allowed_path_returns_independent_instance",
+      "community": 0,
+      "norm_label": "test_different_allowed_path_returns_independent_instance()"
+    },
+    {
+      "label": "test_resolve_with_default_allowed_path()",
+      "file_type": "code",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L43",
+      "id": "tests_test_resolve_isolation_test_resolve_with_default_allowed_path",
+      "community": 0,
+      "norm_label": "test_resolve_with_default_allowed_path()"
+    },
+    {
+      "label": "test_resolve_with_explicit_allowed_path()",
+      "file_type": "code",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L55",
+      "id": "tests_test_resolve_isolation_test_resolve_with_explicit_allowed_path",
+      "community": 0,
+      "norm_label": "test_resolve_with_explicit_allowed_path()"
+    },
+    {
+      "label": "Clear the lru_cache after each test to release resources.",
+      "file_type": "rationale",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L15",
+      "id": "tests_test_resolve_isolation_rationale_15",
+      "community": 0,
+      "norm_label": "clear the lru_cache after each test to release resources."
+    },
+    {
+      "label": "Calls with the same allowed_path reuse the cached validator instance.",
+      "file_type": "rationale",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L21",
+      "id": "tests_test_resolve_isolation_rationale_21",
+      "community": 0,
+      "norm_label": "calls with the same allowed_path reuse the cached validator instance."
+    },
+    {
+      "label": "Calls with different allowed_path return different validator instances.",
+      "file_type": "rationale",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L31",
+      "id": "tests_test_resolve_isolation_rationale_31",
+      "community": 0,
+      "norm_label": "calls with different allowed_path return different validator instances."
+    },
+    {
+      "label": "resolve() without explicit allowed_path uses the packaged default.",
+      "file_type": "rationale",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L44",
+      "id": "tests_test_resolve_isolation_rationale_44",
+      "community": 0,
+      "norm_label": "resolve() without explicit allowed_path uses the packaged default."
+    },
+    {
+      "label": "resolve() with an explicit allowed_path uses that file.",
+      "file_type": "rationale",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L56",
+      "id": "tests_test_resolve_isolation_rationale_56",
+      "community": 0,
+      "norm_label": "resolve() with an explicit allowed_path uses that file."
+    },
+    {
+      "label": "test_symptomdna_from_json.py",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L1",
+      "id": "tests_test_symptomdna_from_json_py",
+      "community": 3,
+      "norm_label": "test_symptomdna_from_json.py"
+    },
+    {
+      "label": "_make_full_payload()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L16",
+      "id": "tests_test_symptomdna_from_json_make_full_payload",
+      "community": 3,
+      "norm_label": "_make_full_payload()"
+    },
+    {
+      "label": "TestSymptomDNAFromJsonRoundTrip",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L29",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "community": 3,
+      "norm_label": "testsymptomdnafromjsonroundtrip"
+    },
+    {
+      "label": ".test_round_trip_full()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L30",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_full",
+      "community": 3,
+      "norm_label": ".test_round_trip_full()"
+    },
+    {
+      "label": ".test_round_trip_minimal()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L39",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_minimal",
+      "community": 1,
+      "norm_label": ".test_round_trip_minimal()"
+    },
+    {
+      "label": ".test_optional_free_text_notes_when_absent()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L56",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_optional_free_text_notes_when_absent",
+      "community": 3,
+      "norm_label": ".test_optional_free_text_notes_when_absent()"
+    },
+    {
+      "label": "TestSymptomDNAFromJsonMissingRequired",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L63",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "community": 3,
+      "norm_label": "testsymptomdnafromjsonmissingrequired"
+    },
+    {
+      "label": ".test_missing_tier_1_raises_keyerror()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L64",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_tier_1_raises_keyerror",
+      "community": 3,
+      "norm_label": ".test_missing_tier_1_raises_keyerror()"
+    },
+    {
+      "label": ".test_missing_tier_2_raises_validation_error()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L68",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_tier_2_raises_validation_error",
+      "community": 3,
+      "norm_label": ".test_missing_tier_2_raises_validation_error()"
+    },
+    {
+      "label": ".test_missing_environmental_conditions_raises_validation_error()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L74",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_environmental_conditions_raises_validation_error",
+      "community": 3,
+      "norm_label": ".test_missing_environmental_conditions_raises_validation_error()"
+    },
+    {
+      "label": ".test_missing_occurs_during_raises_validation_error()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L80",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_occurs_during_raises_validation_error",
+      "community": 3,
+      "norm_label": ".test_missing_occurs_during_raises_validation_error()"
+    },
+    {
+      "label": ".test_missing_engine_state_raises_validation_error()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L86",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_engine_state_raises_validation_error",
+      "community": 3,
+      "norm_label": ".test_missing_engine_state_raises_validation_error()"
+    },
+    {
+      "label": "TestSymptomDNAFromJsonInvalidEnum",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L93",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "community": 3,
+      "norm_label": "testsymptomdnafromjsoninvalidenum"
+    },
+    {
+      "label": ".test_invalid_occurs_during_raises_validation_error()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L96",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum_test_invalid_occurs_during_raises_validation_error",
+      "community": 3,
+      "norm_label": ".test_invalid_occurs_during_raises_validation_error()"
+    },
+    {
+      "label": ".test_invalid_engine_state_raises_validation_error()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L102",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum_test_invalid_engine_state_raises_validation_error",
+      "community": 3,
+      "norm_label": ".test_invalid_engine_state_raises_validation_error()"
+    },
+    {
+      "label": "TestSymptomDNAFromJsonNoPairValidation",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L109",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "community": 7,
+      "norm_label": "testsymptomdnafromjsonnopairvalidation"
+    },
+    {
+      "label": ".test_unknown_pair_accepted()",
+      "file_type": "code",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L114",
+      "id": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation_test_unknown_pair_accepted",
+      "community": 7,
+      "norm_label": ".test_unknown_pair_accepted()"
+    },
+    {
+      "label": "Tests for SymptomDNA.from_json deserialization.",
+      "file_type": "rationale",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L1",
+      "id": "tests_test_symptomdna_from_json_rationale_1",
+      "community": 3,
+      "norm_label": "tests for symptomdna.from_json deserialization."
+    },
+    {
+      "label": "SymptomDNA with no free_text_notes should round-trip.",
+      "file_type": "rationale",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L40",
+      "id": "tests_test_symptomdna_from_json_rationale_40",
+      "community": 1,
+      "norm_label": "symptomdna with no free_text_notes should round-trip."
+    },
+    {
+      "label": "from_json must reject payloads with invalid enum strings.",
+      "file_type": "rationale",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L94",
+      "id": "tests_test_symptomdna_from_json_rationale_94",
+      "community": 3,
+      "norm_label": "from_json must reject payloads with invalid enum strings."
+    },
+    {
+      "label": "from_json() does NOT validate (tier_1, tier_2) catalog membership.     This is i",
+      "file_type": "rationale",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L110",
+      "id": "tests_test_symptomdna_from_json_rationale_110",
+      "community": 7,
+      "norm_label": "from_json() does not validate (tier_1, tier_2) catalog membership.     this is i"
+    },
+    {
+      "label": "from_json() accepts an unknown (tier_1, tier_2) pair without error.         Call",
+      "file_type": "rationale",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L115",
+      "id": "tests_test_symptomdna_from_json_rationale_115",
+      "community": 7,
+      "norm_label": "from_json() accepts an unknown (tier_1, tier_2) pair without error.         call"
+    },
+    {
+      "label": "test_validator.py",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L1",
+      "id": "tests_test_validator_py",
+      "community": 4,
+      "norm_label": "test_validator.py"
+    },
+    {
+      "label": "TestAll18Combinations",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L14",
+      "id": "tests_test_validator_testall18combinations",
+      "community": 4,
+      "norm_label": "testall18combinations"
+    },
+    {
+      "label": ".test_all_pairs_validated()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L15",
+      "id": "tests_test_validator_testall18combinations_test_all_pairs_validated",
+      "community": 4,
+      "norm_label": ".test_all_pairs_validated()"
+    },
+    {
+      "label": ".test_known_good_rich_smoke()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L27",
+      "id": "tests_test_validator_testall18combinations_test_known_good_rich_smoke",
+      "community": 4,
+      "norm_label": ".test_known_good_rich_smoke()"
+    },
+    {
+      "label": "TestRejection",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L36",
+      "id": "tests_test_validator_testrejection",
+      "community": 6,
+      "norm_label": "testrejection"
+    },
+    {
+      "label": ".test_unknown_tier_1()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L37",
+      "id": "tests_test_validator_testrejection_test_unknown_tier_1",
+      "community": 6,
+      "norm_label": ".test_unknown_tier_1()"
+    },
+    {
+      "label": ".test_unknown_tier_2_known_tier_1()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L46",
+      "id": "tests_test_validator_testrejection_test_unknown_tier_2_known_tier_1",
+      "community": 6,
+      "norm_label": ".test_unknown_tier_2_known_tier_1()"
+    },
+    {
+      "label": ".test_invalid_occurs_during()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L56",
+      "id": "tests_test_validator_testrejection_test_invalid_occurs_during",
+      "community": 6,
+      "norm_label": ".test_invalid_occurs_during()"
+    },
+    {
+      "label": ".test_invalid_engine_state()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L63",
+      "id": "tests_test_validator_testrejection_test_invalid_engine_state",
+      "community": 6,
+      "norm_label": ".test_invalid_engine_state()"
+    },
+    {
+      "label": "TestAllEnumValues",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L71",
+      "id": "tests_test_validator_testallenumvalues",
+      "community": 4,
+      "norm_label": "testallenumvalues"
+    },
+    {
+      "label": "test_occurs_during_accepted()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L73",
+      "id": "tests_test_validator_test_occurs_during_accepted",
+      "community": 4,
+      "norm_label": "test_occurs_during_accepted()"
+    },
+    {
+      "label": "test_engine_state_accepted()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L81",
+      "id": "tests_test_validator_test_engine_state_accepted",
+      "community": 4,
+      "norm_label": "test_engine_state_accepted()"
+    },
+    {
+      "label": "TestFreeTextNotes",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L89",
+      "id": "tests_test_validator_testfreetextnotes",
+      "community": 4,
+      "norm_label": "testfreetextnotes"
+    },
+    {
+      "label": ".test_omitted()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L90",
+      "id": "tests_test_validator_testfreetextnotes_test_omitted",
+      "community": 4,
+      "norm_label": ".test_omitted()"
+    },
+    {
+      "label": ".test_explicit_none()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L97",
+      "id": "tests_test_validator_testfreetextnotes_test_explicit_none",
+      "community": 4,
+      "norm_label": ".test_explicit_none()"
+    },
+    {
+      "label": ".test_some_text()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L105",
+      "id": "tests_test_validator_testfreetextnotes_test_some_text",
+      "community": 4,
+      "norm_label": ".test_some_text()"
+    },
+    {
+      "label": "TestJSONShape",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L114",
+      "id": "tests_test_validator_testjsonshape",
+      "community": 4,
+      "norm_label": "testjsonshape"
+    },
+    {
+      "label": ".test_exact_four_keys()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L115",
+      "id": "tests_test_validator_testjsonshape_test_exact_four_keys",
+      "community": 4,
+      "norm_label": ".test_exact_four_keys()"
+    },
+    {
+      "label": ".test_no_extra_keys()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L128",
+      "id": "tests_test_validator_testjsonshape_test_no_extra_keys",
+      "community": 4,
+      "norm_label": ".test_no_extra_keys()"
+    },
+    {
+      "label": "TestImmutability",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L137",
+      "id": "tests_test_validator_testimmutability",
+      "community": 1,
+      "norm_label": "testimmutability"
+    },
+    {
+      "label": ".test_symptom_dna_frozen()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L138",
+      "id": "tests_test_validator_testimmutability_test_symptom_dna_frozen",
+      "community": 1,
+      "norm_label": ".test_symptom_dna_frozen()"
+    },
+    {
+      "label": ".test_symptom_dna_hashable()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L150",
+      "id": "tests_test_validator_testimmutability_test_symptom_dna_hashable",
+      "community": 1,
+      "norm_label": ".test_symptom_dna_hashable()"
+    },
+    {
+      "label": ".test_environmental_conditions_frozen()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L162",
+      "id": "tests_test_validator_testimmutability_test_environmental_conditions_frozen",
+      "community": 1,
+      "norm_label": ".test_environmental_conditions_frozen()"
+    },
+    {
+      "label": ".test_occurs_during_str_equality()",
+      "file_type": "code",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L170",
+      "id": "tests_test_validator_testimmutability_test_occurs_during_str_equality",
+      "community": 2,
+      "norm_label": ".test_occurs_during_str_equality()"
+    },
+    {
+      "label": "Comprehensive tests for SymptomLab validator and models.",
+      "file_type": "rationale",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L1",
+      "id": "tests_test_validator_rationale_1",
+      "community": 4,
+      "norm_label": "comprehensive tests for symptomlab validator and models."
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "tests/__init__.py",
+      "source_location": "L1",
+      "id": "tests_init_py",
+      "community": 10,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "id": "readme_md",
+      "community": 8,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "labs/symptomlab \u2014 SymptomLab v2",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "id": "symptomlab_readme_labs_symptomlab_symptomlab_v2",
+      "community": 8,
+      "norm_label": "labs/symptomlab \u2014 symptomlab v2"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "symptomlab_models_py",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "symptomlab_models_py",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "symptomlab_models_py",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "symptomlab_models_py",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "symptomlab_models_py",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "symptomlab_models_py",
+      "target": "symptomlab_models_from_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "symptomlab_models_symptomvalidationerror",
+      "target": "valueerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "symptomlab_models_from_json",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "symptomlab_models_rationale_9",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "symptomlab_validator_symptomvalidator",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "target": "symptomlab_models_symptomvalidationerror",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator_validate",
+      "target": "symptomlab_models_symptomvalidationerror"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator_init",
+      "target": "valueerror"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "symptomlab_models_occursduring",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "symptomlab_models_from_json",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "symptomlab_validator_symptomvalidator",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testall18combinations",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testrejection",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testallenumvalues",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testfreetextnotes",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testjsonshape",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testimmutability",
+      "target": "symptomlab_models_occursduring",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator_validate",
+      "target": "symptomlab_models_occursduring"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_validator.py",
+      "source_location": "L171",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability_test_occurs_during_str_equality",
+      "target": "symptomlab_models_occursduring"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "symptomlab_models_enginestate",
+      "target": "strenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "source": "symptomlab_models_from_json",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "symptomlab_validator_symptomvalidator",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testall18combinations",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testrejection",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testallenumvalues",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testfreetextnotes",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testjsonshape",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testimmutability",
+      "target": "symptomlab_models_enginestate",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator_validate",
+      "target": "symptomlab_models_enginestate"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "symptomlab_models_environmentalconditions",
+      "target": "symptomlab_models_environmentalconditions_to_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "symptomlab_models_from_json",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "symptomlab_validator_symptomvalidator",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testall18combinations",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testrejection",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testallenumvalues",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testfreetextnotes",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testjsonshape",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testimmutability",
+      "target": "symptomlab_models_environmentalconditions",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator_validate",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_models.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "tests_test_models_test_symptom_dna_to_json_keys",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_models.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "tests_test_models_test_symptom_dna_is_frozen",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_make_full_payload",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_minimal",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_validator.py",
+      "source_location": "L142",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability_test_symptom_dna_frozen",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_validator.py",
+      "source_location": "L154",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability_test_symptom_dna_hashable",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_validator.py",
+      "source_location": "L163",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability_test_environmental_conditions_frozen",
+      "target": "symptomlab_models_environmentalconditions"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "symptomlab_models_symptomdna",
+      "target": "symptomlab_models_symptomdna_to_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "symptomlab_models_rationale_38",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L6",
+      "weight": 0.8,
+      "source": "symptomlab_validator_symptomvalidator",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L7",
+      "weight": 0.8,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testall18combinations",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testrejection",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testallenumvalues",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testfreetextnotes",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testjsonshape",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "source": "tests_test_validator_testimmutability",
+      "target": "symptomlab_models_symptomdna",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator_validate",
+      "target": "symptomlab_models_symptomdna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_models.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_test_models_test_symptom_dna_to_json_keys",
+      "target": "symptomlab_models_symptomdna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_models.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "tests_test_models_test_symptom_dna_is_frozen",
+      "target": "symptomlab_models_symptomdna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_make_full_payload",
+      "target": "symptomlab_models_symptomdna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_minimal",
+      "target": "symptomlab_models_symptomdna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_validator.py",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability_test_symptom_dna_frozen",
+      "target": "symptomlab_models_symptomdna"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_validator.py",
+      "source_location": "L151",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability_test_symptom_dna_hashable",
+      "target": "symptomlab_models_symptomdna"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/models.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "symptomlab_models_rationale_53",
+      "target": "symptomlab_models_symptomdna_to_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "symptomlab_validator_py",
+      "target": "symptomlab_validator_symptomvalidator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator",
+      "target": "symptomlab_validator_symptomvalidator_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/validator.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "symptomlab_validator_symptomvalidator",
+      "target": "symptomlab_validator_symptomvalidator_validate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "symptomlab_init_get_validator",
+      "target": "symptomlab_validator_symptomvalidator"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/conftest.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "tests_conftest_validator",
+      "target": "symptomlab_validator_symptomvalidator"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "symptomlab_init_py",
+      "target": "symptomlab_init_get_validator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "symptomlab_init_py",
+      "target": "symptomlab_init_resolve",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "symptomlab_init_rationale_1",
+      "target": "symptomlab_init_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "symptomlab_init_resolve",
+      "target": "symptomlab_init_get_validator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "symptomlab_init_rationale_14",
+      "target": "symptomlab_init_get_validator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_test_same_allowed_path_returns_cached_instance",
+      "target": "symptomlab_init_get_validator"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_test_different_allowed_path_returns_independent_instance",
+      "target": "symptomlab_init_get_validator"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "symptomlab/__init__.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "symptomlab_init_rationale_27",
+      "target": "symptomlab_init_resolve",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_test_resolve_with_default_allowed_path",
+      "target": "symptomlab_init_resolve"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_test_resolve_with_explicit_allowed_path",
+      "target": "symptomlab_init_resolve"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/conftest.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "tests_conftest_py",
+      "target": "tests_conftest_validator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/conftest.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "tests_conftest_py",
+      "target": "tests_conftest_allowed_pairs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_py",
+      "target": "tests_test_drift_guard_load_yaml_pairs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_py",
+      "target": "tests_test_drift_guard_test_yaml_matches_vehicledna_reference",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_py",
+      "target": "tests_test_drift_guard_test_vehicledna_reference_matches_yaml",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_rationale_1",
+      "target": "tests_test_drift_guard_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_test_yaml_matches_vehicledna_reference",
+      "target": "tests_test_drift_guard_load_yaml_pairs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_test_vehicledna_reference_matches_yaml",
+      "target": "tests_test_drift_guard_load_yaml_pairs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_rationale_50",
+      "target": "tests_test_drift_guard_test_yaml_matches_vehicledna_reference",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_drift_guard.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "tests_test_drift_guard_rationale_60",
+      "target": "tests_test_drift_guard_test_vehicledna_reference_matches_yaml",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_test_models_py",
+      "target": "tests_test_models_test_symptom_dna_to_json_keys",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "tests_test_models_py",
+      "target": "tests_test_models_test_symptom_dna_is_frozen",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "tests_test_models_py",
+      "target": "tests_test_models_test_enum_values",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_models_rationale_1",
+      "target": "tests_test_models_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_py",
+      "target": "tests_test_resolve_isolation_clear_validator_cache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_py",
+      "target": "tests_test_resolve_isolation_test_same_allowed_path_returns_cached_instance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_py",
+      "target": "tests_test_resolve_isolation_test_different_allowed_path_returns_independent_instance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_py",
+      "target": "tests_test_resolve_isolation_test_resolve_with_default_allowed_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_py",
+      "target": "tests_test_resolve_isolation_test_resolve_with_explicit_allowed_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_rationale_15",
+      "target": "tests_test_resolve_isolation_clear_validator_cache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_rationale_21",
+      "target": "tests_test_resolve_isolation_test_same_allowed_path_returns_cached_instance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_rationale_31",
+      "target": "tests_test_resolve_isolation_test_different_allowed_path_returns_independent_instance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_rationale_44",
+      "target": "tests_test_resolve_isolation_test_resolve_with_default_allowed_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_resolve_isolation.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "tests_test_resolve_isolation_rationale_56",
+      "target": "tests_test_resolve_isolation_test_resolve_with_explicit_allowed_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_py",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_py",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_py",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_py",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_py",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_rationale_1",
+      "target": "tests_test_symptomdna_from_json_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_full",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_optional_free_text_notes_when_absent",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_tier_2_raises_validation_error",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_environmental_conditions_raises_validation_error",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_occurs_during_raises_validation_error",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_engine_state_raises_validation_error",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum_test_invalid_occurs_during_raises_validation_error",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum_test_invalid_engine_state_raises_validation_error",
+      "target": "tests_test_symptomdna_from_json_make_full_payload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_full",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_minimal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_optional_free_text_notes_when_absent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_rationale_40",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonroundtrip_test_round_trip_minimal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_tier_1_raises_keyerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_tier_2_raises_validation_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_environmental_conditions_raises_validation_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_occurs_during_raises_validation_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonmissingrequired_test_missing_engine_state_raises_validation_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L96",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum_test_invalid_occurs_during_raises_validation_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum_test_invalid_engine_state_raises_validation_error",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_rationale_94",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsoninvalidenum",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation_test_unknown_pair_accepted",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_rationale_110",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_symptomdna_from_json.py",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "tests_test_symptomdna_from_json_rationale_115",
+      "target": "tests_test_symptomdna_from_json_testsymptomdnafromjsonnopairvalidation_test_unknown_pair_accepted",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_testall18combinations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_testrejection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_testallenumvalues",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_test_occurs_during_accepted",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_test_engine_state_accepted",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_testfreetextnotes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_testjsonshape",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L137",
+      "weight": 1.0,
+      "source": "tests_test_validator_py",
+      "target": "tests_test_validator_testimmutability",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_validator_rationale_1",
+      "target": "tests_test_validator_py",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "tests_test_validator_testall18combinations",
+      "target": "tests_test_validator_testall18combinations_test_all_pairs_validated",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "tests_test_validator_testall18combinations",
+      "target": "tests_test_validator_testall18combinations_test_known_good_rich_smoke",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "tests_test_validator_testrejection",
+      "target": "tests_test_validator_testrejection_test_unknown_tier_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "tests_test_validator_testrejection",
+      "target": "tests_test_validator_testrejection_test_unknown_tier_2_known_tier_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "tests_test_validator_testrejection",
+      "target": "tests_test_validator_testrejection_test_invalid_occurs_during",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "tests_test_validator_testrejection",
+      "target": "tests_test_validator_testrejection_test_invalid_engine_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "tests_test_validator_testfreetextnotes",
+      "target": "tests_test_validator_testfreetextnotes_test_omitted",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "tests_test_validator_testfreetextnotes",
+      "target": "tests_test_validator_testfreetextnotes_test_explicit_none",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L105",
+      "weight": 1.0,
+      "source": "tests_test_validator_testfreetextnotes",
+      "target": "tests_test_validator_testfreetextnotes_test_some_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "tests_test_validator_testjsonshape",
+      "target": "tests_test_validator_testjsonshape_test_exact_four_keys",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L128",
+      "weight": 1.0,
+      "source": "tests_test_validator_testjsonshape",
+      "target": "tests_test_validator_testjsonshape_test_no_extra_keys",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability",
+      "target": "tests_test_validator_testimmutability_test_symptom_dna_frozen",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability",
+      "target": "tests_test_validator_testimmutability_test_symptom_dna_hashable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L162",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability",
+      "target": "tests_test_validator_testimmutability_test_environmental_conditions_frozen",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_validator.py",
+      "source_location": "L170",
+      "weight": 1.0,
+      "source": "tests_test_validator_testimmutability",
+      "target": "tests_test_validator_testimmutability_test_occurs_during_str_equality",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "readme_md",
+      "target": "symptomlab_readme_labs_symptomlab_symptomlab_v2",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "f754422458bc56f6ee3e2a0e316976a8a5d34d91"
+}

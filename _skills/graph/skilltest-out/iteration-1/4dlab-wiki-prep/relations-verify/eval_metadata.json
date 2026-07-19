@@ -1,0 +1,8 @@
+﻿{
+    "eval_id":  1,
+    "assertions":  [
+
+                   ],
+    "prompt":  "Run relations, labels, verify on wiki_fix/ chunks at C:\\\\tmp\\\\gfxskilltest\\\\wiki_fix\\\\",
+    "eval_name":  "4dlab-wiki-prep-relations-verify"
+}

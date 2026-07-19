@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eval Review</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js" integrity="sha384-EnyY0/GSHQGSxSgMwaIPzSESbqoOLSexfnSMN2AP+39Ckmn92stwABZynq1JyzdT" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #faf9f5;
+      --surface: #ffffff;
+      --border: #e8e6dc;
+      --text: #141413;
+      --text-muted: #b0aea5;
+      --accent: #d97757;
+      --accent-hover: #c4613f;
+      --green: #788c5d;
+      --green-bg: #eef2e8;
+      --red: #c44;
+      --red-bg: #fceaea;
+      --header-bg: #141413;
+      --header-text: #faf9f5;
+      --radius: 6px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ---- Header ---- */
+    .header {
+      background: var(--header-bg);
+      color: var(--header-text);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .header .instructions {
+      font-size: 0.8rem;
+      opacity: 0.7;
+      margin-top: 0.25rem;
+    }
+    .header .progress {
+      font-size: 0.875rem;
+      opacity: 0.8;
+      text-align: right;
+    }
+
+    /* ---- Main content ---- */
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    /* ---- Sections ---- */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      flex-shrink: 0;
+    }
+    .section-header {
+      font-family: 'Poppins', sans-serif;
+      padding: 0.75rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .section-body {
+      padding: 1rem;
+    }
+
+    /* ---- Config badge ---- */
+    .config-badge {
+      display: inline-block;
+      padding: 0.2rem 0.625rem;
+      border-radius: 9999px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-left: 0.75rem;
+      vertical-align: middle;
+    }
+    .config-badge.config-primary {
+      background: rgba(33, 150, 243, 0.12);
+      color: #1976d2;
+    }
+    .config-badge.config-baseline {
+      background: rgba(255, 193, 7, 0.15);
+      color: #f57f17;
+    }
+
+    /* ---- Prompt ---- */
+    .prompt-text {
+      white-space: pre-wrap;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+
+    /* ---- Outputs ---- */
+    .output-file {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .output-file + .output-file {
+      margin-top: 1rem;
+    }
+    .output-file-header {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      font-family: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .output-file-header .dl-btn {
+      font-size: 0.7rem;
+      color: var(--accent);
+      text-decoration: none;
+      cursor: pointer;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+    .output-file-header .dl-btn:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+    .output-file-content {
+      padding: 0.75rem;
+      overflow-x: auto;
+    }
+    .output-file-content pre {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+    }
+    .output-file-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    .output-file-content iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+    }
+    .output-file-content table {
+      border-collapse: collapse;
+      font-size: 0.8125rem;
+      width: 100%;
+    }
+    .output-file-content table td,
+    .output-file-content table th {
+      border: 1px solid var(--border);
+      padding: 0.375rem 0.5rem;
+      text-align: left;
+    }
+    .output-file-content table th {
+      background: var(--bg);
+      font-weight: 600;
+    }
+    .output-file-content .download-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+    .output-file-content .download-link:hover {
+      background: var(--border);
+    }
+    .empty-state {
+      color: var(--text-muted);
+      font-style: italic;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    /* ---- Feedback ---- */
+    .prev-feedback {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.625rem 0.75rem;
+      margin-top: 0.75rem;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .prev-feedback-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.25rem;
+      color: var(--text-muted);
+    }
+    .feedback-textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      resize: vertical;
+      color: var(--text);
+    }
+    .feedback-textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    .feedback-status {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      min-height: 1.1em;
+    }
+
+    /* ---- Grades (collapsible) ---- */
+    .grades-toggle {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .grades-toggle:hover {
+      color: var(--accent);
+    }
+    .grades-toggle .arrow {
+      margin-right: 0.5rem;
+      transition: transform 0.15s;
+      font-size: 0.75rem;
+    }
+    .grades-toggle .arrow.open {
+      transform: rotate(90deg);
+    }
+    .grades-content {
+      display: none;
+      margin-top: 0.75rem;
+    }
+    .grades-content.open {
+      display: block;
+    }
+    .grades-summary {
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .grade-badge {
+      display: inline-block;
+      padding: 0.125rem 0.5rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .grade-pass { background: var(--green-bg); color: var(--green); }
+    .grade-fail { background: var(--red-bg); color: var(--red); }
+    .assertion-list {
+      list-style: none;
+    }
+    .assertion-item {
+      padding: 0.625rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8125rem;
+    }
+    .assertion-item:last-child { border-bottom: none; }
+    .assertion-status {
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+    .assertion-status.pass { color: var(--green); }
+    .assertion-status.fail { color: var(--red); }
+    .assertion-evidence {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+      padding-left: 1.5rem;
+    }
+
+    /* ---- View tabs ---- */
+    .view-tabs {
+      display: flex;
+      gap: 0;
+      padding: 0 2rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .view-tab {
+      font-family: 'Poppins', sans-serif;
+      padding: 0.625rem 1.25rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: var(--text-muted);
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .view-tab:hover { color: var(--text); }
+    .view-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .view-panel { display: none; }
+    .view-panel.active { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+
+    /* ---- Benchmark view ---- */
+    .benchmark-view {
+      padding: 1.5rem 2rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .benchmark-table {
+      border-collapse: collapse;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.8125rem;
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+    .benchmark-table th, .benchmark-table td {
+      padding: 0.625rem 0.75rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    .benchmark-table th {
+      font-family: 'Poppins', sans-serif;
+      background: var(--header-bg);
+      color: var(--header-text);
+      font-weight: 500;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .benchmark-table tr:hover { background: var(--bg); }
+    .benchmark-table tr.benchmark-row-with { background: rgba(33, 150, 243, 0.06); }
+    .benchmark-table tr.benchmark-row-without { background: rgba(255, 193, 7, 0.06); }
+    .benchmark-table tr.benchmark-row-with:hover { background: rgba(33, 150, 243, 0.12); }
+    .benchmark-table tr.benchmark-row-without:hover { background: rgba(255, 193, 7, 0.12); }
+    .benchmark-table tr.benchmark-row-avg { font-weight: 600; border-top: 2px solid var(--border); }
+    .benchmark-table tr.benchmark-row-avg.benchmark-row-with { background: rgba(33, 150, 243, 0.12); }
+    .benchmark-table tr.benchmark-row-avg.benchmark-row-without { background: rgba(255, 193, 7, 0.12); }
+    .benchmark-delta-positive { color: var(--green); font-weight: 600; }
+    .benchmark-delta-negative { color: var(--red); font-weight: 600; }
+    .benchmark-notes {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+    }
+    .benchmark-notes h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+    }
+    .benchmark-notes ul {
+      list-style: disc;
+      padding-left: 1.25rem;
+    }
+    .benchmark-notes li {
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      margin-bottom: 0.375rem;
+    }
+    .benchmark-empty {
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+      padding: 3rem;
+    }
+
+    /* ---- Navigation ---- */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      flex-shrink: 0;
+    }
+    .nav-btn {
+      font-family: 'Poppins', sans-serif;
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: all 0.15s;
+    }
+    .nav-btn:hover:not(:disabled) {
+      background: var(--bg);
+      border-color: var(--text-muted);
+    }
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .done-btn {
+      font-family: 'Poppins', sans-serif;
+      padding: 0.5rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.15s;
+    }
+    .done-btn:hover {
+      background: var(--bg);
+      border-color: var(--text-muted);
+    }
+    .done-btn.ready {
+      border: none;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+    }
+    .done-btn.ready:hover {
+      background: var(--accent-hover);
+    }
+    /* ---- Done overlay ---- */
+    .done-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+    }
+    .done-overlay.visible {
+      display: flex;
+    }
+    .done-card {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 2rem 3rem;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+    }
+    .done-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .done-card p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .done-card .btn-row {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    .done-card button {
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+    .done-card button:hover {
+      background: var(--bg);
+    }
+    /* ---- Toast ---- */
+    .toast {
+      position: fixed;
+      bottom: 5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--header-bg);
+      color: var(--header-text);
+      padding: 0.625rem 1.25rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      z-index: 200;
+    }
+    .toast.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" style="height:100vh; display:flex; flex-direction:column;">
+    <div class="header">
+      <div>
+        <h1>Eval Review: <span id="skill-name"></span></h1>
+        <div class="instructions">Review each output and leave feedback below. Navigate with arrow keys or buttons. When done, copy feedback and paste into Claude Code.</div>
+      </div>
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <!-- View tabs (only shown when benchmark data exists) -->
+    <div class="view-tabs" id="view-tabs" style="display:none;">
+      <button class="view-tab active" onclick="switchView('outputs')">Outputs</button>
+      <button class="view-tab" onclick="switchView('benchmark')">Benchmark</button>
+    </div>
+
+    <!-- Outputs panel (qualitative review) -->
+    <div class="view-panel active" id="panel-outputs">
+    <div class="main">
+      <!-- Prompt -->
+      <div class="section">
+        <div class="section-header">Prompt <span class="config-badge" id="config-badge" style="display:none;"></span></div>
+        <div class="section-body">
+          <div class="prompt-text" id="prompt-text"></div>
+        </div>
+      </div>
+
+      <!-- Outputs -->
+      <div class="section">
+        <div class="section-header">Output</div>
+        <div class="section-body" id="outputs-body">
+          <div class="empty-state">No output files found</div>
+        </div>
+      </div>
+
+      <!-- Previous Output (collapsible) -->
+      <div class="section" id="prev-outputs-section" style="display:none;">
+        <div class="section-header">
+          <div class="grades-toggle" onclick="togglePrevOutputs()">
+            <span class="arrow" id="prev-outputs-arrow">&#9654;</span>
+            Previous Output
+          </div>
+        </div>
+        <div class="grades-content" id="prev-outputs-content"></div>
+      </div>
+
+      <!-- Grades (collapsible) -->
+      <div class="section" id="grades-section" style="display:none;">
+        <div class="section-header">
+          <div class="grades-toggle" onclick="toggleGrades()">
+            <span class="arrow" id="grades-arrow">&#9654;</span>
+            Formal Grades
+          </div>
+        </div>
+        <div class="grades-content" id="grades-content"></div>
+      </div>
+
+      <!-- Feedback -->
+      <div class="section">
+        <div class="section-header">Your Feedback</div>
+        <div class="section-body">
+          <textarea
+            class="feedback-textarea"
+            id="feedback"
+            placeholder="What do you think of this output? Any issues, suggestions, or things that look great?"
+          ></textarea>
+          <div class="feedback-status" id="feedback-status"></div>
+          <div class="prev-feedback" id="prev-feedback" style="display:none;">
+            <div class="prev-feedback-label">Previous feedback</div>
+            <div id="prev-feedback-text"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav" id="outputs-nav">
+      <button class="nav-btn" id="prev-btn" onclick="navigate(-1)">&#8592; Previous</button>
+      <button class="done-btn" id="done-btn" onclick="showDoneDialog()">Submit All Reviews</button>
+      <button class="nav-btn" id="next-btn" onclick="navigate(1)">Next &#8594;</button>
+    </div>
+    </div><!-- end panel-outputs -->
+
+    <!-- Benchmark panel (quantitative stats) -->
+    <div class="view-panel" id="panel-benchmark">
+      <div class="benchmark-view" id="benchmark-content">
+        <div class="benchmark-empty">No benchmark data available. Run a benchmark to see quantitative results here.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Done overlay -->
+  <div class="done-overlay" id="done-overlay">
+    <div class="done-card">
+      <h2>Review Complete</h2>
+      <p>Your feedback has been saved. Go back to your Claude Code session and tell Claude you're done reviewing.</p>
+      <div class="btn-row">
+        <button onclick="closeDoneDialog()">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ---- Embedded data (injected by generate_review.py) ----
+    const EMBEDDED_DATA = {"skill_name": "python", "runs": [{"id": "code-refactor-with_skill", "prompt": "(No prompt found)", "eval_id": null, "outputs": [{"name": "eval_metadata.json", "type": "text", "content": "{\"eval_id\": 1, \"eval_name\": \"code-refactor\", \"config\": \"with_skill\", \"summary\": \"Refactored code to eliminate 10 critical issues including mutable defaults, bare except clauses, missing type hints and docstrings, inefficient string handling, and improved separation of concerns.\"}\n"}, {"name": "grading.json", "type": "text", "content": "{\n  \"expectations\": [\n    {\n      \"text\": \"Identifies the mutable default argument bug (filter=[]) and explains the shared state problem\",\n      \"passed\": true,\n      \"evidence\": \"Mutable default argument discussed\"\n    },\n    {\n      \"text\": \"Points out bare except: and explains why it hides bugs\",\n      \"passed\": true,\n      \"evidence\": \"Bare except anti-pattern called out\"\n    },\n    {\n      \"text\": \"Identifies string concatenation with += in a loop and suggests join()\",\n      \"passed\": true,\n      \"evidence\": \"String concatenation issue identified\"\n    },\n    {\n      \"text\": \"Identifies range(len()) and suggests enumerate()\",\n      \"passed\": true,\n      \"evidence\": \"range(len()) anti-pattern identified\"\n    },\n    {\n      \"text\": \"Refactored code has type hints on all functions\",\n      \"passed\": true,\n      \"evidence\": \"Type hints present in refactored code\"\n    },\n    {\n      \"text\": \"Refactored code uses None as default instead of mutable list\",\n      \"passed\": true,\n      \"evidence\": \"None default used, no mutable list defaults\"\n    },\n    {\n      \"text\": \"Refactored code does not use bare except\",\n      \"passed\": true,\n      \"evidence\": \"No bare except in refactored code\"\n    },\n    {\n      \"text\": \"Refactored code uses join() for string building\",\n      \"passed\": true,\n      \"evidence\": \"join() used for string building\"\n    }\n  ]\n}"}, {"name": "refactored.py", "type": "text", "content": "\"\"\"User database and reporting utilities.\"\"\"\n\nimport logging\nfrom typing import Any\n\nlogger = logging.getLogger(__name__)\n\n\ndef get_users(\n    db: dict[str, Any],\n    filters: list[str] | None = None,\n) -> list[dict[str, Any]]:\n    \"\"\"\n    Retrieve users from the database, optionally filtered by name.\n\n    Args:\n        db: Dictionary with 'users' key containing a list of user dictionaries.\n        filters: List of strings to match against user names (case-sensitive substring match).\n                If None or empty, all users are returned.\n\n    Returns:\n        List of user dictionaries matching the filter criteria.\n\n    Raises:\n        ValueError: If database structure is invalid.\n        KeyError: If a user is missing required 'name' field.\n    \"\"\"\n    if \"users\" not in db:\n        raise ValueError(\"Database must contain 'users' key\")\n    if not isinstance(db[\"users\"], list):\n        raise ValueError(\"db['users'] must be a list\")\n\n    if filters is None:\n        filters = []\n\n    results = []\n    for user in db[\"users\"]:\n        # Validate user structure\n        if \"name\" not in user:\n            logger.warning(\"Skipping user with missing 'name' field: %s\", user)\n            continue\n\n        # If no filters, include all; otherwise include if any filter matches\n        if not filters or any(f in user[\"name\"] for f in filters):\n            results.append(user)\n\n    return results\n\n\ndef make_report(users: list[dict[str, Any]]) -> str:\n    \"\"\"\n    Generate a formatted report from user data.\n\n    Args:\n        users: List of user dictionaries with 'name' and 'age' keys.\n\n    Returns:\n        Formatted report string with one user per line.\n    \"\"\"\n    lines = [f\"Name: {u['name']}, Age: {u['age']}\" for u in users]\n    return \"\\n\".join(lines)\n"}, {"name": "solution.md", "type": "text", "content": "# Code Review: User Database and Reporting Functions\n\n## Issues Found\n\n### 1. **Mutable Default Argument** (Line 1)\n**Problem:** `def get_users(db, filter=[]):`\n\nUsing a mutable object as a default argument is a classic Python pitfall. The list is created once when the function is defined, not each time the function is called. This means all calls without an explicit `filter` argument share the same list object, leading to unexpected behavior if the list is ever modified.\n\n**Why it's a problem:** If the filter is modified within the function, those changes persist across calls. This violates the principle of least surprise and makes the function unreliable.\n\n**Solution:** Use `None` as the default and initialize the actual list inside the function:\n```python\ndef get_users(db: dict, filters: list[str] | None = None) -> list[dict]:\n    if filters is None:\n        filters = []\n```\n\n---\n\n### 2. **Bare Except Clause** (Line 7)\n**Problem:** `except: pass`\n\nCatching all exceptions indiscriminately and silently passing violates Python's principle \"Errors should never pass silently.\" This hides bugs, makes debugging impossible, and silences legitimate programming errors (like `TypeError` or `KeyError`).\n\n**Why it's a problem:** You don't know what went wrong. Is it invalid data? A programming error? Network failure? The exception is lost.\n\n**Solution:** Catch specific exceptions and handle them explicitly:\n```python\nexcept (KeyError, TypeError) as exc:\n    logger.warning(\"Skipping user with invalid structure: %s\", exc)\n    continue\n```\n\n---\n\n### 3. **No Type Hints** (Lines 1, 11)\n**Problem:** Functions lack parameter and return type annotations.\n\n**Why it's a problem:** Code without types is harder to understand, debug, and maintain. IDEs can't provide autocomplete. Type checkers (mypy, pyright) can't catch errors. Future readers don't know what to pass in or expect back.\n\n**Solution:** Annotate all parameters and return values:\n```python\ndef get_users(db: dict, filters: list[str] | None = None) -> list[dict]:\ndef make_report(users: list[dict]) -> str:\n```\n\n---\n\n### 4. **No Docstrings** (Lines 1, 11)\n**Problem:** Functions lack documentation explaining their purpose, parameters, and return values.\n\n**Why it's a problem:** New developers (including your future self) won't understand what the functions do or how to use them.\n\n**Solution:** Add clear docstrings:\n```python\ndef get_users(db: dict, filters: list[str] | None = None) -> list[dict]:\n    \"\"\"\n    Retrieve users from the database, optionally filtered by name.\n    \n    Args:\n        db: Dictionary with 'users' key containing a list of user dicts.\n        filters: List of strings to match against user names (case-sensitive substring match).\n                If None or empty, all users are returned.\n    \n    Returns:\n        List of user dictionaries matching the filter criteria.\n    \"\"\"\n```\n\n---\n\n### 5. **Inefficient Iteration** (Line 3)\n**Problem:** `for i in range(len(db['users'])):`\n\n**Why it's a problem:** This is not Pythonic. It's verbose, harder to read, and slower than direct iteration. You get an index you don't use.\n\n**Solution:** Iterate directly:\n```python\nfor user in db['users']:\n```\n\n---\n\n### 6. **Confusing Filter Logic** (Lines 5-6)\n**Problem:** The filter appends the same user multiple times if multiple filters match:\n```python\nfor f in filter:\n    if f in user['name']:\n        results.append(user)\n```\n\nIf `filter = [\"John\", \"oh\"]` and `user['name'] = \"John\"`, the user is added twice (once for \"John\", once for \"oh\").\n\n**Why it's a problem:** The behavior is unclear. Is this intentional? Most users would expect each user to appear once. The filter intent seems to be \"user matches ANY filter term\" but the implementation allows duplicates.\n\n**Solution:** Use `any()` to check if ANY filter matches, then append once:\n```python\nif any(f in user['name'] for f in filters):\n    results.append(user)\n```\n\n---\n\n### 7. **String Concatenation in Loop** (Line 12)\n**Problem:** `report = report + 'Name: ' + u['name'] + ...`\n\n**Why it's a problem:** String concatenation with `+` in a loop is inefficient in Python. Strings are immutable, so each concatenation creates a new string object. With many users, this degrades from O(n) to O(n\u00b2) performance.\n\n**Solution:** Use `str.join()` which is optimized for this:\n```python\nlines = [f\"Name: {u['name']}, Age: {u['age']}\" for u in users]\nreturn \"\\n\".join(lines)\n```\n\n---\n\n### 8. **Using print() Instead of Logging** (Line 13)\n**Problem:** `print(report)`\n\n**Why it's a problem:** In production code, `print()` is unreliable. It goes to stdout (which might be captured or redirected), can't be filtered by level, and doesn't include timestamps. Proper logging is essential for debugging and monitoring.\n\n**Solution:** Use the `logging` module:\n```python\nimport logging\nlogger = logging.getLogger(__name__)\nlogger.info(\"Generated report:\\n%s\", report)\n```\n\nOr better: return the report string and let the caller decide what to do with it.\n\n---\n\n### 9. **Mixing I/O with Business Logic** (Line 11)\n**Problem:** `make_report()` both builds AND prints the report.\n\n**Why it's a problem:** This violates the Single Responsibility Principle. You can't reuse the report generation logic without printing. You can't test the output easily. You can't send it to a file, email, or API.\n\n**Solution:** Separate concerns: the function should generate and return the report; the caller decides what to do with it:\n```python\ndef make_report(users: list[dict]) -> str:\n    \"\"\"Generate a formatted report from users.\"\"\"\n    lines = [f\"Name: {u['name']}, Age: {u['age']}\" for u in users]\n    return \"\\n\".join(lines)\n\n# Caller decides what to do:\nreport = make_report(users)\nprint(report)  # or log it, write to file, send via email, etc.\n```\n\n---\n\n### 10. **No Input Validation** (Line 1)\n**Problem:** No checks that `db` has a 'users' key or that it's a list of valid dicts.\n\n**Why it's a problem:** If the database structure is wrong, a `KeyError` or `TypeError` is raised with a cryptic message. Better to validate upfront with a clear error.\n\n**Solution:** Add explicit validation:\n```python\nif 'users' not in db:\n    raise ValueError(\"Database must have a 'users' key\")\nif not isinstance(db['users'], list):\n    raise ValueError(\"db['users'] must be a list\")\n```\n\n---\n\n## Refactored Code\n\n```python\n\"\"\"User database and reporting utilities.\"\"\"\n\nimport logging\nfrom typing import Any\n\nlogger = logging.getLogger(__name__)\n\n\ndef get_users(\n    db: dict[str, Any],\n    filters: list[str] | None = None,\n) -> list[dict[str, Any]]:\n    \"\"\"\n    Retrieve users from the database, optionally filtered by name.\n    \n    Args:\n        db: Dictionary with 'users' key containing a list of user dictionaries.\n        filters: List of strings to match against user names (case-sensitive substring match).\n                If None or empty, all users are returned.\n    \n    Returns:\n        List of user dictionaries matching the filter criteria.\n        \n    Raises:\n        ValueError: If database structure is invalid.\n        KeyError: If a user is missing required 'name' field.\n    \"\"\"\n    if \"users\" not in db:\n        raise ValueError(\"Database must contain 'users' key\")\n    if not isinstance(db[\"users\"], list):\n        raise ValueError(\"db['users'] must be a list\")\n    \n    if filters is None:\n        filters = []\n    \n    results = []\n    for user in db[\"users\"]:\n        # Validate user structure\n        if \"name\" not in user:\n            logger.warning(\"Skipping user with missing 'name' field: %s\", user)\n            continue\n        \n        # If no filters, include all; otherwise include if any filter matches\n        if not filters or any(f in user[\"name\"] for f in filters):\n            results.append(user)\n    \n    return results\n\n\ndef make_report(users: list[dict[str, Any]]) -> str:\n    \"\"\"\n    Generate a formatted report from user data.\n    \n    Args:\n        users: List of user dictionaries with 'name' and 'age' keys.\n    \n    Returns:\n        Formatted report string with one user per line.\n    \"\"\"\n    lines = [f\"Name: {u['name']}, Age: {u['age']}\" for u in users]\n    return \"\\n\".join(lines)\n```\n\n---\n\n## Key Improvements\n\n1. \u2705 **Type hints** on all parameters and returns\n2. \u2705 **Docstrings** with clear purpose, args, returns, and exceptions\n3. \u2705 **No mutable defaults** \u2014 uses `None` with guard\n4. \u2705 **No bare except** \u2014 removed entirely with better validation\n5. \u2705 **Direct iteration** \u2014 over indexed loops\n6. \u2705 **Clear filter logic** \u2014 uses `any()`, no duplicates\n7. \u2705 **Efficient strings** \u2014 `join()` instead of concatenation\n8. \u2705 **Proper logging** \u2014 with warnings for invalid data\n9. \u2705 **Separated concerns** \u2014 reports are generated, not printed\n10. \u2705 **Input validation** \u2014 with clear error messages\n\n---\n\n## Usage Example\n\n```python\n# Example database\ndb = {\n    \"users\": [\n        {\"name\": \"Alice\", \"age\": 30},\n        {\"name\": \"Bob\", \"age\": 25},\n        {\"name\": \"Charlie\", \"age\": 35},\n    ]\n}\n\n# Get all users\nall_users = get_users(db)\nprint(make_report(all_users))\n\n# Get users matching filter\nfiltered = get_users(db, filters=[\"li\", \"ob\"])  # Alice and Bob\nprint(make_report(filtered))\n```\n"}], "grading": null}, {"id": "code-refactor-without_skill", "prompt": "(No prompt found)", "eval_id": null, "outputs": [{"name": "eval_metadata.json", "type": "text", "content": "{\"eval_id\": 1, \"eval_name\": \"code-refactor\", \"config\": \"without_skill\", \"summary\": \"Identified 10 critical issues including mutable default arguments, bare exception handling, inefficient string concatenation, and missing return values; refactored with type hints, proper error handling, and improved logic\"}\n"}, {"name": "grading.json", "type": "text", "content": "{\n  \"expectations\": [\n    {\n      \"text\": \"Identifies the mutable default argument bug (filter=[]) and explains the shared state problem\",\n      \"passed\": true,\n      \"evidence\": \"Mutable default argument discussed\"\n    },\n    {\n      \"text\": \"Points out bare except: and explains why it hides bugs\",\n      \"passed\": true,\n      \"evidence\": \"Bare except anti-pattern called out\"\n    },\n    {\n      \"text\": \"Identifies string concatenation with += in a loop and suggests join()\",\n      \"passed\": true,\n      \"evidence\": \"String concatenation issue identified\"\n    },\n    {\n      \"text\": \"Identifies range(len()) and suggests enumerate()\",\n      \"passed\": true,\n      \"evidence\": \"range(len()) anti-pattern identified\"\n    },\n    {\n      \"text\": \"Refactored code has type hints on all functions\",\n      \"passed\": true,\n      \"evidence\": \"Type hints present in refactored code\"\n    },\n    {\n      \"text\": \"Refactored code uses None as default instead of mutable list\",\n      \"passed\": true,\n      \"evidence\": \"None default used, no mutable list defaults\"\n    },\n    {\n      \"text\": \"Refactored code does not use bare except\",\n      \"passed\": true,\n      \"evidence\": \"No bare except in refactored code\"\n    },\n    {\n      \"text\": \"Refactored code uses join() for string building\",\n      \"passed\": true,\n      \"evidence\": \"join() used for string building\"\n    }\n  ]\n}"}, {"name": "refactored.py", "type": "text", "content": "def get_users(db: dict, filter: list[str] | None = None) -> list[dict]:\n    \"\"\"\n    Filter users from database by name substring matching.\n\n    Args:\n        db: Database dict containing 'users' key with list of user dicts\n        filter: List of substrings to match against user names.\n               If None or empty, returns all users.\n               Returns users matching ANY filter term (OR logic).\n\n    Returns:\n        List of user dictionaries matching filter criteria\n\n    Raises:\n        KeyError: If db['users'] key is missing\n        TypeError: If filter is not list-like\n    \"\"\"\n    if filter is None:\n        filter = []\n\n    users = db['users']  # Will raise KeyError if missing - explicit error\n\n    if not filter:\n        return users.copy()  # Return copy to prevent external modification\n\n    results = []\n    seen = set()\n\n    for user in users:\n        try:\n            name = user.get('name', '')\n            user_id = id(user)  # Use object identity to avoid duplicates\n\n            if user_id not in seen:\n                for term in filter:\n                    if term.lower() in name.lower():\n                        results.append(user)\n                        seen.add(user_id)\n                        break\n        except (AttributeError, TypeError) as e:\n            # Log or handle specific errors if needed\n            continue\n\n    return results\n\n\ndef make_report(users: list[dict]) -> str:\n    \"\"\"\n    Generate a formatted report of users.\n\n    Args:\n        users: List of user dictionaries with 'name' and 'age' keys\n\n    Returns:\n        Formatted report string with one user per line\n\n    Raises:\n        KeyError: If required keys missing\n    \"\"\"\n    lines = []\n\n    for user in users:\n        try:\n            name = user.get('name', 'Unknown')\n            age = user.get('age', 'Unknown')\n            line = f\"Name: {name}, Age: {age}\"\n            lines.append(line)\n        except (AttributeError, TypeError):\n            continue\n\n    return '\\n'.join(lines)\n\n\n# Usage example (if called as main)\nif __name__ == '__main__':\n    # Example usage\n    sample_db = {\n        'users': [\n            {'name': 'Alice', 'age': 30},\n            {'name': 'Bob', 'age': 25},\n            {'name': 'Charlie', 'age': 35}\n        ]\n    }\n\n    # Get users matching filter\n    filtered = get_users(sample_db, filter=['li', 'ob'])\n\n    # Generate and return report\n    report = make_report(filtered)\n    print(report)\n"}, {"name": "solution.md", "type": "text", "content": "# Python Code Review and Refactoring\n\n## Issues Identified\n\n### 1. **Mutable Default Argument** (get_users function)\n**Problem**: `filter=[]` creates a single mutable list object used for all function calls. Any modifications to this list persist across calls, leading to unexpected behavior.\n**Why it matters**: This is a common Python pitfall. All function calls that don't provide a filter argument will share the same list object.\n**Severity**: HIGH\n\n### 2. **Inefficient List Indexing** (get_users function)\n**Problem**: `for i in range(len(db['users']))` then accessing `db['users'][i]` is verbose and un-Pythonic.\n**Why it matters**: Direct iteration (`for user in db['users']`) is clearer, faster, and more readable.\n**Severity**: MEDIUM\n\n### 3. **Bare Exception Handling** (get_users function)\n**Problem**: `except: pass` silently catches and ignores ALL exceptions including KeyError, TypeError, and system exceptions.\n**Why it matters**: This hides bugs and makes debugging nearly impossible. Invalid data or code errors go unnoticed.\n**Severity**: HIGH\n\n### 4. **Inefficient Filter Logic** (get_users function)\n**Problem**: The current logic appends the same user multiple times if it matches multiple filter terms. If filter is `['a', 'an']` and user name is 'Shannon', it gets appended twice.\n**Why it matters**: Produces duplicate results and doesn't match expected filtering behavior. Unclear if the intent was AND or OR logic.\n**Severity**: MEDIUM\n\n### 5. **No Input Validation** (get_users function)\n**Problem**: No checks that `db['users']` exists or is iterable, or that filter elements are strings.\n**Why it matters**: Can crash with unhelpful KeyError or TypeError messages.\n**Severity**: MEDIUM\n\n### 6. **String Concatenation in Loop** (make_report function)\n**Problem**: `report = report + '...'` inside a loop creates new string objects repeatedly. Python strings are immutable.\n**Why it matters**: O(n\u00b2) time complexity for n users. Should use list and join(), or f-strings.\n**Severity**: MEDIUM\n\n### 7. **Silent Output, No Return** (make_report function)\n**Problem**: Function only prints, doesn't return the report. Caller cannot process or test the output.\n**Why it matters**: Reduces flexibility and testability. Hard to use in other contexts (logging, file writing, etc.).\n**Severity**: MEDIUM\n\n### 8. **No Error Handling** (make_report function)\n**Problem**: Will crash if user dict is missing 'name' or 'age' keys.\n**Why it matters**: No graceful handling of malformed data.\n**Severity**: MEDIUM\n\n### 9. **Type Assumptions**\n**Problem**: Code assumes specific data structure without validation. What if 'age' is not convertible to string?\n**Why it matters**: Runtime errors from bad data rather than validation errors.\n**Severity**: LOW\n\n### 10. **Missing Documentation**\n**Problem**: No docstrings explaining parameters, return values, or behavior.\n**Why it matters**: Unclear what the functions do, especially filter behavior.\n**Severity**: LOW\n\n---\n\n## Refactored Version\n\n```python\ndef get_users(db: dict, filter: list[str] | None = None) -> list[dict]:\n    \"\"\"\n    Filter users from database by name substring matching.\n    \n    Args:\n        db: Database dict containing 'users' key with list of user dicts\n        filter: List of substrings to match against user names.\n               If None or empty, returns all users.\n               Returns users matching ANY filter term (OR logic).\n    \n    Returns:\n        List of user dictionaries matching filter criteria\n    \n    Raises:\n        KeyError: If db['users'] key is missing\n        TypeError: If filter is not list-like\n    \"\"\"\n    if filter is None:\n        filter = []\n    \n    users = db['users']  # Will raise KeyError if missing - explicit error\n    \n    if not filter:\n        return users.copy()  # Return copy to prevent external modification\n    \n    results = []\n    seen = set()\n    \n    for user in users:\n        try:\n            name = user.get('name', '')\n            user_id = id(user)  # Use object identity to avoid duplicates\n            \n            if user_id not in seen:\n                for term in filter:\n                    if term.lower() in name.lower():\n                        results.append(user)\n                        seen.add(user_id)\n                        break\n        except (AttributeError, TypeError) as e:\n            # Log or handle specific errors if needed\n            continue\n    \n    return results\n\n\ndef make_report(users: list[dict]) -> str:\n    \"\"\"\n    Generate a formatted report of users.\n    \n    Args:\n        users: List of user dictionaries with 'name' and 'age' keys\n    \n    Returns:\n        Formatted report string with one user per line\n    \n    Raises:\n        KeyError: If required keys missing\n    \"\"\"\n    lines = []\n    \n    for user in users:\n        try:\n            name = user.get('name', 'Unknown')\n            age = user.get('age', 'Unknown')\n            line = f\"Name: {name}, Age: {age}\"\n            lines.append(line)\n        except (AttributeError, TypeError):\n            continue\n    \n    return '\\n'.join(lines)\n\n\n# Usage example (if called as main)\nif __name__ == '__main__':\n    # Example usage\n    sample_db = {\n        'users': [\n            {'name': 'Alice', 'age': 30},\n            {'name': 'Bob', 'age': 25},\n            {'name': 'Charlie', 'age': 35}\n        ]\n    }\n    \n    # Get users matching filter\n    filtered = get_users(sample_db, filter=['li', 'ob'])\n    \n    # Generate and return report\n    report = make_report(filtered)\n    print(report)\n```\n\n## Key Improvements\n\n1. **Type hints** for clarity and IDE support\n2. **Proper default argument** (`None` instead of `[]`)\n3. **Direct iteration** instead of index loops\n4. **Specific exception handling** for clarity\n5. **Duplicate prevention** using set tracking\n6. **Return instead of print** for flexibility\n7. **f-strings** for efficient string building\n8. **Docstrings** documenting behavior\n9. **Use of .get()** for safe dict access\n10. **Input validation** where critical\n"}], "grading": null}, {"id": "csv-validator-with_skill", "prompt": "(No prompt found)", "eval_id": null, "outputs": [{"name": "eval_metadata.json", "type": "text", "content": "{\"eval_id\": 0, \"eval_name\": \"csv-validator\", \"config\": \"with_skill\", \"summary\": \"Comprehensive CSV validator with row validation for name (non-empty string) and age (0-120 integer), efficient streaming support for large files, detailed error logging per invalid row, full type hints, and docstrings following Python best practices.\"}\n"}, {"name": "grading.json", "type": "text", "content": "{\n  \"expectations\": [\n    {\n      \"text\": \"Has type hints on function parameters and return type\",\n      \"passed\": true,\n      \"evidence\": \"Type hints present in function signatures\"\n    },\n    {\n      \"text\": \"Uses logging module, not print statements\",\n      \"passed\": true,\n      \"evidence\": \"logging imported; no print() calls found\"\n    },\n    {\n      \"text\": \"Handles file-not-found and malformed CSV with specific exceptions (not bare except)\",\n      \"passed\": true,\n      \"evidence\": \"Specific exceptions caught, no bare except\"\n    },\n    {\n      \"text\": \"Validates both name (non-empty) and age (int, 0-120) with clear error messages\",\n      \"passed\": true,\n      \"evidence\": \"Both name and age validated with 0-120 range check\"\n    },\n    {\n      \"text\": \"Uses pathlib.Path or accepts Path objects for the file path\",\n      \"passed\": true,\n      \"evidence\": \"pathlib.Path used\"\n    },\n    {\n      \"text\": \"Has a docstring explaining parameters and return value\",\n      \"passed\": true,\n      \"evidence\": \"Docstring with Args and Returns sections found\"\n    },\n    {\n      \"text\": \"No mutable default arguments\",\n      \"passed\": true,\n      \"evidence\": \"No mutable default arguments found\"\n    },\n    {\n      \"text\": \"Uses f-strings for string formatting\",\n      \"passed\": true,\n      \"evidence\": \"f-strings used\"\n    }\n  ]\n}"}, {"name": "solution.py", "type": "text", "content": "\"\"\"CSV validator module for reading and validating CSV files efficiently.\"\"\"\n\nimport csv\nimport logging\nfrom pathlib import Path\nfrom typing import Generator\n\nlogger = logging.getLogger(__name__)\n\n\ndef validate_name(value: str) -> tuple[bool, str | None]:\n    \"\"\"\n    Validate a name field.\n\n    Args:\n        value: The name value to validate.\n\n    Returns:\n        A tuple of (is_valid, error_message). error_message is None if valid.\n    \"\"\"\n    if not isinstance(value, str):\n        return False, f\"name must be a string, got {type(value).__name__}\"\n\n    if not value.strip():\n        return False, \"name cannot be empty\"\n\n    return True, None\n\n\ndef validate_age(value: str) -> tuple[bool, str | None]:\n    \"\"\"\n    Validate an age field.\n\n    Args:\n        value: The age value to validate (as string from CSV).\n\n    Returns:\n        A tuple of (is_valid, error_message). error_message is None if valid.\n    \"\"\"\n    try:\n        age = int(value)\n    except (ValueError, TypeError):\n        return False, f\"age must be an integer, got {value!r}\"\n\n    if age < 0 or age > 120:\n        return False, f\"age must be between 0 and 120, got {age}\"\n\n    return True, None\n\n\ndef read_and_validate_csv(\n    file_path: Path | str,\n) -> list[dict[str, str]]:\n    \"\"\"\n    Read a CSV file, validate each row, and return valid records.\n\n    Validates that each row has:\n    - 'name': non-empty string\n    - 'age': positive integer between 0 and 120\n\n    Invalid rows are logged with a warning showing the row number and\n    specific validation error, then skipped. This function handles large\n    files efficiently by streaming rows rather than loading the entire\n    file into memory.\n\n    Args:\n        file_path: Path to the CSV file (str or pathlib.Path).\n\n    Returns:\n        A list of valid records as dictionaries, where each dict has\n        'name' and 'age' keys. Returns an empty list if no valid records\n        are found or the file is empty.\n\n    Raises:\n        FileNotFoundError: If the CSV file does not exist.\n        ValueError: If the CSV file has no 'name' or 'age' column headers.\n    \"\"\"\n    path = Path(file_path)\n\n    if not path.exists():\n        raise FileNotFoundError(f\"CSV file not found: {path}\")\n\n    valid_records = []\n\n    try:\n        with open(path, \"r\", encoding=\"utf-8\", newline=\"\") as f:\n            reader = csv.DictReader(f)\n\n            if reader.fieldnames is None:\n                raise ValueError(\"CSV file is empty or has no headers\")\n\n            # Validate that required columns exist\n            required_columns = {\"name\", \"age\"}\n            if not required_columns.issubset(set(reader.fieldnames)):\n                missing = required_columns - set(reader.fieldnames)\n                raise ValueError(\n                    f\"CSV file missing required columns: {', '.join(sorted(missing))}\"\n                )\n\n            for row_num, row in enumerate(reader, start=2):  # start=2 because row 1 is header\n                # Validate name\n                name_valid, name_error = validate_name(row.get(\"name\", \"\").strip())\n                if not name_valid:\n                    logger.warning(\n                        f\"Row {row_num}: Invalid name - {name_error}\"\n                    )\n                    continue\n\n                # Validate age\n                age_valid, age_error = validate_age(row.get(\"age\", \"\"))\n                if not age_valid:\n                    logger.warning(\n                        f\"Row {row_num}: Invalid age - {age_error}\"\n                    )\n                    continue\n\n                # Both fields are valid; add the record\n                valid_records.append({\n                    \"name\": row[\"name\"].strip(),\n                    \"age\": row[\"age\"],\n                })\n\n    except (FileNotFoundError, ValueError):\n        raise\n    except Exception as exc:\n        logger.exception(\"Unexpected error reading CSV file: %s\", file_path)\n        raise\n\n    return valid_records\n\n\ndef read_and_validate_csv_streaming(\n    file_path: Path | str,\n) -> Generator[dict[str, str], None, None]:\n    \"\"\"\n    Read a CSV file and yield valid records as a generator.\n\n    This streaming version is ideal for processing very large files where\n    you don't need all records in memory at once. Invalid rows are logged\n    with warnings and skipped.\n\n    Args:\n        file_path: Path to the CSV file (str or pathlib.Path).\n\n    Yields:\n        Valid records as dictionaries with 'name' and 'age' keys.\n\n    Raises:\n        FileNotFoundError: If the CSV file does not exist.\n        ValueError: If the CSV file has no 'name' or 'age' column headers.\n    \"\"\"\n    path = Path(file_path)\n\n    if not path.exists():\n        raise FileNotFoundError(f\"CSV file not found: {path}\")\n\n    try:\n        with open(path, \"r\", encoding=\"utf-8\", newline=\"\") as f:\n            reader = csv.DictReader(f)\n\n            if reader.fieldnames is None:\n                raise ValueError(\"CSV file is empty or has no headers\")\n\n            # Validate that required columns exist\n            required_columns = {\"name\", \"age\"}\n            if not required_columns.issubset(set(reader.fieldnames)):\n                missing = required_columns - set(reader.fieldnames)\n                raise ValueError(\n                    f\"CSV file missing required columns: {', '.join(sorted(missing))}\"\n                )\n\n            for row_num, row in enumerate(reader, start=2):  # start=2 because row 1 is header\n                # Validate name\n                name_valid, name_error = validate_name(row.get(\"name\", \"\").strip())\n                if not name_valid:\n                    logger.warning(\n                        f\"Row {row_num}: Invalid name - {name_error}\"\n                    )\n                    continue\n\n                # Validate age\n                age_valid, age_error = validate_age(row.get(\"age\", \"\"))\n                if not age_valid:\n                    logger.warning(\n                        f\"Row {row_num}: Invalid age - {age_error}\"\n                    )\n                    continue\n\n                # Both fields are valid; yield the record\n                yield {\n                    \"name\": row[\"name\"].strip(),\n                    \"age\": row[\"age\"],\n                }\n\n    except (FileNotFoundError, ValueError):\n        raise\n    except Exception as exc:\n        logger.exception(\"Unexpected error reading CSV file: %s\", file_path)\n        raise\n"}], "grading": null}, {"id": "csv-validator-without_skill", "prompt": "(No prompt found)", "eval_id": null, "outputs": [{"name": "eval_metadata.json", "type": "text", "content": "{\"eval_id\": 0, \"eval_name\": \"csv-validator\", \"config\": \"without_skill\", \"summary\": \"CSV validator function with comprehensive validation for name and age fields, efficient streaming processing, proper logging of validation errors, and full type hints and docstring.\"}\n"}, {"name": "grading.json", "type": "text", "content": "{\n  \"expectations\": [\n    {\n      \"text\": \"Has type hints on function parameters and return type\",\n      \"passed\": false,\n      \"evidence\": \"Type hints present in function signatures\"\n    },\n    {\n      \"text\": \"Uses logging module, not print statements\",\n      \"passed\": false,\n      \"evidence\": \"print() found or logging missing\"\n    },\n    {\n      \"text\": \"Handles file-not-found and malformed CSV with specific exceptions (not bare except)\",\n      \"passed\": true,\n      \"evidence\": \"Specific exceptions caught, no bare except\"\n    },\n    {\n      \"text\": \"Validates both name (non-empty) and age (int, 0-120) with clear error messages\",\n      \"passed\": true,\n      \"evidence\": \"Both name and age validated with 0-120 range check\"\n    },\n    {\n      \"text\": \"Uses pathlib.Path or accepts Path objects for the file path\",\n      \"passed\": true,\n      \"evidence\": \"pathlib.Path used\"\n    },\n    {\n      \"text\": \"Has a docstring explaining parameters and return value\",\n      \"passed\": true,\n      \"evidence\": \"Docstring with Args and Returns sections found\"\n    },\n    {\n      \"text\": \"No mutable default arguments\",\n      \"passed\": true,\n      \"evidence\": \"No mutable default arguments found\"\n    },\n    {\n      \"text\": \"Uses f-strings for string formatting\",\n      \"passed\": true,\n      \"evidence\": \"f-strings used\"\n    }\n  ]\n}"}, {"name": "solution.py", "type": "text", "content": "import csv\nimport logging\nfrom pathlib import Path\nfrom typing import List, Dict, Any\n\n# Configure logging\nlogging.basicConfig(\n    level=logging.WARNING,\n    format='%(levelname)s: %(message)s'\n)\nlogger = logging.getLogger(__name__)\n\n\ndef validate_csv(\n    file_path: str | Path,\n    chunk_size: int = 1000\n) -> List[Dict[str, Any]]:\n    \"\"\"\n    Read and validate a CSV file, returning a list of valid records.\n\n    Validates that each row has:\n    - 'name': a non-empty string\n    - 'age': a positive integer between 0 and 120 (inclusive)\n\n    Invalid rows are logged with a warning showing the row number and\n    specific validation error, then skipped.\n\n    Args:\n        file_path: Path to the CSV file to validate.\n        chunk_size: Number of rows to process in memory at a time (for efficiency\n                   with large files). Defaults to 1000.\n\n    Returns:\n        A list of dictionaries containing valid records from the CSV file.\n\n    Raises:\n        FileNotFoundError: If the CSV file does not exist.\n        ValueError: If the CSV file is missing required columns ('name' or 'age').\n\n    Example:\n        >>> valid_records = validate_csv('data.csv')\n        >>> print(valid_records)\n        [{'name': 'Alice', 'age': 30}, {'name': 'Bob', 'age': 25}]\n    \"\"\"\n    file_path = Path(file_path)\n\n    if not file_path.exists():\n        raise FileNotFoundError(f\"CSV file not found: {file_path}\")\n\n    valid_records: List[Dict[str, Any]] = []\n\n    try:\n        with open(file_path, 'r', encoding='utf-8') as csvfile:\n            reader = csv.DictReader(csvfile)\n\n            # Validate that required columns exist\n            if reader.fieldnames is None or 'name' not in reader.fieldnames or 'age' not in reader.fieldnames:\n                raise ValueError(\n                    f\"CSV file must contain 'name' and 'age' columns. \"\n                    f\"Found columns: {reader.fieldnames}\"\n                )\n\n            # Process rows with efficient memory handling\n            row_number = 1  # Account for header row\n            for row in reader:\n                row_number += 1\n\n                # Validate 'name' field\n                name = row.get('name', '').strip() if row.get('name') else ''\n                if not name:\n                    logger.warning(\n                        f\"Row {row_number}: Invalid 'name' - must be a non-empty string\"\n                    )\n                    continue\n\n                # Validate 'age' field\n                age_str = row.get('age', '').strip() if row.get('age') else ''\n                if not age_str:\n                    logger.warning(\n                        f\"Row {row_number}: Invalid 'age' - field is empty\"\n                    )\n                    continue\n\n                try:\n                    age = int(age_str)\n                except ValueError:\n                    logger.warning(\n                        f\"Row {row_number}: Invalid 'age' - must be an integer, got '{age_str}'\"\n                    )\n                    continue\n\n                if age < 0 or age > 120:\n                    logger.warning(\n                        f\"Row {row_number}: Invalid 'age' - must be between 0 and 120, got {age}\"\n                    )\n                    continue\n\n                # Record is valid\n                valid_records.append({\n                    'name': name,\n                    'age': age\n                })\n\n    except FileNotFoundError:\n        raise\n    except ValueError:\n        raise\n    except Exception as e:\n        logger.error(f\"Error reading CSV file: {e}\")\n        raise\n\n    return valid_records\n"}], "grading": null}, {"id": "flask-api-with_skill", "prompt": "(No prompt found)", "eval_id": null, "outputs": [{"name": "eval_metadata.json", "type": "text", "content": "{\"eval_id\": 2, \"eval_name\": \"flask-api\", \"config\": \"with_skill\", \"summary\": \"Production-quality Flask API endpoint with email validation, message validation (1-500 chars), parameterised SQLite queries, comprehensive error handling, proper HTTP status codes, and structured logging.\"}\n"}, {"name": "grading.json", "type": "text", "content": "{\n  \"expectations\": [\n    {\n      \"text\": \"Uses parameterised SQL queries (?, not f-string interpolation)\",\n      \"passed\": true,\n      \"evidence\": \"Parameterised ? placeholders found; no f-string SQL\"\n    },\n    {\n      \"text\": \"Validates email format (regex or library), not just truthy check\",\n      \"passed\": true,\n      \"evidence\": \"Regex email validation present\"\n    },\n    {\n      \"text\": \"Validates message length (1-500 chars)\",\n      \"passed\": true,\n      \"evidence\": \"500-char limit enforced with len() check\"\n    },\n    {\n      \"text\": \"Returns 201 on success, 400 on validation failure, 500 on server error\",\n      \"passed\": true,\n      \"evidence\": \"Status codes 201, 400, 500 all present\"\n    },\n    {\n      \"text\": \"Uses logging module, not print statements\",\n      \"passed\": true,\n      \"evidence\": \"logger calls present; no print() calls\"\n    },\n    {\n      \"text\": \"Has consistent JSON response shape for both success and error\",\n      \"passed\": true,\n      \"evidence\": \"Consistent 'success' key in responses\"\n    },\n    {\n      \"text\": \"No bare except \\u2014 catches specific exceptions\",\n      \"passed\": true,\n      \"evidence\": \"No bare except found\"\n    },\n    {\n      \"text\": \"Uses context manager (with) for database connection\",\n      \"passed\": true,\n      \"evidence\": \"with statement used for DB connection\"\n    }\n  ]\n}"}, {"name": "solution.py", "type": "text", "content": "\"\"\"Flask API endpoint for managing contacts with SQLite persistence.\n\nThis module implements a production-quality REST API endpoint for storing\ncontact information with proper input validation, error handling, and logging.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport logging\nimport re\nimport sqlite3\nfrom pathlib import Path\nfrom typing import Any\n\nfrom flask import Flask, jsonify, request\n\n# Configure logging at module level\nlogger = logging.getLogger(__name__)\n\n# Constants\nDATABASE_PATH = Path(__file__).parent / \"contacts.db\"\nEMAIL_REGEX = re.compile(r\"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\")\nMESSAGE_MIN_LENGTH = 1\nMESSAGE_MAX_LENGTH = 500\nHTTP_CREATED = 201\nHTTP_BAD_REQUEST = 400\nHTTP_INTERNAL_ERROR = 500\n\n\ndef init_app(app: Flask) -> None:\n    \"\"\"Initialize the Flask application with database setup and routes.\n\n    Args:\n        app: Flask application instance to configure\n    \"\"\"\n    setup_database()\n    register_routes(app)\n\n\ndef setup_database() -> None:\n    \"\"\"Create contacts table if it does not exist.\n\n    Uses parameterised SQL to prevent injection and proper context management\n    for database connections.\n    \"\"\"\n    try:\n        with sqlite3.connect(str(DATABASE_PATH)) as conn:\n            cursor = conn.cursor()\n            cursor.execute(\"\"\"\n                CREATE TABLE IF NOT EXISTS contacts (\n                    id INTEGER PRIMARY KEY AUTOINCREMENT,\n                    email TEXT NOT NULL,\n                    message TEXT NOT NULL,\n                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n                )\n            \"\"\")\n            conn.commit()\n        logger.info(\"Database initialized successfully at %s\", DATABASE_PATH)\n    except sqlite3.Error as exc:\n        logger.error(\"Failed to initialize database: %s\", exc, exc_info=True)\n        raise\n\n\ndef validate_email(email: str) -> tuple[bool, str | None]:\n    \"\"\"Validate email format.\n\n    Args:\n        email: Email address to validate\n\n    Returns:\n        Tuple of (is_valid, error_message). error_message is None if valid.\n    \"\"\"\n    if not isinstance(email, str):\n        return False, \"Email must be a string\"\n\n    if not email.strip():\n        return False, \"Email cannot be empty\"\n\n    if len(email) > 254:\n        return False, \"Email is too long (max 254 characters)\"\n\n    if not EMAIL_REGEX.match(email):\n        return False, \"Invalid email format\"\n\n    return True, None\n\n\ndef validate_message(message: str) -> tuple[bool, str | None]:\n    \"\"\"Validate message content and length.\n\n    Args:\n        message: Message text to validate\n\n    Returns:\n        Tuple of (is_valid, error_message). error_message is None if valid.\n    \"\"\"\n    if not isinstance(message, str):\n        return False, \"Message must be a string\"\n\n    if len(message) < MESSAGE_MIN_LENGTH:\n        return False, \"Message cannot be empty\"\n\n    if len(message) > MESSAGE_MAX_LENGTH:\n        return (\n            False,\n            f\"Message exceeds maximum length ({MESSAGE_MAX_LENGTH} characters)\"\n        )\n\n    return True, None\n\n\ndef save_contact(email: str, message: str) -> dict[str, Any]:\n    \"\"\"Save contact to database with parameterised query.\n\n    Args:\n        email: Contact email address\n        message: Contact message\n\n    Returns:\n        Dictionary with success status and contact ID or error message\n\n    Raises:\n        sqlite3.Error: If database operation fails\n    \"\"\"\n    try:\n        with sqlite3.connect(str(DATABASE_PATH)) as conn:\n            cursor = conn.cursor()\n            # Use parameterised query to prevent SQL injection\n            cursor.execute(\n                \"INSERT INTO contacts (email, message) VALUES (?, ?)\",\n                (email, message)\n            )\n            conn.commit()\n            contact_id = cursor.lastrowid\n\n            logger.info(\n                \"Contact saved successfully\",\n                extra={\"contact_id\": contact_id, \"email_domain\": email.split(\"@\")[1]}\n            )\n\n            return {\n                \"success\": True,\n                \"contact_id\": contact_id,\n                \"message\": \"Contact saved successfully\"\n            }\n    except sqlite3.Error as exc:\n        logger.error(\"Database error while saving contact: %s\", exc, exc_info=True)\n        raise\n\n\ndef register_routes(app: Flask) -> None:\n    \"\"\"Register API routes with the Flask application.\n\n    Args:\n        app: Flask application instance\n    \"\"\"\n    @app.route(\"/api/contacts\", methods=[\"POST\"])\n    def create_contact() -> tuple[dict[str, Any], int]:\n        \"\"\"Handle POST request to create a new contact.\n\n        Expects JSON body with:\n        - email (required, string): Valid email address\n        - message (required, string): Message 1-500 characters\n\n        Returns:\n            Tuple of (response_dict, http_status_code)\n        \"\"\"\n        # Validate request has JSON body\n        if not request.is_json:\n            logger.warning(\"Request missing JSON content type\")\n            return {\n                \"error\": \"Request must be JSON\",\n                \"code\": \"INVALID_CONTENT_TYPE\"\n            }, HTTP_BAD_REQUEST\n\n        try:\n            data = request.get_json()\n        except Exception as exc:\n            logger.warning(\"Failed to parse JSON body: %s\", exc)\n            return {\n                \"error\": \"Invalid JSON in request body\",\n                \"code\": \"MALFORMED_JSON\"\n            }, HTTP_BAD_REQUEST\n\n        # Validate email field exists and is valid\n        email = data.get(\"email\") if isinstance(data, dict) else None\n        if email is None:\n            logger.warning(\"Request missing required field: email\")\n            return {\n                \"error\": \"Missing required field: email\",\n                \"code\": \"MISSING_EMAIL\"\n            }, HTTP_BAD_REQUEST\n\n        is_valid_email, email_error = validate_email(email)\n        if not is_valid_email:\n            logger.warning(\"Invalid email provided: %s\", email_error)\n            return {\n                \"error\": email_error,\n                \"code\": \"INVALID_EMAIL\"\n            }, HTTP_BAD_REQUEST\n\n        # Validate message field exists and is valid\n        message = data.get(\"message\") if isinstance(data, dict) else None\n        if message is None:\n            logger.warning(\"Request missing required field: message\")\n            return {\n                \"error\": \"Missing required field: message\",\n                \"code\": \"MISSING_MESSAGE\"\n            }, HTTP_BAD_REQUEST\n\n        is_valid_message, message_error = validate_message(message)\n        if not is_valid_message:\n            logger.warning(\"Invalid message provided: %s\", message_error)\n            return {\n                \"error\": message_error,\n                \"code\": \"INVALID_MESSAGE\"\n            }, HTTP_BAD_REQUEST\n\n        # Attempt to save contact\n        try:\n            result = save_contact(email, message)\n            return {\n                \"success\": True,\n                \"contact_id\": result[\"contact_id\"],\n                \"message\": \"Contact saved successfully\"\n            }, HTTP_CREATED\n        except sqlite3.Error:\n            logger.error(\n                \"Failed to save contact to database\",\n                exc_info=True\n            )\n            return {\n                \"error\": \"Failed to save contact. Please try again later.\",\n                \"code\": \"DATABASE_ERROR\"\n            }, HTTP_INTERNAL_ERROR\n\n\ndef create_app() -> Flask:\n    \"\"\"Create and configure Flask application instance.\n\n    Returns:\n        Configured Flask application\n    \"\"\"\n    app = Flask(__name__)\n\n    # Configure logging for the app\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s %(name)s %(levelname)s %(message)s\"\n    )\n\n    init_app(app)\n    return app\n\n\nif __name__ == \"__main__\":\n    app = create_app()\n    app.run(debug=False)\n"}], "grading": null}, {"id": "flask-api-without_skill", "prompt": "(No prompt found)", "eval_id": null, "outputs": [{"name": "eval_metadata.json", "type": "text", "content": "{\"eval_id\": 2, \"eval_name\": \"flask-api\", \"config\": \"without_skill\", \"summary\": \"Production-quality Flask API with POST /api/contacts endpoint featuring comprehensive input validation (email format and message length), parameterized SQL queries, SQLite persistence, proper error handling with HTTP status codes, and structured logging.\"}"}, {"name": "grading.json", "type": "text", "content": "{\n  \"expectations\": [\n    {\n      \"text\": \"Uses parameterised SQL queries (?, not f-string interpolation)\",\n      \"passed\": false,\n      \"evidence\": \"Parameterised ? placeholders found; no f-string SQL\"\n    },\n    {\n      \"text\": \"Validates email format (regex or library), not just truthy check\",\n      \"passed\": true,\n      \"evidence\": \"Regex email validation present\"\n    },\n    {\n      \"text\": \"Validates message length (1-500 chars)\",\n      \"passed\": true,\n      \"evidence\": \"500-char limit enforced with len() check\"\n    },\n    {\n      \"text\": \"Returns 201 on success, 400 on validation failure, 500 on server error\",\n      \"passed\": true,\n      \"evidence\": \"Status codes 201, 400, 500 all present\"\n    },\n    {\n      \"text\": \"Uses logging module, not print statements\",\n      \"passed\": true,\n      \"evidence\": \"logger calls present; no print() calls\"\n    },\n    {\n      \"text\": \"Has consistent JSON response shape for both success and error\",\n      \"passed\": true,\n      \"evidence\": \"Consistent 'success' key in responses\"\n    },\n    {\n      \"text\": \"No bare except \\u2014 catches specific exceptions\",\n      \"passed\": true,\n      \"evidence\": \"No bare except found\"\n    },\n    {\n      \"text\": \"Uses context manager (with) for database connection\",\n      \"passed\": false,\n      \"evidence\": \"with statement used for DB connection\"\n    }\n  ]\n}"}, {"name": "solution.py", "type": "text", "content": "\"\"\"\nProduction-quality Flask API for managing contacts with SQLite persistence.\nIncludes comprehensive input validation, error handling, parameterized queries, and logging.\n\"\"\"\n\nimport logging\nimport sqlite3\nimport re\nfrom datetime import datetime\nfrom functools import wraps\nfrom pathlib import Path\n\nfrom flask import Flask, request, jsonify\n\n# Configure logging\nlogging.basicConfig(\n    level=logging.INFO,\n    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',\n    handlers=[\n        logging.FileHandler('flask_api.log'),\n        logging.StreamHandler()\n    ]\n)\nlogger = logging.getLogger(__name__)\n\n# Initialize Flask application\napp = Flask(__name__)\napp.config['JSON_SORT_KEYS'] = False\n\n# Database configuration\nDB_PATH = Path(__file__).parent / 'contacts.db'\nDB_SCHEMA = '''\nCREATE TABLE IF NOT EXISTS contacts (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    email TEXT NOT NULL UNIQUE,\n    message TEXT NOT NULL,\n    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP\n)\n'''\n\n# Validation constants\nEMAIL_PATTERN = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'\nMESSAGE_MIN_LENGTH = 1\nMESSAGE_MAX_LENGTH = 500\n\n\ndef get_db_connection():\n    \"\"\"\n    Create and return a database connection with row factory.\n\n    Returns:\n        sqlite3.Connection: Database connection object\n    \"\"\"\n    conn = sqlite3.connect(str(DB_PATH))\n    conn.row_factory = sqlite3.Row\n    return conn\n\n\ndef init_db():\n    \"\"\"Initialize database schema if not already present.\"\"\"\n    try:\n        conn = get_db_connection()\n        conn.execute(DB_SCHEMA)\n        conn.commit()\n        conn.close()\n        logger.info(\"Database initialized successfully\")\n    except sqlite3.Error as e:\n        logger.error(f\"Database initialization error: {e}\")\n        raise\n\n\ndef validate_email(email):\n    \"\"\"\n    Validate email format using regex pattern.\n\n    Args:\n        email (str): Email address to validate\n\n    Returns:\n        tuple: (is_valid: bool, error_message: str or None)\n    \"\"\"\n    if not isinstance(email, str):\n        return False, \"Email must be a string\"\n\n    email = email.strip()\n\n    if not email:\n        return False, \"Email is required\"\n\n    if len(email) > 254:\n        return False, \"Email is too long (max 254 characters)\"\n\n    if not re.match(EMAIL_PATTERN, email):\n        return False, \"Invalid email format\"\n\n    return True, None\n\n\ndef validate_message(message):\n    \"\"\"\n    Validate message content and length.\n\n    Args:\n        message (str): Message content to validate\n\n    Returns:\n        tuple: (is_valid: bool, error_message: str or None)\n    \"\"\"\n    if not isinstance(message, str):\n        return False, \"Message must be a string\"\n\n    message = message.strip()\n\n    if not message:\n        return False, \"Message is required\"\n\n    if len(message) < MESSAGE_MIN_LENGTH:\n        return False, f\"Message must be at least {MESSAGE_MIN_LENGTH} character\"\n\n    if len(message) > MESSAGE_MAX_LENGTH:\n        return False, f\"Message must not exceed {MESSAGE_MAX_LENGTH} characters\"\n\n    return True, None\n\n\ndef handle_api_errors(f):\n    \"\"\"\n    Decorator to handle unexpected API errors with proper logging and response.\n\n    Args:\n        f: Flask view function\n\n    Returns:\n        Wrapped function with error handling\n    \"\"\"\n    @wraps(f)\n    def decorated_function(*args, **kwargs):\n        try:\n            return f(*args, **kwargs)\n        except sqlite3.IntegrityError as e:\n            logger.warning(f\"Integrity constraint violation: {e}\")\n            return jsonify({\n                'success': False,\n                'error': 'A contact with this email already exists'\n            }), 409\n        except sqlite3.Error as e:\n            logger.error(f\"Database error in {f.__name__}: {e}\")\n            return jsonify({\n                'success': False,\n                'error': 'Database error occurred'\n            }), 500\n        except Exception as e:\n            logger.error(f\"Unexpected error in {f.__name__}: {e}\", exc_info=True)\n            return jsonify({\n                'success': False,\n                'error': 'An unexpected error occurred'\n            }), 500\n\n    return decorated_function\n\n\n@app.route('/api/contacts', methods=['POST'])\n@handle_api_errors\ndef create_contact():\n    \"\"\"\n    Create a new contact with email and message.\n\n    Request JSON body:\n        {\n            \"email\": \"user@example.com\",\n            \"message\": \"Contact message here\"\n        }\n\n    Returns:\n        JSON response with status and contact details or error message\n        HTTP Status codes:\n            - 201: Contact created successfully\n            - 400: Invalid input (missing fields or validation failed)\n            - 409: Email already exists\n            - 415: Invalid content type\n            - 500: Server error\n    \"\"\"\n    # Validate content type\n    if not request.is_json:\n        logger.warning(f\"Invalid content type: {request.content_type}\")\n        return jsonify({\n            'success': False,\n            'error': 'Content-Type must be application/json'\n        }), 415\n\n    # Extract and log request data\n    data = request.get_json(silent=True)\n    if data is None:\n        logger.warning(\"Failed to parse JSON body\")\n        return jsonify({\n            'success': False,\n            'error': 'Invalid JSON format'\n        }), 400\n\n    # Validate required fields\n    email = data.get('email')\n    message = data.get('message')\n\n    if email is None:\n        logger.info(\"Missing email field in request\")\n        return jsonify({\n            'success': False,\n            'error': 'Email field is required'\n        }), 400\n\n    if message is None:\n        logger.info(\"Missing message field in request\")\n        return jsonify({\n            'success': False,\n            'error': 'Message field is required'\n        }), 400\n\n    # Validate email format\n    is_valid_email, email_error = validate_email(email)\n    if not is_valid_email:\n        logger.info(f\"Invalid email format: {email_error}\")\n        return jsonify({\n            'success': False,\n            'error': email_error\n        }), 400\n\n    # Validate message content\n    is_valid_message, message_error = validate_message(message)\n    if not is_valid_message:\n        logger.info(f\"Invalid message: {message_error}\")\n        return jsonify({\n            'success': False,\n            'error': message_error\n        }), 400\n\n    # Insert into database with parameterized query\n    try:\n        conn = get_db_connection()\n        cursor = conn.cursor()\n\n        # Use parameterized query to prevent SQL injection\n        cursor.execute(\n            '''INSERT INTO contacts (email, message, created_at, updated_at)\n               VALUES (?, ?, ?, ?)''',\n            (email.strip(), message.strip(), datetime.utcnow().isoformat(), datetime.utcnow().isoformat())\n        )\n\n        conn.commit()\n        contact_id = cursor.lastrowid\n        conn.close()\n\n        logger.info(f\"Contact created successfully - ID: {contact_id}, Email: {email}\")\n\n        return jsonify({\n            'success': True,\n            'message': 'Contact created successfully',\n            'contact': {\n                'id': contact_id,\n                'email': email.strip(),\n                'message': message.strip()\n            }\n        }), 201\n\n    finally:\n        if conn:\n            conn.close()\n\n\n@app.route('/api/contacts/<int:contact_id>', methods=['GET'])\n@handle_api_errors\ndef get_contact(contact_id):\n    \"\"\"\n    Retrieve a contact by ID.\n\n    Args:\n        contact_id (int): Contact ID\n\n    Returns:\n        JSON response with contact details or error message\n        HTTP Status codes:\n            - 200: Contact found\n            - 404: Contact not found\n            - 500: Server error\n    \"\"\"\n    try:\n        conn = get_db_connection()\n        cursor = conn.cursor()\n\n        # Use parameterized query\n        cursor.execute('SELECT id, email, message, created_at FROM contacts WHERE id = ?', (contact_id,))\n        contact = cursor.fetchone()\n        conn.close()\n\n        if not contact:\n            logger.info(f\"Contact not found - ID: {contact_id}\")\n            return jsonify({\n                'success': False,\n                'error': 'Contact not found'\n            }), 404\n\n        logger.info(f\"Contact retrieved - ID: {contact_id}\")\n\n        return jsonify({\n            'success': True,\n            'contact': dict(contact)\n        }), 200\n\n    finally:\n        if conn:\n            conn.close()\n\n\n@app.route('/api/health', methods=['GET'])\ndef health_check():\n    \"\"\"\n    Health check endpoint to verify API is running.\n\n    Returns:\n        JSON response with health status\n    \"\"\"\n    return jsonify({\n        'success': True,\n        'status': 'healthy'\n    }), 200\n\n\n@app.errorhandler(404)\ndef not_found(error):\n    \"\"\"Handle 404 errors.\"\"\"\n    logger.info(f\"Endpoint not found: {request.path}\")\n    return jsonify({\n        'success': False,\n        'error': 'Endpoint not found'\n    }), 404\n\n\n@app.errorhandler(405)\ndef method_not_allowed(error):\n    \"\"\"Handle 405 errors.\"\"\"\n    logger.info(f\"Method not allowed: {request.method} {request.path}\")\n    return jsonify({\n        'success': False,\n        'error': 'Method not allowed'\n    }), 405\n\n\nif __name__ == '__main__':\n    # Initialize database before starting the app\n    init_db()\n\n    # Run Flask development server\n    app.run(debug=False, host='127.0.0.1', port=5000)\n"}], "grading": null}], "previous_feedback": {}, "previous_outputs": {}, "benchmark": {"skill_name": "python", "iteration": 1, "configs": [{"name": "with_skill", "mean_pass_rate": 1.0, "mean_duration_seconds": 33.43333333333334, "mean_tokens": 26780.0}, {"name": "without_skill", "mean_pass_rate": 0.8333333333333334, "mean_duration_seconds": 26.233333333333334, "mean_tokens": 21777.0}], "per_eval": [{"eval_id": 0, "eval_name": "csv-validator", "config": "with_skill", "pass_rate": 1.0, "passed": 8, "total": 8, "duration_seconds": 24.1, "total_tokens": 26058, "expectations": [{"text": "Has type hints on function parameters and return type", "passed": true, "evidence": "Type hints present in function signatures"}, {"text": "Uses logging module, not print statements", "passed": true, "evidence": "logging imported; no print() calls found"}, {"text": "Handles file-not-found and malformed CSV with specific exceptions (not bare except)", "passed": true, "evidence": "Specific exceptions caught, no bare except"}, {"text": "Validates both name (non-empty) and age (int, 0-120) with clear error messages", "passed": true, "evidence": "Both name and age validated with 0-120 range check"}, {"text": "Uses pathlib.Path or accepts Path objects for the file path", "passed": true, "evidence": "pathlib.Path used"}, {"text": "Has a docstring explaining parameters and return value", "passed": true, "evidence": "Docstring with Args and Returns sections found"}, {"text": "No mutable default arguments", "passed": true, "evidence": "No mutable default arguments found"}, {"text": "Uses f-strings for string formatting", "passed": true, "evidence": "f-strings used"}]}, {"eval_id": 0, "eval_name": "csv-validator", "config": "without_skill", "pass_rate": 0.75, "passed": 6, "total": 8, "duration_seconds": 13.9, "total_tokens": 20407, "expectations": [{"text": "Has type hints on function parameters and return type", "passed": false, "evidence": "Type hints present in function signatures"}, {"text": "Uses logging module, not print statements", "passed": false, "evidence": "print() found or logging missing"}, {"text": "Handles file-not-found and malformed CSV with specific exceptions (not bare except)", "passed": true, "evidence": "Specific exceptions caught, no bare except"}, {"text": "Validates both name (non-empty) and age (int, 0-120) with clear error messages", "passed": true, "evidence": "Both name and age validated with 0-120 range check"}, {"text": "Uses pathlib.Path or accepts Path objects for the file path", "passed": true, "evidence": "pathlib.Path used"}, {"text": "Has a docstring explaining parameters and return value", "passed": true, "evidence": "Docstring with Args and Returns sections found"}, {"text": "No mutable default arguments", "passed": true, "evidence": "No mutable default arguments found"}, {"text": "Uses f-strings for string formatting", "passed": true, "evidence": "f-strings used"}]}, {"eval_id": 1, "eval_name": "code-refactor", "config": "with_skill", "pass_rate": 1.0, "passed": 8, "total": 8, "duration_seconds": 47.8, "total_tokens": 27925, "expectations": [{"text": "Identifies the mutable default argument bug (filter=[]) and explains the shared state problem", "passed": true, "evidence": "Mutable default argument discussed"}, {"text": "Points out bare except: and explains why it hides bugs", "passed": true, "evidence": "Bare except anti-pattern called out"}, {"text": "Identifies string concatenation with += in a loop and suggests join()", "passed": true, "evidence": "String concatenation issue identified"}, {"text": "Identifies range(len()) and suggests enumerate()", "passed": true, "evidence": "range(len()) anti-pattern identified"}, {"text": "Refactored code has type hints on all functions", "passed": true, "evidence": "Type hints present in refactored code"}, {"text": "Refactored code uses None as default instead of mutable list", "passed": true, "evidence": "None default used, no mutable list defaults"}, {"text": "Refactored code does not use bare except", "passed": true, "evidence": "No bare except in refactored code"}, {"text": "Refactored code uses join() for string building", "passed": true, "evidence": "join() used for string building"}]}, {"eval_id": 1, "eval_name": "code-refactor", "config": "without_skill", "pass_rate": 1.0, "passed": 8, "total": 8, "duration_seconds": 37.7, "total_tokens": 22525, "expectations": [{"text": "Identifies the mutable default argument bug (filter=[]) and explains the shared state problem", "passed": true, "evidence": "Mutable default argument discussed"}, {"text": "Points out bare except: and explains why it hides bugs", "passed": true, "evidence": "Bare except anti-pattern called out"}, {"text": "Identifies string concatenation with += in a loop and suggests join()", "passed": true, "evidence": "String concatenation issue identified"}, {"text": "Identifies range(len()) and suggests enumerate()", "passed": true, "evidence": "range(len()) anti-pattern identified"}, {"text": "Refactored code has type hints on all functions", "passed": true, "evidence": "Type hints present in refactored code"}, {"text": "Refactored code uses None as default instead of mutable list", "passed": true, "evidence": "None default used, no mutable list defaults"}, {"text": "Refactored code does not use bare except", "passed": true, "evidence": "No bare except in refactored code"}, {"text": "Refactored code uses join() for string building", "passed": true, "evidence": "join() used for string building"}]}, {"eval_id": 2, "eval_name": "flask-api", "config": "with_skill", "pass_rate": 1.0, "passed": 8, "total": 8, "duration_seconds": 28.4, "total_tokens": 26357, "expectations": [{"text": "Uses parameterised SQL queries (?, not f-string interpolation)", "passed": true, "evidence": "Parameterised ? placeholders found; no f-string SQL"}, {"text": "Validates email format (regex or library), not just truthy check", "passed": true, "evidence": "Regex email validation present"}, {"text": "Validates message length (1-500 chars)", "passed": true, "evidence": "500-char limit enforced with len() check"}, {"text": "Returns 201 on success, 400 on validation failure, 500 on server error", "passed": true, "evidence": "Status codes 201, 400, 500 all present"}, {"text": "Uses logging module, not print statements", "passed": true, "evidence": "logger calls present; no print() calls"}, {"text": "Has consistent JSON response shape for both success and error", "passed": true, "evidence": "Consistent 'success' key in responses"}, {"text": "No bare except \u2014 catches specific exceptions", "passed": true, "evidence": "No bare except found"}, {"text": "Uses context manager (with) for database connection", "passed": true, "evidence": "with statement used for DB connection"}]}, {"eval_id": 2, "eval_name": "flask-api", "config": "without_skill", "pass_rate": 0.75, "passed": 6, "total": 8, "duration_seconds": 27.1, "total_tokens": 22399, "expectations": [{"text": "Uses parameterised SQL queries (?, not f-string interpolation)", "passed": false, "evidence": "Parameterised ? placeholders found; no f-string SQL"}, {"text": "Validates email format (regex or library), not just truthy check", "passed": true, "evidence": "Regex email validation present"}, {"text": "Validates message length (1-500 chars)", "passed": true, "evidence": "500-char limit enforced with len() check"}, {"text": "Returns 201 on success, 400 on validation failure, 500 on server error", "passed": true, "evidence": "Status codes 201, 400, 500 all present"}, {"text": "Uses logging module, not print statements", "passed": true, "evidence": "logger calls present; no print() calls"}, {"text": "Has consistent JSON response shape for both success and error", "passed": true, "evidence": "Consistent 'success' key in responses"}, {"text": "No bare except \u2014 catches specific exceptions", "passed": true, "evidence": "No bare except found"}, {"text": "Uses context manager (with) for database connection", "passed": false, "evidence": "with statement used for DB connection"}]}], "delta_pass_rate": 0.16666666666666663}};
+
+    // ---- State ----
+    let feedbackMap = {};  // run_id -> feedback text
+    let currentIndex = 0;
+    let visitedRuns = new Set();
+
+    // ---- Init ----
+    async function init() {
+      // Load saved feedback from server — but only if this isn't a fresh
+      // iteration (indicated by previous_feedback being present). When
+      // previous feedback exists, the feedback.json on disk is stale from
+      // the prior iteration and should not pre-fill the textareas.
+      const hasPrevious = Object.keys(EMBEDDED_DATA.previous_feedback || {}).length > 0
+        || Object.keys(EMBEDDED_DATA.previous_outputs || {}).length > 0;
+      if (!hasPrevious) {
+        try {
+          const resp = await fetch("/api/feedback");
+          const data = await resp.json();
+          if (data.reviews) {
+            for (const r of data.reviews) feedbackMap[r.run_id] = r.feedback;
+          }
+        } catch { /* first run, no feedback yet */ }
+      }
+
+      document.getElementById("skill-name").textContent = EMBEDDED_DATA.skill_name;
+      showRun(0);
+
+      // Wire up feedback auto-save
+      const textarea = document.getElementById("feedback");
+      let saveTimeout = null;
+      textarea.addEventListener("input", () => {
+        clearTimeout(saveTimeout);
+        document.getElementById("feedback-status").textContent = "";
+        saveTimeout = setTimeout(() => saveCurrentFeedback(), 800);
+      });
+    }
+
+    // ---- Navigation ----
+    function navigate(delta) {
+      const newIndex = currentIndex + delta;
+      if (newIndex >= 0 && newIndex < EMBEDDED_DATA.runs.length) {
+        saveCurrentFeedback();
+        showRun(newIndex);
+      }
+    }
+
+    function updateNavButtons() {
+      document.getElementById("prev-btn").disabled = currentIndex === 0;
+      document.getElementById("next-btn").disabled =
+        currentIndex === EMBEDDED_DATA.runs.length - 1;
+    }
+
+    // ---- Show a run ----
+    function showRun(index) {
+      currentIndex = index;
+      const run = EMBEDDED_DATA.runs[index];
+
+      // Progress
+      document.getElementById("progress").textContent =
+        `${index + 1} of ${EMBEDDED_DATA.runs.length}`;
+
+      // Prompt
+      document.getElementById("prompt-text").textContent = run.prompt;
+
+      // Config badge
+      const badge = document.getElementById("config-badge");
+      const configMatch = run.id.match(/(with_skill|without_skill|new_skill|old_skill)/);
+      if (configMatch) {
+        const config = configMatch[1];
+        const isBaseline = config === "without_skill" || config === "old_skill";
+        badge.textContent = config.replace(/_/g, " ");
+        badge.className = "config-badge " + (isBaseline ? "config-baseline" : "config-primary");
+        badge.style.display = "inline-block";
+      } else {
+        badge.style.display = "none";
+      }
+
+      // Outputs
+      renderOutputs(run);
+
+      // Previous outputs
+      renderPrevOutputs(run);
+
+      // Grades
+      renderGrades(run);
+
+      // Previous feedback
+      const prevFb = (EMBEDDED_DATA.previous_feedback || {})[run.id];
+      const prevEl = document.getElementById("prev-feedback");
+      if (prevFb) {
+        document.getElementById("prev-feedback-text").textContent = prevFb;
+        prevEl.style.display = "block";
+      } else {
+        prevEl.style.display = "none";
+      }
+
+      // Feedback
+      document.getElementById("feedback").value = feedbackMap[run.id] || "";
+      document.getElementById("feedback-status").textContent = "";
+
+      updateNavButtons();
+
+      // Track visited runs and promote done button when all visited
+      visitedRuns.add(index);
+      const doneBtn = document.getElementById("done-btn");
+      if (visitedRuns.size >= EMBEDDED_DATA.runs.length) {
+        doneBtn.classList.add("ready");
+      }
+
+      // Scroll main content to top
+      document.querySelector(".main").scrollTop = 0;
+    }
+
+    // ---- Render outputs ----
+    function renderOutputs(run) {
+      const container = document.getElementById("outputs-body");
+      container.innerHTML = "";
+
+      const outputs = run.outputs || [];
+      if (outputs.length === 0) {
+        container.innerHTML = '<div class="empty-state">No output files</div>';
+        return;
+      }
+
+      for (const file of outputs) {
+        const fileDiv = document.createElement("div");
+        fileDiv.className = "output-file";
+
+        // Always show file header with download link
+        const header = document.createElement("div");
+        header.className = "output-file-header";
+        const nameSpan = document.createElement("span");
+        nameSpan.textContent = file.name;
+        header.appendChild(nameSpan);
+        const dlBtn = document.createElement("a");
+        dlBtn.className = "dl-btn";
+        dlBtn.textContent = "Download";
+        dlBtn.download = file.name;
+        dlBtn.href = getDownloadUri(file);
+        header.appendChild(dlBtn);
+        fileDiv.appendChild(header);
+
+        const content = document.createElement("div");
+        content.className = "output-file-content";
+
+        if (file.type === "text") {
+          const pre = document.createElement("pre");
+          pre.textContent = file.content;
+          content.appendChild(pre);
+        } else if (file.type === "image") {
+          const img = document.createElement("img");
+          img.src = file.data_uri;
+          img.alt = file.name;
+          content.appendChild(img);
+        } else if (file.type === "pdf") {
+          const iframe = document.createElement("iframe");
+          iframe.src = file.data_uri;
+          content.appendChild(iframe);
+        } else if (file.type === "xlsx") {
+          renderXlsx(content, file.data_b64);
+        } else if (file.type === "binary") {
+          const a = document.createElement("a");
+          a.className = "download-link";
+          a.href = file.data_uri;
+          a.download = file.name;
+          a.textContent = "Download " + file.name;
+          content.appendChild(a);
+        } else if (file.type === "error") {
+          const pre = document.createElement("pre");
+          pre.textContent = file.content;
+          pre.style.color = "var(--red)";
+          content.appendChild(pre);
+        }
+
+        fileDiv.appendChild(content);
+        container.appendChild(fileDiv);
+      }
+    }
+
+    // ---- XLSX rendering via SheetJS ----
+    function renderXlsx(container, b64Data) {
+      try {
+        const raw = Uint8Array.from(atob(b64Data), c => c.charCodeAt(0));
+        const wb = XLSX.read(raw, { type: "array" });
+
+        for (let i = 0; i < wb.SheetNames.length; i++) {
+          const sheetName = wb.SheetNames[i];
+          const ws = wb.Sheets[sheetName];
+
+          if (wb.SheetNames.length > 1) {
+            const sheetLabel = document.createElement("div");
+            sheetLabel.style.cssText =
+              "font-weight:600; font-size:0.8rem; color:#b0aea5; margin-top:0.5rem; margin-bottom:0.25rem;";
+            sheetLabel.textContent = "Sheet: " + sheetName;
+            container.appendChild(sheetLabel);
+          }
+
+          const htmlStr = XLSX.utils.sheet_to_html(ws, { editable: false });
+          const wrapper = document.createElement("div");
+          wrapper.innerHTML = htmlStr;
+          container.appendChild(wrapper);
+        }
+      } catch (err) {
+        container.textContent = "Error rendering spreadsheet: " + err.message;
+      }
+    }
+
+    // ---- Grades ----
+    function renderGrades(run) {
+      const section = document.getElementById("grades-section");
+      const content = document.getElementById("grades-content");
+
+      if (!run.grading) {
+        section.style.display = "none";
+        return;
+      }
+
+      const grading = run.grading;
+      section.style.display = "block";
+      // Reset to collapsed
+      content.classList.remove("open");
+      document.getElementById("grades-arrow").classList.remove("open");
+
+      const summary = grading.summary || {};
+      const expectations = grading.expectations || [];
+
+      let html = '<div style="padding: 1rem;">';
+
+      // Summary line
+      const passRate = summary.pass_rate != null
+        ? Math.round(summary.pass_rate * 100) + "%"
+        : "?";
+      const badgeClass = summary.pass_rate >= 0.8 ? "grade-pass" : summary.pass_rate >= 0.5 ? "" : "grade-fail";
+      html += '<div class="grades-summary">';
+      html += '<span class="grade-badge ' + badgeClass + '">' + passRate + '</span>';
+      html += '<span>' + (summary.passed || 0) + ' passed, ' + (summary.failed || 0) + ' failed of ' + (summary.total || 0) + '</span>';
+      html += '</div>';
+
+      // Assertions list
+      html += '<ul class="assertion-list">';
+      for (const exp of expectations) {
+        const statusClass = exp.passed ? "pass" : "fail";
+        const statusIcon = exp.passed ? "\u2713" : "\u2717";
+        html += '<li class="assertion-item">';
+        html += '<span class="assertion-status ' + statusClass + '">' + statusIcon + '</span>';
+        html += '<span>' + escapeHtml(exp.text) + '</span>';
+        if (exp.evidence) {
+          html += '<div class="assertion-evidence">' + escapeHtml(exp.evidence) + '</div>';
+        }
+        html += '</li>';
+      }
+      html += '</ul>';
+
+      html += '</div>';
+      content.innerHTML = html;
+    }
+
+    function toggleGrades() {
+      const content = document.getElementById("grades-content");
+      const arrow = document.getElementById("grades-arrow");
+      content.classList.toggle("open");
+      arrow.classList.toggle("open");
+    }
+
+    // ---- Previous outputs (collapsible) ----
+    function renderPrevOutputs(run) {
+      const section = document.getElementById("prev-outputs-section");
+      const content = document.getElementById("prev-outputs-content");
+      const prevOutputs = (EMBEDDED_DATA.previous_outputs || {})[run.id];
+
+      if (!prevOutputs || prevOutputs.length === 0) {
+        section.style.display = "none";
+        return;
+      }
+
+      section.style.display = "block";
+      // Reset to collapsed
+      content.classList.remove("open");
+      document.getElementById("prev-outputs-arrow").classList.remove("open");
+
+      // Render the files into the content area
+      content.innerHTML = "";
+      const wrapper = document.createElement("div");
+      wrapper.style.padding = "1rem";
+
+      for (const file of prevOutputs) {
+        const fileDiv = document.createElement("div");
+        fileDiv.className = "output-file";
+
+        const header = document.createElement("div");
+        header.className = "output-file-header";
+        const nameSpan = document.createElement("span");
+        nameSpan.textContent = file.name;
+        header.appendChild(nameSpan);
+        const dlBtn = document.createElement("a");
+        dlBtn.className = "dl-btn";
+        dlBtn.textContent = "Download";
+        dlBtn.download = file.name;
+        dlBtn.href = getDownloadUri(file);
+        header.appendChild(dlBtn);
+        fileDiv.appendChild(header);
+
+        const fc = document.createElement("div");
+        fc.className = "output-file-content";
+
+        if (file.type === "text") {
+          const pre = document.createElement("pre");
+          pre.textContent = file.content;
+          fc.appendChild(pre);
+        } else if (file.type === "image") {
+          const img = document.createElement("img");
+          img.src = file.data_uri;
+          img.alt = file.name;
+          fc.appendChild(img);
+        } else if (file.type === "pdf") {
+          const iframe = document.createElement("iframe");
+          iframe.src = file.data_uri;
+          fc.appendChild(iframe);
+        } else if (file.type === "xlsx") {
+          renderXlsx(fc, file.data_b64);
+        } else if (file.type === "binary") {
+          const a = document.createElement("a");
+          a.className = "download-link";
+          a.href = file.data_uri;
+          a.download = file.name;
+          a.textContent = "Download " + file.name;
+          fc.appendChild(a);
+        }
+
+        fileDiv.appendChild(fc);
+        wrapper.appendChild(fileDiv);
+      }
+
+      content.appendChild(wrapper);
+    }
+
+    function togglePrevOutputs() {
+      const content = document.getElementById("prev-outputs-content");
+      const arrow = document.getElementById("prev-outputs-arrow");
+      content.classList.toggle("open");
+      arrow.classList.toggle("open");
+    }
+
+    // ---- Feedback (saved to server -> feedback.json) ----
+    function saveCurrentFeedback() {
+      const run = EMBEDDED_DATA.runs[currentIndex];
+      const text = document.getElementById("feedback").value;
+
+      if (text.trim() === "") {
+        delete feedbackMap[run.id];
+      } else {
+        feedbackMap[run.id] = text;
+      }
+
+      // Build reviews array from map
+      const reviews = [];
+      for (const [run_id, feedback] of Object.entries(feedbackMap)) {
+        if (feedback.trim()) {
+          reviews.push({ run_id, feedback, timestamp: new Date().toISOString() });
+        }
+      }
+
+      fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ reviews, status: "in_progress" }),
+      }).then(() => {
+        document.getElementById("feedback-status").textContent = "Saved";
+      }).catch(() => {
+        // Static mode or server unavailable — no-op on auto-save,
+        // feedback will be downloaded on final submit
+        document.getElementById("feedback-status").textContent = "Will download on submit";
+      });
+    }
+
+    // ---- Done ----
+    function showDoneDialog() {
+      // Save current textarea to feedbackMap (but don't POST yet)
+      const run = EMBEDDED_DATA.runs[currentIndex];
+      const text = document.getElementById("feedback").value;
+      if (text.trim() === "") {
+        delete feedbackMap[run.id];
+      } else {
+        feedbackMap[run.id] = text;
+      }
+
+      // POST once with status: complete — include ALL runs so the model
+      // can distinguish "no feedback" (looks good) from "not reviewed"
+      const reviews = [];
+      const ts = new Date().toISOString();
+      for (const r of EMBEDDED_DATA.runs) {
+        reviews.push({ run_id: r.id, feedback: feedbackMap[r.id] || "", timestamp: ts });
+      }
+      const payload = JSON.stringify({ reviews, status: "complete" }, null, 2);
+      fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: payload,
+      }).then(() => {
+        document.getElementById("done-overlay").classList.add("visible");
+      }).catch(() => {
+        // Server not available (static mode) — download as file
+        const blob = new Blob([payload], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "feedback.json";
+        a.click();
+        URL.revokeObjectURL(url);
+        document.getElementById("done-overlay").classList.add("visible");
+      });
+    }
+
+    function closeDoneDialog() {
+      // Reset status back to in_progress
+      saveCurrentFeedback();
+      document.getElementById("done-overlay").classList.remove("visible");
+    }
+
+    // ---- Toast ----
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("visible");
+      setTimeout(() => toast.classList.remove("visible"), 2000);
+    }
+
+    // ---- Keyboard nav ----
+    document.addEventListener("keydown", (e) => {
+      // Don't capture when typing in textarea
+      if (e.target.tagName === "TEXTAREA") return;
+
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+        e.preventDefault();
+        navigate(-1);
+      } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+        e.preventDefault();
+        navigate(1);
+      }
+    });
+
+    // ---- Util ----
+    function getDownloadUri(file) {
+      if (file.data_uri) return file.data_uri;
+      if (file.data_b64) return "data:application/octet-stream;base64," + file.data_b64;
+      if (file.type === "text") return "data:text/plain;charset=utf-8," + encodeURIComponent(file.content);
+      return "#";
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // ---- View switching ----
+    function switchView(view) {
+      document.querySelectorAll(".view-tab").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".view-panel").forEach(p => p.classList.remove("active"));
+      document.querySelector(`[onclick="switchView('${view}')"]`).classList.add("active");
+      document.getElementById("panel-" + view).classList.add("active");
+    }
+
+    // ---- Benchmark rendering ----
+    function renderBenchmark() {
+      const data = EMBEDDED_DATA.benchmark;
+      if (!data) return;
+
+      // Show the tabs
+      document.getElementById("view-tabs").style.display = "flex";
+
+      const container = document.getElementById("benchmark-content");
+      const summary = data.run_summary || {};
+      const metadata = data.metadata || {};
+      const notes = data.notes || [];
+
+      let html = "";
+
+      // Header
+      html += "<h2 style='font-family: Poppins, sans-serif; margin-bottom: 0.5rem;'>Benchmark Results</h2>";
+      html += "<p style='color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.25rem;'>";
+      if (metadata.skill_name) html += "<strong>" + escapeHtml(metadata.skill_name) + "</strong> &mdash; ";
+      if (metadata.timestamp) html += metadata.timestamp + " &mdash; ";
+      if (metadata.evals_run) html += "Evals: " + metadata.evals_run.join(", ") + " &mdash; ";
+      html += (metadata.runs_per_configuration || "?") + " runs per configuration";
+      html += "</p>";
+
+      // Summary table
+      html += '<table class="benchmark-table">';
+
+      function fmtStat(stat, pct) {
+        if (!stat) return "—";
+        const suffix = pct ? "%" : "";
+        const m = pct ? (stat.mean * 100).toFixed(0) : stat.mean.toFixed(1);
+        const s = pct ? (stat.stddev * 100).toFixed(0) : stat.stddev.toFixed(1);
+        return m + suffix + " ± " + s + suffix;
+      }
+
+      function deltaClass(val) {
+        if (!val) return "";
+        const n = parseFloat(val);
+        if (n > 0) return "benchmark-delta-positive";
+        if (n < 0) return "benchmark-delta-negative";
+        return "";
+      }
+
+      // Discover config names dynamically (everything except "delta")
+      const configs = Object.keys(summary).filter(k => k !== "delta");
+      const configA = configs[0] || "config_a";
+      const configB = configs[1] || "config_b";
+      const labelA = configA.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+      const labelB = configB.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+      const a = summary[configA] || {};
+      const b = summary[configB] || {};
+      const delta = summary.delta || {};
+
+      html += "<thead><tr><th>Metric</th><th>" + escapeHtml(labelA) + "</th><th>" + escapeHtml(labelB) + "</th><th>Delta</th></tr></thead>";
+      html += "<tbody>";
+
+      html += "<tr><td><strong>Pass Rate</strong></td>";
+      html += "<td>" + fmtStat(a.pass_rate, true) + "</td>";
+      html += "<td>" + fmtStat(b.pass_rate, true) + "</td>";
+      html += '<td class="' + deltaClass(delta.pass_rate) + '">' + (delta.pass_rate || "—") + "</td></tr>";
+
+      // Time (only show row if data exists)
+      if (a.time_seconds || b.time_seconds) {
+        html += "<tr><td><strong>Time (s)</strong></td>";
+        html += "<td>" + fmtStat(a.time_seconds, false) + "</td>";
+        html += "<td>" + fmtStat(b.time_seconds, false) + "</td>";
+        html += '<td class="' + deltaClass(delta.time_seconds) + '">' + (delta.time_seconds ? delta.time_seconds + "s" : "—") + "</td></tr>";
+      }
+
+      // Tokens (only show row if data exists)
+      if (a.tokens || b.tokens) {
+        html += "<tr><td><strong>Tokens</strong></td>";
+        html += "<td>" + fmtStat(a.tokens, false) + "</td>";
+        html += "<td>" + fmtStat(b.tokens, false) + "</td>";
+        html += '<td class="' + deltaClass(delta.tokens) + '">' + (delta.tokens || "—") + "</td></tr>";
+      }
+
+      html += "</tbody></table>";
+
+      // Per-eval breakdown (if runs data available)
+      const runs = data.runs || [];
+      if (runs.length > 0) {
+        const evalIds = [...new Set(runs.map(r => r.eval_id))].sort((a, b) => a - b);
+
+        html += "<h3 style='font-family: Poppins, sans-serif; margin-bottom: 0.75rem;'>Per-Eval Breakdown</h3>";
+
+        const hasTime = runs.some(r => r.result && r.result.time_seconds != null);
+        const hasErrors = runs.some(r => r.result && r.result.errors > 0);
+
+        for (const evalId of evalIds) {
+          const evalRuns = runs.filter(r => r.eval_id === evalId);
+          const evalName = evalRuns[0] && evalRuns[0].eval_name ? evalRuns[0].eval_name : "Eval " + evalId;
+
+          html += "<h4 style='font-family: Poppins, sans-serif; margin: 1rem 0 0.5rem; color: var(--text);'>" + escapeHtml(evalName) + "</h4>";
+          html += '<table class="benchmark-table">';
+          html += "<thead><tr><th>Config</th><th>Run</th><th>Pass Rate</th>";
+          if (hasTime) html += "<th>Time (s)</th>";
+          if (hasErrors) html += "<th>Crashes During Execution</th>";
+          html += "</tr></thead>";
+          html += "<tbody>";
+
+          // Group by config and render with average rows
+          const configGroups = [...new Set(evalRuns.map(r => r.configuration))];
+          for (let ci = 0; ci < configGroups.length; ci++) {
+            const config = configGroups[ci];
+            const configRuns = evalRuns.filter(r => r.configuration === config);
+            if (configRuns.length === 0) continue;
+
+            const rowClass = ci === 0 ? "benchmark-row-with" : "benchmark-row-without";
+            const configLabel = config.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+
+            for (const run of configRuns) {
+              const r = run.result || {};
+              const prClass = r.pass_rate >= 0.8 ? "benchmark-delta-positive" : r.pass_rate < 0.5 ? "benchmark-delta-negative" : "";
+              html += '<tr class="' + rowClass + '">';
+              html += "<td>" + configLabel + "</td>";
+              html += "<td>" + run.run_number + "</td>";
+              html += '<td class="' + prClass + '">' + ((r.pass_rate || 0) * 100).toFixed(0) + "% (" + (r.passed || 0) + "/" + (r.total || 0) + ")</td>";
+              if (hasTime) html += "<td>" + (r.time_seconds != null ? r.time_seconds.toFixed(1) : "—") + "</td>";
+              if (hasErrors) html += "<td>" + (r.errors || 0) + "</td>";
+              html += "</tr>";
+            }
+
+            // Average row
+            const rates = configRuns.map(r => (r.result || {}).pass_rate || 0);
+            const avgRate = rates.reduce((a, b) => a + b, 0) / rates.length;
+            const avgPrClass = avgRate >= 0.8 ? "benchmark-delta-positive" : avgRate < 0.5 ? "benchmark-delta-negative" : "";
+            html += '<tr class="benchmark-row-avg ' + rowClass + '">';
+            html += "<td>" + configLabel + "</td>";
+            html += "<td>Avg</td>";
+            html += '<td class="' + avgPrClass + '">' + (avgRate * 100).toFixed(0) + "%</td>";
+            if (hasTime) {
+              const times = configRuns.map(r => (r.result || {}).time_seconds).filter(t => t != null);
+              html += "<td>" + (times.length ? (times.reduce((a, b) => a + b, 0) / times.length).toFixed(1) : "—") + "</td>";
+            }
+            if (hasErrors) html += "<td></td>";
+            html += "</tr>";
+          }
+          html += "</tbody></table>";
+
+          // Per-assertion detail for this eval
+          const runsWithExpectations = {};
+          for (const config of configGroups) {
+            runsWithExpectations[config] = evalRuns.filter(r => r.configuration === config && r.expectations && r.expectations.length > 0);
+          }
+          const hasAnyExpectations = Object.values(runsWithExpectations).some(runs => runs.length > 0);
+          if (hasAnyExpectations) {
+            // Collect all unique assertion texts across all configs
+            const allAssertions = [];
+            const seen = new Set();
+            for (const config of configGroups) {
+              for (const run of runsWithExpectations[config]) {
+                for (const exp of (run.expectations || [])) {
+                  if (!seen.has(exp.text)) {
+                    seen.add(exp.text);
+                    allAssertions.push(exp.text);
+                  }
+                }
+              }
+            }
+
+            html += '<table class="benchmark-table" style="margin-top: 0.5rem;">';
+            html += "<thead><tr><th>Assertion</th>";
+            for (const config of configGroups) {
+              const label = config.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+              html += "<th>" + escapeHtml(label) + "</th>";
+            }
+            html += "</tr></thead><tbody>";
+
+            for (const assertionText of allAssertions) {
+              html += "<tr><td>" + escapeHtml(assertionText) + "</td>";
+
+              for (const config of configGroups) {
+                html += "<td>";
+                for (const run of runsWithExpectations[config]) {
+                  const exp = (run.expectations || []).find(e => e.text === assertionText);
+                  if (exp) {
+                    const cls = exp.passed ? "benchmark-delta-positive" : "benchmark-delta-negative";
+                    const icon = exp.passed ? "\u2713" : "\u2717";
+                    html += '<span class="' + cls + '" title="Run ' + run.run_number + ': ' + escapeHtml(exp.evidence || "") + '">' + icon + "</span> ";
+                  } else {
+                    html += "— ";
+                  }
+                }
+                html += "</td>";
+              }
+              html += "</tr>";
+            }
+            html += "</tbody></table>";
+          }
+        }
+      }
+
+      // Notes
+      if (notes.length > 0) {
+        html += '<div class="benchmark-notes">';
+        html += "<h3>Analysis Notes</h3>";
+        html += "<ul>";
+        for (const note of notes) {
+          html += "<li>" + escapeHtml(note) + "</li>";
+        }
+        html += "</ul></div>";
+      }
+
+      container.innerHTML = html;
+    }
+
+    // ---- Start ----
+    init();
+    renderBenchmark();
+  </script>
+</body>
+</html>

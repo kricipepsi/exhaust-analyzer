@@ -1,0 +1,1254 @@
+15 tips and tricks for writing better Python : r/Python
+Skip to main content
+15 tips and tricks for writing better Python : r/Python
+Open menu
+Open navigation
+Go to Reddit Home
+r/Python
+Advertise on Reddit
+Advertise on Reddit
+Open chat
+Open chat
+Create
+Create post
+Create post
+Open inbox
+Open inbox
+Expand user menu
+Open profile menu
+Go to Python
+r/Python
+r/Python
+Pycon US 2025
+starts next week!
+The official Python community for Reddit! Stay up to date 
+with the latest news, packages, and meta information relating to the 
+Python programming language. 
+---
+
+If you have questions or are new to Python use r/LearnPython
+226K
+Weekly visitors
+1.5K
+Weekly contributions
+•
+3y ago
+[deleted]
+15 tips and tricks for writing better Python
+Resource
+gist.github.com
+Open
+In this article you will find 15 tips and tricks for different learning levels from basic to advanced.
+The article includes side by side code blocks as examples on how 
+to apply the tips to actual code, as well as the benefits and drawbacks 
+for each technique.
+Archived post. New comments cannot be posted and votes cannot be cast.
+Share
+ClickUp_App
+•
+Promoted
+The everything app, for work. Get everyone working in a single platform designed to manage any type of work.
+Learn More
+clickup.com
+Sort by:
+Best
+Open comment sort options
+Best
+Top
+New
+Controversial
+Old
+Q&A
+sudo_agree_with_me
+•
+3y ago
+•
+Edited
+3y ago
+next has a second argument people seem to not to know about
+try:
+    result = next(number for number in numbers
+                  if number > 3)
+
+except StopIteration:
+    result = None
+can be just
+result = next((number for number in numbers if number > 3), None)
+Edit: Added parentheses around the generator expression.
+Reply
+Share
+Rawing7
+•
+3y ago
+It doesn't work like that, if you add a 2nd argument then you need parentheses around the generator expression.
+result = next((number for number in numbers if number > 3), None)
+Reply
+Share
+WholesomeThoughts26
+•
+3y ago
+They said:
+sudo agree with me
+Reply
+Share
+Rawing7
+•
+3y ago
+Unfortunately I'm Windows-based :(
+Reply
+Share
+More replies
+sudo_agree_with_me
+•
+3y ago
+Oh right!
+Reply
+Share
+More replies
+More replies
+copperfield42
+•
+3y ago
+python enthusiast
+Nice on
+os.get_terminal_size().columns
+, but that one can fail if you're using IDLE and who know what else, so you might want to also suggest
+shutil.get_terminal_size().columns
+or just that one instead
+In your
+any
+/
+all
+tips, both of those functions only take one argument, so you can't do
+all(a,b,c)
+you need to make a list, tuple or whatever first:
+all([a,b,c])
+Reply
+Share
+[deleted]
+•
+3y ago
+Comment deleted by user
+Green0Photon
+•
+3y ago
+Yeah, this advice is super problematic.
+Automatic coercion to booleans
+sucks
+. Such a terrible idea and terrible way of handling things.
+chakan2
+•
+3y ago
+Automatic coercion to booleans sucks.
+I disagree with this. It's one of strengths of Python and it's 
+only a problem when you're trying to do complex one liners. If you're 
+sticking to pythonic simplicity, it's usually much easier to read.
+data or [0, 0, 0]
+I'd blast someone in a code review for that. It's not immediately 
+apparent what the code is doing for example. If anything, I'd expect 
+that to return True. I don't think I've ever seen that notation in 
+professional code.
+Green0Photon
+•
+3y ago
+Can you give some good examples? I'm mega type brained, which is 
+part of why I hate it so much. To me, implicit conversions are just ripe
+ for mistakes.
+But clearly you can see some value in that, despite agreeing with 
+an example we both hate. So clearly there's something there.
+chakan2
+•
+3y ago
+Simply... Write that out...
+data if data else [0,0,0]
+Then it's explicit what you're trying to do.
+Green0Photon
+•
+3y ago
+That's okay if you're intentionally trying to return the default 
+if data is empty, but it's very common (for me at least) to only want to
+ do that if data is None. I think it should be very uncommon to see 
+that.
+That version does make it more obvious than the other version, though, which is very good.
+chakan2
+•
+3y ago
+Then do...
+data if data is not None else [0, 0, 0]
+I run into that a lot as well. If I'm specifically ruling out the 
+None case and not just doing falsy, I'll write out the formal if 
+statement usually.
+It's verbose, but it's explicit and easier to read.
+1
+more reply
+1
+more reply
+More replies
+More replies
+More replies
+More replies
+More replies
+Malcolmlisk
+•
+3y ago
+Also less understandable code. It's not like lst is data or [0, 0,
+ 0]. The definition of lst is if data has any value, then it's Data, if 
+its False or nonexistent, then it's [0,0,0].
+More replies
+Spleeeee
+•
+3y ago
+Mypy doesn’t love ternaries/or assignments for defaults.
+ihavebeesinmyknees
+•
+3y ago
+That's also true for the "instead of" example though
+boat-la-fds
+•
+3y ago
+Yes but, personally, I will usually do
+if data is not None
+.
+Pikalima
+•
+3y ago
+This is best practice. Relying on the falsey-ness of
+None
+to check if something is, in fact,
+None
+is a highly effective way of introducing subtle bugs and unexpected 
+behavior in your programs. It’s a singleton, and singletons should be 
+checked directly with
+is
+and
+is not
+. But this isn’t just your personal opinion, it’s
+one of the first recommendations made in PEP-8:
+Comparisons to singletons like None should always be done with is 
+or is not, never the equality operators. Also, beware of writing if x 
+when you really mean if x is not None – e.g. when testing whether a 
+variable or argument that defaults to None was set to some other value. 
+The other value might have a type (such as a container) that could be 
+false in a boolean context!
+Not all of PEP-8 should be blindly followed. Foolish consistency 
+is the hobgoblin of little minds and so on. But this is a rule I will 
+never break, because doing so is simply ruinous.
+catcint0s
+•
+3y ago
+A lot of the times it's way easier and nicer to write
+if not value
+than
+if value is None or value = ""
+for
+ example. Yes, be aware of falsy values (like 0 could be a valid value 
+in a lot of cases or a date at midnight (tho I think this bug has been 
+fixed for a while now)) but that doesn't mean you should never use it.
+More replies
+More replies
+More replies
+u/GitKraken
+•
+Promoted
+GitKraken vs Fork: More powerful conflict resolution, team collaboration & cross-platform consistency.
+Download
+gitkraken.com
+Fruglemonkey
+•
+3y ago
+Don't import numpy if you don't have to, either.
+This isn't good
+numbers = [1, 3, 4, 5, 7, 9, 2]
+sum = 0
+                                           
+for number in numbers:
+    sum += number
+
+avg = sum / len(numbers)
+This isn't good either
+from numpy import mean
+                                                
+numbers = [1, 3, 4, 5, 7, 9, 2]
+avg = mean(numbers)
+Use the builtin
+sum
+- it's
+builtin C code
+and is also super fast.
+numbers = [1, 3, 4, 5, 7, 9, 2]
+avg = sum(numbers) / len(numbers)
+Reply
+Share
+[deleted]
+•
+3y ago
+Comment deleted by user
+Fruglemonkey
+•
+3y ago
+I agree here - but do note that
+sum
+should be faster due to being a builtin:
+cat foo.py && python3 foo.py
+
+from timeit import timeit
+from statistics import mean
+
+print("Manual Mean\t" + str(timeit(stmt='''\
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+sum(numbers) / len(numbers)
+''', number=1000000, globals=globals())
+))
+
+print("Stats Mean\t" + str(timeit(stmt='''\
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+mean(numbers)
+''', number=1000000, globals=globals())
+))
+Manual Mean     0.10386533301789314
+Stats Mean      3.4580799160175957
+conogarcia
+•
+3y ago
+Didn't know python had a statistics lib, thanks!
+batisteo
+•
+3y ago
+Or if you’d be willing to lose readability:
+avg = sum(numbers) / len((numbers := [1, 3, 4, 5, 7, 9, 2]))
+Reply
+Share
+More replies
+binaryfireball
+•
+3y ago
+I feel like there's a good chunk of this that goes against.
+Explicit is better than implicit.
+I don't want to read code that I have to think twice about what 
+it's doing because I'm busy thinking about the problem I'm trying to 
+solve.
+Reply
+Share
+Skanderbeg1989
+•
+3y ago
+Totally agree, I would take explicit over implicit any day. It is also in the
+Zen of Python
+Reply
+Share
+More replies
+Alphasite
+•
+3y ago
+I think some of the comprehension ones push comprehensions when a 
+for loop would often be better.  I think if they’re multiple lines 
+they’re perhaps too long.
+Reply
+Share
+s0ulbrother
+•
+3y ago
+I get annoyed in a code review if the comprehension gets on too 
+long or the logic isn’t easy enough to read.  Spell it out sometimes 
+makes it easier ti know what’s going on.
+Reply
+Share
+More replies
+u/kiloCode
+•
+Promoted
+We're making GLM-5 free for a limited time
+Sign Up
+kilo.ai
+[deleted]
+•
+3y ago
+Comment deleted by user
+[deleted]
+•
+3y ago
+Auto formatting is pretty useful but formatters aren't perfect and don't always work well.
+Sometimes you need to do some manual formatting if you want things
+ to look clean, especially for the case of lines that are too long.
+Formatters will split long lines arbitrarily, but you may want to split them manually from a point that makes sense.
+I use autopep8 and when I write comprehensions this way:
+a = [element
+     for element
+     in list
+     if element > 3]
+And hit format document, it will leave them untouched, so it actually doesn't hate them!
+However If I write them in a single line like this:
+a = [element for element in list if element > 3]
+It may split them from a point that does not make sense.
+So my advice is that your code should be readable and, if split, 
+it should be split in a way that makes sense. If formatters allow you to
+ do that, then thats perfectly fine, but they don't always achieve the 
+best results and sometimes switching things manually can help achieve 
+that!
+gwax
+•
+3y ago
+The problem with doing it by hand is in agreeing with other people about what looks best.
+Black doesn't always make for the prettiest code formatting but 
+never needing to talk about formatting in a PR is worth it.
+UloPe
+•
+3y ago
+Yes, just use black and all the arguments stop
+Chris_Newton
+•
+3y ago
+Black doesn't always make for the prettiest code formatting but 
+never needing to talk about formatting in a PR is worth it.
+I’d argue that the main advantage of formatters is that they 
+minimise noisy but arbitrary changes in diffs. If you’re doing a code 
+review or looking back through source control history while 
+investigating an unexpected change in behaviour, it’s nice to avoid the 
+distraction of unnecessary changes in layout.
+IMHO that doesn’t mean it’s
+never
+worth a comment on 
+formatting in a review. Python itself doesn’t suit long expressions very
+ well and Black sometimes makes a real mess of them, so now and then 
+it’s worth suggesting an alternative that doesn’t do so much in a single
+ statement that it becomes a many-lined monster.
+More replies
+More replies
+superbirra
+•
+3y ago
+appreciate it not being the usual ugly video. For the
+in
+example I'd advise you to use tuples instead of sets as they're one order of magnitude faster:
+In [1]: %timeit (1,2)             10.8 ns ± 0.00375 ns per loop (mean ± std. dev. of 7 runs, 100000000 loops each)                                                                                                                                  
+
+In [2]: %timeit {1,2}             150 ns ± 2.03 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+Reply
+Share
+BitwiseShift
+•
+3y ago
+•
+Edited
+3y ago
+Terrible advice. Your example only shows that defining a tuple is faster than defining a set. OP's example is about the
+in
+operator and testing membership is much faster on a set than on a 
+tuple. (Also, the original point is about legibility, not performance)
+%timeit 3 in (1, 2)
+18.8 ns ± 0.029 ns per loop (mean ± std. dev. of 7 runs, 100,000,000 loops each)
+        
+%timeit 3 in {1, 2}
+11.8 ns ± 0.0229 ns per loop (mean ± std. dev. of 7 runs, 100,000,000 loops each)
+Edit: Haha, I can't reply because the dude replied and blocked me, a true sign of a coward.
+Your new example is critically flawed as what you've actually 
+timed is how long it takes to generate a list of random numbers. The 
+time it takes to execute the membership check is negligible in this 
+example. Now, if you were to move the creation of the list of random 
+numbers outside of the timing, you'll find that the tuple's membership 
+check gets absolutely crushed by the set's.
+t = tuple(random.randint(0, 300) for x in range(10000))
+s = set(t)
+
+%timeit 400 in t
+51.6 µs ± 222 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
+
+%timeit 400 in s
+21.7 ns ± 0.162 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)
+Reply
+Share
+superbirra
+•
+3y ago
+duh,
+In [1]: import random
+
+In [2]: %timeit 400 in tuple(random.randint(0,300) for x in range(10000))
+16.4 ms ± 103 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+In [3]: %timeit 400 in set(random.randint(0,300) for x in range(10000))
+16.7 ms ± 218 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+the legibility thing is pretty nonsensical per se, but I bet you know that by yourself already. Ciao! (plonk)
+1
+more reply
+1
+more reply
+More replies
+More replies
+conogarcia
+•
+3y ago
+items = [item1, item2, item3, item4...]
+                                           
+def process_item(item):        # 'process_item'
+    item = do_something(item)  #  now does the
+    item = do_smth_else(item)  #  processing
+    ...                        #  for a single
+    return item                #  item.
+                                            
+new_items = [process_item(item) for item in items]
+can be
+new_items = map(process_items, items)
+[deleted]
+•
+3y ago
+Oh shit I forgot to include
+map()
+in the tips.
+I should write a tip in the Extra Tips section about map(). Thanks!
+[deleted]
+•
+3y ago
+Comment deleted by user
+conogarcia
+•
+3y ago
+They are not the same though, one is lazy the other one is not..
+[deleted]
+•
+3y ago
+•
+Edited
+1y ago
+gullible retire shy one nose upbeat hungry run fearless special
+This post was mass deleted and anonymized with
+Redact
+More replies
+[deleted]
+•
+3y ago
+Yeah I left the "comprehensions" tip untouched and just added the "map" tip as an extra at the end.
+1
+more reply
+1
+more reply
+More replies
+More replies
+More replies
+Lakario
+•
+3y ago
+Code sample for
+set()
+never uses the result:
+cities = ['London', 'Paris', 'London']
+unique_cities = set(cities)
+
+print(cities)
+# >> {'London', 'Paris'}
+                                                
+cities = list(cities)
+print(cities)
+# >> ['London', 'Paris']
+Malcolmlisk
+•
+3y ago
+Somehow I understood they want to drop_duplicates from a list. So list(set(cities)) should do the trick.
+2
+more replies
+2
+more replies
+More replies
+[deleted]
+•
+3y ago
+Thanks, It should be fixed now.
+More replies
+KeaboUltra
+•
+3y ago
+nice, I'm doing the 100 days of python class and wrote the black 
+jack game, I'm an absolute beginner so I have almost 200 lines of code. I
+ didn't look at any of her hints because I wanted to challenge myself. 
+it took 3 days to get it seemingly error free because I added 
+multiplayers, a bunch of rules regarding ace, and the logic for multiple
+ winning conditions.  I'm gonna rewrite it to be more concise and use my
+ old code as a reference and try to use these to tips to clean up. I use
+ f strings a lot already so I'm glad I'm using that properly, but 
+iterating through dictionaries with for loops is killing me. I know the 
+class is teaching me the absolute basics, and I sort of feel bad for 
+looking ahead to make things easier but part of me feels like it's 
+expected. I'm really good at searching google and asking chatgpt the 
+right questions but part of me feels like im cheating for some reason  
+or that I'd feel like I'm jumping ahead without building a foundation 
+lol
+gregorygsimon
+•
+3y ago
+No way - if you can bring in new things that make your code 
+simpler, cleaner, or give a meaningful  performance improvement - do 
+that! No better way to learn.
+The only exception is if there is a specific learning assignment 
+to write something without a subset of the language as a challenge. It 
+is useful to build things from first principles from time-to-time. But 
+generally speaking, you want to learn the best tools available to you. 
+Jump ahead 100% and keep jumping ahead.
+More replies
+deadeye1982
+•
+3y ago
+5.1) Transform
+list
+into
+dict
+then back to
+list
+to remove duplicates and keep the order of first occurrence.
+cities = ["London", "Berlin", "Paris", "London", "Berlin"]
+unique_cities_order = list(dict.fromkeys(cities))
+unique_cities = set(cities)
+
+print(cities)
+print(unique_cities_order)
+print(unique_cities)
+The output:
+['London', 'Berlin', 'Paris', 'London', 'Berlin']
+['London', 'Berlin', 'Paris']
+{'Berlin', 'London', 'Paris'}
+The last one is the set for comparison.
+[deleted]
+•
+3y ago
+Along with having
+zip
+there, I can recommend adding in an example of using
+itertools.chain
+or
+itertools.chain.from_iterable
+for avoiding redundant procedural for-loops.
+barraponto
+•
+3y ago
+I feel like chain/chain.from_iterable are so underused. I see colleagues using
+sum(list of lists, [])
+and it seems so wrong...
+Also, chain is a generator, so you can iterate over a chain until 
+you find what you are looking for, then stop iterating :)
+1
+more reply
+1
+more reply
+More replies
+More replies
+chakan2
+•
+3y ago
+•
+Edited
+3y ago
+Mostly those are good tips, but this is not true:
+It's usually better to use comprehensions over for loops in Python
+ when possible, as they are usually faster and shorter. However, it can 
+be difficult to transform long and complex for loops into 
+comprehensions.
+In a very specific case when you are compiling a list as output 
+will this be true...and you're only getting at most a 15% speed up.
+However, if you're doing complex list comprehensions, you're not 
+speeding up your code, and it's much harder to maintain and debug.
+I wish that myth would die.
+Edit: Here's what I'm talking about:
+https://towardsdatascience.com/list-comprehensions-vs-for-loops-it-is-not-what-you-think-34071d4d8207
+barraponto
+•
+3y ago
+I sometimes see people doing list comprehensions instead of for loops, literally:
+[do_something(item) for item in list]
+, without attributing, just for the side effect. That will be
+less
+performant (it creates an unnecessary list) and it is less meaningful.
+6
+more replies
+6
+more replies
+More replies
+fuuman1
+•
+3y ago
+Is there a reason for writing example code for the "no-gos" but not for the "gos"?
+IrishPrime
+•
+3y ago
+If you're on mobile, you may just need to scroll sideways. My 
+phone basically cut things off just on the right side of the "instead 
+of..." column and I was wondering the same.
+1
+more reply
+1
+more reply
+More replies
+More replies
+VileFlower
+•
+3y ago
+•
+Edited
+3y ago
+A trick to get unique values in the order of appearance is to use
+dict.fromkeys
+, since dictionaries will retain the insertion order:
+cities = ['London', 'Paris', 'London']
+unique_cities = set(cities)
+unique_ordered_cities = list(dict.fromkeys(cities))
+
+print(unique_cities)
+# >> {'Paris', 'London'}
+
+print(unique_ordered_cities)
+# >> ['London', 'Paris']
+edit: corrected variable name
+2
+more replies
+2
+more replies
+More replies
+[deleted]
+•
+3y ago
+I find it odd how often “swap variables in place” comes up in this
+ type of article. I have literally never been is a situation where I 
+wanted to do this.
+[deleted]
+•
+3y ago
+When doing a uni project with IPC and message queues, I had a 
+function that did something with two fields of the message header.
+However, depending of the format of the message, those two fields 
+were in swapped positions. That was determined by the contents of the 
+first field of the header.
+So, to reuse the same function for the two message types I just did something like:
+field_a = message_header[1]
+field_b = message_header[2]
+
+if message_header[0] == "Swapped":
+    field_a, field_b = field_b, field_a
+
+process_message(field_a, field_b)
+[deleted]
+•
+3y ago
+•
+Edited
+3y ago
+Eh, I guess so, but I’d rather write it like
+if message_header[0] == "Swapped":
+    field_a = message_header[1]
+    field_b = message_header[2]
+else:
+    field_a = message_header[2]
+    field_b = message_header[1]
+process_message(field_a, field_b)
+Or better yet if you don’t need the variables later
+if message_header[0] == "Swapped":
+    process_message(message_header[1], message_header[2])
+else:
+    process_message(message_header[2], message_header[1])
+Not that it matters much, your way is fine too. I guess my point 
+is that I can’t think of a situation where this is necessary/preferred.
+More replies
+More replies
+[deleted]
+•
+3y ago
+Comment deleted by user
+Aardshark
+•
+3y ago
+Set lookup is O(1), but not necessarily better e.g very small 
+collection where you know the contents in advance, using a tuple will be
+ effectively faster, as the construction overhead is less.
+the_isra17
+•
+3y ago
+More like
+set
+lookup is
+O(100)
+while tuple is
+O(n)
+, so for 2 items,
+tuple
+is going to be magnitude faster. It's not even just the construction 
+overhead. Iterating over continuous memory is going to be much much 
+faster than hashing an item and lookup some random memory.
+1
+more reply
+1
+more reply
+More replies
+More replies
+Jhuyt
+•
+3y ago
+I prefer to use sets because they are the most "correct" type, but
+ honestly it probably doesn't matter unless the set is very big or it's 
+in a hot loop
+drbobb
+•
+3y ago
+If you have only two (or twenty) elements to check, it makes no 
+difference. But if you had millions, a set is going to be faster. Like 
+two orders of magnitude faster.
+holzer
+•
+3y ago
+Yeah that's stupid, making it a set means it'll have to hash all the values.
+deadeye1982
+•
+3y ago
+The lookup in a
+set()
+is fast, because of hashing, but the creation of a
+set()
+is very slow.
+If you have a giant collection of something and want to look it 
+up, then a set is the right datatype, but only if the set is created 
+once.
+import random
+
+
+def huge_collection(n):
+    data = list(range(n))
+    random.shuffle(data)
+    return data, set(data)
+
+
+collection1, collection2 = huge_collection(1_000_000)
+
+needle = 500
+
+%timeit needle in collection1
+%timeit needle in collection2
+
+# get_ipython().run_line_magic('timeit', 'needle in collection1')
+# get_ipython().run_line_magic('timeit', 'needle in collection2')
+The output from
+ipython
+:
+28.1 ms ± 872 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+21.4 ns ± 0.122 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)
+Falling back to your example:
+%timeit (1, 2)
+%timeit {1, 2}
+The output from
+ipython
+:
+4.45 ns ± 0.0197 ns per loop (mean ± std. dev. of 7 runs, 100,000,000 loops each)
+39.8 ns ± 0.172 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)
+The creation of
+{1, 2}
+is
+8.9
+times slower, than the creation of
+(1, 2)
+. If you do this only once, you don't care, and if you do this one million times, you definitely care.
+MurkyCaterpillar9
+•
+3y ago
+Very cool guide, thanks!
+Jmc_da_boss
+•
+3y ago
+None of these are really interesting at all, these are all just 
+very basic things. Also, calling a ternary an "inline if" is bizzare
+[deleted]
+•
+3y ago
+I'm glad that you knew about all of them already!
+Even though I tried to find tips for all levels of knowledge, it's
+ especially useful for people starting out with Python, so It makes 
+sense it wasn't that valuable for you if you are already deep into the 
+language.
+I'd love to hear about more advanced tips if you have some, tho. 
+Maybe we can create an "Expert Tips" section to include them.
+More replies
+rockstarflo
+•
+3y ago
+I think the best trick is to use Dev-GPT and let GPT-4 write the code for you :D
+https://github.com/jina-ai/dev-gpt
+[deleted]
+•
+3y ago
+nAIce trick!
+rockstarflo
+•
+3y ago
+Hahaha I needed a bit to parse your answer
+More replies
+More replies
+KerberosMorphy
+•
+3y ago
+Never knew about the str.center. They really have some nice tricks.
+Raknarg
+•
+3y ago
+•
+Edited
+3y ago
+I was wondering why this was unreadable, RES lets me open the link
+ and it tries to interpret the raw text as a reddit post lmao
+also some of these feel like using a feature for feature's sake. A
+ lot of times a very stupid approach is cleaner IMO, like desperately 
+trying to fold whatever you can into a list comprehension. I also am not
+ a fan of leveraging try-catch when there's a simple check you could 
+have run, because the control flow and source of errors is simplified 
+that way.
+Call_Me_Footsteps
+•
+3y ago
+Thanks for sharing
+relickus
+•
+3y ago
+Im seeing advices to instead of logical comparisons write "if 
+variable in collection". For example "if var in range(x,y)" instead of 
+"if x<var<y". It is also stated in the very last advice in the 
+post. I think it is suboptimal since in the first case the interpter has
+ to check every single element of the collection, but in the latter case
+ it only does 2 comparisons. Also, that the latter doesnt allocate any 
+unnecessary collection object so it is even faster and more memory 
+efficient. Feel free to correct me.
+[deleted]
+•
+3y ago
+Comment deleted by user
+SheriffRoscoe
+•
+3y ago
+Pythonista
+It's really past time for us to be thinking about Python2.  Especially when offering advice about how to write new code.
+[deleted]
+•
+3y ago
+Comment deleted by user
+1
+more reply
+1
+more reply
+More replies
+[deleted]
+•
+3y ago
+Yeah, intervals are generally better.
+I show intervals and ranges as alternatives to just repeating a 
+variable in two comparisons and joining them with an "and".
+I didn't mean that ranges are better than intervals in any way.
+[deleted]
+•
+3y ago
+it depends. If you need to compare against strings like:
+if value1 == "hello" or value1 == "world" or value1 == "reddit":
+I'd rather do:
+if value1 in ("hello", "world", "reddit"):
+It's orders of magnitude more readable, especially if the allowed values start piling up as you add more.
+Even if you are checking against integers, belonging to a range only does 2 comparisons:
+if x<var<y:  # Does two comparisons
+if var in range(...)  # Does two comparisons.
+The only reason why you wouldn't do this is if you want to avoid 
+the overhead of creating the range, but ranges are lazily evaluated, so I
+ imagine the creation time for them should be brief enough.
+Sets take a bit more but give you O(1) search complexity so it may
+ be worth it for a large number of values but as some others have 
+pointed out, you should probably use tuples instead in most cases.
+barraponto
+•
+3y ago
+Also "value in range" only works for ints.
+2.5 in range(10)
+returns false.
+More replies
+hugthemachines
+•
+3y ago
+I will not go for the advice named:
+2) Learn how to use inline if statements
+I absolutely prefer reading the first example instead of doing that.
+[deleted]
+•
+3y ago
+Thats why it says "Learn how to use..." instead of other sections that just say "Use..."
+Btw, it also literally says "Whether to use one or the other is 
+mostly subjective and depends on which one you find more aesthetic and 
+easier to read.".
+So you are already following the advice in a way.
+More replies
+TheAssassin71
+•
+3y ago
+Absolutely great !
+That reminded me to multiprocess my requests... Ouchie xD
+[deleted]
+•
+3y ago
+Comment deleted by user
+[deleted]
+•
+3y ago
+Thats right, lemme fix that
+drMeodia
+•
+3y ago
+Does anybody have a nice documentation of how to use "def ():" I 
+have always avoided to use it for my entire life but as far as I can 
+see, it is a must.
+[deleted]
+•
+3y ago
+I just wanna ask. What do you use instead?
+2
+more replies
+2
+more replies
+More replies
+More replies
+Pycon US 2025
+starts next week!
+Created Jan 25, 2008
+18 years ago
+Public
+Anyone can view, post, and comment to this community
+226K
+1.4K
+User flair
+RaccoonNo2864
+Select your community flair
+Pythonista
+pip needs updating
+New Web Framework, Who Dis?
+It works on my machine
+git push -f
+Ignoring PEP 8
+Tuple unpacking gone wrong
+Pythoneer
+from __future__ import 4.0
+Edit flair
+Show my user flair on this community
+Clear Flair
+Apply
+Community Bookmarks
+Python.org
+Python.org
+About the PSF
+Newsletter
+PyCon US
+Volunteer
+Sponsors
+Become a Sponsor
+Donate
+Daily megathreads
+Python Discord
+r/Python Rules
+1
+"How do I", Help, or similar questions belong in r/LearnPython
+If you are about to ask a question about how to do something in python, please check out
+r/LearnPython
+.
+It is a very helpful community that is focused on helping people get answers that they understand.
+2
+Posts must be relevant to the Python Programming Language
+Please use other subreddits for things that are more generally 
+programmer related, or for things that involve large snakes.
+3
+When posting projects please include both description text and a link to source code
+When posting a project please include an image showing your 
+project if applicable, a textual description of your project including 
+how Python is relevant to it and a link to source code.
+We do not want an arbitrary link that we then have to go read to understand.
+4
+Project posts must use showcase flairs and must be text
+When posting a project you must use a showcase flair & use a text post, not an image post, video post or similar.
+Using new Reddit you may embed these media types within the post body, including multiple images in one post.
+Please write a bit about your project instead of just dumping 
+links since it will increase the relevance of your project to the Python
+ subreddit.
+5
+Submissions must be descriptive
+Titles for all submissions should describe the topic of the post 
+and offer redditors an idea of what the link or text covers. Vague 
+titles which require clicking through to clarify the subject matter of 
+the post will be removed.
+This also goes for just posting abstract links with no description about what it is you are sharing.
+6
+No Paywalled Content
+All shared resources in posts and comments must be freely 
+accessible without payment or subscription. This includes, but is not 
+limited to, articles, courses, tutorials, and code repositories. 
+Redirect paywalled content to anywhere but here.
+7
+No Banned Links
+Banned links can include Medium.com and similar content and paywalled content.
+Low quality blogs and similar (similar to what is hosted on many Medium.com articles) is not allowed.
+8
+Non-English Language
+To ensure effective communication and ease of moderation within 
+the community, all posts and comments must be in English. All 
+non-English content should translated before posting.
+This is mostly due to the capabilities and time constraints of the
+ moderation staff and the predominance of English-speaking users in our 
+community.
+9
+Please don't downvote without commenting your reasoning for doing so
+Obviously we can't enforce this one very easily, it more is a 
+level of trust we have in our users. Please do not downvote comments 
+without providing valid reasoning for doing so. This rule helps maintain
+ a positive atmosphere on the subreddit with both posts and comments.
+10
+Showcases must include required sections
+Showcase posts must have these sections in order to give a good idea for target audience, intended use, goals, etc.
+What My Project Does
+Target Audience
+(e.g., Is it meant for production, just a toy project, etc.
+Comparison
+(A brief comparison explaining how it differs from existing alternatives.)
+11
+No overdone or low quality AI showcases
+Due to an increase of showcases featuring AI content such as 
+working with multiple AI models or wrappers around APIs, this is no 
+longer allowed. Please post your showcases in the appropriate daily 
+thread instead.
+Search by Flair
+Discussion
+Resource
+Meta
+Daily Thread
+Official Event
+Showcase
+News
+Tutorial
+Official PyCon
+Events
+PyCon Namibia 2026
+February 20, 2026
+Windhoek, Namibia
+Python Unplugged on PyTV
+March 4, 2026
+Online
+PyConf Hyderabad 2026
+March 14, 2026
+Hyderabad, Telangana, India
+PythonAsia 2026
+March 21, 2026
+Malate, Philippines
+PyCascades 2026
+March 21, 2026
+Vancouver, British Columbia, Canada
+Join the Python Discord
+Related Python communities
+r/madeinpython
+26,237 members
+r/learnpython
+1,001,016 members
+r/PythonJobs
+33,496 members
+r/pythontips
+145,684 members
+Job Board
+Python job board
+Python job board
+Resources
+Books
+Automate the Boring Stuff with Python
+Think Python
+Fluent Python
+The Quick Python Book, 4ed.
+Learning
+Learn Python on Excercism
+Invent Your Own Computer Games with Python
+PyMotW: Python Module of the Week
+Beginner's Guide Reference
+Five life jackets to throw to the new coder (things to do after getting a handle on python)
+Full Stack Python
+Learn By Example "I know Python basics, what next?" blog post
+Test-Driven Development with Python
+Program Arcade Games
+Python for Scientists and Engineers
+Dan Bader's Tips and Trickers
+JetBrain's "What does this package do?" series on YouTube
+Cheatsheets
+Python Cheatsheet
+Python Crash Course cheatsheet
+Scientific Python cheatsheet
+Python RegEx cheatsheet
+PyDis
+Python Discord Resources
+Python Discord's YouTube channel
+Moderators
+Message Mods
+u/xelf
+u/monorepo
+PSF Staff |
+Litestar Maintainer
+Monorepo
+u/ivosaurus
+pip'ing it up
+u/Im__Joseph
+Python Discord Staff
+Joe
+u/Kutiekatj9
+Python Discord Staff
+u/BioGeek
+Bioinformatics software developer
+u/nevare
+u/chromakode
+u/mdipierro
+u/quasarj
+View all moderators
+Reddit Rules
+Privacy Policy
+User Agreement
+Accessibility
+Reddit, Inc. © 2026. All rights reserved.
+Expand Navigation
+Collapse Navigation
+&nbsp;
+&nbsp;
+&nbsp;
+Start a community
+GAMES ON REDDIT
+Two Spies
+Find your target
+Discover More Games
+CUSTOM FEEDS
+Create Custom Feed
+COMMUNITIES
+Manage Communities
+RESOURCES
+About Reddit
+Advertise
+Developer Platform
+Reddit Pro
+BETA
+Help
+Blog
+Careers
+Press
+Communities
+Best of Reddit
+Reddit Rules
+Privacy Policy
+User Agreement
+Accessibility
+Reddit, Inc. © 2026. All rights reserved.
+0cAFcWeA6zLHlOFo1oxbtn700zAUpJjCdB4V9hvPw5_aNxMTaOWYJWSgahx1Z2pSpqcUTb6iejCuevH0zOQlfwXyDCXq9IgaX_rvOkGfhk6cLPIqSqp5NLUXfkIln_I9GzJGaShpWoGIm2xf4W9dUGz-
+HklBpHCPnbI25AkTgesnhL9bgY0lyh2YwQYuIYdiyzjYvJwU0vOU3xGClJ0uWG7Jel_OZAO0410W0t4pMToaLQCyI7aAr5LFntrnjyTBhKA-
+ql4eVlOIUeifbl3GF3KO4EQpfGD4ljp_k_vVLj-60M_9m36oI1pBfhiqfrmaT02BvPvGr6JJKEFr76bHVEYpnbihpAWazM08wZHIj9we4EYX23XlLSM4Qt6Gt7a1bYByttT3RmSBN8AJxWhh_hwxQu8U6j38ZnAeTilV6d39ddqncyTtQiN11um1CzFD2J4bJbiZqF3-
+HzcWCR4WfJNVfk8N7JvnwSAjJorOVkPZ-0aqxD72qRkwg3H-
+wesoL0mFlhHv78qSLds8SDRt1NzjLGfP51TKyOhOJPuvOs9liWirFOGydNgdskIHP-
+eZpanhTHgToF3DI0WMnKYEl2zfDngvz8ddZ_L3qaviGkYvAAxUyzvxYyoB4DwNM9lbbatY7gy5RF-
+J3FVMTUNRMwUQw9yrFZBCCVzIEYqXN_u9EZa4KjYkq-
+rbBVdWAO0tYTlXJU6IHkkOj6HXb4l1o6mLPPBKFrGTmIE0LIr0PEX-
+JTNNyUGVbQsYMSHfm_4hpvB9zL6Hg-
+fDuzhgA3cJu2Vwqc4sFGoeiYXI375oXh6JFprCvSSNjK7GkDBBGafBGTlyQ5F25WfPBd9W2Bw_wZ4osk5w6lEGVc265xvCXJKUIYM7B2ZlRo32DnC4BC0pPBj_5Z4odOn7yFg3TyKBVnpEnY_ipgFhxknVwnDKMaIjmIU-4HJW6rg_hdZR1ytM4zygtjsyc0y2qlvpyxEo6Okrw7jTV7dl1YZyaahxGa3zt245JoWk9TBnSRjbBvphbrfNIQs_G8x-
+cRr-
+ol2DPdVElWNW7Y_CXaX03CwR0IYwmNyDyYp48eQhtPK6mCKQj1lv9XsGJJLpHNClRS1Kph_RA5-
+w1orWbHQaa0QKa3SeCO7UwMVtORHPQQOsWyyGJ0gc_SRACac43kFGW2SO23Zem_Bs7KIom98oZ7-1AVxuOEJFqjzSHAwWvPgV2KOFJ4zjLWa5csEC1aGOdjrW5zUcIvvAHwIhkKIfcQpH-
+cpBEiiMwV5t1jCgpj3aR_0OPDhVlA-k5Qaq24tPZizMnd-
+G8OunDWV8pyayF4RODl72Df7yNk54sA1G8GO35iruBZBSb3jZguyoxDrmIdeJZfx1GkXjR0I9LQxa1eJ3Qovuv7xemDcM6TFBjFTHxR2MuVMVrKbU-4tov4BO8mCVR1FYuXqyCZ1ACOE9HgbKZCUEEswO3LjjYxPWkyPz6S_68Ojat3kSz39lydp8tEEe733GTAngSWRDpMTnd_1j3QzU-
+BMhJo0HssQvRb8h4xdGxzZ3mTIELQZG29IgNRMkUEjLwmfjHDn9r-HI9f-
+PCkZyBMuyWUFCs5wxKGYj6Rm3ONjVnSoKYO0EwqTHgkqLO7XStoDQmONdMcqeX6X1ac1HDLHrecL10aiRHHTuWvLkgNewWI5hHG04cdxVT2eeA2Wq9_aJl4oNwdlMehiw7IhFgOFePnaURO2pZxhdqdakLibZ1eP-
+CuWHPrDPGhSi6nfN4rIRfrSjFfZ2km3blzYQmmmmIGILr6DDtCLx6x3PC9XRu_Bgzqync5k-7f4mztHajlyyMjudM78BW4AdkEWxK___j-
+JQX5V_MMDpUzhyYxBfXGaQswiB7kRaJNnglM39k1rL6bUwlq16UFHvLvmHHTKigZ8ZFmSaiAYM_sMURggLTxJYhyo2qlH5cs2If5iD5glO2DDPIUzTBfS0uWCQqFQe0LHEQZ0R06Y24o2D6j7Mtg7-
+Hj0A99SSz82xA8hiWFlCTBpbb27q_txwTQe3TgTxB3CThv2a_0adr6H-
+EEdaiimaA4nWo1bx0Ltm04AA2qmb8F6h1jxLEkGA-
+R7T_5QWhXmHpfNVujFSxiJlsqSc_QvzUaZmgo

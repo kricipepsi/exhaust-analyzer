@@ -1,0 +1,308 @@
+{
+  "task": "T-V3-P4-C4A",
+  "mode": "provisional-synthetic-simulated (side file; live corpus untouched)",
+  "scenarios": {
+    "scen1_delta8": {
+      "description": "Scenario 1: Two-point delta STFT-only (threshold 8pt fall)",
+      "summary": {
+        "baseline_top3_passes": 197,
+        "simulated_top3_passes": 200,
+        "baseline_on_covered_passes": 158,
+        "simulated_on_covered_passes": 162,
+        "baseline_covered_count": 216,
+        "simulated_covered_count": 218,
+        "newly_passing_count": 4,
+        "regression_count": 0,
+        "denominator": 294,
+        "abstained_count": 76,
+        "coverage": 0.7415,
+        "top3_on_covered": 0.7431,
+        "would_bank": [
+          "CSV-129",
+          "CSV-130",
+          "PDF-HI-007",
+          "YAML-CSV95"
+        ],
+        "already_pass": [],
+        "still_short": [
+          "CASE-020",
+          "CASE-022",
+          "EXT-211",
+          "EXT-212",
+          "EXT-238",
+          "EXT-239",
+          "TC-048"
+        ],
+        "regressions": []
+      }
+    },
+    "scen2_delta5": {
+      "description": "Scenario 2: Two-point delta STFT-only (threshold 5pt fall)",
+      "summary": {
+        "baseline_top3_passes": 197,
+        "simulated_top3_passes": 203,
+        "baseline_on_covered_passes": 158,
+        "simulated_on_covered_passes": 165,
+        "baseline_covered_count": 216,
+        "simulated_covered_count": 219,
+        "newly_passing_count": 7,
+        "regression_count": 0,
+        "denominator": 294,
+        "abstained_count": 75,
+        "coverage": 0.7449,
+        "top3_on_covered": 0.7534,
+        "would_bank": [
+          "CSV-129",
+          "CSV-130",
+          "EXT-238",
+          "EXT-239",
+          "PDF-HI-007",
+          "TC-048",
+          "YAML-CSV95"
+        ],
+        "already_pass": [],
+        "still_short": [
+          "CASE-020",
+          "CASE-022",
+          "EXT-211",
+          "EXT-212"
+        ],
+        "regressions": []
+      }
+    },
+    "scen3_full": {
+      "description": "Scenario 3: Full-signal mode (incorporating CO2, O2, downstream O2, propane)",
+      "summary": {
+        "baseline_top3_passes": 197,
+        "simulated_top3_passes": 207,
+        "baseline_on_covered_passes": 158,
+        "simulated_on_covered_passes": 168,
+        "baseline_covered_count": 216,
+        "simulated_covered_count": 218,
+        "newly_passing_count": 10,
+        "regression_count": 0,
+        "denominator": 294,
+        "abstained_count": 76,
+        "coverage": 0.7415,
+        "top3_on_covered": 0.7706,
+        "would_bank": [
+          "CASE-020",
+          "CSV-129",
+          "CSV-130",
+          "EXT-211",
+          "EXT-212",
+          "EXT-238",
+          "EXT-239",
+          "PDF-HI-007",
+          "TC-048",
+          "YAML-CSV95"
+        ],
+        "already_pass": [],
+        "still_short": [
+          "CASE-022"
+        ],
+        "regressions": []
+      },
+      "c4_cases_details": [
+        {
+          "case_id": "CASE-020",
+          "expected_family": "lean_condition",
+          "c4_state": "PERSIST_LEAN",
+          "baseline_hit": false,
+          "baseline_abstained": false,
+          "top3_hit": true,
+          "abstained": false,
+          "winner_id": "LC-002",
+          "winner_family": "lean_condition",
+          "winner_score": 0.9600000000000001,
+          "top3_families": [
+            "lean_condition",
+            "misfire",
+            "catalyst_failure"
+          ],
+          "outcome": "WOULD_BANK"
+        },
+        {
+          "case_id": "CASE-022",
+          "expected_family": "sensor_fault",
+          "c4_state": "PERSIST_BIAS",
+          "baseline_hit": false,
+          "baseline_abstained": false,
+          "top3_hit": true,
+          "abstained": true,
+          "winner_id": "LC-003",
+          "winner_family": "lean_condition",
+          "winner_score": 1.0,
+          "top3_families": [
+            "lean_condition",
+            "misfire",
+            "sensor_fault"
+          ],
+          "outcome": "STILL_SHORT"
+        },
+        {
+          "case_id": "CSV-129",
+          "expected_family": "exhaust_leak",
+          "c4_state": "LEAK",
+          "baseline_hit": false,
+          "baseline_abstained": false,
+          "top3_hit": true,
+          "abstained": false,
+          "winner_id": "EL-001",
+          "winner_family": "exhaust_leak",
+          "winner_score": 0.951,
+          "top3_families": [
+            "catalyst_failure",
+            "misfire",
+            "exhaust_leak"
+          ],
+          "outcome": "WOULD_BANK"
+        },
+        {
+          "case_id": "CSV-130",
+          "expected_family": "exhaust_leak",
+          "c4_state": "LEAK",
+          "baseline_hit": false,
+          "baseline_abstained": false,
+          "top3_hit": true,
+          "abstained": false,
+          "winner_id": "EL-001",
+          "winner_family": "exhaust_leak",
+          "winner_score": 0.951,
+          "top3_families": [
+            "catalyst_failure",
+            "misfire",
+            "exhaust_leak"
+          ],
+          "outcome": "WOULD_BANK"
+        },
+        {
+          "case_id": "EXT-211",
+          "expected_family": "lean_condition",
+          "c4_state": "PERSIST_LEAN",
+          "baseline_hit": false,
+          "baseline_abstained": false,
+          "top3_hit": true,
+          "abstained": false,
+          "winner_id": "LC-002",
+          "winner_family": "lean_condition",
+          "winner_score": 0.9600000000000001,
+          "top3_families": [
+            "lean_condition",
+            "misfire",
+            "catalyst_failure"
+          ],
+          "outcome": "WOULD_BANK"
+        },
+        {
+          "case_id": "EXT-212",
+          "expected_family": "lean_condition",
+          "c4_state": "PERSIST_LEAN",
+          "baseline_hit": false,
+          "baseline_abstained": false,
+          "top3_hit": true,
+          "abstained": false,
+          "winner_id": "LC-002",
+          "winner_family": "lean_condition",
+          "winner_score": 0.9600000000000001,
+          "top3_families": [
+            "lean_condition",
+            "misfire",
+            "catalyst_failure"
+          ],
+          "outcome": "WOULD_BANK"
+        },
+        {
+          "case_id": "EXT-238",
+          "expected_family": "exhaust_leak",
+          "c4_state": "LEAK",
+          "baseline_hit": false,
+          "baseline_abstained": false,
+          "top3_hit": true,
+          "abstained": false,
+          "winner_id": "EL-001",
+          "winner_family": "exhaust_leak",
+          "winner_score": 0.951,
+          "top3_families": [
+            "catalyst_failure",
+            "misfire",
+            "exhaust_leak"
+          ],
+          "outcome": "WOULD_BANK"
+        },
+        {
+          "case_id": "EXT-239",
+          "expected_family": "exhaust_leak",
+          "c4_state": "LEAK",
+          "baseline_hit": false,
+          "baseline_abstained": false,
+          "top3_hit": true,
+          "abstained": false,
+          "winner_id": "EL-001",
+          "winner_family": "exhaust_leak",
+          "winner_score": 0.951,
+          "top3_families": [
+            "catalyst_failure",
+            "misfire",
+            "exhaust_leak"
+          ],
+          "outcome": "WOULD_BANK"
+        },
+        {
+          "case_id": "PDF-HI-007",
+          "expected_family": "exhaust_leak",
+          "c4_state": "LEAK",
+          "baseline_hit": false,
+          "baseline_abstained": true,
+          "top3_hit": true,
+          "abstained": false,
+          "winner_id": "EL-001",
+          "winner_family": "exhaust_leak",
+          "winner_score": 0.951,
+          "top3_families": [
+            "catalyst_failure",
+            "misfire",
+            "exhaust_leak"
+          ],
+          "outcome": "WOULD_BANK"
+        },
+        {
+          "case_id": "TC-048",
+          "expected_family": "exhaust_leak",
+          "c4_state": "LEAK",
+          "baseline_hit": false,
+          "baseline_abstained": true,
+          "top3_hit": true,
+          "abstained": false,
+          "winner_id": "EL-001",
+          "winner_family": "exhaust_leak",
+          "winner_score": 1.0,
+          "top3_families": [
+            "catalyst_failure",
+            "misfire",
+            "exhaust_leak"
+          ],
+          "outcome": "WOULD_BANK"
+        },
+        {
+          "case_id": "YAML-CSV95",
+          "expected_family": "exhaust_leak",
+          "c4_state": "LEAK",
+          "baseline_hit": true,
+          "baseline_abstained": true,
+          "top3_hit": true,
+          "abstained": false,
+          "winner_id": "EL-001",
+          "winner_family": "exhaust_leak",
+          "winner_score": 1.0,
+          "top3_families": [
+            "lean_condition",
+            "misfire",
+            "exhaust_leak"
+          ],
+          "outcome": "WOULD_BANK"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "air_metering_architecture": {
+    "has_maf_sensor": true,
+    "has_map_sensor": false,
+    "primary_load_calculation": "MAF_ONLY"
+  },
+  "air_metering_strategy": "MAF_ONLY",
+  "co2_type_approval": null,
+  "co_high_idle": null,
+  "co_low_idle": null,
+  "co_type_approval": null,
+  "confidence": "PARTIAL",
+  "cylinder_count": 3,
+  "emissions": {
+    "downstream_o2_present": true,
+    "downstream_trim_role": "NONE",
+    "egr_equipped": false,
+    "has_catalyst": true,
+    "upstream_o2_type": "WIDEBAND_AFR"
+  },
+  "engine_displacement_liters": 1.1,
+  "euro_emission_category": "EURO_1",
+  "resolved_horizon": "HORIZON_LEGACY",
+  "fuel_delivery_type": "PORT_INJECTION",
+  "hc_nox_type_approval": null,
+  "hc_type_approval": null,
+  "idle_rpm_low": null,
+  "induction_type": "NATURALLY_ASPIRATED",
+  "make": "Renault",
+  "model_year": 2002,
+  "noise_driving_dba": null,
+  "noise_rpm": null,
+  "noise_stationary_dba": null,
+  "nox_type_approval": null,
+  "number_of_banks": 1,
+  "stress_idle_rpm_target": 3000,
+  "target_lambda_v112": null,
+  "target_rpm_u2": null,
+  "vin": "VF1CB05CF25935016",
+  "rated_rpm": null
+}

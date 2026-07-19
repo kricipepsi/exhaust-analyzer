@@ -1,0 +1,42 @@
+{
+  "_description": "Non-start scenario — vehicle cranks but does not start. Mode $06 MID $21 (Catalyst OSC B1) reports CRITICAL_FAIL at -3.0% margin, indicating catalyst damage from prior flashing-MIL drive event. No RPM, zero load at fault capture.",
+  "_source_case": "cases/NonStartCases.md",
+  "raw_dtcs": {
+    "$03": ["P0300"],
+    "$07": [],
+    "$0A": ["P0300"]
+  },
+  "raw_freeze_frame": {
+    "calculated_load_pct": 0.0,
+    "engine_rpm": 0,
+    "coolant_temp_c": 90.0,
+    "short_term_ft1": 0.0,
+    "long_term_ft1": 0.0,
+    "manifold_pressure_kpa": 100.0,
+    "vehicle_speed_kmh": 0,
+    "ignition_advance_deg": 0.0,
+    "intake_air_temp_c": 88.0,
+    "maf_gps": 0.0,
+    "throttle_pos_pct": 0.0,
+    "fuel_system_status": "OL"
+  },
+  "raw_mode06": {
+    "MID_21_TID_81": -3.0
+  },
+  "dna_view_json": null,
+  "sanitize_kwargs": {
+    "codes_cleared": false,
+    "active_mil": true,
+    "mil_flashing": true,
+    "chemical_state": null
+  },
+  "expected_routing_tags": ["MISFIRE_HISTORY"],
+  "expected_hfc": "HISTORICAL_IDLE_FAULT",
+  "expected_flags": {
+    "ff_open_loop_at_fault": true,
+    "ff_ect_warmup": false,
+    "ff_timing_retard_severe": false,
+    "ff_load_high_at_low_rpm": false,
+    "ff_codes_cleared_invalidated": false
+  }
+}
