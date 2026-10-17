@@ -1,0 +1,47 @@
+{
+  "grep_lines": 316,
+  "population": 316,
+  "all": {
+    "RESOLVED+MATCH": 164,
+    "RESOLVED+NO_LITERAL": 90,
+    "RESOLVED+VALUE_ABSENT": 59,
+    "UNRESOLVED_SECTION": 3
+  },
+  "production": {
+    "RESOLVED+MATCH": 151,
+    "RESOLVED+NO_LITERAL": 90,
+    "RESOLVED+VALUE_ABSENT": 34,
+    "UNRESOLVED_SECTION": 3
+  },
+  "tests": {
+    "RESOLVED+MATCH": 13,
+    "RESOLVED+VALUE_ABSENT": 25
+  },
+  "note_value_absent": 13,
+  "string_absent_rows": 26,
+  "wiki_shadow_rows": 88,
+  "named_population": 126,
+  "named": {
+    "FILE_OK": 94,
+    "UNRESOLVED_FILE": 28,
+    "UNRESOLVED_FILE(only at planning/OilburnCases.md)": 4
+  },
+  "uncited": 112,
+  "uncited_by_kind": {
+    "clamp": 4,
+    "compare": 23,
+    "const": 3,
+    "kw:ge": 18,
+    "kw:le": 41,
+    "kw:max_length": 1,
+    "kw:min_length": 1,
+    "table-value": 21
+  },
+  "uncited_by_pkg": {
+    "labs/comlab/comlab": 46,
+    "labs/dtclab/dtclab": 1,
+    "labs/gaslab/gaslab": 13,
+    "labs/obdlab/obdlab": 9,
+    "labs/vinlab/vinlab": 43
+  }
+}

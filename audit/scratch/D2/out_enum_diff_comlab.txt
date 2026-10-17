@@ -1,0 +1,56 @@
+OK      labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:418 Horizon doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:76
+OK      labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:423 EuroEmissionCategory doc=7 code=7 @ labs/comlab/comlab/schemas/vocabulary.py:90
+OK      labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:432 InductionType doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:151
+OK      labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:437 AirMeteringStrategy doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:108
+OK      labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:442 PrimaryLoadCalculation doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:653
+OK      labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:447 FuelDeliveryType doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:137
+OK      labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:452 UpstreamO2Type doc=5 code=5 @ labs/comlab/comlab/schemas/vocabulary.py:165
+OK      labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:459 RpmStateBucket doc=4 code=4 @ labs/obdlab/obdlab/schemas/vocabulary.py:11
+OK      labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:465 FaultFamily doc=12 code=12 @ labs/comlab/comlab/schemas/vocabulary.py:217
+OK      labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:479 SampleValidity doc=4 code=4 @ labs/comlab/comlab/schemas/vocabulary.py:289
+DIFF    labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:485 Mode06Status doc=3 code=4 @ labs/comlab/comlab/schemas/vocabulary.py:510 only_code=['MONITOR_ABORTED']
+OK      labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:490 HistoricalFaultContext doc=4 code=4 @ labs/comlab/comlab/schemas/vocabulary.py:321
+OK      labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:496 DegradationMode doc=4 code=4 @ labs/comlab/comlab/schemas/vocabulary.py:560
+OK      labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:503 SeverityLevel doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:576
+OK      labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:508 VinConfidence doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:545
+NO-CODE  labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:513 ProcessingConfidenceRating (3 values) — no class/alias of that name in code
+OK      labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:110 AirMeteringStrategy doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:108
+DIFF    labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:121 O2SensorType doc=3 code=2 @ labs/comlab/comlab/schemas/vocabulary.py:123 only_doc=['WIDEBAND_NB_SIM']
+OK      labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:156 SampleValidity doc=4 code=4 @ labs/comlab/comlab/schemas/vocabulary.py:289
+OK      labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:166 VEValidity doc=5 code=5 @ labs/comlab/comlab/schemas/vocabulary.py:338
+OK      labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:173 TrimAnalyticsGate doc=9 code=9 @ labs/comlab/comlab/schemas/vocabulary.py:355
+OK      labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:184 NodeMAFStatus doc=2 code=2 @ labs/comlab/comlab/schemas/vocabulary.py:375
+OK      labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:188 NodeMAPStatus doc=2 code=2 @ labs/comlab/comlab/schemas/vocabulary.py:389
+DIFF    labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:192 O2NormalizationMode doc=3 code=4 @ labs/obdlab/obdlab/schemas/vocabulary.py:24 only_code=['O2_CHANNEL_FAULT']
+OK      labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:200 FuelSystemStatus doc=4 code=4 @ labs/comlab/comlab/schemas/vocabulary.py:412
+OK      labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:255 FaultFamily doc=12 code=12 @ labs/comlab/comlab/schemas/vocabulary.py:217
+OK      labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:277 Horizon doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:76
+OK      labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:292 ConfidenceRating doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:531
+OK      labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:301 VinConfidence doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:545
+DIFF    labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:314 DegradationMode doc=3 code=4 @ labs/comlab/comlab/schemas/vocabulary.py:560 only_code=['SINGLE_POINT']
+OK      labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:327 SeverityLevel doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:576
+OK      labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:420 O2FailureMode doc=4 code=4 @ labs/comlab/comlab/schemas/vocabulary.py:305
+OK      labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:482 HistoricalFaultContext doc=4 code=4 @ labs/comlab/comlab/schemas/vocabulary.py:321
+OK      labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:573 ChemicalSignature doc=34 code=34 @ labs/comlab/comlab/schemas/vocabulary.py:241
+OK      labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:89 DTCRoutingTag doc=17 code=17 @ labs/comlab/comlab/schemas/vocabulary.py:428
+OK      labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:159 DTCSeverityClass doc=4 code=4 @ labs/comlab/comlab/schemas/vocabulary.py:480
+OK      labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:180 DTCState doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:496
+DIFF    labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:193 Mode06MonitorState doc=3 code=4 @ labs/dtclab/dtclab/schemas/vocabulary.py:69 only_code=['MONITOR_ABORTED']
+OK      labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:220 FuelSystemStatus doc=4 code=4 @ labs/comlab/comlab/schemas/vocabulary.py:412
+OK      labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:234 HistoricalFaultContext doc=4 code=4 @ labs/comlab/comlab/schemas/vocabulary.py:321
+DIFF    labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:442 EuroEmissionCategory doc=8 code=7 @ labs/comlab/comlab/schemas/vocabulary.py:90 only_doc=['UNKNOWN']
+DIFF    labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:452 AirMeteringStrategy doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:108 only_doc=['MAF', 'MAP_SPEED_DENSITY', 'HYBRID'] only_code=['DUAL_MAF_MAP_CROSSCHECK', 'MAP_ONLY_SPEED_DENSITY', 'MAF_ONLY']
+OK      labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:457 ResolvedHorizon doc=3 code=3 @ labs/dtclab/dtclab/schemas/dna_view.py:46
+OK      labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:462 VinConfidence doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:545
+OK      labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:569 DTCFallbackStrategy doc=3 code=3 @ labs/comlab/comlab/schemas/vocabulary.py:465
+OK      labs/comlab/docs/COMLab_LLD.md:198 FaultEnrichmentSeverity doc=4 code=4 @ labs/comlab/comlab/schemas/vocabulary.py:620
+OK      labs/comlab/docs/COMLab_LLD.md:214 LabRoutingDirectiveReason doc=4 code=4 @ labs/comlab/comlab/schemas/vocabulary.py:638
+OK      labs/comlab/docs/COMLab_LLD.md:400 HorizonLit doc=3 code=3 @ labs/comlab/comlab/schemas/response.py:25
+OK      labs/comlab/docs/COMLab_LLD.md:401 DegradationLit doc=4 code=4 @ labs/comlab/comlab/schemas/response.py:26
+OK      labs/comlab/docs/COMLab_LLD.md:402 ConfidenceLit doc=3 code=3 @ labs/comlab/comlab/schemas/response.py:27
+OK      labs/comlab/docs/COMLab_LLD.md:403 VinConfidenceLit doc=3 code=3 @ labs/comlab/comlab/schemas/response.py:28
+OK      labs/comlab/docs/COMLab_LLD.md:404 SeverityLit doc=3 code=3 @ labs/comlab/comlab/schemas/response.py:29
+DIFF    labs/comlab/docs/COMLab_LLD.md:407 FaultFamilyLit doc=12 code=16 @ labs/comlab/comlab/schemas/kg.py:22 only_code=['invalid_input', 'vacuum_leak', 'overheating', 'charging_system']
+DIFF    labs/comlab/docs/COMLab_LLD.md:407 FaultFamilyLit doc=12 code=16 @ labs/comlab/comlab/schemas/response.py:34 only_code=['invalid_input', 'vacuum_leak', 'overheating', 'charging_system']
+
+TOTAL DIFF/NO-CODE lines: 10

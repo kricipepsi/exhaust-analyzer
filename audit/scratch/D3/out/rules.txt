@@ -1,0 +1,76 @@
+
+## X1 git ritual: never branch / work on main  vs  fix rows land on a branch (main = production)
+  4DLab_CLAUDE.md:137 — "Never create branches, worktrees, or stashes."
+  4DLab_CLAUDE.md:138 — "proceed in the current checkout on **main**"
+  v3/CLAUDE.md:40 — "Never branch, stash, or raise git as a blocker"
+  audit/AUDIT_START_HERE.md:61 — "Every fix row lands on a branch"
+  audit/AUDIT_START_HERE.md:58 — "Every push to `main` redeploys the public app"
+  4DLab_CLAUDE.md:128 — "git is not yet initialized in `/agent_workspace`"
+
+## X2 who may BUILD a graph: architect-only  vs  coder (Nemo) LLM extract, v3 coders 'build a new index', manifest 'when a task says so'
+  AGENTS.md:10 — "build subcommands (update/extract/serve/…) are architect-lane only"
+  DECISIONS.md:59 — "Architect runs all graph BUILD tasks"
+  planning/graph_rollout/GRAPH_ROLLOUT_START_HERE.md:19 — "never build subcommands"
+  planning/graph_rollout/GRAPH_ROLLOUT_START_HERE.md:12 — "`extract` (LLM) is now in-pack as **T-GR-10/11 only** (Nemo lane"
+  planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md:13 — "| T-GR-10 <!--NEMO LANE--> | tasks/T-GR-10_llm_extract_pilot_gaslab.md | Nemo | pending |"
+  planning/graph_rollout/tasks/T-GR-10_llm_extract_pilot_gaslab.md:22 — "graphify extract /tmp/gaslab_docs_llm --directed --backend deepseek"
+  v3/CLAUDE.md:32 — "Querying or building a *new* index offline is fine"
+  GRAPH_MANIFEST.md:55 — "they re-run graphify **only** when a task file explicitly says so"
+
+## X3 per-lab graphs frozen / never rebuilt  vs  architect rebuilds per-lab tiers
+  4DLab_CLAUDE.md:180 — "Per-lab knowledge graphs are frozen — query them, never re-`graphify` them"
+  CLAUDE.md:25 — "query the graph; never rebuild it"
+  DECISIONS.md:59 — "Architect runs all graph BUILD tasks** (T-GR-2..7, T-GR-9"
+  planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md:12 — "6 tiers refreshed (comlab code/tests/current"
+
+## X4 signal/noise: consumer must already exist  vs  consumer may be added in the same change
+  ROADMAP.md:58 — "needs a named, existing consumer in COMLab analytics or fault-atlas routing. No consumer → it doesn't ship"
+  AGENTS.md:33 — "that consumer **may be one you add in the same change**"
+  4DLab_CLAUDE.md:50 — "the consumer does not have to pre-exist in v1"
+
+## X5 canonical wiki: docs/GASLab/wikiNEW/ (never copy)  vs  labs/<lab>/wiki/
+  ROADMAP.md:61 — "**v2 wiki is canonical** for the lab being reworked (e.g. GASLab → `docs/GASLab/wikiNEW/`)"
+  DECISIONS.md:14 — "Canonical wiki `docs/GASLab/wikiNEW/` | **Unchanged — link in place.** Never copy"
+  AGENTS.md:23 — "`labs/<lab>/wiki/` is the canonical source for that lab"
+  fact: docs/GASLab/wikiNEW exists: False
+  fact: labs/gaslab/wiki exists: True
+
+## X6 which task to run: the one the manager assigned  vs  the one the ledger picks, not the one handed
+  START_HERE.md:18 — "implement the **task ID the manager assigned**"
+  AGENTS.md:60 — "implement exactly the `labs/<lab>/tasks/<id>.md` the manager assigned"
+  4DLab_CLAUDE.md:265 — "**Run the task the ledger picks, not the one you were handed.**"
+  .agent/assignments.md:7 — "Agy → T-V3-P4-C5B"
+  v3/V3_PROGRESS.md:77 — "| T-V3-P4-C5B | `T-V3-P4-C5B_c5_signal_commit.md` | done |"
+
+## X7 interpreter/venv: sandbox restore (START_HERE)  vs  no .sandbox-py, no download ritual (4DLab_CLAUDE)
+  START_HERE.md:21 — "Infra (Python 3.14 sandbox restore, `.venv-wired`, git ritual) is inherited from root `4DLab/CLAUDE.md`"
+  README.md:8 — "Infra inherited from root `4DLab/CLAUDE.md`"
+  4DLab_CLAUDE.md:196 — "There is no `.sandbox-py` and no per-session download ritual"
+  labs/comlab/tasks/PROGRESS.md:78 — "`../../.sandbox-py/bin/python3.14`"
+
+## X8 interpreter: never bare python3  vs  sanctioned python3 commands
+  4DLab_CLAUDE.md:191 — "always invoke `python3.14` explicitly**; never bare `python`/`python3`"
+  AGENTS.md:11 — "`python3 scripts/graph_health.py [lab]`"
+  AGENTS.md:100 — "`python3 _skills/graph/4dlab-vault/scripts/vault_query.py"
+
+## X9 firecrawl auth claimed automatic  vs  key file no longer in the repo
+  AGENTS.md:104 — "`FIRECRAWL_API_KEY` is exported automatically by every `run-*.sh` launcher"
+  AGENTS.md:106 — "if it does not, STOP and report"
+  planning/graph_rollout/GRAPH_ROLLOUT_START_HERE.md:14 — "auth auto-exported by run-*.sh"
+  DECISIONS.md:57 — "real (authenticated) firecrawl research"
+  .gitignore:86 — "_skills/firecrawl-web-scraping-search/API.md"
+  fact: API.md tracked by git: False
+
+## X10 never edit Vault/  vs  Vault/tasks packs whose procedure flips their own ledger rows
+  AGENTS.md:89 — "**Never edit `Vault/`.**"
+  4DLab_CLAUDE.md:241 — "| GAS→Vault pipeline pack | `/agent_workspace/Vault/tasks/GAS_VAULT_TASKS_START_HERE.md` |"
+  Vault/tasks/GAS_VAULT_TASKS_START_HERE.md:92 — "flip the ledger row to `done`, then STOP"
+  DECISIONS.md:59 — "its `Vault/tasks/` annotations stand"
+
+## X11 coder roster: two coders (Codex, Agy)  vs  six identities / Nemo lane
+  CLAUDE.md:4 — "Coders are two omp agents — **Codex** and **Agy**"
+  planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md:13 — "<!--NEMO LANE-->"
+  fact: identities under .agent/coders/: ['agy', 'claude', 'codex', 'deepseek', 'glm', 'nemo']
+
+fact: repo is a git work tree: true  | /agent_workspace exists: False
+sides not found: 0

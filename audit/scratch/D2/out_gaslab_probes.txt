@@ -1,0 +1,8 @@
+        print("GDI car  HIGH ->", hi[0].value, "| PARTIAL ->", part[0].value, "| NONE ->", no[0].value)
+GDI car  HIGH -> GDI_HPFP_INTERNAL_SEAL_LEAK | PARTIAL -> GDI_HPFP_INTERNAL_SEAL_LEAK | NONE -> GDI_HPFP_INTERNAL_SEAL_LEAK
+PASSED audit/scratch/D2/test_d2_gaslab_probes.py::test_d2g_lambda_measured_passthrough
+FAILED audit/scratch/D2/test_d2_gaslab_probes.py::test_d2g_hct_not_dna_gated
+FAILED audit/scratch/D2/test_d2_gaslab_probes.py::test_d2g_catch_all_set - As...
+FAILED audit/scratch/D2/test_d2_gaslab_probes.py::test_d2g_payload_field_count
+FAILED audit/scratch/D2/test_d2_gaslab_probes.py::test_d2g_confidence_shrinks_scope_per_vocab_invariant_7
+4 failed, 1 passed in 0.62s

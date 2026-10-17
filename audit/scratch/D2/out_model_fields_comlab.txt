@@ -1,0 +1,41 @@
+DIFF    labs/comlab/docs/COMLab_LLD.md:252 OrchestratorInboundRequest doc=5 code=9 @ comlab.schemas.ingestion only_doc=['vehicle_dna'] only_code=['metadata', 'downstream_trim_role', 'has_catalyst', 'user_input_echo_audit', 'second_operating_point']
+OK      labs/comlab/docs/COMLab_LLD.md:264 VehicleDNA doc=5 code=5 @ comlab.schemas.ingestion
+OK      labs/comlab/docs/COMLab_LLD.md:271 VinDNA doc=17 code=17 @ comlab.schemas.ingestion
+OK      labs/comlab/docs/COMLab_LLD.md:297 AirMeteringArchitecture doc=3 code=3 @ comlab.schemas.ingestion
+OK      labs/comlab/docs/COMLab_LLD.md:302 EmissionsConfiguration doc=5 code=5 @ comlab.schemas.ingestion
+NO-CODE labs/comlab/docs/COMLab_LLD.md:313 SymptomDNA fields=['tier_1_primary_symptom', 'tier_2_subfield_filter', 'environmental_conditions', 'free_text_notes']
+NO-CODE labs/comlab/docs/COMLab_LLD.md:319 EnvironmentalConditions fields=['occurs_during', 'engine_state']
+DIFF    labs/comlab/docs/COMLab_LLD.md:325 GasLabPayload doc=9 code=18 @ comlab.schemas.ingestion only_code=['high_idle_hc', 'high_idle_co', 'high_idle_co2', 'high_idle_o2', 'high_idle_nox', 'high_idle_lambda', 'decel_co_pct', 'pre_post_cat_hc_delta_ppm', 'pre_post_cat_co_delta_pct']
+DIFF    labs/comlab/docs/COMLab_LLD.md:336 OBDLiveDataPayload doc=11 code=60 @ comlab.schemas.ingestion only_code=['total_trim_correction_delta_b2', 'lambda_perception_delta', 'per_bank_trim_delta', 'per_cylinder_misfire_counts', 'ltft_cell_vector', 'control_module_voltage_v', 'w_theo', 'sensor_error_delta', 'shrtft1', 'longft1', 'mass_airflow_gps', 'manifold_vacuum_kpa', 'coolant_temp_c', 'intake_air_temp_c', 'throttle_pos_pct', 'fuel_system_status', 'mode06_catalyst_margin_pct', 'catalyst_index_ratio', 'stft_idle_pct', 'ltft_idle_pct', 'stft_2500_pct', 'ltft_2500_pct', 'mode06_o2_response_margin_pct', 'maf_actual_calc_delta_pct_idle', 'maf_actual_calc_delta_pct_2500', 'maf_gps_idle', 'maf_gps_2500', 'calc_airflow_gps_idle', 'calc_airflow_gps_2500', 'koeo_map_baro_delta_kpa', 'module_voltage_loaded_v', 'dlc_signal_ground_drop_v', 'bidirectional_fuel_response_ok_bool', 'stft_load_pct', 'ltft_load_pct', 'calc_load_wot_pct', 'fuel_rail_pressure_load_kpa', 'wideband_lambda_wot', 'co2_idle_pct', 'tailpipe_o2_elevation_pct', 'downstream_o2_v', 'propane_trim_shift_pct', 'readiness_supported_complete_bool', 'stored_dtc_count', 'pending_dtc_count', 'permanent_dtc_count', 'mode06_min_margin_pct', 'warmup_cycles_since_clear', 'miles_since_clear']
+OK      labs/comlab/docs/COMLab_LLD.md:349 DTCLabPayload doc=9 code=9 @ comlab.schemas.ingestion
+OK      labs/comlab/docs/COMLab_LLD.md:413 LabRoutingDirectiveOut doc=5 code=5 @ comlab.schemas.response
+OK      labs/comlab/docs/COMLab_LLD.md:423 ExecutionMeta doc=5 code=5 @ comlab.schemas.response
+DIFF    labs/comlab/docs/COMLab_LLD.md:431 DifferentialSiblingOut doc=4 code=5 @ comlab.schemas.response only_code=['fault_family']
+DIFF    labs/comlab/docs/COMLab_LLD.md:440 DiagnosticVerdict doc=7 code=10 @ comlab.schemas.response only_code=['actionable_remediation', 'abstained', 'abstain_reason']
+OK      labs/comlab/docs/COMLab_LLD.md:450 FaultEnrichment doc=5 code=5 @ comlab.schemas.response
+OK      labs/comlab/docs/COMLab_LLD.md:460 PerformanceAnalytics doc=5 code=5 @ comlab.schemas.response
+OK      labs/comlab/docs/COMLab_LLD.md:470 UserInputEchoFieldGroup doc=3 code=3 @ comlab.schemas.ingestion
+OK      labs/comlab/docs/COMLab_LLD.md:476 UserInputEchoAudit doc=2 code=2 @ comlab.schemas.ingestion
+DIFF    labs/comlab/docs/COMLab_LLD.md:482 OrchestratorFinalUIOutput doc=7 code=6 @ comlab.schemas.response only_doc=['schema_version']
+NO-CODE labs/comlab/docs/COMLab_LLD.md:495 OrchestratorErrorOutput fields=['session_id', 'schema_version', 'execution_meta', 'error', 'user_input_echo_audit']
+NO-CODE labs/comlab/docs/COMLab_LLD.md:503 ExecutionMetaAborted fields=['degradation_mode', 'lab_routing_directive']
+NO-CODE labs/comlab/docs/COMLab_LLD.md:507 ErrorBody fields=['error_code', 'ui_remediation_message']
+DIFF    labs/comlab/docs/COMLab_LLD.md:517 OrchestratorInboundRequest doc=1 code=9 @ comlab.schemas.ingestion only_code=['metadata', 'gas_lab_output', 'obd_live_data', 'dtc_lab_output', 'symptom_dna', 'downstream_trim_role', 'has_catalyst', 'second_operating_point']
+OK      labs/comlab/docs/COMLab_LLD.md:533 KGNode doc=8 code=8 @ comlab.schemas.kg
+OK      labs/comlab/docs/COMLab_LLD.md:546 KGFile doc=3 code=3 @ comlab.schemas.kg
+OK      labs/comlab/docs/COMLab_LLD.md:572 GasLabDnaView doc=14 code=14 @ comlab.schemas.lab_dna_views
+OK      labs/comlab/docs/COMLab_LLD.md:590 ObdLabDnaView doc=10 code=10 @ comlab.schemas.lab_dna_views
+OK      labs/comlab/docs/COMLab_LLD.md:604 DtcLabDnaView doc=8 code=8 @ comlab.schemas.lab_dna_views
+OK      labs/comlab/docs/COMLab_LLD.md:652 ProjectedViews doc=3 code=3 @ comlab.schemas.lab_dna_views
+OK      labs/comlab/docs/COMLab_LLD.md:675 HorizonContext doc=4 code=4 @ comlab.core.horizon_context_injector
+OK      labs/comlab/docs/COMLab_LLD.md:721 LabRoutingDirective doc=5 code=5 @ comlab.schemas.vocabulary
+NO-CODE labs/comlab/docs/COMLab_LLD.md:757 SanitizedPayload fields=['request', 'horizon_ctx', 'routing_directive', 'degradation_mode', 'projected_views']
+OK      labs/comlab/docs/COMLab_LLD.md:815 TriageVerdict doc=3 code=3 @ comlab.core.fault_atlas_router
+DIFF    labs/comlab/docs/COMLab_LLD.md:950 PerceptionContradictionResult doc=2 code=4 @ comlab.core.perception_contradiction only_code=['guard_suppressed', 'qualifiers']
+DIFF    labs/comlab/docs/COMLab_LLD.md:975 ECUHardwareVerdict doc=3 code=2 @ comlab.core.ecu_hardware_checker only_doc=['reason']
+OK      labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:273 DTCLabPayload doc=9 code=9 @ comlab.schemas.ingestion
+OK      labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:351 Mode06MonitorResult doc=4 code=4 @ comlab.schemas.ingestion
+DIFF    labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:418 DtcLabDnaView doc=8 code=8 @ comlab.schemas.lab_dna_views only_doc=['model', 'emissions'] only_code=['has_catalyst', 'egr_equipped']
+OK      labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:432 DtcEmissionsView doc=2 code=2 @ dtclab.schemas.dna_view
+
+TOTAL DIFF/NO-CODE: 16

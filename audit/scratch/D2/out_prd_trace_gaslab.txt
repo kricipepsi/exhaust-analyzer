@@ -1,0 +1,3 @@
+PRD requirement IDs found in labs/gaslab/docs/PRD_GASLab.md: 6 ['KR1', 'KR2', 'KR3', 'KR4']
+
+units=0 keyed=0 no_design_home=0 no_bdd=0 unkeyed=0

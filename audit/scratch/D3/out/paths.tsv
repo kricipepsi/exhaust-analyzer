@@ -1,0 +1,1562 @@
+doc	line	path	class	info
+CLAUDE.md	1	CLAUDE.md	OK	.
+CLAUDE.md	6	AGENTS.md	OK	.
+CLAUDE.md	9	_skills/firecrawl-web-scraping-search/SKILL.md	OK	.
+CLAUDE.md	10	.firecrawl/	DECLARED	same-line keyword
+CLAUDE.md	20	audit/AUDIT_START_HERE.md	OK	.
+CLAUDE.md	21	audit/FINDINGS.md	OK	.
+CLAUDE.md	24	START_HERE.md	OK	.
+CLAUDE.md	24	ROADMAP.md	OK	.
+CLAUDE.md	25	wiki/	BARE-ELSEWHERE	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+CLAUDE.md	25	graph/	BARE-ELSEWHERE	labs/gaslab/graph; labs/dtclab/graph; labs/symptomlab/graph (+7)
+CLAUDE.md	32	.agent/assignments.md	OK	.
+CLAUDE.md	39	GRAPH_AUDIT_2026-06-28.md	OK	.
+CLAUDE.md	43	AGENTS.md	OK	.
+CLAUDE.md	43	agents.md	MISSING	
+CLAUDE.md	44	/agent_workspace	ABSOLUTE	resolves-under-repo
+CLAUDE.md	47	4DLab_CLAUDE.md	OK	.
+CLAUDE.md	48	4DLab_CLAUDE.md	OK	.
+CLAUDE.md	49	CLAUDE.local.md	DECLARED	global/off-mount
+CLAUDE.md	50	../v2-restructure/	DECLARED	global/off-mount
+CLAUDE.md	50	4DLab/graphify-out/	DECLARED	global/off-mount
+CLAUDE.md	55	v2/	MISSING	
+CLAUDE.md	55	v6/	MISSING	
+CLAUDE.md	60	.agent/assignments.md	OK	.
+CLAUDE.md	64	apps/wired/WIRED_START_HERE.md	OK	.
+CLAUDE.md	64	apps/wired/WIRING_PREP.md	OK	.
+CLAUDE.md	65	apps/vault/VAULT_LIVE_START_HERE.md	OK	.
+CLAUDE.md	65	apps/OMP_VAULT_HARNESS_PLAN_2026-06-28.md	OK	.
+CLAUDE.md	66	apps/wired/test_tasks/WIRED_TEST_START_HERE.md	OK	.
+CLAUDE.md	67	apps/wired/v7_tasks/WIRED_V7_START_HERE.md	OK	.
+CLAUDE.md	67	/home/m/Desktop/casesextra/	ABSOLUTE	
+CLAUDE.md	67	cases_library_v2.html	MISSING	
+CLAUDE.md	68	apps/wired/ship_tasks/SHIP_START_HERE.md	OK	.
+CLAUDE.md	68	planning/SHIP_AUDIT_2026-07-07.md	OK	.
+AGENTS.md	3	AGENTS.md	OK	.
+AGENTS.md	3	CLAUDE.md	OK	.
+AGENTS.md	4	START_HERE.md	OK	.
+AGENTS.md	6	GRAPH_MANIFEST.md	OK	.
+AGENTS.md	7	GRAPH_AUDIT_2026-06-28.md	OK	.
+AGENTS.md	8	graphify-out/	IGNORED	
+AGENTS.md	11	scripts/graph_health.py	OK	.
+AGENTS.md	15	_skills/firecrawl-web-scraping-search/SKILL.md	OK	.
+AGENTS.md	15	.firecrawl/	DECLARED	same-line keyword
+AGENTS.md	22	4DLab/graphify-out/	DECLARED	global/off-mount
+AGENTS.md	24	v2/	MISSING	
+AGENTS.md	24	v6/	MISSING	
+AGENTS.md	27	tasks/PROGRESS.md	SUFFIX	shorthand: an existing path ends with it
+AGENTS.md	35	comlab/config/proposals/	SUFFIX	shorthand: an existing path ends with it
+AGENTS.md	37	4DLab_CLAUDE.md	OK	.
+AGENTS.md	45	START_HERE.md	OK	.
+AGENTS.md	45	ROADMAP.md	OK	.
+AGENTS.md	46	wiki/	BARE-ELSEWHERE	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+AGENTS.md	46	graph/	BARE-ELSEWHERE	labs/gaslab/graph; labs/dtclab/graph; labs/symptomlab/graph (+7)
+AGENTS.md	47	progress_notes/	BARE-ELSEWHERE	planning/graph_rollout/progress_notes; planning/test_rollout/tasks/progress_notes; planning/code_audit/tasks/progress_notes (+27)
+AGENTS.md	48	../v2-restructure/EXECUTION_LOG.md	DECLARED	global/off-mount
+AGENTS.md	52	tests/	BARE-ELSEWHERE	harness/tests; apps/ui/tests; apps/wired/tests (+18)
+AGENTS.md	52	tasks/	BARE-ELSEWHERE	planning/graph_rollout/tasks; planning/test_rollout/tasks; planning/code_audit/tasks (+17)
+AGENTS.md	52	wiki/	BARE-ELSEWHERE	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+AGENTS.md	52	graph/	BARE-ELSEWHERE	labs/gaslab/graph; labs/dtclab/graph; labs/symptomlab/graph (+7)
+AGENTS.md	53	harness/	OK	.
+AGENTS.md	53	docs/	OK	.
+AGENTS.md	54	4DLab_CLAUDE.md	OK	.
+AGENTS.md	61	.agent/assignments.md	OK	.
+AGENTS.md	63	PROGRESS.md	BARE-ELSEWHERE	planning/post_cat_trim/PROGRESS.md; planning/oil_consumption/PROGRESS.md; labs/gaslab/tasks/PROGRESS.md (+5)
+AGENTS.md	68	CLAUDE.md	OK	.
+AGENTS.md	75	graphify-out/	NONREF	mentioned only as never-stage/never-commit
+AGENTS.md	86	wiki/	BARE-ELSEWHERE	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+AGENTS.md	86	docs/	OK	.
+AGENTS.md	87	/	OK	.
+AGENTS.md	88	_skills/graph/4dlab-vault/reference/frontmatter-schema.md	OK	.
+AGENTS.md	89	Vault/	OK	.
+AGENTS.md	90	.omp/rules/lane-guard-no-vault-edit.md	IGNORED	
+AGENTS.md	93	wiki/	BARE-ELSEWHERE	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+AGENTS.md	93	docs/	OK	.
+AGENTS.md	97	4DLab_CLAUDE.md	OK	.
+AGENTS.md	97	DECISIONS.md	OK	.
+AGENTS.md	100	_skills/graph/4dlab-vault/scripts/vault_query.py	OK	.
+AGENTS.md	105	_skills/firecrawl-web-scraping-search/API.md	OK	.
+4DLab_CLAUDE.md	3	4DLab/CLAUDE.md	LEGACY	strip-prefix-resolves
+4DLab_CLAUDE.md	5	CLAUDE.md	OK	.
+4DLab_CLAUDE.md	5	AGENTS.md	OK	.
+4DLab_CLAUDE.md	8	/home/m/Desktop/claude/CLAUDE.md	ABSOLUTE	
+4DLab_CLAUDE.md	14	tasks/	BARE-ELSEWHERE	planning/graph_rollout/tasks; planning/test_rollout/tasks; planning/code_audit/tasks (+17)
+4DLab_CLAUDE.md	16	gaslab/	BARE-ELSEWHERE	labs/gaslab; labs/gaslab/gaslab; Vault/labs/gaslab
+4DLab_CLAUDE.md	28	tasks/	BARE-ELSEWHERE	planning/graph_rollout/tasks; planning/test_rollout/tasks; planning/code_audit/tasks (+17)
+4DLab_CLAUDE.md	30	run-codex.sh	OK	.
+4DLab_CLAUDE.md	30	run-agy.sh	OK	.
+4DLab_CLAUDE.md	31	_START_HERE.md	MISSING	
+4DLab_CLAUDE.md	31	OBDLAB_TASKS_START_HERE.md	BARE-ELSEWHERE	labs/obdlab/tasks/OBDLAB_TASKS_START_HERE.md
+4DLab_CLAUDE.md	32	GASLAB_TASKS_START_HERE.md	BARE-ELSEWHERE	labs/gaslab/tasks/GASLAB_TASKS_START_HERE.md
+4DLab_CLAUDE.md	36	_START_HERE.md	MISSING	
+4DLab_CLAUDE.md	71	03_fuel_trim_grammar.md	BARE-ELSEWHERE	labs/dtclab/wiki/03_fuel_trim_grammar.md; Vault/labs/dtclab/wiki/03_fuel_trim_grammar.md
+4DLab_CLAUDE.md	80	_skills/firecrawl-web-scraping-search/SKILL.md	OK	.
+4DLab_CLAUDE.md	91	comlab/config/proposals/	SUFFIX	shorthand: an existing path ends with it
+4DLab_CLAUDE.md	114	_skills/coding-bootstrap/SKILL.md	OK	.
+4DLab_CLAUDE.md	128	/agent_workspace	ABSOLUTE	resolves-under-repo
+4DLab_CLAUDE.md	130	/home/m/Desktop/migration	ABSOLUTE	
+4DLab_CLAUDE.md	159	.venv-wired/	NONREF	mentioned only as never-stage/never-commit
+4DLab_CLAUDE.md	159	graphify-out/	NONREF	mentioned only as never-stage/never-commit
+4DLab_CLAUDE.md	159	labs/vinlab/mysql_data/	NONREF	mentioned only as never-stage/never-commit
+4DLab_CLAUDE.md	177	PRD_4D_App.md	MISSING	
+4DLab_CLAUDE.md	180	GRAPH_AUDIT_2026-06-28.md	OK	.
+4DLab_CLAUDE.md	190	/home/m/.local/bin/python3.14	ABSOLUTE	
+4DLab_CLAUDE.md	193	/agent_workspace/.venv-wired	ABSOLUTE	
+4DLab_CLAUDE.md	204	apps/wiredV2	MISSING	
+4DLab_CLAUDE.md	204	labs/comlab	OK	.
+4DLab_CLAUDE.md	204	labs/dnalab	OK	.
+4DLab_CLAUDE.md	204	labs/dtclab	OK	.
+4DLab_CLAUDE.md	205	labs/gaslab	OK	.
+4DLab_CLAUDE.md	205	labs/obdlab	OK	.
+4DLab_CLAUDE.md	205	labs/symptomlab	OK	.
+4DLab_CLAUDE.md	205	labs/vinlab	OK	.
+4DLab_CLAUDE.md	212	/agent_workspace/labs/	ABSOLUTE	resolves-under-repo
+4DLab_CLAUDE.md	213	/agent_workspace/.venv-wired/bin/activate	ABSOLUTE	
+4DLab_CLAUDE.md	215	/agent_workspace/.venv-wired/bin/python	ABSOLUTE	
+4DLab_CLAUDE.md	229	.venv-wired/	NONREF	mentioned only as never-stage/never-commit
+4DLab_CLAUDE.md	232	/agent_workspace	ABSOLUTE	resolves-under-repo
+4DLab_CLAUDE.md	233	4DLabV2/	DECLARED	global/off-mount
+4DLab_CLAUDE.md	233	4DLab/	DECLARED	global/off-mount
+4DLab_CLAUDE.md	239	/agent_workspace/START_HERE.md	ABSOLUTE	resolves-under-repo
+4DLab_CLAUDE.md	239	ROADMAP.md	OK	.
+4DLab_CLAUDE.md	240	/agent_workspace/labs/gaslab/tasks/GASLAB_TASKS_START_HERE.md	ABSOLUTE	resolves-under-repo
+4DLab_CLAUDE.md	241	/agent_workspace/Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	ABSOLUTE	resolves-under-repo
+4DLab_CLAUDE.md	242	/agent_workspace/Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	ABSOLUTE	resolves-under-repo
+4DLab_CLAUDE.md	243	/agent_workspace/labs/obdlab/tasks/OBDLAB_TASKS_START_HERE.md	ABSOLUTE	resolves-under-repo
+4DLab_CLAUDE.md	244	/agent_workspace/labs/dtclab/README.md	ABSOLUTE	resolves-under-repo
+4DLab_CLAUDE.md	245	/agent_workspace/labs/comlab/README.md	ABSOLUTE	resolves-under-repo
+4DLab_CLAUDE.md	246	/agent_workspace/apps/wiredV2/WIREDV2_START_HERE.md	ABSOLUTE	
+4DLab_CLAUDE.md	247	/agent_workspace/harness/HARNESS_START_HERE.md	ABSOLUTE	resolves-under-repo
+4DLab_CLAUDE.md	248	/agent_workspace/planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	ABSOLUTE	resolves-under-repo
+4DLab_CLAUDE.md	249	/agent_workspace/planning/gpf_removal/GPF_REMOVAL_START_HERE.md	ABSOLUTE	resolves-under-repo
+4DLab_CLAUDE.md	250	4DLab/registry/REGISTRY_START_HERE.md	DECLARED	global/off-mount
+4DLab_CLAUDE.md	251	4DLab/patch/PATCH_START_HERE.md	DECLARED	global/off-mount
+4DLab_CLAUDE.md	252	4DLab/diag/DIAG_START_HERE.md	DECLARED	global/off-mount
+4DLab_CLAUDE.md	253	4DLab/FX_START_HERE.md	DECLARED	global/off-mount
+4DLab_CLAUDE.md	254	README.md	OK	.
+4DLab_CLAUDE.md	264	_START_HERE.md	MISSING	
+START_HERE.md	3	ROADMAP.md	OK	.
+START_HERE.md	3	tasks/	BARE-ELSEWHERE	planning/graph_rollout/tasks; planning/test_rollout/tasks; planning/code_audit/tasks (+17)
+START_HERE.md	9	labs/	OK	.
+START_HERE.md	9	apps/	OK	.
+START_HERE.md	10	harness/	OK	.
+START_HERE.md	11	../v2-restructure/V2_WORKSPACE_STRUCTURE_PROPOSAL.md	DECLARED	global/off-mount
+START_HERE.md	15	AGENTS.md	OK	.
+START_HERE.md	16	ROADMAP.md	OK	.
+START_HERE.md	22	4DLab/CLAUDE.md	LEGACY	strip-prefix-resolves
+START_HERE.md	26	ARCHIVE/2026-06-06_v2restructure/	DECLARED	same-line keyword
+START_HERE.md	26	../v2-restructure/EXECUTION_LOG.md	DECLARED	global/off-mount
+ROADMAP.md	3	4DLabV2/docs/reference/audit_2026-06-03/4DLAB_CAPABILITY_AUDIT_AND_RESEARCH_QUESTIONS.md	LEGACY	strip-prefix-resolves
+ROADMAP.md	27	4DLabV2/labs/gaslab/tasks/PROGRESS.md	LEGACY	strip-prefix-resolves
+ROADMAP.md	28	4DLabV2/labs/obdlab/tasks/PROGRESS.md	LEGACY	strip-prefix-resolves
+ROADMAP.md	29	4DLabV2/labs/dtclab/README.md	LEGACY	strip-prefix-resolves
+ROADMAP.md	30	4DLabV2/labs/comlab/README.md	LEGACY	strip-prefix-resolves
+ROADMAP.md	30	registry/REGISTRY_START_HERE.md	MOVED	labs/comlab/registry/docs/REGISTRY_START_HERE.md
+ROADMAP.md	44	ARCHIVE/2026-06-06_v2restructure/4DLabV2/planning/sprints/stage1_gaslab/studies/STUDY_ecu_fault_gas_signatures_merge.md	IGNORED	
+ROADMAP.md	46	4DLabV2/labs/gaslab/tasks/TASK_SUITE_ecu_fault_diagnosis.md	LEGACY	strip-prefix-resolves
+ROADMAP.md	61	docs/GASLab/wikiNEW/	MISSING	
+ROADMAP.md	62	v2/	MISSING	
+ROADMAP.md	62	v6/	MISSING	
+ROADMAP.md	69	4DLabV2/docs/reference/audit_2026-06-03/4DLAB_CAPABILITY_AUDIT_AND_RESEARCH_QUESTIONS.md	LEGACY	strip-prefix-resolves
+ROADMAP.md	70	4DLabV2/labs/gaslab/tasks/PROGRESS.md	LEGACY	strip-prefix-resolves
+ROADMAP.md	71	CLAUDE.md	OK	.
+ROADMAP.md	73	_skills/coding-bootstrap	OK	.
+DECISIONS.md	9	ARCHIVE/	IGNORED	
+DECISIONS.md	11	4DLabV2/labs/	LEGACY	strip-prefix-resolves
+DECISIONS.md	11	4dlabwired_v2/	MISSING	
+DECISIONS.md	12	FX_START_HERE.md	MISSING	
+DECISIONS.md	12	FX_PROGRESS.md	MISSING	
+DECISIONS.md	14	docs/GASLab/wikiNEW/	MISSING	
+DECISIONS.md	15	v2/	MISSING	
+DECISIONS.md	15	v6/	MISSING	
+DECISIONS.md	15	ARCHIVE/legacy_v2/	IGNORED	
+DECISIONS.md	30	STUDY_ecu_fault_gas_signatures_merge.md	MISSING	
+DECISIONS.md	33	stage1_gaslab/PROGRESS.md	MOVED	planning/post_cat_trim/PROGRESS.md; planning/oil_consumption/PROGRESS.md; labs/gaslab/tasks/PROGRESS.md (+5)
+DECISIONS.md	46	apps/wired	OK	.
+DECISIONS.md	46	CLAUDE.md	OK	.
+DECISIONS.md	47	CLASSIFICATION.md	MISSING	
+DECISIONS.md	47	Simple/	MISSING	
+DECISIONS.md	47	labs/	OK	.
+DECISIONS.md	47	composition.py	BARE-ELSEWHERE	apps/wired/wired/composition.py
+DECISIONS.md	49	docs/Brain/QUESTIONS.md	OK	.
+DECISIONS.md	57	03_fuel_trim_grammar.md	BARE-ELSEWHERE	labs/dtclab/wiki/03_fuel_trim_grammar.md; Vault/labs/dtclab/wiki/03_fuel_trim_grammar.md
+DECISIONS.md	57	v3/v3_tasks/progress_notes/AUDIT_C5-SYNTH_C5A_2026-07-06.md	OK	.
+DECISIONS.md	57	cluster5.md	BARE-ELSEWHERE	v3/research/research_answers/cluster5.md
+DECISIONS.md	58	4DLab_CLAUDE.md	OK	.
+DECISIONS.md	59	.omp/rules/	IGNORED	
+DECISIONS.md	59	Vault/tasks/	OK	.
+README.md	3	labs/	OK	.
+README.md	4	apps/	OK	.
+README.md	4	harness/	OK	.
+README.md	4	START_HERE.md	OK	.
+README.md	5	AGENTS.md	OK	.
+README.md	5	../v2-restructure/V2_WORKSPACE_STRUCTURE_PROPOSAL.md	DECLARED	global/off-mount
+README.md	7	harness/	OK	.
+README.md	7	docs/	OK	.
+README.md	8	4DLab/CLAUDE.md	LEGACY	strip-prefix-resolves
+README.md	9	../v2-restructure/EXECUTION_LOG.md	DECLARED	global/off-mount
+GRAPH_MANIFEST.md	5	AGENTS.md	OK	.
+GRAPH_MANIFEST.md	5	docs/Brain/GRAPH_VS_GRAPHIFY_SETTLED.md	OK	.
+GRAPH_MANIFEST.md	7	GRAPH_AUDIT_2026-06-28.md	OK	.
+GRAPH_MANIFEST.md	7	GRAPH_VIABILITY_ASSESSMENT_2026-07-06.md	OK	.
+GRAPH_MANIFEST.md	8	graphify-out/graph.json	IGNORED	
+GRAPH_MANIFEST.md	16	graph.json	BARE-ELSEWHERE	labs/gaslab/graph/v2_code/graph.json; labs/gaslab/graph/v2_tests/graph.json; labs/gaslab/graph/v2_docs/graph.json (+40)
+GRAPH_MANIFEST.md	22	_skills/graph/4dlab-vault/	OK	.
+GRAPH_MANIFEST.md	22	scripts/vault_query.py	SUFFIX	shorthand: an existing path ends with it
+GRAPH_MANIFEST.md	23	graph.json	BARE-ELSEWHERE	labs/gaslab/graph/v2_code/graph.json; labs/gaslab/graph/v2_tests/graph.json; labs/gaslab/graph/v2_docs/graph.json (+40)
+GRAPH_MANIFEST.md	23	_meta/PROVENANCE.md	SUFFIX	shorthand: an existing path ends with it
+GRAPH_MANIFEST.md	30	graph.json	BARE-ELSEWHERE	labs/gaslab/graph/v2_code/graph.json; labs/gaslab/graph/v2_tests/graph.json; labs/gaslab/graph/v2_docs/graph.json (+40)
+GRAPH_MANIFEST.md	31	graph.json	BARE-ELSEWHERE	labs/gaslab/graph/v2_code/graph.json; labs/gaslab/graph/v2_tests/graph.json; labs/gaslab/graph/v2_docs/graph.json (+40)
+GRAPH_MANIFEST.md	55	graph.json	BARE-ELSEWHERE	labs/gaslab/graph/v2_code/graph.json; labs/gaslab/graph/v2_tests/graph.json; labs/gaslab/graph/v2_docs/graph.json (+40)
+GRAPH_MANIFEST.md	57	graphify-out/graph.json	IGNORED	
+GRAPH_MANIFEST.md	135	vault_query.py	BARE-ELSEWHERE	_skills/graph/4dlab-vault/scripts/vault_query.py
+GRAPH_MANIFEST.md	139	graphify-out/	IGNORED	
+GRAPH_MANIFEST.md	145	graph.json	BARE-ELSEWHERE	labs/gaslab/graph/v2_code/graph.json; labs/gaslab/graph/v2_tests/graph.json; labs/gaslab/graph/v2_docs/graph.json (+40)
+labs/comlab/tasks/PROGRESS.md	3	labs/comlab/README.md	OK	.
+labs/comlab/tasks/PROGRESS.md	5	_INDEX.md	DECLARED	same-line keyword
+labs/comlab/tasks/PROGRESS.md	9	labs/comlab/research/	OK	.
+labs/comlab/tasks/PROGRESS.md	9	labs/comlab/research/README.md	OK	.
+labs/comlab/tasks/PROGRESS.md	24	tasks/T-COMV2-ECU-FUSE-1_ecu_perception_reality_fuse.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	24	obdlab/research/AUDIT_ANSWERS_OBDLab.md	OK	labs
+labs/comlab/tasks/PROGRESS.md	25	tasks/T-COMV2-BANK-FUSE-1_per_bank_asymmetry_verdict.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	26	tasks/T-COMV2-VE-GATE-1_ve_evidence_circularity_gate.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	27	tasks/T-COMV2-O2OFFSET-1_wideband_offset_confirm.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	27	ingestion.py	BARE-ELSEWHERE	labs/comlab/comlab/schemas/ingestion.py; Vault/labs/comlab/code/schemas/ingestion.py
+labs/comlab/tasks/PROGRESS.md	28	tasks/T-COMV2-NOSTART-1_no_start_branch.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	29	tasks/T-COMV2-FUELSYS-GATE-1_fuel_system_status_gate.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	30	tasks/T-COMV2-ECU-HW-1_ecu_hardware_lie_checker.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	31	tasks/T-COMV2-VPWR-GATE-1_rail_health_precheck.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	32	tasks/T-COMV2-MISFIRE-LOC-1_misfire_localiser_gate.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	33	tasks/T-COMV2-MAF-LIN-1_maf_linearity_ladder.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	34	tasks/T-COMV2-LTFT-CELL-1_load_cell_classification.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	35	tasks/T-COMV2-CTXMOD-1_symptom_prior_context_modifier.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	37	tasks/T-COMV2-DELTA-1A_schema_foundations.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	38	tasks/T-COMV2-DELTA-1B_engine_models_and_gates.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	38	delta_engine.py	BARE-ELSEWHERE	labs/comlab/comlab/analytics/delta_engine.py; Vault/labs/comlab/code/analytics/delta_engine.py
+labs/comlab/tasks/PROGRESS.md	39	tasks/T-COMV2-DELTA-1C_engine_profiles.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	40	tasks/T-COMV2-DELTA-1D_router_wiring.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	41	tasks/T-REG-REVIVE-1_registry_revival_cleanup.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	41	labs/comlab/registry/	OK	.
+labs/comlab/tasks/PROGRESS.md	42	tasks/REG-V2-AUTHOR-ignition_fault.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	43	tasks/T-COMV2-DELTA-2_v2_registry_delta_activation.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	51	descriptor.py	BARE-ELSEWHERE	harness/harness/descriptor.py; labs/gaslab/tests/fixtures/descriptor.py; labs/dtclab/tests/fixtures/descriptor.py (+6)
+labs/comlab/tasks/PROGRESS.md	51	test_cases.py	BARE-ELSEWHERE	labs/gaslab/tests/test_cases.py; labs/dtclab/tests/test_cases.py; labs/comlab/tests/test_cases.py (+5)
+labs/comlab/tasks/PROGRESS.md	51	regression/	BARE-ELSEWHERE	labs/dtclab/tests/regression; labs/comlab/tests/regression; labs/obdlab/tests/regression (+3)
+labs/comlab/tasks/PROGRESS.md	51	ingestion.py	BARE-ELSEWHERE	labs/comlab/comlab/schemas/ingestion.py; Vault/labs/comlab/code/schemas/ingestion.py
+labs/comlab/tasks/PROGRESS.md	51	apps/wired/harness/	BROKEN-SYMLINK	-> /agent_workspace/ARCHIVE/wired/harness
+labs/comlab/tasks/PROGRESS.md	51	wiki/12_corpus_eval_discipline.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	55	T-COMTST-1_descriptor_verdict_fixtures.md	OK	labs/comlab/tasks
+labs/comlab/tasks/PROGRESS.md	55	comlab_cases.csv	BARE-ELSEWHERE	labs/comlab/tests/fixtures/comlab_cases.csv; Vault/labs/comlab/tests/fixtures/comlab_cases.csv
+labs/comlab/tasks/PROGRESS.md	56	T-COMTST-2_csv_characterization_net.md	OK	labs/comlab/tasks
+labs/comlab/tasks/PROGRESS.md	56	tests/test_cases.py	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	57	T-COMTST-3_generative_combinatorial_fuzz.md	OK	labs/comlab/tasks
+labs/comlab/tasks/PROGRESS.md	58	T-COMTST-4_regression_golden_pin.md	OK	labs/comlab/tasks
+labs/comlab/tasks/PROGRESS.md	66	cam_timing.json	BARE-ELSEWHERE	labs/comlab/registry/rules/cam_timing.json; labs/comlab/comlab/config/kg/cam_timing.json; Vault/labs/comlab/code/config/kg/cam_timing.json (+1)
+labs/comlab/tasks/PROGRESS.md	67	projection.py	BARE-ELSEWHERE	labs/comlab/comlab/projection.py; Vault/labs/comlab/code/projection.py
+labs/comlab/tasks/PROGRESS.md	68	comlab/schemas/vocabulary.py	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	78	../../.sandbox-py/bin/python3.14	MISSING	
+labs/comlab/tasks/PROGRESS.md	79	registry/tests/	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	93	_INDEX.md	BARE-ELSEWHERE	apps/wired/_wired_skills/_INDEX.md; labs/comlab/_comlab_skills/_INDEX.md; labs/comlab/registry/docs/_registry_skills/_INDEX.md
+labs/comlab/tasks/PROGRESS.md	106	ecu_hardware_checker.py	BARE-ELSEWHERE	labs/comlab/comlab/core/ecu_hardware_checker.py; Vault/labs/comlab/code/core/ecu_hardware_checker.py
+labs/comlab/tasks/PROGRESS.md	128	ingestion.py	BARE-ELSEWHERE	labs/comlab/comlab/schemas/ingestion.py; Vault/labs/comlab/code/schemas/ingestion.py
+labs/comlab/tasks/PROGRESS.md	133	ingestion.py	BARE-ELSEWHERE	labs/comlab/comlab/schemas/ingestion.py; Vault/labs/comlab/code/schemas/ingestion.py
+labs/comlab/tasks/PROGRESS.md	148	tasks/T-COMV2-LAMBDAPROJ-1_dna_view_lambda_reconcile.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	148	entries.yaml	BARE-ELSEWHERE	labs/comlab/comlab/config/proposals/entries.yaml; Vault/labs/comlab/code/config/proposals/entries.yaml
+labs/comlab/tasks/PROGRESS.md	149	tasks/T-COMV2-FATAL-1_fatal_gate_wiring.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	158	projection.py	BARE-ELSEWHERE	labs/comlab/comlab/projection.py; Vault/labs/comlab/code/projection.py
+labs/comlab/tasks/PROGRESS.md	160	labs/vinlab/vinlab/models.py::VinDNA	MISSING	
+labs/comlab/tasks/PROGRESS.md	163	labs/dnalab/tests/conftest.py:59–63	MISSING	
+labs/comlab/tasks/PROGRESS.md	173	gaslab/tasks/PROGRESS.md	OK	labs
+labs/comlab/tasks/PROGRESS.md	174	registry/docs/REGISTRY_PROGRESS.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	183	apps/wired	OK	.
+labs/comlab/tasks/PROGRESS.md	186	global_fault_registry.json	BARE-ELSEWHERE	labs/comlab/comlab/config/global_fault_registry.json; Vault/labs/comlab/code/config/global_fault_registry.json
+labs/comlab/tasks/PROGRESS.md	200	observability/	BARE-ELSEWHERE	labs/comlab/comlab/observability; Vault/labs/comlab/code/observability
+labs/comlab/tasks/PROGRESS.md	202	planning/code_audit/STAGE4_COMPLEXITY_INPUTS.md	OK	.
+labs/comlab/tasks/PROGRESS.md	210	obdlab/research/	OK	labs
+labs/comlab/tasks/PROGRESS.md	211	_comlab_skills/comlab-fusion-consumer/SKILL.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	211	_INDEX.md	BARE-ELSEWHERE	apps/wired/_wired_skills/_INDEX.md; labs/comlab/_comlab_skills/_INDEX.md; labs/comlab/registry/docs/_registry_skills/_INDEX.md
+labs/comlab/tasks/PROGRESS.md	213	progress_notes/REG-V2-AUTHOR-ignition_fault.md	OK	labs/comlab/tasks
+labs/comlab/tasks/PROGRESS.md	213	COMLAB_TASKS_START_HERE.md	OK	labs/comlab/tasks
+labs/comlab/tasks/PROGRESS.md	213	/	OK	.
+labs/comlab/tasks/PROGRESS.md	214	obdlab/research/	OK	labs
+labs/comlab/tasks/PROGRESS.md	215	_comlab_skills/comlab-fusion-consumer/SKILL.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	217	wiki/11_two_point_delta.md	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	217	delta_engine.py	BARE-ELSEWHERE	labs/comlab/comlab/analytics/delta_engine.py; Vault/labs/comlab/code/analytics/delta_engine.py
+labs/comlab/tasks/PROGRESS.md	217	obdlab/research/delta-relations/	MOVED	labs/obdlab/research/chunks/delta-relations; Vault/labs/obdlab/wiki/delta-relations
+labs/comlab/tasks/PROGRESS.md	223	comlab/config/global_fault_registry.json	OK	labs/comlab
+labs/comlab/tasks/PROGRESS.md	236	delta_engine.py	BARE-ELSEWHERE	labs/comlab/comlab/analytics/delta_engine.py; Vault/labs/comlab/code/analytics/delta_engine.py
+labs/comlab/tasks/PROGRESS.md	236	ingestion.py	BARE-ELSEWHERE	labs/comlab/comlab/schemas/ingestion.py; Vault/labs/comlab/code/schemas/ingestion.py
+labs/comlab/tasks/PROGRESS.md	237	response.py	BARE-ELSEWHERE	labs/comlab/comlab/schemas/response.py; Vault/labs/comlab/code/schemas/response.py
+labs/comlab/tasks/PROGRESS.md	237	vocabulary.py	BARE-ELSEWHERE	labs/dtclab/dtclab/schemas/vocabulary.py; labs/comlab/comlab/schemas/vocabulary.py; labs/obdlab/obdlab/schemas/vocabulary.py (+3)
+labs/comlab/tasks/PROGRESS.md	238	obdlab/research/	OK	labs
+labs/dnalab/tasks/PROGRESS.md	4	docs/research/DNAresearch.md	MOVED	labs/dnalab/research/DNAresearch.md
+labs/dnalab/tasks/PROGRESS.md	13	projection.py	BARE-ELSEWHERE	labs/comlab/comlab/projection.py; Vault/labs/comlab/code/projection.py
+labs/dnalab/tasks/PROGRESS.md	23	HANDOFF.md	OK	labs/dnalab/tasks
+labs/dnalab/tasks/PROGRESS.md	33	DNA_ISOLATION_HARNESS.md	OK	labs/dnalab/tasks
+labs/dnalab/tasks/PROGRESS.md	38	tests/unit/test_assembly.py	OK	labs/dnalab
+labs/dnalab/tasks/PROGRESS.md	39	tests/unit/test_horizon.py	SUFFIX	shorthand: an existing path ends with it
+labs/dnalab/tasks/PROGRESS.md	39	test_stress_rpm.py	BARE-ELSEWHERE	labs/vinlab/tests/unit/test_stress_rpm.py; Vault/labs/vinlab/tests/unit/test_stress_rpm.py
+labs/dnalab/tasks/PROGRESS.md	39	test_switches.py	BARE-ELSEWHERE	labs/vinlab/tests/unit/test_switches.py; Vault/labs/vinlab/tests/unit/test_switches.py
+labs/dnalab/tasks/PROGRESS.md	39	test_decode_isolation.py	BARE-ELSEWHERE	labs/vinlab/tests/unit/test_decode_isolation.py; Vault/labs/vinlab/tests/unit/test_decode_isolation.py
+labs/dnalab/tasks/PROGRESS.md	40	tests/unit/test_validator.py	SUFFIX	shorthand: an existing path ends with it
+labs/dnalab/tasks/PROGRESS.md	40	test_resolve_isolation.py	BARE-ELSEWHERE	labs/symptomlab/tests/unit/test_resolve_isolation.py; Vault/labs/symptomlab/tests/unit/test_resolve_isolation.py
+labs/dnalab/tasks/PROGRESS.md	42	labs/dnalab/tasks/	OK	.
+labs/dnalab/tasks/PROGRESS.md	43	labs/vinlab/tasks/	OK	.
+labs/dnalab/tasks/PROGRESS.md	43	labs/symptomlab/tasks/	OK	.
+labs/dnalab/tasks/PROGRESS.md	44	tasks/progress_notes/	OK	labs/dnalab
+labs/dnalab/tasks/PROGRESS.md	49	labs/dnalab/docs/audits/AUDIT_2026-06-12_trimodule_dna_vin_symptom.md	MOVED	labs/dnalab/audits/AUDIT_2026-06-12_trimodule_dna_vin_symptom.md
+labs/dnalab/tasks/PROGRESS.md	55	comlab/tasks/PROGRESS.md	OK	labs
+labs/dnalab/tasks/PROGRESS.md	59	labs/symptomlab/tasks/	OK	.
+labs/dnalab/tasks/PROGRESS.md	60	labs/dnalab/tasks/	OK	.
+labs/dnalab/tasks/PROGRESS.md	60	labs/vinlab/tasks/	OK	.
+labs/dnalab/tasks/PROGRESS.md	67	labs/comlab/comlab/config/proposals/entries.yaml	OK	.
+labs/dnalab/tasks/PROGRESS.md	74	projection.py	BARE-ELSEWHERE	labs/comlab/comlab/projection.py; Vault/labs/comlab/code/projection.py
+labs/dnalab/tasks/PROGRESS.md	92	allowed_combinations.yaml	BARE-ELSEWHERE	labs/symptomlab/symptomlab/data/allowed_combinations.yaml; Vault/labs/symptomlab/code/data/allowed_combinations.yaml
+labs/dnalab/tasks/PROGRESS.md	101	planning/oilconsumption.md	OK	.
+labs/dnalab/tasks/PROGRESS.md	101	OilburnCases.md	BARE-ELSEWHERE	planning/OilburnCases.md
+labs/dnalab/tasks/PROGRESS.md	103	planning/oil_consumption/	OK	.
+labs/dnalab/tasks/PROGRESS.md	106	docs/	OK	.
+labs/dnalab/tasks/PROGRESS.md	110	HANDOFF.md	OK	labs/dnalab/tasks
+labs/dtclab/tasks/PROGRESS.md	11	T-DTCV2-NOSTART-1_mode06_monitor_aborted_emit.md	OK	labs/dtclab/tasks
+labs/dtclab/tasks/PROGRESS.md	11	progress_notes/T-DTCV2-NOSTART-1.md	OK	labs/dtclab/tasks
+labs/dtclab/tasks/PROGRESS.md	12	T-DTCV2-NOSTART-1-FIX_freeze_frame_schema_field.md	OK	labs/dtclab/tasks
+labs/gaslab/tasks/PROGRESS.md	3	labs/gaslab/wiki/	OK	.
+labs/gaslab/tasks/PROGRESS.md	4	labs/gaslab/wiki/CHANGE_v2.1_timing_taxonomy.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	5	labs/gaslab/tasks/	OK	.
+labs/gaslab/tasks/PROGRESS.md	12	v2/	MISSING	
+labs/gaslab/tasks/PROGRESS.md	12	labs/gaslab	OK	.
+labs/gaslab/tasks/PROGRESS.md	12	ARCHIVE/legacy_gaslab_v1/	IGNORED	
+labs/gaslab/tasks/PROGRESS.md	12	labs/obdlab	OK	.
+labs/gaslab/tasks/PROGRESS.md	12	MIGRATION_MANIFEST.md	BARE-ELSEWHERE	docs/Brain/MIGRATION_MANIFEST.md
+labs/gaslab/tasks/PROGRESS.md	14	START_HERE.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	24	CHANGE_v2.1_timing_taxonomy.md	BARE-ELSEWHERE	labs/gaslab/wiki/CHANGE_v2.1_timing_taxonomy.md; Vault/labs/gaslab/wiki/CHANGE_v2.1_timing_taxonomy.md
+labs/gaslab/tasks/PROGRESS.md	32	labs/gaslab/tasks/T-GV2-1_chemsig_gaslab_enum_reconcile.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	33	labs/gaslab/tasks/T-GV2-3_inout_contract_reconcile.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	33	docs/GASLab/v2_prep/PROPOSAL_GASLabV2_InOut_and_Rebuild.md	MISSING	
+labs/gaslab/tasks/PROGRESS.md	34	labs/gaslab/tasks/T-GV2-4_dual_rpm_input_and_separation.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	34	resolution.py	BARE-ELSEWHERE	labs/gaslab/gaslab/resolution.py; Vault/labs/gaslab/code/resolution.py
+labs/gaslab/tasks/PROGRESS.md	35	labs/gaslab/tasks/T-GV2-5_catalyst_dual_idle.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	35	resolution.py	BARE-ELSEWHERE	labs/gaslab/gaslab/resolution.py; Vault/labs/gaslab/code/resolution.py
+labs/gaslab/tasks/PROGRESS.md	36	labs/gaslab/tasks/CHI-1_wire_co_high_idle.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	36	resolution.py	BARE-ELSEWHERE	labs/gaslab/gaslab/resolution.py; Vault/labs/gaslab/code/resolution.py
+labs/gaslab/tasks/PROGRESS.md	36	progress_notes/CHI-1.md	OK	labs/gaslab/tasks
+labs/gaslab/tasks/PROGRESS.md	37	labs/gaslab/tasks/T-GV2-6_OVERVIEW.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	38	labs/gaslab/tasks/T-GV2-6a_timing_family_rpm_differential.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	38	tests/test_resolution.py	MOVED	labs/gaslab/tests/unit/test_resolution.py; Vault/labs/gaslab/tests/unit/test_resolution.py
+labs/gaslab/tasks/PROGRESS.md	38	test_resolution.py	BARE-ELSEWHERE	labs/gaslab/tests/unit/test_resolution.py; Vault/labs/gaslab/tests/unit/test_resolution.py
+labs/gaslab/tasks/PROGRESS.md	38	test_rule_engine.py	BARE-ELSEWHERE	labs/gaslab/tests/unit/test_rule_engine.py; Vault/labs/gaslab/tests/unit/test_rule_engine.py
+labs/gaslab/tasks/PROGRESS.md	38	progress_notes/T-GV2-6a.md	OK	labs/gaslab/tasks
+labs/gaslab/tasks/PROGRESS.md	39	labs/gaslab/tasks/T-GV2-6b_misfire_timing_precedence.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	39	progress_notes/T-GV2-6b.md	OK	labs/gaslab/tasks
+labs/gaslab/tasks/PROGRESS.md	40	labs/gaslab/tasks/T-GV2-6c_lean_timing_separation.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	40	progress_notes/T-GV2-6c.md	OK	labs/gaslab/tasks
+labs/gaslab/tasks/PROGRESS.md	41	labs/gaslab/tasks/TASK_SUITE_ecu_fault_diagnosis.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	41	STUDY_ecu_fault_gas_signatures_merge.md	MISSING	
+labs/gaslab/tasks/PROGRESS.md	42	labs/gaslab/tasks/T-GV2-7_poa_oil_mechanical_rpm_routing.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	42	resolution.py	BARE-ELSEWHERE	labs/gaslab/gaslab/resolution.py; Vault/labs/gaslab/code/resolution.py
+labs/gaslab/tasks/PROGRESS.md	43	labs/gaslab/tasks/T-GV2-8_euro_threshold_scaling.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	44	labs/gaslab/tasks/T-GV2-9_induction_type_signatures.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	45	labs/gaslab/tasks/T-GV2-10_o2_sensor_bias_calibration.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	46	GAS_WIKI.md	MISSING	
+labs/gaslab/tasks/PROGRESS.md	47	labs/gaslab/tasks/T-GV2-12_exhaust_leak_vs_sample_error.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	47	progress_notes/T-GV2-12.md	OK	labs/gaslab/tasks
+labs/gaslab/tasks/PROGRESS.md	48	labs/gaslab/tasks/T-GV2-13_mechanical_wear_fuel_trim.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	49	labs/gaslab/tasks/T-GV2-14_bank_asymmetry.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	49	DECISIONS.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	50	labs/gaslab/tasks/T-GV2-15_cylinder_count_masking_inference.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	50	progress_notes/T-GV2-15.md	OK	labs/gaslab/tasks
+labs/gaslab/tasks/PROGRESS.md	51	labs/gaslab/tasks/T-GV2-16_wvt_naming_cleanup_and_generative_wiring.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	51	tests/conftest.py	OK	labs/gaslab
+labs/gaslab/tasks/PROGRESS.md	51	progress_notes/T-GV2-16.md	OK	labs/gaslab/tasks
+labs/gaslab/tasks/PROGRESS.md	52	labs/gaslab/tasks/T-GV2-2_chemsig_consumer_mirror_reconcile.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	52	COMLAB_TASKS_START_HERE.md	BARE-ELSEWHERE	labs/comlab/tasks/COMLAB_TASKS_START_HERE.md
+labs/gaslab/tasks/PROGRESS.md	53	graph.json	BARE-ELSEWHERE	labs/gaslab/graph/v2_code/graph.json; labs/gaslab/graph/v2_tests/graph.json; labs/gaslab/graph/v2_docs/graph.json (+40)
+labs/gaslab/tasks/PROGRESS.md	53	CLAUDE.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	54	labs/gaslab/tasks/T-MIG-4_gaslab_code_fork.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	54	labs/gaslab	OK	.
+labs/gaslab/tasks/PROGRESS.md	54	GASLab/	MISSING	
+labs/gaslab/tasks/PROGRESS.md	54	ARCHIVE/legacy_gaslab_v1/	IGNORED	
+labs/gaslab/tasks/PROGRESS.md	54	MIGRATION_MANIFEST.md	BARE-ELSEWHERE	docs/Brain/MIGRATION_MANIFEST.md
+labs/gaslab/tasks/PROGRESS.md	55	labs/gaslab/tasks/T-MIG-5_suite_runner_sai_destale.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	59	AGENTS.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	72	schema_v2.py	BARE-ELSEWHERE	labs/comlab/registry/schema_v2.py; Vault/labs/comlab/registry/code/schema_v2.py
+labs/gaslab/tasks/PROGRESS.md	72	cam_timing.json	BARE-ELSEWHERE	labs/comlab/registry/rules/cam_timing.json; labs/comlab/comlab/config/kg/cam_timing.json; Vault/labs/comlab/code/config/kg/cam_timing.json (+1)
+labs/gaslab/tasks/PROGRESS.md	91	resolution.py	BARE-ELSEWHERE	labs/gaslab/gaslab/resolution.py; Vault/labs/gaslab/code/resolution.py
+labs/gaslab/tasks/PROGRESS.md	91	registry/corpus_curated.csv	SUFFIX	shorthand: an existing path ends with it
+labs/gaslab/tasks/PROGRESS.md	91	apps/wired/wiring_prep_tasks/RINGS_PCV_TRIAGE_RULING.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	93	registry/schema_v2.py	SUFFIX	shorthand: an existing path ends with it
+labs/gaslab/tasks/PROGRESS.md	93	registry/rules/cam_timing.json	SUFFIX	shorthand: an existing path ends with it
+labs/gaslab/tasks/PROGRESS.md	93	test_cam_timing_rules.py	BARE-ELSEWHERE	labs/comlab/registry/tests/test_cam_timing_rules.py; Vault/labs/comlab/registry/tests/test_cam_timing_rules.py
+labs/gaslab/tasks/PROGRESS.md	93	registry/REGISTRY_PROGRESS.md	MOVED	labs/comlab/registry/docs/REGISTRY_PROGRESS.md
+labs/gaslab/tasks/PROGRESS.md	94	COMLab/docs/wiki/OBD_VOCABULARY.md	MOVED	labs/semantic/vocabul/OBD_VOCABULARY.md; labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md; labs/obdlab/docs/OBD_VOCABULARY.md (+3)
+labs/gaslab/tasks/PROGRESS.md	95	vocabulary.py	BARE-ELSEWHERE	labs/dtclab/dtclab/schemas/vocabulary.py; labs/comlab/comlab/schemas/vocabulary.py; labs/obdlab/obdlab/schemas/vocabulary.py (+3)
+labs/gaslab/tasks/PROGRESS.md	96	dna_view.py	BARE-ELSEWHERE	labs/gaslab/gaslab/dna_view.py; labs/dtclab/dtclab/schemas/dna_view.py; labs/obdlab/obdlab/schemas/dna_view.py (+3)
+labs/gaslab/tasks/PROGRESS.md	97	projection.py	BARE-ELSEWHERE	labs/comlab/comlab/projection.py; Vault/labs/comlab/code/projection.py
+labs/gaslab/tasks/PROGRESS.md	98	STUDY_ecu_fault_gas_signatures_merge.md	MISSING	
+labs/gaslab/tasks/PROGRESS.md	98	TASK_SUITE_ecu_fault_diagnosis.md	OK	labs/gaslab/tasks
+labs/gaslab/tasks/PROGRESS.md	99	resolution.py	BARE-ELSEWHERE	labs/gaslab/gaslab/resolution.py; Vault/labs/gaslab/code/resolution.py
+labs/gaslab/tasks/PROGRESS.md	109	PROGRESS.md	OK	labs/gaslab/tasks
+labs/gaslab/tasks/PROGRESS.md	109	START_HERE.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	109	CLAUDE.md	OK	.
+labs/gaslab/tasks/PROGRESS.md	119	labs/gaslab/wiki/	OK	.
+labs/gaslab/tasks/PROGRESS.md	119	CHANGE_v2.1_timing_taxonomy.md	BARE-ELSEWHERE	labs/gaslab/wiki/CHANGE_v2.1_timing_taxonomy.md; Vault/labs/gaslab/wiki/CHANGE_v2.1_timing_taxonomy.md
+labs/gaslab/tasks/PROGRESS.md	120	4DLab/CLAUDE.md	LEGACY	strip-prefix-resolves
+labs/gaslab/tasks/PROGRESS.md	120	planning/sprints/stage1_gaslab/START_HERE.md	MOVED	START_HERE.md
+labs/gaslab/tasks/PROGRESS.md	121	planning/sprints/stage1_gaslab/START_HERE.md	MOVED	START_HERE.md
+labs/gaslab/tasks/PROGRESS.md	121	4DLab/CLAUDE.md	LEGACY	strip-prefix-resolves
+labs/gaslab/tasks/PROGRESS.md	122	labs/gaslab/tasks/	OK	.
+labs/gaslab/tasks/PROGRESS.md	123	ROADMAP.md	OK	.
+labs/obdlab/tasks/PROGRESS.md	3	docs/reference/audit_2026-06-03/4DLAB_CAPABILITY_AUDIT_AND_RESEARCH_QUESTIONS.md	OK	.
+labs/obdlab/tasks/PROGRESS.md	16	tasks/T-OBDV2-0_revive_emitter_decision.md	OK	labs/obdlab
+labs/obdlab/tasks/PROGRESS.md	19	KGtopic.md	OK	labs/obdlab
+labs/obdlab/tasks/PROGRESS.md	27	T-OBDV2-0_revive_emitter_decision.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	28	T-OBDV2-1a_pid_logset_authoring.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	29	T-OBDV2-1b_pid_logset_wiring_gate.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	30	T-OBDV2-ECU-PERCEPT-1_ecu_perception_delta_channel.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	31	T-OBDV2-BANK-ASYM-1_per_bank_trim_emit.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	32	T-OBDV2-2_ve_air_strategy_gate.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	33	T-OBDV2-3_downstream_role_close.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	34	T-OBDV2-4_wideband_offset_proposal.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	35	T-OBDV2-5_mode06_nostart_proposal.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	36	T-OBDV2-6_fuel_system_status_input.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	37	T-OBDV2-7_iat_tps_input_pair.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	38	T-OBDV2-8_vpwr_input.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	39	T-OBDV2-9_per_cylinder_misfire_counts.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	40	T-OBDV2-10_maf_linearity_theoretical_airflow.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	41	T-OBDV2-11_ltft_load_cell_vector.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	42	T-OBDV2-PURGE-1_dead_classifier_purge.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	43	T-OBDV2-PURGE-2_orphan_era_fields.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	44	T-OBDV2-PURGE-3_fixture_key_cleanup.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	45	T-KG-OBD-1_graphify_ingest_enhanced_wiki.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	45	graph/v2_wiki/	OK	labs/obdlab
+labs/obdlab/tasks/PROGRESS.md	45	/	OK	.
+labs/obdlab/tasks/PROGRESS.md	45	progress_notes/T-KG-OBD-1.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	46	T-KG-OBD-2-PREP_code_prep_obdlab_source.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	46	obdlab/	OK	labs/obdlab
+labs/obdlab/tasks/PROGRESS.md	46	graph/	OK	labs/obdlab
+labs/obdlab/tasks/PROGRESS.md	46	progress_notes/T-KG-OBD-2-PREP.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	47	T-KG-OBD-2_graphify_ingest_code_map.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	47	obdlab/	OK	labs/obdlab
+labs/obdlab/tasks/PROGRESS.md	47	graph/v2_code/	OK	labs/obdlab
+labs/obdlab/tasks/PROGRESS.md	47	/	OK	.
+labs/obdlab/tasks/PROGRESS.md	47	graphify-out/	IGNORED	
+labs/obdlab/tasks/PROGRESS.md	47	progress_notes/T-KG-OBD-2.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	48	T-KG-OBD-3_graphify_ingest_test_map.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	48	obdlab/tests/	OK	labs
+labs/obdlab/tasks/PROGRESS.md	48	graph/v2_tests/	OK	labs/obdlab
+labs/obdlab/tasks/PROGRESS.md	48	/	OK	.
+labs/obdlab/tasks/PROGRESS.md	48	tests/graphify-out/	IGNORED	
+labs/obdlab/tasks/PROGRESS.md	48	obdlab_cases.csv	BARE-ELSEWHERE	labs/obdlab/tests/fixtures/obdlab_cases.csv; Vault/labs/obdlab/tests/fixtures/obdlab_cases.csv
+labs/obdlab/tasks/PROGRESS.md	48	graphify-out/	IGNORED	
+labs/obdlab/tasks/PROGRESS.md	48	progress_notes/T-KG-OBD-3.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	49	audit_backlog/T-OBDV2-ARCH-1_ranking_consumer_decision.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	49	ranking.py	BARE-ELSEWHERE	labs/gaslab/gaslab/ranking.py; labs/dtclab/dtclab/ranking.py; Vault/labs/gaslab/code/ranking.py (+1)
+labs/obdlab/tasks/PROGRESS.md	49	family_map.py	BARE-ELSEWHERE	labs/gaslab/gaslab/family_map.py; labs/dtclab/dtclab/family_map.py; Vault/labs/gaslab/code/family_map.py (+1)
+labs/obdlab/tasks/PROGRESS.md	50	audit_backlog/T-OBDV2-FIX-1_physics_gate_3_dead.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	51	audit_backlog/T-OBDV2-FIX-2_wideband_offset_dead.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	52	audit_backlog/T-OBDV2-FIX-3_destate_orchestrator_linearity.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	53	audit_backlog/T-OBDV2-FIX-4_number_of_banks_default.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	54	audit_backlog/T-OBDV2-FIX-5_exception_taxonomy.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	54	run_cases.py	MISSING	
+labs/obdlab/tasks/PROGRESS.md	54	app.py	OK	.
+labs/obdlab/tasks/PROGRESS.md	55	audit_backlog/T-OBDV2-FIX-6_dead_code_removal.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	56	audit_backlog/T-OBDV2-ARCH-2_orphan_members_proposal_or_prune.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	57	audit_backlog/T-OBDV2-FIX-7_code_hygiene_bundle.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/PROGRESS.md	65	graphify-out/	IGNORED	
+labs/obdlab/tasks/PROGRESS.md	65	graph/v2_current/graph.json	OK	labs/obdlab
+labs/obdlab/tasks/PROGRESS.md	69	payload.py	BARE-ELSEWHERE	labs/dtclab/dtclab/schemas/payload.py; labs/obdlab/obdlab/schemas/payload.py; Vault/labs/dtclab/code/schemas/payload.py (+1)
+labs/obdlab/tasks/PROGRESS.md	69	sensor_signal_translator.py	BARE-ELSEWHERE	labs/obdlab/obdlab/core/sensor_signal_translator.py; Vault/labs/obdlab/code/core/sensor_signal_translator.py
+labs/obdlab/tasks/PROGRESS.md	70	OBDLab_KG_Wiki.md	BARE-ELSEWHERE	labs/obdlab/graph/v1_baseline/OBDLab_KG_Wiki.md; labs/obdlab/research/sources/_reference/OBDLab_KG_Wiki.md; labs/obdlab/wiki/OBDLab_KG_Wiki.md
+labs/obdlab/tasks/PROGRESS.md	77	comlab/comlab/schemas/ingestion.py	OK	labs
+labs/obdlab/tasks/PROGRESS.md	77	fault_atlas_router.py	BARE-ELSEWHERE	labs/comlab/comlab/core/fault_atlas_router.py; Vault/labs/comlab/code/core/fault_atlas_router.py
+labs/obdlab/tasks/PROGRESS.md	80	vocabulary.py	BARE-ELSEWHERE	labs/dtclab/dtclab/schemas/vocabulary.py; labs/comlab/comlab/schemas/vocabulary.py; labs/obdlab/obdlab/schemas/vocabulary.py (+3)
+labs/obdlab/tasks/PROGRESS.md	87	research/AUDIT_ANSWERS_OBDLab.md	OK	labs/obdlab
+labs/semantic/tasks/PROGRESS.md	4	labs/semantic/SEMANTIC_START_HERE.md	OK	.
+labs/semantic/tasks/PROGRESS.md	4	labs/semantic/SEMANTIC_STANDARDIZATION_PROPOSAL.md	OK	.
+labs/semantic/tasks/PROGRESS.md	11	comlab/config/proposals/	SUFFIX	shorthand: an existing path ends with it
+labs/semantic/tasks/PROGRESS.md	19	T-SEM-1_iso_primary_citations.md	OK	labs/semantic/tasks
+labs/semantic/tasks/PROGRESS.md	20	T-SEM-2_proposals_registry_taxonomy_backbone.md	OK	labs/semantic/tasks
+labs/semantic/tasks/PROGRESS.md	21	T-SEM-3_register_connected_eps.md	OK	labs/semantic/tasks
+labs/semantic/tasks/PROGRESS.md	22	T-SEM-4_conformance_extensibility_gate.md	OK	labs/semantic/tasks
+labs/semantic/tasks/PROGRESS.md	23	T-SEM-5_obd_vocab_reconcile_to_code.md	OK	labs/semantic/tasks
+labs/semantic/tasks/PROGRESS.md	32	TestSuite/COM/SEMANTIC_CONTRACT.md	MOVED	labs/semantic/vocabul/SEMANTIC_CONTRACT.md; labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md; Vault/labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md (+1)
+labs/semantic/tasks/PROGRESS.md	36	AGENTS.md	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	4	labs/	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	6	apps/OMP_VAULT_HARNESS_PLAN_2026-06-28.md	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	8	apps/vault/vault_live_tasks/	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	10	_skills/graph/4dlab-vault/	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	13	VAULT_LIVE_START_HERE.md	OK	apps/vault
+apps/vault/VAULT_LIVE_PROGRESS.md	22	T-VLIVE-1_pilot_obdlab_live.md	BARE-ELSEWHERE	apps/vault/vault_live_tasks/T-VLIVE-1_pilot_obdlab_live.md
+apps/vault/VAULT_LIVE_PROGRESS.md	22	_bases/	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	22	Vault/	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	22	docs/Vocabulary	SUFFIX	shorthand: an existing path ends with it
+apps/vault/VAULT_LIVE_PROGRESS.md	23	T-VLIVE-2_frame_gaslab_live.md	BARE-ELSEWHERE	apps/vault/vault_live_tasks/T-VLIVE-2_frame_gaslab_live.md
+apps/vault/VAULT_LIVE_PROGRESS.md	23	code/	BARE-ELSEWHERE	Vault/labs/gaslab/code; Vault/labs/dtclab/code; Vault/labs/symptomlab/code (+5)
+apps/vault/VAULT_LIVE_PROGRESS.md	23	gaslab/	BARE-ELSEWHERE	labs/gaslab; labs/gaslab/gaslab; Vault/labs/gaslab
+apps/vault/VAULT_LIVE_PROGRESS.md	24	T-VLIVE-3_frame_dtclab_live.md	BARE-ELSEWHERE	apps/vault/vault_live_tasks/T-VLIVE-3_frame_dtclab_live.md
+apps/vault/VAULT_LIVE_PROGRESS.md	25	T-VLIVE-3b_reconcile_dtclab_wired_map.md	BARE-ELSEWHERE	apps/vault/vault_live_tasks/T-VLIVE-3b_reconcile_dtclab_wired_map.md
+apps/vault/VAULT_LIVE_PROGRESS.md	25	dtw.py	MISSING	
+apps/vault/VAULT_LIVE_PROGRESS.md	25	apps/wired/wired/composition.py	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	25	composition.py	BARE-ELSEWHERE	apps/wired/wired/composition.py
+apps/vault/VAULT_LIVE_PROGRESS.md	26	T-VLIVE-4_frame_dnalab_live.md	BARE-ELSEWHERE	apps/vault/vault_live_tasks/T-VLIVE-4_frame_dnalab_live.md
+apps/vault/VAULT_LIVE_PROGRESS.md	27	T-VLIVE-4b_reconcile_dnalab_comlab_map.md	BARE-ELSEWHERE	apps/vault/vault_live_tasks/T-VLIVE-4b_reconcile_dnalab_comlab_map.md
+apps/vault/VAULT_LIVE_PROGRESS.md	27	projection.py	BARE-ELSEWHERE	labs/comlab/comlab/projection.py; Vault/labs/comlab/code/projection.py
+apps/vault/VAULT_LIVE_PROGRESS.md	28	T-VLIVE-5_frame_vinlab_live.md	BARE-ELSEWHERE	apps/vault/vault_live_tasks/T-VLIVE-5_frame_vinlab_live.md
+apps/vault/VAULT_LIVE_PROGRESS.md	29	T-VLIVE-5b_reconcile_vinlab_map.md	BARE-ELSEWHERE	apps/vault/vault_live_tasks/T-VLIVE-5b_reconcile_vinlab_map.md
+apps/vault/VAULT_LIVE_PROGRESS.md	29	assembly.py	BARE-ELSEWHERE	labs/dnalab/dnalab/assembly.py; Vault/labs/dnalab/code/assembly.py
+apps/vault/VAULT_LIVE_PROGRESS.md	29	projection.py	BARE-ELSEWHERE	labs/comlab/comlab/projection.py; Vault/labs/comlab/code/projection.py
+apps/vault/VAULT_LIVE_PROGRESS.md	30	T-VLIVE-6_frame_symptomlab_live.md	BARE-ELSEWHERE	apps/vault/vault_live_tasks/T-VLIVE-6_frame_symptomlab_live.md
+apps/vault/VAULT_LIVE_PROGRESS.md	31	T-VLIVE-8_frame_comlab_live.md	BARE-ELSEWHERE	apps/vault/vault_live_tasks/T-VLIVE-8_frame_comlab_live.md
+apps/vault/VAULT_LIVE_PROGRESS.md	32	T-VLIVE-9_frame_registry_schema_audit.md	BARE-ELSEWHERE	apps/vault/vault_live_tasks/T-VLIVE-9_frame_registry_schema_audit.md
+apps/vault/VAULT_LIVE_PROGRESS.md	32	registry/registry/	MOVED	labs/comlab/registry; Vault/labs/comlab/registry
+apps/vault/VAULT_LIVE_PROGRESS.md	33	T-VLIVE-10_frame_registry_corpus_cases.md	BARE-ELSEWHERE	apps/vault/vault_live_tasks/T-VLIVE-10_frame_registry_corpus_cases.md
+apps/vault/VAULT_LIVE_PROGRESS.md	34	T-VLIVE-11_frame_vocabulary_live.md	BARE-ELSEWHERE	apps/vault/vault_live_tasks/T-VLIVE-11_frame_vocabulary_live.md
+apps/vault/VAULT_LIVE_PROGRESS.md	35	T-VLIVE-7_verify_bases_provenance.md	BARE-ELSEWHERE	apps/vault/vault_live_tasks/T-VLIVE-7_verify_bases_provenance.md
+apps/vault/VAULT_LIVE_PROGRESS.md	35	_bases/PROVENANCE.md	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	54	apps/vault/audit/GRAPH_TRUST_AUDIT.md	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	55	apps/vault/audit/T-VLIVE-3c_reconcile_dtclab_drift.md	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	63	apps/ui	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	63	consumers.base	BARE-ELSEWHERE	_bases/consumers.base; _skills/graph/4dlab-vault/assets/consumers.base; Vault/_bases/consumers.base
+apps/vault/VAULT_LIVE_PROGRESS.md	63	modules.base	BARE-ELSEWHERE	_bases/modules.base; _skills/graph/4dlab-vault/assets/modules.base; Vault/_bases/modules.base
+apps/vault/VAULT_LIVE_PROGRESS.md	63	apps/wiredV2/	MISSING	
+apps/vault/VAULT_LIVE_PROGRESS.md	63	vault-map.ui.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.ui.yaml
+apps/vault/VAULT_LIVE_PROGRESS.md	71	apps/vault/	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	71	CLAUDE.md	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	71	Vault/	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	72	Vault/	OK	.
+apps/vault/VAULT_LIVE_PROGRESS.md	72	ARCHIVE/2026-06-2x_vault-mirror/	IGNORED	
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	2	GRAPH_TRUST_AUDIT.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	3	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	6	GRAPH_TRUST_START_HERE.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	14	T-VLIVE-3c_reconcile_dtclab_drift.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	15	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	15	reports/comlab__codex.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	15	vault-map.comlab.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.comlab.yaml
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	16	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	16	reports/comlab__agy.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	17	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	17	reports/comlab__claude.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	18	reports/comlab__UNION.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	19	T-GTA-RECONCILE-COM_reconcile_comlab_drift.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	21	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	21	reports/gaslab__codex.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	21	vault-map.gaslab.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.gaslab.yaml
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	22	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	22	reports/gaslab__agy.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	23	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	23	reports/gaslab__claude.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	24	reports/gaslab__UNION.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	25	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	25	reports/obdlab__codex.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	25	vault-map.obdlab.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.obdlab.yaml
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	26	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	26	reports/obdlab__agy.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	27	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	27	reports/obdlab__claude.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	27	fault_atlas_kg.py	BARE-ELSEWHERE	labs/comlab/comlab/core/fault_atlas_kg.py; Vault/labs/comlab/code/core/fault_atlas_kg.py
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	28	reports/obdlab__UNION.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	28	fault_atlas_kg.py	BARE-ELSEWHERE	labs/comlab/comlab/core/fault_atlas_kg.py; Vault/labs/comlab/code/core/fault_atlas_kg.py
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	29	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	29	reports/dnalab__codex.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	29	schemas/ingestion.py	SUFFIX	shorthand: an existing path ends with it
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	30	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	30	reports/dnalab__agy.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	31	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	31	reports/dnalab__claude.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	32	reports/dnalab__UNION.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	32	ingestion.py	BARE-ELSEWHERE	labs/comlab/comlab/schemas/ingestion.py; Vault/labs/comlab/code/schemas/ingestion.py
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	33	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	33	reports/vinlab__codex.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	33	vault-map.vinlab.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.vinlab.yaml
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	34	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	34	reports/vinlab__agy.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	35	T-GTA-METHOD.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	35	reports/vinlab__claude.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	36	reports/vinlab__UNION.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	37	T-GTA-RECONCILE-GAS_reconcile_gaslab_drift.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	38	T-GTA-RECONCILE-OBD_reconcile_obdlab_drift.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	39	T-GTA-RECONCILE-DNA_reconcile_dnalab_drift.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	40	T-GTA-RECONCILE-VIN_reconcile_vinlab_drift.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	41	apps/wired/wired_tasks/T-WIRE-1_compose_labs_comlab.md	OK	.
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	41	apps/wired/WIRED_PROGRESS.md	OK	.
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	73	GRAPH_TRUST_PROGRESS.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	73	.agent/assignments.md	OK	.
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	74	GRAPH_TRUST_PROGRESS.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	74	.agent/assignments.md	OK	.
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	75	apps/vault/audit/	OK	.
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	75	.agent/assignments.md	OK	.
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	75	apps/vault/VAULT_LIVE_PROGRESS.md	OK	.
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	76	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	OK	.
+apps/wired/WIRED_PROGRESS.md	6	apps/wired/wired_tasks/	OK	.
+apps/wired/WIRED_PROGRESS.md	8	apps/wired/WIRING_PREP.md	OK	.
+apps/wired/WIRED_PROGRESS.md	12	WIRED_START_HERE.md	OK	apps/wired
+apps/wired/WIRED_PROGRESS.md	21	labs/gaslab/tasks/T-GV2-2_chemsig_consumer_mirror_reconcile.md	OK	.
+apps/wired/WIRED_PROGRESS.md	22	wiring_prep_tasks/T-PREP-WIRE-1_rings_pcv_chemistry_triage.md	OK	apps/wired
+apps/wired/WIRED_PROGRESS.md	22	RINGS_PCV_TRIAGE_RULING.md	BARE-ELSEWHERE	apps/wired/wiring_prep_tasks/RINGS_PCV_TRIAGE_RULING.md
+apps/wired/WIRED_PROGRESS.md	27	T-WIRE-1_compose_labs_comlab.md	BARE-ELSEWHERE	apps/wired/wired_tasks/T-WIRE-1_compose_labs_comlab.md
+apps/wired/WIRED_PROGRESS.md	27	composition.py	BARE-ELSEWHERE	apps/wired/wired/composition.py
+apps/wired/WIRED_PROGRESS.md	28	T-WIRE-2_oil_case_runner.md	BARE-ELSEWHERE	apps/wired/wired_tasks/T-WIRE-2_oil_case_runner.md
+apps/wired/WIRED_PROGRESS.md	29	T-WIRE-3_otel_span_tracing.md	BARE-ELSEWHERE	apps/wired/wired_tasks/T-WIRE-3_otel_span_tracing.md
+apps/wired/WIRED_PROGRESS.md	29	tracing.py	BARE-ELSEWHERE	apps/wired/wired/tracing.py
+apps/wired/WIRED_PROGRESS.md	29	composition.py	BARE-ELSEWHERE	apps/wired/wired/composition.py
+apps/wired/WIRED_PROGRESS.md	30	T-WIRE-4_fatal_gate_passthrough.md	BARE-ELSEWHERE	apps/wired/wired_tasks/T-WIRE-4_fatal_gate_passthrough.md
+apps/wired/WIRED_PROGRESS.md	58	registry_guard.py	BARE-ELSEWHERE	apps/wired/wired/registry_guard.py
+apps/wired/WIRED_PROGRESS.md	60	apps/wired/	OK	.
+apps/wired/WIRED_PROGRESS.md	60	pyproject.toml	OK	apps/wired
+apps/wired/WIRED_PROGRESS.md	60	apps/wired	OK	.
+apps/wired/WIRED_PROGRESS.md	75	apps/wired/	OK	.
+apps/wired/WIRED_PROGRESS.md	75	CLAUDE.md	OK	.
+apps/wired/WIRED_PROGRESS.md	75	apps/wired	OK	.
+apps/wired/fl_tasks/FL_PROGRESS.md	6	v7_tasks/reports/V7_REBUILD_FAILURE_AUDIT_2026-06-30.md	OK	apps/wired
+apps/wired/fl_tasks/FL_PROGRESS.md	13	apps/wired/fl_tasks/	OK	.
+apps/wired/fl_tasks/FL_PROGRESS.md	14	apps/wired/v7/	OK	.
+apps/wired/fl_tasks/FL_PROGRESS.md	14	apps/wired/trace/	OK	.
+apps/wired/fl_tasks/FL_PROGRESS.md	18	apps/wired/fl_tasks/WIRED_FL_START_HERE.md	OK	.
+apps/wired/fl_tasks/FL_PROGRESS.md	25	v7_tasks/reports/V7_ACCURACY_2026-06-30.md	OK	apps/wired
+apps/wired/fl_tasks/FL_PROGRESS.md	26	v7_tasks/reports/V7_REBUILD_FAILURE_AUDIT_2026-06-30.md	OK	apps/wired
+apps/wired/fl_tasks/FL_PROGRESS.md	27	v7_tasks/T-V7-6_jaeger_full_corpus_trace.md	OK	apps/wired
+apps/wired/fl_tasks/FL_PROGRESS.md	32	T-FL-1_lock_true_baseline.md	OK	apps/wired/fl_tasks
+apps/wired/fl_tasks/FL_PROGRESS.md	32	reports/FL_YARDSTICK_2026-06-30.md	OK	apps/wired/fl_tasks
+apps/wired/fl_tasks/FL_PROGRESS.md	32	progress_notes/T-FL-1.md	OK	apps/wired/fl_tasks
+apps/wired/fl_tasks/FL_PROGRESS.md	33	T-FL-2_capture_upstream_evidence.md	OK	apps/wired/fl_tasks
+apps/wired/fl_tasks/FL_PROGRESS.md	33	reports/FL_UPSTREAM_2026-06-30.md	OK	apps/wired/fl_tasks
+apps/wired/fl_tasks/FL_PROGRESS.md	33	reports/FL_UPSTREAM_2026-06-30.json	OK	apps/wired/fl_tasks
+apps/wired/fl_tasks/FL_PROGRESS.md	33	progress_notes/T-FL-2.md	OK	apps/wired/fl_tasks
+apps/wired/fl_tasks/FL_PROGRESS.md	34	T-FL-3_classify_failure_modes.md	OK	apps/wired/fl_tasks
+apps/wired/fl_tasks/FL_PROGRESS.md	34	reports/FL_LOCALIZATION_2026-06-30.md	OK	apps/wired/fl_tasks
+apps/wired/fl_tasks/FL_PROGRESS.md	34	progress_notes/T-FL-3.md	OK	apps/wired/fl_tasks
+apps/wired/fl_tasks/FL_PROGRESS.md	35	T-FL-4_v3_scoreboard.md	OK	apps/wired/fl_tasks
+apps/wired/fl_tasks/FL_PROGRESS.md	35	score_v3_yardstick.py	OK	apps/wired/fl_tasks
+apps/wired/fl_tasks/FL_PROGRESS.md	35	reports/FL_SCOREBOARD_README_2026-06-30.md	OK	apps/wired/fl_tasks
+apps/wired/fl_tasks/FL_PROGRESS.md	35	progress_notes/T-FL-4.md	OK	apps/wired/fl_tasks
+apps/wired/fl_tasks/FL_PROGRESS.md	39	score_v3_yardstick.py	OK	apps/wired/fl_tasks
+apps/wired/fl_tasks/FL_PROGRESS.md	59	apps/wired/fl_tasks/	OK	.
+apps/wired/ship_tasks/SHIP_PROGRESS.md	2	planning/SHIP_AUDIT_2026-07-07.md	OK	.
+apps/wired/ship_tasks/SHIP_PROGRESS.md	6	apps/wired/ship_tasks/	OK	.
+apps/wired/ship_tasks/SHIP_PROGRESS.md	16	T-SHIP-1_full_verification_sweep.md	OK	apps/wired/ship_tasks
+apps/wired/ship_tasks/SHIP_PROGRESS.md	16	reports/SHIP_VERIFY_2026-07-07.md	OK	apps/wired/ship_tasks
+apps/wired/ship_tasks/SHIP_PROGRESS.md	17	T-SHIP-2_scoreboard_synthetic_split.md	MISSING	
+apps/wired/ship_tasks/SHIP_PROGRESS.md	17	score_v3_yardstick.py	BARE-ELSEWHERE	apps/wired/fl_tasks/score_v3_yardstick.py
+apps/wired/ship_tasks/SHIP_PROGRESS.md	18	T-SHIP-3_vin_blank_brand_recovery.md	OK	apps/wired/ship_tasks
+apps/wired/ship_tasks/SHIP_PROGRESS.md	18	tools/repair_brand_spellings.py	SUFFIX	shorthand: an existing path ends with it
+apps/wired/ship_tasks/SHIP_PROGRESS.md	18	labs/vinlab/VIN_BRAND_RECOVERY_2026-07-07.md	OK	.
+apps/wired/ship_tasks/SHIP_PROGRESS.md	19	T-SHIP-4_ledger_hygiene_disposition.md	OK	apps/wired/ship_tasks
+apps/wired/ship_tasks/SHIP_PROGRESS.md	19	POST_LAUNCH_BACKLOG.md	OK	apps/wired/ship_tasks
+apps/wired/ship_tasks/SHIP_PROGRESS.md	20	T-SHIP-UI-1_ui_build_contract.md	OK	apps/wired/ship_tasks
+apps/wired/ship_tasks/SHIP_PROGRESS.md	20	reports/SHIP_UI_CONTRACT_2026-07-07.md	OK	apps/wired/ship_tasks
+apps/wired/ship_tasks/SHIP_PROGRESS.md	21	T-SHIP-UI-2_build_streamlit_ui.md	OK	apps/wired/ship_tasks
+apps/wired/ship_tasks/SHIP_PROGRESS.md	21	apps/ui/app.py	OK	.
+apps/wired/ship_tasks/SHIP_PROGRESS.md	22	T-SHIP-5_owner_commit_delegated.md	OK	apps/wired/ship_tasks
+apps/wired/ship_tasks/SHIP_PROGRESS.md	22	reports/SHIP_COMMIT_2026-07-07.md	OK	apps/wired/ship_tasks
+apps/wired/ship_tasks/SHIP_PROGRESS.md	23	T-SHIP-UI-3_per_field_help_tooltips.md	OK	apps/wired/ship_tasks
+apps/wired/ship_tasks/SHIP_PROGRESS.md	23	ui_payload.py	BARE-ELSEWHERE	apps/ui/ui_payload.py
+apps/wired/ship_tasks/SHIP_PROGRESS.md	23	app.py	OK	.
+apps/wired/ship_tasks/SHIP_PROGRESS.md	24	T-SHIP-6_final_full_suite_pre_push.md	OK	apps/wired/ship_tasks
+apps/wired/ship_tasks/SHIP_PROGRESS.md	24	reports/SHIP_FINAL_VERIFY_2026-07-08.md	OK	apps/wired/ship_tasks
+apps/wired/ship_tasks/SHIP_PROGRESS.md	25	DOC_DRIFT_2026-07-08.md	BARE-ELSEWHERE	apps/wired/ship_tasks/reports/DOC_DRIFT_2026-07-08.md
+apps/wired/ship_tasks/SHIP_PROGRESS.md	37	apps/wired/wiring_prep_tasks/RINGS_PCV_TRIAGE_RULING.md	OK	.
+apps/wired/ship_tasks/SHIP_PROGRESS.md	40	pyrightconfig.json	OK	.
+apps/wired/ship_tasks/SHIP_PROGRESS.md	50	planning/SHIP_AUDIT_2026-07-07.md	OK	.
+apps/wired/ship_tasks/SHIP_PROGRESS.md	52	render.yaml	OK	.
+apps/wired/ship_tasks/SHIP_PROGRESS.md	52	requirements.txt	OK	.
+apps/wired/ship_tasks/SHIP_PROGRESS.md	52	app.py	OK	.
+apps/wired/ship_tasks/SHIP_PROGRESS.md	52	Vault/githubtoken.md	IGNORED	
+apps/wired/ship_tasks/SHIP_PROGRESS.md	52	.backups/	IGNORED	
+apps/wired/ship_tasks/SHIP_PROGRESS.md	52	.skylos/	IGNORED	
+apps/wired/test_tasks/TEST_PROGRESS.md	10	apps/wired/test_tasks/	OK	.
+apps/wired/test_tasks/TEST_PROGRESS.md	12	apps/wired/test_tasks/WIRED_TEST_START_HERE.md	OK	.
+apps/wired/test_tasks/TEST_PROGRESS.md	15	WIRED_TEST_START_HERE.md	OK	apps/wired/test_tasks
+apps/wired/test_tasks/TEST_PROGRESS.md	25	apps/wired/WIRED_PROGRESS.md	OK	.
+apps/wired/test_tasks/TEST_PROGRESS.md	26	planning/code_audit/reports/PYSCN_EVAL_2026-06-29.md	OK	.
+apps/wired/test_tasks/TEST_PROGRESS.md	33	T-WTEST-1_full_suite_green_baseline.md	OK	apps/wired/test_tasks
+apps/wired/test_tasks/TEST_PROGRESS.md	33	apps/wired	OK	.
+apps/wired/test_tasks/TEST_PROGRESS.md	33	reports/WTEST1_BASELINE_2026-06-30.md	OK	apps/wired/test_tasks
+apps/wired/test_tasks/TEST_PROGRESS.md	34	T-WTEST-2_pyscn_audit_wired.md	OK	apps/wired/test_tasks
+apps/wired/test_tasks/TEST_PROGRESS.md	34	reports/WTEST2_PYSCN_WIRED_2026-06-30.md	OK	apps/wired/test_tasks
+apps/wired/test_tasks/TEST_PROGRESS.md	35	T-WTEST-3_native_jaeger_env_profile.md	OK	apps/wired/test_tasks
+apps/wired/test_tasks/TEST_PROGRESS.md	35	apps/wired/trace/	OK	.
+apps/wired/test_tasks/TEST_PROGRESS.md	36	T-WTEST-4_otel_run_spans_to_jaeger.md	OK	apps/wired/test_tasks
+apps/wired/test_tasks/TEST_PROGRESS.md	36	test_tracing.py	BARE-ELSEWHERE	apps/wired/tests/test_tracing.py
+apps/wired/test_tasks/TEST_PROGRESS.md	36	apps/wired/trace/run_traced_case.py	OK	.
+apps/wired/test_tasks/TEST_PROGRESS.md	36	progress_notes/T-WTEST-4.md	OK	apps/wired/test_tasks
+apps/wired/test_tasks/TEST_PROGRESS.md	37	T-WTEST-5_trace_extract_and_report.md	OK	apps/wired/test_tasks
+apps/wired/test_tasks/TEST_PROGRESS.md	37	test_tracing.py	BARE-ELSEWHERE	apps/wired/tests/test_tracing.py
+apps/wired/test_tasks/TEST_PROGRESS.md	37	reports/WTEST5_TRACE_2026-06-30.md	OK	apps/wired/test_tasks
+apps/wired/test_tasks/TEST_PROGRESS.md	37	apps/wired/trace/runs/WTEST5_20260630/	IGNORED	
+apps/wired/test_tasks/TEST_PROGRESS.md	68	wired/tracing.py	OK	apps/wired
+apps/wired/test_tasks/TEST_PROGRESS.md	69	apps/wired/_jaeger/	BROKEN-SYMLINK	-> /agent_workspace/ARCHIVE/wired/_jaeger
+apps/wired/test_tasks/TEST_PROGRESS.md	69	apps/wired/harness/	BROKEN-SYMLINK	-> /agent_workspace/ARCHIVE/wired/harness
+apps/wired/test_tasks/TEST_PROGRESS.md	69	ARCHIVE/	IGNORED	
+apps/wired/test_tasks/TEST_PROGRESS.md	69	apps/wired/trace/	OK	.
+apps/wired/test_tasks/TEST_PROGRESS.md	79	planning/code_audit/STAGE4_COMPLEXITY_INPUTS.md	OK	.
+apps/wired/test_tasks/TEST_PROGRESS.md	87	apps/wired/test_tasks/	OK	.
+apps/wired/test_tasks/TEST_PROGRESS.md	87	.agent/assignments.md	OK	.
+apps/wired/v7_tasks/V7_PROGRESS.md	5	cases_petrol_v7.csv	BARE-ELSEWHERE	apps/wired/v7/data/cases_petrol_v7.csv
+apps/wired/v7_tasks/V7_PROGRESS.md	11	ARCHIVE/wired/harness/	IGNORED	
+apps/wired/v7_tasks/V7_PROGRESS.md	12	cases_petrol_master_v6.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	16	/home/m/Desktop/casesextra/	ABSOLUTE	
+apps/wired/v7_tasks/V7_PROGRESS.md	17	cases_library_v2.html	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	20	cases_library.html	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	20	cases_library_research.html	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	21	cases_petrol_era_v1.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	21	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	23	cases_petrol_v7.csv	BARE-ELSEWHERE	apps/wired/v7/data/cases_petrol_v7.csv
+apps/wired/v7_tasks/V7_PROGRESS.md	28	labs/comlab/comlab/schemas/vocabulary.py	OK	.
+apps/wired/v7_tasks/V7_PROGRESS.md	28	core/fault_atlas_kg.py	SUFFIX	shorthand: an existing path ends with it
+apps/wired/v7_tasks/V7_PROGRESS.md	40	apps/wired/v7_tasks/	OK	.
+apps/wired/v7_tasks/V7_PROGRESS.md	40	apps/wired/v7/	OK	.
+apps/wired/v7_tasks/V7_PROGRESS.md	42	apps/wired/v7_tasks/WIRED_V7_START_HERE.md	OK	.
+apps/wired/v7_tasks/V7_PROGRESS.md	53	apps/wired/WIRED_PROGRESS.md	OK	.
+apps/wired/v7_tasks/V7_PROGRESS.md	53	apps/wired/test_tasks/TEST_PROGRESS.md	OK	.
+apps/wired/v7_tasks/V7_PROGRESS.md	54	apps/wired/test_tasks/reports/WTEST1_BASELINE_2026-06-30.md	OK	.
+apps/wired/v7_tasks/V7_PROGRESS.md	55	apps/wired/trace/	OK	.
+apps/wired/v7_tasks/V7_PROGRESS.md	56	/home/m/Desktop/casesextra/cases_library_v2.html	ABSOLUTE	
+apps/wired/v7_tasks/V7_PROGRESS.md	63	apps/wired/fl_tasks/reports/FL_YARDSTICK_2026-06-30.md	OK	.
+apps/wired/v7_tasks/V7_PROGRESS.md	64	apps/wired/fl_tasks/reports/FL_UPSTREAM_2026-06-30.md	OK	.
+apps/wired/v7_tasks/V7_PROGRESS.md	65	apps/wired/fl_tasks/reports/FL_LOCALIZATION_2026-06-30.md	OK	.
+apps/wired/v7_tasks/V7_PROGRESS.md	66	apps/wired/fl_tasks/reports/FL_SCOREBOARD_README_2026-06-30.md	OK	.
+apps/wired/v7_tasks/V7_PROGRESS.md	72	T-V7-1_library_research_and_viability.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	72	reports/V7_1_RESEARCH_2026-06-30.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	73	T-V7-2_build_v7_csv.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	73	v7/data/cases_petrol_v7.csv	OK	apps/wired
+apps/wired/v7_tasks/V7_PROGRESS.md	73	v7/load_corpus.py	OK	apps/wired
+apps/wired/v7_tasks/V7_PROGRESS.md	74	T-V7-3_rederive_oracle.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	74	ORACLE_TRIAGE_2026-06-30.md	BARE-ELSEWHERE	apps/wired/v7/ORACLE_TRIAGE_2026-06-30.md
+apps/wired/v7_tasks/V7_PROGRESS.md	75	T-V7-4_driver_and_multidim_scorer.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	75	v7/run_suite.py	OK	apps/wired
+apps/wired/v7_tasks/V7_PROGRESS.md	75	v7/tests/test_run_suite.py	OK	apps/wired
+apps/wired/v7_tasks/V7_PROGRESS.md	75	v7/runs/20260630_161827/results.json	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	76	T-V7-5_run_coverage_accuracy_report.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	76	reports/V7_ACCURACY_2026-06-30.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	77	T-V7-6_jaeger_full_corpus_trace.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	77	reports/V7_TRACE_2026-06-30.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	78	T-V7-7_investigate_fault_code_namespace.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	78	reports/V7_CODE_NS_DECISION_2026-06-30.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	79	T-V7-8_investigate_confidence_semantics.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	79	reports/V7_CONF_DECISION_2026-06-30.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	79	09_calibration_confidence.md	BARE-ELSEWHERE	labs/comlab/wiki/09_calibration_confidence.md; Vault/labs/comlab/wiki/09_calibration_confidence.md
+apps/wired/v7_tasks/V7_PROGRESS.md	79	integration_shim.py	BARE-ELSEWHERE	labs/comlab/registry/integration_shim.py; Vault/labs/comlab/registry/code/integration_shim.py
+apps/wired/v7_tasks/V7_PROGRESS.md	80	T-V7-9_v1_baseline_on_v7_suite.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	80	global_fault_registry.json	BARE-ELSEWHERE	labs/comlab/comlab/config/global_fault_registry.json; Vault/labs/comlab/code/config/global_fault_registry.json
+apps/wired/v7_tasks/V7_PROGRESS.md	80	/home/m/Desktop/4dV1	ABSOLUTE	
+apps/wired/v7_tasks/V7_PROGRESS.md	80	reports/V7_V1_BASELINE_2026-06-30.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	99	reports/V7_ACCURACY_2026-06-30.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	103	reports/V7_CODE_NS_DECISION_2026-06-30.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	104	reports/V7_CONF_DECISION_2026-06-30.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/V7_PROGRESS.md	123	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	124	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	125	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	126	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	127	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	128	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	129	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	130	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	131	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	132	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	133	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	134	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	135	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	136	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	137	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	138	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	139	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	140	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	141	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	142	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	143	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	144	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	145	cases_library_research.html	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	146	cases_library_v2.html	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	146	/	OK	.
+apps/wired/v7_tasks/V7_PROGRESS.md	163	apps/wired/v7_tasks/	OK	.
+apps/wired/v7_tasks/V7_PROGRESS.md	163	casesextra/cases_library_v2.html	MISSING	
+apps/wired/v7_tasks/V7_PROGRESS.md	164	.agent/assignments.md	OK	.
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	6	labs/comlab	OK	.
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	8	Vault/VAULT_IMPLEMENTATION_PLAN.md	OK	.
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	9	_skills/graph/4dlab-vault/	OK	.
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	10	DTC_VAULT_TASKS_START_HERE.md	OK	Vault/tasks
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	11	Vault/tasks/COMLAB_VAULT_READINESS_AUDIT_2026-06-26.md	OK	.
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	13	/agent_workspace	ABSOLUTE	resolves-under-repo
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	13	4DLabV2/	LEGACY	strip-prefix-resolves
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	23	wiki/	BARE-ELSEWHERE	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	23	research/chunks/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	29	labs/comlab/comlab/	OK	.
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	29	core/	BARE-ELSEWHERE	labs/dtclab/dtclab/core; labs/comlab/comlab/core; labs/obdlab/obdlab/core (+3)
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	29	schemas/	BARE-ELSEWHERE	labs/dtclab/dtclab/schemas; labs/comlab/comlab/schemas; labs/obdlab/obdlab/schemas (+3)
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	29	analytics/	BARE-ELSEWHERE	labs/comlab/comlab/analytics; Vault/labs/comlab/code/analytics
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	29	observability/	BARE-ELSEWHERE	labs/comlab/comlab/observability; Vault/labs/comlab/code/observability
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	29	projection.py	BARE-ELSEWHERE	labs/comlab/comlab/projection.py; Vault/labs/comlab/code/projection.py
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	30	labs/comlab/tests/	OK	.
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	31	labs/comlab/wiki/	OK	.
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	31	00_index.md	BARE-ELSEWHERE	labs/gaslab/wiki/00_index.md; labs/symptomlab/wiki/00_index.md; labs/vinlab/wiki/00_index.md (+7)
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	31	14_sources_appendices.md	BARE-ELSEWHERE	labs/comlab/wiki/14_sources_appendices.md; Vault/labs/comlab/wiki/14_sources_appendices.md
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	32	labs/comlab/docs/	OK	.
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	32	adr/	BARE-ELSEWHERE	labs/dnalab/adr; labs/comlab/docs/adr; Vault/labs/comlab/docs/adr
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	32	Vocabulary/	BARE-ELSEWHERE	labs/comlab/docs/Vocabulary; Vault/labs/comlab/docs/Vocabulary
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	32	ARCHIVE/	IGNORED	
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	33	graph/v1_baseline/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	36	wiki/	BARE-ELSEWHERE	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	39	graph/v1_baseline/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	53	labs/comlab/registry/	OK	.
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	54	registry/docs/_registry_skills/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	56	comlab/comlab/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	56	tests/	BARE-ELSEWHERE	harness/tests; apps/ui/tests; apps/wired/tests (+18)
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	56	wiki/	BARE-ELSEWHERE	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	56	docs/	OK	.
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	57	comlab/	BARE-ELSEWHERE	labs/comlab; labs/comlab/comlab; Vault/labs/comlab
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	58	COMLab_BDD.md	BARE-ELSEWHERE	labs/comlab/docs/COMLab_BDD.md; Vault/labs/comlab/docs/COMLab_BDD.md
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	59	adr/	BARE-ELSEWHERE	labs/dnalab/adr; labs/comlab/docs/adr; Vault/labs/comlab/docs/adr
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	61	fault_atlas_router.py	BARE-ELSEWHERE	labs/comlab/comlab/core/fault_atlas_router.py; Vault/labs/comlab/code/core/fault_atlas_router.py
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	65	tests/	BARE-ELSEWHERE	harness/tests; apps/ui/tests; apps/wired/tests (+18)
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	71	core/fault_atlas_router.py	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	71	fault_atlas_kg.py	BARE-ELSEWHERE	labs/comlab/comlab/core/fault_atlas_kg.py; Vault/labs/comlab/code/core/fault_atlas_kg.py
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	74	projection.py	BARE-ELSEWHERE	labs/comlab/comlab/projection.py; Vault/labs/comlab/code/projection.py
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	78	comlab/comlab/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	87	vault-map.comlab.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.comlab.yaml
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	97	T-COM-DOCS-V2_reconcile_design_docs_to_v2.md	OK	Vault/tasks
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	98	T-COM-CODE-CLEAN-A_router_atlas_legibility.md	OK	Vault/tasks
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	99	T-COM-CODE-CLEAN-B_schemas_contract_legibility.md	OK	Vault/tasks
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	100	T-COM-CODE-CLEAN-C_core_pipeline_legibility.md	OK	Vault/tasks
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	101	T-COM-CODE-CLEAN-D_analytics_projection_legibility.md	OK	Vault/tasks
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	102	T-COM-TESTS-GREEN_whole_tests_tree_green.md	OK	Vault/tasks
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	103	T-COM-CODEPREP_ast_legibility_audit_package.md	OK	Vault/tasks
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	104	T-COM-TESTPREP_ast_legibility_audit_tests.md	OK	Vault/tasks
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	105	T-COM-WIKIPREP_explicit_relations_wiki.md	OK	Vault/tasks
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	106	T-COM-DOCPREP_doc_prep_design_docs.md	OK	Vault/tasks
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	107	T-COM-GRAPH-AST_graphify_code_and_tests.md	OK	Vault/tasks
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	108	T-COM-GRAPH-LLM_prose_graphs_waived.md	OK	Vault/tasks
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	109	T-COM-PATHS-1_register_comlab_source_paths.md	OK	Vault/tasks
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	110	T-COM-VAULT_build_comlab_vault.md	OK	Vault/tasks
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	116	registry/docs/_registry_skills/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	121	/agent_workspace/.venv-wired	ABSOLUTE	
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	122	/agent_workspace/.venv-wired/bin/activate	ABSOLUTE	
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	122	/agent_workspace/.venv-wired/bin/python	ABSOLUTE	
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	124	labs/comlab/	OK	.
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	124	comlab/	BARE-ELSEWHERE	labs/comlab; labs/comlab/comlab; Vault/labs/comlab
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	128	graph/v1_baseline/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	132	apps/4DLabWired/	MISSING	
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	132	apps/ui/	OK	.
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	135	wiki/13_proposals_register.md	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	135	comlab/config/proposals/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	139	wiki/	BARE-ELSEWHERE	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	139	docs/Vocabulary/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	139	docs/	OK	.
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	146	labs/comlab/registry/	OK	.
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	147	_registry_skills/	BARE-ELSEWHERE	labs/comlab/registry/docs/_registry_skills
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	147	vault-map.registry.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.registry.yaml
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	148	global_fault_registry.json	BARE-ELSEWHERE	labs/comlab/comlab/config/global_fault_registry.json; Vault/labs/comlab/code/config/global_fault_registry.json
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	154	wiki/03_vehicle_dna_pruning.md	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	155	COMLab_PRD.md	BARE-ELSEWHERE	labs/comlab/docs/COMLab_PRD.md; Vault/labs/comlab/docs/COMLab_PRD.md
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	158	/agent_workspace/CLAUDE.md	ABSOLUTE	resolves-under-repo
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md	159	Vault/tasks/	OK	.
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	5	labs/dnalab	OK	.
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	7	Vault/VAULT_IMPLEMENTATION_PLAN.md	OK	.
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	8	_skills/graph/4dlab-vault/	OK	.
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	9	VIN_VAULT_TASKS_START_HERE.md	OK	Vault/tasks
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	23	labs/dnalab/tasks/PROGRESS.md	OK	.
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	34	dnalab/__init__.py	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	35	dnalab/assembly.py	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	36	dnalab/models.py	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	42	wiki/	BARE-ELSEWHERE	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	48	labs/dnalab/dnalab/	OK	.
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	48	__init__.py	BARE-ELSEWHERE	harness/harness/__init__.py; harness/harness/generators/__init__.py; apps/wired/wired/__init__.py (+93)
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	48	assembly.py	BARE-ELSEWHERE	labs/dnalab/dnalab/assembly.py; Vault/labs/dnalab/code/assembly.py
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	48	models.py	BARE-ELSEWHERE	labs/symptomlab/symptomlab/models.py; labs/vinlab/vinlab/models.py; labs/dnalab/dnalab/models.py (+3)
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	49	labs/dnalab/tests/	OK	.
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	49	tests/unit/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	49	conftest.py	BARE-ELSEWHERE	audit/scratch/C1/conftest.py; audit/scratch/D2/conftest.py; labs/gaslab/tests/conftest.py (+13)
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	49	fixtures/	BARE-ELSEWHERE	apps/wired/tests/fixtures; labs/gaslab/tests/fixtures; labs/dtclab/tests/fixtures (+18)
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	50	labs/dnalab/wiki/	OK	.
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	51	labs/dnalab/docs/	OK	.
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	51	DNA_VOCABULARY.md	BARE-ELSEWHERE	labs/dnalab/docs/DNA_VOCABULARY.md; Vault/labs/dnalab/docs/DNA_VOCABULARY.md; Vault/_vocabulary/DNA_VOCABULARY.md
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	52	graphify-out/graph.json	IGNORED	
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	52	graph/v2_current/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	52	graph/v1_baseline/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	52	DIFF_REPORT.md	BARE-ELSEWHERE	labs/gaslab/graph/DIFF_REPORT.md; labs/dtclab/graph/DIFF_REPORT.md; labs/symptomlab/graph/DIFF_REPORT.md (+4)
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	59	graph/v2_current/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	59	graph/v1_baseline/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	59	DIFF_REPORT.md	BARE-ELSEWHERE	labs/gaslab/graph/DIFF_REPORT.md; labs/dtclab/graph/DIFF_REPORT.md; labs/symptomlab/graph/DIFF_REPORT.md (+4)
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	85	labs/dnalab/tasks/PROGRESS.md	OK	.
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	94	DNA_VOCABULARY.md	BARE-ELSEWHERE	labs/dnalab/docs/DNA_VOCABULARY.md; Vault/labs/dnalab/docs/DNA_VOCABULARY.md; Vault/_vocabulary/DNA_VOCABULARY.md
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	94	_vocabulary/	OK	Vault
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	97	/	OK	.
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	110	labs/dnalab/dnalab/	OK	.
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	111	labs/dnalab/tests/	OK	.
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	112	labs/dnalab/wiki/	OK	.
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	119	vault-map.dnalab.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.dnalab.yaml
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	132	T-DNAV-CODEPREP_ast_legibility_audit_package.md	OK	Vault/tasks
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	132	dnalab/dnalab/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	133	T-DNAV-TESTPREP_ast_legibility_audit_tests.md	OK	Vault/tasks
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	134	T-DNAV-WIKIPREP_explicit_relations_wiki.md	OK	Vault/tasks
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	135	T-DNAV-DOCPREP_doc_prep_design_docs.md	OK	Vault/tasks
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	135	DNA_VOCABULARY.md	BARE-ELSEWHERE	labs/dnalab/docs/DNA_VOCABULARY.md; Vault/labs/dnalab/docs/DNA_VOCABULARY.md; Vault/_vocabulary/DNA_VOCABULARY.md
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	136	T-DNAV-GRAPH-AST_graphify_code_and_tests.md	OK	Vault/tasks
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	138	T-DNAV-PATHS-1_register_dnalab_source_paths.md	OK	Vault/tasks
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	139	T-DNAV-VAULT_build_dnalab_vault.md	OK	Vault/tasks
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	139	_vocabulary/DNA_VOCABULARY.md	OK	Vault
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	139	vault-map.dnalab.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.dnalab.yaml
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	145	graph/v2_current/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	145	graph/v1_baseline/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	164	models.py	BARE-ELSEWHERE	labs/symptomlab/symptomlab/models.py; labs/vinlab/vinlab/models.py; labs/dnalab/dnalab/models.py (+3)
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	176	4DLab/CLAUDE.md	LEGACY	strip-prefix-resolves
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	182	labs/dnalab/tasks/PROGRESS.md	OK	.
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	184	assembly.py	BARE-ELSEWHERE	labs/dnalab/dnalab/assembly.py; Vault/labs/dnalab/code/assembly.py
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	184	models.py	BARE-ELSEWHERE	labs/symptomlab/symptomlab/models.py; labs/vinlab/vinlab/models.py; labs/dnalab/dnalab/models.py (+3)
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	5	labs/dtclab	OK	.
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	7	Vault/VAULT_IMPLEMENTATION_PLAN.md	OK	.
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	8	_skills/graph/4dlab-vault/	OK	.
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	9	GAS_VAULT_TASKS_START_HERE.md	OK	Vault/tasks
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	19	wiki/	BARE-ELSEWHERE	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	19	research/chunks/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	24	labs/dtclab/dtclab/	OK	.
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	24	family_map.py	BARE-ELSEWHERE	labs/gaslab/gaslab/family_map.py; labs/dtclab/dtclab/family_map.py; Vault/labs/gaslab/code/family_map.py (+1)
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	24	ranking.py	BARE-ELSEWHERE	labs/gaslab/gaslab/ranking.py; labs/dtclab/dtclab/ranking.py; Vault/labs/gaslab/code/ranking.py (+1)
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	25	labs/dtclab/tests/	OK	.
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	26	labs/dtclab/wiki/	OK	.
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	26	00_INDEX.md	BARE-ELSEWHERE	labs/dtclab/wiki/00_INDEX.md; Vault/labs/dtclab/wiki/00_INDEX.md
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	27	labs/dtclab/docs/	OK	.
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	27	DTC_VOCABULARY.md	BARE-ELSEWHERE	labs/dtclab/docs/DTC_VOCABULARY.md; labs/semantic/vocabul/DTC_VOCABULARY.md; labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md (+3)
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	28	graph/v2_current/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	28	graph/v1_baseline/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	34	graph/v2_current/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	34	graph/v1_baseline/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	45	dtclab/	BARE-ELSEWHERE	labs/dtclab; labs/dtclab/dtclab; Vault/labs/dtclab
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	46	DTC_VOCABULARY.md	BARE-ELSEWHERE	labs/dtclab/docs/DTC_VOCABULARY.md; labs/semantic/vocabul/DTC_VOCABULARY.md; labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md (+3)
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	48	docs/audits/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	58	dtclab/dtclab/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	63	labs/dtclab/dtclab/	OK	.
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	64	labs/dtclab/tests/	OK	.
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	65	labs/dtclab/wiki/	OK	.
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	72	vault-map.dtclab.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.dtclab.yaml
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	83	T-DTC-DOCS-V2_reconcile_design_docs_to_v2.md	OK	Vault/tasks
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	84	T-DTC-CODE-CLEAN_codingskills_audit_package.md	OK	Vault/tasks
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	85	T-DTC-COMMENT-FIX_enum_count_docstrings.md	OK	Vault/tasks
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	85	vocabulary.py	BARE-ELSEWHERE	labs/dtclab/dtclab/schemas/vocabulary.py; labs/comlab/comlab/schemas/vocabulary.py; labs/obdlab/obdlab/schemas/vocabulary.py (+3)
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	85	family_map.py	BARE-ELSEWHERE	labs/gaslab/gaslab/family_map.py; labs/dtclab/dtclab/family_map.py; Vault/labs/gaslab/code/family_map.py (+1)
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	86	T-DTC-TESTS-GREEN_whole_tests_tree_green.md	OK	Vault/tasks
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	87	T-DTC-CODEPREP_ast_legibility_audit_package.md	OK	Vault/tasks
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	88	T-DTC-TESTPREP_ast_legibility_audit_tests.md	OK	Vault/tasks
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	89	T-DTC-WIKIPREP_explicit_relations_wiki.md	OK	Vault/tasks
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	90	T-DTC-DOCPREP_doc_prep_design_docs.md	OK	Vault/tasks
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	91	T-DTC-GRAPH-AST_graphify_code_and_tests.md	OK	Vault/tasks
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	93	T-DTC-PATHS-1_register_dtclab_source_paths.md	OK	Vault/tasks
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	94	T-DTC-VAULT_build_dtclab_vault.md	OK	Vault/tasks
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	94	_vocabulary/DTC_VOCABULARY.md	OK	Vault
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	94	vault-map.dtclab.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.dtclab.yaml
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	101	graph/v2_current/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	101	graph/v1_baseline/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	103	test_dna_view.py	BARE-ELSEWHERE	labs/gaslab/tests/unit/test_dna_view.py; labs/dtclab/tests/unit/test_dna_view.py; labs/obdlab/tests/unit/test_dna_view.py (+3)
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	106	wiki/11_proposals_register.md	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	114	wiki/11_proposals_register.md	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	117	PRD_DTCLab.md	BARE-ELSEWHERE	labs/dtclab/docs/PRD_DTCLab.md; Vault/labs/dtclab/docs/PRD_DTCLab.md
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	118	HLD_DTCLab.md	BARE-ELSEWHERE	labs/dtclab/docs/HLD_DTCLab.md; Vault/labs/dtclab/docs/HLD_DTCLab.md
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	119	4DLab/CLAUDE.md	LEGACY	strip-prefix-resolves
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	5	labs/gaslab	OK	.
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	7	Vault/VAULT_IMPLEMENTATION_PLAN.md	OK	.
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	8	_skills/graph/4dlab-vault/	OK	.
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	19	research/chunks/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	19	graphify-out/graph.json	IGNORED	
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	24	labs/gaslab/wiki/	OK	.
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	24	00_index.md	BARE-ELSEWHERE	labs/gaslab/wiki/00_index.md; labs/symptomlab/wiki/00_index.md; labs/vinlab/wiki/00_index.md (+7)
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	24	CHANGE_v2.1_timing_taxonomy.md	BARE-ELSEWHERE	labs/gaslab/wiki/CHANGE_v2.1_timing_taxonomy.md; Vault/labs/gaslab/wiki/CHANGE_v2.1_timing_taxonomy.md
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	25	graph/v2_current/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	25	graph/v1_baseline/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	26	labs/gaslab/docs/	OK	.
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	26	GAS_VOCABULARY.md	BARE-ELSEWHERE	labs/gaslab/docs/GAS_VOCABULARY.md; labs/semantic/vocabul/GAS_VOCABULARY.md; Vault/labs/gaslab/docs/GAS_VOCABULARY.md (+1)
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	26	audits/	BARE-ELSEWHERE	labs/gaslab/docs/audits; labs/dtclab/docs/audits; labs/dnalab/audits (+2)
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	27	labs/gaslab/gaslab/	OK	.
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	28	labs/gaslab/tests/	OK	.
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	30	graphify-out/graph.json	IGNORED	
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	33	labs/gaslab/wiki/	OK	.
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	33	research/chunks/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	38	labs/gaslab/docs/audits/AUDIT_2026-06-10_gaslab_state.md	OK	.
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	44	/	OK	.
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	54	labs/gaslab/gaslab/	OK	.
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	55	labs/gaslab/tests/	OK	.
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	56	labs/gaslab/wiki/	OK	.
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	63	vault-map.gaslab.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.gaslab.yaml
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	73	T-GAS-TESTS-GREEN_whole_tests_tree_green.md	OK	Vault/tasks
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	74	T-GAS-DOCS-V2_reconcile_adr_bdd_to_v2.md	OK	Vault/tasks
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	75	T-GAS-CODEPREP_ast_legibility_audit_package.md	OK	Vault/tasks
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	75	gaslab/	BARE-ELSEWHERE	labs/gaslab; labs/gaslab/gaslab; Vault/labs/gaslab
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	76	T-GAS-TESTPREP_ast_legibility_audit_tests.md	OK	Vault/tasks
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	77	T-GAS-WIKIPREP_explicit_relations_wiki.md	OK	Vault/tasks
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	78	T-GAS-DOCPREP_doc_prep_design_docs.md	OK	Vault/tasks
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	79	T-GAS-GRAPH-AST_graphify_code_and_tests.md	OK	Vault/tasks
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	80	T-GAS-GRAPH-LLM_graphify_wiki_and_docs.md	OK	Vault/tasks
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	81	T-GAS-PATHS-1_parametrize_build_source_paths.md	OK	Vault/tasks
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	82	T-GAS-VAULT_build_gaslab_vault.md	OK	Vault/tasks
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	82	vault-map.gaslab.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.gaslab.yaml
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	88	graph/v2_current/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	90	gaslab/	BARE-ELSEWHERE	labs/gaslab; labs/gaslab/gaslab; Vault/labs/gaslab
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	97	4DLab/CLAUDE.md	LEGACY	strip-prefix-resolves
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	6	apps/ui/	OK	.
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	8	Vault/VAULT_IMPLEMENTATION_PLAN.md	OK	.
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	9	_skills/graph/4dlab-vault/	OK	.
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	10	COM_VAULT_TASKS_START_HERE.md	OK	Vault/tasks
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	12	/agent_workspace	ABSOLUTE	resolves-under-repo
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	27	apps/ui/	OK	.
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	29	apps/ui/4DLab_UI_FieldMap.md	OK	.
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	29	apps/ui/StreamliteUI.md	OK	.
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	30	apps/ui/tasks/	OK	.
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	40	Vault/apps/ui/	OK	.
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	41	Vault/labs/	OK	.
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	41	StreamliteUI.md	BARE-ELSEWHERE	apps/ui/StreamliteUI.md; Vault/apps/ui/docs/StreamliteUI.md
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	50	sampleUI/	BARE-ELSEWHERE	apps/ui/sampleUI
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	50	_sample_app_reference.py	BARE-ELSEWHERE	apps/ui/_sample_app_reference.py
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	52	StreamliteUI.md	BARE-ELSEWHERE	apps/ui/StreamliteUI.md; Vault/apps/ui/docs/StreamliteUI.md
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	60	Vault/apps/ui/	OK	.
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	60	vault-map.ui.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.ui.yaml
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	70	apps/ui/tasks/T-UI-SYNC-1_fieldmap_consumer_audit.md	OK	.
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	71	T-UI-VAULT-SUPPORT-1_doc_only_corpus_mode.md	OK	Vault/tasks
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	72	T-UI-VAULT_build_ui_vault.md	OK	Vault/tasks
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	79	/agent_workspace/.venv-wired/bin/python	ABSOLUTE	
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	89	apps/4DLabWired/app.py	MOVED	app.py; apps/ui/app.py
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	98	apps/	OK	.
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	98	apps/4DLabWired/docs/HLD_Wiring_4DLab.md	MISSING	
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	100	StreamliteUI.md	BARE-ELSEWHERE	apps/ui/StreamliteUI.md; Vault/apps/ui/docs/StreamliteUI.md
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	101	app.py	OK	.
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	103	/agent_workspace/CLAUDE.md	ABSOLUTE	resolves-under-repo
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md	104	Vault/tasks/	OK	.
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	5	labs/vinlab	OK	.
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	7	Vault/VAULT_IMPLEMENTATION_PLAN.md	OK	.
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	8	_skills/graph/4dlab-vault/	OK	.
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	9	DTC_VAULT_TASKS_START_HERE.md	OK	Vault/tasks
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	19	wiki/	BARE-ELSEWHERE	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	19	research/chunks/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	24	labs/vinlab/vinlab/	OK	.
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	24	decoder.py	BARE-ELSEWHERE	labs/vinlab/vinlab/decoder.py; Vault/labs/vinlab/code/decoder.py
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	24	models.py	BARE-ELSEWHERE	labs/symptomlab/symptomlab/models.py; labs/vinlab/vinlab/models.py; labs/dnalab/dnalab/models.py (+3)
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	24	db/	BARE-ELSEWHERE	labs/vinlab/vinlab/db; Vault/labs/vinlab/code/db
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	24	overlay/	BARE-ELSEWHERE	labs/vinlab/vinlab/overlay; Vault/labs/vinlab/code/overlay
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	24	data/	BARE-ELSEWHERE	apps/wired/v7/data; labs/gaslab/gaslab/data; labs/symptomlab/symptomlab/data (+5)
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	25	labs/vinlab/tests/	OK	.
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	25	tests/unit/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	26	labs/vinlab/wiki/	OK	.
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	26	00_index.md	BARE-ELSEWHERE	labs/gaslab/wiki/00_index.md; labs/symptomlab/wiki/00_index.md; labs/vinlab/wiki/00_index.md (+7)
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	26	10_decode_scope_rules.md	BARE-ELSEWHERE	labs/vinlab/wiki/10_decode_scope_rules.md; Vault/labs/vinlab/wiki/10_decode_scope_rules.md
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	26	11_engine_resolution.md	BARE-ELSEWHERE	labs/vinlab/wiki/11_engine_resolution.md; Vault/labs/vinlab/wiki/11_engine_resolution.md
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	26	12_brand_cylinder_rules.md	BARE-ELSEWHERE	labs/vinlab/wiki/12_brand_cylinder_rules.md; Vault/labs/vinlab/wiki/12_brand_cylinder_rules.md
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	27	labs/vinlab/docs/	OK	.
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	27	VIN_VOCABULARY.md	BARE-ELSEWHERE	labs/vinlab/docs/VIN_VOCABULARY.md; Vault/labs/vinlab/docs/VIN_VOCABULARY.md; Vault/_vocabulary/VIN_VOCABULARY.md
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	28	graph/v2_current/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	28	graph/v1_baseline/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	28	DIFF_REPORT.md	BARE-ELSEWHERE	labs/gaslab/graph/DIFF_REPORT.md; labs/dtclab/graph/DIFF_REPORT.md; labs/symptomlab/graph/DIFF_REPORT.md (+4)
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	35	graph/v2_current/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	35	graph/v1_baseline/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	36	DIFF_REPORT.md	BARE-ELSEWHERE	labs/gaslab/graph/DIFF_REPORT.md; labs/dtclab/graph/DIFF_REPORT.md; labs/symptomlab/graph/DIFF_REPORT.md (+4)
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	43	labs/dnalab/docs/audits/AUDIT_2026-06-12_trimodule_dna_vin_symptom.md	MOVED	labs/dnalab/audits/AUDIT_2026-06-12_trimodule_dna_vin_symptom.md
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	47	overlay/horizon.py	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	48	stress_rpm.py	BARE-ELSEWHERE	labs/vinlab/vinlab/overlay/stress_rpm.py; Vault/labs/vinlab/code/overlay/stress_rpm.py
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	48	switches.py	BARE-ELSEWHERE	labs/vinlab/vinlab/overlay/switches.py; Vault/labs/vinlab/code/overlay/switches.py
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	50	labs/dnalab/tasks/PROGRESS.md	OK	.
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	59	VIN_VOCABULARY.md	BARE-ELSEWHERE	labs/vinlab/docs/VIN_VOCABULARY.md; Vault/labs/vinlab/docs/VIN_VOCABULARY.md; Vault/_vocabulary/VIN_VOCABULARY.md
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	59	_vocabulary/	OK	Vault
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	74	labs/vinlab/vinlab/	OK	.
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	75	labs/vinlab/tests/	OK	.
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	76	labs/vinlab/wiki/	OK	.
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	83	vault-map.vinlab.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.vinlab.yaml
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	93	labs/dnalab/docs/audits/AUDIT_2026-06-12_trimodule_dna_vin_symptom.md	MOVED	labs/dnalab/audits/AUDIT_2026-06-12_trimodule_dna_vin_symptom.md
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	96	T-VIN-CODEPREP_ast_legibility_audit_package.md	OK	Vault/tasks
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	96	vinlab/vinlab/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	96	progress_notes/T-VIN-CODEPREP.md	OK	Vault/tasks
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	97	T-VIN-TESTPREP_ast_legibility_audit_tests.md	OK	Vault/tasks
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	97	tests/	BARE-ELSEWHERE	harness/tests; apps/ui/tests; apps/wired/tests (+18)
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	97	progress_notes/T-VIN-TESTPREP.md	OK	Vault/tasks
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	98	T-VIN-WIKIPREP_explicit_relations_wiki.md	OK	Vault/tasks
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	99	T-VIN-DOCPREP_doc_prep_design_docs.md	OK	Vault/tasks
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	99	graph/v2_docs/ingest_ready/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	99	VIN_VOCABULARY.md	BARE-ELSEWHERE	labs/vinlab/docs/VIN_VOCABULARY.md; Vault/labs/vinlab/docs/VIN_VOCABULARY.md; Vault/_vocabulary/VIN_VOCABULARY.md
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	99	graphify/graph.json	MOVED	labs/gaslab/graph/v2_code/graph.json; labs/gaslab/graph/v2_tests/graph.json; labs/gaslab/graph/v2_docs/graph.json (+40)
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	100	T-VIN-GRAPH-AST_graphify_code_and_tests.md	OK	Vault/tasks
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	102	T-VIN-PATHS-1_register_vinlab_source_paths.md	OK	Vault/tasks
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	102	vault-map.vinlab.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.vinlab.yaml
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	103	T-VIN-VAULT_build_vinlab_vault.md	OK	Vault/tasks
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	103	vault-map.vinlab.yaml	BARE-ELSEWHERE	_skills/graph/4dlab-vault/assets/vault-map.vinlab.yaml
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	103	System-Map.md	OK	Vault
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	103	PROVENANCE.md	BARE-ELSEWHERE	_bases/PROVENANCE.md; Vault/_meta/PROVENANCE.md
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	109	graph/v2_current/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	109	graph/v1_baseline/	SUFFIX	shorthand: an existing path ends with it
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	128	assembly.py	BARE-ELSEWHERE	labs/dnalab/dnalab/assembly.py; Vault/labs/dnalab/code/assembly.py
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	130	overlay/	BARE-ELSEWHERE	labs/vinlab/vinlab/overlay; Vault/labs/vinlab/code/overlay
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	137	4DLab/CLAUDE.md	LEGACY	strip-prefix-resolves
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	141	dump_schema.py	BARE-ELSEWHERE	labs/vinlab/dump_schema.py
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	141	load_tecdoc.py	BARE-ELSEWHERE	labs/vinlab/load_tecdoc.py
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	141	mysql_bridge.py	BARE-ELSEWHERE	labs/vinlab/mysql_bridge.py
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	141	setup_tecdoc_db.py	BARE-ELSEWHERE	labs/vinlab/setup_tecdoc_db.py
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	143	labs/vinlab/vinlab/	OK	.
+apps/vault/VAULT_LIVE_START_HERE.md	12	/agent_workspace	ABSOLUTE	resolves-under-repo
+apps/vault/VAULT_LIVE_START_HERE.md	14	docs/	OK	.
+apps/vault/VAULT_LIVE_START_HERE.md	21	Vault/	OK	.
+apps/vault/VAULT_LIVE_START_HERE.md	22	.omp/rules/lane-guard-no-vault-edit.md	IGNORED	
+apps/vault/VAULT_LIVE_START_HERE.md	24	/agent_workspace/	ABSOLUTE	resolves-under-repo
+apps/vault/VAULT_LIVE_START_HERE.md	25	/agent_workspace/apps/vault/	ABSOLUTE	resolves-under-repo
+apps/vault/VAULT_LIVE_START_HERE.md	26	/agent_workspace/apps/vault/vault_live_tasks/	ABSOLUTE	resolves-under-repo
+apps/vault/VAULT_LIVE_START_HERE.md	27	/agent_workspace/apps/vault/VAULT_LIVE_PROGRESS.md	ABSOLUTE	resolves-under-repo
+apps/vault/VAULT_LIVE_START_HERE.md	28	_skills/graph/4dlab-vault/reference/	OK	.
+apps/vault/VAULT_LIVE_START_HERE.md	29	frontmatter-schema.md	BARE-ELSEWHERE	_skills/graph/4dlab-vault/reference/frontmatter-schema.md
+apps/vault/VAULT_LIVE_START_HERE.md	29	bases-and-views.md	BARE-ELSEWHERE	_skills/graph/4dlab-vault/reference/bases-and-views.md
+apps/vault/VAULT_LIVE_START_HERE.md	34	labs/	OK	.
+apps/vault/VAULT_LIVE_START_HERE.md	70	frontmatter-schema.md	BARE-ELSEWHERE	_skills/graph/4dlab-vault/reference/frontmatter-schema.md
+apps/vault/VAULT_LIVE_START_HERE.md	86	/agent_workspace/AGENTS.md	ABSOLUTE	resolves-under-repo
+apps/vault/VAULT_LIVE_START_HERE.md	91	_skills/graph/4dlab-vault/reference/frontmatter-schema.md	OK	.
+apps/vault/VAULT_LIVE_START_HERE.md	93	_skills/graph/4dlab-vault/reference/bases-and-views.md	OK	.
+apps/vault/VAULT_LIVE_START_HERE.md	98	/agent_workspace/apps/vault/VAULT_LIVE_PROGRESS.md	ABSOLUTE	resolves-under-repo
+apps/vault/VAULT_LIVE_START_HERE.md	129	Vault/	OK	.
+apps/vault/VAULT_LIVE_START_HERE.md	142	_bases/	OK	.
+apps/vault/VAULT_LIVE_START_HERE.md	143	VAULT_LIVE_PROGRESS.md	OK	apps/vault
+apps/vault/VAULT_LIVE_START_HERE.md	150	graph/	BARE-ELSEWHERE	labs/gaslab/graph; labs/dtclab/graph; labs/symptomlab/graph (+7)
+apps/vault/VAULT_LIVE_START_HERE.md	159	__pycache__/	IGNORED	
+apps/vault/VAULT_LIVE_START_HERE.md	159	.egg-info/	IGNORED	
+apps/vault/VAULT_LIVE_START_HERE.md	163	apps/vault/vault_live_tasks/progress_notes/	OK	.
+apps/vault/VAULT_LIVE_START_HERE.md	164	apps/vault/VAULT_LIVE_PROGRESS.md	OK	.
+apps/vault/VAULT_LIVE_START_HERE.md	169	VAULT_LIVE_PROGRESS.md	OK	apps/vault
+apps/vault/VAULT_LIVE_START_HERE.md	173	VAULT_LIVE_PROGRESS.md	OK	apps/vault
+apps/vault/audit/GRAPH_TRUST_START_HERE.md	8	/agent_workspace	ABSOLUTE	resolves-under-repo
+apps/vault/audit/GRAPH_TRUST_START_HERE.md	8	apps/vault/audit/	OK	.
+apps/vault/audit/GRAPH_TRUST_START_HERE.md	19	CLAUDE.md	OK	.
+apps/vault/audit/GRAPH_TRUST_START_HERE.md	27	GRAPH_AUDIT_2026-06-28.md	OK	.
+apps/vault/audit/GRAPH_TRUST_START_HERE.md	32	_skills/graph/4dlab-vault/SKILL.md	OK	.
+apps/vault/audit/GRAPH_TRUST_START_HERE.md	33	_skills/graph/4dlab-doc-prep/SKILL.md	OK	.
+apps/vault/audit/GRAPH_TRUST_START_HERE.md	36	/agent_workspace/AGENTS.md	ABSOLUTE	resolves-under-repo
+apps/vault/audit/GRAPH_TRUST_START_HERE.md	40	apps/vault/audit/GRAPH_TRUST_AUDIT.md	OK	.
+apps/vault/audit/GRAPH_TRUST_START_HERE.md	45	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	OK	.
+apps/vault/audit/GRAPH_TRUST_START_HERE.md	51	apps/vault/audit/T-GTA-METHOD.md	OK	.
+apps/vault/audit/GRAPH_TRUST_START_HERE.md	76	GRAPH_TRUST_AUDIT.md	OK	apps/vault/audit
+apps/vault/audit/GRAPH_TRUST_START_HERE.md	81	apps/vault/audit/reports/	OK	.
+apps/vault/audit/GRAPH_TRUST_START_HERE.md	84	GRAPH_TRUST_PROGRESS.md	OK	apps/vault/audit
+apps/wired/WIRED_START_HERE.md	13	apps/wired/	OK	.
+apps/wired/WIRED_START_HERE.md	18	/agent_workspace/	ABSOLUTE	resolves-under-repo
+apps/wired/WIRED_START_HERE.md	19	/agent_workspace/apps/wired/	ABSOLUTE	resolves-under-repo
+apps/wired/WIRED_START_HERE.md	20	/agent_workspace/apps/wired/wired_tasks/	ABSOLUTE	resolves-under-repo
+apps/wired/WIRED_START_HERE.md	21	/agent_workspace/apps/wired/WIRED_PROGRESS.md	ABSOLUTE	resolves-under-repo
+apps/wired/WIRED_START_HERE.md	22	/agent_workspace/apps/wired/WIRING_PREP.md	ABSOLUTE	resolves-under-repo
+apps/wired/WIRED_START_HERE.md	36	wired/	OK	apps/wired
+apps/wired/WIRED_START_HERE.md	37	wired/	OK	apps/wired
+apps/wired/WIRED_START_HERE.md	52	labs/comlab/comlab/schemas/ingestion.py	OK	.
+apps/wired/WIRED_START_HERE.md	53	ARCHIVE/wiredV2/wiredv2/composition.py	IGNORED	
+apps/wired/WIRED_START_HERE.md	54	CLAUDE.md	OK	.
+apps/wired/WIRED_START_HERE.md	67	graph.json	BARE-ELSEWHERE	labs/gaslab/graph/v2_code/graph.json; labs/gaslab/graph/v2_tests/graph.json; labs/gaslab/graph/v2_docs/graph.json (+40)
+apps/wired/WIRED_START_HERE.md	72	/agent_workspace/apps/wired/_wired_skills/wired-python/SKILL.md	ABSOLUTE	resolves-under-repo
+apps/wired/WIRED_START_HERE.md	77	/agent_workspace/AGENTS.md	ABSOLUTE	resolves-under-repo
+apps/wired/WIRED_START_HERE.md	82	/agent_workspace/apps/wired/WIRING_PREP.md	ABSOLUTE	resolves-under-repo
+apps/wired/WIRED_START_HERE.md	86	/agent_workspace/apps/wired/_wired_skills/wired-verification-loop/SKILL.md	ABSOLUTE	resolves-under-repo
+apps/wired/WIRED_START_HERE.md	89	/agent_workspace/apps/wired/_wired_skills/wired-code-review/SKILL.md	ABSOLUTE	resolves-under-repo
+apps/wired/WIRED_START_HERE.md	92	/agent_workspace/apps/wired/WIRED_PROGRESS.md	ABSOLUTE	resolves-under-repo
+apps/wired/WIRED_START_HERE.md	103	/agent_workspace/apps/wired/_wired_skills/_INDEX.md	ABSOLUTE	resolves-under-repo
+apps/wired/WIRED_START_HERE.md	113	CLAUDE.md/AGENTS.md	MOVED	AGENTS.md; .agent/coders/codex/AGENTS.md; .agent/coders/glm/AGENTS.md (+4)
+apps/wired/WIRED_START_HERE.md	113	CLAUDE.md	OK	.
+apps/wired/WIRED_START_HERE.md	131	ARCHIVE/	IGNORED	
+apps/wired/WIRED_START_HERE.md	131	v2/	MISSING	
+apps/wired/WIRED_START_HERE.md	131	v6/	MISSING	
+apps/wired/WIRED_START_HERE.md	132	/agent_workspace/.venv-wired	ABSOLUTE	
+apps/wired/WIRED_START_HERE.md	135	WIRED_PROGRESS.md	OK	apps/wired
+apps/wired/WIRED_START_HERE.md	150	__pycache__/	NONREF	mentioned only as never-stage/never-commit
+apps/wired/WIRED_START_HERE.md	151	.egg-info/	IGNORED	
+apps/wired/WIRED_START_HERE.md	155	apps/wired/	OK	.
+apps/wired/WIRED_START_HERE.md	156	apps/wired/	OK	.
+apps/wired/WIRED_START_HERE.md	159	WIRED_PROGRESS.md	OK	apps/wired
+apps/wired/WIRED_START_HERE.md	166	WIRED_PROGRESS.md	OK	apps/wired
+apps/wired/fl_tasks/WIRED_FL_START_HERE.md	13	apps/wired/fl_tasks/FL_PROGRESS.md	OK	.
+apps/wired/fl_tasks/WIRED_FL_START_HERE.md	17	apps/wired/v7_tasks/reports/V7_REBUILD_FAILURE_AUDIT_2026-06-30.md	OK	.
+apps/wired/fl_tasks/WIRED_FL_START_HERE.md	18	apps/wired/v7_tasks/reports/V7_ACCURACY_2026-06-30.md	OK	.
+apps/wired/fl_tasks/WIRED_FL_START_HERE.md	19	apps/wired/v7/run_suite.py	OK	.
+apps/wired/fl_tasks/WIRED_FL_START_HERE.md	19	apps/wired/v7/data/cases_petrol_v7.csv	OK	.
+apps/wired/fl_tasks/WIRED_FL_START_HERE.md	20	apps/wired/trace/	OK	.
+apps/wired/fl_tasks/WIRED_FL_START_HERE.md	27	fl_tasks/	OK	apps/wired
+apps/wired/fl_tasks/WIRED_FL_START_HERE.md	28	apps/wired/v7/	OK	.
+apps/wired/fl_tasks/WIRED_FL_START_HERE.md	28	apps/wired/trace/	OK	.
+apps/wired/fl_tasks/WIRED_FL_START_HERE.md	29	Vault/	OK	.
+apps/wired/ship_tasks/SHIP_START_HERE.md	6	AGENTS.md	OK	.
+apps/wired/ship_tasks/SHIP_START_HERE.md	6	4DLab_CLAUDE.md	OK	.
+apps/wired/ship_tasks/SHIP_START_HERE.md	9	planning/SHIP_AUDIT_2026-07-07.md	OK	.
+apps/wired/ship_tasks/SHIP_START_HERE.md	10	ship_tasks/SHIP_PROGRESS.md	OK	apps/wired
+apps/wired/ship_tasks/SHIP_START_HERE.md	17	run_suite.py	BARE-ELSEWHERE	apps/wired/v7/run_suite.py
+apps/wired/ship_tasks/SHIP_START_HERE.md	19	score_v3_yardstick.py	BARE-ELSEWHERE	apps/wired/fl_tasks/score_v3_yardstick.py
+apps/wired/ship_tasks/SHIP_START_HERE.md	20	Vault/	OK	.
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	12	apps/wired/	OK	.
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	17	/agent_workspace/	ABSOLUTE	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	18	/agent_workspace/apps/wired/	ABSOLUTE	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	19	/agent_workspace/apps/wired/test_tasks/	ABSOLUTE	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	20	/agent_workspace/apps/wired/test_tasks/TEST_PROGRESS.md	ABSOLUTE	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	23	apps/wired	OK	.
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	36	GRAPH_MANIFEST.md	OK	.
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	37	ARCHIVE/	IGNORED	
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	37	apps/wired/_jaeger/	BROKEN-SYMLINK	-> /agent_workspace/ARCHIVE/wired/_jaeger
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	37	apps/wired/harness/	BROKEN-SYMLINK	-> /agent_workspace/ARCHIVE/wired/harness
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	38	ARCHIVE/	IGNORED	
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	40	apps/wired/trace/	OK	.
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	43	/agent_workspace/.venv-wired	ABSOLUTE	
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	48	__pycache__/	IGNORED	
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	48	.egg-info/	IGNORED	
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	55	/agent_workspace/apps/wired/_wired_skills/wired-python/SKILL.md	ABSOLUTE	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	58	/agent_workspace/AGENTS.md	ABSOLUTE	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	62	/agent_workspace/apps/wired/_wired_skills/wired-verification-loop/SKILL.md	ABSOLUTE	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	65	/agent_workspace/apps/wired/_wired_skills/wired-code-review/SKILL.md	ABSOLUTE	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	69	apps/wired/_wired_skills/_INDEX.md	OK	.
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	70	ARCHIVE/4DLabWired/_wired_skills/wired-jaeger-tracing/SKILL.md	IGNORED	
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	71	ARCHIVE/	IGNORED	
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	72	planning/code_audit/reports/PYSCN_EVAL_2026-06-29.md	OK	.
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	76	/agent_workspace/apps/wired/test_tasks/TEST_PROGRESS.md	ABSOLUTE	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	88	AGENTS.md	OK	.
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	103	TEST_PROGRESS.md	OK	apps/wired/test_tasks
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md	107	TEST_PROGRESS.md	OK	apps/wired/test_tasks
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	12	apps/wired/	OK	.
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	15	wired/	OK	apps/wired
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	17	/agent_workspace/	ABSOLUTE	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	18	/agent_workspace/apps/wired/v7_tasks/	ABSOLUTE	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	19	/agent_workspace/apps/wired/v7/	ABSOLUTE	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	20	/agent_workspace/apps/wired/v7_tasks/V7_PROGRESS.md	ABSOLUTE	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	22	/home/m/Desktop/casesextra/	ABSOLUTE	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	22	cases_library_v2.html	MISSING	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	23	cases_library.html	MISSING	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	23	cases_library_research.html	MISSING	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	23	cases_petrol_era_v1.csv	MISSING	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	24	cases/cases_petrol_master_v5.csv	MISSING	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	32	ARCHIVE/	IGNORED	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	33	ARCHIVE/wired/harness/	IGNORED	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	33	run_cases.py	MISSING	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	33	case_mapper.py	MISSING	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	33	scoring.py	MISSING	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	34	cases_petrol_master_v6.csv	MISSING	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	36	apps/wired/harness/	BROKEN-SYMLINK	-> /agent_workspace/ARCHIVE/wired/harness
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	36	apps/wired/_jaeger/	BROKEN-SYMLINK	-> /agent_workspace/ARCHIVE/wired/_jaeger
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	37	casesextra/	MISSING	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	39	cases_petrol_v7.csv	BARE-ELSEWHERE	apps/wired/v7/data/cases_petrol_v7.csv
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	44	labs/comlab/comlab/schemas/vocabulary.py	OK	.
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	44	core/fault_atlas_kg.py	SUFFIX	shorthand: an existing path ends with it
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	59	wired/	OK	apps/wired
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	64	/agent_workspace/.venv-wired	ABSOLUTE	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	70	/agent_workspace/apps/wired/_wired_skills/wired-python/SKILL.md	ABSOLUTE	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	71	/agent_workspace/AGENTS.md	ABSOLUTE	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	73	/agent_workspace/apps/wired/_wired_skills/wired-verification-loop/SKILL.md	ABSOLUTE	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	74	/agent_workspace/apps/wired/_wired_skills/wired-code-review/SKILL.md	ABSOLUTE	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	78	/agent_workspace/apps/wired/v7_tasks/V7_PROGRESS.md	ABSOLUTE	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	83	apps/wired/v7/	OK	.
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	96	V7_PROGRESS.md	OK	apps/wired/v7_tasks
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md	100	V7_PROGRESS.md	OK	apps/wired/v7_tasks
+harness/HARNESS_START_HERE.md	9	4DLab/CLAUDE.md	LEGACY	strip-prefix-resolves
+harness/HARNESS_START_HERE.md	10	CLAUDE.md	OK	.
+harness/HARNESS_START_HERE.md	24	PER_MODULE_TESTSUITE_DESIGN_SPEC.md	MISSING	
+harness/HARNESS_START_HERE.md	25	HARNESS_PROPOSAL.md	OK	harness
+harness/HARNESS_START_HERE.md	25	CLAUDE.md	OK	.
+harness/HARNESS_START_HERE.md	35	TestSuite/harness/HARNESS_PROGRESS.md	MOVED	harness/HARNESS_PROGRESS.md
+harness/HARNESS_START_HERE.md	41	TestSuite/PER_MODULE_TESTSUITE_DESIGN_SPEC.md	MISSING	
+harness/HARNESS_START_HERE.md	44	TestSuite/harness/HARNESS_PROPOSAL.md	MOVED	harness/HARNESS_PROPOSAL.md
+harness/HARNESS_START_HERE.md	54	~/.claude/skills/	ABSOLUTE	
+harness/HARNESS_START_HERE.md	55	SKILL.md	BARE-ELSEWHERE	html-extractor/SKILL.md; apps/wired/_wired_skills/wired-code-review/SKILL.md; apps/wired/_wired_skills/wired-signal-pack/SKILL.md (+47)
+harness/HARNESS_START_HERE.md	57	GASLab/_gaslab_skills/gaslab-python/SKILL.md	MOVED	html-extractor/SKILL.md; apps/wired/_wired_skills/wired-code-review/SKILL.md; apps/wired/_wired_skills/wired-signal-pack/SKILL.md (+47)
+harness/HARNESS_START_HERE.md	62	HARNESS_PROGRESS.md	OK	harness
+harness/HARNESS_START_HERE.md	98	4DLab/CLAUDE.md	LEGACY	strip-prefix-resolves
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	3	/agent_workspace	ABSOLUTE	resolves-under-repo
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	5	/agent_workspace/.venv-wired	ABSOLUTE	
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	6	4DLab_CLAUDE.md	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	24	Vault/labs/comlab/registry/	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	26	/agent_workspace/labs/comlab/registry/	ABSOLUTE	resolves-under-repo
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	27	labs/comlab/registry/docs/registry_tasks/	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	28	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	29	labs/comlab/registry/docs/_registry_skills/	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	43	registry/rules/	OK	labs/comlab
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	44	schema_v2.py	OK	labs/comlab/registry
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	47	//	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	49	_skills/graph/	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	57	/agent_workspace/.venv-wired	ABSOLUTE	
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	67	4DLab_CLAUDE.md	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	74	labs/comlab/registry/docs/_registry_skills/registry-python/SKILL.md	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	77	labs/comlab/registry/docs/_registry_skills/registry-verification-loop/SKILL.md	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	80	labs/comlab/registry/docs/_registry_skills/registry-code-review/SKILL.md	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	82	/agent_workspace/CLAUDE.md	ABSOLUTE	resolves-under-repo
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	83	/agent_workspace/4DLab_CLAUDE.md	ABSOLUTE	resolves-under-repo
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	83	~/.claude/CLAUDE.md	ABSOLUTE	
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	84	registry/CLAUDE.md	MOVED	CLAUDE.md; v3/CLAUDE.md
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	88	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	93	labs/comlab/registry/docs/_registry_skills/_INDEX.md	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	94	SKILL.md	BARE-ELSEWHERE	html-extractor/SKILL.md; apps/wired/_wired_skills/wired-code-review/SKILL.md; apps/wired/_wired_skills/wired-signal-pack/SKILL.md (+47)
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	95	_skills/graph/4dlab-	MISSING	
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	98	labs/comlab/registry/docs/registry_tasks/	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	100	_skills/coding-bootstrap/templates/task_file.md	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	116	REGISTRY_PROGRESS.md	OK	labs/comlab/registry/docs
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	121	graph.json	BARE-ELSEWHERE	labs/gaslab/graph/v2_code/graph.json; labs/gaslab/graph/v2_tests/graph.json; labs/gaslab/graph/v2_docs/graph.json (+40)
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	121	tests/	OK	labs/comlab/registry
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	121	ingest_ready/	BARE-ELSEWHERE	labs/gaslab/graph/v2_docs/ingest_ready; labs/dtclab/graph/v2_docs/ingest_ready; labs/symptomlab/graph/v2_docs/ingest_ready (+5)
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	134	REGISTRY_PROGRESS.md	OK	labs/comlab/registry/docs
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	137	4DLab_CLAUDE.md	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	142	labs/comlab/registry/	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	143	labs/comlab/registry/docs/registry_tasks/progress_notes/	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	144	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	OK	.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	148	.venv-wired/	NONREF	mentioned only as never-stage/never-commit
+labs/comlab/registry/docs/REGISTRY_START_HERE.md	148	graphify-out/	NONREF	mentioned only as never-stage/never-commit
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	12	graph.json	BARE-ELSEWHERE	labs/gaslab/graph/v2_code/graph.json; labs/gaslab/graph/v2_tests/graph.json; labs/gaslab/graph/v2_docs/graph.json (+40)
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	17	PROGRESS.md	OK	labs/comlab/tasks
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	17	/	OK	.
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	18	labs/comlab	OK	.
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	19	CLAUDE.md	OK	.
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	25	apps/wired/harness/	BROKEN-SYMLINK	-> /agent_workspace/ARCHIVE/wired/harness
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	26	wiki/12_corpus_eval_discipline.md	OK	labs/comlab
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	27	comlab/config/proposals/	OK	labs/comlab
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	29	comlab/	OK	labs/comlab
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	30	wiki/	OK	labs/comlab
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	30	docs/Vocabulary/	OK	labs/comlab
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	30	docs/	OK	.
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	34	graphify-out/	NONREF	mentioned only as never-stage/never-commit
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	34	.egg-info/	NONREF	mentioned only as never-stage/never-commit
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	34	__pycache__/	NONREF	mentioned only as never-stage/never-commit
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	4	START_HERE.md	OK	.
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	4	AGENTS.md	OK	.
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	14	labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	OK	.
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	14	START_HERE.md	OK	.
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	14	AGENTS.md	OK	.
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	18	comlab/analytics/delta_engine.py	OK	labs/comlab
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	19	entries.yaml	BARE-ELSEWHERE	labs/comlab/comlab/config/proposals/entries.yaml; Vault/labs/comlab/code/config/proposals/entries.yaml
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	20	tests/unit/test_delta_engine.py	OK	labs/comlab
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	23	/agent_workspace/.venv-wired/bin/activate	ABSOLUTE	
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	25	tests/unit/test_delta_engine.py	OK	labs/comlab
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	26	test_fault_atlas_router_v2.py	BARE-ELSEWHERE	labs/comlab/tests/unit/test_fault_atlas_router_v2.py; Vault/labs/comlab/tests/unit/test_fault_atlas_router_v2.py
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	33	PROGRESS.md	OK	labs/comlab/tasks
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	52	comlab/schemas/vocabulary.py	OK	labs/comlab
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	53	comlab/schemas/response.py	OK	labs/comlab
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	54	comlab/schemas/ingestion.py	OK	labs/comlab
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	55	comlab/analytics/delta_engine.py	OK	labs/comlab
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	56	comlab/config/proposals/entries.yaml	OK	labs/comlab
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	57	tests/unit/test_delta_engine.py	OK	labs/comlab
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	61	test_delta_engine.py	BARE-ELSEWHERE	labs/comlab/tests/unit/test_delta_engine.py; Vault/labs/comlab/tests/unit/test_delta_engine.py
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	62	progress_notes/	OK	labs/comlab/tasks
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	63	comlab/core/fault_atlas_router.py	OK	labs/comlab
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	65	tests/e2e/	OK	labs/comlab
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	72	/agent_workspace/.venv-wired	ABSOLUTE	
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	72	/agent_workspace/.venv-wired/bin/activate	ABSOLUTE	
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	73	ARCHIVE/	IGNORED	
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	74	v2-restructure/	MISSING	
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	83	comlab/	OK	labs/comlab
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	84	entries.yaml	BARE-ELSEWHERE	labs/comlab/comlab/config/proposals/entries.yaml; Vault/labs/comlab/code/config/proposals/entries.yaml
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	85	tests/unit/test_delta_engine.py	OK	labs/comlab
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	85	test_symptom_prior.py	BARE-ELSEWHERE	labs/comlab/tests/unit/test_symptom_prior.py; Vault/labs/comlab/tests/unit/test_symptom_prior.py
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	86	tests/unit/test_delta_engine.py	OK	labs/comlab
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	86	progress_notes/	OK	labs/comlab/tasks
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	89	T-COMV2-DELTA-1D_router_wiring.md	OK	labs/comlab/tasks
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	95	AGENTS.md	OK	.
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md	10	labs/vinlab/	OK	.
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md	11	labs/symptomlab/	OK	.
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md	12	labs/dnalab/	OK	.
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md	18	labs/dnalab/docs/audits/AUDIT_2026-06-11_dna_vin_rework_and_dna10_answerability.md	MOVED	labs/dnalab/audits/AUDIT_2026-06-11_dna_vin_rework_and_dna10_answerability.md
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md	20	labs/dnalab/docs/research/DNAresearch.md	MOVED	labs/dnalab/research/DNAresearch.md
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md	25	PROGRESS.md	OK	labs/dnalab/tasks
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md	26	CLAUDE.md	OK	.
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md	41	labs/comlab/comlab/config/proposals/	OK	.
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md	41	entries.yaml	BARE-ELSEWHERE	labs/comlab/comlab/config/proposals/entries.yaml; Vault/labs/comlab/code/config/proposals/entries.yaml
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md	44	SEMANTIC_CONTRACT.md	BARE-ELSEWHERE	labs/semantic/vocabul/SEMANTIC_CONTRACT.md; labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md; Vault/labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md (+1)
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md	45	labs/vinlab/VehicleDNA.md	OK	.
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md	57	graph/	OK	labs/dnalab
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md	67	graph/	OK	labs/dnalab
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md	67	.sandbox-py/	NONREF	mentioned only as never-stage/never-commit
+labs/gaslab/tasks/GASLAB_TASKS_START_HERE.md	7	graph.json	BARE-ELSEWHERE	labs/gaslab/graph/v2_code/graph.json; labs/gaslab/graph/v2_tests/graph.json; labs/gaslab/graph/v2_docs/graph.json (+40)
+labs/gaslab/tasks/GASLAB_TASKS_START_HERE.md	23	PROGRESS.md	OK	labs/gaslab/tasks
+labs/gaslab/tasks/GASLAB_TASKS_START_HERE.md	24	CLAUDE.md	OK	.
+labs/gaslab/tasks/GASLAB_TASKS_START_HERE.md	34	CHANGE_v2.1_timing_taxonomy.md	BARE-ELSEWHERE	labs/gaslab/wiki/CHANGE_v2.1_timing_taxonomy.md; Vault/labs/gaslab/wiki/CHANGE_v2.1_timing_taxonomy.md
+labs/gaslab/tasks/GASLAB_TASKS_START_HERE.md	47	graph/	OK	labs/gaslab
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	4	labs/obdlab/research/	OK	.
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	5	AdvAutomotiveFaultDiagnosis_VIABLE_prepped.md	BARE-ELSEWHERE	labs/obdlab/research/AdvAutomotiveFaultDiagnosis_VIABLE_prepped.md
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	5	formula-wiki/	BARE-ELSEWHERE	labs/obdlab/research/formula-wiki
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	7	labs/gaslab/wiki/	OK	.
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	30	TRIAGE_research_to_gaslab_wiki.md	OK	labs/gaslab/tasks/wiki_enhancements
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	45	GW-ENH-1_combustion_integrity_metrics.md	OK	labs/gaslab/tasks/wiki_enhancements
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	45	GAS_VOCABULARY.md	BARE-ELSEWHERE	labs/gaslab/docs/GAS_VOCABULARY.md; labs/semantic/vocabul/GAS_VOCABULARY.md; Vault/labs/gaslab/docs/GAS_VOCABULARY.md (+1)
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	46	GW-ENH-2_healthy_catalyst_masking_limitation.md	OK	labs/gaslab/tasks/wiki_enhancements
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	46	GAS_VOCABULARY.md	BARE-ELSEWHERE	labs/gaslab/docs/GAS_VOCABULARY.md; labs/semantic/vocabul/GAS_VOCABULARY.md; Vault/labs/gaslab/docs/GAS_VOCABULARY.md (+1)
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	47	GW-ENH-3_vocab_path_and_citation_cleanup.md	OK	labs/gaslab/tasks/wiki_enhancements
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	47	test_validators.py	BARE-ELSEWHERE	labs/gaslab/tests/unit/test_validators.py; Vault/labs/gaslab/tests/unit/test_validators.py
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	47	docs/GAS_VOCABULARY.md	OK	labs/gaslab
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	47	docs/wiki/	MOVED	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	47	tests/unit/test_validators.py	OK	labs/gaslab
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	47	gaslab/resolution.py	OK	labs/gaslab
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	47	gaslab/rule_engine.py	OK	labs/gaslab
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	49	GAS_VOCABULARY.md	BARE-ELSEWHERE	labs/gaslab/docs/GAS_VOCABULARY.md; labs/semantic/vocabul/GAS_VOCABULARY.md; Vault/labs/gaslab/docs/GAS_VOCABULARY.md (+1)
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	50	labs/gaslab/docs/GAS_VOCABULARY.md	OK	.
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	51	labs/gaslab/wiki/	OK	.
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	51	wiki/	OK	labs/gaslab
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	53	docs/GAS_VOCABULARY.md	OK	labs/gaslab
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	53	GAS_WIKI.md	MISSING	
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	61	docs/wiki/	MOVED	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	62	test_validators.py	BARE-ELSEWHERE	labs/gaslab/tests/unit/test_validators.py; Vault/labs/gaslab/tests/unit/test_validators.py
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	74	TRIAGE_research_to_gaslab_wiki.md	OK	labs/gaslab/tasks/wiki_enhancements
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	89	labs/obdlab/research/proposals/extracted/EP-GAS-03_combustion-integrity-metrics.md	OK	.
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	90	labs/obdlab/research/proposals/extracted/EP-CAT-02_cat-masking-detection.md	OK	.
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	91	labs/obdlab/research/proposals/extracted/EP-CAT-05_pre-cat-inference-engine.md	OK	.
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	92	labs/obdlab/research/formula-wiki/01_gas-chemistry-lambda.md	OK	.
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	93	labs/obdlab/research/proposals/wikiResearch.md	OK	.
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	94	AdvAutomotiveFaultDiagnosis_VIABLE_prepped.md	BARE-ELSEWHERE	labs/obdlab/research/AdvAutomotiveFaultDiagnosis_VIABLE_prepped.md
+labs/obdlab/tasks/OBDLAB_TASKS_START_HERE.md	16	graph.json	BARE-ELSEWHERE	labs/gaslab/graph/v2_code/graph.json; labs/gaslab/graph/v2_tests/graph.json; labs/gaslab/graph/v2_docs/graph.json (+40)
+labs/obdlab/tasks/OBDLAB_TASKS_START_HERE.md	21	PROGRESS.md	OK	labs/obdlab/tasks
+labs/obdlab/tasks/OBDLAB_TASKS_START_HERE.md	22	CLAUDE.md	OK	.
+labs/obdlab/tasks/OBDLAB_TASKS_START_HERE.md	44	graphify-out/	NONREF	mentioned only as never-stage/never-commit
+labs/semantic/SEMANTIC_START_HERE.md	4	labs/semantic/SEMANTIC_STANDARDIZATION_PROPOSAL.md	OK	.
+labs/semantic/SEMANTIC_START_HERE.md	17	comlab/config/proposals/	SUFFIX	shorthand: an existing path ends with it
+labs/semantic/SEMANTIC_START_HERE.md	20	labs/obdlab/research/proposals/extracted/	OK	.
+labs/semantic/SEMANTIC_START_HERE.md	37	labs/semantic/SEMANTIC_STANDARDIZATION_PROPOSAL.md	OK	.
+labs/semantic/SEMANTIC_START_HERE.md	39	labs/semantic/tasks/PROGRESS.md	OK	.
+labs/semantic/SEMANTIC_START_HERE.md	40	labs/semantic/tasks/	OK	.
+labs/semantic/SEMANTIC_START_HERE.md	41	labs/semantic/SAE.md	OK	.
+labs/semantic/SEMANTIC_START_HERE.md	41	labs/semantic/obd2-pid-table-service-01.csv	OK	.
+labs/semantic/SEMANTIC_START_HERE.md	45	CLAUDE.md	OK	.
+labs/semantic/SEMANTIC_START_HERE.md	57	CLAUDE.md	OK	.
+labs/semantic/SEMANTIC_START_HERE.md	59	CLAUDE.md	OK	.
+labs/semantic/SEMANTIC_START_HERE.md	75	CLAUDE.md	OK	.
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	1	CLAUDE.md	OK	.
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	8	C:\Users\muto\claude\4DApp\4DLab\CLAUDE.md	ABSOLUTE	windows
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	15	CLAUDE.md	OK	.
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	24	C:\Users\muto\claude\4DApp\4DLab\4DLabV2\planning\gpf_removal\GPF_REMOVAL_PROGRESS.md	ABSOLUTE	windows
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	42	global_fault_registry.json	BARE-ELSEWHERE	labs/comlab/comlab/config/global_fault_registry.json; Vault/labs/comlab/code/config/global_fault_registry.json
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	47	CLAUDE.md	OK	.
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	56	graph.json	BARE-ELSEWHERE	labs/gaslab/graph/v2_code/graph.json; labs/gaslab/graph/v2_tests/graph.json; labs/gaslab/graph/v2_docs/graph.json (+40)
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	58	graphify-out/	IGNORED	
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	63	CLAUDE.md	OK	.
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	69	C:\Users\muto\claude\4DApp\4DLab\4DLabV2\planning\gpf_removal\GPF_REMOVAL_PROGRESS.md	ABSOLUTE	windows
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	74	CLAUDE.md	OK	.
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	78	GPF_REMOVAL_PROGRESS.md	OK	planning/gpf_removal
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	118	graph/	BARE-ELSEWHERE	labs/gaslab/graph; labs/dtclab/graph; labs/symptomlab/graph (+7)
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	118	graphify-out/	IGNORED	
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	118	ARCHIVE/	IGNORED	
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	123	gaslab/	BARE-ELSEWHERE	labs/gaslab; labs/gaslab/gaslab; Vault/labs/gaslab
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	123	obdlab/	BARE-ELSEWHERE	labs/obdlab; labs/obdlab/obdlab; Vault/labs/obdlab
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	126	GPF_REMOVAL_PROGRESS.md	OK	planning/gpf_removal
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	150	graphify-out/	NONREF	mentioned only as never-stage/never-commit
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	150	__pycache__/	NONREF	mentioned only as never-stage/never-commit
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	150	.sandbox-py/	NONREF	mentioned only as never-stage/never-commit
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md	159	GPF_REMOVAL_PROGRESS.md	OK	planning/gpf_removal
+planning/graph_rollout/GRAPH_ROLLOUT_START_HERE.md	3	GRAPH_VIABILITY_ASSESSMENT_2026-07-06.md	OK	.
+planning/graph_rollout/GRAPH_ROLLOUT_START_HERE.md	3	vault_query.py	BARE-ELSEWHERE	_skills/graph/4dlab-vault/scripts/vault_query.py
+planning/graph_rollout/GRAPH_ROLLOUT_START_HERE.md	7	GRAPH_ROLLOUT_PROGRESS.md	OK	planning/graph_rollout
+planning/graph_rollout/GRAPH_ROLLOUT_START_HERE.md	10	graphify-out/	IGNORED	
+planning/graph_rollout/GRAPH_ROLLOUT_START_HERE.md	10	Vault/	OK	.
+planning/graph_rollout/GRAPH_ROLLOUT_START_HERE.md	13	v2_docs_llm/	BARE-ELSEWHERE	labs/obdlab/graph/v2_docs_llm
+planning/graph_rollout/GRAPH_ROLLOUT_START_HERE.md	16	DECISIONS.md	OK	.
+planning/graph_rollout/GRAPH_ROLLOUT_START_HERE.md	19	.omp/rules/	IGNORED	
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md	1	CLAUDE.md	OK	.
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md	7	CLAUDE.md	OK	.
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md	14	/agent_workspace	ABSOLUTE	resolves-under-repo
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md	15	/agent_workspace/planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_PROGRESS.md	ABSOLUTE	resolves-under-repo
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md	16	/agent_workspace/planning/linux_residue_cleanup/tasks/	ABSOLUTE	resolves-under-repo
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md	17	/agent_workspace/.venv-wired	ABSOLUTE	
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md	26	/agent_workspace/WINDOWS_RESIDUE_FOLLOWUPS.md	ABSOLUTE	
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md	30	4DLabV2/	DECLARED	same-line keyword
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md	42	/agent_workspace/AGENTS.md	ABSOLUTE	resolves-under-repo
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md	43	CLAUDE.md	OK	.
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md	81	planning/linux_residue_cleanup/tasks/	OK	.
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md	87	PROGRESS.md	BARE-ELSEWHERE	planning/post_cat_trim/PROGRESS.md; planning/oil_consumption/PROGRESS.md; labs/gaslab/tasks/PROGRESS.md (+5)
+planning/oil_consumption/OIL_CONSUMPTION_START_HERE.md	10	planning/oilconsumption.md	OK	.
+planning/oil_consumption/OIL_CONSUMPTION_START_HERE.md	11	planning/OilburnCases.md	OK	.
+planning/oil_consumption/OIL_CONSUMPTION_START_HERE.md	26	comlab/comlab/core/fault_atlas_router.py	SUFFIX	shorthand: an existing path ends with it
+planning/oil_consumption/OIL_CONSUMPTION_START_HERE.md	42	comlab/comlab/schemas/ingestion.py	SUFFIX	shorthand: an existing path ends with it
+planning/oil_consumption/OIL_CONSUMPTION_START_HERE.md	87	PROGRESS.md	OK	planning/oil_consumption
+planning/oil_consumption/OIL_CONSUMPTION_START_HERE.md	88	_skills/coding-bootstrap/templates/task_file.md	OK	.
+planning/oil_consumption/OIL_CONSUMPTION_START_HERE.md	89	PROGRESS.md	OK	planning/oil_consumption
+planning/oil_consumption/OIL_CONSUMPTION_START_HERE.md	96	PROGRESS.md	OK	planning/oil_consumption
+planning/oil_consumption/OIL_CONSUMPTION_START_HERE.md	96	labs/dnalab/tasks/PROGRESS.md	OK	.
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	6	planning/sim/oil_burn_5fr_sim.py	OK	.
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	7	labs/vinlab/tasks/5fr.md	OK	.
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	7	labs/vinlab/tasks/O2NBvsWB.md	OK	.
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	7	planning/OilburnCases.md	OK	.
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	8	planning/OIL_CASE_SIGNATURES_5FR.md	OK	.
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	46	labs/comlab/wiki/O2_MODEL_STRATEGY.md	MISSING	
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	57	labs/vinlab/wiki/	OK	.
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	58	labs/comlab/registry	OK	.
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	63	labs/vinlab/vinlab/data/vref.db	OK	.
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	63	models.py	BARE-ELSEWHERE	labs/symptomlab/symptomlab/models.py; labs/vinlab/vinlab/models.py; labs/dnalab/dnalab/models.py (+3)
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	63	decoder.py	BARE-ELSEWHERE	labs/vinlab/vinlab/decoder.py; Vault/labs/vinlab/code/decoder.py
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	64	labs/dnalab/	OK	.
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	70	labs/obdlab/obdlab/schemas/payload.py	OK	.
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	70	core/pid_ingestion_validator.py	SUFFIX	shorthand: an existing path ends with it
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	71	core/sensor_signal_translator.py	SUFFIX	shorthand: an existing path ends with it
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	76	labs/obdlab/obdlab/core/trim_vector_aggregator.py	OK	.
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	76	semantic_consistency_checker.py	BARE-ELSEWHERE	labs/obdlab/obdlab/core/semantic_consistency_checker.py; Vault/labs/obdlab/code/core/semantic_consistency_checker.py
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	82	labs/comlab/comlab/schemas/ingestion.py	OK	.
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	83	core/perception_contradiction.py	SUFFIX	shorthand: an existing path ends with it
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	88	labs/comlab/registry/rules/mechanical_wear.json	OK	.
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	92	composition.py	BARE-ELSEWHERE	apps/wired/wired/composition.py
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	94	OIL_CASE_SIGNATURES_5FR.md	OK	planning
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	94	apps/wiredV2/wiredv2/composition.py	MOVED	apps/wired/wired/composition.py
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	94	wiredv2/cases/	MISSING	
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	95	run_case.py	BARE-ELSEWHERE	apps/wired/wired/run_case.py
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	99	apps/wiredV2/tests/	MOVED	harness/tests; apps/ui/tests; apps/wired/tests (+18)
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	100	labs/comlab/registry/corpus_curated.csv	OK	.
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	101	planning/sim/OIL_BURN_5FR_SIM_RESULTS.md	OK	.
+planning/skill_eval/SKILL_EVAL_START_HERE.md	7	_skills/	OK	.
+planning/skill_eval/SKILL_EVAL_START_HERE.md	8	ARCHIVE/	IGNORED	
+planning/skill_eval/SKILL_EVAL_START_HERE.md	8	v2/	MISSING	
+planning/skill_eval/SKILL_EVAL_START_HERE.md	8	v6/	MISSING	
+planning/skill_eval/SKILL_EVAL_START_HERE.md	14	graphify-out/graph.json	IGNORED	
+planning/skill_eval/SKILL_EVAL_START_HERE.md	23	harness/runner	MISSING	
+planning/skill_eval/SKILL_EVAL_START_HERE.md	29	SKILL_EVAL_PROGRESS.md	OK	planning/skill_eval
+planning/skill_eval/SKILL_EVAL_START_HERE.md	30	SKILL_EVAL_CONTRACT.md	OK	planning/skill_eval
+planning/skill_eval/SKILL_EVAL_START_HERE.md	31	CLAUDE.md	OK	.
+planning/skill_eval/SKILL_EVAL_START_HERE.md	34	_skills/codingskills/pythonskill/python/SKILL.md	OK	.
+planning/skill_eval/SKILL_EVAL_START_HERE.md	35	_skills/codingskills/ecc-subset/verification-loop/SKILL.md	OK	.
+planning/skill_eval/SKILL_EVAL_START_HERE.md	37	_skills/codingskills/ecc-subset/eval-harness/SKILL.md	OK	.
+planning/skill_eval/SKILL_EVAL_START_HERE.md	37	harness/runner	MISSING	
+planning/skill_eval/SKILL_EVAL_START_HERE.md	60	SKILL_EVAL_PROGRESS.md	OK	planning/skill_eval
+planning/skill_eval/SKILL_EVAL_START_HERE.md	61	SKILL_EVAL_CONTRACT.md	OK	planning/skill_eval
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	4	v2_code/	BARE-ELSEWHERE	labs/gaslab/graph/v2_code; labs/dtclab/graph/v2_code; labs/symptomlab/graph/v2_code (+5)
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	4	v2_tests/	BARE-ELSEWHERE	labs/gaslab/graph/v2_tests; labs/dtclab/graph/v2_tests; labs/symptomlab/graph/v2_tests (+5)
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	5	labs/symptomlab/	OK	.
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	14	planning\symptomlab_graph\SYMPTOMLAB_GRAPH_PROGRESS.md	ABSOLUTE	windows
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	23	graph/v1_baseline/	SUFFIX	shorthand: an existing path ends with it
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	23	graph/v2_current/	SUFFIX	shorthand: an existing path ends with it
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	25	GRAPH_MANIFEST.md	OK	.
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	41	GRAPH_MANIFEST.md	OK	.
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	42	AGENTS.md	OK	.
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	53	graphify-out/graph.json	IGNORED	
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	56	graph/v2_code/graph.json	SUFFIX	shorthand: an existing path ends with it
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	56	graph/v2_tests/graph.json	SUFFIX	shorthand: an existing path ends with it
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	58	graphify-out/	IGNORED	
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	58	v2_current/	BARE-ELSEWHERE	labs/gaslab/graph/v2_current; labs/dtclab/graph/v2_current; labs/symptomlab/graph/v2_current (+4)
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	58	v1_baseline/	BARE-ELSEWHERE	labs/gaslab/graph/v1_baseline; labs/dtclab/graph/v1_baseline; labs/symptomlab/graph/v1_baseline (+4)
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	65	planning\symptomlab_graph\SYMPTOMLAB_GRAPH_PROGRESS.md	ABSOLUTE	windows
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	72	SKILL.md	BARE-ELSEWHERE	html-extractor/SKILL.md; apps/wired/_wired_skills/wired-code-review/SKILL.md; apps/wired/_wired_skills/wired-signal-pack/SKILL.md (+47)
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	93	graph/	BARE-ELSEWHERE	labs/gaslab/graph; labs/dtclab/graph; labs/symptomlab/graph (+7)
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	104	graphify-out/	IGNORED	
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	104	.egg-info/	IGNORED	
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	104	__pycache__/	IGNORED	
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	112	SYMPTOMLAB_GRAPH_PROGRESS.md	OK	planning/symptomlab_graph
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	9	v2/	MISSING	
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	10	_skills/	OK	.
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	10	ARCHIVE/	IGNORED	
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	10	v2/	MISSING	
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	11	v6/	MISSING	
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	17	graphify-out/graph.json	IGNORED	
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	21	harness/harness/	OK	.
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	32	_skills/pythonskill/python/SKILL.md	OK	.
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	38	TEST_ROLLOUT_PROGRESS.md	OK	planning/test_rollout
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	39	TEMPLATE.md	OK	planning/test_rollout
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	39	tests/	BARE-ELSEWHERE	harness/tests; apps/ui/tests; apps/wired/tests (+18)
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	40	PROJECTION_CONTRACT.md	OK	planning/test_rollout
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	42	CLAUDE.md	OK	.
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	46	_skills/codingskills/pythonskill/python/SKILL.md	OK	.
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	47	_skills/codingskills/ecc-subset/verification-loop/SKILL.md	OK	.
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	68	cases_petrol_master_v6.csv	MISSING	
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	80	_skills/codingskills/	OK	.
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	84	ecc-subset/eval-harness/SKILL.md	SUFFIX	shorthand: an existing path ends with it
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	84	ecc-subset/python-testing/SKILL.md	SUFFIX	shorthand: an existing path ends with it
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	85	ecc-subset/ai-regression-testing/SKILL.md	SUFFIX	shorthand: an existing path ends with it
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	86	code-reviev/SKILL.md	SUFFIX	shorthand: an existing path ends with it
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	86	uncle-bob-code-craftsmanship/SKILL.md	SUFFIX	shorthand: an existing path ends with it
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	92	TEST_ROLLOUT_PROGRESS.md	OK	planning/test_rollout
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	93	TEMPLATE.md	OK	planning/test_rollout
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	93	tests/	BARE-ELSEWHERE	harness/tests; apps/ui/tests; apps/wired/tests (+18)
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md	94	PROJECTION_CONTRACT.md	OK	planning/test_rollout
+v3/V3_START_HERE.md	10	v3/V3_PLAN.md	OK	.
+v3/V3_START_HERE.md	14	v3/V3_PROGRESS.md	OK	.
+v3/V3_START_HERE.md	17	reports/wikis/modules	MISSING	
+v3/V3_START_HERE.md	19	apps/wired/_wired_skills/_INDEX.md	OK	.
+v3/V3_START_HERE.md	22	v3/V3_PLAN.md	OK	.
+v3/V3_START_HERE.md	23	apps/wired/fl_tasks/reports/FL_LOCALIZATION_2026-06-30.md	OK	.
+v3/V3_START_HERE.md	24	apps/wired/fl_tasks/reports/FL_YARDSTICK_2026-06-30.md	OK	.
+v3/V3_START_HERE.md	25	apps/wired/fl_tasks/score_v3_yardstick.py	OK	.
+v3/V3_START_HERE.md	26	apps/wired/v7/run_suite.py::score_case	MISSING	
+v3/V3_START_HERE.md	36	fault_atlas_router.py	BARE-ELSEWHERE	labs/comlab/comlab/core/fault_atlas_router.py; Vault/labs/comlab/code/core/fault_atlas_router.py
+v3/V3_START_HERE.md	42	4DLab_CLAUDE.md	OK	.
+v3/V3_START_HERE.md	44	Vault/	OK	.
+v3/V3_START_HERE.md	45	/agent_workspace/4DLab_CLAUDE.md	ABSOLUTE	resolves-under-repo
+v3/V3_START_HERE.md	52	_skills/coding-bootstrap/SKILL.md	OK	.
+v3/V3_START_HERE.md	68	/agent_workspace/.venv-wired/bin/python	ABSOLUTE	
+v3/V3_START_HERE.md	68	apps/wired/fl_tasks/score_v3_yardstick.py	OK	.
+v3/V3_START_HERE.md	76	V3_PROGRESS.md	OK	v3

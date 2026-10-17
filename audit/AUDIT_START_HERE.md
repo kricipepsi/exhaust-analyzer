@@ -15,16 +15,17 @@ into task rows. The venue changes no source; fixes go through the normal task wo
 | `AUDITOR.md` | the auditor contract: falsification method, finding format, report shape |
 | `PROMPTS.md` | one prompt per target, in run order |
 | `FINDINGS.md` | the ledger: every finding, its re-check verdict and its owner row |
+| `FIX_PLAN.md` | findings grouped into fix rows T-AUD-1…10, priority and rulings |
 | `reports/` | auditor reports, `R0_baseline_20261017.md`, `baseline_*.txt` |
 | `tools/setup.sh`, `tools/baseline.sh` | Python 3.14 audit venv; per-package pytest + erosion + isolation |
 | `tools/erosion.py`, `tools/isolation.py` | SlopCodeBench-style erosion census; lab-isolation import scan |
-| `scratch/<target>/` | auditors' probe tests (evidence, never product code) |
+| `scratch/<target>/` | auditors' probe tests and scripts (evidence, never product code); each finding's probe is its fix row's acceptance test |
 
 ## Rounds
 | round | targets | where | status |
 |---|---|---|---|
 | R0 | secrets, test baseline, erosion, isolation | architect | **done** — `reports/R0_baseline_20261017.md` |
-| R1 | C1, C4, C2, D1, D3, C3, C5, C6, D2 (`PROMPTS.md` order) | cloud sessions on the GitHub repo, or subagents of an architect session | open |
+| R1 | C1, C4, C2, D1, D3, C3, C5, C6, D2 | 9 read-only subagents of the architect session (2026-10-17) | **done** — 161 findings UPHELD by probe/script re-run (42 HIGH, 88 MEDIUM, 34 LOW incl. R0; 3 duplicates merged); `FIX_PLAN.md` |
 | R2 | re-attack each target after its fix rows land | same | later |
 
 How sessions run: preferred is a cloud session per target at claude.ai/code on `kricipepsi/exhaust-analyzer`

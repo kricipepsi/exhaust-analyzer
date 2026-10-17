@@ -1,0 +1,42 @@
+COVERED   BDD_GASLab.md:23 'A clean idle sample is accepted' keys=['def test_sample_validity_all_green'] live=1 e.g. unit/test_validity_gates.py:93::test_sample_validity_all_green
+COVERED   BDD_GASLab.md:30 'A diluted or contaminated sample halts the diagnosis' keys=['def test_sample_invalid_halts', 'SAMPLE_INVALID'] live=1 e.g. unit/test_rule_engine.py:156::test_sample_invalid_halts
+COVERED   BDD_GASLab.md:36 'An air-rich sample is flagged but not rejected' keys=['def test_triangle_external_o2_suspect'] live=1 e.g. unit/test_validity_gates.py:23::test_triangle_external_o2_suspect
+COVERED   BDD_GASLab.md:42 'A sample that passes the triangle but fails dilution is rejected' keys=['def test_sample_validity_dilution_fails'] live=1 e.g. unit/test_validity_gates.py:83::test_sample_validity_dilution_fails
+COVERED   BDD_GASLab.md:55 'A stoichiometric burn reads near unity' keys=['def test_stoich_idle_lambda_near_unity'] live=1 e.g. unit/test_brettschneider.py:16::test_stoich_idle_lambda_near_unity
+COVERED   BDD_GASLab.md:60 'A misfiring cylinder does not fool lambda' keys=['def test_misfire_immunity'] live=1 e.g. unit/test_brettschneider.py:23::test_misfire_immunity
+ORPHAN    BDD_GASLab.md:66 'NOx is included when the analyser reports it' keys=['lambda_chem', 'nox_correction'] live=0
+ORPHAN    BDD_GASLab.md:71 'A degenerate all-zero sample returns a safe value' keys=['co=0.0', 'co2=0.0', 'lambda_chem'] live=0
+COVERED   BDD_GASLab.md:84 'Combustion gases in the coolant are caught only with the block test' keys=['def test_coolant_intrusion_rule_fires_with_positive_block_test'] live=1 e.g. unit/test_rule_engine.py:595::test_coolant_intrusion_rule_fires_with_positive_block_test
+COVERED   BDD_GASLab.md:90 'The same chemistry without the block test does not claim a coolant leak' keys=['def test_coolant_intrusion_rule_bypassed_without_block_test'] live=1 e.g. unit/test_rule_engine.py:609::test_coolant_intrusion_rule_bypassed_without_block_test
+COVERED   BDD_GASLab.md:96 'An ignition misfire is confirmed by the oxygen spike' keys=['def test_misfire_masking_confirmed_with_cylinder_count'] live=1 e.g. unit/test_rule_engine.py:1342::test_misfire_masking_confirmed_with_cylinder_count
+COVERED   BDD_GASLab.md:102 'A collision pattern with low HC routes to an air leak' keys=['EXHAUST_AIR_LEAK', 'EXTERNAL_O2_SUSPECT', 'hc'] live=6 e.g. unit/test_rule_engine.py:98::test_collision_routes_to_external_o2, unit/test_rule_engine.py:173::test_exhaust_air_leak_low_triangle_sum_routes_before_gate
+ELSEWHERE BDD_GASLab.md:110 'A collision pattern with high HC stays a rich misfire' keys=['def test_hc_101_routes_to_rich_misfire'] live=1 e.g. unit/test_t_p8_7_hc_discriminator.py:85::test_hc_101_routes_to_rich_misfire
+COVERED   BDD_GASLab.md:123 'A leak chemistry with strong positive trim is a real air leak' keys=['def test_leak_physical_when_fuel_trim_positive'] live=1 e.g. unit/test_rule_engine.py:1283::test_leak_physical_when_fuel_trim_positive
+COVERED   BDD_GASLab.md:129 'The same chemistry without compensating trim is treated as a bad sample' keys=['def test_leak_sampling_error_when_fuel_trim_in_band'] live=1 e.g. unit/test_rule_engine.py:1301::test_leak_sampling_error_when_fuel_trim_in_band
+ORPHAN    BDD_GASLab.md:142 'A catalyst fault is impossible on a catalyst-free vehicle' keys=['has_catalyst=False'] live=0
+COVERED   BDD_GASLab.md:148 'A GDI fault is impossible on a port-injected vehicle' keys=['def test_dna_gate_suppresses_gdi_fault'] live=1 e.g. unit/test_rule_engine.py:128::test_dna_gate_suppresses_gdi_fault
+COVERED   BDD_GASLab.md:154 'An EGR fault is impossible on a vehicle without EGR' keys=['egr_equipped=False', 'EGR_STUCK_CLOSED'] live=1 e.g. unit/test_resolution.py:133::test_differentiator_resolves_hct_vs_egr
+COVERED   BDD_GASLab.md:167 'A certified lambda target tightens the normal band' keys=['def test_normal_lambda_window_centres_on_v112'] live=1 e.g. unit/test_rule_engine.py:640::test_normal_lambda_window_centres_on_v112
+COVERED   BDD_GASLab.md:173 'A per-vehicle idle CO ceiling overrides the Euro default' keys=['def test_per_vehicle_coc_overrides_euro_default'] live=1 e.g. unit/test_rule_engine.py:807::test_per_vehicle_coc_overrides_euro_default
+COVERED   BDD_GASLab.md:178 'A wideband upstream sensor recalibrates the O2-bias signatures' keys=['def test_o2_bias_calibrated_by_sensor_type'] live=1 e.g. unit/test_rule_engine.py:1221::test_o2_bias_calibrated_by_sensor_type
+ELSEWHERE BDD_GASLab.md:190 'A retarded-cam MAF lean persists at high idle' keys=['def test_cam_timing_retarded_maf_persists_at_2500'] live=1 e.g. unit/test_rule_engine.py:865::test_cam_timing_retarded_maf_persists_at_2500
+ELSEWHERE BDD_GASLab.md:196 'A vacuum lean that normalises at high idle is not cam timing' keys=['def test_lean_mixture_vacuum_leak_normalises'] live=1 e.g. unit/test_rule_engine.py:928::test_lean_mixture_vacuum_leak_normalises
+ELSEWHERE BDD_GASLab.md:203 'An advanced cam shows rising NOx and falling HC into high idle' keys=['def test_cam_timing_advanced_nox_rises'] live=1 e.g. unit/test_rule_engine.py:886::test_cam_timing_advanced_nox_rises
+ELSEWHERE BDD_GASLab.md:209 'A retarded-cam MAP rich condition partially normalises at high idle' keys=['def test_cam_timing_retarded_map_partially_normalises'] live=1 e.g. unit/test_rule_engine.py:907::test_cam_timing_retarded_map_partially_normalises
+ELSEWHERE BDD_GASLab.md:215 'An over-advanced ignition shows a clean idle with a NOx-only spike' keys=['def test_ignition_over_advanced_clean_idle_not_cam'] live=1 e.g. unit/test_rule_engine.py:1088::test_ignition_over_advanced_clean_idle_not_cam
+ELSEWHERE BDD_GASLab.md:221 'A confirmed cam timing prunes generic low-HC misfire noise' keys=['def test_timing_confirmed_prunes_low_hc_misfire'] live=1 e.g. unit/test_rule_engine.py:1114::test_timing_confirmed_prunes_low_hc_misfire
+ELSEWHERE BDD_GASLab.md:234 'A catalyst weak at idle but working at high idle is not lighting off' keys=['def test_weak_catalyst_delta_routes_to_not_lighting_off'] live=1 e.g. unit/test_rule_engine.py:962::test_weak_catalyst_delta_routes_to_not_lighting_off
+ELSEWHERE BDD_GASLab.md:241 'A catalyst degraded at both speeds is overwhelmed' keys=['def test_dead_catalyst_raw_both_speeds_routes_to_overwhelmed'] live=1 e.g. unit/test_rule_engine.py:974::test_dead_catalyst_raw_both_speeds_routes_to_overwhelmed
+ELSEWHERE BDD_GASLab.md:247 'Bad fuel control rejects any catalyst verdict' keys=['def test_catalyst_precondition_lambda_out_of_bounds'] live=1 e.g. unit/test_rule_engine.py:949::test_catalyst_precondition_lambda_out_of_bounds
+ELSEWHERE BDD_GASLab.md:259 'HC that drops sharply into high idle points to worn valve seals' keys=['def test_worn_valve_seals_idle_hc_drops_at_2500'] live=1 e.g. unit/test_rule_engine.py:297::test_worn_valve_seals_idle_hc_drops_at_2500
+ELSEWHERE BDD_GASLab.md:265 'HC that climbs under load points to worn piston rings' keys=['def test_worn_piston_rings_load_hc_co_high'] live=1 e.g. unit/test_rule_engine.py:312::test_worn_piston_rings_load_hc_co_high
+ORPHAN    BDD_GASLab.md:272 'A wear pattern with no matching leaf drops the whole family' keys=['WORN_', 'not in', 'reading_high', 'POA_SIGNATURE', 'WORN_ENGINE', 'WORN_VALVE_SEALS', 'WORN_PISTON_RINGS', '== set()'] live=0
+COVERED   BDD_GASLab.md:285 'The narrowest signature wins over a broader one' keys=['def test_specificity_prefers_narrowest_match'] live=1 e.g. unit/test_rule_engine.py:279::test_specificity_prefers_narrowest_match
+ORPHAN    BDD_GASLab.md:291 'Catch-all signatures are chosen last' keys=['_candidate_rank', 'catch_all'] live=0
+ORPHAN    BDD_GASLab.md:296 'No surviving candidate yields normal operation' keys=['apply_differentiators', 'NORMAL_OPERATION', '== []'] live=0
+ORPHAN    BDD_GASLab.md:301 'Identical candidates resolve deterministically' keys=['declaration order'] live=0
+COVERED   BDD_GASLab.md:314 'Every diagnosis emits a complete, in-bounds payload' keys=['def test_payload_round_trip'] live=1 e.g. unit/test_process.py:32::test_payload_round_trip
+ORPHAN    BDD_GASLab.md:320 'A directly-measured lambda is passed through when supplied' keys=['process(', 'lambda_measured='] live=0
+ORPHAN    BDD_GASLab.md:326 'No directly-measured lambda leaves the field null' keys=['process(', 'lambda_measured is None'] live=0
+
+scenarios=40 orphans=9

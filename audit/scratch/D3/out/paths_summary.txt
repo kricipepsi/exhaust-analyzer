@@ -1,0 +1,331 @@
+docs scanned: 52  references: 1561  ABSOLUTE=100  BARE-ELSEWHERE=290  BROKEN-SYMLINK=8  DECLARED=20  IGNORED=55  LEGACY=21  MISSING=99  MOVED=27  NONREF=16  OK=843  SUFFIX=82
+
+## BROKEN-SYMLINK (8)
+labs/comlab/tasks/PROGRESS.md:51	apps/wired/harness/	-> /agent_workspace/ARCHIVE/wired/harness
+apps/wired/test_tasks/TEST_PROGRESS.md:69	apps/wired/_jaeger/	-> /agent_workspace/ARCHIVE/wired/_jaeger
+apps/wired/test_tasks/TEST_PROGRESS.md:69	apps/wired/harness/	-> /agent_workspace/ARCHIVE/wired/harness
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:37	apps/wired/_jaeger/	-> /agent_workspace/ARCHIVE/wired/_jaeger
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:37	apps/wired/harness/	-> /agent_workspace/ARCHIVE/wired/harness
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:36	apps/wired/harness/	-> /agent_workspace/ARCHIVE/wired/harness
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:36	apps/wired/_jaeger/	-> /agent_workspace/ARCHIVE/wired/_jaeger
+labs/comlab/tasks/COMLAB_TASKS_START_HERE.md:25	apps/wired/harness/	-> /agent_workspace/ARCHIVE/wired/harness
+
+## MISSING (99)
+CLAUDE.md:43	agents.md	
+CLAUDE.md:55	v2/	
+CLAUDE.md:55	v6/	
+CLAUDE.md:67	cases_library_v2.html	
+AGENTS.md:24	v2/	
+AGENTS.md:24	v6/	
+4DLab_CLAUDE.md:31	_START_HERE.md	
+4DLab_CLAUDE.md:36	_START_HERE.md	
+4DLab_CLAUDE.md:177	PRD_4D_App.md	
+4DLab_CLAUDE.md:204	apps/wiredV2	
+4DLab_CLAUDE.md:264	_START_HERE.md	
+ROADMAP.md:61	docs/GASLab/wikiNEW/	
+ROADMAP.md:62	v2/	
+ROADMAP.md:62	v6/	
+DECISIONS.md:11	4dlabwired_v2/	
+DECISIONS.md:12	FX_START_HERE.md	
+DECISIONS.md:12	FX_PROGRESS.md	
+DECISIONS.md:14	docs/GASLab/wikiNEW/	
+DECISIONS.md:15	v2/	
+DECISIONS.md:15	v6/	
+DECISIONS.md:30	STUDY_ecu_fault_gas_signatures_merge.md	
+DECISIONS.md:47	CLASSIFICATION.md	
+DECISIONS.md:47	Simple/	
+labs/comlab/tasks/PROGRESS.md:78	../../.sandbox-py/bin/python3.14	
+labs/comlab/tasks/PROGRESS.md:160	labs/vinlab/vinlab/models.py::VinDNA	
+labs/comlab/tasks/PROGRESS.md:163	labs/dnalab/tests/conftest.py:59–63	
+labs/gaslab/tasks/PROGRESS.md:12	v2/	
+labs/gaslab/tasks/PROGRESS.md:33	docs/GASLab/v2_prep/PROPOSAL_GASLabV2_InOut_and_Rebuild.md	
+labs/gaslab/tasks/PROGRESS.md:41	STUDY_ecu_fault_gas_signatures_merge.md	
+labs/gaslab/tasks/PROGRESS.md:46	GAS_WIKI.md	
+labs/gaslab/tasks/PROGRESS.md:54	GASLab/	
+labs/gaslab/tasks/PROGRESS.md:98	STUDY_ecu_fault_gas_signatures_merge.md	
+labs/obdlab/tasks/PROGRESS.md:54	run_cases.py	
+apps/vault/VAULT_LIVE_PROGRESS.md:25	dtw.py	
+apps/vault/VAULT_LIVE_PROGRESS.md:63	apps/wiredV2/	
+apps/wired/ship_tasks/SHIP_PROGRESS.md:17	T-SHIP-2_scoreboard_synthetic_split.md	
+apps/wired/v7_tasks/V7_PROGRESS.md:12	cases_petrol_master_v6.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:17	cases_library_v2.html	
+apps/wired/v7_tasks/V7_PROGRESS.md:20	cases_library.html	
+apps/wired/v7_tasks/V7_PROGRESS.md:20	cases_library_research.html	
+apps/wired/v7_tasks/V7_PROGRESS.md:21	cases_petrol_era_v1.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:21	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:75	v7/runs/20260630_161827/results.json	
+apps/wired/v7_tasks/V7_PROGRESS.md:123	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:124	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:125	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:126	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:127	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:128	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:129	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:130	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:131	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:132	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:133	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:134	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:135	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:136	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:137	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:138	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:139	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:140	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:141	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:142	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:143	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:144	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/V7_PROGRESS.md:145	cases_library_research.html	
+apps/wired/v7_tasks/V7_PROGRESS.md:146	cases_library_v2.html	
+apps/wired/v7_tasks/V7_PROGRESS.md:163	casesextra/cases_library_v2.html	
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md:132	apps/4DLabWired/	
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md:98	apps/4DLabWired/docs/HLD_Wiring_4DLab.md	
+apps/wired/WIRED_START_HERE.md:131	v2/	
+apps/wired/WIRED_START_HERE.md:131	v6/	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:22	cases_library_v2.html	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:23	cases_library.html	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:23	cases_library_research.html	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:23	cases_petrol_era_v1.csv	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:24	cases/cases_petrol_master_v5.csv	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:33	run_cases.py	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:33	case_mapper.py	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:33	scoring.py	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:34	cases_petrol_master_v6.csv	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:37	casesextra/	
+harness/HARNESS_START_HERE.md:24	PER_MODULE_TESTSUITE_DESIGN_SPEC.md	
+harness/HARNESS_START_HERE.md:41	TestSuite/PER_MODULE_TESTSUITE_DESIGN_SPEC.md	
+labs/comlab/registry/docs/REGISTRY_START_HERE.md:95	_skills/graph/4dlab-	
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md:74	v2-restructure/	
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md:53	GAS_WIKI.md	
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md:46	labs/comlab/wiki/O2_MODEL_STRATEGY.md	
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md:94	wiredv2/cases/	
+planning/skill_eval/SKILL_EVAL_START_HERE.md:8	v2/	
+planning/skill_eval/SKILL_EVAL_START_HERE.md:8	v6/	
+planning/skill_eval/SKILL_EVAL_START_HERE.md:23	harness/runner	
+planning/skill_eval/SKILL_EVAL_START_HERE.md:37	harness/runner	
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md:9	v2/	
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md:10	v2/	
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md:11	v6/	
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md:68	cases_petrol_master_v6.csv	
+v3/V3_START_HERE.md:17	reports/wikis/modules	
+v3/V3_START_HERE.md:26	apps/wired/v7/run_suite.py::score_case	
+
+## MOVED (27)
+ROADMAP.md:30	registry/REGISTRY_START_HERE.md	labs/comlab/registry/docs/REGISTRY_START_HERE.md
+DECISIONS.md:33	stage1_gaslab/PROGRESS.md	planning/post_cat_trim/PROGRESS.md; planning/oil_consumption/PROGRESS.md; labs/gaslab/tasks/PROGRESS.md (+5)
+labs/comlab/tasks/PROGRESS.md:217	obdlab/research/delta-relations/	labs/obdlab/research/chunks/delta-relations; Vault/labs/obdlab/wiki/delta-relations
+labs/dnalab/tasks/PROGRESS.md:4	docs/research/DNAresearch.md	labs/dnalab/research/DNAresearch.md
+labs/dnalab/tasks/PROGRESS.md:49	labs/dnalab/docs/audits/AUDIT_2026-06-12_trimodule_dna_vin_symptom.md	labs/dnalab/audits/AUDIT_2026-06-12_trimodule_dna_vin_symptom.md
+labs/gaslab/tasks/PROGRESS.md:38	tests/test_resolution.py	labs/gaslab/tests/unit/test_resolution.py; Vault/labs/gaslab/tests/unit/test_resolution.py
+labs/gaslab/tasks/PROGRESS.md:93	registry/REGISTRY_PROGRESS.md	labs/comlab/registry/docs/REGISTRY_PROGRESS.md
+labs/gaslab/tasks/PROGRESS.md:94	COMLab/docs/wiki/OBD_VOCABULARY.md	labs/semantic/vocabul/OBD_VOCABULARY.md; labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md; labs/obdlab/docs/OBD_VOCABULARY.md (+3)
+labs/gaslab/tasks/PROGRESS.md:120	planning/sprints/stage1_gaslab/START_HERE.md	START_HERE.md
+labs/gaslab/tasks/PROGRESS.md:121	planning/sprints/stage1_gaslab/START_HERE.md	START_HERE.md
+labs/semantic/tasks/PROGRESS.md:32	TestSuite/COM/SEMANTIC_CONTRACT.md	labs/semantic/vocabul/SEMANTIC_CONTRACT.md; labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md; Vault/labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md (+1)
+apps/vault/VAULT_LIVE_PROGRESS.md:32	registry/registry/	labs/comlab/registry; Vault/labs/comlab/registry
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md:89	apps/4DLabWired/app.py	app.py; apps/ui/app.py
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md:43	labs/dnalab/docs/audits/AUDIT_2026-06-12_trimodule_dna_vin_symptom.md	labs/dnalab/audits/AUDIT_2026-06-12_trimodule_dna_vin_symptom.md
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md:93	labs/dnalab/docs/audits/AUDIT_2026-06-12_trimodule_dna_vin_symptom.md	labs/dnalab/audits/AUDIT_2026-06-12_trimodule_dna_vin_symptom.md
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md:99	graphify/graph.json	labs/gaslab/graph/v2_code/graph.json; labs/gaslab/graph/v2_tests/graph.json; labs/gaslab/graph/v2_docs/graph.json (+40)
+apps/wired/WIRED_START_HERE.md:113	CLAUDE.md/AGENTS.md	AGENTS.md; .agent/coders/codex/AGENTS.md; .agent/coders/glm/AGENTS.md (+4)
+harness/HARNESS_START_HERE.md:35	TestSuite/harness/HARNESS_PROGRESS.md	harness/HARNESS_PROGRESS.md
+harness/HARNESS_START_HERE.md:44	TestSuite/harness/HARNESS_PROPOSAL.md	harness/HARNESS_PROPOSAL.md
+harness/HARNESS_START_HERE.md:57	GASLab/_gaslab_skills/gaslab-python/SKILL.md	html-extractor/SKILL.md; apps/wired/_wired_skills/wired-code-review/SKILL.md; apps/wired/_wired_skills/wired-signal-pack/SKILL.md (+47)
+labs/comlab/registry/docs/REGISTRY_START_HERE.md:84	registry/CLAUDE.md	CLAUDE.md; v3/CLAUDE.md
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md:18	labs/dnalab/docs/audits/AUDIT_2026-06-11_dna_vin_rework_and_dna10_answerability.md	labs/dnalab/audits/AUDIT_2026-06-11_dna_vin_rework_and_dna10_answerability.md
+labs/dnalab/tasks/DNA_TASKS_START_HERE.md:20	labs/dnalab/docs/research/DNAresearch.md	labs/dnalab/research/DNAresearch.md
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md:47	docs/wiki/	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md:61	docs/wiki/	labs/gaslab/wiki; labs/gaslab/graph/v1_baseline/wiki; labs/dtclab/wiki (+12)
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md:94	apps/wiredV2/wiredv2/composition.py	apps/wired/wired/composition.py
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md:99	apps/wiredV2/tests/	harness/tests; apps/ui/tests; apps/wired/tests (+18)
+
+## SUFFIX (82)
+
+## BARE-ELSEWHERE (290)
+
+## LEGACY (21)
+4DLab_CLAUDE.md:3	4DLab/CLAUDE.md	strip-prefix-resolves
+START_HERE.md:22	4DLab/CLAUDE.md	strip-prefix-resolves
+ROADMAP.md:3	4DLabV2/docs/reference/audit_2026-06-03/4DLAB_CAPABILITY_AUDIT_AND_RESEARCH_QUESTIONS.md	strip-prefix-resolves
+ROADMAP.md:27	4DLabV2/labs/gaslab/tasks/PROGRESS.md	strip-prefix-resolves
+ROADMAP.md:28	4DLabV2/labs/obdlab/tasks/PROGRESS.md	strip-prefix-resolves
+ROADMAP.md:29	4DLabV2/labs/dtclab/README.md	strip-prefix-resolves
+ROADMAP.md:30	4DLabV2/labs/comlab/README.md	strip-prefix-resolves
+ROADMAP.md:46	4DLabV2/labs/gaslab/tasks/TASK_SUITE_ecu_fault_diagnosis.md	strip-prefix-resolves
+ROADMAP.md:69	4DLabV2/docs/reference/audit_2026-06-03/4DLAB_CAPABILITY_AUDIT_AND_RESEARCH_QUESTIONS.md	strip-prefix-resolves
+ROADMAP.md:70	4DLabV2/labs/gaslab/tasks/PROGRESS.md	strip-prefix-resolves
+DECISIONS.md:11	4DLabV2/labs/	strip-prefix-resolves
+README.md:8	4DLab/CLAUDE.md	strip-prefix-resolves
+labs/gaslab/tasks/PROGRESS.md:120	4DLab/CLAUDE.md	strip-prefix-resolves
+labs/gaslab/tasks/PROGRESS.md:121	4DLab/CLAUDE.md	strip-prefix-resolves
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md:13	4DLabV2/	strip-prefix-resolves
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md:176	4DLab/CLAUDE.md	strip-prefix-resolves
+Vault/tasks/DTC_VAULT_TASKS_START_HERE.md:119	4DLab/CLAUDE.md	strip-prefix-resolves
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md:97	4DLab/CLAUDE.md	strip-prefix-resolves
+Vault/tasks/VIN_VAULT_TASKS_START_HERE.md:137	4DLab/CLAUDE.md	strip-prefix-resolves
+harness/HARNESS_START_HERE.md:9	4DLab/CLAUDE.md	strip-prefix-resolves
+harness/HARNESS_START_HERE.md:98	4DLab/CLAUDE.md	strip-prefix-resolves
+
+## IGNORED (55)
+AGENTS.md:8	graphify-out/	
+AGENTS.md:90	.omp/rules/lane-guard-no-vault-edit.md	
+ROADMAP.md:44	ARCHIVE/2026-06-06_v2restructure/4DLabV2/planning/sprints/stage1_gaslab/studies/STUDY_ecu_fault_gas_signatures_merge.md	
+DECISIONS.md:9	ARCHIVE/	
+DECISIONS.md:15	ARCHIVE/legacy_v2/	
+DECISIONS.md:59	.omp/rules/	
+GRAPH_MANIFEST.md:8	graphify-out/graph.json	
+GRAPH_MANIFEST.md:57	graphify-out/graph.json	
+GRAPH_MANIFEST.md:139	graphify-out/	
+labs/gaslab/tasks/PROGRESS.md:12	ARCHIVE/legacy_gaslab_v1/	
+labs/gaslab/tasks/PROGRESS.md:54	ARCHIVE/legacy_gaslab_v1/	
+labs/obdlab/tasks/PROGRESS.md:47	graphify-out/	
+labs/obdlab/tasks/PROGRESS.md:48	tests/graphify-out/	
+labs/obdlab/tasks/PROGRESS.md:48	graphify-out/	
+labs/obdlab/tasks/PROGRESS.md:65	graphify-out/	
+apps/vault/VAULT_LIVE_PROGRESS.md:72	ARCHIVE/2026-06-2x_vault-mirror/	
+apps/wired/ship_tasks/SHIP_PROGRESS.md:52	Vault/githubtoken.md	
+apps/wired/ship_tasks/SHIP_PROGRESS.md:52	.backups/	
+apps/wired/ship_tasks/SHIP_PROGRESS.md:52	.skylos/	
+apps/wired/test_tasks/TEST_PROGRESS.md:37	apps/wired/trace/runs/WTEST5_20260630/	
+apps/wired/test_tasks/TEST_PROGRESS.md:69	ARCHIVE/	
+apps/wired/v7_tasks/V7_PROGRESS.md:11	ARCHIVE/wired/harness/	
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md:32	ARCHIVE/	
+Vault/tasks/DNA_VAULT_TASKS_START_HERE.md:52	graphify-out/graph.json	
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md:19	graphify-out/graph.json	
+Vault/tasks/GAS_VAULT_TASKS_START_HERE.md:30	graphify-out/graph.json	
+apps/vault/VAULT_LIVE_START_HERE.md:22	.omp/rules/lane-guard-no-vault-edit.md	
+apps/vault/VAULT_LIVE_START_HERE.md:159	__pycache__/	
+apps/vault/VAULT_LIVE_START_HERE.md:159	.egg-info/	
+apps/wired/WIRED_START_HERE.md:53	ARCHIVE/wiredV2/wiredv2/composition.py	
+apps/wired/WIRED_START_HERE.md:131	ARCHIVE/	
+apps/wired/WIRED_START_HERE.md:151	.egg-info/	
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:37	ARCHIVE/	
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:38	ARCHIVE/	
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:48	__pycache__/	
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:48	.egg-info/	
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:70	ARCHIVE/4DLabWired/_wired_skills/wired-jaeger-tracing/SKILL.md	
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:71	ARCHIVE/	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:32	ARCHIVE/	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:33	ARCHIVE/wired/harness/	
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md:73	ARCHIVE/	
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md:58	graphify-out/	
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md:118	graphify-out/	
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md:118	ARCHIVE/	
+planning/graph_rollout/GRAPH_ROLLOUT_START_HERE.md:10	graphify-out/	
+planning/graph_rollout/GRAPH_ROLLOUT_START_HERE.md:19	.omp/rules/	
+planning/skill_eval/SKILL_EVAL_START_HERE.md:8	ARCHIVE/	
+planning/skill_eval/SKILL_EVAL_START_HERE.md:14	graphify-out/graph.json	
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md:53	graphify-out/graph.json	
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md:58	graphify-out/	
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md:104	graphify-out/	
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md:104	.egg-info/	
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md:104	__pycache__/	
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md:10	ARCHIVE/	
+planning/test_rollout/TEST_ROLLOUT_START_HERE.md:17	graphify-out/graph.json	
+
+## ABSOLUTE (100)
+CLAUDE.md:44	/agent_workspace	resolves-under-repo
+CLAUDE.md:67	/home/m/Desktop/casesextra/	
+4DLab_CLAUDE.md:8	/home/m/Desktop/claude/CLAUDE.md	
+4DLab_CLAUDE.md:128	/agent_workspace	resolves-under-repo
+4DLab_CLAUDE.md:130	/home/m/Desktop/migration	
+4DLab_CLAUDE.md:190	/home/m/.local/bin/python3.14	
+4DLab_CLAUDE.md:193	/agent_workspace/.venv-wired	
+4DLab_CLAUDE.md:212	/agent_workspace/labs/	resolves-under-repo
+4DLab_CLAUDE.md:213	/agent_workspace/.venv-wired/bin/activate	
+4DLab_CLAUDE.md:215	/agent_workspace/.venv-wired/bin/python	
+4DLab_CLAUDE.md:232	/agent_workspace	resolves-under-repo
+4DLab_CLAUDE.md:239	/agent_workspace/START_HERE.md	resolves-under-repo
+4DLab_CLAUDE.md:240	/agent_workspace/labs/gaslab/tasks/GASLAB_TASKS_START_HERE.md	resolves-under-repo
+4DLab_CLAUDE.md:241	/agent_workspace/Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	resolves-under-repo
+4DLab_CLAUDE.md:242	/agent_workspace/Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	resolves-under-repo
+4DLab_CLAUDE.md:243	/agent_workspace/labs/obdlab/tasks/OBDLAB_TASKS_START_HERE.md	resolves-under-repo
+4DLab_CLAUDE.md:244	/agent_workspace/labs/dtclab/README.md	resolves-under-repo
+4DLab_CLAUDE.md:245	/agent_workspace/labs/comlab/README.md	resolves-under-repo
+4DLab_CLAUDE.md:246	/agent_workspace/apps/wiredV2/WIREDV2_START_HERE.md	
+4DLab_CLAUDE.md:247	/agent_workspace/harness/HARNESS_START_HERE.md	resolves-under-repo
+4DLab_CLAUDE.md:248	/agent_workspace/planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	resolves-under-repo
+4DLab_CLAUDE.md:249	/agent_workspace/planning/gpf_removal/GPF_REMOVAL_START_HERE.md	resolves-under-repo
+apps/wired/v7_tasks/V7_PROGRESS.md:16	/home/m/Desktop/casesextra/	
+apps/wired/v7_tasks/V7_PROGRESS.md:56	/home/m/Desktop/casesextra/cases_library_v2.html	
+apps/wired/v7_tasks/V7_PROGRESS.md:80	/home/m/Desktop/4dV1	
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md:13	/agent_workspace	resolves-under-repo
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md:121	/agent_workspace/.venv-wired	
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md:122	/agent_workspace/.venv-wired/bin/activate	
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md:122	/agent_workspace/.venv-wired/bin/python	
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md:158	/agent_workspace/CLAUDE.md	resolves-under-repo
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md:12	/agent_workspace	resolves-under-repo
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md:79	/agent_workspace/.venv-wired/bin/python	
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md:103	/agent_workspace/CLAUDE.md	resolves-under-repo
+apps/vault/VAULT_LIVE_START_HERE.md:12	/agent_workspace	resolves-under-repo
+apps/vault/VAULT_LIVE_START_HERE.md:24	/agent_workspace/	resolves-under-repo
+apps/vault/VAULT_LIVE_START_HERE.md:25	/agent_workspace/apps/vault/	resolves-under-repo
+apps/vault/VAULT_LIVE_START_HERE.md:26	/agent_workspace/apps/vault/vault_live_tasks/	resolves-under-repo
+apps/vault/VAULT_LIVE_START_HERE.md:27	/agent_workspace/apps/vault/VAULT_LIVE_PROGRESS.md	resolves-under-repo
+apps/vault/VAULT_LIVE_START_HERE.md:86	/agent_workspace/AGENTS.md	resolves-under-repo
+apps/vault/VAULT_LIVE_START_HERE.md:98	/agent_workspace/apps/vault/VAULT_LIVE_PROGRESS.md	resolves-under-repo
+apps/vault/audit/GRAPH_TRUST_START_HERE.md:8	/agent_workspace	resolves-under-repo
+apps/vault/audit/GRAPH_TRUST_START_HERE.md:36	/agent_workspace/AGENTS.md	resolves-under-repo
+apps/wired/WIRED_START_HERE.md:18	/agent_workspace/	resolves-under-repo
+apps/wired/WIRED_START_HERE.md:19	/agent_workspace/apps/wired/	resolves-under-repo
+apps/wired/WIRED_START_HERE.md:20	/agent_workspace/apps/wired/wired_tasks/	resolves-under-repo
+apps/wired/WIRED_START_HERE.md:21	/agent_workspace/apps/wired/WIRED_PROGRESS.md	resolves-under-repo
+apps/wired/WIRED_START_HERE.md:22	/agent_workspace/apps/wired/WIRING_PREP.md	resolves-under-repo
+apps/wired/WIRED_START_HERE.md:72	/agent_workspace/apps/wired/_wired_skills/wired-python/SKILL.md	resolves-under-repo
+apps/wired/WIRED_START_HERE.md:77	/agent_workspace/AGENTS.md	resolves-under-repo
+apps/wired/WIRED_START_HERE.md:82	/agent_workspace/apps/wired/WIRING_PREP.md	resolves-under-repo
+apps/wired/WIRED_START_HERE.md:86	/agent_workspace/apps/wired/_wired_skills/wired-verification-loop/SKILL.md	resolves-under-repo
+apps/wired/WIRED_START_HERE.md:89	/agent_workspace/apps/wired/_wired_skills/wired-code-review/SKILL.md	resolves-under-repo
+apps/wired/WIRED_START_HERE.md:92	/agent_workspace/apps/wired/WIRED_PROGRESS.md	resolves-under-repo
+apps/wired/WIRED_START_HERE.md:103	/agent_workspace/apps/wired/_wired_skills/_INDEX.md	resolves-under-repo
+apps/wired/WIRED_START_HERE.md:132	/agent_workspace/.venv-wired	
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:17	/agent_workspace/	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:18	/agent_workspace/apps/wired/	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:19	/agent_workspace/apps/wired/test_tasks/	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:20	/agent_workspace/apps/wired/test_tasks/TEST_PROGRESS.md	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:43	/agent_workspace/.venv-wired	
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:55	/agent_workspace/apps/wired/_wired_skills/wired-python/SKILL.md	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:58	/agent_workspace/AGENTS.md	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:62	/agent_workspace/apps/wired/_wired_skills/wired-verification-loop/SKILL.md	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:65	/agent_workspace/apps/wired/_wired_skills/wired-code-review/SKILL.md	resolves-under-repo
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:76	/agent_workspace/apps/wired/test_tasks/TEST_PROGRESS.md	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:17	/agent_workspace/	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:18	/agent_workspace/apps/wired/v7_tasks/	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:19	/agent_workspace/apps/wired/v7/	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:20	/agent_workspace/apps/wired/v7_tasks/V7_PROGRESS.md	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:22	/home/m/Desktop/casesextra/	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:64	/agent_workspace/.venv-wired	
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:70	/agent_workspace/apps/wired/_wired_skills/wired-python/SKILL.md	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:71	/agent_workspace/AGENTS.md	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:73	/agent_workspace/apps/wired/_wired_skills/wired-verification-loop/SKILL.md	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:74	/agent_workspace/apps/wired/_wired_skills/wired-code-review/SKILL.md	resolves-under-repo
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:78	/agent_workspace/apps/wired/v7_tasks/V7_PROGRESS.md	resolves-under-repo
+harness/HARNESS_START_HERE.md:54	~/.claude/skills/	
+labs/comlab/registry/docs/REGISTRY_START_HERE.md:3	/agent_workspace	resolves-under-repo
+labs/comlab/registry/docs/REGISTRY_START_HERE.md:5	/agent_workspace/.venv-wired	
+labs/comlab/registry/docs/REGISTRY_START_HERE.md:26	/agent_workspace/labs/comlab/registry/	resolves-under-repo
+labs/comlab/registry/docs/REGISTRY_START_HERE.md:57	/agent_workspace/.venv-wired	
+labs/comlab/registry/docs/REGISTRY_START_HERE.md:82	/agent_workspace/CLAUDE.md	resolves-under-repo
+labs/comlab/registry/docs/REGISTRY_START_HERE.md:83	/agent_workspace/4DLab_CLAUDE.md	resolves-under-repo
+labs/comlab/registry/docs/REGISTRY_START_HERE.md:83	~/.claude/CLAUDE.md	
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md:23	/agent_workspace/.venv-wired/bin/activate	
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md:72	/agent_workspace/.venv-wired	
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md:72	/agent_workspace/.venv-wired/bin/activate	
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md:8	C:\Users\muto\claude\4DApp\4DLab\CLAUDE.md	windows
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md:24	C:\Users\muto\claude\4DApp\4DLab\4DLabV2\planning\gpf_removal\GPF_REMOVAL_PROGRESS.md	windows
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md:69	C:\Users\muto\claude\4DApp\4DLab\4DLabV2\planning\gpf_removal\GPF_REMOVAL_PROGRESS.md	windows
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md:14	/agent_workspace	resolves-under-repo
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md:15	/agent_workspace/planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_PROGRESS.md	resolves-under-repo
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md:16	/agent_workspace/planning/linux_residue_cleanup/tasks/	resolves-under-repo
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md:17	/agent_workspace/.venv-wired	
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md:26	/agent_workspace/WINDOWS_RESIDUE_FOLLOWUPS.md	
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md:42	/agent_workspace/AGENTS.md	resolves-under-repo
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md:14	planning\symptomlab_graph\SYMPTOMLAB_GRAPH_PROGRESS.md	windows
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md:65	planning\symptomlab_graph\SYMPTOMLAB_GRAPH_PROGRESS.md	windows
+v3/V3_START_HERE.md:45	/agent_workspace/4DLab_CLAUDE.md	resolves-under-repo
+v3/V3_START_HERE.md:68	/agent_workspace/.venv-wired/bin/python	
+
+## DECLARED (20)
+
+## NONREF (16)

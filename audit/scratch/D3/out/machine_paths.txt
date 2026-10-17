@@ -1,0 +1,79 @@
+files scanned: 67  absolute-path occurrences: 159  in 33 files
+by prefix: {'/agent_workspace': 133, 'C:\\': 13, '/home/m': 9, '~': 4}
+exist on this host: 3  | /agent_workspace/<x> where repo-relative <x> resolves: 60
+
+## per file (count; first 3 distinct)
+ 22  4DLab_CLAUDE.md  e.g. /home/m/Desktop/claude/CLAUDE.md, /agent_workspace, /home/m/Desktop/migration
+ 14  apps/wired/WIRED_START_HERE.md  e.g. /agent_workspace/, /agent_workspace/apps/wired/, /agent_workspace/apps/wired/wired_tasks/
+ 11  apps/wired/v7_tasks/WIRED_V7_START_HERE.md  e.g. /agent_workspace/, /agent_workspace/apps/wired/v7_tasks/, /agent_workspace/apps/wired/v7/
+ 10  apps/wired/test_tasks/WIRED_TEST_START_HERE.md  e.g. /agent_workspace/, /agent_workspace/apps/wired/, /agent_workspace/apps/wired/test_tasks/
+ 10  labs/comlab/registry/docs/REGISTRY_START_HERE.md  e.g. /agent_workspace, /agent_workspace/.venv-wired, C:\Users\
+ 10  planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md  e.g. /agent_workspace, /agent_workspace/planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_PROGRESS.md, /agent_workspace/planning/linux_residue_cleanup/tasks/
+  9  apps/vault/VAULT_LIVE_START_HERE.md  e.g. /agent_workspace, /agent_workspace/, /agent_workspace/apps/vault/
+  6  planning/gpf_removal/GPF_REMOVAL_START_HERE.md  e.g. C:\Users\muto\claude\4DApp\4DLab\CLAUDE.md, C:\Users\muto\claude\4DApp\4DLab\4DLabV2, C:\Users\muto\claude\4DApp\4DLab\4DLabV2\planning\gpf_removal\GPF_REMOVAL_PROGRESS.md
+  5  Vault/tasks/COM_VAULT_TASKS_START_HERE.md  e.g. /agent_workspace, /agent_workspace/.venv-wired, /agent_workspace/.venv-wired/bin/activate
+  5  .agent/coders/agy/AGENTS.md  e.g. /agent_workspace, /agent_workspace/AGENTS.md, /agent_workspace/.venv-wired
+  5  .agent/coders/claude/AGENTS.md  e.g. /agent_workspace, /agent_workspace/AGENTS.md, /agent_workspace/.venv-wired
+  5  .agent/coders/codex/AGENTS.md  e.g. /agent_workspace, /agent_workspace/AGENTS.md, /agent_workspace/.venv-wired
+  5  .agent/coders/glm/AGENTS.md  e.g. /agent_workspace, /agent_workspace/AGENTS.md, /agent_workspace/.venv-wired
+  5  .agent/coders/nemo/AGENTS.md  e.g. /agent_workspace, /agent_workspace/AGENTS.md, /agent_workspace/.venv-wired
+  3  CLAUDE.md  e.g. /agent_workspace, C:\Workspace, /home/m/Desktop/casesextra/
+  3  apps/wired/v7_tasks/V7_PROGRESS.md  e.g. /home/m/Desktop/casesextra/, /home/m/Desktop/casesextra/cases_library_v2.html, /home/m/Desktop/4dV1
+  3  Vault/tasks/UI_VAULT_TASKS_START_HERE.md  e.g. /agent_workspace, /agent_workspace/.venv-wired/bin/python, /agent_workspace/CLAUDE.md
+  3  apps/vault/audit/GRAPH_TRUST_START_HERE.md  e.g. /agent_workspace, /agent_workspace/AGENTS.md
+  3  labs/comlab/tasks/DELTA_PICKUP_START_HERE.md  e.g. /agent_workspace/.venv-wired/bin/activate, /agent_workspace/.venv-wired
+  3  .agent/coders/deepseek/AGENTS.md  e.g. /agent_workspace, /agent_workspace/AGENTS.md, /agent_workspace/.venv-wired
+  3  v3/CLAUDE.md  e.g. /agent_workspace/.venv-wired/bin/python, /agent_workspace/v3/V3_START_HERE.md, /agent_workspace/4DLab_CLAUDE.md
+  2  planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md  e.g. C:\Users\muto\claude\4DApp\4DLab\4DLabV2
+  2  v3/V3_START_HERE.md  e.g. /agent_workspace/4DLab_CLAUDE.md, /agent_workspace/.venv-wired/bin/python
+  2  run-glm.sh  e.g. ~/.bashrc, /agent_workspace
+  2  run-nemo.sh  e.g. ~/.bashrc, /agent_workspace
+  1  labs/obdlab/tasks/PROGRESS.md  e.g. C:\tmp\gfx_probe
+  1  harness/HARNESS_START_HERE.md  e.g. ~/.claude/skills/
+  1  .agent/rules/lane-guard.md  e.g. /home/m/.omp-codex
+  1  run-agy.sh  e.g. /agent_workspace
+  1  run-agy2.sh  e.g. /agent_workspace
+  1  run-claude.sh  e.g. /agent_workspace
+  1  run-codex.sh  e.g. /agent_workspace
+  1  run-deepseek.sh  e.g. /agent_workspace
+
+## command lines (cd/source/python/uv) using an absolute path
+CLAUDE.md:67: | **wired-v7** (research-built accuracy suite — mine owner case libraries → CSV + wiki-grounded oracle + multi-dim scorer + report) | `apps/wired/v7_t
+4DLab_CLAUDE.md:145: cd /agent_workspace
+4DLab_CLAUDE.md:190: `/home/m/.local/bin/python3.14`. The requirement is **3.14 or later**. The
+4DLab_CLAUDE.md:201: cd /agent_workspace
+4DLab_CLAUDE.md:212: cd /agent_workspace/labs/<lab>
+4DLab_CLAUDE.md:213: source /agent_workspace/.venv-wired/bin/activate   # so pyright sees the venv
+4DLab_CLAUDE.md:215: pyright <pkg>            # or: pyright --pythonpath /agent_workspace/.venv-wired/bin/python <pkg>
+labs/obdlab/tasks/PROGRESS.md:46: | **T-KG-OBD-2-PREP** | `T-KG-OBD-2-PREP_code_prep_obdlab_source.md` | **done** | — | code-map legibility — **no schema field** (field-rule does not b
+Vault/tasks/COM_VAULT_TASKS_START_HERE.md:122: `source /agent_workspace/.venv-wired/bin/activate` (or call `/agent_workspace/.venv-wired/bin/python`
+Vault/tasks/UI_VAULT_TASKS_START_HERE.md:79: - **Python 3.14 ONLY** via the shared venv: call `/agent_workspace/.venv-wired/bin/python` directly
+apps/vault/VAULT_LIVE_START_HERE.md:138: lab's suite from the shared venv: `/agent_workspace/.venv-wired/bin/python -m
+apps/vault/VAULT_LIVE_START_HERE.md:161: cd /agent_workspace
+apps/vault/audit/GRAPH_TRUST_START_HERE.md:80: cd /agent_workspace
+apps/wired/WIRED_START_HERE.md:72: `Read /agent_workspace/apps/wired/_wired_skills/wired-python/SKILL.md`
+apps/wired/WIRED_START_HERE.md:153: cd /agent_workspace
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:43: - **Python 3.14 via the shared `/agent_workspace/.venv-wired`.** Run pytest/pyright
+apps/wired/test_tasks/WIRED_TEST_START_HERE.md:55: `Read /agent_workspace/apps/wired/_wired_skills/wired-python/SKILL.md`
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:64: - **Python 3.14 via `/agent_workspace/.venv-wired`**; run pytest/pyright from a
+apps/wired/v7_tasks/WIRED_V7_START_HERE.md:70: 1. `Read /agent_workspace/apps/wired/_wired_skills/wired-python/SKILL.md`.
+labs/comlab/registry/docs/REGISTRY_START_HERE.md:61: cd /agent_workspace
+labs/comlab/registry/docs/REGISTRY_START_HERE.md:140: cd /agent_workspace
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md:23: 1. Activate the shared venv: `source /agent_workspace/.venv-wired/bin/activate` (Py 3.14). Do NOT use system python3.12 — StrEnum
+labs/comlab/tasks/DELTA_PICKUP_START_HERE.md:72: - **Working venv:** the shared `/agent_workspace/.venv-wired` (Py 3.14.6, pydantic 2.13, pytest 9.1, ruff, pyright). Activate it each bash session: `s
+planning/gpf_removal/GPF_REMOVAL_START_HERE.md:152: cd C:\Users\muto\claude\4DApp\4DLab\4DLabV2
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md:17: **Shared venv (Python tasks only):** `/agent_workspace/.venv-wired` (Python 3.14, already built; run `.venv-wired/bin/python`, `.../bin/ruff`, `.../bi
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md:65: `*.json` under `**/graph/` carry `C:\…` source-provenance strings on purpose — never hand-edit them.
+planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md:79: cd /agent_workspace
+planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md:106: cd C:\Users\muto\claude\4DApp\4DLab\4DLabV2
+v3/V3_START_HERE.md:68: `/agent_workspace/.venv-wired/bin/python apps/wired/fl_tasks/score_v3_yardstick.py score`
+.agent/coders/agy/AGENTS.md:12: - **Python:** use the shared venv `/agent_workspace/.venv-wired` (Python 3.14). `source /agent_workspace/.venv-wired/bin/activate`, or call `/agent_wo
+.agent/coders/claude/AGENTS.md:20: - **Python:** use the shared venv `/agent_workspace/.venv-wired` (Python 3.14). `source /agent_workspace/.venv-wired/bin/activate`, or call `/agent_wo
+.agent/coders/codex/AGENTS.md:12: - **Python:** use the shared venv `/agent_workspace/.venv-wired` (Python 3.14). `source /agent_workspace/.venv-wired/bin/activate`, or call `/agent_wo
+.agent/coders/glm/AGENTS.md:15: - **Python:** use the shared venv `/agent_workspace/.venv-wired` (Python 3.14). `source /agent_workspace/.venv-wired/bin/activate`, or call `/agent_wo
+.agent/coders/nemo/AGENTS.md:15: - **Python:** use the shared venv `/agent_workspace/.venv-wired` (Python 3.14). `source /agent_workspace/.venv-wired/bin/activate`, or call `/agent_wo
+v3/CLAUDE.md:15: Language: Python 3.14 via `/agent_workspace/.venv-wired/bin/python`. Mode: STRICT.
+
+## tracked symlinks
+apps/wired/_jaeger -> /agent_workspace/ARCHIVE/wired/_jaeger  resolves=False
+apps/wired/harness -> /agent_workspace/ARCHIVE/wired/harness  resolves=False

@@ -86,3 +86,4 @@ docs/Nio_vozila_*.csv
 _skills/firecrawl-web-scraping-search/API.md
 .venv-audit/
 audit/scratch/**/__pycache__/
+!audit/scratch/

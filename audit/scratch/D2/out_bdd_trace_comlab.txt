@@ -1,0 +1,42 @@
+ELSEWHERE COMLab_BDD.md:37 'A well-formed payload is accepted' keys=['model_validate', 'OrchestratorInboundRequest'] live=14 e.g. e2e/test_error_codes.py:265::test_sample_invalid_aborts, e2e/test_error_codes.py:277::test_sample_borderline_accepted
+ELSEWHERE COMLab_BDD.md:42 'A malformed DTC string is rejected' keys=['ERR-CONTRACT-001', 'confirmed_dtcs'] live=3 e.g. e2e/test_error_codes.py:113::test_invalid_dtc_string_rejected, e2e/test_error_codes.py:147::test_valid_dtc_accepted
+ORPHAN    COMLab_BDD.md:47 'An air-metering strategy inconsistent with its sensors is rejected' keys=['ERR-CONTRACT-002', 'DUAL_MAF_MAP_CROSSCHECK', 'OrchestratorInboundRequest'] live=0
+ORPHAN    COMLab_BDD.md:53 'A downstream trim role without a downstream sensor is rejected' keys=['ERR-CONTRACT-003'] live=0
+COVERED   COMLab_BDD.md:66 'An invalid gas sample aborts the session' keys=['INVALID', 'ERR-ABORT-001', 'FATAL_INCOMPLETE'] live=1 e.g. unit/test_fatal_gate_wiring.py:125::test_fatal_gate_sample_invalid
+ELSEWHERE COMLab_BDD.md:72 'A borderline gas sample is allowed through' keys=['BORDERLINE'] live=1 e.g. e2e/test_error_codes.py:277::test_sample_borderline_accepted
+COVERED   COMLab_BDD.md:77 'A cold engine aborts the session' keys=['engine_warmed', 'ERR-ABORT-002'] live=2 e.g. unit/test_fatal_gate_wiring.py:139::test_fatal_gate_engine_not_warmed
+COVERED   COMLab_BDD.md:82 'An undecodable VIN aborts the session' keys=['NONE', 'ERR-ABORT-004'] live=2 e.g. unit/test_fatal_gate_wiring.py:153::test_fatal_gate_vin_none
+ORPHAN    COMLab_BDD.md:87 'A non-start engine does not abort on missing gas data' keys=['will_not_start', 'enable_fatal_gates'] live=0
+COVERED   COMLab_BDD.md:101 'A no-start engine suppresses gas, live PIDs, and monitors' keys=['will_not_start', 'NON_STARTER_NO_EXHAUST'] live=2 e.g. unit/test_symptom_router.py:30::test_non_starter, unit/test_symptom_router.py:86::test_non_starter_cold
+COVERED   COMLab_BDD.md:107 'A cranking engine suppresses live PIDs only' keys=['cranking', 'suppress_obd_live_pids'] live=2 e.g. unit/test_symptom_router.py:47::test_cranking, unit/test_symptom_router.py:138::test_cranking_cold
+COVERED   COMLab_BDD.md:113 'A cold-only complaint activates the cold-start hypothesis' keys=['cold_only', 'COLD_START_HYPOTHESIS'] live=3 e.g. unit/test_symptom_router.py:72::test_running_cold, unit/test_symptom_router.py:86::test_non_starter_cold
+COVERED   COMLab_BDD.md:119 'Unread symptom fields route nothing' keys=['route_symptom({})', 'reasons == ()'] live=1 e.g. unit/test_symptom_router.py:103::test_missing_env
+ORPHAN    COMLab_BDD.md:131 'A biased-lean sensor is surfaced against near-normal chemistry' keys=['O2_SENSOR_BIASED_LOW', 'normalized_obd_lambda=1.1'] live=0
+COVERED   COMLab_BDD.md:138 'Agreement within tolerance reports no bias' keys=['bias_verdict is None'] live=24 e.g. unit/test_perception_contradiction.py:25::test_no_bias_when_within_tolerance, unit/test_perception_contradiction.py:34::test_no_bias_exact_match
+COVERED   COMLab_BDD.md:143 'A no-OBD session falls back to the measured analyser lambda' keys=['lambda_measured', 'select_perception_lambda'] live=6 e.g. unit/test_perception_contradiction.py:197::test_select_obd_wins_when_present, unit/test_perception_contradiction.py:204::test_select_falls_back_to_measured_when_obd_absent
+COVERED   COMLab_BDD.md:149 'The detector goes inert with no perception lambda at all' keys=['select_perception_lambda', 'None'] live=5 e.g. unit/test_perception_contradiction.py:204::test_select_falls_back_to_measured_when_obd_absent, unit/test_perception_contradiction.py:210::test_select_returns_none_when_neither_present
+COVERED   COMLab_BDD.md:161 'A rule not targeting the resolved horizon is pruned' keys=['prune_removes_wrong_horizon'] live=1 e.g. unit/test_fault_atlas_router.py:570::test_prune_removes_wrong_horizon
+ORPHAN    COMLab_BDD.md:167 'The same request always produces the same verdict' keys=['twice'] live=0
+ELSEWHERE COMLab_BDD.md:172 'No rule clearing the confidence floor yields no fault' keys=['MIN_CONFIDENCE_THRESHOLD'] live=4 e.g. unit/test_router_spans.py:405::test_threshold_miss_tag, unit/test_symptom_prior.py:379::test_ctxmod_inert_when_off
+COVERED   COMLab_BDD.md:177 'A POA chemistry state injects the POA routing tag' keys=['POA_SIGNATURE', 'POA_HISTORY'] live=1 e.g. unit/test_fault_atlas_router.py:684::test_triage_loop_poa_signature_injects_tag
+COVERED   COMLab_BDD.md:189 'A flashing MIL with a misfire code forces a critical stop' keys=['mil_flashing', 'CRITICAL_IMMEDIATE_STOP'] live=1 e.g. unit/test_fault_atlas_router.py:1138::test_catalyst_override_triggers_on_p030x_flashing
+COVERED   COMLab_BDD.md:195 'A solid MIL with the same misfire code does not force a stop' keys=['mil_flashing', 'False', 'P030'] live=1 e.g. unit/test_fault_atlas_router.py:1163::test_catalyst_override_no_trigger_without_flashing
+ELSEWHERE COMLab_BDD.md:208 'The winning fault is enriched from its KG node' keys=['fault_enrichment', 'component_group', 'ui_remediation_steps'] live=4 e.g. e2e/test_pipeline_round_trip.py:59::test_pipeline_real_routing_diagnoses_fault, e2e/test_pipeline_round_trip.py:118::test_pipeline_override_fault_enrichment_populated
+ORPHAN    COMLab_BDD.md:214 'Every registry fault has a KG node and vice versa' keys=['global_fault_registry', 'all_fault_ids'] live=0
+COVERED   COMLab_BDD.md:220 'A duplicate fault_id across KG files fails at boot' keys=['duplicate'] live=2 e.g. unit/test_fault_atlas_kg.py:168::test_valueerror_on_duplicate_id
+COVERED   COMLab_BDD.md:232 'Runtime runner-ups and editor-curated siblings are merged' keys=['_merge_differential_siblings', '5'] live=3 e.g. unit/test_fault_atlas_router.py:1279::test_merge_siblings_caps_at_five, unit/test_fault_atlas_router.py:1296::test_merge_siblings_runtime_first
+COVERED   COMLab_BDD.md:239 'An editor-curated sibling that did not fire has no score' keys=['editor_curated', 'confidence_score is None'] live=1 e.g. unit/test_fault_atlas_router.py:1464::test_build_differential_siblings_from_kg_node
+COVERED   COMLab_BDD.md:251 'A second operating point promotes the delta-matched family' keys=['with_second_point=True', 'enable_delta=True'] live=2 e.g. e2e/test_delta_router_wiring.py:266::test_delta_two_point_activation, e2e/test_delta_router_wiring.py:300::test_delta_parity_v1_and_v2
+ORPHAN    COMLab_BDD.md:257 'Without a second frame the path is single-point' keys=['SINGLE_POINT', 'execution_meta.degradation_mode'] live=0
+COVERED   COMLab_BDD.md:263 'A MAP-only architecture abstains from a trim delta' keys=['MAP_ONLY_SPEED_DENSITY', '_architecture_gate'] live=1 e.g. unit/test_delta_engine.py:211::test_architecture_gate_map_only_nulls_trim
+COVERED   COMLab_BDD.md:268 'A delta frame measured at the wrong RPM bucket abstains' keys=['band_mismatch'] live=2 e.g. e2e/test_delta_router_wiring.py:330::test_delta_v2_band_mismatch_abstains, unit/test_delta_engine.py:505::test_trim_abstains_on_band_mismatch
+ORPHAN    COMLab_BDD.md:280 'VE evidence is gated to valid cross-checks' keys=['FAULT_MAF_CONTAMINATION'] live=0
+COVERED   COMLab_BDD.md:285 'Trim evidence is suppressed outside closed loop' keys=['OL_FAULT', 'open_loop'] live=1 e.g. unit/test_fuel_system_gate.py:84::test_fuelsys_inert_when_off
+ORPHAN    COMLab_BDD.md:290 'Trim analytics blocked upstream are not used' keys=['trim_analytics_gate', 'ENGINE_COLD'] live=0
+COVERED   COMLab_BDD.md:302 'Railed sensors with broken bank symmetry flag an ECU hardware fault' keys=['is_ecu_hardware_fault', '0.80'] live=1 e.g. unit/test_ecu_hardware_checker.py:130::test_ecu_hw_checker_unit
+COVERED   COMLab_BDD.md:309 'Plausible sensor values report no ECU hardware fault' keys=['is_ecu_hardware_fault'] live=1 e.g. unit/test_ecu_hardware_checker.py:130::test_ecu_hw_checker_unit
+COVERED   COMLab_BDD.md:321 'All four labs reporting cleanly is full fusion' keys=['execution_meta.degradation_mode', 'fixture["expected"]'] live=2 e.g. regression/test_comlab_regression.py:40::test_comlab_regression, regression/test_comlab_regression.py:66::test_comlab_regression_fatal_gates
+ORPHAN    COMLab_BDD.md:327 'A legacy car without a scanner degrades to gas-dominant' keys=['GAS_DOMINANT', 'obd_live_data'] live=0 SKIPPED=['unit/test_lab_pipeline_aggregator.py:43']
+ORPHAN    COMLab_BDD.md:333 'The result always carries the routing directive and echo audit' keys=['lab_routing_directive', 'user_input_echo_audit'] live=0
+
+scenarios=40 orphans=11

@@ -1,0 +1,43 @@
+FHLD §7.1 shape accepted: False ['1 validation error for OrchestratorInboundRequest', 'metadata', "  Field required [type=missing, input_value={'vehicle_dna': {'session...se}}, 'symptom_dna': {}}, input_type=dict]"]
+FOrchestratorFinalUIOutput fields: ['session_id', 'execution_meta', 'diagnostic_verdict', 'performance_analytics', 'fault_enrichment', 'user_input_echo_audit']
+Fabort output: fault_code= ERR-ABORT-001 family= invalid_input severity= OPTIMAL_HEALTH degradation= FATAL_INCOMPLETE has error key: False
+FERR-CONTRACT-002 raised: False
+FERR-CONTRACT-003 raised: False
+Fv1 rows=104 unique=99 dup=['ERR-CT-003', 'ERR-LC-004', 'ERR-MF-002', 'ERR-SF-001'] no_kg_node=['ERR-LC-007'] kg_without_row=['ERR-EF-001', 'ERR-LC-002', 'ERR-RM-005', 'ERR-SF-006', 'P_NEW_09', 'P_NEW_10', 'P_NEW_11', 'P_NEW_12', 'P_NEW_13']
+Fv2 rules=73 without KG node ERR-<rule_id>: ['CS-001', 'CS-002', 'MW-009', 'NF-001', 'NF-002', 'OV-001', 'OV-002', 'OV-003', 'OV-004', 'VL-001', 'VL-002', 'VL-003']
+Fwinner: LC-001 lean_condition KG node ERR-id present: True
+enrichment: engine [] ['See diagnostic verdict for next steps.']
+power_loss: 0.0 catalyst_idx: None
+Fwinner: LC-002 lean_condition score: 0.9100000000000001 is_fault: True abstained: True margin
+.won_not_start -> LabRoutingDirective(suppress_gaslab=False, suppress_obd_live_pids=False, suppress_mode06_ui=False, cold_start_mode=False, reasons=())
+FCOMLab dtc view: {'make': 'VW', 'model_year': 2002, 'euro_emission_category': 'EURO_3', 'air_metering_strategy': 'MAF_ONLY', 'resolved_horizon': 'HORIZON_ADAPTIVE', 'has_catalyst': True, 'egr_equipped': True, 'confidence': 'HIGH'}
+DTCLab rejects: ('model',):missing; ('air_metering_strategy',):enum; ('resolved_horizon',):enum; ('emissions',):missing
+Fprojection of §3.2-conformant VinDNA: ('upstream_o2_type',):enum; ('has_catalyst',):bool_type; ('egr_equipped',):bool_type
+Fkg files: 13 ['invalid_input'] enum: 12
+Fegr_equipped=False -> (<ChemicalSignature.HIGH_COMBUSTION_TEMP: 'HIGH_COMBUSTION_TEMP'>, <SampleValidity.VALID: 'VALID'>) | egr_equipped=True -> (<ChemicalSignature.EGR_STUCK_CLOSED: 'EGR_STUCK_CLOSED'>, <SampleValidity.VALID: 'VALID'>)
+Fcatch_all: ['EVAP_CANISTER_SATURATED', 'INCOMPLETE_OXIDATION', 'POA_SIGNATURE', 'VVT_FAILURE'] | dna_gate: ['CATALYST_NOT_LIGHTING_OFF', 'CATALYST_OVERWHELMED', 'EGR_STUCK_CLOSED', 'EGR_STUCK_OPEN', 'GDI_HPFP_INTERNAL_SEAL_LEAK', 'GDI_INTAKE_VALVE_CARBON']
+FGasLabPayload fields: 15 ['chemical_state', 'gas_co', 'gas_hc', 'gas_co2', 'gas_o2', 'gas_nox', 'lambda_chem', 'sample_validity', 'lambda_measured', 'high_idle_hc', 'high_idle_co', 'high_idle_co2', 'high_idle_o2', 'high_idle_nox', 'high_idle_lambda']
+Flambda_measured passthrough: 1.07 | absent: None
+.GDI car  HIGH -> GDI_HPFP_INTERNAL_SEAL_LEAK | PARTIAL -> GDI_HPFP_INTERNAL_SEAL_LEAK | NONE -> GDI_HPFP_INTERNAL_SEAL_LEAK
+___________________ test_d2_projection_of_lld_conformant_dna ___________________
+    def test_d2_projection_of_lld_conformant_dna():
+PASSED audit/scratch/D2/test_d2_probes.py::test_d2_confidence_floor_on_default_path
+PASSED audit/scratch/D2/test_d2_gaslab_probes.py::test_d2g_lambda_measured_passthrough
+FAILED audit/scratch/D2/test_d2_probes.py::test_d2_bias_direction_obd_lean_is_biased_low
+FAILED audit/scratch/D2/test_d2_probes.py::test_d2_inbound_contract_shape_per_hld
+FAILED audit/scratch/D2/test_d2_probes.py::test_d2_outbound_has_schema_version
+FAILED audit/scratch/D2/test_d2_probes.py::test_d2_abort_shape_per_hld - Asse...
+FAILED audit/scratch/D2/test_d2_probes.py::test_d2_contract_002_reachable_from_request
+FAILED audit/scratch/D2/test_d2_probes.py::test_d2_contract_003_reachable_from_request
+FAILED audit/scratch/D2/test_d2_probes.py::test_d2_registry_kg_consistency_v1
+FAILED audit/scratch/D2/test_d2_probes.py::test_d2_registry_kg_consistency_v2_default_path
+FAILED audit/scratch/D2/test_d2_probes.py::test_d2_default_path_runs_stage_c_and_d
+FAILED audit/scratch/D2/test_d2_probes.py::test_d2_won_not_start_routes_as_documented
+FAILED audit/scratch/D2/test_d2_probes.py::test_d2_dtc_view_projection_accepted_by_dtclab
+FAILED audit/scratch/D2/test_d2_probes.py::test_d2_projection_of_lld_conformant_dna
+FAILED audit/scratch/D2/test_d2_probes.py::test_d2_kg_family_files_match_fault_family_enum
+FAILED audit/scratch/D2/test_d2_gaslab_probes.py::test_d2g_hct_not_dna_gated
+FAILED audit/scratch/D2/test_d2_gaslab_probes.py::test_d2g_catch_all_set - As...
+FAILED audit/scratch/D2/test_d2_gaslab_probes.py::test_d2g_payload_field_count
+FAILED audit/scratch/D2/test_d2_gaslab_probes.py::test_d2g_confidence_shrinks_scope_per_vocab_invariant_7
+17 failed, 2 passed in 0.86s

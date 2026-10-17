@@ -1,0 +1,70 @@
+
+## KG family-file count / family set
+ACTUAL: 13 family files ['cam_timing', 'catalyst_failure', 'ecu_fault', 'exhaust_leak', 'ignition_fault', 'invalid_input', 'lean_condition', 'mechanical_wear', 'misfire', 'no_fault', 'non_starter', 'rich_mixture', 'sensor_fault']; FaultFamily enum 12; extra file(s) vs enum: ['invalid_input']
+  CLAIM labs/comlab/docs/COMLab_BDD.md:215 "Given the loaded fault registry and the 13 per-family KG files"
+  CLAIM labs/comlab/docs/COMLab_DLD.md:104 "| `config/kg/*.json` (13 per-family files) | `FaultAtlasKG._nodes` (`dict[str, KGNode]`) | ≤ 2 MB | one file per fault family + `_kg_schema.json` |"
+  CLAIM labs/comlab/docs/COMLab_DLD.md:142 "The 12 FaultFamily values (live code `vocabulary.py`) are: `lean_condition`,"
+  CLAIM labs/comlab/docs/COMLab_HLD.md:33 "- The Fault-Atlas KG ships as a **directory of 13 per-family JSON files** under"
+  CLAIM labs/comlab/docs/COMLab_HLD.md:685 "│       └── kg/                            13 per-family JSON files + _kg_schema.json (§5)"
+  CLAIM labs/comlab/docs/COMLab_HLD.md:794 "2. **KG file location.** Resolved: **directory** of 13 per-family JSON files"
+  CLAIM labs/comlab/docs/COMLab_LLD.md:88 "HLD §12: KG as a per-family **directory** (13 files), `user_input_echo_audit`"
+  CLAIM labs/comlab/docs/COMLab_LLD.md:162 "│       └── kg/                                §8.2 — 13 per-family files + _kg_schema.json"
+  CLAIM labs/comlab/docs/COMLab_LLD.md:900 "Loaded once at boot from comlab/config/kg/*.json (13 per-family"
+  CLAIM labs/comlab/docs/COMLab_LLD.md:1178 "Twelve files match the twelve values of `FaultFamily`. The loader globs the"
+
+## Registry rule-row count
+ACTUAL: v1 global_fault_registry.json rows=104 (unique ids 100); REG-V2 (production default) rules=73 in 16 families
+  CLAIM labs/comlab/docs/COMLab_DLD.md:103 "| `global_fault_registry.json` | `FaultAtlasRouter._registry` (`list[RegistryRow]`) | ≤ 800 KB | ~120 rule rows × ~6 KB each in the parsed Pydantic form |"
+  CLAIM labs/comlab/docs/COMLab_DLD.md:187 "| Fault-atlas walk (Stage B) | §4.2 | 60 ms | Up to 120 rule rows × ≤ 5 operator clauses each |"
+  CLAIM labs/comlab/docs/COMLab_DLD.md:357 ""rules_evaluated":         57,"
+  CLAIM labs/comlab/docs/COMLab_DLD.md:380 "**not** safe in production: rule-row logging at ~120 rows per session"
+
+## Config footprint
+ACTUAL: du-equivalent comlab/config = 360948 bytes = 0.361 MB; DLD §2.2 own breakdown sums to 2.78 MB > the 2.5 MB limit it states
+  CLAIM labs/comlab/docs/COMLab_DLD.md:88 "2. **Combined config footprint ≤ 2.5 MB** on disk (`global_fault_registry.json`"
+  CLAIM labs/comlab/docs/COMLab_DLD.md:115 "### 2.2 On-disk config envelope (the 2.5 MB hard limit)"
+  CLAIM labs/comlab/docs/COMLab_DLD.md:118 "`comlab/config/` (recursively) at every PR. Exceeding 2.5 MB is a CI"
+  CLAIM labs/comlab/docs/COMLab_DLD.md:123 "comlab/config/kg/                              ~ 2.40 MB total"
+  CLAIM labs/comlab/docs/COMLab_DLD.md:139 "total ~ 2.78 MB  (0.22 MB headroom)"
+  CLAIM labs/comlab/docs/COMLab_DLD.md:449 "6. **Config size envelope.** `du -b comlab/config/` ≤ 2.5 MB."
+  CLAIM labs/comlab/docs/COMLab_HLD.md:778 "| 2.5 MB total config size envelope | **Deferred to DLD.** | Resource budget belongs in DLD; flagged here so the LLD is built with it in mind. |"
+
+## LabDnaView field counts
+ACTUAL: Gas=14 Obd=10 Dtc=8
+  CLAIM labs/comlab/docs/COMLab_HLD.md:486 "§1, §2, §3 (15 / 10 / 11 fields respectively; counts verified against live `lab_dna_views.py`)."
+
+## DTCRoutingTag cardinality
+ACTUAL: comlab DTCRoutingTag=17
+  CLAIM labs/comlab/docs/COMLab_LLD.md:385 "> - `DTCLabPayload.routing_tags` is the 19-value `DTCRoutingTag` set. **`SAI_HISTORY`"
+  CLAIM labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:82 "## 4. `DTCRoutingTag` — 19-value enum"
+  CLAIM labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:114 "**Total: 19 routing tags.** A 16-value enum (dropping `POA_HISTORY`) is the older COMLab vocab shape — wrong for DTCLab. A 4-value enum is the forbidden v6 shape."
+  CLAIM labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:150 "All 17 `DTCRoutingTag` values therefore have at least one explicit routing relation above: `LEAN_HISTORY`, `RICH_HISTORY`, `MISFIRE_HISTORY`, `CATALYST_HISTORY`, `EGR_HIS"
+  CLAIM labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:523 "- `DTCRoutingTag` (16 values today, growing) — in `DTC_VOCABULARY.md` §11. Owned by DTCLab."
+
+## ChemicalSignature cardinality
+ACTUAL: 34
+  CLAIM labs/comlab/docs/CROSS_LAB_DEPENDENCIES.md:21 "| **DEP-1** | `ChemicalSignature` 34-value surface | GASLab enum — S1 · `T-GV2-1` | COMLab mirror `T-GV2-2` + registry `FU-1` + OBD_VOCAB doc `FU-2` + wired mapper `FU-4`"
+  CLAIM labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md:568 "## 17. Domain reference — Chemical signature enum (34 values; synced to code 2026-07-07)"
+  CLAIM labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:89 "| Chemical signatures emitted by GASLab | `GAS_VOCABULARY.md` §21 / `OBD_VOCABULARY.md` §17 (**34-value** enum, v2.1) | v2.1 cam-timing split retired `WRONG_VALVE_TIMING`"
+  CLAIM labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:184 ""chemical_state": "RICH_MIXTURE",       // value from §3 ChemicalSignature enum (34-value, v2.1)"
+  CLAIM labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:522 "- `ChemicalSignature` (**34 values**, v2.1) — in `GAS_VOCABULARY.md` §21 / `OBD_VOCABULARY.md` §17. Owned by GASLab. The v2.1 timing-taxonomy split retired `WRONG_VALVE_T"
+  CLAIM labs/comlab/docs/Vocabulary/SEMANTIC_CONTRACT.md:708 "- **`ChemicalSignature` is 34-value** (v2.1 cam-timing split) — §3 / §8."
+
+## FreezeFrame derived flags
+ACTUAL: 7 ff_* flags: ['ff_open_loop_at_fault', 'ff_load_high_at_low_rpm', 'ff_ect_warmup', 'ff_iat_ect_biased', 'ff_timing_retard_severe', 'ff_codes_cleared_invalidated', 'ff_fuel_spark_cut_at_crank']
+  CLAIM labs/comlab/docs/COMLab_LLD.md:368 "The `FreezeFrameRecord` (12 mandatory + 7 optional PIDs + 6 derived symptom"
+  CLAIM labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md:333 "### 12.3 Derived symptom flags — 6 bool fields"
+
+## registry shim import line
+ACTUAL: fault_atlas_router.py:1953
+  CLAIM labs/comlab/docs/COMLab_HLD.md:694 "~L1845), a one-way dependency on the repo-root `registry/`, not a cross-lab"
+
+## Reference interpreter
+ACTUAL: running 3.14.6
+  CLAIM labs/comlab/docs/COMLab_DLD.md:166 "- Python 3.10 with `pydantic v2` and `orjson`."
+
+v1 duplicate fault_ids: ['ERR-CT-003', 'ERR-LC-004', 'ERR-MF-002', 'ERR-SF-001']
+v1 top-level keys: ['$schema', 'title', 'version', 'description', 'registry', 'remediation_map'] (LLD §8.1 requires 'schema_version')
+v1 fallback_strategy values: ['GAS_ONLY', 'None', 'REQUIRE_DTC'] (LLD §8.1 enum: REQUIRE_MATCH | PROCEED_ON_MATCH_OR_EMPTY | PROCEED)
+v1 rows carrying fault_name: 93 ui_diagnostic_string: 104 preconditions: 12 of 104
+REG-V2 families not in FaultFamily enum: ['charging_system', 'invalid_input', 'overheating', 'vacuum_leak']

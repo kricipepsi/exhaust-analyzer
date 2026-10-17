@@ -1,0 +1,196 @@
+primary ledgers: 13  secondary: 43  rows: 208 primary / 261 secondary
+primary status counts: {'done': 178, 'pending': 5, 'void': 3, 'superseded': 1, '?': 6, 'deferred': 5, 'open': 10}
+
+## A. pending rows (primary): spec + blockers
+FAIL	labs/comlab/tasks/PROGRESS.md:66	T-GV2-2	spec=NONE:	blockers_not_done=-
+FAIL	labs/comlab/tasks/PROGRESS.md:67	FU-4	spec=NONE:	blockers_not_done=-
+FAIL	apps/vault/VAULT_LIVE_PROGRESS.md:54	GRAPH-TRUST	spec=NONE:	blockers_not_done=-
+OK	apps/vault/VAULT_LIVE_PROGRESS.md:55	T-VLIVE-3c	spec=OK:apps/vault/audit/T-VLIVE-3c_reconcile_dtclab_drift.md	blockers_not_done=-
+FAIL	apps/wired/fl_tasks/FL_PROGRESS.md:54	FL-V3-ORACLE-MW-MISFIRE	spec=NONE:	blockers_not_done=-
+
+## A2. pending rows in SECONDARY ledgers whose named blockers are not done (rule 3: pending = runnable now)
+planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md:14	T-GR-11	blockers_not_done=['T-GR-10=pending']
+planning/post_cat_trim/PROGRESS.md:10	PCT-2	blockers_not_done=['PCT-1=pending']
+planning/post_cat_trim/PROGRESS.md:11	PCT-3	blockers_not_done=['PCT-1=pending']
+planning/post_cat_trim/PROGRESS.md:12	PCT-4	blockers_not_done=['PCT-3=pending']
+planning/post_cat_trim/PROGRESS.md:13	PCT-5	blockers_not_done=['PCT-2=pending', 'PCT-4=pending']
+planning/post_cat_trim/PROGRESS.md:14	PCT-6	blockers_not_done=['PCT-5=pending']
+planning/post_cat_trim/PROGRESS.md:15	PCT-7	blockers_not_done=['PCT-6=pending']
+planning/post_cat_trim/PROGRESS.md:16	PCT-8	blockers_not_done=['PCT-7=pending']
+planning/post_cat_trim/PROGRESS.md:17	PCT-9	blockers_not_done=['PCT-8=pending']
+planning/post_cat_trim/PROGRESS.md:18	PCT-10	blockers_not_done=['PCT-9=pending']
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md:30	PCT-2	blockers_not_done=['PCT-1=pending']
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md:31	PCT-3	blockers_not_done=['PCT-1=pending']
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md:32	PCT-4	blockers_not_done=['PCT-3=pending']
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md:33	PCT-5	blockers_not_done=['PCT-2=pending', 'PCT-4=pending']
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md:34	PCT-6	blockers_not_done=['PCT-5=pending']
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md:35	PCT-7	blockers_not_done=['PCT-6=pending']
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md:36	PCT-8	blockers_not_done=['PCT-7=pending']
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md:37	PCT-9	blockers_not_done=['PCT-8=pending']
+planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md:38	PCT-10	blockers_not_done=['PCT-9=pending']
+
+## B. first `pending` row per ledger (rule 3: next runnable task); secondary ledgers marked [S]
+labs/comlab/tasks/PROGRESS.md:66	T-GV2-2	spec=NONE:	blockers_not_done=-	raw='specs authored + activated 2026-06-21 — T-GV2-2 pending (gas'
+labs/dnalab/tasks/PROGRESS.md	(no pending row)
+labs/dtclab/tasks/PROGRESS.md	(no pending row)
+labs/gaslab/tasks/PROGRESS.md	(no pending row)
+labs/obdlab/tasks/PROGRESS.md	(no pending row)
+labs/semantic/tasks/PROGRESS.md	(no pending row)
+apps/vault/VAULT_LIVE_PROGRESS.md:54	GRAPH-TRUST	spec=NONE:	blockers_not_done=-	raw='pending'
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md	(no pending row)
+apps/wired/WIRED_PROGRESS.md	(no pending row)
+apps/wired/fl_tasks/FL_PROGRESS.md:54	FL-V3-ORACLE-MW-MISFIRE	spec=NONE:	blockers_not_done=-	raw='pending-for-v3'
+apps/wired/ship_tasks/SHIP_PROGRESS.md	(no pending row)
+apps/wired/test_tasks/TEST_PROGRESS.md	(no pending row)
+apps/wired/v7_tasks/V7_PROGRESS.md	(no pending row)
+[S] harness/HARNESS_PROGRESS.md	(no pending row)
+[S] labs/comlab/registry/docs/REGISTRY_PROGRESS.md:89	EXP-N023-uncoverable	spec=NONE:	blockers_not_done=-	raw='pending'
+[S] planning/doc_conformance/DOC_CONFORMANCE_PROGRESS.md	(no pending row)
+[S] planning/gpf_removal/GPF_REMOVAL_PROGRESS.md	(no pending row)
+[S] planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md:13	T-GR-10	spec=OK:planning/graph_rollout/tasks/T-GR-10_llm_extract_pilot_gaslab.md	blockers_not_done=-	raw='pending'
+[S] planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_PROGRESS.md	(no pending row)
+[S] planning/oil_consumption/PROGRESS.md	(no pending row)
+[S] planning/post_cat_trim/PROGRESS.md:9	PCT-1	spec=NONE:	blockers_not_done=-	raw='pending'
+[S] planning/skill_eval/SKILL_EVAL_PROGRESS.md	(no pending row)
+[S] planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md	(no pending row)
+[S] planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	(no pending row)
+[S] v3/V3_PROGRESS.md	(no pending row)
+[S] Vault/tasks/COM_VAULT_TASKS_START_HERE.md	(no pending row)
+[S] Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	(no pending row)
+[S] Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	(no pending row)
+[S] Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	(no pending row)
+[S] Vault/tasks/UI_VAULT_TASKS_START_HERE.md	(no pending row)
+[S] Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	(no pending row)
+[S] apps/vault/VAULT_LIVE_START_HERE.md	(no pending row)
+[S] apps/vault/audit/GRAPH_TRUST_START_HERE.md	(no pending row)
+[S] apps/wired/WIRED_START_HERE.md	(no pending row)
+[S] apps/wired/fl_tasks/WIRED_FL_START_HERE.md	(no pending row)
+[S] apps/wired/ship_tasks/SHIP_START_HERE.md	(no pending row)
+[S] apps/wired/test_tasks/WIRED_TEST_START_HERE.md	(no pending row)
+[S] apps/wired/v7_tasks/WIRED_V7_START_HERE.md	(no pending row)
+[S] harness/HARNESS_START_HERE.md	(no pending row)
+[S] labs/comlab/registry/docs/REGISTRY_START_HERE.md	(no pending row)
+[S] labs/comlab/tasks/COMLAB_TASKS_START_HERE.md	(no pending row)
+[S] labs/comlab/tasks/DELTA_PICKUP_START_HERE.md	(no pending row)
+[S] labs/dnalab/tasks/DNA_TASKS_START_HERE.md	(no pending row)
+[S] labs/gaslab/tasks/GASLAB_TASKS_START_HERE.md	(no pending row)
+[S] labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	(no pending row)
+[S] labs/obdlab/tasks/OBDLAB_TASKS_START_HERE.md	(no pending row)
+[S] labs/semantic/SEMANTIC_START_HERE.md	(no pending row)
+[S] planning/gpf_removal/GPF_REMOVAL_START_HERE.md	(no pending row)
+[S] planning/graph_rollout/GRAPH_ROLLOUT_START_HERE.md	(no pending row)
+[S] planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_START_HERE.md	(no pending row)
+[S] planning/oil_consumption/OIL_CONSUMPTION_START_HERE.md	(no pending row)
+[S] planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md:29	PCT-1	spec=NONE:	blockers_not_done=-	raw='pending'
+[S] planning/skill_eval/SKILL_EVAL_START_HERE.md	(no pending row)
+[S] planning/symptomlab_graph/SYMPTOMLAB_GRAPH_START_HERE.md	(no pending row)
+[S] planning/test_rollout/TEST_ROLLOUT_START_HERE.md	(no pending row)
+[S] v3/V3_START_HERE.md	(no pending row)
+
+## C. done rows (primary): spec / progress note / gates / named files
+labs/comlab/tasks/PROGRESS.md:24	T-COMV2-ECU-FUSE-1	named-missing=['obdlab/research/AUDIT_ANSWERS_OBDLab.md']
+labs/dnalab/tasks/PROGRESS.md:39	T-DNA-TH-2	note=MISSING:  named-missing=['tests/unit/test_horizon.py']
+labs/dnalab/tasks/PROGRESS.md:40	T-DNA-TH-3	note=MISSING:  named-missing=['tests/unit/test_validator.py']
+labs/dnalab/tasks/PROGRESS.md:54	T-DNA-10	note=MISSING:
+labs/dnalab/tasks/PROGRESS.md:55	T-DNA-11	named-missing=['comlab/tasks/PROGRESS.md']
+labs/dnalab/tasks/PROGRESS.md:56	T-DNA-12	note=MISSING:
+labs/dnalab/tasks/PROGRESS.md:57	T-DNA-13	note=MISSING:
+labs/gaslab/tasks/PROGRESS.md:33	T-GV2-3	named-missing=['docs/GASLab/v2_prep/PROPOSAL_GASLabV2_InOut_and_Rebuild.md']
+labs/gaslab/tasks/PROGRESS.md:38	T-GV2-6a	named-missing=['tests/test_resolution.py']
+labs/gaslab/tasks/PROGRESS.md:41	T-GV2-6d	note=MISSING:  named-missing=['STUDY_ecu_fault_gas_signatures_merge.md']
+labs/gaslab/tasks/PROGRESS.md:51	T-GV2-16	note=NO-GATES(v=True,r=False):labs/gaslab/tasks/progress_notes/T-GV2-16.md
+labs/gaslab/tasks/PROGRESS.md:96	FU-CYL	note=MISSING:
+labs/obdlab/tasks/PROGRESS.md:47	T-KG-OBD-2	named-missing=['.py']
+labs/semantic/tasks/PROGRESS.md:23	T-SEM-5	named-missing=['.md']
+apps/vault/VAULT_LIVE_PROGRESS.md:25	T-VLIVE-3b	named-missing=['dtw.py']
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:14	T-VLIVE-3c	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:15	T-GTA-COM·codex	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:16	T-GTA-COM·agy	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:17	T-GTA-COM·claude	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:18	T-GTA-UNION-COM	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:19	T-GTA-RECONCILE-COM	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:21	T-GTA-GAS·codex	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:22	T-GTA-GAS·agy	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:23	T-GTA-GAS·claude	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:24	T-GTA-UNION-GAS	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:25	T-GTA-OBD·codex	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:26	T-GTA-OBD·agy	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:27	T-GTA-OBD·claude	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:28	T-GTA-UNION-OBD	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:29	T-GTA-DNA·codex	note=MISSING:  named-missing=['schemas/ingestion.py', 'core/lab_pipeline_aggregator.py']
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:30	T-GTA-DNA·agy	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:31	T-GTA-DNA·claude	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:32	T-GTA-UNION-DNA	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:33	T-GTA-VIN·codex	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:34	T-GTA-VIN·agy	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:35	T-GTA-VIN·claude	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:36	T-GTA-UNION-VIN	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:37	T-GTA-RECONCILE-GAS	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:38	T-GTA-RECONCILE-OBD	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:39	T-GTA-RECONCILE-DNA	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:40	T-GTA-RECONCILE-VIN	note=MISSING:
+apps/vault/audit/GRAPH_TRUST_PROGRESS.md:41	T-WIRE-1	note=MISSING:
+apps/wired/WIRED_PROGRESS.md:21	T-GV2-2	note=MISSING:
+apps/wired/WIRED_PROGRESS.md:22	T-PREP-WIRE-1	note=NO-GATES(v=False,r=False):apps/wired/wiring_prep_tasks/progress_notes/T-PREP-WIRE-1.md
+apps/wired/ship_tasks/SHIP_PROGRESS.md:17	T-SHIP-2	spec=MISSING:T-SHIP-2_scoreboard_synthetic_split.md  named-missing=['T-SHIP-2_scoreboard_synthetic_split.md']
+apps/wired/ship_tasks/SHIP_PROGRESS.md:18	T-SHIP-3	named-missing=['tools/repair_brand_spellings.py']
+apps/wired/ship_tasks/SHIP_PROGRESS.md:22	T-SHIP-5	note=NO-GATES(v=True,r=False):apps/wired/ship_tasks/progress_notes/T-SHIP-5.md
+apps/wired/test_tasks/TEST_PROGRESS.md:25	T-WIRE-1..4	note=MISSING:
+apps/wired/v7_tasks/V7_PROGRESS.md:75	T-V7-4	named-missing=['v7/runs/20260630_161827/results.json']
+
+## D. IDs in more than one row with different status (any scope)
+FL-V3-ORACLE-MW-MISFIRE	apps/wired/fl_tasks/FL_PROGRESS.md:54=pending('pending-for-v3') | v3/V3_PROGRESS.md:39=done('done')
+FU-2	labs/gaslab/tasks/PROGRESS.md:94=?('closed 2026-07-07 — synced §17') | planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md:51=open('open')
+FU-3	labs/gaslab/tasks/PROGRESS.md:95=?('folded into T-GV2-1 verificati') | planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md:52=open('open')
+FU-4	labs/comlab/tasks/PROGRESS.md:67=pending('spec authored 2026-06-21 → T-C') | labs/gaslab/tasks/PROGRESS.md:97=open('open — wired touch per task; C') | planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md:53=open('open')
+T-GV2-2	labs/comlab/tasks/PROGRESS.md:66=pending('specs authored + activated 202') | labs/gaslab/tasks/PROGRESS.md:52=done('done') | apps/wired/WIRED_PROGRESS.md:21=done('done')
+T-VLIVE-3c	apps/vault/VAULT_LIVE_PROGRESS.md:55=pending('pending') | apps/vault/audit/GRAPH_TRUST_PROGRESS.md:14=done('done')
+
+## D2. IDs in more than one primary row with the same status (duplicates)
+CHI-1	labs/gaslab/tasks/PROGRESS.md:36 | labs/gaslab/tasks/PROGRESS.md:99
+T-WIRE-1	apps/vault/audit/GRAPH_TRUST_PROGRESS.md:41 | apps/wired/WIRED_PROGRESS.md:27
+
+## F. task spec files (T-*.md under a tasks dir) whose ID is in no ledger row (any scope)
+planning/code_audit/tasks/T-PYSCN-1_evaluate_pyscn_audit_cli.md	id=T-PYSCN-1	mentioned-in-ledger-prose=True
+labs/symptomlab/tasks/T-OIL-1_oil_consumption_symptom.md	id=T-OIL-1	mentioned-in-ledger-prose=True
+labs/vinlab/tasks/T-VIN-ENG-1_engine_map_rebuild.md	id=T-VIN-ENG-1	mentioned-in-ledger-prose=False
+labs/vinlab/tasks/T-VIN-ENG-2_normalized_join_ambiguity.md	id=T-VIN-ENG-2	mentioned-in-ledger-prose=False
+labs/vinlab/tasks/T-VIN-FIX-1_brand_join_integrity.md	id=T-VIN-FIX-1	mentioned-in-ledger-prose=False
+labs/vinlab/tasks/T-VIN-FIX-2_vref_equipment_coverage.md	id=T-VIN-FIX-2	mentioned-in-ledger-prose=False
+labs/vinlab/tasks/T-VIN-FIX-3_decoder_integrity.md	id=T-VIN-FIX-3	mentioned-in-ledger-prose=True
+labs/vinlab/tasks/T-VIN-VREF-1_vref_equipment_coverage.md	id=T-VIN-VREF-1	mentioned-in-ledger-prose=False
+
+## G. live (uncommented) assignments in .agent/assignments.md and their ledger status
+.agent/assignments.md	Agy → T-V3-P4-C5B	v3/V3_PROGRESS.md:77=done
+.agent/assignments.md	Codex + Agy + Claude → T-GTA-<lab>	family id / not a single ledger row
+
+## H. status claims made in governance docs vs the ledgers
+CLAUDE.md:64	claims blocked/not done	ledger says: T-WIRE-1=done@apps/vault/audit/GRAPH_TRUST_PROGRESS.md:41,done@apps/wired/WIRED_PROGRESS.md:27; T-GV2-2=done@labs/gaslab/tasks/PROGRESS.md:52,done@apps/wired/WIRED_PROGRESS.md:21
+CLAUDE.md:65	claims runnable (pending)	ledger says: T-VLIVE-1=done@apps/vault/VAULT_LIVE_PROGRESS.md:22
+CLAUDE.md:67	claims pending	ledger says: T-V7-1=done@apps/wired/v7_tasks/V7_PROGRESS.md:72
+CLAUDE.md:68	claims pending	ledger says: T-SHIP-1=done@apps/wired/ship_tasks/SHIP_PROGRESS.md:16; T-SHIP-3=done@apps/wired/ship_tasks/SHIP_PROGRESS.md:18; T-SHIP-4=done@apps/wired/ship_tasks/SHIP_PROGRESS.md:19; T-SHIP-UI-1=done@apps/wired/ship_tasks/SHIP_PROGRESS.md:20
+ROADMAP.md:70	claims deferred	ledger says: T-GV2-2=done@labs/gaslab/tasks/PROGRESS.md:52,done@apps/wired/WIRED_PROGRESS.md:21
+labs/comlab/tasks/PROGRESS.md:5	claims pending	ledger says: T-COMV2-LAMBDAPROJ-1=done@labs/comlab/tasks/PROGRESS.md:148
+labs/comlab/tasks/PROGRESS.md:66	claims pending	ledger says: see note
+labs/comlab/registry/docs/REGISTRY_PROGRESS.md:95	claims pending (guard still 68)	ledger says: see note
+  REG-V2-CHEMSIG-34 in registry ledger: done
+  apps/wired/wired/registry_guard.py _EXPECTED_RULE_COUNT = 73
+
+## E. non-canonical status cells (primary)
+labs/dnalab/tasks/PROGRESS.md:19	T-DNA-9	'superseded → T-OIL-1'
+labs/gaslab/tasks/PROGRESS.md:37	T-GV2-6	'decomposed'
+labs/gaslab/tasks/PROGRESS.md:93	FU-1	'open — register in registry ledger at Stage 4'
+labs/gaslab/tasks/PROGRESS.md:94	FU-2	'closed 2026-07-07 — synced §17 30→34 in both live copies (T-SHIP-4)'
+labs/gaslab/tasks/PROGRESS.md:95	FU-3	'folded into T-GV2-1 verification'
+labs/gaslab/tasks/PROGRESS.md:97	FU-4	'open — wired touch per task; COMLab side Stage 4'
+apps/wired/v7_tasks/V7_PROGRESS.md:103	F-V7-CODE-NS	'investigated → T-V7-7: Option B (oracle re-pin to short) recommended, '
+apps/wired/v7_tasks/V7_PROGRESS.md:104	F-V7-CONF-SAT	'investigated → T-V7-8: Option B (oracle reband to the live scorer's pe'
+apps/wired/v7_tasks/V7_PROGRESS.md:106	F-V7-ECU-ROUTE	'open'
+apps/wired/v7_tasks/V7_PROGRESS.md:107	F-V7-DEAD-ROUTE	'open'
+apps/wired/v7_tasks/V7_PROGRESS.md:108	F-V7-SENSOR-MISS	'open'
+apps/wired/v7_tasks/V7_PROGRESS.md:109	F-V7-PGAP	'open'
+apps/wired/v7_tasks/V7_PROGRESS.md:110	F-V7-FATALGATE	'open'
+apps/wired/v7_tasks/V7_PROGRESS.md:111	F-V7-STATE	'open'
+apps/wired/v7_tasks/V7_PROGRESS.md:112	F-V7-DEMOTE	'open'
+apps/wired/v7_tasks/V7_PROGRESS.md:113	F-V7-V1V2	'reported → [[V7_V1_BASELINE_2026-06-30]]: baseline established; tune-o'
+apps/wired/v7_tasks/V7_PROGRESS.md:114	F-V7-V1-DTC-DEREF	'open — surfaced, NOT patched (OUT of T-V7-9 scope); engine fix = its o'

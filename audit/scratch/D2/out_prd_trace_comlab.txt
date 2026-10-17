@@ -1,0 +1,95 @@
+PRD requirement IDs found in labs/comlab/docs/COMLab_PRD.md: 0 []
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:76 [1.2 Strategic value] - **Workshop-grade diagnosis without OE-tool capital.** Standard gas
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:80 [1.2 Strategic value] - **No live data stream required.** Entirely manual input. Works in
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:84 [1.2 Strategic value] - **Domain-expert maintainability.** Diagnostic rules and the
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:88 [1.2 Strategic value] - **Petrol-first focus.** Diesel and cold-start hybrid logic are
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:94 [1.3 What COMLab is *not*] - It is not a real-time live-data logger. There is no streaming, no
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:96 [1.3 What COMLab is *not*] - It is not a parts catalogue. The Fault-Atlas KG names component
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:99 [1.3 What COMLab is *not*] - It is not a repair-cost estimator. v1 does not surface labour hours
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:101 [1.3 What COMLab is *not*] - It is not an AI free-text symptom interpreter. Symptom selection is
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:221 [4.1 Producer-lab gates (run on] keys=['engine_rpm', 'rated_rpm'] | DNA-relative RPM ceiling | OBDLab | `engine_rpm > rated_rpm` from DNA | Inline error on 
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:222 [4.1 Producer-lab gates (run on] | Decimal-misplacement sentinel | OBDLab / GASLab | Value > 10× plausible bound | Inline error on the relevant
+NO-DESIGN NO-BDD labs/comlab/docs/COMLab_PRD.md:223 [4.1 Producer-lab gates (run on] keys=['70 °C', '75 °C', 'coolant_temp_c', '62 °C', 'ENGINE_COLD'] | Thermal gate (ECT < 70 °C for trim analytics; ECT < 75 °C for engine-state bucket) | OBD
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:224 [4.1 Producer-lab gates (run on] keys=['gas_co', 'gas_co2', 'gas_o2', '18%'] | Gas sample validity | GASLab | `gas_co + gas_co2 + gas_o2` outside 14–18% | Inline error
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:225 [4.1 Producer-lab gates (run on] keys=['number_of_banks'] | Single-bank Bank 2 enforcement | OBDLab | Bank 2 trim values entered when `number_of_ban
+NO-DESIGN NO-BDD labs/comlab/docs/COMLab_PRD.md:226 [4.1 Producer-lab gates (run on] keys=['BCPU'] | DTC format | DTCLab | DTC string fails `^[BCPU][0-3][0-9]{3}$` | Inline error on Screen 
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:232 [4.2 COMLab gates (run in Stage] keys=['ERR', 'CONTRACT'] | Schema/contract drift | Pydantic ValidationError | `ERR-CONTRACT-001` (regex/range) or `
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:233 [4.2 COMLab gates (run in Stage] keys=['vehicle_dna', 'schema_version', 'MIN_SUPPORTED_SCHEMA_VERSION', 'ERR', 'ABORT'] | Schema version mismatch | `vehicle_dna.schema_version` older than `MIN_SUPPORTED_SCHEMA_
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:234 [4.2 COMLab gates (run in Stage] keys=['gas_lab_output', 'sample_validity', 'VALID', 'ERR', 'ABORT'] | Sample validity (final guard) | `gas_lab_output.sample_validity != "VALID"` (and GASLab 
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:235 [4.2 COMLab gates (run in Stage] keys=['obd_live_data', 'engine_warmed', 'ERR', 'ABORT'] | Engine warmed (final guard) | `obd_live_data.engine_warmed == false` (and OBDLab not sup
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:236 [4.2 COMLab gates (run in Stage] keys=['vehicle_dna', 'vin_dna', 'confidence', 'ERR', 'ABORT'] | VIN unresolvable | `vehicle_dna.vin_dna.confidence == "NONE"` | `ERR-ABORT-004` | "Vehic
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:266 [5.1 Verdict header] keys=['display_headline'] - Plain-language `display_headline` (one sentence, ≤ 140 chars).
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:267 [5.1 Verdict header] keys=['fault_code'] - `fault_code` (small, monospace, for service-record cross-reference).
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:268 [5.1 Verdict header] keys=['fault_name'] - `fault_name` (snake_case, for cross-reference to KG and registry).
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:269 [5.1 Verdict header] keys=['fault_family', 'rich_mixture', 'misfire'] - `fault_family` chip (small badge: `rich_mixture`, `misfire`, etc.).
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:270 [5.1 Verdict header] keys=['confidence_score'] - `confidence_score` (0.00–1.00), with a copy-friendly band label:
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:272 [5.1 Verdict header] keys=['severity_level'] - `severity_level` ribbon at the top:
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:273 [5.1 Verdict header] keys=['CRITICAL_IMMEDIATE_STOP'] - `CRITICAL_IMMEDIATE_STOP` → red, with "do not drive" copy.
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:274 [5.1 Verdict header] keys=['WARNING_DEGRADED_PERFORMANCE'] - `WARNING_DEGRADED_PERFORMANCE` → amber, with "safe to drive,
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:276 [5.1 Verdict header] keys=['OPTIMAL_HEALTH'] - `OPTIMAL_HEALTH` → green, with "no fault detected" copy.
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:282 [5.2 Fault enrichment block] keys=['component_group'] - `component_group` as a section heading (e.g. "Engine Cylinder Head
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:284 [5.2 Fault enrichment block] keys=['impacted_subsystems'] - `impacted_subsystems` as a badge list under the heading.
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:285 [5.2 Fault enrichment block] keys=['mechanical_failure_mode', '3 s'] - `mechanical_failure_mode` as a 1–3 sentence explanation paragraph.
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:286 [5.2 Fault enrichment block] keys=['ui_remediation_steps'] - `ui_remediation_steps` as a numbered list (1..8 items). The wizard
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:294 [5.3 Differential siblings pane] - Up to **3 runtime-derived** runner-ups (the next-highest scoring
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:296 [5.3 Differential siblings pane] - Up to **2 editor-curated** "commonly confused with" siblings from
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:300 [5.3 Differential siblings pane] - Click-through on any sibling shows that fault's KG enrichment block
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:307 [5.4 Performance analytics] keys=['kinetic_power_loss_pct', '100 %'] - `kinetic_power_loss_pct` as a circular gauge or bar (0–100 %).
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:308 [5.4 Performance analytics] keys=['catalyst_efficiency_index_pct'] - `catalyst_efficiency_index_pct` as a second gauge, shown only when
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:311 [5.4 Performance analytics] keys=['severity_level'] - `severity_level` — duplicated as the result-page top ribbon; here as
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:322 [5.5 User-input echo audit (Q4 ] - Collapsible expander, collapsed by default ("Show what I typed →").
+NO-DESIGN NO-BDD labs/comlab/docs/COMLab_PRD.md:323 [5.5 User-input echo audit (Q4 ] keys=['field_label'] - When expanded: a two-column table of `field_label : value` grouped by
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:326 [5.5 User-input echo audit (Q4 ] - Visual cue when an entered value materially influenced the verdict
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:330 [5.5 User-input echo audit (Q4 ] - A "Was this value wrong?" link next to each row, which jumps back to
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:339 [5.6 Lab routing directive pane] keys=['suppress_gaslab'] - `suppress_gaslab: true` → "Gas analyser inputs skipped because the
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:341 [5.6 Lab routing directive pane] keys=['suppress_obd_live_pids'] - `suppress_obd_live_pids: true` → "Live OBD PIDs skipped because the
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:343 [5.6 Lab routing directive pane] keys=['suppress_mode06_ui'] - `suppress_mode06_ui: true` → "Mode $06 monitor section skipped —
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:345 [5.6 Lab routing directive pane] keys=['cold_start_mode'] - `cold_start_mode: true` → "Cold-start hypothesis was active — some
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:354 [5.7 Execution meta footer] keys=['resolved_horizon', 'HORIZON_LEGACY', '_ADAPTIVE', '_MODERN'] - `resolved_horizon` (`HORIZON_LEGACY` / `_ADAPTIVE` / `_MODERN`) and
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:356 [5.7 Execution meta footer] keys=['degradation_mode', 'FULL_FUSION', 'GAS_DOMINANT'] - `degradation_mode` (`FULL_FUSION` / `GAS_DOMINANT`).
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:357 [5.7 Execution meta footer] keys=['processing_confidence_rating', 'HIGH_ASSURANCE'] - `processing_confidence_rating` (`HIGH_ASSURANCE` /
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:359 [5.7 Execution meta footer] keys=['vin_confidence', 'PARTIAL'] - `vin_confidence` (`HIGH` / `PARTIAL` / `NONE`).
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:360 [5.7 Execution meta footer] keys=['session_id'] - `session_id` (copy button next to it for support tickets).
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:361 [5.7 Execution meta footer] keys=['schema_version'] - `schema_version`.
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:367 [5.8 Result-page layout when a ] keys=['error_code', 'ui_remediation_message'] - Top: red banner with the `error_code` and `ui_remediation_message`.
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:368 [5.8 Result-page layout when a ] - Below: the user-input echo audit (collapsed by default) — so the
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:370 [5.8 Result-page layout when a ] - Below: a single "Edit and resubmit" button that returns the user to
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:372 [5.8 Result-page layout when a ] - No verdict, no enrichment, no analytics, no runner-ups — because
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:381 [6.1 Error message principles] - Every COMLab error message names the **specific failed condition** and
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:384 [6.1 Error message principles] - Error codes are visible (small monospace) but the human-readable
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:386 [6.1 Error message principles] - If the user fixes the upstream cause and resubmits, the session
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:396 [6.2 Error code → user-facing c] keys=['ERR', 'CONTRACT'] | `ERR-CONTRACT-001` | Internal payload mismatch. | Resubmit. If it persists, the wizard a
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:397 [6.2 Error code → user-facing c] keys=['ERR', 'CONTRACT'] | `ERR-CONTRACT-002` | Vehicle profile inconsistency. | Resubmit. If it persists, contact 
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:398 [6.2 Error code → user-facing c] keys=['ERR', 'ABORT'] | `ERR-ABORT-001` | Gas sample failed validity check. | Re-seat probe in tailpipe; ensure 
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:399 [6.2 Error code → user-facing c] keys=['ERR', 'ABORT', '70 °C'] | `ERR-ABORT-002` | Engine not at operating temperature. | Warm engine to ≥70 °C, then re-
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:400 [6.2 Error code → user-facing c] keys=['ERR', 'ABORT'] | `ERR-ABORT-004` | Vehicle could not be identified. | Verify the VIN was typed correctly.
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:401 [6.2 Error code → user-facing c] keys=['ERR', 'ABORT'] | `ERR-ABORT-005` | Client app needs updating. | Update the 4DApp client to the latest ver
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:402 [6.2 Error code → user-facing c] keys=['ERR', 'VIN', ','] | `ERR-VIN-400` | VIN format invalid. | VIN must be 17 alphanumeric characters (no `I`, `O
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:409 [6.3 Degraded modes (not errors] keys=['GAS_DOMINANT'] - **`GAS_DOMINANT` mode** — yellow info chip in the execution meta
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:412 [6.3 Degraded modes (not errors] keys=['vin_confidence', 'PARTIAL'] - **`vin_confidence == PARTIAL`** — yellow banner at the top of
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:415 [6.3 Degraded modes (not errors] keys=['processing_confidence_rating', 'LOW_CERTAINTY'] - **`processing_confidence_rating == LOW_CERTAINTY`** — overrides the
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:425 [7.1 Latency commitment to the ] keys=['300 ms'] - The wizard's "Submit" button returns a result in **under 300 ms** on
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:428 [7.1 Latency commitment to the ] keys=['1.5 s'] - A spinner appears immediately on submit; if no response by 1.5 s,
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:435 [7.2 Accessibility] - Screen 6 is fully usable with a screen reader: every section has a
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:437 [7.2 Accessibility] - Severity ribbons use both colour and icon (do not rely on colour
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:439 [7.2 Accessibility] - All text passes WCAG AA contrast at the default theme.
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:440 [7.2 Accessibility] - Keyboard navigation: every wizard field is reachable in tab order;
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:458 [8.1 Session audit trail] keys=['session_id'] - `session_id`
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:459 [8.1 Session audit trail] - timestamp
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:460 [8.1 Session audit trail] keys=['vin_confidence', 'resolved_horizon', 'degradation_mode'] - `vin_confidence`, `resolved_horizon`, `degradation_mode`
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:461 [8.1 Session audit trail] keys=['fault_id', 'OPTIMAL_HEALTH'] - `fault_id` (or `OPTIMAL_HEALTH` sentinel)
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:462 [8.1 Session audit trail] keys=['confidence_score'] - `confidence_score`
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:463 [8.1 Session audit trail] keys=['error_code'] - which fatal gate fired, if any (`error_code`)
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:464 [8.1 Session audit trail] keys=['global_fault_registry'] - which rules in `global_fault_registry.json` evaluated truthy (rule
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:497 [8.4 Observability surfaces] keys=['fault_family'] - session count by `fault_family` per day
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:498 [8.4 Observability surfaces] keys=['error_code'] - fatal-abort rate per day, broken down by `error_code`
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:499 [8.4 Observability surfaces] keys=['degradation_mode'] - `degradation_mode` distribution (catch a sudden GAS_DOMINANT spike
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:501 [8.4 Observability surfaces] - 95th-percentile latency
+UNKEYED   labs/comlab/docs/COMLab_PRD.md:502 [8.4 Observability surfaces] - top-10 fired registry rules
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:528 [10. Success metrics (how we kn] keys=['5 %'] - **Fatal abort rate < 5 %** of submitted sessions in production.
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:530 [10. Success metrics (how we kn] keys=['vin_confidence', '2 %'] - **`vin_confidence == NONE` rate < 2 %** of submitted sessions.
+design-ok bdd-ok labs/comlab/docs/COMLab_PRD.md:532 [10. Success metrics (how we kn] keys=['degradation_mode', 'FULL_FUSION', '70 %'] - **`degradation_mode == FULL_FUSION` rate > 70 %** of submitted
+NO-DESIGN NO-BDD labs/comlab/docs/COMLab_PRD.md:536 [10. Success metrics (how we kn] keys=['500 ms'] - **95th-percentile end-to-end latency < 500 ms** wizard-submit to
+design-ok NO-BDD labs/comlab/docs/COMLab_PRD.md:539 [10. Success metrics (how we kn] keys=['80 %'] - **Verdict-vs-mechanic-truth agreement ≥ 80 %** on a curated
+
+units=92 keyed=64 no_design_home=4 no_bdd=22 unkeyed=28

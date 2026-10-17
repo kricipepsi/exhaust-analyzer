@@ -1,0 +1,470 @@
+scope	ledger	line	id	status	raw_status	task	blocked
+primary	labs/comlab/tasks/PROGRESS.md	24	T-COMV2-ECU-FUSE-1	done	done — verification + review recorded 2026-06-21	`tasks/T-COMV2-ECU-FUSE-1_ecu_perception_reality_fuse.md` (**authored 2026-06-21	`T-OBDV2-ECU-PERCEPT-1` (OBD perception, **done**) · `T-GV2-6d` (GAS reality, **
+primary	labs/comlab/tasks/PROGRESS.md	25	T-COMV2-BANK-FUSE-1	done	done — verification + review recorded 2026-06-21	`tasks/T-COMV2-BANK-FUSE-1_per_bank_asymmetry_verdict.md` (**authored 2026-06-21	`T-OBDV2-BANK-ASYM-1` (OBD per-bank, **done**)
+primary	labs/comlab/tasks/PROGRESS.md	26	T-COMV2-VE-GATE-1	done	done — verification + review recorded 2026-06-21	`tasks/T-COMV2-VE-GATE-1_ve_evidence_circularity_gate.md` (**authored 2026-06-21	`T-OBDV2-2` (OBD already emits the signals, **done**)
+primary	labs/comlab/tasks/PROGRESS.md	27	T-COMV2-O2OFFSET-1	done	done — verification + review recorded 2026-06-21	`tasks/T-COMV2-O2OFFSET-1_wideband_offset_confirm.md` (**authored 2026-06-21**)	`T-OBDV2-4` (OBD `WIDEBAND_OFFSET_CANDIDATE`, **done**) · `T-GV2-6d`/`T-GV2-3` (
+primary	labs/comlab/tasks/PROGRESS.md	28	T-COMV2-NOSTART-1	done	done — verification + review recorded 2026-06-21	`tasks/T-COMV2-NOSTART-1_no_start_branch.md` (**authored 2026-06-21**)	`T-DTCV2-NOSTART-1` (+`-FIX`, DTCLab `MONITOR_ABORTED` + `ff_fuel_spark_cut_at_c
+primary	labs/comlab/tasks/PROGRESS.md	29	T-COMV2-FUELSYS-GATE-1	done	done — verification + review recorded 2026-06-21	`tasks/T-COMV2-FUELSYS-GATE-1_fuel_system_status_gate.md` (**authored 2026-06-21	`T-OBDV2-6` (OBD `fuel_system_status` field, **done**)
+primary	labs/comlab/tasks/PROGRESS.md	30	T-COMV2-ECU-HW-1	done	done — verification + review recorded 2026-06-21	`tasks/T-COMV2-ECU-HW-1_ecu_hardware_lie_checker.md` (**authored 2026-06-21**)	`T-OBDV2-7` (OBD `intake_air_temp_c` + `throttle_pos_pct`, **done**) · `T-OBDV2-
+primary	labs/comlab/tasks/PROGRESS.md	31	T-COMV2-VPWR-GATE-1	done	done — verification + review recorded 2026-06-21	`tasks/T-COMV2-VPWR-GATE-1_rail_health_precheck.md` (**authored 2026-06-21**)	`T-OBDV2-8` (OBD `control_module_voltage_v`, **done**)
+primary	labs/comlab/tasks/PROGRESS.md	32	T-COMV2-MISFIRE-LOC-1	done	done — verification + review recorded 2026-06-21	`tasks/T-COMV2-MISFIRE-LOC-1_misfire_localiser_gate.md` (**authored 2026-06-21**	`T-OBDV2-9` (OBD misfire counts, **done**)
+primary	labs/comlab/tasks/PROGRESS.md	33	T-COMV2-MAF-LIN-1	done	done — verification + review recorded 2026-06-21	`tasks/T-COMV2-MAF-LIN-1_maf_linearity_ladder.md` (**authored 2026-06-21**)	`T-OBDV2-10` (OBD MAF linearity, **done**)
+primary	labs/comlab/tasks/PROGRESS.md	34	T-COMV2-LTFT-CELL-1	done	done — verification + review recorded 2026-06-21	`tasks/T-COMV2-LTFT-CELL-1_load_cell_classification.md` (**authored 2026-06-21**	`T-OBDV2-11` (OBD load-cell vector, **done**)
+primary	labs/comlab/tasks/PROGRESS.md	35	T-COMV2-CTXMOD-1	done	done — verification + review recorded 2026-06-21	`tasks/T-COMV2-CTXMOD-1_symptom_prior_context_modifier.md` (**authored 2026-06-2	`T-DNA-2` (symptomlab `load_state`, **done**)
+primary	labs/comlab/tasks/PROGRESS.md	36	T-COMV2-DELTA-1	done	done — 1A–1D closed 2026-06-20; Gate-1 still gates live value	`tasks/T-COMV2-DELTA-1_cross_lab_delta_module.md` (**authored 2026-06-19 · split	two-point capture (Gate-1, product) + emitter two-point emission (not yet)
+primary	labs/comlab/tasks/PROGRESS.md	37	T-COMV2-DELTA-1A	done	done — verification + review recorded 2026-06-20	`tasks/T-COMV2-DELTA-1A_schema_foundations.md` (**authored 2026-06-20**)	— (first in chain)
+primary	labs/comlab/tasks/PROGRESS.md	38	T-COMV2-DELTA-1B	done	done — 23-test engine suite green 2026-06-20	`tasks/T-COMV2-DELTA-1B_engine_models_and_gates.md` (**authored 2026-06-20**)	1A schema models
+primary	labs/comlab/tasks/PROGRESS.md	39	T-COMV2-DELTA-1C	done	done — 23-test engine suite green 2026-06-20	`tasks/T-COMV2-DELTA-1C_engine_profiles.md` (**authored 2026-06-20**)	1B engine skeleton
+primary	labs/comlab/tasks/PROGRESS.md	40	T-COMV2-DELTA-1D	done	done — consumer/read + e2e gates green 2026-06-20	`tasks/T-COMV2-DELTA-1D_router_wiring.md` (**authored 2026-06-20**)	working engine (1C) + request field (1A)
+primary	labs/comlab/tasks/PROGRESS.md	41	T-REG-REVIVE-1	done	done — verification + review recorded 2026-06-21	`tasks/T-REG-REVIVE-1_registry_revival_cleanup.md` (**authored 2026-06-21**)	—
+primary	labs/comlab/tasks/PROGRESS.md	42	REG-V2-AUTHOR-ignition	done	done — verification + review recorded 2026-06-21	`tasks/REG-V2-AUTHOR-ignition_fault.md` (**authored 2026-06-21**)	`T-REG-REVIVE-1` deletes the empty stub first
+primary	labs/comlab/tasks/PROGRESS.md	43	T-COMV2-DELTA-2	done	done — verification + review recorded 2026-06-21; Gate-1 still gates live value	`tasks/T-COMV2-DELTA-2_v2_registry_delta_activation.md` (**authored 2026-06-20**	`T-COMV2-DELTA-1D` (**done**) + `T-REG-REVIVE-1` (**done**); Gate-1 open (live v
+primary	labs/comlab/tasks/PROGRESS.md	55	T-COMTST-1	done	done	`T-COMTST-1_descriptor_verdict_fixtures.md`	—
+primary	labs/comlab/tasks/PROGRESS.md	56	T-COMTST-2	done	done	`T-COMTST-2_csv_characterization_net.md`	`T-COMTST-1`
+primary	labs/comlab/tasks/PROGRESS.md	57	T-COMTST-3	done	done	`T-COMTST-3_generative_combinatorial_fuzz.md`	`T-COMTST-1`
+primary	labs/comlab/tasks/PROGRESS.md	58	T-COMTST-4	done	done	`T-COMTST-4_regression_golden_pin.md`	`T-COMTST-2`
+primary	labs/comlab/tasks/PROGRESS.md	66	T-GV2-2	pending	specs authored + activated 2026-06-21 — T-GV2-2 pending (gaslab ledger) + REG-V2		
+primary	labs/comlab/tasks/PROGRESS.md	67	FU-4	pending	spec authored 2026-06-21 → T-COMV2-LAMBDAPROJ-1 (pending, closeout pack below)		
+primary	labs/comlab/tasks/PROGRESS.md	68	T-RMW-MIRROR	void	void 2026-07-07 (T-SHIP-4) — stale: the 34-value mirror is live (comlab/schemas/		
+primary	labs/comlab/tasks/PROGRESS.md	148	T-COMV2-LAMBDAPROJ-1	done	done — verification + review recorded 2026-06-21	`tasks/T-COMV2-LAMBDAPROJ-1_dna_view_lambda_reconcile.md` (**authored 2026-06-21	
+primary	labs/comlab/tasks/PROGRESS.md	149	T-COMV2-FATAL-1	done	done — verification + review recorded 2026-06-21	`tasks/T-COMV2-FATAL-1_fatal_gate_wiring.md` (**authored 2026-06-21**)	
+primary	labs/dnalab/tasks/PROGRESS.md	11	T-DNA-1	done	done		—
+primary	labs/dnalab/tasks/PROGRESS.md	12	T-DNA-2	done	done		T-DNA-1
+primary	labs/dnalab/tasks/PROGRESS.md	13	T-DNA-3	done	done		—
+primary	labs/dnalab/tasks/PROGRESS.md	14	T-DNA-4	done	done		—
+primary	labs/dnalab/tasks/PROGRESS.md	15	T-DNA-5	done	done		—
+primary	labs/dnalab/tasks/PROGRESS.md	16	T-DNA-6	done	done		—
+primary	labs/dnalab/tasks/PROGRESS.md	17	T-DNA-7	done	done		T-DNA-1, T-DNA-2, T-DNA-3, T-DNA-4, T-DNA-6
+primary	labs/dnalab/tasks/PROGRESS.md	18	T-DNA-8	done	done		—
+primary	labs/dnalab/tasks/PROGRESS.md	19	T-DNA-9	superseded	superseded → T-OIL-1		T-DNA-8
+primary	labs/dnalab/tasks/PROGRESS.md	38	T-DNA-TH-1	done	done		—
+primary	labs/dnalab/tasks/PROGRESS.md	39	T-DNA-TH-2	done	done		—
+primary	labs/dnalab/tasks/PROGRESS.md	40	T-DNA-TH-3	done	done		—
+primary	labs/dnalab/tasks/PROGRESS.md	54	T-DNA-10	done	done		—
+primary	labs/dnalab/tasks/PROGRESS.md	55	T-DNA-11	done	done		—
+primary	labs/dnalab/tasks/PROGRESS.md	56	T-DNA-12	done	done		—
+primary	labs/dnalab/tasks/PROGRESS.md	57	T-DNA-13	done	done		—
+primary	labs/dtclab/tasks/PROGRESS.md	11	T-DTCV2-NOSTART-1	done	done	`T-DTCV2-NOSTART-1_mode06_monitor_aborted_emit.md`	`progress_notes/T-DTCV2-NOSTART-1.md`
+primary	labs/dtclab/tasks/PROGRESS.md	12	T-DTCV2-NOSTART-1-FIX	done	done	`T-DTCV2-NOSTART-1-FIX_freeze_frame_schema_field.md`	—
+primary	labs/gaslab/tasks/PROGRESS.md	32	T-GV2-1	done	done	`labs/gaslab/tasks/T-GV2-1_chemsig_gaslab_enum_reconcile.md`	—
+primary	labs/gaslab/tasks/PROGRESS.md	33	T-GV2-3	done	done	`labs/gaslab/tasks/T-GV2-3_inout_contract_reconcile.md`	T-GV2-1
+primary	labs/gaslab/tasks/PROGRESS.md	34	T-GV2-4	done	done	`labs/gaslab/tasks/T-GV2-4_dual_rpm_input_and_separation.md`	T-GV2-3
+primary	labs/gaslab/tasks/PROGRESS.md	35	T-GV2-5	done	done	`labs/gaslab/tasks/T-GV2-5_catalyst_dual_idle.md`	T-GV2-4
+primary	labs/gaslab/tasks/PROGRESS.md	36	CHI-1	done	done	`labs/gaslab/tasks/CHI-1_wire_co_high_idle.md`	—
+primary	labs/gaslab/tasks/PROGRESS.md	37	T-GV2-6	?	decomposed	`labs/gaslab/tasks/T-GV2-6_OVERVIEW.md`	T-GV2-4 (via CHI-1)
+primary	labs/gaslab/tasks/PROGRESS.md	38	T-GV2-6a	done	done	`labs/gaslab/tasks/T-GV2-6a_timing_family_rpm_differential.md`	T-GV2-4 (via CHI-1)
+primary	labs/gaslab/tasks/PROGRESS.md	39	T-GV2-6b	done	done	`labs/gaslab/tasks/T-GV2-6b_misfire_timing_precedence.md`	T-GV2-6a
+primary	labs/gaslab/tasks/PROGRESS.md	40	T-GV2-6c	done	done	`labs/gaslab/tasks/T-GV2-6c_lean_timing_separation.md`	T-GV2-6a
+primary	labs/gaslab/tasks/PROGRESS.md	41	T-GV2-6d	done	done	`labs/gaslab/tasks/TASK_SUITE_ecu_fault_diagnosis.md`	T-GV2-6a
+primary	labs/gaslab/tasks/PROGRESS.md	42	T-GV2-7	done	done	`labs/gaslab/tasks/T-GV2-7_poa_oil_mechanical_rpm_routing.md`	T-GV2-4
+primary	labs/gaslab/tasks/PROGRESS.md	43	T-GV2-8	done	done	`labs/gaslab/tasks/T-GV2-8_euro_threshold_scaling.md`	T-GV2-3
+primary	labs/gaslab/tasks/PROGRESS.md	44	T-GV2-9	done	done	`labs/gaslab/tasks/T-GV2-9_induction_type_signatures.md`	T-GV2-7
+primary	labs/gaslab/tasks/PROGRESS.md	45	T-GV2-10	done	done	`labs/gaslab/tasks/T-GV2-10_o2_sensor_bias_calibration.md`	T-GV2-3
+primary	labs/gaslab/tasks/PROGRESS.md	46	T-GV2-11	void	void	—	—
+primary	labs/gaslab/tasks/PROGRESS.md	47	T-GV2-12	done	done	`labs/gaslab/tasks/T-GV2-12_exhaust_leak_vs_sample_error.md`	T-GV2-4
+primary	labs/gaslab/tasks/PROGRESS.md	48	T-GV2-13	done	done	`labs/gaslab/tasks/T-GV2-13_mechanical_wear_fuel_trim.md`	T-GV2-12, T-GV2-7
+primary	labs/gaslab/tasks/PROGRESS.md	49	T-GV2-14	void	void	`labs/gaslab/tasks/T-GV2-14_bank_asymmetry.md`	—
+primary	labs/gaslab/tasks/PROGRESS.md	50	T-GV2-15	done	done	`labs/gaslab/tasks/T-GV2-15_cylinder_count_masking_inference.md`	—
+primary	labs/gaslab/tasks/PROGRESS.md	51	T-GV2-16	done	done	`labs/gaslab/tasks/T-GV2-16_wvt_naming_cleanup_and_generative_wiring.md`	—
+primary	labs/gaslab/tasks/PROGRESS.md	52	T-GV2-2	done	done	`labs/gaslab/tasks/T-GV2-2_chemsig_consumer_mirror_reconcile.md`	T-GV2-1 (**done**)
+primary	labs/gaslab/tasks/PROGRESS.md	53	T-GV2-KG	deferred	deferred	_optional, on instruction_	all code tasks
+primary	labs/gaslab/tasks/PROGRESS.md	54	T-MIG-4	done	done	`labs/gaslab/tasks/T-MIG-4_gaslab_code_fork.md`	—
+primary	labs/gaslab/tasks/PROGRESS.md	55	T-MIG-5	done	done	`labs/gaslab/tasks/T-MIG-5_suite_runner_sai_destale.md`	—
+primary	labs/gaslab/tasks/PROGRESS.md	91	T-XLAB-RINGS-RECONCILE-1	deferred	deferred — forward-registered (wired T-WIRE-2 dependency)		
+primary	labs/gaslab/tasks/PROGRESS.md	92	T-XLAB-PCV-VERIFY-1	deferred	deferred — forward-registered (wired T-WIRE-2 dependency)		
+primary	labs/gaslab/tasks/PROGRESS.md	93	FU-1	open	open — register in registry ledger at Stage 4		
+primary	labs/gaslab/tasks/PROGRESS.md	94	FU-2	?	closed 2026-07-07 — synced §17 30→34 in both live copies (T-SHIP-4)		
+primary	labs/gaslab/tasks/PROGRESS.md	95	FU-3	?	folded into T-GV2-1 verification		
+primary	labs/gaslab/tasks/PROGRESS.md	96	FU-CYL	done	CLOSED 2026-06-05 — T-GV2-15 done (option a; cylinder_count now read in the 05A 		
+primary	labs/gaslab/tasks/PROGRESS.md	97	FU-4	open	open — wired touch per task; COMLab side Stage 4		
+primary	labs/gaslab/tasks/PROGRESS.md	98	ABSTAIN-1	deferred	RESOLVED 2026-06-05 (option a, refined). The ECU study (STUDY_ecu_fault_gas_sign		
+primary	labs/gaslab/tasks/PROGRESS.md	99	CHI-1	done	CLOSED — T-GV2-4 flipped to done		
+primary	labs/obdlab/tasks/PROGRESS.md	27	T-OBDV2-0	done	done — revive (emitter)	`T-OBDV2-0_revive_emitter_decision.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	28	T-OBDV2-1a	done	done	`T-OBDV2-1a_pid_logset_authoring.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	29	T-OBDV2-1b	done	done	`T-OBDV2-1b_pid_logset_wiring_gate.md`	T-OBDV2-1a
+primary	labs/obdlab/tasks/PROGRESS.md	30	T-OBDV2-ECU-PERCEPT-1	done	done	`T-OBDV2-ECU-PERCEPT-1_ecu_perception_delta_channel.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	31	T-OBDV2-BANK-ASYM-1	done	done	`T-OBDV2-BANK-ASYM-1_per_bank_trim_emit.md`	— (Q2/Q6 answered)
+primary	labs/obdlab/tasks/PROGRESS.md	32	T-OBDV2-2	done	done	`T-OBDV2-2_ve_air_strategy_gate.md`	— (Q5 answered)
+primary	labs/obdlab/tasks/PROGRESS.md	33	T-OBDV2-3	done	done	`T-OBDV2-3_downstream_role_close.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	34	T-OBDV2-4	done	done	`T-OBDV2-4_wideband_offset_proposal.md`	— (Q9 answered)
+primary	labs/obdlab/tasks/PROGRESS.md	35	T-OBDV2-5	done	done	`T-OBDV2-5_mode06_nostart_proposal.md`	— (Q8 answered)
+primary	labs/obdlab/tasks/PROGRESS.md	36	T-OBDV2-6	done	done	`T-OBDV2-6_fuel_system_status_input.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	37	T-OBDV2-7	done	done	`T-OBDV2-7_iat_tps_input_pair.md`	— (run after T-OBDV2-6)
+primary	labs/obdlab/tasks/PROGRESS.md	38	T-OBDV2-8	done	done	`T-OBDV2-8_vpwr_input.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	39	T-OBDV2-9	done	done	`T-OBDV2-9_per_cylinder_misfire_counts.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	40	T-OBDV2-10	done	done	`T-OBDV2-10_maf_linearity_theoretical_airflow.md`	— (IAT/MAP present; T-OBDV2-7 done)
+primary	labs/obdlab/tasks/PROGRESS.md	41	T-OBDV2-11	done	done	`T-OBDV2-11_ltft_load_cell_vector.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	42	T-OBDV2-PURGE-1	done	done	`T-OBDV2-PURGE-1_dead_classifier_purge.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	43	T-OBDV2-PURGE-2	done	done	`T-OBDV2-PURGE-2_orphan_era_fields.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	44	T-OBDV2-PURGE-3	done	done	`T-OBDV2-PURGE-3_fixture_key_cleanup.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	45	T-KG-OBD-1	done	done	`T-KG-OBD-1_graphify_ingest_enhanced_wiki.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	46	T-KG-OBD-2-PREP	done	done	`T-KG-OBD-2-PREP_code_prep_obdlab_source.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	47	T-KG-OBD-2	done	done	`T-KG-OBD-2_graphify_ingest_code_map.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	48	T-KG-OBD-3	done	done	`T-KG-OBD-3_graphify_ingest_test_map.md`	T-TST-6, T-TST-8
+primary	labs/obdlab/tasks/PROGRESS.md	49	T-OBDV2-ARCH-1	done	done	`audit_backlog/T-OBDV2-ARCH-1_ranking_consumer_decision.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	50	T-OBDV2-FIX-1	done	done — Option B	`audit_backlog/T-OBDV2-FIX-1_physics_gate_3_dead.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	51	T-OBDV2-FIX-2	done	done	`audit_backlog/T-OBDV2-FIX-2_wideband_offset_dead.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	52	T-OBDV2-FIX-3	done	done	`audit_backlog/T-OBDV2-FIX-3_destate_orchestrator_linearity.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	53	T-OBDV2-FIX-4	done	done	`audit_backlog/T-OBDV2-FIX-4_number_of_banks_default.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	54	T-OBDV2-FIX-5	done	done	`audit_backlog/T-OBDV2-FIX-5_exception_taxonomy.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	55	T-OBDV2-FIX-6	done	done	`audit_backlog/T-OBDV2-FIX-6_dead_code_removal.md`	(after ARCH-1 if touching ranking)
+primary	labs/obdlab/tasks/PROGRESS.md	56	T-OBDV2-ARCH-2	done	done	`audit_backlog/T-OBDV2-ARCH-2_orphan_members_proposal_or_prune.md`	—
+primary	labs/obdlab/tasks/PROGRESS.md	57	T-OBDV2-FIX-7	done	done	`audit_backlog/T-OBDV2-FIX-7_code_hygiene_bundle.md`	—
+primary	labs/semantic/tasks/PROGRESS.md	19	T-SEM-1	done	done	`T-SEM-1_iso_primary_citations.md`	—
+primary	labs/semantic/tasks/PROGRESS.md	20	T-SEM-2	done	done	`T-SEM-2_proposals_registry_taxonomy_backbone.md`	T-SEM-1
+primary	labs/semantic/tasks/PROGRESS.md	21	T-SEM-3	done	done	`T-SEM-3_register_connected_eps.md`	T-SEM-2
+primary	labs/semantic/tasks/PROGRESS.md	22	T-SEM-4	done	done	`T-SEM-4_conformance_extensibility_gate.md`	T-SEM-1, T-SEM-3
+primary	labs/semantic/tasks/PROGRESS.md	23	T-SEM-5	done	done	`T-SEM-5_obd_vocab_reconcile_to_code.md`	—
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	22	T-VLIVE-1	done	done	`T-VLIVE-1_pilot_obdlab_live.md`	—
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	23	T-VLIVE-2	done	done	`T-VLIVE-2_frame_gaslab_live.md`	T-VLIVE-1
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	24	T-VLIVE-3	done	done	`T-VLIVE-3_frame_dtclab_live.md`	T-VLIVE-1,T-VLIVE-3b
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	25	T-VLIVE-3b	done	done	`T-VLIVE-3b_reconcile_dtclab_wired_map.md`	—
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	26	T-VLIVE-4	done	done	`T-VLIVE-4_frame_dnalab_live.md`	T-VLIVE-1,T-VLIVE-4b
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	27	T-VLIVE-4b	done	done	`T-VLIVE-4b_reconcile_dnalab_comlab_map.md`	—
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	28	T-VLIVE-5	done	done	`T-VLIVE-5_frame_vinlab_live.md`	T-VLIVE-1,T-VLIVE-5b
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	29	T-VLIVE-5b	done	done	`T-VLIVE-5b_reconcile_vinlab_map.md`	—
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	30	T-VLIVE-6	done	done	`T-VLIVE-6_frame_symptomlab_live.md`	T-VLIVE-1
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	31	T-VLIVE-8	done	done	`T-VLIVE-8_frame_comlab_live.md`	T-VLIVE-1
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	32	T-VLIVE-9	done	done	`T-VLIVE-9_frame_registry_schema_audit.md`	T-VLIVE-1
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	33	T-VLIVE-10	done	done	`T-VLIVE-10_frame_registry_corpus_cases.md`	T-VLIVE-9
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	34	T-VLIVE-11	done	done	`T-VLIVE-11_frame_vocabulary_live.md`	T-VLIVE-1
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	35	T-VLIVE-7	done	done	`T-VLIVE-7_verify_bases_provenance.md`	T-VLIVE-2,T-VLIVE-3,T-VLIVE-4,T-VLIVE-5,T-VLIVE-6,T-VLIVE-8,T-VLIVE-9,T-VLIVE-10
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	54	GRAPH-TRUST	pending	pending		
+primary	apps/vault/VAULT_LIVE_PROGRESS.md	55	T-VLIVE-3c	pending	pending		
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	14	T-VLIVE-3c	done	done	`T-VLIVE-3c_reconcile_dtclab_drift.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	15	T-GTA-COM·codex	done	done	`T-GTA-METHOD.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	16	T-GTA-COM·agy	done	done	`T-GTA-METHOD.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	17	T-GTA-COM·claude	done	done	`T-GTA-METHOD.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	18	T-GTA-UNION-COM	done	done	`reports/comlab__UNION.md`	T-GTA-COM·codex, T-GTA-COM·agy, T-GTA-COM·claude
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	19	T-GTA-RECONCILE-COM	done	done	`T-GTA-RECONCILE-COM_reconcile_comlab_drift.md`	T-GTA-UNION-COM
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	21	T-GTA-GAS·codex	done	done	`T-GTA-METHOD.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	22	T-GTA-GAS·agy	done	done	`T-GTA-METHOD.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	23	T-GTA-GAS·claude	done	done	`T-GTA-METHOD.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	24	T-GTA-UNION-GAS	done	done	`reports/gaslab__UNION.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	25	T-GTA-OBD·codex	done	done	`T-GTA-METHOD.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	26	T-GTA-OBD·agy	done	done	`T-GTA-METHOD.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	27	T-GTA-OBD·claude	done	done	`T-GTA-METHOD.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	28	T-GTA-UNION-OBD	done	done	`reports/obdlab__UNION.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	29	T-GTA-DNA·codex	done	done	`T-GTA-METHOD.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	30	T-GTA-DNA·agy	done	done	`T-GTA-METHOD.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	31	T-GTA-DNA·claude	done	done	`T-GTA-METHOD.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	32	T-GTA-UNION-DNA	done	done	`reports/dnalab__UNION.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	33	T-GTA-VIN·codex	done	done	`T-GTA-METHOD.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	34	T-GTA-VIN·agy	done	done	`T-GTA-METHOD.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	35	T-GTA-VIN·claude	done	done	`T-GTA-METHOD.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	36	T-GTA-UNION-VIN	done	done	`reports/vinlab__UNION.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	37	T-GTA-RECONCILE-GAS	done	done	`T-GTA-RECONCILE-GAS_reconcile_gaslab_drift.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	38	T-GTA-RECONCILE-OBD	done	done	`T-GTA-RECONCILE-OBD_reconcile_obdlab_drift.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	39	T-GTA-RECONCILE-DNA	done	done	`T-GTA-RECONCILE-DNA_reconcile_dnalab_drift.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	40	T-GTA-RECONCILE-VIN	done	done	`T-GTA-RECONCILE-VIN_reconcile_vinlab_drift.md`	—
+primary	apps/vault/audit/GRAPH_TRUST_PROGRESS.md	41	T-WIRE-1	done	done	`apps/wired/wired_tasks/T-WIRE-1_compose_labs_comlab.md`	T-GTA-RECONCILE-GAS, T-GTA-RECONCILE-OBD, T-GTA-RECONCILE-DNA, T-GTA-RECONCILE-V
+primary	apps/wired/WIRED_PROGRESS.md	21	T-GV2-2	done	done	`labs/gaslab/tasks/T-GV2-2_chemsig_consumer_mirror_reconcile.md`	—
+primary	apps/wired/WIRED_PROGRESS.md	22	T-PREP-WIRE-1	done	done	`wiring_prep_tasks/T-PREP-WIRE-1_rings_pcv_chemistry_triage.md`	—
+primary	apps/wired/WIRED_PROGRESS.md	27	T-WIRE-1	done	done	`T-WIRE-1_compose_labs_comlab.md`	T-GV2-2 (**done**)
+primary	apps/wired/WIRED_PROGRESS.md	28	T-WIRE-2	done	done	`T-WIRE-2_oil_case_runner.md`	T-WIRE-1 (**done**)
+primary	apps/wired/WIRED_PROGRESS.md	29	T-WIRE-3	done	done	`T-WIRE-3_otel_span_tracing.md`	T-WIRE-1 (**done**)
+primary	apps/wired/WIRED_PROGRESS.md	30	T-WIRE-4	done	done	`T-WIRE-4_fatal_gate_passthrough.md`	T-WIRE-2 (**done**)
+primary	apps/wired/fl_tasks/FL_PROGRESS.md	32	T-FL-1	done	done	`T-FL-1_lock_true_baseline.md`	—
+primary	apps/wired/fl_tasks/FL_PROGRESS.md	33	T-FL-2	done	done	`T-FL-2_capture_upstream_evidence.md`	—
+primary	apps/wired/fl_tasks/FL_PROGRESS.md	34	T-FL-3	done	done	`T-FL-3_classify_failure_modes.md`	T-V7-6, T-FL-2
+primary	apps/wired/fl_tasks/FL_PROGRESS.md	35	T-FL-4	done	done	`T-FL-4_v3_scoreboard.md`	T-FL-1, T-FL-3
+primary	apps/wired/fl_tasks/FL_PROGRESS.md	54	FL-V3-ORACLE-MW-MISFIRE	pending	pending-for-v3		
+primary	apps/wired/ship_tasks/SHIP_PROGRESS.md	16	T-SHIP-1	done	done	`T-SHIP-1_full_verification_sweep.md`	—
+primary	apps/wired/ship_tasks/SHIP_PROGRESS.md	17	T-SHIP-2	done	done	`T-SHIP-2_scoreboard_synthetic_split.md`	T-SHIP-1 (**done**)
+primary	apps/wired/ship_tasks/SHIP_PROGRESS.md	18	T-SHIP-3	done	done	`T-SHIP-3_vin_blank_brand_recovery.md`	—
+primary	apps/wired/ship_tasks/SHIP_PROGRESS.md	19	T-SHIP-4	done	done	`T-SHIP-4_ledger_hygiene_disposition.md`	—
+primary	apps/wired/ship_tasks/SHIP_PROGRESS.md	20	T-SHIP-UI-1	done	done	`T-SHIP-UI-1_ui_build_contract.md`	—
+primary	apps/wired/ship_tasks/SHIP_PROGRESS.md	21	T-SHIP-UI-2	done	done	`T-SHIP-UI-2_build_streamlit_ui.md`	T-SHIP-UI-1
+primary	apps/wired/ship_tasks/SHIP_PROGRESS.md	22	T-SHIP-5	done	done	`T-SHIP-5_owner_commit_delegated.md`	T-SHIP-1 (**done**)
+primary	apps/wired/ship_tasks/SHIP_PROGRESS.md	23	T-SHIP-UI-3	done	done	`T-SHIP-UI-3_per_field_help_tooltips.md`	T-SHIP-UI-2 (**done**)
+primary	apps/wired/ship_tasks/SHIP_PROGRESS.md	24	T-SHIP-6	done	done	`T-SHIP-6_final_full_suite_pre_push.md`	—
+primary	apps/wired/ship_tasks/SHIP_PROGRESS.md	25	T-SHIP-7	done	done	`T-SHIP-7_lab_doc_drift_audit.md`	—
+primary	apps/wired/ship_tasks/SHIP_PROGRESS.md	26	T-SHIP-8	done	done	`T-SHIP-8_lab_doc_sync.md`	T-SHIP-7 (**done**)
+primary	apps/wired/test_tasks/TEST_PROGRESS.md	25	T-WIRE-1..4	done	done		
+primary	apps/wired/test_tasks/TEST_PROGRESS.md	33	T-WTEST-1	done	done	`T-WTEST-1_full_suite_green_baseline.md`	—
+primary	apps/wired/test_tasks/TEST_PROGRESS.md	34	T-WTEST-2	done	done	`T-WTEST-2_pyscn_audit_wired.md`	T-WTEST-1 (**done**)
+primary	apps/wired/test_tasks/TEST_PROGRESS.md	35	T-WTEST-3	done	done	`T-WTEST-3_native_jaeger_env_profile.md`	T-WTEST-1 (**done**)
+primary	apps/wired/test_tasks/TEST_PROGRESS.md	36	T-WTEST-4	done	done	`T-WTEST-4_otel_run_spans_to_jaeger.md`	T-WTEST-3 (**done**)
+primary	apps/wired/test_tasks/TEST_PROGRESS.md	37	T-WTEST-5	done	done	`T-WTEST-5_trace_extract_and_report.md`	T-WTEST-4 (**done**)
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	72	T-V7-1	done	done	`T-V7-1_library_research_and_viability.md`	—
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	73	T-V7-2	done	done	`T-V7-2_build_v7_csv.md`	T-V7-1
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	74	T-V7-3	done	done	`T-V7-3_rederive_oracle.md`	T-V7-2
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	75	T-V7-4	done	done	`T-V7-4_driver_and_multidim_scorer.md`	T-V7-3
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	76	T-V7-5	done	done	`T-V7-5_run_coverage_accuracy_report.md`	T-V7-4
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	77	T-V7-6	done	done	`T-V7-6_jaeger_full_corpus_trace.md`	—
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	78	T-V7-7	done	done	`T-V7-7_investigate_fault_code_namespace.md`	—
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	79	T-V7-8	done	done	`T-V7-8_investigate_confidence_semantics.md`	—
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	80	T-V7-9	done	done	`T-V7-9_v1_baseline_on_v7_suite.md`	—
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	103	F-V7-CODE-NS	?	investigated → T-V7-7: Option B (oracle re-pin to short) recommended, awaiting o		
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	104	F-V7-CONF-SAT	?	investigated → T-V7-8: Option B (oracle reband to the live scorer's per-family d		
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	105	F-V7-CONF-CALIB	deferred	deferred — gated on the Gate-Data measured-real eval subset (COMWIKI-12) which d		
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	106	F-V7-ECU-ROUTE	open	open		
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	107	F-V7-DEAD-ROUTE	open	open		
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	108	F-V7-SENSOR-MISS	open	open		
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	109	F-V7-PGAP	open	open		
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	110	F-V7-FATALGATE	open	open		
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	111	F-V7-STATE	open	open		
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	112	F-V7-DEMOTE	open	open		
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	113	F-V7-V1V2	?	reported → [[V7_V1_BASELINE_2026-06-30]]: baseline established; tune-or-revert n		
+primary	apps/wired/v7_tasks/V7_PROGRESS.md	114	F-V7-V1-DTC-DEREF	open	open — surfaced, NOT patched (OUT of T-V7-9 scope); engine fix = its own spec if		
+secondary	harness/HARNESS_PROGRESS.md	42	T-TH-0	deferred	deferred (superseded 2026-07-07, see DISPOSITION)	`harness_tasks/T-TH-0_core_descriptor_runner.md`	T-TH-10, T-TH-11
+secondary	harness/HARNESS_PROGRESS.md	43	T-TH-1	done	done	`harness_tasks/T-TH-1_boundary_generator.md`	T-TH-0
+secondary	harness/HARNESS_PROGRESS.md	44	T-TH-2	done	done	`harness_tasks/T-TH-2_box_overlap_analyzer.md`	T-TH-0
+secondary	harness/HARNESS_PROGRESS.md	45	T-TH-3	deferred	deferred (superseded 2026-07-07, see DISPOSITION)	`harness_tasks/T-TH-3_combinatorial_generator.md`	T-TH-1
+secondary	harness/HARNESS_PROGRESS.md	46	T-TH-4	done	done	`harness_tasks/T-TH-4_noise_characterization.md`	T-TH-0
+secondary	harness/HARNESS_PROGRESS.md	47	T-TH-5	deferred	deferred (superseded 2026-07-07, see DISPOSITION)	_author at start_	T-TH-1
+secondary	harness/HARNESS_PROGRESS.md	48	T-TH-6	deferred	deferred (superseded 2026-07-07, see DISPOSITION)	_author at start_	T-TH-0
+secondary	harness/HARNESS_PROGRESS.md	49	T-TH-7	deferred	deferred (superseded 2026-07-07, see DISPOSITION)	_author at start_	T-TH-0
+secondary	harness/HARNESS_PROGRESS.md	50	T-TH-8	deferred	deferred (superseded 2026-07-07, see DISPOSITION)	_author at start_	T-TH-0..7; per-lab fork existing
+secondary	harness/HARNESS_PROGRESS.md	51	T-TH-9	deferred	deferred	_optional, on instruction_	T-TH-0
+secondary	harness/HARNESS_PROGRESS.md	52	T-TH-10	deferred	deferred (superseded 2026-07-07, see DISPOSITION)	`harness_tasks/T-TH-10_master_to_gaslab_projection.md`	T-MASTER-RECON
+secondary	harness/HARNESS_PROGRESS.md	53	T-TH-11	deferred	deferred (superseded 2026-07-07, see DISPOSITION)	`harness_tasks/T-TH-11_retarget_parity_gate.md`	T-TH-10
+secondary	harness/HARNESS_PROGRESS.md	54	T-TH-12	deferred	deferred (superseded 2026-07-07, see DISPOSITION)	`harness_tasks/T-TH-12_master_wired_integration_gate.md`	T-TH-11; 4DLabWired seam
+secondary	harness/HARNESS_PROGRESS.md	55	T-TH-13	deferred	deferred (superseded 2026-07-07, see DISPOSITION)	`harness_tasks/T-TH-13_perlab_projection_rollout.md`	T-TH-10..11; per-lab fork
+secondary	harness/HARNESS_PROGRESS.md	56	T-TH-14	deferred	deferred (superseded 2026-07-07, see DISPOSITION)	`harness_tasks/T-TH-14_dual_rpm_faultbox_extension.md`	descriptor dead-field cleanup (H-9) — **decoupled from T-TH-11 2026-06-05**
+secondary	harness/HARNESS_PROGRESS.md	57	T-MASTER-RECON	done	done	`tasks/T-MASTER-RECON_master_relabel.md`	—
+secondary	harness/HARNESS_PROGRESS.md	76	H-1	open	open — resolve in T-TH-0 scope		
+secondary	harness/HARNESS_PROGRESS.md	77	H-2	open	open — gated		
+secondary	harness/HARNESS_PROGRESS.md	78	H-3	open	open — CSV drift		
+secondary	harness/HARNESS_PROGRESS.md	79	H-4	open	open — CSV drift		
+secondary	harness/HARNESS_PROGRESS.md	80	H-5	open	open — CSV drift		
+secondary	harness/HARNESS_PROGRESS.md	81	H-6	open	open — CSV drift		
+secondary	harness/HARNESS_PROGRESS.md	82	H-7	open	open — pre-existing; harness side fixed in T-TH-11		
+secondary	harness/HARNESS_PROGRESS.md	83	H-8	open	open — verify		
+secondary	harness/HARNESS_PROGRESS.md	84	H-9	open	open — now resolved by T-TH-14		
+secondary	harness/HARNESS_PROGRESS.md	85	H-10	open	open — drives T-MASTER-RECON		
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	22	AUDIT-CORPUS	done	done	`registry_tasks/AUDIT-CORPUS_curate_v2_corpus.md`	—
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	23	AUDIT-REG	done	done	`registry_tasks/AUDIT-REG_inventory_v1_rules.md`	AUDIT-CORPUS
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	24	AUDIT-CHEM	done	done	`registry_tasks/AUDIT-CHEM_chemistry_matrix.md`	AUDIT-CORPUS
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	25	REG-V2-SCHEMA	done	done	`registry_tasks/REG-V2-SCHEMA_define_rule_schema.md`	AUDIT-REG, AUDIT-CHEM
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	26	REG-V2-AUTHOR-lean	done	done	`registry_tasks/REG-V2-AUTHOR-lean_condition.md`	REG-V2-SCHEMA
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	27	REG-V2-AUTHOR-rich	done	done	`registry_tasks/REG-V2-AUTHOR-rich_mixture.md`	REG-V2-SCHEMA
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	28	REG-V2-AUTHOR-misfire	done	done	`registry_tasks/REG-V2-AUTHOR-misfire.md`	REG-V2-SCHEMA
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	29	REG-V2-AUTHOR-catalyst	done	done	`registry_tasks/REG-V2-AUTHOR-catalyst_failure.md`	REG-V2-SCHEMA
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	30	REG-V2-AUTHOR-exhaust	done	done	`registry_tasks/REG-V2-AUTHOR-exhaust_leak.md`	REG-V2-SCHEMA
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	31	REG-V2-AUTHOR-sensor	done	done	`registry_tasks/REG-V2-AUTHOR-sensor_fault.md`	REG-V2-SCHEMA
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	32	REG-V2-AUTHOR-ecu	done	done	`registry_tasks/REG-V2-AUTHOR-ecu_fault.md`	REG-V2-SCHEMA
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	33	REG-V2-AUTHOR-cam	done	done	`registry_tasks/REG-V2-AUTHOR-cam_timing.md`	REG-V2-SCHEMA
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	34	REG-V2-AUTHOR-mechanical	done	done	`registry_tasks/REG-V2-AUTHOR-mechanical_wear.md`	REG-V2-SCHEMA
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	35	REG-V2-AUTHOR-non	done	done	`registry_tasks/REG-V2-AUTHOR-non_starter.md`	REG-V2-SCHEMA
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	36	REG-V2-AUTHOR-vacuum	done	done	`registry_tasks/REG-V2-AUTHOR-vacuum_leak.md`	REG-V2-SCHEMA
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	37	REG-V2-AUTHOR-overheating	done	done	`registry_tasks/REG-V2-AUTHOR-overheating.md`	REG-V2-SCHEMA
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	38	REG-V2-AUTHOR-charging	done	done	`registry_tasks/REG-V2-AUTHOR-charging_system.md`	REG-V2-SCHEMA
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	39	REG-V2-INTEGRATE	done	done	`registry_tasks/REG-V2-INTEGRATE_wire_to_comlab.md`	all REG-V2-AUTHOR-*
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	40	REG-V2-CHEMSIG-34	done	done	`registry_tasks/REG-V2-CHEMSIG-34_chemistry_state_reconcile.md`	REG-V2-SCHEMA
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	41	REG-WIKI	done	done	`registry_tasks/REG-WIKI_render_case_library.md`	AUDIT-CORPUS
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	65	T-RVAULT-1	done	done	`registry_tasks/T-RVAULT-1_docs_reconcile_list.md`	—
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	66	T-RVAULT-2	done	done	`registry_tasks/T-RVAULT-2_code_test_prep.md`	—
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	67	T-RVAULT-3	done	done	`registry_tasks/T-RVAULT-3_doc_prep_explicit.md`	T-RVAULT-1
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	68	T-RVAULT-4	done	done	`registry_tasks/T-RVAULT-4_graph_ast_build.md`	—
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	69	T-RVAULT-5	done	done	`registry_tasks/T-RVAULT-5_graph_docs_build.md`	T-RVAULT-3
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	70	T-RVAULT-6	done	done	`registry_tasks/T-RVAULT-6_vault_build.md`	T-RVAULT-4, T-RVAULT-5
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	89	EXP-N023-uncoverable	pending	pending		
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	90	CS-002-router-assumption	?	closed (REG-V2-INTEGRATE 2026-05-29) — hard-absence implemented in shim step 1; 		
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	92	REG-V2-INTEGRATE-SCHEMA-DRIFT	?	closed (fixed this task)		
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	93	REG-V2-INTEGRATE-SPEC-PATCH	pending	pending (non-blocking — doc edit)		
+secondary	labs/comlab/registry/docs/REGISTRY_PROGRESS.md	94	COMLAB-WIKI-DRIFT-DTC-OBD	pending	pending (COMLab)		
+secondary	planning/doc_conformance/DOC_CONFORMANCE_PROGRESS.md	28	T-DCA-GAS	done	done		—
+secondary	planning/doc_conformance/DOC_CONFORMANCE_PROGRESS.md	29	T-DCA-OBD	done	done		—
+secondary	planning/gpf_removal/GPF_REMOVAL_PROGRESS.md	106	T-GPF-RM-1	done	done	`tasks/T-GPF-RM-1_dtclab_strip_gpf.md`	—
+secondary	planning/gpf_removal/GPF_REMOVAL_PROGRESS.md	107	T-GPF-RM-2	done	done	`tasks/T-GPF-RM-2_comlab_tag_routing_registry.md`	T-GPF-RM-1
+secondary	planning/gpf_removal/GPF_REMOVAL_PROGRESS.md	108	T-GPF-RM-3	done	done	`tasks/T-GPF-RM-3_comlab_dna_field_readers.md`	T-GPF-RM-2
+secondary	planning/gpf_removal/GPF_REMOVAL_PROGRESS.md	109	T-GPF-RM-4	done	done	`tasks/T-GPF-RM-4_wired_semantic_obd.md`	T-GPF-RM-1
+secondary	planning/gpf_removal/GPF_REMOVAL_PROGRESS.md	110	T-GPF-RM-5	done	done	`tasks/T-GPF-RM-5_vinlab_dnalab_source_and_reversals.md`	T-GPF-RM-1, T-GPF-RM-3, T-GPF-RM-4
+secondary	planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md	4	T-GR-1	done	done	tasks/T-GR-1_vault_query_wiki_and_cli_canon.md	—
+secondary	planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md	5	T-GR-2	done	done	tasks/T-GR-2_graphifyy_upgrade_097.md	—
+secondary	planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md	6	T-GR-3	done	done	tasks/T-GR-3_docs_tier_gaslab.md	—
+secondary	planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md	7	T-GR-4	done	done	tasks/T-GR-4_docs_tier_dtclab.md	—
+secondary	planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md	8	T-GR-5	done	done	tasks/T-GR-5_docs_tier_vinlab.md	—
+secondary	planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md	9	T-GR-6	done	done	tasks/T-GR-6_docs_tier_dnalab.md	—
+secondary	planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md	10	T-GR-7	done	done	tasks/T-GR-7_docs_tier_comlab_main.md	—
+secondary	planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md	11	T-GR-8	done	done	tasks/T-GR-8_mcp_serve_pilot.md	—
+secondary	planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md	12	T-GR-9	done	done	tasks/T-GR-9_staleness_refresh_post_c5b.md	—
+secondary	planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md	13	T-GR-10	pending	pending	tasks/T-GR-10_llm_extract_pilot_gaslab.md	owner hold until 2026-07-07 (DeepSeek off-peak); backend per task file (deepseek
+secondary	planning/graph_rollout/GRAPH_ROLLOUT_PROGRESS.md	14	T-GR-11	pending	pending	tasks/T-GR-11_llm_extract_rollout_remaining.md	T-GR-10 + owner promotion decision (A/B/C)
+secondary	planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_PROGRESS.md	16	T-LRC-1	done	done	`tasks/T-LRC-1_bootstrap_skill_linux_pass.md`	—
+secondary	planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_PROGRESS.md	17	T-LRC-2	done	done	`tasks/T-LRC-2_bootstrap_dead_example_links.md`	—
+secondary	planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_PROGRESS.md	18	T-LRC-3	done	done	`tasks/T-LRC-3_vinlab_dataset_paths_envvar.md`	—
+secondary	planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_PROGRESS.md	19	T-LRC-4	done	done	`tasks/T-LRC-4_wiredv2_env_script_bash.md`	—
+secondary	planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_PROGRESS.md	20	T-LRC-5	done	done	`tasks/T-LRC-5_active_docs_4dlabv2_prefix.md`	—
+secondary	planning/linux_residue_cleanup/LINUX_RESIDUE_CLEANUP_PROGRESS.md	21	T-LRC-6	blocked	blocked	`tasks/T-LRC-6_registry_docs_linux_rewrite.md`	—
+secondary	planning/oil_consumption/PROGRESS.md	39	T-OIL-R1	done	done		—
+secondary	planning/oil_consumption/PROGRESS.md	40	T-OIL-R2	done	done		—
+secondary	planning/oil_consumption/PROGRESS.md	41	T-OIL-R3a	done	done		—
+secondary	planning/oil_consumption/PROGRESS.md	42	T-OIL-R3b	done	done		—
+secondary	planning/oil_consumption/PROGRESS.md	43	T-OIL-R4	done	done		—
+secondary	planning/oil_consumption/PROGRESS.md	44	T-OIL-R5	done	done		—
+secondary	planning/oil_consumption/PROGRESS.md	45	T-OIL-R6	done	done		R1, R2, R4, R5
+secondary	planning/oil_consumption/PROGRESS.md	46	T-OIL-R7	done	done		R6
+secondary	planning/post_cat_trim/PROGRESS.md	9	PCT-1	pending	pending		—
+secondary	planning/post_cat_trim/PROGRESS.md	10	PCT-2	pending	pending		PCT-1
+secondary	planning/post_cat_trim/PROGRESS.md	11	PCT-3	pending	pending		PCT-1
+secondary	planning/post_cat_trim/PROGRESS.md	12	PCT-4	pending	pending		PCT-3
+secondary	planning/post_cat_trim/PROGRESS.md	13	PCT-5	pending	pending		PCT-2,4
+secondary	planning/post_cat_trim/PROGRESS.md	14	PCT-6	pending	pending		PCT-5
+secondary	planning/post_cat_trim/PROGRESS.md	15	PCT-7	pending	pending		PCT-6
+secondary	planning/post_cat_trim/PROGRESS.md	16	PCT-8	pending	pending		PCT-7
+secondary	planning/post_cat_trim/PROGRESS.md	17	PCT-9	pending	pending		PCT-8
+secondary	planning/post_cat_trim/PROGRESS.md	18	PCT-10	pending	pending		PCT-9
+secondary	planning/skill_eval/SKILL_EVAL_PROGRESS.md	15	T-SE-0	done	done	`tasks/T-SE-0_methodology_and_rubric.md`	—
+secondary	planning/skill_eval/SKILL_EVAL_PROGRESS.md	16	T-SE-1	done	done	`tasks/T-SE-1_static_triage.md`	—
+secondary	planning/skill_eval/SKILL_EVAL_PROGRESS.md	17	T-SE-2	done	done	`tasks/T-SE-2_eval_runner_and_corpus.md`	—
+secondary	planning/skill_eval/SKILL_EVAL_PROGRESS.md	18	T-SE-3	done	done	`tasks/T-SE-3_cohort_housestyle.md`	T-SE-0, T-SE-1, T-SE-2
+secondary	planning/skill_eval/SKILL_EVAL_PROGRESS.md	19	T-SE-4	done	done	`tasks/T-SE-4_cohort_testcraft.md`	T-SE-0, T-SE-1, T-SE-2 (all done)
+secondary	planning/skill_eval/SKILL_EVAL_PROGRESS.md	20	T-SE-5	done	done	`tasks/T-SE-5_cohort_gateoverlap.md`	T-SE-0, T-SE-1, T-SE-2 (all done)
+secondary	planning/skill_eval/SKILL_EVAL_PROGRESS.md	21	T-SE-6	done	done	`tasks/T-SE-6_meta_borderline.md`	T-SE-0, T-SE-1 (both done)
+secondary	planning/skill_eval/SKILL_EVAL_PROGRESS.md	22	T-SE-FINAL	done	done	`tasks/T-SE-FINAL_aggregate.md`	—
+secondary	planning/skill_eval/SKILL_EVAL_PROGRESS.md	59	FU-SE-1	?	route to T-SE-1 (cut/dedupe by inspection)		
+secondary	planning/skill_eval/SKILL_EVAL_PROGRESS.md	60	FU-SE-2	?	logged		
+secondary	planning/skill_eval/SKILL_EVAL_PROGRESS.md	61	FU-SE-3	?	route to a corpus-extension task (not T-SE-4's diff)		
+secondary	planning/skill_eval/SKILL_EVAL_PROGRESS.md	62	FU-SE-4	?	owned by T-SE-5 (in-scope)		
+secondary	planning/skill_eval/SKILL_EVAL_PROGRESS.md	63	FU-SE-5	?	CLOSED (T-SE-4) — _mutation_score added (self-contained AST engine, equivalent t		
+secondary	planning/skill_eval/SKILL_EVAL_PROGRESS.md	64	FU-SE-6	?	route to a contract-amendment task (not T-SE-4's diff)		
+secondary	planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md	28	T-SYMGRAPH-1	done	done	`tasks/T-SYMGRAPH-1_tests_green_confirm.md`	—
+secondary	planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md	29	T-SYMGRAPH-2	done	done	`tasks/T-SYMGRAPH-2_code_prep_audit.md`	—
+secondary	planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md	30	T-SYMGRAPH-3	done	done	`tasks/T-SYMGRAPH-3_test_prep_audit.md`	T-SYMGRAPH-1
+secondary	planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md	31	T-SYMGRAPH-4	done	done	`tasks/T-SYMGRAPH-4_graphify_ast_tiers.md`	T-SYMGRAPH-2, T-SYMGRAPH-3
+secondary	planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md	32	T-SYMGRAPH-WIKI-AUTHOR	done	done	`tasks/T-SYMGRAPH-WIKI-AUTHOR_build_wiki_corpus.md`	—
+secondary	planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md	33	T-SYMGRAPH-WIKIPREP	done	done	`tasks/T-SYMGRAPH-WIKIPREP_wiki_prep_audit.md`	T-SYMGRAPH-WIKI-AUTHOR
+secondary	planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md	34	T-SYMGRAPH-DOCPREP	done	done	`tasks/T-SYMGRAPH-DOCPREP_doc_prep_design_docs.md`	—
+secondary	planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md	35	T-SYMGRAPH-LLM	done	done	`tasks/T-SYMGRAPH-LLM_graphify_wiki_docs.md`	T-SYMGRAPH-WIKIPREP, T-SYMGRAPH-DOCPREP
+secondary	planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md	36	T-SYMGRAPH-VAULT	done	done	`tasks/T-SYMGRAPH-VAULT_build_symptomlab_vault.md`	T-SYMGRAPH-LLM
+secondary	planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md	50	FU-1	open	open		
+secondary	planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md	51	FU-2	open	open		
+secondary	planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md	52	FU-3	open	open		
+secondary	planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md	53	FU-4	open	open		
+secondary	planning/symptomlab_graph/SYMPTOMLAB_GRAPH_PROGRESS.md	54	FU-5	open	open		
+secondary	planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	56	T-TST-0	?	completed	`tasks/T-TST-0_per_lab_test_template_and_projection_contract.md`	—
+secondary	planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	57	T-TST-1	?	completed	`tasks/T-TST-1_gaslab_align_to_template.md`	T-TST-0
+secondary	planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	58	T-TST-2	?	completed	`tasks/T-TST-2_obdlab_scaffold.md`	T-TST-0
+secondary	planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	59	T-TST-3	?	completed	`tasks/T-TST-3_dtclab_scaffold.md`	T-TST-0
+secondary	planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	60	T-TST-4	?	completed	`tasks/T-TST-4_comlab_scaffold.md`	T-TST-0
+secondary	planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	61	T-TST-5	?	completed	`tasks/T-TST-5_wired_test_folder.md`	T-TST-0
+secondary	planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	62	T-TST-6	done	done	`tasks/T-TST-6_obdlab_cases_csv.md`	—
+secondary	planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	63	T-TST-7	done	done	`tasks/T-TST-7_dtclab_cases_csv.md`	—
+secondary	planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	64	T-TST-8	done	done	`tasks/T-TST-8_obdlab_decision_rate_harness.md`	—
+secondary	planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	65	T-TST-8W	blocked	blocked — waits on COMLab v2 rework stage (T-COMV2- pack, not yet started); not 	_author at unblock_	COMLab v2 rework readers (`T-COMV2-*`), T-TST-8 (done)
+secondary	planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	66	T-TST-9	done	done	`tasks/T-TST-9_dtclab_generative_harness.md`	T-TST-7 (done)
+secondary	planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	67	T-FX-DTCHEX-1	done	done	`tasks/T-FX-DTCHEX-1_comlab_dtc_regex_hex_widening.md`	—
+secondary	planning/test_rollout/TEST_ROLLOUT_PROGRESS.md	68	T-TST-10	blocked	blocked — waits on COMLab v2 rework stage (T-COMV2- pack, not yet started); not 	_author at unblock_	COMLab v2 rework start (`T-COMV2-*`)
+secondary	v3/V3_PROGRESS.md	29	T-V3-0	done	done	`T-V3-0_measure_topk_ceiling.md`	—
+secondary	v3/V3_PROGRESS.md	30	T-V3-1	done	done	`T-V3-1_topk_abstain_scorer.md`	T-V3-0
+secondary	v3/V3_PROGRESS.md	31	T-V3-2	done	done	`T-V3-2_surface_repin_oracle.md`	—
+secondary	v3/V3_PROGRESS.md	32	T-V3-2R	done	done	`T-V3-2R_v3_yardstick_hashlock_rebind.md`	—
+secondary	v3/V3_PROGRESS.md	33	T-V3-3	done	done	`T-V3-3_emit_ranked_differential.md`	—
+secondary	v3/V3_PROGRESS.md	34	T-V3-3B	done	done	`T-V3-3B_emit_abstain.md`	T-V3-D5
+secondary	v3/V3_PROGRESS.md	35	T-V3-3C	done	done	`T-V3-3C_family_aware_abstain_margin.md`	T-V3-3B
+secondary	v3/V3_PROGRESS.md	36	T-V3-D6	done	done	`T-V3-D6_abstain_acceptance_checkpoint.md`	T-V3-3C
+secondary	v3/V3_PROGRESS.md	37	T-V3-4A	done	done	`T-V3-4A_tunable_reweight_feasibility.md`	T-V3-3C
+secondary	v3/V3_PROGRESS.md	38	T-V3-4B	done	done	`T-V3-4B_bounded_reweight_commit.md`	T-V3-4A
+secondary	v3/V3_PROGRESS.md	39	FL-V3-ORACLE-MW-MISFIRE	done	done	`FL-V3-ORACLE-MW-MISFIRE_oracle_repin.md`	T-V3-4B
+secondary	v3/V3_PROGRESS.md	40	T-V3-3D	done	done	`T-V3-3D_abstain_margin_calibration.md`	T-V3-D6
+secondary	v3/V3_PROGRESS.md	41	T-V3-D1	done	done	`T-V3-D1_outranked_deciding_term.md`	T-V3-0
+secondary	v3/V3_PROGRESS.md	42	T-V3-D2	done	done	`T-V3-D2_producer_gap_split.md`	—
+secondary	v3/V3_PROGRESS.md	43	T-V3-D3	done	done	`T-V3-D3_data_gap_split.md`	—
+secondary	v3/V3_PROGRESS.md	44	T-V3-D4	done	done	`T-V3-D4_per_case_resolution_harness.md`	T-V3-2R
+secondary	v3/V3_PROGRESS.md	45	T-V3-D5	done	done	`T-V3-D5_p3_acceptance_checkpoint.md`	T-V3-3
+secondary	v3/V3_PROGRESS.md	46	T-V3-P4-0A	done	done	`T-V3-P4-0A_classifier_fixable_recheck.md`	T-V3-D2
+secondary	v3/V3_PROGRESS.md	47	T-V3-P4-1	done	done	`T-V3-P4-1_signal_acquisition_spec.md`	—
+secondary	v3/V3_PROGRESS.md	48	T-V3-P4-2	done	done	`T-V3-P4-2_min_signal_set_ordering.md`	T-V3-P4-1
+secondary	v3/V3_PROGRESS.md	49	T-V3-P4-C2-PRE	done	done	`T-V3-P4-C2-PRE_reveal_contract.md`	T-V3-P4-1, T-V3-P4-2
+secondary	v3/V3_PROGRESS.md	50	T-V3-P4-C2-SYNTH	done	done	`T-V3-P4-C2-SYNTH_seed_data.md`	T-V3-P4-C2-PRE
+secondary	v3/V3_PROGRESS.md	51	T-V3-P4-C2A	done	done	`T-V3-P4-C2A_c2_signal_dryrun.md`	T-V3-P4-C2-SYNTH
+secondary	v3/V3_PROGRESS.md	52	T-V3-P4-C2B	done	done	`T-V3-P4-C2B_c2_signal_commit.md`	T-V3-P4-C2A
+secondary	v3/V3_PROGRESS.md	53	T-V3-P4-C4-SYNTH	done	done	`T-V3-P4-C4-SYNTH_seed_data.md`	—
+secondary	v3/V3_PROGRESS.md	54	T-V3-P4-C4A	done	done	`T-V3-P4-C4A_c4_signal_dryrun.md`	T-V3-P4-C4-SYNTH
+secondary	v3/V3_PROGRESS.md	55	T-V3-D6-SCORERWIN	done	done	`T-V3-D6-SCORERWIN_family_aware_top3_window.md`	T-V3-3C, T-V3-D4
+secondary	v3/V3_PROGRESS.md	56	T-V3-P4-C3-PRE	done	done	`T-V3-P4-C3-PRE_reveal_contract.md`	—
+secondary	v3/V3_PROGRESS.md	57	T-V3-P4-C3-SYNTH	done	done	`T-V3-P4-C3-SYNTH_seed_data.md`	T-V3-P4-C3-PRE
+secondary	v3/V3_PROGRESS.md	59	T-V3-P4-C3A	done	done	`T-V3-P4-C3A_c3_signal_dryrun.md`	T-V3-P4-C3-SYNTH
+secondary	v3/V3_PROGRESS.md	61	T-V3-P4-C3B	done	done	`T-V3-P4-C3B_c3_signal_commit.md`	T-V3-P4-C3A
+secondary	v3/V3_PROGRESS.md	63	T-V3-P4-C6-PRE	done	done	`T-V3-P4-C6-PRE_reveal_contract.md`	T-V3-P4-C3B
+secondary	v3/V3_PROGRESS.md	65	T-V3-P4-C6-SYNTH	done	done	`T-V3-P4-C6-SYNTH_seed_data.md`	T-V3-P4-C6-PRE
+secondary	v3/V3_PROGRESS.md	67	T-V3-P4-C6A	done	done	`T-V3-P4-C6A_c6_signal_dryrun.md`	T-V3-P4-C6-SYNTH
+secondary	v3/V3_PROGRESS.md	69	T-V3-P4-C6B	done	done	`T-V3-P4-C6B_c6_signal_commit.md`	T-V3-P4-C6A
+secondary	v3/V3_PROGRESS.md	71	T-V3-P4-C5-PRE	done	done	`T-V3-P4-C5-PRE_reveal_contract.md`	T-V3-P4-C6B
+secondary	v3/V3_PROGRESS.md	73	T-V3-P4-C5-SYNTH	done	done	`T-V3-P4-C5-SYNTH_seed_data.md`	T-V3-P4-C5-PRE
+secondary	v3/V3_PROGRESS.md	75	T-V3-P4-C5A	done	done	`T-V3-P4-C5A_c5_signal_dryrun.md`	T-V3-P4-C5-SYNTH
+secondary	v3/V3_PROGRESS.md	76	T-V3-P4-C5R	done	done	`T-V3-P4-C5R_seed_remediation_and_redryrun.md`	T-V3-P4-C5A
+secondary	v3/V3_PROGRESS.md	77	T-V3-P4-C5B	done	done	`T-V3-P4-C5B_c5_signal_commit.md`	T-V3-P4-C5R
+secondary	v3/V3_PROGRESS.md	78	T-V3-P4-C4A-R	done	done	`T-V3-P4-C4A-R_c4_rebaseline_dryrun.md`	—
+secondary	v3/V3_PROGRESS.md	79	T-V3-P4-C9-PRE	done	done	`T-V3-P4-C9-PRE_reveal_contract.md`	—
+secondary	v3/V3_PROGRESS.md	80	T-V3-P4-C9-SYNTH	done	done	`T-V3-P4-C9-SYNTH_seed_data.md`	—
+secondary	v3/V3_PROGRESS.md	81	T-V3-P4-C9A	done	done	`T-V3-P4-C9A_c9_signal_dryrun.md`	T-V3-P4-C9-SYNTH
+secondary	v3/V3_PROGRESS.md	82	T-V3-P4-C9B	done	done	`T-V3-P4-C9B_c9_signal_commit.md`	— (C9A C9B-GO ✓; owner GO 2026-07-06)
+secondary	v3/V3_PROGRESS.md	83	T-V3-P4-C4B	done	done	`T-V3-P4-C4B_c4_signal_commit.md`	—
+secondary	v3/V3_PROGRESS.md	171	T-V3-2R	done	done (2026-07-01)		
+secondary	Vault/tasks/COM_VAULT_TASKS_START_HERE.md	97	T-COM-DOCS-V2	done	done	`T-COM-DOCS-V2_reconcile_design_docs_to_v2.md`	—
+secondary	Vault/tasks/COM_VAULT_TASKS_START_HERE.md	98	T-COM-CODE-CLEAN-A	done	done	`T-COM-CODE-CLEAN-A_router_atlas_legibility.md`	—
+secondary	Vault/tasks/COM_VAULT_TASKS_START_HERE.md	99	T-COM-CODE-CLEAN-B	done	done	`T-COM-CODE-CLEAN-B_schemas_contract_legibility.md`	—
+secondary	Vault/tasks/COM_VAULT_TASKS_START_HERE.md	100	T-COM-CODE-CLEAN-C	done	done	`T-COM-CODE-CLEAN-C_core_pipeline_legibility.md`	—
+secondary	Vault/tasks/COM_VAULT_TASKS_START_HERE.md	101	T-COM-CODE-CLEAN-D	done	done	`T-COM-CODE-CLEAN-D_analytics_projection_legibility.md`	—
+secondary	Vault/tasks/COM_VAULT_TASKS_START_HERE.md	102	T-COM-TESTS-GREEN	done	done	`T-COM-TESTS-GREEN_whole_tests_tree_green.md`	—
+secondary	Vault/tasks/COM_VAULT_TASKS_START_HERE.md	103	T-COM-CODEPREP	done	done	`T-COM-CODEPREP_ast_legibility_audit_package.md`	CODE-CLEAN-A/B/C/D
+secondary	Vault/tasks/COM_VAULT_TASKS_START_HERE.md	104	T-COM-TESTPREP	done	done — folded into CODEPREP	`T-COM-TESTPREP_ast_legibility_audit_tests.md`	TESTS-GREEN
+secondary	Vault/tasks/COM_VAULT_TASKS_START_HERE.md	105	T-COM-WIKIPREP	done	done	`T-COM-WIKIPREP_explicit_relations_wiki.md`	—
+secondary	Vault/tasks/COM_VAULT_TASKS_START_HERE.md	106	T-COM-DOCPREP	done	done	`T-COM-DOCPREP_doc_prep_design_docs.md`	DOCS-V2
+secondary	Vault/tasks/COM_VAULT_TASKS_START_HERE.md	107	T-COM-GRAPH-AST	done	done — 2026-06-28 (architect, owner-delegated; gate clean, both tiers GOOD)	`T-COM-GRAPH-AST_graphify_code_and_tests.md`	CODEPREP, TESTPREP
+secondary	Vault/tasks/COM_VAULT_TASKS_START_HERE.md	108	T-COM-GRAPH-LLM	?	waived	`T-COM-GRAPH-LLM_prose_graphs_waived.md`	WIKIPREP, DOCPREP
+secondary	Vault/tasks/COM_VAULT_TASKS_START_HERE.md	109	T-COM-PATHS-1	done	done — 2026-06-28 (LAB_SRC_PATHS comlab entry + provenance waiver branch; obd/dt	`T-COM-PATHS-1_register_comlab_source_paths.md`	—
+secondary	Vault/tasks/COM_VAULT_TASKS_START_HERE.md	110	T-COM-VAULT	done	done — 2026-06-28 (12 framed notes, health 91/91, graphs byte-unchanged, idempot	`T-COM-VAULT_build_comlab_vault.md`	T-COM-GRAPH-AST, T-COM-PATHS-1
+secondary	Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	129	T-DNAV-CODE-CLEAN	done	done	— (no file; DNA-family)	—
+secondary	Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	130	T-DNAV-TESTS-GREEN	done	done	— (no file; DNA-family)	—
+secondary	Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	131	T-DNAV-DOCS-V2	done	done	— (no file; pre-reconciled)	—
+secondary	Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	132	T-DNAV-CODEPREP	done	done	`T-DNAV-CODEPREP_ast_legibility_audit_package.md`	T-DNAV-CODE-CLEAN
+secondary	Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	133	T-DNAV-TESTPREP	done	done	`T-DNAV-TESTPREP_ast_legibility_audit_tests.md`	T-DNAV-TESTS-GREEN
+secondary	Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	134	T-DNAV-WIKIPREP	done	done	`T-DNAV-WIKIPREP_explicit_relations_wiki.md`	—
+secondary	Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	135	T-DNAV-DOCPREP	done	done	`T-DNAV-DOCPREP_doc_prep_design_docs.md`	T-DNAV-DOCS-V2
+secondary	Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	136	T-DNAV-GRAPH-AST	done	done	`T-DNAV-GRAPH-AST_graphify_code_and_tests.md`	T-DNAV-CODEPREP, T-DNAV-TESTPREP
+secondary	Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	137	T-DNAV-GRAPH-LLM	?	waived	— (no file)	T-DNAV-WIKIPREP, T-DNAV-DOCPREP
+secondary	Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	138	T-DNAV-PATHS-1	done	done	`T-DNAV-PATHS-1_register_dnalab_source_paths.md`	—
+secondary	Vault/tasks/DNA_VAULT_TASKS_START_HERE.md	139	T-DNAV-VAULT	done	done	`T-DNAV-VAULT_build_dnalab_vault.md`	T-DNAV-GRAPH-AST, T-DNAV-PATHS-1
+secondary	Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	83	T-DTC-DOCS-V2	done	done	`T-DTC-DOCS-V2_reconcile_design_docs_to_v2.md`	—
+secondary	Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	84	T-DTC-CODE-CLEAN	done	done	`T-DTC-CODE-CLEAN_codingskills_audit_package.md`	—
+secondary	Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	85	T-DTC-COMMENT-FIX	done	done	`T-DTC-COMMENT-FIX_enum_count_docstrings.md`	—
+secondary	Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	86	T-DTC-TESTS-GREEN	done	done	`T-DTC-TESTS-GREEN_whole_tests_tree_green.md`	—
+secondary	Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	87	T-DTC-CODEPREP	done	done	`T-DTC-CODEPREP_ast_legibility_audit_package.md`	T-DTC-CODE-CLEAN, T-DTC-COMMENT-FIX
+secondary	Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	88	T-DTC-TESTPREP	done	done	`T-DTC-TESTPREP_ast_legibility_audit_tests.md`	T-DTC-TESTS-GREEN
+secondary	Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	89	T-DTC-WIKIPREP	done	done	`T-DTC-WIKIPREP_explicit_relations_wiki.md`	—
+secondary	Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	90	T-DTC-DOCPREP	done	done	`T-DTC-DOCPREP_doc_prep_design_docs.md`	T-DTC-DOCS-V2
+secondary	Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	91	T-DTC-GRAPH-AST	done	done	`T-DTC-GRAPH-AST_graphify_code_and_tests.md`	T-DTC-CODEPREP, T-DTC-TESTPREP
+secondary	Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	92	T-DTC-GRAPH-LLM	?	waived	— (no file)	T-DTC-WIKIPREP, T-DTC-DOCPREP
+secondary	Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	93	T-DTC-PATHS-1	done	done	`T-DTC-PATHS-1_register_dtclab_source_paths.md`	—
+secondary	Vault/tasks/DTC_VAULT_TASKS_START_HERE.md	94	T-DTC-VAULT	done	done	`T-DTC-VAULT_build_dtclab_vault.md`	T-DTC-GRAPH-AST, T-DTC-PATHS-1
+secondary	Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	73	T-GAS-TESTS-GREEN	done	done	`T-GAS-TESTS-GREEN_whole_tests_tree_green.md`	—
+secondary	Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	74	T-GAS-DOCS-V2	done	done	`T-GAS-DOCS-V2_reconcile_adr_bdd_to_v2.md`	—
+secondary	Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	75	T-GAS-CODEPREP	done	done	`T-GAS-CODEPREP_ast_legibility_audit_package.md`	—
+secondary	Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	76	T-GAS-TESTPREP	void	void — folded into T-GAS-CODEPREP	`T-GAS-TESTPREP_ast_legibility_audit_tests.md`	T-GAS-TESTS-GREEN
+secondary	Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	77	T-GAS-WIKIPREP	done	done	`T-GAS-WIKIPREP_explicit_relations_wiki.md`	—
+secondary	Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	78	T-GAS-DOCPREP	done	done	`T-GAS-DOCPREP_doc_prep_design_docs.md`	T-GAS-DOCS-V2
+secondary	Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	79	T-GAS-GRAPH-AST	done	done	`T-GAS-GRAPH-AST_graphify_code_and_tests.md`	T-GAS-CODEPREP, T-GAS-TESTPREP
+secondary	Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	80	T-GAS-GRAPH-LLM	void	void — owner waived Pass-3	`T-GAS-GRAPH-LLM_graphify_wiki_and_docs.md`	T-GAS-WIKIPREP, T-GAS-DOCPREP
+secondary	Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	81	T-GAS-PATHS-1	done	done	`T-GAS-PATHS-1_parametrize_build_source_paths.md`	—
+secondary	Vault/tasks/GAS_VAULT_TASKS_START_HERE.md	82	T-GAS-VAULT	done	done	`T-GAS-VAULT_build_gaslab_vault.md`	T-GAS-GRAPH-AST, T-GAS-PATHS-1
+secondary	Vault/tasks/UI_VAULT_TASKS_START_HERE.md	70	T-UI-SYNC-1	done	done	`apps/ui/tasks/T-UI-SYNC-1_fieldmap_consumer_audit.md`	—
+secondary	Vault/tasks/UI_VAULT_TASKS_START_HERE.md	71	T-UI-VAULT-SUPPORT-1	done	done	`T-UI-VAULT-SUPPORT-1_doc_only_corpus_mode.md`	—
+secondary	Vault/tasks/UI_VAULT_TASKS_START_HERE.md	72	T-UI-VAULT	done	done	`T-UI-VAULT_build_ui_vault.md`	T-UI-VAULT-SUPPORT-1
+secondary	Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	93	T-VIN-CODE-CLEAN	done	done	— (no file; DNA-family)	—
+secondary	Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	94	T-VIN-TESTS-GREEN	done	done	— (no file; DNA-family)	—
+secondary	Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	95	T-VIN-DOCS-V2	done	done	— (no file; pre-reconciled)	—
+secondary	Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	96	T-VIN-CODEPREP	done	done	`T-VIN-CODEPREP_ast_legibility_audit_package.md`	T-VIN-CODE-CLEAN
+secondary	Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	97	T-VIN-TESTPREP	done	done	`T-VIN-TESTPREP_ast_legibility_audit_tests.md`	T-VIN-TESTS-GREEN
+secondary	Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	98	T-VIN-WIKIPREP	done	done	`T-VIN-WIKIPREP_explicit_relations_wiki.md`	—
+secondary	Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	99	T-VIN-DOCPREP	done	done	`T-VIN-DOCPREP_doc_prep_design_docs.md`	T-VIN-DOCS-V2
+secondary	Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	100	T-VIN-GRAPH-AST	done	done	`T-VIN-GRAPH-AST_graphify_code_and_tests.md`	T-VIN-CODEPREP, T-VIN-TESTPREP
+secondary	Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	101	T-VIN-GRAPH-LLM	?	waived	— (no file)	T-VIN-WIKIPREP, T-VIN-DOCPREP
+secondary	Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	102	T-VIN-PATHS-1	done	done	`T-VIN-PATHS-1_register_vinlab_source_paths.md`	—
+secondary	Vault/tasks/VIN_VAULT_TASKS_START_HERE.md	103	T-VIN-VAULT	done	done	`T-VIN-VAULT_build_vinlab_vault.md`	T-VIN-GRAPH-AST, T-VIN-PATHS-1
+secondary	labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	45	GW-ENH-1	done	done	`GW-ENH-1_combustion_integrity_metrics.md`	—
+secondary	labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	46	GW-ENH-2	done	done	`GW-ENH-2_healthy_catalyst_masking_limitation.md`	—
+secondary	labs/gaslab/tasks/wiki_enhancements/GASLAB_WIKI_ENH_START_HERE.md	47	GW-ENH-3	done	done	`GW-ENH-3_vocab_path_and_citation_cleanup.md`	—
+secondary	planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	29	PCT-1	pending	pending		—
+secondary	planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	30	PCT-2	pending	pending		PCT-1
+secondary	planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	31	PCT-3	pending	pending		PCT-1
+secondary	planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	32	PCT-4	pending	pending		PCT-3
+secondary	planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	33	PCT-5	pending	pending		PCT-2,4
+secondary	planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	34	PCT-6	pending	pending		PCT-5
+secondary	planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	35	PCT-7	pending	pending		PCT-6
+secondary	planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	36	PCT-8	pending	pending		PCT-7
+secondary	planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	37	PCT-9	pending	pending		PCT-8
+secondary	planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md	38	PCT-10	pending	pending		PCT-9
