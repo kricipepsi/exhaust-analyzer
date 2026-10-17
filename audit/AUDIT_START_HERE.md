@@ -52,3 +52,13 @@ read-only subagents instead. Up to three targets run in parallel; they touch no 
 | `C:\Workspace` (Windows) git `master` @ `c5034a3` | 2026-06-26, last commit before the Linux migration, no remote; plus untracked `ECO/` (worked to 2026-08-25) | stale 4DLab copy, not audited. `ECO/` is a separate app outside this venue |
 | `github.com/kricipepsi/4Dapp` `main` @ `490b82e` | 2026-05-11, v1 (`v1.0-diesel` tag 2026-05-12) | predecessor; legacy v1 is not truth (AGENTS.md rule 2), not audited |
 Lost alternative: auditing `C:\Workspace` because it is the operator's current PC; rejected because its 4DLab code is 23 days older than `main`.
+
+## Deployment coupling (architect ruling, 2026-10-17)
+- `render.yaml` deploys `main` to Render (`4d-diagnostic-engine-v2`, Streamlit `app.py`), served at
+  https://www.5-gasanalyzermot.com/. **Every push to `main` redeploys the public app.**
+- https://5gasdiagnostic.com/ is the landing site (LiteSpeed host, not GitHub Pages) and links to the app. Its
+  source location is not in this repo.
+- Rule: audit-venue commits (only `audit/`, docs, `.gitignore`) may go to `main`. Every fix row lands on a branch,
+  passes its gates and the affected lab suites, then merges to `main`; after the merge the architect checks the live
+  app still loads and, if the change alters what the landing site states, opens a landing-site row.
+  Lost alternative: fix rows straight to `main`, rejected because `main` is production.
