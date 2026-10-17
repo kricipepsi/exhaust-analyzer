@@ -39,11 +39,11 @@ read-only subagents instead. Up to three targets run in parallel; they touch no 
    is authored.
 
 ## Operator actions (keyboard only)
-1. Rotate the Firecrawl API key (R0-1), and put the new key in the local, now untracked,
-   `_skills/firecrawl-web-scraping-search/API.md`.
-2. Make GitHub `main` match the working tree (push), so auditors read current code (R0-5).
-3. Start each cloud session the architect names, with the prompt the architect gives, and paste the final
-   report back (or let the session push it to its branch).
+1. Push the venue commits to `exhaust-analyzer` `main` (this cloud session can read the repo but not push).
+2. Start each cloud session the architect names, with the prompt the architect gives, and paste the final
+   report back (or let the session push it to its branch). Not needed when the architect runs the targets
+   as subagents.
+(R0-1 key rotation: declined by the operator 2026-10-17, see `FINDINGS.md`.)
 
 ## Source of truth (architect ruling, 2026-10-17)
 | tree | state | role in the audit |
