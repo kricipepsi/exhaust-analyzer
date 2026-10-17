@@ -44,3 +44,11 @@ read-only subagents instead. Up to three targets run in parallel; they touch no 
 2. Make GitHub `main` match the working tree (push), so auditors read current code (R0-5).
 3. Start each cloud session the architect names, with the prompt the architect gives, and paste the final
    report back (or let the session push it to its branch).
+
+## Source of truth (architect ruling, 2026-10-17)
+| tree | state | role in the audit |
+|---|---|---|
+| `github.com/kricipepsi/exhaust-analyzer` `main` @ `8463d21` | 2026-07-19, "4DLabV2 published build" | **audited tree** (newest known 4DLab) |
+| `C:\Workspace` (Windows) git `master` @ `c5034a3` | 2026-06-26, last commit before the Linux migration, no remote; plus untracked `ECO/` (worked to 2026-08-25) | stale 4DLab copy, not audited. `ECO/` is a separate app outside this venue |
+| `github.com/kricipepsi/4Dapp` `main` @ `490b82e` | 2026-05-11, v1 (`v1.0-diesel` tag 2026-05-12) | predecessor; legacy v1 is not truth (AGENTS.md rule 2), not audited |
+Lost alternative: auditing `C:\Workspace` because it is the operator's current PC; rejected because its 4DLab code is 23 days older than `main`.
