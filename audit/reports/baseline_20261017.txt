@@ -1,0 +1,27 @@
+## git
+8463d21 2026-07-19 17:29:31 +0200 4DLabV2 — published build (2026-07-19, theme pin)
+## pytest (per package, collection errors continue)
+labs/comlab      522 passed, 4 skipped, 2 errors in 6.86s
+labs/dnalab      27 passed in 0.25s
+labs/dtclab      590 passed in 3.09s
+labs/gaslab      208 passed, 2 skipped, 4 deselected in 7.31s
+labs/obdlab      388 passed, 2 skipped in 0.50s
+labs/symptomlab  63 passed in 0.23s
+labs/vinlab      203 passed, 8 skipped in 1.04s
+apps/wired       11 passed in 1.66s
+## erosion
+labs/comlab                  sloc=  6365 funcs=  255 cc>10=  22 erosion=0.77 clone=0.021
+labs/dnalab                  sloc=    86 funcs=    6 cc>10=   0 erosion=0.0 clone=0.0
+labs/dtclab                  sloc=   816 funcs=   55 cc>10=   1 erosion=0.218 clone=0.01
+labs/gaslab                  sloc=  1249 funcs=   64 cc>10=   3 erosion=0.786 clone=0.011
+labs/obdlab                  sloc=  1128 funcs=   66 cc>10=   7 erosion=0.464 clone=0.01
+labs/symptomlab              sloc=   166 funcs=   16 cc>10=   0 erosion=0.0 clone=0.0
+labs/vinlab                  sloc=  5850 funcs=  188 cc>10=  31 erosion=0.737 clone=0.081
+apps/wired                   sloc=  2932 funcs=  123 cc>10=  10 erosion=0.692 clone=0.036
+apps/ui                      sloc=  2997 funcs=    6 cc>10=   1 erosion=0.953 clone=0.0
+## isolation
+labs/comlab/tests/unit/test_abstain_margin_002.py:20	comlab -> fl_tasks.score_v3_yardstick
+labs/comlab/tests/unit/test_tunable_reweight.py:23	comlab -> v7.load_corpus
+labs/comlab/tests/unit/test_tunable_reweight.py:24	comlab -> wired.composition
+labs/comlab/tests/unit/test_tunable_reweight.py:25	comlab -> fl_tasks.score_v3_yardstick
+violations: 4

@@ -81,3 +81,8 @@ Vault/githubtoken.md
 .skylos/
 # --- Large vehicle reference CSVs (out-of-band per DBS/ rule; >100MB, GitHub-blocked) ---
 docs/Nio_vozila_*.csv
+
+# --- Secrets: never commit (audit R0-1, 2026-10-17) ---
+_skills/firecrawl-web-scraping-search/API.md
+.venv-audit/
+audit/scratch/**/__pycache__/

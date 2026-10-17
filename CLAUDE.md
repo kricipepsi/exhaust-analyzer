@@ -9,6 +9,17 @@ Coders are two omp agents — **Codex** and **Agy** — driven by a human manage
 > `firecrawl` skill (`_skills/firecrawl-web-scraping-search/SKILL.md`), not WebFetch/WebSearch;
 > results to `.firecrawl/` (gitignored), read narrowly.
 
+## Operator interaction (operator ruling, 2026-10-17)
+The architect owns every project decision: sequencing, scope, routing, audit targets, accept/reject,
+task design. **Ask the operator only for keyboard actions** the architect cannot do itself (push, rotate
+a credential, start a cloud session, approve a prompt on a machine, sign in) and for facts only the
+operator knows (which machine holds the live tree). Ask in chat text, not the multiple-choice popup.
+Record each decision with the alternative that lost, in the document the decision belongs to.
+
+## Audit venue
+`audit/AUDIT_START_HERE.md` — falsification audit of code and documents (round 0 done 2026-10-17).
+Findings enter work only through `audit/FINDINGS.md` after a re-check on the live tree.
+
 ## Boot (every session)
 1. `START_HERE.md` → `ROADMAP.md` (stage order: **GASLab → OBDLab → DTCLab → COMLab last**).
 2. The active lab's `wiki/` + `graph/` (query the graph; never rebuild it).
