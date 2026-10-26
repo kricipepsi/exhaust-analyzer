@@ -1,0 +1,3083 @@
+{
+ "a_never_pass_or_run": {
+  "blind_spot": "conditional skips inside if/try bodies; skips raised by fixtures/conftest hooks; marks added via pytest_collection_modifyitems; -m deselection outside pyproject addopts",
+  "mechanism": "AST over test files: pytestmark/decorator marks skip|skipif|xfail, unconditional top-level pytest.skip|fail|xfail|importorskip calls, duplicate test names, yield tests, non-collectable classes/files; joined with runtime outcomes from suites.json",
+  "population": "209 .py files under ['labs/comlab/tests', 'labs/dnalab/tests', 'labs/dtclab/tests', 'labs/gaslab/tests', 'labs/obdlab/tests', 'labs/symptomlab/tests', 'labs/vinlab/tests', 'labs/comlab/registry/tests', 'apps/wired/tests', 'apps/wired/v7/tests', 'apps/ui/tests']",
+  "sites": [
+   {
+    "condition": "",
+    "kind": "mark.skip",
+    "line": 17,
+    "path": "labs/comlab/tests/unit/test_lab_pipeline_aggregator.py",
+    "reason": "phase 3: implement Pydantic validation",
+    "runtime": [
+     "comlab:skipped"
+    ],
+    "scope": "function",
+    "strict": "",
+    "test": "test_aggregator_accepts_valid_payload"
+   },
+   {
+    "condition": "",
+    "kind": "mark.skip",
+    "line": 24,
+    "path": "labs/comlab/tests/unit/test_lab_pipeline_aggregator.py",
+    "reason": "phase 3: implement DTC regex validator",
+    "runtime": [
+     "comlab:skipped"
+    ],
+    "scope": "function",
+    "strict": "",
+    "test": "test_aggregator_rejects_malformed_dtc"
+   },
+   {
+    "condition": "",
+    "kind": "mark.skip",
+    "line": 32,
+    "path": "labs/comlab/tests/unit/test_lab_pipeline_aggregator.py",
+    "reason": "phase 3: implement fallback tree",
+    "runtime": [
+     "comlab:skipped"
+    ],
+    "scope": "function",
+    "strict": "",
+    "test": "test_modern_vehicle_missing_trims_aborts"
+   },
+   {
+    "condition": "",
+    "kind": "mark.skip",
+    "line": 42,
+    "path": "labs/comlab/tests/unit/test_lab_pipeline_aggregator.py",
+    "reason": "phase 3: implement legacy graceful degradation",
+    "runtime": [
+     "comlab:skipped"
+    ],
+    "scope": "function",
+    "strict": "",
+    "test": "test_legacy_vehicle_missing_trims_degrades_to_gas_dominant"
+   },
+   {
+    "condition": "'opentelemetry'",
+    "kind": "pytest.importorskip",
+    "line": 458,
+    "path": "labs/comlab/tests/unit/test_router_spans.py",
+    "reason": "",
+    "runtime": [
+     "not-skipped-or-failed (passed, deselected or not collected)"
+    ],
+    "scope": "function-body",
+    "test": "test_v2_route_emits_rank_span_with_expected_rule_tags"
+   },
+   {
+    "condition": "'opentelemetry'",
+    "kind": "pytest.importorskip",
+    "line": 533,
+    "path": "labs/comlab/tests/unit/test_router_spans.py",
+    "reason": "",
+    "runtime": [
+     "not-skipped-or-failed (passed, deselected or not collected)"
+    ],
+    "scope": "function-body",
+    "test": "test_v2_route_emits_prune_span_with_rule_pruned_events"
+   },
+   {
+    "condition": "",
+    "kind": "mark.skip",
+    "line": 8,
+    "path": "labs/gaslab/tests/generative/test_fuzz.py",
+    "reason": "Fuzz generator not implemented in shared engine",
+    "runtime": [
+     "gaslab:skipped"
+    ],
+    "scope": "function",
+    "strict": "",
+    "test": "test_fuzz_stub"
+   },
+   {
+    "condition": "not CSV_PATH.exists()",
+    "kind": "mark.skipif",
+    "line": 11,
+    "path": "labs/gaslab/tests/test_cases.py",
+    "reason": "gaslab_cases.csv not yet derived",
+    "runtime": [
+     "gaslab:skipped"
+    ],
+    "scope": "function",
+    "strict": "",
+    "test": "test_csv_cases"
+   },
+   {
+    "condition": "",
+    "kind": "mark.skip",
+    "line": 8,
+    "path": "labs/obdlab/tests/generative/test_noise.py",
+    "reason": "blocked: T-TST-8 obdlab harness",
+    "runtime": [
+     "obdlab:skipped"
+    ],
+    "scope": "function",
+    "strict": "",
+    "test": "test_noise_obdlab"
+   },
+   {
+    "condition": "",
+    "kind": "mark.skip",
+    "line": 8,
+    "path": "labs/obdlab/tests/generative/test_overlap.py",
+    "reason": "blocked: T-TST-8 obdlab harness",
+    "runtime": [
+     "obdlab:skipped"
+    ],
+    "scope": "function",
+    "strict": "",
+    "test": "test_overlap_obdlab"
+   },
+   {
+    "condition": "not _data_available()",
+    "kind": "mark.skipif",
+    "line": 19,
+    "path": "labs/vinlab/tests/unit/test_build.py",
+    "reason": "vinlab/data/ files not populated",
+    "runtime": [
+     "not-skipped-or-failed (passed, deselected or not collected)"
+    ],
+    "scope": "module",
+    "test": "*"
+   },
+   {
+    "condition": "not CSV_PATH.exists()",
+    "kind": "mark.skipif",
+    "line": 66,
+    "path": "labs/vinlab/tests/unit/test_patch_regression.py",
+    "reason": "OPSI CSV not present in this env",
+    "runtime": [
+     "vinlab:skipped"
+    ],
+    "scope": "function",
+    "strict": "",
+    "test": "test_pass_rate_sample"
+   }
+  ],
+  "unit": "one site (mark, call, or shadowing) on one test or module"
+ },
+ "b_dead_guard": {
+  "blind_spot": "guards on non-literal module names; `if FLAG:` uses of a guard's flag are not separately counted (the guard is); deploy context assumes Render's sys.path = repo root + apps/ui + editable installs (no labs/comlab, so `registry` is absent)",
+  "mechanism": "AST: try/except ImportError|ModuleNotFoundError bodies and find_spec/importorskip literal args; each module resolved with importlib.util.find_spec in the audit venv, and for the deploy context additionally required to belong to the requirements.txt dependency closure",
+  "population": "prod + offline + test files",
+  "sites": [
+   {
+    "group": "prod",
+    "kind": "importlib.util.find_spec",
+    "line": 36,
+    "modules": [
+     "opentelemetry.trace"
+    ],
+    "path": "apps/wired/wired/tracing.py",
+    "present": {
+     "audit-venv": true,
+     "deploy": false
+    },
+    "status": "LIVE"
+   },
+   {
+    "group": "prod",
+    "kind": "importlib.util.find_spec",
+    "line": 24,
+    "modules": [
+     "opentelemetry.sdk.trace"
+    ],
+    "path": "apps/wired/wired/tracing.py",
+    "present": {
+     "audit-venv": true,
+     "deploy": false
+    },
+    "status": "LIVE"
+   },
+   {
+    "group": "prod",
+    "kind": "importlib.util.find_spec",
+    "line": 25,
+    "modules": [
+     "opentelemetry.sdk.trace.export"
+    ],
+    "path": "apps/wired/wired/tracing.py",
+    "present": {
+     "audit-venv": true,
+     "deploy": false
+    },
+    "status": "LIVE"
+   },
+   {
+    "group": "prod",
+    "kind": "try-import",
+    "line": 153,
+    "modules": [
+     "opentelemetry"
+    ],
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "present": {
+     "audit-venv": true,
+     "deploy": false
+    },
+    "status": "LIVE"
+   },
+   {
+    "group": "prod",
+    "kind": "try-import",
+    "line": 114,
+    "modules": [
+     "opentelemetry",
+     "opentelemetry.exporter.otlp.proto.grpc.trace_exporter",
+     "opentelemetry.sdk.resources",
+     "opentelemetry.sdk.trace",
+     "opentelemetry.sdk.trace.export"
+    ],
+    "path": "labs/comlab/comlab/observability/_tracer.py",
+    "present": {
+     "audit-venv": false,
+     "deploy": false
+    },
+    "status": "UNREACHABLE-PRIMARY"
+   },
+   {
+    "group": "offline",
+    "kind": "try-import",
+    "line": 47,
+    "modules": [
+     "opentelemetry",
+     "opentelemetry.exporter.otlp.proto.grpc.trace_exporter",
+     "opentelemetry.sdk.resources",
+     "opentelemetry.sdk.trace",
+     "opentelemetry.sdk.trace.export",
+     "opentelemetry.trace"
+    ],
+    "path": "apps/wired/v7/run_suite.py",
+    "present": {
+     "audit-venv": false,
+     "deploy": false
+    },
+    "status": "UNREACHABLE-PRIMARY"
+   },
+   {
+    "group": "offline",
+    "kind": "try-import",
+    "line": 181,
+    "modules": [
+     "yaml"
+    ],
+    "path": "labs/vinlab/tools/build_vref_db.py",
+    "present": {
+     "audit-venv": true,
+     "deploy": true
+    },
+    "status": "UNREACHABLE-FALLBACK"
+   },
+   {
+    "group": "offline",
+    "kind": "try-import",
+    "line": 306,
+    "modules": [
+     "mysql.connector"
+    ],
+    "path": "labs/vinlab/tools/build_vref_db.py",
+    "present": {
+     "audit-venv": false,
+     "deploy": false
+    },
+    "status": "UNREACHABLE-PRIMARY"
+   },
+   {
+    "group": "offline",
+    "kind": "try-import",
+    "line": 145,
+    "modules": [
+     "tools.import_vpic"
+    ],
+    "path": "labs/vinlab/tools/build_wmi_map.py",
+    "present": {
+     "audit-venv": false,
+     "deploy": false
+    },
+    "status": "UNREACHABLE-PRIMARY"
+   },
+   {
+    "group": "tests",
+    "kind": "pytest.importorskip",
+    "line": 97,
+    "modules": [
+     "opentelemetry"
+    ],
+    "path": "labs/comlab/tests/unit/test_router_spans.py",
+    "present": {
+     "audit-venv": true,
+     "deploy": false
+    },
+    "status": "LIVE"
+   },
+   {
+    "group": "tests",
+    "kind": "pytest.importorskip",
+    "line": 458,
+    "modules": [
+     "opentelemetry"
+    ],
+    "path": "labs/comlab/tests/unit/test_router_spans.py",
+    "present": {
+     "audit-venv": true,
+     "deploy": false
+    },
+    "status": "LIVE"
+   },
+   {
+    "group": "tests",
+    "kind": "pytest.importorskip",
+    "line": 533,
+    "modules": [
+     "opentelemetry"
+    ],
+    "path": "labs/comlab/tests/unit/test_router_spans.py",
+    "present": {
+     "audit-venv": true,
+     "deploy": false
+    },
+    "status": "LIVE"
+   }
+  ],
+  "unit": "one guard site"
+ },
+ "c_assertion_free": {
+  "blind_spot": "assertions inside fixtures; snapshot/approval comparisons done by plugins; production calls are deliberately not counted as assertions (an exception would fail the test)",
+  "mechanism": "AST per collected-by-name test function: assert stmt, raise, pytest.raises|warns|fail, self.assert* on unittest.TestCase, or a call resolved by AST to a test-population helper or library function whose body asserts / raises AssertionError (transitive, depth 6)",
+  "population": "1918 test functions in test_*.py files of the test population",
+  "sites": [
+   {
+    "body_statements": 5,
+    "calls": [
+     "LabPipelineAggregator",
+     "OrchestratorInboundRequest.model_validate",
+     "_minimal_valid_payload",
+     "agg.check_schema_version"
+    ],
+    "line": 356,
+    "path": "labs/comlab/tests/e2e/test_error_codes.py",
+    "status": "NO-ASSERTION",
+    "test": "TestErrAbort005::test_current_schema_version_accepted"
+   },
+   {
+    "body_statements": 1,
+    "calls": [],
+    "line": 6,
+    "path": "labs/comlab/tests/integration/test_truth_perception.py",
+    "status": "EMPTY",
+    "test": "test_cases"
+   },
+   {
+    "body_statements": 3,
+    "calls": [
+     "_load_schema",
+     "jsonschema.validate"
+    ],
+    "line": 103,
+    "path": "labs/comlab/tests/unit/test_kg_schema.py",
+    "status": "NO-ASSERTION",
+    "test": "test_json_schema_validates_good_file"
+   },
+   {
+    "body_statements": 1,
+    "calls": [
+     "LabPipelineAggregator"
+    ],
+    "line": 52,
+    "path": "labs/comlab/tests/unit/test_lab_pipeline_aggregator.py",
+    "status": "NO-ASSERTION",
+    "test": "test_aggregator_smoke"
+   },
+   {
+    "body_statements": 3,
+    "calls": [
+     "DataFusionSanitizer",
+     "make_freeze_frame_raw",
+     "sanitizer.sanitize"
+    ],
+    "line": 200,
+    "path": "labs/dtclab/tests/generative/test_fuzz.py",
+    "status": "NO-ASSERTION",
+    "test": "test_mode06_fuzz"
+   },
+   {
+    "body_statements": 1,
+    "calls": [],
+    "line": 9,
+    "path": "labs/gaslab/tests/generative/test_fuzz.py",
+    "status": "EMPTY",
+    "test": "test_fuzz_stub"
+   },
+   {
+    "body_statements": 1,
+    "calls": [],
+    "line": 12,
+    "path": "labs/gaslab/tests/test_cases.py",
+    "status": "EMPTY",
+    "test": "test_csv_cases"
+   },
+   {
+    "body_statements": 1,
+    "calls": [],
+    "line": 9,
+    "path": "labs/obdlab/tests/generative/test_noise.py",
+    "status": "EMPTY",
+    "test": "test_noise_obdlab"
+   },
+   {
+    "body_statements": 1,
+    "calls": [],
+    "line": 9,
+    "path": "labs/obdlab/tests/generative/test_overlap.py",
+    "status": "EMPTY",
+    "test": "test_overlap_obdlab"
+   }
+  ],
+  "total_tests": 1918,
+  "unit": "one test function (parametrised variants count once)"
+ },
+ "controls": {
+  "a+ body pytest.fail flagged": "PASS",
+  "a+ shadowed test flagged": "PASS",
+  "a+ unconditional skip flagged": "PASS",
+  "a- clean file has no site": "PASS",
+  "b+ missing module UNREACHABLE-PRIMARY": "PASS",
+  "b+ stdlib guard UNREACHABLE-FALLBACK": "PASS",
+  "b- optional dev-only module LIVE": "PASS",
+  "c+ assertion-free test flagged": "PASS",
+  "c- helper-asserting test not flagged": "PASS",
+  "c- pytest.raises test not flagged": "PASS",
+  "d+ bare except pass flagged": "PASS",
+  "d+ except Exception: return default flagged": "PASS",
+  "d- re-raising handler not swallowed": "PASS",
+  "e+ Any/type-ignore/noqa counted": "PASS",
+  "e- clean file has no row": "PASS",
+  "f+ reachable NotImplementedError flagged": "PASS",
+  "f+ reachable TODO flagged": "PASS",
+  "f- unreachable NotImplementedError not reachable": "PASS",
+  "g+ planted failing test listed": "PASS",
+  "g- clean test file not listed": "PASS"
+ },
+ "d_swallowed": {
+  "blind_spot": "narrow handlers (ValueError, KeyError...) are listed with broad=false and their shape but are not counted as swallowed; contextlib.suppress and errors swallowed by callers' frameworks (pydantic, streamlit) are not counted",
+  "denominator_offline": {
+   "broad": 11,
+   "handlers_total": 53,
+   "narrow": 42
+  },
+  "denominator_prod": {
+   "broad": 6,
+   "handlers_total": 59,
+   "narrow": 53
+  },
+  "mechanism": "AST ExceptHandler whose type is bare, Exception or BaseException (or a tuple holding one); body shape classified; reachability from the call graph of kind f",
+  "population": "prod and offline files (separately)",
+  "sites": [
+   {
+    "broad": true,
+    "caught": "Exception",
+    "chain": [
+     "ui_app.<module>"
+    ],
+    "detail": "",
+    "function": "ui_app.<module>",
+    "group": "prod",
+    "line": 138,
+    "owner": "ui_app.<module>",
+    "path": "apps/ui/app.py",
+    "reachable": true,
+    "shape": "PASS",
+    "swallowed": true
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "chain": [
+     "ui_app.<module>"
+    ],
+    "detail": "st.session_state.diagnose_result = None",
+    "function": "ui_app.<module>",
+    "group": "prod",
+    "line": 927,
+    "owner": "ui_app.<module>",
+    "path": "apps/ui/app.py",
+    "reachable": true,
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": true
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "chain": [
+     "ui_app.<module>"
+    ],
+    "detail": "use_decoded_dna = False",
+    "function": "ui_app.<module>",
+    "group": "prod",
+    "line": 322,
+    "owner": "ui_app.<module>",
+    "path": "apps/ui/app.py",
+    "reachable": true,
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": true
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "chain": [
+     "ui_payload.build_diagnose_payload"
+    ],
+    "detail": "",
+    "function": "ui_payload.build_diagnose_payload",
+    "group": "prod",
+    "line": 1080,
+    "owner": "ui_payload.build_diagnose_payload",
+    "path": "apps/ui/ui_payload.py",
+    "reachable": true,
+    "shape": "PASS",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "VINDecodeError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose"
+    ],
+    "detail": "vin_dna = _build_fallback_vin_dna(vin)",
+    "function": "wired.composition._diagnose",
+    "group": "prod",
+    "line": 98,
+    "owner": "wired.composition._diagnose",
+    "path": "apps/wired/wired/composition.py",
+    "reachable": true,
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "FileNotFoundError",
+    "chain": [],
+    "detail": "1",
+    "function": "wired.run_case.main",
+    "group": "prod",
+    "line": 65,
+    "owner": "wired.run_case.main",
+    "path": "apps/wired/wired/run_case.py",
+    "reachable": false,
+    "shape": "RETURN+LOG",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_kg.FaultAtlasKG.resolve"
+    ],
+    "detail": "",
+    "function": "comlab.core.fault_atlas_kg.FaultAtlasKG.resolve",
+    "group": "prod",
+    "line": 78,
+    "owner": "comlab.core.fault_atlas_kg.FaultAtlasKG.resolve",
+    "path": "labs/comlab/comlab/core/fault_atlas_kg.py",
+    "reachable": true,
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "json.JSONDecodeError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.__init__",
+     "comlab.core.fault_atlas_kg.FaultAtlasKG.__init__",
+     "comlab.core.fault_atlas_kg.FaultAtlasKG._load_all",
+     "comlab.core.fault_atlas_kg.FaultAtlasKG._load_one"
+    ],
+    "detail": "",
+    "function": "comlab.core.fault_atlas_kg.FaultAtlasKG._load_one",
+    "group": "prod",
+    "line": 118,
+    "owner": "comlab.core.fault_atlas_kg.FaultAtlasKG._load_one",
+    "path": "labs/comlab/comlab/core/fault_atlas_kg.py",
+    "reachable": true,
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.__init__",
+     "comlab.core.fault_atlas_kg.FaultAtlasKG.__init__",
+     "comlab.core.fault_atlas_kg.FaultAtlasKG._load_all",
+     "comlab.core.fault_atlas_kg.FaultAtlasKG._load_one"
+    ],
+    "detail": "",
+    "function": "comlab.core.fault_atlas_kg.FaultAtlasKG._load_one",
+    "group": "prod",
+    "line": 125,
+    "owner": "comlab.core.fault_atlas_kg.FaultAtlasKG._load_one",
+    "path": "labs/comlab/comlab/core/fault_atlas_kg.py",
+    "reachable": true,
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ImportError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.core.fault_atlas_router._set_expected_rule_attrs",
+     "comlab.core.fault_atlas_router._expected_family_from_trace_context"
+    ],
+    "detail": "''",
+    "function": "comlab.core.fault_atlas_router._expected_family_from_trace_context",
+    "group": "prod",
+    "line": 153,
+    "owner": "comlab.core.fault_atlas_router._expected_family_from_trace_context",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "RETURN",
+    "swallowed": false
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.__init__",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.__init__",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter._load_registry"
+    ],
+    "detail": "",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter._load_registry",
+    "group": "prod",
+    "line": 642,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter._load_registry",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "FileNotFoundError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.__init__",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.__init__",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter._load_prior_table"
+    ],
+    "detail": "None",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter._load_prior_table",
+    "group": "prod",
+    "line": 672,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter._load_prior_table",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "RETURN+LOG",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "yaml.YAMLError,OSError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.__init__",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.__init__",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter._load_prior_table"
+    ],
+    "detail": "None",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter._load_prior_table",
+    "group": "prod",
+    "line": 678,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter._load_prior_table",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "RETURN+LOG",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "FileNotFoundError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.__init__",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.__init__",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter._load_discriminator_table"
+    ],
+    "detail": "None",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter._load_discriminator_table",
+    "group": "prod",
+    "line": 707,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter._load_discriminator_table",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "RETURN+LOG",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "yaml.YAMLError,OSError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.__init__",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.__init__",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter._load_discriminator_table"
+    ],
+    "detail": "None",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter._load_discriminator_table",
+    "group": "prod",
+    "line": 713,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter._load_discriminator_table",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "RETURN+LOG",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "FileNotFoundError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.__init__",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.__init__",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter._load_taxonomy_backbone"
+    ],
+    "detail": "None",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter._load_taxonomy_backbone",
+    "group": "prod",
+    "line": 740,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter._load_taxonomy_backbone",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "RETURN+LOG",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "yaml.YAMLError,OSError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.__init__",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.__init__",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter._load_taxonomy_backbone"
+    ],
+    "detail": "None",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter._load_taxonomy_backbone",
+    "group": "prod",
+    "line": 747,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter._load_taxonomy_backbone",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "RETURN+LOG",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.build_differential_siblings",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter._resolve_output_fault_family"
+    ],
+    "detail": "'no_fault'",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter._resolve_output_fault_family",
+    "group": "prod",
+    "line": 1804,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter._resolve_output_fault_family",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "RETURN",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route"
+    ],
+    "detail": "kg_node = None",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+    "group": "prod",
+    "line": 2191,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route"
+    ],
+    "detail": "enrichment = FaultEnrichment(component_group='engine', impacted_subsystems=[], mechanical_failure_mode='No fault detected \u2014 all diagnostics within specification",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+    "group": "prod",
+    "line": 2272,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route"
+    ],
+    "detail": "runner_family = 'no_fault'",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+    "group": "prod",
+    "line": 2297,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop"
+    ],
+    "detail": "",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "group": "prod",
+    "line": 1099,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "CONTINUE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop"
+    ],
+    "detail": "",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "group": "prod",
+    "line": 1130,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "CONTINUE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop"
+    ],
+    "detail": "",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "group": "prod",
+    "line": 1625,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "CONTINUE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop"
+    ],
+    "detail": "rule_family = ''",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "group": "prod",
+    "line": 1682,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop"
+    ],
+    "detail": "",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "group": "prod",
+    "line": 1166,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "CONTINUE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop"
+    ],
+    "detail": "",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "group": "prod",
+    "line": 1203,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "CONTINUE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop"
+    ],
+    "detail": "",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "group": "prod",
+    "line": 1294,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "CONTINUE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop"
+    ],
+    "detail": "",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "group": "prod",
+    "line": 1328,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "CONTINUE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop"
+    ],
+    "detail": "member_present = False",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "group": "prod",
+    "line": 1366,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop"
+    ],
+    "detail": "",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "group": "prod",
+    "line": 1254,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "CONTINUE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop"
+    ],
+    "detail": "",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "group": "prod",
+    "line": 1371,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "CONTINUE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop"
+    ],
+    "detail": "",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "group": "prod",
+    "line": 1472,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "CONTINUE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop"
+    ],
+    "detail": "",
+    "function": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "group": "prod",
+    "line": 1579,
+    "owner": "comlab.core.fault_atlas_router.FaultAtlasRouter.execute_triage_loop",
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "reachable": true,
+    "shape": "CONTINUE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator._stage_c_enrich"
+    ],
+    "detail": "FaultEnrichment(component_group='', impacted_subsystems=[], mechanical_failure_mode='', ui_remediation_steps=[f'Unknown fault code: {fault_code}. Manual diagnos",
+    "function": "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator._stage_c_enrich",
+    "group": "prod",
+    "line": 151,
+    "owner": "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator._stage_c_enrich",
+    "path": "labs/comlab/comlab/core/lab_pipeline_aggregator.py",
+    "reachable": true,
+    "shape": "RETURN+LOG",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process"
+    ],
+    "detail": "horizon = Horizon.MODERN",
+    "function": "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+    "group": "prod",
+    "line": 384,
+    "owner": "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+    "path": "labs/comlab/comlab/core/lab_pipeline_aggregator.py",
+    "reachable": true,
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process"
+    ],
+    "detail": "siblings = []",
+    "function": "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+    "group": "prod",
+    "line": 525,
+    "owner": "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+    "path": "labs/comlab/comlab/core/lab_pipeline_aggregator.py",
+    "reachable": true,
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "AggregatorAbort",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process"
+    ],
+    "detail": "self._build_fatal_incomplete_output(request, abort, horizon)",
+    "function": "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+    "group": "prod",
+    "line": 448,
+    "owner": "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+    "path": "labs/comlab/comlab/core/lab_pipeline_aggregator.py",
+    "reachable": true,
+    "shape": "RETURN",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ImportError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.observability._tracer.get_tracer",
+     "comlab.observability._tracer._initialise_provider_once"
+    ],
+    "detail": "False",
+    "function": "comlab.observability._tracer._initialise_provider_once",
+    "group": "prod",
+    "line": 114,
+    "owner": "comlab.observability._tracer._initialise_provider_once",
+    "path": "labs/comlab/comlab/observability/_tracer.py",
+    "reachable": true,
+    "shape": "RETURN+LOG",
+    "swallowed": false
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "comlab.observability._tracer.get_tracer",
+     "comlab.observability._tracer._initialise_provider_once"
+    ],
+    "detail": "False",
+    "function": "comlab.observability._tracer._initialise_provider_once",
+    "group": "prod",
+    "line": 142,
+    "owner": "comlab.observability._tracer._initialise_provider_once",
+    "path": "labs/comlab/comlab/observability/_tracer.py",
+    "reachable": true,
+    "shape": "RETURN+LOG",
+    "swallowed": true
+   },
+   {
+    "broad": false,
+    "caught": "TypeError,ValueError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "registry.integration_shim.route_case_with_diagnostics",
+     "registry.integration_shim.RegistryV2Router.route_case_with_diagnostics",
+     "registry.integration_shim._build_observation",
+     "registry.integration_shim._resolve_pid_from_payload",
+     "registry.integration_shim._resolve_single_source"
+    ],
+    "detail": "None",
+    "function": "registry.integration_shim._resolve_single_source",
+    "group": "prod",
+    "line": 389,
+    "owner": "registry.integration_shim._resolve_single_source",
+    "path": "labs/comlab/registry/integration_shim.py",
+    "reachable": true,
+    "shape": "RETURN",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "json.JSONDecodeError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "registry.integration_shim.render_ranked_rule",
+     "registry.integration_shim.RegistryV2Router.__init__",
+     "registry.integration_shim._load_all_rulesets"
+    ],
+    "detail": "",
+    "function": "registry.integration_shim._load_all_rulesets",
+    "group": "prod",
+    "line": 433,
+    "owner": "registry.integration_shim._load_all_rulesets",
+    "path": "labs/comlab/registry/integration_shim.py",
+    "reachable": true,
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValidationError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "registry.integration_shim.render_ranked_rule",
+     "registry.integration_shim.RegistryV2Router.__init__",
+     "registry.integration_shim._load_all_rulesets"
+    ],
+    "detail": "",
+    "function": "registry.integration_shim._load_all_rulesets",
+    "group": "prod",
+    "line": 439,
+    "owner": "registry.integration_shim._load_all_rulesets",
+    "path": "labs/comlab/registry/integration_shim.py",
+    "reachable": true,
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "registry.integration_shim.route_case_with_diagnostics",
+     "registry.integration_shim.RegistryV2Router.route_case_with_diagnostics",
+     "registry.integration_shim._build_observation"
+    ],
+    "detail": "chemistry_state = None",
+    "function": "registry.integration_shim._build_observation",
+    "group": "prod",
+    "line": 488,
+    "owner": "registry.integration_shim._build_observation",
+    "path": "labs/comlab/registry/integration_shim.py",
+    "reachable": true,
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "registry.integration_shim.route_case_with_diagnostics",
+     "registry.integration_shim.RegistryV2Router.route_case_with_diagnostics",
+     "registry.integration_shim._build_observation",
+     "registry.integration_shim._coerce_dtc_routing_tags"
+    ],
+    "detail": "",
+    "function": "registry.integration_shim._coerce_dtc_routing_tags",
+    "group": "prod",
+    "line": 520,
+    "owner": "registry.integration_shim._coerce_dtc_routing_tags",
+    "path": "labs/comlab/registry/integration_shim.py",
+    "reachable": true,
+    "shape": "CONTINUE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError,AttributeError,TypeError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.process",
+     "comlab.core.fault_atlas_router.FaultAtlasRouter.route",
+     "registry.integration_shim.render_ranked_rule",
+     "registry.integration_shim.RegistryV2Router.render_ranked_rule",
+     "registry.integration_shim._translate_to_output",
+     "registry.shim.payload_mirrors.resolve_session_id",
+     "registry.shim.payload_mirrors._is_valid_uuid4"
+    ],
+    "detail": "False",
+    "function": "registry.shim.payload_mirrors._is_valid_uuid4",
+    "group": "prod",
+    "line": 52,
+    "owner": "registry.shim.payload_mirrors._is_valid_uuid4",
+    "path": "labs/comlab/registry/shim/payload_mirrors.py",
+    "reachable": true,
+    "shape": "RETURN",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "OSError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "wired.composition._run_gaslab",
+     "gaslab.process.process",
+     "gaslab.ontology_loader.load_ontology"
+    ],
+    "detail": "",
+    "function": "gaslab.ontology_loader.load_ontology",
+    "group": "prod",
+    "line": 46,
+    "owner": "gaslab.ontology_loader.load_ontology",
+    "path": "labs/gaslab/gaslab/ontology_loader.py",
+    "reachable": true,
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "yaml.YAMLError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "wired.composition._run_gaslab",
+     "gaslab.process.process",
+     "gaslab.ontology_loader.load_ontology"
+    ],
+    "detail": "",
+    "function": "gaslab.ontology_loader.load_ontology",
+    "group": "prod",
+    "line": 51,
+    "owner": "gaslab.ontology_loader.load_ontology",
+    "path": "labs/gaslab/gaslab/ontology_loader.py",
+    "reachable": true,
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError,TypeError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "wired.composition._run_obdlab",
+     "obdlab.core.sensor_signal_translator.SensorSignalTranslator.translate",
+     "obdlab.core.pid_ingestion_validator.PIDIngestionValidator.validate_and_convert",
+     "obdlab.core.pid_ingestion_validator.PIDIngestionValidator._validate_ltft_cell_vector"
+    ],
+    "detail": "",
+    "function": "obdlab.core.pid_ingestion_validator.PIDIngestionValidator._validate_ltft_cell_vector",
+    "group": "prod",
+    "line": 82,
+    "owner": "obdlab.core.pid_ingestion_validator.PIDIngestionValidator._validate_ltft_cell_vector",
+    "path": "labs/obdlab/obdlab/core/pid_ingestion_validator.py",
+    "reachable": true,
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError,TypeError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "wired.composition._run_obdlab",
+     "obdlab.core.sensor_signal_translator.SensorSignalTranslator.translate",
+     "obdlab.core.pid_ingestion_validator.PIDIngestionValidator.validate_and_convert",
+     "obdlab.core.pid_ingestion_validator.PIDIngestionValidator._validate_ltft_cell_vector"
+    ],
+    "detail": "",
+    "function": "obdlab.core.pid_ingestion_validator.PIDIngestionValidator._validate_ltft_cell_vector",
+    "group": "prod",
+    "line": 89,
+    "owner": "obdlab.core.pid_ingestion_validator.PIDIngestionValidator._validate_ltft_cell_vector",
+    "path": "labs/obdlab/obdlab/core/pid_ingestion_validator.py",
+    "reachable": true,
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError,TypeError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "wired.composition._run_obdlab",
+     "obdlab.core.sensor_signal_translator.SensorSignalTranslator.translate",
+     "obdlab.core.pid_ingestion_validator.PIDIngestionValidator.validate_and_convert",
+     "obdlab.core.pid_ingestion_validator.PIDIngestionValidator._validate_per_cylinder_misfire_counts"
+    ],
+    "detail": "",
+    "function": "obdlab.core.pid_ingestion_validator.PIDIngestionValidator._validate_per_cylinder_misfire_counts",
+    "group": "prod",
+    "line": 130,
+    "owner": "obdlab.core.pid_ingestion_validator.PIDIngestionValidator._validate_per_cylinder_misfire_counts",
+    "path": "labs/obdlab/obdlab/core/pid_ingestion_validator.py",
+    "reachable": true,
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError,TypeError",
+    "chain": [
+     "wired.composition.diagnose",
+     "wired.composition._diagnose",
+     "wired.composition._run_obdlab",
+     "obdlab.core.sensor_signal_translator.SensorSignalTranslator.translate",
+     "obdlab.core.pid_ingestion_validator.PIDIngestionValidator.validate_and_convert",
+     "obdlab.core.pid_ingestion_validator.PIDIngestionValidator._validate_per_cylinder_misfire_counts"
+    ],
+    "detail": "",
+    "function": "obdlab.core.pid_ingestion_validator.PIDIngestionValidator._validate_per_cylinder_misfire_counts",
+    "group": "prod",
+    "line": 137,
+    "owner": "obdlab.core.pid_ingestion_validator.PIDIngestionValidator._validate_per_cylinder_misfire_counts",
+    "path": "labs/obdlab/obdlab/core/pid_ingestion_validator.py",
+    "reachable": true,
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "KeyError",
+    "chain": [],
+    "detail": "",
+    "function": "symptomlab.models.SymptomDNA.from_json",
+    "group": "prod",
+    "line": 106,
+    "owner": "symptomlab.models.SymptomDNA.from_json",
+    "path": "labs/symptomlab/symptomlab/models.py",
+    "reachable": false,
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "chain": [],
+    "detail": "",
+    "function": "symptomlab.models.SymptomDNA.from_json",
+    "group": "prod",
+    "line": 108,
+    "owner": "symptomlab.models.SymptomDNA.from_json",
+    "path": "labs/symptomlab/symptomlab/models.py",
+    "reachable": false,
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "chain": [],
+    "detail": "",
+    "function": "symptomlab.validator.SymptomValidator.validate",
+    "group": "prod",
+    "line": 87,
+    "owner": "symptomlab.validator.SymptomValidator.validate",
+    "path": "labs/symptomlab/symptomlab/validator.py",
+    "reachable": false,
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "chain": [],
+    "detail": "",
+    "function": "vinlab.decoder.RobustVINDecoder._engine_attrs_from_csv",
+    "group": "prod",
+    "line": 263,
+    "owner": "vinlab.decoder.RobustVINDecoder._engine_attrs_from_csv",
+    "path": "labs/vinlab/vinlab/decoder.py",
+    "reachable": false,
+    "shape": "PASS",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "chain": [],
+    "detail": "",
+    "function": "vinlab.decoder.RobustVINDecoder._engine_attrs_from_csv",
+    "group": "prod",
+    "line": 269,
+    "owner": "vinlab.decoder.RobustVINDecoder._engine_attrs_from_csv",
+    "path": "labs/vinlab/vinlab/decoder.py",
+    "reachable": false,
+    "shape": "PASS",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "chain": [],
+    "detail": "",
+    "function": "vinlab.decoder.RobustVINDecoder._resolve_engine",
+    "group": "prod",
+    "line": 772,
+    "owner": "vinlab.decoder.RobustVINDecoder._resolve_engine",
+    "path": "labs/vinlab/vinlab/decoder.py",
+    "reachable": false,
+    "shape": "PASS",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "chain": [],
+    "detail": "",
+    "function": "vinlab.decoder.RobustVINDecoder._resolve_engine",
+    "group": "prod",
+    "line": 789,
+    "owner": "vinlab.decoder.RobustVINDecoder._resolve_engine",
+    "path": "labs/vinlab/vinlab/decoder.py",
+    "reachable": false,
+    "shape": "PASS",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "VINDecodeError",
+    "detail": "vin_dna = _build_fallback_vin_dna(vin)",
+    "function": "fl_tasks.capture_upstream_evidence._build_vin_dna",
+    "group": "offline",
+    "line": 110,
+    "path": "apps/wired/fl_tasks/capture_upstream_evidence.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "detail": "gas_state = f'GASLAB_ERROR:{type(exc).__name__}'",
+    "function": "fl_tasks.capture_upstream_evidence._capture_upstream_for_row",
+    "group": "offline",
+    "line": 135,
+    "path": "apps/wired/fl_tasks/capture_upstream_evidence.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": true
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "detail": "obd_o2_failure_mode = f'OBDLAB_ERROR:{type(exc).__name__}'",
+    "function": "fl_tasks.capture_upstream_evidence._capture_upstream_for_row",
+    "group": "offline",
+    "line": 145,
+    "path": "apps/wired/fl_tasks/capture_upstream_evidence.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": true
+   },
+   {
+    "broad": false,
+    "caught": "OSError,subprocess.SubprocessError",
+    "detail": "'unavailable'",
+    "function": "fl_tasks.score_v3_yardstick.git_sha",
+    "group": "offline",
+    "line": 264,
+    "path": "apps/wired/fl_tasks/score_v3_yardstick.py",
+    "shape": "RETURN",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ScoreboardInputError,YardstickRefusalError",
+    "detail": "2",
+    "function": "fl_tasks.score_v3_yardstick.main",
+    "group": "offline",
+    "line": 1049,
+    "path": "apps/wired/fl_tasks/score_v3_yardstick.py",
+    "shape": "RETURN+LOG",
+    "swallowed": false
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "detail": "raised_exception = exc",
+    "function": "fl_tasks.score_v3_yardstick.run_current_engine",
+    "group": "offline",
+    "line": 306,
+    "path": "apps/wired/fl_tasks/score_v3_yardstick.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": true
+   },
+   {
+    "broad": false,
+    "caught": "urllib.error.URLError",
+    "detail": "",
+    "function": "trace.extract_traces._read_json_url",
+    "group": "offline",
+    "line": 64,
+    "path": "apps/wired/trace/extract_traces.py",
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "json.JSONDecodeError",
+    "detail": "",
+    "function": "trace.extract_traces._read_json_url",
+    "group": "offline",
+    "line": 66,
+    "path": "apps/wired/trace/extract_traces.py",
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "detail": "default",
+    "function": "v7.load_corpus.safe_float",
+    "group": "offline",
+    "line": 67,
+    "path": "apps/wired/v7/load_corpus.py",
+    "shape": "RETURN",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "detail": "default",
+    "function": "v7.load_corpus.safe_int",
+    "group": "offline",
+    "line": 78,
+    "path": "apps/wired/v7/load_corpus.py",
+    "shape": "RETURN",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "VINDecodeError",
+    "detail": "'NARROWBAND_0_TO_1V'",
+    "function": "v7.load_corpus.get_o2_type",
+    "group": "offline",
+    "line": 97,
+    "path": "apps/wired/v7/load_corpus.py",
+    "shape": "RETURN",
+    "swallowed": false
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "detail": "if tag == 'invalid':\n    success_count += 1\n    continue",
+    "function": "v7.load_corpus.validate_corpus",
+    "group": "offline",
+    "line": 413,
+    "path": "apps/wired/v7/load_corpus.py",
+    "shape": "OTHER",
+    "swallowed": true
+   },
+   {
+    "broad": false,
+    "caught": "VINDecodeError",
+    "detail": "vin_dna = _build_fallback_vin_dna(vin)",
+    "function": "v7.load_corpus.validate_corpus",
+    "group": "offline",
+    "line": 392,
+    "path": "apps/wired/v7/load_corpus.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ImportError",
+    "detail": "trace = None",
+    "function": "v7.run_suite.<module>",
+    "group": "offline",
+    "line": 47,
+    "path": "apps/wired/v7/run_suite.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "detail": "outcomes['confidence'] = 'FAIL'",
+    "function": "v7.run_suite.score_case",
+    "group": "offline",
+    "line": 177,
+    "path": "apps/wired/v7/run_suite.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "detail": "raised_exception = e",
+    "function": "v7.run_suite.run_suite",
+    "group": "offline",
+    "line": 277,
+    "path": "apps/wired/v7/run_suite.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": true
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "detail": "raised_exception = e",
+    "function": "v7.run_suite.run_suite",
+    "group": "offline",
+    "line": 286,
+    "path": "apps/wired/v7/run_suite.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": true
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "detail": "dtc_badges = [d.strip() for d in dtcs_raw.split(',') if d.strip()]",
+    "function": "registry.tools.render_case_library.main",
+    "group": "offline",
+    "line": 627,
+    "path": "labs/comlab/registry/tools/render_case_library.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": true
+   },
+   {
+    "broad": false,
+    "caught": "TypeError,ValueError",
+    "detail": "None",
+    "function": "vinlab_tools.build_vref_db._safe_float",
+    "group": "offline",
+    "line": 158,
+    "path": "labs/vinlab/tools/build_vref_db.py",
+    "shape": "RETURN",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "TypeError,ValueError",
+    "detail": "None",
+    "function": "vinlab_tools.build_vref_db._safe_int",
+    "group": "offline",
+    "line": 170,
+    "path": "labs/vinlab/tools/build_vref_db.py",
+    "shape": "RETURN",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ImportError",
+    "detail": "yaml = None",
+    "function": "vinlab_tools.build_vref_db._load_overrides",
+    "group": "offline",
+    "line": 181,
+    "path": "labs/vinlab/tools/build_vref_db.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "detail": "",
+    "function": "vinlab_tools.build_vref_db._yaml_scalar",
+    "group": "offline",
+    "line": 248,
+    "path": "labs/vinlab/tools/build_vref_db.py",
+    "shape": "PASS",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "detail": "",
+    "function": "vinlab_tools.build_vref_db._yaml_scalar",
+    "group": "offline",
+    "line": 252,
+    "path": "labs/vinlab/tools/build_vref_db.py",
+    "shape": "PASS",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ImportError",
+    "detail": "None",
+    "function": "vinlab_tools.build_vref_db._try_connect_tecdoc",
+    "group": "offline",
+    "line": 306,
+    "path": "labs/vinlab/tools/build_vref_db.py",
+    "shape": "RETURN+LOG",
+    "swallowed": false
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "detail": "None",
+    "function": "vinlab_tools.build_vref_db._try_connect_tecdoc",
+    "group": "offline",
+    "line": 321,
+    "path": "labs/vinlab/tools/build_vref_db.py",
+    "shape": "RETURN+LOG",
+    "swallowed": true
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "detail": "",
+    "function": "vinlab_tools.build_vref_db.main",
+    "group": "offline",
+    "line": 953,
+    "path": "labs/vinlab/tools/build_vref_db.py",
+    "shape": "LOG-ONLY",
+    "swallowed": true
+   },
+   {
+    "broad": false,
+    "caught": "sqlite3.OperationalError",
+    "detail": "",
+    "function": "vinlab_tools.build_vref_db.main",
+    "group": "offline",
+    "line": 997,
+    "path": "labs/vinlab/tools/build_vref_db.py",
+    "shape": "PASS",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "TypeError,ValueError",
+    "detail": "",
+    "function": "vinlab_tools.build_vref_db._enrich_from_csv",
+    "group": "offline",
+    "line": 838,
+    "path": "labs/vinlab/tools/build_vref_db.py",
+    "shape": "CONTINUE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ImportError",
+    "detail": "sys.path.insert(0, str(PROJECT_ROOT))",
+    "function": "vinlab_tools.build_wmi_map.<module>",
+    "group": "offline",
+    "line": 145,
+    "path": "labs/vinlab/tools/build_wmi_map.py",
+    "shape": "OTHER",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError,IndexError",
+    "detail": "",
+    "function": "vinlab_tools.build_wmi_map._extract_era_hints",
+    "group": "offline",
+    "line": 73,
+    "path": "labs/vinlab/tools/build_wmi_map.py",
+    "shape": "CONTINUE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "detail": "",
+    "function": "vinlab_tools.extract_opsi_engine_codes.extract",
+    "group": "offline",
+    "line": 129,
+    "path": "labs/vinlab/tools/extract_opsi_engine_codes.py",
+    "shape": "PASS",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "requests.RequestException",
+    "detail": "",
+    "function": "vinlab_tools.import_vpic._download_gz",
+    "group": "offline",
+    "line": 106,
+    "path": "labs/vinlab/tools/import_vpic.py",
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "OSError",
+    "detail": "",
+    "function": "vinlab_tools.import_vpic._decompress",
+    "group": "offline",
+    "line": 121,
+    "path": "labs/vinlab/tools/import_vpic.py",
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "VPICDownloadError",
+    "detail": "print(f'ERROR: {exc}', file=sys.stderr)",
+    "function": "vinlab_tools.import_vpic.<module>",
+    "group": "offline",
+    "line": 136,
+    "path": "labs/vinlab/tools/import_vpic.py",
+    "shape": "OTHER",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "detail": "bad_range.append((r.get('brand', ''), r.get('engine_code', ''), cyl_raw))",
+    "function": "vinlab_tools.tecdoc_cyl_from_attributes.main",
+    "group": "offline",
+    "line": 384,
+    "path": "labs/vinlab/tools/tecdoc_cyl_from_attributes.py",
+    "shape": "OTHER",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "UnicodeEncodeError",
+    "detail": "",
+    "function": "vinlab_tools.tecdoc_cyl_from_attributes.main",
+    "group": "offline",
+    "line": 322,
+    "path": "labs/vinlab/tools/tecdoc_cyl_from_attributes.py",
+    "shape": "LOG-ONLY",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "detail": "bad_range.append((r.get('brand', ''), r.get('engine_code', ''), cyl_raw))",
+    "function": "vinlab_tools.tecdoc_cyl_from_codes.main",
+    "group": "offline",
+    "line": 316,
+    "path": "labs/vinlab/tools/tecdoc_cyl_from_codes.py",
+    "shape": "OTHER",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "UnicodeEncodeError",
+    "detail": "",
+    "function": "vinlab_tools.tecdoc_cyl_from_codes.main",
+    "group": "offline",
+    "line": 266,
+    "path": "labs/vinlab/tools/tecdoc_cyl_from_codes.py",
+    "shape": "LOG-ONLY",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError,TypeError",
+    "detail": "",
+    "function": "vinlab_tools.tecdoc_cylinder_enricher.query_cylinder_by_displacement",
+    "group": "offline",
+    "line": 138,
+    "path": "labs/vinlab/tools/tecdoc_cylinder_enricher.py",
+    "shape": "CONTINUE",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError,TypeError",
+    "detail": "",
+    "function": "vinlab_tools.tecdoc_cylinder_enricher.query_cylinder_by_ktype",
+    "group": "offline",
+    "line": 234,
+    "path": "labs/vinlab/tools/tecdoc_cylinder_enricher.py",
+    "shape": "PASS",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "detail": "bad_range.append((r.get('brand', ''), r.get('engine_code', ''), cyl_raw))",
+    "function": "vinlab_tools.tecdoc_cylinder_enricher.main",
+    "group": "offline",
+    "line": 468,
+    "path": "labs/vinlab/tools/tecdoc_cylinder_enricher.py",
+    "shape": "OTHER",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError,TypeError",
+    "detail": "",
+    "function": "vinlab_tools.tecdoc_cylinder_enricher.query_cylinder_by_engine_code",
+    "group": "offline",
+    "line": 105,
+    "path": "labs/vinlab/tools/tecdoc_cylinder_enricher.py",
+    "shape": "PASS",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError,TypeError",
+    "detail": "",
+    "function": "vinlab_tools.tecdoc_cylinder_enricher.query_cylinder_by_displacement",
+    "group": "offline",
+    "line": 179,
+    "path": "labs/vinlab/tools/tecdoc_cylinder_enricher.py",
+    "shape": "PASS",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "UnicodeEncodeError",
+    "detail": "",
+    "function": "vinlab_tools.tecdoc_cylinder_enricher.main",
+    "group": "offline",
+    "line": 426,
+    "path": "labs/vinlab/tools/tecdoc_cylinder_enricher.py",
+    "shape": "LOG-ONLY",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError,TypeError",
+    "detail": "ccm = None",
+    "function": "vinlab_tools.tecdoc_engine_enricher.query_engines",
+    "group": "offline",
+    "line": 170,
+    "path": "labs/vinlab/tools/tecdoc_engine_enricher.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError,TypeError",
+    "detail": "cyl = None",
+    "function": "vinlab_tools.tecdoc_engine_enricher.query_engines",
+    "group": "offline",
+    "line": 174,
+    "path": "labs/vinlab/tools/tecdoc_engine_enricher.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "UnicodeEncodeError",
+    "detail": "code = ''",
+    "function": "vinlab_tools.tecdoc_engine_enricher.build_output_row",
+    "group": "offline",
+    "line": 308,
+    "path": "labs/vinlab/tools/tecdoc_engine_enricher.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "UnicodeEncodeError",
+    "detail": "",
+    "function": "vinlab_tools.tecdoc_engine_enricher.main",
+    "group": "offline",
+    "line": 386,
+    "path": "labs/vinlab/tools/tecdoc_engine_enricher.py",
+    "shape": "RERAISE",
+    "swallowed": false
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "detail": "",
+    "function": "vinlab_tools.tecdoc_ktype_bridge.query_tecadoc",
+    "group": "offline",
+    "line": 373,
+    "path": "labs/vinlab/tools/tecdoc_ktype_bridge.py",
+    "shape": "LOG-ONLY",
+    "swallowed": true
+   },
+   {
+    "broad": false,
+    "caught": "ValueError,TypeError",
+    "detail": "",
+    "function": "vinlab_tools.tecdoc_ktype_bridge._get_cylinder_count",
+    "group": "offline",
+    "line": 285,
+    "path": "labs/vinlab/tools/tecdoc_ktype_bridge.py",
+    "shape": "PASS",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "ValueError",
+    "detail": "disp = 0",
+    "function": "vinlab_tools.tecdoc_ktype_bridge.extract_uncovered",
+    "group": "offline",
+    "line": 162,
+    "path": "labs/vinlab/tools/tecdoc_ktype_bridge.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": false,
+    "caught": "VINDecodeError,ChassisNumberError",
+    "detail": "decode_rej += 1",
+    "function": "vinlab_tools.vin_engine_number_report.<module>",
+    "group": "offline",
+    "line": 31,
+    "path": "labs/vinlab/tools/vin_engine_number_report.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": false
+   },
+   {
+    "broad": true,
+    "caught": "Exception",
+    "detail": "erow = None",
+    "function": "vinlab_tools.vin_engine_number_report.<module>",
+    "group": "offline",
+    "line": 35,
+    "path": "labs/vinlab/tools/vin_engine_number_report.py",
+    "shape": "ASSIGN-DEFAULT",
+    "swallowed": true
+   }
+  ],
+  "unit": "one broad except handler"
+ },
+ "e_loose_types": {
+  "blind_spot": "missing annotations (implicit Any), object, cast(), dict without params are not counted",
+  "mechanism": "AST: Name/Attribute nodes bound to typing.Any (annotation vs other positions, plus string annotations); tokenize COMMENT tokens matching type: ignore / pyright: ignore / noqa",
+  "population": "prod and offline files",
+  "rows": [
+   {
+    "any_annotation": 3,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "apps/ui/ui_payload.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 16,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "apps/wired/wired/composition.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 1,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "apps/wired/wired/registry_guard.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 1,
+    "any_other": 1,
+    "group": "prod",
+    "noqa": 0,
+    "path": "apps/wired/wired/run_case.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 1,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "apps/wired/wired/tracing.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 0,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/comlab/comlab/analytics/power_loss_analytics.py",
+    "pyright_ignore": 0,
+    "type_ignore": 1
+   },
+   {
+    "any_annotation": 18,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/comlab/comlab/core/fault_atlas_router.py",
+    "pyright_ignore": 0,
+    "type_ignore": 5
+   },
+   {
+    "any_annotation": 4,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/comlab/comlab/core/horizon_context_injector.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 7,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 1,
+    "path": "labs/comlab/comlab/core/lab_pipeline_aggregator.py",
+    "pyright_ignore": 0,
+    "type_ignore": 6
+   },
+   {
+    "any_annotation": 1,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/comlab/comlab/core/symptom_router.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 6,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 7,
+    "path": "labs/comlab/comlab/observability/_tracer.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 0,
+    "any_other": 1,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/comlab/comlab/projection.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 1,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/comlab/comlab/schemas/ingestion.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 20,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/comlab/registry/integration_shim.py",
+    "pyright_ignore": 0,
+    "type_ignore": 1
+   },
+   {
+    "any_annotation": 3,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/comlab/registry/shim/payload_mirrors.py",
+    "pyright_ignore": 0,
+    "type_ignore": 1
+   },
+   {
+    "any_annotation": 1,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/dnalab/dnalab/assembly.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 3,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/dnalab/dnalab/models.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 2,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/dtclab/dtclab/core/data_fusion_sanitizer.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 2,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/dtclab/dtclab/core/mode06_evaluator.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 1,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/gaslab/gaslab/audits.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 2,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/gaslab/gaslab/ontology_loader.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 1,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/obdlab/obdlab/core/analytics_preconditions.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 4,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/obdlab/obdlab/core/o2_normalizer.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 1,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 3,
+    "path": "labs/obdlab/obdlab/core/semantic_consistency_checker.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 1,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/obdlab/obdlab/core/sensor_signal_translator.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 5,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/obdlab/obdlab/core/state_bucketing.py",
+    "pyright_ignore": 0,
+    "type_ignore": 2
+   },
+   {
+    "any_annotation": 2,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/obdlab/obdlab/core/trim_vector_aggregator.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 5,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/obdlab/obdlab/core/ve_engine.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 1,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/obdlab/obdlab/schemas/vocabulary.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 3,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/symptomlab/symptomlab/models.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 1,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/vinlab/vinlab/db/tecdoc_query.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 3,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/vinlab/vinlab/decoder.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 4,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/vinlab/vinlab/models.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 0,
+    "any_other": 0,
+    "group": "prod",
+    "noqa": 0,
+    "path": "labs/vinlab/vinlab/overlay/cylinder_heuristic.py",
+    "pyright_ignore": 0,
+    "type_ignore": 1
+   },
+   {
+    "any_annotation": 38,
+    "any_other": 0,
+    "group": "offline",
+    "noqa": 7,
+    "path": "apps/wired/fl_tasks/capture_upstream_evidence.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 38,
+    "any_other": 0,
+    "group": "offline",
+    "noqa": 4,
+    "path": "apps/wired/fl_tasks/score_v3_yardstick.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 8,
+    "any_other": 3,
+    "group": "offline",
+    "noqa": 0,
+    "path": "apps/wired/trace/extract_traces.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 9,
+    "any_other": 7,
+    "group": "offline",
+    "noqa": 0,
+    "path": "apps/wired/trace/run_traced_case.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 10,
+    "any_other": 0,
+    "group": "offline",
+    "noqa": 3,
+    "path": "apps/wired/v7/load_corpus.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 3,
+    "any_other": 0,
+    "group": "offline",
+    "noqa": 3,
+    "path": "apps/wired/v7/run_suite.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 6,
+    "any_other": 0,
+    "group": "offline",
+    "noqa": 0,
+    "path": "labs/vinlab/tools/build_vref_db.py",
+    "pyright_ignore": 0,
+    "type_ignore": 2
+   },
+   {
+    "any_annotation": 0,
+    "any_other": 0,
+    "group": "offline",
+    "noqa": 0,
+    "path": "labs/vinlab/tools/tecdoc_cyl_from_attributes.py",
+    "pyright_ignore": 0,
+    "type_ignore": 3
+   },
+   {
+    "any_annotation": 0,
+    "any_other": 0,
+    "group": "offline",
+    "noqa": 0,
+    "path": "labs/vinlab/tools/tecdoc_cylinder_enricher.py",
+    "pyright_ignore": 0,
+    "type_ignore": 4
+   },
+   {
+    "any_annotation": 0,
+    "any_other": 1,
+    "group": "offline",
+    "noqa": 0,
+    "path": "labs/vinlab/tools/tecdoc_engine_enricher.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   },
+   {
+    "any_annotation": 6,
+    "any_other": 0,
+    "group": "offline",
+    "noqa": 0,
+    "path": "labs/vinlab/tools/tecdoc_ktype_bridge.py",
+    "pyright_ignore": 0,
+    "type_ignore": 0
+   }
+  ],
+  "unit": "occurrence, per file"
+ },
+ "f_unfinished_reachable": {
+  "blind_spot": "dynamic dispatch (getattr, string registries, duck-typed attribute calls on untyped objects); unresolved calls are counted in populations.callgraph_unresolved_calls",
+  "mechanism": "AST raise NotImplementedError + TODO/FIXME/XXX/HACK comments; owner = innermost enclosing function; reachability by BFS over a static call graph (imports, aliases, package re-exports, self/super methods, local x = Cls() inference, function references)",
+  "population": "prod files",
+  "sites": [
+   {
+    "chain": [],
+    "kind": "raise NotImplementedError",
+    "line": 641,
+    "owner": "comlab.core.lab_pipeline_aggregator.LabPipelineAggregator.run_fallback_tree",
+    "path": "labs/comlab/comlab/core/lab_pipeline_aggregator.py",
+    "reachable": false,
+    "text": "raise NotImplementedError('run_fallback_tree: full fallback tree not yet implemented (phase 3). Non-starter path handled above.')"
+   }
+  ],
+  "unit": "one site"
+ },
+ "g_failing": {
+  "blind_spot": "test dirs outside suites.py SUITES",
+  "failing": [
+   {
+    "collected_by_baseline": true,
+    "cwd": "labs/comlab",
+    "message": "ModuleNotFoundError: No module named 'fl_tasks'",
+    "node": "::tests.unit.test_abstain_margin_002",
+    "outcome": "error",
+    "suite": "comlab"
+   },
+   {
+    "collected_by_baseline": true,
+    "cwd": "labs/comlab",
+    "message": "ModuleNotFoundError: No module named 'v7'",
+    "node": "::tests.unit.test_tunable_reweight",
+    "outcome": "error",
+    "suite": "comlab"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "labs/comlab",
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/exhaust-analyzer/apps/wired/harness/data/cases_petrol_master_v6.csv'",
+    "node": "registry.tests.test_build_corpus.TestOutputContracts::test_csv_same_schema",
+    "outcome": "failure",
+    "suite": "comlab-registry"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "labs/comlab",
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/exhaust-analyzer/apps/wired/harness/data/cases_petrol_master_v6.csv'",
+    "node": "registry.tests.test_build_corpus.TestOutputContracts::test_kept_csv_rows_match_master",
+    "outcome": "failure",
+    "suite": "comlab-registry"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "labs/comlab",
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/exhaust-analyzer/apps/wired/_jaeger/runs/20260527-044325/FAILURE_BLUEPRINT.md'",
+    "node": "registry.tests.test_build_corpus.TestParseBlueprint::test_all_phases_present",
+    "outcome": "failure",
+    "suite": "comlab-registry"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "labs/comlab",
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/exhaust-analyzer/apps/wired/_jaeger/runs/20260527-044325/FAILURE_BLUEPRINT.md'",
+    "node": "registry.tests.test_build_corpus.TestParseBlueprint::test_no_unknown_entries",
+    "outcome": "failure",
+    "suite": "comlab-registry"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "labs/comlab",
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/exhaust-analyzer/apps/wired/_jaeger/runs/20260527-044325/FAILURE_BLUEPRINT.md'",
+    "node": "registry.tests.test_build_corpus.TestParseBlueprint::test_parses_real_file",
+    "outcome": "failure",
+    "suite": "comlab-registry"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "apps/wired",
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: 'apps/wired/v7/data/cases_petrol_v7.csv'",
+    "node": "v7.tests.test_oracle_repin::test_abort_rows_untouched",
+    "outcome": "failure",
+    "suite": "wired-v7"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "apps/wired",
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: '/agent_workspace'",
+    "node": "v7.tests.test_oracle_repin::test_corpus_validates",
+    "outcome": "failure",
+    "suite": "wired-v7"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "apps/wired",
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: 'apps/wired/v7/data/cases_petrol_v7.csv'",
+    "node": "v7.tests.test_oracle_repin::test_family_state_unchanged",
+    "outcome": "failure",
+    "suite": "wired-v7"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "apps/wired",
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: 'apps/wired/v7/data/cases_petrol_v7.csv'",
+    "node": "v7.tests.test_oracle_repin::test_mw_oracle_suspects_repin_to_misfire",
+    "outcome": "failure",
+    "suite": "wired-v7"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "apps/wired",
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: 'apps/wired/v7/data/cases_petrol_v7.csv'",
+    "node": "v7.tests.test_oracle_repin::test_mw_repin_excluded_rows_stay_mechanical_wear",
+    "outcome": "failure",
+    "suite": "wired-v7"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "apps/wired",
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: 'apps/wired/v7/data/cases_petrol_v7.csv'",
+    "node": "v7.tests.test_oracle_repin::test_optimal_health_no_fault_untouched",
+    "outcome": "failure",
+    "suite": "wired-v7"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "apps/wired",
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: 'apps/wired/v7/data/cases_petrol_v7.csv'",
+    "node": "v7.tests.test_oracle_repin::test_surface_defect_confidence_bands",
+    "outcome": "failure",
+    "suite": "wired-v7"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "apps/wired",
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: 'apps/wired/v7/data/cases_petrol_v7.csv'",
+    "node": "v7.tests.test_oracle_repin::test_surface_defect_fault_code_stripped",
+    "outcome": "failure",
+    "suite": "wired-v7"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "apps/wired",
+    "message": "fl_tasks.score_v3_yardstick.YardstickRefusalError: hash-lock refusal: V3_YARDSTICK_2026-07-06-C9B mismatch (csv_sha256: expected 8ec81201688d1354557d996e9a855260227eb922d561c571fd60813e9a430bfb observed 813c81312b166d7da660b00f7a25d64047bbaa5f6e137562792a064708c0ac20). Create a new named yardstick o",
+    "node": "v7.tests.test_yardstick_rebind::test_active_v3_hash_lock_accepts_current_corpus",
+    "outcome": "failure",
+    "suite": "wired-v7"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "apps/ui",
+    "message": "ModuleNotFoundError: No module named 'registry'",
+    "node": "tests.test_ui::test_e2e_abstain_case",
+    "outcome": "failure",
+    "suite": "ui"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "apps/ui",
+    "message": "ModuleNotFoundError: No module named 'registry'",
+    "node": "tests.test_ui::test_e2e_mw002_fixture",
+    "outcome": "failure",
+    "suite": "ui"
+   },
+   {
+    "collected_by_baseline": false,
+    "cwd": "audit/scratch/P2/controls",
+    "message": "Failed: planted",
+    "node": "test_pos::test_always_fails",
+    "outcome": "failure",
+    "suite": "controls"
+   }
+  ],
+  "mechanism": "pytest --junitxml per suite (suites.py), failures + errors listed",
+  "population": "suites in suites.json",
+  "skipped_or_xfailed": [
+   {
+    "cwd": "labs/comlab",
+    "message": "phase 3: implement Pydantic validation",
+    "node": "tests.unit.test_lab_pipeline_aggregator::test_aggregator_accepts_valid_payload",
+    "outcome": "skipped",
+    "suite": "comlab"
+   },
+   {
+    "cwd": "labs/comlab",
+    "message": "phase 3: implement DTC regex validator",
+    "node": "tests.unit.test_lab_pipeline_aggregator::test_aggregator_rejects_malformed_dtc",
+    "outcome": "skipped",
+    "suite": "comlab"
+   },
+   {
+    "cwd": "labs/comlab",
+    "message": "phase 3: implement legacy graceful degradation",
+    "node": "tests.unit.test_lab_pipeline_aggregator::test_legacy_vehicle_missing_trims_degrades_to_gas_dominant",
+    "outcome": "skipped",
+    "suite": "comlab"
+   },
+   {
+    "cwd": "labs/comlab",
+    "message": "phase 3: implement fallback tree",
+    "node": "tests.unit.test_lab_pipeline_aggregator::test_modern_vehicle_missing_trims_aborts",
+    "outcome": "skipped",
+    "suite": "comlab"
+   },
+   {
+    "cwd": "labs/gaslab",
+    "message": "Fuzz generator not implemented in shared engine",
+    "node": "tests.generative.test_fuzz::test_fuzz_stub",
+    "outcome": "skipped",
+    "suite": "gaslab"
+   },
+   {
+    "cwd": "labs/gaslab",
+    "message": "gaslab_cases.csv not yet derived",
+    "node": "tests.test_cases::test_csv_cases",
+    "outcome": "skipped",
+    "suite": "gaslab"
+   },
+   {
+    "cwd": "labs/obdlab",
+    "message": "blocked: T-TST-8 obdlab harness",
+    "node": "tests.generative.test_noise::test_noise_obdlab",
+    "outcome": "skipped",
+    "suite": "obdlab"
+   },
+   {
+    "cwd": "labs/obdlab",
+    "message": "blocked: T-TST-8 obdlab harness",
+    "node": "tests.generative.test_overlap::test_overlap_obdlab",
+    "outcome": "skipped",
+    "suite": "obdlab"
+   },
+   {
+    "cwd": "labs/vinlab",
+    "message": "No sample VINs available",
+    "node": "tests.unit.test_contract_conformance::test_sample_vins_within_year_bounds",
+    "outcome": "skipped",
+    "suite": "vinlab"
+   },
+   {
+    "cwd": "labs/vinlab",
+    "message": "CSV not found: /home/cases/csv/cases_petrol_master_v6.csv",
+    "node": "tests.unit.test_csv_suite::test_csv_coc_field_roundtrip",
+    "outcome": "skipped",
+    "suite": "vinlab"
+   },
+   {
+    "cwd": "labs/vinlab",
+    "message": "CSV not found: /home/cases/csv/cases_petrol_master_v6.csv",
+    "node": "tests.unit.test_csv_suite::test_csv_decode_passrate",
+    "outcome": "skipped",
+    "suite": "vinlab"
+   },
+   {
+    "cwd": "labs/vinlab",
+    "message": "CSV not found: /home/cases/csv/cases_petrol_master_v6.csv",
+    "node": "tests.unit.test_csv_suite::test_csv_downstream_json_shape",
+    "outcome": "skipped",
+    "suite": "vinlab"
+   },
+   {
+    "cwd": "labs/vinlab",
+    "message": "CSV not found: /home/cases/csv/cases_petrol_master_v6.csv",
+    "node": "tests.unit.test_csv_suite::test_csv_engine_extraction",
+    "outcome": "skipped",
+    "suite": "vinlab"
+   },
+   {
+    "cwd": "labs/vinlab",
+    "message": "No sample VINs available",
+    "node": "tests.unit.test_decoder.TestSampleVins::test_all_sample_vins_decode",
+    "outcome": "skipped",
+    "suite": "vinlab"
+   },
+   {
+    "cwd": "labs/vinlab",
+    "message": "No sample VINs available",
+    "node": "tests.unit.test_decoder.TestSampleVins::test_sample_vin_confidence_not_none",
+    "outcome": "skipped",
+    "suite": "vinlab"
+   },
+   {
+    "cwd": "labs/vinlab",
+    "message": "OPSI CSV not present in this env",
+    "node": "tests.unit.test_patch_regression::test_pass_rate_sample",
+    "outcome": "skipped",
+    "suite": "vinlab"
+   },
+   {
+    "cwd": "audit/scratch/P2/controls",
+    "message": "planted",
+    "node": "test_pos::test_skipped",
+    "outcome": "skipped",
+    "suite": "controls"
+   }
+  ],
+  "suites": [
+   {
+    "args": [],
+    "collected_by_baseline": true,
+    "cwd": "labs/comlab",
+    "suite": "comlab",
+    "summary": "522 passed, 4 skipped, 2 errors"
+   },
+   {
+    "args": [
+     "registry/tests"
+    ],
+    "collected_by_baseline": false,
+    "cwd": "labs/comlab",
+    "suite": "comlab-registry",
+    "summary": "5 failed, 489 passed"
+   },
+   {
+    "args": [],
+    "collected_by_baseline": true,
+    "cwd": "labs/dnalab",
+    "suite": "dnalab",
+    "summary": "27 passed"
+   },
+   {
+    "args": [],
+    "collected_by_baseline": true,
+    "cwd": "labs/dtclab",
+    "suite": "dtclab",
+    "summary": "590 passed"
+   },
+   {
+    "args": [],
+    "collected_by_baseline": true,
+    "cwd": "labs/gaslab",
+    "suite": "gaslab",
+    "summary": "208 passed, 2 skipped, 4 deselected"
+   },
+   {
+    "args": [
+     "-m",
+     "slow"
+    ],
+    "collected_by_baseline": false,
+    "cwd": "labs/gaslab",
+    "suite": "gaslab-slow",
+    "summary": "INCOMPLETE: timeout after 420s"
+   },
+   {
+    "args": [],
+    "collected_by_baseline": true,
+    "cwd": "labs/obdlab",
+    "suite": "obdlab",
+    "summary": "388 passed, 2 skipped"
+   },
+   {
+    "args": [],
+    "collected_by_baseline": true,
+    "cwd": "labs/symptomlab",
+    "suite": "symptomlab",
+    "summary": "63 passed"
+   },
+   {
+    "args": [],
+    "collected_by_baseline": true,
+    "cwd": "labs/vinlab",
+    "suite": "vinlab",
+    "summary": "203 passed, 8 skipped"
+   },
+   {
+    "args": [],
+    "collected_by_baseline": true,
+    "cwd": "apps/wired",
+    "suite": "wired",
+    "summary": "11 passed"
+   },
+   {
+    "args": [
+     "v7/tests"
+    ],
+    "collected_by_baseline": false,
+    "cwd": "apps/wired",
+    "suite": "wired-v7",
+    "summary": "9 failed, 40 passed"
+   },
+   {
+    "args": [
+     "tests"
+    ],
+    "collected_by_baseline": false,
+    "cwd": "apps/ui",
+    "suite": "ui",
+    "summary": "2 failed, 6 passed"
+   },
+   {
+    "args": [
+     "."
+    ],
+    "collected_by_baseline": false,
+    "cwd": "audit/scratch/P2/controls",
+    "suite": "controls",
+    "summary": "1 failed, 4 passed, 1 skipped"
+   }
+  ],
+  "unit": "one pytest node id or collection-error module"
+ },
+ "populations": {
+  "callgraph_resolved_calls": 816,
+  "callgraph_unresolved_calls": 2289,
+  "entries": [
+   "wired.composition.diagnose",
+   "ui_payload.build_diagnose_payload",
+   "ui_app.<module>",
+   "app_shim.<module>"
+  ],
+  "offline_files": 25,
+  "prod_files": 95,
+  "prod_functions_indexed": 350,
+  "reachable_functions": 329,
+  "requirements_closure": [
+   "altair",
+   "annotated-types",
+   "anyio",
+   "attrs",
+   "blinker",
+   "cachetools",
+   "certifi",
+   "charset-normalizer",
+   "click",
+   "comlab",
+   "dnalab",
+   "dtclab",
+   "exceptiongroup",
+   "gaslab",
+   "gitdb",
+   "gitpython",
+   "h11",
+   "httptools",
+   "idna",
+   "itsdangerous",
+   "jinja2",
+   "jsonschema",
+   "jsonschema-specifications",
+   "markupsafe",
+   "narwhals",
+   "numpy",
+   "obdlab",
+   "packaging",
+   "pandas",
+   "pillow",
+   "protobuf",
+   "pyarrow",
+   "pydantic",
+   "pydantic-core",
+   "pydeck",
+   "python-dateutil",
+   "python-multipart",
+   "pyyaml",
+   "referencing",
+   "requests",
+   "rpds-py",
+   "six",
+   "smmap",
+   "starlette",
+   "streamlit",
+   "symptomlab",
+   "tenacity",
+   "toml",
+   "typing-extensions",
+   "typing-inspection",
+   "tzdata",
+   "urllib3",
+   "uvicorn",
+   "vinlab",
+   "watchdog",
+   "websockets",
+   "wired"
+  ],
+  "test_files": 209
+ }
+}
