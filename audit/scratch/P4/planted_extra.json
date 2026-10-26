@@ -1,0 +1,32 @@
+{
+ "CEILING-5.0": {
+  "crash_tests": [
+   "tests/e2e/test_diagnostic_engine.py::test_e2e_cam_timing_chain_stretch [ValidationError]",
+   "tests/e2e/test_diagnostic_engine.py::test_e2e_catalyst_efficiency_below_threshold [ValidationError]",
+   "tests/e2e/test_diagnostic_engine.py::test_e2e_misfire_coil_insulation_arc [ValidationError]",
+   "tests/e2e/test_real_routing.py::test_sensor_fault_o2_fixed_voltage_beats_lazy_when_dtc_present [ValidationError]",
+   "tests/e2e/test_real_routing.py::test_sensor_fault_o2_fixed_voltage_via_routing_tag [ValidationError]"
+  ],
+  "guard_ok": true,
+  "killing_tests": [],
+  "named_test": null,
+  "named_test_killed": false,
+  "outcome": "KILLED-WRONG-REASON"
+ },
+ "PLANTED": {
+  "crash_tests": [],
+  "guard_ok": true,
+  "killing_tests": [
+   "tests/e2e/test_diagnostic_engine.py::test_e2e_cam_timing_chain_stretch",
+   "tests/e2e/test_diagnostic_engine.py::test_e2e_catalyst_efficiency_below_threshold",
+   "tests/e2e/test_diagnostic_engine.py::test_e2e_misfire_coil_insulation_arc",
+   "tests/e2e/test_real_routing.py::test_sensor_fault_o2_fixed_voltage_beats_lazy_when_dtc_present",
+   "tests/e2e/test_real_routing.py::test_sensor_fault_o2_fixed_voltage_via_routing_tag"
+  ],
+  "named_test": "tests/unit/test_tag_discriminator.py::test_misfire_history_lifts_misfire_family",
+  "named_test_killed": false,
+  "outcome": "KILLED"
+ },
+ "baseline_guard": true,
+ "baseline_summary": "522 passed, 4 skipped, 2 errors"
+}
