@@ -1,0 +1,56 @@
+# P1 local semgrep rules. The p/python registry pack is unreachable from this session (semgrep.dev denied).
+rules:
+  - id: p1-yaml-unsafe-load
+    languages: [python]
+    severity: ERROR
+    message: yaml.load without an explicit safe Loader
+    patterns:
+      - pattern: yaml.load(...)
+      - pattern-not: yaml.load(..., Loader=yaml.SafeLoader, ...)
+      - pattern-not: yaml.load(..., Loader=yaml.CSafeLoader, ...)
+  - id: p1-except-swallow
+    languages: [python]
+    severity: WARNING
+    message: broad exception swallowed with pass
+    pattern-either:
+      - pattern: |
+          try:
+              ...
+          except Exception:
+              pass
+      - pattern: |
+          try:
+              ...
+          except:
+              pass
+  - id: p1-float-literal-equality
+    languages: [python]
+    severity: WARNING
+    message: exact equality against a float literal
+    patterns:
+      - pattern-either:
+          - pattern: $X == $F
+          - pattern: $X != $F
+          - pattern: $F == $X
+      - metavariable-regex:
+          metavariable: $F
+          regex: ^-?\d*\.\d+$
+  - id: p1-mutable-default
+    languages: [python]
+    severity: WARNING
+    message: mutable default argument
+    pattern-either:
+      - pattern: "def $FN(..., $A=[], ...): ..."
+      - pattern: "def $FN(..., $A={}, ...): ..."
+  - id: p1-syspath-mutation
+    languages: [python]
+    severity: INFO
+    message: sys.path mutated at runtime (layout coupling)
+    pattern-either:
+      - pattern: sys.path.insert(...)
+      - pattern: sys.path.append(...)
+  - id: p1-assert-as-guard
+    languages: [python]
+    severity: INFO
+    message: assert used in production code (stripped under python -O)
+    pattern: assert $X

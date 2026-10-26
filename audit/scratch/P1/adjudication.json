@@ -1,0 +1,352 @@
+[
+ {
+  "match": {
+   "tool": "^bandit$",
+   "rule": "^B608$",
+   "path": "tecdoc_ktype_bridge\\.py$"
+  },
+  "class": "CONFIRMED",
+  "finding": "F-P1-4",
+  "probe": "audit/scratch/P1/probes/test_p1_probes.py::test_ktype_bridge_engine_code_unescaped",
+  "reason": "tecdoc_ktype_bridge.py:262 — f\"UPPER(REPLACE('{engine_code_hint}', ' ', ''))\\n\": the OPSI engine code is spliced into SQL unescaped"
+ },
+ {
+  "match": {
+   "tool": "^semgrep$",
+   "rule": "^p1-except-swallow$",
+   "path": "^apps/ui/app\\.py$"
+  },
+  "class": "CONFIRMED",
+  "finding": "F-P1-3",
+  "probe": "audit/scratch/P1/probes/test_p1_probes.py::test_ui_mode06_dict_path_never_exists",
+  "reason": "app.py:133 — DICT_PATH = Path(__file__).parent.parent / \"dtclab\" / ... resolves to apps/dtclab/, which does not exist; the guard hides it"
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "rule": "^DEP00[13]$",
+   "path": "^labs/dnalab/",
+   "module": "^(vinlab|symptomlab)$"
+  },
+  "class": "CONFIRMED",
+  "finding": "F-P1-1",
+  "probe": "audit/scratch/P1/probes/test_p1_probes.py::test_dnalab_manifest_omits_vinlab_symptomlab",
+  "reason": "labs/dnalab/pyproject.toml [project] has no dependencies; assembly.py:7-9 — \"from symptomlab import resolve\" / \"from vinlab import decode\""
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "rule": "^DEP003$",
+   "path": "^labs/comlab/comlab/observability/_tracer\\.py$"
+  },
+  "class": "CONFIRMED",
+  "finding": "F-P1-2",
+  "probe": "audit/scratch/P1/probes/test_p1_probes.py::test_comlab_tracing_extra_missing",
+  "reason": "_tracer.py:118 — 'pip install -e \".[tracing]\"': comlab's pyproject has no tracing extra, so opentelemetry is declared nowhere"
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "rule": "^DEP001$",
+   "module": "^registry$"
+  },
+  "class": "DUPLICATE",
+  "dup_of": "F-C1-5 / F-C4-1",
+  "reason": "comlab pyproject packages include = [\"comlab*\"]: registry is in no manifest (already listed)"
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "rule": "^DEP003$",
+   "path": "^apps/wired/(trace|v7)/",
+   "module": "^opentelemetry$"
+  },
+  "class": "DUPLICATE",
+  "dup_of": "R0-4",
+  "reason": "no manifest installs opentelemetry (already listed for apps/wired)"
+ },
+ {
+  "match": {
+   "tool": "^pyright$",
+   "rule": "^reportMissingImports$",
+   "path": "^apps/wired/",
+   "message": "opentelemetry"
+  },
+  "class": "DUPLICATE",
+  "dup_of": "R0-4",
+  "reason": "no manifest installs opentelemetry exporters (already listed for apps/wired)"
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "rule": "^DEP003$",
+   "path": "fault_atlas_router\\.py$",
+   "module": "^opentelemetry$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "fault_atlas_router.py:153 — \"except ImportError: return \\\"\\\"\" (harness-only, guarded)"
+ },
+ {
+  "match": {
+   "tool": "^pyright$",
+   "rule": "^reportMissingImports$",
+   "path": "_tracer\\.py$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "_tracer.py:114 — \"except ImportError as exc: ... Falling back to no-op tracing\" (guarded; manifest gap is F-P1-2)"
+ },
+ {
+  "match": {
+   "tool": "^(pyright|deptry|vulture|semgrep)$",
+   "path": "^apps/ui/_sample_app_reference\\.py$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "reference sample: no file in the repo imports _sample_app_reference (grep); root app.py runs apps/ui/app.py only"
+ },
+ {
+  "match": {
+   "tool": "^(pyright|deptry)$",
+   "path": "^labs/vinlab/tools/",
+   "message": "mysql"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "labs/vinlab/requirements.txt — \"mysql-connector-python>=9.0\" under '# Build-time (used by tools/build_*.py ...)'; not installed in the audit venv"
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "path": "^labs/vinlab/tools/",
+   "module": "^mysql-connector-python$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "deptry cannot map the uninstalled distribution to its import name mysql (the DEP001 'mysql' records are its other half)"
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "rule": "^DEP001$",
+   "path": "build_wmi_map\\.py$",
+   "symbol": "^build$"
+  },
+  "class": "UNDECIDED",
+  "reason": "build_wmi_map.py:88 — \"from tools.import_vpic import ensure_vpic_db\" has no sys.path fallback (line 146 has one); depends on how the operator invokes the builder"
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "rule": "^DEP001$",
+   "path": "build_wmi_map\\.py$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "build_wmi_map.py:146 — \"except ImportError: sys.path.insert(0, str(PROJECT_ROOT))\" then re-imports tools.import_vpic"
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "rule": "^DEP003$",
+   "path": "^labs/vinlab/tools/",
+   "module": "^vinlab$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "tools/ belongs to the vinlab project (labs/vinlab/pyproject.toml name = \"vinlab\"): first-party"
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "rule": "^DEP003$",
+   "path": "^apps/wired/(trace|v7|fl_tasks)/",
+   "module": "^wired$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "apps/wired/pyproject.toml — include = [\"wired*\"]: wired is the same project's package"
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "rule": "^DEP001$",
+   "path": "^apps/wired/(v7|fl_tasks)/",
+   "module": "^v7$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "score_v3_yardstick.py:34 — \"sys.path.insert(0, path)\" for WORKSPACE_ROOT/apps/wired before \"from v7.load_corpus import ...\" (script tooling)"
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "rule": "^DEP002$",
+   "path": "^labs/vinlab/requirements\\.txt$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "labs/vinlab/requirements.txt — '# Dev / test' block (pytest, ruff, bandit, pyright)"
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "rule": "^DEP002$",
+   "path": "^requirements\\.txt$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "requirements.txt — '# Labs + wired installed editable from this repo': used through wired, outside the apps/ui scan root"
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "rule": "^DEP002$",
+   "path": "^apps/wired/pyproject\\.toml$",
+   "module": "^symptomlab$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "needed at runtime by dnalab (assembly.py:7 \"from symptomlab import resolve\"), which does not declare it (F-P1-1)"
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "rule": "^DEP002$",
+   "path": "^apps/wired/pyproject\\.toml$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "imported by apps/wired/wired/composition.py:13-60 (separate deptry root from the v7/fl_tasks/trace run)"
+ },
+ {
+  "match": {
+   "tool": "^deptry$",
+   "rule": "^DEP002$",
+   "path": "^labs/comlab/pyproject\\.toml$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "PyYAML is used by the comlab package; the run that reported it scanned registry/ only"
+ },
+ {
+  "match": {
+   "tool": "^bandit$",
+   "rule": "^B310$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "run_traced_case.py:34 — DEFAULT_JAEGER_API = \"http://localhost:16686/api/traces\"; URL is the operator's own CLI flag (offline trace tooling)"
+ },
+ {
+  "match": {
+   "tool": "^bandit$",
+   "rule": "^B608$",
+   "path": "build_vds_map\\.py$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "build_vds_map.py:308 — placeholders = \",\".join(\"?\" * len(legacy_wmis)); values passed as the params tuple"
+ },
+ {
+  "match": {
+   "tool": "^bandit$",
+   "rule": "^B608$",
+   "path": "build_vref_db\\.py$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "build_vref_db.py:419 — id_list = \",\".join(str(cid) for cid in petrol_car_ids): DB integer ids and the TECDOC_PETROL_RUSSIAN frozenset constant only"
+ },
+ {
+  "match": {
+   "tool": "^bandit$",
+   "rule": "^B608$",
+   "path": "tecdoc_(cylinder|engine)_enricher\\.py$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "placeholders = \",\".join([\"%s\"] * len(ktype_ids)); cur.execute(sql, tuple(ktype_ids))"
+ },
+ {
+  "match": {
+   "tool": "^vulture$",
+   "path": "_tracer\\.py$",
+   "confidence": "^100$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "_tracer.py — '# noqa: ARG002' on a no-op span/tracer that mirrors the OpenTelemetry signature"
+ },
+ {
+  "match": {
+   "tool": "^vulture$",
+   "path": "brettschneider\\.py$",
+   "confidence": "^100$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "brettschneider.py:22 — \"hcv: ... Reserved for future use; currently unused\" (no caller passes hcv)"
+ },
+ {
+  "match": {
+   "tool": "^vulture$",
+   "path": "build_vref_db\\.py$",
+   "confidence": "^100$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "build_vref_db.py:664 — 'else \"SUPERCHARGED\" if False  # YAML doesn't distinguish'; vref_manual_overrides.yaml has no supercharger key"
+ },
+ {
+  "match": {
+   "tool": "^pyright$",
+   "rule": "^reportArgumentType$",
+   "path": "build_vds_map\\.py$",
+   "text": "VEHICLE_DATA_ROOT_ENV"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "build_vds_map.py:14 — \"if not VEHICLE_DATA_ROOT_ENV: raise RuntimeError(...)\" at import; pyright does not narrow module globals"
+ },
+ {
+  "match": {
+   "tool": "^pyright$",
+   "path": "build_vds_map\\.py$"
+  },
+  "class": "UNDECIDED",
+  "reason": "offline builder: reader.fieldnames is None only for an empty OPSI CSV, which is outside the repo; not traced"
+ },
+ {
+  "match": {
+   "tool": "^pyright$",
+   "rule": "^reportPossiblyUnboundVariable$",
+   "path": "run_suite\\.py$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "run_suite.py:270 — span/token bound under \"if trace_enabled and tracer and context is not None and set_span_in_context is not None\"; set_span_in_context is set with context at import"
+ },
+ {
+  "match": {
+   "tool": "^semgrep$",
+   "rule": "^p1-assert-as-guard$",
+   "path": "ecu_hardware_checker\\.py$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "ecu_hardware_checker.py:49 — \"if any(value is None for value in required_inputs): return ...\" precedes the asserts (type narrowing only)"
+ },
+ {
+  "match": {
+   "tool": "^semgrep$",
+   "rule": "^p1-float-literal-equality$",
+   "path": "integration_shim\\.py$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "integration_shim.py:603 — obd_pids.get(\"bidirectional_fuel_response_ok_bool\"): a 0/1 boolean-coded value"
+ },
+ {
+  "match": {
+   "tool": "^semgrep$",
+   "rule": "^p1-float-literal-equality$",
+   "path": "^labs/obdlab/obdlab/core/(maf_linearity|ve_engine)\\.py$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "maf_linearity.py:27 — \"if denominator == 0.0:\" guards the division that follows; exact zero is the intended test"
+ },
+ {
+  "match": {
+   "tool": "^semgrep$",
+   "rule": "^p1-syspath-mutation$",
+   "path": "^app\\.py$"
+  },
+  "class": "FALSE-POSITIVE",
+  "reason": "app.py:1 — \"Render entrypoint shim ... apps/ui is put on sys.path so the UI's sibling import (ui_payload) resolves\""
+ },
+ {
+  "match": {
+   "tool": "^semgrep$",
+   "rule": "^p1-assert-as-guard$"
+  },
+  "class": "UNDECIDED",
+  "reason": "assert stands on a comment's guarantee (\"guaranteed after load\" / \"guaranteed by _gate_allows caller\"); caller not traced"
+ }
+]

@@ -1,0 +1,4 @@
+[project]
+name = "pkgpos"
+version = "0"
+dependencies = []
