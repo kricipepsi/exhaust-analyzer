@@ -1,0 +1,6 @@
+[run]
+branch = True
+omit =
+    */_sample_app_reference.py
+    */sampleUI/*
+    */__pycache__/*
