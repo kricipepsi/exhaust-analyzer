@@ -40,3 +40,9 @@ traceability: criteria 1-6 → steps 1-6; every CREATE/MODIFY → a deliverable;
 tagged · section pairs: step 6 (only note + RESULT uncommitted) agrees with Deliverables 3-4 and R8 · closed sets:
 "exactly 2 commits" = R8's two; "only `request.metadata`" = sidecar fact 2 · JUDGEMENT criteria: 0.
 cold read 2026-11-02: skipped, plan-gated (the second plan review is Linux Cowork, 016).
+cold read 2026-11-03 (correction 01): skipped, plan-gated; the patch (C1 RUNTIME line, K1 `__init__.py` line, R5 Mode 06
+wording, timeouts, the C1/C4/C5 split) implements the two plan reviews of channel 017. authoring-checks.sh → CLEAN.
+
+### Correction history ###
+- 2026-11-03 `corrections/T-AUD-1a_plan_correction_01.md`: plan APPROVED with C1-C9 (Linux Cowork 017, DeepSeek
+  ds-flash; C5 amended: `O2SensorType` has no `NONE` member) and K1-K3 (Windows Cowork first review). One plan return.
