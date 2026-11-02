@@ -1,0 +1,305 @@
+[
+ {
+  "args": [],
+  "collected_by_baseline": true,
+  "cwd": "labs/comlab",
+  "non_passing": [
+   {
+    "message": "ModuleNotFoundError: No module named 'fl_tasks'",
+    "node": "::tests.unit.test_abstain_margin_002",
+    "outcome": "error"
+   },
+   {
+    "message": "ModuleNotFoundError: No module named 'v7'",
+    "node": "::tests.unit.test_tunable_reweight",
+    "outcome": "error"
+   },
+   {
+    "message": "phase 3: implement Pydantic validation",
+    "node": "tests.unit.test_lab_pipeline_aggregator::test_aggregator_accepts_valid_payload",
+    "outcome": "skipped"
+   },
+   {
+    "message": "phase 3: implement DTC regex validator",
+    "node": "tests.unit.test_lab_pipeline_aggregator::test_aggregator_rejects_malformed_dtc",
+    "outcome": "skipped"
+   },
+   {
+    "message": "phase 3: implement legacy graceful degradation",
+    "node": "tests.unit.test_lab_pipeline_aggregator::test_legacy_vehicle_missing_trims_degrades_to_gas_dominant",
+    "outcome": "skipped"
+   },
+   {
+    "message": "phase 3: implement fallback tree",
+    "node": "tests.unit.test_lab_pipeline_aggregator::test_modern_vehicle_missing_trims_aborts",
+    "outcome": "skipped"
+   }
+  ],
+  "suite": "comlab",
+  "summary": "522 passed, 4 skipped, 2 errors"
+ },
+ {
+  "args": [
+   "registry/tests"
+  ],
+  "collected_by_baseline": false,
+  "cwd": "labs/comlab",
+  "non_passing": [
+   {
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/exhaust-analyzer/apps/wired/harness/data/cases_petrol_master_v6.csv'",
+    "node": "registry.tests.test_build_corpus.TestOutputContracts::test_csv_same_schema",
+    "outcome": "failure"
+   },
+   {
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/exhaust-analyzer/apps/wired/harness/data/cases_petrol_master_v6.csv'",
+    "node": "registry.tests.test_build_corpus.TestOutputContracts::test_kept_csv_rows_match_master",
+    "outcome": "failure"
+   },
+   {
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/exhaust-analyzer/apps/wired/_jaeger/runs/20260527-044325/FAILURE_BLUEPRINT.md'",
+    "node": "registry.tests.test_build_corpus.TestParseBlueprint::test_all_phases_present",
+    "outcome": "failure"
+   },
+   {
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/exhaust-analyzer/apps/wired/_jaeger/runs/20260527-044325/FAILURE_BLUEPRINT.md'",
+    "node": "registry.tests.test_build_corpus.TestParseBlueprint::test_no_unknown_entries",
+    "outcome": "failure"
+   },
+   {
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/exhaust-analyzer/apps/wired/_jaeger/runs/20260527-044325/FAILURE_BLUEPRINT.md'",
+    "node": "registry.tests.test_build_corpus.TestParseBlueprint::test_parses_real_file",
+    "outcome": "failure"
+   }
+  ],
+  "suite": "comlab-registry",
+  "summary": "5 failed, 489 passed"
+ },
+ {
+  "args": [],
+  "collected_by_baseline": true,
+  "cwd": "labs/dnalab",
+  "non_passing": [],
+  "suite": "dnalab",
+  "summary": "27 passed"
+ },
+ {
+  "args": [],
+  "collected_by_baseline": true,
+  "cwd": "labs/dtclab",
+  "non_passing": [],
+  "suite": "dtclab",
+  "summary": "590 passed"
+ },
+ {
+  "args": [],
+  "collected_by_baseline": true,
+  "cwd": "labs/gaslab",
+  "non_passing": [
+   {
+    "message": "Fuzz generator not implemented in shared engine",
+    "node": "tests.generative.test_fuzz::test_fuzz_stub",
+    "outcome": "skipped"
+   },
+   {
+    "message": "gaslab_cases.csv not yet derived",
+    "node": "tests.test_cases::test_csv_cases",
+    "outcome": "skipped"
+   }
+  ],
+  "suite": "gaslab",
+  "summary": "208 passed, 2 skipped, 4 deselected"
+ },
+ {
+  "args": [
+   "-m",
+   "slow"
+  ],
+  "collected_by_baseline": false,
+  "cwd": "labs/gaslab",
+  "non_passing": [],
+  "suite": "gaslab-slow",
+  "summary": "INCOMPLETE: timeout after 420s"
+ },
+ {
+  "args": [],
+  "collected_by_baseline": true,
+  "cwd": "labs/obdlab",
+  "non_passing": [
+   {
+    "message": "blocked: T-TST-8 obdlab harness",
+    "node": "tests.generative.test_noise::test_noise_obdlab",
+    "outcome": "skipped"
+   },
+   {
+    "message": "blocked: T-TST-8 obdlab harness",
+    "node": "tests.generative.test_overlap::test_overlap_obdlab",
+    "outcome": "skipped"
+   }
+  ],
+  "suite": "obdlab",
+  "summary": "388 passed, 2 skipped"
+ },
+ {
+  "args": [],
+  "collected_by_baseline": true,
+  "cwd": "labs/symptomlab",
+  "non_passing": [],
+  "suite": "symptomlab",
+  "summary": "63 passed"
+ },
+ {
+  "args": [],
+  "collected_by_baseline": true,
+  "cwd": "labs/vinlab",
+  "non_passing": [
+   {
+    "message": "No sample VINs available",
+    "node": "tests.unit.test_contract_conformance::test_sample_vins_within_year_bounds",
+    "outcome": "skipped"
+   },
+   {
+    "message": "CSV not found: /home/cases/csv/cases_petrol_master_v6.csv",
+    "node": "tests.unit.test_csv_suite::test_csv_coc_field_roundtrip",
+    "outcome": "skipped"
+   },
+   {
+    "message": "CSV not found: /home/cases/csv/cases_petrol_master_v6.csv",
+    "node": "tests.unit.test_csv_suite::test_csv_decode_passrate",
+    "outcome": "skipped"
+   },
+   {
+    "message": "CSV not found: /home/cases/csv/cases_petrol_master_v6.csv",
+    "node": "tests.unit.test_csv_suite::test_csv_downstream_json_shape",
+    "outcome": "skipped"
+   },
+   {
+    "message": "CSV not found: /home/cases/csv/cases_petrol_master_v6.csv",
+    "node": "tests.unit.test_csv_suite::test_csv_engine_extraction",
+    "outcome": "skipped"
+   },
+   {
+    "message": "No sample VINs available",
+    "node": "tests.unit.test_decoder.TestSampleVins::test_all_sample_vins_decode",
+    "outcome": "skipped"
+   },
+   {
+    "message": "No sample VINs available",
+    "node": "tests.unit.test_decoder.TestSampleVins::test_sample_vin_confidence_not_none",
+    "outcome": "skipped"
+   },
+   {
+    "message": "OPSI CSV not present in this env",
+    "node": "tests.unit.test_patch_regression::test_pass_rate_sample",
+    "outcome": "skipped"
+   }
+  ],
+  "suite": "vinlab",
+  "summary": "203 passed, 8 skipped"
+ },
+ {
+  "args": [],
+  "collected_by_baseline": true,
+  "cwd": "apps/wired",
+  "non_passing": [],
+  "suite": "wired",
+  "summary": "11 passed"
+ },
+ {
+  "args": [
+   "v7/tests"
+  ],
+  "collected_by_baseline": false,
+  "cwd": "apps/wired",
+  "non_passing": [
+   {
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: 'apps/wired/v7/data/cases_petrol_v7.csv'",
+    "node": "v7.tests.test_oracle_repin::test_abort_rows_untouched",
+    "outcome": "failure"
+   },
+   {
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: '/agent_workspace'",
+    "node": "v7.tests.test_oracle_repin::test_corpus_validates",
+    "outcome": "failure"
+   },
+   {
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: 'apps/wired/v7/data/cases_petrol_v7.csv'",
+    "node": "v7.tests.test_oracle_repin::test_family_state_unchanged",
+    "outcome": "failure"
+   },
+   {
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: 'apps/wired/v7/data/cases_petrol_v7.csv'",
+    "node": "v7.tests.test_oracle_repin::test_mw_oracle_suspects_repin_to_misfire",
+    "outcome": "failure"
+   },
+   {
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: 'apps/wired/v7/data/cases_petrol_v7.csv'",
+    "node": "v7.tests.test_oracle_repin::test_mw_repin_excluded_rows_stay_mechanical_wear",
+    "outcome": "failure"
+   },
+   {
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: 'apps/wired/v7/data/cases_petrol_v7.csv'",
+    "node": "v7.tests.test_oracle_repin::test_optimal_health_no_fault_untouched",
+    "outcome": "failure"
+   },
+   {
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: 'apps/wired/v7/data/cases_petrol_v7.csv'",
+    "node": "v7.tests.test_oracle_repin::test_surface_defect_confidence_bands",
+    "outcome": "failure"
+   },
+   {
+    "message": "FileNotFoundError: [Errno 2] No such file or directory: 'apps/wired/v7/data/cases_petrol_v7.csv'",
+    "node": "v7.tests.test_oracle_repin::test_surface_defect_fault_code_stripped",
+    "outcome": "failure"
+   },
+   {
+    "message": "fl_tasks.score_v3_yardstick.YardstickRefusalError: hash-lock refusal: V3_YARDSTICK_2026-07-06-C9B mismatch (csv_sha256: expected 8ec81201688d1354557d996e9a855260227eb922d561c571fd60813e9a430bfb observed 813c81312b166d7da660b00f7a25d64047bbaa5f6e137562792a064708c0ac20). Create a new named yardstick o",
+    "node": "v7.tests.test_yardstick_rebind::test_active_v3_hash_lock_accepts_current_corpus",
+    "outcome": "failure"
+   }
+  ],
+  "suite": "wired-v7",
+  "summary": "9 failed, 40 passed"
+ },
+ {
+  "args": [
+   "tests"
+  ],
+  "collected_by_baseline": false,
+  "cwd": "apps/ui",
+  "non_passing": [
+   {
+    "message": "ModuleNotFoundError: No module named 'registry'",
+    "node": "tests.test_ui::test_e2e_abstain_case",
+    "outcome": "failure"
+   },
+   {
+    "message": "ModuleNotFoundError: No module named 'registry'",
+    "node": "tests.test_ui::test_e2e_mw002_fixture",
+    "outcome": "failure"
+   }
+  ],
+  "suite": "ui",
+  "summary": "2 failed, 6 passed"
+ },
+ {
+  "args": [
+   "."
+  ],
+  "collected_by_baseline": false,
+  "cwd": "audit/scratch/P2/controls",
+  "non_passing": [
+   {
+    "message": "Failed: planted",
+    "node": "test_pos::test_always_fails",
+    "outcome": "failure"
+   },
+   {
+    "message": "planted",
+    "node": "test_pos::test_skipped",
+    "outcome": "skipped"
+   }
+  ],
+  "suite": "controls",
+  "summary": "1 failed, 4 passed, 1 skipped"
+ }
+]
