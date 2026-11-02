@@ -1,0 +1,20 @@
+{
+  "include": [],
+  "exclude": [],
+  "venvPath": "../../..",
+  "venv": ".venv-audit",
+  "extraPaths": [
+    "../../../labs/comlab",
+    "../../../labs/dnalab",
+    "../../../labs/dtclab",
+    "../../../labs/gaslab",
+    "../../../labs/obdlab",
+    "../../../labs/symptomlab",
+    "../../../labs/vinlab",
+    "../../../apps/ui",
+    "../../../apps/wired"
+  ],
+  "pythonVersion": "3.14",
+  "typeCheckingMode": "basic",
+  "reportPossiblyUnboundVariable": "warning"
+}
