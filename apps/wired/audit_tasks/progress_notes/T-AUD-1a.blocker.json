@@ -1,0 +1,51 @@
+{
+  "schema": "blocker-record/2",
+  "task_id": "T-AUD-1a",
+  "pack": "audit",
+  "task_file": "apps/wired/audit_tasks/T-AUD-1a_app_usable(4).md",
+  "date": "2026-11-03",
+  "phase": "implementation",
+  "prior_record": null,
+  "reached_first_edit": true,
+  "stopped": false,
+  "findings": [
+    {
+      "class": "CONTRADICTION",
+      "gist": "The task requires two local commits, and the implementer contract mandates the commit identity `-c user.name=Claude`; the bash_guard hook refuses every Bash command that contains that identity, so no commit can be made as specified. The contract is outside the repo (C:/4DApp/AGENTS.md:119), so the anchor is the task's commit requirement.",
+      "task_anchor": "apps/wired/audit_tasks/T-AUD-1a_app_usable(4).md:135",
+      "task_says": "6. Two commits on `fix/T-AUD-1a` above the base, in R8's order: `git -C C:/4DApp/repo log --oneline <base>..HEAD`",
+      "tree_says": "C:/4DApp/AGENTS.md:119: `git -c user.name=Claude -c user.email=noreply@anthropic.com commit -m \"<type>(T-<ID>): …\"`. bash_guard on that command: \"PreToolUse:Bash hook error: bash_guard: a nested claude launch, --plugin-dir, CLAUDE_CODE_PLUGIN_DIRS or the dev-mods folder can load a mod; an implementer never names them\"",
+      "settling_command": "git -c user.name=Claude -c user.email=noreply@anthropic.com log -1 --oneline",
+      "settling_output": "PreToolUse:Bash hook error: bash_guard: a nested claude launch, --plugin-dir, CLAUDE_CODE_PLUGIN_DIRS or the dev-mods folder can load a mod; an implementer never names them",
+      "severity": "soft",
+      "chosen_interpretation": "Do not bypass the guard (no other shell, no obfuscated name, no other identity). Finish the implementation, leave both change sets uncommitted on fix/T-AUD-1a, and hand back both commits. The R8 split is by path (commit 1 = labs/comlab/pyproject.toml, lab_pipeline_aggregator.py, tests/unit/test_abort_incomplete.py; commit 2 = composition.py, wired/__init__.py, ui_payload.py, app.py and the two new test files), so Cowork can make both commits from the working tree with no rework. The exact commands are in the RESULT.",
+      "blocks_first_edit": false
+    },
+    {
+      "class": "CONTRADICTION",
+      "gist": "Criterion 3 keeps C4 at 10 failed, but R5 (the engine never raises on a partial OBD set) turns the expected-red probe test_f3b_upstream_o2_override_reaches_obdlab green: the probe only asserts that diagnose() does not raise, and its input is a partial OBD set for the decoded sensor type (WIDEBAND_AFR car, wideband key removed). F-C4-3 itself (the override never reaches OBDLab) is not fixed; the green is a false pass.",
+      "task_anchor": "apps/wired/audit_tasks/T-AUD-1a_app_usable(4).md:128",
+      "task_says": "3. The expected-red probes stay red: C1 42, C4 10, C5 13 (P3). Any probe that changes colour is named in the progress",
+      "tree_says": "Line 85 (R5): \"The engine never raises on a partial OBD set or an incomplete freeze frame: it returns `abort_incomplete` with `OBD_INPUT_INCOMPLETE` or `FREEZE_FRAME_INCOMPLETE` and the missing fields.\" audit/scratch/C4/test_c4_probes.py:117-123 test_f3b ends with `wc.diagnose(ri)` and no assertion on the verdict.",
+      "settling_command": "timeout 290 C:/4DApp/.venv/Scripts/python.exe -m pytest -p no:cacheprovider -q -rA audit/scratch/C4 | grep -E '^PASSED|failed'",
+      "settling_output": "PASSED audit/scratch/C4/test_c4_probes.py::test_f1_diagnose_runs_in_requirements_install\nPASSED audit/scratch/C4/test_c4_probes.py::test_f3b_upstream_o2_override_reaches_obdlab\nPASSED audit/scratch/C4/test_c4_probes.py::test_f8_ui_payload_without_dna_module_is_accepted\n9 failed, 3 passed. f3b verdict now: OBD_INPUT_INCOMPLETE FATAL_INCOMPLETE | OBD live data is incomplete. Enter: pid_wideband_equivalence_ratio, or untick OBDLab.",
+      "severity": "soft",
+      "chosen_interpretation": "Obey R5 (the rule the row exists for) and use criterion 3's own escape: name the colour change and its reason in the progress note. The probe was not edited. Criterion 3 is reported NOT MET for C4 (9, not 10) with this reason; Cowork can rule whether f3b needs a verdict assertion (owned with F-C4-3 by a later row).",
+      "blocks_first_edit": false
+    }
+  ],
+  "work_completed_before_stop": [
+    "Commit-1 content complete and gated (COMLab gate block in the progress note): R1 pyproject, R0 abort_incomplete, its 4 unit tests; reinstall; G4 wheel check; comlab 526 passed / 4 skipped / 2 errors; registry 5 failed / 489 passed; deployed-layout probes 2 passed; ruff, S, pyright 0 errors",
+    "Pre-edit baselines on f999f42: P3 C1 43 failed (42 + 1), C4 12 failed (10 + 2), C5 19 failed (13 + 6); G1 census 314 cases, 311 ok",
+    "Commit-2 content complete and gated (wired gate block in the progress note): R2-R7, K1; 25 wired + 16 UI tests; 9 acceptance probes 9 passed; apps/ui/tests 24 passed; wired 36 passed; G1 census diff empty; baseline.sh equal except +4 comlab, +25 wired; isolation violations: 4; pyright 0 errors"
+  ],
+  "not_done": [
+    "Commit 1 and commit 2 (Success criterion 6, Verification step 6): owed to Cowork or a redispatch with a guard that admits the mandated identity"
+  ],
+  "cheats_declined": [
+    "Did not run the commit through the PowerShell tool to avoid bash_guard",
+    "Did not spell the identity indirectly (for example with printf) to slip past the guard's pattern",
+    "Did not commit under a different user.name than AGENTS.md mandates"
+  ],
+  "dispatch_rounds_spent": 2
+}

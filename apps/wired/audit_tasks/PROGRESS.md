@@ -12,8 +12,10 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 
 | ID | Task file | Status | Blocked by | Date | Score | Note |
 |---|---|---|---|---|---|---|
-| T-AUD-1a | `repo/apps/wired/audit_tasks/T-AUD-1a_app_usable(4).md` | pending | — | 2026-11-02 | 4/5 | P0 app usable; plan REQUIRED; 2 commits (Cowork 006/008) |
+| T-AUD-1a | `repo/apps/wired/audit_tasks/T-AUD-1a_app_usable(4).md` | done | — | 2026-11-02 | 4/5 | **ACCEPT 2026-11-02, score 94, t=50/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-1a.md`.** P0 app usable; plan REQUIRED; 2 commits (Cowork 006/008) |
 | T-AUD-1b | (not authored) | deferred | T-AUD-1a | 2026-11-02 | — | deploy manifests F-P5-1/2/4; shares labs/comlab/pyproject.toml |
+| T-AUD-1a-b | (not authored: fold into T-AUD-4) | deferred | T-AUD-4 | 2026-11-03 | — | B1 f2: C4 probe test_f3b asserts nothing on the verdict; add an override-reaches-OBDLab assertion with F-C4-3 (018 ruling 3) |
+| T-AUD-1a-c | (not authored) | deferred | T-LOOP-3 | 2026-11-03 | — | 018 S1+N1, difficulty 2, plan NONE: validate_widgets requires the 12 FF fields whenever the DTC dict is sent (one shared predicate; tests pending-only, MIL-only, Mode 06-only); gas-unticked message names GASLab |
 
 **Status values:** `pending` · `in_progress` · `done` · `blocked` · `deferred` · `superseded`
 **Score** (column 6, checked by `ops/gen_dispatch.py`): the routing score `N/5`, the same `N` as the file name's `(N)`.
