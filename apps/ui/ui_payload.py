@@ -4,6 +4,7 @@ Maps flat Streamlit widget values to the structured raw_inputs dict
 expected by wired.diagnose().
 """
 
+import re
 from dataclasses import dataclass
 from typing import Any
 
@@ -236,31 +237,31 @@ FIELD_HELP: dict[str, FieldHelp] = {
     ),
     # High Idle Gas
     "gas_co_high": FieldHelp(
-        explanation="High-idle tailpipe carbon monoxide concentration used to verify catalyst function under load.",
+        explanation="High-idle tailpipe carbon monoxide concentration used to verify catalyst function under load. High idle is used only when all five values (HC, CO, CO₂, O₂, NOx) are entered; a partial set is ignored.",
         min_val=GAS_CO_MIN,
         max_val=GAS_CO_MAX,
         unit="%"
     ),
     "gas_co2_high": FieldHelp(
-        explanation="High-idle tailpipe carbon dioxide concentration used to verify catalyst function under load.",
+        explanation="High-idle tailpipe carbon dioxide concentration used to verify catalyst function under load. High idle is used only when all five values (HC, CO, CO₂, O₂, NOx) are entered; a partial set is ignored.",
         min_val=GAS_CO2_MIN,
         max_val=GAS_CO2_MAX,
         unit="%"
     ),
     "gas_hc_high": FieldHelp(
-        explanation="High-idle tailpipe unburned hydrocarbon concentration indicating incomplete combustion under load.",
+        explanation="High-idle tailpipe unburned hydrocarbon concentration indicating incomplete combustion under load. High idle is used only when all five values (HC, CO, CO₂, O₂, NOx) are entered; a partial set is ignored.",
         min_val=GAS_HC_MIN,
         max_val=GAS_HC_MAX,
         unit="ppm"
     ),
     "gas_o2_high": FieldHelp(
-        explanation="High-idle tailpipe oxygen concentration indicating combustion status or exhaust leaks under load.",
+        explanation="High-idle tailpipe oxygen concentration indicating combustion status or exhaust leaks under load. High idle is used only when all five values (HC, CO, CO₂, O₂, NOx) are entered; a partial set is ignored.",
         min_val=GAS_O2_MIN,
         max_val=GAS_O2_MAX,
         unit="%"
     ),
     "gas_nox_high": FieldHelp(
-        explanation="High-idle tailpipe nitrogen oxides concentration indicating catalyst function under load.",
+        explanation="High-idle tailpipe nitrogen oxides concentration indicating catalyst function under load. High idle is used only when all five values (HC, CO, CO₂, O₂, NOx) are entered; a partial set is ignored.",
         min_val=GAS_NOX_MIN,
         max_val=GAS_NOX_MAX,
         unit="ppm"
@@ -819,6 +820,141 @@ ENGINE_STATE_UI_TO_INTERNAL = {
 }
 
 
+@dataclass(frozen=True)
+class FieldIssue:
+    """One field warning shown before a run; ``field`` is the widget key."""
+
+    field: str
+    message: str
+
+
+_DTC_TOKEN_RE = re.compile(r"^[BCPU][0-3][0-9A-F]{3}$")  # wiki: dtclab vocabulary.py DTC_REGEX (§2.3, §10)
+_MID_KEY_RE = re.compile(r"^MID_[0-9A-F]{2}_TID_[0-9A-F]{2}$")  # wiki: dtclab mode06_result.py MID_KEY_PATTERN (§13.1)
+_DTC_SPLIT_RE = re.compile(r"[\s,;/]+")
+_DTC_NOTE_RE = re.compile(r"\([^)]*\)")  # a parenthesised note such as "(pending)" is not a token
+
+GAS_LOW_IDLE_FIELDS = {
+    "gas_hc": "Low-idle HC (ppm)",
+    "gas_co": "Low-idle CO (%)",
+    "gas_co2": "Low-idle CO₂ (%)",
+    "gas_o2": "Low-idle O₂ (%)",
+    "gas_nox": "Low-idle NOx (ppm)",
+}
+OBD_REQUIRED_FIELDS = {
+    "obd_upstream_o2_val": "Upstream O₂",
+    "obd_shrtft1": "STFT B1 (%)",
+    "obd_longft1": "LTFT B1 (%)",
+    "obd_engine_rpm": "Engine RPM",
+    "obd_coolant_temp_c": "Coolant temp (°C)",
+}
+FF_REQUIRED_FIELDS = {
+    "ff_calculated_load_pct": "Freeze frame: calculated load (%)",
+    "ff_engine_rpm": "Freeze frame: engine RPM",
+    "ff_coolant_temp_c": "Freeze frame: coolant temp (°C)",
+    "ff_short_term_ft1": "Freeze frame: STFT B1 (%)",
+    "ff_long_term_ft1": "Freeze frame: LTFT B1 (%)",
+    "ff_manifold_pressure_kpa": "Freeze frame: MAP (kPa)",
+    "ff_vehicle_speed_kmh": "Freeze frame: vehicle speed (km/h)",
+    "ff_ignition_advance_deg": "Freeze frame: ignition advance (°)",
+    "ff_intake_air_temp_c": "Freeze frame: intake air temp (°C)",
+    "ff_maf_gps": "Freeze frame: MAF (g/s)",
+    "ff_throttle_pos_pct": "Freeze frame: throttle position (%)",
+    "ff_fuel_system_status": "Freeze frame: fuel system status",
+}
+DTC_TEXT_FIELDS = {"dtc_confirmed": "$03", "dtc_pending": "$07", "dtc_permanent": "$0A"}
+
+
+def _is_blank(value: Any) -> bool:
+    return value is None or str(value).strip() == ""
+
+
+def split_dtc_tokens(text: Any) -> tuple[list[str], list[str]]:
+    """Split a pasted DTC list into (valid codes, invalid tokens).
+
+    Separators are whitespace, ``,``, ``;`` and ``/``; a parenthesised note is dropped.
+    """
+    cleaned = _DTC_NOTE_RE.sub(" ", str(text or "")).upper()
+    valid: list[str] = []
+    invalid: list[str] = []
+    for token in _DTC_SPLIT_RE.split(cleaned):
+        if token:
+            (valid if _DTC_TOKEN_RE.match(token) else invalid).append(token)
+    return valid, invalid
+
+
+def _mode06_rows(widgets: dict[str, Any]) -> tuple[dict[str, float], list[str]]:
+    """Return (valid Monitor-ID -> margin, invalid Monitor IDs) from the repeating rows."""
+    valid: dict[str, float] = {}
+    invalid: list[str] = []
+    for mon in widgets.get("mode06_monitors") or []:
+        mid = str(mon.get("monitor_id") or "").strip().upper()
+        margin = mon.get("margin_pct")
+        if not mid or margin is None:
+            continue
+        if not _MID_KEY_RE.match(mid):
+            invalid.append(mid)
+            continue
+        try:
+            valid[mid] = float(margin)
+        except (TypeError, ValueError):
+            invalid.append(mid)
+    return valid, invalid
+
+
+def validate_widgets(widgets: dict[str, Any]) -> list[FieldIssue]:
+    """Return one ``FieldIssue`` per field that blocks a run; empty when the form can run.
+
+    GASLab ticked: the 5 low-idle values. A complete triage: SymptomLab's own check via
+    ``wired.validate_triage``. OBD values typed: the 5 required OBD fields and an upstream
+    O₂ sensor. DTC text and Mode 06 rows: every invalid token. A confirmed code: the 12
+    freeze-frame fields. Never raises on widget input.
+    """
+    from wired import validate_triage
+
+    issues: list[FieldIssue] = []
+    payload = build_diagnose_payload(widgets)
+
+    if widgets.get("gas_module"):
+        for key, label in GAS_LOW_IDLE_FIELDS.items():
+            if _is_blank(widgets.get(key)):
+                issues.append(FieldIssue(key, f"{label} is required when GASLab is ticked."))
+
+    triage_error = validate_triage(payload.get("triage") or {})
+    if triage_error is not None:
+        issues.append(FieldIssue("triage_tier_2", f"Symptom selection is not valid: {triage_error}"))
+
+    if "obd" in payload:
+        if widgets.get("active_upstream_o2_type") == "NONE":
+            issues.append(FieldIssue(
+                "active_upstream_o2_type",
+                "OBDLab needs an upstream O₂ reading: choose the upstream O₂ sensor type, or untick OBDLab.",
+            ))
+        for key, label in OBD_REQUIRED_FIELDS.items():
+            if key == "obd_upstream_o2_val" and widgets.get("active_upstream_o2_type") == "NONE":
+                continue
+            if _is_blank(widgets.get(key)):
+                issues.append(FieldIssue(key, f"{label} is required once any OBD value is entered."))
+
+    if widgets.get("dtc_module"):
+        for key in DTC_TEXT_FIELDS:
+            _, invalid = split_dtc_tokens(widgets.get(key))
+            if invalid:
+                issues.append(FieldIssue(key, f"Not a valid DTC (expected e.g. P0171): {', '.join(invalid)}"))
+        _, invalid_mids = _mode06_rows(widgets)
+        if invalid_mids:
+            issues.append(FieldIssue(
+                "mode06_monitors",
+                f"Not a valid Monitor ID (expected MID_<HEX>_TID_<HEX>): {', '.join(invalid_mids)}",
+            ))
+        confirmed, _ = split_dtc_tokens(widgets.get("dtc_confirmed"))
+        if confirmed:
+            for key, label in FF_REQUIRED_FIELDS.items():
+                if _is_blank(widgets.get(key)):
+                    issues.append(FieldIssue(key, f"{label} is required with a confirmed DTC."))
+
+    return issues
+
+
 def build_diagnose_payload(widgets: dict[str, Any]) -> dict[str, Any]:
     """Assemble UI widget states into the structured dict for wired.diagnose().
 
@@ -1037,7 +1173,13 @@ def build_diagnose_payload(widgets: dict[str, Any]) -> dict[str, Any]:
             elif val_bool == "False":
                 obd[field] = False
                 
-    if obd:
+    # Sent only when a live OBD value is typed: the bank count, the None bank-2 placeholders
+    # and the symptom-derived misfire counts do not count.
+    if any(
+        value is not None
+        for key, value in obd.items()
+        if key not in ("number_of_banks", "per_cylinder_misfire_counts")
+    ):
         raw_inputs["obd"] = obd
 
     # 6. DTC
@@ -1058,27 +1200,17 @@ def build_diagnose_payload(widgets: dict[str, Any]) -> dict[str, Any]:
             
         # raw_dtcs mapping
         raw_dtcs = {}
-        for mode, key in [("$03", "dtc_confirmed"), ("$07", "dtc_pending"), ("$0A", "dtc_permanent")]:
-            val_str = str(widgets.get(key) or "").strip()
-            if val_str:
-                # split by commas or spaces, filter non-empty
-                parts = [p.strip().upper() for p in val_str.replace(",", " ").split() if p.strip()]
-                if parts:
-                    raw_dtcs[mode] = parts
+        for key, mode in DTC_TEXT_FIELDS.items():
+            # valid codes only; invalid tokens are field issues (validate_widgets)
+            codes, _ = split_dtc_tokens(widgets.get(key))
+            if codes:
+                raw_dtcs[mode] = codes
         if raw_dtcs:
             dtc["raw_dtcs"] = raw_dtcs
-            
+
         # raw_mode06 mapping (repeating rows margin)
         # widgets["mode06_monitors"] is expected to be a list of dicts: [{"monitor_id": ..., "margin_pct": ...}]
-        raw_mode06 = {}
-        for mon in widgets.get("mode06_monitors", []):
-            mid = str(mon.get("monitor_id") or "").strip().upper()
-            margin = mon.get("margin_pct")
-            if mid and margin is not None:
-                try:
-                    raw_mode06[mid] = float(margin)
-                except ValueError:
-                    pass
+        raw_mode06, _ = _mode06_rows(widgets)
         if raw_mode06:
             dtc["raw_mode06"] = raw_mode06
             
@@ -1142,7 +1274,9 @@ def build_diagnose_payload(widgets: dict[str, Any]) -> dict[str, Any]:
         if ff_active:
             dtc["raw_freeze_frame"] = raw_ff
             
-    if dtc:
+    # Sent only when a valid code is typed, a MIL box is ticked, or a valid Mode 06 row is
+    # present; then it always carries codes_cleared.
+    if dtc.get("raw_dtcs") or dtc.get("active_mil") or dtc.get("mil_flashing") or dtc.get("raw_mode06"):
         raw_inputs["dtc"] = dtc
 
     return raw_inputs

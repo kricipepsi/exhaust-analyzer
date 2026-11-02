@@ -8,6 +8,7 @@ import streamlit as st
 from wired.composition import diagnose
 from ui_payload import (
     build_diagnose_payload,
+    validate_widgets,
     TIER1_UI_TO_INTERNAL,
     FIELD_HELP,
     GAS_CO_MIN, GAS_CO_MAX, GAS_CO2_MIN, GAS_CO2_MAX, GAS_HC_MIN, GAS_HC_MAX,
@@ -275,6 +276,16 @@ def _check_radio(options: list[str], state_key: str, default_index: int = 0, hel
 if "monitors" not in st.session_state:
     st.session_state.monitors = []
 
+# GASLab untick unmounts the gas widgets and Streamlit drops their state; keep a copy
+# under "_kept_<key>" while the widget exists, and restore it before the widget is re-created.
+GAS_WIDGET_KEYS = (
+    "gas_hc", "gas_co", "gas_co2", "gas_o2", "gas_nox", "gas_lambda",
+    "gas_hc_high", "gas_co_high", "gas_co2_high", "gas_o2_high", "gas_nox_high", "gas_lambda_high",
+)
+for _gas_key in GAS_WIDGET_KEYS:
+    if _gas_key in st.session_state:
+        st.session_state[f"_kept_{_gas_key}"] = st.session_state[_gas_key]
+
 # Title
 st.title("🔧 4D Petrol Diagnostic Engine")
 
@@ -439,6 +450,11 @@ with st.sidebar:
 col_main, col_verdict = st.columns([0.65, 0.35])
 
 with col_main:
+    if gas_module:
+        for _gas_key in GAS_WIDGET_KEYS:
+            if _gas_key not in st.session_state and f"_kept_{_gas_key}" in st.session_state:
+                st.session_state[_gas_key] = st.session_state[f"_kept_{_gas_key}"]
+
     # 1. GASLab (Low Idle)
     if gas_module:
         with st.expander("📊 GASLab (Low Idle)", expanded=True):
@@ -917,16 +933,23 @@ if st.button("🔬 Run Diagnostic Seam", type="primary", use_container_width=Tru
         "miles_since_clear": adv_miles_since_clear,
     }
 
-    raw_inputs = build_diagnose_payload(widgets)
-
-    st.session_state.raw_payload = raw_inputs
-
-    try:
-        res = diagnose(raw_inputs)
-        st.session_state.diagnose_result = res
-    except Exception as e:
-        st.error(f"❌ Diagnostic calculation failed: {e}")
+    issues = validate_widgets(widgets)
+    if issues:
+        # Field warnings only: the run does not start until the form is complete.
+        for issue in issues:
+            st.warning(f"⚠️ {issue.message}")
         st.session_state.diagnose_result = None
+    else:
+        raw_inputs = build_diagnose_payload(widgets)
+
+        st.session_state.raw_payload = raw_inputs
+
+        try:
+            res = diagnose(raw_inputs)
+            st.session_state.diagnose_result = res
+        except Exception as e:
+            st.error(f"❌ Diagnostic calculation failed: {e}")
+            st.session_state.diagnose_result = None
 
 # RIGHT VERDICT PANEL
 with col_verdict:

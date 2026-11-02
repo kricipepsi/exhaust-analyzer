@@ -57,11 +57,37 @@ from obdlab.schemas.dna_view import (
 from obdlab.schemas.dna_view import (
     VinConfidence as OBDVinConfidence,
 )
+from symptomlab import SymptomValidationError
+from symptomlab import resolve as resolve_symptom
 from vinlab import VINDecodeError
+from vinlab import decode as decode_vin
 
 from wired.tracing import span
 
 _FALLBACK_VIN = "UNKNOWNVIN0000000"
+
+# Required-input key sets. wired only checks that each key is present; the labs own the meaning.
+_TRIAGE_KEYS = ("tier_1", "tier_2", "occurs_during", "engine_state", "load_state")
+# dnalab/assembly.py build_vehicle_dna `required` — pinned by tests/test_t_aud_1a_inputs.py
+_GAS_LOW_IDLE_KEYS = ("hc", "co", "co2", "o2", "nox")  # the GasReading fields read in _run_gaslab
+_OBD_REQUIRED_KEYS = ("shrtft1", "longft1", "engine_rpm", "coolant_temp_c")
+# obdlab trim_vector_aggregator (STFT/LTFT B1) + OBDLivePayload (RPM, ECT); the O2 key is per sensor type
+_OBD_BANK2_KEYS = ("shrtft2", "longft2")  # obdlab trim_vector_aggregator bank-2 null contract
+_FREEZE_FRAME_KEYS = (
+    "calculated_load_pct",  # wiki: DTC_VOCABULARY.md §12.1
+    "engine_rpm",  # wiki: DTC_VOCABULARY.md §12.1
+    "coolant_temp_c",  # wiki: DTC_VOCABULARY.md §12.1
+    "short_term_ft1",  # wiki: DTC_VOCABULARY.md §12.1
+    "long_term_ft1",  # wiki: DTC_VOCABULARY.md §12.1
+    "manifold_pressure_kpa",  # wiki: DTC_VOCABULARY.md §12.1
+    "vehicle_speed_kmh",  # wiki: DTC_VOCABULARY.md §12.1
+    "ignition_advance_deg",  # wiki: DTC_VOCABULARY.md §12.1
+    "intake_air_temp_c",  # wiki: DTC_VOCABULARY.md §12.1
+    "maf_gps",  # wiki: DTC_VOCABULARY.md §12.1
+    "throttle_pos_pct",  # wiki: DTC_VOCABULARY.md §12.1
+    "fuel_system_status",  # wiki: DTC_VOCABULARY.md §12.1
+)  # = dtclab freeze_frame_extractor._MANDATORY_PIDS — pinned by tests/test_t_aud_1a_inputs.py
+_NON_STARTER = "will_not_start"  # the triage engine_state comlab symptom_router suppresses GASLab on
 
 
 def diagnose(
@@ -92,16 +118,20 @@ def _diagnose(
     obd_inputs = raw_inputs.get("obd")
     dtc_inputs = raw_inputs.get("dtc")
 
+    symptom_dna: dict[str, Any] = {}
     try:
-        with span("lab.dnalab.build"):
-            vehicle_dna = build_vehicle_dna(vin, triage)
+        if _missing(triage, _TRIAGE_KEYS):
+            # Absent or incomplete triage is the absent-symptom case: decode the VIN, no symptom.
+            vin_dna = _as_dict(decode_vin(vin).to_json_payload())
+        else:
+            with span("lab.dnalab.build"):
+                vehicle_dna = build_vehicle_dna(vin, triage)
+            dna_payload = vehicle_dna.to_json_payload()
+            vin_dna = _as_dict(dna_payload["vin_dna"])
+            symptom_dna = _as_dict(dna_payload.get("symptom_dna"))
     except VINDecodeError:
         vin_dna = _build_fallback_vin_dna(vin)
-        symptom_dna: dict[str, Any] = {}
-    else:
-        dna_payload = vehicle_dna.to_json_payload()
-        vin_dna = _as_dict(dna_payload["vin_dna"])
-        symptom_dna = _as_dict(dna_payload.get("symptom_dna"))
+        symptom_dna = {}
 
     if "resolved_horizon" not in vin_dna:
         vin_dna["resolved_horizon"] = _derive_horizon(
@@ -113,6 +143,12 @@ def _diagnose(
         symptom_dna["_csv_primary_symptom"] = csv_symptom
 
     metadata = _build_metadata(vin_dna)
+    incomplete = _incomplete_input(triage, gas_inputs, obd_inputs, dtc_inputs, vin_dna)
+    if incomplete is not None:
+        error_code, message = incomplete
+        return LabPipelineAggregator(enable_fatal_gates=enable_fatal_gates).abort_incomplete(
+            metadata, error_code, message
+        )
     gas_output = _run_gaslab(gas_inputs, vin_dna)
     obd_output = _run_obdlab(_as_dict(obd_inputs), vin_dna) if obd_inputs is not None else None
     dtc_output = _run_dtclab(_as_dict(dtc_inputs)) if dtc_inputs is not None else None
@@ -139,6 +175,87 @@ def _diagnose(
     )
     with span("comlab.process"):
         return LabPipelineAggregator(enable_fatal_gates=enable_fatal_gates).process(request)
+
+
+def validate_triage(triage: dict[str, Any]) -> str | None:
+    """Return why a complete triage selection is invalid, or ``None`` when it is valid.
+
+    The check is SymptomLab's own (``symptomlab.resolve``); the UI calls this before a run
+    so an invalid selection becomes a field warning. An absent or incomplete triage is valid:
+    ``diagnose`` treats it as the absent-symptom case.
+    """
+    if _missing(triage, _TRIAGE_KEYS):
+        return None
+    try:
+        resolve_symptom(
+            tier_1=triage["tier_1"],
+            tier_2=triage["tier_2"],
+            occurs_during=triage["occurs_during"],
+            engine_state=triage["engine_state"],
+            load_state=triage["load_state"],
+        )
+    except SymptomValidationError as exc:
+        return str(exc)
+    return None
+
+
+def _missing(inputs: dict[str, Any], keys: tuple[str, ...]) -> list[str]:
+    """Return the keys of *keys* that are absent, ``None`` or blank in *inputs*."""
+    return [key for key in keys if inputs.get(key) is None or str(inputs[key]).strip() == ""]
+
+
+def _obd_required_keys(obd_inputs: dict[str, Any], vin_dna: dict[str, Any]) -> tuple[str, ...]:
+    """Return the OBD keys OBDLab needs: the upstream O2 key for the sensor type, trims, RPM, ECT."""
+    if _build_obd_dna_view(vin_dna).upstream_o2_type == O2SensorType.WIDEBAND_LINEAR:
+        o2_key = "pid_wideband_equivalence_ratio"  # obdlab o2_normalizer wideband branch
+    else:
+        o2_key = "pid_oxygen_sensor_volts"  # obdlab o2_normalizer narrowband / NB-sim branches
+    keys = (o2_key, *_OBD_REQUIRED_KEYS)
+    if obd_inputs.get("number_of_banks") == 2:
+        keys = (*keys, *_OBD_BANK2_KEYS)
+    return keys
+
+
+def _incomplete_input(
+    triage: dict[str, Any],
+    gas_inputs: dict[str, Any],
+    obd_inputs: Any,
+    dtc_inputs: Any,
+    vin_dna: dict[str, Any],
+) -> tuple[str, str] | None:
+    """Return ``(error_code, message)`` for the first incomplete required input, or ``None``.
+
+    A presence check only, run before any lab: low-idle gas, then OBD live data (when sent),
+    then the freeze frame (when a DTC dict is sent). The verdict comes from
+    ``LabPipelineAggregator.abort_incomplete``.
+    """
+    missing = _missing(gas_inputs, _GAS_LOW_IDLE_KEYS)
+    if missing:
+        fields = ", ".join(missing)
+        if triage.get("engine_state") == _NON_STARTER:
+            return (
+                "GAS_INPUT_INCOMPLETE",
+                "Non-start diagnosis without exhaust gas readings is not available yet. "
+                f"Enter the low-idle gas readings: {fields}.",
+            )
+        return "GAS_INPUT_INCOMPLETE", f"Low-idle gas readings are incomplete. Enter: {fields}."
+    if obd_inputs is not None:
+        obd = _as_dict(obd_inputs)
+        missing = _missing(obd, _obd_required_keys(obd, vin_dna))
+        if missing:
+            return (
+                "OBD_INPUT_INCOMPLETE",
+                f"OBD live data is incomplete. Enter: {', '.join(missing)}, or untick OBDLab.",
+            )
+    if dtc_inputs is not None:
+        freeze_frame = _as_dict(_as_dict(dtc_inputs).get("raw_freeze_frame"))
+        missing = _missing(freeze_frame, _FREEZE_FRAME_KEYS)
+        if missing:
+            return (
+                "FREEZE_FRAME_INCOMPLETE",
+                f"Freeze frame is incomplete. Enter: {', '.join(missing)}.",
+            )
+    return None
 
 
 def _build_metadata(vin_dna: dict[str, Any]) -> SessionMetadata:
