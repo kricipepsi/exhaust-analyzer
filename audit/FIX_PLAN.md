@@ -32,4 +32,9 @@ R1-L1, F-P2-1 UI part), spec `apps/wired/audit_tasks/T-AUD-1a_app_usable.md`; `T
 constraints (F-P5-1, F-P5-2, F-P5-4). They run in sequence, 1a first, because both touch `labs/comlab/pyproject.toml`.
 App-scoped rows are tracked in `apps/wired/audit_tasks/PROGRESS.md`.
 
+**T-AUD-4 residual (architect ruling 2026-11-02, T-AUD-1a Fork F-1 = A):** `gas_lab_output` optional when the router
+suppresses GASLab (`will_not_start`, `07_pipeline_stages.md` §RULE_LAB_SUPPRESSION). Until then a non-starter without
+gas readings gets `FATAL_INCOMPLETE` `GAS_INPUT_INCOMPLETE`, not a diagnosis. *Lost:* the wiki-correct behaviour in
+T-AUD-1a (option B), which would change COMLab's verdict path inside a P0 fix.
+
 Round 2 (`AUDIT_START_HERE.md`): after each row merges, re-run its target's probes and re-attack the target.

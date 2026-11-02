@@ -7,7 +7,10 @@ No push, no merge: the architect reviews the branch first.
 **Evidence:** `audit/reports/R1_C1_20261017.md` §F5, `R1_C4_20261017.md` §F-C4-1/F-C4-9, `R1_C5_20261017.md`
 §F-C5-1/2/13, `P2_census_20261026.md` §F-P2-1.
 STRICT-ONLY: Load skills: `labs/comlab/_comlab_skills/comlab-python/SKILL.md`,
-`labs/comlab/_comlab_skills/comlab-verification-loop/SKILL.md`.
+`labs/comlab/_comlab_skills/comlab-verification-loop/SKILL.md`, `apps/wired/_wired_skills/wired-python/SKILL.md`,
+`apps/wired/_wired_skills/wired-composition-contract/SKILL.md`, `apps/wired/_wired_skills/wired-verification-loop/SKILL.md`
+(read all five before the first edit; a skill that contradicts this spec is a stop → ask the architect).
+**Fork F-1 ruled A** (architect, 2026-11-02): see the Fork section.
 
 ## Why
 The live app fails a normal first use (seen live 2026-10-17). It fails four ways, each one an uncaught exception that
