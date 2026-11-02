@@ -2,7 +2,8 @@
 
 One row per finding. Auditors never edit this file; the architect adds a row when a report arrives and
 updates `recheck` after re-running the finding on the live tree (`AUDIT_START_HERE.md` §Re-check).
-`recheck`: `UPHELD` | `NOT REPRODUCED` | `UNVERIFIED` | `open`. `owner`: the task row that fixes it, or
+`recheck`: `UPHELD` | `NOT REPRODUCED` | `UNVERIFIED` | `open` | `PENDING RE-CHECK` (listed from a report, not yet
+run; never dispatched). `owner`: the task row that fixes it, or
 `operator`, or `no change` with the reason.
 
 | id | sev | kind | anchor | defect | recheck | owner |
@@ -177,6 +178,45 @@ updates `recheck` after re-running the finding on the live tree (`AUDIT_START_HE
 | F-D3-18 | LOW | doc-drift | `Vault/tasks/GAS_VAULT_TASKS_START_HERE.md:92` | "Never edit Vault/" vs the Vault pack bootstraps whose procedure edits their own ledgers under Vault/ | UPHELD (script re-run 2026-10-17) | T-AUD-7 |
 | F-D3-19 | LOW | doc-drift | `.omp/rules/lane-guard-no-vault-edit.md` | Dangling references that the docs do not declare as dangling | UPHELD (script re-run 2026-10-17) | T-AUD-7 |
 | F-D3-20 | LOW | robustness | `planning/gpf_removal/GPF_REMOVAL_START_HERE.md:152` | Two finished packs still carry Windows and owner-desktop paths in their command blocks | UPHELD (script re-run 2026-10-17) | T-AUD-7 |
+
+### Round P (2026-10-26): five instrument passes — reports and probes on branches, not yet merged
+Each pass is one commit on top of `audit-r1`; read with `git show <branch>:<path>`. P1 static sweep
+`origin/claude/vibrant-rubin-wt4qn4`, P2 suspect-site census `origin/claude/wizardly-wozniak-heossf`, P3 test
+reachability `origin/claude/awesome-cori-1my5nl`, P4 mutation matrix `origin/claude/relaxed-bardeen-nw1257`, P5 deploy
+surface `origin/claude/friendly-clarke-0p3per`; report `audit/reports/P<n>_*_20261026.md`, probes `audit/scratch/P<n>/`.
+Re-check 2026-11-02 on the `audit-r1` tree (Windows 10, Python 3.14.6, venv from `requirements.txt` + test tools, clean
+throwaway venvs for the install repros): only the five findings that touch T-AUD-1. The other 22 are
+`PENDING RE-CHECK`: listed, not yet run, never dispatched from.
+
+| id | sev | kind | anchor | defect | recheck | owner |
+|---|---|---|---|---|---|---|
+| F-P2-1 | MEDIUM | test-gap | `labs/comlab/pyproject.toml` `testpaths`, `apps/wired/pyproject.toml` `testpaths`, `apps/ui` (no pytest config) | 551 tests in three directories are collected by no suite; the UI's only end-to-end test fails on the production crash (F-C1-5), and no gate runs it | UPHELD (2026-11-02, `python -m pytest -q -p no:cacheprovider registry/tests` in `labs/comlab` → 5 failed, 489 passed; `tests` in `apps/ui` → 2 failed, 6 passed, both `test_e2e_*` `ModuleNotFoundError: No module named 'registry'`; `v7/tests` in `apps/wired` → 9 failed, 40 passed). Side effect: `registry/tests/test_render_case_library.py` rewrites the tracked `registry/docs/case_library.html` (CRLF on Windows) | T-AUD-1 (the `apps/ui/tests` suite becomes a gate and its 2 E2E tests turn green); T-AUD-6 (collect `registry/tests` and `v7/tests`, fix or retire their 14 failures, stop the test writing into the source tree) |
+| F-P5-1 | MEDIUM | security (supply chain) | `apps/wired/pyproject.toml:10-18` | `wired` depends on `comlab`, `dnalab`, … by bare name; `dnalab` and `wired` are taken on PyPI, so one missing `-e` line in `requirements.txt` installs a stranger's package without any error | UPHELD (2026-11-02, clean venv, `requirements.txt` minus `-e labs/dnalab`, `pip install --dry-run --report` → `dnalab 0.1.0` from `files.pythonhosted.org/…/dnalab-0.1.0-py3-none-any.whl`, `editable=False`; with the full file it resolves to the local editable 1.0.0) | T-AUD-1 |
+| F-P5-2 | MEDIUM | robustness | `requirements.txt:2-4` | The deployed closure is unpinned: only `streamlit` is pinned, there is no lock or constraints file, so every Render build takes whatever PyPI serves that day | UPHELD (2026-11-02, clean-venv `pip install --dry-run --report -r requirements.txt` → 47 third-party dists on Windows (P5: 48 on Linux), 1 pinned; no `*.lock` / `constraints*.txt`; pydantic already resolves to 2.14.2, P5 saw 2.14.1 on 2026-10-26) | T-AUD-1 |
+| F-P5-4 | LOW | contract | `labs/dnalab/pyproject.toml:5-8`, `labs/dnalab/dnalab/assembly.py:7-9` | `dnalab` imports `vinlab` and `symptomlab` at import time but declares no dependencies; installed from its own manifest it cannot be imported. Same defect: F-P1-1 (rated MEDIUM there) | UPHELD (2026-11-02, clean venv, `pip install <copy of labs/dnalab>` then `python -I -c "import dnalab"` → `ModuleNotFoundError: No module named 'symptomlab'`) | T-AUD-1 |
+| F-P5-6 | LOW | doc-drift | `labs/comlab/comlab/observability/_tracer.py:118` | The tracing hint names a `[tracing]` extra that no manifest defines; `opentelemetry` is declared nowhere. Same defect: F-P1-2. Runtime impact none (`render.yaml` sets no `OTEL_TRACES_EXPORTER`) | UPHELD (2026-11-02, `pip install --dry-run ".\comlab[tracing]"` on a copy → `WARNING: comlab 0.1.0 does not provide the extra 'tracing'`; `pyproject.toml` `[project.optional-dependencies]` has only `dev`) | T-AUD-6 (with R0-4) |
+| F-P1-1 | MEDIUM | contract | `labs/dnalab/pyproject.toml` | = F-P5-4 | UPHELD via F-P5-4 | T-AUD-1 |
+| F-P1-2 | LOW | doc-drift | `labs/comlab/comlab/observability/_tracer.py:118` | = F-P5-6 | UPHELD via F-P5-6 | T-AUD-6 |
+| F-P1-3 | MEDIUM | correctness | `apps/ui/app.py:133` | The UI's Mode $06 dictionary path points under `apps/`, so every monitor's component caption reads "UNKNOWN" (likely = F-P2-2) | PENDING RE-CHECK | — |
+| F-P1-4 | LOW | robustness | `labs/vinlab/tools/tecdoc_ktype_bridge.py:262` | An offline VINLab builder splices the OPSI engine code into SQL without escaping | PENDING RE-CHECK | — |
+| F-P2-2 | MEDIUM | correctness | `apps/ui/app.py:132` | The UI never loads the Mode $06 dictionary, so every monitor shows "Component: UNKNOWN" | PENDING RE-CHECK | — |
+| F-P2-3 | MEDIUM | test-gap | `labs/dtclab/tests/generative/test_fuzz.py:205-221` | The "fail-closed" Mode $06 fuzz test passes against a fail-open sanitizer | PENDING RE-CHECK | — |
+| F-P2-4 | LOW | test-gap | `labs/comlab/tests/integration/test_truth_perception.py:6-8` | Six test functions have a bare `pass` body; one counts in comlab's total; two skip reasons are stale | PENDING RE-CHECK | — |
+| F-P3-1 | MEDIUM | test-gap | `labs/comlab/pyproject.toml:40` | 494 registry rule tests are outside every suite run; 5 of them fail (overlaps F-P2-1) | PENDING RE-CHECK | — |
+| F-P3-2 | MEDIUM | test-gap | `labs/comlab/registry/integration_shim.py:811-821` | The registry's C2–C9 score-override cascade has no test; the C3 branch makes a "Fuel trim saturated" verdict at 0.90 from one KOEO MAP-baro value (overlaps F-P4-7) | PENDING RE-CHECK | — |
+| F-P3-3 | MEDIUM | test-gap | `labs/dtclab/tests/test_cases.py:120-121` | `test_csv_cases_dtclab` passes 64 of its 194 rows without running any DTCLab code | PENDING RE-CHECK | — |
+| F-P3-4 | LOW | test-gap | `apps/wired/wired/registry_guard.py:21` | The wired REG-V2 activation guard has no caller and no test | PENDING RE-CHECK | — |
+| F-P4-1 | MEDIUM | test-gap | `labs/comlab/comlab/core/fault_atlas_router.py:1132` | The routing-tag lift can be sent to every family except the tagged one and the comlab suite still passes | PENDING RE-CHECK | — |
+| F-P4-2 | MEDIUM | test-gap | `labs/comlab/comlab/core/fault_atlas_router.py:1123-1125` | An unmapped routing tag is said to be neutral, but no test passes one; deleting the guard turns it into a crash | PENDING RE-CHECK | — |
+| F-P4-3 | MEDIUM | test-gap | `labs/gaslab/gaslab/resolution.py:551` | The catalyst weak-delta test is OR-tolerant: a healthy idle with a working 2500 RPM reading keeps CATALYST_NOT_LIGHTING_OFF | PENDING RE-CHECK | — |
+| F-P4-4 | MEDIUM | test-gap | `labs/gaslab/gaslab/rule_engine.py:348-349` | The collision rule's 14–16 % triangle arm (RICH_MISFIRE) can be deleted without any test failing | PENDING RE-CHECK | — |
+| F-P4-5 | MEDIUM | test-gap | `apps/ui/ui_payload.py:1054` | The UI's "DTC Memory Status" → `codes_cleared` mapping can be inverted without any UI test failing | PENDING RE-CHECK | — |
+| F-P4-6 | LOW | test-gap | `labs/comlab/comlab/core/fault_atlas_router.py:1133-1136` | `test_discriminator_respects_score_cap` cannot see the 1.0 cap; removing the cap is caught only by Pydantic crashes | PENDING RE-CHECK | — |
+| F-P4-7 | MEDIUM | test-gap | `labs/comlab/registry/integration_shim.py:789-919` | On the production scorer, the C2–C6 override logic is not executed by its own package's suite | PENDING RE-CHECK | — |
+| F-P4-8 | LOW | test-gap | `apps/ui/tests/test_ui.py:28` | UI mapping tests notice dropped fields mostly by crashing, not by asserting | PENDING RE-CHECK | — |
+| F-P5-3 | LOW | security | `requirements.txt:4` | pip-audit: pillow 12.3.0 in the deployed closure has 37 advisories and cannot be upgraded without a streamlit bump; the build tool pip 25.3 has 5 | PENDING RE-CHECK | — |
+| F-P5-5 | LOW | contract | `labs/comlab/pyproject.toml:10` | COMLab claims `requires-python >=3.10`; pip installs it on 3.10, and the package then fails to import | PENDING RE-CHECK | — |
+| F-P5-7 | LOW | contract | `labs/comlab/requirements.txt:3-4` | Lab manifests disagree with each other and mix test tools into runtime requirements | PENDING RE-CHECK | — |
 
 ## Watch list (not defects): complexity hot spots, R0 erosion census
 `execute_triage_loop` CC 174 (`labs/comlab/comlab/core/fault_atlas_router.py:922`), `apply_differentiators` CC 133
