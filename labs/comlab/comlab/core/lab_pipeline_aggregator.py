@@ -39,6 +39,7 @@ from comlab.core.perception_contradiction import (
 from comlab.core.symptom_router import route_symptom
 from comlab.schemas.ingestion import (
     OrchestratorInboundRequest,
+    SessionMetadata,
     UserInputEchoAudit,
 )
 from comlab.schemas.response import (
@@ -260,7 +261,40 @@ class LabPipelineAggregator:
         Constructs the minimal required ``OrchestratorFinalUIOutput`` fields
         without running Stage B–E.  # wiki: vocabulary.py:571, lld: §6.3
         """
-        meta = request.metadata
+        return self.abort_incomplete(
+            request.metadata,
+            abort.error_code,
+            abort.ui_remediation_message,
+            horizon=horizon,
+            echo=request.user_input_echo_audit,
+        )
+
+    def abort_incomplete(
+        self,
+        metadata: SessionMetadata,
+        error_code: str,
+        message: str,
+        *,
+        horizon: Horizon | None = None,
+        echo: UserInputEchoAudit | None = None,
+    ) -> OrchestratorFinalUIOutput:
+        """Return a ``FATAL_INCOMPLETE`` output for a session whose input is incomplete.
+
+        Needs only the session *metadata*, so a caller can abort before it can
+        build an ``OrchestratorInboundRequest`` (for example when the gas
+        readings that ``gas_lab_output`` requires are missing). The verdict is
+        ``fault_family="invalid_input"`` with *error_code* as the fault code and
+        *message* as the remediation. *horizon* defaults to
+        ``metadata.resolved_horizon``, resolved as ``process()`` does. *echo*
+        is carried verbatim; ``None`` gives the empty sentinel.
+        # wiki: vocabulary.py:571, lld: §6.3
+        """
+        meta = metadata
+        if horizon is None:
+            try:
+                horizon = Horizon(meta.resolved_horizon)
+            except ValueError:
+                horizon = Horizon.MODERN  # lld: §6.1 — safe default, as in process()
         horizon_lit: HorizonLit = horizon.value  # type: ignore[assignment]
 
         exec_meta = ExecutionMeta(
@@ -279,12 +313,12 @@ class LabPipelineAggregator:
 
         verdict = DiagnosticVerdict(
             is_fault_detected=False,
-            fault_code=abort.error_code,
-            fault_name=f"Fatal Abort: {abort.error_code}",
+            fault_code=error_code,
+            fault_name=f"Fatal Abort: {error_code}",
             fault_family="invalid_input",  # wiki: response.py:47 — session aborted on invalid/missing input
-            display_headline=abort.ui_remediation_message[:_FATAL_DISPLAY_HEADLINE_LIMIT],
+            display_headline=message[:_FATAL_DISPLAY_HEADLINE_LIMIT],
             confidence_score=0.0,
-            actionable_remediation=abort.ui_remediation_message,
+            actionable_remediation=message,
             differential_siblings=[],
         )
 
@@ -299,11 +333,15 @@ class LabPipelineAggregator:
         enrichment = FaultEnrichment(
             component_group="n/a — session aborted",
             impacted_subsystems=[],
-            mechanical_failure_mode=abort.ui_remediation_message[:_FATAL_FAILURE_MODE_LIMIT],
-            ui_remediation_steps=[abort.ui_remediation_message],
+            mechanical_failure_mode=message[:_FATAL_FAILURE_MODE_LIMIT],
+            ui_remediation_steps=[message],
         )
 
-        echo = self._echo_pass_through(request)
+        if echo is None:
+            echo = UserInputEchoAudit(
+                submitted_at=datetime.now(timezone.utc),  # lld: §3.3 sentinel
+                groups=[],  # lld: §3.3 sentinel
+            )
 
         return OrchestratorFinalUIOutput(
             session_id=meta.session_id,

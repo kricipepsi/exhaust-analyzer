@@ -22,11 +22,12 @@ dev = [
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["comlab*"]
-exclude = ["tests*", "docs*", "scripts*"]
+include = ["comlab*", "registry*"]
+exclude = ["tests*", "docs*", "scripts*", "registry.tests*", "registry.tools*"]
 
 [tool.setuptools.package-data]
 comlab = ["config/*.json", "config/*.yaml"]
+registry = ["rules/*.json"]
 
 [tool.pytest.ini_options]
 minversion = "8.0"
