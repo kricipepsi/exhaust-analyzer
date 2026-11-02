@@ -27,4 +27,9 @@ per the project conventions, before any coder touches code.
 | **T-AUD-10** | P3 | UI presentation: show horizon/routing panel/echo, distinct-family runner-ups, no direct VINLab import in the UI | F-C5-7, 8, 12 | presentation only |
 | **T-AUD-7** | P3 | governance and design docs: git rule vs `main` = production (F-D3-1, do first: one line), ledger rows that are pending-but-done, rule contradictions, stale figures, superseded statements, missing citation files | R0-3, R0-5, F-D3-1…9, 13…20, F-D2-8, 12, 13, 15, 17, 19…21, 27, F-D1-10, 11, 18, 19 | F-D3-1 is a one-line edit that prevents a direct-to-production push; the rest is documentation debt |
 
+**T-AUD-1 split (architect ruling, 2026-11-02):** `T-AUD-1a` = app usable (F-C1-5, F-C4-9, F-C5-1, F-C5-2, F-C5-13,
+R1-L1, F-P2-1 UI part), spec `apps/wired/audit_tasks/T-AUD-1a_app_usable.md`; `T-AUD-1b` = deploy manifests and
+constraints (F-P5-1, F-P5-2, F-P5-4). They run in sequence, 1a first, because both touch `labs/comlab/pyproject.toml`.
+App-scoped rows are tracked in `apps/wired/audit_tasks/PROGRESS.md`.
+
 Round 2 (`AUDIT_START_HERE.md`): after each row merges, re-run its target's probes and re-attack the target.

@@ -179,8 +179,8 @@ run; never dispatched). `owner`: the task row that fixes it, or
 | F-D3-19 | LOW | doc-drift | `.omp/rules/lane-guard-no-vault-edit.md` | Dangling references that the docs do not declare as dangling | UPHELD (script re-run 2026-10-17) | T-AUD-7 |
 | F-D3-20 | LOW | robustness | `planning/gpf_removal/GPF_REMOVAL_START_HERE.md:152` | Two finished packs still carry Windows and owner-desktop paths in their command blocks | UPHELD (script re-run 2026-10-17) | T-AUD-7 |
 
-### Round P (2026-10-26): five instrument passes — reports and probes on branches, not yet merged
-Each pass is one commit on top of `audit-r1`; read with `git show <branch>:<path>`. P1 static sweep
+### Round P (2026-10-26): five instrument passes — merged into `audit-r2` 2026-11-02
+Each pass was one commit on top of `audit-r1`, merged with `--no-ff`, so reports and probes are now in the tree. P1 static sweep
 `origin/claude/vibrant-rubin-wt4qn4`, P2 suspect-site census `origin/claude/wizardly-wozniak-heossf`, P3 test
 reachability `origin/claude/awesome-cori-1my5nl`, P4 mutation matrix `origin/claude/relaxed-bardeen-nw1257`, P5 deploy
 surface `origin/claude/friendly-clarke-0p3per`; report `audit/reports/P<n>_*_20261026.md`, probes `audit/scratch/P<n>/`.
