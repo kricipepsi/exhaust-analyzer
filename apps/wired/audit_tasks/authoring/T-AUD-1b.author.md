@@ -43,3 +43,12 @@ R4 now names the 2. Unsettled note settled: `requirements.txt` `-e` lines are `-
 step 3's `sed 's#-e #-e C:/4DApp/repo/#'` makes them absolute.
 
 ### Correction history ###
+- **01 (2026-11-03, hand-back B3 after round 1).** f1 UNSATISFIABLE (soft): step 3 ran in the venv step 2 had just
+  filled, so `fourdapp-*` resolved locally and both dry-runs exited 0. UPHELD, owner COWORK (my verification design;
+  the rehearsal ran step 3's dnalab dry-run in a venv with nothing installed). The implementer's venv2 reading
+  settles it: exit 1, `No matching distribution found for fourdapp-dnalab`. f2 CONTRADICTION (hard): the commit was
+  refused. Re-derived from the implementer transcript: the refused text was `git add … && git -c user.name=Claude …
+  commit -m "…\n\nCo-Authored-By: Claude …"; git log …`. bash_guard bisect: the commit alone ADMITTED; `git add … &&`
+  + commit with the trailer REFUSED. A compliant form exists, but `AGENTS.md` § git never said to run the commit as
+  its own command: UPHELD, owner COWORK (contract gap; the B1 class recurs). Corrections: step 3 uses venv2; round 2
+  makes the commit as its own command; `AGENTS.md` § git gains that rule (split form re-checked: both ADMITTED).

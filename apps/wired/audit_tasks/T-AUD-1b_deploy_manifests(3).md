@@ -82,6 +82,11 @@ fix/T-AUD-1b
 ```
 `git status --porcelain` prints nothing. Anything else is a stop.
 
+**Round 2 (correction 01).** The First action and the Preconditions applied to round 1 only. Your round-1 edits stay
+in the working tree. Re-run step 3 as corrected (venv2, which you already created with no install). Then make the one
+commit: run `git add <the 11 paths>` as one Bash command, then the commit as its own Bash command (no `&&` or `;`
+before it), per `C:/4DApp/AGENTS.md` § git. Re-run step 7 and add a `## Round 2` section to the note and the RESULT.
+
 ### Success criteria ###
 1. The 5 R4 tests pass and the wired suite reports `41 passed` (step 4); the 3 R4 mutants each fail.
 2. A clean venv installs `requirements.txt`, every installed third-party version equals its `constraints.txt` pin, and
@@ -123,10 +128,10 @@ Expected: `checked`, and no `MISSING` or `EXISTS` line.
 - `repo/labs/vinlab/pyproject.toml` (MODIFY)
 - `repo/apps/wired/pyproject.toml` (MODIFY)
 - `repo/requirements.txt` (MODIFY)
-- `repo/constraints.txt` (CREATE)
-- `repo/apps/wired/tests/test_t_aud_1b_manifests.py` (CREATE)
-- `repo/apps/wired/audit_tasks/progress_notes/T-AUD-1b.md` (CREATE)
-- `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-1b.md` (CREATE)
+- `repo/constraints.txt` (MODIFY)
+- `repo/apps/wired/tests/test_t_aud_1b_manifests.py` (MODIFY)
+- `repo/apps/wired/audit_tasks/progress_notes/T-AUD-1b.md` (MODIFY)
+- `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-1b.md` (MODIFY)
 - `C:/4DApp/recheck/T-AUD-1b/` (RUNTIME: the clean venv, reports, pytest `--basetemp`, mutant copies)
 
 ### Out of scope ###
@@ -147,10 +152,11 @@ test -x $V && echo venv-ok
 timeout 290 $V -m pip install --quiet -r requirements.txt; echo "install exit $?"
 timeout 60 $V -m pip freeze --exclude-editable > C:/4DApp/recheck/T-AUD-1b/freeze.txt; timeout 60 $PY -c "import re;c=dict(l.strip().split('==') for l in open('constraints.txt',encoding='utf-8') if '==' in l and not l.startswith('#'));f=dict(l.strip().split('==') for l in open('C:/4DApp/recheck/T-AUD-1b/freeze.txt',encoding='utf-8') if '==' in l);n=lambda s:re.sub(r'[-_.]+','-',s).lower();c={n(k):v for k,v in c.items()};bad=[k for k,v in f.items() if c.get(n(k))!=v];print('unpinned-or-off', bad)"
 timeout 60 $V -I -c "import wired, dnalab, comlab; print('imports-ok')"
-# 3.
+# 3. (in a second clean venv with no install: py -3.14 -m venv C:/4DApp/recheck/T-AUD-1b/venv2)
+V2=C:/4DApp/recheck/T-AUD-1b/venv2/Scripts/python.exe
 grep -v -- '-e labs/dnalab' requirements.txt > C:/4DApp/recheck/T-AUD-1b/req_minus_dnalab.txt; cp constraints.txt C:/4DApp/recheck/T-AUD-1b/
-(cd C:/4DApp/recheck/T-AUD-1b && sed -i 's#-e #-e C:/4DApp/repo/#' req_minus_dnalab.txt && timeout 290 $V -m pip install --dry-run --quiet -r req_minus_dnalab.txt 2>&1 | grep -c "fourdapp-dnalab"; echo "exit ${PIPESTATUS[0]}")
-timeout 290 $V -m pip install --dry-run --quiet ./labs/dnalab 2>&1 | grep -o "fourdapp-[a-z]*" | head -1; echo "exit ${PIPESTATUS[0]}"
+(cd C:/4DApp/recheck/T-AUD-1b && sed -i 's#-e #-e C:/4DApp/repo/#' req_minus_dnalab.txt && timeout 290 $V2 -m pip install --dry-run --quiet -r req_minus_dnalab.txt 2>&1 | grep -c "fourdapp-dnalab"; echo "exit ${PIPESTATUS[0]}")
+timeout 290 $V2 -m pip install --dry-run --quiet ./labs/dnalab 2>&1 | grep -o "fourdapp-[a-z]*" | head -1; echo "exit ${PIPESTATUS[0]}"
 # 4.
 (cd apps/wired && timeout 290 $PY -m pytest -p no:cacheprovider -q --basetemp=C:/4DApp/recheck/T-AUD-1b/pt | tail -1)
 # 5.
