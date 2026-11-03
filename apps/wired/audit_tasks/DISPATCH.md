@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-1c` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 2 | NO | 25-45 min | ff and gas prompts |
+| `T-AUD-1b` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 2 | NO | 35-60 min | deploy manifests |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-1c` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — A form that sends a DTC dict without a complete freeze frame gets field warnings before the run, not a `FREEZE_FRAME_INCOMPLETE` result after it.
-  `repo\apps\wired\audit_tasks/T-AUD-1c_ff_and_gas_prompts(2).md`
+**`T-AUD-1b` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — The deployed install cannot pull a stranger's package, its third-party closure is pinned, and every local manifest declares what it imports.
+  `repo\apps\wired\audit_tasks/T-AUD-1b_deploy_manifests(3).md`
 
 ## Distribution
 
-- **2/5** — 1: T-AUD-1c
+- **3/5** — 1: T-AUD-1b
