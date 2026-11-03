@@ -112,15 +112,16 @@ SymptomDNA.to_json() → {
 ```
 
 `from_json` reconstructs via `OccursDuring(env["occurs_during"])` /
-`EngineState(env["engine_state"])` / `LoadState(env.get("load_state", LoadState.IDLE))`
-(a pre-`load_state` payload defaults to `idle`), catching `KeyError` (missing field) and
+`EngineState(env["engine_state"])` / `LoadState(env["load_state"])`
+(`load_state` is required: a missing one raises
+`SymptomValidationError("Missing required field: 'load_state'")`), catching `KeyError` (missing field) and
 `ValueError` (bad enum) and re-raising both as `SymptomValidationError`.
 
 ---
 
 ## 6. Catalog Literals (`data/allowed_combinations.yaml`)
 
-The 21 tier strings — these are the only "literals" that matter, and they are data:
+The 21 catalog pairs (7 tier_1 and 21 tier_2 strings) — these are the only "literals" that matter, and they are data:
 
 ```
 tier_1 (7):  vehicle_starting_issues, rough_idle_shudder, lack_of_power_hesitation,
@@ -131,7 +132,7 @@ tier_2 (3 each): see HLD §4; oil_consumption = blue_smoke_on_cold_start_clears,
 ```
 
 > **Live-file state:** `visible_exhaust_smoke` ships with 3 entries
-> (`black_smoke`, `blue_oily_smell`, `white_sweet_smell`) → 21 total, satisfying §1
+> (`black_smoke`, `blue_oily_smell`, `white_sweet_smell`) — the catalog totals 21 pairs, satisfying §1
 > (reconciled by T-DNA-8).
 
 ---

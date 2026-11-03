@@ -264,8 +264,8 @@ unchanged from ADR-0003.
 
 - **Positive:** the routing surface stays a fixed, fully-tested key set, now 21 keys.
 - **Negative:** a partial catalog edit still breaks construction entirely.
-- ADR-0003's size (18 pairs, 6 × 3) no longer holds. Its rejection of "expand beyond 18
-  pairs" (ADR-0007, alternative 2) no longer holds either; the catalog was expanded
+- ADR-0003's size (18 pairs, 6 × 3) no longer holds. ADR-0007's alternative 2 ("expand beyond 18
+  pairs", rejected) no longer holds either; the catalog was expanded
   by the `oil_consumption` category.
 
 ### Alternatives Considered

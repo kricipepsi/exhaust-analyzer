@@ -26,3 +26,16 @@ def test_from_json_round_trips():
 def test_non_string_tier_is_validation_error(tier_1, tier_2):
     with pytest.raises(SymptomValidationError, match="must be strings"):
         resolve(tier_1, tier_2, **GOOD)
+
+
+@pytest.mark.parametrize("env", [None, [], "x"])
+def test_from_json_non_object_env_is_validation_error(env):
+    p = _payload()
+    p["environmental_conditions"] = env
+    with pytest.raises(SymptomValidationError, match="must be objects"):
+        SymptomDNA.from_json(p)
+
+
+def test_from_json_non_object_payload_is_validation_error():
+    with pytest.raises(SymptomValidationError, match="must be objects"):
+        SymptomDNA.from_json(None)

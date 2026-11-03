@@ -90,8 +90,8 @@ The environmental axes are typed (closed, contract-fixed sets). The tier vocabul
 is the inverse:
 
 - Validates **enum membership** (`OccursDuring`, `EngineState`, `LoadState`) and **field
-  presence** only. A payload that predates the `load_state` axis deserialises
-  deterministically to `LoadState.IDLE` (`env.get("load_state", LoadState.IDLE)`).
+  presence** only. `load_state` is required: a payload without it raises
+  `SymptomValidationError("Missing required field: 'load_state'")`.
 - Does **not** check the 21-pair catalog invariant — that is `SymptomValidator.validate()`
   / `resolve()`'s job. `from_json()` is for deserialising an already-validated payload at
   the JSON boundary.

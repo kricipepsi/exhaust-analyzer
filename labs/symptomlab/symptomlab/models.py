@@ -90,7 +90,11 @@ class SymptomDNA:
         deserializing an already-validated payload at the JSON boundary.
         """
         try:
+            if not isinstance(payload, dict):
+                raise SymptomValidationError("payload and environmental_conditions must be objects")
             env = payload["environmental_conditions"]
+            if not isinstance(env, dict):
+                raise SymptomValidationError("payload and environmental_conditions must be objects")
             return cls(
                 tier_1_primary_symptom=payload["tier_1_primary_symptom"],
                 tier_2_subfield_filter=payload["tier_2_subfield_filter"],
