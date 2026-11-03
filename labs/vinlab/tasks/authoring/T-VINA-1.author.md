@@ -50,3 +50,14 @@ cold read 2026-11-03 FOCUSED reader; trigger grep hit (R6 "every"); 0 findings, 
 5 calls (`recheck/scratch/coldread_T-VINA-1.md`).
 
 ### Correction history ###
+- **01 (2026-11-03, Cowork review of round 1; not accepted).** Re-run by Cowork: steps 1-6 as P2 (`215 passed, 8
+  skipped`; `16 passed`; 27/41/30; `3 failed, 5 passed`; `0`, `0`, `1`; ruff clean); the 8 suites equal the base
+  except vinlab; M1 `10 failed`, M2 `2 failed`, decoder restored byte-identical; code, tests and fixture equal the
+  `make_rh.py` copy (CR stripped); docs diff read: every bound says 2010, the comlab source is cited. Codex second
+  review (`recheck/codex/T-VINA-1_review.md`, gpt-6.1-sol medium, embedded prompt 44.9 KB): APPROVE WITH
+  CORRECTIONS. Rulings: F1 (no test protects the in-scope pick; `row = candidates[0]` survives) UPHELD, re-derived:
+  the whole vinlab suite passes on that mutant (`215 passed`), because `years.csv` lists `L,1990` first → R7;
+  rehearsed on the copy: `216 passed`, M3 `1 failed`, M2 still `2 failed`. F2 (heading edit vs "keep heading
+  text") NOT UPHELD as a defect: the §10.5 heading states the bound, R6.1 required the change, the anchor is kept;
+  R6.3 now says so.
+- **01, gate:** authoring-checks below; DELTA cold read skipped: the patch adds one rehearsed test and updates counts.

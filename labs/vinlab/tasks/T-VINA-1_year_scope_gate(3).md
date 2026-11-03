@@ -41,7 +41,7 @@ T-VINA-2's and the UI placeholder's, see Context).
 | id | value | population | command |
 |---|---|---|---|
 | P1 | vinlab `203 passed, 8 skipped`; dnalab `27 passed`; wired `41 passed`; ui `30 passed`; C6 probes `-k "f3_model or f8_"` `8 failed` | base `9fe682d` | steps 1, 3, 4 on the base |
-| P2 | vinlab `215 passed, 8 skipped`; `test_year_scope.py` `16 passed`; probes `3 failed, 5 passed`; mutant M1 `10 failed`, M2 `2 failed` | Cowork's rehearsal copy | `C:/4DApp/.venv/Scripts/python.exe -I C:/4DApp/recheck/T-VINA-1/make_rh.py`, then steps 1-4 with `PYTHONPATH` on the copy |
+| P2 | vinlab `216 passed, 8 skipped`; `test_year_scope.py` `17 passed`; probes `3 failed, 5 passed`; mutant M1 `10 failed`, M2 `2 failed`, M3 `1 failed` | Cowork's rehearsal copy | `C:/4DApp/.venv/Scripts/python.exe -I C:/4DApp/recheck/T-VINA-1/make_rh.py`, then steps 1-4 with `PYTHONPATH` on the copy |
 | P4 | scope `1990`-`2010`: `_YEAR_MIN, _YEAR_MAX = 1990, 2010` | project scope | `repo/labs/comlab/wiki/04_horizon_eras.md:54` |
 | P3 | real VINs: 229 of 1,364 refused as out of scope; corpus VINs: 8 of 314 refused, 259 move from 2020 to the 1990s | `audit/scratch/C6/c6_lib.py::real_vins`, `v7.load_corpus` | `C:/4DApp/recheck/T-AUD-9/year_census.py` (Cowork) |
 
@@ -64,7 +64,7 @@ T-VINA-2's and the UI placeholder's, see Context).
      `test_bmw_with_vref_match` expects `model_year == 1990`; the Skoda VIN becomes `TMBJJ7NE399123456`;
      `1FA6P8CF0HXXXXXXX.json` is deleted; in `WBA4W9C5ZLYYYYYYY.json` only `"model_year": 1990,` and
      `"downstream_o2_present": false,` change.
-  4. **R4 The new test** `tests/unit/test_year_scope.py` (`NEW`, 16 cases), as `make_rh.py` writes it, using the
+  4. **R4 The new test** `tests/unit/test_year_scope.py` (`NEW`, 16 cases; R7 adds the 17th), as `make_rh.py` writes it, using the
      conftest `decoder` fixture. Mutants to run and record in the note: M1 `_YEAR_MAX = 2020` →
      `test_codes_after_2010_are_out_of_scope` and `test_scope_is_1990_to_2010` fail; M2 `row = candidates[-1]` →
      `test_l_is_1990_for_every_era_hint` fails. Copy `decoder.py` to `C:/4DApp/recheck/T-VINA-1/mut/` first, edit
@@ -80,7 +80,13 @@ T-VINA-2's and the UI placeholder's, see Context).
   2. each `L`-collision passage becomes one statement: within 1990-2010 each year code has one year, and `L` is
      1990; the `era_hint` rule for the year and the `era_hint_unrecognised` flag are removed (the VIN_VOCABULARY §4
      row, the DLD line, the BDD scenario rows);
-  3. keep every `{#…}` anchor and heading text. `docs/ADR_VINLab.md` is a record: do not edit it.
+  3. keep every `{#…}` anchor; a heading changes only where it states the bound. `docs/ADR_VINLab.md` is a record:
+     do not edit it.
+- **R7 Correction 01 (Cowork's second review, 2026-11-03).** Append `test_l_is_1990_whatever_the_row_order` to
+  `tests/unit/test_year_scope.py`, as Cowork rehearsed it: reverse `decoder.year_index["L"]`, assert the reversed
+  years are `["2020", "1990"]`, put the reversed list back with `monkeypatch.setitem`, and assert that
+  `102ZZZZZZLZZZZZZZ` decodes to `model_year == 1990`. Mutant M3 to record under `## Round 2` in the note:
+  `row = candidates[0]` → this test fails (the whole suite passed on M3 before it).
 
 ### First action ###
 ```bash
@@ -92,12 +98,16 @@ fix/T-VINA-1
 ```
 `git status --porcelain` prints nothing. Anything else is a stop.
 
+**Round 2 (correction 01).** The First action and the Preconditions applied to round 1 only. Your round-1 commit
+stays. Apply R7, re-run `### Verification ###`, make one more commit on `fix/T-VINA-1` (run `git add` as one command,
+then the commit as its own command), and add a `## Round 2` section to the note and the RESULT.
+
 ### Success criteria ###
-1. The vinlab suite and `test_year_scope.py` report their P2 counts (steps 1, 2); M1 and M2 each fail a named test.
+1. The vinlab suite and `test_year_scope.py` report their P2 counts (steps 1, 2); M1, M2 and M3 each fail a named test.
 2. dnalab `27 passed`, wired `41 passed`, ui `30 passed` (step 3).
 3. The C6 year probes report their P2 count (step 4).
 4. The docs greps print `0` and `0`, and the placeholder grep prints `1` (step 5).
-5. `ruff` passes on the changed `.py` files; one commit on `fix/T-VINA-1`; `git status --porcelain` lists only the
+5. `ruff` passes on the changed `.py` files; two commits on `fix/T-VINA-1` (round 1, round 2); `git status --porcelain` lists only the
    note and the RESULT (step 6).
 
 ### Context ###
@@ -123,7 +133,7 @@ Expected: `checked`, and no `MISSING` or `EXISTS` line.
 ### Files to touch ###
 - `repo/labs/vinlab/vinlab/decoder.py` (MODIFY)
 - `repo/labs/vinlab/tests/unit/test_decoder.py` (MODIFY)
-- `repo/labs/vinlab/tests/unit/test_year_scope.py` (CREATE)
+- `repo/labs/vinlab/tests/unit/test_year_scope.py` (CREATE; MODIFY in round 2)
 - `repo/labs/vinlab/tests/fixtures/vindna_pre_refactor/WBA4W9C5ZLYYYYYYY.json` (MODIFY)
 - `repo/labs/vinlab/tests/fixtures/vindna_pre_refactor/1FA6P8CF0HXXXXXXX.json` (DELETE)
 - `repo/apps/ui/app.py` (MODIFY)
@@ -170,12 +180,12 @@ grep -rn "2020" labs/vinlab/wiki labs/vinlab/docs --include=*.md | grep -v ADR_V
 timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check labs/vinlab/vinlab/decoder.py labs/vinlab/tests/unit/test_decoder.py labs/vinlab/tests/unit/test_year_scope.py; git log --oneline 9fe682d..HEAD; git status --porcelain
 ```
 Expected:
-- step 1: `215 passed, 8 skipped`, with no `failed` or `error`.
-- step 2: `16 passed`.
+- step 1: `216 passed, 8 skipped`, with no `failed` or `error`.
+- step 2: `17 passed`.
 - step 3: `27 passed`, `41 passed`, `30 passed`.
 - step 4: `3 failed, 5 passed` (the 3 named in Context).
 - step 5: `0`, `0`, `1`.
-- step 6: `All checks passed!`; the spec commit and your one commit; only the note and the RESULT.
+- step 6: `All checks passed!`; the spec commit, the correction commit and your two commits; only the note and the RESULT.
 
 Repo-wide gates (report-only): the other five lab suites keep their P1-era counts (comlab `526 passed, 4 skipped,
 2 errors`, dtclab `590 passed`, gaslab `208 passed, 2 skipped, 4 deselected`, obdlab `388 passed, 2 skipped`,
