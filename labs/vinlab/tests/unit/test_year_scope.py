@@ -23,3 +23,10 @@ def test_scope_edges_decode(decoder, code, year):
 def test_codes_after_2010_are_out_of_scope(decoder, code):
     with pytest.raises(VINDecodeError, match="1990-2010"):
         decoder.decode_vin_payload(f"102ZZZZZZ{code}ZZZZZZZ")
+
+
+def test_l_is_1990_whatever_the_row_order(decoder, monkeypatch):
+    reversed_rows = list(reversed(decoder.year_index["L"]))
+    assert [r["calendar_year"] for r in reversed_rows] == ["2020", "1990"]
+    monkeypatch.setitem(decoder.year_index, "L", reversed_rows)
+    assert decoder.decode_vin_payload("102ZZZZZZLZZZZZZZ").model_year == 1990
