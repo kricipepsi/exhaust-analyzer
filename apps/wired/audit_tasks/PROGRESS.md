@@ -16,6 +16,7 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 | T-AUD-1b | `repo/apps/wired/audit_tasks/T-AUD-1b_deploy_manifests(3).md` | done | T-AUD-1c | 2026-11-03 | 3/5 | **ACCEPT 2026-11-03, score 92, t=12/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-1b.md`.** deploy manifests F-P5-1/2/4: fourdapp-* dist names, dnalab deps, constraints.txt |
 | T-AUD-1d | (not authored: fold into T-AUD-4) | deferred | T-AUD-4 | 2026-11-03 | — | B1 f2: C4 probe test_f3b asserts nothing on the verdict; add an override-reaches-OBDLab assertion with F-C4-3 (018 ruling 3) |
 | T-AUD-1c | `repo/apps/wired/audit_tasks/T-AUD-1c_ff_and_gas_prompts(2).md` | done | T-AUD-1a | 2026-11-03 | 2/5 | **ACCEPT 2026-11-03, score 97, t=6/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-1c.md`.** 018 S1+N1 (was T-AUD-1a-c): FF required whenever a DTC dict is sent; gas message names GASLab |
+| T-AUD-7a | `repo/apps/wired/audit_tasks/T-AUD-7a_git_rule_main_production(1).md` | pending | T-AUD-1b | 2026-11-03 | 1/5 | F-D3-1: git rule says work on main; main is production (4DLab_CLAUDE.md §Git, v3/CLAUDE.md) |
 
 **Status values:** `pending` · `in_progress` · `done` · `blocked` · `deferred` · `superseded`
 **Score** (column 6, checked by `ops/gen_dispatch.py`): the routing score `N/5`, the same `N` as the file name's `(N)`.
