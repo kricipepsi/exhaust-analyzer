@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-1a` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **4** | 3 | NO | 60-90 min | app usable |
+| `T-AUD-1c` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 2 | NO | 25-45 min | ff and gas prompts |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-1a` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 4/5** — A first use of the public app no longer fails.
-  `repo\apps\wired\audit_tasks/T-AUD-1a_app_usable(4).md`
+**`T-AUD-1c` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — A form that sends a DTC dict without a complete freeze frame gets field warnings before the run, not a `FREEZE_FRAME_INCOMPLETE` result after it.
+  `repo\apps\wired\audit_tasks/T-AUD-1c_ff_and_gas_prompts(2).md`
 
 ## Distribution
 
-- **4/5** — 1: T-AUD-1a
+- **2/5** — 1: T-AUD-1c
