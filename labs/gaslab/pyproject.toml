@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "gaslab"
+name = "fourdapp-gaslab"
 version = "0.1.0"
 description = "GASLab — 5-gas exhaust diagnostic module of 4DLab. See GAS_WIKI §2.1."
 requires-python = ">=3.11"

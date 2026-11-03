@@ -3,18 +3,18 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "wired"
+name = "fourdapp-wired"
 version = "0.1.0"
 description = "wired — composition layer for 4DLab diagnostic labs"
 requires-python = ">=3.14"
 dependencies = [
-    "comlab",
-    "dnalab",
-    "dtclab",
-    "gaslab",
-    "obdlab",
-    "vinlab",
-    "symptomlab",
+    "fourdapp-comlab",
+    "fourdapp-dnalab",
+    "fourdapp-dtclab",
+    "fourdapp-gaslab",
+    "fourdapp-obdlab",
+    "fourdapp-vinlab",
+    "fourdapp-symptomlab",
 ]
 
 [tool.setuptools.packages.find]

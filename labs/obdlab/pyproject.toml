@@ -3,7 +3,7 @@ requires = ["setuptools>=68.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "obdlab"
+name = "fourdapp-obdlab"
 version = "0.1.0"
 description = "OBDLab — electronic-perception sub-graph of the 4D Lab system"
 requires-python = ">=3.11"
