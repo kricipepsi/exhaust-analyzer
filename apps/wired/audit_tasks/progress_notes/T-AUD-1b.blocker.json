@@ -1,0 +1,40 @@
+{
+  "schema": "blocker-record/2",
+  "task_id": "T-AUD-1b",
+  "pack": "audit",
+  "task_file": "apps/wired/audit_tasks/T-AUD-1b_deploy_manifests(3).md",
+  "date": "2026-11-03",
+  "phase": "implementation",
+  "prior_record": null,
+  "reached_first_edit": true,
+  "stopped": true,
+  "findings": [
+    {
+      "class": "UNSATISFIABLE",
+      "gist": "Verification step 3 runs in the same venv that step 2 just filled, so fourdapp-dnalab and fourdapp-symptomlab are already installed and both dry-runs succeed; the expected non-zero exits and the fourdapp-dnalab count cannot occur there.",
+      "task_anchor": "apps/wired/audit_tasks/T-AUD-1b_deploy_manifests(3).md:152",
+      "task_says": "step 3: a count of 1 or more, then a non-zero `exit`; then a `fourdapp-` name, then a non-zero `exit`.",
+      "tree_says": "Run in the step-2 venv: count 0, exit 0; second command prints nothing, exit 0. Run in a second fresh venv (venv2): exit 1, count 2, 'No matching distribution found for fourdapp-dnalab'; standalone dnalab names fourdapp-symptomlab, exit 1.",
+      "settling_command": "V2=C:/4DApp/recheck/T-AUD-1b/venv2/Scripts/python.exe; cd C:/4DApp/recheck/T-AUD-1b && $V2 -m pip install --dry-run --quiet -r req_minus_dnalab.txt 2>&1 | grep -c fourdapp-dnalab",
+      "settling_output": "2 (exit 1, ERROR: No matching distribution found for fourdapp-dnalab)",
+      "severity": "soft",
+      "chosen_interpretation": "Run step 3 in a second fresh venv (recheck/T-AUD-1b/venv2) created before any install; criterion 3 is then met as written. Cowork can correct the step from this evidence.",
+      "blocks_first_edit": false
+    },
+    {
+      "class": "CONTRADICTION",
+      "gist": "The contract mandates a commit identity set with git -c user.name; bash_guard refuses the Bash command that contains it, so the required commit cannot be made (same as T-AUD-1a).",
+      "task_anchor": "apps/wired/audit_tasks/T-AUD-1b_deploy_manifests(3).md:112",
+      "task_says": "1. One commit on `fix/T-AUD-1b`: R1-R3 and the R4 test file.",
+      "tree_says": "C:/4DApp/AGENTS.md mandates `git -c user.name=<agent> -c user.email=noreply@anthropic.com commit` (name as written there). bash_guard: \"a nested claude launch, --plugin-dir, CLAUDE_CODE_PLUGIN_DIRS or the dev-mods folder can load a mod; an implementer never names them\"",
+      "settling_command": "git add <11 paths> && git -c user.name=<agent per AGENTS.md> -c user.email=noreply@anthropic.com commit -q -m \"fix(T-AUD-1b): ...\"",
+      "settling_output": "PreToolUse:Bash hook error: bash_guard: a nested claude launch, --plugin-dir, CLAUDE_CODE_PLUGIN_DIRS or the dev-mods folder can load a mod; an implementer never names them",
+      "severity": "hard",
+      "blocks_first_edit": true
+    }
+  ],
+  "work_completed_before_stop": ["R1-R3 and the R4 test file are written in the working tree; verification steps 2-6 and ruff passed; nothing is staged or committed"],
+  "not_done": ["The single commit on fix/T-AUD-1b (criterion 5)"],
+  "cheats_declined": ["Did not uninstall packages from the step-2 venv to force the failure", "Did not reword the commit identity to evade the guard", "Did not use the PowerShell tool to bypass bash_guard"],
+  "dispatch_rounds_spent": 1
+}

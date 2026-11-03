@@ -13,7 +13,7 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 | ID | Task file | Status | Blocked by | Date | Score | Note |
 |---|---|---|---|---|---|---|
 | T-AUD-1a | `repo/apps/wired/audit_tasks/T-AUD-1a_app_usable(4).md` | done | — | 2026-11-02 | 4/5 | **ACCEPT 2026-11-02, score 94, t=50/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-1a.md`.** P0 app usable; plan REQUIRED; 2 commits (Cowork 006/008) |
-| T-AUD-1b | `repo/apps/wired/audit_tasks/T-AUD-1b_deploy_manifests(3).md` | pending | T-AUD-1c | 2026-11-03 | 3/5 | deploy manifests F-P5-1/2/4: fourdapp-* dist names, dnalab deps, constraints.txt |
+| T-AUD-1b | `repo/apps/wired/audit_tasks/T-AUD-1b_deploy_manifests(3).md` | done | T-AUD-1c | 2026-11-03 | 3/5 | **ACCEPT 2026-11-03, score 92, t=12/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-1b.md`.** deploy manifests F-P5-1/2/4: fourdapp-* dist names, dnalab deps, constraints.txt |
 | T-AUD-1d | (not authored: fold into T-AUD-4) | deferred | T-AUD-4 | 2026-11-03 | — | B1 f2: C4 probe test_f3b asserts nothing on the verdict; add an override-reaches-OBDLab assertion with F-C4-3 (018 ruling 3) |
 | T-AUD-1c | `repo/apps/wired/audit_tasks/T-AUD-1c_ff_and_gas_prompts(2).md` | done | T-AUD-1a | 2026-11-03 | 2/5 | **ACCEPT 2026-11-03, score 97, t=6/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-1c.md`.** 018 S1+N1 (was T-AUD-1a-c): FF required whenever a DTC dict is sent; gas message names GASLab |
 
