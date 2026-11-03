@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-VINA-1` | `repo\labs\vinlab\tasks\PROGRESS.md` | **3** | 2 | NO | 45-75 min | year scope gate |
+| `T-VINA-8` | `repo\labs\vinlab\tasks\PROGRESS.md` | **2** | 2 | NO | 30-60 min | symptomlab contract fixes |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-VINA-1` · owner: `repo\labs\vinlab\tasks\PROGRESS.md` · 3/5** — VINLab reads the model year inside the project scope, petrol 1990-2010: `L` is 1990 for every WMI, the codes `B`-`K` (2011-2019, or 1981-1989) are refused, and no doc states the old 1990-2020 bound.
-  `repo\labs\vinlab\tasks/T-VINA-1_year_scope_gate(3).md`
+**`T-VINA-8` · owner: `repo\labs\vinlab\tasks\PROGRESS.md` · 2/5** — SymptomLab refuses a payload without `load_state` and a non-string tier with `SymptomValidationError`, and its code and docs state the catalog size the validator enforces (P4).
+  `repo\labs\vinlab\tasks/T-VINA-8_symptomlab_contract_fixes(2).md`
 
 ## Distribution
 
-- **3/5** — 1: T-VINA-1
+- **2/5** — 1: T-VINA-8
