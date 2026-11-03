@@ -6,7 +6,7 @@ from typing import Any
 
 
 class SymptomValidationError(ValueError):
-    """Raised when (tier_1, tier_2) is not one of the 18 allowed combinations,
+    """Raised when (tier_1, tier_2) is not one of the 21 allowed combinations,
     or environmental_conditions values are not from the contract enums."""
 
 
@@ -83,7 +83,7 @@ class SymptomDNA:
         missing required fields, or enum strings not in the contract vocabulary.
 
         Note: this method validates enum membership and field presence only.
-        It does NOT check whether (tier_1, tier_2) is one of the 18 allowed
+        It does NOT check whether (tier_1, tier_2) is one of the 21 allowed
         catalog pairs — that invariant is enforced by SymptomValidator.validate()
         and the resolve() entry point. DNALab must use resolve() (or equivalent)
         when constructing SymptomDNA from user input; from_json() is for
@@ -97,9 +97,7 @@ class SymptomDNA:
                 environmental_conditions=EnvironmentalConditions(
                     occurs_during=OccursDuring(env["occurs_during"]),
                     engine_state=EngineState(env["engine_state"]),
-                    # WHY: Pre-load_state payloads deserialize deterministically as
-                    # idle until T-DNA-7 bumps the umbrella schema version.
-                    load_state=LoadState(env.get("load_state", LoadState.IDLE)),
+                    load_state=LoadState(env["load_state"]),
                 ),
                 free_text_notes=payload.get("free_text_notes"),
             )

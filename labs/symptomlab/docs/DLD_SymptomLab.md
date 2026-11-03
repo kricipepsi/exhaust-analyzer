@@ -29,7 +29,7 @@ source: "labs/symptomlab/docs/DLD_SymptomLab.md"
 **Version:** 2.1
 **Date:** 2026-06-12
 
-> Grounded in the live `symptomlab/` package as of 2026-06-12 — 18-pair catalog,
+> Grounded in the live `symptomlab/` package as of 2026-06-12 — 21-pair catalog,
 > `load_state` axis, and `will_not_start` wire value all shipped.
 
 ---
@@ -40,9 +40,9 @@ source: "labs/symptomlab/docs/DLD_SymptomLab.md"
 symptomlab/
 ├── __init__.py        ← public surface: resolve(), SymptomDNA, EnvironmentalConditions, LoadState, SymptomValidationError
 ├── models.py          ← SymptomDNA, EnvironmentalConditions, OccursDuring, EngineState, LoadState, SymptomValidationError
-├── validator.py       ← SymptomValidator (loads catalog, enforces 18-pair invariant, validate())
+├── validator.py       ← SymptomValidator (loads catalog, enforces 21-pair invariant, validate())
 └── data/
-    └── allowed_combinations.yaml  ← the 18-pair curated catalog (data, not code)
+    └── allowed_combinations.yaml  ← the 21-pair curated catalog (data, not code)
 ```
 
 `resolve()` wraps an `lru_cache`d `SymptomValidator` per catalog path.
@@ -92,7 +92,7 @@ is the inverse:
 - Validates **enum membership** (`OccursDuring`, `EngineState`, `LoadState`) and **field
   presence** only. A payload that predates the `load_state` axis deserialises
   deterministically to `LoadState.IDLE` (`env.get("load_state", LoadState.IDLE)`).
-- Does **not** check the 18-pair catalog invariant — that is `SymptomValidator.validate()`
+- Does **not** check the 21-pair catalog invariant — that is `SymptomValidator.validate()`
   / `resolve()`'s job. `from_json()` is for deserialising an already-validated payload at
   the JSON boundary.
 - Missing field → `SymptomValidationError` (wraps `KeyError`); bad enum string →
@@ -114,8 +114,8 @@ self._allowed = {
     for tier_1, tier_2_list in doc["combinations"].items()
     for tier_2 in tier_2_list
 }
-if len(self._allowed) != 18:                # SEMANTIC_CONTRACT §4.2 hard invariant
-    raise ValueError("must define exactly 18 pairs, got N")
+if len(self._allowed) != 21:                # SEMANTIC_CONTRACT §4.2 hard invariant
+    raise ValueError("must define exactly 21 pairs, got N")
 ```
 
 **`validate(tier_1, tier_2, occurs_during, engine_state, load_state, free_text_notes=None) →
@@ -151,10 +151,10 @@ Structure: `combinations: {tier_1: [tier_2, ...]}`. Source: `VehicleDNA.md` tria
 diagram; contract §4.2. Routing is **not** here (it lives in COMLab per
 `DNALab_TO_COMLab_FLOW.md §4`).
 
-Revised catalog = 18 pairs (HLD §4), shipped. **Live state:** 18 pairs —
+Revised catalog = 21 pairs (HLD §4), shipped. **Live state:** 21 pairs —
 `visible_exhaust_smoke = {black_smoke, blue_oily_smell, white_sweet_smell}` (reconciled by
 T-DNA-8: `white_sweet_smell` added, legacy `blue_oily` renamed to `blue_oily_smell`). The
-construction-time `len == 18` invariant passes.
+construction-time `len == 21` invariant passes.
 
 ---
 
@@ -163,7 +163,7 @@ construction-time `len == 18` invariant passes.
 | Error | Base | Raised when |
 |-------|------|-------------|
 | `SymptomValidationError` | `ValueError` | pair not in catalog; environmental value out of enum; `from_json` missing field or bad enum |
-| `ValueError` | — | catalog `len != 18` at construction (invariant breach) |
+| `ValueError` | — | catalog `len != 21` at construction (invariant breach) |
 
 ---
 

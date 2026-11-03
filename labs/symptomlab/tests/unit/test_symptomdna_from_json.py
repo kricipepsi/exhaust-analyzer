@@ -106,13 +106,12 @@ class TestSymptomDNAFromJsonMissingRequired:
         with pytest.raises(SymptomValidationError):
             SymptomDNA.from_json(payload)
 
-    def test_missing_load_state_defaults_to_idle(self) -> None:
-        """Pre-load-state payloads default to idle for deterministic migration."""
-        # WHY: Pre-load-state payloads default to idle for deterministic migration.
+    def test_missing_load_state_raises_validation_error(self) -> None:
+        """A schema-1.2 payload without load_state is refused, not read as idle (F-C6-12)."""
         payload = _make_full_payload()
         del payload["environmental_conditions"]["load_state"]
-        reconstituted = SymptomDNA.from_json(payload)
-        assert reconstituted.environmental_conditions.load_state == LoadState.IDLE
+        with pytest.raises(SymptomValidationError, match="load_state"):
+            SymptomDNA.from_json(payload)
 
 
 class TestSymptomDNAFromJsonInvalidEnum:

@@ -13,11 +13,12 @@ rework (T-RM-2-DNA) and the revised-catalog tasks (T-DNA-1 / reconciled T-DNA-8)
 |-----|-------|--------|
 | ADR-0001 | SymptomLab produces a prior input, never a routing verdict | Accepted |
 | ADR-0002 | Tier vocabulary is open (YAML-validated), not a hard-coded enum | Accepted |
-| ADR-0003 | Enforce exactly 18 catalog pairs at construction | Accepted |
+| ADR-0003 | Enforce exactly 18 catalog pairs at construction | Superseded by ADR-0008 |
 | ADR-0004 | Environmental axes are typed enums; tiers are not | Accepted |
 | ADR-0005 | SymptomLab is a sibling module with no cross-lab imports | Accepted |
 | ADR-0006 | `from_json` validates structure only; `resolve()` owns the catalog invariant | Accepted |
 | ADR-0007 | Rework the catalog to remove overlap with the environmental axes | Accepted |
+| ADR-0008 | The catalog is 21 pairs (7 tier_1 × 3 tier_2) | Accepted |
 
 ---
 
@@ -238,6 +239,40 @@ live consumer yet, so the routing map ships as **proposal COMLab-A**.
 
 1. **Keep the legacy catalog.** Rejected: dimensional overlap corrupts the prior.
 2. **Expand beyond 18 pairs.** Rejected: breaks the fixed-surface invariant (ADR-0003).
+
+---
+
+## ADR-0008: The catalog is 21 pairs (7 tier_1 × 3 tier_2)
+
+**Status:** Accepted (supersedes ADR-0003)
+
+### Context
+
+The live oil-consumption build added a seventh `tier_1` category, `oil_consumption`, with
+three `tier_2` sub-filters (`wiki/04_catalog_changelog.md` §4.4). That took the catalog
+from six categories (18 pairs) to seven (21 pairs). `allowed_combinations.yaml` and the
+validator's construction check already enforce 21; ADR-0003 still recorded 18.
+
+### Decision
+
+`SymptomValidator.__init__` raises `ValueError` unless the catalog defines **exactly 21**
+`(tier_1, tier_2)` pairs (7 × 3). The check runs at construction, before any triage is
+validated. The invariant itself, a fixed catalog size checked at construction, is
+unchanged from ADR-0003.
+
+### Consequences
+
+- **Positive:** the routing surface stays a fixed, fully-tested key set, now 21 keys.
+- **Negative:** a partial catalog edit still breaks construction entirely.
+- ADR-0003's size (18 pairs, 6 × 3) no longer holds. Its rejection of "expand beyond 18
+  pairs" (ADR-0007, alternative 2) no longer holds either; the catalog was expanded
+  by the `oil_consumption` category.
+
+### Alternatives Considered
+
+1. **Edit ADR-0003 in place.** Rejected: an accepted ADR is immutable.
+2. **Keep 18 and hold `oil_consumption` outside the catalog.** Rejected: the shipped
+   catalog and the validator already enforce 21.
 
 ---
 

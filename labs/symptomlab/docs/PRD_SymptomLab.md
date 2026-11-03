@@ -47,7 +47,7 @@ suppress, which equation to run, or which fault family to favour. All routing
 
 | Name | Role | Responsibility |
 |------|------|----------------|
-| SymptomLab Owner | Module Owner | Catalog curation, the 18-pair invariant, environmental enums, validation |
+| SymptomLab Owner | Module Owner | Catalog curation, the 21-pair invariant, environmental enums, validation |
 | COMLab Team | Integration Consumer | Mirrors `SymptomDNA`; routes tier_1/tier_2 to fault families in `fault_atlas_router` (the symptom prior); applies context modifiers; enforces the 65% trust ceiling |
 | DNALab (assembly) | In-family Consumer | Calls `resolve()` with the triage dict; embeds `SymptomDNA` into `VehicleDNA` |
 | 4DApp Engineering Lead | Architecture | Signal/noise rule; "prior, not override"; open-vocabulary-via-YAML decision |
@@ -91,7 +91,7 @@ nonsensical combinations are rejected with a helpful message listing the valid o
 
 - **KR1:** `resolve()` returns a 4-field `SymptomDNA` for every legal triage selection
   (contract §4.2).
-- **KR2:** The catalog holds **exactly 18** `(tier_1, tier_2)` pairs (6 × 3); the
+- **KR2:** The catalog holds **exactly 21** `(tier_1, tier_2)` pairs (7 × 3); the
   validator refuses to load any other count.
 - **KR3:** Out-of-catalog pairs and out-of-vocabulary environmental values raise
   `SymptomValidationError` with the valid options listed.
@@ -121,7 +121,7 @@ before any PID is read.
 - **Pains relieved:** no free-text NLP; no routing logic leaking into the symptom
   record; the open-vocabulary YAML means the catalog evolves without code churn.
 - **Competitive advantage:** the channel is honest by construction — the lab produces a
-  *prior input*, and the architecture forbids it from becoming an override. The 18-pair
+  *prior input*, and the architecture forbids it from becoming an override. The 21-pair
   invariant keeps COMLab's routing map a fixed, fully-tested surface.
 
 ---
@@ -130,17 +130,17 @@ before any PID is read.
 
 ### Key Features (all P0)
 
-- P0: **Two-tier triage validation** — `(tier_1, tier_2)` must be one of the 18 catalog
+- P0: **Two-tier triage validation** — `(tier_1, tier_2)` must be one of the 21 catalog
   pairs, else `SymptomValidationError` listing the valid `tier_2` values for that
   `tier_1` (or the valid `tier_1` values).
-- P0: **18-pair invariant** — the validator raises on construction if the catalog does
-  not define exactly 18 pairs.
+- P0: **21-pair invariant** — the validator raises on construction if the catalog does
+  not define exactly 21 pairs.
 - P0: **Environmental typing** — `occurs_during` → `OccursDuring`, `engine_state` →
   `EngineState`, `load_state` → `LoadState`; an out-of-vocabulary value raises
   `SymptomValidationError`.
 - P0: **Open tier vocabulary** — tier strings are `str`, validated by YAML, not enums.
 - P0: **`SymptomDNA` output** — 4 fields, `to_json()` / `from_json()`; `from_json()`
-  validates enum membership + presence only (not the 18-pair invariant — that is
+  validates enum membership + presence only (not the 21-pair invariant — that is
   `resolve()`'s job).
 - P0: **Routing-free** — no `suppress_modes` / `target_backend_equation` / prior numbers.
 
@@ -165,7 +165,7 @@ before any PID is read.
 
 | Assumption | Validation |
 |-----------|-----------|
-| The catalog is exactly 18 pairs (6 tier_1 × 3 tier_2) | `SymptomValidator.__init__` raises `ValueError` if `len != 18` |
+| The catalog is exactly 21 pairs (7 tier_1 × 3 tier_2) | `SymptomValidator.__init__` raises `ValueError` if `len != 21` |
 | Tier vocabulary may grow without code change | tier fields are `str` validated against the YAML, not enums |
 | Routing is COMLab-owned | `SymptomDNA` has no routing fields (`DNALab_TO_COMLab_FLOW.md §4`) |
 | The symptom signal is a prior, never an override | enforced downstream in COMLab (65% trust ceiling, COMLab-B) |
@@ -182,9 +182,9 @@ enum-typed environmental conditions.
 ### Landed (DNA-family pack — see `labs/dnalab/tasks/PROGRESS.md`)
 
 - **T-DNA-1 / T-DNA-8 — revised symptom catalog (`done`).** The catalog was reworked to
-  remove dimensional overlap with the environmental axes, then reconciled to the full
-  **18** pairs: `visible_exhaust_smoke = {black_smoke, blue_oily_smell, white_sweet_smell}`.
-  The live `allowed_combinations.yaml` now satisfies the 18-pair invariant.
+  remove dimensional overlap with the environmental axes, then reconciled (T-DNA-8):
+  `visible_exhaust_smoke = {black_smoke, blue_oily_smell, white_sweet_smell}`.
+  The live `allowed_combinations.yaml` satisfies the 21-pair invariant.
 - **T-DNA-2 — `load_state` environmental axis (`done`, shipped).** A third axis
   (`idle` / `steady_cruise` / `transient_acceleration` / `coasting_deceleration`, SAE
   J2944) separating static air-metering faults from transient load failures. It is part
@@ -205,7 +205,7 @@ enum-typed environmental conditions.
 ### Success Criteria
 
 1. KR1–KR6 hold.
-2. The catalog loads at exactly 18 pairs and every legal pair resolves.
+2. The catalog loads at exactly 21 pairs and every legal pair resolves.
 3. Every illegal pair / out-of-vocabulary environmental value raises
    `SymptomValidationError`.
 4. No routing fields on `SymptomDNA`; no cross-lab Python imports.

@@ -34,16 +34,16 @@ Everything else is vocabulary, not arithmetic.
 
 ---
 
-## 1. The 18-Pair Invariant (`validator.py`)
+## 1. The 21-Pair Invariant (`validator.py`)
 
 ```python
-if len(self._allowed) != 18:                # source: SEMANTIC_CONTRACT.md §4.2
+if len(self._allowed) != 21:                # source: SEMANTIC_CONTRACT.md §4.2
     raise ValueError(
-        f"allowed_combinations.yaml must define exactly 18 pairs, got {len(...)}"
+        f"allowed_combinations.yaml must define exactly 21 pairs, got {len(...)}"
     )
 ```
 
-`18 = 6 tier_1 × 3 tier_2`. The invariant is checked at **construction**, so a malformed
+`21 = 7 tier_1 × 3 tier_2`. The invariant is checked at **construction**, so a malformed
 catalog fails before any triage is validated. There are no other tunable numeric
 literals in the package.
 
@@ -60,7 +60,7 @@ self._allowed: set[tuple[str, str]] = {
 ```
 
 A `set` of `(str, str)` tuples — membership test is O(1). Order in the YAML is
-irrelevant; duplicates would silently collapse (and then fail the `== 18` count).
+irrelevant; duplicates would silently collapse (and then fail the `== 21` count).
 
 ---
 
@@ -120,16 +120,18 @@ SymptomDNA.to_json() → {
 
 ## 6. Catalog Literals (`data/allowed_combinations.yaml`)
 
-The 18 tier strings — these are the only "literals" that matter, and they are data:
+The 21 tier strings — these are the only "literals" that matter, and they are data:
 
 ```
-tier_1 (6):  vehicle_starting_issues, rough_idle_shudder, lack_of_power_hesitation,
-             poor_economy_fuel_odor_sound, engine_dies_or_stalls, visible_exhaust_smoke
-tier_2 (3 each): see HLD §4
+tier_1 (7):  vehicle_starting_issues, rough_idle_shudder, lack_of_power_hesitation,
+             poor_economy_fuel_odor_sound, engine_dies_or_stalls, visible_exhaust_smoke,
+             oil_consumption
+tier_2 (3 each): see HLD §4; oil_consumption = blue_smoke_on_cold_start_clears,
+             blue_smoke_under_acceleration, oil_loss_no_visible_smoke
 ```
 
 > **Live-file state:** `visible_exhaust_smoke` ships with 3 entries
-> (`black_smoke`, `blue_oily_smell`, `white_sweet_smell`) → 18 total, satisfying §1
+> (`black_smoke`, `blue_oily_smell`, `white_sweet_smell`) → 21 total, satisfying §1
 > (reconciled by T-DNA-8).
 
 ---
@@ -141,5 +143,5 @@ tier_2 (3 each): see HLD §4
 | `from gaslab/obdlab/dtclab/comlab/vinlab import …` | DNA-family import boundary (one-way: `dnalab → symptomlab`) |
 | Tier vocabulary as a hard-coded `StrEnum` | open-vocabulary rule — tier strings stay `str`, validated by YAML |
 | Routing fields (`suppress_modes`, `target_backend_equation`, prior numbers) on `SymptomDNA` | routing is COMLab-owned (contract §4.2) |
-| A catalog of any size other than 18 | construction-time `ValueError` invariant |
+| A catalog of any size other than 21 | construction-time `ValueError` invariant |
 | Re-running graphify against `graph/` | frozen verified artefact; not in the inner loop |

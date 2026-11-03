@@ -64,6 +64,10 @@ class SymptomValidator:
         Raises:
             SymptomValidationError: If pair is not in catalog or enums are invalid.
         """
+        if not isinstance(tier_1, str) or not isinstance(tier_2, str):
+            raise SymptomValidationError(
+                f"tier_1 and tier_2 must be strings, got {type(tier_1).__name__} and {type(tier_2).__name__}"
+            )
         # WHY: reject any (tier_1, tier_2) pair not explicitly allowed in the catalog
         if (tier_1, tier_2) not in self._allowed:
             valid_tier_2s = sorted(t2 for (t1, t2) in self._allowed if t1 == tier_1)

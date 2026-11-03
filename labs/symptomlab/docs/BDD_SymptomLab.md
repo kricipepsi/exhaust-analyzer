@@ -8,7 +8,7 @@ Behaviour specification for SymptomLab's single public behaviour: **validate a t
 triage selection and package it as a typed `SymptomDNA`**. Scenarios are declarative;
 the truth is the test suite (`tests/`).
 
-Ubiquitous language: *resolve* = run `symptomlab.resolve()`; *catalog* = the 18-pair
+Ubiquitous language: *resolve* = run `symptomlab.resolve()`; *catalog* = the 21-pair
 `allowed_combinations.yaml`; *environmental axis* = `occurs_during` / `engine_state` /
 `load_state`.
 
@@ -48,7 +48,7 @@ Feature: Only catalog pairs are accepted, with actionable errors otherwise
     Given tier_1 = nonexistent_symptom and tier_2 = anything
     When the selection is resolved
     Then a SymptomValidationError is raised
-      And the message lists the six valid tier_1 values
+      And the message lists the seven valid tier_1 values
 ```
 *Maps to:* `tests/test_validator.py`.
 
@@ -77,24 +77,24 @@ Feature: Environmental context must use the contract vocabulary
 
 ---
 
-## Feature: The 18-pair invariant
+## Feature: The 21-pair invariant
 
 ```gherkin
-Feature: The catalog must define exactly 18 pairs
+Feature: The catalog must define exactly 21 pairs
 
   Scenario: A catalog of the wrong size fails at construction
-    Given an allowed_combinations.yaml that does not define exactly 18 pairs
+    Given an allowed_combinations.yaml that does not define exactly 21 pairs
     When the SymptomValidator is constructed
     Then a ValueError is raised before any triage is validated
 
-  Scenario: The shipped catalog is the curated 6x3 set
+  Scenario: The shipped catalog is the curated 7x3 set
     Given the default allowed_combinations.yaml
     When the SymptomValidator is constructed
-    Then it loads exactly 18 (tier_1, tier_2) pairs
+    Then it loads exactly 21 (tier_1, tier_2) pairs
 ```
 *Maps to:* `tests/test_drift_guard.py`.
 
-> **Live state:** the shipped `allowed_combinations.yaml` defines exactly **18** pairs,
+> **Live state:** the shipped `allowed_combinations.yaml` defines exactly **21** pairs,
 > with `visible_exhaust_smoke = {black_smoke, blue_oily_smell, white_sweet_smell}`
 > (reconciled by T-DNA-8). Both scenarios above pass against the live file.
 
@@ -155,6 +155,6 @@ Feature: SymptomLab stays an isolated codebase
 | Resolve happy path | `test_models.py`, `test_validator.py` |
 | Catalog pair validation | `test_validator.py` |
 | Environmental validation | `test_validator.py` |
-| 18-pair invariant / drift | `test_drift_guard.py` |
+| 21-pair invariant / drift | `test_drift_guard.py` |
 | JSON boundary | `test_symptomdna_from_json.py` |
 | Isolation / routing-free | `test_resolve_isolation.py` |

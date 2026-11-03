@@ -29,9 +29,9 @@ catalog, and `models.py` is a code-review stop.
 
 ---
 
-## 1. Tier vocabulary — the 18-pair catalog (open, YAML-validated)
+## 1. Tier vocabulary — the 21-pair catalog (open, YAML-validated)
 
-Curated in `data/allowed_combinations.yaml`. 6 `tier_1` × 3 `tier_2` = 18 pairs. These
+Curated in `data/allowed_combinations.yaml`. 7 `tier_1` × 3 `tier_2` = 21 pairs. These
 strings are the routing keys COMLab's `fault_atlas_router` consumes (proposal COMLab-A).
 
 | `tier_1` (primary symptom) | `tier_2` (sub-filter) |
@@ -42,11 +42,12 @@ strings are the routing keys COMLab's `fault_atlas_router` consumes (proposal CO
 | `poor_economy_fuel_odor_sound` | `just_poor_mpg`, `strong_fuel_smell`, `knock_pinging_under_load` |
 | `engine_dies_or_stalls` | `when_coasting_to_stop`, `intermittent_random_cutout`, `backfire_loud_pop` |
 | `visible_exhaust_smoke` | `black_smoke`, `blue_oily_smell`, `white_sweet_smell` |
+| `oil_consumption` | `blue_smoke_on_cold_start_clears`, `blue_smoke_under_acceleration`, `oil_loss_no_visible_smoke` |
 
-> **Live-file state (T-DNA-1 / T-DNA-8):** the shipped catalog matches this table — 18
+> **Live-file state (T-DNA-1 / T-DNA-8):** the shipped catalog matches this table — 21
 > pairs, with `visible_exhaust_smoke = {black_smoke, blue_oily_smell, white_sweet_smell}`.
 > T-DNA-8 added `white_sweet_smell` and renamed the legacy `blue_oily` to
-> `blue_oily_smell`. The 18-pair invariant passes.
+> `blue_oily_smell`. The 21-pair invariant passes.
 
 ### Renamed `tier_1` categories (T-DNA-1)
 | Legacy | Revised |
@@ -112,13 +113,13 @@ Source SAE J2944. Consumer: COMLab context-modifier prior (forward-registered CO
 | legacy `blue_oily` (tier_2) | retired — renamed to `blue_oily_smell` (T-DNA-8) |
 | legacy `won_not_start` (engine_state wire value) | retired — renamed to `will_not_start` (T-DNA-10) |
 | cross-lab import (except `dnalab → symptomlab`) | forbidden — DNA-family boundary |
-| catalog size ≠ 18 | forbidden — construction-time invariant |
+| catalog size ≠ 21 | forbidden — construction-time invariant |
 
 ---
 
 ## 5. Proposed Oil-Consumption Symptom Vocabulary (Proposals Registry)
 
-To maintain the live 18-pair catalog invariant, the three new symptom-triage pairs for oil-burning diagnostics are registered as **proposals only** in the proposals registry:
+The three oil-burning symptom-triage pairs are part of the live 21-pair catalog. Their routing into fault families is registered as **proposals only** in the proposals registry:
 
 | Proposed `tier_1` | Proposed `tier_2` | Target Fault / Live Registry Rule ID | Future Consumer |
 |---|---|---|---|
