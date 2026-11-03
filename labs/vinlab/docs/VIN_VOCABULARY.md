@@ -123,7 +123,6 @@ they are **not** serialised:
 
 | Flag | Meaning | Grade effect |
 |------|---------|--------------|
-| `era_hint_unrecognised` | L-year era hint did not match ERA_1/ERA_3 | PARTIAL |
 | `engine_not_in_csv` | no `vds_full`/`pos_8_only` match | NONE |
 | `no_engine_code` | engine row present but blank engine_code | PARTIAL |
 | `engine_not_in_vref` | engine_code not in `vref.db` | PARTIAL |

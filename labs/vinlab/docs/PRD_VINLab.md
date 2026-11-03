@@ -61,7 +61,7 @@ the World Manufacturer Identifier (positions 1–3), the Vehicle Descriptor Sect
 (positions 4–9), and the Vehicle Identifier Section (positions 10–17, with the model
 year at position 10). Decoding a VIN to a usable engine profile is not a pure
 character lookup: European-market VINs frequently omit the NHTSA check digit, the
-year code `L` collides between 1990 and 2020, low-volume manufacturers (SAE J853,
+year code `L` is 1990 inside the scope, low-volume manufacturers (SAE J853,
 `vin[2] == '9'`) place their identifier at positions 12–13, and many engine attributes
 must be resolved from a reference database keyed by engine code rather than from the
 VIN string itself.
@@ -99,7 +99,7 @@ that specific vehicle.
 - **KR1:** `decode()` runs with zero network and zero MySQL on every call (offline
   constraint; data baked into `vinlab/data/`).
 - **KR2:** Out-of-scope vehicles are rejected at decode: non-petrol (H1) and model year
-  outside 1990–2020 (H2) raise `VINDecodeError`.
+  outside 1990–2010 (H2) raise `VINDecodeError`.
 - **KR3:** Inputs that are not 17 characters raise `ChassisNumberError` (a
   `VINDecodeError` subclass) so callers can route legacy chassis numbers separately.
 - **KR4:** Every decode returns a `VinConfidence` grade (`HIGH` / `PARTIAL` / `NONE`)
@@ -113,7 +113,7 @@ that specific vehicle.
 
 ## Section 5 — Market Segment
 
-**Advanced workshop technician (petrol, 1990–2020 fleet):** Professionals diagnosing
+**Advanced workshop technician (petrol, 1990–2010 fleet):** Professionals diagnosing
 European and Asian petrol vehicles where the VIN is the fastest route to engine
 architecture and emission targets, and where connectivity on the shop floor is not
 guaranteed. They need a decode that degrades gracefully (PARTIAL/NONE confidence)
@@ -134,8 +134,8 @@ rather than failing when reference data is incomplete.
   `air_metering_strategy`. The CoC overlay attaches per-engine-code lambda/CO/HC
   targets so GASLab has a ground-truth reference without its own database.
 - **Pains relieved:** European VINs without a check digit still decode (data-driven
-  bypass via `wmi.csv` country). The `L`-year 1990/2020 collision is resolved by WMI
-  `era_hint`. Pre-VIN chassis numbers are distinguished from decode failures. A missing
+  bypass via `wmi.csv` country). The `L` year is 1990 inside the
+  1990-2010 scope. Pre-VIN chassis numbers are distinguished from decode failures. A missing
   reference row downgrades confidence instead of crashing.
 - **Competitive advantage:** the decode is fully offline; the heuristics are
   brand-aware (per-manufacturer cylinder rules) yet gated so they never overwrite
@@ -154,9 +154,9 @@ rather than failing when reference data is incomplete.
 - P0: **WMI resolution** — standard positions 1–3, plus the SAE J853 low-volume rule
   (`vin[2] == '9'` → try the 6-char extended WMI `vin[0:3]+vin[11:14]` first).
 - P0: **Year resolution** — `vin[9]` lookup, passthrough characters (`0`, `U`, `Z`) →
-  `model_year = None`, and `L`-year disambiguation (1990 vs 2020) via WMI `era_hint`.
+  `model_year = None`, and each year code read within the 1990-2010 scope (`L` is 1990).
 - P0: **Scope guards** — H1 petrol-only (keyword scan of CSV `fuel_system_type` and
-  `vref.db` `fuel_delivery_type`), H2 model year ∈ [1990, 2020].
+  `vref.db` `fuel_delivery_type`), H2 model year ∈ [1990, 2010].
 - P0: **Two-path engine resolution** — Path A `vds_full` (`vin[3:8]`), Path B
   `pos_8_only` (`vin[7]`) fallback, keyed by brand.
 - P0: **vref.db tech-mask + CoC overlay** — `lookup_engine_ref()` (read-only SQLite)
@@ -259,7 +259,7 @@ These tasks are **done**; their dispositions are now shipped behaviour:
 
 1. KR1–KR7 all hold.
 2. Offline decode produces a valid `VinDNA` for every in-scope fixture VIN.
-3. Out-of-scope (non-petrol, year ∉ [1990, 2020], wrong length) raises the correct
+3. Out-of-scope (non-petrol, year ∉ [1990, 2010], wrong length) raises the correct
    exception subclass.
 4. No cross-lab Python imports.
 5. Every numeric literal carries a citation; all SQL confined to `db/tecdoc_query.py`.

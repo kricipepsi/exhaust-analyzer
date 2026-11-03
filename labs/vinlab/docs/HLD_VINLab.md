@@ -59,8 +59,8 @@ RobustVINDecoder.decode_vin_payload(raw_vin)
   │   [3] charset pattern        [A-HJ-NPR-Z0-9]{17} → VINDecodeError
   │   [4] validate_vin_checksum  NHTSA mod-11 + 3 bypass paths
   │   [5] _resolve_wmi           positions 1-3 (+ J853 low-volume rule)
-  │   [6] _resolve_year          vin[9]; passthrough → None; L-disambiguation
-  │   [H2] year ∈ [1990, 2020]   else VINDecodeError
+  │   [6] _resolve_year          vin[9]; passthrough → None; L is 1990
+  │   [H2] year ∈ [1990, 2010]   else VINDecodeError
   │   [7] _resolve_engine        Path A vds_full / Path B pos_8_only
   │   [H1] petrol guard          keyword scan (CSV + vref.db) → VINDecodeError
   │   [8] lookup_engine_ref      vref.db tech-mask + CoC overlay (read-only)
@@ -90,8 +90,8 @@ raw_vin
 [5] _resolve_wmi            vin[2]=='9' → try vin[0:3]+vin[11:14]; else vin[0:3]
         miss → VINDecodeError (WMI not found)
 [6] _resolve_year           vin[9]; {0,U,Z} → (None, None);
-        single candidate → year; L-collision → era_hint (legacy=1990 / else=2020)
-[H2] model_year ∉ [1990,2020] (when known) → VINDecodeError (year out of scope)
+        the candidate inside 1990-2010 → year (L is 1990)
+[H2] model_year ∉ [1990,2010] (when known) → VINDecodeError (year out of scope)
 [7] _resolve_engine         Path A brand_vds_full (vin[3:8]); Path B brand_pos8 (vin[7])
         → engine_row dict | None
 [H1] _is_non_petrol(CSV fuel_system_type) → VINDecodeError (fuel out of scope)
@@ -138,10 +138,9 @@ key. A miss raises `VINDecodeError`.
 
 **Year (`_resolve_year`).** SAE J853 excludes `I, O, Q, U, Z` from the year alphabet;
 `0` is also unused. These passthrough characters (`{0, U, Z}`) return
-`(model_year=None, flag=None)` — *unknown, not an error*. The only colliding code in
-1990–2020 is `L` (1990 vs 2020), disambiguated by the WMI `era_hint` column
-(`legacy → ERA_1 → 1990`; otherwise `ERA_3 → 2020`). An unrecognised era returns the
-first candidate plus an `era_hint_unrecognised` confidence flag.
+`(model_year=None, flag=None)` — *unknown, not an error*. Within 1990–2010 each year
+code has one year, and `L` is 1990. A code with no in-scope year returns its first
+candidate, which the H2 guard refuses.
 
 ---
 

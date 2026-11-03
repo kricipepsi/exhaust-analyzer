@@ -56,8 +56,8 @@ notes. Each is now authored as a canonical citation target (2026-06-12):
 
 - `10_decode_scope_rules.md` ✅ — petrol-only keyword guard (`_NON_PETROL_KEYWORDS`), the
   17-char length rule, charset/checksum gates + the 3 bypass paths, model-year scope
-  **[1990, 2020]**, the year-passthrough set `{0, U, Z}`, and the out-of-scope exceptions.
-- `11_engine_resolution.md` ✅ — WMI + low-volume rule, year/`L`-collision disambiguation,
+  **[1990, 2010]**, the year-passthrough set `{0, U, Z}`, and the out-of-scope exceptions.
+- `11_engine_resolution.md` ✅ — WMI + low-volume rule, year resolution (`L` is 1990),
   two-path engine resolution (VDS `vin[3:8]` → `BRAND_VDS`; legacy pos-8 `vin[7]` →
   `BRAND_POS8`), the `T-FX-5` OPSI / Mexican-Mazda finding (`3MZ/3MD/3MV`), and the
   cylinder heuristic displacement-band fallback (`T-VL-7`).

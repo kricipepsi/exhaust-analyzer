@@ -66,7 +66,7 @@ miss on both       →    VINDecodeError ("WMI not found")
 ```
 
 A hit returns the `wmi.csv` row, which carries `brand`, `country`, and the
-`era_hint` column used for year disambiguation (§11.2). The `country` value also
+`era_hint` column (not read by the year rule, §11.2). The `country` value also
 feeds the non-NHTSA checksum bypass (page 10, §10.3 path 1).
 
 `# source: decoder.py — _resolve_wmi; SAE J853 low-volume rule (vin[2]=='9')`
@@ -78,22 +78,12 @@ Position 10 (`vin[9]`) encodes the model year via `years.csv`
 characters are passthrough placeholders returning `None` — owned by page 10
 (`#RULE_YEAR_PASSTHROUGH`).
 
-Within the supported 1990–2020 window the **only** colliding code is `L`, which
-maps to *both* 1990 and 2020. It is disambiguated by the WMI `era_hint`:
+Within the supported 1990–2010 window each year code has one year, and `L` is
+1990. The decoder takes the one candidate inside the window; a code with none
+(`B`–`K` are 2011–2019) returns its first candidate, which the H2 scope guard on
+page 10 (§10.5) refuses.
 
-```
-era_hint == "legacy"  AND row.era_bucket == "ERA_1"  → 1990
-era_hint != "legacy"  AND row.era_bucket == "ERA_3"  → 2020
-unrecognised era_hint → first candidate + confidence flag "era_hint_unrecognised"
-```
-
-So a legacy-era manufacturer's `L` resolves to 1990; a modern one's resolves to
-2020. When the era hint matches neither bucket, the decoder returns the first
-candidate year and raises the `era_hint_unrecognised` confidence flag (a PARTIAL
-downgrade — see VIN_VOCABULARY §4), never an exception. The resolved year is then
-subject to the H2 scope guard on page 10 (§10.5).
-
-`# source: decoder.py — _resolve_year; L-disambiguation via wmi era_hint`
+`# source: decoder.py — _resolve_year; scope 1990–2010 (labs/comlab/wiki/04_horizon_eras.md:54)`
 
 ## 11.3 OPSI corrupt-prefix finding (T-FX-5) {#RULE_OPSI}
 
@@ -206,7 +196,7 @@ authoritative data.
 ## Core Entities
 
 - **WMI resolution** - Standard and low-volume WMI lookup. Consumer: `vinlab.decoder.RobustVINDecoder._resolve_wmi`.
-- **year resolution** - Position-10 model-year decoding, `L` disambiguation, and unknown passthrough. Consumer: `vinlab.decoder.RobustVINDecoder._resolve_year`.
+- **year resolution** - Position-10 model-year decoding, `L` as 1990, and unknown passthrough. Consumer: `vinlab.decoder.RobustVINDecoder._resolve_year`.
 - **OPSI corrupt-prefix finding** - Closed `{3MZ, 3MD, 3MV}` checksum-bypass finding. Consumer: `vinlab.decoder.validate_vin_checksum`.
 - **two-path engine resolution** - `BRAND_VDS` first, legacy `BRAND_POS8` fallback. Consumer: `vinlab.decoder.RobustVINDecoder._resolve_engine`.
 - **cylinder-count fallback** - Brand rule then displacement-band last-resort inference. Consumer: `vinlab.overlay.cylinder_heuristic.infer_cylinder`.

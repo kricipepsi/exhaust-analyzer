@@ -9,7 +9,7 @@ VIN into a typed `VinDNA`**. Scenarios are declarative (diagnostic/identity focu
 truth is the decoder source + `tests/`; these scenarios capture executable-spec intent.
 
 Ubiquitous language: *decode* = run `vinlab.decode()`; *in-scope* = petrol, model year
-1990–2020; *graded* = assigned a `VinConfidence`; *passthrough* = a year character that
+1990–2010; *graded* = assigned a `VinConfidence`; *passthrough* = a year character that
 maps to `model_year = None`.
 
 ---
@@ -108,27 +108,22 @@ Feature: WMI resolves standard and low-volume manufacturers
 ## Feature: Model-year resolution and the L collision
 
 ```gherkin
-Feature: Year resolution handles passthrough characters and the 1990/2020 collision
+Feature: Year resolution handles passthrough characters and reads each code within 1990-2010
 
   Scenario: A passthrough year character yields an unknown year
     Given a VIN whose position-10 character is 0, U, or Z
     When the year is resolved
     Then model_year is None (unknown, not an error)
 
-  Scenario Outline: The L year is disambiguated by the WMI era hint
-    Given a VIN with year code L and WMI era_hint = <hint>
+  Scenario: The L year is 1990 for every WMI
+    Given a VIN with year code L
     When the year is resolved
-    Then model_year = <year>
-
-    Examples:
-      | hint    | year |
-      | legacy  | 1990 |
-      | modern  | 2020 |
+    Then model_year = 1990
 
   Scenario: A year outside the supported window is out of scope
     Given a resolved model_year of 2023
     When the scope guard runs
-    Then a VINDecodeError is raised (year out of supported scope 1990-2020)
+    Then a VINDecodeError is raised (year out of supported scope 1990-2010)
 ```
 *Maps to:* `_resolve_year`, H2 guard.
 

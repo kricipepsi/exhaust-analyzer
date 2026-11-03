@@ -25,7 +25,7 @@ mirrors_code:
   - "vinlab/decoder.py:_is_non_petrol / _NON_PETROL_KEYWORDS"
 owns_citations:
   - "decoder.py — _NON_PETROL_KEYWORDS (H1 petrol-only guard)"
-  - "decoder.py — model-year scope [1990, 2020] (H2)"
+  - "decoder.py — model-year scope [1990, 2010] (H2)"
   - "decoder.py — _YEAR_PASSTHROUGH {0, U, Z}"
 related_pages: [00_index, 11_engine_resolution, 12_brand_cylinder_rules]
 ---
@@ -55,7 +55,7 @@ raw input
 [4] checksum gate     invalid          → VINDecodeError   (3 bypass paths below)
       … WMI / year / engine resolution (page 11) …
 [H1] petrol gate      non-petrol fuel  → VINDecodeError
-[H2] year gate        year ∉ [1990,2020] → VINDecodeError
+[H2] year gate        year ∉ [1990,2010] → VINDecodeError
   ▼
 VinDNA (only if every gate passes)
 ```
@@ -136,23 +136,23 @@ rejected whichever source first reveals it.
 
 `# source: decoder.py — _NON_PETROL_KEYWORDS; _is_non_petrol() (H1 guard)`
 
-## 10.5 Model-year scope guard (H2) — [1990, 2020] {#RULE_YEAR_BOUND}
+## 10.5 Model-year scope guard (H2) — [1990, 2010] {#RULE_YEAR_BOUND}
 
-VINLab supports model years **1990 through 2020 inclusive**. When a year is
+VINLab supports model years **1990 through 2010 inclusive**. When a year is
 resolved (see page 11 for *how*), a value outside that closed window raises
-`VINDecodeError("Year out of supported scope 1990-2020")`.
+`VINDecodeError("Year out of supported scope 1990-2010")`.
 
 ```
-if model_year is not None and (model_year < 1990 or model_year > 2020):
-    raise VINDecodeError("Year out of supported scope 1990-2020")     # decoder.py
+if model_year is not None and not _YEAR_MIN <= model_year <= _YEAR_MAX:     # 1990, 2010
+    raise VINDecodeError(f"Year out of supported scope {_YEAR_MIN}-{_YEAR_MAX}")     # decoder.py
 ```
 
-The window is the VINLab-owned scope decision (it bounds the reference data baked
-at build time); the value lives here, not in a task file. Note the guard fires only
+The window is the project scope (`repo/labs/comlab/wiki/04_horizon_eras.md:54`:
+petrol 1990–2010, Euro 1–5), not a VINLab-owned choice. Note the guard fires only
 when the year is **known** — an unresolved year (next section) is *unknown, not
 out of scope*, and is allowed through with reduced confidence.
 
-`# source: decoder.py — H2 year-bound guard [1990, 2020]`
+`# source: decoder.py — H2 year-bound guard [1990, 2010]; labs/comlab/wiki/04_horizon_eras.md:54`
 
 ## 10.6 Year passthrough — unknown is not an error {#RULE_YEAR_PASSTHROUGH}
 
@@ -166,7 +166,7 @@ _YEAR_PASSTHROUGH = frozenset({"0", "U", "Z"})        # decoder.py
 
 `U` and `Z` are excluded from the SAE J853 year alphabet, and `0` is unused;
 manufacturers assign them to non-year-coded market variants. Distinguishing
-*unknown* (`None`, allowed) from *out-of-scope* (a real year outside 1990–2020,
+*unknown* (`None`, allowed) from *out-of-scope* (a real year outside 1990–2010,
 rejected by §10.5) is deliberate — it keeps a decodable VIN with an unstamped year
 in scope at `PARTIAL`/`HIGH` rather than throwing it away. The downstream
 confidence grade is page-04 / VIN_VOCABULARY territory; this page only owns the
@@ -183,7 +183,7 @@ passthrough set itself.
 | Checksum fail (no bypass) | `VINDecodeError` | Check digit does not validate |
 | WMI miss | `VINDecodeError` | Manufacturer prefix not in `wmi.csv` (page 11) |
 | Non-petrol fuel | `VINDecodeError` | Fuel out of scope (H1) |
-| Year out of [1990, 2020] | `VINDecodeError` | Model year out of supported scope (H2) |
+| Year out of [1990, 2010] | `VINDecodeError` | Model year out of supported scope (H2) |
 
 `ChassisNumberError` subclasses `VINDecodeError`, so a caller that only catches the
 base class still handles wrong-length input; one that wants the distinction catches
@@ -214,5 +214,5 @@ the subclass first.
 - **VIN checksum gate** - NHTSA modulo-11 validation plus the three documented bypass paths. Consumer: `vinlab.decoder.validate_vin_checksum`.
 - **H1 petrol-only guard** - Non-petrol keyword rejection across CSV and `vref.db` fuel fields. Consumer: `vinlab.decoder._is_non_petrol`.
 - **_NON_PETROL_KEYWORDS** - Canonical VINLab-owned non-petrol keyword tuple. Consumer: `vinlab.decoder._is_non_petrol`.
-- **H2 model-year scope guard** - Inclusive 1990-2020 model-year bound. Consumer: `vinlab.decoder.RobustVINDecoder.decode_vin_payload`.
+- **H2 model-year scope guard** - Inclusive 1990-2010 model-year bound. Consumer: `vinlab.decoder.RobustVINDecoder.decode_vin_payload`.
 - **_YEAR_PASSTHROUGH** - `{0, U, Z}` unknown-year passthrough set. Consumer: `vinlab.decoder.RobustVINDecoder._resolve_year`.

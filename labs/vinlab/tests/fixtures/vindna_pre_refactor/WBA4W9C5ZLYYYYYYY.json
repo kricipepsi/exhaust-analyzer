@@ -12,7 +12,7 @@
   "confidence": "PARTIAL",
   "cylinder_count": 6,
   "emissions": {
-    "downstream_o2_present": true,
+    "downstream_o2_present": false,
     "downstream_trim_role": "NONE",
     "egr_equipped": true,
     "has_catalyst": true,
@@ -27,7 +27,7 @@
   "idle_rpm_low": 714,
   "induction_type": "TURBOCHARGED",
   "make": "BMW",
-  "model_year": 2020,
+  "model_year": 1990,
   "noise_driving_dba": 71.0,
   "noise_rpm": 3750,
   "noise_stationary_dba": 85.55,

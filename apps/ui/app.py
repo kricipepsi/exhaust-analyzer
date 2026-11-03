@@ -316,7 +316,7 @@ with st.sidebar:
             vin_input = st.text_input(
                 "VIN (17 characters)",
                 key="vin_input",
-                placeholder="e.g. WBA4W9C5ZLYYYYYYY",
+                placeholder="e.g. WVWZZZ1KZAP012480",
                 help=FIELD_HELP["vin"].get_tooltip()
             ).strip().upper()
 

@@ -26,15 +26,9 @@ class TestValidDecodes:
         assert dna.euro_emission_category == "EURO_5"
         assert dna.confidence == "HIGH"
 
-    def test_peugeot_5fr_vin_uses_same_authoritative_equipment(self, decoder):
-        dna = decoder.decode_vin_payload("VF3WB5FR8CE025644")
-        assert dna.make == "Peugeot"
-        assert dna.engine_displacement_liters == 1.598
-        assert dna.cylinder_count == 4
-        assert dna.fuel_delivery_type == "GDI"
-        assert dna.induction_type == "TURBOCHARGED"
-        assert dna.euro_emission_category == "EURO_5"
-        assert dna.confidence == "HIGH"
+    def test_peugeot_5fr_2012_vin_is_out_of_scope(self, decoder):
+        with pytest.raises(VINDecodeError, match="1990-2010"):
+            decoder.decode_vin_payload("VF3WB5FR8CE025644")
 
     @pytest.mark.parametrize(
         (
@@ -73,18 +67,6 @@ class TestValidDecodes:
                 False,
                 True,
                 186.0,
-            ),
-            (
-                "WBA1S3100G1234567",
-                "BMW",
-                1.998,
-                4,
-                "TURBOCHARGED",
-                "GDI",
-                "EURO_6",
-                True,
-                True,
-                159.0,
             ),
         ],
     )
@@ -258,37 +240,11 @@ class TestLYearDisambiguation:
         assert _year_to_horizon(dna.model_year) == "HORIZON_LEGACY"
 
     def test_l_year_modern_wmi(self, decoder):
-        """VIN with vin[9]='L' and modern WMI → resolves to 2020."""
+        """VIN with vin[9]='L' and modern WMI → 1990 (2020 is outside the 1990-2010 scope)."""
         # WMI '102' has era_hint=modern; vin[8]='Z' bypasses checksum
         dna = decoder.decode_vin_payload("102ZZZZZZLZZZZZZZ")
-        assert dna.model_year == 2020
-        assert _year_to_horizon(dna.model_year) == "HORIZON_MODERN"
-
-    def test_era_hint_unrecognised_flagged(self, decoder, monkeypatch):
-        """Unrecognised era_hint triggers flag, not silent fallback.
-
-        Strategy (b): when era_hint is neither "legacy" nor "modern" AND
-        no ERA_3-matching row exists among candidates, _resolve_year returns
-        the first candidate with the "era_hint_unrecognised" flag. The
-        caller appends this to conf_flags, degrading confidence to PARTIAL.
-
-        The fallback is structurally dead with current production data
-        (wmi.csv only carries "legacy"/"modern" and year code L has both
-        ERA_1 and ERA_3 rows). This test monkeypatches year_index to
-        simulate a future data shape that would activate it.
-        """
-        monkeypatch.setitem(
-            decoder.year_index, "L",
-            [
-                {"calendar_year": "1990", "era_bucket": "ERA_1"},
-                {"calendar_year": "1991", "era_bucket": "ERA_1"},
-            ],
-        )
-        year, flag = decoder._resolve_year(
-            "101ZZZZZZLZZZZZZZ", {"era_hint": "unknown"},
-        )
-        assert year == 1990
-        assert flag == "era_hint_unrecognised"
+        assert dna.model_year == 1990
+        assert _year_to_horizon(dna.model_year) == "HORIZON_LEGACY"
 
 
 class TestLowVolumeManufacturer:
@@ -381,7 +337,6 @@ class TestEuropeanChecksumBypass:
         # VIN, expected make, expected year (from vin[9] year code)
         ("WDD1690321J749046", "Mercedes-Benz", 2001),  # vin[9]='1', Germany
         ("VF12R051560978004", "Renault", 2006),          # vin[9]='6', France
-        ("W0LGM6ET6E1072040", "Opel", 2014),              # vin[9]='E', EU-market Opel
     ]
 
     @pytest.mark.parametrize("vin,expected_make,expected_year", EU_VINS)
@@ -434,7 +389,7 @@ class TestDbRowPath:
         """BMW VIN with engine_code in both CSV and vref.db hits db_row path."""
         dna = decoder.decode_vin_payload("WBA4W9C5ZLYYYYYYY")
         assert dna.make == "BMW"
-        assert dna.model_year == 2020
+        assert dna.model_year == 1990
         assert dna.engine_displacement_liters > 0
         assert dna.confidence == "PARTIAL"  # co_low_idle is NULL
         assert dna.fuel_delivery_type == "GDI"
@@ -642,5 +597,5 @@ class TestBrandSpellingRepair:
         import dataclasses
 
         live = RobustVINDecoder(self._live_data_dir())
-        dna = dataclasses.asdict(live.decode_vin_payload("TMBJJ7NE3F0123456"))
+        dna = dataclasses.asdict(live.decode_vin_payload("TMBJJ7NE399123456"))
         assert dna["make"] == "SKODA"

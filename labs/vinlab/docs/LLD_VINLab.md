@@ -118,15 +118,13 @@ wmi_key = vin[0:3]                       # standard positions 1-3
 ```python
 year_char = vin[9]
 if year_char in _YEAR_PASSTHROUGH: return (None, None)     # unknown, not an error
-if len(candidates) == 1: return (int(calendar_year), None)
-# L-collision (1990 vs 2020):
-era_hint == "legacy" and era_bucket == "ERA_1" → 1990
-era_hint != "legacy" and era_bucket == "ERA_3" → 2020
-else → (first candidate, "era_hint_unrecognised")
+in_scope = [r for r in candidates if _YEAR_MIN <= calendar_year <= _YEAR_MAX]
+row = in_scope[0] if in_scope else candidates[0]      # L → 1990
+return (int(row.calendar_year), None)
 ```
 
-**H2 scope guard:** `model_year is not None and (model_year < 1990 or > 2020)` →
-`VINDecodeError`. (Years 1990–2020 inclusive.)
+**H2 scope guard:** `model_year is not None and not _YEAR_MIN <= model_year <= _YEAR_MAX` →
+`VINDecodeError`. (Years 1990–2010 inclusive.)
 
 ---
 

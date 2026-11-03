@@ -3,10 +3,10 @@
 Adaptive VIN decoder implementing:
   - NHTSA modulo-11 checksum validation with European legacy bypass
   - Low-volume manufacturer rule (SAE J853, vin[2] == '9')
-  - L-year disambiguation (1990 vs 2020) via WMI era_hint
+  - Model year from vin[9] within the 1990-2010 scope (L is 1990)
   - Two-path engine resolution (vds_full / pos_8_only fallback)
   - vref.db tech-mask + CoC overlay
-  - H1 petrol-only guard, H2 1990-2020 year bound
+  - H1 petrol-only guard, H2 1990-2010 year bound
 """
 
 from __future__ import annotations
@@ -115,6 +115,8 @@ _EURO_MAP: dict[str, str] = {
 # '0' is also unused. Manufacturers assign these as placeholders
 # for non-year-coded market variants; treat them as year=None.
 _YEAR_PASSTHROUGH: frozenset[str] = frozenset({"0", "U", "Z"})
+# source: labs/comlab/wiki/04_horizon_eras.md:54 — the engine targets petrol 1990–2010 (Euro 1–5) (H2)
+_YEAR_MIN, _YEAR_MAX = 1990, 2010
 
 
 def _normalise_euro(raw: str | None) -> str:
@@ -522,7 +524,7 @@ class RobustVINDecoder:
 
         Zero network, zero MySQL. Raises ChassisNumberError for inputs
         that are not 17 characters, VINDecodeError for out-of-scope
-        vehicles (H1: non-petrol, H2: year outside 1990-2020).
+        vehicles (H1: non-petrol, H2: year outside 1990-2010).
 
         Args:
             raw_vin: The VIN string (may contain I/O if pre_clean is True).
@@ -551,8 +553,8 @@ class RobustVINDecoder:
         model_year, year_flag = self._resolve_year(vin, wmi_record)
 
         # H2: year within supported scope — only enforced for known years
-        if model_year is not None and (model_year < 1990 or model_year > 2020):
-            raise VINDecodeError("Year out of supported scope 1990-2020")
+        if model_year is not None and not _YEAR_MIN <= model_year <= _YEAR_MAX:
+            raise VINDecodeError(f"Year out of supported scope {_YEAR_MIN}-{_YEAR_MAX}")
 
         conf_flags: list[str] = []  # track confidence downgrades
         if year_flag:
@@ -822,10 +824,9 @@ class RobustVINDecoder:
         for non-year-coded market variants (e.g., JDM, Italian domestic).
         These return None — year unknown, not an error.
 
-        The only colliding code in 1990-2020 is 'L' (1990 vs 2020).
-        Disambiguation uses the WMI era_hint column:
-          "legacy" -> ERA_1 -> 1990
-          "modern" -> ERA_3 -> 2020
+        A year code repeats every 30 years. Within the 1990-2010 scope each code
+        has at most one year (L is 1990, never 2020). A code with no in-scope
+        year returns its first candidate, which the H2 gate refuses.
         """
         year_char = vin[9]
         if year_char in _YEAR_PASSTHROUGH:
@@ -834,16 +835,6 @@ class RobustVINDecoder:
         if not candidates:
             raise VINDecodeError(f"Year character not found: {year_char!r}")
 
-        if len(candidates) == 1:
-            return int(candidates[0]["calendar_year"]), None
-
-        # L-year disambiguation
-        era_hint = wmi_record.get("era_hint", "modern")
-        for row in candidates:
-            if era_hint == "legacy" and row["era_bucket"] == "ERA_1":
-                return int(row["calendar_year"]), None
-            if era_hint != "legacy" and row["era_bucket"] == "ERA_3":
-                return int(row["calendar_year"]), None
-
-        # Fallback: return first candidate with unrecognised-era flag
-        return int(candidates[0]["calendar_year"]), "era_hint_unrecognised"
+        in_scope = [r for r in candidates if _YEAR_MIN <= int(r["calendar_year"]) <= _YEAR_MAX]
+        row = in_scope[0] if in_scope else candidates[0]
+        return int(row["calendar_year"]), None

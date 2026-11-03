@@ -268,7 +268,6 @@ URI `mode=ro`; rows are returned as plain dicts keyed by column.
 
 ```
 conf_flags collected during decode:
-    year:    era_hint_unrecognised
     engine:  engine_not_in_csv | no_engine_code | engine_not_in_vref
     coc:     coc_null_<field>   (first NULL among 9 core CoC fields)
 
