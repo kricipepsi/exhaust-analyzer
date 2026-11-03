@@ -173,7 +173,7 @@ Expected:
 - step 4: `41 passed`, with no `failed` or `error`.
 - step 5: `30 passed`.
 - step 6: `2 passed`.
-- step 7: `All checks passed!`; exactly 2 commits (Cowork's spec commit and yours); `git status --porcelain` lists only
+- step 7: `All checks passed!`; Cowork's `audit:` spec commits, then exactly one `fix(T-AUD-1b):` commit of yours on top; `git status --porcelain` lists only
   the note and the RESULT.
 
 Repo-wide gates: none beyond steps 4-6. The row changes no `.py` file under `labs/` or `apps/` except the new test.
