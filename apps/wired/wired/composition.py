@@ -238,7 +238,7 @@ def _incomplete_input(
                 "Non-start diagnosis without exhaust gas readings is not available yet. "
                 f"Enter the low-idle gas readings: {fields}.",
             )
-        return "GAS_INPUT_INCOMPLETE", f"Low-idle gas readings are incomplete. Enter: {fields}."
+        return "GAS_INPUT_INCOMPLETE", f"Low-idle gas readings are incomplete. Tick GASLab and enter: {fields}."
     if obd_inputs is not None:
         obd = _as_dict(obd_inputs)
         missing = _missing(obd, _obd_required_keys(obd, vin_dna))

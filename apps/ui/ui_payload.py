@@ -137,7 +137,7 @@ FIELD_HELP: dict[str, FieldHelp] = {
         unit="characters"
     ),
     "gas_module": FieldHelp(
-        explanation="Enables tailpipe exhaust gas analyzer measurement inputs.",
+        explanation="Enables tailpipe exhaust gas analyzer measurement inputs. Required for every run: the diagnosis needs the five low-idle readings (HC, CO, CO₂, O₂, NOx).",
         options=["Checked", "Unchecked"]
     ),
     "obd_module": FieldHelp(
@@ -906,7 +906,7 @@ def validate_widgets(widgets: dict[str, Any]) -> list[FieldIssue]:
 
     GASLab ticked: the 5 low-idle values. A complete triage: SymptomLab's own check via
     ``wired.validate_triage``. OBD values typed: the 5 required OBD fields and an upstream
-    O₂ sensor. DTC text and Mode 06 rows: every invalid token. A confirmed code: the 12
+    O₂ sensor. DTC text and Mode 06 rows: every invalid token. Any DTC data: the 12
     freeze-frame fields. Never raises on widget input.
     """
     from wired import validate_triage
@@ -946,11 +946,10 @@ def validate_widgets(widgets: dict[str, Any]) -> list[FieldIssue]:
                 "mode06_monitors",
                 f"Not a valid Monitor ID (expected MID_<HEX>_TID_<HEX>): {', '.join(invalid_mids)}",
             ))
-        confirmed, _ = split_dtc_tokens(widgets.get("dtc_confirmed"))
-        if confirmed:
+        if "dtc" in payload:
             for key, label in FF_REQUIRED_FIELDS.items():
                 if _is_blank(widgets.get(key)):
-                    issues.append(FieldIssue(key, f"{label} is required with a confirmed DTC."))
+                    issues.append(FieldIssue(key, f"{label} is required when DTC data is entered."))
 
     return issues
 
