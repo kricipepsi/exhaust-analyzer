@@ -15,7 +15,7 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 | T-AUD-1a | `repo/apps/wired/audit_tasks/T-AUD-1a_app_usable(4).md` | done | — | 2026-11-02 | 4/5 | **ACCEPT 2026-11-02, score 94, t=50/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-1a.md`.** P0 app usable; plan REQUIRED; 2 commits (Cowork 006/008) |
 | T-AUD-1b | (not authored) | deferred | T-AUD-1a | 2026-11-02 | — | deploy manifests F-P5-1/2/4; shares labs/comlab/pyproject.toml |
 | T-AUD-1d | (not authored: fold into T-AUD-4) | deferred | T-AUD-4 | 2026-11-03 | — | B1 f2: C4 probe test_f3b asserts nothing on the verdict; add an override-reaches-OBDLab assertion with F-C4-3 (018 ruling 3) |
-| T-AUD-1c | `repo/apps/wired/audit_tasks/T-AUD-1c_ff_and_gas_prompts(2).md` | pending | T-AUD-1a | 2026-11-03 | 2/5 | 018 S1+N1 (was T-AUD-1a-c): FF required whenever a DTC dict is sent; gas message names GASLab |
+| T-AUD-1c | `repo/apps/wired/audit_tasks/T-AUD-1c_ff_and_gas_prompts(2).md` | done | T-AUD-1a | 2026-11-03 | 2/5 | **ACCEPT 2026-11-03, score 97, t=6/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-1c.md`.** 018 S1+N1 (was T-AUD-1a-c): FF required whenever a DTC dict is sent; gas message names GASLab |
 
 **Status values:** `pending` · `in_progress` · `done` · `blocked` · `deferred` · `superseded`
 **Score** (column 6, checked by `ops/gen_dispatch.py`): the routing score `N/5`, the same `N` as the file name's `(N)`.
