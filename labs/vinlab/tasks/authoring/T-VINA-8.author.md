@@ -45,3 +45,14 @@ cold read 2026-11-03 FOCUSED reader; trigger grep hit (R5 "every"); 0 findings, 
 (`recheck/scratch/coldread_T-VINA-8.md`).
 
 ### Correction history ###
+- **01 (2026-11-03, Cowork review of round 1; not accepted).** Re-run by Cowork: steps 1-6 as P2 (`68`, `5`;
+  27/41/30/526; `3 passed`; `0 0 1 1`; ruff clean); vinlab, dtclab, gaslab, obdlab equal the base; MR1 `1 failed`,
+  MR2 `4 failed` on the real tree, restored (cmp); code and tests equal `make_rh.py`'s copy. Codex second review
+  (`recheck/codex/T-VINA-8_review.md`, gpt-6.1-sol medium, embedded prompt 43 KB): APPROVE WITH CORRECTIONS. Rulings:
+  F1 (DLD still states the idle default) UPHELD and wider: `DLD:94`, `LLD:115-116` (base grep `3`); F2 ("21 tier
+  strings") UPHELD; F3 (ADR-0008 names the "expand beyond 18" rejection as ADR-0003's; it is ADR-0007 alt. 2,
+  `ADR_SymptomLab.md:240`) UPHELD; F4 (`from_json` leaks `TypeError` for a non-object payload or env: `None`, `[]`,
+  `"x"`, re-derived) UPHELD, in scope (same function and the same typed-refusal promise as F-C6-13; lost: a new
+  row). Cowork's own: `LLD` live-file note says `→ 21 total` of T-DNA-8's 18 (history) → R7.2. Correction R7;
+  R7.4 rehearsed by `make_rh2.py`: symptomlab `72 passed`, test file `9 passed`, MR3 `3 failed`, dnalab 27, wired 41.
+- **01, gate:** authoring-checks below; DELTA cold read skipped: rehearsed code plus grep-checked doc fixes.

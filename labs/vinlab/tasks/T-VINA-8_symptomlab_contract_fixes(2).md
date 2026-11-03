@@ -40,7 +40,7 @@ counts and the P3 docs counts at `0`.
 | id | value | population | command |
 |---|---|---|---|
 | P1 | symptomlab `63 passed`; dnalab `27 passed`; wired `41 passed`; ui `30 passed`; comlab `526 passed, 4 skipped, 2 errors`; C6 probes `-k "f12_ or f13_"` `3 failed` | base `22a6e98` | steps 1, 3, 4 on the base |
-| P2 | symptomlab `68 passed`; `tests/test_t_vina_8.py` `5 passed`; probes `3 passed`; mutant MR1 `1 failed`, MR2 `4 failed` | Cowork's rehearsal copy | `C:/4DApp/.venv/Scripts/python.exe -I C:/4DApp/recheck/T-VINA-8/make_rh.py`, then steps 1-4 with `PYTHONPATH` on the copy |
+| P2 | symptomlab `72 passed`; `tests/test_t_vina_8.py` `9 passed`; probes `3 passed`; mutant MR1 `1 failed`, MR2 `4 failed`, MR3 `3 failed` | Cowork's rehearsal copy | `C:/4DApp/.venv/Scripts/python.exe -I C:/4DApp/recheck/T-VINA-8/make_rh.py`, then steps 1-4 with `PYTHONPATH` on the copy |
 | P3 | old-count lines outside the ADR: `54`; oil sub-filters missing from the 3 catalog docs: `6` | base | step 5 commands on the base |
 | P4 | catalog `21` pairs = `7` tier_1 × `3` tier_2 | `symptomlab/data/allowed_combinations.yaml`; `validator.py` "must define exactly 21 pairs" | `repo/labs/symptomlab/wiki/04_catalog_changelog.md:101` |
 
@@ -59,7 +59,7 @@ not edit it.
   3. **R3 The code docstrings** (`models.py`, 2 sites) say `21 allowed`.
   4. **R4 The tests.** `tests/unit/test_symptomdna_from_json.py::test_missing_load_state_defaults_to_idle` becomes
      `test_missing_load_state_raises_validation_error` (`PIN`, as `make_rh.py`). `tests/test_t_vina_8.py` (`NEW`,
-     5 cases, as `make_rh.py` writes it). Mutants to run and record in the note: MR1 R1 reverted to
+     5 cases, as `make_rh.py` writes it; R7.4 adds 4). Mutants to run and record in the note: MR1 R1 reverted to
      `env.get("load_state", LoadState.IDLE)` → `test_missing_load_state_raises_validation_error` fails; MR2 the R2
      `if` made `if False:` → the 4 `test_non_string_tier_is_validation_error` cases fail. Copy the file to
      `C:/4DApp/recheck/T-VINA-8/mut/` first, edit in place, run the suite, copy it back, `cmp` byte-identical.
@@ -75,8 +75,21 @@ not edit it.
   is superseded by a new one). Add `## ADR-0008: The catalog is 21 pairs (7 tier_1 × 3 tier_2)` after ADR-0007, in
   the file's Nygard shape (Status Accepted; Context: the `oil_consumption` build, citing
   `wiki/04_catalog_changelog.md` §4.4; Decision: the validator enforces exactly 21; Consequences: ADR-0003's size
-  and its "expand beyond 18" rejection no longer hold). In the index table, ADR-0003's status becomes
+  and ADR-0007's "expand beyond 18" rejection no longer hold). In the index table, ADR-0003's status becomes
   `Superseded by ADR-0008`, and an ADR-0008 row is added. Edit no other ADR line.
+
+- **R7 Correction 01 (Cowork's second review, 2026-11-03).** Change only these:
+  1. `docs/DLD_SymptomLab.md` (the `from_json` lines around `env.get("load_state"`) and `docs/LLD_SymptomLab.md`
+     (the `LoadState(env.get(…))` line and the next one) say `load_state` is required and a missing one raises
+     `SymptomValidationError("Missing required field: 'load_state'")`.
+  2. `LLD_SymptomLab.md`: `The 21 tier strings` becomes `The 21 catalog pairs (7 tier_1 and 21 tier_2 strings)`;
+     the live-file note's `→ 21 total` becomes a present-tense statement that the catalog totals P4.
+  3. ADR-0008 Consequences: the "expand beyond 18" rejection is named as ADR-0007's (alternative 2), not ADR-0003's.
+  4. `models.py::SymptomDNA.from_json`, inside the `try`: a `payload` that is not a `dict`, and an
+     `environmental_conditions` that is not a `dict`, raise `SymptomValidationError("payload and
+     environmental_conditions must be objects")`, as `C:/4DApp/recheck/T-VINA-8/make_rh2.py` does. Append its two
+     tests to `tests/test_t_vina_8.py` (4 cases). Mutant MR3 to record under `## Round 2`: the `env` check made
+     `if False:` → the 3 `test_from_json_non_object_env_is_validation_error` cases fail.
 
 ### First action ###
 ```bash
@@ -88,13 +101,17 @@ fix/T-VINA-8
 ```
 `git status --porcelain` prints nothing. Anything else is a stop.
 
+**Round 2 (correction 01).** The First action and the Preconditions applied to round 1 only. Your round-1 commit
+stays. Apply R7, re-run `### Verification ###`, make one more commit on `fix/T-VINA-8` (run `git add` as one command,
+then the commit as its own command), and add a `## Round 2` section to the note and the RESULT.
+
 ### Success criteria ###
 1. The symptomlab suite and `tests/test_t_vina_8.py` report their P2 counts (steps 1, 2); MR1 and MR2 each fail the
-   named tests.
+   named tests, and MR3 fails its 3 cases.
 2. dnalab, wired, ui and comlab keep their P1 counts (step 3).
 3. The C6 probes for F-C6-12 and F-C6-13 report their P2 count (step 4).
-4. Step 5 prints `0`, `0`, then `1` and `1` (ADR-0008 heading, ADR-0003 superseded).
-5. `ruff` passes on the changed `.py` files; one commit on `fix/T-VINA-8`; `git status --porcelain` lists only the
+4. Step 5 prints `0`, `0`, then `1` and `1` (ADR-0008 heading, ADR-0003 superseded), then `0`, `0`, `0`, `0` (R7.1-R7.3).
+5. `ruff` passes on the changed `.py` files; two commits on `fix/T-VINA-8` (round 1, round 2); `git status --porcelain` lists only the
    note and the RESULT (step 6).
 
 ### Context ###
@@ -106,7 +123,7 @@ fix/T-VINA-8
 
 ### Preconditions ###
 ```bash
-cd C:/4DApp/repo && for p in labs/symptomlab/symptomlab/models.py labs/symptomlab/symptomlab/validator.py labs/symptomlab/tests/unit/test_symptomdna_from_json.py labs/symptomlab/docs/ADR_SymptomLab.md labs/symptomlab/wiki/04_catalog_changelog.md C:/4DApp/recheck/T-VINA-8/make_rh.py; do test -f "$p" || echo "MISSING $p"; done; test -e labs/symptomlab/tests/test_t_vina_8.py && echo "EXISTS test_t_vina_8.py"; echo checked
+cd C:/4DApp/repo && for p in labs/symptomlab/symptomlab/models.py labs/symptomlab/symptomlab/validator.py labs/symptomlab/tests/unit/test_symptomdna_from_json.py labs/symptomlab/docs/ADR_SymptomLab.md labs/symptomlab/wiki/04_catalog_changelog.md C:/4DApp/recheck/T-VINA-8/make_rh.py C:/4DApp/recheck/T-VINA-8/make_rh2.py; do test -f "$p" || echo "MISSING $p"; done; test -e labs/symptomlab/tests/test_t_vina_8.py && echo "EXISTS test_t_vina_8.py"; echo checked
 ```
 Expected: `checked`, and no `MISSING` or `EXISTS` line.
 
@@ -119,7 +136,7 @@ Expected: `checked`, and no `MISSING` or `EXISTS` line.
 - `repo/labs/symptomlab/symptomlab/models.py` (MODIFY)
 - `repo/labs/symptomlab/symptomlab/validator.py` (MODIFY)
 - `repo/labs/symptomlab/tests/unit/test_symptomdna_from_json.py` (MODIFY)
-- `repo/labs/symptomlab/tests/test_t_vina_8.py` (CREATE)
+- `repo/labs/symptomlab/tests/test_t_vina_8.py` (CREATE; MODIFY in round 2)
 - `repo/labs/symptomlab/docs/ADR_SymptomLab.md` (MODIFY)
 - `repo/labs/symptomlab/docs/BDD_SymptomLab.md` (MODIFY)
 - `repo/labs/symptomlab/docs/DLD_SymptomLab.md` (MODIFY)
@@ -157,17 +174,18 @@ mkdir -p C:/4DApp/recheck/T-VINA-8/pt
 # 4.
 timeout 200 $PY -m pytest -q -p no:cacheprovider audit/scratch/C6/test_c6_probes.py -k "f12_ or f13_" --basetemp=C:/4DApp/recheck/T-VINA-8/pt/p | tail -1
 # 5.
-cd labs/symptomlab; grep -nE "\b18\b|6 ?[×x] ?3|\b6 tier_1|six (tier|categor)" docs/*.md symptomlab/*.py | grep -v ADR_SymptomLab.md | wc -l; for f in HLD_SymptomLab LLD_SymptomLab SYMPTOM_VOCABULARY; do for t in blue_smoke_on_cold_start_clears blue_smoke_under_acceleration oil_loss_no_visible_smoke; do grep -q "$t" docs/$f.md || echo "missing $f $t"; done; done | wc -l; grep -c "^## ADR-0008: The catalog is 21 pairs" docs/ADR_SymptomLab.md; grep -c "^| ADR-0003 .*| Superseded by ADR-0008 |$" docs/ADR_SymptomLab.md; cd ../..
+cd labs/symptomlab; grep -nE "\b18\b|6 ?[×x] ?3|\b6 tier_1|six (tier|categor)" docs/*.md symptomlab/*.py | grep -v ADR_SymptomLab.md | wc -l; for f in HLD_SymptomLab LLD_SymptomLab SYMPTOM_VOCABULARY; do for t in blue_smoke_on_cold_start_clears blue_smoke_under_acceleration oil_loss_no_visible_smoke; do grep -q "$t" docs/$f.md || echo "missing $f $t"; done; done | wc -l; grep -c "^## ADR-0008: The catalog is 21 pairs" docs/ADR_SymptomLab.md; grep -c "^| ADR-0003 .*| Superseded by ADR-0008 |$" docs/ADR_SymptomLab.md
+grep -nE 'env\.get\("load_state"|LoadState\.IDLE\)|defaults?( deterministically)? to .?(idle|LoadState)' docs/*.md | wc -l; grep -c "The 21 tier strings" docs/LLD_SymptomLab.md; grep -c "→ 21 total" docs/LLD_SymptomLab.md; grep -c "Its rejection of" docs/ADR_SymptomLab.md; cd ../..
 # 6.
 timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check labs/symptomlab/symptomlab labs/symptomlab/tests/test_t_vina_8.py labs/symptomlab/tests/unit/test_symptomdna_from_json.py; git log --oneline 22a6e98..HEAD; git status --porcelain
 ```
 Expected:
-- step 1: `68 passed`, with no `failed` or `error`.
-- step 2: `5 passed`.
+- step 1: `72 passed`, with no `failed` or `error`.
+- step 2: `9 passed`.
 - step 3: `27 passed`, `41 passed`, `30 passed`, `526 passed, 4 skipped, 2 errors`.
 - step 4: `3 passed` (with `48 deselected`).
-- step 5: `0`, `0`, `1`, `1`.
-- step 6: `All checks passed!`; the spec commit and your one commit; only the note and the RESULT.
+- step 5: `0`, `0`, `1`, `1`, then `0`, `0`, `0`, `0`.
+- step 6: `All checks passed!`; the spec commit, the correction commit and your two commits; only the note and the RESULT.
 
 Repo-wide gates (report-only): dtclab `590 passed`, gaslab `208 passed, 2 skipped, 4 deselected`, obdlab
 `388 passed, 2 skipped`, vinlab `216 passed, 8 skipped`; Cowork runs them at review.
