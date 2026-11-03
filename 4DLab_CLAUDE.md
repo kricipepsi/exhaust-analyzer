@@ -124,40 +124,13 @@ mechanics: `_skills/coding-bootstrap/SKILL.md` ("Why this works" constraint 4).
   gloss automotive/diagnostic terms (PID, DTC, lambda, freeze frame, sensor and
   chemistry names) — the owner knows those cold. Keep answer length unchanged.
 
-## Git — minimal fixed ritual (HARD RULE)
-> **Status (2026-06-27): git is not yet initialized in `/agent_workspace`.** The
-> owner brings the real `.git` later (with the data). Until then there is no undo
-> button beyond the Desktop backup (`/home/m/Desktop/migration`). **Never run
-> `git init`** — it would clash with the incoming repo. The ritual below is what
-> applies **once `.git` lands**.
-
-Git exists only as a safety net (an undo button). Keep interaction to the fixed
-minimum below — agents that turn git into a decision are the recurring time-sink
-this rule kills.
-- **Never raise git as a blocker.** Never create branches, worktrees, or stashes.
-  Never ask "which branch?" — the answer is always: proceed in the current
-  checkout on **main**.
-- **Never touch pre-existing uncommitted changes.** Do not commit, revert, or
-  stash them; leave them on disk.
-- The **only** git action is the final commit, run **by the owner**, staging the
-  task's deliverables **by explicit path** from the workspace root:
-  ```bash
-  cd /agent_workspace
-  git add path/to/file1 path/to/dir2/
-  git commit -m "<task-id>: <one-line summary>"
-  ```
-  Use literal filenames — never `<...>` placeholders. For many paths, use bash
-  line-continuation (`\` at end of line):
-  ```bash
-  git add \
-    labs/gaslab/gaslab/foo.py \
-    labs/gaslab/tests/test_foo.py \
-    labs/gaslab/tasks/progress_notes/T-GAS-X.md
-  ```
-- If `git add` reports "did not match any files", that path wasn't changed: drop
-  it, keep the paths that were.
+## Git — one branch per task (HARD RULE)
+`main` is production: every push to `main` redeploys the public app (`render.yaml`, `branch: main`).
+- Work on the branch the task names (`fix/<ID>`), cut from the base the task states. Never commit to, merge into,
+  reset or push `main`. Only the owner merges a branch into `main`.
+- Commit the task's deliverables by explicit path, never `git add -A`.
+- Never touch pre-existing uncommitted changes. Leave them on disk.
 - **Never stage** `.venv-wired/`, `graphify-out/`, or `labs/vinlab/mysql_data/`.
-An agent doing anything with git beyond preparing that one commit is the bug.
 
 ## Document readability gate (MANDATORY)
 Before using any document as task input, verify all three:

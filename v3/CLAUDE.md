@@ -37,8 +37,8 @@ documentation. Follow it step by step.
   flag `synthetic=true`, keep a synthetic-vs-real scoreboard split, calibrate on real data.
   **State the tolerance width on every task.** Full policy: `4DLab_CLAUDE.md` §Provisional
   synthetic signals. (Structural signal/noise rule — named producer + consumer — still holds.)
-- **Git:** the only git action is the **owner's** final commit, by explicit path. Never
-  branch, stash, or raise git as a blocker.
+- **Git:** work on the branch the task names; never commit to `main` (production). Full rule: `4DLab_CLAUDE.md`
+  §Git.
 
 ## Authoring principle — progressive disclosure (this pack)
 Author tasks **disclosure-first**: each task reveals what the next decision
