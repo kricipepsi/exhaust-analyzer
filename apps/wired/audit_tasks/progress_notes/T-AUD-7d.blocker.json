@@ -1,0 +1,37 @@
+{
+  "schema": "blocker-record/2",
+  "task_id": "T-AUD-7d",
+  "pack": "audit",
+  "task_file": "apps/wired/audit_tasks/T-AUD-7d_assignment_precedence_and_pct_ledger(1).md",
+  "date": "2026-11-04",
+  "phase": "implementation",
+  "prior_record": null,
+  "reached_first_edit": true,
+  "stopped": true,
+  "findings": [
+    {
+      "class": "SCOPE",
+      "gist": "The write scope lists PROGRESS.md for MODIFY, but the implementer settings deny Edit on *PROGRESS*.md, so R6/R7 cannot be written.",
+      "task_anchor": "apps/wired/audit_tasks/T-AUD-7d_assignment_precedence_and_pct_ledger(1).md:103",
+      "task_says": "- `repo/planning/post_cat_trim/PROGRESS.md` (MODIFY)",
+      "tree_says": "\"Edit(//c/4DApp/repo/**/*PROGRESS*.md)\" (C:/4DApp/.claude/roles/implementer.settings.json:78)",
+      "settling_command": "grep -n 'PROGRESS' C:/4DApp/.claude/roles/implementer.settings.json",
+      "settling_output": "78:      \"Edit(//c/4DApp/repo/**/*PROGRESS*.md)\",",
+      "severity": "hard",
+      "blocks_first_edit": true
+    }
+  ],
+  "work_completed_before_stop": [
+    "Precheck: branch, HEAD~1, clean status, 11 preconditions all pass; base probes match P1 (sides not found: 4, 18 PCT lines)",
+    "Edited .agent/assignments.md (R1, R2), AGENTS.md (R3), START_HERE.md (R4), ROADMAP.md (R5), POST_CAT_TRIM_START_HERE.md (R6 rows 2-10, R8 four edits); uncommitted",
+    "rules.py now prints sides not found: 8"
+  ],
+  "not_done": [
+    "R6 rows PCT-2..10 and R7 Notes bullet in planning/post_cat_trim/PROGRESS.md",
+    "Verification steps 2-4 to final state and the docs(T-AUD-7d) commit"
+  ],
+  "cheats_declined": [
+    "Did not write PROGRESS.md through Bash/python to get around the Edit deny"
+  ],
+  "dispatch_rounds_spent": 1
+}
