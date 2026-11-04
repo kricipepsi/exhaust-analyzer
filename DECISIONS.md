@@ -11,7 +11,7 @@ Ratified architectural/business decisions for the v2 workspace. Append-only; sup
 | **Q-C** | Where v2 labs live | **Born inside `4DLabV2/labs/`.** Folders for **all** labs created now (gaslab, obdlab, dtclab, comlab, dnalab) + `4dlabwired_v2/` at root — not just gaslab. |
 | **Q-D → D5** | FX cross-lab pack | **Kept OUT** of the v2 brain. `FX_START_HERE.md` / `FX_PROGRESS.md` stay at the `4DLab` root, out of scope for this migration. |
 | D2 | Consumer repoint timing | **Unchanged — Stage-4 (COMLab).** `4DLabWired`/`registry`/`COMLab` repoint to the forked code during the Stage-4 reconciliation (FU-1/FU-4/T-GV2-2), not during the move. |
-| D3 | Canonical wiki `docs/GASLab/wikiNEW/` | **Unchanged — link in place.** Never copy the single source of truth into `4DLabV2`. |
+| D3 | Canonical wiki `docs/GASLab/wikiNEW/` | **Superseded (audit F-D3-17, 2026-11-05):** the canonical wiki is `labs/<lab>/wiki/` (`AGENTS.md` rule 2); `docs/GASLab/wikiNEW/` is not in the repo. Was: link in place, never copy. |
 | D4 | Legacy `v2/` (+ `v6/`) | **Ratified — archive** to `ARCHIVE/legacy_v2/` (kills the `v2/` vs `4DLabV2` collision). |
 
 ## Proposal — T-GV2-14 (bank-asymmetry) disposition

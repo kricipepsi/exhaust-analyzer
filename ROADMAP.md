@@ -58,7 +58,7 @@ its research question (#5) is folded into the gate above.
 - **Signal/noise:** every field/enum value added to any schema needs a named
   consumer in COMLab analytics or fault-atlas routing. The consumer may be one
   you add in the same change (`AGENTS.md` rule 4). No consumer → it doesn't ship. This is the one rule that governs every v2 change.
-- **v2 wiki is canonical** for the lab being reworked (e.g. GASLab → `docs/GASLab/wikiNEW/`);
+- **v2 wiki is canonical** for the lab being reworked (the lab's `labs/<lab>/wiki/`, `AGENTS.md` rule 2);
   code reconciles *up to* the wiki. Legacy `v2/`, `v6/`, and v1 wikis are not truth.
 - **No cross-lab Python imports;** consumers mirror types locally.
 - **Reports in `.md` only.** One task ≤ 50% of a fresh context; both gates clean
@@ -67,7 +67,7 @@ its research question (#5) is folded into the gate above.
 ## Pointers
 
 - Audit + research questions: `4DLabV2/docs/reference/audit_2026-06-03/4DLAB_CAPABILITY_AUDIT_AND_RESEARCH_QUESTIONS.md`
-- Stage-1 ledger: `4DLabV2/labs/gaslab/tasks/PROGRESS.md` (T-GV2-1 emitter; T-GV2-2 deferred to Stage 4)
+- Stage-1 ledger: `4DLabV2/labs/gaslab/tasks/PROGRESS.md` (T-GV2-1 emitter; T-GV2-2 `done`)
 - Session bootstrap table: `CLAUDE.md` (maps each `<LAB>V2_START_HERE.md`)
 - Per-lab v2 ledgers for OBD/DTC are stood up at the start of their stage via the
   `_skills/coding-bootstrap` pattern (mirror the GASLabV2 scaffold).

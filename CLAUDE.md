@@ -1,7 +1,8 @@
 # CLAUDE.md — 4DLab architect entrypoint (Cowork)
 
 You are the **architect** (Cowork). You author specs and review; you do **not** implement.
-Coders are two omp agents — **Codex** and **Agy** — driven by a human manager.
+Coders are omp agents (identities in `.agent/coders/`: agy, claude, codex, deepseek, glm, nemo), driven by a
+human manager.
 
 @AGENTS.md            <!-- shared five-rules canon + carry-over invariants, also read by the coders -->
 
@@ -61,11 +62,11 @@ task per coder via `.agent/assignments.md`.
 
 | If the session is about… | Read and execute first | Gate |
 |---|---|---|
-| **wired** (compose labs → COMLab, single-case end-to-end) | `apps/wired/WIRED_START_HERE.md` | `apps/wired/WIRING_PREP.md` — `T-WIRE-1` blocked until gaslab `T-GV2-2` is `done` |
-| **vault-live** (frame the live tree for Obsidian transparency) | `apps/vault/VAULT_LIVE_START_HERE.md` | Phase 3 of `apps/OMP_VAULT_HARNESS_PLAN_2026-06-28.md`; pilot `T-VLIVE-1` runnable now |
+| **wired** (compose labs → COMLab, single-case end-to-end) | `apps/wired/WIRED_START_HERE.md` | `apps/wired/WIRING_PREP.md` — wiring `T-WIRE-1..4` is `done` (gaslab `T-GV2-2` `done`) |
+| **vault-live** (frame the live tree for Obsidian transparency) | `apps/vault/VAULT_LIVE_START_HERE.md` | Phase 3 of `apps/OMP_VAULT_HARNESS_PLAN_2026-06-28.md`; pilot `T-VLIVE-1` is `done`; the ledger names the next row |
 | **wired-test** (test the wired app: pyscn audit + native-Jaeger/OTel trace pass) | `apps/wired/test_tasks/WIRED_TEST_START_HERE.md` | wiring (`T-WIRE-1..4`) is `done`; `T-WTEST-1..5` all `done` (2026-06-30) — pack complete |
-| **wired-v7** (research-built accuracy suite — mine owner case libraries → CSV + wiki-grounded oracle + multi-dim scorer + report) | `apps/wired/v7_tasks/WIRED_V7_START_HERE.md` | NO old artefacts; case source = `/home/m/Desktop/casesextra/` (primary `cases_library_v2.html`); oracle from wiki/atlas not engine output; incomplete cases → owner queue; linear chain, only `T-V7-1` (library research) is `pending` |
-| **ship** (pre-publish blockers: verify sweep, synthetic split, VIN brands, UI) | `apps/wired/ship_tasks/SHIP_START_HERE.md` | audit `planning/SHIP_AUDIT_2026-07-07.md`; T-SHIP-1/3/4/UI-1 `pending`, parallel-safe; NO score chasing (stop ruling 2026-07-06) |
+| **wired-v7** (research-built accuracy suite — mine owner case libraries → CSV + wiki-grounded oracle + multi-dim scorer + report) | `apps/wired/v7_tasks/WIRED_V7_START_HERE.md` | NO old artefacts; case source = `/home/m/Desktop/casesextra/` (primary `cases_library_v2.html`); oracle from wiki/atlas not engine output; incomplete cases → owner queue; linear chain; `T-V7-1` (library research) is `done`, and the ledger names the next row |
+| **ship** (pre-publish blockers: verify sweep, synthetic split, VIN brands, UI) | `apps/wired/ship_tasks/SHIP_START_HERE.md` | audit `planning/SHIP_AUDIT_2026-07-07.md`; T-SHIP-1/3/4/UI-1 `done`; NO score chasing (stop ruling 2026-07-06) |
 
 "Execute" = read each mandatory skill the bootstrap names, read the ledger,
 find the first unblocked `pending` task, post the one-paragraph scope
