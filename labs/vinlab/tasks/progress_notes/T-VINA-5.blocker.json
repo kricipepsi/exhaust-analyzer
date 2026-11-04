@@ -1,0 +1,36 @@
+{
+  "schema": "blocker-record/2",
+  "task_id": "T-VINA-5",
+  "pack": "vina",
+  "task_file": "labs/vinlab/tasks/T-VINA-5_wmi_brand_table(4).md",
+  "date": "2026-11-04",
+  "phase": "implementation",
+  "prior_record": null,
+  "reached_first_edit": false,
+  "stopped": false,
+  "findings": [
+    {
+      "class": "UNSATISFIABLE",
+      "gist": "R2 requires that after the edit no exact or folded key is duplicated, but the base map already holds 119 folded duplicates inside MERCEDES-BENZ (MERCEDES BENZ vs MERCEDES-BENZ spellings, 123 map-wide), most on keys R2 does not touch; read literally, the assertion fails unless 119 Mercedes keys outside R2's population are deduplicated.",
+      "task_anchor": "labs/vinlab/tasks/T-VINA-5_wmi_brand_table(4).md:79",
+      "task_says": "no exact or folded key is duplicated: the edit script asserts it.",
+      "tree_says": "exact dups 0 folded dups 123 [('MERCEDESBENZ', 119), ('HARLEYDAVIDSON', 2), ('ROLLSROYCE', 1), ('STEYRDAIMLERPUCH', 1)]",
+      "settling_command": "cd C:/4DApp/repo/labs/vinlab && C:/4DApp/.venv/Scripts/python.exe -c \"import csv,collections; from vinlab.decoder import _fold_brand; rows=list(csv.DictReader(open('vinlab/data/vds_engine_map.csv',encoding='utf-8',newline=''))); ex=collections.Counter((r['brand'].strip().upper(),r['vds_full'].strip().upper()) for r in rows if r['vds_full'].strip()); fo=collections.Counter((_fold_brand(r['brand'].strip()),r['vds_full'].strip().upper()) for r in rows if r['vds_full'].strip()); df=[k for k,c in fo.items() if c>1]; print('exact dups',sum(c>1 for c in ex.values()),'folded dups',len(df),collections.Counter(k[0] for k in df).most_common(4))\"",
+      "settling_output": "exact dups 0 folded dups 123 [('MERCEDESBENZ', 119), ('HARLEYDAVIDSON', 2), ('ROLLSROYCE', 1), ('STEYRDAIMLERPUCH', 1)]",
+      "severity": "soft",
+      "chosen_interpretation": "The edit script asserts (1) zero exact duplicates map-wide, (2) the set of folded duplicate keys after the edit is a subset of the set before (the edit creates none), and (3) every key the edit writes (each copied row and each wrong-wins key) has exactly one row under its folded key. The pre-existing Mercedes spelling duplicates outside R2 stay and are listed as a follow-up; Cowork can rule a map-wide dedupe from this evidence without rework of this row's output.",
+      "blocks_first_edit": false
+    }
+  ],
+  "work_completed_before_stop": [
+    "Round 2 parity: own Nio files 1+2+3 scan reproduces C:/4DApp/recheck/scratch/vina5_vote_picks.json on all 133 keys (0 differences)",
+    "Test VIN-set parity with c6_lib.real_vins() for the five WMIs: 121 = 121, set equal"
+  ],
+  "not_done": [
+    "Map-wide dedupe of the 119 MERCEDES BENZ / MERCEDES-BENZ folded duplicates (outside R2's population)"
+  ],
+  "cheats_declined": [
+    "Did not delete pre-existing Mercedes spelling duplicates to make the literal assertion pass"
+  ],
+  "dispatch_rounds_spent": 2
+}
