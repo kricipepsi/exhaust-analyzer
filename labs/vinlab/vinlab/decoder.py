@@ -500,6 +500,11 @@ class RobustVINDecoder:
         """Derive air metering strategy and architecture from DB dict, fuel system, and induction."""
         db_maf = db_dict.get("has_maf")
         db_map = db_dict.get("has_map")
+        # source: tools/build_vref_db.py writes bool(e.get("has_maf", False)), so a row whose source confirms
+        # neither sensor stores 0/0 (68 rows of the shipped vref.db, T-VINA-15). An injected engine meters air
+        # with a MAF or a MAP sensor, so 0/0 is not a fact: treat both as unknown, as for a NULL row.
+        if db_maf is not None and db_map is not None and not db_maf and not db_map:
+            db_maf = db_map = None
         has_maf = (
             bool(db_maf) if db_maf is not None
             else fuel_delivery_type != FuelDeliveryType.CARBURETOR
