@@ -30,8 +30,8 @@ def _year_to_horizon(year: int) -> Horizon:
 
     Used only when euro_emission_category is unknown.
     """
-    if 1990 <= year <= 2000:
+    if 1990 <= year <= 2000:  # wiki: labs/vinlab/wiki/10_decode_scope_rules.md §10.8
         return Horizon.LEGACY
-    if 2001 <= year <= 2010:
+    if 2001 <= year <= 2010:  # wiki: labs/vinlab/wiki/10_decode_scope_rules.md §10.8
         return Horizon.ADAPTIVE
     return Horizon.MODERN

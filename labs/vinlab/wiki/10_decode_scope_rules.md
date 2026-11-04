@@ -198,6 +198,43 @@ the subclass first.
 
 `# source: decoder.py — ChassisNumberError(VINDecodeError); decode_vin_payload raise sites`
 
+## 10.8 Era from model year when the euro norm is unknown {#RULE_ERA_FROM_YEAR}
+
+The euro norm is **known** only when the applied `vref.db` row (inside its
+`my_start`-`my_end` window) states a `euro_norm` that `_EURO_MAP` recognises. A
+missing row, an out-of-window row, a NULL `euro_norm` or an unrecognised string
+leaves it **unknown**. Then the decoder adds the confidence flag `euro_unknown`,
+takes `resolved_horizon` from the model year, and gives the stress-RPM table no
+euro value, so its horizon fallback applies (LLD § 9). `euro_emission_category`
+stays `EURO_1`: the contract enum has no unknown value, and COMLab reads
+`resolved_horizon` first.
+
+```
+_year_to_horizon(model_year)                          # overlay/horizon.py
+1990–2000      → HORIZON_LEGACY
+2001–2010      → HORIZON_ADAPTIVE
+2011 and later → HORIZON_MODERN
+no model year  → HORIZON_LEGACY                       # decoder.py
+```
+
+The bands settle the overlapping edges of `repo/labs/comlab/wiki/04_horizon_eras.md`
+(LEGACY "pre-1997 → ~2001", ADAPTIVE "~2001–2011"):
+
+- **2001 is ADAPTIVE.** Euro 3 is compulsory for every new petrol car registered
+  from 2001-01-01 (Directive 98/69/EC).
+- **2011 is MODERN.** Euro 5 is compulsory for every new car registered from
+  2011-01-01 (Regulation (EC) No 715/2007).
+
+A model year is not a registration date. A car of model year 2001 can be
+registered in 2000, and one of model year 2010 in 2011, so each edge carries a
+1-year fuzz.
+
+The unknown-euro year fallback cannot give MODERN inside the supported years: the
+H2 guard (§10.5) caps a decoded year at 2010. A recognised euro5 or later on the
+applied row still gives MODERN (`euro_to_horizon`, contract §6.4).
+
+`# source: decoder.py — decode_vin_payload euro_known / euro_unknown; overlay/horizon.py — _year_to_horizon`
+
 ## Graph relations (explicit)
 
 **VINWIKI-10-DECODE_SCOPE_RULES** DESCRIBES **VIN length gate**

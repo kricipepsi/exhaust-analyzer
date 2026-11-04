@@ -24,13 +24,14 @@ from vinlab.models import (
     Emissions,
     EuroEmissionCategory,
     FuelDeliveryType,
+    Horizon,
     InductionType,
     VinConfidence,
     VinDNA,
 )
 from vinlab.overlay.air_metering import classify_air_metering
 from vinlab.overlay.cylinder_heuristic import infer_cylinder as _infer_cylinder
-from vinlab.overlay.horizon import euro_to_horizon
+from vinlab.overlay.horizon import _year_to_horizon, euro_to_horizon
 from vinlab.overlay.stress_rpm import stress_idle_rpm
 from vinlab.overlay.switches import derive_upstream_o2_type
 
@@ -660,10 +661,17 @@ class RobustVINDecoder:
             _emissions,
         )
 
-        # --- stress RPM ------------------------------------------------------
-        horizon = euro_to_horizon(_euro_emission_category)
+        # --- horizon and stress RPM ------------------------------------------
+        # T-VINA-10 R1: the euro is known only when the applied (in-window) vref.db row states a recognised euro_norm
+        euro_known = (db_dict.get("euro_norm") or "").strip().lower() in _EURO_MAP
+        if euro_known:
+            horizon = euro_to_horizon(_euro_emission_category)
+        else:
+            conf_flags.append("euro_unknown")
+            # wiki: labs/vinlab/wiki/10_decode_scope_rules.md §10.8 — era from the model year; no year stays LEGACY
+            horizon = _year_to_horizon(model_year) if model_year is not None else Horizon.LEGACY
         _stress_idle_rpm_target = stress_idle_rpm(
-            euro=_euro_emission_category,
+            euro=_euro_emission_category if euro_known else "",  # "" takes the horizon fallback (LLD § 9)
             induction=_induction_type,
             fuel_delivery=_fuel_delivery_type,
             displacement=_engine_displacement_liters,

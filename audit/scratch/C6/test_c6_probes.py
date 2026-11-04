@@ -39,6 +39,7 @@ def _map_rows() -> list[dict[str, str]]:
 def test_f1_horizon_follows_year_when_euro_unknown():
     """LLD §10: '_year_to_horizon (used only when euro unknown): 2001-2010 -> ADAPTIVE'."""
     from vinlab.db.tecdoc_query import lookup_engine_ref
+    from vinlab.decoder import _EURO_MAP
     from vinlab.overlay.horizon import _year_to_horizon
 
     bad, total, euro_unknown, by_year = [], 0, 0, collections.Counter()
@@ -48,14 +49,20 @@ def test_f1_horizon_follows_year_when_euro_unknown():
         except L.VINDecodeError:
             continue
         total += 1
-        eng = L.DEC._resolve_engine(d.vin, d.make, [])
-        if eng and eng.get("engine_code") and lookup_engine_ref(L.DEC.db_path, eng["engine_code"]):
-            continue  # euro known from vref.db: not this finding (see F-C6-4)
+        eng = L.DEC._resolve_engine(d.vin, d.make, []) or {}
+        code = (eng.get("engine_code") or "").strip()
+        row = lookup_engine_ref(L.DEC.db_path, code) if code else None
+        if row is not None and d.model_year is not None and not (
+            int(row["my_start"]) <= d.model_year <= int(row["my_end"])
+        ):
+            row = None  # F-C6-4: a row outside its window is not applied
+        if ((row or {}).get("euro_norm") or "").strip().lower() in _EURO_MAP:
+            continue  # euro known (T-VINA-10 R1): the applied row states a recognised euro_norm
         euro_unknown += 1
         if d.model_year is not None and d.resolved_horizon != _year_to_horizon(d.model_year):
             bad.append(v)
             by_year[d.model_year] += 1
-    print(f"\nreal VINs decoded={total}; no vref.db row (euro unknown)={euro_unknown}; "
+    print(f"\nreal VINs decoded={total}; euro unknown (applied row has no recognised euro_norm)={euro_unknown}; "
           f"horizon != documented year fallback: {len(bad)}")
     print("by year:", sorted(by_year.items()))
     for v in ("WVWZZZ1KZAP012480", "W0LGM6ET6E1072040", "TMAD251CAGJ331435"):
