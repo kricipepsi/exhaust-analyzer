@@ -21,13 +21,14 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 |---|---|---|---|---|---|---|
 | T-VINA-1 | `repo/labs/vinlab/tasks/T-VINA-1_year_scope_gate(3).md` | done | — | 2026-11-03 | 3/5 | **ACCEPT 2026-11-03, score 95, t=11/1 — `repo/labs/vinlab/tasks/reviews/REVIEW_T-VINA-1.md`.** F-C6-3 (cycle), F-C6-8: model year 1990-2010, `L` = 1990, B-K refused; UI placeholder in scope |
 | T-VINA-2 | `repo/labs/vinlab/tasks/T-VINA-2_type_code_year(2).md` | done | — | 2026-11-04 | 2/5 | **ACCEPT 2026-11-04, score 94, t=12/1 — `repo/labs/vinlab/tasks/reviews/REVIEW_T-VINA-2.md`.** F-C6-3 rest: WMIs whose position 10 is not a year (Mercedes `WDB`, `WDD`); measure first |
-| T-VINA-3 | (not authored) | deferred | T-VINA-2 | — | — | F-C6-1, F-C6-4, F-D1-13: era from year when euro unknown; vref row year window; cited thresholds |
+| T-VINA-3 | `repo/labs/vinlab/tasks/T-VINA-3_vref_year_window(2).md` | pending | — | 2026-11-04 | 2/5 | F-C6-4: vref.db row applied only inside its model-year window (F-C6-1, F-D1-13 moved to T-VINA-10) |
 | T-VINA-4 | (not authored) | deferred | T-VINA-3 | — | — | F-C6-6: upstream O₂ type, no wideband by year alone |
 | T-VINA-5 | (not authored) | deferred | T-VINA-1 | — | — | F-C6-2: WMI brand table (Maybach, Genesis, Kawasaki, Datsun, Sterling) and the engine-map keys |
 | T-VINA-6 | (not authored) | deferred | T-VINA-5 | — | — | F-C6-5: petrol guard on real data (diesel and electric engines); measure first |
 | T-VINA-7 | (not authored) | deferred | T-VINA-1 | — | — | F-C6-7, F-C6-9, F-C6-10, F-C6-14: checksum by market, grade NONE, Path B docs, closed connections |
 | T-VINA-8 | `repo/labs/vinlab/tasks/T-VINA-8_symptomlab_contract_fixes(2).md` | done | — | 2026-11-03 | 2/5 | **ACCEPT 2026-11-03, score 93, t=14/1 — `repo/labs/vinlab/tasks/reviews/REVIEW_T-VINA-8.md`.** F-C6-11, F-C6-12, F-C6-13: SymptomLab pair count 21, `load_state` required, typed tier error |
 | T-VINA-9 | (not authored) | deferred | — | — | — | F-C6-3 rest: Renault VF1 position 10 (0-4 only on 103 real VINs) is it a year? Find a source first |
+| T-VINA-10 | (not authored) | deferred | T-VINA-3 | — | — | F-C6-1, F-D1-13: era from year when euro unknown (36 corpus runs change); cited era thresholds; plan |
 
 **Status values:** `pending` · `in_progress` · `done` · `blocked` · `deferred` · `superseded`
 
