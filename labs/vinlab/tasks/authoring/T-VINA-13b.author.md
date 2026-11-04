@@ -36,3 +36,8 @@ own pass 2026-11-04: P1-P5 measured · traceability: criteria 1-4 → steps 1-5 
 cold read 2026-11-04: skipped, plan-gated (Plan: REQUIRED; the plan review and its second-model review cover it).
 
 ### Correction history ###
+- **01 (2026-11-04, plan review; Plan: APPROVED with C1-C6).** Hand-back B8 (3 soft, COWORK). Second review (ds-pro):
+  APPROVE WITH CORRECTIONS, 6 findings. Upheld F1 (migration guard, C1), F6 (era fixture, C5); F3 and F5 as fail-closed
+  guards with 0 effect today (C3, C4). Not upheld: F2 (derived from stated induction/GDI: C2 clarifies R4), F4 (all
+  readers by name). C6: CoC CSV is on D:, 0 codes enriched (Cowork). T-VINA-14, 15 registered. Record:
+  `corrections/T-VINA-13b_plan_correction_20261104.md`.

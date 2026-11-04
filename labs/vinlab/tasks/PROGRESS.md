@@ -34,6 +34,8 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 | T-VINA-13a | `repo/labs/vinlab/tasks/T-VINA-13a_tecdoc_1q2019_extract(4).md` | done | T-VINA-5 | 2026-11-04 | 4/5 | **ACCEPT 2026-11-04, score 89, t=18/1 — `repo/labs/vinlab/tasks/reviews/REVIEW_T-VINA-13a.md`.** F-C6-1 (operator DB task): TecDoc 1Q2019 per-engine extract CSV for the engine map's codes, brand-agreeing tiers, coverage report; plan REQUIRED |
 | T-VINA-13b | `repo/labs/vinlab/tasks/T-VINA-13b_vref_tecdoc_merge(5).md` | pending | T-VINA-13a | 2026-11-04 | 5/5 | F-C6-1: merge the 13a extract into vref.db engine_ref (NULL where TecDoc is silent, collisions skipped, schema change); real-VIN reach measured; plan REQUIRED |
 | T-VINA-13c | (not authored) | deferred | T-VINA-13b | — | — | TecDoc 1Q2018 (`DBS/tecdoc`) fallback, REA first, only if misses stay material |
+| T-VINA-14 | (not authored) | deferred | T-VINA-13b | — | — | decoder: banks from a BOXER fact (not is_v_engine 0) and keep a vref-stated induction over the cylinder heuristic; then rerun the merge for the 41 guarded codes (B8) |
+| T-VINA-15 | (not authored) | deferred | T-VINA-13b | — | — | the 13 shipped vref rows with has_maf 0 and has_map 0 decode with neither sensor (MAP_ONLY); measure and correct |
 
 **Status values:** `pending` · `in_progress` · `done` · `blocked` · `deferred` · `superseded`
 
