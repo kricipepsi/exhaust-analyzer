@@ -21,6 +21,7 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 | T-AUD-7c | `repo/apps/wired/audit_tasks/T-AUD-7c_stale_pending_ledger_rows(1).md` | done | T-AUD-7b | 2026-11-04 | 1/5 | **ACCEPT 2026-11-04, score 97, t=3/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-7c.md`.** F-D3-2, F-D3-3: COMLab, registry and vault-live ledgers offer finished tasks as pending |
 | T-AUD-7d | `repo/apps/wired/audit_tasks/T-AUD-7d_assignment_precedence_and_pct_ledger(1).md` | done | T-AUD-7c | 2026-11-05 | 1/5 | **ACCEPT 2026-11-04, score 96, t=3/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-7d.md`.** F-D3-4/6/9: ledger wins over assignment; ROADMAP consumer rule; PCT-2..10 deferred |
 | T-AUD-7e | `repo/apps/wired/audit_tasks/T-AUD-7e_infra_pointer_and_firecrawl_auth(1).md` | done | T-AUD-7d | 2026-11-05 | 1/5 | **ACCEPT 2026-11-04, score 97, t=2/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-7e.md`.** F-D3-7/8: boot docs point at 4DLab_CLAUDE.md, no sandbox ritual; python3.14; firecrawl key not in repo |
+| T-AUD-7f | `repo/apps/wired/audit_tasks/T-AUD-7f_graph_build_lane_rule(1).md` | pending | T-AUD-7e | 2026-11-05 | 1/5 | F-D3-5: one graph-build lane rule (architect; T-GR-10/11 Nemo extract); harness git line |
 
 **Status values:** `pending` · `in_progress` · `done` · `blocked` · `deferred` · `superseded`
 **Score** (column 6, checked by `ops/gen_dispatch.py`): the routing score `N/5`, the same `N` as the file name's `(N)`.
