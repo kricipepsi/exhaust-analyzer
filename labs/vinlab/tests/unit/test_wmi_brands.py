@@ -1,4 +1,4 @@
-"""T-VINA-5: the five WMIs that wmi.csv gave to the wrong make (F-C6-2), and the engine-map keys they share."""
+"""T-VINA-5 and T-VINA-12: WMIs that wmi.csv gave to the wrong make (F-C6-2, F-R3-2), and the engine-map keys."""
 
 import re
 from pathlib import Path
@@ -17,11 +17,23 @@ TRUE_MAKE_VINS = [
     ("JSAEAB35S00110744", "SUZUKI"),  # 1.3 Swift, real OPSI VIN (was "Kawasaki")
     ("JN1BCAN1480756536", "NISSAN"),  # 2008 Note 1.4, real OPSI VIN (was "Datsun")
     ("SAXXNNAZRWD148244", "ROVER"),  # 1998 Rover, real OPSI VIN (was "Sterling Motor Car")
+    # T-VINA-12: the make the Slovenian registry assigns (D1-Znamka majority, files 1+2).
+    ("JTMBD31V005157989", "TOYOTA"),  # real C6 VIN (was "Subaru")
+    ("JTEBU11F470048645", "TOYOTA"),  # real C6 VIN (was "Subaru")
+    ("KNEDA2322WK092123", "KIA"),  # real C6 VIN (was "Hyundai")
+    ("VF8DE0T0626385395", "RENAULT"),  # real C6 VIN (was "MATRA")
+    ("5TDLB3CH70S077701", "TOYOTA"),  # registry file 1 (was "Lexus")
+    ("ZACNJEC14MPR78826", "JEEP"),  # registry file 1 (was "Ram")
+    ("1C4BU0000LPL97445", "JEEP"),  # registry file 1 (was "Lancia")
+    ("3C4NJCBH0LT120685", "JEEP"),  # registry file 2 (was "Lancia")
+    ("1C3ANE9L34X009518", "CHRYSLER"),  # registry file 1 (was "Lancia")
+    ("3N1FCAC11UK431122", "NISSAN"),  # registry file 1 (was "Infiniti")
+    ("LSJA24U96PN032073", "MG"),  # registry file 1 (WMI was absent)
 ]
 
-# P3 (task T-VINA-5): decoded VINs per WMI, and engine-resolved VINs before the fix.
-DECODED = {"WDB": 26, "KMH": 40, "JSA": 19, "JN1": 10, "SAX": 9}
-RESOLVED_FLOOR = {"WDB": 25, "KMH": 40, "JSA": 19, "JN1": 8, "SAX": 9}
+# P3 (task T-VINA-5) and P4 (task T-VINA-12): decoded VINs per WMI, and engine-resolved VINs before the fix.
+DECODED = {"WDB": 26, "KMH": 40, "JSA": 19, "JN1": 10, "SAX": 9, "JTM": 5, "JTE": 5, "KNE": 13, "VF8": 8}
+RESOLVED_FLOOR = {"WDB": 25, "KMH": 40, "JSA": 19, "JN1": 8, "SAX": 9, "JTM": 3, "JTE": 4, "KNE": 13, "VF8": 6}
 
 # Keys where the wrong-brand row and the right-brand row disagree; the winner is the Nio files 1+2 vote
 # (tie -> right-brand row). Votes are (wrong-row code : right-row code).
