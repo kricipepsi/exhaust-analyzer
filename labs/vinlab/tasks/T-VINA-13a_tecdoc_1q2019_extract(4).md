@@ -172,9 +172,9 @@ Expected: `checked`, and no `MISSING` or `EXISTS` line.
    `repo/labs/vinlab/tasks/results/RESULT_T-VINA-13a.md` (with the R6 report).
 
 ### Files to touch ###
-- `repo/labs/vinlab/tools/extract_tecdoc_1q2019.py` (CREATE)
-- `repo/labs/vinlab/tools/data/tecdoc_1q2019_engine_extract.csv` (CREATE)
-- `repo/labs/vinlab/tests/unit/test_extract_tecdoc_1q2019.py` (CREATE)
+- `repo/labs/vinlab/tools/extract_tecdoc_1q2019.py` (created in `f836bcf`; no change in correction 02)
+- `repo/labs/vinlab/tools/data/tecdoc_1q2019_engine_extract.csv` (created in `f836bcf`; no change in correction 02)
+- `repo/labs/vinlab/tests/unit/test_extract_tecdoc_1q2019.py` (MODIFY: correction 02 adds two tests)
 - `repo/labs/vinlab/tasks/progress_notes/T-VINA-13a.md` (CREATE)
 - `repo/labs/vinlab/tasks/results/RESULT_T-VINA-13a.md` (CREATE)
 - `C:/4DApp/recheck/T-VINA-13a/pt/` (RUNTIME: pytest `--basetemp`)
