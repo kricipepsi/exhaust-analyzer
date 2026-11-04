@@ -1,0 +1,65 @@
+{
+  "schema": "blocker-record/2",
+  "task_id": "T-VINA-13b",
+  "pack": "vina",
+  "task_file": "labs/vinlab/tasks/T-VINA-13b_vref_tecdoc_merge(5).md",
+  "date": "2026-11-04",
+  "phase": "plan",
+  "prior_record": null,
+  "reached_first_edit": false,
+  "stopped": false,
+  "findings": [
+    {
+      "class": "CONTRADICTION",
+      "gist": "R3 writes the extract's is_v_engine (BOXER is encoded 0), and the decoder reads 0 as one bank; for FB20 that fails the existing boxer test (criterion 1) and gives a bank count TecDoc does not state (Goal).",
+      "task_anchor": "labs/vinlab/tasks/T-VINA-13b_vref_tecdoc_merge(5).md:79",
+      "task_says": "upper case. `has_turbo`, `has_gdi`, `is_v_engine` take the extract value (blank → `0`); `has_vvt` and `has_egr`",
+      "tree_says": "labs/vinlab/tools/extract_tecdoc_1q2019.py:64 `NOT_V_ENGINE = frozenset({\"Straight\", \"BOXER\", \"Rotor, wankel engine\"})`; labs/vinlab/vinlab/decoder.py:364 `banks = 2 if db_dict.get(\"is_v_engine\") else 1`; labs/vinlab/tests/unit/test_decoder.py:534-540 `test_heuristic_boxer_emits_two_banks` decodes JF1SHJLW1A1234567 and asserts `dna.number_of_banks == 2`; vds_engine_map.csv:10156 `SUBARU,SHJLW,,FB20,2.0,4,BOXER_4,PORT_INJECTION,0.625`; extract:1233 `SUBARU,FB20,...,is_v_engine 0`. Task line 41: 'no decode gets a value the decoder would not have produced without the row, except where TecDoc states it'; line 111: 'The vinlab suite and the new test file pass'.",
+      "settling_command": "cd C:/4DApp/repo/labs/vinlab && grep -n '^NOT_V_ENGINE' tools/extract_tecdoc_1q2019.py; grep -n 'is_v_engine\") else 1' vinlab/decoder.py; grep -n 'def test_heuristic_boxer_emits_two_banks' -A 7 tests/unit/test_decoder.py; grep -n '^SUBARU,SHJLW' vinlab/data/vds_engine_map.csv; grep -n '^SUBARU,FB20' tools/data/tecdoc_1q2019_engine_extract.csv",
+      "settling_output": "64:NOT_V_ENGINE = frozenset({\"Straight\", \"BOXER\", \"Rotor, wankel engine\"}) | 364: banks = 2 if db_dict.get(\"is_v_engine\") else 1 | 534: def test_heuristic_boxer_emits_two_banks ... 540: assert dna.number_of_banks == 2 | 10156:SUBARU,SHJLW,,FB20,2.0,4,BOXER_4,PORT_INJECTION,0.625 | 1233:SUBARU,FB20,T0,OK,25014,FB20,1995,4,GDI,NATURALLY_ASPIRATED,0,1,0,DOHC,euro5,2010,,9. Simulated merge (note appendix, no guard): JF1SHJLW1A1234567 number_of_banks 2 -> 1.",
+      "severity": "soft",
+      "chosen_interpretation": "Plan proposes guard G1: skip any code whose vds_engine_map.csv rows configure BOXER* (2 codes: EJ18, FB20; 0 real VINs). R3's is_v_engine rule then holds for every inserted row, and the boxer test stays green. Cowork rules at plan review.",
+      "blocks_first_edit": false
+    },
+    {
+      "class": "CONTRADICTION",
+      "gist": "R1/R3 insert a row with the TecDoc displacement and stated induction, but the decoder's last-resort cylinder heuristic then overrides a TecDoc-stated NATURALLY_ASPIRATED for AZQ and turns two real VINs MAF_ONLY into HYBRID_MAF_MAP, which R4 calls a stop.",
+      "task_anchor": "labs/vinlab/tasks/T-VINA-13b_vref_tecdoc_merge(5).md:85",
+      "task_says": "predicts its output after the merge. The RESULT gives both. Any real-VIN change in euro category, O₂ type or air\n  metering that does not come from a stated TecDoc value is a stop.",
+      "tree_says": "labs/vinlab/vinlab/decoder.py:466 `hint = _infer_cylinder(engine_code, displacement_liters, brand)` and :469-470 `if induction_type == InductionType.NATURALLY_ASPIRATED: induction_type = InductionType(hint.induction)` (runs when the map row has no cylinder_count); extract:1196 `SKODA,AZQ,...,1198,3,PORT_INJECTION,NATURALLY_ASPIRATED,...`; vds_engine_map.csv:12626 `SKODA,CY46Y,,AZQ,,,,PORT_INJECTION,1.000` (blank displacement and cylinders).",
+      "settling_command": "cd C:/4DApp/repo/labs/vinlab && C:/4DApp/.venv/Scripts/python.exe -c \"from vinlab.overlay.cylinder_heuristic import infer_cylinder as f; print(f('AZQ', 1.198, 'SKODA')); print(f('AZQ', 0.0, 'SKODA'))\"; grep -n '^SKODA,AZQ' tools/data/tecdoc_1q2019_engine_extract.csv; grep -n '^SKODA,CY46Y' vinlab/data/vds_engine_map.csv",
+      "settling_output": "CylinderHint(count=3, config='I3', induction='TURBOCHARGED', source='brand_rule') | CylinderHint(count=0, config='', induction='NATURALLY_ASPIRATED', source='unresolved') | 1196:SKODA,AZQ,T0,OK,17070,AZQ,1198,3,PORT_INJECTION,NATURALLY_ASPIRATED,0,0,0,DOHC,,2003,2008,4 | 12626:SKODA,CY46Y,,AZQ,,,,PORT_INJECTION,1.000. Simulated merge (note appendix, no guard): TMBCY46Y733811341 and TMBDY16Y033784910 induction NATURALLY_ASPIRATED -> TURBOCHARGED, has_map_sensor False -> True, MAF_ONLY -> HYBRID_MAF_MAP.",
+      "severity": "soft",
+      "chosen_interpretation": "Plan proposes guard G2: skip a code when, for a map row with no cylinder_count, infer_cylinder on the TecDoc displacement gives a count, induction or two-bank hint that TecDoc contradicts and the no-row decode did not have (39 codes, 18 real VINs). The simulation then shows 0 euro, O2, air-metering, induction, banks or cylinder changes not traced to a TecDoc field. Cowork rules at plan review.",
+      "blocks_first_edit": false
+    },
+    {
+      "class": "STALE-ANCHOR",
+      "gist": "R3 says my_start/my_end are NOT NULL; the builder DDL and the shipped table declare them nullable. The non-null property is held by the data and test_every_vref_row_has_a_window, not by the schema.",
+      "task_anchor": "labs/vinlab/tasks/T-VINA-13b_vref_tecdoc_merge(5).md:75",
+      "task_says": "  - **Years.** `my_start`/`my_end` are `NOT NULL` integers and the window check drops the row outside them",
+      "tree_says": "labs/vinlab/tools/build_vref_db.py:94-95 `    my_start           INTEGER,` / `    my_end             INTEGER,`; the shipped vref.db engine_ref DDL has the same two lines; labs/vinlab/tests/unit/test_vref_year_window.py asserts `my_start is null or my_end is null or my_start > my_end` counts 0.",
+      "settling_command": "cd C:/4DApp/repo/labs/vinlab && grep -n 'my_start           INTEGER\\|my_end             INTEGER' tools/build_vref_db.py; C:/4DApp/.venv/Scripts/python.exe -c \"import sqlite3; c=sqlite3.connect('file:vinlab/data/vref.db?mode=ro', uri=True); print([(r[1], r[3]) for r in c.execute('pragma table_info(engine_ref)') if r[1] in ('my_start','my_end')])\"",
+      "settling_output": "94:    my_start           INTEGER, | 95:    my_end             INTEGER, | [('my_start', 0), ('my_end', 0)]  (pragma notnull = 0 for both)",
+      "severity": "soft",
+      "chosen_interpretation": "Write a non-null my_start and my_end on every new row (codes without my_start are skipped; an open end becomes 2019 + 1) and leave both column declarations unchanged; test_every_vref_row_has_a_window keeps the property.",
+      "blocks_first_edit": false
+    }
+  ],
+  "work_completed_before_stop": [
+    "First action and Preconditions run: branch fix/T-VINA-13b, HEAD 6da3b90 (parent 8592bb3), clean tree, 'checked'",
+    "reach.py on the base: equals P3; vina13b_measure.py: equals P1 and P4",
+    "Merge prototype run on throwaway copies of vref.db (deleted after use): 5 window/status options, 3 guard options, per-field attribution over 1,131 real VINs, 43 suite VIN literals",
+    "C6 probes on the base: 16 failed, 35 passed",
+    "Progress note with readiness lines, assumptions, the full plan and the prediction script (appendix)"
+  ],
+  "not_done": [
+    "No repo file except the progress note and this record was written; tool, tests, builder edit and merge wait for Cowork's plan review"
+  ],
+  "cheats_declined": [
+    "Did not edit test_decoder.py to make the boxer test match a one-bank decode",
+    "Did not write is_v_engine = 1 for boxer codes (that would state a V engine TecDoc does not state)",
+    "Did not set DBS_ROOT to a real path to fake CoC enrichment"
+  ],
+  "dispatch_rounds_spent": 1
+}
