@@ -38,7 +38,7 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 | T-VINA-15 | (not authored) | deferred | T-VINA-13b | — | — | the 13 shipped vref rows with has_maf 0 and has_map 0 decode with neither sensor (MAP_ONLY); measure and correct |
 | T-VINA-16 | (not authored) | deferred | T-VINA-14 | — | — | engine_ref cylinder column read over a wrong map count (AEB 6 cyl, TecDoc 4); G2 (i) 32 codes, 15 real VINs; pin shipped engine_ref count+digest (F-R3-1) |
 | T-VINA-17 | (not authored) | deferred | — | — | — | F-R3-3: type-code WMIs beyond WDB/WDC/WDD (VSA reads year 2001); WD3/WDA/WDF/WDZ/VDB unmeasured; measure first |
-| T-VINA-18 | `repo/labs/vinlab/tasks/T-VINA-18_catalog_21_pairs_docs(1).md` | pending | — | 2026-11-04 | 1/5 | F-R3-4 (docs): live catalog-size statements say 21 (ADR-0006, DNALab DLD/HLD/PRD) |
+| T-VINA-18 | `repo/labs/vinlab/tasks/T-VINA-18_catalog_21_pairs_docs(1).md` | done | — | 2026-11-04 | 1/5 | **ACCEPT 2026-11-04, score 97, t=3/1 — `repo/labs/vinlab/tasks/reviews/REVIEW_T-VINA-18.md`.** F-R3-4 (docs): live catalog-size statements say 21 (ADR-0006, DNALab DLD/HLD/PRD) |
 
 **Status values:** `pending` · `in_progress` · `done` · `blocked` · `deferred` · `superseded`
 
