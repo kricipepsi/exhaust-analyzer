@@ -1,0 +1,35 @@
+{
+  "schema": "blocker-record/2",
+  "task_id": "T-VINA-3",
+  "pack": "vina",
+  "task_file": "labs/vinlab/tasks/T-VINA-3_vref_year_window(2).md",
+  "date": "2026-11-04",
+  "phase": "implementation",
+  "prior_record": null,
+  "reached_first_edit": true,
+  "stopped": false,
+  "findings": [
+    {
+      "class": "UNSATISFIABLE",
+      "gist": "Criterion 2 (wired 41 passed) cannot hold after R1: apps/wired oil fixtures MW-009 use WBA4W9C5ZLYYYYYYY, which R1 now decodes as EURO_1, so MW-009 no longer routes to fault MW-009. Fixing needs an edit under apps/wired, outside Files to touch.",
+      "task_anchor": "labs/vinlab/tasks/T-VINA-3_vref_year_window(2).md:86",
+      "task_says": "2. dnalab, wired and ui report their P2 counts (step 3).",
+      "tree_says": "FAILED tests/test_oil_cases.py::test_oil_cases_route_to_expected_faults - assert 'MF-001' == 'MW-009'; with decoder.py stashed the same suite prints 41 passed",
+      "settling_command": "cd apps/wired && C:/4DApp/.venv/Scripts/python.exe -m pytest -q -p no:cacheprovider --basetemp=C:/4DApp/recheck/T-VINA-3/pt/w2 | tail -3",
+      "settling_output": "1 failed, 40 passed (base with decoder.py stashed: 41 passed)",
+      "severity": "soft",
+      "chosen_interpretation": "Implemented R1-R5 exactly as specified, left apps/wired untouched, recorded criterion 2 as NOT MET and the commit as partial; the wired fixture or its expectation is Cowork's to rule on.",
+      "blocks_first_edit": false
+    }
+  ],
+  "work_completed_before_stop": [
+    "R1-R5 implemented; vinlab 229 passed 8 skipped; year-window test 3 passed; dnalab 27, ui 30, probes 8 passed; M1 mutant fails 4 tests; ruff clean"
+  ],
+  "not_done": [
+    "apps/wired tests/test_oil_cases.py MW-009 (and any fixture using WBA4W9C5ZLYYYYYYY) not reconciled with the dropped vref row"
+  ],
+  "cheats_declined": [
+    "Did not edit apps/wired tests or fixtures outside Files to touch"
+  ],
+  "dispatch_rounds_spent": 1
+}
