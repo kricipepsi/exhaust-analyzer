@@ -360,8 +360,10 @@ class RobustVINDecoder:
                 if csv_fuel:
                     fuel_delivery = FuelDeliveryType(csv_fuel)
 
-            # number of banks — is_v_engine flag
-            banks = 2 if db_dict.get("is_v_engine") else 1
+            # number of banks — is_v_engine flag, or a map BOXER configuration: the TecDoc extract writes BOXER
+            # as is_v_engine 0 (tools/extract_tecdoc_1q2019.py:64), so only the map states it (T-VINA-14 R1)
+            csv_config = ((engine_row or {}).get("engine_configuration") or "").strip().upper()
+            banks = 2 if db_dict.get("is_v_engine") or csv_config.startswith("BOXER") else 1
 
             # euro emission category
             euro = EuroEmissionCategory(
@@ -451,11 +453,14 @@ class RobustVINDecoder:
         brand: str,
         induction_type: InductionType,
         number_of_banks: int,
+        *,
+        induction_stated: bool,
     ) -> tuple[int, InductionType, int]:
         """Apply last-resort cylinder heuristic fallback (T-VL-7).
 
         Fires only as last-resort when CSV + vref.db both failed to provide
-        a non-zero cylinder_count. Never overwrites real data.
+        a non-zero cylinder_count. Never overwrites real data: an induction
+        the applied vref.db row states is kept (T-VINA-14 R2).
         """
         if cylinder_count == 0:
             engine_code = (
@@ -466,7 +471,7 @@ class RobustVINDecoder:
             hint = _infer_cylinder(engine_code, displacement_liters, brand)
             if hint.count > 0:
                 cylinder_count = hint.count
-                if induction_type == InductionType.NATURALLY_ASPIRATED:
+                if not induction_stated and induction_type == InductionType.NATURALLY_ASPIRATED:
                     induction_type = InductionType(hint.induction)
                 # wiki: SEMANTIC_CONTRACT.md §4.1 — V/W/Boxer engines emit
                 # number_of_banks=2.  W16/W12 are 4-bank in metal; contract
@@ -645,6 +650,7 @@ class RobustVINDecoder:
             brand,
             _induction_type,
             _number_of_banks,
+            induction_stated=bool((db_dict.get("induction_type") or "").strip()),
         )
 
         _air_metering_architecture, _air_metering_strategy = self._derive_air_metering(

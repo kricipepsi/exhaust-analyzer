@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Merge the TecDoc 1Q2019 engine extract into vinlab/data/vref.db (T-VINA-13b).
+"""Merge the TecDoc 1Q2019 engine extract into vinlab/data/vref.db (T-VINA-13b, T-VINA-14).
 
 Inserts one engine_ref row per extract engine code whose normalised code
 (vinlab.db.tecdoc_query._normalise_code) vref.db does not hold yet. Existing
@@ -7,15 +7,23 @@ rows keep every value. The first run also rebuilds engine_ref with the
 builder's DDL (tools/build_vref_db.py CREATE_ENGINE_REF), in which has_maf and
 has_map accept NULL. A second run inserts nothing and writes nothing.
 
-A code is skipped when (plan approved in
-tasks/corrections/T-VINA-13b_plan_correction_20261104.md):
+The rows of one code (one per brand) are coalesced first (T-VINA-14 R3): each
+engine field takes the one non-blank value the brands state, or blank. Two
+displacement_cc values 1 cc apart also coalesce, to the value of the
+alphabetically first brand that states one. The row's brand is the
+alphabetically first brand.
+
+A code is skipped when (plans approved in
+tasks/corrections/T-VINA-13b_plan_correction_20261104.md and
+tasks/corrections/T-VINA-14_plan_correction_20261104.md):
   in_vref             its normalised code is already in engine_ref
-  collision           its rows (one per brand) differ in an engine field (R2)
+  collision           an engine field holds two non-blank values that do not coalesce
   status              a row has a status other than OK, FAMILY or AMBIGUOUS
   no_my_start         a row has no my_start
   span_gap            its brand production spans leave more than one missing year (C3)
-  map_banks           G1: the engine map gives a bank count the row would lose
-  cylinder_heuristic  G2: the decoder's cylinder fallback would contradict TecDoc
+  map_banks           G1: a blank extract is_v_engine with a map V or W configuration
+  cylinder_heuristic  G2: the decoder's cylinder fallback would set a cylinder count
+                      or a second bank that TecDoc contradicts
 
 Stdlib plus this lab's own package. Usage:
   python tools/merge_tecdoc_extract.py [--db PATH] [--extract PATH] [--map PATH]
@@ -86,7 +94,6 @@ OPEN_END_YEAR = 2019
 MODEL_YEAR_LAG = 1
 # correction 01, C3: brand production spans further apart than this many missing years are not one window
 MAX_SPAN_GAP_YEARS = 1
-NATURALLY_ASPIRATED = "NATURALLY_ASPIRATED"
 SKIP_REASONS = (
     "in_vref", "collision", "status", "no_my_start", "span_gap", "map_banks", "cylinder_heuristic",
 )
@@ -143,13 +150,13 @@ def _flag(raw: str) -> int:
 
 
 def _two_bank(config: str) -> bool:
-    # source: decoder.py:278-280 and :474-477 (V/W/BOXER configurations emit number_of_banks=2)
+    # source: decoder.py:278-280 and :479-482 (V/W/BOXER configurations emit number_of_banks=2)
     config = config.upper()
     return config[:1] in ("V", "W") or config.startswith("BOXER")
 
 
 def _map_cylinders_unknown(raw: str) -> bool:
-    # source: decoder.py:270-274 and :461 (a blank, 0 or non-integer map count leaves cylinder_count 0)
+    # source: decoder.py:270-274 and :465 (a blank, 0 or non-integer map count leaves cylinder_count 0)
     try:
         return int(raw) == 0
     except ValueError:
@@ -175,30 +182,53 @@ def _span_gap(group: list[dict[str, str]]) -> bool:
     return False
 
 
-def _g1_map_banks(row: dict[str, str], map_rows: list[dict[str, str]]) -> bool:
-    """G1: the row would replace a two-bank map configuration with one bank.
+def _one_cc_spread(values: set[str]) -> bool:
+    """True for exactly two displacement_cc values 1 cc apart (T-VINA-14 R3)."""
+    if len(values) != 2:
+        return False
+    low, high = sorted(int(v) for v in values)
+    return high - low == 1
 
-    The extract writes BOXER as is_v_engine 0 (extract_tecdoc_1q2019.py:64) and
-    decoder.py:364 reads 0, and a blank written as 0, as one bank.
+
+def _coalesce(group: list[dict[str, str]]) -> dict[str, str] | None:
+    """Coalesce the brand rows of one code (sorted by brand), or None when they collide.
+
+    Each COLLISION_FIELDS field takes the first non-blank value in brand order,
+    or blank. A field with two distinct non-blank values is a collision, except
+    displacement_cc with two values 1 cc apart.
     """
-    configs = [m["engine_configuration"].upper() for m in map_rows]
-    if any(c.startswith("BOXER") for c in configs):
-        return True
-    return not row["is_v_engine"] and any(_two_bank(c) for c in configs)
+    row = dict(group[0])
+    for field in COLLISION_FIELDS:
+        values = [r[field] for r in group if r[field]]
+        distinct = set(values)
+        if len(distinct) > 1 and not (field == "displacement_cc" and _one_cc_spread(distinct)):
+            return None
+        row[field] = values[0] if values else ""
+    return row
+
+
+def _g1_map_banks(row: dict[str, str], map_rows: list[dict[str, str]]) -> bool:
+    """G1: a blank extract is_v_engine, written 0, would replace a map V or W configuration's second bank.
+
+    The decoder gives a row two banks for is_v_engine 1 or a map BOXER
+    configuration (decoder.py _apply_vref_techmask, T-VINA-14 R1), so a map
+    BOXER loses nothing. A stated 0 against a map V or W is TecDoc's value.
+    """
+    return not row["is_v_engine"] and any(m["engine_configuration"].upper()[:1] in ("V", "W") for m in map_rows)
 
 
 def _g2_cylinder_heuristic(row: dict[str, str], map_rows: list[dict[str, str]]) -> bool:
     """G2: with the row, the decoder's cylinder fallback would emit a value TecDoc contradicts.
 
-    _cylinder_fallback (decoder.py:446-478) runs infer_cylinder on the row's
-    displacement when the map row has no cylinder count. It may set a count,
-    replace a NATURALLY_ASPIRATED induction and add a second bank. Skip the code
-    when that differs from the no-row decode and TecDoc states otherwise.
+    _cylinder_fallback (decoder.py) runs infer_cylinder on the row's
+    displacement when the map row has no cylinder count. It may set a count
+    and add a second bank. Skip the code when that differs from the no-row
+    decode and TecDoc states otherwise. The fallback keeps an induction the
+    row states (T-VINA-14 R2), so G2 has no induction test.
     """
     if not row["displacement_cc"]:
         return False
     tecdoc_liters = int(row["displacement_cc"]) / 1000.0
-    stated_na = (row["induction_type"] or NATURALLY_ASPIRATED) == NATURALLY_ASPIRATED
     for m in map_rows:
         if not _map_cylinders_unknown(m["cylinder_count"]):
             continue
@@ -207,10 +237,6 @@ def _g2_cylinder_heuristic(row: dict[str, str], map_rows: list[dict[str, str]]) 
         if after.count <= 0:
             continue
         if row["cylinder_count"] and after.count != int(row["cylinder_count"]) and after.count != before.count:
-            return True
-        if stated_na and after.induction != NATURALLY_ASPIRATED and (
-            before.count <= 0 or before.induction != after.induction
-        ):
             return True
         if row["is_v_engine"] != "1" and _two_bank(after.config) and not (
             before.count > 0 and _two_bank(before.config)
@@ -222,12 +248,13 @@ def _g2_cylinder_heuristic(row: dict[str, str], map_rows: list[dict[str, str]]) 
 def _skip_reason(
     code: str,
     group: list[dict[str, str]],
+    row: dict[str, str] | None,
     existing: set[str],
     map_rows: list[dict[str, str]],
 ) -> str | None:
     if code in existing:
         return "in_vref"
-    if len({tuple(r[f] for f in COLLISION_FIELDS) for r in group}) > 1:
+    if row is None:
         return "collision"
     if any(r["status"] not in ALLOWED_STATUSES for r in group):
         return "status"
@@ -235,15 +262,15 @@ def _skip_reason(
         return "no_my_start"
     if _span_gap(group):
         return "span_gap"
-    if _g1_map_banks(group[0], map_rows):
+    if _g1_map_banks(row, map_rows):
         return "map_banks"
-    if _g2_cylinder_heuristic(group[0], map_rows):
+    if _g2_cylinder_heuristic(row, map_rows):
         return "cylinder_heuristic"
     return None
 
 
-def _new_row(group: list[dict[str, str]]) -> dict[str, Any]:
-    first = group[0]
+def _new_row(first: dict[str, str], group: list[dict[str, str]]) -> dict[str, Any]:
+    """Build the engine_ref row from the coalesced row (engine fields) and the group (window)."""
     my_start = min(int(r["my_start"]) for r in group)
     my_end = max(int(r["my_end"]) if r["my_end"] else OPEN_END_YEAR for r in group) + MODEL_YEAR_LAG
     return {
@@ -284,11 +311,14 @@ def select_rows(
     skipped: dict[str, list[str]] = {reason: [] for reason in SKIP_REASONS}
     for code in sorted(by_code):
         group = sorted(by_code[code], key=lambda r: r["brand"])
-        reason = _skip_reason(code, group, existing, map_rows.get(code, []))
-        if reason is None:
-            rows.append(_new_row(group))
-        else:
+        row = _coalesce(group)
+        reason = _skip_reason(code, group, row, existing, map_rows.get(code, []))
+        if reason is not None:
             skipped[reason].append(code)
+        elif row is None:
+            raise RuntimeError(f"{code}: rows collide but no skip reason was given")
+        else:
+            rows.append(_new_row(row, group))
     return rows, {reason: tuple(codes) for reason, codes in skipped.items()}
 
 

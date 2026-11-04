@@ -1,4 +1,4 @@
-"""Tests for tools/merge_tecdoc_extract.py (T-VINA-13b).
+"""Tests for tools/merge_tecdoc_extract.py (T-VINA-13b; G1, G2 and the coalesce rule: T-VINA-14).
 
 Each test merges into a temporary vref.db in its pre-T-VINA-13b state: the
 shipped engine_ref rows minus those the merge added, in the schema shipped
@@ -273,10 +273,14 @@ def test_ambiguous_code_is_inserted(tool, tmp_path, db):
     assert row["displacement_cc"] is None
 
 
-def test_map_boxer_code_is_skipped(tool, tmp_path, db):
+def test_map_boxer_code_is_inserted(tool, tmp_path, db):
+    # T-VINA-14 R1: the decoder gives a row on a map BOXER two banks, so is_v_engine 0 loses nothing.
     report = _merge(tool, tmp_path, db, [_extract_row()], [_map_row(engine_configuration="BOXER_4")])
-    assert report.inserted == ()
-    assert report.skipped["map_banks"] == ("ZZ9NEW",)
+    assert report.inserted == ("ZZ9NEW",)
+    assert report.skipped["map_banks"] == ()
+    row = _row(db, "ZZ9NEW")
+    assert row is not None
+    assert row["is_v_engine"] == 0
 
 
 def test_blank_is_v_engine_with_v_map_is_skipped(tool, tmp_path, db):
@@ -288,14 +292,83 @@ def test_blank_is_v_engine_with_v_map_is_skipped(tool, tmp_path, db):
     assert report.skipped["map_banks"] == ("ZZ9NEW",)
 
 
-def test_cylinder_heuristic_hazard_is_skipped(tool, tmp_path, db):
-    # The Skoda brand rule reads 1.198 L as a 1.2 TSI (I3 TURBOCHARGED); TecDoc states NATURALLY_ASPIRATED.
+def test_stated_na_heuristic_code_is_inserted(tool, tmp_path, db):
+    # The Skoda brand rule reads 1.198 L as a 1.2 TSI (I3 TURBOCHARGED); TecDoc states NATURALLY_ASPIRATED, and
+    # T-VINA-14 R2 keeps a stated induction in the decoder, so G2 has no induction test.
     extract = _extract_row(brand="SKODA", engine_code="ZZ5SKQ", displacement_cc="1198", cylinder_count="3")
     map_row = _map_row(brand="SKODA", engine_code="ZZ5SKQ", engine_displacement="", cylinder_count="",
                        engine_configuration="")
     report = _merge(tool, tmp_path, db, [extract], [map_row])
+    assert report.inserted == ("ZZ5SKQ",)
+    assert report.skipped["cylinder_heuristic"] == ()
+    row = _row(db, "ZZ5SKQ")
+    assert row is not None
+    assert row["induction_type"] == "NATURALLY_ASPIRATED"
+
+
+def test_blank_against_value_collision_is_coalesced(tool, tmp_path, db):
+    rows = [
+        _extract_row(brand="BRANDA", engine_code="ZZ2BLK", euro_norm="", valvetrain_type=""),
+        _extract_row(brand="BRANDB", engine_code="ZZ2BLK", euro_norm="euro4", valvetrain_type="SOHC",
+                     induction_type=""),
+    ]
+    report = _merge(tool, tmp_path, db, rows)
+    assert report.inserted == ("ZZ2BLK",)
+    assert report.skipped["collision"] == ()
+    row = _row(db, "ZZ2BLK")
+    assert row is not None
+    assert row["brand"] == "BRANDA"
+    assert row["euro_norm"] == "euro4"
+    assert row["valvetrain_type"] == "SOHC"
+    assert row["induction_type"] == "NATURALLY_ASPIRATED"
+
+
+def test_one_cc_collision_takes_first_stating_brand_cc(tool, tmp_path, db):
+    rows = [
+        _extract_row(brand="BRANDA", engine_code="ZZ2ONE", displacement_cc=""),
+        _extract_row(brand="BRANDB", engine_code="ZZ2ONE", displacement_cc="1598"),
+        _extract_row(brand="BRANDC", engine_code="ZZ2ONE", displacement_cc="1597"),
+    ]
+    report = _merge(tool, tmp_path, db, rows)
+    assert report.inserted == ("ZZ2ONE",)
+    row = _row(db, "ZZ2ONE")
+    assert row is not None
+    assert row["brand"] == "BRANDA"
+    assert row["displacement_cc"] == 1598
+
+
+def test_two_cc_spread_stays_collision(tool, tmp_path, db):
+    # PIN
+    rows = [
+        _extract_row(brand="BRANDA", engine_code="ZZ2TWO", displacement_cc="1597"),
+        _extract_row(brand="BRANDB", engine_code="ZZ2TWO", displacement_cc="1599"),
+    ]
+    report = _merge(tool, tmp_path, db, rows)
     assert report.inserted == ()
-    assert report.skipped["cylinder_heuristic"] == ("ZZ5SKQ",)
+    assert report.skipped["collision"] == ("ZZ2TWO",)
+
+
+def test_three_cc_values_stay_collision(tool, tmp_path, db):
+    # PIN (correction 01, C2): adjacent 1 cc steps are not one value.
+    rows = [
+        _extract_row(brand="BRANDA", engine_code="ZZ2THR", displacement_cc="1597"),
+        _extract_row(brand="BRANDB", engine_code="ZZ2THR", displacement_cc="1598"),
+        _extract_row(brand="BRANDC", engine_code="ZZ2THR", displacement_cc="1599"),
+    ]
+    report = _merge(tool, tmp_path, db, rows)
+    assert report.inserted == ()
+    assert report.skipped["collision"] == ("ZZ2THR",)
+
+
+def test_non_displacement_conflict_stays_collision(tool, tmp_path, db):
+    # PIN (correction 01, C2)
+    rows = [
+        _extract_row(brand="BRANDA", engine_code="ZZ2IND", induction_type="NATURALLY_ASPIRATED"),
+        _extract_row(brand="BRANDB", engine_code="ZZ2IND", induction_type="TURBOCHARGED"),
+    ]
+    report = _merge(tool, tmp_path, db, rows)
+    assert report.inserted == ()
+    assert report.skipped["collision"] == ("ZZ2IND",)
 
 
 def test_cylinder_heuristic_two_bank_hint_alone_is_skipped(tool, tmp_path, db):
