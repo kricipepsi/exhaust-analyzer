@@ -85,10 +85,13 @@ def test_registry_majority_counts_petrol_vins(tool, tmp_path):
         "JTMBD31V005157992;SUBARU;D",  # diesel: not counted
         "JTMBD31V005157993;SUBARU;D",
         "JTMBD31V00515799;SUBARU;P",  # 16 characters: not counted
+        "JTMBD31V00515798;SUBARU;P",  # 16 characters: not counted (without the filter SUBARU wins 3:2)
         "TMBBD41Z072000001;ŠKODA;P",  # written as the cp1250 byte 0x8A
     ]
     path = tmp_path / "Nio_vozila_1.csv"
-    path.write_bytes("\r\n".join(lines).encode("cp1250"))
+    # 0x98 has no cp1250 character: 3 rows read as U+FFFD brands, which must not win JTM
+    undefined = b"\r\n".join(b"JTMBD31V00515799%d;\x98\x98;P" % i for i in (4, 5, 6))
+    path.write_bytes("\r\n".join(lines).encode("cp1250") + b"\r\n" + undefined)
     assert tool._registry_majority([path]) == {"JTM": "TOYOTA", "TMB": "ŠKODA"}
 
 

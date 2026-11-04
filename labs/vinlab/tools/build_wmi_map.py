@@ -69,7 +69,7 @@ def _registry_majority(nio_csvs: Sequence[Path]) -> dict[str, str]:
                     continue
                 vin = (row.get("E-VIN") or "").strip().upper()
                 brand = (row.get("D1-Znamka") or "").strip().upper()
-                if len(vin) == 17 and brand:
+                if len(vin) == 17 and brand and "\ufffd" not in brand:
                     counts[vin[:3]][brand] += 1
     return {wmi: c.most_common(1)[0][0] for wmi, c in counts.items()}
 
