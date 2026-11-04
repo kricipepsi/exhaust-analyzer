@@ -42,8 +42,8 @@ env, principles) · `DECISIONS.md` · `ROADMAP.md` · `CLAUDE.local.md` (machine
   pre-built code index). Querying or building a *new* index offline is fine; rebuilding a
   frozen one is the recurring mistake.
 - **Never edit `Vault/`** (archived mirror) — edit the live `labs/<lab>/` source.
-- **Git:** the only git action is the final commit, run **by the owner, by explicit
-  path**. Never branch, stash, or raise git as a blocker. (Full ritual in `4DLab_CLAUDE.md`.)
+- **Git:** work on the branch the task names; never commit to `main` (production). Full rule:
+  `4DLab_CLAUDE.md` §Git.
 - **No secrets in files**, ever.
 
 ## You may refine this

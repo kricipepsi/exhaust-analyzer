@@ -103,7 +103,7 @@ T-V3-3 surfacing; confirm against the current run.)
 - **No `graphify` / frozen-graph rebuild.** (Weights load live from the registry, so reweights don't
   need it; querying/building a *new* index offline is fine.)
 - **No secrets in files.** **Synthetic sensor values are allowed provisionally** — grounded in the case's oracle fault + research band, tolerance-wide, `synthetic=true`-flagged, calibrated on real data (`4DLab_CLAUDE.md` §Provisional synthetic signals). Signal/noise structural rule (named producer + consumer) still holds.
-- **Git:** the only git action is the **owner's** final commit, by explicit path. Never branch/stash.
+- **Git:** work on the branch the task names; never commit to `main` (production). Full rule: `4DLab_CLAUDE.md` §Git.
 - Progressive disclosure: split any task that both *discloses* a number and *commits* a policy; author
   only the next runnable task in full, forward-register the rest in `V3_PROGRESS.md`.
 

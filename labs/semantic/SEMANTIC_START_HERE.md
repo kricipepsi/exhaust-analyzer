@@ -72,5 +72,5 @@ T-SEM-4 gate makes this mechanical.
 
 ## Git
 
-Per CLAUDE.md: the only git action is the final commit, run by the **owner** in a terminal (bash), staging the
-task's deliverables by **explicit path**. Never branch/stash; never raise git as a blocker.
+Per `4DLab_CLAUDE.md` §Git: work on the branch the task names, and commit the task's deliverables by **explicit
+path**. Never commit to `main`: it is production.

@@ -200,8 +200,8 @@ values.** Families that remain unseparable after this honestly **abstain** rathe
   frozen `FL_YARDSTICK_2026-06-30` stays the historical BEFORE. The scoreboard refuses on hash
   mismatch by design.
 - **Project canon:** never edit `Vault/` (edit live `labs/<lab>/`); never re-run `graphify` /
-  rebuild a frozen graph; no secrets in files; the only git action is the **owner's** final
-  commit by explicit path.
+  rebuild a frozen graph; no secrets in files; work on the branch the task names and never
+  commit to `main` (production) (`4DLab_CLAUDE.md` §Git).
 
 ---
 

@@ -26,9 +26,8 @@ Start sequence (§1) is done.
 - **One task per session — HARD STOP.** Finish one row, fill both gate blocks,
   update the ledger, then STOP. Do not start a second row, even if unblocked or
   named.
-- **Git:** the only git action is the final commit, run **by the user** in
-  PowerShell, staging deliverables **by explicit path**. Never branch/stash; never
-  raise git as a blocker.
+- **Git:** work on the branch the task names; never commit to `main` (production). Full rule:
+  `4DLab_CLAUDE.md` §Git.
 - **Do not load the redirect stub** at `_skills/pythonskill/python/SKILL.md`
   — it is a dead pointer. The real skill paths are in §1.3 and §3.
 
