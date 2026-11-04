@@ -1026,8 +1026,8 @@ wmi,brand,country,era_hint
 1BN,Beall Trailers,UNITED STATES (USA),modern
 1BT,SPORTSMAN,UNITED STATES (USA),modern
 1C2,Chrysler,UNITED STATES (USA),modern
-1C3,Lancia,UNITED STATES (USA),modern
-1C4,Lancia,ITALY,modern
+1C3,CHRYSLER,UNITED STATES (USA),modern
+1C4,JEEP,ITALY,modern
 1C5,Chrysler,UNITED STATES (USA),modern
 1C6,Lancia,UNITED STATES (USA),modern
 1C7,Lancia,UNITED STATES (USA),modern
@@ -8136,7 +8136,7 @@ wmi,brand,country,era_hint
 3BZ,GRUPO REMOLQUES del NORTE,MEXICO,modern
 3C2,Chrysler,MEXICO,modern
 3C3,Lancia,MEXICO,modern
-3C4,Lancia,MEXICO,modern
+3C4,JEEP,MEXICO,modern
 3C5,Chrysler,MEXICO,modern
 3C6,Lancia,MEXICO,modern
 3C7,Lancia,MEXICO,modern
@@ -8324,7 +8324,7 @@ wmi,brand,country,era_hint
 3MW,BMW,GERMANY,modern
 3MY,Toyota,MEXICO,modern
 3MZ,Mazda,MEXICO,modern
-3N1,Infiniti,MEXICO,modern
+3N1,NISSAN,MEXICO,modern
 3N6,Infiniti,MEXICO,modern
 3N8,Nissan,MEXICO,modern
 3N9001,Nacional De Carrocerias Sa De Cv,MEXICO,modern
@@ -11380,7 +11380,7 @@ wmi,brand,country,era_hint
 5TA,PARK COTTAGES,UNITED STATES (USA),modern
 5TB,Toyota,UNITED STATES (USA),modern
 5TC,"CRUISERS MFG, INC (CMI)",UNITED STATES (USA),modern
-5TD,Lexus,UNITED STATES (USA),modern
+5TD,TOYOTA,UNITED STATES (USA),modern
 5TE,Toyota,UNITED STATES (USA),modern
 5TF,Toyota,UNITED STATES (USA),modern
 5TG,SMART TRANSPORT SOLUTIONS,UNITED STATES (USA),modern
@@ -12322,13 +12322,13 @@ JT6,Lexus,JAPAN,modern
 JT8,Lexus,JAPAN,modern
 JTB,TOYOTA,,modern
 JTD,Toyota,CZECH REPUBLIC,modern
-JTE,Subaru,BELGIUM,modern
+JTE,TOYOTA,BELGIUM,modern
 JTH,Lexus,JAPAN,modern
 JTI,TOYOTA,,modern
 JTJ,Lexus,JAPAN,modern
 JTK,Toyota,JAPAN,modern
 JTL,Toyota,JAPAN,modern
-JTM,Subaru,BELGIUM,modern
+JTM,TOYOTA,BELGIUM,modern
 JTN,Toyota,JAPAN,modern
 JTS,Toyota,JAPAN,modern
 JVA,YAMAHA,,modern
@@ -12373,7 +12373,7 @@ KN9CAU,BOGO,SOUTH KOREA,modern
 KN9CGS,VESTA,SOUTH KOREA,modern
 KNA,Kia,SOUTH KOREA,modern
 KND,Kia,SOUTH KOREA,modern
-KNE,Hyundai,SOUTH KOREA,modern
+KNE,KIA,SOUTH KOREA,modern
 KNJ,Ford,SOUTH KOREA,modern
 KNL,Kia,SOUTH KOREA,legacy
 KNM,Nissan,SOUTH KOREA,modern
@@ -12595,6 +12595,7 @@ LS8,SHAOLIN BUS,,modern
 LSB,SHANGHAI HUIZHONG AUTOMOTIVE MANUFACTURING,CHINA,modern
 LSE,"Foshan Shunde F1 Transport Engineering Co., Ltd",CHINA,modern
 LSG,Cadillac,UNITED STATES (USA),modern
+LSJ,MG,CHINA,modern
 LSR,Chongqing Hi-Bird Motorcycle,CHINA,modern
 LSS,ASIAWING,,modern
 LT1,Yangzhou Tonghua Semi-Trialer,CHINA,modern
@@ -13036,7 +13037,7 @@ VF4,TALBOT,,modern
 VF5,YAMAHA,,modern
 VF6,RENAULT,,modern
 VF7,CITROEN,FRANCE,modern
-VF8,MATRA,FRANCE,modern
+VF8,RENAULT,FRANCE,modern
 VF9045,ADOC,FRANCE,modern
 VF9391,Cryolor,FRANCE,modern
 VF9795,Bugatti,UNITED STATES (USA),modern
@@ -13296,7 +13297,7 @@ ZA9F76,Pagani,ITALY,modern
 ZA9K49,CRP Racing,ITALY,modern
 ZA9M91,AUTOMOBILI PININFARINA,GERMANY,modern
 ZAA,LANCIA,ITALY,legacy
-ZAC,Ram,ITALY,modern
+ZAC,JEEP,ITALY,modern
 ZAF,FIAT,,legacy
 ZAM,Maserati,ITALY,modern
 ZAP,VESPA,ITALY,legacy
