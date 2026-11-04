@@ -1,7 +1,7 @@
 {
   "_case_id": "MW-009",
   "_provenance": "OilburnCases.md §P_NEW_13; OIL_CASE_SIGNATURES_5FR.md §1; archived T-WV2-2 routed baseline",
-  "vin": "WBA4W9C5ZLYYYYYYY",
+  "vin": "VF7SA5FR8AW511081",
   "triage": {
     "tier_1": "rough_idle_shudder",
     "tier_2": "constant_vibration_shudder",
