@@ -126,6 +126,7 @@ they are **not** serialised:
 | `engine_not_in_csv` | no `vds_full`/`pos_8_only` match | NONE |
 | `no_engine_code` | engine row present but blank engine_code | PARTIAL |
 | `engine_not_in_vref` | engine_code not in `vref.db` | PARTIAL |
+| `vref_year_out_of_window` | model year outside the matched `vref.db` row's `my_start`-`my_end`; row not applied | PARTIAL |
 | `coc_null_<field>` | a core CoC field is NULL (first of 9 checked) | PARTIAL |
 
 The 9 CoC fields that drive the downgrade: `target_lambda_v112`, `target_rpm_u2`,

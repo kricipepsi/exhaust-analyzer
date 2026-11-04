@@ -114,9 +114,9 @@ def test_vin_dna_round_trips_rated_rpm():
 
 
 def test_decode_known_engine_code_yields_rated_rpm(decoder):
-    """B58B30 fixture reads P14_rated_rpm median from the vref baseline."""
-    dna = decoder.decode_vin_payload("WBA4W9C5ZLYYYYYYY")
-    assert dna.rated_rpm == 5500
+    """An in-window 5FR row reads P14_rated_rpm median from the vref baseline."""
+    dna = decoder.decode_vin_payload("VF7SA5FR8AW511081")
+    assert dna.rated_rpm == 6000
 
 
 def test_decode_unknown_engine_code_leaves_rated_rpm_none(decoder):

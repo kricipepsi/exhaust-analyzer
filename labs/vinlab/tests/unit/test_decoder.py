@@ -385,19 +385,28 @@ class TestYearPassthrough:
 
 
 class TestDbRowPath:
-    def test_bmw_with_vref_match(self, decoder):
-        """BMW VIN with engine_code in both CSV and vref.db hits db_row path."""
-        dna = decoder.decode_vin_payload("WBA4W9C5ZLYYYYYYY")
-        assert dna.make == "BMW"
-        assert dna.model_year == 1990
+    def test_vin_with_vref_match_in_window(self, decoder):
+        """A VIN whose engine row covers its model year hits the db_row path (5FR row 2010-2015)."""
+        dna = decoder.decode_vin_payload("VF7SA5FR8AW511081")
+        assert dna.make == "CITROEN"
+        assert dna.model_year == 2010
         assert dna.engine_displacement_liters > 0
-        assert dna.confidence == "PARTIAL"  # co_low_idle is NULL
+        assert dna.confidence == "HIGH"
         assert dna.fuel_delivery_type == "GDI"
         assert dna.induction_type == "TURBOCHARGED"
-        assert dna.euro_emission_category == "EURO_6"
-        # CoC field from vref.db
-        assert dna.idle_rpm_low == 714
-        assert dna.co_low_idle is None
+        assert dna.euro_emission_category == "EURO_5"
+        # CoC fields from vref.db
+        assert dna.idle_rpm_low == 700
+        assert dna.co_low_idle == 0.5
+
+    def test_vin_with_vref_match_out_of_window(self, decoder):
+        """WBA4W9C5ZLYYYYYYY decodes as 1990, outside its engine row's window: the row is not applied."""
+        dna = decoder.decode_vin_payload("WBA4W9C5ZLYYYYYYY")
+        assert dna.model_year == 1990
+        assert dna.confidence == "PARTIAL"
+        assert dna.euro_emission_category == "EURO_1"
+        assert dna.rated_rpm is None
+        assert dna.idle_rpm_low is None
 
 
 class TestPreCleanAndChassisNumberError:

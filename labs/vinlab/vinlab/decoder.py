@@ -581,6 +581,12 @@ class RobustVINDecoder:
                 db_row = lookup_engine_ref(self.db_path, engine_code)
                 if db_row is None:
                     conf_flags.append("engine_not_in_vref")
+                elif model_year is not None and not (
+                    int(db_row["my_start"]) <= model_year <= int(db_row["my_end"])
+                ):
+                    # source: vref.db engine_ref my_start/my_end (F-C6-4): the row's tech-mask holds only inside its window
+                    db_row = None
+                    conf_flags.append("vref_year_out_of_window")
             else:
                 conf_flags.append("no_engine_code")
         else:
