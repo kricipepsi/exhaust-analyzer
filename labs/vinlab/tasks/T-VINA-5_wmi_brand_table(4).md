@@ -76,7 +76,9 @@ not edit it.
     differing key, the winner's `majority_share` becomes winner votes / all votes on the key (files 1+2, 3
     decimals). Non-differing collisions and keys without a right-brand row: the plan's rule (right wins; copy).
     MAYBACH, DATSUN and STERLING MOTOR CAR originals are deleted; GENESIS and KAWASAKI originals stay. After the edit,
-    no exact or folded key is duplicated: the edit script asserts it.
+    no exact key is duplicated map-wide, the edit adds no folded duplicate (the set after is a subset of the set
+    before: the base holds 123, 119 of them `MERCEDES BENZ`/`MERCEDES-BENZ`, which stay), and every key the edit
+    writes has exactly one row under its folded key. The edit script asserts all three (correction 02, B7).
   - **Expected (P6).** Picks: wrong 109, right 24. Held-out file 3, VINs on the 133 keys whose code equals the
     winner's: **1,872** of 2,813 (right-wins rule 459, wrong-wins 1,754). File 3 decides 104 keys, and the vote agrees
     on 84 of them. `MERCEDES-BENZ_20102` → `102962`; `NISSAN_BAAN1` → `QG15`. Before the first edit, round 2

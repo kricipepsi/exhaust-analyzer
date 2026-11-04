@@ -38,3 +38,8 @@ cold read 2026-11-04: skipped, plan-gated (Plan: REQUIRED; the plan review and i
   findings, re-derived (`C:/4DApp/recheck/scratch/vina5_rederive.py`): F1 upheld after the registry measurement
   (Nio file 3 held out: right wins 459 VINs, the files-1+2 vote 1,872 → R2 is the vote), F2-F7 upheld (F5 my defect, R3).
   Record: `corrections/T-VINA-5_plan_correction_20261104.md`.
+- **02 (2026-11-04, implementation hand-back B7, soft, not stopped).** R2's "no exact or folded key is duplicated"
+  was unsatisfiable: the base map already holds 123 folded duplicates (119 `MERCEDES BENZ`/`MERCEDES-BENZ`), most
+  outside R2's keys. Re-derived (same settling output). My defect: I measured the two spellings in correction 01 and
+  still wrote a map-wide assertion. R2 now asserts zero exact dups, no new folded dup, and one row per written key
+  (the implementer's chosen interpretation). Map-wide spelling dedupe → T-VINA-11.
