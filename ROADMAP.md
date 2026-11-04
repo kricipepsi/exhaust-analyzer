@@ -55,9 +55,9 @@ its research question (#5) is folded into the gate above.
 
 ## Governing constraints (unchanged, apply to every stage)
 
-- **Signal/noise:** every field/enum value added to any schema needs a named,
-  existing consumer in COMLab analytics or fault-atlas routing. No consumer → it
-  doesn't ship. This is the one rule that governs every v2 change.
+- **Signal/noise:** every field/enum value added to any schema needs a named
+  consumer in COMLab analytics or fault-atlas routing. The consumer may be one
+  you add in the same change (`AGENTS.md` rule 4). No consumer → it doesn't ship. This is the one rule that governs every v2 change.
 - **v2 wiki is canonical** for the lab being reworked (e.g. GASLab → `docs/GASLab/wikiNEW/`);
   code reconciles *up to* the wiki. Legacy `v2/`, `v6/`, and v1 wikis are not truth.
 - **No cross-lab Python imports;** consumers mirror types locally.

@@ -4,10 +4,9 @@ One line per active assignment: `<Coder> → <TaskID>`. One task per coder per s
 The spec lives at `labs/<lab>/tasks/<id>.md`. Never assign the same task ID to both coders.
 
 ## Active
-Agy → T-V3-P4-C5B   <!-- spec v3/v3_tasks/T-V3-P4-C5B_c5_signal_commit.md · owner go 2026-07-06.
-     C5R done + re-audited (Fix-2 provisional, Q-C5-EGR held — see DECISIONS.md). MUTATING commit,
-     STRICT dual-gate, one task per session. Firecrawl now auto-authenticated via run-*.sh.
-     Coders EXECUTE task files only — never author v3_tasks/ specs (architect lane). -->
+(none) The ledger picks the next task (`4DLab_CLAUDE.md`). An assignment that names a task which is
+not `pending` in its ledger is stale: the ledger wins.
+<!-- CLEARED 2026-11-05 (audit F-D3-4): Agy had T-V3-P4-C5B, which is `done` in v3/V3_PROGRESS.md. -->
 <!-- DONE 2026-06-29: all 6 GAS/OBD/DNA/VIN audits 3× + their unions; dtclab T-VLIVE-3c (7e8688a) + comlab RECONCILE-COM (c3e4453). -->
 
 <!-- QUEUED (architect, 2026-07-06, owner to activate — after T-V3-P4-C5B):
@@ -20,7 +19,7 @@ The Graph-Trust audit is READ-ONLY and each coder writes its own report
 `apps/vault/audit/reports/<lab>__<agent>.md`, so the same task ID may run on all three
 coders without collision — the redundancy IS the design (union of complementary models
 catches more, per EVAL-VLIVE-1). Spec: apps/vault/audit/T-GTA-METHOD.md.
-Codex + Agy + Claude → T-GTA-<lab>   <!-- paste T-GTA-METHOD as msg 1; run per the GRAPH_TRUST_AUDIT ledger; do NOT edit maps (discovery only). -->
+<!-- DONE (audit F-D3-4): Codex + Agy + Claude had T-GTA-<lab>; every row is `done` in apps/vault/audit/GRAPH_TRUST_PROGRESS.md. -->
 <!-- Codex → T-OBDV2-7 -->
 <!-- Agy   → T-GASV2-3 -->
 

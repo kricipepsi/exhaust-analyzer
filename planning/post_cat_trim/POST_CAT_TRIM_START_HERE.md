@@ -27,15 +27,15 @@ PCT-3 ─┘                                         (OBDLab emit)   (COMLab/reg
 | ID | Title | Lab | Depends | Status |
 |---|---|---|---|---|
 | PCT-1 | O2_MODEL_STRATEGY wiki: 3 configs + secondary loop + B1S2 semantics | wiki | — | pending |
-| PCT-2 | OBDLab wiki: B1S2 PIDs + post_cat_trim_bias channel + gates | wiki | PCT-1 | pending |
-| PCT-3 | VINLab/registry wiki: dual sensor-type + trim-role + per-mode evidence | wiki | PCT-1 | pending |
-| PCT-4 | Identity: upstream+downstream o2 type + trim role; seed 5FR | vinlab/dnalab | PCT-3 | pending |
-| PCT-5 | OBDLab schema+ingestion: shrtft_b1s2 / longft_b1s2 + DFCO state | obdlab | PCT-2,4 | pending |
-| PCT-6 | OBDLab core: B1S2 aggregation + derived post_cat_trim_bias enum | obdlab | PCT-5 | pending |
-| PCT-7 | COMLab: mirror B1S2 fields + perception_contradiction uses values | comlab | PCT-6 | pending |
-| PCT-8 | Registry: post-cat evidence on MW-001/002/008/009 (supersedes U-WV2-1/2) | registry | PCT-7 | pending |
-| PCT-9 | wiredV2 composition: forward fields + bias; 5 case fixtures | wiredV2 | PCT-8 | pending |
-| PCT-10 | E2E tests + corpus + sim-parity (5/5 match the simulation) | all | PCT-9 | pending |
+| PCT-2 | OBDLab wiki: B1S2 PIDs + post_cat_trim_bias channel + gates | wiki | PCT-1 | deferred |
+| PCT-3 | VINLab/registry wiki: dual sensor-type + trim-role + per-mode evidence | wiki | PCT-1 | deferred |
+| PCT-4 | Identity: upstream+downstream o2 type + trim role; seed 5FR | vinlab/dnalab | PCT-3 | deferred |
+| PCT-5 | OBDLab schema+ingestion: shrtft_b1s2 / longft_b1s2 + DFCO state | obdlab | PCT-2,4 | deferred |
+| PCT-6 | OBDLab core: B1S2 aggregation + derived post_cat_trim_bias enum | obdlab | PCT-5 | deferred |
+| PCT-7 | COMLab: mirror B1S2 fields + perception_contradiction uses values | comlab | PCT-6 | deferred |
+| PCT-8 | Registry: post-cat evidence on MW-001/002/008/009 (supersedes U-WV2-1/2) | registry | PCT-7 | deferred |
+| PCT-9 | wired composition: forward fields + bias; 5 case fixtures | wired | PCT-8 | deferred |
+| PCT-10 | E2E tests + corpus + sim-parity (5/5 match the simulation) | all | PCT-9 | deferred |
 
 ---
 
@@ -88,15 +88,15 @@ MW-008 ← DIVERGENT, MW-009 ← DFCO_NEGATIVE; retune competition so rings + PC
 **supersedes follow-ups U-WV2-1 / U-WV2-2**. **Files:** `labs/comlab/registry/rules/mechanical_wear.json`
 (+ rule tests). Numeric thresholds carry wiki cites (PCT-1/2). **Gate:** rule tests green.
 
-## PCT-9 — wiredV2 composition: wire it through
+## PCT-9 — wired composition: wire it through
 **Do:** forward upstream/downstream o2 types + B1S2 fields + bias through `composition.py` mapping with
-`# consumer:` comments; author/refresh 5 case fixtures (`cases/oil_*.json`) with B1S2 values from
-`OIL_CASE_SIGNATURES_5FR.md`. **Files:** `apps/wiredV2/wiredv2/composition.py`, `wiredv2/cases/`.
+`# consumer:` comments; author/refresh 5 case fixtures (`MW-*.json`) with B1S2 values from
+`OIL_CASE_SIGNATURES_5FR.md`. **Files:** `apps/wired/wired/composition.py`, `apps/wired/tests/fixtures/oil_cases/`.
 **Gate:** `run_case.py` prints MW-001..009 for the 5 cases.
 
 ## PCT-10 — End-to-end + sim parity
 **Do:** integration tests that all 5 oil cases route on the **real** pipeline to the same verdicts the
-simulation produces (5/5); add to corpus; full regression. **Files:** `apps/wiredV2/tests/`,
+simulation produces (5/5); add to corpus; full regression. **Files:** `apps/wired/tests/`,
 `labs/comlab/registry/corpus_curated.csv`. **Gate:** `pytest` green across touched labs; parity table
 matches `planning/sim/OIL_BURN_5FR_SIM_RESULTS.md`.
 

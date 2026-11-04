@@ -15,9 +15,9 @@ under `labs/`, the apps that compose over them under `apps/`, the generative tes
 1. Read `AGENTS.md` (the five rules).
 2. Read `ROADMAP.md` (the stage sequence: GASLab → OBDLab → DTCLab → COMLab **last**; DNALab feeds the
    COMLab prior).
-3. Open the active lab's ledger: `labs/<lab>/tasks/` — implement the **task ID the manager assigned**
-   you. (Running unassigned? Take the first `pending` task whose blockers are all `done`.) One task
-   per session.
+3. Open the active lab's ledger: `labs/<lab>/tasks/` — implement the task the ledger picks: the first
+   `pending` task whose blockers are all `done`. An assignment that names a task which is not
+   `pending` is stale: the ledger wins. One task per session.
 4. Infra (Python 3.14 sandbox restore, `.venv-wired`, git ritual) is inherited from root
    `4DLab/CLAUDE.md` — this workspace adds no infra of its own.
 

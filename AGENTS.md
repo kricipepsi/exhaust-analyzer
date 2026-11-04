@@ -57,8 +57,9 @@ is inherited from `4DLab_CLAUDE.md` (Linux-adapted; one shared host venv, run na
 
 - This file is the SHARED rule set. Your per-coder identity is injected at launch and lives at
   `.agent/coders/<you>/AGENTS.md` — read it first, then obey this file.
-- A task is a file: implement exactly the `labs/<lab>/tasks/<id>.md` the manager assigned (see
-  `.agent/assignments.md`). One task per session.
+- A task is a file: implement exactly one `labs/<lab>/tasks/<id>.md`, the one the ledger picks (the
+  first `pending` row whose blockers are all `done`). An assignment in `.agent/assignments.md` that
+  names a task which is not `pending` is stale: the ledger wins. One task per session.
 - "Done" = both gate blocks filled in `labs/<lab>/tasks/progress_notes/<id>.md`, any contracted field
   grep-confirmed read in a live path, and the `PROGRESS.md` row flipped to `done`. Then STOP.
 - Do not act as architect, reassign work, edit `.agent/coders/<the-other-coder>/`, or rebuild a graph.
