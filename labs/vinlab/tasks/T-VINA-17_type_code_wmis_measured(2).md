@@ -42,6 +42,7 @@ Done is `### Verification ###` passing with the P2 counts.
 |---|---|---|---|
 | P1 | vinlab `313 passed, 8 skipped`; `test_type_code_year.py` `9 passed`; C6 probes `-k "f3_model or f8_"` `8 passed`; dnalab `27 passed`, wired `41 passed`, ui `30 passed` | base `e4ad961` | steps 1-4 on the base |
 | P2 | vinlab `319 passed, 8 skipped`; `test_type_code_year.py` `15 passed`; probes `8 passed`; dnalab 27, wired 41, ui 30; M1 `6 failed`; M2 `4 failed` | Cowork's rehearsal copy | `C:/4DApp/.venv/Scripts/python.exe -I C:/4DApp/recheck/T-VINA-17/make_rh.py`, then the steps on the copy |
+| P4 | round 2 (after R5): vinlab `320 passed, 8 skipped`; `test_type_code_year.py` `16 passed`; M3 `1 failed`. Digit-form VINs of the set whose position 10 is not `1`: WDB 75, WDD 8, WDF 5, WME 3, WMX 1; WDF's 5 (`2` ×2, `J` ×2, `8` ×1) none within one year of its registration | Cowork's copy (`make_rh2.py`); the registry | `make_rh2.py`, then steps 1-2; `C:/4DApp/recheck/T-VINA-17/non1.py` (output `non1.out`) |
 | P3 | digit-form VINs (digits at 4-9) with `1` at position 10 and a first registration outside 2000-2002: VSA 286 of 443, WDF 4458 of 4536, WMX 25 of 25, 4JG 2 of 2, VDB 1 of 1. Out: WHE (its 4 digit-form VINs carry year codes that match), WDA (no digit-form VIN), WD3 and WDZ (no VIN) | Slovenian registry `D:/4DLab/4DLabV2/DBS/OPSI_podatki_reg._vozilih_30.06.2023/Nio_vozila_*.csv` | `C:/4DApp/recheck/T-VINA-17/registry.py` (Cowork; output `registry2.out`) |
 
 `$PY` is `C:/4DApp/.venv/Scripts/python.exe`. Every file under `C:/4DApp/recheck/T-VINA-17/` except `pt/` and `mut/`
@@ -62,6 +63,18 @@ is Cowork's: read it, do not edit or run it. Do not read the registry: P3 is mea
   `6 failed` (the 5 new `test_type_code_vin_has_no_year` cases and `test_type_code_set_is_the_measured_one`); M2
   ` and vin[3:9].isdigit()` removed from `_resolve_year` → `4 failed` (the 4 `test_north_american_form_keeps_the_year`
   cases).
+- **R5 Correction 01 (Cowork's review with the second review, 2026-11-04).** Make the edits
+  `C:/4DApp/recheck/T-VINA-17/make_rh2.py` makes, by hand (Edit tool), on top of your round-1 commit. Each `rep()`
+  call there is one edit (old text, new text, exactly). Change nothing else. Then add `## Round 2` to the note and
+  the RESULT, and commit once more.
+  1. **Wording** (the comment and the wiki): the T-VINA-17 `# source:` comment becomes 5 lines and the §10.6
+     paragraph becomes 4 lines. Both state the counts exactly (P3, P4) and say that a VIN registered in 2000-2002
+     stays ambiguous. The wiki paragraph names no country, body type or brand line.
+  2. **Test comments**: the 6 T-VINA-17 rows name the source (`registry` or `C6 real VIN`), not a model or a country.
+  3. **New test** `test_type_code_vin_with_other_position_10_has_no_year`, before `test_other_wmis_keep_position_10`:
+     `WDF44770323287218` (digit form, `2` at position 10) has `model_year is None`. Mutant M3, recorded in the note: in
+     `_resolve_year` the condition becomes `vin[:3] in _TYPE_CODE_WMIS and vin[3:9].isdigit() and vin[9] == "1"` →
+     `1 failed` (the new test). Same copy, `cmp` and restore procedure as R4.
 - **Anchors:** `_TYPE_CODE_WMIS: frozenset[str] = frozenset({"WDB", "WDC", "WDD", "WME", "W1K", "W1N"})`,
   `"WDD1770441J098476",  # W177, type 177.044`, `` `# source: decoder.py — _TYPE_CODE_WMIS; C:/4DApp/recheck/T-VINA-2/measure3.py` ``.
 
@@ -76,12 +89,17 @@ e4ad961
 `HEAD` is Cowork's `vina:` spec commit and its parent is `e4ad961`. `git status --porcelain` prints nothing. Anything
 else is a stop.
 
+**Round 2 (correction 01).** The First action and the Preconditions applied to round 1 only. Your round-1 commit
+stays. Apply R5, re-run `### Verification ###` (steps 1 and 2 now expect the P4 counts), run
+M3, make one more commit on `fix/T-VINA-17`, and add a `## Round 2` section to the note and the RESULT.
+
 ### Success criteria ###
-1. The vinlab suite and `test_type_code_year.py` report their P2 counts (steps 1, 2); M1 and M2 fail as R4 says.
+1. The vinlab suite and `test_type_code_year.py` report their P4 counts (steps 1, 2); M1, M2 and M3 fail as R4 and R5
+   say.
 2. dnalab, wired and ui report their P2 counts (step 3).
 3. The C6 year probes report `8 passed` (step 4).
 4. The doc names the 11 WMIs (step 5 prints `2`).
-5. `ruff` passes on the 2 changed `.py` files; one commit on `fix/T-VINA-17` after the spec commit; `git status
+5. `ruff` passes on the 2 changed `.py` files; two commits on `fix/T-VINA-17` after the spec commit (round 1, round 2); `git status
    --porcelain` lists only the note and the RESULT (step 6).
 
 ### Context ###
@@ -97,16 +115,16 @@ cd C:/4DApp/repo && for p in labs/vinlab/vinlab/decoder.py labs/vinlab/tests/uni
 Expected: `checked`, and no `MISSING` line.
 
 ### Deliverables ###
-1. One commit on `fix/T-VINA-17`: R1-R3.
-2. `repo/labs/vinlab/tasks/progress_notes/T-VINA-17.md` (with the R4 mutant results).
+1. One commit on `fix/T-VINA-17` for R1-R3 (round 1) and one for R5 (round 2).
+2. `repo/labs/vinlab/tasks/progress_notes/T-VINA-17.md` (with the R4 and R5 mutant results).
 3. `repo/labs/vinlab/tasks/results/RESULT_T-VINA-17.md`.
 
 ### Files to touch ###
 - `repo/labs/vinlab/vinlab/decoder.py` (MODIFY)
 - `repo/labs/vinlab/tests/unit/test_type_code_year.py` (MODIFY)
 - `repo/labs/vinlab/wiki/10_decode_scope_rules.md` (MODIFY)
-- `repo/labs/vinlab/tasks/progress_notes/T-VINA-17.md` (CREATE)
-- `repo/labs/vinlab/tasks/results/RESULT_T-VINA-17.md` (CREATE)
+- `repo/labs/vinlab/tasks/progress_notes/T-VINA-17.md` (created in round 1; MODIFY in round 2)
+- `repo/labs/vinlab/tasks/results/RESULT_T-VINA-17.md` (created in round 1; MODIFY in round 2)
 - `C:/4DApp/recheck/T-VINA-17/pt/` (RUNTIME: pytest `--basetemp`)
 - `C:/4DApp/recheck/T-VINA-17/mut/` (RUNTIME: your mutant copy)
 
@@ -138,11 +156,12 @@ grep -c "VSA, WDF, WMX, 4JG, VDB\|T-VINA-17/registry.py" labs/vinlab/wiki/10_dec
 timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check labs/vinlab/vinlab/decoder.py labs/vinlab/tests/unit/test_type_code_year.py; git log --oneline e4ad961..HEAD; git status --porcelain
 ```
 Expected:
-- step 1: `319 passed, 8 skipped`; no `failed` or `error`.
-- step 2: `15 passed`.
+- step 1: `319 passed, 8 skipped` in round 1; `320 passed, 8 skipped` after R5; no `failed` or `error`.
+- step 2: `15 passed` in round 1; `16 passed` after R5.
 - step 3: `27 passed`, `41 passed`, `30 passed`.
 - step 4: `8 passed, 43 deselected`.
 - step 5: `2` (the glossary bullet and the `# source:` line).
-- step 6: `All checks passed!`; the spec commit and your one commit; only the note and the RESULT.
+- step 6: `All checks passed!`; the spec commit, your round-1 commit, the correction commit and your round-2 commit;
+  only the note and the RESULT.
 
 Repo-wide gates (report-only): the other lab suites keep their base counts; Cowork measures them at review.

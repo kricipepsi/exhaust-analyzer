@@ -45,3 +45,16 @@ traceability: criteria 1-5 → steps 1-6 · JUDGEMENT criteria: 0.
 cold read 2026-11-04: skipped (Plan: NONE, difficulty 2, rehearsed edits).
 
 ### Correction history ###
+- **01 (2026-11-04, Cowork review of round 1 with the second review; not accepted).** Round 1 equals `make_rh.py`
+  byte for byte (`cmp`); Cowork's rerun matches P2. Second review (`second_review.py`, Codex) APPROVE WITH
+  CORRECTIONS, re-derived with `recheck/T-VINA-17/non1.py`:
+  - HIGH "WDF suppresses real year codes" NOT UPHELD as HIGH: WDF's 5 non-`1` digit-form VINs, none within one year
+    of its registration; the 2 `J` VINs (2018) match only on the 30-year cycle, outside the 1990-2010 scope. One
+    in-scope VIN (`WDF63981583465221`, `8`, registered 2010) is ambiguous; the rule gives `None`, not a wrong year,
+    the trade T-VINA-2 accepted for WDB (4 of 75 match). Recorded as the residue in the wiki wording (R5.1).
+  - MEDIUM wording overstates the evidence: UPHELD (R5.1, exact counts, the 2000-2002 ambiguity stated).
+  - MEDIUM surviving mutant `vin[9] == "1"`: UPHELD (R5.3, test with `WDF44770323287218`; M3 rehearsed `1 failed`).
+  - LOW unsourced model and country labels: UPHELD (R5.1, R5.2).
+  Rehearsed (`make_rh2.py` on `rh2/`): vinlab `320 passed, 8 skipped`, new file `16 passed`, M3 `1 failed`, ruff clean,
+  doc grep `2`. The first run on a fresh copy printed `65 errors`; the rerun with a new `--basetemp` was clean (copy
+  artefact; the branch run was clean).
