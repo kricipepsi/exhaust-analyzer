@@ -9,7 +9,7 @@ changed the vinlab and symptomlab dist names and `constraints.txt` (the venv mat
 independence; the operator merges the chain in order anyway.
 **Order (disclosure first):** the year decode feeds the era, the O₂ type and the scope, so it goes first. Rows 2 and 6
 measure before they commit. Later rows stay `deferred` until their blockers are `done`.
-**Last updated:** 2026-11-03 (Windows Cowork: pack opened, T-VINA-1 authored).
+**Last updated:** 2026-11-04 (Windows Cowork: T-VINA-14 authored, T-VINA-16 registered).
 
 Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and never contain `|`.
 
@@ -34,8 +34,9 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 | T-VINA-13a | `repo/labs/vinlab/tasks/T-VINA-13a_tecdoc_1q2019_extract(4).md` | done | T-VINA-5 | 2026-11-04 | 4/5 | **ACCEPT 2026-11-04, score 89, t=18/1 — `repo/labs/vinlab/tasks/reviews/REVIEW_T-VINA-13a.md`.** F-C6-1 (operator DB task): TecDoc 1Q2019 per-engine extract CSV for the engine map's codes, brand-agreeing tiers, coverage report; plan REQUIRED |
 | T-VINA-13b | `repo/labs/vinlab/tasks/T-VINA-13b_vref_tecdoc_merge(5).md` | done | T-VINA-13a | 2026-11-04 | 5/5 | **ACCEPT 2026-11-04, score 92, t=45/1 — `repo/labs/vinlab/tasks/reviews/REVIEW_T-VINA-13b.md`.** F-C6-1: merge the 13a extract into vref.db engine_ref (NULL where TecDoc is silent, collisions skipped, schema change); real-VIN reach measured; plan REQUIRED |
 | T-VINA-13c | (not authored) | deleted | T-VINA-13b | 2026-11-04 | — | TecDoc 1Q2018 fallback: not material. Cowork measured (`C:/4DApp/recheck/scratch/vina13c_measure.py`, after 13b): of 550 real VINs without a vref row, 1Q2018 adds 1 brand-agreeing (28 other-brand); 94 are in the 13a extract but skipped by 13b (collisions, no my_start, G1/G2) → T-VINA-14 |
-| T-VINA-14 | (not authored) | deferred | T-VINA-13b | — | — | decoder: banks from a BOXER fact (not is_v_engine 0) and keep a vref-stated induction over the cylinder heuristic; then rerun the merge for the 41 guarded codes (B8) |
+| T-VINA-14 | `repo/labs/vinlab/tasks/T-VINA-14_decoder_banks_induction_remerge(4).md` | pending | — | 2026-11-04 | 4/5 | decoder: map BOXER keeps 2 banks, stated induction beats the heuristic; merge coalesces 35 collisions, +40 rows (B8) |
 | T-VINA-15 | (not authored) | deferred | T-VINA-13b | — | — | the 13 shipped vref rows with has_maf 0 and has_map 0 decode with neither sensor (MAP_ONLY); measure and correct |
+| T-VINA-16 | (not authored) | deferred | T-VINA-14 | — | — | engine_ref cylinder column read over a wrong map count (AEB 6 cyl, TecDoc 4); G2 (i) 32 codes, 15 real VINs |
 
 **Status values:** `pending` · `in_progress` · `done` · `blocked` · `deferred` · `superseded`
 
