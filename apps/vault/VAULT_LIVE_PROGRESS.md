@@ -51,8 +51,8 @@ Issues discovered mid-task. Logged here, not fixed in the session that found the
 
 | ID | Discovered in | One-liner | Status |
 |---|---|---|---|
-| GRAPH-TRUST | EVAL-VLIVE-1 | Framed graph carries drift (orphan/mislabel edges) — systematic map↔code audit before T-WIRE-1. Pack: `apps/vault/audit/GRAPH_TRUST_AUDIT.md`. | pending |
-| T-VLIVE-3c | EVAL-VLIVE-1 | dtclab `power_loss_analytics` orphan ×8 + `perception_contradiction` mislabel — audit+fix. Spec: `apps/vault/audit/T-VLIVE-3c_reconcile_dtclab_drift.md`. | pending |
+| GRAPH-TRUST | EVAL-VLIVE-1 | Framed graph carries drift (orphan/mislabel edges) — systematic map↔code audit before T-WIRE-1. Pack: `apps/vault/audit/GRAPH_TRUST_AUDIT.md` (every row `done` in `apps/vault/audit/GRAPH_TRUST_PROGRESS.md`). | done |
+| T-VLIVE-3c | EVAL-VLIVE-1 | dtclab `power_loss_analytics` orphan ×8 + `perception_contradiction` mislabel — audit+fix. Spec: `apps/vault/audit/T-VLIVE-3c_reconcile_dtclab_drift.md`. Done 2026-06-29 (`7e8688a`). | done |
 
 ---
 
