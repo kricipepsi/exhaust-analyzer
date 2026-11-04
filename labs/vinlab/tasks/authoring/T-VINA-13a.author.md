@@ -41,3 +41,8 @@ own pass 2026-11-04: P1-P5 measured · traceability: criteria 1-4 → steps 1-5 
 cold read 2026-11-04: skipped, plan-gated (Plan: REQUIRED; the plan review and its second-model review cover it).
 
 ### Correction history ###
+- **01 (2026-11-04, plan review; Plan: APPROVED with C1-C6).** Second review (ds-pro, embedded): APPROVE WITH
+  CORRECTIONS, 8 findings, re-derived (`C:/4DApp/recheck/scratch/vina13_alias.py`, `vina13_t1check.py`: rows 1,503
+  equal the plan). Upheld F2 (all-digit keys, C1), F4 (FAMILY, C2), F5 (twincharger, C3), F6 (C4), F7 (C5), petrol
+  order (C6). Not upheld: F1 (whole-X key: my R3 wording, now named), F3 (Genesis is a Hyundai brand), F8 (P4 groups by
+  manufacturer set). Record: `corrections/T-VINA-13a_plan_correction_20261104.md`.
