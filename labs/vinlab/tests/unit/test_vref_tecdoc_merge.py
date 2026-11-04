@@ -11,6 +11,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import importlib.util
+import json
 import shutil
 import sqlite3
 import sys
@@ -69,6 +70,17 @@ COPY_PRE_MERGE_ROWS = (
     "FROM shipped.engine_ref WHERE o2_type != ''"
 )
 PRE_MERGE_ROWS = 72
+# The 72 original rows as explicit columns, read in this order (correction 02).
+ORIGINAL_ROWS_SQL = (
+    "SELECT engine_code, brand, displacement_cc, euro_norm, my_start, my_end, era_bucket, has_vvt, has_gdi, "
+    "has_turbo, is_v_engine, has_egr, has_maf, has_map, o2_type, induction_type, fuel_delivery_type, "
+    "valvetrain_type, rated_rpm, target_lambda_v112, target_rpm_u2, idle_rpm_low, co_low_idle, co_high_idle, "
+    "co_type_approval, hc_type_approval, nox_type_approval, hc_nox_type_approval, co2_type_approval, "
+    "noise_stationary_dba, noise_rpm, noise_driving_dba FROM engine_ref WHERE o2_type != '' ORDER BY engine_code"
+)
+# sha256 of the canonical dump (ORIGINAL_ROWS_SQL, each value as [python type name, value], compact JSON) of
+# `git show 11dfa95:labs/vinlab/vinlab/data/vref.db` (blob c75ea107, the pre-merge file).
+ORIGINAL_ROWS_SHA256 = "89403096d8074357d62e94187c58c71664c73ab4bc47c5ca4d00dbf654625275"
 
 
 @pytest.fixture(scope="module")
@@ -284,6 +296,29 @@ def test_cylinder_heuristic_hazard_is_skipped(tool, tmp_path, db):
     report = _merge(tool, tmp_path, db, [extract], [map_row])
     assert report.inserted == ()
     assert report.skipped["cylinder_heuristic"] == ("ZZ5SKQ",)
+
+
+def test_cylinder_heuristic_two_bank_hint_alone_is_skipped(tool, tmp_path, db):
+    # G2 (iii) in isolation (correction 02): the map says I4 with no cylinder count and no displacement, so the
+    # no-row hint is unresolved; at TecDoc's 3.0 L the displacement fallback says 6 cylinders, V6, NA. TecDoc
+    # states 6 cylinders, NA and not V, so only the second bank is the heuristic's own value.
+    extract = _extract_row(engine_code="ZZ3VEE", displacement_cc="3000", cylinder_count="6", is_v_engine="0")
+    map_row = _map_row(engine_code="ZZ3VEE", engine_displacement="", cylinder_count="", engine_configuration="I4")
+    report = _merge(tool, tmp_path, db, [extract], [map_row])
+    assert report.inserted == ()
+    assert report.skipped["cylinder_heuristic"] == ("ZZ3VEE",)
+    assert report.skipped["map_banks"] == ()
+
+
+def test_shipped_original_rows_match_the_pinned_base_digest(data_dir):
+    conn = sqlite3.connect(f"file:{data_dir / 'vref.db'}?mode=ro", uri=True)
+    try:
+        rows = [[[type(v).__name__, v] for v in r] for r in conn.execute(ORIGINAL_ROWS_SQL)]
+    finally:
+        conn.close()
+    assert len(rows) == PRE_MERGE_ROWS
+    digest = hashlib.sha256(json.dumps(rows, separators=(",", ":")).encode()).hexdigest()
+    assert digest == ORIGINAL_ROWS_SHA256
 
 
 def test_span_gap_code_is_skipped(tool, tmp_path, db):
