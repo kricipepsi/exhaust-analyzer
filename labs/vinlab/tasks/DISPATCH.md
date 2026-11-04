@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-VINA-8` | `repo\labs\vinlab\tasks\PROGRESS.md` | **2** | 2 | NO | 30-60 min | symptomlab contract fixes |
+| `T-VINA-5` | `repo\labs\vinlab\tasks\PROGRESS.md` | **4** | 2 | NO | 60-90 min | wmi brand table |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-VINA-8` · owner: `repo\labs\vinlab\tasks\PROGRESS.md` · 2/5** — SymptomLab refuses a payload without `load_state` and a non-string tier with `SymptomValidationError`, and its code and docs state the catalog size the validator enforces (P4).
-  `repo\labs\vinlab\tasks/T-VINA-8_symptomlab_contract_fixes(2).md`
+**`T-VINA-5` · owner: `repo\labs\vinlab\tasks\PROGRESS.md` · 4/5** — A real VIN of each of the five WMIs decodes with its true manufacturer (`WDB` Mercedes-Benz, `KMH` Hyundai, `JSA` Suzuki, `JN1` Nissan, `SAX` Rover), and the engine join resolves at least as many of t
+  `repo\labs\vinlab\tasks/T-VINA-5_wmi_brand_table(4).md`
 
 ## Distribution
 
-- **2/5** — 1: T-VINA-8
+- **4/5** — 1: T-VINA-5

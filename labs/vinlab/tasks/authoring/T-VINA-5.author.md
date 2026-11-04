@@ -34,3 +34,7 @@ own pass 2026-11-04: P1 grep 5 rows · P2-P4 measured · traceability: criteria 
 cold read 2026-11-04: skipped, plan-gated (Plan: REQUIRED; the plan review and its second-model review cover it).
 
 ### Correction history ###
+- **01 (2026-11-04, plan review; Plan: APPROVED with R1-R5 rulings).** Codex plan review (embedded): RETHINK, 7
+  findings, re-derived (`C:/4DApp/recheck/scratch/vina5_rederive.py`): F1 upheld after the registry measurement
+  (Nio file 3 held out: right wins 459 VINs, the files-1+2 vote 1,872 → R2 is the vote), F2-F7 upheld (F5 my defect, R3).
+  Record: `corrections/T-VINA-5_plan_correction_20261104.md`.
