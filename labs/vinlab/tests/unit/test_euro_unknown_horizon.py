@@ -27,6 +27,8 @@ NO_YEAR_VIN = "JMZBA145201537959"
 EURO4_VIN = "JF1GG9LK43G020691"
 # euro5 row, model year 2010, HIGH on the shipped db.
 EURO5_VIN = "VF7SA5FR8AW511081"
+# 1KR-FE row 2005-2020 euro4, no model year: the row is applied (no year to compare).
+NO_YEAR_ROW_VIN = "JTDJG18C40N041061"
 # F16D3 row 2003-2020, model year 2008.
 F16D3_VIN = "KL1NF356J8K002340"
 # 14K4F row 1991-2006, model year 2010: the row is outside its window.
@@ -117,6 +119,38 @@ def test_euro4_row_keeps_euro_stress_rule(vref_copy):
     dna = decoder.decode_vin_payload(EURO4_VIN)
     assert dna.engine_displacement_liters == 2.0
     assert dna.stress_idle_rpm_target == 4000
+
+
+@pytest.mark.parametrize(
+    ("euro_norm", "euro", "horizon", "stress", "flagged"),
+    [
+        # recognised after strip() and lower(): the euro rule decides (EURO_4 NA >= 2.0 L)
+        (" EuRo 4 ", EuroEmissionCategory.EURO_4, Horizon.ADAPTIVE, 4000, False),
+        # blank: unknown, the 2003 model year decides and the stress RPM takes the ADAPTIVE fallback
+        ("", EuroEmissionCategory.EURO_1, Horizon.ADAPTIVE, 3500, True),
+        ("  ", EuroEmissionCategory.EURO_1, Horizon.ADAPTIVE, 3500, True),
+    ],
+    ids=["mixed_case_spaces", "empty", "whitespace"],
+)
+def test_euro_norm_is_matched_after_strip_and_lower(vref_copy, monkeypatch, euro_norm, euro, horizon, stress, flagged):
+    decoder = vref_copy(
+        "UPDATE engine_ref SET euro_norm = ?, displacement_cc = 2000 WHERE engine_code = 'EJ20'", (euro_norm,)
+    )
+    dna, flags = _decode(decoder, EURO4_VIN, monkeypatch)
+    assert dna.euro_emission_category == euro
+    assert dna.resolved_horizon == horizon
+    assert dna.stress_idle_rpm_target == stress
+    assert ("euro_unknown" in flags) is flagged
+
+
+def test_no_year_euro5_row_gives_modern(vref_copy, monkeypatch):
+    # no model year, but the applied row states euro5: the euro decides, not the no-year LEGACY default
+    decoder = vref_copy("UPDATE engine_ref SET euro_norm = 'euro5' WHERE engine_code = '1KR-FE'")
+    dna, flags = _decode(decoder, NO_YEAR_ROW_VIN, monkeypatch)
+    assert dna.model_year is None
+    assert dna.euro_emission_category == EuroEmissionCategory.EURO_5
+    assert dna.resolved_horizon == Horizon.MODERN
+    assert "euro_unknown" not in flags
 
 
 def test_null_euro_row_takes_year(vref_copy, monkeypatch):

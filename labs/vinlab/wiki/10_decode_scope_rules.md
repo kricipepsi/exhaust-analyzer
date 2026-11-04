@@ -220,12 +220,15 @@ no model year  → HORIZON_LEGACY                       # decoder.py
 The bands settle the overlapping edges of `repo/labs/comlab/wiki/04_horizon_eras.md`
 (LEGACY "pre-1997 → ~2001", ADAPTIVE "~2001–2011"):
 
-- **2001 is ADAPTIVE.** Euro 3 is compulsory for every new petrol car registered
-  from 2001-01-01 (Directive 98/69/EC).
-- **2011 is MODERN.** Euro 5 is compulsory for every new car registered from
-  2011-01-01 (Regulation (EC) No 715/2007).
+- **2001 is ADAPTIVE.** Euro 3 is compulsory for new petrol passenger cars
+  registered from 2001-01-01 (Directive 98/69/EC). This is the general EU
+  deadline. The directive gives a later date to passenger cars above 2,500 kg.
+- **2011 is MODERN.** Euro 5 is compulsory for new passenger cars registered from
+  2011-01-01 (Regulation (EC) No 715/2007). This is the general EU deadline.
+  Article 10(3) gives vehicles designed for specific social needs until 2012.
 
-A model year is not a registration date. A car of model year 2001 can be
+2001 and 2011 are the decoder's heuristic edges, not the legal date for every
+vehicle. A model year is not a registration date. A car of model year 2001 can be
 registered in 2000, and one of model year 2010 in 2011, so each edge carries a
 1-year fuzz.
 
