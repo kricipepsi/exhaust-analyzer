@@ -93,6 +93,15 @@ settles the 2001 and 2011 edges. Done is `### Verification ###` with P2's counts
     for every VIN". C4: one `NEW` test monkeypatches `vinlab.decoder._year_to_horizon` to return `Horizon.MODERN` and
     asserts `JHMAP11305S202318` decodes MODERN; mutant "hard-coded `>= 2001` threshold". The file then holds 12 tests:
     red run `7 failed, 5 passed`, step 2 `12 passed`, step 1 `309 passed, 8 skipped`.
+  - **Ruled (02, review; revision before acceptance).** The decoder does not change. (a) `NEW`, parametrised: a
+    recognised `euro_norm` with mixed case and spaces (`" EuRo 4 "`) on EJ20 at `displacement_cc` 2000 gives EURO_4,
+    ADAPTIVE, stress 4000 and no flag; a blank `""` and a whitespace `"  "` count as unknown (flag, year decides).
+    Mutants: drop `.strip()`; drop `.lower()`. (b) `NEW`: a VIN with no model year whose applied row states `euro5`
+    gives EURO_5, MODERN and no flag. Mutant: "no year always LEGACY". (c) §10.8 states the two dates as the general EU
+    deadlines for passenger cars, names the exceptions (98/69/EC: a later date for passenger cars above 2,500 kg;
+    715/2007 Art. 10(3): vehicles for specific social needs to 2012), and says 2001 and 2011 are the decoder's
+    heuristic edges. Record counts and mutants in the note's `## Revision 02` and the RESULT. Commit as
+    `test(T-VINA-10): …` (tests and the wiki only).
 - **R8 Changed tests.** The three `tests/fixtures/vindna_pre_refactor/` snapshots of model years 2001-2002
   (`VF1357K0F17697151`, `VF1BB0FCF23935016`, `VF1CB05CF25935016`) are expected to change horizon and stress RPM. The plan
   names each changed fixture, test or downstream value with the VIN and the field. A fixture changes only with that
@@ -131,7 +140,7 @@ fix/T-VINA-10
 ```bash
 cd C:/4DApp/repo && for p in labs/vinlab/vinlab/decoder.py labs/vinlab/vinlab/overlay/horizon.py labs/vinlab/vinlab/overlay/stress_rpm.py labs/vinlab/wiki/10_decode_scope_rules.md labs/comlab/wiki/04_horizon_eras.md labs/vinlab/docs/LLD_VINLab.md audit/scratch/C6/test_c6_probes.py labs/vinlab/tests/unit/test_vindna_roundtrip.py C:/4DApp/recheck/T-VINA-10/rehearse.py; do test -f "$p" || echo "MISSING $p"; done; test -e labs/vinlab/tests/unit/test_euro_unknown_horizon.py && echo "EXISTS test"; grep -c "## 10.8" labs/vinlab/wiki/10_decode_scope_rules.md; echo checked
 ```
-Expected: `0`, then `checked`, and no `MISSING` or `EXISTS` line.
+Expected: `0`, then `checked`, and no `MISSING` line. Revision 02: `EXISTS test` and `1` (§10.8 exists) are expected.
 
 ### Deliverables ###
 1. The decoder, `horizon.py`, the wiki section, the probe, the new test and the fixtures the plan names, committed on
@@ -145,7 +154,7 @@ Expected: `0`, then `checked`, and no `MISSING` or `EXISTS` line.
 - `repo/labs/vinlab/wiki/10_decode_scope_rules.md` (MODIFY: new §10.8)
 - `repo/labs/vinlab/docs/VIN_VOCABULARY.md` (MODIFY: one § 4 row, C1)
 - `repo/audit/scratch/C6/test_c6_probes.py` (MODIFY: R6, the `f1_` population only)
-- `repo/labs/vinlab/tests/unit/test_euro_unknown_horizon.py` (CREATE)
+- `repo/labs/vinlab/tests/unit/test_euro_unknown_horizon.py` (created in `56caaa1`; MODIFY in revision 02)
 - `repo/labs/vinlab/tests/fixtures/vindna_pre_refactor/` JSON files and other vinlab, dnalab, wired or ui tests: only
   those the approved plan names (R8)
 - `repo/labs/vinlab/tasks/progress_notes/T-VINA-10.md` (CREATE)

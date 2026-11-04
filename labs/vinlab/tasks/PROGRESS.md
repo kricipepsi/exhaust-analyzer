@@ -30,13 +30,15 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 | T-VINA-9 | (not authored) | deferred | — | — | — | F-C6-3 rest: Renault VF1 position 10 (0-4 only on 103 real VINs) is it a year? Find a source first |
 | T-VINA-10 | `repo/labs/vinlab/tasks/T-VINA-10_era_from_year_when_euro_unknown(4).md` | pending | — | 2026-11-04 | 4/5 | F-C6-1, F-D1-13: era from model year when euro unknown (416 real VINs LEGACY to ADAPTIVE); flag; cited wiki §10.8 |
 | T-VINA-11 | (not authored) | deferred | T-VINA-5 | — | — | vds map: same-brand spelling rows that disagree (123 folded duplicate keys, 119 `MERCEDES BENZ`/`MERCEDES-BENZ`, B7); one key, two WMI populations (12602); RGX weak keys (221RA 0.400); measure first |
-| T-VINA-12 | (not authored) | deferred | T-VINA-5 | — | — | build_wmi_map.py: pick among vPIC makes by Nio D1-Znamka majority; 5NM; vPIC E:/agent_workspace/vpic |
+| T-VINA-12 | (not authored) | deferred | T-VINA-5 | — | — | build_wmi_map.py: pick among vPIC makes by Nio D1-Znamka majority; 5NM; JTE/JTM Subaru, KNE Hyundai (F-R3-2) |
 | T-VINA-13a | `repo/labs/vinlab/tasks/T-VINA-13a_tecdoc_1q2019_extract(4).md` | done | T-VINA-5 | 2026-11-04 | 4/5 | **ACCEPT 2026-11-04, score 89, t=18/1 — `repo/labs/vinlab/tasks/reviews/REVIEW_T-VINA-13a.md`.** F-C6-1 (operator DB task): TecDoc 1Q2019 per-engine extract CSV for the engine map's codes, brand-agreeing tiers, coverage report; plan REQUIRED |
 | T-VINA-13b | `repo/labs/vinlab/tasks/T-VINA-13b_vref_tecdoc_merge(5).md` | done | T-VINA-13a | 2026-11-04 | 5/5 | **ACCEPT 2026-11-04, score 92, t=45/1 — `repo/labs/vinlab/tasks/reviews/REVIEW_T-VINA-13b.md`.** F-C6-1: merge the 13a extract into vref.db engine_ref (NULL where TecDoc is silent, collisions skipped, schema change); real-VIN reach measured; plan REQUIRED |
 | T-VINA-13c | (not authored) | deleted | T-VINA-13b | 2026-11-04 | — | TecDoc 1Q2018 fallback: not material. Cowork measured (`C:/4DApp/recheck/scratch/vina13c_measure.py`, after 13b): of 550 real VINs without a vref row, 1Q2018 adds 1 brand-agreeing (28 other-brand); 94 are in the 13a extract but skipped by 13b (collisions, no my_start, G1/G2) → T-VINA-14 |
 | T-VINA-14 | `repo/labs/vinlab/tasks/T-VINA-14_decoder_banks_induction_remerge(4).md` | done | — | 2026-11-04 | 4/5 | **ACCEPT 2026-11-04, score 93, t=11/1 — `repo/labs/vinlab/tasks/reviews/REVIEW_T-VINA-14.md`.** decoder: map BOXER keeps 2 banks, stated induction beats the heuristic; merge coalesces 35 collisions, +40 rows (B8) |
 | T-VINA-15 | (not authored) | deferred | T-VINA-13b | — | — | the 13 shipped vref rows with has_maf 0 and has_map 0 decode with neither sensor (MAP_ONLY); measure and correct |
-| T-VINA-16 | (not authored) | deferred | T-VINA-14 | — | — | engine_ref cylinder column read over a wrong map count (AEB 6 cyl, TecDoc 4); G2 (i) 32 codes, 15 real VINs |
+| T-VINA-16 | (not authored) | deferred | T-VINA-14 | — | — | engine_ref cylinder column read over a wrong map count (AEB 6 cyl, TecDoc 4); G2 (i) 32 codes, 15 real VINs; pin shipped engine_ref count+digest (F-R3-1) |
+| T-VINA-17 | (not authored) | deferred | — | — | — | F-R3-3: type-code WMIs beyond WDB/WDC/WDD (VSA reads year 2001); WD3/WDA/WDF/WDZ/VDB unmeasured; measure first |
+| T-VINA-18 | (not authored) | deferred | — | — | — | F-R3-4 (docs): ADR-0006 says 18-pair; DNALab HLD:160, DLD:147 too; ADR-0008 says 21 |
 
 **Status values:** `pending` · `in_progress` · `done` · `blocked` · `deferred` · `superseded`
 

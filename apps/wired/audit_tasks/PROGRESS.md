@@ -17,6 +17,7 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 | T-AUD-1d | (not authored: fold into T-AUD-4) | deferred | T-AUD-4 | 2026-11-03 | — | B1 f2: C4 probe test_f3b asserts nothing on the verdict; add an override-reaches-OBDLab assertion with F-C4-3 (018 ruling 3) |
 | T-AUD-1c | `repo/apps/wired/audit_tasks/T-AUD-1c_ff_and_gas_prompts(2).md` | done | T-AUD-1a | 2026-11-03 | 2/5 | **ACCEPT 2026-11-03, score 97, t=6/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-1c.md`.** 018 S1+N1 (was T-AUD-1a-c): FF required whenever a DTC dict is sent; gas message names GASLab |
 | T-AUD-7a | `repo/apps/wired/audit_tasks/T-AUD-7a_git_rule_main_production(1).md` | done | T-AUD-1b | 2026-11-03 | 1/5 | **ACCEPT 2026-11-03, score 100, t=2/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-7a.md`.** F-D3-1: git rule says work on main; main is production (4DLab_CLAUDE.md §Git, v3/CLAUDE.md) |
+| T-AUD-7b | (not authored) | deferred | — | — | — | F-R3-5: four docs still say never branch (cowork INSTRUCTIONS:46, SEMANTIC_START_HERE:76, 2 more) |
 
 **Status values:** `pending` · `in_progress` · `done` · `blocked` · `deferred` · `superseded`
 **Score** (column 6, checked by `ops/gen_dispatch.py`): the routing score `N/5`, the same `N` as the file name's `(N)`.

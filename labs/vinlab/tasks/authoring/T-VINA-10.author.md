@@ -49,3 +49,7 @@ cold read 2026-11-04: skipped, plan-gated (Plan: REQUIRED; the plan review and i
   (known-euro path untested), F2 MED (wiki MODERN wording), F3 MED (helper call untested) upheld as C2-C4; F4 LOW not
   upheld (the script adds the key only on a difference). Dates 98/69/EC and 715/2007 confirmed by the second review.
   Record: `corrections/T-VINA-10_plan_correction_20261104.md`.
+- **02 (2026-11-04, review; revision before acceptance).** Cowork re-run equals the RESULT (309/8, 12, probes 2 passed,
+  rehearsal 0, red 7/5, C2-C4 mutants each 1 failed, repo-wide gates = base). Second review (codex): APPROVE WITH
+  CORRECTIONS. Upheld: F1 (case/space normalisation untested), F2 (yearless decode with a known euro untested), F3
+  (my R5 dates stated as universal; exceptions exist). F4 (corpus not rerun on the build) settled by Cowork's own run.
