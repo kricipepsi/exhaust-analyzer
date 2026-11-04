@@ -7,7 +7,9 @@ here and to `START_HERE.md`. Maps role → where to look. Keep it short; the rul
 > **graphify != LLM: code/tests/docs tiers build OFFLINE & FREE via `graphify update` (no key); only the wiki tier needs a backend. Building an index is not an LLM run. Canon: `GRAPH_AUDIT_2026-06-28.md`.**
 > Query existing graphs, don't rebuild them; the root `graphify-out/` is frozen. Read-only
 > `graphify query|explain|path|affected|diagnose --graph …` is coder-allowed (owner ruling
-> 2026-07-06); build subcommands (update/extract/serve/…) are architect-lane only. Check a graph
+> 2026-07-06); build subcommands (update/extract/serve/…) are architect-lane only. The one exception is the
+> owner's `extract` rows T-GR-10/11 (Nemo lane, into separate `v2_docs_llm/` dirs,
+> `planning/graph_rollout/GRAPH_ROLLOUT_START_HERE.md`). Check a graph
 > cheaply (no re-extraction) with `python3.14 scripts/graph_health.py [lab]`.
 
 > **Web research → firecrawl (not WebFetch/WebSearch).** Any internet lookup — API refs, current

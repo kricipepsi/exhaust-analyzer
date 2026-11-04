@@ -29,8 +29,8 @@ documentation. Follow it step by step.
 
 ## Non-negotiables (workspace canon — full text in `/agent_workspace/4DLab_CLAUDE.md`)
 - **Never edit `Vault/`** (archived mirror) — edit the live `labs/<lab>/` source.
-- **Never re-run `graphify` / rebuild a frozen graph.** Querying or building a *new* index
-  offline is fine; rebuilding a frozen one is forbidden.
+- **Never run a `graphify` build subcommand** (`AGENTS.md`: architect lane). Querying a graph
+  is fine.
 - **No secrets in files**, ever.
 - **Provisional synthetic signals allowed (pre-launch).** Seed corpus columns with
   research-grounded, **tolerance-wide** synthetic values from each case's oracle fault;

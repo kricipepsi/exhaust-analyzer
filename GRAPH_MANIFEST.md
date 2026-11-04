@@ -53,7 +53,7 @@ LLM layer is marginal for docs and modest for wiki.
 ## 1. Golden rules (load-bearing)
 
 1. **Query, don't rebuild.** Agents read existing `graph.json`; they re-run graphify
-   **only** when a task file explicitly says so.
+   **only** when a task file in their lane explicitly says so (`AGENTS.md`: builds are architect-lane).
 2. **The root graph is FROZEN.** `graphify-out/graph.json` (~43k nodes, whole repo) is
    canonical. Never regenerate it except on explicit owner instruction.
 3. **Querying ≠ graphifying.** "Query the graph before you grep" means *open the file*,

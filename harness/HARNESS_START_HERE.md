@@ -94,7 +94,7 @@ ledger row to `done`. Reports are `.md` only. One task per session.
 
 ## 6. Git
 
-Only action is the final commit, run **by the user** in PowerShell, staging
+Commit on the task's branch (`fix/<ID>`, never `main`), staging
 deliverables by **explicit path** (`4DLab_CLAUDE.md → Git`). Never `git add -A`.
 When the staged paths wrap across lines, end each line with a PowerShell
 line-continuation **backtick** (`` ` ``) — never `\`, never `;` — so the user can

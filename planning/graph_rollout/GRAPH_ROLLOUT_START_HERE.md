@@ -16,7 +16,7 @@ MCP serve is a pilot, not a dependency — **CLI is the sanctioned baseline acce
 ## Lanes (owner ruling 2026-07-06, DECISIONS.md Q-GRAPH-LANES)
 **T-GR-2..9 are ARCHITECT-lane** (graph builds/venv/serve). Coders take only tasks the ledger
 assigns them (T-GR-1: done/Nemo). Coders may run read-only `graphify query|explain|path|affected`;
-never build subcommands; never edit `.omp/rules/**`.
+never build subcommands (except `extract` in T-GR-10/11, above); never edit `.omp/rules/**`.
 ## Ledger order
 T-GR-1 (query ergonomics) → T-GR-2 (tool upgrade) → T-GR-3…7 (docs tiers, one lab each,
 any order after GR-2) → T-GR-8 (MCP pilot, owner-gated) → T-GR-9 (staleness refresh, owner-gated,

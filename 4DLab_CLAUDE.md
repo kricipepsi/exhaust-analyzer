@@ -150,7 +150,8 @@ Read line cap.
 - 4D Petrol Diagnostic Engine — petrol-only (no diesel in v1, see `PRD_4D_App.md` §5).
 - Pipeline layers: L1 idle gas → L2 high-idle gas → L3 DTCs → L4 freeze frame → L5 live PIDs.
 - Truth-vs-Perception override: gas chemistry (Brettschneider lambda) is ground truth, ECU is perception.
-- Per-lab knowledge graphs are frozen — query them, never re-`graphify` them. (graphify != LLM: code/tests/docs tiers build OFFLINE & FREE via `graphify update` (no key); only the wiki tier needs a backend. Building an index is not an LLM run. Canon: `GRAPH_AUDIT_2026-06-28.md`.)
+- Per-lab knowledge graphs are frozen for coders — query them, never re-`graphify` them. Only an
+  architect-lane row (for example T-GR-9) refreshes a tier. (graphify != LLM: code/tests/docs tiers build OFFLINE & FREE via `graphify update` (no key); only the wiki tier needs a backend. Building an index is not an LLM run. Canon: `GRAPH_AUDIT_2026-06-28.md`.)
 
 ## Python environment (Linux native — READ BEFORE TOUCHING THE VENV)
 This host is **not** an ephemeral sandbox. Cowork (architect) and the omp coders

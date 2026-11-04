@@ -22,7 +22,7 @@ Findings enter work only through `audit/FINDINGS.md` after a re-check on the liv
 
 ## Boot (every session)
 1. `START_HERE.md` → `ROADMAP.md` (stage order: **GASLab → OBDLab → DTCLab → COMLab last**).
-2. The active lab's `wiki/` + `graph/` (query the graph; never rebuild it).
+2. The active lab's `wiki/` + `graph/` (query the graph; a rebuild is architect-lane only).
 3. The lab ledger `labs/<lab>/tasks/PROGRESS.md` — the first `pending` row is the next runnable task.
 
 ## Architect responsibilities
