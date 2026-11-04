@@ -40,3 +40,7 @@ JUDGEMENT criteria: 0 (the plan's predictions become the expected values at the 
 cold read 2026-11-04: skipped (Plan: REQUIRED; the plan gate reviews the mechanism).
 
 ### Correction history ###
+- **01 (2026-11-04, plan gate; Plan: APPROVED with C1-C6).** Plan re-derived (`join_check.py` on `plan/data`: W
+  1126/1004, C identical). Second review (Codex) APPROVE WITH CORRECTIONS; rulings in
+  `corrections/T-VINA-12_plan_correction_20261104.md` (vote and tie rule not upheld; encoding, delete assert, `build()`
+  test, untested renames, Path B upheld). Cowork added control set N to `join_check.py` (base = plan, 40056 matches).
