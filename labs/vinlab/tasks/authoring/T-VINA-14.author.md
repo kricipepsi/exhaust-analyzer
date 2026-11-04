@@ -44,4 +44,8 @@ traceability: criteria 1-4 → steps 1-5, R4 tests → criterion 1 · JUDGEMENT:
 cold read 2026-11-04: skipped, plan-gated (Plan: REQUIRED; the plan review and its second-model review cover it).
 
 ### Correction history ###
-(none)
+- **01 (2026-11-04, plan review; Plan: APPROVED with C1-C2).** Plan predictions equal Cowork's rehearsal (40 rows,
+  reach 568) and add 3 attributed changes (RFJ euro4, RGX turbo ×2). Second review (codex after the DeepSeek route
+  exited 1): APPROVE WITH CORRECTIONS, 2 MEDIUM test gaps, both upheld (C1 tool mutant for G2 (ii); C2 two collision
+  PIN tests). Concern: RGX map keys of weak majority, carried to the RESULT and T-VINA-11. Record:
+  `corrections/T-VINA-14_plan_correction_20261104.md`.
