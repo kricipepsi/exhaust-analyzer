@@ -40,3 +40,8 @@ JUDGEMENT criteria: 0.
 cold read 2026-11-04: skipped (Plan: NONE, difficulty 2, rehearsed edits).
 
 ### Correction history ###
+- **01 (2026-11-04, hand-back B6; not accepted).** Round 1 equals the rehearsal (decoder, 3 tests, fixture, doc row).
+  B6 UNSATISFIABLE upheld, COWORK: wired `1 failed, 40 passed` (`test_oil_cases` MW-009 → MF-001); my P2 "wired 41"
+  did not reflect the change (re-run on the copy gives `1 failed, 40 passed`). MW-009 is a 5FR case using the BMW VIN;
+  R6 moves it to `VF7SA5FR8AW511081` (copy: `test_oil_cases.py` `4 passed`). Lost: keeping the synthetic VIN and
+  pinning MF-001 (it would encode the out-of-window row as the case's truth).

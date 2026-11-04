@@ -64,6 +64,11 @@ not edit it.
      `make_rh.py` does.
   Mutant to run and record in the note: M1 the `elif` condition prefixed with `False and ` → 4 tests fail. Copy
   `decoder.py` to `C:/4DApp/recheck/T-VINA-3/mut/` first, edit in place, run the suite, copy it back, `cmp`.
+- **R6 Correction 01 (B6, Cowork, 2026-11-04).** Your hand-back is upheld: my P2 wired figure was not measured on
+  the change. `apps/wired/tests/fixtures/oil_cases/MW-009.json` is a 5FR case (its `_provenance` cites
+  `OIL_CASE_SIGNATURES_5FR.md`) that borrowed the BMW VIN. Change only its `"vin": "WBA4W9C5ZLYYYYYYY",` line to
+  `"vin": "VF7SA5FR8AW511081",` (the real 5FR car, P4). Cowork rehearsed it on a copy: `tests/test_oil_cases.py`
+  `4 passed`. Then re-run `### Verification ###` (wired `41 passed`), commit once more, add `## Round 2`.
 - **Anchors:** `                    conf_flags.append("engine_not_in_vref")`, `def test_bmw_with_vref_match(self, decoder):`,
   `    """B58B30 fixture reads P14_rated_rpm median from the vref baseline."""`.
 - **R5 The doc** (`repo/labs/vinlab/docs/VIN_VOCABULARY.md`): after the flag-table row
@@ -79,6 +84,10 @@ fix/T-VINA-3
 <the spec commit on fix/T-VINA-3, child of aa69249: record it as the base in readiness line (a)>
 ```
 `git status --porcelain` prints nothing. Anything else is a stop.
+
+**Round 2 (correction 01).** The First action and the Preconditions applied to round 1 only. Your round-1 commit
+stays. Apply R6, re-run `### Verification ###`, make one more commit on `fix/T-VINA-3` (the blocker JSON stays
+uncommitted, as the note), and add a `## Round 2` section to the note and the RESULT.
 
 ### Success criteria ###
 1. The vinlab suite and `test_vref_year_window.py` report their P2 counts (steps 1, 2); M1 fails 4 tests.
@@ -109,9 +118,10 @@ Expected: `checked`, and no `MISSING` or `EXISTS` line.
 - `repo/labs/vinlab/vinlab/decoder.py` (MODIFY)
 - `repo/labs/vinlab/tests/unit/test_decoder.py` (MODIFY)
 - `repo/labs/vinlab/tests/unit/test_models.py` (MODIFY)
-- `repo/labs/vinlab/tests/unit/test_vref_year_window.py` (CREATE)
+- `repo/labs/vinlab/tests/unit/test_vref_year_window.py` (CREATE; MODIFY in round 2 only if R6 needs it)
 - `repo/labs/vinlab/tests/fixtures/vindna_pre_refactor/WBA4W9C5ZLYYYYYYY.json` (MODIFY)
 - `repo/labs/vinlab/docs/VIN_VOCABULARY.md` (MODIFY)
+- `repo/apps/wired/tests/fixtures/oil_cases/MW-009.json` (MODIFY; round 2, R6)
 - `repo/labs/vinlab/tasks/progress_notes/T-VINA-3.md` (CREATE)
 - `repo/labs/vinlab/tasks/results/RESULT_T-VINA-3.md` (CREATE)
 - `C:/4DApp/recheck/T-VINA-3/pt/` (RUNTIME: pytest `--basetemp`)
@@ -151,6 +161,7 @@ Expected:
 - step 3: `27 passed`, `41 passed`, `30 passed`.
 - step 4: `8 passed`.
 - step 5: at least `1`.
-- step 6: `All checks passed!`; the spec commit and your commit; only the note and the RESULT.
+- step 6: `All checks passed!`; the spec commit, the correction commit and your two commits; only the note, the
+  blocker JSON and the RESULT.
 
 Repo-wide gates (report-only): the other five lab suites keep their base counts; Cowork runs them at review.
