@@ -157,4 +157,4 @@ A missing required top-level key raises `KeyError`; a version mismatch raises
 | T-DNA-7 | `SCHEMA_VERSION` bumped `1.0 → 1.1`; new upstream fields (`load_state`, `rated_rpm`, formalized CoC) round-trip via each producer's `to_json`/`from_json`; `load_state` is now a required `build_vehicle_dna` triage key passed through to `resolve()` | Done |
 | `free_text_notes` | optional on `SymptomDNA`; the assembly does not forward it (it is not a `build_vehicle_dna` triage key) | Accepted (no named consumer) |
 | Legacy-payload path | `from_json_payload` rejects any non-matching version (no upgrade-on-read); decided under T-DNA-7 | Decided (reject-with-message) |
-| Transitive block | `build_vehicle_dna` → `symptomlab.resolve` → `SymptomValidator(len==18)` — the live catalog is now 18 pairs (T-DNA-8), so the validator constructs cleanly | Resolved (T-DNA-8) |
+| Transitive block | `build_vehicle_dna` → `symptomlab.resolve` → `SymptomValidator(len==21)` — the live catalog is 21 pairs (ADR-0008), so the validator constructs cleanly | Resolved (T-DNA-8) |

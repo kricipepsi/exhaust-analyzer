@@ -144,8 +144,8 @@ prefix `DNA_TX_`, ISO-8601 UTC timestamp, and exception propagation for invalid 
 missing-triage-key / invalid-triage.
 
 > The `sample_triage` fixture uses `tier_2 = "black_smoke"` — a pair present in the live
-> 18-pair catalog — and supplies `load_state` (a required triage key since T-DNA-7).
-> `SymptomValidator` construction now passes the `len == 18` invariant (catalog reconciled
+> 21-pair catalog — and supplies `load_state` (a required triage key since T-DNA-7).
+> `SymptomValidator` construction now passes the `len == 21` invariant (ADR-0008; catalog reconciled
 > by T-DNA-8), so these tests build the validator cleanly.
 
 ---

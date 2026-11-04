@@ -188,7 +188,7 @@ catalog check on every deserialise would couple the model to the catalog file.
 ### Decision
 
 `SymptomDNA.from_json()` checks **field presence + environmental enum membership** only.
-The 18-pair catalog invariant is enforced by `SymptomValidator.validate()` / `resolve()`.
+The 21-pair catalog invariant (ADR-0008) is enforced by `SymptomValidator.validate()` / `resolve()`.
 DNALab must build symptom records through `resolve()`; `from_json()` is for an
 already-validated payload.
 

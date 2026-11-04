@@ -182,7 +182,7 @@ version guard, at `SCHEMA_VERSION = "1.2"`.
 ### Dependency note (transitive — resolved)
 
 `build_vehicle_dna` calls `symptomlab.resolve()`, which constructs a `SymptomValidator`.
-The live symptom catalog now holds **18** pairs (T-DNA-8), so the `len == 18` invariant
+The live symptom catalog now holds **21** pairs (ADR-0008), so the `len == 21` invariant
 passes and the constructor succeeds — `build_vehicle_dna` is no longer transitively
 blocked. DNALab's own code was unchanged by that fix; it landed in SymptomLab.
 
