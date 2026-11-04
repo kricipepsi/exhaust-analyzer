@@ -49,3 +49,8 @@ cold read 2026-11-04: skipped, plan-gated (Plan: REQUIRED; the plan review and i
   exited 1): APPROVE WITH CORRECTIONS, 2 MEDIUM test gaps, both upheld (C1 tool mutant for G2 (ii); C2 two collision
   PIN tests). Concern: RGX map keys of weak majority, carried to the RESULT and T-VINA-11. Record:
   `corrections/T-VINA-14_plan_correction_20261104.md`.
+- **02 (2026-11-04, review; revision before acceptance).** Cowork's re-run equals the RESULT (293/8, 32, reach 568,
+  0 existing rows changed, 40 new rows equal Cowork's independent rehearsal db, 0 mismatches). Second review (codex):
+  APPROVE WITH CORRECTIONS, F1 MED (guards on the coalesced row untested), F2 LOW (blank-string induction untested).
+  Cowork ran the three mutants: each leaves the two files at `32 passed`. Both upheld → R4 (02): three tests, test
+  files only. No data effect (shipped rows equal the rehearsal; 0 blank-string inductions in `vref.db`).

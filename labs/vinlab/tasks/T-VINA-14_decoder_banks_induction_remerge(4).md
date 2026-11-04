@@ -95,6 +95,19 @@ those two reasons or for a collision that is not a real conflict. Done is `### V
     against TURBOCHARGED, all else equal), with the mutants "accept adjacent 1 cc steps" and "coalesce any field by
     first brand". The merge file then holds 25 tests. The RESULT names the RGX map majority share beside the two RGX
     changes (`PEUGEOT,221RA` 0.400; `CITROEN,U6UA0` 0.833).
+  - **Ruled (02, review; revision before acceptance; test files only).** The tool, the decoder and `vref.db` do not
+    change. Three surviving mutants get an isolating test each:
+    - (a) `test_g1_runs_on_the_coalesced_row` (merge, `NEW`): BRANDA `is_v_engine` blank, BRANDB `0`, everything else
+      equal; map `V6` with `cylinder_count` 6. The code is inserted. Kills "`_g1_map_banks(group[0], …)`".
+    - (b) `test_g2_runs_on_the_coalesced_row` (merge, `NEW`): SKODA code, BRANDA `displacement_cc` blank, BRANDB
+      `1198`, both `cylinder_count` 4 and `is_v_engine` 0; SKODA map row with blank displacement and cylinder count. The
+      code is skipped as `cylinder_heuristic`. Kills "`_g2_cylinder_heuristic(group[0], …)`".
+    - (c) `test_blank_induction_takes_the_hint` (decoder, `NEW`, parametrised over `""` and `"   "`): the AZQ fixture
+      row with that `induction_type` decodes TURBOCHARGED. Kills "`induction_stated=db_dict.get("induction_type") is
+      not None`".
+    - Counts: merge file 27, decoder file 9 items; step 2 `36 passed`; step 1 `297 passed, 8 skipped`. Run each
+      mutant, record it in the note's `## Revision 02`, update the RESULT's counts and mutant total (12). Commit as
+      `test(T-VINA-14): …`.
 - **R5 The effect is measured.** The plan predicts `reach.py` after the merge (P3) and the decode diff (P2, P4). The
   RESULT lists every real VIN whose banks, induction, euro, O₂ type or air metering changes, with the TecDoc field or
   the map BOXER that causes it. An unattributed change is a stop. A dnalab, wired or ui test that changes value is
