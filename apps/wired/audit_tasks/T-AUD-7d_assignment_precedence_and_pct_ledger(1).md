@@ -39,12 +39,17 @@ assignment, no PCT row with a pending blocker and no `apps/wiredV2` path in the 
 | id | value | population | command |
 |---|---|---|---|
 | P1 | base: `rules.py` last line `sides not found: 4`; `ledgers.py` 18 lines with `blockers_not_done=['PCT`, and section G lists `Agy → T-V3-P4-C5B` and `Codex + Agy + Claude → T-GTA-<lab>`; `paths.py` 3 post-cat-trim `wiredv2` lines (`:94` twice, `:99`) | base `9de409b` | `C:/4DApp/recheck/T-AUD-7d/{rules,led}_base.out` |
-| P2 | after R1-R8 (rehearsed by Cowork, then restored): `sides not found: 8` (X4 ROADMAP, X6 START_HERE, AGENTS, assignments); 0 PCT lines; section G empty; 0 post-cat-trim `wiredv2` lines; diff stat `6 files changed, 37 insertions(+), 35 deletions(-)` | the rehearsal | `C:/4DApp/recheck/T-AUD-7d/{rules,led,paths}_new.out`, `rehearsal.diff` |
+| P2 | after R1-R8 (rehearsed by Cowork, then restored; your commit holds 5 of the 6 files): `sides not found: 8` (X4 ROADMAP, X6 START_HERE, AGENTS, assignments); 0 PCT lines; section G empty; 0 post-cat-trim `wiredv2` lines; your commit's diff stat `5 files changed, 26 insertions(+), 26 deletions(-)` | the rehearsal | `C:/4DApp/recheck/T-AUD-7d/{rules,led,paths}_new.out`, `rehearsal.diff` |
 
 `$PY` is `C:/4DApp/.venv/Scripts/python.exe`. `ledgers.py` and `paths.py` write into the tracked `audit/scratch/D3/out/`:
 restore it with `git checkout -- audit/scratch/D3/out/` after every run. The six files are UTF-8 with LF line ends.
 
 ### Rulings that bind ###
+- **R0 Correction 01 (hand-back B9).** The role guard denies Edit on `*PROGRESS*.md`, so Cowork made the R6 and R7
+  edits in `planning/post_cat_trim/PROGRESS.md` itself: commit `0779c66` (`ledger(T-AUD-7d):`) on this branch. Do not
+  edit that file. Your five edited files stay as they are (Cowork compared them with `rehearsal.diff`: identical).
+  Finish: run `### Verification ###`, then commit the five files. `HEAD~1` is no longer `9de409b`: the First
+  action applies to the first dispatch only.
 - **R1-R8 Make the edits `C:/4DApp/recheck/T-AUD-7d/make_rh.py` makes**, by hand (Edit tool). Each `rep()` call is
   one edit: its first string is the old text, its second the new text, exactly. The R6 loop is 18 edits: in each
   `| PCT-2 |` … `| PCT-10 |` row of the two ledgers, the last `pending` becomes `deferred`; the PCT-9 rows also say
@@ -73,7 +78,7 @@ else is a stop.
    and `sides not found: 8` (step 1).
 2. `ledgers.py` prints no `blockers_not_done=['PCT` line and no assignment line in section G (step 2).
 3. `paths.py` prints no post-cat-trim line that names `wiredv2` (step 3).
-4. One `docs(T-AUD-7d):` commit after the spec commit changes exactly the 6 files, with the P2 diff stat; `git status
+4. One `docs(T-AUD-7d):` commit after Cowork's `0779c66` changes exactly the 5 files (all but `PROGRESS.md`), with the P2 diff stat; `git status
    --porcelain` lists only the note and the RESULT (step 4).
 
 ### Context ###
@@ -100,7 +105,6 @@ Expected: `checked`, and no `MISSING` line.
 - `repo/AGENTS.md` (MODIFY)
 - `repo/START_HERE.md` (MODIFY)
 - `repo/ROADMAP.md` (MODIFY)
-- `repo/planning/post_cat_trim/PROGRESS.md` (MODIFY)
 - `repo/planning/post_cat_trim/POST_CAT_TRIM_START_HERE.md` (MODIFY)
 - `repo/apps/wired/audit_tasks/progress_notes/T-AUD-7d.md` (CREATE)
 - `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-7d.md` (CREATE)
@@ -133,7 +137,8 @@ Expected:
   `sides not found: 8`.
 - step 2: `0`, then `0`.
 - step 3: `0`.
-- step 4: Cowork's `audit:` spec commit, then exactly one `docs(T-AUD-7d):` commit; the P2 diff stat naming only the
-  6 files; `git status --porcelain` lists only the note and the RESULT.
+- step 4: Cowork's three commits (the `audit:` spec, the `ledger(T-AUD-7d):` `0779c66`, the `audit:` correction 01),
+  then exactly one `docs(T-AUD-7d):` commit; the P2 diff stat naming only the 5 files; `git status --porcelain` lists
+  only the note, the RESULT and the blocker record.
 
 Repo-wide gates: none. The row changes no code.

@@ -42,3 +42,7 @@ T-AUD-7d: the ledger wins over an assignment; ROADMAP consumer rule = AGENTS rul
 cold read: not triggered (docs row; rulings are verbatim old/new text, rehearsed end to end).
 
 ### Correction history ###
+- 01 (2026-11-05, hand-back B9, SCOPE, upheld, Cowork's): `planning/post_cat_trim/PROGRESS.md` is Edit-denied to the
+  implementer (`C:/4DApp/.claude/roles/implementer.settings.json:78`). Cowork applied R6/R7 there (`0779c66`, equal to
+  `rehearsal.diff`); the implementer commits the other 5 files. Lost: one docs commit with all 6 files (needs the role
+  guard loosened, a loop contract change).
