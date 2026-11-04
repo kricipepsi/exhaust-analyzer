@@ -41,3 +41,7 @@ cold read 2026-11-04: skipped, plan-gated (Plan: REQUIRED; the plan review and i
   guards with 0 effect today (C3, C4). Not upheld: F2 (derived from stated induction/GDI: C2 clarifies R4), F4 (all
   readers by name). C6: CoC CSV is on D:, 0 codes enriched (Cowork). T-VINA-14, 15 registered. Record:
   `corrections/T-VINA-13b_plan_correction_20261104.md`.
+- **02 (2026-11-04, review; revision before acceptance).** Second review (codex after ds route exit 1): APPROVE WITH
+  CORRECTIONS, 2 test gaps upheld: G2 (iii) qualifier drop untested; the 72-row test's baseline is rebuilt from the
+  shipped (merged) file. Two tests added to R5 (02). Cowork's data check: 72 rows equal base, 1,162 added rows equal
+  the extract, 0 mismatches.

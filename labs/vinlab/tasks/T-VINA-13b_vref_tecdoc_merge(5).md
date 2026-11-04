@@ -101,6 +101,12 @@ Done is `### Verification ###` passing with the counts the plan predicts.
   no-row decode. `test_vref_year_window.py::test_every_vref_row_has_a_window` stays green. The plan names one mutant
   per rule and the test that kills it. **Ruled (01):** C5: the era test uses a fixture window whose bucket is not
   `ERA_MODERN` and asserts that exact bucket. One test each for C3 and C4.
+  **Ruled (02, review):** two more tests, test file only. (a) G2 (iii) in isolation: map cylinder count unknown,
+  configuration `I4`, the before-hint count 0, the after-hint configuration two-bank, extract `is_v_engine` `0`, extract
+  cylinder count and induction equal to the after-hint: the code is skipped. It kills the mutant that restores the
+  "map configuration is blank" qualifier. (b) The 72 original rows of the shipped `vref.db` equal a canonical digest
+  pinned from `git show 11dfa95:labs/vinlab/vinlab/data/vref.db` (explicit columns, typed values), not a baseline
+  rebuilt from the shipped file. Commit as `test(T-VINA-13b): …`; the tool, the builder and `vref.db` do not change.
 - **R6 Downstream tests.** If a dnalab, wired or ui test changes value, the plan names it with the VIN and the field
   before the build. A fixture is regenerated only with that justification in the note (B6).
 - **R7 Order.** (1) Plan and stop. After approval: (2) tests, red run. (3) The tool. (4) The merge on the shipped
@@ -147,11 +153,11 @@ Expected: `checked`, and no `MISSING` or `EXISTS` line.
    `repo/labs/vinlab/tasks/results/RESULT_T-VINA-13b.md` (with `reach.py` before and after).
 
 ### Files to touch ###
-- `repo/labs/vinlab/tools/merge_tecdoc_extract.py` (CREATE)
+- `repo/labs/vinlab/tools/merge_tecdoc_extract.py` (created in `5bf69e5`; no change in correction 02)
 - `repo/labs/vinlab/vinlab/data/vref.db` (MODIFY: new rows; the schema change of R3)
 - `repo/labs/vinlab/tools/build_vref_db.py` (MODIFY: `CREATE_ENGINE_REF` and the `has_maf`/`has_map` migration guard
   only, to match R3's schema; C1)
-- `repo/labs/vinlab/tests/unit/test_vref_tecdoc_merge.py` (CREATE)
+- `repo/labs/vinlab/tests/unit/test_vref_tecdoc_merge.py` (MODIFY: correction 02 adds two tests)
 - dnalab, wired or ui test fixtures: only those the approved plan names (R6)
 - `repo/labs/vinlab/tasks/progress_notes/T-VINA-13b.md` (CREATE)
 - `repo/labs/vinlab/tasks/results/RESULT_T-VINA-13b.md` (CREATE)
