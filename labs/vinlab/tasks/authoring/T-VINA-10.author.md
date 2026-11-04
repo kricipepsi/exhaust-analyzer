@@ -44,4 +44,8 @@ traceability: criteria 1-4 → steps 1-5 · JUDGEMENT: 0.
 cold read 2026-11-04: skipped, plan-gated (Plan: REQUIRED; the plan review and its second-model review cover it).
 
 ### Correction history ###
-(none)
+- **01 (2026-11-04, plan review; Plan: APPROVED with C1-C4).** Plan reproduces P1-P4; 3 snapshots change (horizon,
+  stress). Cowork C1: `euro_unknown` row in VIN_VOCABULARY § 4. Second review (codex): APPROVE WITH CORRECTIONS, F1 HIGH
+  (known-euro path untested), F2 MED (wiki MODERN wording), F3 MED (helper call untested) upheld as C2-C4; F4 LOW not
+  upheld (the script adds the key only on a difference). Dates 98/69/EC and 715/2007 confirmed by the second review.
+  Record: `corrections/T-VINA-10_plan_correction_20261104.md`.
