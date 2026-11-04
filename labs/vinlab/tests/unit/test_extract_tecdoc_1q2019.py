@@ -65,6 +65,8 @@ ENGINES = {
     "51": ("1", "F4R 704", {**PETROL_NA, "Capacity": "1595 ccm"}),
     "52": ("1", "F2N 700", dict(PETROL_NA)),
     "53": ("1", "F2N 704", dict(PETROL_NA)),
+    "54": ("1", "H4J 700", dict(PETROL_NA)),
+    "55": ("1", "H4J 704", {k: v for k, v in PETROL_NA.items() if k != "ChargeType"}),
     "60": ("1", "K9K 700", {**PETROL_NA, "EngineType": "Diesel"}),
     "70": ("2", "N52 B30 A", dict(PETROL_NA)),
     "80": ("1", "D4F 712", dict(PETROL_NA)),
@@ -100,6 +102,8 @@ MAP_ROWS = [
     ("BMW", "N52B30A"),
     ("RENAULT", "D4F712"),
     ("BMW", "M57"),
+    ("BMW", "M52B20"),
+    ("RENAULT", "H4J"),
 ]
 
 
@@ -254,7 +258,7 @@ def test_years_from_cars_with_open_end(run):
 def test_short_row_skipped_and_counted(run):
     rows, stdout, _ = run()
     assert ("RENAULT", "D4F712") not in rows
-    assert re.search(r"^table engines: rows 13, skipped 1 \(field count != 9\)$", stdout, re.M), stdout
+    assert re.search(r"^table engines: rows 15, skipped 1 \(field count != 9\)$", stdout, re.M), stdout
     assert re.search(r"^table manufacturers: rows 5, skipped 0 ", stdout, re.M), stdout
 
 
@@ -286,3 +290,22 @@ def test_petrol_order_diesel_t0_blocks_petrol_t1(run):
     # T0 `M57` is diesel; T1 `M57 X (EXX)` is petrol. The tier is chosen first.
     assert ("BMW", "M57") not in rows
     assert _no_row(stdout)["non_petrol"] == 2
+
+
+def test_t1_whole_part_before_parentheses_hit(run):
+    rows, _, _ = run()
+    # Correction 02 (a): `M52 B20 (206S4)` also yields the whole-part key `M52B20`.
+    row = rows[("BMW", "M52B20")]
+    assert row["match_tier"] == "T1"
+    assert row["tecdoc_engine_ids"] == "20"
+
+
+def test_ambiguity_blank_field_disagrees(run):
+    rows, _, _ = run()
+    # Correction 02 (b): engine 55 states no ChargeType, so the ids do not agree on induction.
+    row = rows[("RENAULT", "H4J")]
+    assert row["status"] == "AMBIGUOUS"
+    assert row["tecdoc_engine_ids"] == "54;55"
+    assert row["induction_type"] == ""
+    assert row["has_turbo"] == ""
+    assert row["displacement_cc"] == "1598"
