@@ -335,7 +335,7 @@ class TestEuropeanChecksumBypass:
 
     EU_VINS = [
         # VIN, expected make, expected year (from vin[9] year code)
-        ("WDD1690321J749046", "Mercedes-Benz", 2001),  # vin[9]='1', Germany
+        ("WDD1690321J749046", "Mercedes-Benz", None),  # vin[9]='1' is a plant code (T-VINA-2)
         ("VF12R051560978004", "Renault", 2006),          # vin[9]='6', France
     ]
 

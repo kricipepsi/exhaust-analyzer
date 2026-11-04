@@ -174,6 +174,13 @@ passthrough set itself.
 
 `# source: decoder.py — _YEAR_PASSTHROUGH {0, U, Z}`
 
+A Mercedes-Benz or smart VIN (`_TYPE_CODE_WMIS`) whose positions 4-9 are digits
+carries the numeric type code there and a plant code at position 10, so the
+decoder returns `model_year = None`. The North American form (letters at 4-9)
+keeps the year.
+
+`# source: decoder.py — _TYPE_CODE_WMIS; C:/4DApp/recheck/T-VINA-2/measure3.py`
+
 ## 10.7 Exception taxonomy (what each gate raises) {#RULE_EXCEPTIONS}
 
 | Gate | Raises | Meaning to the caller |
@@ -216,3 +223,4 @@ the subclass first.
 - **_NON_PETROL_KEYWORDS** - Canonical VINLab-owned non-petrol keyword tuple. Consumer: `vinlab.decoder._is_non_petrol`.
 - **H2 model-year scope guard** - Inclusive 1990-2010 model-year bound. Consumer: `vinlab.decoder.RobustVINDecoder.decode_vin_payload`.
 - **_YEAR_PASSTHROUGH** - `{0, U, Z}` unknown-year passthrough set. Consumer: `vinlab.decoder.RobustVINDecoder._resolve_year`.
+- **_TYPE_CODE_WMIS** - `{WDB, WDC, WDD, WME, W1K, W1N}` Mercedes-Benz/smart WMIs whose numeric type code at positions 4-9 means position 10 is not a year. Consumer: `vinlab.decoder.RobustVINDecoder._resolve_year`.

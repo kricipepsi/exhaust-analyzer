@@ -115,6 +115,10 @@ _EURO_MAP: dict[str, str] = {
 # '0' is also unused. Manufacturers assign these as placeholders
 # for non-year-coded market variants; treat them as year=None.
 _YEAR_PASSTHROUGH: frozenset[str] = frozenset({"0", "U", "Z"})
+# source: C:/4DApp/recheck/T-VINA-2/measure3.py on the audit/scratch/C6 real VINs (2026-11-04): a Mercedes-Benz or
+# smart VIN whose positions 4-9 are the numeric type code (e.g. 124026) has a plant code, not a year, at
+# position 10 (47 of 47 are "1"); one with letters there (North American form) carries the year.
+_TYPE_CODE_WMIS: frozenset[str] = frozenset({"WDB", "WDC", "WDD", "WME", "W1K", "W1N"})
 # source: labs/comlab/wiki/04_horizon_eras.md:54 — the engine targets petrol 1990–2010 (Euro 1–5) (H2)
 _YEAR_MIN, _YEAR_MAX = 1990, 2010
 
@@ -830,6 +834,8 @@ class RobustVINDecoder:
         """
         year_char = vin[9]
         if year_char in _YEAR_PASSTHROUGH:
+            return None, None
+        if vin[:3] in _TYPE_CODE_WMIS and vin[3:9].isdigit():
             return None, None
         candidates = self.year_index.get(year_char)
         if not candidates:
