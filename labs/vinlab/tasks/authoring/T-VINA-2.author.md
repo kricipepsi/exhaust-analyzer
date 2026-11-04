@@ -42,3 +42,8 @@ JUDGEMENT criteria: 0.
 cold read 2026-11-04: skipped (Plan: NONE, difficulty 2, rehearsed edits).
 
 ### Correction history ###
+- **01 (2026-11-04, Cowork review of round 1; not accepted).** Re-run: vinlab `224 passed, 8 skipped`, probes
+  `1 failed, 7 passed`, all lab suites at their counts (comlab 526/4/2 with `--continue-on-collection-errors`, dtclab
+  590, gaslab 208, obdlab 388, symptomlab 72); edits equal the rehearsal modulo CRLF. Codex (second_review.py, peak →
+  codex) APPROVE WITH CORRECTIONS: F1 the non-Mercedes test misses the WMI condition UPHELD (R6.2; rehearsed
+  `_resolve_year("VF11234562A123456", {})` → `(2002, None)`); F2 "plant code" unsourced UPHELD (R6.1; my P3 wording).

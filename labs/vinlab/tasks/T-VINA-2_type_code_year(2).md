@@ -60,11 +60,20 @@ not edit it.
      run and record in the note: M1 ` and vin[3:9].isdigit()` removed → `test_north_american_form_keeps_the_year`
      fails 3; M2 the rule's `if` made `if False:` → `test_type_code_vin_has_no_year` fails 3. Copy `decoder.py` to
      `C:/4DApp/recheck/T-VINA-2/mut/` first, edit in place, run the test, copy it back, and confirm with `cmp`.
+- **R6 Correction 01 (Cowork's review, 2026-11-04).** Change only these, then add `## Round 2` and commit once more:
+  1. **Wording** (F2): no file says what position 10 *is* for these VINs (no source names it). In `decoder.py`'s
+     `# source:` comment, the `test_decoder.py` row comment and the §10.6 paragraph of
+     `wiki/10_decode_scope_rules.md`, replace each "plant code" with "a code that is not a model year" (the comment
+     may keep "47 of 47 are \"1\"").
+  2. **Test** (F1): append to `tests/unit/test_type_code_year.py` a test `test_numeric_positions_outside_the_set_keep_the_year`
+     that calls `decoder._resolve_year("VF11234562A123456", {})` and asserts the first element is `2002`. Mutant M3
+     to record: the `vin[:3] in _TYPE_CODE_WMIS and ` condition removed → this test fails. The new file then has 9
+     cases and the vinlab suite `225 passed, 8 skipped`.
 - **Anchors:** `_YEAR_PASSTHROUGH: frozenset[str] = frozenset({"0", "U", "Z"})`, `def _resolve_year(`,
   `("WDD1690321J749046", "Mercedes-Benz", 2001),`, `## 10.6 Year passthrough — unknown is not an error {#RULE_YEAR_PASSTHROUGH}`.
 - **R5 The doc** (`repo/labs/vinlab/wiki/10_decode_scope_rules.md`): in §10.6, after the line
   `` `# source: decoder.py — _YEAR_PASSTHROUGH {0, U, Z}` ``, add one paragraph: a Mercedes-Benz or smart VIN
-  (`_TYPE_CODE_WMIS`) whose positions 4-9 are digits carries the type code there and a plant code at position 10, so
+  (`_TYPE_CODE_WMIS`) whose positions 4-9 are digits carries the type code there and, at position 10, a code that is not a model year, so
   the decoder returns `model_year = None`; the North American form (letters at 4-9) keeps the year. Then the line
   `` `# source: decoder.py — _TYPE_CODE_WMIS; C:/4DApp/recheck/T-VINA-2/measure3.py` ``. In the glossary list, after
   the `_YEAR_PASSTHROUGH` bullet, add a `_TYPE_CODE_WMIS` bullet with the same consumer. Keep every `{#…}` anchor.
@@ -78,6 +87,10 @@ fix/T-VINA-2
 <the spec commit on fix/T-VINA-2, child of 02ebfba: record it as the base in readiness line (a)>
 ```
 `git status --porcelain` prints nothing. Anything else is a stop.
+
+**Round 2 (correction 01).** The First action and the Preconditions applied to round 1 only. Your round-1 commit
+stays. Apply R6, re-run `### Verification ###` (steps 1 and 2 now expect `225 passed, 8 skipped` and `9 passed`), make
+one more commit on `fix/T-VINA-2`, and add a `## Round 2` section to the note and the RESULT.
 
 ### Success criteria ###
 1. The vinlab suite and `test_type_code_year.py` report their P2 counts (steps 1, 2); M1 and M2 each fail a named test.
@@ -107,7 +120,7 @@ Expected: `checked`, and no `MISSING` or `EXISTS` line.
 ### Files to touch ###
 - `repo/labs/vinlab/vinlab/decoder.py` (MODIFY)
 - `repo/labs/vinlab/tests/unit/test_decoder.py` (MODIFY)
-- `repo/labs/vinlab/tests/unit/test_type_code_year.py` (CREATE)
+- `repo/labs/vinlab/tests/unit/test_type_code_year.py` (CREATE; MODIFY in round 2)
 - `repo/labs/vinlab/wiki/10_decode_scope_rules.md` (MODIFY)
 - `repo/labs/vinlab/tasks/progress_notes/T-VINA-2.md` (CREATE)
 - `repo/labs/vinlab/tasks/results/RESULT_T-VINA-2.md` (CREATE)
@@ -143,12 +156,12 @@ grep -c "_TYPE_CODE_WMIS" labs/vinlab/wiki/10_decode_scope_rules.md
 timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check labs/vinlab/vinlab/decoder.py labs/vinlab/tests/unit/test_decoder.py labs/vinlab/tests/unit/test_type_code_year.py; git log --oneline 02ebfba..HEAD; git status --porcelain
 ```
 Expected:
-- step 1: `224 passed, 8 skipped`, with no `failed` or `error`.
-- step 2: `8 passed`.
+- step 1: `224 passed, 8 skipped` in round 1; `225 passed, 8 skipped` after R6; no `failed` or `error`.
+- step 2: `8 passed` in round 1; `9 passed` after R6.
 - step 3: `27 passed`, `41 passed`, `30 passed`.
 - step 4: `1 failed, 7 passed` (the one named in Context).
 - step 5: at least `2` (the R5 source line and the glossary bullet; the paragraph may name it too).
-- step 6: `All checks passed!`; the spec commit and your commit; only the note and the RESULT.
+- step 6: `All checks passed!`; the spec commit, the correction commit and your two commits; only the note and the RESULT.
 
 Repo-wide gates (report-only): the other five lab suites keep their base counts; Cowork measures them on `02ebfba`
 and again at review.
