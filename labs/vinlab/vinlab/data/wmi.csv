@@ -12285,7 +12285,7 @@ JMH,Honda,JAPAN,modern
 JMP,MITSUBISHI,,modern
 JMY,MITSUBISHI,,modern
 JMZ,Mazda,JAPAN,modern
-JN1,Datsun,SWITZERLAND,modern
+JN1,NISSAN,SWITZERLAND,modern
 JN3,Infiniti,JAPAN,modern
 JN6,Nissan,JAPAN,modern
 JN8,Infiniti,JAPAN,modern
@@ -12309,7 +12309,7 @@ JS1,Suzuki,JAPAN,modern
 JS2,Suzuki,,modern
 JS3,Suzuki,,legacy
 JS4,Suzuki,JAPAN,modern
-JSA,Kawasaki,JAPAN,modern
+JSA,SUZUKI,JAPAN,modern
 JSK,Kawasaki,JAPAN,modern
 JSL,Kawasaki,JAPAN,modern
 JST,Suzuki,JAPAN,modern
@@ -12362,7 +12362,7 @@ KM4,Hyosung Motors & Machinery,SOUTH KOREA,modern
 KM8,Hyundai,SOUTH KOREA,modern
 KME,Hyundai,,modern
 KMF,HMC,SOUTH KOREA,modern
-KMH,Genesis,SOUTH KOREA,modern
+KMH,HYUNDAI,SOUTH KOREA,modern
 KMJ,HYUNDAI,,legacy
 KMT,Genesis,SOUTH KOREA,modern
 KMU,HMC,SOUTH KOREA,modern
@@ -12892,7 +12892,7 @@ SAJ,Jaguar,UNITED KINGDOM,modern
 SAL,Land Rover,UNITED KINGDOM,modern
 SAR,ROVER,UNITED KINGDOM,modern
 SAT,Triumph,UNITED KINGDOM (UK),modern
-SAX,Sterling Motor Car,UNITED KINGDOM,modern
+SAX,ROVER,UNITED KINGDOM,modern
 SAY,Norton MotorCycles,UNITED KINGDOM (UK),modern
 SB1,Toyota,UNITED KINGDOM,modern
 SBD,EQUI-TREK,UNITED STATES (USA),modern
@@ -13153,7 +13153,7 @@ WD6,Freightliner,GERMANY,modern
 WD7,American LaFrance,UNITED STATES (USA),modern
 WD8,Dodge,UNITED STATES (USA),modern
 WDA,Mercedes-Benz,GERMANY,modern
-WDB,Maybach,GERMANY,modern
+WDB,MERCEDES-BENZ,GERMANY,modern
 WDC,Mercedes-Benz,GERMANY,modern
 WDD,Mercedes-Benz,GERMANY,modern
 WDF,Mercedes-Benz,GERMANY,modern
