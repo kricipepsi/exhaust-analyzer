@@ -115,8 +115,8 @@ cd C:/4DApp/repo && git branch --show-current && git rev-parse --short HEAD && g
 fix/T-VINA-5
 <the spec commit on fix/T-VINA-5, child of 448c3ac: record it as the base in readiness line (a)>
 ```
-`git status --porcelain` prints nothing. Anything else is a stop. **Redispatch (01):** HEAD is the correction commit
-(`spec(T-VINA-5): plan correction 01`, child of `d13b885`). The porcelain lists only
+`git status --porcelain` prints nothing. Anything else is a stop. **Redispatch (01):** HEAD is the newest `spec(T-VINA-5):` commit
+(after `spec(T-VINA-5): plan correction 01`, all descended from `d13b885`). The porcelain lists only
 `?? labs/vinlab/tasks/progress_notes/T-VINA-5.md`. Record that HEAD as the base in plan round 2.
 
 ### Success criteria ###

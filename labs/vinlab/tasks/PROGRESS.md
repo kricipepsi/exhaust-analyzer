@@ -30,6 +30,7 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 | T-VINA-9 | (not authored) | deferred | — | — | — | F-C6-3 rest: Renault VF1 position 10 (0-4 only on 103 real VINs) is it a year? Find a source first |
 | T-VINA-10 | (not authored) | deferred | T-VINA-3 | — | — | F-C6-1, F-D1-13: era from year when euro unknown (36 corpus runs change); cited era thresholds; plan |
 | T-VINA-11 | (not authored) | deferred | T-VINA-5 | — | — | vds map: same-brand spelling rows that disagree; one key, two WMI populations (12602); measure first |
+| T-VINA-12 | (not authored) | deferred | T-VINA-5 | — | — | build_wmi_map.py: pick among vPIC makes by Nio D1-Znamka majority; 5NM; vPIC E:/agent_workspace/vpic |
 
 **Status values:** `pending` · `in_progress` · `done` · `blocked` · `deferred` · `superseded`
 
