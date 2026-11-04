@@ -6,12 +6,18 @@ TYPE_CODE_VINS = [
     "WDB1240261A102470",  # W124, type 124.026
     "WDD1690321J749046",  # W169, type 169.032
     "WDD1770441J098476",  # W177, type 177.044
+    "VSA63823413020157",  # Vito W638 (Spain), T-VINA-17
+    "WDF63981313372460",  # Vito/Viano W639, registered 2008, T-VINA-17
+    "WMX1903771A004607",  # AMG GT C190, registered 2016, T-VINA-17
+    "4JG1631541A010177",  # ML W163, European form, registered 1998, T-VINA-17
+    "VDB2010181F956777",  # W201, registered 1993, T-VINA-17
 ]
 
 NORTH_AMERICAN_VINS = [
     ("WDBED30DXLB097097", 1990),  # letters at 4-9: the year code L
     ("WDBSK74F75F093354", 2005),  # the year code 5
     ("WME01MC011H080963", 2001),  # smart, letters at 4-9: the year code 1
+    ("4JGBF71EX7A107518", 2007),  # US-built ML, letters at 4-9: the year code 7, T-VINA-17
 ]
 
 
@@ -33,7 +39,9 @@ def test_other_wmis_keep_position_10(decoder):
 def test_type_code_set_is_the_measured_one():
     from vinlab.decoder import _TYPE_CODE_WMIS
 
-    assert _TYPE_CODE_WMIS == frozenset({"WDB", "WDC", "WDD", "WME", "W1K", "W1N"})
+    assert _TYPE_CODE_WMIS == frozenset(
+        {"WDB", "WDC", "WDD", "WME", "W1K", "W1N", "VSA", "WDF", "WMX", "4JG", "VDB"}
+    )
 
 
 def test_numeric_positions_outside_the_set_keep_the_year(decoder):

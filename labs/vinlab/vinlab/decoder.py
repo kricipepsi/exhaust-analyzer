@@ -119,7 +119,12 @@ _YEAR_PASSTHROUGH: frozenset[str] = frozenset({"0", "U", "Z"})
 # source: C:/4DApp/recheck/T-VINA-2/measure3.py on the audit/scratch/C6 real VINs (2026-11-04): a Mercedes-Benz or
 # smart VIN whose positions 4-9 are the numeric type code (e.g. 124026) has a code that is not a model year at
 # position 10 (47 of 47 are "1"); one with letters there (North American form) carries the year.
-_TYPE_CODE_WMIS: frozenset[str] = frozenset({"WDB", "WDC", "WDD", "WME", "W1K", "W1N"})
+# source: C:/4DApp/recheck/T-VINA-17/registry.py on the Slovenian registry (OPSI 2023-06-30): VSA, WDF, WMX, 4JG
+# and VDB VINs with digits at 4-9 also carry "1" at position 10, first registered outside 2000-2002 (VSA 286 of
+# 443, WDF 4458 of 4536, WMX 25 of 25, 4JG 2 of 2, VDB 1 of 1), so "1" is not the model year 2001 there.
+_TYPE_CODE_WMIS: frozenset[str] = frozenset(
+    {"WDB", "WDC", "WDD", "WME", "W1K", "W1N", "VSA", "WDF", "WMX", "4JG", "VDB"}
+)
 # source: labs/comlab/wiki/04_horizon_eras.md:54 — the engine targets petrol 1990–2010 (Euro 1–5) (H2)
 _YEAR_MIN, _YEAR_MAX = 1990, 2010
 

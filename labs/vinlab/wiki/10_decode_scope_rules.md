@@ -179,7 +179,11 @@ carries the numeric type code there and, at position 10, a code that is not a mo
 decoder returns `model_year = None`. The North American form (letters at 4-9)
 keeps the year.
 
-`# source: decoder.py — _TYPE_CODE_WMIS; C:/4DApp/recheck/T-VINA-2/measure3.py`
+The set also holds the Mercedes-Benz WMIs `VSA` (Spain), `WDF` (vans), `WMX` (AMG), `4JG` (USA, European form)
+and `VDB`. In the Slovenian registry their digit-form VINs carry "1" at position 10 and were first registered
+outside 2000-2002, so "1" is not a model year there.
+
+`# source: decoder.py — _TYPE_CODE_WMIS; C:/4DApp/recheck/T-VINA-2/measure3.py; C:/4DApp/recheck/T-VINA-17/registry.py`
 
 ## 10.7 Exception taxonomy (what each gate raises) {#RULE_EXCEPTIONS}
 
@@ -263,4 +267,4 @@ applied row still gives MODERN (`euro_to_horizon`, contract §6.4).
 - **_NON_PETROL_KEYWORDS** - Canonical VINLab-owned non-petrol keyword tuple. Consumer: `vinlab.decoder._is_non_petrol`.
 - **H2 model-year scope guard** - Inclusive 1990-2010 model-year bound. Consumer: `vinlab.decoder.RobustVINDecoder.decode_vin_payload`.
 - **_YEAR_PASSTHROUGH** - `{0, U, Z}` unknown-year passthrough set. Consumer: `vinlab.decoder.RobustVINDecoder._resolve_year`.
-- **_TYPE_CODE_WMIS** - `{WDB, WDC, WDD, WME, W1K, W1N}` Mercedes-Benz/smart WMIs whose numeric type code at positions 4-9 means position 10 is not a year. Consumer: `vinlab.decoder.RobustVINDecoder._resolve_year`.
+- **_TYPE_CODE_WMIS** - `{WDB, WDC, WDD, WME, W1K, W1N, VSA, WDF, WMX, 4JG, VDB}` Mercedes-Benz/smart WMIs whose numeric type code at positions 4-9 means position 10 is not a year. Consumer: `vinlab.decoder.RobustVINDecoder._resolve_year`.
