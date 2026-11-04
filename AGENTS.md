@@ -37,8 +37,9 @@ here and to `START_HERE.md`. Maps role → where to look. Keep it short; the rul
    registry, e.g. `comlab/config/proposals/`, never silently in the live KG, plus its task spec).
    **"Not in v1" is not a reason to defer.** Default new improvements to **proposal**; defer/PENDING
    only when no consumer can be named at all. See `4DLab_CLAUDE.md` → "Progress the app forward".
-5. **Lab isolation.** No cross-lab Python imports; consumers mirror the types they need locally over
-   JSON boundaries. Reports in `.md` only. Obsolete files are **archived, never deleted**.
+5. **Lab isolation.** No cross-lab Python imports, except an edge that an Accepted ADR sanctions (one
+   today: `labs/dnalab/docs/ADR_DNALab.md` ADR-0002, `dnalab → vinlab + symptomlab`). Consumers mirror
+   the types they need locally over JSON boundaries. Reports in `.md` only. Obsolete files are **archived, never deleted**.
 
 ## Where to go
 

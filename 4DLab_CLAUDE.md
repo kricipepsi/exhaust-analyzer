@@ -212,12 +212,12 @@ the Desktop backup only if a task needs them.
 |---|---|
 | 4DLabV2 general workspace | `/agent_workspace/START_HERE.md` → `ROADMAP.md` |
 | GASLab v2 (Stage 1) | `/agent_workspace/labs/gaslab/tasks/GASLAB_TASKS_START_HERE.md` |
-| GAS→Vault pipeline pack | `/agent_workspace/Vault/tasks/GAS_VAULT_TASKS_START_HERE.md` |
-| DTC→Vault pipeline pack | `/agent_workspace/Vault/tasks/DTC_VAULT_TASKS_START_HERE.md` |
+| GAS→Vault pipeline pack | retired: never edit `Vault/` (`AGENTS.md`); no row is `pending` |
+| DTC→Vault pipeline pack | retired: never edit `Vault/` (`AGENTS.md`); no row is `pending` |
 | OBDLab v2 (Stage 2) | `/agent_workspace/labs/obdlab/tasks/OBDLAB_TASKS_START_HERE.md` |
 | DTCLab v2 (Stage 3) | `/agent_workspace/labs/dtclab/README.md` |
 | COMLab v2 (Stage 4, last) | `/agent_workspace/labs/comlab/README.md` |
-| 4DLabWired v2 — app & composition | `/agent_workspace/apps/wiredV2/WIREDV2_START_HERE.md` |
+| 4DLabWired v2 — app & composition | `/agent_workspace/apps/wired/WIRED_START_HERE.md` |
 | Generative test harness | `/agent_workspace/harness/HARNESS_START_HERE.md` |
 | Per-lab test-harness rollout | `/agent_workspace/planning/test_rollout/TEST_ROLLOUT_PROGRESS.md` |
 | GPF removal (cross-lab) | `/agent_workspace/planning/gpf_removal/GPF_REMOVAL_START_HERE.md` |
