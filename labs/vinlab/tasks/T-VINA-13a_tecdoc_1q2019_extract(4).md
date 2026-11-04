@@ -109,6 +109,12 @@ engine map that TecDoc knows, with the fields `vref.db` `engine_ref` needs and t
   output rows. C5: the years test links one engine to one open and one closed car and asserts `my_end` blank. C6: a
   new test pins the petrol order: a diesel T0 hit plus a petrol T1 hit on one pair gives no row (non-petrol). Also a
   `FAMILY` case and an all-digit head-token case (C1, C2).
+  **Ruled (02, review):** two more tests, test file only. (a) A map row whose code is the whole part before the
+  parentheses (`BMW M52B20` ↔ `M52 B20 (206S4)`) is a `T1` hit; it kills the mutant that drops that key. (b) A pair
+  whose two engines differ only by one blank field (one engine has no `ChargeType`) is `AMBIGUOUS` with
+  `induction_type` blank; it kills the mutant that ignores blanks. Cowork's mutants:
+  `C:/4DApp/recheck/T-VINA-13a/review/F2.py`, `F3.py` (each survives the current 11 tests). Commit as
+  `test(T-VINA-13a): …`; the tool and the CSV do not change.
 - **R6 The real run and the report.** The committed CSV is the output of one run on `DBS_ROOT=D:/4DLab/4DLabV2/DBS`.
   The RESULT carries the coverage report:
   - rows per `match_tier` and `status`;

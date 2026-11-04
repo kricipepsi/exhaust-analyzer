@@ -46,3 +46,6 @@ cold read 2026-11-04: skipped, plan-gated (Plan: REQUIRED; the plan review and i
   equal the plan). Upheld F2 (all-digit keys, C1), F4 (FAMILY, C2), F5 (twincharger, C3), F6 (C4), F7 (C5), petrol
   order (C6). Not upheld: F1 (whole-X key: my R3 wording, now named), F3 (Genesis is a Hyundai brand), F8 (P4 groups by
   manufacturer set). Record: `corrections/T-VINA-13a_plan_correction_20261104.md`.
+- **02 (2026-11-04, review; revision before acceptance).** Second review (ds-pro): F2 (whole-part key untested) and
+  F3 (blank-as-value ambiguity untested) upheld: Cowork's mutants `recheck/T-VINA-13a/review/F2.py`, `F3.py` pass all 11
+  tests and change 7 and 10 real rows. Two tests added to R5 (02). F1 (alias count) not upheld (re-derived 118).
