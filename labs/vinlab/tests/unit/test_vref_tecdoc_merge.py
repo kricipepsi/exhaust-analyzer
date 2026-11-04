@@ -360,6 +360,34 @@ def test_three_cc_values_stay_collision(tool, tmp_path, db):
     assert report.skipped["collision"] == ("ZZ2THR",)
 
 
+def test_g1_runs_on_the_coalesced_row(tool, tmp_path, db):
+    # Review correction 02 (a): the coalesced is_v_engine is BRANDB's stated 0, so the blank-is_v_engine G1 skip
+    # does not fire; on BRANDA's row alone it would.
+    rows = [
+        _extract_row(brand="BRANDA", engine_code="ZZ2GOO", is_v_engine=""),
+        _extract_row(brand="BRANDB", engine_code="ZZ2GOO", is_v_engine="0"),
+    ]
+    map_row = _map_row(engine_code="ZZ2GOO", engine_configuration="V6", cylinder_count="6")
+    report = _merge(tool, tmp_path, db, rows, [map_row])
+    assert report.inserted == ("ZZ2GOO",)
+    assert report.skipped["map_banks"] == ()
+
+
+def test_g2_runs_on_the_coalesced_row(tool, tmp_path, db):
+    # Review correction 02 (b): the coalesced displacement is BRANDB's 1198 cc; the Skoda brand rule reads it as an
+    # I3, TecDoc states 4 cylinders, so G2 (i) fires; on BRANDA's blank displacement alone it would not.
+    rows = [
+        _extract_row(brand="BRANDA", engine_code="ZZ2GTW", displacement_cc="", cylinder_count="4", is_v_engine="0"),
+        _extract_row(brand="BRANDB", engine_code="ZZ2GTW", displacement_cc="1198", cylinder_count="4",
+                     is_v_engine="0"),
+    ]
+    map_row = _map_row(brand="SKODA", engine_code="ZZ2GTW", engine_displacement="", cylinder_count="",
+                       engine_configuration="")
+    report = _merge(tool, tmp_path, db, rows, [map_row])
+    assert report.inserted == ()
+    assert report.skipped["cylinder_heuristic"] == ("ZZ2GTW",)
+
+
 def test_non_displacement_conflict_stays_collision(tool, tmp_path, db):
     # PIN (correction 01, C2)
     rows = [

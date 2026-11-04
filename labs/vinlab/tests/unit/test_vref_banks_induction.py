@@ -82,6 +82,14 @@ def test_null_induction_takes_the_hint(vref_copy):
     assert dna.induction_type == InductionType.TURBOCHARGED
 
 
+@pytest.mark.parametrize("blank", ["", "   "])
+def test_blank_induction_takes_the_hint(vref_copy, blank):
+    # Review correction 02 (c): a blank induction_type states nothing, like NULL.
+    dna = vref_copy(AZQ_ROW, (blank,)).decode_vin_payload(AZQ_VIN)
+    assert dna.cylinder_count == 3
+    assert dna.induction_type == InductionType.TURBOCHARGED
+
+
 def test_real_boxer_vin_has_two_banks(decoder):
     assert decoder.decode_vin_payload(BOXER_VIN).number_of_banks == 2
 
