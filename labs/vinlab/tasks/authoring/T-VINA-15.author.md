@@ -38,3 +38,8 @@ criteria 1-4 → steps 1-6 · JUDGEMENT criteria: 0.
 cold read 2026-11-04: skipped (Plan: NONE, difficulty 2, rehearsed edits and mutants).
 
 ### Correction history ###
+- **01 (2026-11-04, Cowork review of round 1 with the second review; not accepted).** Round 1 equals `make_rh.py`
+  byte for byte; Cowork's rerun matches P2. Second review (Codex) APPROVE WITH CORRECTIONS: MEDIUM one-sided reset
+  mutant (`db_maf = None` only) survives UPHELD → R5.2 (rehearsed M4 `2 failed`); LOW the rule is not scoped to
+  injected engines UPHELD → R5.1, R5.3 (M5 `1 failed`). Rehearsed `make_rh2.py`: vinlab `354 passed, 8 skipped`,
+  file `10 passed`, real VINs against round 1: 0 changed. Step 5's base pinned to `51566ca`.

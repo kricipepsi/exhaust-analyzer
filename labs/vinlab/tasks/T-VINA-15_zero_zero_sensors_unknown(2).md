@@ -42,6 +42,8 @@ a contradiction for a fuel-injected engine. Done is `### Verification ###` passi
 | P1 | `engine_ref` `(has_maf, has_map)`: NULL/NULL 1202, 0/0 68, 0/1 2, 1/0 1, 1/1 1. The 68 rows: PORT_INJECTION 41, GDI 27 (none CARBURETOR). Source: `tools/build_vref_db.py` writes `bool(e.get("has_maf", False))` | shipped `labs/vinlab/vinlab/data/vref.db` | `C:/4DApp/recheck/T-VINA-15/measure.py` |
 | P2 | after R1-R2: vinlab `353 passed, 8 skipped` (base `344 passed, 8 skipped`); `test_sensor_unknown.py` `9 passed`; M1 (base decoder) and M2 (rule disabled) `3 failed`; M3 (the `is not None` guards removed) `1 failed`; dnalab 27, wired 41, ui 30, probes `-k "f2_ or f3_model or f8_"` 14 passed (as the base); real C6 VINs changed: 13, all `MAP_ONLY_SPEED_DENSITY` (no sensor) → `DUAL_MAF_MAP_CROSSCHECK`; ruff clean | Cowork's copy | `bash C:/4DApp/recheck/T-VINA-15/rehearse.sh` |
 
+| P3 | round 2 (after R5): vinlab `354 passed, 8 skipped`; `test_sensor_unknown.py` `10 passed`; M4 (only `db_maf` reset) `2 failed`; M5 (no carburettor scope) `1 failed`; real C6 VINs changed against round 1: 0 | Cowork's copy | `C:/4DApp/recheck/T-VINA-15/make_rh2.py` on round 1, then steps 1, 2, 5 |
+
 `$PY` is `C:/4DApp/.venv/Scripts/python.exe`. Every file under `C:/4DApp/recheck/T-VINA-15/` except `pt/` and `mut/` is
 Cowork's: read it, run `effect.py`, do not edit it.
 
@@ -56,6 +58,14 @@ Cowork's: read it, run `effect.py`, do not edit it.
   copy it back, and confirm with `cmp`. Record each in the note: M1 the base decoder (`git show HEAD~1:...`) → `3 failed`;
   M2 the rule's `if` made `if False:` → `3 failed`; M3 the condition made `if not db_maf and not db_map:` → `1 failed`
   (the `{"has_maf": 0, "has_map": None}` case).
+- **R5 Correction 01 (Cowork's review with the second review, 2026-11-04).** Make the edits
+  `C:/4DApp/recheck/T-VINA-15/make_rh2.py` makes, by hand (Edit tool), on top of your round-1 commit. Change nothing
+  else. Then add `## Round 2` to the note and the RESULT, and commit once more.
+  1. **Scope:** the rule adds `and fuel_delivery_type != FuelDeliveryType.CARBURETOR` (a carburettor may truly have
+     neither sensor), written over 4 lines as the script writes it.
+  2. **Exact strategy:** the real-VIN test asserts `(True, True)` and `DUAL_MAF_MAP_CROSSCHECK`.
+  3. **New test** `test_carburettor_zero_zero_is_kept`. Mutants to record: M4 `db_maf = db_map = None` becomes
+     `db_maf = None` → `2 failed`; M5 the carburettor line deleted → `1 failed`.
 - **R4 Nothing else.** `vinlab/data/vref.db` and `tools/build_vref_db.py` do not change: the T-VINA-13b merge tests
   rebuild the pre-merge file under a `NOT NULL` schema and pin its digest.
 
@@ -70,11 +80,15 @@ fix/T-VINA-15
 `HEAD` is Cowork's `vina:` spec commit and its parent is `5307de4`. `git status --porcelain` prints nothing. Anything
 else is a stop.
 
+**Round 2 (correction 01).** The First action and the Preconditions applied to round 1 only. Your round-1 commit
+stays. Apply R5, re-run `### Verification ###` (steps 1, 2 and 5 now expect the P3 counts), run M4 and M5, make one more
+commit on `fix/T-VINA-15`, and add a `## Round 2` section to the note and the RESULT.
+
 ### Success criteria ###
-1. The vinlab suite and `test_sensor_unknown.py` report their P2 counts (steps 1, 2); M1-M3 fail as R3 says.
+1. The vinlab suite and `test_sensor_unknown.py` report their P2 counts (steps 1, 2); M1-M3 fail as R3 says, M4-M5 as R5 says.
 2. dnalab, wired, ui and the probes report their P2 counts (steps 3, 4).
 3. Exactly the 13 P2 real VINs change, all to `DUAL_MAF_MAP_CROSSCHECK` (step 5).
-4. `ruff` passes on the 2 `.py` files; one commit on `fix/T-VINA-15` after the spec commit; `git status --porcelain`
+4. `ruff` passes on the 2 `.py` files; two commits on `fix/T-VINA-15` after the spec commit (round 1, round 2); `git status --porcelain`
    lists only the note and the RESULT (step 6).
 
 ### Context ###
@@ -90,15 +104,15 @@ cd C:/4DApp/repo && for p in labs/vinlab/vinlab/decoder.py labs/vinlab/vinlab/da
 Expected: `checked`, and no `MISSING` or `EXISTS` line.
 
 ### Deliverables ###
-1. One commit on `fix/T-VINA-15`: R1-R2.
+1. One commit on `fix/T-VINA-15` for R1-R2 (round 1) and one for R5 (round 2).
 2. `repo/labs/vinlab/tasks/progress_notes/T-VINA-15.md` (with the R3 mutant results).
 3. `repo/labs/vinlab/tasks/results/RESULT_T-VINA-15.md`.
 
 ### Files to touch ###
 - `repo/labs/vinlab/vinlab/decoder.py` (MODIFY)
-- `repo/labs/vinlab/tests/unit/test_sensor_unknown.py` (CREATE)
-- `repo/labs/vinlab/tasks/progress_notes/T-VINA-15.md` (CREATE)
-- `repo/labs/vinlab/tasks/results/RESULT_T-VINA-15.md` (CREATE)
+- `repo/labs/vinlab/tests/unit/test_sensor_unknown.py` (created in round 1; MODIFY in round 2)
+- `repo/labs/vinlab/tasks/progress_notes/T-VINA-15.md` (created in round 1; MODIFY in round 2)
+- `repo/labs/vinlab/tasks/results/RESULT_T-VINA-15.md` (created in round 1; MODIFY in round 2)
 - `C:/4DApp/recheck/T-VINA-15/pt/` (RUNTIME: pytest `--basetemp`)
 - `C:/4DApp/recheck/T-VINA-15/mut/` (RUNTIME: your mutant copy)
 
@@ -124,18 +138,20 @@ mkdir -p C:/4DApp/recheck/T-VINA-15/pt
 (cd apps/ui && timeout 280 $PY -m pytest -q -p no:cacheprovider --basetemp=C:/4DApp/recheck/T-VINA-15/pt/ui | tail -1)
 # 4.
 timeout 200 $PY -m pytest -q -p no:cacheprovider audit/scratch/C6/test_c6_probes.py -k "f2_ or f3_model or f8_" --basetemp=C:/4DApp/recheck/T-VINA-15/pt/p | tail -1
-# 5. (base decoder from git, new decoder from the tree; run from a neutral directory)
-rm -rf C:/4DApp/recheck/T-VINA-15/pt/base && mkdir -p C:/4DApp/recheck/T-VINA-15/pt/base && git archive HEAD~1 labs/vinlab | tar -x -C C:/4DApp/recheck/T-VINA-15/pt/base
+# 5. (base decoder from the spec commit 51566ca, new decoder from the tree; run from a neutral directory)
+rm -rf C:/4DApp/recheck/T-VINA-15/pt/base && mkdir -p C:/4DApp/recheck/T-VINA-15/pt/base && git archive 51566ca labs/vinlab | tar -x -C C:/4DApp/recheck/T-VINA-15/pt/base
 (cd C:/4DApp/recheck && timeout 200 $PY T-VINA-15/effect.py C:/4DApp/repo/labs/vinlab C:/4DApp/recheck/T-VINA-15/pt/base/labs/vinlab | head -1)
 # 6.
 timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check labs/vinlab/vinlab/decoder.py labs/vinlab/tests/unit/test_sensor_unknown.py; git log --oneline 5307de4..HEAD; git status --porcelain
 ```
 Expected:
-- step 1: `353 passed, 8 skipped`; no `failed` or `error`.
-- step 2: `9 passed`.
+- step 1: `353 passed, 8 skipped` in round 1; the P3 count after R5; no `failed` or `error`.
+- step 2: `9 passed` in round 1; the P3 count after R5.
 - step 3: `27 passed`, `41 passed`, `30 passed`.
 - step 4: `14 passed, 37 deselected`.
-- step 5: `decoded 1131 | changed 13 {('MAP_ONLY_SPEED_DENSITY', 'DUAL_MAF_MAP_CROSSCHECK'): 13}`.
-- step 6: `All checks passed!`; the spec commit and your one commit; only the note and the RESULT.
+- step 5: `decoded 1131 | changed 13 {('MAP_ONLY_SPEED_DENSITY', 'DUAL_MAF_MAP_CROSSCHECK'): 13}` (against the spec
+  commit `51566ca`, in both rounds).
+- step 6: `All checks passed!`; the spec commit, your round-1 commit, the correction commit and your round-2 commit;
+  only the note and the RESULT.
 
 Repo-wide gates: none beyond steps 1-4. The row changes one decoder method and adds one test file.
