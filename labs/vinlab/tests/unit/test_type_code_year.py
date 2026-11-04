@@ -34,3 +34,8 @@ def test_type_code_set_is_the_measured_one():
     from vinlab.decoder import _TYPE_CODE_WMIS
 
     assert _TYPE_CODE_WMIS == frozenset({"WDB", "WDC", "WDD", "WME", "W1K", "W1N"})
+
+
+def test_numeric_positions_outside_the_set_keep_the_year(decoder):
+    # VF1 is not in the set, so digits at 4-9 do not suppress the year: code 2 is 2002
+    assert decoder._resolve_year("VF11234562A123456", {})[0] == 2002

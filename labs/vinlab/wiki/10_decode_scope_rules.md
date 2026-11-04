@@ -175,7 +175,7 @@ passthrough set itself.
 `# source: decoder.py — _YEAR_PASSTHROUGH {0, U, Z}`
 
 A Mercedes-Benz or smart VIN (`_TYPE_CODE_WMIS`) whose positions 4-9 are digits
-carries the numeric type code there and a plant code at position 10, so the
+carries the numeric type code there and, at position 10, a code that is not a model year, so the
 decoder returns `model_year = None`. The North American form (letters at 4-9)
 keeps the year.
 
