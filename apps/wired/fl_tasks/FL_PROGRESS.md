@@ -51,7 +51,7 @@ v3 is built against `FL_LOCALIZATION` and judged by `score_v3_yardstick.py` agai
 ## Unplanned follow-ups
 | ID | Discovered in | One-liner | Status |
 |---|---|---|---|
-| FL-V3-ORACLE-MW-MISFIRE | T-FL-1 | Revisit 10 `mechanical_wear→misfire` rows: repin to misfire for single-snapshot yardstick or add mechanical discriminator before scoring as mechanical_wear. | pending-for-v3 |
+| FL-V3-ORACLE-MW-MISFIRE | T-FL-1 | Revisit 10 `mechanical_wear→misfire` rows: repin to misfire for single-snapshot yardstick or add mechanical discriminator before scoring as mechanical_wear. | done (`v3/V3_PROGRESS.md:39`) |
 ---
 ## Architect-level out-of-band patches
 | Date | File | Patch | Reason |
