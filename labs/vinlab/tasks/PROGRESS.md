@@ -31,6 +31,9 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 | T-VINA-10 | (not authored) | deferred | T-VINA-3 | — | — | F-C6-1, F-D1-13: era from year when euro unknown (36 corpus runs change); cited era thresholds; plan |
 | T-VINA-11 | (not authored) | deferred | T-VINA-5 | — | — | vds map: same-brand spelling rows that disagree (123 folded duplicate keys, 119 `MERCEDES BENZ`/`MERCEDES-BENZ`, B7); one key, two WMI populations (12602); measure first |
 | T-VINA-12 | (not authored) | deferred | T-VINA-5 | — | — | build_wmi_map.py: pick among vPIC makes by Nio D1-Znamka majority; 5NM; vPIC E:/agent_workspace/vpic |
+| T-VINA-13a | `repo/labs/vinlab/tasks/T-VINA-13a_tecdoc_1q2019_extract(4).md` | pending | T-VINA-5 | 2026-11-04 | 4/5 | F-C6-1 (operator DB task): TecDoc 1Q2019 per-engine extract CSV for the engine map's codes, brand-agreeing tiers, coverage report; plan REQUIRED |
+| T-VINA-13b | (not authored) | deferred | T-VINA-13a | — | — | merge the 13a extract into vref.db engine_ref (code collisions, era, CoC); measure downstream decode changes |
+| T-VINA-13c | (not authored) | deferred | T-VINA-13b | — | — | TecDoc 1Q2018 (`DBS/tecdoc`) fallback, REA first, only if misses stay material |
 
 **Status values:** `pending` · `in_progress` · `done` · `blocked` · `deferred` · `superseded`
 

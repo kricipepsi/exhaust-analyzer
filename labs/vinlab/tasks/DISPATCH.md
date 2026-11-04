@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-VINA-5` | `repo\labs\vinlab\tasks\PROGRESS.md` | **4** | 2 | NO | 60-90 min | wmi brand table |
+| `T-VINA-13a` | `repo\labs\vinlab\tasks\PROGRESS.md` | **4** | 2 | NO | 60-90 min | tecdoc 1q2019 extract |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-VINA-5` · owner: `repo\labs\vinlab\tasks\PROGRESS.md` · 4/5** — A real VIN of each of the five WMIs decodes with its true manufacturer (`WDB` Mercedes-Benz, `KMH` Hyundai, `JSA` Suzuki, `JN1` Nissan, `SAX` Rover), and the engine join resolves at least as many of t
-  `repo\labs\vinlab\tasks/T-VINA-5_wmi_brand_table(4).md`
+**`T-VINA-13a` · owner: `repo\labs\vinlab\tasks\PROGRESS.md` · 4/5** — A stdlib-only tool reads TecDoc 1Q2019 (read-only) and writes one reviewed CSV row per engine code of the shipped engine map that TecDoc knows, with the fields `vref.db` `engine_ref` needs and the evi
+  `repo\labs\vinlab\tasks/T-VINA-13a_tecdoc_1q2019_extract(4).md`
 
 ## Distribution
 
-- **4/5** — 1: T-VINA-5
+- **4/5** — 1: T-VINA-13a
