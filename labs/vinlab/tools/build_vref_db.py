@@ -100,8 +100,9 @@ CREATE TABLE IF NOT EXISTS engine_ref (
     has_turbo          INTEGER NOT NULL DEFAULT 0,
     is_v_engine        INTEGER NOT NULL DEFAULT 0,
     has_egr            INTEGER NOT NULL DEFAULT 0,
-    has_maf            INTEGER NOT NULL DEFAULT 0,
-    has_map            INTEGER NOT NULL DEFAULT 0,
+    -- has_maf/has_map NULL: the source does not state it; the decoder keeps its heuristic (T-VINA-13b)
+    has_maf            INTEGER,
+    has_map            INTEGER,
     o2_type            TEXT NOT NULL DEFAULT 'NB',
     induction_type     TEXT,
     fuel_delivery_type TEXT,
@@ -990,8 +991,8 @@ def main() -> None:
     conn_db.executescript(CREATE_ENGINE_REF)
 
     # Schema migration guard — adds columns to existing DBs without them
-    for col, defn in [("has_maf", "INTEGER NOT NULL DEFAULT 0"),
-                      ("has_map", "INTEGER NOT NULL DEFAULT 0")]:
+    for col, defn in [("has_maf", "INTEGER"),
+                      ("has_map", "INTEGER")]:
         try:
             conn_db.execute(f"ALTER TABLE engine_ref ADD COLUMN {col} {defn}")
         except sqlite3.OperationalError:
