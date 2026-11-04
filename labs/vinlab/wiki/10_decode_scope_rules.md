@@ -179,9 +179,10 @@ carries the numeric type code there and, at position 10, a code that is not a mo
 decoder returns `model_year = None`. The North American form (letters at 4-9)
 keeps the year.
 
-The set also holds the Mercedes-Benz WMIs `VSA` (Spain), `WDF` (vans), `WMX` (AMG), `4JG` (USA, European form)
-and `VDB`. In the Slovenian registry their digit-form VINs carry "1" at position 10 and were first registered
-outside 2000-2002, so "1" is not a model year there.
+The set also holds the Mercedes-Benz WMIs `VSA`, `WDF`, `WMX`, `4JG` and `VDB`. In the Slovenian registry their
+digit-form VINs carry "1" at position 10 (VSA 443 of 443, WDF 4536 of 4541, WMX 25 of 26, 4JG 2 of 2, VDB 1 of 1).
+Most were first registered outside 2000-2002 (VSA 286 of 443, WDF 4458 of 4536), which the model year 2001 cannot
+explain. A VIN registered in 2000-2002 stays ambiguous, and the decoder returns `model_year = None` for it too.
 
 `# source: decoder.py — _TYPE_CODE_WMIS; C:/4DApp/recheck/T-VINA-2/measure3.py; C:/4DApp/recheck/T-VINA-17/registry.py`
 

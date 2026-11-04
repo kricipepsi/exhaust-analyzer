@@ -6,18 +6,18 @@ TYPE_CODE_VINS = [
     "WDB1240261A102470",  # W124, type 124.026
     "WDD1690321J749046",  # W169, type 169.032
     "WDD1770441J098476",  # W177, type 177.044
-    "VSA63823413020157",  # Vito W638 (Spain), T-VINA-17
-    "WDF63981313372460",  # Vito/Viano W639, registered 2008, T-VINA-17
-    "WMX1903771A004607",  # AMG GT C190, registered 2016, T-VINA-17
-    "4JG1631541A010177",  # ML W163, European form, registered 1998, T-VINA-17
-    "VDB2010181F956777",  # W201, registered 1993, T-VINA-17
+    "VSA63823413020157",  # C6 real VIN, decoded 2001 before T-VINA-17
+    "WDF63981313372460",  # registered 2008 (registry), T-VINA-17
+    "WMX1903771A004607",  # registered 2016 (registry), T-VINA-17
+    "4JG1631541A010177",  # digit form, registered 1998 (registry), T-VINA-17
+    "VDB2010181F956777",  # registered 1993 (registry), T-VINA-17
 ]
 
 NORTH_AMERICAN_VINS = [
     ("WDBED30DXLB097097", 1990),  # letters at 4-9: the year code L
     ("WDBSK74F75F093354", 2005),  # the year code 5
     ("WME01MC011H080963", 2001),  # smart, letters at 4-9: the year code 1
-    ("4JGBF71EX7A107518", 2007),  # US-built ML, letters at 4-9: the year code 7, T-VINA-17
+    ("4JGBF71EX7A107518", 2007),  # letters at 4-9: the year code 7, T-VINA-17
 ]
 
 
@@ -29,6 +29,11 @@ def test_type_code_vin_has_no_year(decoder, vin):
 @pytest.mark.parametrize("vin,year", NORTH_AMERICAN_VINS)
 def test_north_american_form_keeps_the_year(decoder, vin, year):
     assert decoder.decode_vin_payload(vin).model_year == year
+
+
+def test_type_code_vin_with_other_position_10_has_no_year(decoder):
+    # WDF44770323287218: digit form, "2" at position 10, first registered 2017 (registry), T-VINA-17
+    assert decoder.decode_vin_payload("WDF44770323287218").model_year is None
 
 
 def test_other_wmis_keep_position_10(decoder):

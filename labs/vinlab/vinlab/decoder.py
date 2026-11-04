@@ -119,9 +119,11 @@ _YEAR_PASSTHROUGH: frozenset[str] = frozenset({"0", "U", "Z"})
 # source: C:/4DApp/recheck/T-VINA-2/measure3.py on the audit/scratch/C6 real VINs (2026-11-04): a Mercedes-Benz or
 # smart VIN whose positions 4-9 are the numeric type code (e.g. 124026) has a code that is not a model year at
 # position 10 (47 of 47 are "1"); one with letters there (North American form) carries the year.
-# source: C:/4DApp/recheck/T-VINA-17/registry.py on the Slovenian registry (OPSI 2023-06-30): VSA, WDF, WMX, 4JG
-# and VDB VINs with digits at 4-9 also carry "1" at position 10, first registered outside 2000-2002 (VSA 286 of
-# 443, WDF 4458 of 4536, WMX 25 of 25, 4JG 2 of 2, VDB 1 of 1), so "1" is not the model year 2001 there.
+# source: C:/4DApp/recheck/T-VINA-17/registry.py on the Slovenian registry (OPSI 2023-06-30): the digit-form VINs
+# (digits at 4-9) of VSA, WDF, WMX, 4JG and VDB carry "1" at position 10 (VSA 443 of 443, WDF 4536 of 4541, WMX
+# 25 of 26, 4JG 2 of 2, VDB 1 of 1). Of these "1" VINs, VSA 286, WDF 4458, WMX 25, 4JG 2 and VDB 1 were first
+# registered outside 2000-2002, which the model year 2001 cannot explain. One registered in 2000-2002 stays
+# ambiguous and also gets None.
 _TYPE_CODE_WMIS: frozenset[str] = frozenset(
     {"WDB", "WDC", "WDD", "WME", "W1K", "W1N", "VSA", "WDF", "WMX", "4JG", "VDB"}
 )
