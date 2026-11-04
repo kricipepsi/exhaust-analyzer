@@ -151,7 +151,7 @@ fix/T-VINA-14
 ```bash
 cd C:/4DApp/repo && for p in labs/vinlab/vinlab/decoder.py labs/vinlab/tools/merge_tecdoc_extract.py labs/vinlab/tools/data/tecdoc_1q2019_engine_extract.csv labs/vinlab/vinlab/data/vref.db labs/vinlab/vinlab/data/vds_engine_map.csv labs/vinlab/tests/unit/test_vref_tecdoc_merge.py C:/4DApp/recheck/T-VINA-13b/reach.py C:/4DApp/recheck/T-VINA-14/rehearse.py C:/4DApp/recheck/T-VINA-14/decoder_rehearse.py; do test -f "$p" || echo "MISSING $p"; done; test -e labs/vinlab/tests/unit/test_vref_banks_induction.py && echo "EXISTS test"; echo checked
 ```
-Expected: `checked`, and no `MISSING` or `EXISTS` line.
+Expected: `checked`, and no `MISSING` line. Revision 02: `EXISTS test` is expected (the file is from `50266c2`).
 
 ### Deliverables ###
 1. The decoder, the tool, the merged `vref.db` and the tests, committed on `fix/T-VINA-14`.
@@ -163,7 +163,7 @@ Expected: `checked`, and no `MISSING` or `EXISTS` line.
   call that passes the stated induction)
 - `repo/labs/vinlab/tools/merge_tecdoc_extract.py` (MODIFY: R3)
 - `repo/labs/vinlab/vinlab/data/vref.db` (MODIFY: new rows from the R3 run)
-- `repo/labs/vinlab/tests/unit/test_vref_banks_induction.py` (CREATE)
+- `repo/labs/vinlab/tests/unit/test_vref_banks_induction.py` (created in `50266c2`; MODIFY in revision 02)
 - `repo/labs/vinlab/tests/unit/test_vref_tecdoc_merge.py` (MODIFY: R4)
 - dnalab, wired or ui test fixtures: only those the approved plan names (R5)
 - `repo/labs/vinlab/tasks/progress_notes/T-VINA-14.md` (CREATE)
