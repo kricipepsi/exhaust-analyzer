@@ -39,7 +39,7 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 | T-VINA-16 | (not authored) | deferred | T-VINA-14 | — | — | engine_ref cylinder column read over a wrong map count (AEB 6 cyl, TecDoc 4); G2 (i) 32 codes, 15 real VINs; pin shipped engine_ref count+digest (F-R3-1) |
 | T-VINA-17 | `repo/labs/vinlab/tasks/T-VINA-17_type_code_wmis_measured(2).md` | done | — | 2026-11-04 | 2/5 | **ACCEPT 2026-11-04, score 91, t=4/1 — `repo/labs/vinlab/tasks/reviews/REVIEW_T-VINA-17.md`.** F-R3-3: add VSA, WDF, WMX, 4JG, VDB to the type-code set (registry-measured); WHE/WDA/WD3/WDZ out |
 | T-VINA-18 | `repo/labs/vinlab/tasks/T-VINA-18_catalog_21_pairs_docs(1).md` | done | — | 2026-11-04 | 1/5 | **ACCEPT 2026-11-04, score 97, t=3/1 — `repo/labs/vinlab/tasks/reviews/REVIEW_T-VINA-18.md`.** F-R3-4 (docs): live catalog-size statements say 21 (ADR-0006, DNALab DLD/HLD/PRD) |
-| T-VINA-19 | `repo/labs/vinlab/tasks/T-VINA-19_registry_majority_filters(1).md` | pending | T-VINA-12 | 2026-11-04 | 1/5 | T-VINA-12 review: _registry_majority test lets a no-17-char-filter mutant pass (tie); skip U+FFFD brands |
+| T-VINA-19 | `repo/labs/vinlab/tasks/T-VINA-19_registry_majority_filters(1).md` | done | T-VINA-12 | 2026-11-04 | 1/5 | **ACCEPT 2026-11-04, score 95, t=3/1 — `repo/labs/vinlab/tasks/reviews/REVIEW_T-VINA-19.md`.** T-VINA-12 review: _registry_majority test lets a no-17-char-filter mutant pass (tie); skip U+FFFD brands |
 
 **Status values:** `pending` · `in_progress` · `done` · `blocked` · `deferred` · `superseded`
 
