@@ -1,0 +1,21 @@
+### tip, vref.db at 5bf69e5^ (72 rows): whole vinlab suite
+281 passed, 8 skipped in 2.06s
+### T-VINA-1 behaviour revert (constants kept)
+PASSED tests/unit/test_year_scope.py::test_scope_is_1990_to_2010
+PASSED tests/unit/test_year_scope.py::test_l_is_1990_for_every_era_hint[101ZZZZZZLZZZZZZZ]
+PASSED tests/unit/test_year_scope.py::test_scope_edges_decode[Y-2000]
+PASSED tests/unit/test_year_scope.py::test_scope_edges_decode[1-2001]
+PASSED tests/unit/test_year_scope.py::test_scope_edges_decode[9-2009]
+PASSED tests/unit/test_year_scope.py::test_scope_edges_decode[A-2010]
+FAILED tests/unit/test_year_scope.py::test_l_is_1990_for_every_era_hint[102ZZZZZZLZZZZZZZ]
+FAILED tests/unit/test_year_scope.py::test_codes_after_2010_are_out_of_scope[B]
+FAILED tests/unit/test_year_scope.py::test_codes_after_2010_are_out_of_scope[C]
+FAILED tests/unit/test_year_scope.py::test_codes_after_2010_are_out_of_scope[D]
+FAILED tests/unit/test_year_scope.py::test_codes_after_2010_are_out_of_scope[E]
+FAILED tests/unit/test_year_scope.py::test_codes_after_2010_are_out_of_scope[F]
+FAILED tests/unit/test_year_scope.py::test_codes_after_2010_are_out_of_scope[G]
+FAILED tests/unit/test_year_scope.py::test_codes_after_2010_are_out_of_scope[H]
+FAILED tests/unit/test_year_scope.py::test_codes_after_2010_are_out_of_scope[J]
+FAILED tests/unit/test_year_scope.py::test_codes_after_2010_are_out_of_scope[K]
+FAILED tests/unit/test_year_scope.py::test_l_is_1990_whatever_the_row_order
+11 failed, 6 passed in 0.27s

@@ -1,0 +1,539 @@
+{
+"decoded_cyl_vs_extract": [
+{
+"code": "K15B",
+"decoded_cyl": 3,
+"disp": 1.462,
+"extract_cyl": [
+4
+],
+"vin": "JSAGJB74V00141993"
+},
+{
+"code": "G10B",
+"decoded_cyl": 3,
+"disp": 0.993,
+"extract_cyl": [
+4
+],
+"vin": "MA3EFA11S00202163"
+},
+{
+"code": "G10B",
+"decoded_cyl": 3,
+"disp": 0.993,
+"extract_cyl": [
+4
+],
+"vin": "MA3EFB11S00161410"
+},
+{
+"code": "YB",
+"decoded_cyl": 4,
+"disp": 2.099,
+"extract_cyl": [
+6
+],
+"vin": "SAJAF51S73YD29577"
+},
+{
+"code": "YB",
+"decoded_cyl": 4,
+"disp": 2.099,
+"extract_cyl": [
+6
+],
+"vin": "SAJAF52SX2YC71204"
+},
+{
+"code": "C20NE",
+"decoded_cyl": 6,
+"disp": 1.998,
+"extract_cyl": [
+4
+],
+"vin": "SED52SUD2RV621223"
+},
+{
+"code": "HFZ",
+"decoded_cyl": 3,
+"disp": 1.124,
+"extract_cyl": [
+4
+],
+"vin": "VF32AHFZE40514662"
+},
+{
+"code": "HFZ",
+"decoded_cyl": 3,
+"disp": 1.124,
+"extract_cyl": [
+4
+],
+"vin": "VF32CHFZE40789228"
+},
+{
+"code": "HFZ",
+"decoded_cyl": 3,
+"disp": 1.124,
+"extract_cyl": [
+4
+],
+"vin": "VF32CHFZE40903096"
+},
+{
+"code": "LFX",
+"decoded_cyl": 6,
+"disp": 1.8,
+"extract_cyl": [
+4
+],
+"vin": "VF7MFLFXF65444330"
+},
+{
+"code": "AER",
+"decoded_cyl": 3,
+"disp": 0.999,
+"extract_cyl": [
+4
+],
+"vin": "VSSZZZ6HZWW062386"
+},
+{
+"code": "X16XEL",
+"decoded_cyl": 6,
+"disp": 1.598,
+"extract_cyl": [
+4
+],
+"vin": "W0L0JBF35X1116159"
+},
+{
+"code": "X16XEL",
+"decoded_cyl": 6,
+"disp": 1.598,
+"extract_cyl": [
+4
+],
+"vin": "W0L0JBF35X7074950"
+},
+{
+"code": "X10XE",
+"decoded_cyl": 4,
+"disp": 0.973,
+"extract_cyl": [
+3
+],
+"vin": "W0L0SBF08W4005800"
+},
+{
+"code": "X10XE",
+"decoded_cyl": 4,
+"disp": 0.973,
+"extract_cyl": [
+3
+],
+"vin": "W0L0SBF08X4314007"
+},
+{
+"code": "X16XEL",
+"decoded_cyl": 6,
+"disp": 1.598,
+"extract_cyl": [
+4
+],
+"vin": "W0L0TGF08X5128808"
+},
+{
+"code": "X16XEL",
+"decoded_cyl": 6,
+"disp": 1.598,
+"extract_cyl": [
+4
+],
+"vin": "W0L0TGF672B013571"
+},
+{
+"code": "AEB",
+"decoded_cyl": 6,
+"disp": 1.781,
+"extract_cyl": [
+4
+],
+"vin": "WAUZZZ4BZYN125879"
+},
+{
+"code": "ADA",
+"decoded_cyl": 6,
+"disp": 2.3,
+"extract_cyl": [
+4
+],
+"vin": "WAUZZZ8CZNA103798"
+},
+{
+"code": "ADA",
+"decoded_cyl": 6,
+"disp": 1.595,
+"extract_cyl": [
+4
+],
+"vin": "WAUZZZ8CZSA064263"
+},
+{
+"code": "NG",
+"decoded_cyl": 6,
+"disp": 2.309,
+"extract_cyl": [
+5
+],
+"vin": "WAUZZZ8GZNA003486"
+},
+{
+"code": "NG",
+"decoded_cyl": 6,
+"disp": 2.309,
+"extract_cyl": [
+5
+],
+"vin": "WAUZZZ8GZSA005846"
+},
+{
+"code": "206EB",
+"decoded_cyl": 4,
+"disp": 1.99,
+"extract_cyl": [
+6
+],
+"vin": "WBAAA310008496854"
+},
+{
+"code": "206S4",
+"decoded_cyl": 4,
+"disp": 1.991,
+"extract_cyl": [
+6
+],
+"vin": "WBAAM11010JM47828"
+},
+{
+"code": "206S4",
+"decoded_cyl": 4,
+"disp": 1.991,
+"extract_cyl": [
+6
+],
+"vin": "WBAAM11040KF00230"
+},
+{
+"code": "206S4",
+"decoded_cyl": 4,
+"disp": 1.991,
+"extract_cyl": [
+6
+],
+"vin": "WBAAM110X0JM34916"
+},
+{
+"code": "206S4",
+"decoded_cyl": 4,
+"disp": 1.991,
+"extract_cyl": [
+6
+],
+"vin": "WBAAR11010JL52753"
+},
+{
+"code": "20 6 S2",
+"decoded_cyl": 4,
+"disp": 1.991,
+"extract_cyl": [
+6
+],
+"vin": "WBABF11000JA32663"
+},
+{
+"code": "206S3",
+"decoded_cyl": 4,
+"disp": 1.991,
+"extract_cyl": [
+6
+],
+"vin": "WBABF61090EP34175"
+},
+{
+"code": "206S4",
+"decoded_cyl": 4,
+"disp": 1.991,
+"extract_cyl": [
+6
+],
+"vin": "WBABM11070JK07381"
+},
+{
+"code": "206S4",
+"decoded_cyl": 4,
+"disp": 1.991,
+"extract_cyl": [
+6
+],
+"vin": "WBABM11080JK06658"
+},
+{
+"code": "20 6 S2",
+"decoded_cyl": 4,
+"disp": 1.991,
+"extract_cyl": [
+6
+],
+"vin": "WBACB21020AL80676"
+},
+{
+"code": "206S3",
+"decoded_cyl": 4,
+"disp": 1.991,
+"extract_cyl": [
+6
+],
+"vin": "WBACE51060EN70353"
+},
+{
+"code": "206S3",
+"decoded_cyl": 4,
+"disp": 1.991,
+"extract_cyl": [
+6
+],
+"vin": "WBADD11000BN34739"
+},
+{
+"code": "206S3",
+"decoded_cyl": 4,
+"disp": 1.991,
+"extract_cyl": [
+6
+],
+"vin": "WBADD11020BN21085"
+},
+{
+"code": "206S3",
+"decoded_cyl": 4,
+"disp": 1.991,
+"extract_cyl": [
+6
+],
+"vin": "WBADD11030BN04344"
+},
+{
+"code": "206S4",
+"decoded_cyl": 4,
+"disp": 1.991,
+"extract_cyl": [
+6
+],
+"vin": "WBADM11010GP20616"
+},
+{
+"code": "346KB",
+"decoded_cyl": 8,
+"disp": 3.43,
+"extract_cyl": [
+6
+],
+"vin": "WBAGB41090DA55909"
+},
+{
+"code": "346KB",
+"decoded_cyl": 8,
+"disp": 3.43,
+"extract_cyl": [
+6
+],
+"vin": "WBAHD21020BF36101"
+},
+{
+"code": "20 6 S2",
+"decoded_cyl": 4,
+"disp": 1.991,
+"extract_cyl": [
+6
+],
+"vin": "WBAHG51090GJ95949"
+},
+{
+"code": "234EA",
+"decoded_cyl": 6,
+"disp": 2.303,
+"extract_cyl": [
+4
+],
+"vin": "WBSAK050801894162"
+},
+{
+"code": "508S1",
+"decoded_cyl": 12,
+"disp": 4.941,
+"extract_cyl": [
+8
+],
+"vin": "WBSDE91030GJ20140"
+},
+{
+"code": "366S1",
+"decoded_cyl": 8,
+"disp": 3.535,
+"extract_cyl": [
+6
+],
+"vin": "WBSHD91060BK03580"
+},
+{
+"code": "M1DD",
+"decoded_cyl": 4,
+"disp": 2.3,
+"extract_cyl": [
+3
+],
+"vin": "WF05XXGCC5HB42474"
+},
+{
+"code": "J4C",
+"decoded_cyl": 3,
+"disp": 1.2,
+"extract_cyl": [
+4
+],
+"vin": "WF0AXXGAJATL05046"
+},
+{
+"code": "B7DA",
+"decoded_cyl": 4,
+"disp": 2.3,
+"extract_cyl": [
+3
+],
+"vin": "WF0NXXGCHNLC87968"
+},
+{
+"code": "M1DD",
+"decoded_cyl": 4,
+"disp": 2.3,
+"extract_cyl": [
+3
+],
+"vin": "WF0VXXGCEVJG17272"
+},
+{
+"code": "M48/01",
+"decoded_cyl": 6,
+"disp": 3.2,
+"extract_cyl": [
+8
+],
+"vin": "WP1ZZZ9PZ6LA04920"
+},
+{
+"code": "BKK",
+"decoded_cyl": 4,
+"disp": 3.189,
+"extract_cyl": [
+6
+],
+"vin": "WV2ZZZ7HZ6H007904"
+},
+{
+"code": "AEB",
+"decoded_cyl": 6,
+"disp": 1.781,
+"extract_cyl": [
+4
+],
+"vin": "WVWZZZ3BZ1E079146"
+},
+{
+"code": "AER",
+"decoded_cyl": 3,
+"disp": 0.999,
+"extract_cyl": [
+4
+],
+"vin": "WVWZZZ6NZ1D110891"
+},
+{
+"code": "AUC",
+"decoded_cyl": 3,
+"disp": 0.999,
+"extract_cyl": [
+4
+],
+"vin": "WVWZZZ6XZ1W018642"
+},
+{
+"code": "B5204T5",
+"decoded_cyl": 4,
+"disp": 1.984,
+"extract_cyl": [
+5
+],
+"vin": "YV1RS49K212068541"
+},
+{
+"code": "M139",
+"decoded_cyl": 6,
+"disp": 4.244,
+"extract_cyl": [
+8
+],
+"vin": "ZAMCD39B000016113"
+},
+{
+"code": "AR36201",
+"decoded_cyl": 4,
+"disp": 2.492,
+"extract_cyl": [
+6
+],
+"vin": "ZAR93600000061356"
+},
+{
+"code": "AR36201",
+"decoded_cyl": 4,
+"disp": 2.492,
+"extract_cyl": [
+6
+],
+"vin": "ZAR93600000068984"
+},
+{
+"code": "187A1000",
+"decoded_cyl": 3,
+"disp": 1.108,
+"extract_cyl": [
+4
+],
+"vin": "ZFA18700000143151"
+}
+],
+"vref_vs_extract": [
+{
+"brand": "TOYOTA",
+"code": "2AR-FE",
+"diffs": {
+"has_gdi": [
+0,
+1
+]
+}
+},
+{
+"brand": "PORSCHE",
+"code": "M96_03",
+"diffs": {
+"displacement_cc": [
+3387,
+3596
+]
+}
+}
+]
+}

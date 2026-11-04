@@ -1,0 +1,17 @@
+{
+ "full_dists": 55,
+ "nodna_dnalab": null,
+ "nodna_err_tail": [
+  "ERROR: No matching distribution found for fourdapp-dnalab (from fourdapp-wired)"
+ ],
+ "pins_not_in_closure": [
+  "six"
+ ],
+ "rc": {
+  "full_rc": "0",
+  "nodna_rc": "1"
+ },
+ "third_party": 47,
+ "third_party_unpinned": [],
+ "third_party_version_mismatch": []
+}

@@ -1,0 +1,209 @@
+### T-AUD-1c state=e37bf50 base=f4f8fc1 reverted: apps/ui/ui_payload.py apps/wired/wired/composition.py
+5 failed, 1 passed in 0.45s
+FAILED tests/test_t_aud_1c.py::test_r1_mil_only_requires_ff
+FAILED tests/test_t_aud_1c.py::test_r1_mode06_only_requires_ff
+FAILED tests/test_t_aud_1c.py::test_r1_pending_only_requires_ff
+FAILED tests/test_t_aud_1c.py::test_r2_gas_help_says_required
+FAILED tests/test_t_aud_1c.py::test_r2_gas_message_names_gaslab
+PASSED tests/test_t_aud_1c.py::test_r1_no_dtc_dict_no_ff_issue
+### T-AUD-1b state=186aa0a base=186aa0a^ reverted: apps/wired/pyproject.toml constraints.txt labs/comlab/pyproject.toml labs/dnalab/pyproject.toml labs/dtclab/pyproject.toml labs/gaslab/pyproject.toml labs/obdlab/pyproject.toml labs/symptomlab/pyproject.toml labs/vinlab/pyproject.toml requirements.txt
+4 failed, 1 passed in 0.18s
+FAILED tests/test_t_aud_1b_manifests.py::test_dnalab_declares_its_lab_imports
+FAILED tests/test_t_aud_1b_manifests.py::test_local_dists_are_prefixed
+FAILED tests/test_t_aud_1b_manifests.py::test_no_bare_lab_dependency
+FAILED tests/test_t_aud_1b_manifests.py::test_requirements_use_pinned_constraints
+PASSED tests/test_t_aud_1b_manifests.py::test_every_local_dependency_has_an_editable_line
+### T-VINA-1 state=4191fba base=1a32e3c^ reverted: labs/vinlab/vinlab/decoder.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.18s
+ERROR tests/unit/test_year_scope.py
+### T-VINA-8 state=597173f base=4d6ee41^ reverted: labs/symptomlab/symptomlab/models.py labs/symptomlab/symptomlab/validator.py
+    def test_from_json_non_object_env_is_validation_error(env):
+    def test_from_json_non_object_payload_is_validation_error():
+    def test_missing_load_state_raises_validation_error(self) -> None:
+    def test_non_string_tier_is_validation_error(tier_1, tier_2):
+9 failed, 13 passed in 0.15s
+FAILED tests/test_t_vina_8.py::test_from_json_non_object_env_is_validation_error[None]
+FAILED tests/test_t_vina_8.py::test_from_json_non_object_env_is_validation_error[env1]
+FAILED tests/test_t_vina_8.py::test_from_json_non_object_env_is_validation_error[x]
+FAILED tests/test_t_vina_8.py::test_from_json_non_object_payload_is_validation_error
+FAILED tests/test_t_vina_8.py::test_non_string_tier_is_validation_error[None-surging_hunting_idle]
+FAILED tests/test_t_vina_8.py::test_non_string_tier_is_validation_error[rough_idle_shudder-tier_22]
+FAILED tests/test_t_vina_8.py::test_non_string_tier_is_validation_error[tier_10-surging_hunting_idle]
+FAILED tests/test_t_vina_8.py::test_non_string_tier_is_validation_error[tier_11-surging_hunting_idle]
+FAILED tests/unit/test_symptomdna_from_json.py::TestSymptomDNAFromJsonMissingRequired::test_missing_load_state_raises_validation_error
+PASSED tests/test_t_vina_8.py::test_from_json_round_trips
+PASSED tests/unit/test_symptomdna_from_json.py::TestSymptomDNAFromJsonInvalidEnum::test_invalid_engine_state_raises_validation_error
+PASSED tests/unit/test_symptomdna_from_json.py::TestSymptomDNAFromJsonInvalidEnum::test_invalid_load_state_raises_validation_error
+PASSED tests/unit/test_symptomdna_from_json.py::TestSymptomDNAFromJsonInvalidEnum::test_invalid_occurs_during_raises_validation_error
+PASSED tests/unit/test_symptomdna_from_json.py::TestSymptomDNAFromJsonMissingRequired::test_missing_engine_state_raises_validation_error
+PASSED tests/unit/test_symptomdna_from_json.py::TestSymptomDNAFromJsonMissingRequired::test_missing_environmental_conditions_raises_validation_error
+PASSED tests/unit/test_symptomdna_from_json.py::TestSymptomDNAFromJsonMissingRequired::test_missing_occurs_during_raises_validation_error
+PASSED tests/unit/test_symptomdna_from_json.py::TestSymptomDNAFromJsonMissingRequired::test_missing_tier_1_raises_keyerror
+PASSED tests/unit/test_symptomdna_from_json.py::TestSymptomDNAFromJsonMissingRequired::test_missing_tier_2_raises_validation_error
+PASSED tests/unit/test_symptomdna_from_json.py::TestSymptomDNAFromJsonNoPairValidation::test_unknown_pair_accepted
+PASSED tests/unit/test_symptomdna_from_json.py::TestSymptomDNAFromJsonRoundTrip::test_optional_free_text_notes_when_absent
+PASSED tests/unit/test_symptomdna_from_json.py::TestSymptomDNAFromJsonRoundTrip::test_round_trip_full
+PASSED tests/unit/test_symptomdna_from_json.py::TestSymptomDNAFromJsonRoundTrip::test_round_trip_minimal
+_ TestSymptomDNAFromJsonMissingRequired.test_missing_load_state_raises_validation_error _
+____ test_non_string_tier_is_validation_error[tier_10-surging_hunting_idle] ____
+____ test_non_string_tier_is_validation_error[tier_11-surging_hunting_idle] ____
+_____ test_non_string_tier_is_validation_error[None-surging_hunting_idle] ______
+_____ test_non_string_tier_is_validation_error[rough_idle_shudder-tier_22] _____
+___________ test_from_json_non_object_env_is_validation_error[None] ____________
+___________ test_from_json_non_object_env_is_validation_error[env1] ____________
+____________ test_from_json_non_object_payload_is_validation_error _____________
+_____________ test_from_json_non_object_env_is_validation_error[x] _____________
+### T-VINA-2 state=cbd1812 base=069e188^ reverted: labs/vinlab/vinlab/decoder.py
+4 failed, 5 passed in 0.22s
+FAILED tests/unit/test_type_code_year.py::test_type_code_set_is_the_measured_one
+FAILED tests/unit/test_type_code_year.py::test_type_code_vin_has_no_year[WDB1240261A102470]
+FAILED tests/unit/test_type_code_year.py::test_type_code_vin_has_no_year[WDD1690321J749046]
+FAILED tests/unit/test_type_code_year.py::test_type_code_vin_has_no_year[WDD1770441J098476]
+PASSED tests/unit/test_type_code_year.py::test_north_american_form_keeps_the_year[WDBED30DXLB097097-1990]
+PASSED tests/unit/test_type_code_year.py::test_north_american_form_keeps_the_year[WDBSK74F75F093354-2005]
+PASSED tests/unit/test_type_code_year.py::test_north_american_form_keeps_the_year[WME01MC011H080963-2001]
+PASSED tests/unit/test_type_code_year.py::test_numeric_positions_outside_the_set_keep_the_year
+PASSED tests/unit/test_type_code_year.py::test_other_wmis_keep_position_10
+### T-VINA-3 state=898f9b1 base=869db2a^ reverted: labs/vinlab/vinlab/decoder.py
+2 failed, 1 passed in 0.22s
+FAILED tests/unit/test_vref_year_window.py::test_row_outside_its_window_is_not_applied[JF1BG5LJ4SG009089]
+FAILED tests/unit/test_vref_year_window.py::test_row_outside_its_window_is_not_applied[JF1GF8LJ4TG036967]
+PASSED tests/unit/test_vref_year_window.py::test_every_vref_row_has_a_window
+### T-VINA-5 state=bbc1b6e base=cb31bd8^ reverted: labs/vinlab/vinlab/data/wmi.csv labs/vinlab/vinlab/data/vds_engine_map.csv
+10 failed, 9 passed in 0.30s
+FAILED tests/unit/test_wmi_brands.py::test_conflict_key_winner[HYUNDAI_BT51H]
+FAILED tests/unit/test_wmi_brands.py::test_conflict_key_winner[MERCEDES-BENZ_20102]
+FAILED tests/unit/test_wmi_brands.py::test_conflict_key_winner[NISSAN_BCAN1]
+FAILED tests/unit/test_wmi_brands.py::test_conflict_key_winner[ROVER_XWYLM]
+FAILED tests/unit/test_wmi_brands.py::test_conflict_key_winner[SUZUKI_FTA03]
+FAILED tests/unit/test_wmi_brands.py::test_real_vin_decodes_true_make[JN1]
+FAILED tests/unit/test_wmi_brands.py::test_real_vin_decodes_true_make[JSA]
+FAILED tests/unit/test_wmi_brands.py::test_real_vin_decodes_true_make[KMH]
+FAILED tests/unit/test_wmi_brands.py::test_real_vin_decodes_true_make[SAX]
+FAILED tests/unit/test_wmi_brands.py::test_real_vin_decodes_true_make[WDB]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[HYUNDAI_VF21M]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[MERCEDES-BENZ_24523]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[NISSAN_BAAN1]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[SUZUKI_EAK35]
+PASSED tests/unit/test_wmi_brands.py::test_engine_resolved_not_below_base[JN1]
+PASSED tests/unit/test_wmi_brands.py::test_engine_resolved_not_below_base[JSA]
+PASSED tests/unit/test_wmi_brands.py::test_engine_resolved_not_below_base[KMH]
+PASSED tests/unit/test_wmi_brands.py::test_engine_resolved_not_below_base[SAX]
+PASSED tests/unit/test_wmi_brands.py::test_engine_resolved_not_below_base[WDB]
+### T-VINA-5-wmi-only state=bbc1b6e base=cb31bd8^ reverted: labs/vinlab/vinlab/data/wmi.csv
+8 failed, 11 passed in 0.28s
+FAILED tests/unit/test_wmi_brands.py::test_engine_resolved_not_below_base[JN1]
+FAILED tests/unit/test_wmi_brands.py::test_engine_resolved_not_below_base[SAX]
+FAILED tests/unit/test_wmi_brands.py::test_engine_resolved_not_below_base[WDB]
+FAILED tests/unit/test_wmi_brands.py::test_real_vin_decodes_true_make[JN1]
+FAILED tests/unit/test_wmi_brands.py::test_real_vin_decodes_true_make[JSA]
+FAILED tests/unit/test_wmi_brands.py::test_real_vin_decodes_true_make[KMH]
+FAILED tests/unit/test_wmi_brands.py::test_real_vin_decodes_true_make[SAX]
+FAILED tests/unit/test_wmi_brands.py::test_real_vin_decodes_true_make[WDB]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[HYUNDAI_BT51H]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[HYUNDAI_VF21M]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[MERCEDES-BENZ_20102]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[MERCEDES-BENZ_24523]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[NISSAN_BAAN1]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[NISSAN_BCAN1]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[ROVER_XWYLM]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[SUZUKI_EAK35]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[SUZUKI_FTA03]
+PASSED tests/unit/test_wmi_brands.py::test_engine_resolved_not_below_base[JSA]
+PASSED tests/unit/test_wmi_brands.py::test_engine_resolved_not_below_base[KMH]
+### T-VINA-5-map-only state=bbc1b6e base=cb31bd8^ reverted: labs/vinlab/vinlab/data/vds_engine_map.csv
+8 failed, 11 passed in 0.27s
+FAILED tests/unit/test_wmi_brands.py::test_conflict_key_winner[HYUNDAI_BT51H]
+FAILED tests/unit/test_wmi_brands.py::test_conflict_key_winner[MERCEDES-BENZ_20102]
+FAILED tests/unit/test_wmi_brands.py::test_conflict_key_winner[NISSAN_BCAN1]
+FAILED tests/unit/test_wmi_brands.py::test_conflict_key_winner[ROVER_XWYLM]
+FAILED tests/unit/test_wmi_brands.py::test_conflict_key_winner[SUZUKI_FTA03]
+FAILED tests/unit/test_wmi_brands.py::test_engine_resolved_not_below_base[JSA]
+FAILED tests/unit/test_wmi_brands.py::test_engine_resolved_not_below_base[KMH]
+FAILED tests/unit/test_wmi_brands.py::test_engine_resolved_not_below_base[SAX]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[HYUNDAI_VF21M]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[MERCEDES-BENZ_24523]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[NISSAN_BAAN1]
+PASSED tests/unit/test_wmi_brands.py::test_conflict_key_winner[SUZUKI_EAK35]
+PASSED tests/unit/test_wmi_brands.py::test_engine_resolved_not_below_base[JN1]
+PASSED tests/unit/test_wmi_brands.py::test_engine_resolved_not_below_base[WDB]
+PASSED tests/unit/test_wmi_brands.py::test_real_vin_decodes_true_make[JN1]
+PASSED tests/unit/test_wmi_brands.py::test_real_vin_decodes_true_make[JSA]
+PASSED tests/unit/test_wmi_brands.py::test_real_vin_decodes_true_make[KMH]
+PASSED tests/unit/test_wmi_brands.py::test_real_vin_decodes_true_make[SAX]
+PASSED tests/unit/test_wmi_brands.py::test_real_vin_decodes_true_make[WDB]
+### T-VINA-13a state=aa7cdbf base=f836bcf^ reverted: labs/vinlab/tools/extract_tecdoc_1q2019.py labs/vinlab/tools/data/tecdoc_1q2019_engine_extract.csv
+13 errors in 0.21s
+ERROR tests/unit/test_extract_tecdoc_1q2019.py::test_alias_table_hit
+ERROR tests/unit/test_extract_tecdoc_1q2019.py::test_ambiguity_blank_field_disagrees
+ERROR tests/unit/test_extract_tecdoc_1q2019.py::test_ambiguity_blanks_disagreeing_field_and_family
+ERROR tests/unit/test_extract_tecdoc_1q2019.py::test_deterministic
+ERROR tests/unit/test_extract_tecdoc_1q2019.py::test_fold_matches_vinlab
+ERROR tests/unit/test_extract_tecdoc_1q2019.py::test_non_petrol_excluded
+ERROR tests/unit/test_extract_tecdoc_1q2019.py::test_other_manufacturer_miss
+ERROR tests/unit/test_extract_tecdoc_1q2019.py::test_petrol_order_diesel_t0_blocks_petrol_t1
+ERROR tests/unit/test_extract_tecdoc_1q2019.py::test_short_row_skipped_and_counted
+ERROR tests/unit/test_extract_tecdoc_1q2019.py::test_t0_exact_hit
+ERROR tests/unit/test_extract_tecdoc_1q2019.py::test_t1_paren_alias_hit_and_no_digit_head_key
+ERROR tests/unit/test_extract_tecdoc_1q2019.py::test_t1_whole_part_before_parentheses_hit
+ERROR tests/unit/test_extract_tecdoc_1q2019.py::test_years_from_cars_with_open_end
+### T-VINA-13a-csv-only state=aa7cdbf base=f836bcf^ reverted: labs/vinlab/tools/data/tecdoc_1q2019_engine_extract.csv
+13 passed in 0.20s
+PASSED tests/unit/test_extract_tecdoc_1q2019.py::test_alias_table_hit
+PASSED tests/unit/test_extract_tecdoc_1q2019.py::test_ambiguity_blank_field_disagrees
+PASSED tests/unit/test_extract_tecdoc_1q2019.py::test_ambiguity_blanks_disagreeing_field_and_family
+PASSED tests/unit/test_extract_tecdoc_1q2019.py::test_deterministic
+PASSED tests/unit/test_extract_tecdoc_1q2019.py::test_fold_matches_vinlab
+PASSED tests/unit/test_extract_tecdoc_1q2019.py::test_non_petrol_excluded
+PASSED tests/unit/test_extract_tecdoc_1q2019.py::test_other_manufacturer_miss
+PASSED tests/unit/test_extract_tecdoc_1q2019.py::test_petrol_order_diesel_t0_blocks_petrol_t1
+PASSED tests/unit/test_extract_tecdoc_1q2019.py::test_short_row_skipped_and_counted
+PASSED tests/unit/test_extract_tecdoc_1q2019.py::test_t0_exact_hit
+PASSED tests/unit/test_extract_tecdoc_1q2019.py::test_t1_paren_alias_hit_and_no_digit_head_key
+PASSED tests/unit/test_extract_tecdoc_1q2019.py::test_t1_whole_part_before_parentheses_hit
+PASSED tests/unit/test_extract_tecdoc_1q2019.py::test_years_from_cars_with_open_end
+### T-VINA-13b state=2dfbbba base=5bf69e5^ reverted: labs/vinlab/tools/merge_tecdoc_extract.py labs/vinlab/tools/build_vref_db.py labs/vinlab/vinlab/data/vref.db
+1 passed, 19 errors in 0.28s
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_ambiguous_code_is_inserted
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_blank_fields_become_null_or_zero
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_blank_is_v_engine_with_v_map_is_skipped
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_cylinder_heuristic_hazard_is_skipped
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_cylinder_heuristic_two_bank_hint_alone_is_skipped
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_era_bucket_comes_from_builder
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_existing_rows_keep_every_value
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_inserts_new_code
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_map_boxer_code_is_skipped
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_new_row_leaves_maf_and_map_null
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_new_row_o2_type_is_empty
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_real_vin_gains_row_with_tecdoc_displacement
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_schema_matches_builder
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_second_run_inserts_nothing_and_keeps_bytes
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_skips_code_already_in_vref
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_skips_code_without_my_start
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_skips_collision_code
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_span_gap_code_is_skipped
+ERROR tests/unit/test_vref_tecdoc_merge.py::test_window_adds_one_model_year_and_closes_open_end
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_shipped_original_rows_match_the_pinned_base_digest
+### T-VINA-13b-db-only state=2dfbbba base=5bf69e5^ reverted: labs/vinlab/vinlab/data/vref.db
+20 passed in 0.57s
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_ambiguous_code_is_inserted
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_blank_fields_become_null_or_zero
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_blank_is_v_engine_with_v_map_is_skipped
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_cylinder_heuristic_hazard_is_skipped
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_cylinder_heuristic_two_bank_hint_alone_is_skipped
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_era_bucket_comes_from_builder
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_existing_rows_keep_every_value
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_inserts_new_code
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_map_boxer_code_is_skipped
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_new_row_leaves_maf_and_map_null
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_new_row_o2_type_is_empty
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_real_vin_gains_row_with_tecdoc_displacement
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_schema_matches_builder
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_second_run_inserts_nothing_and_keeps_bytes
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_shipped_original_rows_match_the_pinned_base_digest
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_skips_code_already_in_vref
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_skips_code_without_my_start
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_skips_collision_code
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_span_gap_code_is_skipped
+PASSED tests/unit/test_vref_tecdoc_merge.py::test_window_adds_one_model_year_and_closes_open_end
