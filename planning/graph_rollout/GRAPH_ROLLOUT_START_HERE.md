@@ -11,7 +11,7 @@ MCP serve is a pilot, not a dependency — **CLI is the sanctioned baseline acce
 - Offline only for T-GR-1..9: `graphify update` (free, no key). **Canon amended (owner, 2026-07-06):**
   `extract` (LLM) is now in-pack as **T-GR-10/11 only** (Nemo lane, DeepSeek backend, builds into
   separate `v2_docs_llm/` dirs, disclosure-gated promotion). Still never over a canonical graph.
-- Wiki-first for domain facts; firecrawl for genuine web needs (auth auto-exported by run-*.sh).
+- Wiki-first for domain facts; firecrawl for genuine web needs (auth: `AGENTS.md` § Firecrawl auth).
 - Skills: `4dlab-graphify-run` (build+verify), `4dlab-doc-prep` (only if a prep gap surfaces).
 ## Lanes (owner ruling 2026-07-06, DECISIONS.md Q-GRAPH-LANES)
 **T-GR-2..9 are ARCHITECT-lane** (graph builds/venv/serve). Coders take only tasks the ledger

@@ -8,7 +8,7 @@ here and to `START_HERE.md`. Maps role → where to look. Keep it short; the rul
 > Query existing graphs, don't rebuild them; the root `graphify-out/` is frozen. Read-only
 > `graphify query|explain|path|affected|diagnose --graph …` is coder-allowed (owner ruling
 > 2026-07-06); build subcommands (update/extract/serve/…) are architect-lane only. Check a graph
-> cheaply (no re-extraction) with `python3 scripts/graph_health.py [lab]`.
+> cheaply (no re-extraction) with `python3.14 scripts/graph_health.py [lab]`.
 
 > **Web research → firecrawl (not WebFetch/WebSearch).** Any internet lookup — API refs, current
 > docs, fact-checking a value, real-world corroboration — uses the `firecrawl` skill
@@ -98,10 +98,11 @@ Vault). The web (firecrawl) is only for what the repo does not answer; if wiki a
 STOP and surface the conflict (see 4DLab_CLAUDE.md §Wiki-first and DECISIONS.md Q-C5-EGR).
 
 Query paths (sanctioned CLI baseline):
-- Search the wiki: `python3 _skills/graph/4dlab-vault/scripts/vault_query.py --vault Vault wiki <lab> "<term>"` (or `grep` to search wiki, docs, and code)
+- Search the wiki: `python3.14 _skills/graph/4dlab-vault/scripts/vault_query.py --vault Vault wiki <lab> "<term>"` (or `grep` to search wiki, docs, and code)
 - Query the graph: `graphify query "<question>" --graph labs/<lab>/graph/v2_current/graph.json` (also supports `explain`, `affected`, and `path`)
 
 ## Firecrawl auth (added 2026-07-06)
-`FIRECRAWL_API_KEY` is exported automatically by every `run-*.sh` launcher (read at launch from
-`_skills/firecrawl-web-scraping-search/API.md`). `firecrawl --status` should report Authenticated;
+`FIRECRAWL_API_KEY` is not in the repo. A `run-*.sh` launcher exports it only when the owner has put
+the key file `_skills/firecrawl-web-scraping-search/API.md` in the clone (git-ignored, `.gitignore`).
+`firecrawl --status` should report Authenticated;
 if it does not, STOP and report — do not fall back to memory-written "citations".

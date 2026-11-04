@@ -18,8 +18,8 @@ under `labs/`, the apps that compose over them under `apps/`, the generative tes
 3. Open the active lab's ledger: `labs/<lab>/tasks/` — implement the task the ledger picks: the first
    `pending` task whose blockers are all `done`. An assignment that names a task which is not
    `pending` is stale: the ledger wins. One task per session.
-4. Infra (Python 3.14 sandbox restore, `.venv-wired`, git ritual) is inherited from root
-   `4DLab/CLAUDE.md` — this workspace adds no infra of its own.
+4. Infra (Python 3.14, `.venv-wired`, git) is in `4DLab_CLAUDE.md` (§ Python environment, § Git).
+   There is no sandbox to restore. This workspace adds no infra of its own.
 
 ## Migration complete
 

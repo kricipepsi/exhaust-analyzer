@@ -6,9 +6,9 @@ bootstrap is complete.
 
 ## 0. Environment
 
-Restore sandbox Python 3.14 first (see `4DLab/CLAUDE.md → Sandbox Python` — open
-only that section; do not re-`Read` the whole ~14 k `CLAUDE.md`, it auto-loads as
-a project rule). Invoke as `python3.14`. Never bare `python`/`python3` (3.10).
+There is no sandbox to restore (see `4DLab_CLAUDE.md → Python environment` — open
+only that section; do not re-`Read` the whole file, it auto-loads as a project
+rule). Invoke as `python3.14`. Never bare `python`/`python3`.
 
 ## 0a. CONTEXT BUDGET — read narrow (read this before any Read)
 
@@ -95,7 +95,7 @@ ledger row to `done`. Reports are `.md` only. One task per session.
 ## 6. Git
 
 Only action is the final commit, run **by the user** in PowerShell, staging
-deliverables by **explicit path** (`4DLab/CLAUDE.md → Git`). Never `git add -A`.
+deliverables by **explicit path** (`4DLab_CLAUDE.md → Git`). Never `git add -A`.
 When the staged paths wrap across lines, end each line with a PowerShell
 line-continuation **backtick** (`` ` ``) — never `\`, never `;` — so the user can
 paste the whole block into the terminal as one command without a broken line:
