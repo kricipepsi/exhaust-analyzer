@@ -1,0 +1,29 @@
+**Findings**
+
+- **HIGH — The zero-fill backfill path makes T-M2 fail.** Plan §1 says `backfilled = executemany(BACKFILL_COUNT, fills).rowcount`; C4 makes `backfilled` the “rowcount of the backfill executemany”; T-M2 requires `backfilled == 0` for two `5FR` counts. In T-M2, `_stated_counts("5FR")` returns `None`, so `fills == []`, but the fixture database has no `cylinder_count` column, so `rebuild` is true and the transaction still runs `executemany(..., [])`. CPython `sqlite3.Cursor.rowcount` after an empty `executemany` is `-1`, not `0`; T-M2 therefore fails on the correct implementation. This also breaks the predicted `53 passed` / `371 passed` counts and the planned kills for M1 and M4. Fix: initialize `backfilled = 0`; call `executemany` only when `fills` is non-empty; otherwise keep zero. Add an explicit empty-fills/rebuild assertion.
+
+- **MEDIUM — The R5 change-set arithmetic does not reconcile.** Plan step 6 says: “compare the changed VIN set with survey.out S5 (must be equal: `71 + 1 + 11`).” That is 83 VIN-field changes, not 83 unique VINs. The 11 displacement VINs are all already in the 71-cylinder set: H25A, eight HDZ VINs, and two 206KA VINs; H25A is also the one bank change. The unique changed-VIN set is therefore **71**, while there are **83 `(VIN, field)` pairs**. Fix: compare three field sets (`71`, `1`, `11`) and separately assert the union is `71`; if a single list is required, use 83 field entries, not 83 unique VINs.
+
+- **MEDIUM — The rebuild trigger can discard `cylinder_count`.** Plan C2 accepts that a rebuilt database with “33 names, `NOT NULL` sensors” “would lose its counts,” yet the selected trigger is: `rebuild = "cylinder_count" not in names or any(notnull for name, notnull in columns if name in ("has_maf", "has_map"))`. Thus a 33-name database with `cylinder_count` and a non-null `has_maf`/`has_map` passes the guard, is rebuilt through `_rebuild_engine_ref`, and `COPY_ROWS` copies only the 32 old columns. Non-null counts are then NULL and `fills` only contains rows that were NULL before the rebuild, so those values are not restored. This is data loss on an accepted database. Fix one of: reject a 33-name database with non-null sensors, restrict the rebuild branch to `"cylinder_count" not in names`, or build the copy column list from the old table and include `cylinder_count` when present. Add a test for the chosen behavior.
+
+- **LOW — Step 6’s merge command has the wrong working directory.** Plan step 6 says the script runs “from `audit/scratch/C6`” and invokes `$PY tools/merge_tecdoc_extract.py`. There is no `tools/merge_tecdoc_extract.py` under `audit/scratch/C6`; the tool is `labs/vinlab/tools/merge_tecdoc_extract.py`. Fix by using the absolute tool path or running the subprocess with `cwd=C:/4DApp/repo/labs/vinlab`.
+
+- **LOW — O2’s stated population is inconsistent.** O2 says “the fixture db rebuilds anyway because its sensors are `NOT NULL`, so no R4 test reaches this branch,” while T-M11 says “merge once, `ALTER TABLE ... DROP COLUMN cylinder_count`.” After the first merge the fixture is rebuilt with the builder DDL and nullable sensors, so T-M11 does reach the 32-name/nullable branch. Also, “the shipped db’s own path” must mean a `tmp_path` copy, not the tracked `vref.db`. O2 is useful and kills M3, but its rationale and copy discipline need correction.
+
+- **LOW — M11’s kill is not independently established.** Plan §6 says “T-D2[0] (AEB: fallback gives 4, not 6).” The readiness evidence establishes that the extract says AEB has 4 cylinders, but does not record the independent value of `_infer_cylinder("AEB", 1.8, "Audi")`. If the fallback returns 6 or 0, T-D2[0] either lets M11 survive or fails for the wrong reason. Record that independent value or use a case where the map displacement is blank/zero so M11 is forced to produce an unresolved value. This is the only planned mutant whose kill is not demonstrated by the quoted evidence.
+
+**Checks That Pass**
+
+- **No unexplained real-VIN change found for (2).** AEB’s `6 → 4` and NG’s `6 → 5` come from the extract `cylinder_count`; H25A’s `0 → 6`, `1 → 2` banks and `0.0 → 2.493` displacement come from the inserted row’s `cylinder_count`, `is_v_engine`, and `displacement_cc`; HDZ and 206KA displacement changes come from their inserted `displacement_cc`. The four outcome-only VINs (`G4HCE`, two `99H`, `HDY`) change no decoded field.
+- **No material backfill-population defect found for (3).** The P2 arithmetic reconciles: `1,225 + 48 + 1 = 1,274`. Backfill is NULL-only, brand-blind by normalized code, and the second run selects only remaining NULL rows, so it is idempotent. `1,225 + 34 = 1,259`; `1,274 + 34 = 1,308`; and P3 reach sums to `579 + 468 + 72 + 12 = 1,131`.
+- **No real G2 code now contradicts TecDoc for (5).** P3’s 34 inserted codes all state a count; the only bank-test case is already `in_vref`. One latent issue remains: `if row["cylinder_count"] or not row["displacement_cc"]` treats the string `"0"` as a stated count, while R3 only accepts a positive integer; a hypothetical zero-count row would skip G2 and let the fallback run. The real extract has no zero count, so this is not a current VIN finding. Fix by testing the parsed positive value rather than raw truthiness.
+
+**Optional Additions**
+
+- **O1: approve.** R3 explicitly requires `0` to keep the map count, and without the `0` parameter M11 has no killing test.
+- **O2: approve with the correction above.** It is needed to kill M3, but it must use a temporary copy and accurately describe the 32-name/nullable-sensors path.
+- **O3: approve.** It covers R2’s “any other difference still refuses” and is the test that kills M2b.
+
+The core R1-R6 design is sound; the corrections above are localized, but the `backfilled == -1` issue is a gate failure until fixed.
+
+APPROVE WITH CORRECTIONS
