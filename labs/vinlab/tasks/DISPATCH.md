@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-VINA-13b` | `repo\labs\vinlab\tasks\PROGRESS.md` | **5** | 3 | NO | 60-90 min | vref tecdoc merge |
+| `T-VINA-16` | `repo\labs\vinlab\tasks\PROGRESS.md` | **5** | 3 | NO | 45-90 min | engine ref cylinder count |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-VINA-13b` · owner: `repo\labs\vinlab\tasks\PROGRESS.md` · 5/5** — The T-VINA-13a extract becomes `vref.db` `engine_ref` rows for the engine codes the table lacks, so real VINs reach a row, and no decode gets a value the decoder would not have produced without the ro
-  `repo\labs\vinlab\tasks/T-VINA-13b_vref_tecdoc_merge(5).md`
+**`T-VINA-16` · owner: `repo\labs\vinlab\tasks\PROGRESS.md` · 5/5** — `engine_ref` states TecDoc's cylinder count, and the decoder prefers it to the VDS map's count.
+  `repo\labs\vinlab\tasks/T-VINA-16_engine_ref_cylinder_count(5).md`
 
 ## Distribution
 
-- **5/5** — 1: T-VINA-13b
+- **5/5** — 1: T-VINA-16
