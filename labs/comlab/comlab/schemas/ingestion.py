@@ -556,6 +556,9 @@ class OrchestratorInboundRequest(BaseModel):
     """
 
     metadata: SessionMetadata
+    vehicle_dna: VehicleDNA | None = None
+    # SEMANTIC_CONTRACT §4.3 / HLD §7.1 / LLD §3.2: the binding inbound slice that replaces ``metadata``.
+    # A request may send it instead of ``metadata``; _metadata_from_vehicle_dna derives ``metadata`` from it.
     gas_lab_output: GasLabPayload
     obd_live_data: OBDLiveDataPayload | None = None
     dtc_lab_output: DTCLabPayload | None = None
@@ -566,3 +569,33 @@ class OrchestratorInboundRequest(BaseModel):
     second_operating_point: SecondOperatingPointFrame | None = None
     # T-COMV2-DELTA-1 — additive; absent → byte-identical single-point path. wiki: delta-relations/01-08
     # consumer: comlab/analytics/delta_engine.py:DeltaEngine.compute_delta_signature -> fault_atlas_router Phase 5
+
+    @model_validator(mode="before")
+    @classmethod
+    def _metadata_from_vehicle_dna(cls, data: Any) -> Any:
+        """Derive ``metadata`` from ``vehicle_dna`` (SEMANTIC_CONTRACT §4.3: vehicle_dna replaces metadata).
+
+        One of the two is sent, never both (ERR-CONTRACT-001). The top-level ``symptom_dna`` and ``has_catalyst``
+        win when the request sets them; otherwise they come from ``vehicle_dna``.
+        """
+        if not isinstance(data, dict) or data.get("vehicle_dna") is None:
+            return data
+        if data.get("metadata") is not None:
+            raise ValueError("send vehicle_dna or metadata, not both (SEMANTIC_CONTRACT §4.3; ERR-CONTRACT-001)")
+        vd = VehicleDNA.model_validate(data["vehicle_dna"])
+        vin = vd.vin_dna
+        out = dict(data)
+        out["vehicle_dna"] = vd
+        out["metadata"] = SessionMetadata(
+            session_id=vd.session_id,
+            vin_dna_string=vin.vin,
+            resolved_horizon=vin.resolved_horizon.value,
+            cylinder_count=vin.cylinder_count,
+            air_metering_strategy=vin.air_metering_strategy,
+            schema_version=vd.schema_version,
+            vin_confidence=vin.confidence,
+        )
+        if not out.get("symptom_dna") and vd.symptom_dna:
+            out["symptom_dna"] = vd.symptom_dna
+        out.setdefault("has_catalyst", vin.emissions.has_catalyst)
+        return out
