@@ -1,7 +1,8 @@
 """T-VINA-14: a vref.db row keeps a map BOXER's second bank (R1) and a TecDoc-stated induction (R2).
+T-VINA-16 R3: a vref.db row's positive cylinder_count replaces the map's count; NULL or 0 keeps it.
 
 The fixture tests decode real VINs against a tmp_path copy of the shipped vref.db with one engine_ref row set by the
-test. The last two tests decode against the shipped vref.db itself.
+test. The real-VIN tests at the end decode against the shipped vref.db itself.
 """
 
 from __future__ import annotations
@@ -24,6 +25,8 @@ I5_VIN = "YV1LW5502V2373912"
 # AZQ, map row with no displacement and no cylinder count, model year 2003. At TecDoc's 1198 cc the Skoda brand rule
 # reads a 1.2 TSI (I3 TURBOCHARGED); TecDoc states AZQ NATURALLY_ASPIRATED.
 AZQ_VIN = "TMBCY46Y733811341"
+# AEB, map V6/6 (2.4 L), model year 2000 (row window 1995-2006); TecDoc states 4 cylinders (1781 cc).
+AEB_VIN = "WAUZZZ4BZYN125879"
 
 AZQ_ROW = (
     "INSERT OR REPLACE INTO engine_ref (engine_code, brand, displacement_cc, my_start, my_end, era_bucket, "
@@ -99,3 +102,42 @@ def test_real_azq_vin_after_merge_is_na_and_maf_only(decoder):
     assert dna.engine_displacement_liters == 1.198  # the merged AZQ row is applied
     assert dna.induction_type == InductionType.NATURALLY_ASPIRATED
     assert dna.air_metering_architecture.primary_load_calculation == PrimaryLoadCalculation.MAF_ONLY
+
+
+def test_vref_count_replaces_map_count(vref_copy):
+    decoder = vref_copy("UPDATE engine_ref SET cylinder_count = 4 WHERE engine_code = 'XFX'")
+    assert decoder.decode_vin_payload(V6_VIN).cylinder_count == 4
+
+
+@pytest.mark.parametrize("count", [None, 0])
+def test_null_or_zero_vref_count_keeps_map_count(vref_copy, count):
+    # PIN: a NULL or 0 count states nothing (R3); the map's 6 stays and the fallback does not run (it would say 4).
+    decoder = vref_copy("UPDATE engine_ref SET cylinder_count = ? WHERE engine_code = 'AEB'", (count,))
+    assert decoder.decode_vin_payload(AEB_VIN).cylinder_count == 6
+
+
+@pytest.mark.parametrize("displacement_cc", [1198, 3000])
+def test_vref_count_with_blank_map_count_skips_the_heuristic(vref_copy, displacement_cc):
+    # The map states no count; the heuristic would say I3 TURBOCHARGED at 1198 cc and V6 (two banks) at 3000 cc.
+    decoder = vref_copy(
+        "UPDATE engine_ref SET cylinder_count = 6, induction_type = NULL, displacement_cc = ? WHERE engine_code = 'AZQ'",
+        (displacement_cc,),
+    )
+    dna = decoder.decode_vin_payload(AZQ_VIN)
+    assert dna.cylinder_count == 6
+    assert dna.induction_type == InductionType.NATURALLY_ASPIRATED
+    assert dna.number_of_banks == 1
+
+
+@pytest.mark.parametrize(
+    ("vin", "cylinders", "banks"),
+    [
+        (AEB_VIN, 4, 1),  # AEB: TecDoc 4, map V6/6
+        ("WAUZZZ8GZNA003486", 5, 1),  # NG: TecDoc 5, map V6/6
+        ("JSAFTD62V00115689", 6, 2),  # H25A: row inserted by T-VINA-16, TecDoc 6 and is_v_engine 1, map blank
+    ],
+)
+def test_real_vin_takes_the_tecdoc_count(decoder, vin, cylinders, banks):
+    dna = decoder.decode_vin_payload(vin)
+    assert dna.cylinder_count == cylinders
+    assert dna.number_of_banks == banks

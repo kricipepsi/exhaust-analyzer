@@ -1,11 +1,21 @@
 #!/usr/bin/env python3
-"""Merge the TecDoc 1Q2019 engine extract into vinlab/data/vref.db (T-VINA-13b, T-VINA-14).
+"""Merge the TecDoc 1Q2019 engine extract into vinlab/data/vref.db (T-VINA-13b, T-VINA-14, T-VINA-16).
 
 Inserts one engine_ref row per extract engine code whose normalised code
 (vinlab.db.tecdoc_query._normalise_code) vref.db does not hold yet. Existing
-rows keep every value. The first run also rebuilds engine_ref with the
-builder's DDL (tools/build_vref_db.py CREATE_ENGINE_REF), in which has_maf and
-has_map accept NULL. A second run inserts nothing and writes nothing.
+rows keep every value except a NULL cylinder_count (below). engine_ref's
+columns must equal the builder's (tools/build_vref_db.py CREATE_ENGINE_REF),
+or equal them without cylinder_count. A db without cylinder_count is rebuilt
+with the builder's DDL, in which has_maf, has_map and cylinder_count accept
+NULL; a db with cylinder_count and NOT NULL has_maf or has_map is refused (a
+rebuild would drop its counts). A second run inserts nothing, fills nothing
+and writes nothing.
+
+cylinder_count is TecDoc's count (T-VINA-16). An existing row whose count is
+NULL takes the extract's count when the extract rows of its normalised code
+(all brands) state exactly one non-blank cylinder_count value. A non-NULL
+count is never changed. A new row takes the coalesced row's count, or NULL
+when it is blank.
 
 The rows of one code (one per brand) are coalesced first (T-VINA-14 R3): each
 engine field takes the one non-blank value the brands state, or blank. Two
@@ -22,8 +32,10 @@ tasks/corrections/T-VINA-14_plan_correction_20261104.md):
   no_my_start         a row has no my_start
   span_gap            its brand production spans leave more than one missing year (C3)
   map_banks           G1: a blank extract is_v_engine with a map V or W configuration
-  cylinder_heuristic  G2: the decoder's cylinder fallback would set a cylinder count
-                      or a second bank that TecDoc contradicts
+  cylinder_heuristic  G2: with no stated cylinder count, the decoder's cylinder
+                      fallback would add a second bank that TecDoc contradicts
+                      (a stated count is the decoder's count, T-VINA-16 R3, so
+                      the fallback does not run and G2 does not skip)
 
 Stdlib plus this lab's own package. Usage:
   python tools/merge_tecdoc_extract.py [--db PATH] [--extract PATH] [--map PATH]
@@ -98,6 +110,7 @@ SKIP_REASONS = (
     "in_vref", "collision", "status", "no_my_start", "span_gap", "map_banks", "cylinder_heuristic",
 )
 
+# Only the old table's columns: a rebuilt db had no cylinder_count, so the rebuilt table's count starts NULL (T-VINA-16)
 COPY_ROWS = (
     "INSERT INTO engine_ref (engine_code, brand, displacement_cc, euro_norm, my_start, my_end, era_bucket, "
     "has_vvt, has_gdi, has_turbo, is_v_engine, has_egr, has_maf, has_map, o2_type, induction_type, "
@@ -112,13 +125,17 @@ COPY_ROWS = (
     "FROM engine_ref_old"
 )
 INSERT_ROW = (
-    "INSERT INTO engine_ref (engine_code, brand, displacement_cc, euro_norm, my_start, my_end, era_bucket, "
-    "has_vvt, has_gdi, has_turbo, is_v_engine, has_egr, has_maf, has_map, o2_type, induction_type, "
+    "INSERT INTO engine_ref (engine_code, brand, displacement_cc, cylinder_count, euro_norm, my_start, my_end, "
+    "era_bucket, has_vvt, has_gdi, has_turbo, is_v_engine, has_egr, has_maf, has_map, o2_type, induction_type, "
     "fuel_delivery_type, valvetrain_type) "
-    "VALUES (:engine_code, :brand, :displacement_cc, :euro_norm, :my_start, :my_end, :era_bucket, "
-    ":has_vvt, :has_gdi, :has_turbo, :is_v_engine, :has_egr, :has_maf, :has_map, :o2_type, :induction_type, "
-    ":fuel_delivery_type, :valvetrain_type)"
+    "VALUES (:engine_code, :brand, :displacement_cc, :cylinder_count, :euro_norm, :my_start, :my_end, "
+    ":era_bucket, :has_vvt, :has_gdi, :has_turbo, :is_v_engine, :has_egr, :has_maf, :has_map, :o2_type, "
+    ":induction_type, :fuel_delivery_type, :valvetrain_type)"
 )
+# T-VINA-16: the rows whose count may be filled (every row when the column is absent: the rebuild adds it NULL)
+ALL_CODES = "SELECT engine_code FROM engine_ref"
+NULL_COUNT_CODES = "SELECT engine_code FROM engine_ref WHERE cylinder_count IS NULL"
+BACKFILL_COUNT = "UPDATE engine_ref SET cylinder_count = ? WHERE engine_code = ? AND cylinder_count IS NULL"
 
 
 @dataclass(frozen=True)
@@ -127,6 +144,7 @@ class MergeReport:
     skipped: dict[str, tuple[str, ...]]
     schema_rebuilt: bool
     rows_after: int
+    backfilled: int
 
 
 def _read_csv(path: Path, required: tuple[str, ...]) -> list[dict[str, str]]:
@@ -220,13 +238,16 @@ def _g1_map_banks(row: dict[str, str], map_rows: list[dict[str, str]]) -> bool:
 def _g2_cylinder_heuristic(row: dict[str, str], map_rows: list[dict[str, str]]) -> bool:
     """G2: with the row, the decoder's cylinder fallback would emit a value TecDoc contradicts.
 
-    _cylinder_fallback (decoder.py) runs infer_cylinder on the row's
-    displacement when the map row has no cylinder count. It may set a count
-    and add a second bank. Skip the code when that differs from the no-row
-    decode and TecDoc states otherwise. The fallback keeps an induction the
-    row states (T-VINA-14 R2), so G2 has no induction test.
+    A positive stated cylinder_count is the decoder's count (decoder.py,
+    T-VINA-16 R3), so _cylinder_fallback does not run and G2 returns False.
+    Otherwise _cylinder_fallback runs infer_cylinder on the row's displacement
+    when the map row has no cylinder count, and may add a second bank. Skip the
+    code when that bank differs from the no-row decode and TecDoc states the
+    engine is not V. The fallback keeps an induction the row states (T-VINA-14
+    R2), so G2 has no induction test.
     """
-    if not row["displacement_cc"]:
+    stated = _int_or_none(row["cylinder_count"])
+    if (stated is not None and stated > 0) or not row["displacement_cc"]:
         return False
     tecdoc_liters = int(row["displacement_cc"]) / 1000.0
     for m in map_rows:
@@ -236,8 +257,6 @@ def _g2_cylinder_heuristic(row: dict[str, str], map_rows: list[dict[str, str]]) 
         after = infer_cylinder(m["engine_code"], tecdoc_liters, m["brand"])
         if after.count <= 0:
             continue
-        if row["cylinder_count"] and after.count != int(row["cylinder_count"]) and after.count != before.count:
-            return True
         if row["is_v_engine"] != "1" and _two_bank(after.config) and not (
             before.count > 0 and _two_bank(before.config)
         ):
@@ -277,6 +296,7 @@ def _new_row(first: dict[str, str], group: list[dict[str, str]]) -> dict[str, An
         "engine_code": first["engine_code"],
         "brand": first["brand"].upper(),
         "displacement_cc": _int_or_none(first["displacement_cc"]),
+        "cylinder_count": _int_or_none(first["cylinder_count"]),
         "euro_norm": first["euro_norm"] or None,
         "my_start": my_start,
         "my_end": my_end,
@@ -322,6 +342,15 @@ def select_rows(
     return rows, {reason: tuple(codes) for reason, codes in skipped.items()}
 
 
+def _stated_counts(extract_rows: list[dict[str, str]]) -> dict[str, int]:
+    """Normalised code -> its count, for codes whose extract rows (all brands) state exactly one non-blank count."""
+    counts: dict[str, set[int]] = defaultdict(set)
+    for r in extract_rows:
+        if r["cylinder_count"]:
+            counts[_normalise_code(r["engine_code"])].add(int(r["cylinder_count"]))
+    return {code: next(iter(values)) for code, values in counts.items() if len(values) == 1}
+
+
 def _statements(script: str) -> list[str]:
     out: list[str] = []
     buf = ""
@@ -350,7 +379,7 @@ def _rebuild_engine_ref(conn: sqlite3.Connection) -> None:
 
 
 def merge(db_path: Path = DEFAULT_DB, extract_path: Path = DEFAULT_EXTRACT, map_path: Path = DEFAULT_MAP) -> MergeReport:
-    """Insert the selected extract rows into db_path; rebuild engine_ref first when has_maf/has_map are NOT NULL."""
+    """Rebuild engine_ref when it has no cylinder_count, fill NULL counts, then insert the selected extract rows."""
     if not db_path.is_file():
         raise FileNotFoundError(db_path)
     extract_rows = _read_csv(extract_path, EXTRACT_COLUMNS)
@@ -369,16 +398,29 @@ def merge(db_path: Path = DEFAULT_DB, extract_path: Path = DEFAULT_EXTRACT, map_
     conn = sqlite3.connect(db_path, isolation_level=None)
     try:
         columns = _columns(conn)
-        if {name for name, _ in columns} != builder_names:
+        names = {name for name, _ in columns}
+        if names not in (builder_names, builder_names - {"cylinder_count"}):
             raise RuntimeError("engine_ref columns differ from CREATE_ENGINE_REF; refusing to merge")
-        rebuild = any(notnull for name, notnull in columns if name in ("has_maf", "has_map"))
-        existing = {_normalise_code(code) for (code,) in conn.execute("SELECT engine_code FROM engine_ref")}
+        rebuild = "cylinder_count" not in names
+        if not rebuild and any(notnull for name, notnull in columns if name in ("has_maf", "has_map")):
+            # correction 01, C2: the rebuild copies no cylinder_count, so it would drop the counts
+            raise RuntimeError("engine_ref has cylinder_count and NOT NULL has_maf/has_map; refusing to merge")
+        existing = {_normalise_code(code) for (code,) in conn.execute(ALL_CODES)}
+        stated = _stated_counts(extract_rows)
+        fills = [
+            (stated[norm], code)
+            for (code,) in conn.execute(ALL_CODES if rebuild else NULL_COUNT_CODES)
+            if (norm := _normalise_code(code)) in stated
+        ]
         rows, skipped = select_rows(extract_rows, existing, map_rows)
-        if rebuild or rows:
+        backfilled = 0
+        if rebuild or fills or rows:
             conn.execute("BEGIN IMMEDIATE")
             try:
                 if rebuild:
                     _rebuild_engine_ref(conn)
+                if fills:
+                    backfilled = conn.executemany(BACKFILL_COUNT, fills).rowcount
                 conn.executemany(INSERT_ROW, rows)
                 conn.execute("COMMIT")
             except BaseException:
@@ -392,6 +434,7 @@ def merge(db_path: Path = DEFAULT_DB, extract_path: Path = DEFAULT_EXTRACT, map_
         skipped=skipped,
         schema_rebuilt=rebuild,
         rows_after=rows_after,
+        backfilled=backfilled,
     )
 
 
@@ -406,8 +449,8 @@ def main(argv: list[str] | None = None) -> int:
         print(f"skipped {reason}: {len(report.skipped[reason])}")
     print("collision codes: " + " ".join(report.skipped["collision"]))
     print(
-        f"inserted {len(report.inserted)} rows; engine_ref now {report.rows_after} rows; "
-        f"schema rebuilt: {'yes' if report.schema_rebuilt else 'no'}"
+        f"inserted {len(report.inserted)} rows; cylinder counts filled {report.backfilled}; "
+        f"engine_ref now {report.rows_after} rows; schema rebuilt: {'yes' if report.schema_rebuilt else 'no'}"
     )
     return 0
 

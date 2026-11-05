@@ -90,6 +90,8 @@ CREATE TABLE IF NOT EXISTS engine_ref (
     engine_code        TEXT PRIMARY KEY,
     brand              TEXT NOT NULL,
     displacement_cc    INTEGER,
+    -- cylinder_count: TecDoc's count, NULL when the source does not state it (T-VINA-16)
+    cylinder_count     INTEGER,
     euro_norm          TEXT,
     my_start           INTEGER,
     my_end             INTEGER,

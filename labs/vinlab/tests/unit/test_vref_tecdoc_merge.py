@@ -1,4 +1,5 @@
-"""Tests for tools/merge_tecdoc_extract.py (T-VINA-13b; G1, G2 and the coalesce rule: T-VINA-14).
+"""Tests for tools/merge_tecdoc_extract.py (T-VINA-13b; G1, G2 and the coalesce rule: T-VINA-14; cylinder_count:
+T-VINA-16).
 
 Each test merges into a temporary vref.db in its pre-T-VINA-13b state: the
 shipped engine_ref rows minus those the merge added, in the schema shipped
@@ -81,6 +82,11 @@ ORIGINAL_ROWS_SQL = (
 # sha256 of the canonical dump (ORIGINAL_ROWS_SQL, each value as [python type name, value], compact JSON) of
 # `git show 11dfa95:labs/vinlab/vinlab/data/vref.db` (blob c75ea107, the pre-merge file).
 ORIGINAL_ROWS_SHA256 = "89403096d8074357d62e94187c58c71664c73ab4bc47c5ca4d00dbf654625275"
+# The whole shipped engine_ref after the T-VINA-16 merge: its row count, and the sha256 of its canonical dump (every
+# column, ordered by engine_code, each value as [python type name, value], compact JSON).
+SHIPPED_ROWS = 1308
+SHIPPED_ROWS_SQL = "SELECT * FROM engine_ref ORDER BY engine_code"
+SHIPPED_ROWS_SHA256 = "4ee7543717bfa80b95f32f97d584ca9390451c03138f25e3284d0251bfc13a42"
 
 
 @pytest.fixture(scope="module")
@@ -193,7 +199,10 @@ def test_skips_code_already_in_vref(tool, tmp_path, db):
     assert report.inserted == ()
     assert "5FR" in report.skipped["in_vref"]
     assert _row(db, "5 FR") is None
-    assert _row(db, "5FR") == before
+    after = _row(db, "5FR")
+    assert after is not None
+    # Every column except cylinder_count, which the merge adds and may fill (T-VINA-16).
+    assert {k: v for k, v in after.items() if k != "cylinder_count"} == before
 
 
 def test_skips_collision_code(tool, tmp_path, db):
@@ -374,18 +383,21 @@ def test_g1_runs_on_the_coalesced_row(tool, tmp_path, db):
 
 
 def test_g2_runs_on_the_coalesced_row(tool, tmp_path, db):
-    # Review correction 02 (b): the coalesced displacement is BRANDB's 1198 cc; the Skoda brand rule reads it as an
-    # I3, TecDoc states 4 cylinders, so G2 (i) fires; on BRANDA's blank displacement alone it would not.
+    # Review correction 02 (b), rebuilt by T-VINA-16: the coalesced count is BRANDB's stated 6, so G2 returns False
+    # and the code is inserted. On BRANDA's row alone (3000 cc, no count) G2 (iii) fires: the displacement fallback
+    # says V6, the map's no-row hint is unresolved and TecDoc says not V.
     rows = [
-        _extract_row(brand="BRANDA", engine_code="ZZ2GTW", displacement_cc="", cylinder_count="4", is_v_engine="0"),
-        _extract_row(brand="BRANDB", engine_code="ZZ2GTW", displacement_cc="1198", cylinder_count="4",
+        _extract_row(brand="BRANDA", engine_code="ZZ2GTW", displacement_cc="3000", cylinder_count="", is_v_engine="0"),
+        _extract_row(brand="BRANDB", engine_code="ZZ2GTW", displacement_cc="3000", cylinder_count="6",
                      is_v_engine="0"),
     ]
-    map_row = _map_row(brand="SKODA", engine_code="ZZ2GTW", engine_displacement="", cylinder_count="",
-                       engine_configuration="")
+    map_row = _map_row(engine_code="ZZ2GTW", engine_displacement="", cylinder_count="", engine_configuration="I4")
     report = _merge(tool, tmp_path, db, rows, [map_row])
-    assert report.inserted == ()
-    assert report.skipped["cylinder_heuristic"] == ("ZZ2GTW",)
+    assert report.inserted == ("ZZ2GTW",)
+    assert report.skipped["cylinder_heuristic"] == ()
+    row = _row(db, "ZZ2GTW")
+    assert row is not None
+    assert row["cylinder_count"] == 6
 
 
 def test_non_displacement_conflict_stays_collision(tool, tmp_path, db):
@@ -399,16 +411,30 @@ def test_non_displacement_conflict_stays_collision(tool, tmp_path, db):
     assert report.skipped["collision"] == ("ZZ2IND",)
 
 
-def test_cylinder_heuristic_two_bank_hint_alone_is_skipped(tool, tmp_path, db):
+@pytest.mark.parametrize("count", ["", "0"])
+def test_cylinder_heuristic_two_bank_hint_alone_is_skipped(tool, tmp_path, db, count):
     # G2 (iii) in isolation (correction 02): the map says I4 with no cylinder count and no displacement, so the
-    # no-row hint is unresolved; at TecDoc's 3.0 L the displacement fallback says 6 cylinders, V6, NA. TecDoc
-    # states 6 cylinders, NA and not V, so only the second bank is the heuristic's own value.
-    extract = _extract_row(engine_code="ZZ3VEE", displacement_cc="3000", cylinder_count="6", is_v_engine="0")
+    # no-row hint is unresolved; at TecDoc's 3.0 L the displacement fallback says 6 cylinders, V6, NA. TecDoc states
+    # NA, not V and no cylinder count (a blank or 0 count states nothing: T-VINA-16 C5), so the decoder's fallback
+    # would run and add a second bank TecDoc contradicts.
+    extract = _extract_row(engine_code="ZZ3VEE", displacement_cc="3000", cylinder_count=count, is_v_engine="0")
     map_row = _map_row(engine_code="ZZ3VEE", engine_displacement="", cylinder_count="", engine_configuration="I4")
     report = _merge(tool, tmp_path, db, [extract], [map_row])
     assert report.inserted == ()
     assert report.skipped["cylinder_heuristic"] == ("ZZ3VEE",)
     assert report.skipped["map_banks"] == ()
+
+
+def test_cylinder_heuristic_two_bank_hint_with_stated_count_is_inserted(tool, tmp_path, db):
+    # T-VINA-16: TecDoc states 6 cylinders, so the decoder reads that count and its fallback does not run.
+    extract = _extract_row(engine_code="ZZ3VEE", displacement_cc="3000", cylinder_count="6", is_v_engine="0")
+    map_row = _map_row(engine_code="ZZ3VEE", engine_displacement="", cylinder_count="", engine_configuration="I4")
+    report = _merge(tool, tmp_path, db, [extract], [map_row])
+    assert report.inserted == ("ZZ3VEE",)
+    assert report.skipped["cylinder_heuristic"] == ()
+    row = _row(db, "ZZ3VEE")
+    assert row is not None
+    assert row["cylinder_count"] == 6
 
 
 def test_shipped_original_rows_match_the_pinned_base_digest(data_dir):
@@ -446,11 +472,12 @@ def test_second_run_inserts_nothing_and_keeps_bytes(tool, tmp_path, db):
 
 
 def test_existing_rows_keep_every_value(tool, tmp_path, db):
+    # Every column except cylinder_count, which the merge adds and may fill (T-VINA-16).
     before = _dump(db)
     assert len(before) == 72
     _merge(tool, tmp_path, db, [_extract_row()])
     after = _dump(db)
-    assert {code: after[code] for code in before} == before
+    assert {code: {k: v for k, v in after[code].items() if k != "cylinder_count"} for code in before} == before
     assert {after[code]["has_maf"] for code in before} <= {("int", 0), ("int", 1)}
     assert {after[code]["has_map"] for code in before} <= {("int", 0), ("int", 1)}
 
@@ -476,6 +503,134 @@ def test_schema_matches_builder(tool, tmp_path, db):
     sensors = {r[1]: (r[3], r[4]) for r in actual if r[1] in ("has_maf", "has_map")}
     assert sensors == {"has_maf": (0, None), "has_map": (0, None)}
     assert indexes == [("idx_engine_ref_brand",)]
+
+
+def test_shipped_engine_ref_matches_the_pinned_digest(data_dir):
+    conn = sqlite3.connect(f"file:{data_dir / 'vref.db'}?mode=ro", uri=True)
+    try:
+        rows = [[[type(v).__name__, v] for v in r] for r in conn.execute(SHIPPED_ROWS_SQL)]
+    finally:
+        conn.close()
+    assert len(rows) == SHIPPED_ROWS
+    digest = hashlib.sha256(json.dumps(rows, separators=(",", ":")).encode()).hexdigest()
+    assert digest == SHIPPED_ROWS_SHA256
+
+
+def test_null_count_is_backfilled_from_a_single_count_code(tool, tmp_path, db):
+    rows = [
+        _extract_row(brand="BRANDA", engine_code="5FR", cylinder_count="4"),
+        _extract_row(brand="BRANDB", engine_code="5 FR", cylinder_count="4"),
+    ]
+    report = _merge(tool, tmp_path, db, rows)
+    assert report.backfilled == 1
+    row = _row(db, "5FR")
+    assert row is not None
+    assert row["cylinder_count"] == 4
+
+
+def test_two_count_code_leaves_the_count_null(tool, tmp_path, db):
+    rows = [
+        _extract_row(brand="BRANDA", engine_code="5FR", cylinder_count="4"),
+        _extract_row(brand="BRANDB", engine_code="5FR", cylinder_count="6"),
+    ]
+    report = _merge(tool, tmp_path, db, rows)
+    assert report.backfilled == 0
+    row = _row(db, "5FR")
+    assert row is not None
+    assert row["cylinder_count"] is None
+
+
+def test_stated_count_is_kept(tool, tmp_path, db):
+    _merge(tool, tmp_path, db, [_extract_row(engine_code="5FR", cylinder_count="4")])
+    report = _merge(tool, tmp_path, db, [_extract_row(engine_code="5FR", cylinder_count="6")])
+    assert report.backfilled == 0
+    row = _row(db, "5FR")
+    assert row is not None
+    assert row["cylinder_count"] == 4
+
+
+def test_new_row_carries_the_coalesced_count(tool, tmp_path, db):
+    rows = [
+        _extract_row(brand="BRANDA", engine_code="ZZ2CNT", cylinder_count=""),
+        _extract_row(brand="BRANDB", engine_code="ZZ2CNT", cylinder_count="4"),
+        _extract_row(engine_code="ZZ9NEW", cylinder_count=""),
+    ]
+    report = _merge(tool, tmp_path, db, rows)
+    assert report.inserted == ("ZZ2CNT", "ZZ9NEW")
+    counted = _row(db, "ZZ2CNT")
+    blank = _row(db, "ZZ9NEW")
+    assert counted is not None and blank is not None
+    assert counted["cylinder_count"] == 4
+    assert blank["cylinder_count"] is None
+
+
+def test_second_run_backfills_nothing(tool, tmp_path, db):
+    extract = [_extract_row(engine_code="5FR", cylinder_count="4")]
+    first = _merge(tool, tmp_path, db, extract)
+    assert first.backfilled == 1
+    digest = _sha256(db)
+    second = _merge(tool, tmp_path, db, extract)
+    assert second.backfilled == 0
+    assert second.inserted == ()
+    assert not second.schema_rebuilt
+    assert _sha256(db) == digest
+
+
+def test_db_without_cylinder_count_is_rebuilt(tool, tmp_path, db):
+    # Correction 01, C4: the first merge rebuilds the tmp_path fixture with nullable sensors, so dropping the column
+    # reaches the 32-name, nullable-sensor branch (the shipped db's case before T-VINA-16).
+    _merge(tool, tmp_path, db, [_extract_row()])
+    conn = sqlite3.connect(db)
+    try:
+        conn.execute("ALTER TABLE engine_ref DROP COLUMN cylinder_count")
+        conn.commit()
+    finally:
+        conn.close()
+    report = _merge(tool, tmp_path, db, [_extract_row(engine_code="5FR", cylinder_count="4")])
+    assert report.schema_rebuilt
+    assert report.backfilled == 1
+    ref = sqlite3.connect(":memory:")
+    try:
+        ref.executescript(tool.CREATE_ENGINE_REF)
+        expected = ref.execute("PRAGMA table_info(engine_ref)").fetchall()
+    finally:
+        ref.close()
+    conn = sqlite3.connect(db)
+    try:
+        actual = conn.execute("PRAGMA table_info(engine_ref)").fetchall()
+    finally:
+        conn.close()
+    assert actual == expected
+    row = _row(db, "5FR")
+    assert row is not None
+    assert row["cylinder_count"] == 4
+
+
+def test_other_column_difference_refuses(tool, tmp_path, db):
+    # PIN
+    _merge(tool, tmp_path, db, [_extract_row()])
+    conn = sqlite3.connect(db)
+    try:
+        conn.execute("ALTER TABLE engine_ref ADD COLUMN extra INTEGER")
+        conn.commit()
+    finally:
+        conn.close()
+    with pytest.raises(RuntimeError, match="columns differ"):
+        _merge(tool, tmp_path, db, [_extract_row(engine_code="ZZ9TWO")])
+
+
+def test_counted_db_with_not_null_sensors_refuses(tool, tmp_path, db):
+    # Correction 01, C2: a rebuild copies no cylinder_count, so a db that has the column with NOT NULL sensors refuses.
+    conn = sqlite3.connect(db)
+    try:
+        conn.execute("ALTER TABLE engine_ref ADD COLUMN cylinder_count INTEGER")
+        conn.commit()
+    finally:
+        conn.close()
+    digest = _sha256(db)
+    with pytest.raises(RuntimeError, match="cylinder_count"):
+        _merge(tool, tmp_path, db, [_extract_row()])
+    assert _sha256(db) == digest
 
 
 def test_real_vin_gains_row_with_tecdoc_displacement(tool, data_dir, tmp_path, db):

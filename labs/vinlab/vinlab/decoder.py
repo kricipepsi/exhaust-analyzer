@@ -659,6 +659,11 @@ class RobustVINDecoder:
             conf_flags,
         )
 
+        # T-VINA-16 R3: TecDoc's stated count (engine_ref.cylinder_count) replaces the map's; NULL, 0 or no column keeps it
+        vref_cylinders = db_dict.get("cylinder_count")
+        if isinstance(vref_cylinders, int) and vref_cylinders > 0:
+            _cylinder_count = vref_cylinders
+
         _cylinder_count, _induction_type, _number_of_banks = self._cylinder_fallback(
             _cylinder_count,
             engine_row,
