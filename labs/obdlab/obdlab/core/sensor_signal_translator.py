@@ -147,7 +147,8 @@ class SensorSignalTranslator:
 
         # [5] O2 normalisation (§11) — frozen if thermal gate triggered
         if analytics_frozen:
-            normalized_lambda = 1.0  # wiki: stoich default when frozen
+            # wiki: OBDLab_KG_Wiki.md §4.1 — FREEZE blocks ALL downstream trim, lambda, VE analytics; no made-up λ
+            normalized_lambda: float | None = None
             o2_failure_mode_result: O2FailureMode = O2FailureMode.NO_FAULT
         else:
             normalized_lambda, _o2_mode, o2_failure_mode_result = self._o2_normalizer.normalize(
@@ -172,7 +173,7 @@ class SensorSignalTranslator:
         lambda_perception_delta = None
         if dna_view is not None and dna_view.upstream_o2_type == O2SensorType.WIDEBAND_LINEAR:
             cmd_lambda = sanitized.get("commanded_equivalence_ratio")
-            if cmd_lambda is not None:
+            if cmd_lambda is not None and normalized_lambda is not None:
                 if not isinstance(cmd_lambda, (int, float)):
                     raise PIDValidationError(
                         f"commanded_equivalence_ratio must be numeric, got {type(cmd_lambda).__name__}"

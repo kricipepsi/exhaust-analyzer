@@ -71,8 +71,8 @@ class OBDLivePayload(BaseModel):
     per_bank_trim_delta: float | None = None
     # wiki: §5 / §12.1 — signed total_trim_correction_delta (B1) - total_trim_correction_delta_b2 (B2); null when single-bank
 
-    normalized_obd_lambda: float = Field(ge=0.7, le=1.3)
-    # wiki: §5 / §11 — unified lambda scalar
+    normalized_obd_lambda: float | None = Field(ge=0.7, le=1.3)
+    # wiki: §5 / §11 — unified lambda scalar; None when analytics are frozen (§4.1)
 
     lambda_perception_delta: float | None = None
     # perception delta = normalized_obd_lambda - commanded_lambda (PID 0x44); null when not wideband/0x44

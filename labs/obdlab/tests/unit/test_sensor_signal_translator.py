@@ -152,7 +152,7 @@ def test_cold_engine_bucket_override(translator):
     assert payload.engine_warmed is False
     assert payload.rpm_state_bucket == RpmStateBucket.COLD_OPEN_LOOP_INVALID
     # Analytics frozen
-    assert payload.normalized_obd_lambda == pytest.approx(1.0)  # stoich default
+    assert payload.normalized_obd_lambda is None  # wiki: OBDLab §4.1 — frozen analytics emit no lambda
     assert payload.total_trim_correction_delta == 0.0
     assert payload.ve_validity == VEValidity.UNKNOWN
     assert payload.ve_pct == 0.0  # wiki: §10 — 0.0 sentinel when analytics frozen
@@ -160,6 +160,28 @@ def test_cold_engine_bucket_override(translator):
     # Payload still emitted with engine RPM etc.
     assert payload.engine_rpm == 800
     assert payload.coolant_temp_c == 40.0
+
+
+def test_frozen_payload_has_no_lambda(translator):
+    """Cold wideband run with a commanded ratio: no lambda and no perception delta, no exception."""
+    dna = ObdLabDnaView(
+        engine_displacement_liters=2.0,
+        rated_rpm=6500,
+        stress_idle_rpm_target=4000,
+        air_metering_strategy=AirMeteringStrategy.DUAL_MAF_MAP_CROSSCHECK,
+        upstream_o2_type=O2SensorType.WIDEBAND_LINEAR,
+        induction_type=InductionType.NATURALLY_ASPIRATED,
+        confidence=VinConfidence.HIGH,
+    )
+    inp = _warm_idle_input(
+        coolant_temp_c=40.0,
+        pid_wideband_equivalence_ratio=1.0,
+        commanded_equivalence_ratio=1.0,
+    )
+    payload = translator.translate(inp, dna)
+    assert payload.rpm_state_bucket == RpmStateBucket.COLD_OPEN_LOOP_INVALID
+    assert payload.normalized_obd_lambda is None
+    assert payload.lambda_perception_delta is None
 
 
 def test_cold_engine_ect_74_degrees(translator):

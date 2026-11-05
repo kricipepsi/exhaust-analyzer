@@ -34,13 +34,12 @@ def is_default_shape(payload: OBDLivePayload) -> bool:
     Each field's default traces to the freeze path in
     sensor_signal_translator.py lines 134-163.
 
-    normalized_obd_lambda is included with a tolerance: frozen=1.0,
-    and genuine stoich also ≈1.0. A deviation > 0.005 from 1.0
-    indicates the O2 channel moved (rich or lean reading).
+    normalized_obd_lambda is None when frozen; a value (even stoich 1.0)
+    means the O2 channel was computed.
     """
     return (
         payload.o2_failure_mode == O2FailureMode.NO_FAULT
-        and abs(payload.normalized_obd_lambda - 1.0) < 0.005
+        and payload.normalized_obd_lambda is None
         and payload.ve_pct == 0.0
         and payload.ve_validity == VEValidity.UNKNOWN
         and payload.total_trim_correction_delta == 0.0

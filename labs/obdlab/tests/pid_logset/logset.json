@@ -952,7 +952,7 @@
       "drive_cycles_since_clear": 5
     },
     "expected_obd_signature": {
-      "normalized_obd_lambda": 1.0,
+      "normalized_obd_lambda": null,
       "total_trim_correction_delta": 0.0,
       "ve_validity": "UNKNOWN",
       "trim_analytics_gate": "ENGINE_COLD",
@@ -994,7 +994,7 @@
       "drive_cycles_since_clear": 5
     },
     "expected_obd_signature": {
-      "normalized_obd_lambda": 1.0,
+      "normalized_obd_lambda": null,
       "total_trim_correction_delta": 0.0,
       "ve_validity": "UNKNOWN",
       "trim_analytics_gate": "ENGINE_COLD",

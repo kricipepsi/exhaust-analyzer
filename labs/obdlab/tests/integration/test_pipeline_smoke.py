@@ -180,7 +180,7 @@ def test_smoke_cold_engine_none_dna(translator):
 
     assert payload.engine_warmed is False
     assert payload.rpm_state_bucket == RpmStateBucket.COLD_OPEN_LOOP_INVALID
-    assert payload.normalized_obd_lambda == pytest.approx(1.0)
+    assert payload.normalized_obd_lambda is None
     assert payload.total_trim_correction_delta == 0.0
     assert payload.ve_validity == VEValidity.UNKNOWN
     assert payload.ve_pct == 0.0  # wiki: §10 — 0.0 sentinel when analytics frozen
