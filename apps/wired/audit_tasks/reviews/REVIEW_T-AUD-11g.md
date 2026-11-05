@@ -41,3 +41,8 @@ Docs row: no second-model review.
   aborts (invalid sample, VIN NONE, schema), then fix the default or record the decision in the HLD.
 
 Measured: COMLab core (263 KB docs, 6,674 code lines) → 73 findings in 14 min on Sonnet medium.
+
+## Correction (2026-11-05 22:55 CET)
+The line "`audit/FINDINGS.md` and `FIX_PLAN.md` do not mention it" is wrong. The search looked only for
+`enable_fatal_gates`. `audit/FINDINGS.md:33` F-C1-13 records the same defect (an INVALID gas sample still gets a
+verdict on the production path), routed to T-AUD-3. T-AUD-19 is closed as covered (`done-superseded`).
