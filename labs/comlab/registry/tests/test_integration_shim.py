@@ -36,6 +36,7 @@ from registry.integration_shim import (
     RegistryV2Router,
     _DEFAULT_RULES_DIR,
     _EXPECTED_RULE_FILES,
+    _resolve_pid_from_payload,
 )
 
 
@@ -1126,3 +1127,27 @@ def test_live_trims_both_absent_returns_none(tmp_path: Path) -> None:
     out = router.route_case(payload)
     assert out["diagnostic_verdict"]["is_fault_detected"] is False
     assert out["fault_id"] == "OPTIMAL_HEALTH"
+
+
+_O2_TWO_SOURCE_PAYLOAD: dict[str, Any] = {
+    "obd_live_data": {"downstream_o2_v": 0.10},
+    "dtc_lab_output": {"freeze_frame": {"o2_voltage_b1s1": 0.85}},
+}
+
+
+def test_o2_downstream_reads_measured_downstream() -> None:
+    """o2_downstream reads the live post-catalyst voltage, not the upstream
+    B1S1 freeze-frame voltage (F-C4-4)."""
+    assert _resolve_pid_from_payload(_O2_TWO_SOURCE_PAYLOAD, "o2_downstream") == 0.10
+
+
+def test_o2_downstream_absent_without_live_reading() -> None:
+    """FreezeFrameRecord has no B1S2 voltage, so a freeze-frame-only payload
+    leaves o2_downstream unmeasured (None), never the upstream value."""
+    payload: dict[str, Any] = {"dtc_lab_output": {"freeze_frame": {"o2_voltage_b1s1": 0.85}}}
+    assert _resolve_pid_from_payload(payload, "o2_downstream") is None
+
+
+def test_o2_voltage_still_reads_upstream_ff() -> None:
+    """PIN: o2_voltage stays on the upstream freeze-frame B1S1 voltage."""
+    assert _resolve_pid_from_payload(_O2_TWO_SOURCE_PAYLOAD, "o2_voltage") == 0.85
