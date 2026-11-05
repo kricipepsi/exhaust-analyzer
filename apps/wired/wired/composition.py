@@ -40,6 +40,18 @@ from comlab.schemas.vocabulary import (
 )
 from dnalab import build_vehicle_dna
 from dtclab import DataFusionSanitizer
+from dtclab.schemas.dna_view import (
+    AirMeteringStrategy as DtcAirMeteringStrategy,
+)
+from dtclab.schemas.dna_view import (
+    DtcEmissionsView,
+    DtcLabDnaView,
+    EuroEmissionCategory,
+    ResolvedHorizon,
+)
+from dtclab.schemas.dna_view import (
+    VinConfidence as DtcVinConfidence,
+)
 from gaslab import GasLabContext, GasReading, process
 from gaslab.contracts import EngineStateBucket as GASEngineStateBucket
 from gaslab.dna_view import GasLabDnaView
@@ -167,7 +179,7 @@ def _diagnose(
         if obd_inputs is not None
         else None
     )
-    dtc_output = _run_dtclab(_as_dict(dtc_inputs)) if dtc_inputs is not None else None
+    dtc_output = _run_dtclab(_as_dict(dtc_inputs), vin_dna) if dtc_inputs is not None else None
 
     request = OrchestratorInboundRequest(
         metadata=metadata,
@@ -556,10 +568,55 @@ def _build_obd_dna_view(vin_dna: dict[str, Any]) -> ObdLabDnaView:
     )
 
 
-def _run_dtclab(dtc_inputs: dict[str, Any]) -> COMDTCLabPayload:
-    """Run DTCLab and map its JSON boundary output into COMLab's mirror type."""
+_DTC_AIR_METERING = {
+    "MAF_ONLY": "MAF",
+    "MAP_ONLY_SPEED_DENSITY": "MAP_SPEED_DENSITY",
+    "DUAL_MAF_MAP_CROSSCHECK": "HYBRID",
+}  # DTC_VOCABULARY.md §14.1
+_DTC_HORIZON = {
+    "HORIZON_LEGACY": "HORIZON_LEGACY",
+    "HORIZON_ADAPTIVE": "HORIZON_CLASSIC",
+    "HORIZON_MODERN": "HORIZON_MODERN",
+}  # DTC_VOCABULARY.md §14.1 (CLASSIC = Euro 3-4 = COMLab ADAPTIVE)
+_DTC_EURO = {f"EURO_{n}" for n in range(1, 8)}
+
+
+def _build_dtc_dna_view(vin_dna: dict[str, Any]) -> DtcLabDnaView | None:
+    """Project VIN/DNA output into DTCLab's DNA view, or None when a required field is unknown."""
+    emissions = _as_dict(vin_dna.get("emissions"))
+    has_catalyst = emissions.get("has_catalyst")
+    egr_equipped = emissions.get("egr_equipped")
+    model_year = vin_dna.get("model_year")
+    air = _DTC_AIR_METERING.get(str(vin_dna.get("air_metering_strategy")))
+    horizon = _DTC_HORIZON.get(str(vin_dna.get("resolved_horizon")))
+    confidence = str(vin_dna.get("confidence", "NONE"))
+    if (
+        not isinstance(has_catalyst, bool)
+        or not isinstance(egr_equipped, bool)
+        or model_year is None
+        or air is None
+        or horizon is None
+        or confidence not in {"HIGH", "PARTIAL", "NONE"}
+    ):
+        return None  # DTC_VOCABULARY.md §14.3: None is treated as confidence NONE
+    euro = str(vin_dna.get("euro_emission_category"))
+    return DtcLabDnaView(
+        make=str(vin_dna.get("make") or ""),
+        model=str(vin_dna.get("model") or ""),
+        model_year=int(model_year),
+        euro_emission_category=EuroEmissionCategory(euro if euro in _DTC_EURO else "UNKNOWN"),
+        air_metering_strategy=DtcAirMeteringStrategy(air),
+        resolved_horizon=ResolvedHorizon(horizon),
+        emissions=DtcEmissionsView(has_catalyst=has_catalyst, egr_equipped=egr_equipped),
+        # consumer: dtclab routing_tag_mapper HIGH-confidence CATALYST_HISTORY / EGR_HISTORY gates
+        confidence=DtcVinConfidence(confidence),
+    )
+
+
+def _run_dtclab(dtc_inputs: dict[str, Any], vin_dna: dict[str, Any]) -> COMDTCLabPayload:
+    """Run DTCLab with its DNA view and map its JSON boundary output into COMLab's mirror type."""
     with span("lab.dtclab.sanitize"):
-        dtc_payload = DataFusionSanitizer().sanitize(
+        dtc_payload = DataFusionSanitizer(dna_view=_build_dtc_dna_view(vin_dna)).sanitize(
             raw_dtcs=_as_dict(dtc_inputs.get("raw_dtcs")),
             raw_freeze_frame=_as_dict(dtc_inputs.get("raw_freeze_frame")),
             raw_mode06=_as_dict(dtc_inputs.get("raw_mode06")),
