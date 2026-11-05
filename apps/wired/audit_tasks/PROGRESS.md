@@ -24,7 +24,7 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 | T-AUD-7f | `repo/apps/wired/audit_tasks/T-AUD-7f_graph_build_lane_rule(1).md` | done | T-AUD-7e | 2026-11-05 | 1/5 | **ACCEPT 2026-11-04, score 96, t=1/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-7f.md`.** F-D3-5: one graph-build lane rule (architect; T-GR-10/11 Nemo extract); harness git line |
 | T-AUD-7g | `repo/apps/wired/audit_tasks/T-AUD-7g_router_status_and_canonical_wiki(1).md` | done | T-AUD-7f | 2026-11-05 | 1/5 | **ACCEPT 2026-11-04, score 97, t=2/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-7g.md`.** F-D3-13/17: router and ROADMAP report ledger states; six-identity roster; canonical wiki labs/<lab>/wiki |
 | T-AUD-7h | `repo/apps/wired/audit_tasks/T-AUD-7h_import_edge_and_vault_bootstrap(1).md` | done | T-AUD-7g | 2026-11-05 | 1/5 | **ACCEPT 2026-11-05, score 97, t=2/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-7h.md`.** R0-3, F-D3-18: rule 5 names the ADR-0002 import edge; Vault packs leave the bootstrap table |
-| T-AUD-7i | `repo/apps/wired/audit_tasks/T-AUD-7i_roadmap_and_dnalab_paths(1).md` | pending | T-AUD-7h | 2026-11-05 | 1/5 | F-D3-19 boot docs: ROADMAP and dnalab START_HERE name paths that resolve |
+| T-AUD-7i | `repo/apps/wired/audit_tasks/T-AUD-7i_roadmap_and_dnalab_paths(1).md` | done | T-AUD-7h | 2026-11-05 | 1/5 | **ACCEPT 2026-11-05, score 97, t=2/1 — `repo/apps/wired/audit_tasks/reviews/REVIEW_T-AUD-7i.md`.** F-D3-19 boot docs: ROADMAP and dnalab START_HERE name paths that resolve |
 
 **Status values:** `pending` · `in_progress` · `done` · `blocked` · `deferred` · `superseded`
 **Score** (column 6, checked by `ops/gen_dispatch.py`): the routing score `N/5`, the same `N` as the file name's `(N)`.
