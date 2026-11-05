@@ -3,6 +3,7 @@
 8 gates × (PASS + FAIL) = 16 tests + all-VALID integration check.
 """
 
+import pytest
 
 from obdlab.core.analytics_preconditions import (
     CKP_CMP_FAULT_DTCS,
@@ -169,11 +170,14 @@ def test_gate5_codes_cleared_fails():
     assert result == TrimAnalyticsGate.CODES_RECENTLY_CLEARED
 
 
-def test_gate5_drive_cycles_none_fails():
-    """drive_cycles_since_clear is None → CODES_RECENTLY_CLEARED."""
+@pytest.mark.parametrize("present", [True, False], ids=["none", "absent"])
+def test_gate5_drive_cycles_unknown_passes(present):
+    """drive_cycles_since_clear None or absent is unknown, not a recent clear → VALID."""
     pids = _healthy_pids(drive_cycles_since_clear=None)
+    if not present:
+        del pids["drive_cycles_since_clear"]
     result = AnalyticsPreconditions.evaluate(pids)
-    assert result == TrimAnalyticsGate.CODES_RECENTLY_CLEARED
+    assert result == TrimAnalyticsGate.VALID
 
 
 # ==================================================================

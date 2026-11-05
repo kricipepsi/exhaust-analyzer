@@ -84,9 +84,10 @@ class AnalyticsPreconditions:
         if CKP_CMP_FAULT_DTCS.intersection(active_dtcs):
             return TrimAnalyticsGate.CKP_CMP_FAULT_ACTIVE
 
-        # Gate 5 — wiki: §9 — Codes not recently cleared
-        drive_cycles = sanitized_pids.get("drive_cycles_since_clear", 0)
-        if drive_cycles is None or drive_cycles < 1:
+        # Gate 5 — wiki: §9 — "≥ 1 drive cycle since `codes_cleared`". An absent or None
+        # count is unknown, and an unknown count is not evidence of a recent clear.
+        drive_cycles = sanitized_pids.get("drive_cycles_since_clear")
+        if drive_cycles is not None and drive_cycles < 1:
             return TrimAnalyticsGate.CODES_RECENTLY_CLEARED
 
         # Gate 6 — wiki: §9 — Not WOT
