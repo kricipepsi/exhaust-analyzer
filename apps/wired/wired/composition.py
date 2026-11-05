@@ -162,7 +162,11 @@ def _diagnose(
             metadata, error_code, message
         )
     gas_output = _run_gaslab(gas_inputs, vin_dna)
-    obd_output = _run_obdlab(_as_dict(obd_inputs), vin_dna) if obd_inputs is not None else None
+    obd_output = (
+        _run_obdlab(_with_user_dtcs(_as_dict(obd_inputs), dtc_inputs), vin_dna)
+        if obd_inputs is not None
+        else None
+    )
     dtc_output = _run_dtclab(_as_dict(dtc_inputs)) if dtc_inputs is not None else None
 
     request = OrchestratorInboundRequest(
@@ -612,6 +616,26 @@ def _map_o2_sensor_type(vocab_o2: str) -> str:
 def _enum_value(value: Any) -> Any:
     """Return enum wire value without importing the source enum class."""
     return getattr(value, "value", value)
+
+
+def _with_user_dtcs(obd_inputs: dict[str, Any], dtc_inputs: Any) -> dict[str, Any]:
+    """Return a copy of ``obd_inputs`` with the user's DTC codes as ``active_dtcs``.
+
+    A non-empty ``active_dtcs`` already in ``obd_inputs`` wins unchanged. With no
+    DTC input or no codes the copy gains no key (T-AUD-4h, F-C3-3).
+    """
+    out = dict(obd_inputs)
+    if out.get("active_dtcs") or dtc_inputs is None:
+        return out
+    codes: list[str] = []
+    for mode_codes in _as_dict(_as_dict(dtc_inputs).get("raw_dtcs")).values():
+        for code in mode_codes or []:
+            if code not in codes:
+                codes.append(code)
+    if codes:
+        # consumer: OBDLab AnalyticsPreconditions gates 3-4 (O2_FAULT_ACTIVE, CKP_CMP_FAULT_ACTIVE)
+        out["active_dtcs"] = codes
+    return out
 
 
 def _as_dict(value: Any) -> dict[str, Any]:

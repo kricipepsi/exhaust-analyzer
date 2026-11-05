@@ -1192,3 +1192,21 @@ def test_valid_gate_keeps_live_trims() -> None:
     }
     assert _resolve_pid_from_payload(payload, "shrtft1") == 18.0
     assert _resolve_pid_from_payload(payload, "longft1") == 16.0
+
+
+@pytest.mark.parametrize(
+    ("ect", "expected"), [(40.0, None), (69.9, None), (70.0, 3.0), (90.0, 3.0)]
+)
+def test_freeze_frame_trims_follow_ff_coolant(ect: float, expected: float | None) -> None:
+    """NEW: a freeze frame captured below 70 °C is not scored for trims (T-AUD-4h R2)."""
+    payload: dict[str, Any] = {
+        "dtc_lab_output": {
+            "freeze_frame": {
+                "coolant_temp_c": ect,
+                "short_term_ft1": 3.0,
+                "long_term_ft1": 3.0,
+            }
+        }
+    }
+    assert _resolve_pid_from_payload(payload, "shrtft1") == expected
+    assert _resolve_pid_from_payload(payload, "ltft_b1") == expected

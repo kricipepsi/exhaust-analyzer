@@ -363,6 +363,22 @@ def _resolve_pid_from_payload(payload: dict[str, Any], pid_name: str) -> float |
 _GATED_LIVE_TRIMS = frozenset({"shrtft1", "longft1"})
 
 
+_FF_TRIM_FIELDS = frozenset({"short_term_ft1", "long_term_ft1"})
+# Equals OBDLab ECT_WARM_THRESHOLD (OBDLab_KG_Wiki §9); comlab does not import obdlab.
+_FF_WARM_ECT_C = 70.0
+
+
+def _ff_cold(ff: dict[str, Any]) -> bool:
+    """True when the freeze frame carries a ``coolant_temp_c`` below the warm threshold."""
+    ect = ff.get("coolant_temp_c")
+    if ect is None:
+        return False
+    try:
+        return float(ect) < _FF_WARM_ECT_C
+    except (TypeError, ValueError):
+        return False
+
+
 def _trims_blocked(obd: dict[str, Any]) -> bool:
     """True when ``obd_live_data`` carries a ``trim_analytics_gate`` other than VALID."""
     gate = obd.get("trim_analytics_gate")
@@ -398,6 +414,9 @@ def _resolve_single_source(payload: dict[str, Any], source: str, field: str) -> 
     elif source == "ff":
         dtc = payload.get("dtc_lab_output") or {}
         ff = dtc.get("freeze_frame") or {}
+        # Trims captured on a cold engine are open-loop and not scored.
+        if field in _FF_TRIM_FIELDS and _ff_cold(ff):
+            return None
         val = ff.get(field)
     else:  # pragma: no cover — _PID_DISPATCH is closed
         return None
