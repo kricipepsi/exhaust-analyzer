@@ -635,9 +635,9 @@ exercise.
 
 These are by-design and never page anyone:
 
-- `suppress_gaslab` (engine_state == won_not_start) → `degradation_mode == GAS_DOMINANT`,
+- `suppress_gaslab` (engine_state == will_not_start) → `degradation_mode == GAS_DOMINANT`,
   pipeline proceeds, PRD §6.3 yellow banner shown.
-- `SymptomDNA.engine_state == won_not_start` → producer labs suppressed
+- `SymptomDNA.engine_state == will_not_start` → producer labs suppressed
   via routing directive, pipeline proceeds with DTC-only evidence.
 - `obd_live_data.engine_warmed == false` AND OBDLab suppressed → no
   abort.

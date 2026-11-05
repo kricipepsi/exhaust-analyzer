@@ -138,7 +138,7 @@ rules each screen must honour** (the latter authoritatively listed in
 │ Screen 1 — VEHICLE CONTEXT                                                  │
 │  • VIN (17 char, uppercase auto-normalised)                                 │
 │  • Two-tier symptom picker (Tier 1 → Tier 2 cascade)                        │
-│  • Engine state at sample time (running / cranking / won_not_start)         │
+│  • Engine state at sample time (running / cranking / will_not_start)        │
 │  • Confidence banner if VIN decodes PARTIAL or NONE (yellow / red)          │
 │ ──► Triggers VINLab.decode() + SymptomLab.resolve() → DNALab.build_dna()    │
 └──────────────────────┬──────────────────────────────────────────────────────┘
@@ -148,7 +148,7 @@ rules each screen must honour** (the latter authoritatively listed in
 │  • Idle baseline group (HC, CO, CO₂, O₂, NOx)                               │
 │  • Stress-idle group (same fields, at stress_idle_rpm_target from DNA)      │
 │  • Sample validity gate runs INSIDE GASLab on submit (per horizontal-DNA)   │
-│ Suppressed entirely when SymptomDNA.engine_state == won_not_start           │
+│ Suppressed entirely when SymptomDNA.engine_state == will_not_start          │
 │ ──► On submit, GASLab.analyze() produces GasLabPayload                      │
 └──────────────────────┬──────────────────────────────────────────────────────┘
                        ▼
@@ -159,7 +159,7 @@ rules each screen must honour** (the latter authoritatively listed in
 │  • Fuel trims (Bank 1 always; Bank 2 only if number_of_banks >= 2)          │
 │  • O₂ inputs vary by upstream_o2_type (per the UpstreamO2Type enum)         │
 │  • Plausibility/decimal-misplacement sentinels run INSIDE OBDLab on submit  │
-│ Suppressed/limited when SymptomDNA.engine_state in {won_not_start,cranking} │
+│ Suppressed/limited when engine_state in {will_not_start,cranking}           │
 │ ──► On submit, OBDLab.process() produces OBDLivePayload                     │
 └──────────────────────┬──────────────────────────────────────────────────────┘
                        ▼
@@ -171,7 +171,7 @@ rules each screen must honour** (the latter authoritatively listed in
 │    SAI / GPF / Boost are out of scope, Euro 6+ perks)                       │
 │  • Misfire cylinder picker, capped at cylinder_count                        │
 │  • Freeze frame (collapsible, advanced)                                     │
-│  • Mode $06 monitors (advanced expander) — suppressed when won_not_start    │
+│  • Mode $06 monitors (advanced expander) — suppressed when will_not_start   │
 │ ──► On submit, DTCLab.compile_dtcs() produces DTCLabPayload                 │
 └──────────────────────┬──────────────────────────────────────────────────────┘
                        ▼

@@ -730,7 +730,7 @@ def route_symptom(symptom_dna: SymptomDNA | dict) -> LabRoutingDirective:
     """Reads SymptomDNA, returns the directive.
     
     Routing rules (verbatim from data_flow_report §5.3 / DNALab_TO_COMLab §4 Stage B):
-      engine_state == won_not_start  → suppress_gaslab, suppress_obd_live_pids,
+      engine_state == will_not_start  → suppress_gaslab, suppress_obd_live_pids,
                                        suppress_mode06_ui + reason NON_STARTER_NO_EXHAUST
       engine_state == cranking       → suppress_obd_live_pids
                                        + reason NON_RUNNING_NO_LIVE_PIDS
