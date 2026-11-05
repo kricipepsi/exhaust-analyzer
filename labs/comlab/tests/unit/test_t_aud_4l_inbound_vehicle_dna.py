@@ -71,3 +71,11 @@ def test_top_level_values_win() -> None:
          "has_catalyst": False})
     assert req.symptom_dna == {"tier_1_primary_symptom": "y"}
     assert req.has_catalyst is False
+
+
+def test_non_default_schema_and_confidence_are_derived() -> None:
+    vd = _vehicle_dna(schema_version="1.1")
+    vd["vin_dna"]["confidence"] = "PARTIAL"
+    req = OrchestratorInboundRequest.model_validate({"vehicle_dna": vd, "gas_lab_output": _gas()})
+    assert req.metadata.schema_version == "1.1"
+    assert str(req.metadata.vin_confidence.value) == "PARTIAL"
