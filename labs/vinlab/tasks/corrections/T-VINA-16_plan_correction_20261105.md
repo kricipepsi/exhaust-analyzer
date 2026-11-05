@@ -48,11 +48,13 @@ Merge file +2 tests (C2, C5's second case): step 2 **`55 passed`**; step 1 **`37
 unchanged.
 
 ### Plan-time digest ###
+Re-recorded for revision 02 at `324fd5a` (the build commits changed every file; the plan-time values were `ddbd269f1e0599eb`, `eac76884b6d52744`, `efa5c0654cfc3ce4`, `88d5818782b8acff`, `0f1f2a5ace2c0aa6`, `78ee90f39c2d4631`).
+
 | path (from `C:/4DApp/repo`) | sha256 prefix |
 |---|---|
-| `labs/vinlab/vinlab/decoder.py` | `ddbd269f1e0599eb` |
-| `labs/vinlab/tools/merge_tecdoc_extract.py` | `eac76884b6d52744` |
-| `labs/vinlab/tools/build_vref_db.py` | `efa5c0654cfc3ce4` |
-| `labs/vinlab/vinlab/data/vref.db` | `88d5818782b8acff` |
-| `labs/vinlab/tests/unit/test_vref_tecdoc_merge.py` | `0f1f2a5ace2c0aa6` |
-| `labs/vinlab/tests/unit/test_vref_banks_induction.py` | `78ee90f39c2d4631` |
+| `labs/vinlab/vinlab/decoder.py` | `540b3452756e91e1` |
+| `labs/vinlab/tools/merge_tecdoc_extract.py` | `c9980aec5b9b4b4e` |
+| `labs/vinlab/tools/build_vref_db.py` | `33d16e0b135f90bf` |
+| `labs/vinlab/vinlab/data/vref.db` | `660e81961e887038` |
+| `labs/vinlab/tests/unit/test_vref_tecdoc_merge.py` | `e320dabd17096009` |
+| `labs/vinlab/tests/unit/test_vref_banks_induction.py` | `34f7b1cbcee73249` |

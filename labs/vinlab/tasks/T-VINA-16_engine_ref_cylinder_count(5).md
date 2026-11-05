@@ -110,6 +110,18 @@ the whole shipped table. Done is `### Verification ###` with P3's counts and P4'
       string. `test_cylinder_heuristic_two_bank_hint_alone_is_skipped` is parametrised over `""` and `"0"`; both skip.
       Mutant: raw truthiness.
     - Counts: step 2 `55 passed`; step 1 `373 passed, 8 skipped`.
+  - **Ruled (02, review; revision before acceptance; test files only).** The tool, the decoder and `vref.db` do not
+    change. Two surviving mutants get an isolating test each, in `test_vref_tecdoc_merge.py`:
+    - (a) `test_counted_db_with_not_null_sensors_refuses` (`NEW` cases) is parametrised over `has_maf` NOT NULL only,
+      `has_map` NOT NULL only, and both. Build each variant table on the `db` fixture's `tmp_path` copy, with
+      `cylinder_count` present. Each case raises `RuntimeError` and leaves the bytes unchanged. Kills "`all(...)` in
+      place of `any(...)`".
+    - (b) `test_conflicting_counts_across_spellings_leave_null` (`NEW`): extract `5FR` count 4 (BRANDA) and `5 FR`
+      count 6 (BRANDB); the existing `5FR` row stays NULL and `backfilled` is 0. Kills "`_stated_counts` keyed on the
+      raw `engine_code`".
+    - Counts: merge file +3 items; step 2 `58 passed`; step 1 `376 passed, 8 skipped`. Run each mutant, record it in
+      the note's `## Revision 02`, update the RESULT's counts and mutant total (17). Commit as `test(T-VINA-16): …`.
+      The shipped-table digest does not change.
 - **R5 The effect is measured.** The plan predicts reach after the merge (P3) and the decode diff (P4). The RESULT
   lists every real VIN whose cylinder count, banks, displacement, induction, euro, O₂ type or air metering changes,
   with the TecDoc field that causes it. An unattributed change is a stop. A dnalab, wired or ui test that changes value
@@ -127,7 +139,9 @@ cd C:/4DApp/repo && git branch --show-current && git log --oneline -1 && git sta
 fix/T-VINA-16
 <the newest spec(T-VINA-16): commit, a descendant of 3c2d512: record it as the base in readiness line (a)>
 ```
-`git status --porcelain` prints nothing. Anything else is a stop.
+`git status --porcelain` prints nothing. Anything else is a stop. Revision 02: it prints exactly the two untracked
+lines `?? labs/vinlab/tasks/progress_notes/T-VINA-16.md` and `?? labs/vinlab/tasks/results/RESULT_T-VINA-16.md`, and
+`git log --oneline -3` shows the newest `spec(T-VINA-16):` commit above `324fd5a`.
 
 ### Success criteria ###
 1. The vinlab suite and both named test files pass with the plan's counts (steps 1, 2); each R4 mutant fails a named

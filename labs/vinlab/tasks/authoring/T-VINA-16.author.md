@@ -55,3 +55,9 @@ cold read: skipped, plan-gated (Plan: REQUIRED; the plan review and its second-m
   F1 HIGH (empty `executemany` rowcount −1) not upheld: measured 0. F6 (M11 kill) not upheld: AEB heuristic = 4.
   Upheld: F2 (VIN set arithmetic), F3 (counted db with NOT NULL sensors loses counts → refuse), F4 (step-6 cwd), F5
   (O2 on a copy), latent `"0"` truthiness in G2. Record: `corrections/T-VINA-16_plan_correction_20261105.md`.
+- **02 (2026-11-05, review; revision before acceptance).** Cowork's re-run equals the RESULT on every gate (373/8, 55,
+  P5, reach 579, second run idempotent at `660e81961e887038`, 1,308/1,259/49, integrity ok; repo-wide = baseline).
+  Cowork's own M10 run: `6 failed`. Second review (DeepSeek, `C:/4DApp/recheck/codex/T-VINA-16_review.md`): APPROVE
+  WITH CORRECTIONS. F1 MED (refusal test has both sensors NOT NULL; `all` mutant survives) upheld. F2 MED (cross-spelling
+  conflict untested; raw-key mutant survives) upheld. F3 LOW (REAL count) not upheld: no path writes one. → R4 (02),
+  test files only.
