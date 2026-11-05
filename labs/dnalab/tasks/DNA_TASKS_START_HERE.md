@@ -15,9 +15,9 @@ Cross-lab imports **within the family are allowed in one direction only**:
 `dnalab → vinlab + symptomlab`. No lab imports COMLab; COMLab mirrors what it needs.
 
 Two input documents drive the pack:
-- `labs/dnalab/docs/audits/AUDIT_2026-06-11_dna_vin_rework_and_dna10_answerability.md`
+- `labs/dnalab/audits/AUDIT_2026-06-11_dna_vin_rework_and_dna10_answerability.md`
   (the rework-impact + DBS-answerability audit).
-- `labs/dnalab/docs/research/DNAresearch.md` (the symptom-channel + prior research).
+- `labs/dnalab/research/DNAresearch.md` (the symptom-channel + prior research).
 
 ## 1. Start sequence
 

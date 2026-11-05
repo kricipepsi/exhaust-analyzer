@@ -1,6 +1,6 @@
 # 4DLab v2 — Roadmap (navigation, not spec)
 
-**Date:** 2026-06-04 · **Source of truth:** `4DLabV2/docs/reference/audit_2026-06-03/4DLAB_CAPABILITY_AUDIT_AND_RESEARCH_QUESTIONS.md`
+**Date:** 2026-06-04 · **Source of truth:** `docs/reference/audit_2026-06-03/4DLAB_CAPABILITY_AUDIT_AND_RESEARCH_QUESTIONS.md`
 **Read this first** so a fresh session knows the plan before opening any ledger.
 
 ## The diagnosis (one line, from the audit)
@@ -24,10 +24,10 @@ stay intentionally divergent until the COMLab stage — this matches the v2 wiki
 
 | Stage | Lab | v2 focus (from audit) | Ledger | Status |
 |---|---|---|---|---|
-| 1 | **GASLab** | Contract reconcile to 34 (cam-timing split) → then chemistry-discrimination depth for the big gaps: `TIMING_RETARDED` separation (~25% of corpus, 7 families), `mechanical_wear` (0/11, no distinct chemistry), pre-cat `exhaust_leak` vs sample error (7/9 die at the validity gate), idle-vs-2500rpm for catalyst & cam timing. | `4DLabV2/labs/gaslab/tasks/PROGRESS.md` | ✅ done (T-GV2-1..15 complete) |
-| 2 | **OBDLab** | First a **scope decision**: revive vs quarantine (>95% NO_FAULT on this corpus). If revived: realistic STFT/LTFT per fault family, `lambda_perception_delta` computability, downstream-O₂ masking signal, Mode $06 discriminators. Prune fields with no signal channel under signal/noise. | `4DLabV2/labs/obdlab/tasks/PROGRESS.md` | ✅ done (revived as emitter; T-OBDV2-* complete) |
-| 3 | **DTCLab** | The **#1 leverage** per the audit: DTC-presence reality (64/90 outranked have no DTC) + empirical P-code→family mapping strength; DTC-state weighting (pending/confirmed/permanent), multi-DTC patterns, freeze-frame params. Clear the `T-FX-13` hex-regex contract gap. | `4DLabV2/labs/dtclab/README.md` | ✅ done (Stage 3 closed: T-DTCV2-NOSTART-1 + FIX) |
-| 4 | **COMLab + registry** | The ranking spine. Decide architecture: can a hand-tuned additive ranker beat ~55%, or is a learned/statistical/Bayesian-fusion ranker required? Consolidate the **two split registries** (REG-V2 shim vs COMLab-internal). Reconcile registry chemistry vocab + all consumer mirrors here (incl. GASLabV2 T-GV2-2, registry FU-1, `OBD_VOCABULARY §17`). Consider top-2/3 differential output. | `4DLabV2/labs/comlab/README.md` + `registry/REGISTRY_START_HERE.md` | last |
+| 1 | **GASLab** | Contract reconcile to 34 (cam-timing split) → then chemistry-discrimination depth for the big gaps: `TIMING_RETARDED` separation (~25% of corpus, 7 families), `mechanical_wear` (0/11, no distinct chemistry), pre-cat `exhaust_leak` vs sample error (7/9 die at the validity gate), idle-vs-2500rpm for catalyst & cam timing. | `labs/gaslab/tasks/PROGRESS.md` | ✅ done (T-GV2-1..15 complete) |
+| 2 | **OBDLab** | First a **scope decision**: revive vs quarantine (>95% NO_FAULT on this corpus). If revived: realistic STFT/LTFT per fault family, `lambda_perception_delta` computability, downstream-O₂ masking signal, Mode $06 discriminators. Prune fields with no signal channel under signal/noise. | `labs/obdlab/tasks/PROGRESS.md` | ✅ done (revived as emitter; T-OBDV2-* complete) |
+| 3 | **DTCLab** | The **#1 leverage** per the audit: DTC-presence reality (64/90 outranked have no DTC) + empirical P-code→family mapping strength; DTC-state weighting (pending/confirmed/permanent), multi-DTC patterns, freeze-frame params. Clear the `T-FX-13` hex-regex contract gap. | `labs/dtclab/README.md` | ✅ done (Stage 3 closed: T-DTCV2-NOSTART-1 + FIX) |
+| 4 | **COMLab + registry** | The ranking spine. Decide architecture: can a hand-tuned additive ranker beat ~55%, or is a learned/statistical/Bayesian-fusion ranker required? Consolidate the **two split registries** (REG-V2 shim vs COMLab-internal). Reconcile registry chemistry vocab + all consumer mirrors here (incl. GASLabV2 T-GV2-2, registry FU-1, `OBD_VOCABULARY §17`). Consider top-2/3 differential output. | `labs/comlab/README.md` + `labs/comlab/registry/docs/REGISTRY_START_HERE.md` | last |
 
 ## Research-first gate (run in parallel; resolve before deep Stage-4 work)
 
@@ -43,7 +43,7 @@ this data at all?"* — answer these before spending heavy engineering chasing i
    — decides if the 27 `data-gap (STOP)` cases are recoverable or conceded.
    **Partially answered 2026-06-05** → `ARCHIVE/2026-06-06_v2restructure/4DLabV2/planning/sprints/stage1_gaslab/studies/STUDY_ecu_fault_gas_signatures_merge.md`:
    yes, but only via gas↔OBD divergence at the COMLab fusion layer (GASLab adds no
-   gas-only signature). Resolution path = `4DLabV2/labs/gaslab/tasks/TASK_SUITE_ecu_fault_diagnosis.md`
+   gas-only signature). Resolution path = `labs/gaslab/tasks/TASK_SUITE_ecu_fault_diagnosis.md`
    (5 most common faults; cranking/non_starter still open).
 4. **Bayes-optimal ceiling + taxonomy well-posedness** (COMLab) — sets the real
    target before more rules are written.
@@ -66,8 +66,8 @@ its research question (#5) is folded into the gate above.
 
 ## Pointers
 
-- Audit + research questions: `4DLabV2/docs/reference/audit_2026-06-03/4DLAB_CAPABILITY_AUDIT_AND_RESEARCH_QUESTIONS.md`
-- Stage-1 ledger: `4DLabV2/labs/gaslab/tasks/PROGRESS.md` (T-GV2-1 emitter; T-GV2-2 `done`)
+- Audit + research questions: `docs/reference/audit_2026-06-03/4DLAB_CAPABILITY_AUDIT_AND_RESEARCH_QUESTIONS.md`
+- Stage-1 ledger: `labs/gaslab/tasks/PROGRESS.md` (T-GV2-1 emitter; T-GV2-2 `done`)
 - Session bootstrap table: `CLAUDE.md` (maps each `<LAB>V2_START_HERE.md`)
 - Per-lab v2 ledgers for OBD/DTC are stood up at the start of their stage via the
   `_skills/coding-bootstrap` pattern (mirror the GASLabV2 scaffold).
