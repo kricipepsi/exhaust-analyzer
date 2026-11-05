@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-4c` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 1 | NO | 5-20 min | drive cycle gate unknown |
+| `T-AUD-4f` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 2 | NO | 20-40 min | frozen lambda none |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-4c` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — OBDLab's trim gate 5 reads an unknown drive-cycle count as unknown, not as "codes recently cleared".
-  `repo\apps\wired\audit_tasks/T-AUD-4c_drive_cycle_gate_unknown(2).md`
+**`T-AUD-4f` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — When OBDLab's analytics are frozen (cold engine), it emits no OBD lambda instead of a made-up λ 1.00.
+  `repo\apps\wired\audit_tasks/T-AUD-4f_frozen_lambda_none(3).md`
 
 ## Distribution
 
-- **2/5** — 1: T-AUD-4c
+- **3/5** — 1: T-AUD-4f
