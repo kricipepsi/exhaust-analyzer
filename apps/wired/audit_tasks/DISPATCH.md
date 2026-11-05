@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-7a` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **1** | 1 | NO | 10-20 min | git rule main production |
+| `T-AUD-4a` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 1 | NO | 5-20 min | o2 downstream pid |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-7a` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 1/5** — The repo's auto-loaded git rules agree with the production rule: `main` is production and every fix lands on a branch.
-  `repo\apps\wired\audit_tasks/T-AUD-7a_git_rule_main_production(1).md`
+**`T-AUD-4a` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — The registry PID `o2_downstream` reads the measured downstream (post-catalyst) O₂ voltage, not the upstream B1S1 freeze-frame voltage.
+  `repo\apps\wired\audit_tasks/T-AUD-4a_o2_downstream_pid(2).md`
 
 ## Distribution
 
-- **1/5** — 1: T-AUD-7a
+- **2/5** — 1: T-AUD-4a
