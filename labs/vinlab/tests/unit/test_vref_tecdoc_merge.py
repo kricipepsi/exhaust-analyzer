@@ -540,6 +540,19 @@ def test_two_count_code_leaves_the_count_null(tool, tmp_path, db):
     assert row["cylinder_count"] is None
 
 
+def test_conflicting_counts_across_spellings_leave_null(tool, tmp_path, db):
+    # Revision 02: counts are keyed on the normalised code, so 5FR (4) and 5 FR (6) are one code with two counts.
+    rows = [
+        _extract_row(brand="BRANDA", engine_code="5FR", cylinder_count="4"),
+        _extract_row(brand="BRANDB", engine_code="5 FR", cylinder_count="6"),
+    ]
+    report = _merge(tool, tmp_path, db, rows)
+    assert report.backfilled == 0
+    row = _row(db, "5FR")
+    assert row is not None
+    assert row["cylinder_count"] is None
+
+
 def test_stated_count_is_kept(tool, tmp_path, db):
     _merge(tool, tmp_path, db, [_extract_row(engine_code="5FR", cylinder_count="4")])
     report = _merge(tool, tmp_path, db, [_extract_row(engine_code="5FR", cylinder_count="6")])
@@ -619,15 +632,29 @@ def test_other_column_difference_refuses(tool, tmp_path, db):
         _merge(tool, tmp_path, db, [_extract_row(engine_code="ZZ9TWO")])
 
 
-def test_counted_db_with_not_null_sensors_refuses(tool, tmp_path, db):
+@pytest.mark.parametrize(
+    "not_null", [("has_maf",), ("has_map",), ("has_maf", "has_map")], ids=["has_maf", "has_map", "both"]
+)
+def test_counted_db_with_not_null_sensors_refuses(tool, tmp_path, db, not_null):
     # Correction 01, C2: a rebuild copies no cylinder_count, so a db that has the column with NOT NULL sensors refuses.
     # The extract only fills 5FR (no insert), so without the refusal the merge would write and succeed.
+    # Revision 02: one NOT NULL sensor is enough, so each variant table makes the other sensor nullable.
+    ddl = PRE_MERGE_DDL
+    for sensor in {"has_maf", "has_map"} - set(not_null):
+        ddl = ddl.replace(f"{sensor} INTEGER NOT NULL DEFAULT 0", f"{sensor} INTEGER")
     conn = sqlite3.connect(db)
     try:
+        conn.execute("DROP INDEX idx_engine_ref_brand")
+        conn.execute("ALTER TABLE engine_ref RENAME TO engine_ref_old")
+        conn.executescript(ddl)
         conn.execute("ALTER TABLE engine_ref ADD COLUMN cylinder_count INTEGER")
+        conn.execute("INSERT INTO engine_ref SELECT *, NULL FROM engine_ref_old")
+        conn.execute("DROP TABLE engine_ref_old")
         conn.commit()
+        flags = {r[1]: r[3] for r in conn.execute("PRAGMA table_info(engine_ref)") if r[1] in ("has_maf", "has_map")}
     finally:
         conn.close()
+    assert flags == {sensor: int(sensor in not_null) for sensor in ("has_maf", "has_map")}
     digest = _sha256(db)
     with pytest.raises(RuntimeError, match="cylinder_count"):
         _merge(tool, tmp_path, db, [_extract_row(engine_code="5FR", cylinder_count="4")])
