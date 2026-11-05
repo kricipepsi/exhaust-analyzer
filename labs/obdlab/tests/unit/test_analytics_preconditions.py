@@ -156,9 +156,10 @@ def test_gate4_cmp_fault_fails():
 # Gate 5 — Codes not recently cleared: drive_cycles_since_clear >= 1
 # ==================================================================
 
-def test_gate5_codes_not_cleared_pass():
-    """drive_cycles_since_clear >= 1 → gate passes."""
-    pids = _healthy_pids(drive_cycles_since_clear=5)
+@pytest.mark.parametrize("count", [1, 5])
+def test_gate5_codes_not_cleared_pass(count):
+    """drive_cycles_since_clear >= 1 → gate passes (1 is the boundary)."""
+    pids = _healthy_pids(drive_cycles_since_clear=count)
     result = AnalyticsPreconditions.evaluate(pids)
     assert result == TrimAnalyticsGate.VALID
 
