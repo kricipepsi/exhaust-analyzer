@@ -9,7 +9,8 @@ MECHANICAL GATE
   ✓ changed files in scope       the three docs (numstat 4/4, 1/1, 2/2); porcelain: note and RESULT only
   ✓ check (reviewer run)         check.py: won_not_start 0/0/0, will_not_start 4/5/3; PRD widths [79, 79, 79, 79], box
                                  ends all True; graph copies 6 (untouched) — equal to P2
-  ✓ R2 line 162                  `│ Suppressed/limited when engine_state in {will_not_start, cranking}` padded to 79, `│`
+  ✓ R2 line 162                  `│ Suppressed/limited when engine_state in {will_not_start,cranking}` padded to 79, `│`
+                                 (R2 wrote `, cranking`; the build kept the source's no-space list: nit, −0)
 
 CONCERNS
   - The 6 generated copies under labs/comlab/graph/ still say won_not_start until their tool regenerates them (out of
