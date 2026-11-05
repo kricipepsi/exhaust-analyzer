@@ -338,7 +338,7 @@ class OBDLiveDataPayload(BaseModel):
       - normalized_obd_lambda → perception-contradiction cross-check vs lambda_chem
       - ve_pct + ve_validity → VE fault verdicts (collapse, contamination, skew)
       - rpm_state_bucket → evidence weighting per operating regime
-      - trim_analytics_gate → suppresses trim findings when blocked
+      - trim_analytics_gate → registry/integration_shim._resolve_single_source drops live trims when blocked
       - fuel_system_status → suppresses trim evidence outside closed loop
       - o2_failure_mode → gates trim-based findings when O2 has failed
       - maf_status / map_status → provenance flags for VE evidence weight

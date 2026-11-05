@@ -121,7 +121,12 @@ def test_coverage_matrix_and_aggregate_rate():
     assert "WIDEBAND_NB_SIM" in o2_types
 
     # 3. Lambda outcomes (lean, stoich, rich, clamp/fault)
-    lambdas = {c["expected_obd_signature"]["normalized_obd_lambda"] for c in non_rejections}
+    # frozen runs emit no lambda (T-AUD-4f), so drop None before the checks
+    lambdas = {
+        lam
+        for c in non_rejections
+        if (lam := c["expected_obd_signature"]["normalized_obd_lambda"]) is not None
+    }
     assert any(lam > 1.01 for lam in lambdas)   # lean
     assert any(abs(lam - 1.0) < 1e-4 for lam in lambdas)  # stoich
     assert any(lam < 0.99 for lam in lambdas)   # rich

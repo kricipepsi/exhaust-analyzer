@@ -454,7 +454,7 @@ def _run_obdlab(obd_inputs: dict[str, Any], vin_dna: dict[str, Any]) -> COMOBDLi
         rpm_state_bucket=EngineStateBucket(_enum_value(obd_payload.rpm_state_bucket)),
         # consumer: fault_atlas_router evidence weighting per operating regime
         trim_analytics_gate=TrimAnalyticsGate(_enum_value(obd_payload.trim_analytics_gate)),
-        # consumer: fault_atlas_router suppresses trim findings when blocked
+        # consumer: registry/integration_shim._resolve_single_source drops live trims when blocked
         fuel_system_status=_enum_value(obd_payload.fuel_system_status),
         # consumer: fault_atlas_router fuel-system closed-loop gate
         o2_failure_mode=O2FailureMode(_enum_value(obd_payload.o2_failure_mode)),

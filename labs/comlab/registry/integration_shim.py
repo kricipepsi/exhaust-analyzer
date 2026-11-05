@@ -360,6 +360,17 @@ def _resolve_pid_from_payload(payload: dict[str, Any], pid_name: str) -> float |
     return None
 
 
+_GATED_LIVE_TRIMS = frozenset({"shrtft1", "longft1"})
+
+
+def _trims_blocked(obd: dict[str, Any]) -> bool:
+    """True when ``obd_live_data`` carries a ``trim_analytics_gate`` other than VALID."""
+    gate = obd.get("trim_analytics_gate")
+    if gate is None:
+        return False
+    return str(getattr(gate, "value", gate)) != "VALID"
+
+
 def _resolve_single_source(payload: dict[str, Any], source: str, field: str) -> float | None:
     """Resolve a single (source, field) pair to ``float | None``."""
     if source == "gas":
@@ -367,6 +378,12 @@ def _resolve_single_source(payload: dict[str, Any], source: str, field: str) -> 
         val = gas.get(field)
     elif source == "obd":
         obd = payload.get("obd_live_data") or {}
+        # Trim analytics blocked upstream are not used (COMLab_BDD.md); OBDLab's
+        # trim_analytics_gate "Suppresses trim findings when blocked"
+        # (OBD_VOCABULARY.md). Only the live trims are gated: the "ff" source is the
+        # ECU's own snapshot and keeps the fallback.
+        if field in _GATED_LIVE_TRIMS and _trims_blocked(obd):
+            return None
         val = obd.get(field)
     elif source == "perception":
         pr = payload.get("perception_result")

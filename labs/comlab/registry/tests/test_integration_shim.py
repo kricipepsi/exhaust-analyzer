@@ -1151,3 +1151,44 @@ def test_o2_downstream_absent_without_live_reading() -> None:
 def test_o2_voltage_still_reads_upstream_ff() -> None:
     """PIN: o2_voltage stays on the upstream freeze-frame B1S1 voltage."""
     assert _resolve_pid_from_payload(_O2_TWO_SOURCE_PAYLOAD, "o2_voltage") == 0.85
+
+
+_BLOCKED_GATES = [
+    "ENGINE_COLD",
+    "OPEN_LOOP",
+    "O2_FAULT_ACTIVE",
+    "CKP_CMP_FAULT_ACTIVE",
+    "CODES_RECENTLY_CLEARED",
+    "WOT_ACTIVE",
+    "DFCO_ACTIVE",
+    "SEMANTIC_ERROR",
+]
+
+
+@pytest.mark.parametrize("gate", _BLOCKED_GATES)
+def test_blocked_gate_drops_live_trims(gate: str) -> None:
+    """A non-VALID trim_analytics_gate means the live trims are not scored (F-C4-2)."""
+    payload: dict[str, Any] = {
+        "obd_live_data": {"shrtft1": 18.0, "longft1": 16.0, "trim_analytics_gate": gate}
+    }
+    for pid in ("shrtft1", "longft1", "stft_b1", "ltft_b1"):
+        assert _resolve_pid_from_payload(payload, pid) is None
+
+
+def test_blocked_gate_keeps_freeze_frame_trims() -> None:
+    """The freeze frame is the ECU snapshot at fault set; the live gate does not describe it."""
+    payload: dict[str, Any] = {
+        "obd_live_data": {"shrtft1": 18.0, "longft1": 16.0, "trim_analytics_gate": "ENGINE_COLD"},
+        "dtc_lab_output": {"freeze_frame": {"short_term_ft1": 3.0, "long_term_ft1": 2.0}},
+    }
+    assert _resolve_pid_from_payload(payload, "shrtft1") == 3.0
+    assert _resolve_pid_from_payload(payload, "longft1") == 2.0
+
+
+def test_valid_gate_keeps_live_trims() -> None:
+    """PIN: a VALID gate leaves the live trims in place."""
+    payload: dict[str, Any] = {
+        "obd_live_data": {"shrtft1": 18.0, "longft1": 16.0, "trim_analytics_gate": "VALID"}
+    }
+    assert _resolve_pid_from_payload(payload, "shrtft1") == 18.0
+    assert _resolve_pid_from_payload(payload, "longft1") == 16.0
