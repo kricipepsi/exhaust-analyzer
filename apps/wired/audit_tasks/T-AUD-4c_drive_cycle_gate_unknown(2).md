@@ -58,6 +58,11 @@ do not edit it.
     (`PIN`).
   - Mutants: the base default (`.get("drive_cycles_since_clear", 0)` with `None` blocking) — both new cases fail;
     "any count passes" (gate 5 removed) — the 0 case fails.
+  - **Ruled (02, review; revision before acceptance; test file only).** `analytics_preconditions.py` does not
+    change. `test_gate5_codes_not_cleared_pass` is parametrised over `1` and `5` (both `VALID`), which kills the
+    boundary mutant `drive_cycles < 2` (it survives the whole obdlab suite today). Counts: step 1 `83 passed`; obdlab
+    `390 passed, 2 skipped`. Record the mutant in the note's `## Revision 02`, update the RESULT's counts, and paste the
+    step-3 BASE and FIX blocks as printed. Commit as `test(T-AUD-4c): …`.
 - **R3 The effect is measured.** The RESULT gives step 3's output. A change other than P2's is a stop.
 
 ### First action ###
@@ -68,7 +73,9 @@ cd C:/4DApp/repo && git branch --show-current && git log --oneline -1 && git sta
 fix/T-AUD-4c
 <the newest spec(T-AUD-4c): commit, a descendant of the accepted fix/T-AUD-4b: record it as the base>
 ```
-`git status --porcelain` prints nothing. Anything else is a stop.
+`git status --porcelain` prints nothing. Anything else is a stop. Revision 02: it prints exactly
+`?? apps/wired/audit_tasks/progress_notes/T-AUD-4c.md` and `?? apps/wired/audit_tasks/results/RESULT_T-AUD-4c.md`, and
+the newest `spec(T-AUD-4c):` commit sits above `87c366e`.
 
 ### Success criteria ###
 1. Step 1 passes with `82 passed` (81 − 1 + 2) and each R2 mutant fails a named test.

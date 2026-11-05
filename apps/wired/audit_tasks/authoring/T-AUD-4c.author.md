@@ -38,4 +38,8 @@ own pass 2026-11-05: P1-P3 measured · literals found once (`drive_cycles = sani
 steps 1-4. cold read: skipped (difficulty 2; the second review covers the code).
 
 ### Correction history ###
-(none)
+- **02 (2026-11-05, review; revision before acceptance).** Cowork's re-run equals the RESULT (82, obdlab 389/2,
+  others = base; "None blocks" mutant 2 failed; ruff clean). Second review (DeepSeek): APPROVE WITH CORRECTIONS.
+  F1 MED (boundary mutant `< 2` survives) upheld: Cowork ran it over the whole obdlab suite, `389 passed`. F2 MED
+  (ruff line length) not upheld: `All checks passed!`. LOW reporting items not upheld (re-derived by Cowork); the
+  loader's `int` type is outside the write scope. → R2 (02), test file only.
