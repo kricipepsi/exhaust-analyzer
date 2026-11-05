@@ -72,6 +72,8 @@ UPSTREAM_O2_WIDEBAND_LAMBDA_MIN = 0.7
 UPSTREAM_O2_WIDEBAND_LAMBDA_MAX = 1.3
 UPSTREAM_O2_WIDEBAND_AFR_MIN = 10.0
 UPSTREAM_O2_WIDEBAND_AFR_MAX = 20.0
+# A wideband AFR display is lambda x 14.7 (petrol scale); GASLab's AFR_STOICH is 14.71.
+WIDEBAND_AFR_STOICH = 14.7
 
 ADV_CAT_MARGIN_MIN = -1000.0
 ADV_CAT_MARGIN_MAX = 100.0
@@ -1100,8 +1102,11 @@ def build_diagnose_payload(widgets: dict[str, Any]) -> dict[str, Any]:
                 # Narrowband maps to pid_oxygen_sensor_volts
                 if o2_type in ("NARROWBAND", "WIDEBAND_NB_SIM"):
                     obd["pid_oxygen_sensor_volts"] = float(val_o2)
-                elif o2_type in ("WIDEBAND_LAMBDA", "WIDEBAND_AFR"):
+                elif o2_type == "WIDEBAND_LAMBDA":
                     obd["pid_wideband_equivalence_ratio"] = float(val_o2)
+                elif o2_type == "WIDEBAND_AFR":
+                    # The widget reads AFR (10-20); OBDLab takes lambda (wiki §5, clamp 0.7-1.3).
+                    obd["pid_wideband_equivalence_ratio"] = round(float(val_o2) / WIDEBAND_AFR_STOICH, 4)
                     
         # Downstream O2 present
         if widgets.get("active_downstream_o2_present"):
