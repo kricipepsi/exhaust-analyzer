@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-11e` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 20-60 min | gaslab drift report |
+| `T-AUD-11f` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 20-60 min | obdlab drift report |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-11e` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — One drift report lists, for each GASLab design document, every place where the document and the current code disagree, each with a quote from both sides.
-  `repo\apps\wired\audit_tasks/T-AUD-11e_gaslab_drift_report(3).md`
+**`T-AUD-11f` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — One drift report lists, for each OBDLab design document, every place where the document and the current code disagree, each with a quote from both sides.
+  `repo\apps\wired\audit_tasks/T-AUD-11f_obdlab_drift_report(3).md`
 
 ## Distribution
 
-- **3/5** — 1: T-AUD-11e
+- **3/5** — 1: T-AUD-11f
