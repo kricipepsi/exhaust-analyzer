@@ -138,6 +138,18 @@ def _diagnose(
             str(vin_dna.get("euro_emission_category", "EURO_6"))
         )
 
+    # The technician's overrides win over the VIN decode, so they go in before any lab reads vin_dna.
+    emissions = vin_dna["emissions"] = _as_dict(vin_dna.get("emissions"))
+    overrides = _as_dict(raw_inputs.get("overrides"))
+    if overrides.get("upstream_o2_type"):
+        emissions["upstream_o2_type"] = overrides["upstream_o2_type"]
+        # consumer: GASLab DNA view upstream_o2_type (_build_gas_dna_view), OBDLab O2SensorType
+        # (_build_obd_dna_view) and the required O2 reading key (_obd_required_keys)
+    if overrides.get("de_cat"):
+        emissions["has_catalyst"] = False
+        # consumer: GASLab DNA view has_catalyst (_build_gas_dna_view) and the request's has_catalyst
+        # (power_loss_analytics catalyst index gate + perception_contradiction de-cat check)
+
     csv_symptom = triage.get("csv_primary_symptom")
     if csv_symptom:
         symptom_dna["_csv_primary_symptom"] = csv_symptom
@@ -152,15 +164,6 @@ def _diagnose(
     gas_output = _run_gaslab(gas_inputs, vin_dna)
     obd_output = _run_obdlab(_as_dict(obd_inputs), vin_dna) if obd_inputs is not None else None
     dtc_output = _run_dtclab(_as_dict(dtc_inputs)) if dtc_inputs is not None else None
-
-    emissions = _as_dict(vin_dna.get("emissions"))
-    overrides = _as_dict(raw_inputs.get("overrides"))
-    if overrides.get("upstream_o2_type"):
-        emissions["upstream_o2_type"] = overrides["upstream_o2_type"]
-        # consumer: OBDLab O2SensorType -> COMLab perception_contradiction upstream-type branch
-    if overrides.get("de_cat"):
-        emissions["has_catalyst"] = False
-        # consumer: power_loss_analytics catalyst index gate + perception_contradiction de-cat check
 
     request = OrchestratorInboundRequest(
         metadata=metadata,
@@ -528,6 +531,11 @@ def _run_obdlab(obd_inputs: dict[str, Any], vin_dna: dict[str, Any]) -> COMOBDLi
 def _build_obd_dna_view(vin_dna: dict[str, Any]) -> ObdLabDnaView:
     """Project VIN/DNA output into OBDLab's local DNA view."""
     emissions = _as_dict(vin_dna.get("emissions"))
+    induction = str(vin_dna.get("induction_type", "NATURALLY_ASPIRATED"))
+    if induction == "SUPERCHARGED":
+        # OBDLab's InductionType separates NA from forced induction only (its reader is the NA VE
+        # ceiling, obdlab/core/ve_engine.py), so a supercharged engine projects as TURBOCHARGED.
+        induction = "TURBOCHARGED"
     return ObdLabDnaView(
         engine_displacement_liters=float(vin_dna.get("engine_displacement_liters") or 0.0)
         or None,
@@ -539,7 +547,7 @@ def _build_obd_dna_view(vin_dna: dict[str, Any]) -> ObdLabDnaView:
         upstream_o2_type=O2SensorType(
             _map_o2_sensor_type(str(emissions.get("upstream_o2_type", "NARROWBAND_0_TO_1V")))
         ),
-        induction_type=OBDInductionType(vin_dna.get("induction_type", "NATURALLY_ASPIRATED")),
+        induction_type=OBDInductionType(induction),
         confidence=OBDVinConfidence(str(vin_dna.get("confidence", "NONE"))),
     )
 
