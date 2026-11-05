@@ -621,6 +621,7 @@ def test_other_column_difference_refuses(tool, tmp_path, db):
 
 def test_counted_db_with_not_null_sensors_refuses(tool, tmp_path, db):
     # Correction 01, C2: a rebuild copies no cylinder_count, so a db that has the column with NOT NULL sensors refuses.
+    # The extract only fills 5FR (no insert), so without the refusal the merge would write and succeed.
     conn = sqlite3.connect(db)
     try:
         conn.execute("ALTER TABLE engine_ref ADD COLUMN cylinder_count INTEGER")
@@ -629,7 +630,7 @@ def test_counted_db_with_not_null_sensors_refuses(tool, tmp_path, db):
         conn.close()
     digest = _sha256(db)
     with pytest.raises(RuntimeError, match="cylinder_count"):
-        _merge(tool, tmp_path, db, [_extract_row()])
+        _merge(tool, tmp_path, db, [_extract_row(engine_code="5FR", cylinder_count="4")])
     assert _sha256(db) == digest
 
 
