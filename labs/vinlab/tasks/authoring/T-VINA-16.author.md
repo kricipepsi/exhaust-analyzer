@@ -50,4 +50,8 @@ own pass 2026-11-05: P1-P5 measured · literals found once (`csv_cyl`, `if cylin
 cold read: skipped, plan-gated (Plan: REQUIRED; the plan review and its second-model review cover it).
 
 ### Correction history ###
-(none)
+- **01 (2026-11-05, plan review; Plan: APPROVED with O1-O3 and C1-C5).** The plan's counts equal Cowork's survey
+  (1,225 / 34 / 1,308 / 1,259; reach 579; decode 71/1/11). Second review (DeepSeek ds-flash): APPROVE WITH CORRECTIONS.
+  F1 HIGH (empty `executemany` rowcount −1) not upheld: measured 0. F6 (M11 kill) not upheld: AEB heuristic = 4.
+  Upheld: F2 (VIN set arithmetic), F3 (counted db with NOT NULL sensors loses counts → refuse), F4 (step-6 cwd), F5
+  (O2 on a copy), latent `"0"` truthiness in G2. Record: `corrections/T-VINA-16_plan_correction_20261105.md`.
