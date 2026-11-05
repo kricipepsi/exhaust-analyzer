@@ -67,6 +67,15 @@ do not edit it. `apply_fix.py` holds Cowork's rehearsal edit and the test file; 
   `test_symptom_and_catalyst_come_from_vehicle_dna`, `test_top_level_values_win`. The `gas_lab_output` fragment may be
   built with `GasLabPayload.model_construct` (the row does not test GASLab's fields).
 - **R4 Mutants.** Record, by name, the failing tests of each P3 mutant.
+- **R5 Revision 02 (Cowork review, 2026-11-05).** Your build `c2292c9` stands; change only the new test file.
+  `test_vehicle_dna_shape_derives_metadata` uses `schema_version` and `confidence` values equal to `SessionMetadata`'s
+  defaults (`"1.0"`, HIGH), so deleting those two derivations passes all 4 tests (Cowork's mutant). Add `NEW`
+  `test_non_default_schema_and_confidence_are_derived`: a `vehicle_dna` with `schema_version="1.1"` and
+  `vin_dna.confidence="PARTIAL"` gives `metadata.schema_version == "1.1"` and `metadata.vin_confidence` PARTIAL. The
+  new file then has 5 tests and comlab `531 passed, 4 skipped, 2 errors`. Mutant: delete the `schema_version=` and
+  `vin_confidence=` lines of the `SessionMetadata(...)` call; the new test fails. In the RESULT, name every failing test
+  of every mutant, the skipped-validator mutant's 4 included. Commit on `fix/T-AUD-4l` after this spec commit; append
+  to your note and RESULT.
 
 ### First action ###
 ```bash
@@ -76,7 +85,7 @@ cd C:/4DApp/repo && git branch --show-current && git log --oneline -1 && git sta
 fix/T-AUD-4l
 <the newest spec(T-AUD-4l): commit, a descendant of baf2a78: record it as the base>
 ```
-`git status --porcelain` prints nothing. Anything else is a stop.
+`git status --porcelain` prints nothing, or (revision 02) only your untracked note and RESULT. Anything else is a stop.
 
 ### Success criteria ###
 1. Step 1: the new test file and comlab equal P3; each R4 mutant fails its named tests.
@@ -104,7 +113,7 @@ Expected: `checked`, and no `MISSING` or `EXISTS` line.
 
 ### Files to touch ###
 - `repo/labs/comlab/comlab/schemas/ingestion.py` (MODIFY: R1, R2)
-- `repo/labs/comlab/tests/unit/test_t_aud_4l_inbound_vehicle_dna.py` (CREATE: R3)
+- `repo/labs/comlab/tests/unit/test_t_aud_4l_inbound_vehicle_dna.py` (MODIFY: R3 created it in c2292c9; R5 adds a test)
 - `repo/apps/wired/audit_tasks/progress_notes/T-AUD-4l.md` (CREATE)
 - `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-4l.md` (CREATE)
 - `C:/4DApp/recheck/T-AUD-4l/pt/` (RUNTIME: pytest `--basetemp`; create it first)

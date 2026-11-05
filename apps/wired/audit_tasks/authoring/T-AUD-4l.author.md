@@ -36,3 +36,5 @@ steps 1-5 · no finding. cold read: skipped (the second review covers the code).
 
 ### Correction history ###
 (none)
+
+- 2026-11-05 revision 02: second review (ds-flash) nit 2 upheld: the derivation test used default values, so a mutant deleting the schema_version and vin_confidence mappings survived (Cowork run: 4 passed). R5 adds a non-default test; test file only. Review nit 1 (empty symptom_dna) and concern (mutant names) not upheld.
