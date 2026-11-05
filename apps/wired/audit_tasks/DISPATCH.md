@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-4b` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 2 | NO | 20-40 min | overrides reach labs |
+| `T-AUD-4c` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 1 | NO | 5-20 min | drive cycle gate unknown |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-4b` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — The technician's overrides (`upstream_o2_type`, `de_cat`) reach GASLab and OBDLab, and the composition projects a SUPERCHARGED engine into OBDLab without raising.
-  `repo\apps\wired\audit_tasks/T-AUD-4b_overrides_reach_labs(3).md`
+**`T-AUD-4c` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — OBDLab's trim gate 5 reads an unknown drive-cycle count as unknown, not as "codes recently cleared".
+  `repo\apps\wired\audit_tasks/T-AUD-4c_drive_cycle_gate_unknown(2).md`
 
 ## Distribution
 
-- **3/5** — 1: T-AUD-4b
+- **2/5** — 1: T-AUD-4c
