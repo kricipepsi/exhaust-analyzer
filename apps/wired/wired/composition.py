@@ -143,7 +143,7 @@ def _diagnose(
             symptom_dna = _as_dict(dna_payload.get("symptom_dna"))
     except VINDecodeError:
         vin_dna = _build_fallback_vin_dna(vin)
-        symptom_dna = {}
+        symptom_dna = _symptom_without_vin(triage)
 
     if "resolved_horizon" not in vin_dna:
         vin_dna["resolved_horizon"] = _derive_horizon(
@@ -216,6 +216,18 @@ def validate_triage(triage: dict[str, Any]) -> str | None:
     except SymptomValidationError as exc:
         return str(exc)
     return None
+
+
+def _symptom_without_vin(triage: dict[str, Any]) -> dict[str, Any]:
+    """Resolve the triage alone when the VIN does not decode; {} when it is incomplete or invalid."""
+    # consumer: comlab symptom_router (lld §6.2) via request.symptom_dna — engine_state / occurs_during routing
+    if _missing(triage, _TRIAGE_KEYS):
+        return {}
+    try:
+        symptom = resolve_symptom(**{key: triage[key] for key in _TRIAGE_KEYS})
+    except SymptomValidationError:
+        return {}  # _incomplete_input reports the invalid triage
+    return _as_dict(symptom.to_json_payload())
 
 
 def _missing(inputs: dict[str, Any], keys: tuple[str, ...]) -> list[str]:

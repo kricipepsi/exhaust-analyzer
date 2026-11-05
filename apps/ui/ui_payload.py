@@ -956,6 +956,16 @@ def validate_widgets(widgets: dict[str, Any]) -> list[FieldIssue]:
     return issues
 
 
+def _csv_primary_symptom(tier_1: str | None, tier_2: str | None, engine_state: str | None) -> str | None:
+    """The symptom-prior key for a tier pair, or None when the prior has no key for it."""
+    # consumer: COMLab symptom prior (labs/comlab/comlab/config/symptom_prior.yaml mappings)
+    if (tier_1, tier_2) == ("rough_idle_shudder", "constant_vibration_shudder"):
+        return "running_rough"
+    if (tier_1, tier_2) == ("vehicle_starting_issues", "prolonged_crank_hard_start"):
+        return "non_starter" if engine_state == "will_not_start" else "hard_start_cold"
+    return None
+
+
 def build_diagnose_payload(widgets: dict[str, Any]) -> dict[str, Any]:
     """Assemble UI widget states into the structured dict for wired.diagnose().
 
@@ -997,9 +1007,10 @@ def build_diagnose_payload(widgets: dict[str, Any]) -> dict[str, Any]:
         # load_state is always "idle" for stationary diagnostics
         triage["load_state"] = "idle"
         
-        # Misfire primary symptom can carry the custom recovery/provenance tag
-        if t1_internal == "rough_idle_shudder" and t2_internal == "constant_vibration_shudder":
-            triage["csv_primary_symptom"] = "blue_smoke_on_cold_start_clears"
+        # The tag is a symptom-prior key, as the v7 corpus tags these pairs
+        csv_symptom = _csv_primary_symptom(t1_internal, t2_internal, eng_internal)
+        if csv_symptom:
+            triage["csv_primary_symptom"] = csv_symptom
             
     if triage:
         raw_inputs["triage"] = triage
