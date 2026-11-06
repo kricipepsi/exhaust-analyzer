@@ -58,3 +58,4 @@ patched (criterion 1 said "R6 mutant"; the mutants are P5's). cold read 2026-11-
 
 ### Correction history ###
 - 2026-11-06 plan correction 01 (`corrections/T-COMA-1_plan_correction_20261106.md`): plan approved with K1-K4 (R8): no py_compile; isolation by identity; R2 output recorded; the UI info line for no_rule. Second review (codex) 6 findings: 1, 2 upheld, 4 in part, 3, 5, 6 not upheld.
+- 2026-11-06 revision 02: second code review (codex) APPROVE with two test concerns, both upheld (Cowork authored the weak asserts): R9 tightens the running PIN to EF-004 and the NS-004 test to 0.85 / not abstained. Test file only.

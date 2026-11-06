@@ -107,6 +107,17 @@ follow their shape.
     "ℹ️ No confident non-start verdict:" in place of "ℹ️ No single confident verdict — top candidates:"; floor and
     margin keep their line. R4's caption stands.
 
+- **R9 Revision 02 (Cowork review, 2026-11-06).** Your build `208eca3` stands; change only
+  `apps/wired/tests/test_t_coma_1_non_starter_family_gate.py` (second review `C:/4DApp/recheck/codex/T-COMA-1_review.md`,
+  two concerns upheld):
+  - `test_running_session_is_not_gated` asserts `(v.fault_family, v.fault_code) == ("ecu_fault", "EF-004")` and
+    `not v.abstained`, in place of the bare `!= "non_starter"` (measured on `208eca3`: EF-004, 0.9, not abstained).
+  - `test_non_starter_dtc_rule_wins` also asserts `v.confidence_score == pytest.approx(0.85)`, `v.abstained is False`
+    and `v.abstain_reason is None` (measured: NS-004, 0.85, False, None).
+  The file keeps 14 tests: step 1 `14 passed`, wired `79 passed`. Mutant M1 still gives `13 failed, 1 passed`. Commit
+  on `fix/T-COMA-1` after this spec commit as `test(T-COMA-1): …`; append a `## Revision 02` block to your note and
+  RESULT with steps 1, 2 (wired) and 5.
+
 ### First action ###
 ```bash
 cd C:/4DApp/repo && git branch --show-current && git log --oneline -1 && git status --porcelain
@@ -150,7 +161,7 @@ Expected: `checked`, and no `MISSING` or `EXISTS` line.
 - `repo/labs/comlab/comlab/schemas/response.py` (MODIFY: R3)
 - `repo/apps/ui/app.py` (MODIFY: R4)
 - `repo/labs/comlab/tests/regression/fixtures/case_014_gas_dominant.json` (MODIFY: R5)
-- `repo/apps/wired/tests/test_t_coma_1_non_starter_family_gate.py` (CREATE: R6)
+- `repo/apps/wired/tests/test_t_coma_1_non_starter_family_gate.py` (MODIFY: R6 created it in 208eca3; R9 tightens two tests)
 - `repo/labs/comlab/wiki/07_pipeline_stages.md` (MODIFY: R7)
 - `repo/labs/comlab/audit_tasks/progress_notes/T-COMA-1.md` (CREATE)
 - `repo/labs/comlab/audit_tasks/results/RESULT_T-COMA-1.md` (CREATE)
