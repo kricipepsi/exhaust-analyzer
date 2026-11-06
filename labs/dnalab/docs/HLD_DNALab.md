@@ -49,7 +49,7 @@ app composition layer (VIN string + triage dict)
 dnalab.assembly.build_vehicle_dna
   │  [1] check required triage keys      else SymptomValidationError (before decode)
   │  [2] vinlab.decode(vin)              → VinDNA        (Part A)   — may raise VINDecodeError
-  │  [3] symptomlab.resolve(**triage)    → SymptomDNA    (Part B)   — may raise SymptomValidationError
+  │  [3] symptomlab.resolve(5 keys)      → SymptomDNA    (Part B)   — may raise SymptomValidationError
   │  [4] VehicleDNA.new(vin_dna, symptom_dna)
   ▼
 VehicleDNA  (session_id, timestamp, schema_version, vin_dna, symptom_dna)
@@ -103,8 +103,8 @@ bumped 1.0→1.1 for the new round-tripped fields; T-DNA-10 bumped 1.1→1.2 for
 
 ## 5. Serialization & Version Guard
 
-`to_json_payload()` emits the five keys, delegating `vin_dna.to_json()` and
-`symptom_dna.to_json()` — DNALab never duplicates field knowledge. `to_json(**kwargs)`
+`to_json_payload()` emits the five keys, delegating `vin_dna.to_json_payload()` and
+`symptom_dna.to_json_payload()` — DNALab never duplicates field knowledge. `to_json(**kwargs)`
 is a thin `json.dumps` over the payload.
 
 `from_json_payload(payload)` is the inverse:

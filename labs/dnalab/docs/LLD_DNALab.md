@@ -71,7 +71,7 @@ ISO-8601 UTC, second precision, literal `Z` suffix. Tested against
 ```
 
 Exactly five snake_case keys (`§4.3`). `vin_dna` / `symptom_dna` are produced by each
-model's `to_json()` — DNALab never enumerates their inner fields.
+model's `to_json_payload()` (a dict; `to_json()` is its JSON string) — DNALab never enumerates their inner fields.
 
 ---
 

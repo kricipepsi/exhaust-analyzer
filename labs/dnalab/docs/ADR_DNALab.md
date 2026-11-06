@@ -4,7 +4,7 @@
 **Format:** Nygard template (one decision per record, immutable once Accepted).
 **Date compiled:** 2026-06-11; refreshed 2026-06-12 (schema bump landed, `SCHEMA_VERSION
 = "1.2"`) — consolidates the lab-level decisions; granular records remain under
-`docs/adr/` (0001–0004).
+`adr/` (0001–0004).
 
 > These ADRs record decisions already implemented in `dnalab/`. Each captures *why*.
 > Future changes supersede an ADR with a new one rather than editing it in place.
@@ -23,7 +23,7 @@
 
 ## ADR-0001: DNALab composes; it does not decode, validate, or route
 
-**Status:** Accepted (architecture; `docs/adr/0002-dnalab-only-importer.md`)
+**Status:** Accepted (architecture; `adr/0002-dnalab-only-importer.md`)
 
 ### Context
 
@@ -55,7 +55,7 @@ no routing. Correctness of each half is the producer's responsibility.
 
 ## ADR-0002: DNALab is the only in-family importer
 
-**Status:** Accepted (`docs/adr/0002-dnalab-only-importer.md`)
+**Status:** Accepted (`adr/0002-dnalab-only-importer.md`)
 
 ### Context
 
@@ -116,7 +116,7 @@ took it `1.1 → 1.2`.
 
 ## ADR-0004: Delegate serialization to each producer model
 
-**Status:** Accepted (`docs/adr/0003`/`0004`; models API)
+**Status:** Accepted (`adr/0003`/`0004`; models API)
 
 ### Context
 
@@ -126,7 +126,7 @@ producer changes.
 
 ### Decision
 
-`to_json_payload` calls `vin_dna.to_json()` / `symptom_dna.to_json()`;
+`to_json_payload` calls `vin_dna.to_json_payload()` / `symptom_dna.to_json_payload()`;
 `from_json_payload` calls `VinDNA.from_json` / `SymptomDNA.from_json`. DNALab knows only
 the five top-level keys; the inner shapes belong to the producers.
 
@@ -157,7 +157,7 @@ the wrong failure.
 
 ### Decision
 
-Check the four required triage keys (`tier_1`, `tier_2`, `occurs_during`, `engine_state`)
+Check the five required triage keys (`tier_1`, `tier_2`, `occurs_during`, `engine_state`, `load_state`)
 **first**; raise `SymptomValidationError` immediately if any is missing, before calling
 `vinlab.decode`.
 
@@ -247,7 +247,7 @@ landed fields (e.g. if `fuel_type` stayed a proposal, it is not in scope).
 ## References
 
 - `SEMANTIC_CONTRACT.md §4.3` — `VehicleDNA` schema + `schema_version`.
-- `docs/adr/0001`–`0004` — granular naming/import/enum decisions.
+- `adr/0001`–`0004` — granular naming/import/enum decisions.
 - `docs/audits/AUDIT_2026-06-11_dna_vin_rework_and_dna10_answerability.md` — rework audit.
 - `tasks/PROGRESS.md` — DNA-family ledger (T-DNA-7 coordinating task).
 - `HLD_DNALab.md` / `DLD_DNALab.md` / `LLD_DNALab.md` — current design surface.

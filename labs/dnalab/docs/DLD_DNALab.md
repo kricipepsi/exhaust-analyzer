@@ -67,7 +67,7 @@ Schema governed by `SEMANTIC_CONTRACT.md §4.3`. Five top-level keys (snake_case
 | Member | Behaviour |
 |--------|-----------|
 | `new(vin_dna, symptom_dna, *, session_id=None, timestamp=None, schema_version=SCHEMA_VERSION)` | generates `session_id` (`DNA_TX_` + `uuid4().hex[:10].upper()`) and `timestamp` (`now(UTC)`) when not supplied |
-| `to_json_payload() → dict` | five keys; delegates `vin_dna.to_json()` / `symptom_dna.to_json()` |
+| `to_json_payload() → dict` | five keys; delegates `vin_dna.to_json_payload()` / `symptom_dna.to_json_payload()` |
 | `to_json(**dumps_kwargs) → str` | `json.dumps(to_json_payload(), **kwargs)` |
 | `from_json_payload(payload) → VehicleDNA` | version guard + delegated `VinDNA.from_json` / `SymptomDNA.from_json` |
 
@@ -104,9 +104,9 @@ build_vehicle_dna(vin: str, triage: dict[str, Any]) -> VehicleDNA
 
 | Step | Detail |
 |------|--------|
-| required-key check | `("tier_1", "tier_2", "occurs_during", "engine_state")`; any missing → `SymptomValidationError` |
+| required-key check | `("tier_1", "tier_2", "occurs_during", "engine_state", "load_state")`; any missing → `SymptomValidationError` |
 | Part A | `vinlab.decode(vin)` (imported as `_decode_vin`) — may raise `VINDecodeError` |
-| Part B | `symptomlab.resolve(tier_1, tier_2, occurs_during, engine_state)` (imported as `_resolve_symptom`) — may raise `SymptomValidationError` |
+| Part B | `symptomlab.resolve(tier_1, tier_2, occurs_during=…, engine_state=…, load_state=…)` (imported as `_resolve_symptom`) — may raise `SymptomValidationError` |
 | compose | `VehicleDNA.new(vin_dna=physical, symptom_dna=symptomatic)` |
 
 Imports: `from symptomlab.validator import SymptomValidationError`,
@@ -152,7 +152,7 @@ missing-triage-key / invalid-triage.
 
 ## 7. Related docs (granular ADRs)
 
-The lab also carries per-decision records under `docs/adr/` (0001 naming-contract,
+The lab also carries per-decision records under `adr/` (0001 naming-contract,
 0002 dnalab-only-importer, 0003 string-typed-enum-fields, 0004 enum-typed-fields) and a
 rework/answerability audit under `docs/audits/`. `ADR_DNALab.md` (this set) consolidates
 the lab-level decisions; the granular records remain authoritative for their specifics.

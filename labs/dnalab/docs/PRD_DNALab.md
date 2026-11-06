@@ -83,7 +83,7 @@ correlatable record; the technician never assembles anything by hand.
 
 - **KR1:** `build_vehicle_dna(vin, triage)` returns a `VehicleDNA` composing a valid
   `VinDNA` and `SymptomDNA`.
-- **KR2:** Missing triage keys (`tier_1`, `tier_2`, `occurs_during`, `engine_state`)
+- **KR2:** Missing triage keys (`tier_1`, `tier_2`, `occurs_during`, `engine_state`, `load_state`)
   raise `SymptomValidationError` **before** the VIN is decoded.
 - **KR3:** A `VehicleDNA` round-trips: `from_json_payload(to_json_payload(x))` reconstructs
   an equal payload.
@@ -123,9 +123,10 @@ upstream UI code and downstream COMLab both agree on.
 ### Key Features (all P0)
 
 - P0: **Composition** — `build_vehicle_dna(vin, triage)` calls `vinlab.decode(vin)` and
-  `symptomlab.resolve(**triage)` and joins them via `VehicleDNA.new(...)`.
+  `symptomlab.resolve(...)` with the five named triage keys (any other key, such as
+  `free_text_notes`, is dropped) and joins them via `VehicleDNA.new(...)`.
 - P0: **Triage pre-validation** — required keys (`tier_1`, `tier_2`, `occurs_during`,
-  `engine_state`) checked first; missing → `SymptomValidationError`.
+  `engine_state`, `load_state`) checked first; missing → `SymptomValidationError`.
 - P0: **Session metadata** — `session_id = DNA_TX_<10 hex, upper>`; `timestamp` ISO-8601
   UTC; `schema_version`.
 - P0: **JSON round-trip** — `to_json_payload()` / `from_json_payload()` delegate to each

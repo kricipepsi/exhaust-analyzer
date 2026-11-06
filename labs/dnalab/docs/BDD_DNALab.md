@@ -135,7 +135,7 @@ Feature: DNALab imports only its two in-family producers
     When the import audit runs
     Then it imports vinlab and symptomlab and imports no comlab, gaslab, obdlab, or dtclab
 ```
-*Maps to:* import-direction audit (`docs/adr/0002-dnalab-only-importer.md`).
+*Maps to:* import-direction audit (`adr/0002-dnalab-only-importer.md`).
 
 ---
 
