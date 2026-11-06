@@ -1,8 +1,8 @@
 """DTCLab-owned DNA view schema — typed replacement for the loose dict form.
 
 Every class and enum value is sourced verbatim from DTC_VOCABULARY.md §14.
-This is a DTCLab-owned mirror of the COMLab/DNALab projection — no cross-lab
-imports.  The typed `dna_view: DtcLabDnaView | None` replaces the prior
+DTCLab owns this model; the composition builds it (``_build_dtc_dna_view``) — no
+cross-lab imports.  The typed `dna_view: DtcLabDnaView | None` replaces the prior
 loose `vin_dna: dict | None` per NewArchProposal_ImplementationPlan.md §4.
 """
 
@@ -85,7 +85,7 @@ class DtcLabDnaView(BaseModel):
     """Slim VehicleDNA projection consumed by DTCLab.
 
     Source: DTC_VOCABULARY.md §14.
-    Produced by COMLab.project(..., target='dtc').
+    Built by the composition (``apps/wired/wired/composition.py`` ``_build_dtc_dna_view``).
     """
 
     make: str

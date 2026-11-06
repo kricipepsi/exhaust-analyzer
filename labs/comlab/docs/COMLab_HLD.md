@@ -53,7 +53,7 @@ sign-off" (§12) are all now resolved in code; §12 records the resolutions.
 - `CROSS_LAB_DEPENDENCIES.md` — the forward registry of emitter→fusion pairs
   (DEP-1…DEP-10) that COMLab consumes in this final stage.
 - The NewArch horizontal DNA-flow architecture (DNA reaches every lab on *input*,
-  not after the fact) and its per-lab projection contract (`LabDnaView`).
+  not after the fact); each lab owns the model of its own slim DNA view (§6).
 
 **Non-goals of this HLD:**
 
@@ -182,12 +182,8 @@ COMLab and belongs in a sibling lab or in DNALab.
    actionable next step. This is the only place in 4DLab where the *combined*
    payload shape is policed.
 
-2. **Project** — the inbound `VehicleDNA` is projected into three slim,
-   read-only `LabDnaView` shapes (Gas / OBD / DTC). In production these
-   projections are built upstream by the assembler before each lab is called;
-   COMLab's projector is the **single source of truth for the projection
-   logic**, mirrored by the assembler. (See §6.1 for the projection-ownership
-   split.)
+2. **Project** — none in COMLab. The assembler builds each lab's slim DNA
+   view before it calls the lab (see §6).
 
 3. **Triage** — the flat `global_fault_registry.json` is walked, pruned by
    horizon + hardware + symptom, scored, and one winning fault is selected.
@@ -250,10 +246,8 @@ This pipeline is the HLD-level expansion of
      `FULL_FUSION`.
    - VinConfidence == `PARTIAL` OR scanner without freeze-frame /
      non-starter scenario → `GAS_DOMINANT`.
-6. **DNA projection.** Build the three `LabDnaView` instances (see §6).
-   At runtime COMLab does not call back into the labs with them — the
-   assembler already did — but COMLab uses them internally for the
-   polymorphic O₂ and air-metering math in Stage B.
+6. **DNA projection.** None in COMLab: the assembler built each lab's
+   view before the lab ran (see §6).
 7. **Perception-contradiction detector.** The ECU's `normalized_obd_lambda`
    is cross-checked against GASLab's `lambda_chem` in
    `comlab/core/perception_contradiction.py` (T-FX-6). Divergence beyond
@@ -479,33 +473,16 @@ shared infrastructure. The split:
 
 ### 6.1 Projection ownership
 
-- **COMLab owns the projection logic.** `comlab/projection.py` (new in
-  LLD) defines `project(vehicle_dna_json: dict, *, target: Literal["obd",
-  "gas", "dtc"]) -> LabDnaView`. The three `LabDnaView` classes are
-  Pydantic frozen models with the exact field lists in `data_flow_report.md`
-  §1, §2, §3 (15 / 10 / 11 fields respectively; counts verified against live `lab_dna_views.py`).
-- **The assembler calls the projector.** In production the assembler is
-  the UI layer; in tests/regression it is the test harness; in
-  `scripts/run_pipeline_demo.py` it is the demo CLI. The assembler
-  projects once, passes the right view to each lab on input, collects
-  the lab outputs, and assembles `OrchestratorInboundRequest`.
-- **Sibling labs do not import the COMLab projector.** Per project rule
-  "no cross-lab Python imports", each lab mirrors its own `LabDnaView`
-  shape as a tiny dataclass inside its own package (per `NewArchProposal_
-  ImplementationPlan.md` §3 tradeoff 2). The COMLab projector and the
-  per-lab mirror must agree on field names and types; a contract test
-  in COMLab feeds a known `VehicleDNA` to the projector and asserts the
-  shape matches each lab's published JSON schema.
-
-### 6.2 Why COMLab still re-projects internally
-
-Even though the assembler already projected the DNA before calling each
-lab, COMLab needs the projected views again to drive its own polymorphic
-math in Stage B (O₂ normalisation, VE formula choice). Rather than fish
-those fields out of `vehicle_dna.vin_dna.*` ad-hoc throughout the
-router code, the router asks the projector for the right view and reads
-named fields. This keeps the router decoupled from the deep VehicleDNA
-shape and gives one place to enforce projection rules.
+- **Each lab owns its view model.** `gaslab/dna_view.py` `GasLabDnaView`,
+  `obdlab/schemas/dna_view.py` `ObdLabDnaView` and `dtclab/schemas/dna_view.py`
+  `DtcLabDnaView`. No lab imports another lab's model.
+- **The assembler builds each view.** In production the assembler is
+  the composition (`apps/wired/wired/composition.py` `_build_gas_dna_view`, `_build_obd_dna_view`, `_build_dtc_dna_view`). It builds each lab's own model from the decode, so that model's
+  validation is the contract check.
+- **COMLab has no projector.** `comlab/projection.py` and
+  `comlab/schemas/lab_dna_views.py` were retired by T-AUD-4q (audit F-D2-10/11):
+  no production path called them, and the DTC view they built failed DTCLab's
+  own model.
 
 ### 6.3 What lives in each view
 
@@ -662,9 +639,7 @@ labs/comlab/
 │   │   ├── ingestion.py        OrchestratorInboundRequest + producer mirrors
 │   │   ├── response.py         OrchestratorFinalUIOutput (§7.4)
 │   │   ├── vocabulary.py       locked enums (single cross-lab source of truth)
-│   │   ├── lab_dna_views.py    Gas/Obd/Dtc LabDnaView frozen models (§6)
 │   │   └── kg.py               KGNode / KGFile types
-│   ├── projection.py           VehicleDNA dict → LabDnaView (§6)
 │   ├── core/
 │   │   ├── horizon_context_injector.py   reads resolved_horizon; no VIN parsing (§3)
 │   │   ├── symptom_router.py             SymptomDNA → LabRoutingDirective

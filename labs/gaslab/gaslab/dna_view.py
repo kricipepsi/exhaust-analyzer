@@ -1,8 +1,8 @@
 """Slim DNA projection consumed by GASLab.
 
 Declared locally so GASLab has no cross-lab Python imports.
-Mirrors the shape of ``COMLab/comlab/schemas/lab_dna_views.py`` but does
-not import from it.  Source: ``GAS_WIKI §2.4``.
+Built by the composition (``apps/wired/wired/composition.py`` ``_build_gas_dna_view``).
+Source: ``GAS_WIKI §2.4``.
 """
 
 from __future__ import annotations

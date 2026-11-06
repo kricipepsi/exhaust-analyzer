@@ -9,7 +9,7 @@ while delivering nothing. With ten cross-lab dependencies in flight (DEP-1…DEP
 the accretion risk is high.
 
 **Decision.** Every field on any COMLab schema (`ingestion.py`, `response.py`,
-`lab_dna_views.py`, `kg.py`) must have a **named consumer** in a live code path,
+`kg.py`) must have a **named consumer** in a live code path,
 and the field's comment names it (the codebase does this literally — e.g.
 `control_module_voltage_v … # consumer: perception_contradiction.detect`,
 `ff_fuel_spark_cut_at_crank … # consumer: fault_atlas_router no-start branch`).

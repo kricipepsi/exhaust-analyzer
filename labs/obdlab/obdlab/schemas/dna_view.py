@@ -1,6 +1,6 @@
 """OBDLab DNA view — typed DNA-first input per NewArchProposal §4 Step 2 / §5.
 
-ObdLabDnaView is the OBDLab-owned mirror of the COMLab DNA projection.
+ObdLabDnaView is OBDLab's own model; the composition builds it (``_build_obd_dna_view``).
 Never import this from comlab, dnalab, or vinlab — this file is the only
 DNA surface OBDLab sees.
 """
@@ -57,7 +57,7 @@ class VinConfidence(StrEnum):
 class ObdLabDnaView(BaseModel):
     """Typed DNA view consumed by OBDLab — per NewArchProposal §4 Step 2 / §5.
 
-    This is the OBDLab-owned mirror of the COMLab DNA projection.
+    OBDLab owns this model; the composition builds it (``_build_obd_dna_view``).
     None at the call boundary is permitted and treated as confidence == NONE.
 
     Source: NewArchProposal_ImplementationPlan.md §4 Step 2.

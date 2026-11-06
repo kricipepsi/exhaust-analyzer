@@ -13,11 +13,9 @@ implements:
 - labs/comlab/comlab/core/symptom_router.py
 - labs/comlab/comlab/analytics/delta_engine.py
 - labs/comlab/comlab/analytics/power_loss_analytics.py
-- labs/comlab/comlab/projection.py
 - labs/comlab/comlab/schemas/ingestion.py
 - labs/comlab/comlab/schemas/response.py
 - labs/comlab/comlab/schemas/vocabulary.py
-- labs/comlab/comlab/schemas/lab_dna_views.py
 - labs/comlab/comlab/schemas/kg.py
 consumers:
 - 'dld: labs/comlab/docs/COMLab_DLD.md'
@@ -35,7 +33,6 @@ drift_guards:
 - labs/comlab/tests/unit/test_symptom_router.py
 - labs/comlab/tests/unit/test_delta_engine.py
 - labs/comlab/tests/unit/test_power_loss_analytics.py
-- labs/comlab/tests/unit/test_projection.py
 - labs/comlab/tests/unit/test_vocabulary.py
 - labs/comlab/tests/e2e/test_diagnostic_engine.py
 tags:
@@ -130,14 +127,12 @@ labs/comlab/
 ├── registry/                                   repo-root one-way dep (integration_shim)
 ├── comlab/
 │   ├── __init__.py
-│   ├── projection.py                          §5  — VehicleDNA dict → LabDnaView
 │   ├── schemas/
 │   │   ├── __init__.py
 │   │   ├── vocabulary.py                      §3.1 — enums (cross-lab source of truth)
 │   │   ├── ingestion.py                       §3.2 — OrchestratorInboundRequest + mirrors
 │   │   ├── response.py                        §3.3 — OrchestratorFinalUIOutput
-│   │   ├── kg.py                              §3.4 — KGNode / KGFile
-│   │   └── lab_dna_views.py                   §5.1 — Gas/Obd/Dtc views + ProjectedViews
+│   │   └── kg.py                              §3.4 — KGNode / KGFile
 │   ├── core/
 │   │   ├── __init__.py
 │   │   ├── horizon_context_injector.py        §6.1 — reads resolved_horizon (no VIN parse)
@@ -558,107 +553,11 @@ Intentionally empty section to keep numbering aligned with HLD.
 
 ---
 
-## 5. `comlab/projection.py` and `comlab/schemas/lab_dna_views.py` (NEW)
+## 5. DNA views (no COMLab projector)
 
-The projector promised in HLD §6.
-
-### 5.1 `comlab/schemas/lab_dna_views.py`
-
-Three frozen Pydantic models with the field lists from
-`data_flow_report.md` §1 / §2 / §3. Each carries `confidence` and
-`resolved_horizon` per HLD §6.3.
-
-```python
-class GasLabDnaView(BaseModel):
-    model_config = ConfigDict(frozen=True)
-    engine_displacement_liters: float
-    cylinder_count:             int
-    number_of_banks:            int
-    euro_emission_category:     EuroEmissionCategory
-    fuel_delivery_type:         FuelDeliveryType
-    induction_type:             InductionType
-    upstream_o2_type:           UpstreamO2Type
-    has_catalyst:               bool
-    egr_equipped:               bool
-    target_lambda_v112:         Optional[float] = None
-    co_low_idle:                Optional[float] = None
-    co_high_idle:               Optional[float] = None
-    confidence:                 VinConfidence
-    resolved_horizon:           Horizon
-
-
-class ObdLabDnaView(BaseModel):
-    model_config = ConfigDict(frozen=True)
-    engine_displacement_liters: Optional[float]
-    cylinder_count:             Optional[int]
-    rated_rpm:                  Optional[int]
-    stress_idle_rpm_target:     Optional[int]
-    air_metering_strategy:      AirMeteringStrategy
-    upstream_o2_type:           UpstreamO2Type
-    induction_type:             InductionType
-    egr_equipped:               bool
-    resolved_horizon:           Horizon
-    confidence:                 VinConfidence
-
-
-class DtcLabDnaView(BaseModel):
-    model_config = ConfigDict(frozen=True)
-    make:                       str
-    model_year:                 int
-    euro_emission_category:     EuroEmissionCategory
-    air_metering_strategy:      AirMeteringStrategy
-    resolved_horizon:           Horizon
-    has_catalyst:               bool
-    egr_equipped:               bool
-    confidence:                 VinConfidence
-```
-
-A fourth model, `ProjectedViews(gas, obd, dtc)` (also frozen), bundles all three;
-`project_all(vehicle_dna_json) -> ProjectedViews` is what `fault_atlas_router`
-holds for the lifetime of one session. `project()` reads VIN fields from the
-**top-level** `vin_dna` block (e.g. `vin.get("target_lambda_v112")`), with a
-`_horizon_from_euro()` fallback when `resolved_horizon` is absent from older
-payloads (DEP-4 — pure projection path, no upstream contract gap).
-
-### 5.2 `comlab/projection.py`
-
-```python
-def project(
-    vehicle_dna_json: dict,
-    *,
-    target: Literal["gas", "obd", "dtc"],
-) -> GasLabDnaView | ObdLabDnaView | DtcLabDnaView:
-    """Project a full VehicleDNA JSON dict into the requested LabDnaView.
-    
-    Precondition: vehicle_dna_json conforms to the VehicleDNA schema
-        (§3.2). Caller is responsible for the schema check.
-    Postcondition: returned model is frozen; mutation raises.
-    Raises: pydantic.ValidationError if a required field is missing
-        from the source DNA (signals upstream DNALab regression —
-        producer test should have caught it).
-    """
-    ...
-
-
-def project_all(vehicle_dna_json: dict) -> ProjectedViews:
-    """Convenience: project once into all three views.
-    
-    Returned tuple-shaped model is what fault_atlas_router holds for
-    the lifetime of one session.
-    """
-    ...
-
-
-class ProjectedViews(BaseModel):
-    model_config = ConfigDict(frozen=True)
-    gas: GasLabDnaView
-    obd: ObdLabDnaView
-    dtc: DtcLabDnaView
-```
-
-**No cross-lab import.** `project()` is a pure dict-to-Pydantic
-operation. The sibling labs do not import this module; they mirror
-their own view internally (per HLD §6.1).
+COMLab has no projector (HLD §6.1). `comlab/projection.py` and
+`comlab/schemas/lab_dna_views.py` were retired by T-AUD-4q (audit F-D2-10/11).
+Each lab owns its view model; the composition (`apps/wired/wired/composition.py` `_build_gas_dna_view`, `_build_obd_dna_view`, `_build_dtc_dna_view`) builds each one.
 
 ---
 
@@ -1303,8 +1202,6 @@ tests/unit/
 ├── test_ingestion_schema.py          pydantic gate coverage; bad inputs raise
 ├── test_response_schema.py           output payload shape conformance
 ├── test_kg_types.py                  KGNode/KGFile validation
-├── test_lab_dna_views.py             three frozen views; frozen-ness enforced
-├── test_projection.py                full DNA in, exact field set out per view
 ├── test_horizon_context_injector.py  no VIN parsing; reads DNA fields
 ├── test_symptom_router.py            7+ routing tables verified
 ├── test_lab_pipeline_aggregator.py   each gate, each error code

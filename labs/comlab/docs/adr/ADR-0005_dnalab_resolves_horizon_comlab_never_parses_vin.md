@@ -35,4 +35,4 @@ to derive the horizon from `euro_emission_category` when an older payload omits
    horizon degrades gracefully rather than aborting.
 
 **References.** `wiki/03_vehicle_dna_pruning.md`, `wiki/04_horizon_eras.md`;
-`comlab/core/horizon_context_injector.py`; `comlab/projection.py::_horizon_from_euro`.
+`comlab/core/horizon_context_injector.py` (`HorizonContextInjector._horizon_from_euro`).

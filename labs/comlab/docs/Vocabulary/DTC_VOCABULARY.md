@@ -418,7 +418,7 @@ Per `NewArchProposal_ImplementationPlan.md §4 Step 2`. Slim projection of `Vehi
 class DtcLabDnaView(BaseModel):
     """Slim VehicleDNA projection consumed by DTCLab.
 
-    Source: this vocab §14; produced by COMLab.project(..., target='dtc').
+    Source: this vocab §14; built by the composition (`_build_dtc_dna_view`).
     """
     make:                            str
     model:                           str
@@ -477,7 +477,7 @@ class VinConfidence(StrEnum):
 
 ```
 UI → DNALab.build_vehicle_dna(vin, triage) → VehicleDNA
-   → COMLab.project(vehicle_dna, target='dtc') → DtcLabDnaView
+   → apps/wired composition `_build_dtc_dna_view` → DtcLabDnaView
    → DTCLab(raw_dtc_inputs, dna_view) → DTCLabPayload
 ```
 

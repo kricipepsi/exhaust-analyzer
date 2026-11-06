@@ -249,7 +249,7 @@
 
 - id: "COMLab-C"
   family: "vehicle-dna-projection-paths"
-  consumer: "comlab/comlab/projection.py:project"
+  consumer: "../apps/wired/wired/composition.py:_build_gas_dna_view"  # T-AUD-4q: projector retired; the composition reads these paths
   iso_sae_citation: "ISO 15031-6 §5.6 / SAE J2012"
   status: "graduated"  # T-COMV2-LAMBDAPROJ-1 — 3 CoC λ reads re-pointed (2026-06-21)
   owning_ledger: "DNA family T-DNA-4"
@@ -293,7 +293,7 @@
 
 - id: "COMLab-E"
   family: "vehicle-dna-fuel-context"
-  consumer: "comlab/comlab/schemas/lab_dna_views.py:GasLabDnaView"
+  consumer: "gaslab/gaslab/dna_view.py:GasLabDnaView"  # T-AUD-4q: COMLab mirror retired
   iso_sae_citation: "ISO 15031-6 §5.6 / SAE J2012"
   status: "proposed"
   owning_ledger: "DNA family T-DNA-6"
@@ -308,7 +308,7 @@
       - "winter_blend"
       - "unknown"
     producer: "labs/vinlab/VehicleDNA.md draft contract Section 4.1"
-    consumer_path: "COMLab.comlab.schemas.lab_dna_views.GasLabDnaView -> GASLab lab_dna_views context"
+    consumer_path: "gaslab.dna_view.GasLabDnaView (built by the composition _build_gas_dna_view) -> GASLab context"
   rationale:
     fuel_type: "GASLab wiki Section 1.4 lists fuel_type as proposed v2 context for E5/E10/winter-blend correction; the field has a named proposed consumer, so it belongs in the proposals registry rather than silently in the live schema."
     altitude_band: "altitude_band remains session/context, not a VinDNA schema field, because the GASLab wiki records it as informational only and lambda math is altitude-invariant."
