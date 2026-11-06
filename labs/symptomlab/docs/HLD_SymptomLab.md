@@ -48,6 +48,7 @@ UI two-tier triage  +  environmental context
   │  (tier_1, tier_2, occurs_during, engine_state, load_state, free_text_notes?)
   ▼
 DNALab assembly.build_vehicle_dna  ── calls ──▶  symptomlab.resolve(...)
+apps/wired composition.diagnose    ── calls ──▶  symptomlab.resolve(...)
   │
   ▼
 symptomlab.__init__.resolve
@@ -187,4 +188,4 @@ context-modifier prior with a 65% trust ceiling (forward-registered as COMLab-B)
 |----|-------------|--------|
 | `from_json` scope | `SymptomDNA.from_json()` validates enum membership + presence only, **not** the 21-pair invariant — callers building from user input must use `resolve()` | Accepted (documented) |
 | Routing absence | `SymptomDNA` deliberately omits `suppress_modes` / `target_backend_equation` | By design (COMLab-owned) |
-| `oil_consumption` symptom | Owner-requested 7th-symptom candidate, mapping to worn rings / valve-stem seals / turbo seal / PCV. Needs a catalog-cap disposition (new tier_1 → raise invariant to 21, vs new tier_2) and a named COMLab-A consumer extension. | Deferred — T-DNA-9 (with the coder; not in this schema) |
+| `oil_consumption` symptom | Owner-requested 7th-symptom candidate, mapping to worn rings / valve-stem seals / turbo seal / PCV. Needs a catalog-cap disposition (new tier_1 → raise invariant to 21, vs new tier_2) and a named COMLab-A consumer extension. | In the catalog — 7th tier_1 (ADR-0008, 21 pairs) |

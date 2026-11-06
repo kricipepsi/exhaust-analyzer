@@ -67,8 +67,9 @@ strings as a `StrEnum` would make every catalog change a code change with a rele
 ### Decision
 
 `tier_1_primary_symptom` and `tier_2_subfield_filter` are typed `str`, validated at
-runtime against `data/allowed_combinations.yaml`. Adding or renaming a symptom is a data
-edit; the code is unchanged. The two **environmental** axes, being a small closed set,
+runtime against `data/allowed_combinations.yaml`. Renaming a symptom is a data edit; the
+code is unchanged. Adding or removing a pair also changes the count check in
+`SymptomValidator.__init__` (ADR-0008 fixes the catalog at 21 pairs; T-AUD-12). The two **environmental** axes, being a small closed set,
 remain typed enums (ADR-0004).
 
 ### Consequences

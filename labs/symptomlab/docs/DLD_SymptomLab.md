@@ -75,7 +75,8 @@ The environmental axes are typed (closed, contract-fixed sets). The tier vocabul
 | `engine_state` | `EngineState` |
 | `load_state` | `LoadState` |
 
-`to_json() → {"occurs_during": <value>, "engine_state": <value>, "load_state": <value>}`.
+`to_json_payload() → {"occurs_during": <value>, "engine_state": <value>, "load_state": <value>}`;
+`to_json()` returns that dict as a JSON string.
 
 ### `SymptomDNA` (frozen) — the 4-field Part B payload (contract §4.2)
 
@@ -86,9 +87,11 @@ The environmental axes are typed (closed, contract-fixed sets). The tier vocabul
 | 3 | `environmental_conditions` | `EnvironmentalConditions` | — (required) |
 | 4 | `free_text_notes` | `str \| None` | `None` |
 
-`to_json()` emits the four keys (environmental_conditions nested). `from_json(payload)`
+`to_json_payload()` emits the four keys (environmental_conditions nested); `to_json()` is its JSON string. `from_json(payload)`
 is the inverse:
 
+- Rejects a payload or `environmental_conditions` that is not an object
+  (`SymptomValidationError`).
 - Validates **enum membership** (`OccursDuring`, `EngineState`, `LoadState`) and **field
   presence** only. `load_state` is required: a payload without it raises
   `SymptomValidationError("Missing required field: 'load_state'")`.
@@ -121,6 +124,7 @@ if len(self._allowed) != 21:                # SEMANTIC_CONTRACT §4.2 hard invar
 **`validate(tier_1, tier_2, occurs_during, engine_state, load_state, free_text_notes=None) →
 SymptomDNA`**:
 
+0. If `tier_1` or `tier_2` is not a `str` → `SymptomValidationError`.
 1. If `(tier_1, tier_2)` not allowed → `SymptomValidationError`. The message lists the
    valid `tier_2` values for that `tier_1` when the `tier_1` is known, otherwise lists
    the valid `tier_1` values — an actionable error, not a bare rejection.
@@ -171,11 +175,11 @@ construction-time `len == 21` invariant passes.
 
 | Area | File |
 |------|------|
-| `SymptomDNA` / enums | `tests/test_models.py` |
-| Validator (pairs + environmental) | `tests/test_validator.py` |
-| `from_json` boundary | `tests/test_symptomdna_from_json.py` |
-| Import isolation | `tests/test_resolve_isolation.py` |
-| Catalog drift guard | `tests/test_drift_guard.py` |
+| `SymptomDNA` / enums | `tests/unit/test_models.py` |
+| Validator (pairs + environmental) | `tests/unit/test_validator.py` |
+| `from_json` boundary | `tests/unit/test_symptomdna_from_json.py` |
+| Import isolation | `tests/unit/test_resolve_isolation.py` |
+| Catalog drift guard | `tests/unit/test_drift_guard.py` |
 
 > `graph/v1_baseline` vs `graph/v2_current` are frozen verified artefacts — no code
 > reads them; not in the inner loop or verification gate.

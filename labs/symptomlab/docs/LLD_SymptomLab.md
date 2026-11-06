@@ -101,14 +101,15 @@ the valid categories.
 ## 5. Serialization (`models.py`)
 
 ```python
-EnvironmentalConditions.to_json() → {"occurs_during": occ.value, "engine_state": eng.value, "load_state": load.value}
+EnvironmentalConditions.to_json_payload() → {"occurs_during": occ.value, "engine_state": eng.value, "load_state": load.value}
 
-SymptomDNA.to_json() → {
+SymptomDNA.to_json_payload() → {
     "tier_1_primary_symptom": ...,
     "tier_2_subfield_filter": ...,
     "environmental_conditions": {...},
     "free_text_notes": ...,         # may be None
 }
+# to_json() on either class returns json.dumps(to_json_payload()), a str
 ```
 
 `from_json` reconstructs via `OccursDuring(env["occurs_during"])` /

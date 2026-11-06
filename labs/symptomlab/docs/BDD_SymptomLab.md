@@ -29,7 +29,7 @@ Feature: A legal triage selection resolves to a 4-field SymptomDNA
       And the SymptomDNA serialises to JSON and reloads unchanged
       And the payload contains no routing fields
 ```
-*Maps to:* `tests/test_models.py`, `tests/test_validator.py`.
+*Maps to:* `tests/unit/test_models.py`, `tests/unit/test_validator.py`.
 
 ---
 
@@ -50,7 +50,7 @@ Feature: Only catalog pairs are accepted, with actionable errors otherwise
     Then a SymptomValidationError is raised
       And the message lists the seven valid tier_1 values
 ```
-*Maps to:* `tests/test_validator.py`.
+*Maps to:* `tests/unit/test_validator.py`.
 
 ---
 
@@ -73,7 +73,7 @@ Feature: Environmental context must use the contract vocabulary
       | always     | flying        | idle                    | SymptomValidationError   |
       | always     | running       | hovering                | SymptomValidationError   |
 ```
-*Maps to:* `tests/test_validator.py`.
+*Maps to:* `tests/unit/test_validator.py`.
 
 ---
 
@@ -92,7 +92,7 @@ Feature: The catalog must define exactly 21 pairs
     When the SymptomValidator is constructed
     Then it loads exactly 21 (tier_1, tier_2) pairs
 ```
-*Maps to:* `tests/test_drift_guard.py`.
+*Maps to:* `tests/unit/test_drift_guard.py`.
 
 > **Live state:** the shipped `allowed_combinations.yaml` defines exactly **21** pairs,
 > with `visible_exhaust_smoke = {black_smoke, blue_oily_smell, white_sweet_smell}`
@@ -125,7 +125,7 @@ Feature: from_json validates structure and enums, not the catalog invariant
     When SymptomDNA.from_json is called
     Then a SymptomDNA is returned (the pairing invariant is resolve()'s job)
 ```
-*Maps to:* `tests/test_symptomdna_from_json.py`.
+*Maps to:* `tests/unit/test_symptomdna_from_json.py`.
 
 ---
 
@@ -144,7 +144,7 @@ Feature: SymptomLab stays an isolated codebase
     When its keys are inspected
     Then there is no suppress_modes, prioritize_modes, or target_backend_equation
 ```
-*Maps to:* `tests/test_resolve_isolation.py`.
+*Maps to:* `tests/unit/test_resolve_isolation.py`.
 
 ---
 

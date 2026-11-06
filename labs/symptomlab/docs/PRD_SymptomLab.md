@@ -27,8 +27,8 @@ takes a two-tier triage selection (a primary symptom and a sub-filter) plus the
 environmental context (when the symptom occurs, the engine state, and the load state),
 validates the selection against a curated catalog, and packages it as a typed
 `SymptomDNA` — the **symptom DNA** (Part B) of the diagnosis. The single public entry
-point is `symptomlab.resolve(tier_1, tier_2, *, occurs_during, engine_state, load_state)
-→ SymptomDNA`.
+point is `symptomlab.resolve(tier_1, tier_2, *, occurs_during, engine_state, load_state,
+free_text_notes=None, allowed_path=None) → SymptomDNA`.
 
 SymptomLab is one of the three sibling labs of the **DNA family** (`vinlab` +
 `symptomlab` → `dnalab`). Its `SymptomDNA` is Part B; VINLab supplies Part A; DNALab
@@ -95,8 +95,9 @@ nonsensical combinations are rejected with a helpful message listing the valid o
   validator refuses to load any other count.
 - **KR3:** Out-of-catalog pairs and out-of-vocabulary environmental values raise
   `SymptomValidationError` with the valid options listed.
-- **KR4:** Tier vocabulary is open (YAML-driven) — adding a symptom requires **no** code
-  change.
+- **KR4:** Tier vocabulary is YAML-driven, not a code enum. The catalog size is fixed at
+  21 pairs (ADR-0008): adding a pair also changes the count check in
+  `SymptomValidator.__init__`.
 - **KR5:** `SymptomDNA` carries **no** routing fields (routing lives in COMLab).
 - **KR6:** Zero cross-lab Python imports (DNA-family boundary; COMLab mirrors the type).
 
@@ -198,9 +199,8 @@ enum-typed environmental conditions.
 
 - The symptom→family prior probability numbers and context-modifier weights (COMLab
   owns them — COMLab-A / COMLab-B).
-- **T-DNA-9 — `oil_consumption` symptom.** Owner-deferred; with the coder. Needs a
-  catalog-cap disposition (new tier_1, raising the invariant to 21, vs a new tier_2) and
-  a named COMLab-A consumer extension before it can ship. Not in the current schema.
+- **T-DNA-9 — `oil_consumption` symptom.** In the catalog as the 7th tier_1
+  (`data/allowed_combinations.yaml`); ADR-0008 raised the invariant to 21 pairs.
 
 ### Success Criteria
 
