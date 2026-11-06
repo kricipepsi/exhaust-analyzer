@@ -173,7 +173,7 @@ def _diagnose(
         return LabPipelineAggregator(enable_fatal_gates=enable_fatal_gates).abort_incomplete(
             metadata, error_code, message
         )
-    gas_output = _run_gaslab(gas_inputs, vin_dna)
+    gas_output = None if _gasless_non_starter(triage, gas_inputs) else _run_gaslab(gas_inputs, vin_dna)
     obd_output = (
         _run_obdlab(_with_user_dtcs(_as_dict(obd_inputs), dtc_inputs), vin_dna)
         if obd_inputs is not None
@@ -247,6 +247,13 @@ def _obd_required_keys(obd_inputs: dict[str, Any], vin_dna: dict[str, Any]) -> t
     return keys
 
 
+def _gasless_non_starter(triage: dict[str, Any], gas_inputs: dict[str, Any]) -> bool:
+    """True for a will_not_start session with no gas reading at all (T-COMA-2: GASLab is not run)."""
+    return triage.get("engine_state") == _NON_STARTER and len(
+        _missing(gas_inputs, _GAS_LOW_IDLE_KEYS)
+    ) == len(_GAS_LOW_IDLE_KEYS)
+
+
 def _incomplete_input(
     triage: dict[str, Any],
     gas_inputs: dict[str, Any],
@@ -261,14 +268,8 @@ def _incomplete_input(
     ``LabPipelineAggregator.abort_incomplete``.
     """
     missing = _missing(gas_inputs, _GAS_LOW_IDLE_KEYS)
-    if missing:
+    if missing and not _gasless_non_starter(triage, gas_inputs):
         fields = ", ".join(missing)
-        if triage.get("engine_state") == _NON_STARTER:
-            return (
-                "GAS_INPUT_INCOMPLETE",
-                "Non-start diagnosis without exhaust gas readings is not available yet. "
-                f"Enter the low-idle gas readings: {fields}.",
-            )
         return "GAS_INPUT_INCOMPLETE", f"Low-idle gas readings are incomplete. Tick GASLab and enter: {fields}."
     if obd_inputs is not None:
         obd = _as_dict(obd_inputs)

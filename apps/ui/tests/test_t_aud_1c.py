@@ -73,4 +73,4 @@ def test_r2_gas_message_names_gaslab() -> None:
 
 def test_r2_gas_help_says_required() -> None:
     """NEW: the GASLab help text says the module is required for every run."""
-    assert "Required for every run" in up.FIELD_HELP["gas_module"].explanation
+    assert "Required for every run except an engine that will not start" in up.FIELD_HELP["gas_module"].explanation

@@ -32,6 +32,8 @@ from comlab.core.fault_atlas_kg import FaultAtlasKG
 from comlab.core.fault_atlas_router import FaultAtlasRouter
 from comlab.core.horizon_context_injector import HorizonContextInjector
 from comlab.core.perception_contradiction import (
+    CompensatedRichResult,
+    PerceptionContradictionResult,
     detect as detect_perception_contradiction,
     detect_compensated_rich,
     select_perception_lambda,
@@ -435,12 +437,16 @@ class LabPipelineAggregator:
             if request.obd_live_data is not None
             else None
         )
+        gas = request.gas_lab_output
         perception_lambda = select_perception_lambda(
             normalized_obd_lambda=obd_lambda_val,
-            lambda_measured=request.gas_lab_output.lambda_measured,
+            lambda_measured=gas.lambda_measured if gas is not None else None,
         )
-        perception_result = detect_perception_contradiction(
-            lambda_chem=request.gas_lab_output.lambda_chem,
+        # T-COMA-2: a non-starter without gas has no chemistry truth, so both lambda detectors are inert.
+        perception_result = PerceptionContradictionResult(
+            lambda_perception_delta=0.0, bias_verdict=None, guard_suppressed=False, qualifiers=()
+        ) if gas is None else detect_perception_contradiction(
+            lambda_chem=gas.lambda_chem,
             normalized_obd_lambda=perception_lambda,
             era_lambda_tolerance=era_tolerance,
             downstream_trim_role=request.downstream_trim_role,
@@ -470,8 +476,10 @@ class LabPipelineAggregator:
             if request.obd_live_data is not None
             else 0.0
         )
-        compensated_rich_result = detect_compensated_rich(
-            lambda_chem=request.gas_lab_output.lambda_chem,
+        compensated_rich_result = CompensatedRichResult(
+            is_compensated_rich=False, confidence=0.0
+        ) if gas is None else detect_compensated_rich(
+            lambda_chem=gas.lambda_chem,
             total_trim_correction_delta=obd_trim_delta,
             obd_lambda=perception_lambda,
             era_lambda_tolerance=era_tolerance,
@@ -646,7 +654,9 @@ class LabPipelineAggregator:
                 "cylinder_count": request.metadata.cylinder_count,
                 "degradation_mode": degradation_mode,
             },
-            "gas_lab_output": request.gas_lab_output.model_dump(),
+            "gas_lab_output": (
+                request.gas_lab_output.model_dump() if request.gas_lab_output is not None else None
+            ),
             "obd_live_data": request.obd_live_data.model_dump() if request.obd_live_data is not None else None,
             "dtc_lab_output": request.dtc_lab_output.model_dump() if request.dtc_lab_output is not None else None,
             "routing_directive": directive,

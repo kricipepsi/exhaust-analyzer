@@ -136,8 +136,8 @@ def test_r3_partial_high_idle_is_ignored() -> None:
     assert res.execution_meta.degradation_mode != "FATAL_INCOMPLETE"
 
 
-def test_r4_non_starter_without_gas_aborts_with_message() -> None:
-    """NEW: non-starter, GASLab unticked -> GAS_INPUT_INCOMPLETE; non-start without gas is not available yet."""
+def test_r4_non_starter_without_gas_is_diagnosed() -> None:
+    """NEW (T-COMA-2 rewrite): non-starter, GASLab unticked -> diagnosed by the non_starter family, no abort."""
     raw = _raw(
         vin=DECODABLE_VIN,
         triage=dict(
@@ -149,8 +149,8 @@ def test_r4_non_starter_without_gas_aborts_with_message() -> None:
     )
     del raw["gas"]
     res = diagnose(raw)
-    _assert_abort(res, "GAS_INPUT_INCOMPLETE", "hc")
-    assert "not available yet" in res.diagnostic_verdict.actionable_remediation
+    assert res.execution_meta.degradation_mode != "FATAL_INCOMPLETE"
+    assert res.diagnostic_verdict.fault_family == "non_starter"
 
 
 # --- R5: OBD and freeze frame ---------------------------------------------------

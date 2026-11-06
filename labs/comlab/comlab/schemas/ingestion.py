@@ -559,7 +559,7 @@ class OrchestratorInboundRequest(BaseModel):
     vehicle_dna: VehicleDNA | None = None
     # SEMANTIC_CONTRACT §4.3 / HLD §7.1 / LLD §3.2: the binding inbound slice that replaces ``metadata``.
     # A request may send it instead of ``metadata``; _metadata_from_vehicle_dna derives ``metadata`` from it.
-    gas_lab_output: GasLabPayload
+    gas_lab_output: GasLabPayload | None = None  # T-COMA-2: None only for a will_not_start session
     obd_live_data: OBDLiveDataPayload | None = None
     dtc_lab_output: DTCLabPayload | None = None
     symptom_dna: dict = Field(default_factory=dict)
@@ -599,3 +599,12 @@ class OrchestratorInboundRequest(BaseModel):
             out["symptom_dna"] = vd.symptom_dna
         out.setdefault("has_catalyst", vin.emissions.has_catalyst)
         return out
+
+    @model_validator(mode="after")
+    def _gas_required_unless_non_starter(self) -> "OrchestratorInboundRequest":
+        """GASLab output may be absent only when the engine will not start (T-COMA-2; wiki 07 RULE_LAB_SUPPRESSION)."""
+        if self.gas_lab_output is None:
+            env = self.symptom_dna.get("environmental_conditions") or {}
+            if env.get("engine_state") != "will_not_start":
+                raise ValueError("gas_lab_output is required unless engine_state is will_not_start")
+        return self

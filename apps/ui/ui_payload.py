@@ -139,7 +139,7 @@ FIELD_HELP: dict[str, FieldHelp] = {
         unit="characters"
     ),
     "gas_module": FieldHelp(
-        explanation="Enables tailpipe exhaust gas analyzer measurement inputs. Required for every run: the diagnosis needs the five low-idle readings (HC, CO, CO₂, O₂, NOx).",
+        explanation="Enables tailpipe exhaust gas analyzer measurement inputs. Required for every run except an engine that will not start: the diagnosis needs the five low-idle readings (HC, CO, CO₂, O₂, NOx).",
         options=["Checked", "Unchecked"]
     ),
     "obd_module": FieldHelp(
