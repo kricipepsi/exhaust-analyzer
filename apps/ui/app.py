@@ -328,7 +328,12 @@ with st.sidebar:
                         f"{dna.engine_displacement_liters}L {dna.cylinder_count}cyl "
                         f"{dna.induction_type} {dna.fuel_delivery_type}"
                     )
-                    use_decoded_dna = st.checkbox("✅ Use this decoded DNA", value=True, help=FIELD_HELP["use_decoded_dna"].get_tooltip())
+                    if dna.confidence.value == "HIGH":
+                        use_decoded_dna = st.checkbox("✅ Use this decoded DNA", value=True, help=FIELD_HELP["use_decoded_dna"].get_tooltip())
+                    else:
+                        # FieldMap §1.2: only a HIGH decode gates fields; PARTIAL or NONE is basic mode.
+                        st.info(f"Decode confidence {dna.confidence.value} — basic input mode.")
+                        use_decoded_dna = False
                 except Exception:
                     st.warning("VIN decode unavailable — using basic input mode.")
                     use_decoded_dna = False

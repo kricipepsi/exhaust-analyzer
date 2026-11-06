@@ -1007,6 +1007,9 @@ def build_diagnose_payload(widgets: dict[str, Any]) -> dict[str, Any]:
         if widgets.get("override_de_cat"):
             overrides["de_cat"] = True
             
+    elif widgets.get("active_upstream_o2_type") == "NARROWBAND":
+        # Basic mode (FieldMap §1.6): the labs read the O2 type the form was gated with, not a fresh decode.
+        overrides["upstream_o2_type"] = "NARROWBAND"
     if overrides:
         raw_inputs["overrides"] = overrides
 
