@@ -42,8 +42,8 @@ view docstrings name the composition as the builder. Done is `### Verification #
 | id | value | population | command |
 |---|---|---|---|
 | P1 | importers of `comlab.projection` / `comlab.schemas.lab_dna_views`: only `labs/comlab/tests/unit/test_projection.py` (and audit probes, `Vault/`, `apps/vault/`) | every `.py` in the clone | `grep -rln` in the sidecar |
-| P2 | `test_projection.py` holds 25 tests; comlab base `525 passed, 4 skipped, 2 errors`; fix `502 passed, 4 skipped, 2 errors` (− 25, + 2 new) | comlab suite | step 2 |
-| P3 | the new file: base `2 failed`; fix `2 passed` | the new file | step 1 |
+| P2 | `test_projection.py` holds 25 tests; comlab base `525 passed, 4 skipped, 2 errors`; fix `503 passed, 4 skipped, 2 errors` (− 25, + 3 new) | comlab suite | step 2 |
+| P3 | the new file: base `3 failed`; on the R1-R5 build `1 failed, 2 passed` (`test_dep4_row_names_no_projector_work`); fix `3 passed` | the new file | step 1 |
 | P4 | registry `5 failed, 502 passed, 4 deselected`; gaslab 208, obdlab 391, dtclab 590; wired 101, ui 52 — all equal before and after | the spec base | step 3 |
 
 `$PY` is `C:/4DApp/.venv/Scripts/python.exe`. Every file under `C:/4DApp/recheck/T-AUD-4q/` is Cowork's: read it, run
@@ -64,7 +64,16 @@ test file. Keep each file's line endings.
   existing consumer file.
 - **R4 Lab docstrings**: `gaslab/dna_view.py`, `dtclab/schemas/dna_view.py`, `obdlab/schemas/dna_view.py` say the
   composition builds the view (`apply_fix.py` text). Change no code line.
-- **R5 Test.** `NEW` `labs/comlab/tests/unit/test_t_aud_4q_no_projector.py`, the 2 tests of the rehearsed file.
+- **R5 Test.** `NEW` `labs/comlab/tests/unit/test_t_aud_4q_no_projector.py`, the 3 tests of the rehearsed file.
+- **R6 Revision 02 (second review, upheld).** The DEP-4 row's last cell in `CROSS_LAB_DEPENDENCIES.md` still sends
+  readers to `projection.py:79–81` as `pending — runnable`; the COMLab ledger has `T-COMV2-LAMBDAPROJ-1` `done`. On
+  top of your build commit, run `$PY C:/4DApp/recheck/T-AUD-4q/apply_rev02.py` (its text is final) and copy the
+  rehearsed test file again (it adds `test_dep4_row_names_no_projector_work`). Commit both as a second commit.
+  **Resumed run start state (replaces `### First action ###` and `### Preconditions ###`):** HEAD is the
+  `spec(T-AUD-4q): revision 02` commit on top of your build `0e0f209`; `git status --porcelain` lists only your note and
+  RESULT (untracked); the R1 files are gone and the test file exists. Check with `git log --oneline -3; git status
+  --porcelain; test -f C:/4DApp/recheck/T-AUD-4q/apply_rev02.py && echo rev02`. Then run R6, re-run
+  `### Verification ###`, and update the note's gate blocks, `## Time` and the RESULT (they stay uncommitted).
 - The simplest correct route is `$PY C:/4DApp/recheck/T-AUD-4q/apply_fix.py`, then the R1 `git rm`, then a copy of the
   test file; read the diff before you commit it.
 
@@ -113,12 +122,12 @@ Expected: `checked`, and no `MISSING` or `EXISTS` line.
 - `repo/labs/comlab/docs/Vocabulary/DTC_VOCABULARY.md` (MODIFY: R2)
 - `repo/labs/comlab/docs/adr/ADR-0003_signal_noise_every_field_has_a_named_consumer.md` (MODIFY: R2)
 - `repo/labs/comlab/docs/adr/ADR-0005_dnalab_resolves_horizon_comlab_never_parses_vin.md` (MODIFY: R2)
-- `repo/labs/comlab/docs/CROSS_LAB_DEPENDENCIES.md` (MODIFY: R2)
+- `repo/labs/comlab/docs/CROSS_LAB_DEPENDENCIES.md` (MODIFY: R2, R6)
 - `repo/labs/comlab/comlab/config/proposals/entries.yaml` (MODIFY: R3)
 - `repo/labs/gaslab/gaslab/dna_view.py` (MODIFY: R4)
 - `repo/labs/dtclab/dtclab/schemas/dna_view.py` (MODIFY: R4)
 - `repo/labs/obdlab/obdlab/schemas/dna_view.py` (MODIFY: R4)
-- `repo/labs/comlab/tests/unit/test_t_aud_4q_no_projector.py` (CREATE: R5)
+- `repo/labs/comlab/tests/unit/test_t_aud_4q_no_projector.py` (CREATE: R5; MODIFY: R6)
 - `repo/apps/wired/audit_tasks/progress_notes/T-AUD-4q.md` (CREATE)
 - `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-4q.md` (CREATE)
 - `C:/4DApp/recheck/T-AUD-4q/pt/` (RUNTIME: pytest `--basetemp`; create it first)
@@ -141,7 +150,7 @@ mkdir -p C:/4DApp/recheck/T-AUD-4q/pt/comlab C:/4DApp/recheck/T-AUD-4q/pt/reg
 # 2.
 (cd labs/comlab && timeout 280 $PY -m pytest -q -p no:cacheprovider --continue-on-collection-errors --basetemp=C:/4DApp/recheck/T-AUD-4q/pt/comlab/x </dev/null | tail -1)
 # 3.
-(cd labs/comlab && timeout 280 $PY -m pytest -q -p no:cacheprovider registry/tests --deselect registry/tests/test_render_case_library.py --basetemp=C:/4DApp/recheck/T-AUD-4q/pt/reg/x </dev/null | tail -1); git checkout -- labs/comlab/registry/case_library.html
+(cd labs/comlab && timeout 280 $PY -m pytest -q -p no:cacheprovider registry/tests --deselect registry/tests/test_render_case_library.py --basetemp=C:/4DApp/recheck/T-AUD-4q/pt/reg/x </dev/null | tail -1)
 (cd labs/gaslab && echo "gaslab $(timeout 280 $PY -m pytest -q -p no:cacheprovider --basetemp=C:/4DApp/recheck/T-AUD-4q/pt/gaslab </dev/null | tail -1)")
 (cd labs/obdlab && echo "obdlab $(timeout 280 $PY -m pytest -q -p no:cacheprovider --basetemp=C:/4DApp/recheck/T-AUD-4q/pt/obdlab </dev/null | tail -1)")
 (cd labs/dtclab && echo "dtclab $(timeout 280 $PY -m pytest -q -p no:cacheprovider --basetemp=C:/4DApp/recheck/T-AUD-4q/pt/dtclab </dev/null | tail -1)")
@@ -151,8 +160,8 @@ mkdir -p C:/4DApp/recheck/T-AUD-4q/pt/comlab C:/4DApp/recheck/T-AUD-4q/pt/reg
 timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check labs/comlab/tests/unit/test_t_aud_4q_no_projector.py labs/gaslab/gaslab/dna_view.py labs/dtclab/dtclab/schemas/dna_view.py labs/obdlab/obdlab/schemas/dna_view.py; git log --oneline -3; git status --porcelain
 ```
 Expected:
-- step 1: `2 passed`.
-- step 2: `502 passed, 4 skipped, 2 errors`.
+- step 1: `3 passed`.
+- step 2: `503 passed, 4 skipped, 2 errors`.
 - step 3: `5 failed, 502 passed, 4 deselected`; `gaslab 208 passed, 2 skipped, 4 deselected`; `obdlab 391 passed, 2
   skipped`; `dtclab 590 passed`; `101 passed`; `52 passed`.
 - step 4: `All checks passed!`; the spec commit and your commits; only the note and the RESULT (and a `.blocker.json`
