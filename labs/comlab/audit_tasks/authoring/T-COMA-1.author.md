@@ -57,4 +57,4 @@ its data from the matrix`, the probe name, the reason caption line) · counts: w
 patched (criterion 1 said "R6 mutant"; the mutants are P5's). cold read 2026-11-06: skipped, plan-gated.
 
 ### Correction history ###
-(none)
+- 2026-11-06 plan correction 01 (`corrections/T-COMA-1_plan_correction_20261106.md`): plan approved with K1-K4 (R8): no py_compile; isolation by identity; R2 output recorded; the UI info line for no_rule. Second review (codex) 6 findings: 1, 2 upheld, 4 in part, 3, 5, 6 not upheld.
