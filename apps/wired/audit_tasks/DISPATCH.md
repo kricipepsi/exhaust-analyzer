@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-11h` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 20-60 min | comlab adr drift report |
+| `T-AUD-4p` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 2 | NO | 20-40 min | unread fields |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-11h` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — One drift report lists, for each COMLab ADR, every place where the document and the current code disagree, each with a quote from both sides.
-  `repo\apps\wired\audit_tasks/T-AUD-11h_comlab_adr_drift_report(3).md`
+**`T-AUD-4p` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — No COMLab mirror field claims a consumer it does not have (AGENTS.md rule 4).
+  `repo\apps\wired\audit_tasks/T-AUD-4p_unread_fields(2).md`
 
 ## Distribution
 
-- **3/5** — 1: T-AUD-11h
+- **2/5** — 1: T-AUD-4p
