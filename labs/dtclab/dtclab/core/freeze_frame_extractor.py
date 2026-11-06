@@ -163,7 +163,7 @@ def _derive_fuel_spark_cut_at_crank(
     return (
         fuel_status == FuelSystemStatus.OL_FAULT
         and speed_kmh == 0
-        and rpm <= 180
+        and rpm <= 180  # wiki: DTC_VOCABULARY.md §12.3
     )
 
 

@@ -24,7 +24,7 @@ consumers:
   - "comlab: labs/comlab/comlab/core/fault_atlas_router.py DTCRoutingTag routing"
   - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py DTCLabPayload integration"
   - "comlab: labs/comlab/comlab/core/perception_contradiction.py rich_dtc_present (P0172/P0175) gate"
-  - "wired (pending T-WIRE-1): apps/wired/wired/composition.py DTCLabPayload mapping"
+  - "wired: apps/wired/wired/composition.py DTCLabPayload mapping (calls the sanitizer)"
 drift_guards:
   - "labs/dtclab/tests/unit/test_dtc_ingestion_gate.py"
   - "labs/dtclab/tests/unit/test_freeze_frame_extractor.py"
@@ -51,8 +51,8 @@ source: "labs/dtclab/docs/LLD_DTCLab.md"
 Convention: every numeric literal carries a `# wiki: <source> §<section>` comment in code.
 
 > **v2.0 reconciliation note.** Reconciled to shipped `dtclab/`. Material changes from v1.0:
-> the DNA gate dispatch is `_check_high_confidence_gate` with three named gates (no
-> `secondary_air_equipped`, §7); `RoutingTagMapper.map` returns enum-definition order via a
+> the DNA gate dispatch is `_check_high_confidence_gate` with two named gates
+> (`egr_equipped`, `has_catalyst`; no `secondary_air_equipped`, §7); `RoutingTagMapper.map` returns enum-definition order via a
 > comprehension (§8); the Phase-2 scorer boundaries are added (§16).
 
 ---
@@ -97,6 +97,9 @@ are even evaluated.
 
 ## 3. Mode $06 Margin Tri-State — Exact Boundaries
 
+A fourth state, `MONITOR_ABORTED`, is returned when `evaluate_monitor` gets
+`monitor_incomplete=True`; `classify_margin` itself is the tri-state below.
+
 Source: `DTC_VOCABULARY.md §7`.
 
 ```python
@@ -127,6 +130,7 @@ ff_ect_warmup                = coolant_temp_c < 60
 ff_iat_ect_biased            = (abs(intake_air_temp_c - coolant_temp_c) > 30) and (engine_rpm == 0)
 ff_timing_retard_severe      = ignition_advance_deg < -10
 ff_codes_cleared_invalidated = bool(codes_cleared)
+ff_fuel_spark_cut_at_crank   = fuel_system_status == OL_FAULT and vehicle_speed_kmh == 0 and engine_rpm <= 180
 ```
 
 Thresholds are strict (`<`, `>`) except `engine_rpm == 0` (equality). `ff_ect_warmup` and the

@@ -101,7 +101,7 @@ hardware-impossible tags (e.g. catalyst codes on a pre-cat vehicle).
 
 **Status:** Accepted
 
-**Context.** The DTC-range → routing-tag relation is large (32 entries), churns as coverage grows,
+**Context.** The DTC-range → routing-tag relation is large (30 entries), churns as coverage grows,
 and must be auditable against the wiki (`DTC_VOCABULARY.md §15`).
 
 **Decision.** Mappings live in `dtclab/config/routing_tag_map.yaml`, each entry carrying
@@ -183,8 +183,8 @@ clamps to the unit interval, dedups, and returns the top 3 — with **no sum-1 n
 **Consequences.**
 - (+) Single source of truth for weights; no drift between the payload weights and the scorer.
 - (+) Clear ownership: DTCLab ranks, COMLab fuses/normalises, Wired adapts.
-- (−) The scorer's consumer is the Wired adapter, which must exist for the surface to be live —
-  acceptable, it is a named, specced consumer (`T-DTW-1`), not "future use".
+- (−) The scorer's consumer is the Wired adapter, which must exist for the surface to be live. It
+  does not exist yet: the composition does not call the scorer (T-AUD-15).
 
 **Alternatives considered.** (1) Normalising to sum-1 in DTCLab — rejected: double-normalisation
 corrupts the Bayesian fusion. (2) Introducing family/tier confidence ceilings — rejected: adds
@@ -202,8 +202,8 @@ light-off (~260 °C), below 4DLab's ≥ 75 °C read-floor — so the SAI signal 
 window 4DLab actually ingests.
 
 **Decision.** `SAI_HISTORY`, the `secondary_air_equipped` flag, the P0411 YAML entry, and the
-`secondary_air_equipped` gate branch are all removed from shipped code. `DTCRoutingTag` is 18
-values; `DtcEmissionsView` is 3 flags; the routing map has 5 DNA-gated entries. The decision is
+`secondary_air_equipped` gate branch are all removed from shipped code. `DTCRoutingTag` is 17
+values; `DtcEmissionsView` is 2 flags; the routing map has 3 DNA-gated entries. The decision is
 recorded in `wiki/11_proposals_register.md §11.4`.
 
 **Consequences.**
@@ -240,6 +240,5 @@ not as a speculative field. Registered by `T-OBDV2-5`; tracked as `T-DTCV2-NOSTA
 no positive evidence. (2) Deferring with no consumer — rejected: a consumer *can* be named
 (`T-COMV2-NOSTART-1`), so the forward-progress rule makes this a proposal, not a deferral.
 
-> This record is **Proposed** — it does not describe shipped code. It ships only when
-> `T-DTCV2-NOSTART-1` and its COMLab consumer are authored and land together, and it is registered
-> in `comlab/config/proposals/`.
+> This record's DTC side has shipped: `Mode06MonitorState.MONITOR_ABORTED`,
+> `evaluate_monitor(monitor_incomplete=…)` and `ff_fuel_spark_cut_at_crank` (T-AUD-15).

@@ -18,7 +18,7 @@ source: "labs/dtclab/docs/PRD_DTCLab.md"
 **Scope:** Petrol-only, v2 — DTC / freeze-frame / Mode $06 processing + Phase-2 candidate scoring
 
 > **v2.0 reconciliation note.** Refreshed to the shipped `dtclab/` package (PRD-refresh model).
-> Changes from v1.0: routing surface is **18** tags; **5** DNA-gated routing entries; the
+> Changes from v1.0: routing surface is **17** tags; **3** DNA-gated routing entries; the
 > **Phase-2 scorer** (`ranking.py` → top-3 fault families for COMLab fusion) is now a shipped
 > P0 feature; `SAI_HISTORY` removed; `EP-DTC-NOSTART-1` recorded as a labelled proposal (§8).
 
@@ -53,7 +53,7 @@ permanent (mode `$0A`). Each confirmed DTC carries a freeze-frame snapshot of PI
 the fault was set. Mode $06 continuous monitors provide a margin percentage showing how close each
 system is to failing its test.
 
-**Why now.** The 32-entry `routing_tag_map.yaml` (27 ungated + 5 DNA-gated) covers all major
+**Why now.** The 30-entry `routing_tag_map.yaml` (27 ungated + 3 DNA-gated) covers all major
 petrol powertrain DTC families. The 33-MID `mode_06_hex_dictionary.json` covers universal CAN MIDs
 for 2008+ vehicles. The Phase-2 scorer lets DTC evidence feed COMLab's Bayesian fusion as ranked
 candidates rather than raw tags.
@@ -78,7 +78,7 @@ table that surfaces impending failures before a full DTC sets, and a ranked cand
 - **KR1:** `DataFusionSanitizer.sanitize()` returns a valid `DTCLabPayload` for all named
   regression fixtures with zero structural failures.
 - **KR2:** Zero cross-lab Python imports (import-isolation audit in `test_dna_view.py`).
-- **KR3:** All **5** DNA-gated routing entries suppress correctly on non-equipped vehicles
+- **KR3:** All **3** DNA-gated routing entries suppress correctly on non-equipped vehicles
   (verified in `test_routing_tag_mapper.py` + integration tests).
 - **KR4:** `POA_HISTORY` is never emitted by `RoutingTagMapper` — COMLab's responsibility (T-FX-3).
 - **KR5:** `classify_top3()` returns ≤ 3 deduplicated `(family, confidence∈[0,1])` candidates,
@@ -115,7 +115,7 @@ reference database.
 
 - P0: DTC format validation (`^[BCPU][0-3][0-9A-F]{3}$`) for modes `$03`, `$07`, `$0A`.
   Fail-fast on first invalid code.
-- P0: Freeze-frame extraction (12 mandatory PIDs, 7 optional, 6 derived symptom flags).
+- P0: Freeze-frame extraction (12 mandatory PIDs, 7 optional, 7 derived symptom flags).
 - P0: Historical fault-context classification (4 states, strict priority order).
 - P0: Mode $06 margin tri-state evaluation (33-MID dictionary, LRU-cached load).
 - P0: DTC routing-tag mapping — 30 entries (27 ungated + 3 DNA-gated).
@@ -124,7 +124,7 @@ reference database.
 - P0: DNA confidence three-branch (HIGH strict / PARTIAL log+emit / NONE emit).
 - P0: `DTCLabPayload` Pydantic output model (9 fields).
 - P0: **Phase-2 scorer** (`ranking.py`) — `rank_candidates` / `classify_top3` → top-3
-  `(family, confidence)` for COMLab Bayesian fusion (FU-1), via the Wired adapter (T-DTW-1).
+  `(family, confidence)` for COMLab Bayesian fusion (FU-1). Today the Phase-2 scorer (`rank_candidates` / `classify_top3`) has no production caller: the composition does not call it (T-AUD-15).
 - P0: `DTC_CONFIDENCE_WEIGHTS` published for COMLab aggregator use.
 
 ### Technology
@@ -156,7 +156,7 @@ All P0 features above, including the Phase-2 scorer and the two cross-field cool
 
 | ID | Proposal | Named consumer + code path | Disposition |
 |---|---|---|---|
-| **EP-DTC-NOSTART-1** | Surface Mode $06 monitor-aborted / Incomplete state (MID $A1 / TID $53) and freeze-frame fuel/spark-cut state for no-start diagnosis. CAN-era gated. | COMLab `T-COMV2-NOSTART-1` reads the new monitor state; extends `mode06_evaluator.py` + Mode-06 schemas. Registered by `T-OBDV2-5`; tracked as `T-DTCV2-NOSTART-1`. | **PROPOSAL** (ships with its consumer as a future task; not in current code) |
+| **EP-DTC-NOSTART-1** | Surface Mode $06 monitor-aborted / Incomplete state (MID $A1 / TID $53) and freeze-frame fuel/spark-cut state for no-start diagnosis. CAN-era gated. | COMLab `T-COMV2-NOSTART-1` reads the new monitor state; extends `mode06_evaluator.py` + Mode-06 schemas. Registered by `T-OBDV2-5`; tracked as `T-DTCV2-NOSTART-1`. | **Shipped (DTC side):** `Mode06MonitorState.MONITOR_ABORTED`, `evaluate_monitor(monitor_incomplete=…)`, `ff_fuel_spark_cut_at_crank` |
 
 Wiki `11_proposals_register.md` carries the broader DTCLab proposal slate (P-DTC-1 misfire
 Type A/B severity, P-DTC-2 monitor-readiness trust gate, P-DTC-3 FMEM trust flag). Those remain
@@ -174,6 +174,6 @@ wiki-side proposals and do not ship here.
 
 1. KR1–KR5 all pass in CI.
 2. `test_dtclab_pipeline.py` passes its integration scenarios including catalyst/EGR DNA gate suppression.
-3. `test_vocabulary.py` drift guard confirms the enum counts vs `DTC_VOCABULARY.md` (18-tag
+3. `test_vocabulary.py` drift guard confirms the enum counts vs `DTC_VOCABULARY.md` (17-tag
    `DTCRoutingTag`).
 4. `test_classify_top3.py` / `test_rank_candidates.py` confirm scorer ordering, clamp, and DNA factor.

@@ -82,6 +82,7 @@ Scenario Outline: Derived symptom flags fire at their thresholds
     | coolant_temp_c = 59                                  | ff_ect_warmup            |
     | intake_air_temp_c - coolant_temp_c = 31, engine_rpm 0| ff_iat_ect_biased        |
     | ignition_advance_deg = -11                           | ff_timing_retard_severe  |
+    | OL_FAULT, vehicle_speed_kmh 0, engine_rpm 150        | ff_fuel_spark_cut_at_crank |
 
 Scenario: Clearing codes this session invalidates the snapshot
   Given a complete snapshot and codes_cleared = True
@@ -132,6 +133,11 @@ Scenario Outline: Margin is classified into the tri-state
     | 15.0   | PENDING_FAIL_MARGINAL  |  # inclusive upper
     | 16.0   | PASSED                 |
 
+Scenario: An incomplete monitor is aborted, whatever the margin
+  Given a Mode $06 margin of 16.0 and monitor_incomplete = True
+  When the monitor is evaluated
+  Then its state is MONITOR_ABORTED
+
 Scenario: A known MID resolves its target component
   Given the monitor key "MID_21_TID_81"
   When the monitor is evaluated against the hex dictionary
@@ -177,6 +183,7 @@ Scenario: A low-confidence VIN never suppresses a real DTC
   When the DTCs are mapped
   Then the tags include CATALYST_HISTORY
 
+# Not implemented: DTCLab has no GPF tag, gate or P244A entry (T-AUD-15). Kept as a design scenario.
 Scenario Outline: The gpf_combined compound gate
   Given a HIGH-confidence DNA view with has_particulate_filter = <filter>
   And resolved_horizon = <horizon>

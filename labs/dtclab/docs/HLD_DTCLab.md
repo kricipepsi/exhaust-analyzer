@@ -20,10 +20,10 @@ source: "labs/dtclab/docs/HLD_DTCLab.md"
 
 > **v2.0 reconciliation note.** This revision reconciles the HLD to the shipped
 > `dtclab/` package (AST ground truth, June 2026). Changes from v1.0: the routing
-> surface is **18** `DTCRoutingTag` values (not 17 — `SAI_HISTORY` was never shipped;
+> surface is **17** `DTCRoutingTag` values (`SAI_HISTORY` was never shipped;
 > `COOLANT_SYSTEM_MALFUNCTION` and `CYLINDER_FLUID_MISFIRE` are added); `DtcEmissionsView`
-> carries **3** flags (no `secondary_air_equipped`); the routing map has **5** DNA-gated
-> entries (not 6); and the **Phase-2 scorer** (`ranking.py`) and **family map**
+> carries **2** flags (`has_catalyst`, `egr_equipped`); the routing map has **3** DNA-gated
+> entries; and the **Phase-2 scorer** (`ranking.py`) and **family map**
 > (`family_map.py`) are now documented.
 
 ---
@@ -54,7 +54,7 @@ dtclab.DataFusionSanitizer.sanitize(raw_dtcs, raw_freeze_frame, raw_mode06, ...)
   ├─ freeze_frame_extractor.extract_freeze_frame — 12 PIDs + 6 flags
   ├─ historical_context_classifier              — 4-state temporal context
   ├─ mode06_evaluator.evaluate_monitor × N      — tri-state per MID
-  ├─ RoutingTagMapper.map(confirmed_dtcs)        — 18-tag routing (DNA-gated)
+  ├─ RoutingTagMapper.map(confirmed_dtcs)        — 17-tag routing (DNA-gated)
   ├─ evaluate_coolant_dtc_context × N            — cross-field coolant/fluid tags
   └─ DTCLabPayload.model_validate               — Pydantic validation
   │
@@ -66,7 +66,7 @@ dtclab.DataFusionSanitizer.sanitize(raw_dtcs, raw_freeze_frame, raw_mode06, ...)
   └─ ranking.classify_top3(payload, dna_view=...)  — OPTIONAL Phase-2 scorer
         │  top-3 (canonical_family, confidence ∈ [0,1])
         ▼
-     COMLab Bayesian combine() (FU-1), via the Wired adapter (T-DTW-1)
+     COMLab Bayesian combine() (FU-1), — the Wired adapter (T-DTW-1) is not built: no production caller
 ```
 
 Zero cross-lab Python imports. DTCLab mirrors the DNA-view types it needs locally. Isolation
@@ -87,8 +87,9 @@ raw_dtcs + raw_freeze_frame + raw_mode06 + DtcLabDnaView
   [2]  extract_freeze_frame(raw_freeze_frame, codes_cleared)
        │  12 mandatory PIDs checked → FreezeFrameIncompleteError if any absent
        │  String→enum coercion: "OL_FAULT" → FuelSystemStatus.OL_FAULT
-       │  6 derived symptom flags (open-loop, load@low-rpm, ECT warm-up,
-       │                           IAT/ECT bias, timing retard, codes-cleared)
+       │  7 derived symptom flags (open-loop, load@low-rpm, ECT warm-up,
+       │                           IAT/ECT bias, timing retard, codes-cleared,
+       │                           fuel/spark cut at crank)
        │
   [3]  classify_historical_context(ECT, RPM, load)
        │  Priority: COLD_START_TRANSIT_FAULT > HISTORICAL_IDLE_FAULT >
@@ -121,8 +122,8 @@ raw_dtcs + raw_freeze_frame + raw_mode06 + DtcLabDnaView
 ## 4. Phase-2 Scorer (`ranking.py`) — optional candidate ranking
 
 `rank_candidates()` / `classify_top3()` turn a `DTCLabPayload` into ranked fault-family
-candidates. This surface is **not** called by `sanitize`; the Wired composition layer
-(`T-DTW-1`) calls it directly and adapts the result into COMLab's `LabResult` for Bayesian
+candidates. This surface is **not** called by `sanitize`, and the composition does not call
+it either (no production caller, T-AUD-15). The design was that the Wired layer (`T-DTW-1`) calls it directly and adapts the result into COMLab's `LabResult` for Bayesian
 fusion (`combine()`, FU-1). Its consumers are therefore real and existing once the Wired
 adapter is wired.
 
@@ -195,7 +196,7 @@ confidence == PARTIAL                 → Emit + logger.info("dna_gate_downgrade
 confidence == HIGH                    → _check_high_confidence_gate(gate_name)
 ```
 
-HIGH-confidence gate checks (the only three named gates in shipped code):
+HIGH-confidence gate checks (the only two named gates in shipped code, plus the unknown-gate fallback):
 
 | Gate name | Condition |
 |-----------|-----------|
@@ -214,7 +215,8 @@ multiply by 1.0.
 ```
 raw_mode06: dict[str, float]    e.g. {"MID_21_TID_81": 45.2, "MID_A1_TID_01": -3.0}
        │
-evaluate_monitor(mid_key, margin_pct, dictionary_path)
+evaluate_monitor(mid_key, margin_pct, dictionary_path, *, monitor_incomplete=False,
+                 euro_emission_category=None)
   │  Validate: mid_key must match ^MID_[0-9A-F]{2}_TID_[0-9A-F]{2}$
   │  Load dict (LRU-cached): mode_06_hex_dictionary.json (33 universal CAN MIDs)
   │  Extract MID hex from key: "MID_21_TID_81" → "21" → "Catalyst OSC Bank 1"
@@ -269,4 +271,4 @@ evaluate_monitor(mid_key, margin_pct, dictionary_path)
 | `DTC_CONFIDENCE_WEIGHTS` drift guard | No wiki cross-check test | Open |
 | Manufacturer-specific MIDs | No overlay mechanism in current API | v2 backlog |
 | T-FX-3 enforcement | `POA_HISTORY` injection is convention; not enforced by DTCLab | Open |
-| **EP-DTC-NOSTART-1** | **PROPOSAL** — surface Mode $06 monitor-aborted/Incomplete state (MID $A1/TID $53) + freeze-frame fuel/spark-cut state. Consumer: COMLab `T-COMV2-NOSTART-1`; extends `mode06_evaluator.py` + Mode-06 schemas; CAN-era gated. Registered by `T-OBDV2-5`, tracked as `T-DTCV2-NOSTART-1`. | Proposed (not shipped) |
+| **EP-DTC-NOSTART-1** | **PROPOSAL** — surface Mode $06 monitor-aborted/Incomplete state (MID $A1/TID $53) + freeze-frame fuel/spark-cut state. Consumer: COMLab `T-COMV2-NOSTART-1`; extends `mode06_evaluator.py` + Mode-06 schemas; CAN-era gated. Registered by `T-OBDV2-5`, tracked as `T-DTCV2-NOSTART-1`. | Shipped (DTC side): `MONITOR_ABORTED`, `ff_fuel_spark_cut_at_crank` |

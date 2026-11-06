@@ -21,7 +21,7 @@ source: "labs/dtclab/docs/DTC_VOCABULARY.md"
 
 **Status:** v1.0 (2026-05-19). Replaces and supersedes `DTCLab/docs/_archive/master_wiki_v1_pre_split.md` (the prior monolithic `DTCLab_Master_Wiki.md`) and the older `COMLab/docs/wiki/DTC_VOCABULARY.md` v1.0 (2026-05-16) where they drift. Companion to `DTC_WIKI.md` — wiki is the reasoning grammar; this is the contract layer.
 
-**Scope:** petrol vehicles 1990 – 2020 (Euro 1 – Euro 6/7), manually entered diagnostic data, SAE J1979 OBD-II. DTC classes processed: `P` (powertrain). Classes `B`, `C`, `U` are recognised by the regex but routed only when their DTCs appear in §13 — otherwise filtered at the ingestion gate.
+**Scope:** petrol vehicles 1990 – 2020 (Euro 1 – Euro 6/7), manually entered diagnostic data, SAE J1979 OBD-II. DTC classes processed: `P` (powertrain). Classes `B`, `C`, `U` are recognised by the regex and pass the ingestion gate (`validate_dtc_list` returns every valid code); they are routed only when their DTCs appear in §13, otherwise they carry no tag.
 
 **Anchored to:**
 
@@ -164,7 +164,7 @@ When `DtcLabDnaView.confidence == PARTIAL` or `NONE`, the gated values fall back
 
 The §15 mapping table and `dtclab/config/routing_tag_map.yaml` remain canonical, but the relations are restated here as prose so each DTC-family → tag link is unambiguous. Read every sentence as `<DTC range> routes to <TAG>`.
 
-DTC P0010–P0023 (VVT / cam phaser actuator) routes to `VVT_HISTORY`. DTC P0100–P0115 (MAF, MAP, IAT circuits) routes to `LEAN_HISTORY`. DTC P0116–P0128 (ECT / thermostat) routes to `THERMAL_HISTORY`. DTC P0130–P0167 (O₂ sensor circuits and heaters) routes to `O2_HISTORY`. DTC P0171 and P0174 (fuel-system lean) routes to `LEAN_HISTORY`. DTC P0172 and P0175 (fuel-system rich) routes to `RICH_HISTORY`. DTC P0200–P0212 (injector circuit / performance) routes to `INJECTOR_HISTORY`. DTC P0230–P0233 (fuel pump primary) routes to `LEAN_HISTORY`. DTC P0234, P0299 and P0235–P0245 (turbo / boost) routes to `BOOST_HISTORY`. DTC P0300–P0312 (misfire), P0335 / P0340 (CKP / CMP) and P0351–P0358 (ignition coils) route to `MISFIRE_HISTORY`. DTC P0325–P0334 (knock sensor) routes to `KNOCK_HISTORY`. DTC P0400–P0409 (EGR flow) routes to `EGR_HISTORY`. DTC P0420 and P0430 (catalyst efficiency) routes to `CATALYST_HISTORY`. DTC P0440–P0459 (EVAP system) routes to `EVAP_HISTORY`. DTC P0505–P0511 (idle air control) routes to `IDLE_CONTROL_HISTORY`. DTC P0562, P0563, P0600 and P0641–P0643 (system voltage, serial link, sensor reference) route to `ECU_INTERNAL_HISTORY`. `POA_HISTORY` has no direct DTC and is injected by COMLab when GASLab reports `chemical_state == "POA_SIGNATURE"` (T-FX-3). DTC P0128/P0117 (thermostat/ECT) in OL_FAULT routes to `COOLANT_SYSTEM_MALFUNCTION` (cross-field: requires both DTC match and fuel_status == OL_FAULT). DTC P030x (misfire) in CL routes to `CYLINDER_FLUID_MISFIRE` (cross-field: requires both DTC starts-with P030 and fuel_status == CL).
+DTC P0010–P0023 (VVT / cam phaser actuator) routes to `VVT_HISTORY`. DTC P0100–P0115 (MAF, MAP, IAT circuits) routes to `LEAN_HISTORY`. DTC P0116–P0128 (ECT / thermostat) routes to `THERMAL_HISTORY`. DTC P0130–P0167 (O₂ sensor circuits and heaters) routes to `O2_HISTORY`. DTC P0171 and P0174 (fuel-system lean) routes to `LEAN_HISTORY`. DTC P0172 and P0175 (fuel-system rich) routes to `RICH_HISTORY`. DTC P0200–P0212 (injector circuit / performance) routes to `INJECTOR_HISTORY`. DTC P0230–P0233 (fuel pump primary) routes to `LEAN_HISTORY`. DTC P0234, P0299 and P0235–P0245 (turbo / boost) routes to `BOOST_HISTORY`. DTC P0300–P0312 (misfire), P0335 / P0340 (CKP / CMP) and P0351–P0358 (ignition coils) route to `MISFIRE_HISTORY`. DTC P0325–P0334 (knock sensor) routes to `KNOCK_HISTORY`. DTC P0400–P0409 (EGR flow) routes to `EGR_HISTORY`. DTC P0420 and P0430 (catalyst efficiency) routes to `CATALYST_HISTORY`. DTC P0440–P0459 (EVAP system) routes to `EVAP_HISTORY`. DTC P0505–P0511 (idle air control) routes to `IDLE_CONTROL_HISTORY`. DTC P0562, P0563, P0600, P0601–P0606 and P0641–P0643 (system voltage, serial link, ECU processor, sensor reference) route to `ECU_INTERNAL_HISTORY`. `POA_HISTORY` has no direct DTC and is injected by COMLab when GASLab reports `chemical_state == "POA_SIGNATURE"` (T-FX-3). DTC P0128/P0117 (thermostat/ECT) in OL_FAULT routes to `COOLANT_SYSTEM_MALFUNCTION` (cross-field: requires both DTC match and fuel_status == OL_FAULT). DTC P030x (misfire) in CL routes to `CYLINDER_FLUID_MISFIRE` (cross-field: requires both DTC starts-with P030 and fuel_status == CL).
 
 All 17 `DTCRoutingTag` values therefore have at least one explicit routing relation above: `LEAN_HISTORY`, `RICH_HISTORY`, `MISFIRE_HISTORY`, `CATALYST_HISTORY`, `EGR_HISTORY`, `O2_HISTORY`, `INJECTOR_HISTORY`, `VVT_HISTORY`, `EVAP_HISTORY`, `THERMAL_HISTORY`, `ECU_INTERNAL_HISTORY`, `POA_HISTORY`, `IDLE_CONTROL_HISTORY`, `BOOST_HISTORY`, `KNOCK_HISTORY`, `COOLANT_SYSTEM_MALFUNCTION`, `CYLINDER_FLUID_MISFIRE`.
 
@@ -341,7 +341,8 @@ Mode `$02` snapshot at fault confirmation. **All freeze-frame field names are ba
 | `throttle_pos_pct` | `$11` | float | % | `ge=0, le=100` |
 | `fuel_system_status` | `$03` | `FuelSystemStatus` | enum | enum-validated |
 
-Missing any field → mark payload `FREEZE_FRAME_INCOMPLETE` and degrade confidence.
+Missing any field → the extractor raises `FreezeFrameIncompleteError`; the composition checks the same
+fields first and aborts the session with `FREEZE_FRAME_INCOMPLETE`.
 
 ### 12.2 Extended PIDs — optional
 

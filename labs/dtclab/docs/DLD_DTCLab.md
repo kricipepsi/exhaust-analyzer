@@ -23,7 +23,7 @@ consumers:
   - "comlab: labs/comlab/comlab/core/fault_atlas_router.py DTCRoutingTag routing"
   - "comlab: labs/comlab/comlab/core/lab_pipeline_aggregator.py DTCLabPayload integration"
   - "comlab: labs/comlab/comlab/core/perception_contradiction.py rich_dtc_present (P0172/P0175) gate"
-  - "wired (pending T-WIRE-1): apps/wired/wired/composition.py DTCLabPayload mapping"
+  - "wired: apps/wired/wired/composition.py DTCLabPayload mapping (calls the sanitizer)"
 drift_guards:
   - "labs/dtclab/tests/unit/test_dtc_ingestion_gate.py"
   - "labs/dtclab/tests/unit/test_freeze_frame_extractor.py"
@@ -48,9 +48,9 @@ source: "labs/dtclab/docs/DLD_DTCLab.md"
 **Date:** 2026-06-11
 
 > **v2.0 reconciliation note.** Reconciled to the shipped `dtclab/` package. Material
-> changes from v1.0: `DTCRoutingTag` is **18** members (drop `SAI_HISTORY`; add
-> `COOLANT_SYSTEM_MALFUNCTION`, `CYLINDER_FLUID_MISFIRE`); `DtcEmissionsView` has **3**
-> fields; **5** DNA-gated YAML entries; new package-root modules `family_map.py` and
+> changes from v1.0: `DTCRoutingTag` is **17** members (drop `SAI_HISTORY`; add
+> `COOLANT_SYSTEM_MALFUNCTION`, `CYLINDER_FLUID_MISFIRE`); `DtcEmissionsView` has **2**
+> fields; **3** DNA-gated YAML entries; new package-root modules `family_map.py` and
 > `ranking.py` documented (§15–§16).
 
 ---
@@ -81,7 +81,7 @@ dtclab/
 ```
 
 `__init__.py` re-exports only `DataFusionSanitizer` (`__all__ = ["DataFusionSanitizer"]`). The
-Phase-2 scorer is imported directly from `dtclab.ranking` by the Wired adapter (`T-DTW-1`).
+Phase-2 scorer is importable from `dtclab.ranking`; the Phase-2 scorer (`rank_candidates` / `classify_top3`) has no production caller: the composition does not call it (T-AUD-15).
 
 ---
 
@@ -94,7 +94,7 @@ All enums are `StrEnum`. Source: `DTC_VOCABULARY.md` (drift-guarded by `test_voc
 | `DTCRoutingTag` | `LEAN_HISTORY`, `RICH_HISTORY`, `MISFIRE_HISTORY`, `CATALYST_HISTORY`, `EGR_HISTORY`, `O2_HISTORY`, `INJECTOR_HISTORY`, `VVT_HISTORY`, `EVAP_HISTORY`, `THERMAL_HISTORY`, `ECU_INTERNAL_HISTORY`, `POA_HISTORY`, `IDLE_CONTROL_HISTORY`, `BOOST_HISTORY`, `KNOCK_HISTORY`, `COOLANT_SYSTEM_MALFUNCTION`, `CYLINDER_FLUID_MISFIRE` (**17**) |
 | `DTCSeverityClass` | `A`, `B`, `C`, `D` (SAE J2012) — enum only; no loader (reserved) |
 | `DTCState` | `PENDING`, `CONFIRMED`, `PERMANENT` — reserved contract surface; not read by production code |
-| `Mode06MonitorState` | `PASSED`, `PENDING_FAIL_MARGINAL`, `CRITICAL_FAIL` |
+| `Mode06MonitorState` | `PASSED`, `PENDING_FAIL_MARGINAL`, `CRITICAL_FAIL`, `MONITOR_ABORTED` |
 | `FuelSystemStatus` | `CL`, `OL`, `OL_DRIVE`, `OL_FAULT` |
 | `HistoricalFaultContext` | `HISTORICAL_IDLE_FAULT`, `HISTORICAL_LOAD_FAULT`, `COLD_START_TRANSIT_FAULT`, `UNKNOWN` |
 
@@ -188,7 +188,7 @@ Validators: `_validate_dtc_list` (three DTC lists), `_validate_routing_tags` (mo
 7 optional extended PIDs: `short_term_ft2`, `long_term_ft2`, `o2_voltage_b1s1`,
 `barometric_pressure_kpa`, `commanded_egr_pct`, `run_time_since_start_sec`, `fuel_level_pct`.
 
-6 derived symptom flags (all `bool`, default `False`): `ff_open_loop_at_fault`,
+7 derived symptom flags (all `bool`, default `False`): `ff_open_loop_at_fault`,
 `ff_load_high_at_low_rpm`, `ff_ect_warmup`, `ff_iat_ect_biased`, `ff_timing_retard_severe`,
 `ff_codes_cleared_invalidated`.
 
@@ -281,7 +281,7 @@ margin > 15       → PASSED
 
 ```
 1. Validate mid_key against MID_KEY_PATTERN → ValueError on miss
-2. state = classify_margin(margin_pct)
+2. state = MONITOR_ABORTED if monitor_incomplete else classify_margin(margin_pct)
 3. mid_hex = mid_key.split("_")[1]            # "MID_21_TID_81" → "21"
 4. dictionary = _load_dictionary(dictionary_path)   # @lru_cache(maxsize=4)
 5. component = _lookup_component(mid_hex, dictionary)   # "UNKNOWN" if absent
@@ -329,7 +329,7 @@ confidence == HIGH    → _check_high_confidence_gate(gate_name)
 unknown         → True + logger.warning("unknown_dna_gate")   # fail-open
 ```
 
-Exactly three named gates. `POA_HISTORY` is never produced here.
+Exactly two named gates (`egr_equipped`, `has_catalyst`). `POA_HISTORY` is never produced here.
 
 ---
 
@@ -426,7 +426,7 @@ entries:
     [dna_gate: <gate_name>]
 ```
 
-**32 entries total — 27 ungated, 5 DNA-gated:**
+**30 entries total — 27 ungated, 3 DNA-gated:**
 
 | Patterns | Tag | Gate |
 |---------|-----|------|
