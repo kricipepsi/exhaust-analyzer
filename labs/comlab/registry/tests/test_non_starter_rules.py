@@ -401,11 +401,19 @@ def test_real003_has_competing_rules():
 
 
 def test_ns005_crank_sync_dtc_gating():
-    """NS-005 (T-COMA-3a): P0335/P0336 any_match GATING, rpm < 600 SUGGESTIVE, no chemistry gate."""
+    """NS-005 (T-COMA-3a): P0335/P0336 any_match GATING, rpm < 600 SUGGESTIVE; LEAN_MISFIRE SUGGESTIVE (T-COMA-3b)."""
     rule = next(r for r in _load_ruleset().rules if r.rule_id == "NS-005")
     assert rule.fault_family == FaultFamily.NON_STARTER
-    assert not rule.chemistry_evidence
+    assert [(c.state, c.tier) for c in rule.chemistry_evidence] == [("LEAN_MISFIRE", EvidenceTier.SUGGESTIVE)]
     assert [(set(d.dtc_codes), d.tier) for d in rule.dtc_evidence] == [({"P0335", "P0336"}, EvidenceTier.GATING)]
     assert any(o.pid == "rpm" and o.operator == "lt" and o.value == 600 and o.tier == EvidenceTier.SUGGESTIVE
                for o in rule.obd_evidence)
     assert rule.passes_cases == ["case_040"]
+
+
+def test_component_dtc_rules_outrank_ns001():
+    """T-COMA-3b: NS-004 and NS-005 (base 0.8, ceiling 0.9) outrank NS-001 (ceiling 0.85) when both fire."""
+    rules = {r.rule_id: r for r in _load_ruleset().rules}
+    for rid in ("NS-004", "NS-005"):
+        assert (rules[rid].base_weight, rules[rid].confidence_ceiling) == (0.8, 0.9)
+        assert rules[rid].confidence_ceiling > rules["NS-001"].confidence_ceiling

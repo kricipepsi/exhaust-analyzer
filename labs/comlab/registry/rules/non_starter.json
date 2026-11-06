@@ -181,7 +181,7 @@
     {
       "rule_id": "NS-004",
       "fault_family": "non_starter",
-      "description": "DTC-driven fuel-delivery no-start: fuel pump circuit failure (P0230), low rail pressure (P0087), or rail pressure sensor fault (P0190) directly explains a no-start. DTC-primary rule \u2014 the DTC any_match is GATING, no chemistry gate. Chemistry LEAN_MISFIRE accepted as SUGGESTIVE (lean no-start is consistent with fuel starvation). confidence_ceiling applied because DTC-only rules lack chemistry confirmation \u2014 this is a fallback path that should not outcompete chemistry-primary rules NS-001/NS-003. v1 had no equivalent DTC-driven non_starter rule",
+      "description": "DTC-driven fuel-delivery no-start: fuel pump circuit failure (P0230), low rail pressure (P0087), or rail pressure sensor fault (P0190) directly explains a no-start. DTC-primary rule \u2014 the DTC any_match is GATING, no chemistry gate. Chemistry LEAN_MISFIRE accepted as SUGGESTIVE (lean no-start is consistent with fuel starvation). base_weight 0.8 and confidence_ceiling 0.9 (T-COMA-3b): a DTC that names the failed component outranks the generic lean no-start NS-001 (ceiling 0.85), whose chemistry it shares. v1 had no equivalent DTC-driven non_starter rule",
       "chemistry_evidence": [
         {
           "state": "LEAN_MISFIRE",
@@ -211,9 +211,9 @@
           "wiki_ref": "DTC_VOCABULARY \u00a74"
         }
       ],
-      "base_weight": 0.7,
+      "base_weight": 0.8,
       "competition_group": "non_starter",
-      "confidence_ceiling": 0.8,
+      "confidence_ceiling": 0.9,
       "passes_cases": [
         "case_006"
       ],
@@ -226,8 +226,14 @@
     {
       "rule_id": "NS-005",
       "fault_family": "non_starter",
-      "description": "DTC-driven crank-sync no-start: crankshaft position sensor circuit (P0335) or range/performance (P0336). Without a crank signal the ECU fires neither spark nor injectors, so the engine cranks but never fires. DTC-primary rule: the DTC any_match is GATING and there is no chemistry gate (a dead CKP leaves near-atmospheric exhaust). confidence_ceiling as NS-004: a DTC-only fallback path. P0340 (CMP) is not listed: many engines start on crank sync alone (T-COMA-3a).",
-      "chemistry_evidence": [],
+      "description": "DTC-driven crank-sync no-start: crankshaft position sensor circuit (P0335) or range/performance (P0336). Without a crank signal the ECU fires neither spark nor injectors, so the engine cranks but never fires. DTC-primary rule: the DTC any_match is GATING; LEAN_MISFIRE is SUGGESTIVE (a dead CKP leaves near-atmospheric exhaust). base_weight and confidence_ceiling as NS-004 (T-COMA-3b): the component DTC outranks the generic NS-001. P0340 (CMP) is not listed: many engines start on crank sync alone (T-COMA-3a).",
+      "chemistry_evidence": [
+        {
+          "state": "LEAN_MISFIRE",
+          "tier": "SUGGESTIVE",
+          "wiki_ref": "GAS_VOCABULARY \u00a73"
+        }
+      ],
       "obd_evidence": [
         {
           "pid": "rpm",
@@ -249,9 +255,9 @@
           "wiki_ref": "DTC_VOCABULARY \u00a74"
         }
       ],
-      "base_weight": 0.7,
+      "base_weight": 0.8,
       "competition_group": "non_starter",
-      "confidence_ceiling": 0.8,
+      "confidence_ceiling": 0.9,
       "passes_cases": [
         "case_040"
       ],

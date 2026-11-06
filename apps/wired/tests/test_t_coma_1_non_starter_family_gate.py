@@ -18,7 +18,6 @@ GASES = {
     "idle_stoich": {"hc": 80, "co": 0.3, "co2": 14.8, "o2": 0.3, "nox": 50},
     "idle_rich": {"hc": 600, "co": 4.0, "co2": 11.5, "o2": 0.2, "nox": 20},
     "idle_lean": {"hc": 300, "co": 0.1, "co2": 12.0, "o2": 4.0, "nox": 30},
-    "crank_lean": {"hc": 2500, "co": 0.2, "co2": 2.0, "o2": 18.0, "nox": 0},
 }
 
 
@@ -42,7 +41,7 @@ def test_non_starter_dtc_rule_wins() -> None:
     raw = {cid: r for cid, r, *_ in load_corpus()}["case_006"]
     v = diagnose(raw).diagnostic_verdict
     assert (v.fault_family, v.fault_code) == ("non_starter", "NS-004")
-    assert v.confidence_score == pytest.approx(0.85)
+    assert v.confidence_score == pytest.approx(1.0)  # T-COMA-3b: NS-004 base 0.8, ceiling 0.9
     assert v.abstained is False and v.abstain_reason is None
 
 

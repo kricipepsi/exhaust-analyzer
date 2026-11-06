@@ -214,7 +214,9 @@ def _diagnose(
         return LabPipelineAggregator(enable_fatal_gates=enable_fatal_gates).abort_incomplete(
             metadata, error_code, message
         )
-    gas_output = None if _gasless_non_starter(triage, gas_inputs) else _run_gaslab(gas_inputs, vin_dna)
+    gas_output = None if _gasless_non_starter(triage, gas_inputs) else _run_gaslab(
+        gas_inputs, vin_dna, cranking=triage.get("engine_state") == _NON_STARTER
+    )
     obd_output = (
         _run_obdlab(_with_user_dtcs(_as_dict(obd_inputs), dtc_inputs), vin_dna)
         if obd_inputs is not None
@@ -393,7 +395,7 @@ def _build_metadata(vin_dna: dict[str, Any]) -> SessionMetadata:
     )
 
 
-def _run_gaslab(gas_inputs: dict[str, Any], vin_dna: dict[str, Any]) -> COMGasLabPayload:
+def _run_gaslab(gas_inputs: dict[str, Any], vin_dna: dict[str, Any], cranking: bool = False) -> COMGasLabPayload:
     """Run GASLab and map its output into COMLab's ``GasLabPayload`` mirror."""
     reading = GasReading(
         hc=int(gas_inputs["hc"]),
@@ -423,7 +425,10 @@ def _run_gaslab(gas_inputs: dict[str, Any], vin_dna: dict[str, Any]) -> COMGasLa
             coc_co_low_idle=gas_inputs.get("coc_co_low_idle"),
             coc_co_high_idle=gas_inputs.get("coc_co_high_idle"),
         ),
-        engine_state=GASEngineStateBucket(gas_inputs.get("engine_state", "STABILIZED_IDLE")),
+        # T-COMA-3b: a will_not_start sample is a cranking sample, whatever the gas form says
+        engine_state=GASEngineStateBucket.CRANKING
+        if cranking
+        else GASEngineStateBucket(gas_inputs.get("engine_state", "STABILIZED_IDLE")),
         lambda_measured=gas_inputs.get("lambda_measured"),
         block_test_passed=bool(gas_inputs.get("block_test_passed", False)),
         reading_high=high_reading,

@@ -100,6 +100,7 @@ class EngineStateBucket(StrEnum):
     REGULATORY_HIGH_IDLE = "REGULATORY_HIGH_IDLE"
     STRESS_IDLE = "STRESS_IDLE"
     COLD_OPEN_LOOP_INVALID = "COLD_OPEN_LOOP_INVALID"
+    CRANKING = "CRANKING"  # vocab: GAS_VOCABULARY §7 — GASLab-only; set by the composition for will_not_start
 
 
 class GasBehavior(StrEnum):

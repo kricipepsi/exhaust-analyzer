@@ -58,7 +58,7 @@ Rapid sanity check: `[CO] + [CO₂] > 6 %`. An undiluted sample always satisfies
 
 ### 4.3 The cranking / ambient-air shape {#GATE_CRANKING_SHAPE}
 
-HC ≈ 0, CO ≈ 0, CO₂ ≈ 0.04 %, O₂ ≈ 20.9 % gives a triangle sum ≈ 20.94 %, rejected as `INVALID`. There is no separate "no combustion" fault class — the triangle subsumes it (the envelope requires a warm running engine).
+HC ≈ 0, CO ≈ 0, CO₂ ≈ 0.04 %, O₂ ≈ 20.9 % gives a triangle sum ≈ 20.94 %. At a running-engine bucket the triangle rejects it as `INVALID` (the envelope requires a warm running engine). At the `CRANKING` bucket (a `will_not_start` session) the triangle and dilution gates do not run: no combustion is the finding, not a probe fault (→ RULE_CRANKING).
 
 ### 4.4 Pre-cat air leak vs sample-handling error {#CONCEPT_LEAK_VS_SAMPLING}
 
@@ -183,7 +183,16 @@ Most likely candidates: upstream O₂ sensor skewed, exhaust leak upstream of th
 
 ### 4.14 The cranking-shape rule {#RULE_CRANKING}
 
-Handled by the triangle gate (→ GATE_CRANKING_SHAPE). No separate "no combustion" class exists because the envelope requires a warm running engine.
+At the `CRANKING` bucket only (GAS_VOCABULARY §7), GASLab skips §4.1 and §4.2 and classifies the sample in this order:
+
+| Condition (vol %) | `chemical_state` | `sample_validity` |
+|---|---|---|
+| CO₂ ≥ 8.0 | `SAMPLE_INVALID` (running-engine combustion contradicts the no-start) | `INVALID` |
+| CO ≥ 1.5 (GAS_VOCABULARY §10.2 `clear_rich.min`) | `RICH_MISFIRE` (fuel arrives, does not burn: flooded) | `VALID` |
+| CO₂ < 5.0 (GAS_VOCABULARY §10.3 `total_quench.max`) | `LEAN_MISFIRE` (no fuel, or too little fuel, burns) | `VALID` |
+| otherwise (5.0 ≤ CO₂ < 8.0) | `INCOMPLETE_COMBUSTION` (some combustion, the engine does not run) | `VALID` |
+
+COMLab's `non_starter` rules NS-001..NS-003 gate on these three states. The four running-engine buckets keep §4.1 and §4.2 unchanged.
 
 ## Graph relations (explicit)
 
@@ -191,7 +200,9 @@ Handled by the triangle gate (→ GATE_CRANKING_SHAPE). No separate "no combusti
 **GATE_TRIANGLE** CONSUMED_BY **gaslab.validity_gates.sample_validity**
 **GATE_DILUTION** VALIDATES **sample_validity** — rapid CO+CO₂ > 6 % check
 **GATE_DILUTION** CONSUMED_BY **gaslab.validity_gates.sample_validity**
-**GATE_CRANKING_SHAPE** SUBSUMED_BY **GATE_TRIANGLE** (sum ≈ 20.94 % → INVALID)
+**GATE_CRANKING_SHAPE** SUBSUMED_BY **GATE_TRIANGLE** (sum ≈ 20.94 % → INVALID) at the running-engine buckets
+**RULE_CRANKING** REPLACES **GATE_TRIANGLE** and **GATE_DILUTION** at the CRANKING bucket
+**RULE_CRANKING** CONSUMED_BY **gaslab.rule_engine._cranking_signature**
 **CONCEPT_LEAK_VS_SAMPLING** DISAMBIGUATED_BY **STFT** (OBD) and **TEST_PROBE_OCCLUSION**
 **CONCEPT_LEAK_VS_SAMPLING** ROUTES_TO **FAULT_EXHAUST_AIR_LEAK** when leak confirmed physical
 **RULE_SEESAW** DISAMBIGUATED_BY **CO up + O₂ down → rich**, **CO down + O₂ up → lean**, **CO up + O₂ up → COLLISION**

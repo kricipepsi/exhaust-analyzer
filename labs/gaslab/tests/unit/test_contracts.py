@@ -78,8 +78,8 @@ def test_engine_state_bucket_invalid_state() -> None:
     assert EngineStateBucket.COLD_OPEN_LOOP_INVALID == "COLD_OPEN_LOOP_INVALID"
 
 
-def test_engine_state_bucket_has_four_values() -> None:
-    assert len(EngineStateBucket) == 4  # vocab: GAS_VOCABULARY §7
+def test_engine_state_bucket_has_five_values() -> None:
+    assert len(EngineStateBucket) == 5  # vocab: GAS_VOCABULARY §7 — CRANKING added by T-COMA-3b
 
 
 # ---------------------------------------------------------------------------

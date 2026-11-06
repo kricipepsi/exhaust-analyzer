@@ -378,6 +378,26 @@ def _definitive_match(
     return None
 
 
+def _cranking_signature(reading: GasReading) -> tuple[ChemicalSignature, SampleValidity]:
+    """Classify a cranking (will_not_start) sample.  Source: ``GAS_WIKI §4.14``.
+
+    The triangle and dilution gates do not apply: no combustion is the finding.
+    A running-engine CO2 contradicts the no-start, so that sample stays invalid.
+    """
+    if reading.co2 >= 8.0:  # wiki: GAS_WIKI §4.14 — running-engine combustion, not a cranking sample
+        return ChemicalSignature.SAMPLE_INVALID, SampleValidity.INVALID
+    return _cranking_state(reading), SampleValidity.VALID
+
+
+def _cranking_state(reading: GasReading) -> ChemicalSignature:
+    """Cranking chemistry by CO, then CO2.  Source: ``GAS_WIKI §4.14``."""
+    if reading.co >= 1.5:  # vocab: GAS_VOCABULARY §10.2 clear_rich.min — fuel arrives, does not burn
+        return ChemicalSignature.RICH_MISFIRE
+    if reading.co2 < 5.0:  # vocab: GAS_VOCABULARY §10.3 total_quench.max — no or too little fuel burns
+        return ChemicalSignature.LEAN_MISFIRE
+    return ChemicalSignature.INCOMPLETE_COMBUSTION  # some combustion, engine does not run
+
+
 def classify(
     reading: GasReading,
     dna: GasLabDnaView,
@@ -391,6 +411,10 @@ def classify(
 
     Source: ``GAS_WIKI §6`` traversal diagram.
     """
+    # Step 0: a cranking sample is a no-start sample, not a running-engine one — wiki: GAS_WIKI §4.14
+    if engine_state == EngineStateBucket.CRANKING:
+        return _cranking_signature(reading)
+
     # Step 1: validity gates — wiki: GAS_WIKI §6
     validity = sample_validity(reading)
 

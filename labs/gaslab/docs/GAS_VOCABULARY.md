@@ -273,7 +273,7 @@ Implementation lives in `gaslab/brettschneider.py` (when the new code lands). Th
 
 ## 7. `EngineStateBucket` enum — alignment with OBD vocabulary
 
-GASLab consumes a bucket label from the UI, identical to OBDLab's RPM bucket vocabulary (`OBD_VOCABULARY.md` §3.3). Repeated here so GASLab is independently complete:
+GASLab consumes a bucket label from the UI. The first four values are identical to OBDLab's RPM bucket vocabulary (`OBD_VOCABULARY.md` §3.3); `CRANKING` is GASLab-only. Repeated here so GASLab is independently complete:
 
 ```python
 class EngineStateBucket(StrEnum):
@@ -281,6 +281,7 @@ class EngineStateBucket(StrEnum):
     REGULATORY_HIGH_IDLE     = "REGULATORY_HIGH_IDLE"
     STRESS_IDLE              = "STRESS_IDLE"
     COLD_OPEN_LOOP_INVALID   = "COLD_OPEN_LOOP_INVALID"
+    CRANKING                 = "CRANKING"
 ```
 
 | Bucket | RPM band | Load | GASLab use |
@@ -289,6 +290,7 @@ class EngineStateBucket(StrEnum):
 | `REGULATORY_HIGH_IDLE` | 2200 – 2800 | 15 – 40 % | UK MOT 2500-RPM point; CO + HC tighter limits |
 | `STRESS_IDLE` | 3500 – 4500 (VIN) | 40 – 60 % | Clinical diagnostic; required for RPM-differential signatures (§7.18, §7.21, §7.22) |
 | `COLD_OPEN_LOOP_INVALID` | any | any | **Rejected** — outside GASLab operating envelope (warm engines only) |
+| `CRANKING` | < 600 (cranking) | — | GASLab-only. The composition sets it for a `will_not_start` session, whatever the gas form says. The triangle and dilution gates do not run; the cranking-shape rule (wiki §4.14) gives `RICH_MISFIRE`, `LEAN_MISFIRE`, `INCOMPLETE_COMBUSTION` or, for CO₂ ≥ 8 %, `SAMPLE_INVALID` |
 
 A `COLD_OPEN_LOOP_INVALID` input causes GASLab to emit `chemical_state = SAMPLE_INVALID` with reason "engine not warm enough for valid sample".
 
@@ -689,6 +691,7 @@ Verdicts for PCV and turbocharger seals are determined on the live path by the r
 | **v2.1** | **2026-06-03** | **Timing-taxonomy revision (source: `q1&7/Advanced Engineering Analysis of Petrol Engine Timings (1990–2010)`).** Retired `WRONG_VALVE_TIMING`; added system-specific cam-timing values `CAM_TIMING_RETARDED_MAP`, `CAM_TIMING_RETARDED_MAF`, `CAM_TIMING_ADVANCED` (§3). Contract surface 32 → **34**. Consumer: COMLab `chemical_state` routing / fault-atlas (06B). This is a **breaking enum change** (§18.2) requiring a coordinated update of `OBD_VOCABULARY.md §17`, `SEMANTIC_CONTRACT.md`, the COMLab schema, and `resolution.py` rule bindings — those land in a later cross-lab session. |
 | **v2.2** | **2026-06-10** | **Combustion-integrity derived metrics.** Added `chemical_efficiency = CO₂/(CO₂+CO)` and qualitative `oxygen_usage` O₂-vs-CO discriminator (§10.9), with internal-vs-emitted rows (§15). No `ChemicalSignature` value, payload field, enum, or 34-value contract surface changed. |
 | (concept) | 2026-06-10 | **Healthy-catalyst masking limitation.** Added GASWIKI-07 §7.8 `CONCEPT_HEALTHY_CAT_MASKING` plus the §9 `CatalystStatus` caveat: `LIT_AND_WORKING` names the catalyst state, not an engine-health verdict. `Catalyst_Masking_Rich` remains a COMLab candidate named in prose, not a GASLab `ChemicalSignature` value. No enum member, threshold, payload field, or 34-value contract surface changed. |
+| **v2.3** | **2026-11-06** | **Cranking bucket (T-COMA-3b).** `EngineStateBucket` gains the GASLab-only `CRANKING` (§7), set by the composition for a `will_not_start` session; wiki §4.3/§4.14 define the cranking-shape rule. No `ChemicalSignature` value, payload field or 34-value contract surface changed; OBDLab's and COMLab's bucket enums are unchanged. |
 | (doc) | 2026-06-10 | **Single-file `GAS_WIKI.md` mirror retired to ARCHIVE.** The chunked set (`wiki/00`–`11`) is now the sole canonical wiki form; references updated in §Status, §Anchored-to, §17 sources, and the §18.3 no-drift rule. No vocabulary member, threshold, or contract surface changed (no version bump). |
 
 ---
