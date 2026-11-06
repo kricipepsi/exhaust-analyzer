@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-4q` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 2 | NO | 20-40 min | retire comlab projector |
+| `T-AUD-4r` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 2 | NO | 20-40 min | inputs reach a reader |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-4q` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — COMLab's DNA projector (`comlab/projection.py`, `comlab/schemas/lab_dna_views.py`) has no production caller, builds a DTC view that DTCLab rejects (F-D2-10) and misreads the LLD §3.2 shape (F-D2-11).
-  `repo\apps\wired\audit_tasks/T-AUD-4q_retire_comlab_projector(2).md`
+**`T-AUD-4r` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — Every input the form offers reaches a reader (AGENTS.md rule 4).
+  `repo\apps\wired\audit_tasks/T-AUD-4r_inputs_reach_a_reader(2).md`
 
 ## Distribution
 
-- **2/5** — 1: T-AUD-4q
+- **2/5** — 1: T-AUD-4r
