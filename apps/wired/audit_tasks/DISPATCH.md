@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-4p` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 2 | NO | 20-40 min | unread fields |
+| `T-AUD-4s` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 2 | NO | 20-40 min | raw obd ranges |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-4p` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — No COMLab mirror field claims a consumer it does not have (AGENTS.md rule 4).
-  `repo\apps\wired\audit_tasks/T-AUD-4p_unread_fields(2).md`
+**`T-AUD-4s` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — The 31 numeric OBD channels that `_run_obdlab` copies straight from the raw input are range-checked with the UI form's ranges.
+  `repo\apps\wired\audit_tasks/T-AUD-4s_raw_obd_ranges(3).md`
 
 ## Distribution
 
-- **2/5** — 1: T-AUD-4p
+- **3/5** — 1: T-AUD-4s
