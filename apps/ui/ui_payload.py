@@ -194,12 +194,6 @@ FIELD_HELP: dict[str, FieldHelp] = {
         explanation="The engine operating state when the symptom is observed.",
         options=["Running", "Cranking", "Won't start"]
     ),
-    "symptom_misfire_cylinder": FieldHelp(
-        explanation="The specific engine cylinder identified as misfiring.",
-        min_val=1,
-        max_val=4, # Baseline limit, dynamic cap applies in UI
-        unit="cylinder"
-    ),
     # Low Idle Gas
     "gas_co": FieldHelp(
         explanation="Tailpipe carbon monoxide concentration used for combustion efficiency analysis.",
@@ -1130,18 +1124,6 @@ def build_diagnose_payload(widgets: dict[str, Any]) -> dict[str, Any]:
         if fss:
             obd["fuel_sys_status"] = str(fss)
             
-        # Symptom Misfire cylinder counts (slider to single-cylinder dict)
-        t1_ui = widgets.get("triage_tier_1")
-        if widgets.get("dna_module") and t1_ui == "🔧 Rough Idle / Shudder":
-            misfire_cyl = widgets.get("symptom_misfire_cylinder")
-            if misfire_cyl:
-                # set Nth cylinder to 40 misfires, others to 0 up to active cylinder count
-                cyl_count = int(widgets.get("active_cylinder_count") or 4)
-                counts = {}
-                for c in range(1, cyl_count + 1):
-                    counts[c] = 40 if c == int(misfire_cyl) else 0
-                obd["per_cylinder_misfire_counts"] = counts
-
         # Advanced C2..C9 columns (ferried straight to obd)
         for field in (
             "mode06_catalyst_margin_pct",
@@ -1188,13 +1170,8 @@ def build_diagnose_payload(widgets: dict[str, Any]) -> dict[str, Any]:
             elif val_bool == "False":
                 obd[field] = False
                 
-    # Sent only when a live OBD value is typed: the bank count, the None bank-2 placeholders
-    # and the symptom-derived misfire counts do not count.
-    if any(
-        value is not None
-        for key, value in obd.items()
-        if key not in ("number_of_banks", "per_cylinder_misfire_counts")
-    ):
+    # Sent only when a live OBD value is typed: the bank count and the None bank-2 placeholders do not count.
+    if any(value is not None for key, value in obd.items() if key != "number_of_banks"):
         raw_inputs["obd"] = obd
 
     # 6. DTC

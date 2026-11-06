@@ -394,7 +394,6 @@ with st.sidebar:
     # Symptom expander
     triage_tier_1 = "—"
     triage_tier_2 = "—"
-    misfire_cyl = None
     triage_free_text_notes = ""
     triage_occurs_during = "Always"
     triage_engine_state = "Running"
@@ -430,16 +429,6 @@ with st.sidebar:
                         allowed_t2 += ["Blue smoke on cold start that clears", "Blue smoke under acceleration", "Oil loss without visible smoke"]
                     
                     triage_tier_2 = st.selectbox("Subfield filter (Tier 2)", options=allowed_t2, index=0, help=FIELD_HELP["triage_tier_2"].get_tooltip())
-                    
-                    # Rough Idle gets misfire slider
-                    if triage_tier_1 == "🔧 Rough Idle / Shudder":
-                        misfire_cyl = st.slider(
-                            "Misfiring cylinder",
-                            min_value=1,
-                            max_value=active_cylinder_count,
-                            value=1,
-                            help=FIELD_HELP["symptom_misfire_cylinder"].get_tooltip()
-                        )
             
             triage_occurs_during = _check_radio(["Always", "Cold only", "Hot only", "Intermittent"], "occurs_during", default_index=0, help_text="Occurs during", help_str=FIELD_HELP["triage_occurs_during"].get_tooltip())
             triage_engine_state = _check_radio(["Running", "Cranking", "Won't start"], "engine_state", default_index=0, help_text="Engine state", help_str=FIELD_HELP["triage_engine_state"].get_tooltip())
@@ -824,7 +813,6 @@ if st.button("🔬 Run Diagnostic Seam", type="primary", use_container_width=Tru
         "triage_occurs_during": triage_occurs_during,
         "triage_engine_state": triage_engine_state,
         "triage_free_text_notes": triage_free_text_notes,
-        "symptom_misfire_cylinder": misfire_cyl,
         
         "override_upstream_o2_type": o2_override,
         "override_de_cat": de_cat_override,
