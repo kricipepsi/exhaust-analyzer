@@ -7,6 +7,7 @@ schemas, and returns the verdict from ``LabPipelineAggregator.process()``.
 
 from __future__ import annotations
 
+import math
 import uuid
 from typing import Any
 
@@ -97,6 +98,42 @@ _FREEZE_FRAME_KEYS = (
     "throttle_pos_pct",  # wiki: DTC_VOCABULARY.md §12.1
     "fuel_system_status",  # wiki: DTC_VOCABULARY.md §12.1
 )  # = dtclab freeze_frame_extractor._MANDATORY_PIDS — pinned by tests/test_t_aud_1a_inputs.py
+# T-AUD-4s (F-C4-8): the raw OBD channels COMLab reads straight from the input, never through
+# OBDLab. Each range equals the UI form's (apps/ui/ui_payload.py constants; mode06_min_margin_pct
+# is app.py's literal) — pinned by apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py.
+_OBD_RAW_RANGES: dict[str, tuple[float, float, type]] = {
+    "mode06_catalyst_margin_pct": (-1000.0, 100.0, float),
+    "catalyst_index_ratio": (0.0, 2.0, float),
+    "stft_idle_pct": (-127.0, 127.0, float),
+    "ltft_idle_pct": (-127.0, 127.0, float),
+    "stft_2500_pct": (-127.0, 127.0, float),
+    "ltft_2500_pct": (-127.0, 127.0, float),
+    "mode06_o2_response_margin_pct": (0.0, 100.0, float),
+    "maf_actual_calc_delta_pct_idle": (-100.0, 100.0, float),
+    "maf_actual_calc_delta_pct_2500": (-100.0, 100.0, float),
+    "maf_gps_idle": (0.0, 500.0, float),
+    "maf_gps_2500": (0.0, 500.0, float),
+    "calc_airflow_gps_idle": (0.0, 500.0, float),
+    "calc_airflow_gps_2500": (0.0, 500.0, float),
+    "koeo_map_baro_delta_kpa": (0.0, 50.0, float),
+    "module_voltage_loaded_v": (0.0, 18.0, float),
+    "dlc_signal_ground_drop_v": (0.0, 5.0, float),
+    "stft_load_pct": (-127.0, 127.0, float),
+    "ltft_load_pct": (-127.0, 127.0, float),
+    "calc_load_wot_pct": (0.0, 100.0, float),
+    "fuel_rail_pressure_load_kpa": (0.0, 250000.0, float),
+    "wideband_lambda_wot": (0.0, 3.0, float),
+    "co2_idle_pct": (0.0, 22.0, float),
+    "tailpipe_o2_elevation_pct": (0.0, 22.0, float),
+    "downstream_o2_v": (0.0, 1.5, float),
+    "propane_trim_shift_pct": (-100.0, 100.0, float),
+    "stored_dtc_count": (0, 100, int),
+    "pending_dtc_count": (0, 100, int),
+    "permanent_dtc_count": (0, 100, int),
+    "mode06_min_margin_pct": (-100.0, 100.0, float),
+    "warmup_cycles_since_clear": (0, 255, int),
+    "miles_since_clear": (0, 65535, int),
+}
 _NON_STARTER = "will_not_start"  # the triage engine_state comlab symptom_router suppresses GASLab on
 
 
@@ -171,6 +208,12 @@ def _diagnose(
         return LabPipelineAggregator(enable_fatal_gates=enable_fatal_gates).abort_incomplete(
             metadata, error_code, message
         )
+    out_of_range = _out_of_range_input(obd_inputs)
+    if out_of_range is not None:
+        error_code, message = out_of_range
+        return LabPipelineAggregator(enable_fatal_gates=enable_fatal_gates).abort_incomplete(
+            metadata, error_code, message
+        )
     gas_output = None if _gasless_non_starter(triage, gas_inputs) else _run_gaslab(gas_inputs, vin_dna)
     obd_output = (
         _run_obdlab(_with_user_dtcs(_as_dict(obd_inputs), dtc_inputs), vin_dna)
@@ -231,6 +274,48 @@ def _symptom_without_vin(triage: dict[str, Any]) -> dict[str, Any]:
 def _missing(inputs: dict[str, Any], keys: tuple[str, ...]) -> list[str]:
     """Return the keys of *keys* that are absent, ``None`` or blank in *inputs*."""
     return [key for key in keys if inputs.get(key) is None or str(inputs[key]).strip() == ""]
+
+
+def _raw_obd_value(obd_inputs: dict[str, Any], key: str) -> float | int | None:
+    """Return the raw OBD channel *key* parsed and range-checked, or ``None`` when absent or blank.
+
+    Raises ``ValueError`` for a value that is not a finite number, not a whole number for an
+    integer channel, or outside ``_OBD_RAW_RANGES[key]`` (T-AUD-4s, F-C4-8).
+    """
+    value = obd_inputs.get(key)
+    if value is None or str(value).strip() == "":
+        return None
+    low, high, kind = _OBD_RAW_RANGES[key]
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        raise ValueError(f"{key}={value!r} is not a number") from None
+    if not math.isfinite(number):
+        raise ValueError(f"{key}={value!r} is not a finite number")
+    if kind is int and not number.is_integer():
+        raise ValueError(f"{key}={value!r} is not a whole number")
+    if not low <= number <= high:
+        raise ValueError(f"{key}={value!r} is outside {low}–{high}")
+    return int(number) if kind is int else number
+
+
+def _out_of_range_input(obd_inputs: Any) -> tuple[str, str] | None:
+    """Return ``("OBD_INPUT_OUT_OF_RANGE", message)`` naming every bad raw OBD channel, or ``None``."""
+    if obd_inputs is None:
+        return None
+    obd = _as_dict(obd_inputs)
+    problems = []
+    for key in _OBD_RAW_RANGES:
+        try:
+            _raw_obd_value(obd, key)
+        except ValueError as exc:
+            problems.append(str(exc))
+    if not problems:
+        return None
+    return (
+        "OBD_INPUT_OUT_OF_RANGE",
+        f"OBD readings out of range: {'; '.join(problems)}. Correct them or leave them blank.",
+    )
 
 
 def _obd_required_keys(obd_inputs: dict[str, Any], vin_dna: dict[str, Any]) -> tuple[str, ...]:
@@ -484,65 +569,65 @@ def _run_obdlab(obd_inputs: dict[str, Any], vin_dna: dict[str, Any]) -> COMOBDLi
         # maf_status/map_status: not mirrored, no reader (F-C4-5, T-AUD-4p)
         freeze_frame_pids=freeze_frame,
         # consumer: fault_atlas_router SF-001/002/003/006/007 O2-voltage evidence
-        mode06_catalyst_margin_pct=float(obd_inputs["mode06_catalyst_margin_pct"]) if obd_inputs.get("mode06_catalyst_margin_pct") is not None and str(obd_inputs["mode06_catalyst_margin_pct"]).strip() != "" else None,
-        catalyst_index_ratio=float(obd_inputs["catalyst_index_ratio"]) if obd_inputs.get("catalyst_index_ratio") is not None and str(obd_inputs["catalyst_index_ratio"]).strip() != "" else None,
-        stft_idle_pct=float(obd_inputs["stft_idle_pct"]) if obd_inputs.get("stft_idle_pct") is not None and str(obd_inputs["stft_idle_pct"]).strip() != "" else None,
-        ltft_idle_pct=float(obd_inputs["ltft_idle_pct"]) if obd_inputs.get("ltft_idle_pct") is not None and str(obd_inputs["ltft_idle_pct"]).strip() != "" else None,
-        stft_2500_pct=float(obd_inputs["stft_2500_pct"]) if obd_inputs.get("stft_2500_pct") is not None and str(obd_inputs["stft_2500_pct"]).strip() != "" else None,
-        ltft_2500_pct=float(obd_inputs["ltft_2500_pct"]) if obd_inputs.get("ltft_2500_pct") is not None and str(obd_inputs["ltft_2500_pct"]).strip() != "" else None,
-        mode06_o2_response_margin_pct=float(obd_inputs["mode06_o2_response_margin_pct"]) if obd_inputs.get("mode06_o2_response_margin_pct") is not None and str(obd_inputs["mode06_o2_response_margin_pct"]).strip() != "" else None,
+        mode06_catalyst_margin_pct=_raw_obd_value(obd_inputs, "mode06_catalyst_margin_pct"),
+        catalyst_index_ratio=_raw_obd_value(obd_inputs, "catalyst_index_ratio"),
+        stft_idle_pct=_raw_obd_value(obd_inputs, "stft_idle_pct"),
+        ltft_idle_pct=_raw_obd_value(obd_inputs, "ltft_idle_pct"),
+        stft_2500_pct=_raw_obd_value(obd_inputs, "stft_2500_pct"),
+        ltft_2500_pct=_raw_obd_value(obd_inputs, "ltft_2500_pct"),
+        mode06_o2_response_margin_pct=_raw_obd_value(obd_inputs, "mode06_o2_response_margin_pct"),
         # consumer: registry integration_shim SensorDynamicsState O2_LAZY_OR_BIASED branch (T-V3-P4-C6B)
-        maf_actual_calc_delta_pct_idle=float(obd_inputs["maf_actual_calc_delta_pct_idle"]) if obd_inputs.get("maf_actual_calc_delta_pct_idle") is not None and str(obd_inputs["maf_actual_calc_delta_pct_idle"]).strip() != "" else None,
+        maf_actual_calc_delta_pct_idle=_raw_obd_value(obd_inputs, "maf_actual_calc_delta_pct_idle"),
         # consumer: registry integration_shim SensorDynamicsState MAF_UNDERREAD branch (T-V3-P4-C6B)
-        maf_actual_calc_delta_pct_2500=float(obd_inputs["maf_actual_calc_delta_pct_2500"]) if obd_inputs.get("maf_actual_calc_delta_pct_2500") is not None and str(obd_inputs["maf_actual_calc_delta_pct_2500"]).strip() != "" else None,
+        maf_actual_calc_delta_pct_2500=_raw_obd_value(obd_inputs, "maf_actual_calc_delta_pct_2500"),
         # consumer: registry integration_shim SensorDynamicsState MAF_UNDERREAD branch (T-V3-P4-C6B)
-        maf_gps_idle=float(obd_inputs["maf_gps_idle"]) if obd_inputs.get("maf_gps_idle") is not None and str(obd_inputs["maf_gps_idle"]).strip() != "" else None,
+        maf_gps_idle=_raw_obd_value(obd_inputs, "maf_gps_idle"),
         # consumer: registry integration_shim SensorDynamicsState MAF_UNDERREAD branch (T-V3-P4-C6B)
-        maf_gps_2500=float(obd_inputs["maf_gps_2500"]) if obd_inputs.get("maf_gps_2500") is not None and str(obd_inputs["maf_gps_2500"]).strip() != "" else None,
+        maf_gps_2500=_raw_obd_value(obd_inputs, "maf_gps_2500"),
         # consumer: registry integration_shim SensorDynamicsState MAF_UNDERREAD branch (T-V3-P4-C6B)
-        calc_airflow_gps_idle=float(obd_inputs["calc_airflow_gps_idle"]) if obd_inputs.get("calc_airflow_gps_idle") is not None and str(obd_inputs["calc_airflow_gps_idle"]).strip() != "" else None,
+        calc_airflow_gps_idle=_raw_obd_value(obd_inputs, "calc_airflow_gps_idle"),
         # consumer: registry integration_shim SensorDynamicsState MAF_UNDERREAD branch (T-V3-P4-C6B)
-        calc_airflow_gps_2500=float(obd_inputs["calc_airflow_gps_2500"]) if obd_inputs.get("calc_airflow_gps_2500") is not None and str(obd_inputs["calc_airflow_gps_2500"]).strip() != "" else None,
+        calc_airflow_gps_2500=_raw_obd_value(obd_inputs, "calc_airflow_gps_2500"),
         # consumer: registry integration_shim SensorDynamicsState MAF_UNDERREAD branch (T-V3-P4-C6B)
-        koeo_map_baro_delta_kpa=float(obd_inputs["koeo_map_baro_delta_kpa"]) if obd_inputs.get("koeo_map_baro_delta_kpa") is not None and str(obd_inputs["koeo_map_baro_delta_kpa"]).strip() != "" else None,
+        koeo_map_baro_delta_kpa=_raw_obd_value(obd_inputs, "koeo_map_baro_delta_kpa"),
         # consumer: registry integration_shim CONTROL_REFERENCE_FAULT branch (T-V3-P4-C3B)
-        module_voltage_loaded_v=float(obd_inputs["module_voltage_loaded_v"]) if obd_inputs.get("module_voltage_loaded_v") is not None and str(obd_inputs["module_voltage_loaded_v"]).strip() != "" else None,
+        module_voltage_loaded_v=_raw_obd_value(obd_inputs, "module_voltage_loaded_v"),
         # consumer: registry integration_shim CONTROL_REFERENCE_FAULT branch (T-V3-P4-C3B)
-        dlc_signal_ground_drop_v=float(obd_inputs["dlc_signal_ground_drop_v"]) if obd_inputs.get("dlc_signal_ground_drop_v") is not None and str(obd_inputs["dlc_signal_ground_drop_v"]).strip() != "" else None,
+        dlc_signal_ground_drop_v=_raw_obd_value(obd_inputs, "dlc_signal_ground_drop_v"),
         # consumer: registry integration_shim CONTROL_REFERENCE_FAULT branch (T-V3-P4-C3B)
         bidirectional_fuel_response_ok_bool=obd_inputs.get("bidirectional_fuel_response_ok_bool"),
         # consumer: registry integration_shim CONTROL_REFERENCE_FAULT branch (T-V3-P4-C3B)
-        stft_load_pct=float(obd_inputs["stft_load_pct"]) if obd_inputs.get("stft_load_pct") is not None and str(obd_inputs["stft_load_pct"]).strip() != "" else None,
+        stft_load_pct=_raw_obd_value(obd_inputs, "stft_load_pct"),
         # consumer: registry integration_shim LeanRootCauseState branch — T-V3-P4-C5B
-        ltft_load_pct=float(obd_inputs["ltft_load_pct"]) if obd_inputs.get("ltft_load_pct") is not None and str(obd_inputs["ltft_load_pct"]).strip() != "" else None,
+        ltft_load_pct=_raw_obd_value(obd_inputs, "ltft_load_pct"),
         # consumer: registry integration_shim LeanRootCauseState branch — T-V3-P4-C5B
-        calc_load_wot_pct=float(obd_inputs["calc_load_wot_pct"]) if obd_inputs.get("calc_load_wot_pct") is not None and str(obd_inputs["calc_load_wot_pct"]).strip() != "" else None,
+        calc_load_wot_pct=_raw_obd_value(obd_inputs, "calc_load_wot_pct"),
         # consumer: registry integration_shim LeanRootCauseState branch — T-V3-P4-C5B
-        fuel_rail_pressure_load_kpa=float(obd_inputs["fuel_rail_pressure_load_kpa"]) if obd_inputs.get("fuel_rail_pressure_load_kpa") is not None and str(obd_inputs["fuel_rail_pressure_load_kpa"]).strip() != "" else None,
+        fuel_rail_pressure_load_kpa=_raw_obd_value(obd_inputs, "fuel_rail_pressure_load_kpa"),
         # consumer: registry integration_shim LeanRootCauseState branch — T-V3-P4-C5B
-        wideband_lambda_wot=float(obd_inputs["wideband_lambda_wot"]) if obd_inputs.get("wideband_lambda_wot") is not None and str(obd_inputs["wideband_lambda_wot"]).strip() != "" else None,
+        wideband_lambda_wot=_raw_obd_value(obd_inputs, "wideband_lambda_wot"),
         # consumer: registry integration_shim LeanRootCauseState branch — T-V3-P4-C5B
         # consumer: registry integration_shim C4SignalState branch — T-V3-P4-C4B
-        co2_idle_pct=float(obd_inputs["co2_idle_pct"]) if obd_inputs.get("co2_idle_pct") is not None and str(obd_inputs["co2_idle_pct"]).strip() != "" else None,
+        co2_idle_pct=_raw_obd_value(obd_inputs, "co2_idle_pct"),
         # consumer: registry integration_shim C4SignalState branch — T-V3-P4-C4B
-        tailpipe_o2_elevation_pct=float(obd_inputs["tailpipe_o2_elevation_pct"]) if obd_inputs.get("tailpipe_o2_elevation_pct") is not None and str(obd_inputs["tailpipe_o2_elevation_pct"]).strip() != "" else None,
+        tailpipe_o2_elevation_pct=_raw_obd_value(obd_inputs, "tailpipe_o2_elevation_pct"),
         # consumer: registry integration_shim C4SignalState branch — T-V3-P4-C4B
-        downstream_o2_v=float(obd_inputs["downstream_o2_v"]) if obd_inputs.get("downstream_o2_v") is not None and str(obd_inputs["downstream_o2_v"]).strip() != "" else None,
+        downstream_o2_v=_raw_obd_value(obd_inputs, "downstream_o2_v"),
         # consumer: registry integration_shim C4SignalState branch — T-V3-P4-C4B
-        propane_trim_shift_pct=float(obd_inputs["propane_trim_shift_pct"]) if obd_inputs.get("propane_trim_shift_pct") is not None and str(obd_inputs["propane_trim_shift_pct"]).strip() != "" else None,
+        propane_trim_shift_pct=_raw_obd_value(obd_inputs, "propane_trim_shift_pct"),
         readiness_supported_complete_bool=obd_inputs.get("readiness_supported_complete_bool"),
         # consumer: registry integration_shim HealthConfirmationState branch — T-V3-P4-C9B
-        stored_dtc_count=int(obd_inputs["stored_dtc_count"]) if obd_inputs.get("stored_dtc_count") is not None and str(obd_inputs["stored_dtc_count"]).strip() != "" else None,
+        stored_dtc_count=_raw_obd_value(obd_inputs, "stored_dtc_count"),
         # consumer: registry integration_shim HealthConfirmationState branch — T-V3-P4-C9B
-        pending_dtc_count=int(obd_inputs["pending_dtc_count"]) if obd_inputs.get("pending_dtc_count") is not None and str(obd_inputs["pending_dtc_count"]).strip() != "" else None,
+        pending_dtc_count=_raw_obd_value(obd_inputs, "pending_dtc_count"),
         # consumer: registry integration_shim HealthConfirmationState branch — T-V3-P4-C9B
-        permanent_dtc_count=int(obd_inputs["permanent_dtc_count"]) if obd_inputs.get("permanent_dtc_count") is not None and str(obd_inputs["permanent_dtc_count"]).strip() != "" else None,
+        permanent_dtc_count=_raw_obd_value(obd_inputs, "permanent_dtc_count"),
         # consumer: registry integration_shim HealthConfirmationState branch — T-V3-P4-C9B
-        mode06_min_margin_pct=float(obd_inputs["mode06_min_margin_pct"]) if obd_inputs.get("mode06_min_margin_pct") is not None and str(obd_inputs["mode06_min_margin_pct"]).strip() != "" else None,
+        mode06_min_margin_pct=_raw_obd_value(obd_inputs, "mode06_min_margin_pct"),
         # consumer: registry integration_shim HealthConfirmationState branch — T-V3-P4-C9B
-        warmup_cycles_since_clear=int(obd_inputs["warmup_cycles_since_clear"]) if obd_inputs.get("warmup_cycles_since_clear") is not None and str(obd_inputs["warmup_cycles_since_clear"]).strip() != "" else None,
+        warmup_cycles_since_clear=_raw_obd_value(obd_inputs, "warmup_cycles_since_clear"),
         # consumer: registry integration_shim HealthConfirmationState branch — T-V3-P4-C9B
-        miles_since_clear=int(obd_inputs["miles_since_clear"]) if obd_inputs.get("miles_since_clear") is not None and str(obd_inputs["miles_since_clear"]).strip() != "" else None,
+        miles_since_clear=_raw_obd_value(obd_inputs, "miles_since_clear"),
         # consumer: registry integration_shim HealthConfirmationState branch — T-V3-P4-C9B
     )
 
