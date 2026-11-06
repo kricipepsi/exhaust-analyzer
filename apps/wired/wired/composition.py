@@ -30,8 +30,6 @@ from comlab.schemas.vocabulary import (
     AirMeteringStrategy,
     DownstreamTrimRole,
     EngineStateBucket,
-    NodeMAFStatus,
-    NodeMAPStatus,
     O2FailureMode,
     SampleValidity,
     TrimAnalyticsGate,
@@ -372,12 +370,7 @@ def _run_gaslab(gas_inputs: dict[str, Any], vin_dna: dict[str, Any]) -> COMGasLa
         # consumer: registry REG-V2 shim PID resolver -> MW-008/MW-009 high-idle HC
         high_idle_co=gas_payload.high_idle_co,
         # consumer: registry REG-V2 shim PID resolver -> MW-008/MW-009 high-idle CO
-        high_idle_co2=gas_payload.high_idle_co2,
-        # consumer: registry REG-V2 shim PID resolver -> MW-008/MW-009 high-idle CO2
-        high_idle_o2=gas_payload.high_idle_o2,
-        # consumer: registry REG-V2 shim PID resolver -> MW-008/MW-009 high-idle O2
-        high_idle_nox=gas_payload.high_idle_nox,
-        # consumer: registry REG-V2 shim PID resolver -> MW-008/MW-009 high-idle NOx
+        # high_idle_co2/o2/nox: not mirrored, no reader (F-C4-5, T-AUD-4p)
         high_idle_lambda=gas_payload.high_idle_lambda,
         # consumer: registry REG-V2 shim PID resolver -> MW-008/MW-009 high-idle lambda
         decel_co_pct=float(gas_inputs["decel_co_pct"]) if gas_inputs.get("decel_co_pct") is not None and str(gas_inputs["decel_co_pct"]).strip() != "" else None,
@@ -445,21 +438,21 @@ def _run_obdlab(obd_inputs: dict[str, Any], vin_dna: dict[str, Any]) -> COMOBDLi
         total_trim_correction_delta=obd_payload.total_trim_correction_delta,
         # consumer: fault_atlas_router rich/lean differential diagnosis
         total_trim_correction_delta_b2=obd_payload.total_trim_correction_delta_b2,
-        # consumer: fault_atlas_router ecu_fault fuse (T-COMV2-ECU-FUSE-1)
+        # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5)
         lambda_perception_delta=obd_payload.lambda_perception_delta,
         # consumer: fault_atlas_router ecu_fault fuse (T-COMV2-ECU-FUSE-1)
         per_bank_trim_delta=obd_payload.per_bank_trim_delta,
         # consumer: fault_atlas_router bank-asymmetry verdict (T-COMV2-BANK-FUSE-1)
         per_cylinder_misfire_counts=obd_payload.per_cylinder_misfire_counts,
-        # consumer: fault_atlas_router misfire localiser (T-COMV2-MISFIRE-LOC-1)
+        # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5)
         ltft_cell_vector=obd_payload.ltft_cell_vector,
-        # consumer: fault_atlas_router load-cell LTFT classification (T-COMV2-LTFT-CELL-1)
+        # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5)
         control_module_voltage_v=obd_payload.control_module_voltage_v,
         # consumer: perception_contradiction.detect VPWR gate (T-COMV2-VPWR-GATE-1)
         w_theo=obd_payload.w_theo,
-        # consumer: fault_atlas_router Phase 5 MAF/MAP linearity ladder
+        # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5)
         sensor_error_delta=obd_payload.sensor_error_delta,
-        # consumer: fault_atlas_router Phase 5 MAF/MAP linearity ladder
+        # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5)
         shrtft1=obd_payload.shrtft1,
         # consumer: fault_atlas_router SF-008 + EF-001/002/003 evidence
         longft1=obd_payload.longft1,
@@ -467,7 +460,7 @@ def _run_obdlab(obd_inputs: dict[str, Any], vin_dna: dict[str, Any]) -> COMOBDLi
         mass_airflow_gps=obd_payload.mass_airflow_gps,
         # consumer: fault_atlas_router SF-004 evidence
         manifold_vacuum_kpa=obd_payload.manifold_vacuum_kpa,
-        # consumer: fault_atlas_router SF-005 evidence
+        # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5)
         coolant_temp_c=obd_payload.coolant_temp_c,
         # consumer: fault_atlas_router SF-006 evidence
         intake_air_temp_c=obd_payload.intake_air_temp_c,
@@ -477,21 +470,18 @@ def _run_obdlab(obd_inputs: dict[str, Any], vin_dna: dict[str, Any]) -> COMOBDLi
         normalized_obd_lambda=obd_payload.normalized_obd_lambda,
         # consumer: perception_contradiction cross-check vs lambda_chem
         ve_pct=obd_payload.ve_pct,
-        # consumer: fault_atlas_router VE-evidence gate
+        # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5)
         ve_validity=VEValidity(_enum_value(obd_payload.ve_validity)),
-        # consumer: fault_atlas_router suppresses VE findings unless VALID
+        # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5)
         rpm_state_bucket=EngineStateBucket(_enum_value(obd_payload.rpm_state_bucket)),
         # consumer: fault_atlas_router evidence weighting per operating regime
         trim_analytics_gate=TrimAnalyticsGate(_enum_value(obd_payload.trim_analytics_gate)),
         # consumer: registry/integration_shim._resolve_single_source drops live trims when blocked
         fuel_system_status=_enum_value(obd_payload.fuel_system_status),
-        # consumer: fault_atlas_router fuel-system closed-loop gate
+        # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5)
         o2_failure_mode=O2FailureMode(_enum_value(obd_payload.o2_failure_mode)),
-        # consumer: fault_atlas_router gates trim findings when O2 has failed
-        maf_status=NodeMAFStatus(_enum_value(obd_payload.maf_status)),
-        # consumer: fault_atlas_router MAF provenance for VE evidence weight
-        map_status=NodeMAPStatus(_enum_value(obd_payload.map_status)),
-        # consumer: fault_atlas_router MAP provenance for VE evidence weight
+        # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5)
+        # maf_status/map_status: not mirrored, no reader (F-C4-5, T-AUD-4p)
         freeze_frame_pids=freeze_frame,
         # consumer: fault_atlas_router SF-001/002/003/006/007 O2-voltage evidence
         mode06_catalyst_margin_pct=float(obd_inputs["mode06_catalyst_margin_pct"]) if obd_inputs.get("mode06_catalyst_margin_pct") is not None and str(obd_inputs["mode06_catalyst_margin_pct"]).strip() != "" else None,

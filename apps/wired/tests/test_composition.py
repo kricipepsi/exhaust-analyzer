@@ -79,9 +79,6 @@ def test_high_idle_forwarded() -> None:
 
     assert payload.high_idle_hc == 120
     assert payload.high_idle_co == 0.2
-    assert payload.high_idle_co2 == 14.0
-    assert payload.high_idle_o2 == 0.4
-    assert payload.high_idle_nox == 15
     assert payload.high_idle_lambda is not None
 
 
