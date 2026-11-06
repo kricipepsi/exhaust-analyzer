@@ -13,6 +13,9 @@ from registry.schema_v2 import (
 
 RULES_DIR = pathlib.Path(__file__).resolve().parent.parent / "rules"
 CORPUS_FILE = RULES_DIR.parent / "corpus_curated.csv"
+# T-COMA-3a: the live v7 corpus also resolves passes_cases. corpus_curated.csv cannot be rebuilt in this
+# clone (build_corpus.py inputs are absent) and dropped case_040, the only P0335 case.
+V7_CORPUS_FILE = RULES_DIR.parents[3] / "apps" / "wired" / "v7" / "data" / "cases_petrol_v7.csv"
 NON_STARTER_FILE = RULES_DIR / "non_starter.json"
 
 
@@ -22,8 +25,11 @@ def _load_ruleset():
 
 
 def _load_corpus_case_ids():
-    with open(CORPUS_FILE, newline="") as f:
-        return {row["case_id"] for row in csv.DictReader(f)}
+    ids = set()
+    for path in (CORPUS_FILE, V7_CORPUS_FILE):
+        with open(path, newline="", encoding="utf-8") as f:
+            ids |= {row["case_id"] for row in csv.DictReader(f)}
+    return ids
 
 
 # ---------------------------------------------------------------------------
@@ -47,9 +53,9 @@ def test_ruleset_validates():
     assert rs.fault_family == FaultFamily.NON_STARTER
 
 
-def test_exactly_four_rules():
+def test_exactly_five_rules():
     rs = _load_ruleset()
-    assert len(rs.rules) == 4, f"Expected 4 rules, got {len(rs.rules)}"
+    assert len(rs.rules) == 5, f"Expected 5 rules, got {len(rs.rules)}"  # NS-005 (T-COMA-3a)
 
 
 def test_no_duplicate_rule_ids():
@@ -392,3 +398,14 @@ def test_real003_has_competing_rules():
         f"REAL-003: covered by only {rule_count} rule(s); "
         "produces multiple chemistry states and needs competing rules"
     )
+
+
+def test_ns005_crank_sync_dtc_gating():
+    """NS-005 (T-COMA-3a): P0335/P0336 any_match GATING, rpm < 600 SUGGESTIVE, no chemistry gate."""
+    rule = next(r for r in _load_ruleset().rules if r.rule_id == "NS-005")
+    assert rule.fault_family == FaultFamily.NON_STARTER
+    assert not rule.chemistry_evidence
+    assert [(set(d.dtc_codes), d.tier) for d in rule.dtc_evidence] == [({"P0335", "P0336"}, EvidenceTier.GATING)]
+    assert any(o.pid == "rpm" and o.operator == "lt" and o.value == 600 and o.tier == EvidenceTier.SUGGESTIVE
+               for o in rule.obd_evidence)
+    assert rule.passes_cases == ["case_040"]

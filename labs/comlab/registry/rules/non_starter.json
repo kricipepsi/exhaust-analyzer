@@ -222,6 +222,43 @@
         "OBD_VOCABULARY \u00a75",
         "DTC_VOCABULARY \u00a74"
       ]
+    },
+    {
+      "rule_id": "NS-005",
+      "fault_family": "non_starter",
+      "description": "DTC-driven crank-sync no-start: crankshaft position sensor circuit (P0335) or range/performance (P0336). Without a crank signal the ECU fires neither spark nor injectors, so the engine cranks but never fires. DTC-primary rule: the DTC any_match is GATING and there is no chemistry gate (a dead CKP leaves near-atmospheric exhaust). confidence_ceiling as NS-004: a DTC-only fallback path. P0340 (CMP) is not listed: many engines start on crank sync alone (T-COMA-3a).",
+      "chemistry_evidence": [],
+      "obd_evidence": [
+        {
+          "pid": "rpm",
+          "operator": "lt",
+          "value": 600,
+          "tier": "SUGGESTIVE",
+          "units": "RPM",
+          "wiki_ref": "OBD_VOCABULARY \u00a75"
+        }
+      ],
+      "dtc_evidence": [
+        {
+          "dtc_codes": [
+            "P0335",
+            "P0336"
+          ],
+          "strategy": "any_match",
+          "tier": "GATING",
+          "wiki_ref": "DTC_VOCABULARY \u00a74"
+        }
+      ],
+      "base_weight": 0.7,
+      "competition_group": "non_starter",
+      "confidence_ceiling": 0.8,
+      "passes_cases": [
+        "case_040"
+      ],
+      "source_wiki_refs": [
+        "OBD_VOCABULARY \u00a75",
+        "DTC_VOCABULARY \u00a74"
+      ]
     }
   ]
 }

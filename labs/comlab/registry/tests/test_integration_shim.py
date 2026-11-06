@@ -101,10 +101,10 @@ def _minimal_rule(
 
 def test_shim_loads_all_16_rule_files() -> None:
     """Real-registry test. Constructing against the production rules dir
-    loads exactly 73 rules across the 16 expected family files.
+    loads exactly 74 rules across the 16 expected family files (NS-005, T-COMA-3a).
     """
     router = RegistryV2Router()
-    assert len(router.rules) == 73
+    assert len(router.rules) == 74
     families_seen = {rule.fault_family.value for rule in router.rules}
     # 16 family files; sanity-check a few canonical members.
     assert "charging_system" in families_seen
