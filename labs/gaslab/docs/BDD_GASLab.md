@@ -29,6 +29,8 @@ Scenario: A clean idle sample is accepted
 
 Scenario: A diluted or contaminated sample halts the diagnosis
   Given a reading whose CO + CO2 + O2 is below 14 or above 18
+    And a sum below 14 does not match the EXHAUST_AIR_LEAK bounds for HC, CO and O2
+      (a matching low-sum reading returns EXHAUST_AIR_LEAK first, T-AUD-16)
   When the reading is classified
   Then chemical_state is SAMPLE_INVALID
     And sample_validity is INVALID

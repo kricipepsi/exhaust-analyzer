@@ -67,7 +67,7 @@ gaslab/
     └── gas_lab_ontology.yaml
 ```
 
-`family_map.py` and `ranking.py` exist in the package but are **not** invoked by `process()`. `ranking.py` is the out-of-scope GASLabSimple top-3 path; `family_map.SIGNATURE_TO_FAMILY` is a COMLab-facing convenience mirror used by `test_family_map.py`, not by classification.
+`family_map.py` and `ranking.py` exist in the package but are **not** invoked by `process()`. `ranking.py` is the out-of-scope GASLabSimple top-3 path: `rank_candidates` scores every surviving candidate by match type (definitive, specific, catch-all, fallback), clamps it with the 12-entry `_CEILING` table (match type × DNA confidence tier HIGH / PARTIAL / NONE, 0.90 down to 0.33, `GAS_WIKI §10.5`), and `classify_top3` keeps the first three (T-AUD-16); `family_map.SIGNATURE_TO_FAMILY` is a COMLab-facing convenience mirror used by `test_family_map.py`, not by classification.
 
 ---
 
@@ -110,7 +110,7 @@ Range bounds enforced in `__post_init__` (`GAS_VOCABULARY §2`); out-of-range ra
 | `o2` | `float` | vol%; `0 ≤ o2 ≤ 22.0` |
 | `nox` | `int` | ppm; `0 ≤ nox ≤ 5 000` |
 
-### `GasLabPayload` (Pydantic BaseModel, 9 fields)
+### `GasLabPayload` (Pydantic BaseModel, 15 fields)
 
 | Field | Type | COMLab Consumer |
 |-------|------|----------------|
@@ -123,6 +123,12 @@ Range bounds enforced in `__post_init__` (`GAS_VOCABULARY §2`); out-of-range ra
 | `lambda_chem` | `float` (0.5–2.5) | Ground-truth λ; delta vs `normalized_obd_lambda` |
 | `sample_validity` | `SampleValidity` | Gates downstream trust |
 | `lambda_measured` | `float \| None` (0.5–2.0) | Optional directly-measured analyser λ; no-OBD fallback for the perception-contradiction detector (T-FX-7) |
+| `high_idle_hc` | `int \| None` (0–20 000) | R3b PID resolver (2500 RPM reading; OilburnCases.md §PCV/turbo) |
+| `high_idle_co` | `float \| None` (0–15) | R3b PID resolver (2500 RPM reading; OilburnCases.md §PCV/turbo) |
+| `high_idle_co2` | `float \| None` (0–22) | R3b PID resolver (2500 RPM reading; OilburnCases.md §PCV/turbo) |
+| `high_idle_o2` | `float \| None` (0–22) | R3b PID resolver (2500 RPM reading; OilburnCases.md §PCV/turbo) |
+| `high_idle_nox` | `int \| None` (0–5 000) | R3b PID resolver (2500 RPM reading; OilburnCases.md §PCV/turbo) |
+| `high_idle_lambda` | `float \| None` (0.5–2.5) | R3b PID resolver (2500 RPM reading; OilburnCases.md §PCV/turbo) |
 
 ---
 
@@ -172,7 +178,7 @@ sample_validity(reading) → SampleValidity:
 |-------|------|------------|---------|
 | `engine_displacement_liters` | `float` | `> 0` | stored |
 | `cylinder_count` | `int` | `1–16` | masking-rule cylinder inference |
-| `number_of_banks` | `int` | `1–4` | collision-rule routing |
+| `number_of_banks` | `int` | `1–4` | no GASLab reader; carried in the view (T-AUD-16) |
 | `euro_emission_category` | `str` | free text | Euro-scaled CO/HC ceilings |
 | `fuel_delivery_type` | `str` | `"GDI"` / `"NON_GDI"` | GDI-gated fault suppression |
 | `induction_type` | `str` | `"NA"` / `"forced"` / … | mechanical-wear (POA forced-induction) routing |
@@ -182,7 +188,7 @@ sample_validity(reading) → SampleValidity:
 | `target_lambda_v112` | `Optional[float]` | `[0.5, 2.5]` | certified CoC λ centre; `_coc_adjust_normal_bounds` NORMAL λ window `[v112±0.005]` |
 | `co_low_idle` | `Optional[float]` | `[0, 15]` | per-vehicle CoC idle CO ceiling; NORMAL CO max |
 | `co_high_idle` | `Optional[float]` | `[0, 15]` | per-vehicle CoC 2500 RPM CO ceiling; CAM_MAP rich-CO ceiling **when `confidence == HIGH`** |
-| `confidence` | `str` | default `"NONE"` | carried for COMLab; gates only the `co_high_idle` override |
+| `confidence` | `str` | default `"NONE"` | not a payload field; on the `process()` path gates only the `co_high_idle` override; off that path `ranking.py` reads it for the ceiling tier (T-AUD-16) |
 
 > Changes from v1: `target_lambda_low` + `target_lambda_high` collapsed to the single `target_lambda_v112`; `co_high_idle` added; `secondary_air_equipped` removed (no consumer).
 

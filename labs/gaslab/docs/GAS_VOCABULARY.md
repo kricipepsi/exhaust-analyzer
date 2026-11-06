@@ -24,7 +24,7 @@ source: "labs/gaslab/docs/GAS_VOCABULARY.md"
 
 **Status:** v2.2 (2026-06-10). Companion to the GAS wiki v2 — the **chunked set** (`wiki/00_index.md` … `11_sources_appendices.md`); the single-file `GAS_WIKI.md` mirror was retired to ARCHIVE on 2026-06-10. Wiki is the reasoning grammar; this is the contract layer. Supersedes v1.1 (2026-05-23). See §21 change log.
 
-**Scope:** petrol vehicles 1990 – 2010 (Euro 1 – Euro 5), manually-entered analyser data — no live OBD streaming. 5-gas analysers only. (Scope narrowed from 1990–2020 on 2026-06-03; post-2010 "modern"/Euro 6-7 chemistry is out of scope.)
+**Scope:** petrol vehicles 1990 – 2010 (Euro 1 – Euro 5), manually-entered analyser data — no live OBD streaming. 5-gas analysers only. (Scope narrowed from 1990–2020 on 2026-06-03; post-2010 "modern"/Euro 6-7 chemistry is out of scope. The ontology `scope` string still reads "Petrol 1990-2020"; it is a label that no code reads, T-AUD-16.)
 
 **Anchored to:**
 
@@ -62,7 +62,7 @@ The names GASLab uses across code, schemas, and the rule engine. These are the c
 | `gas_nox` | Oxides of nitrogen (thermal NO) | ppm | 0 – 5 000 | Electrochemical (5-gas only) |
 | `lambda_chem` | Brettschneider lambda from chemistry | dimensionless | 0.5 – 2.5 | derived; see §6 |
 | `volumetric_sum` | CO + CO₂ + O₂ | vol % | 0 – 22 | derived; triangle gate input |
-| `afr_chem` | `lambda_chem × 14.71` | dimensionless | 7.4 – 36.8 | derived; petrol stoich |
+| `afr_chem` | `lambda_chem × 14.71` | dimensionless | 7.4 – 36.8 | derived; petrol stoich. **Not implemented (T-AUD-16):** no code computes it |
 
 **Naming convention:** the `gas_` prefix on raw analyser inputs distinguishes them from derived metrics. `lambda_chem` carries the `_chem` suffix because the ECU's perception lambda (`normalized_obd_lambda`) is owned by OBDLab — same concept, different source, never to be confused.
 
@@ -145,7 +145,7 @@ class ChemicalSignature(StrEnum):
 | `LEAN_MISFIRE` | none | 7.5 |
 | `RICH_MISFIRE` | none | 7.6 |
 | `EXHAUST_AIR_LEAK` | none | 7.7 |
-| `HIGH_COMBUSTION_TEMP` | none | 7.8 |
+| `HIGH_COMBUSTION_TEMP` | none (no `dna_gate`); differentiator edge `emissions.egr_equipped = false` (T-AUD-16) | 7.8 |
 | `CATALYST_NOT_LIGHTING_OFF` | `emissions.has_catalyst = true` | 7.9 |
 | `CATALYST_OVERWHELMED` | `emissions.has_catalyst = true` | 7.10 |
 | `SAMPLE_INVALID` | none (chemistry-pure) | 7.11 |
@@ -156,7 +156,7 @@ class ChemicalSignature(StrEnum):
 | `WORN_ENGINE` | none | 7.16 |
 | `FLAT_CAMSHAFT` | none | 7.17 |
 | `GDI_INTAKE_VALVE_CARBON` | `fuel_delivery_type = GDI` | 7.18 |
-| `VACUUM_REGULATOR_DIAPHRAGM_RUPTURE` | none (FPR is universal) | 7.19 |
+| `VACUUM_REGULATOR_DIAPHRAGM_RUPTURE` | none (no `dna_gate`); differentiator edge `fuel_delivery_type = NON_GDI` (T-AUD-16) | 7.19 |
 | `GDI_HPFP_INTERNAL_SEAL_LEAK` | `fuel_delivery_type = GDI` | 7.20 |
 | `WORN_VALVE_SEALS` | none (any engine) | 7.21 |
 | `WORN_PISTON_RINGS` | none (any engine) | 7.22 |
@@ -192,7 +192,7 @@ class LambdaBand(StrEnum):
     HEAVILY_LEAN             = "HEAVILY_LEAN"             # > 1.07
 ```
 
-**Note on overlap:** `CATALYST_LIGHT_OFF` and `CATALYST_PEAK_EFFICIENCY` are sub-bands of `STOICHIOMETRIC`. The discretiser returns the **narrowest matching band** — peak takes priority over light-off, light-off over stoich.
+**Note on overlap:** `CATALYST_LIGHT_OFF` and `CATALYST_PEAK_EFFICIENCY` are sub-bands of `STOICHIOMETRIC`. The discretiser returns the **narrowest matching band** — peak takes priority over light-off, light-off over stoich. **Not implemented (T-AUD-16):** no discretiser exists; `LambdaBand` is declared and exported only.
 
 ### 4.1 Discretiser thresholds
 
@@ -232,6 +232,8 @@ The `BORDERLINE` value is reserved for future use when stricter validity is need
                        [CO₂] + [CO] + [HC]
 ```
 
+The code (`brettschneider.lambda_chem`) has no `Hcv` term: it computes λ₄ = ([CO₂] + [CO]/2 + [O₂]) / ([CO₂] + [CO] + HC·`HC_FACTOR`), then the 5-gas NOx correction (T-AUD-16).
+
 Constants:
 
 | Symbol | Value | Notes |
@@ -251,7 +253,7 @@ Implementation lives in `gaslab/brettschneider.py` (when the new code lands). Th
 
 | Condition | Behaviour |
 |---|---|
-| All gases ≈ 0 | λ undefined; caller must check triangle first |
+| All gases ≈ 0 | `lambda_chem` returns the 1.0 sentinel; `classify()` flags `SAMPLE_INVALID` independently (T-AUD-16) |
 | HC very high, CO₂ low | λ stays balanced (misfire-immune property) |
 | O₂ near 20.9 %, others ≈ 0 | λ → ∞; triangle gate catches this earlier |
 | 4-gas reading (NOₓ missing) | **Reject** — operating envelope requires 5-gas |
@@ -292,7 +294,7 @@ class EngineStateBucket(StrEnum):
 | `COLD_OPEN_LOOP_INVALID` | any | any | **Rejected** — outside GASLab operating envelope (warm engines only) |
 | `CRANKING` | < 600 (cranking) | — | GASLab-only. The composition sets it for a `will_not_start` session, whatever the gas form says. The triangle and dilution gates do not run; the cranking-shape rule (wiki §4.14) gives `RICH_MISFIRE`, `LEAN_MISFIRE`, `INCOMPLETE_COMBUSTION` or, for CO₂ ≥ 8 %, `SAMPLE_INVALID` |
 
-A `COLD_OPEN_LOOP_INVALID` input causes GASLab to emit `chemical_state = SAMPLE_INVALID` with reason "engine not warm enough for valid sample".
+A `COLD_OPEN_LOOP_INVALID` input causes GASLab to emit `chemical_state = SAMPLE_INVALID` with reason "engine not warm enough for valid sample". **Not implemented (T-AUD-16):** no fault entry carries that operating state, so `process()` returns the bound-match result (`NORMAL_OPERATION` / `VALID` for a normal reading). The app sends only `STABILIZED_IDLE` or `CRANKING`.
 
 ---
 
@@ -310,13 +312,13 @@ class GasBehavior(StrEnum):
     COLLISION            = "COLLISION"             # physically-impossible co-elevation
 ```
 
-Used in YAML rule bodies (e.g., `gas_co.behavior: COLLISION` implies "high concurrent with another high"); the engine matches against bucket thresholds defined in §10.
+**Not implemented (T-AUD-16):** neither the YAML nor the code uses these values. Design: used in YAML rule bodies (e.g., `gas_co.behavior: COLLISION` implies "high concurrent with another high"); the engine matches against bucket thresholds defined in §10.
 
 ---
 
 ## 9. `CatalystStatus` — inferred cat state
 
-GASLab can emit a derived view of catalyst health alongside `chemical_state`. Source: wiki §9.
+**Not implemented (T-AUD-16):** nothing computes `CatalystStatus`. Design: GASLab can emit a derived view of catalyst health alongside `chemical_state`. Source: wiki §9.
 
 ```python
 class CatalystStatus(StrEnum):
@@ -362,7 +364,7 @@ thresholds:
   very_rich:              { min: 3.0 }
 ```
 
-The threshold used by the collision rule (§8.5 in wiki) is `tier_max` — the upper bound of the *currently active* DNA-scaled tier. For Euro 4 + cat that is `0.45`; for Euro 1 no-cat it is `1.5`.
+The collision rule (§8.5 in wiki) reads a fixed `co_tier_max` of `0.45` from `reasoning_grammar.collision_rule`; it is not DNA-scaled (T-AUD-16). The design bound was the active DNA-scaled tier maximum (Euro 4 + cat `0.45`, Euro 1 no-cat `1.5`).
 
 ### 10.3 `gas_co2` (vol %)
 
@@ -439,12 +441,12 @@ thresholds:
 
 > HC change-direction bands for the same discriminator reuse §10.1: a sharp drop
 > to `normal_with_cat` (≤ 35 ppm) at 2500 RPM ⇒ worn valve seals; a rise into
-> `real_combustion_fault` (> 250 ppm) that persists ⇒ worn piston rings. No new
+> `real_combustion_fault` (band floor 250 ppm; the code tests > 300 ppm at 2500 RPM, `resolution.py`, T-AUD-16) that persists ⇒ worn piston rings. No new
 > HC band is introduced.
 
 ### 10.9 `chemical_efficiency` and `oxygen_usage` (derived combustion-integrity metrics)
 
-`chemical_efficiency` is a **derived** dimensionless metric, computed from existing analyser channels (`gas_co2` + `gas_co`). It is not a new analyser channel and is not part of `GasLabPayload` v1. Source: GASWIKI-02 §2.10; `EP-GAS-03`; formula-wiki F-GAS-04.
+**Not implemented (T-AUD-16):** no code computes it. `chemical_efficiency` is a **derived** dimensionless metric, computed from existing analyser channels (`gas_co2` + `gas_co`). It is not a new analyser channel and is not part of `GasLabPayload` v1. Source: GASWIKI-02 §2.10; `EP-GAS-03`; formula-wiki F-GAS-04.
 
 ```yaml
 chemical_efficiency:
@@ -472,7 +474,7 @@ oxygen_usage:
 
 ## 11. DNA-derived per-vehicle bound overrides
 
-When `GasLabDnaView.confidence = HIGH` and the OEM lookup populated CoC empirical targets, the per-vehicle bounds override the defaults in §10. Source: wiki §4.7 + §10.
+When the OEM lookup populated CoC empirical targets, the per-vehicle λ window (`target_lambda_v112`) and idle CO ceiling (`co_low_idle`) override the defaults in §10 at any confidence; only the 2500 RPM `co_high_idle` ceiling needs `GasLabDnaView.confidence = HIGH` (T-AUD-16). Source: wiki §4.7 + §10.
 
 | DNA field | Replaces in defaults | Notes |
 |---|---|---|
@@ -482,11 +484,12 @@ When `GasLabDnaView.confidence = HIGH` and the OEM lookup populated CoC empirica
 | `co_type_approval` | `clear_rich.min` | Type-approval ceiling |
 | `hc_type_approval` | `real_combustion_fault.min` | Type-approval HC ceiling |
 | `nox_type_approval` | `high_combustion_temp.min` | Type-approval NOₓ ceiling |
+|  | **Not implemented (T-AUD-16):** | `co_type_approval`, `hc_type_approval`, `nox_type_approval`, `fuel_type` and `altitude_band` are not fields of `GasLabDnaView` |
 | `engine_displacement_liters` | mass-emission conversion | Reserved — not used (concentrations only) |
 | `fuel_type` *(v2, context-only)* | nothing — does **not** move any bound | E5/E10/winter-blend annotation; lower idle HC/CO with ethanol. May *widen* `NORMAL_OPERATION` bounds slightly but **must not** relax the triangle gate. Source: wiki §2.9; research q9 |
 | `altitude_band` *(v2, context-only)* | nothing | λ math is altitude-invariant (mass balance). Annotates the diagnosis only. Source: wiki §2.9; research q9 |
 
-When the DNA field is `None`, the default from §10 is used. The rule engine logs which value (per-vehicle vs default) was applied so the diagnosis is traceable.
+When the DNA field is `None`, the default from §10 is used. **Not implemented (T-AUD-16):** no GASLab module logs which value (per-vehicle vs default) was applied.
 
 **v2 gate-integrity rule:** neither `fuel_type` nor `altitude_band` may relax `volumetric_sum.sample_invalid_low` (14.0) or any validity gate. Ethanol/altitude shifts are absorbed by re-validation (OBD trims, probe-occlusion test), never by widening a sample-integrity boundary.
 
@@ -550,7 +553,7 @@ Range bounds match the analyser measurement envelope from §2. The Pydantic vali
 ### 12.2 Fields **not** in the payload (intentional)
 
 - `lambda_band` — derivable from `lambda_chem`; not transmitted.
-- `inferred_misfiring_cylinder_count` — emitted as a warning string when `chemical_state = IGNITION_MISFIRE`, not as a structured field.
+- `inferred_misfiring_cylinder_count` — **Not implemented (T-AUD-16):** not emitted. Design: a warning string when `chemical_state = IGNITION_MISFIRE`, not a structured field.
 - `catalyst_light_off_status` — see §9 above; internal only in v1.
 
 ---
@@ -563,7 +566,7 @@ Range bounds match the analyser measurement envelope from §2. The Pydantic vali
 4. **Output never exceeds Pydantic bounds.** The values in `GasLabPayload` are pre-validated against §12.1 ranges before emission. If the rule engine would produce out-of-bound values, that is a code bug.
 5. **DNA gates are honoured.** A `ChemicalSignature` value with a DNA gate in §3.1 cannot be emitted unless the gate evaluates to `true` against the current `GasLabDnaView`.
 6. **No COMLab imports.** GASLab declares its own enums (this file is the spec). COMLab independently mirrors them in `comlab/schemas/vocabulary.py`. Two independent declarations of the same StrEnum are intentional — JSON values are the cross-lab contract, not Python classes.
-7. **Confidence-shrunk scope is enforced before rules fire.** If DNA confidence is `PARTIAL`/`NONE`, the candidate-set restriction from wiki §10 is applied first; rules for gated values are skipped, not just suppressed at output.
+7. **Confidence does not shrink the candidate set (T-AUD-16).** The DNA gate applies strictly at every confidence. On the `process()` path `confidence` is read only for the `co_high_idle` override; the wiki §10 candidate-set restriction for `PARTIAL`/`NONE` is not applied.
 
 ---
 

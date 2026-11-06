@@ -57,7 +57,7 @@ GASLab is the exhaust gas chemistry analysis module of 4DApp. It accepts one or 
 
 - **KR1:** GASLab correctly classifies ≥ 95% of synthetic boundary-grid samples in CI (`tests/fixtures/synthetic_grid.py` + `tests/generative/`).
 - **KR2:** Zero cross-lab Python imports (enforced by the import-isolation audit in the validator suite).
-- **KR3:** All 34 `ChemicalSignature` values are reachable (verified by `test_rule_engine_reachability.py`): 6 via DNA gate, 1 via `requires_dtc`, 3 catch-all, 2 via reasoning-grammar gate (`SAMPLE_INVALID` from the validity gate, `COOLANT_LEAK_INTERNAL` from the coolant rule), the 3 `CAM_TIMING_*` via the cam-timing rule + RPM-differential gates, and the remainder via direct bound matching.
+- **KR3:** All 34 `ChemicalSignature` values are reachable (verified by `test_rule_engine_reachability.py`): 6 via DNA gate, 4 catch-all (incl. `INCOMPLETE_OXIDATION`; the YAML `requires_dtc` key on `EGR_DILUTION_MISFIRE` is read by no code, so that entry is reached by bound matching, T-AUD-16), 2 via reasoning-grammar gate (`SAMPLE_INVALID` from the validity gate, `COOLANT_LEAK_INTERNAL` from the coolant rule), the 3 `CAM_TIMING_*` via the cam-timing rule + RPM-differential gates, and the remainder via direct bound matching.
 - **KR4:** Wiki drift guard (`parse_vocabulary_thresholds`) keeps ontology numeric thresholds in sync with `GAS_VOCABULARY.md §10` in every CI run.
 
 ---
@@ -91,7 +91,7 @@ GASLab is the exhaust gas chemistry analysis module of 4DApp. It accepts one or 
 - P0: Per-vehicle CoC overrides — `target_lambda_v112` λ window, Euro-scaled CO/HC ceilings, wideband O₂-bias calibration.
 - P0: `fuel_trim` context input for EXTERNAL_O2_SUSPECT leak disambiguation and mechanical-wear routing.
 - P0: Specificity-based tie-breaking (narrowest signature wins; catch-alls last).
-- P0: `GasLabPayload` Pydantic output model (9 fields, including `lambda_measured` for the no-OBD fallback).
+- P0: `GasLabPayload` Pydantic output model (15 fields: 9 idle fields, including `lambda_measured` for the no-OBD fallback, and 6 `high_idle_*` fields).
 
 ### Technology
 
@@ -132,6 +132,6 @@ All P0 features above. Bound matching scoped to `STABILIZED_IDLE`; the high-idle
 ### Success Criteria
 
 1. KR1–KR4 all pass in CI.
-2. `test_ontology.py` confirms 34 faults, 6 DNA-gated entries, 1 `requires_dtc`, 3 catch-alls.
+2. `test_ontology.py` confirms 34 faults and the 6 DNA-gated entries; the YAML also declares 1 `requires_dtc` key (read by no code) and 4 catch-alls (T-AUD-16).
 3. `test_rule_engine_reachability.py` confirms all 34 signatures are reachable.
 4. `test_validators.py` wiki-drift guard passes.

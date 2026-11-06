@@ -33,8 +33,8 @@ Brettschneider lambda is the **ground truth**; the ECU's perception is the thing
 ## 2. Architecture Position
 
 ```
-COMLab
-  │  constructs GasLabDnaView from VIN record (13-field slice)
+Wired composition (apps/wired/wired/composition.py, T-AUD-16)
+  │  builds GasLabDnaView from the VIN record (13-field slice)
   │  supplies GasReading (idle) + GasLabContext
   │    └ context may carry: reading_high (2500 RPM), fuel_trim,
   │      lambda_measured, block_test_passed, engine_state
@@ -66,8 +66,9 @@ GasReading (idle) [+ reading_high 2500 RPM] + GasLabContext
        │
   [1]  Load ontology (gas_lab_ontology.yaml)
        │  • 34 fault entries with 6-gas signature bounds
-       │  • 6 DNA-gated + 1 requires_dtc entry
-       │  • catch-all entries (VVT_FAILURE, EVAP_CANISTER_SATURATED, POA_SIGNATURE)
+       │  • 6 DNA-gated entries (+ 1 requires_dtc key, read by no code)
+       │  • 4 catch-all entries (VVT_FAILURE, EVAP_CANISTER_SATURATED, POA_SIGNATURE,
+       │    INCOMPLETE_OXIDATION)
        │  • validity-gate thresholds + reasoning-grammar thresholds
        │
   [2]  Validity gates (validity_gates.py)
@@ -111,7 +112,7 @@ GasReading (idle) [+ reading_high 2500 RPM] + GasLabContext
   [6]  Candidate rank — (catch_all last, lowest Σ range widths)
        │  Tie → ontology declaration order; no candidates → NORMAL_OPERATION
        │
-  GasLabPayload (9 fields)
+  GasLabPayload (15 fields: 9 idle + 6 high_idle_*)
 ```
 
 ---
@@ -129,7 +130,7 @@ GasReading (idle) [+ reading_high 2500 RPM] + GasLabContext
 | Misfire | `IGNITION_MISFIRE`, `LEAN_MISFIRE`, `RICH_MISFIRE`, `EGR_DILUTION_MISFIRE`, `INCOMPLETE_COMBUSTION` |
 | Cam timing (new in v2.1) | `CAM_TIMING_RETARDED_MAP`, `CAM_TIMING_RETARDED_MAF`, `CAM_TIMING_ADVANCED` |
 | Ignition timing | `TIMING_OVER_ADVANCED`, `TIMING_RETARDED` |
-| Catalyst (DNA-gated) | `CATALYST_NOT_LIGHTING_OFF`, `CATALYST_OVERWHELMED`, `INCOMPLETE_OXIDATION` |
+| Catalyst (DNA-gated) | `CATALYST_NOT_LIGHTING_OFF`, `CATALYST_OVERWHELMED` |
 | Air/vacuum | `EXHAUST_AIR_LEAK`, `VACUUM_REGULATOR_DIAPHRAGM_RUPTURE` |
 | O2 sensor | `O2_SENSOR_BIASED_LOW`, `O2_SENSOR_BIASED_HIGH` |
 | EGR (DNA-gated) | `EGR_STUCK_CLOSED`, `EGR_STUCK_OPEN` |
@@ -137,7 +138,7 @@ GasReading (idle) [+ reading_high 2500 RPM] + GasLabContext
 | Combustion quality | `HIGH_COMBUSTION_TEMP` |
 | Mechanical | `FLAT_CAMSHAFT`, `WORN_PISTON_RINGS`, `WORN_VALVE_SEALS`, `WORN_ENGINE` |
 | Cooling | `COOLANT_LEAK_INTERNAL` |
-| Catch-all | `VVT_FAILURE`, `EVAP_CANISTER_SATURATED`, `POA_SIGNATURE` |
+| Catch-all | `VVT_FAILURE`, `EVAP_CANISTER_SATURATED`, `POA_SIGNATURE`, `INCOMPLETE_OXIDATION` |
 | Invalid | `SAMPLE_INVALID` (ontology entry; emitted by the validity gate, excluded from bound matching) |
 
 `WRONG_VALVE_TIMING` is **retired** — replaced by the three `CAM_TIMING_*` states, which the tailpipe can only mark `SPECIFIC` (not `DEFINITIVE`): gas chemistry cannot prove cam *phase* alone, so the MAP/MAF split rides a gas-direction discriminator corroborated by OBD trims and (downstream) CKP/CMP correlation.
@@ -146,7 +147,7 @@ GasReading (idle) [+ reading_high 2500 RPM] + GasLabContext
 
 ## 5. DNA-Gate Architecture
 
-In the v1/v2 pipeline the DNA gate is applied **strictly and unconditionally**: a fault is suppressed whenever its gate field does not match the DNA view. The `GasLabDnaView.confidence` field (`HIGH` / `PARTIAL` / `NONE`) is carried and forwarded to COMLab and is **not** consumed by the strict gate. It *is* read in one narrow place — the rich-CO ceiling for the `CAM_TIMING_RETARDED_MAP` branch uses the per-vehicle `co_high_idle` **only when `confidence == "HIGH"`** (otherwise the Euro-scaled default applies). There is no broad HIGH/PARTIAL/NONE branching in `apply_differentiators`.
+In the v1/v2 pipeline the DNA gate is applied **strictly and unconditionally**: a fault is suppressed whenever its gate field does not match the DNA view. The `GasLabDnaView.confidence` field (`HIGH` / `PARTIAL` / `NONE`) is an input only (not a `GasLabPayload` field, so it is not forwarded to COMLab, T-AUD-16) and is **not** consumed by the strict gate. On the `process()` path it *is* read in one narrow place — the rich-CO ceiling for the `CAM_TIMING_RETARDED_MAP` branch uses the per-vehicle `co_high_idle` **only when `confidence == "HIGH"`** (otherwise the Euro-scaled default applies). There is no broad HIGH/PARTIAL/NONE branching in `apply_differentiators`. Off the `process()` path, `ranking.py` (GASLabSimple) reads it to pick its confidence-ceiling tier.
 
 6 DNA-gated faults in the ontology:
 
@@ -198,7 +199,7 @@ When `reading_high` is absent the engine still classifies on the idle reading al
 | Boundary coverage | ≥ 95% of the synthetic boundary grid correctly classified (CI generative suite) |
 | Import isolation | 0 cross-lab Python imports |
 | Schema drift | 0 enum drift between ontology and `GAS_VOCABULARY.md` |
-| Determinism | Same inputs → same output always (frozen models, no I/O on the hot path) |
+| Determinism | Same inputs → same output always (frozen models; `process()` re-reads `gas_lab_ontology.yaml` on every call, which is file I/O but deterministic while the file is unchanged, T-AUD-16) |
 
 ---
 

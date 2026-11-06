@@ -95,13 +95,13 @@ This file records the standing architectural decisions that shape GASLab. Record
 
 **Context.** Fault signatures (per-gas bounds, operating state, gates, differentiators) are knowledge, not control flow. Encoding them in Python scatters thresholds through branches and makes them hard to audit against the wiki.
 
-**Decision.** All fault signatures live in `gas_lab_ontology.yaml`, loaded once by `ontology_loader.load_ontology()` with schema validation. The rule engine reads bounds and grammar from the ontology; it does not hard-code signatures. A wiki-drift guard (`audits.parse_vocabulary_thresholds`) compares the ontology's numeric thresholds against `GAS_VOCABULARY.md §10` on every CI run, so the YAML and the wiki cannot silently diverge.
+**Decision.** All fault signatures live in `gas_lab_ontology.yaml`, loaded by `ontology_loader.load_ontology()` with schema validation (on every `process()` call; there is no cache, T-AUD-16). The rule engine reads bounds and grammar from the ontology; it does not hard-code fault signatures (a few procedural rule vectors are cited literals, see Neutral below). A wiki-drift guard (`audits.parse_vocabulary_thresholds`) compares the ontology's numeric thresholds against `GAS_VOCABULARY.md §10` on every CI run, so the YAML and the wiki cannot silently diverge.
 
 **Consequences.**
 - Positive: signatures are auditable in one declarative file; thresholds carry citations.
 - Positive: adding/adjusting a fault is a data change plus a test, not a control-flow rewrite.
 - Negative: the YAML and the wiki must be changed together or CI fails (by design).
-- Neutral: a few genuinely procedural rules (priority overrides, RPM-differential gates) still live in code; the ontology supplies their thresholds.
+- Neutral: a few genuinely procedural rules (priority overrides, RPM-differential gates) still live in code; the ontology supplies most of their thresholds. The `fuel_trim > 8.0` limit, the cam-timing 2500 RPM vector and the rich-timing band are cited literals in `rule_engine.py` (T-AUD-16).
 
 **Alternatives considered.**
 1. *Hard-code signatures as Python constants.* Rejected — not auditable, no drift guard possible.
@@ -123,11 +123,11 @@ This file records the standing architectural decisions that shape GASLab. Record
 - Positive: no false positives from impossible faults; the gate is simple equality, trivially testable.
 - Positive: deterministic — the verdict does not depend on a confidence heuristic.
 - Negative: a wrong/missing DNA field can suppress a real fault; correctness of the verdict leans on DNA-projection quality upstream.
-- Neutral: `confidence` is still carried for COMLab and used in one narrow, explicit place (ADR-0011).
+- Neutral: `confidence` is still carried in the DNA view and used in one narrow, explicit place on the `process()` path (ADR-0011).
 
 **Alternatives considered.**
 1. *Confidence-weighted gates (relax when DNA is PARTIAL/NONE).* Rejected for the canonical pipeline — it trades a clear, testable rule for a tunable heuristic and risks emitting impossible faults.
-2. *Top-N ranked output that keeps gated candidates as low-confidence options.* Exists only in the out-of-scope `ranking.py` (GASLabSimple), not on the `process()` path.
+2. *Top-N ranked output that keeps gated candidates as low-confidence options.* Not implemented: the out-of-scope `ranking.py` (GASLabSimple) ranks top-N but drops gated candidates through `_resolve_candidates`, as the pipeline does (T-AUD-16).
 
 **References.** `LLD_GASLab §7`; `HLD_GASLab §5`; `resolution.py`.
 
@@ -139,7 +139,7 @@ This file records the standing architectural decisions that shape GASLab. Record
 
 **Context.** Multiple fault signatures can match one reading. The engine must pick exactly one verdict, and the same input must always yield the same output (frozen models, CI grids, reproducible diagnoses).
 
-**Decision.** Surviving candidates are ordered by `_candidate_rank = (is_catch_all, signature_width)`: catch-all faults (`VVT_FAILURE`, `EVAP_CANISTER_SATURATED`, `POA_SIGNATURE`) sort last, then the **narrowest** total signature width wins (more specific = preferred). On an exact tie the winner is the first in ontology declaration order. `min()` over this key is deterministic across process restarts.
+**Decision.** Surviving candidates are ordered by `_candidate_rank = (is_catch_all, signature_width)`: catch-all faults (`VVT_FAILURE`, `EVAP_CANISTER_SATURATED`, `POA_SIGNATURE`, `INCOMPLETE_OXIDATION`) sort last, then the **narrowest** total signature width wins (more specific = preferred). On an exact tie the winner is the first in ontology declaration order. `min()` over this key is deterministic across process restarts.
 
 **Consequences.**
 - Positive: a single, reproducible verdict; specific faults beat broad ones.
@@ -187,7 +187,7 @@ This file records the standing architectural decisions that shape GASLab. Record
 
 **Consequences.**
 - Positive: no orphan DNA field; the split is carried by chemistry the engine already has.
-- Positive: keeps the DNA view at 13 fields, all with consumers.
+- Positive: keeps the DNA view at 13 fields; `number_of_banks` has no GASLab reader (T-AUD-16).
 - Negative: the MAP/MAF call rests on gas direction plus the high-idle vector, so it needs `reading_high` to be confident; without it the call is weaker.
 - Neutral: full phase confirmation still belongs downstream (CKP/CMP in OBDLab/DTCLab).
 
@@ -249,7 +249,7 @@ This file records the standing architectural decisions that shape GASLab. Record
 
 **Context.** `GasLabDnaView.confidence` (`HIGH` / `PARTIAL` / `NONE`) describes how trustworthy the DNA projection is. ADR-0005 rules out using it to weaken fault gates. The question remains whether it should be consumed anywhere in GASLab at all.
 
-**Decision.** `confidence` is **carried and forwarded to COMLab** but has exactly one functional use inside GASLab: `_rich_co_ceiling` uses the per-vehicle `co_high_idle` as the rich-CO ceiling for the `CAM_TIMING_RETARDED_MAP` branch **only when `confidence == "HIGH"`**; otherwise the Euro-scaled default applies. There is no other branching on `confidence` in the canonical pipeline.
+**Decision.** `confidence` is **carried in the DNA view** (it is not a `GasLabPayload` field, so it is not forwarded to COMLab, T-AUD-16) and has exactly one functional use on the `process()` path: `_rich_co_ceiling` uses the per-vehicle `co_high_idle` as the rich-CO ceiling for the `CAM_TIMING_RETARDED_MAP` branch **only when `confidence == "HIGH"`**; otherwise the Euro-scaled default applies. There is no other branching on `confidence` in the canonical pipeline; off it, `ranking.py` reads it for its ceiling tier.
 
 **Consequences.**
 - Positive: a per-vehicle CoC limit is trusted only when the lookup is high-confidence; otherwise a safe class default is used.

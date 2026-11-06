@@ -46,7 +46,7 @@ source: "labs/gaslab/docs/LLD_GASLab.md"
 **Date:** 2026-06-10
 **Change note:** Refreshed to the live engine — cam-timing rule (renamed from the retired WVT rule) and its high-idle confirmation vectors, `fuel_trim` leak routing, masking cylinder-count inference, Euro-class CO/HC scaling, wideband O₂-bias calibration, and the single-value `target_lambda_v112` CoC window.
 
-Convention: every numeric literal in `gaslab/` carries a `# wiki:` or `# vocab:` comment citing `GAS_WIKI` / `GAS_VOCABULARY`. The literals below are transcribed from source.
+Convention: numeric literals in `gaslab/` carry a `# wiki:` or `# vocab:` comment citing `GAS_WIKI` / `GAS_VOCABULARY`, often once per condition block rather than on each literal (the rich-timing branch in `rule_engine.py` cites its block on the line above it, T-AUD-16). The literals below are transcribed from source.
 
 ---
 
@@ -83,7 +83,7 @@ def lambda_chem(reading: GasReading, hcv: float | None = None) -> float:
 ```
 
 **Edge cases:**
-- `carbon_sum == 0`: returns `1.0` safe sentinel. The dilution gate (`CO + CO₂ > 6.0`) runs before `classify()`, which independently flags `SAMPLE_INVALID`.
+- `carbon_sum == 0`: returns `1.0` safe sentinel. `process()` calls `classify()` first; `classify()` runs the dilution gate (`CO + CO₂ > 6.0`) itself and flags `SAMPLE_INVALID`; `lambda_chem()` runs after it (T-AUD-16).
 - `volumetric_sum == 0`: NOx correction is skipped (no divide-by-zero); 4-gas lambda returned.
 - `nox == 0`: correction term evaluates to 0; 4-gas lambda returned.
 - The carbon-balance denominator weights HC by `HC_FACTOR` to preserve **misfire-immunity** (`GAS_WIKI §4.3`): raw fuel + raw air from a dead cylinder stay stoichiometric, so λ ≈ 1.000 even with high HC and high O₂.
@@ -122,7 +122,7 @@ co + co2 > 6.0          → True (not diluted)
 
 ## 4. Definitive-Override Thresholds (`_definitive_match`, in firing order)
 
-All thresholds come from `gas_lab_ontology.yaml §reasoning_grammar`; the wiki drift guard enforces they match `GAS_VOCABULARY.md` at every CI run. Evaluation is **strictly sequential** — the first rule to return wins.
+Most thresholds come from `gas_lab_ontology.yaml §reasoning_grammar`. The exceptions are cited literals in `rule_engine.py`: the `fuel_trim > 8.0` limit, the cam-timing 2500 RPM vector and the rich-timing band (T-AUD-16). For the ontology thresholds, the wiki drift guard enforces they match `GAS_VOCABULARY.md` at every CI run. Evaluation is **strictly sequential** — the first rule to return wins.
 
 ```python
 # 4.0 Low-triangle air ingress (fast path) — wiki: GAS_WIKI §7.7
@@ -252,7 +252,7 @@ if dna_gate is not None:
 #                       type "physical_check" → informational (never filters)
 ```
 
-`confidence` is **not** consumed by the strict gate. Its one functional use is `_rich_co_ceiling(dna)`: `co_high_idle` overrides the Euro default **only** when `confidence == "HIGH"`.
+`confidence` is **not** consumed by the strict gate. On the `process()` path its one functional use is `_rich_co_ceiling(dna)`: `co_high_idle` overrides the Euro default **only** when `confidence == "HIGH"`. Off that path, `ranking._dna_tier` reads it to pick the confidence-ceiling row (T-AUD-16).
 
 ---
 
