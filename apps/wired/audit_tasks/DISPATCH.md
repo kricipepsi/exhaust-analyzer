@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-4s` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 2 | NO | 20-40 min | raw obd ranges |
+| `T-AUD-4q` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 2 | NO | 20-40 min | retire comlab projector |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-4s` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — The 31 numeric OBD channels that `_run_obdlab` copies straight from the raw input are range-checked with the UI form's ranges.
-  `repo\apps\wired\audit_tasks/T-AUD-4s_raw_obd_ranges(3).md`
+**`T-AUD-4q` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — COMLab's DNA projector (`comlab/projection.py`, `comlab/schemas/lab_dna_views.py`) has no production caller, builds a DTC view that DTCLab rejects (F-D2-10) and misreads the LLD §3.2 shape (F-D2-11).
+  `repo\apps\wired\audit_tasks/T-AUD-4q_retire_comlab_projector(2).md`
 
 ## Distribution
 
-- **3/5** — 1: T-AUD-4s
+- **2/5** — 1: T-AUD-4q
