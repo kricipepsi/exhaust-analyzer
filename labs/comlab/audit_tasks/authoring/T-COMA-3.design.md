@@ -36,3 +36,15 @@ Measured on `fix/T-AUD-4r` (`53d6ce3`). Scripts: `C:/4DApp/recheck/T-COMA-3a/` (
   Lost: one fewer rule. P0340 (CMP) stays out: many engines start on crank sync alone.
 - OBD-only DTCs: no row (fact 2).
 - Order: 3a (smallest, one verdict move), then 3b, then 3c after the answer.
+
+## T-COMA-3b survey (2026-11-06, on fix/T-COMA-3a 9ff27c0)
+- `labs/gaslab/gaslab/validity_gates.py` `triangle_gate`: CO+CO2+O2 < 14 or > 18 → `INVALID` (GAS_WIKI §6.1, "a clean
+  petrol burn"); `dilution_gate`: CO+CO2 ≤ 6 % fails. A no-combustion cranking sample is near air (O2 ≈ 20.9 %, CO2 ≈ 0),
+  so both gates reject every cranking sample; the shim then drops `chemistry_state` (`sample_validity == "INVALID"`) and
+  NS-001..003 are pruned.
+- `gaslab/contracts.py` `EngineStateBucket` has STABILIZED_IDLE, REGULATORY_HIGH_IDLE, STRESS_IDLE,
+  COLD_OPEN_LOOP_INVALID: no cranking state. The UI hard-codes `gas_engine_state` STABILIZED_IDLE (T-AUD-4r kept it).
+- The design the row needs (plan REQUIRED): a cranking state from the composition when `triage.engine_state` is
+  `will_not_start` (GASLab bucket + COMLab mirror), and cranking-specific validity in GASLab (no triangle/dilution
+  gate; classify LEAN_MISFIRE / RICH_MISFIRE / INCOMPLETE_COMBUSTION from the cranking chemistry NS-001..003 already
+  gate on: rpm < 600, CO2 < 5-8 %). Wiki first: GAS_WIKI §6 has no cranking clause.
