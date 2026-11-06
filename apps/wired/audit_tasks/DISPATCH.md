@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-4r` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 2 | NO | 20-40 min | inputs reach a reader |
+| `T-AUD-4u` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **1** | 1 | NO | 10-25 min | projector doc drift |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-4r` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — Every input the form offers reaches a reader (AGENTS.md rule 4).
-  `repo\apps\wired\audit_tasks/T-AUD-4r_inputs_reach_a_reader(2).md`
+**`T-AUD-4u` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 1/5** — T-AUD-4q retired COMLab's DNA projector (`comlab/projection.py`, `comlab/schemas/lab_dna_views.py`).
+  `repo\apps\wired\audit_tasks/T-AUD-4u_projector_doc_drift(1).md`
 
 ## Distribution
 
-- **2/5** — 1: T-AUD-4r
+- **1/5** — 1: T-AUD-4u
