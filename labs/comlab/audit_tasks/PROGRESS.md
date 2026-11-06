@@ -10,7 +10,7 @@ folder per lab (VINLab reused its own).
 **Branch rule:** one `fix/<ID>` branch per row. T-COMA-1 is cut from `fix/T-AUD-11h` (`2e07e9c`); each later row from
 the previous accepted row. Never `main`.
 **Order:** F-C1-7 first (HIGH; a non-starter verdict is decided by gas readings a non-running engine cannot give).
-**Last updated:** 2026-11-05 (Windows Cowork: pack opened, T-COMA-1 authored).
+**Last updated:** 2026-11-06 (Windows Cowork: T-COMA-1 authored; T-COMA-2/3 registered).
 
 Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and never contain `|`.
 
@@ -20,4 +20,6 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 
 | ID | Task file | Status | Blocked by | Date | Score | Note |
 |---|---|---|---|---|---|---|
-| T-COMA-1 | (not authored) | deferred | — | 2026-11-05 | — | F-C1-7 (HIGH) + T-AUD-4e residual: non-starter verdicts are decided by gas, never the non_starter family; design input `authoring/T-COMA-1.design.md` (rule A or B first) |
+| T-COMA-1 | `labs/comlab/audit_tasks/T-COMA-1_non_starter_family_gate(4).md` | pending | — | 2026-11-06 | 4/5 | F-C1-7 (HIGH): non_starter family gate + NS-NO-RULE abstain; ruling B (sidecar); wiki 07 amended |
+| T-COMA-2 | (not authored) | deferred | T-COMA-1 | 2026-11-06 | — | T-AUD-4e residual: gas readings optional for a non-starter (inbound schema, composition abort, aggregator gas reads) |
+| T-COMA-3 | (not authored) | deferred | T-COMA-1 | 2026-11-06 | — | GASLab marks cranking samples INVALID, so NS-001..003 never score; NS-004 DTC list (P0335); REAL-002 label |
