@@ -46,3 +46,5 @@ cold read 2026-11-06 FOCUSED reader; trigger 1c grep hit (criterion 3 "every P4 
 
 ### Correction history ###
 (none)
+cold read 2026-11-06 DELTA reader; 1 finding (IMPLICIT: Preconditions and First action fail on a resumed run), 1 patched
+(R6 resumed-run start state) — 28145 tok, 3 calls.
