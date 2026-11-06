@@ -48,6 +48,7 @@ gas_low_co2 = None
 gas_low_o2 = None
 gas_low_nox = None
 gas_low_lambda = None
+gas_block_test = False
 gas_high_hc = None
 gas_high_co = None
 gas_high_co2 = None
@@ -396,7 +397,6 @@ with st.sidebar:
     # Symptom expander
     triage_tier_1 = "—"
     triage_tier_2 = "—"
-    triage_free_text_notes = ""
     triage_occurs_during = "Always"
     triage_engine_state = "Running"
     
@@ -434,7 +434,6 @@ with st.sidebar:
             
             triage_occurs_during = _check_radio(["Always", "Cold only", "Hot only", "Intermittent"], "occurs_during", default_index=0, help_text="Occurs during", help_str=FIELD_HELP["triage_occurs_during"].get_tooltip())
             triage_engine_state = _check_radio(["Running", "Cranking", "Won't start"], "engine_state", default_index=0, help_text="Engine state", help_str=FIELD_HELP["triage_engine_state"].get_tooltip())
-            triage_free_text_notes = st.text_area("Free-text notes", placeholder="Enter additional technician details...")
 
 
 # CENTRAL LAYOUT — Central expanders
@@ -460,6 +459,8 @@ with col_main:
             with gc3:
                 gas_low_hc = st.number_input("HC (ppm)", min_value=GAS_HC_MIN, max_value=GAS_HC_MAX, value=None, step=1, key="gas_hc", help=FIELD_HELP["gas_hc"].get_tooltip())
                 gas_low_lambda = st.number_input("Measured λ (analyser)", min_value=GAS_LAMBDA_MIN, max_value=GAS_LAMBDA_MAX, value=None, step=0.001, format="%.3f", key="gas_lambda", help=FIELD_HELP["gas_lambda_measured"].get_tooltip())
+            # consumer: GASLab classify block_test_passed -> COOLANT_LEAK_INTERNAL (T-AUD-4r, F-C5-10)
+            gas_block_test = st.checkbox("Coolant block test: combustion gases found", value=False, key="gas_block_test", help=FIELD_HELP["gas_block_test_passed"].get_tooltip())
 
     # 2. GASLab (High Idle)
     if gas_module:
@@ -543,48 +544,8 @@ with col_main:
                     
                 obd_low_fss = st.selectbox("Fuel-sys status", options=["", "CL", "OL", "OL_DRIVE", "OL_FAULT"], index=0, key="obd_fss", help=FIELD_HELP["obd_fuel_sys_status"].get_tooltip())
 
-    # 4. OBDLab (High Idle)
-    if obd_module:
-        with st.expander("📡 OBDLab (High Idle)", expanded=False):
-            st.caption("Capture at U2 RPM (stationary noise test point) — ECT ≥ 75 °C.")
-            ohc1, ohc2, ohc3, ohc4 = st.columns(4)
-            with ohc1:
-                st.number_input("Engine RPM", min_value=OBD_RPM_MIN, max_value=OBD_RPM_MAX, value=None, step=50, key="obd_rpm_high", help=FIELD_HELP["obd_engine_rpm"].get_tooltip())
-                st.number_input("STFT B1 (%)", min_value=OBD_TRIM_MIN, max_value=OBD_TRIM_MAX, value=None, step=1.0, key="obd_stft1_high", help=FIELD_HELP["obd_shrtft1"].get_tooltip())
-                if active_number_of_banks == 2:
-                    pad, body = st.columns([0.06, 0.94])
-                    with body:
-                        st.number_input("STFT B2 (%)", min_value=OBD_TRIM_MIN, max_value=OBD_TRIM_MAX, value=None, step=1.0, key="obd_stft2_high", help=FIELD_HELP["obd_shrtft2"].get_tooltip())
-            with ohc2:
-                st.number_input("Coolant temp ECT (°C)", min_value=OBD_ECT_MIN, max_value=OBD_ECT_MAX, value=None, step=1.0, key="obd_ect_high", help=FIELD_HELP["obd_coolant_temp_c"].get_tooltip())
-                st.number_input("LTFT B1 (%)", min_value=OBD_TRIM_MIN, max_value=OBD_TRIM_MAX, value=None, step=1.0, key="obd_ltft1_high", help=FIELD_HELP["obd_longft1"].get_tooltip())
-                if active_number_of_banks == 2:
-                    pad, body = st.columns([0.06, 0.94])
-                    with body:
-                        st.number_input("LTFT B2 (%)", min_value=OBD_TRIM_MIN, max_value=OBD_TRIM_MAX, value=None, step=1.0, key="obd_ltft2_high", help=FIELD_HELP["obd_longft2"].get_tooltip())
-            with ohc3:
-                st.number_input("Calc load (%)", min_value=OBD_LOAD_MIN, max_value=OBD_LOAD_MAX, value=None, step=1.0, key="obd_load_high", help=FIELD_HELP["obd_calculated_engine_load_pct"].get_tooltip())
-                if active_has_maf_sensor:
-                    pad, body = st.columns([0.06, 0.94])
-                    with body:
-                        st.number_input("MAF (g/s)", min_value=OBD_MAF_MIN, max_value=OBD_MAF_MAX, value=None, step=0.1, key="obd_maf_high", help=FIELD_HELP["obd_mass_airflow_gps"].get_tooltip())
-                if active_has_map_sensor:
-                    pad, body = st.columns([0.06, 0.94])
-                    with body:
-                        st.number_input("MAP (kPa)", min_value=OBD_MAP_MIN, max_value=OBD_MAP_MAX, value=None, step=1.0, key="obd_map_high", help=FIELD_HELP["obd_manifold_vacuum_kpa"].get_tooltip())
-            with ohc4:
-                if active_upstream_o2_type != "NONE":
-                    if active_upstream_o2_type in ("NARROWBAND", "WIDEBAND_NB_SIM"):
-                        st.number_input("Upstream O₂ (V)", min_value=UPSTREAM_O2_NARROWBAND_MIN, max_value=UPSTREAM_O2_NARROWBAND_MAX, value=None, step=0.01, key="obd_o2_up_high", help=FIELD_HELP["obd_upstream_o2_val"].get_tooltip())
-                    elif active_upstream_o2_type == "WIDEBAND_LAMBDA":
-                        st.number_input("Upstream O₂ (λ)", min_value=UPSTREAM_O2_WIDEBAND_LAMBDA_MIN, max_value=UPSTREAM_O2_WIDEBAND_LAMBDA_MAX, value=None, step=0.001, format="%.3f", key="obd_o2_up_high", help=FIELD_HELP["obd_upstream_o2_val"].get_tooltip())
-                    elif active_upstream_o2_type == "WIDEBAND_AFR":
-                        st.number_input("Upstream O₂ (AFR)", min_value=UPSTREAM_O2_WIDEBAND_AFR_MIN, max_value=UPSTREAM_O2_WIDEBAND_AFR_MAX, value=None, step=0.1, format="%.1f", key="obd_o2_up_high", help=FIELD_HELP["obd_upstream_o2_val"].get_tooltip())
-                if active_downstream_o2_present:
-                    pad, body = st.columns([0.06, 0.94])
-                    with body:
-                        st.number_input("Downstream O₂ S12 (V)", min_value=OBD_O2_DN_MIN, max_value=OBD_O2_DN_MAX, value=None, step=0.01, format="%.2f", key="obd_o2_dn_high", help=FIELD_HELP["obd_downstream_o2_v"].get_tooltip())
-                st.selectbox("Fuel-sys status", options=["", "CL", "OL", "OL_DRIVE", "OL_FAULT"], index=0, key="obd_fss_high", help=FIELD_HELP["obd_fuel_sys_status"].get_tooltip())
+    # 4. OBDLab (High Idle): removed by T-AUD-4r (F-C5-10). The composition sends no second operating
+    #    point and COMLab's delta re-rank (enable_delta_v2) is off by default, so no code read these inputs.
 
     # 5. DTCLab (DTC)
     if dtc_module:
@@ -687,13 +648,8 @@ with col_main:
                     st.caption(f"Component: {mid_name}")
                     
                 with col2:
-                    st.selectbox(
-                        f"Result state #{i+1}",
-                        options=["Passed", "Pending/marginal", "Critical fail"],
-                        index=0,
-                        key=f"mon_state_{i}",
-                        help=FIELD_HELP["mode06_result_state"].get_tooltip()
-                    )
+                    # T-AUD-4r (F-C5-10): DTCLab's mode06_evaluator derives the state from the margin.
+                    st.caption("Result state: DTCLab derives it from the margin.")
                 with col3:
                     margin = st.number_input(f"Margin (%) #{i+1}", value=mon["margin_pct"], key=f"mon_margin_{i}", help=FIELD_HELP["mode06_margin_pct"].get_tooltip())
                     st.session_state.monitors[i]["margin_pct"] = margin
@@ -813,7 +769,6 @@ if st.button("🔬 Run Diagnostic Seam", type="primary", use_container_width=Tru
         "triage_tier_2": triage_tier_2,
         "triage_occurs_during": triage_occurs_during,
         "triage_engine_state": triage_engine_state,
-        "triage_free_text_notes": triage_free_text_notes,
         
         "override_upstream_o2_type": o2_override,
         "override_de_cat": de_cat_override,
@@ -833,7 +788,7 @@ if st.button("🔬 Run Diagnostic Seam", type="primary", use_container_width=Tru
         "gas_o2_high": gas_high_o2,
         "gas_nox_high": gas_high_nox,
         "gas_engine_state": "STABILIZED_IDLE",
-        "gas_block_test_passed": False,
+        "gas_block_test_passed": gas_block_test,
         
         # OBD basic
         "obd_engine_rpm": obd_low_rpm,

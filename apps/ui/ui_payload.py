@@ -259,7 +259,7 @@ FIELD_HELP: dict[str, FieldHelp] = {
         options=["STABILIZED_IDLE", "HIGH_IDLE"]
     ),
     "gas_block_test_passed": FieldHelp(
-        explanation="Indicates if tailpipe exhaust backpressure test was completed successfully.",
+        explanation="Coolant chemical block test: tick when it finds combustion gases in the coolant. GASLab then reads a low-CO₂, high-HC sample as an internal coolant leak.",
         options=["Checked", "Unchecked"]
     ),
     # OBD basic fields
@@ -361,10 +361,6 @@ FIELD_HELP: dict[str, FieldHelp] = {
     "mode06_monitor_id": FieldHelp(
         explanation="The standardized hex identifier for the monitor (MID) and test (TID).",
         options=["MID_XX_TID_YY hex format"]
-    ),
-    "mode06_result_state": FieldHelp(
-        explanation="The test status reported by the scanner.",
-        options=["Passed", "Pending/marginal", "Critical fail"]
     ),
     "mode06_margin_pct": FieldHelp(
         explanation="The margin remaining before the test limit is exceeded.",
