@@ -33,8 +33,8 @@ COMLab. A direct import (`from comlab import VehicleDNA`) would couple DTCLab to
 cycle and break the workspace's non-negotiable "no cross-lab Python imports" boundary.
 
 **Decision.** DTCLab defines its **own** slim mirror, `DtcLabDnaView` (+ `DtcEmissionsView` and
-the four mirror enums), in `dtclab/schemas/dna_view.py`. COMLab populates it via
-`COMLab.project(..., target='dtc')` and passes it in through the `DataFusionSanitizer`
+the four mirror enums), in `dtclab/schemas/dna_view.py`. The composition (`apps/wired`) builds it
+with `_build_dtc_dna_view` and passes it in through the `DataFusionSanitizer`
 constructor. DTCLab imports nothing from any sibling lab; the mirror carries only the fields DTCLab
 actually reads.
 

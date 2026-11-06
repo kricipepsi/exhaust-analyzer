@@ -16,7 +16,7 @@ implements:
 consumers:
   - "dnalab: labs/dnalab/dnalab/assembly.py build_vehicle_dna (vinlab.decode → VehicleDNA.vin_dna, Part A)"
   - "dnalab: labs/dnalab/dnalab/models.py VinDNA.from_json -> VehicleDNA.vin_dna"
-  - "comlab: labs/comlab/comlab/projection.py project() (VehicleDNA → LabDnaView, reads vin_dna)"
+  - "wired: apps/wired/wired/composition.py _build_gas/obd/dtc_dna_view (reads vin_dna; COMLab projector retired, T-AUD-4q)"
   - "comlab: labs/comlab/comlab/core/fault_atlas_router.py vin_confidence (request.metadata.vin_confidence, :2239)"
 drift_guards:
   - "labs/vinlab/tests/unit/test_decoder.py"

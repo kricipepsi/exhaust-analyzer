@@ -110,7 +110,7 @@ GASLab does not consume the full `VehicleDNA`. COMLab's projector hands it a typ
 | `altitude_band` *(proposed v2)* | session/context | informational only — λ math is altitude-invariant `[v2: q9]` |
 | `confidence` | `vin_dna.confidence` | gates limited-scope fallback (→ GASWIKI-10) |
 
-Code-side type lives in `COMLab/comlab/schemas/lab_dna_views.py`. The two proposed v2 fields (`fuel_type`, `altitude_band`) are context-only — see GASWIKI-02 §2.8 for why neither relaxes any gate.
+Code-side type lives in `gaslab/dna_view.py` (`GasLabDnaView`); the composition's `_build_gas_dna_view` builds it. The two proposed v2 fields (`fuel_type`, `altitude_band`) are context-only — see GASWIKI-02 §2.8 for why neither relaxes any gate.
 
 ## 1.5 DNA-gated ingestion model {#CONCEPT_DNA_GATED_INGESTION}
 
@@ -140,8 +140,8 @@ Code-side type lives in `COMLab/comlab/schemas/lab_dna_views.py`. The two propos
 **GATE_DILUTION** VALIDATES **sample_validity** at chemistry level
 **target_lambda_v112** CONSUMED_BY **brettschneider** mixture evaluation
 **co_low_idle**, **co_high_idle** CONSUMED_BY **per-vehicle CoC threshold tables**
-**fuel_type** (proposed v2) CARRIED_AS **context only** — CONSUMED_BY **COMLab.comlab.schemas.lab_dna_views**
-**altitude_band** (proposed v2) CARRIED_AS **context only** — CONSUMED_BY **COMLab.comlab.schemas.lab_dna_views**
+**fuel_type** (proposed v2) CARRIED_AS **context only** — CONSUMED_BY **gaslab.dna_view.GasLabDnaView**
+**altitude_band** (proposed v2) CARRIED_AS **context only** — CONSUMED_BY **gaslab.dna_view.GasLabDnaView**
 **confidence** GATED_BY **CONCEPT_SCOPE_SHRINKAGE** (GASWIKI-10)
 **CONCEPT_ROLE** DESCRIBES **GASLab as 4DLab chemistry leaf**
 **operating_envelope** GATED_BY **petrol 1990–2010**, **warm engine only**, **5-gas analyser required**

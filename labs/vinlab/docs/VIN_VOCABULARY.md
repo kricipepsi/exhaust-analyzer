@@ -6,7 +6,7 @@ subsystem: vin-enums-thresholds
 implements:
   - "labs/vinlab/vinlab/models.py"
 consumers:
-  - "comlab: labs/comlab/comlab/schemas/lab_dna_views.py ObdLabDnaView mirror"
+  - "obdlab: labs/obdlab/obdlab/schemas/dna_view.py ObdLabDnaView (built by the composition)"
   - "obdlab: labs/obdlab/obdlab/core/pid_ingestion_validator.py _check_dna_rpm"
   - "dnalab: labs/dnalab/dnalab/assembly.py triage required keys (load_state / engine_state)"
   - "gaslab: CoC threshold tables via projector (Emissions / CoC fields)"
@@ -106,7 +106,7 @@ Core (16): `vin`, `make`, `model_year`, `engine_displacement_liters`, `cylinder_
 `rated_rpm`, `confidence`, `air_metering_strategy`.
 
 > `rated_rpm` (`int | None`) is emitted by `VinDNA` since T-DNA-3 — source
-> `DBS/docs/vehicles_petrol_specimens.csv` `P14_rated_rpm`. Consumer: COMLab `projection.py`
+> `DBS/docs/vehicles_petrol_specimens.csv` `P14_rated_rpm`. Consumer: the composition's `_build_obd_dna_view`
 > → `ObdLabDnaView.rated_rpm` → the OBDLab RPM ceiling.
 
 CoC overlay (13): `target_lambda_v112`, `target_rpm_u2`, `idle_rpm_low`, `co_low_idle`,

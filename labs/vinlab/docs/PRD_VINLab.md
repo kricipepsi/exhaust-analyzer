@@ -47,7 +47,7 @@ that prior is what VINLab produces.
 | Name | Role | Responsibility |
 |------|------|----------------|
 | VINLab Owner | Module Owner | VIN structural validation, WMI/year/engine resolution, overlay rules, CoC overlay, confidence grading |
-| COMLab Team | Integration Consumer | Mirrors `VinDNA` locally; projects it into `ObdLabDnaView` / `DtcLabDnaView` / `lab_dna_views`; reads `rated_rpm`, `air_metering_strategy`, `stress_idle_rpm_target`, `confidence`, CoC targets |
+| COMLab Team | Integration Consumer | Mirrors `VinDNA` locally; the composition (`apps/wired`) builds `GasLabDnaView` / `ObdLabDnaView` / `DtcLabDnaView` from it; reads `rated_rpm`, `air_metering_strategy`, `stress_idle_rpm_target`, `confidence`, CoC targets |
 | OBDLab Owner | Indirect Consumer | Reads the projected DNA view: `rated_rpm` (RPM ceiling), `air_metering_strategy` (VE routing), `upstream_o2_type`, `induction_type`, `confidence` |
 | GASLab Owner | Indirect Consumer | Reads CoC emission targets (lambda/CO/HC thresholds) via the projector |
 | 4DApp Engineering Lead | Architecture | Signal/noise rule; cross-lab JSON contract; offline-runtime constraint; SQL-isolation (H8) |
@@ -231,8 +231,8 @@ petrol CSV medians.
 These tasks are **done**; their dispositions are now shipped behaviour:
 
 - **T-DNA-3 — emit `rated_rpm` (done).** `VinDNA` now emits `rated_rpm` (`int | None`,
-  source `DBS/docs/vehicles_petrol_specimens.csv` `P14_rated_rpm`). COMLab's projector
-  (`projection.py` → `ObdLabDnaView.rated_rpm`) already reads it as the OBDLab RPM
+  source `DBS/docs/vehicles_petrol_specimens.csv` `P14_rated_rpm`). The composition
+  (`_build_obd_dna_view` → `ObdLabDnaView.rated_rpm`) reads it as the OBDLab RPM
   ceiling — producer and consumer are now matched.
 - **T-DNA-4 — formalize CoC fields + reconcile emissions (VINLab side done).** The CoC
   fields are formalized **top-level** on `VinDNA`; the emissions block is formalized as

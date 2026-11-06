@@ -75,8 +75,7 @@ Before any non-trivial edit:
    (fusion-spine consumes verdicts not sensors; no cross-lab imports; signal/noise
    named consumer; wiki provenance).
 2. **Define function signatures with PEP 484 type hints before implementation.**
-   COMLab mirrors each lab's types locally (`comlab/schemas/lab_dna_views.py`,
-   `ingestion.py`); never type a parameter as a cross-lab import.
+   COMLab mirrors each lab's output types locally (`comlab/schemas/ingestion.py`); never type a parameter as a cross-lab import.
 3. **Verify library existence before importing.** Base models hallucinate package
    names (~20% rate). COMLab's dependency surface is small: `pydantic`, `pyyaml`,
    `pytest` (+ optional `opentelemetry` for tracing). Check `pyproject.toml` before
@@ -159,8 +158,8 @@ and **fault-atlas routing** (`wiki §06`, `comlab/core/fault_atlas_router.py`).
 Inside `comlab/`, never `from gaslab import …`, `from obdlab import …`,
 `from dtclab import …`, `from vinlab import …`, `from dnalab import …`,
 `from symptomlab import …`. The only legal seam is the JSON contract documented in
-`wiki/SEMANTIC_CONTRACT.md`. COMLab mirrors each lab's types **locally** in
-`comlab/schemas/lab_dna_views.py` and `comlab/schemas/ingestion.py`. If you discover
+`wiki/SEMANTIC_CONTRACT.md`. COMLab mirrors each lab's output types **locally** in
+`comlab/schemas/ingestion.py`; each lab owns its DNA view model. If you discover
 the need for a cross-lab import, stop and surface to the user.
 
 ### 6.3 Enums

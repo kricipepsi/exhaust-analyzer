@@ -90,9 +90,9 @@ field/threshold detail: `docs/DLD_VINLab.md` / `docs/LLD_VINLab.md`.
 **VINWIKI-00-INDEX** DESCRIBES **VINWIKI-12-BRAND_CYLINDER_RULES**
 **vinlab.decoder.RobustVINDecoder.decode_vin_payload** CONSUMES **VINWIKI-10-DECODE_SCOPE_RULES**
 **vinlab.decoder.RobustVINDecoder.decode_vin_payload** CONSUMES **VINWIKI-11-IDENTITY_RESOLUTION**
-**vinlab.models.VinDNA.rated_rpm** MAPS_TO **comlab.schemas.lab_dna_views.ObdLabDnaView.rated_rpm**
-**comlab.projection.project** CONSUMES **vinlab.models.VinDNA.rated_rpm**
-**obdlab.core.pid_ingestion_validator.PIDIngestionValidator._check_dna_rpm** CONSUMES **comlab.schemas.lab_dna_views.ObdLabDnaView.rated_rpm**
+**vinlab.models.VinDNA.rated_rpm** MAPS_TO **obdlab.schemas.dna_view.ObdLabDnaView.rated_rpm**
+**wired.composition._build_obd_dna_view** CONSUMES **vinlab.models.VinDNA.rated_rpm**
+**obdlab.core.pid_ingestion_validator.PIDIngestionValidator._check_dna_rpm** CONSUMES **obdlab.schemas.dna_view.ObdLabDnaView.rated_rpm**
 **fuel_type / altitude_band** PROPOSED_ONLY_FOR **COMLab-E context fields**
 
 ## Core Entities
@@ -101,5 +101,5 @@ field/threshold detail: `docs/DLD_VINLab.md` / `docs/LLD_VINLab.md`.
 - **VINWIKI-10-DECODE_SCOPE_RULES** - Canonical VINLab-owned decode gates and petrol-only guard. Consumer: `vinlab.decoder.RobustVINDecoder.decode_vin_payload`.
 - **VINWIKI-11-IDENTITY_RESOLUTION** - Canonical WMI, year, engine, OPSI, and cylinder fallback logic. Consumer: `vinlab.decoder.RobustVINDecoder.decode_vin_payload`.
 - **VINWIKI-12-BRAND_CYLINDER_RULES** - Canonical shipped per-brand cylinder heuristics. Consumer: `vinlab.overlay.cylinder_heuristic.infer_cylinder`.
-- **VinDNA.rated_rpm** - Optional VIN output field sourced from DBS P14 and projected into OBDLab. Consumer: `comlab.projection.project` -> `ObdLabDnaView.rated_rpm` -> `PIDIngestionValidator._check_dna_rpm`.
+- **VinDNA.rated_rpm** - Optional VIN output field sourced from DBS P14 and projected into OBDLab. Consumer: `wired.composition._build_obd_dna_view` -> `ObdLabDnaView.rated_rpm` -> `PIDIngestionValidator._check_dna_rpm`.
 - **fuel_type / altitude_band** - Proposal-only context fields. Consumer: none live; do not frame as a live `CONSUMES` edge.

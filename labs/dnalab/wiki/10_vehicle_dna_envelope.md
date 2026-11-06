@@ -9,7 +9,7 @@ implements:
   - "labs/dnalab/dnalab/models.py"
 consumers:
   - "comlab: labs/comlab/comlab/core/horizon_context_injector.py from_vehicle_dna (VehicleDNA.vin_dna read)"
-  - "comlab: labs/comlab/comlab/projection.py project() vehicle_dna_json['vin_dna']"
+  - "wired: apps/wired/wired/composition.py _build_gas/obd/dtc_dna_view (reads vin_dna)"
 drift_guards:
   - "labs/dnalab/tests/unit/test_models.py"
   - "labs/dnalab/tests/unit/test_vehicledna_roundtrip.py"

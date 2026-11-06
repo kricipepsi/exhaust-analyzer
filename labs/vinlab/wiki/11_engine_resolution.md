@@ -15,7 +15,7 @@ consumers:
   - "vinlab: labs/vinlab/vinlab/decoder.py RobustVINDecoder._resolve_year"
   - "vinlab: labs/vinlab/vinlab/decoder.py RobustVINDecoder._resolve_engine"
   - "vinlab: labs/vinlab/vinlab/overlay/horizon.py euro_to_horizon"
-  - "comlab: labs/comlab/comlab/projection.py project() vin.get(\"rated_rpm\") → LabDnaView.rated_rpm"
+  - "wired: apps/wired/wired/composition.py _build_obd_dna_view vin_dna.get(\"rated_rpm\") → ObdLabDnaView.rated_rpm"
   - "obdlab: ObdLabDnaView.rated_rpm RPM ceiling (rated_rpm)"
 drift_guards:
   - "labs/vinlab/tests/unit/test_horizon.py"
@@ -186,9 +186,9 @@ authoritative data.
 **vinlab.overlay.cylinder_heuristic.infer_cylinder** CONSUMES **cylinder-count fallback**
 **vinlab.overlay.horizon.euro_to_horizon** CONSUMES **EuroEmissionCategory**
 **vinlab.models.VinDNA.resolved_horizon** MAPS_TO **vinlab.models.Horizon**
-**vinlab.models.VinDNA.rated_rpm** MAPS_TO **comlab.schemas.lab_dna_views.ObdLabDnaView.rated_rpm**
-**comlab.projection.project** CONSUMES **vinlab.models.VinDNA.rated_rpm**
-**obdlab.core.pid_ingestion_validator.PIDIngestionValidator._check_dna_rpm** CONSUMES **comlab.schemas.lab_dna_views.ObdLabDnaView.rated_rpm**
+**vinlab.models.VinDNA.rated_rpm** MAPS_TO **obdlab.schemas.dna_view.ObdLabDnaView.rated_rpm**
+**wired.composition._build_obd_dna_view** CONSUMES **vinlab.models.VinDNA.rated_rpm**
+**obdlab.core.pid_ingestion_validator.PIDIngestionValidator._check_dna_rpm** CONSUMES **obdlab.schemas.dna_view.ObdLabDnaView.rated_rpm**
 **labs/vinlab/tests/unit/test_horizon.py::test_euro_to_horizon_matches_contract** VERIFIES **vinlab.overlay.horizon.euro_to_horizon**
 **labs/vinlab/tests/unit/test_models.py::test_decode_known_engine_code_yields_rated_rpm** VERIFIES **vinlab.models.VinDNA.rated_rpm**
 **labs/obdlab/tests/unit/test_pid_ingestion_validator.py DNA-RPM tests** VERIFIES **PIDIngestionValidator._check_dna_rpm**
@@ -201,4 +201,4 @@ authoritative data.
 - **two-path engine resolution** - `BRAND_VDS` first, legacy `BRAND_POS8` fallback. Consumer: `vinlab.decoder.RobustVINDecoder._resolve_engine`.
 - **cylinder-count fallback** - Brand rule then displacement-band last-resort inference. Consumer: `vinlab.overlay.cylinder_heuristic.infer_cylinder`.
 - **euro_to_horizon** - Euro category to VIN horizon overlay. Consumer: `vinlab.overlay.horizon.euro_to_horizon`; tests in `labs/vinlab/tests/unit/test_horizon.py`.
-- **VinDNA.rated_rpm** - DBS P14 rated-RPM output. Consumer: `comlab.projection.project` -> `ObdLabDnaView.rated_rpm` -> `PIDIngestionValidator._check_dna_rpm`.
+- **VinDNA.rated_rpm** - DBS P14 rated-RPM output. Consumer: `wired.composition._build_obd_dna_view` -> `ObdLabDnaView.rated_rpm` -> `PIDIngestionValidator._check_dna_rpm`.

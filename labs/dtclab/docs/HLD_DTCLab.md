@@ -45,7 +45,7 @@ on-board monitor data.
 
 ```
 COMLab
-  │  constructs DtcLabDnaView from VIN record (COMLab.project(..., target='dtc'))
+  │  the composition builds DtcLabDnaView from the VIN record (_build_dtc_dna_view)
   │  supplies raw DTC dict, raw freeze-frame dict, raw Mode $06 dict
   ▼
 dtclab.DataFusionSanitizer.sanitize(raw_dtcs, raw_freeze_frame, raw_mode06, ...)

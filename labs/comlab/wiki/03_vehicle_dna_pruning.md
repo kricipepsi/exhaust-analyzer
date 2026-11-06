@@ -29,8 +29,7 @@ module: comlab
 subsystem: hardware-pruning
 implements:
 - labs/comlab/comlab/core/ecu_hardware_checker.py
-- labs/comlab/comlab/schemas/lab_dna_views.py
-- labs/comlab/comlab/projection.py
+- apps/wired/wired/composition.py
 consumers:
 - 'comlab: labs/comlab/comlab/core/ecu_hardware_checker.py ECU-hardware digital-lie
   evidence (fault_atlas_router.py:1312, ecu_fault family)'
@@ -39,7 +38,7 @@ consumers:
   fatal gate (ERR-ABORT-004)'
 drift_guards:
 - labs/comlab/tests/unit/test_ecu_hardware_checker.py
-- labs/comlab/tests/unit/test_projection.py
+- labs/comlab/tests/unit/test_t_aud_4q_no_projector.py
 tags:
 - comlab
 - hardware-pruning

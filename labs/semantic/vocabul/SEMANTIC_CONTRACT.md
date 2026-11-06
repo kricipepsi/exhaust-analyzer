@@ -5,10 +5,11 @@ module: semantic-vocabulary
 subsystem: cross-lab-boundary-contract
 implements:
   - "labs/comlab/comlab/schemas/vocabulary.py"
-  - "labs/comlab/comlab/schemas/lab_dna_views.py"
+  - "labs/gaslab/gaslab/dna_view.py"
+  - "labs/obdlab/obdlab/schemas/dna_view.py"
 consumers:
   - "comlab: labs/comlab/comlab/schemas/vocabulary.py enum/field definitions (SEMANTIC_CONTRACT §4/§6.4/§8/§10 cites)"
-  - "comlab: labs/comlab/comlab/schemas/lab_dna_views.py GasLabDnaView/ObdLabDnaView field mirror (§5.1)"
+  - "gaslab, obdlab: GasLabDnaView / ObdLabDnaView, each lab's own model, built by the composition (§5.1)"
   - "comlab: labs/comlab/comlab/core/horizon_context_injector.py EuroEmissionCategory mapping (§6.4)"
 drift_guards:
   - "labs/comlab/tests/unit/test_vocabulary.py"
