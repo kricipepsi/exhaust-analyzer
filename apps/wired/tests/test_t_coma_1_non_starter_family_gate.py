@@ -42,10 +42,13 @@ def test_non_starter_dtc_rule_wins() -> None:
     raw = {cid: r for cid, r, *_ in load_corpus()}["case_006"]
     v = diagnose(raw).diagnostic_verdict
     assert (v.fault_family, v.fault_code) == ("non_starter", "NS-004")
+    assert v.confidence_score == pytest.approx(0.85)
+    assert v.abstained is False and v.abstain_reason is None
 
 
 def test_running_session_is_not_gated() -> None:
     """PIN: the same idle-stoich gas on a running engine keeps its idle-gas verdict (EF-004)."""
     v = diagnose(_raw(vin=DECODABLE_VIN, gas=dict(GASES["idle_stoich"], engine_state="STABILIZED_IDLE"))
                  ).diagnostic_verdict
-    assert v.fault_family != "non_starter"
+    assert (v.fault_family, v.fault_code) == ("ecu_fault", "EF-004")
+    assert not v.abstained
