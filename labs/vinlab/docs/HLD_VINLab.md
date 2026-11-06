@@ -47,7 +47,7 @@ Runtime is **offline**: zero network, zero MySQL. All reference data is baked in
 ## 2. Architecture Position
 
 ```
-caller (DNALab assembly / COMLab projector / tooling)
+caller (DNALab assembly / apps/wired composition / apps/ui / tooling)
   │  vinlab.decode(vin, *, data_dir=None)
   ▼
 vinlab.__init__.decode
@@ -96,12 +96,15 @@ raw_vin
         → engine_row dict | None
 [H1] _is_non_petrol(CSV fuel_system_type) → VINDecodeError (fuel out of scope)
 [8] lookup_engine_ref(vref.db, engine_code)  → db_row | None
-        db None → conf flag; engine None → conf flag (NONE)
+        a row outside its my_start–my_end window is discarded (vref_year_out_of_window)
+        db None → conf flag; engine None → engine_not_in_csv (NONE),
+        or wmi_brand_missing (PARTIAL) when the WMI brand is blank
 [H1] _is_non_petrol(db fuel_delivery_type) → VINDecodeError
 [9] assemble VinDNA:
         basic attrs (CSV) → tech-mask (vref.db, authoritative for displacement) →
         cylinder heuristic (only if cylinder_count==0) → air metering classify →
-        euro→horizon → stress RPM → CoC overlay
+        euro→horizon (no recognised euro_norm → euro_unknown, horizon from the
+        model year) → stress RPM → CoC overlay
 [10] confidence:  engine_not_in_csv → NONE | any conf_flags → PARTIAL | clean → HIGH
   ▼
 VinDNA(...)   one constructor call
@@ -132,13 +135,15 @@ is 10 else `str(remainder)`, compared to `vin[8]`.
 
 **WMI (`_resolve_wmi`).** Standard manufacturers occupy VIN positions 1–3. SAE J853's
 low-volume rule (manufacturers producing < 500 units/year, signalled by `vin[2] == '9'`)
-places the manufacturer code at positions 12–13, so the resolver tries the 6-char
+places the manufacturer code at positions 12–14, so the resolver tries the 6-char
 extended key `vin[0:3] + vin[11:14]` **first**, then falls back to the standard 3-char
 key. A miss raises `VINDecodeError`.
 
 **Year (`_resolve_year`).** SAE J853 excludes `I, O, Q, U, Z` from the year alphabet;
 `0` is also unused. These passthrough characters (`{0, U, Z}`) return
-`(model_year=None, flag=None)` — *unknown, not an error*. Within 1990–2010 each year
+`(model_year=None, flag=None)` — *unknown, not an error*. A digit-form type-code VIN of
+one of 11 WMIs (`_TYPE_CODE_WMIS`, e.g. WDB, VSA, WDF; digits at positions 4–9) also
+returns `(None, None)`: its position 10 is not a model year. Within 1990–2010 each year
 code has one year, and `L` is 1990. A code with no in-scope year returns its first
 candidate, which the H2 guard refuses.
 
@@ -148,7 +153,8 @@ candidate, which the H2 guard refuses.
 
 **Two-path engine resolution (`_resolve_engine`).** Path A matches the modern 5-char
 VDS (`vin[3:8]`) keyed `BRAND_VDS`; Path B falls back to the legacy single-character
-position-8 (`vin[7]`) keyed `BRAND_POS8`. Returns the CSV row or `None`.
+position-8 (`vin[7]`) keyed `BRAND_POS8`. Returns the CSV row or `None`. A Path-A row
+whose `majority_share` is below 0.70 adds the flag `vds_engine_ambiguous`.
 
 **Overlay modules** (applied after base decode, each a pure function of already-decoded
 fields):

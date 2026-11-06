@@ -385,7 +385,7 @@ class RobustVINDecoder:
                     fuel_delivery,
                     (db_dict.get("o2_type") or "").strip(),
                 ),
-                downstream_o2_present=(model_year is not None and model_year >= 1996),
+                downstream_o2_present=(model_year is not None and model_year >= 1996),  # source: OBD-II mandate
                 egr_equipped=bool(db_dict.get("has_egr")),
             )
 
@@ -426,7 +426,7 @@ class RobustVINDecoder:
                     model_year if model_year is not None else 2000,
                     fuel_delivery, "",
                 ),
-                downstream_o2_present=(model_year is not None and model_year >= 1996),
+                downstream_o2_present=(model_year is not None and model_year >= 1996),  # source: OBD-II mandate
             )
 
         return (
@@ -842,7 +842,7 @@ class RobustVINDecoder:
         """Resolve WMI with low-volume manufacturer rule (SAE J853).
 
         When vin[2] == '9' the manufacturer produces <500 units/year.
-        The SAE standard places the manufacturer code at positions 12-13,
+        The SAE standard places the manufacturer code at positions 12-14,
         so we try vin[0:3] + vin[11:14] first, then fall back to vin[0:3].
         """
         # Low-volume rule: try 6-char extended WMI first

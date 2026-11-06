@@ -106,7 +106,7 @@ _normalise_euro(raw): None → "EURO_1"; else _EURO_MAP.get(key.strip().lower(),
 
 ```python
 if vin[2] == "9":                       # source: SAE J853 low-volume (<500 units/yr)
-    extended = vin[0:3] + vin[11:14]    # manufacturer code at positions 12-13
+    extended = vin[0:3] + vin[11:14]    # manufacturer code at positions 12-14
     if extended in wmi_index: return it
 wmi_key = vin[0:3]                       # standard positions 1-3
 ```
@@ -118,6 +118,7 @@ wmi_key = vin[0:3]                       # standard positions 1-3
 ```python
 year_char = vin[9]
 if year_char in _YEAR_PASSTHROUGH: return (None, None)     # unknown, not an error
+if vin[:3] in _TYPE_CODE_WMIS and vin[3:9].isdigit(): return (None, None)  # type-code VIN
 in_scope = [r for r in candidates if _YEAR_MIN <= calendar_year <= _YEAR_MAX]
 row = in_scope[0] if in_scope else candidates[0]      # L → 1990
 return (int(row.calendar_year), None)
@@ -142,7 +143,7 @@ full_key = f"{BRAND}_{vds_slice}"   ; pos8_key = f"{BRAND}_{pos_8_char}"
 
 ```python
 _engine_displacement_liters = disp_cc / 1000.0      # vref.db displacement_cc authoritative
-_number_of_banks = 2 if db.is_v_engine else 1
+_number_of_banks = 2 if db.is_v_engine or csv engine_configuration starts "BOXER" else 1
 downstream_o2_present = (model_year is not None and model_year >= 1996)  # source: OBD-II mandate
 ```
 
@@ -194,6 +195,7 @@ Source: `OBD_VOCABULARY.md §4.3` + `SEMANTIC_CONTRACT §6.3`.
 o2_type_hint == "WB"                          → WIDEBAND_AFR
 o2_type_hint == "NB"                          → NARROWBAND       # explicit hint wins
 year >= 2001 and fuel ∈ {GDI, PORT_INJECTION} → WIDEBAND_AFR     # WB standard ~2001
+# year = model_year, or 2000 when the model year is unknown
 fuel == CARBURETOR                            → NARROWBAND
 default                                        → NARROWBAND
 ```

@@ -62,7 +62,8 @@ vinlab/
 │   ├── stress_rpm.py      ← stress_idle_rpm()
 │   ├── switches.py        ← derive_upstream_o2_type()
 │   └── cylinder_heuristic.py ← infer_cylinder() + per-brand rules (T-VL-7)
-└── data/                  ← wmi.csv, years.csv, vds_engine_map.csv, vref.db (baked at build)
+└── data/                  ← wmi.csv, years.csv, vds_engine_map.csv, vref.db (baked at build);
+                             vref_db1.db is also present, with no reader
 ```
 
 The public `decode()` wraps a `lru_cache`d `RobustVINDecoder` per `data_dir`. There is
@@ -128,8 +129,9 @@ breaking changes. Locked to `SEMANTIC_CONTRACT.md §8` (future: import from
 ## 4. `models.py` — `VinDNA` (frozen dataclass)
 
 Schema governed by `SEMANTIC_CONTRACT.md §4.1`. `to_json()` walks via
-`dataclasses.asdict()` then coerces enum members to `.value`; `from_json()` is the
-inverse (required keys raise `KeyError`, optional CoC fields preserve `None`).
+`dataclasses.asdict()` then coerces enum members to `.value` (`to_json_payload()` is that
+dict; `to_json()` is its JSON string); `from_json(payload: dict)` is the inverse of
+`to_json_payload()` (required keys raise `KeyError`, optional CoC fields preserve `None`).
 
 ### Core fields (16)
 
@@ -185,8 +187,10 @@ inverse (required keys raise `KeyError`, optional CoC fields preserve `None`).
 ```
 wmi_index:        {wmi → {brand, country, era_hint}}            (wmi.csv)
 year_index:       {year_code → [{calendar_year, era_bucket}]}  (years.csv; L repeats)
-vds_full_index:   {BRAND_VDSFULL → row}                         (vds_engine_map.csv)
-vds_pos8_index:   {BRAND_POS8 → row}                            (vds_engine_map.csv)
+vds_full_exact_index: {BRAND_VDSFULL → row}  exact brand        (vds_engine_map.csv)
+vds_pos8_exact_index: {BRAND_POS8 → row}     exact brand        (vds_engine_map.csv)
+vds_full_index:   {BRAND_VDSFULL → row}  brand folded by _fold_brand (vds_engine_map.csv)
+vds_pos8_index:   {BRAND_POS8 → row}     brand folded by _fold_brand (vds_engine_map.csv)
 db_path:          data_dir / vref.db
 ```
 
@@ -205,6 +209,7 @@ resolvers (HLD §5–§6).
 The decoder derives the `(has_maf, has_map)` fact, then the classifier maps it once:
 
 ```
+# a stored 0/0 (has_maf, has_map) pair on an injected engine is not a fact: both become unknown
 has_maf = bool(db.has_maf)  if present  else  fuel_delivery != CARBURETOR
 has_map = bool(db.has_map)  if present  else
           (induction ∈ {TURBO, SUPER}) or fuel ∈ {CARBURETOR, GDI} or egr_equipped
@@ -256,6 +261,7 @@ feeds only `number_of_banks` (V/W/Boxer → 2) and the induction default.
 ```python
 lookup_engine_ref(db_path, engine_code) → dict | None
     # SELECT * FROM engine_ref WHERE engine_code = ?  (read-only URI: file:...?mode=ro)
+    # on a miss: retry with the normalised code (_normalise_code: uppercase, alphanumeric)
 open_vref_readonly(db_path) → sqlite3.Connection
 ```
 
@@ -268,7 +274,9 @@ URI `mode=ro`; rows are returned as plain dicts keyed by column.
 
 ```
 conf_flags collected during decode:
-    engine:  engine_not_in_csv | no_engine_code | engine_not_in_vref
+    engine:  engine_not_in_csv | no_engine_code | engine_not_in_vref | vref_year_out_of_window
+             | wmi_brand_missing | vds_engine_ambiguous
+    euro:    euro_unknown
     coc:     coc_null_<field>   (first NULL among 9 core CoC fields)
 
 if "engine_not_in_csv" in conf_flags → VinConfidence.NONE

@@ -128,6 +128,8 @@ they are **not** serialised:
 | `engine_not_in_vref` | engine_code not in `vref.db` | PARTIAL |
 | `vref_year_out_of_window` | model year outside the matched `vref.db` row's `my_start`-`my_end`; row not applied | PARTIAL |
 | `euro_unknown` | no applied `vref.db` row states a recognised `euro_norm`; era from the model year (wiki §10.8) | PARTIAL |
+| `wmi_brand_missing` | the WMI row has a blank brand; engine resolution is skipped | PARTIAL |
+| `vds_engine_ambiguous` | the Path-A VDS row's `majority_share` is below 0.70 | PARTIAL |
 | `coc_null_<field>` | a core CoC field is NULL (first of 9 checked) | PARTIAL |
 
 The 9 CoC fields that drive the downgrade: `target_lambda_v112`, `target_rpm_u2`,
