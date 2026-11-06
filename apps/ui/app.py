@@ -53,7 +53,6 @@ gas_high_co = None
 gas_high_co2 = None
 gas_high_o2 = None
 gas_high_nox = None
-gas_high_lambda = None
 obd_low_rpm = None
 obd_low_ect = None
 obd_low_load = None
@@ -387,8 +386,6 @@ with st.sidebar:
                 active_has_catalyst = False
 
     # Context expanders
-    fuel_blend_val = _check_radio(["E0", "E5", "E10"], "fuel_blend", default_index=2, help_text="⛽ Fuel Blend", help_str=FIELD_HELP["fuel_blend"].get_tooltip())
-    mileage_val = _check_radio(["Unknown", "Low", "Mid", "High"], "mileage", default_index=0, help_text="🛣️ Mileage", help_str=FIELD_HELP["mileage"].get_tooltip())
     dtc_mem_status = _check_radio(["Normal", "Recently cleared (<50 mi)"], "dtc_memory_status", default_index=0, help_text="🗒️ DTC Memory Status", help_str=FIELD_HELP["dtc_memory_status"].get_tooltip())
 
     # Symptom expander
@@ -472,7 +469,6 @@ with col_main:
                 gas_high_nox = st.number_input("NOx (ppm)", min_value=GAS_NOX_MIN, max_value=GAS_NOX_MAX, value=None, step=1, key="gas_nox_high", help=FIELD_HELP["gas_nox_high"].get_tooltip())
             with ghc3:
                 gas_high_hc = st.number_input("HC (ppm)", min_value=GAS_HC_MIN, max_value=GAS_HC_MAX, value=None, step=1, key="gas_hc_high", help=FIELD_HELP["gas_hc_high"].get_tooltip())
-                gas_high_lambda = st.number_input("Measured λ (analyser)", min_value=GAS_LAMBDA_MIN, max_value=GAS_LAMBDA_MAX, value=None, step=0.001, format="%.3f", key="gas_lambda_high", help=FIELD_HELP["gas_lambda_2500"].get_tooltip())
 
     # 3. OBDLab (Low Idle)
     if obd_module:
@@ -831,7 +827,6 @@ if st.button("🔬 Run Diagnostic Seam", type="primary", use_container_width=Tru
         "gas_co2_high": gas_high_co2,
         "gas_o2_high": gas_high_o2,
         "gas_nox_high": gas_high_nox,
-        "gas_lambda_2500": gas_high_lambda,
         "gas_engine_state": "STABILIZED_IDLE",
         "gas_block_test_passed": False,
         

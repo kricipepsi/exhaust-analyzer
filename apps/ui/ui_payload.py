@@ -166,14 +166,6 @@ FIELD_HELP: dict[str, FieldHelp] = {
         explanation="Flags the vehicle as having its catalytic converter physically removed.",
         options=["Checked", "Unchecked"]
     ),
-    "fuel_blend": FieldHelp(
-        explanation="Selects the fuel ethanol blend ratio to adjust Stoichiometric chemistry calculations.",
-        options=["E0", "E5", "E10"]
-    ),
-    "mileage": FieldHelp(
-        explanation="Categorizes odometer age to adjust fault priors and wear weights.",
-        options=["Unknown", "Low", "Mid", "High"]
-    ),
     "dtc_memory_status": FieldHelp(
         explanation="Indicates if DTC memory was cleared recently, gating monitor readiness evaluation.",
         options=["Normal", "Recently cleared (<50 mi)"]
@@ -261,12 +253,6 @@ FIELD_HELP: dict[str, FieldHelp] = {
         min_val=GAS_NOX_MIN,
         max_val=GAS_NOX_MAX,
         unit="ppm"
-    ),
-    "gas_lambda_2500": FieldHelp(
-        explanation="High-idle measured lambda from gas analyzer, used to verify fuel control under load.",
-        min_val=GAS_LAMBDA_MIN,
-        max_val=GAS_LAMBDA_MAX,
-        unit=""
     ),
     "gas_engine_state": FieldHelp(
         explanation="Exhaust gas analyzer target engine speed state.",
@@ -1042,7 +1028,7 @@ def build_diagnose_payload(widgets: dict[str, Any]) -> dict[str, Any]:
             val = widgets.get(f"gas_{field}")
             if val is not None and str(val).strip() != "":
                 gas[field] = int(val)
-        for field in ("co_high", "co2_high", "o2_high", "lambda_2500"):
+        for field in ("co_high", "co2_high", "o2_high"):
             val = widgets.get(f"gas_{field}")
             if val is not None and str(val).strip() != "":
                 gas[field] = float(val)

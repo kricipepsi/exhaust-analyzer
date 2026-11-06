@@ -403,8 +403,6 @@ def test_field_help_numeric_bounds():
     assert FIELD_HELP["gas_o2_high"].max_val == GAS_O2_MAX
     assert FIELD_HELP["gas_nox_high"].min_val == GAS_NOX_MIN
     assert FIELD_HELP["gas_nox_high"].max_val == GAS_NOX_MAX
-    assert FIELD_HELP["gas_lambda_2500"].min_val == GAS_LAMBDA_MIN
-    assert FIELD_HELP["gas_lambda_2500"].max_val == GAS_LAMBDA_MAX
 
     # OBD low basic
     assert FIELD_HELP["obd_engine_rpm"].min_val == OBD_RPM_MIN
