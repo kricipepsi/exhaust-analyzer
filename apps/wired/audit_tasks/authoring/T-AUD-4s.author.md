@@ -40,7 +40,7 @@ T-AUD-4s: the 31 raw OBD channels are range-checked with the form's ranges; a ba
 own pass 2026-11-06: P1-P5 measured · `apply_fix.py` literals each matched once, the regex 31 times · counts: wired
 89 + 12 = 101, ui 49 + 3 = 52 · traceability: criteria 1-4 → steps 1-4 · 1c hits (R1 "each", R3 "each", "every") name
 the P1 set, defined once in `apply_fix.py` · no finding.
-cold read 2026-11-06 FOCUSED reader; trigger 1c grep hit (R1, R3); 0 findings, 0 patched — tokens ABSENT (not in the hand-back), 3 calls.
+cold read 2026-11-06 FOCUSED reader; trigger 1c grep hit (R1, R3); 0 findings, 0 patched — 21435 tok, 4 calls.
 
 ### Correction history ###
 (none)
