@@ -328,7 +328,11 @@ class OBDLiveDataPayload(BaseModel):
       - trim_analytics_gate → registry/integration_shim._resolve_single_source drops live trims when blocked (v2)
       - total_trim_correction_delta_b2, per_cylinder_misfire_counts, ltft_cell_vector,
         w_theo, sensor_error_delta, manifold_vacuum_kpa, ve_pct, ve_validity,
-        fuel_system_status, o2_failure_mode → v1 loop only; no reader on the default v2 path
+        fuel_system_status, o2_failure_mode → v1 loop only; no reader on the default v2 path.
+        Each v1 reader is a Phase-5 gate behind a ``FaultAtlasRouter`` ``enable_*`` flag that
+        defaults to False, and no non-test code sets one, so even with ``USE_V2_REGISTRY=0``
+        these fields change no verdict. They stay: the v1 loop is the evaluation baseline
+        (T-AUD-4t; ruled not ported and not retired).
       - intake_air_temp_c + throttle_pos_pct → ECU hardware-lie checker
     """
 
@@ -338,26 +342,26 @@ class OBDLiveDataPayload(BaseModel):
     # (±127 each for STFT + LTFT) sum to ±254. The consumer (fault_atlas_router
     # trim-evidence scoring) gates on railed-trim patterns.
     total_trim_correction_delta_b2: float | None = None
-    # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — ecu_fault fuse
+    # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — ecu_fault fuse (enable_ecu_fuse, off by default)
     lambda_perception_delta: float | None = None
     # consumer: fault_atlas_router ecu_fault fuse — T-COMV2-ECU-FUSE-1
     per_bank_trim_delta: float | None = None
     # consumer: fault_atlas_router bank-asymmetry verdict — T-COMV2-BANK-FUSE-1
     per_cylinder_misfire_counts: dict[int, int] | None = Field(
         default=None
-    )  # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — misfire localiser
+    )  # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — misfire localiser (enable_misfire_loc, off by default)
     ltft_cell_vector: dict[int, float] | None = Field(
         default=None
-    )  # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — load-cell LTFT classification
+    )  # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — load-cell LTFT classification (enable_ltft_cell, off by default)
     control_module_voltage_v: float | None = Field(
         default=None, ge=0.0, le=18.0  # wiki: 02_lab_input_contract.md §2a
     )  # consumer: perception_contradiction.detect — T-COMV2-VPWR-GATE-1
     w_theo: float | None = Field(
         default=None
-    )  # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — Phase 5 linearity ladder
+    )  # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — span attribute router.w_theo only, no verdict effect (enable_maf_lin, off by default)
     sensor_error_delta: float | None = Field(
         default=None
-    )  # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — Phase 5 linearity ladder
+    )  # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — Phase 5 linearity ladder (enable_maf_lin, off by default)
     shrtft1: float | None = Field(
         default=None, ge=-127.0, le=127.0
     )  # OBDLab_KG_Wiki rail; consumer: SF-008, EF-001/002/003
@@ -369,7 +373,7 @@ class OBDLiveDataPayload(BaseModel):
     )  # OBDLab_KG_Wiki; consumer: SF-004
     manifold_vacuum_kpa: float | None = Field(
         default=None, ge=0.0, le=255.0
-    )  # OBDLab_KG_Wiki; held from map_kpa; consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5)
+    )  # OBDLab_KG_Wiki; held from map_kpa; no reader: v1 _resolve_pid computes its own manifold_vacuum_kpa from freeze-frame baro minus MAP, and the registry has no such PID (F-C4-5, T-AUD-4t)
     coolant_temp_c: float | None = Field(
         default=None, ge=-40.0, le=140.0
     )  # OBDLab_KG_Wiki; consumer: SF-006
@@ -386,14 +390,14 @@ class OBDLiveDataPayload(BaseModel):
     )  # lld: §3.2 — None when OBD channel absent (legacy/Euro 1-2 no-OBD sessions)
     ve_pct: float = Field(..., ge=0.0, le=200.0)
     # wiki: OBDLab_KG_Wiki §6.4 — thermal-shock steam overshoot may exceed 100 %.
-    # consumer (ve_pct, ve_validity): v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — VE evidence gate
+    # consumer (ve_pct, ve_validity): v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — VE evidence gate (enable_ve_gate, off by default)
     ve_validity: VEValidity
     rpm_state_bucket: EngineStateBucket
     trim_analytics_gate: TrimAnalyticsGate
     fuel_system_status: FuelSystemStatus | None = None
-    # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — fuel-system closed-loop gate
+    # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — fuel-system closed-loop gate (enable_fuelsys_gate, off by default)
     o2_failure_mode: O2FailureMode
-    # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — trim-finding gate when O2 has failed
+    # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — sensor_fault promotion on WIDEBAND_OFFSET (enable_o2_offset, off by default)
     # maf_status/map_status are not mirrored: no COMLab or registry reader (F-C4-5, T-AUD-4p).
     freeze_frame_pids: FreezeFramePIDs | None = None
     mode06_catalyst_margin_pct: float | None = Field(default=None)

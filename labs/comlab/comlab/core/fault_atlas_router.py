@@ -511,6 +511,8 @@ _PID_SOURCES: dict[str, tuple[tuple[str, str], ...]] = {
         ("dtc_lab_output", "freeze_frame.coolant_temp_c"),
     ),
     "o2_voltage":            (("obd_live_data", "freeze_frame_pids.o2_voltage"),),
+    # v1 second contract (REVIEW_T-AUD-4a F2, T-AUD-4t): here o2_downstream is the freeze-frame PID; the registry v2
+    # path reads the measured OBDLiveDataPayload.downstream_o2_v (integration_shim). v1 is the non-default baseline.
     "o2_downstream":         (("obd_live_data", "freeze_frame_pids.o2_downstream"),),
     "o2_b1s1_v":             (("obd_live_data", "freeze_frame_pids.o2_voltage"),),
     "o2_b1s2_v":             (
