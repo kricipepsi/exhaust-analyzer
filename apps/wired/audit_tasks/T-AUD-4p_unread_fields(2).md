@@ -139,7 +139,7 @@ mkdir -p C:/4DApp/recheck/T-AUD-4p/pt/comlab C:/4DApp/recheck/T-AUD-4p/impl
 # 2.
 (cd labs/comlab && timeout 280 $PY -m pytest -q -p no:cacheprovider --continue-on-collection-errors --basetemp=C:/4DApp/recheck/T-AUD-4p/pt/comlab/x </dev/null | tail -1)
 # 3.
-timeout 400 $PY C:/4DApp/recheck/T-COMA-1/probe.py C:/4DApp/recheck/T-AUD-4p/impl/corpus.json 2>/dev/null | tail -1
+timeout 280 $PY C:/4DApp/recheck/T-COMA-1/probe.py C:/4DApp/recheck/T-AUD-4p/impl/corpus.json 2>/dev/null | tail -1
 $PY -c "import json;a=json.load(open('C:/4DApp/recheck/T-COMA-1/cw/corpus_fix.json'));b=json.load(open('C:/4DApp/recheck/T-AUD-4p/impl/corpus.json'));print('differ',sum(a[k]!=b.get(k) for k in a))"
 # 4.
 timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check labs/comlab/comlab/schemas/ingestion.py apps/wired/wired/composition.py apps/wired/tests/test_composition.py labs/comlab/tests/unit/test_ingestion_high_idle.py apps/wired/tests/test_t_aud_4p_fields_have_readers.py; git log --oneline -3; git status --porcelain

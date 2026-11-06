@@ -29,7 +29,7 @@ Survey: `C:/4DApp/recheck/scratch/survey_T-AUD-4p.md`. Rehearsal: `C:/4DApp/rech
 |---|---|---|
 | step 1 | SIMULATED | `4 passed`; wired `89 passed` |
 | step 2 | SIMULATED | comlab `525 passed, 4 skipped, 2 errors` |
-| step 3 | SIMULATED | `corpus 314`; `differ 0` |
+| step 3 | SIMULATED | `corpus 314`; `differ 0` (base run 32 s) |
 | step 4 | SIMULATED | ruff `All checks passed!`; status clean after restore |
 
 ### Exclusivity ###
