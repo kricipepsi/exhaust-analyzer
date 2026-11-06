@@ -45,6 +45,10 @@ check 26 FINDING (the lab loop past the per-command limit) patched: one command 
 cold read 2026-11-06 FOCUSED reader; trigger 1c grep hit (criterion 3 "every P4 suite"); 0 findings, 0 patched — 21472 tok, 4 calls.
 
 ### Correction history ###
-(none)
+revision 02 (2026-11-06): second review (ds-flash, APPROVE WITH CORRECTIONS) BLOCKER 2 upheld - the DEP-4 row's last
+cell still said `T-COMV2-LAMBDAPROJ-1` `pending — runnable` at `projection.py:79–81` (COMLab ledger: done). R6 adds
+`apply_rev02.py` and a third test; P2/P3 and step 1-2 counts updated; step 3's wrong `case_library.html` path dropped
+(the render test is deselected). BLOCKER 1 (COMLab-E) not upheld: a `proposed` entry; the old consumer lacked
+`fuel_type` too. Rehearsed on 0e0f209: `1 failed, 2 passed` → `3 passed`; comlab 503/4/2.
 cold read 2026-11-06 DELTA reader; 1 finding (IMPLICIT: Preconditions and First action fail on a resumed run), 1 patched
 (R6 resumed-run start state) — 28145 tok, 3 calls.
