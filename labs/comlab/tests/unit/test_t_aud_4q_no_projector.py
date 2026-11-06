@@ -24,3 +24,12 @@ def test_comlab_docs_name_no_projector_call() -> None:
         for stale in ("COMLab.project(", "project_all(", "def project("):
             assert stale not in text, (rel, stale)
         assert "_build_" in text, rel
+
+
+def test_dep4_row_names_no_projector_work() -> None:
+    """NEW (revision 02): CROSS_LAB_DEPENDENCIES DEP-4 sends no one to the retired projector."""
+    text = (DOCS / "CROSS_LAB_DEPENDENCIES.md").read_text(encoding="utf-8")
+    row = next(line for line in text.splitlines() if line.startswith("| **DEP-4** |"))
+    assert "projection.py:79" not in row
+    assert "**runnable**" not in row
+    assert "_build_gas_dna_view" in row
