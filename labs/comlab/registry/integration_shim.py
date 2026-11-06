@@ -149,6 +149,13 @@ _NO_FAULT_SEVERITY: str = "OPTIMAL_HEALTH"  # wiki: matches v1 PerformanceAnalyt
 _NO_FAULT_HEADLINE: str = "No fault detected"  # wiki: matches v1 L810 (KG-overridable, default form)
 _NO_FAULT_REMEDIATION: str = "No repair action required."  # wiki: matches v1 L811
 
+# T-COMA-1 (F-C1-7): a will_not_start session that no non_starter rule matches abstains with this verdict.
+NON_STARTER_NO_RULE_CODE: str = "NS-NO-RULE"  # consumer: fault_atlas_router.py route() abstain "no_rule"
+_NON_STARTER_NO_RULE_NAME: str = "Engine does not start: no non-start rule matches the inputs"
+_NON_STARTER_NO_RULE_REMEDIATION: str = (
+    "Read the stored DTCs and the freeze frame, then check fuel delivery, spark and crank sensing."
+)
+
 # Prune-attribution vocabulary (FT-3). These mirror the v1 prune contract the
 # Jaeger analyser already consumes (fault_atlas_router.py:343-394 → prune_reason
 # in {"horizon", "chemistry", "missing_evidence"}; consumer:
@@ -160,6 +167,9 @@ _PRUNE_REASON_CHEMISTRY: str = "chemistry"  # consumer: analyse_failure_modes._p
 _PRUNE_REASON_MISSING_EVIDENCE: str = "missing_evidence"  # consumer: analyse_failure_modes._prune_event_buckets
 _GATING_KEY_CHEMISTRY: str = "gas_lab_state"  # wiki: matches v1 chemistry prune key (L392)
 _GATING_KEY_NO_EVIDENCE: str = "no_evidence_satisfied"  # firing-predicate (b) failure
+# T-COMA-1: the non_starter family gate prunes every other family for a will_not_start session.
+_PRUNE_REASON_FAMILY_GATE: str = "family_gate"  # consumer: fault_atlas_router.py route() phase.prune span
+_GATING_KEY_WILL_NOT_START: str = "engine_state:will_not_start"  # wiki: 07 RULE_LAB_SUPPRESSION
 
 class ControlPlausibilityState(StrEnum):
     """C3 electrical-reference producer states for ECU/control fault scoring."""
@@ -1168,15 +1178,28 @@ def _apply_competition(
 # =============================================================================
 
 
+def _non_starter_gate(payload: dict[str, Any]) -> bool:
+    """True when the routing directive marks a will_not_start session (wiki 07 RULE_LAB_SUPPRESSION).
+
+    ``route_symptom`` sets ``suppress_gaslab`` exactly when ``engine_state ==
+    "will_not_start"``. Read with ``getattr`` so the shim keeps its COMLab
+    import firewall; an absent directive is no gate.
+    """
+    return bool(getattr(payload.get("routing_directive"), "suppress_gaslab", False))
+
+
 def _translate_to_output(
     winner: tuple[Rule, float] | None,
     payload: dict[str, Any],
+    non_starter_gate: bool = False,
 ) -> dict[str, Any]:
     """Build a v1-shaped ``OrchestratorFinalUIOutput`` dict.
 
     On no-fire, matches v1's no-fault sentinel (``fault_atlas_router.py``
     L806-836): ``fault_code = "OPTIMAL_HEALTH"``, ``fault_family = "no_fault"``,
-    ``severity_level = "OPTIMAL_HEALTH"``. Returns a plain dict; reconstruction
+    ``severity_level = "OPTIMAL_HEALTH"``. On no-fire under the non_starter
+    family gate (T-COMA-1), returns the ``NS-NO-RULE`` verdict instead, which
+    COMLab marks abstained with reason ``no_rule``. Returns a plain dict; reconstruction
     into the Pydantic ``OrchestratorFinalUIOutput`` happens at the COMLab
     boundary (in ``fault_atlas_router.py``) — that keeps the COMLab import
     firewall intact on the shim side.
@@ -1201,7 +1224,27 @@ def _translate_to_output(
         "reasons": [],
     }
 
-    if winner is None:
+    if winner is None and non_starter_gate:
+        verdict = {
+            "is_fault_detected": True,
+            "fault_code": NON_STARTER_NO_RULE_CODE,
+            "fault_name": _NON_STARTER_NO_RULE_NAME,
+            "fault_family": FaultFamily.NON_STARTER.value,
+            "display_headline": _NON_STARTER_NO_RULE_NAME,
+            "confidence_score": 0.0,
+            "actionable_remediation": _NON_STARTER_NO_RULE_REMEDIATION,
+            "differential_siblings": [],
+        }
+        severity = "WARNING_DEGRADED_PERFORMANCE"
+        confidence_rating = "DEGRADED_ASSURANCE"
+        verdict_aliases = {
+            "fault_id": NON_STARTER_NO_RULE_CODE,
+            "ui_diagnostic_string": _NON_STARTER_NO_RULE_NAME,
+            "confidence": 0.0,
+        }
+        mechanical_failure_mode = _NON_STARTER_NO_RULE_NAME
+        ui_remediation_steps = [_NON_STARTER_NO_RULE_REMEDIATION]
+    elif winner is None:
         verdict = {
             "is_fault_detected": False,
             "fault_code": _NO_FAULT_FAULT_CODE,
@@ -1222,6 +1265,8 @@ def _translate_to_output(
             "ui_diagnostic_string": _NO_FAULT_HEADLINE,
             "confidence": 0.0,
         }
+        mechanical_failure_mode = "No fault detected — all diagnostics within specification"
+        ui_remediation_steps = ["Continue routine maintenance"]
     else:
         rule, clamped_score = winner
         verdict = {
@@ -1242,6 +1287,8 @@ def _translate_to_output(
             "ui_diagnostic_string": rule.description[:140],
             "confidence": clamped_score,
         }
+        mechanical_failure_mode = verdict["fault_name"][:280]  # wiki: v1 mechanical_failure_mode 280-char cap
+        ui_remediation_steps = ["See diagnostic verdict for next steps."]
 
     return {
         "session_id": session_id,
@@ -1263,14 +1310,8 @@ def _translate_to_output(
         "fault_enrichment": {
             "component_group": "engine",
             "impacted_subsystems": [],
-            "mechanical_failure_mode": (
-                "No fault detected — all diagnostics within specification"
-                if winner is None
-                else verdict["fault_name"][:280]  # wiki: v1 mechanical_failure_mode 280-char cap
-            ),
-            "ui_remediation_steps": ["Continue routine maintenance"]
-            if winner is None
-            else ["See diagnostic verdict for next steps."],
+            "mechanical_failure_mode": mechanical_failure_mode,
+            "ui_remediation_steps": ui_remediation_steps,
             "editor_severity_hint": None,
         },
         # Passes the inbound echo through verbatim, or emits the schema sentinel
@@ -1325,9 +1366,21 @@ class RegistryV2Router:
         self, payload: dict[str, Any]
     ) -> tuple[dict[str, Any], dict[str, Any]]:
         obs = _build_observation(payload)
+        non_starter_gate = _non_starter_gate(payload)
         scored: list[tuple[Rule, float]] = []
         pruned_rules: list[dict[str, str]] = []
         for rule in self._rules:
+            if non_starter_gate and rule.fault_family is not FaultFamily.NON_STARTER:
+                # T-COMA-1: a will_not_start session is decided by the non_starter
+                # family only; gas, OBD and DTC data stay evidence for those rules.
+                pruned_rules.append(
+                    {
+                        "rule_id": rule.rule_id,
+                        "prune_reason": _PRUNE_REASON_FAMILY_GATE,
+                        "failed_gating_key": _GATING_KEY_WILL_NOT_START,
+                    }
+                )
+                continue
             s = _score_rule(rule, obs)
             if s is not None:
                 scored.append((rule, s))
@@ -1359,7 +1412,7 @@ class RegistryV2Router:
             "pruned_rules": pruned_rules,
             "winner_rule_id": winner[0].rule_id if winner is not None else "__NONE__",
         }
-        return _translate_to_output(winner, payload), diagnostics
+        return _translate_to_output(winner, payload, non_starter_gate), diagnostics
 
     def render_ranked_rule(
         self,
@@ -1414,6 +1467,7 @@ def render_ranked_rule(
 
 
 __all__ = [
+    "NON_STARTER_NO_RULE_CODE",
     "RegistryV2Router",
     "render_ranked_rule",
     "route_case",

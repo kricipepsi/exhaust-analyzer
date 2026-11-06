@@ -976,9 +976,13 @@ with col_verdict:
 
         # 2. ABSTAIN outcome rendering per contract §3.2
         if verdict.abstained:
-            st.info("ℹ️ No single confident verdict — top candidates:")
-            reason_str = "below floor" if verdict.abstain_reason == "floor" else "within margin"
-            st.caption(f"Reason: candidates are {reason_str}")
+            if verdict.abstain_reason == "no_rule":
+                st.info("ℹ️ No confident non-start verdict:")
+                st.caption("Reason: no non-start rule matches the inputs")
+            else:
+                st.info("ℹ️ No single confident verdict — top candidates:")
+                reason_str = "below floor" if verdict.abstain_reason == "floor" else "within margin"
+                st.caption(f"Reason: candidates are {reason_str}")
 
             # Top candidate (Winner card styled neutrally)
             st.markdown(

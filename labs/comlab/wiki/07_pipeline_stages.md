@@ -170,8 +170,10 @@ is gas-bound (`COMWIKI-12`).
 | cranking | false | **true** | false | false |
 | will_not_start | **true** | **true** | **true** | false |
 
-Suppression skips that lab's fatal gates and excludes its data from the matrix; OBD suppression
-sets `degradation_mode = GAS_DOMINANT`.
+Suppression skips that lab's fatal gates; OBD suppression sets `degradation_mode = GAS_DOMINANT`. For
+`will_not_start`, only `non_starter` rules are candidates (the registry shim's family gate): the gas sample, OBD data
+and DTCs count only as evidence for those rules. When no `non_starter` rule matches, the verdict is `NS-NO-RULE`,
+abstained with reason `no_rule` (T-COMA-1).
 
 ## Graph relations (explicit)
 

@@ -5,8 +5,8 @@
   "expected": {
     "confidence": "LOW_CERTAINTY",
     "degradation_mode": "GAS_DOMINANT",
-    "fault_family": "sensor_fault",
-    "top_fault": "SF-001"
+    "fault_family": "non_starter",
+    "top_fault": "NS-NO-RULE"
   },
   "request": {
     "metadata": {"session_id": "11111111-1111-4111-8111-000000000014", "vin_dna_string": "1FA6P8CF0HXXXXXXX", "resolved_horizon": "HORIZON_LEGACY", "cylinder_count": 4},

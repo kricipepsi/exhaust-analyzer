@@ -1951,6 +1951,7 @@ class FaultAtlasRouter:
         if self._use_v2_registry:
             from comlab.analytics.delta_engine import DeltaEngine
             from registry.integration_shim import (
+                NON_STARTER_NO_RULE_CODE as _V2_NS_NO_RULE,
                 render_ranked_rule as _v2_render_ranked_rule,
                 route_case_with_diagnostics as _v2_route_case_with_diagnostics,
             )
@@ -2147,7 +2148,11 @@ class FaultAtlasRouter:
 
             abstained = False
             abstain_reason = None
-            if is_fault:
+            if winner_rule_id == _V2_NS_NO_RULE:
+                # T-COMA-1: no non_starter rule matches a will_not_start session.
+                abstained = True
+                abstain_reason = "no_rule"
+            elif is_fault:
                 if winner_score < ABSTAIN_FLOOR:
                     abstained = True
                     abstain_reason = "floor"

@@ -103,7 +103,7 @@ class DiagnosticVerdict(BaseModel):
     actionable_remediation: str
     differential_siblings: list[DifferentialSiblingOut] = Field(default_factory=list, max_length=5)  # lld: §3.3 Q1 ruling
     abstained: bool = False
-    abstain_reason: Optional[Literal["floor", "margin"]] = None
+    abstain_reason: Optional[Literal["floor", "margin", "no_rule"]] = None  # no_rule: T-COMA-1 non-starter
 
 
 class FaultEnrichment(BaseModel):
