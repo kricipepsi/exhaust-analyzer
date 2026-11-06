@@ -294,7 +294,7 @@ class EngineStateBucket(StrEnum):
 | `COLD_OPEN_LOOP_INVALID` | any | any | **Rejected** — outside GASLab operating envelope (warm engines only) |
 | `CRANKING` | < 600 (cranking) | — | GASLab-only. The composition sets it for a `will_not_start` session, whatever the gas form says. The triangle and dilution gates do not run; the cranking-shape rule (wiki §4.14) gives `RICH_MISFIRE`, `LEAN_MISFIRE`, `INCOMPLETE_COMBUSTION` or, for CO₂ ≥ 8 %, `SAMPLE_INVALID` |
 
-A `COLD_OPEN_LOOP_INVALID` input causes GASLab to emit `chemical_state = SAMPLE_INVALID` with reason "engine not warm enough for valid sample". **Not implemented (T-AUD-16):** no fault entry carries that operating state, so `process()` returns the bound-match result (`NORMAL_OPERATION` / `VALID` for a normal reading). The app sends only `STABILIZED_IDLE` or `CRANKING`.
+A `COLD_OPEN_LOOP_INVALID` input causes GASLab to emit `chemical_state = SAMPLE_INVALID` with `sample_validity = INVALID` ("engine not warm enough for valid sample"; the payload has no reason field). `classify()` returns it before the validity gates and the bound matching (T-AUD-20). The app sends only `STABILIZED_IDLE` or `CRANKING`.
 
 ---
 

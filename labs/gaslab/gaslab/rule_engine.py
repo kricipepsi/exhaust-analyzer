@@ -414,6 +414,9 @@ def classify(
     # Step 0: a cranking sample is a no-start sample, not a running-engine one — wiki: GAS_WIKI §4.14
     if engine_state == EngineStateBucket.CRANKING:
         return _cranking_signature(reading)
+    # Step 0b: a cold, open-loop sample is outside the warm-engine envelope — vocab: GAS_VOCABULARY §7 (T-AUD-20)
+    if engine_state == EngineStateBucket.COLD_OPEN_LOOP_INVALID:
+        return ChemicalSignature.SAMPLE_INVALID, SampleValidity.INVALID
 
     # Step 1: validity gates — wiki: GAS_WIKI §6
     validity = sample_validity(reading)
