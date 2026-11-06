@@ -42,7 +42,7 @@ T-AUD-4q: COMLab's dead DNA projector is retired; the docs name the composition 
 own pass 2026-11-06: P1-P4 measured · every `apply_fix.py` literal matched once on the base (the script exits on any
 other count) · counts: comlab 525 − 25 + 2 = 502 · traceability: criteria 1-4 → steps 1-4 · no finding.
 check 26 FINDING (the lab loop past the per-command limit) patched: one command per lab; CLEAN again.
-cold read 2026-11-06 FOCUSED reader; trigger 1c grep hit (criterion 3 "every P4 suite"); 0 findings, 0 patched — tokens ABSENT, 4 calls.
+cold read 2026-11-06 FOCUSED reader; trigger 1c grep hit (criterion 3 "every P4 suite"); 0 findings, 0 patched — 21472 tok, 4 calls.
 
 ### Correction history ###
 (none)
