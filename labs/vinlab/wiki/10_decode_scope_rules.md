@@ -101,9 +101,9 @@ tried in order:
 
 | # | Bypass | Trigger | Why it exists | Home |
 |---|--------|---------|---------------|------|
-| 1 | Non-NHTSA WMI | manufacturer country ∈ European set ∪ {Japan, South Korea, India} | ISO 3780 — the check digit is never mandatory outside the US/CA/MX market; decision is **data-driven** from `wmi.csv` | `wmi.csv` + ISO 3780 (referenced) |
+| 1 | Non-NA region, or non-NHTSA WMI | `vin[0] ∉ {1, 2, 3, 4, 5}` (ISO 3780 region; T-VINA-7b), **or** manufacturer country ∈ European set ∪ {Japan, South Korea, India} | ISO 3780 — the check digit is never mandatory outside the US/CA/MX market. The region test does not depend on `wmi.csv` text (blank for 1,562 WMIs). The country test keeps NA plants of European and Asian makers (4JG, 5UX, 3VW) that build to the maker's scheme | ISO 3780 (referenced) + `wmi.csv` |
 | 2 | OPSI corrupt prefix | `vin[:3] ∈ {3MZ, 3MD, 3MV}` | T-FX-5 finding — 1,866 Mexican-Mazda VINs in the Slovenian DMV data carry a corrupt position-9 digit | **page 11 (`#RULE_OPSI`)** — VINLab-owned |
-| 3 | Legacy dummy pos-9 | `vin[8] ∉ "123456789X"` | 1990s European vehicles used `Z` / `0` as a dummy check character | `VINlookup.md §1` |
+| 3 | Legacy dummy pos-9 | `vin[8] ∉ "123456789X"` | 1990s European vehicles used `Z` / `0` as a dummy check character; NA-built cars sold in Europe carry `0` too (293 registry VINs: 3HG 134, 1C4 116, 1HG 43; T-VINA-7b survey) | `VINlookup.md §1` |
 
 When **none** of the three apply, the standard modulo-11 computation runs and a
 mismatch raises `VINDecodeError`. The OPSI corrupt-prefix detail (the `3MZ/3MD/3MV`

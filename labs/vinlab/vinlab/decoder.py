@@ -93,6 +93,11 @@ _NON_NHTSA_COUNTRIES: frozenset[str] = frozenset({
     "INDIA",
 })
 
+# source: ISO 3780 region codes — a VIN starting 1-5 is North America (US 1, 4, 5; Canada 2; Mexico 3), the
+# only market where the NHTSA check digit is mandatory. T-VINA-7b (F-C6-7): a VIN outside these codes skips the
+# check digit whatever its wmi.csv country text says (blank for 1,562 WMIs; UK, Turkey, Russia not in the sets).
+_NA_REGION_CODES: frozenset[str] = frozenset("12345")
+
 # source: T-FX-5 full-run analysis — 1,866 Mexican Mazda VINs in OPSI have
 # invalid check digits. Mazda Mexico (NAFTA) should follow NHTSA checksum but
 # the Slovenian DMV registration data has corrupt pos-9 digits for these WMIs.
@@ -262,6 +267,11 @@ class RobustVINDecoder:
     # -------------------------------------------------------------------
     # Helpers
     # -------------------------------------------------------------------
+
+    @staticmethod
+    def _is_non_na_region(vin: str) -> bool:
+        """Return True when the VIN's ISO 3780 region is outside North America (check digit not mandatory)."""
+        return vin[0] not in _NA_REGION_CODES
 
     def _is_non_nhtsa_wmi(self, vin: str) -> bool:
         """Return True if checksum validation should be skipped for this VIN.
@@ -758,14 +768,16 @@ class RobustVINDecoder:
 
         Per VINlookup.md §1: the NHTSA 49 CFR Part 565 checksum is mandatory
         only for North American market vehicles. Bypass paths:
-        1. Non-NHTSA WMI — European, Japanese, Korean, Indian manufacturers
-           do not compute the check digit (ISO 3780, data-driven via wmi.csv).
+        1. Non-NA region or non-NHTSA WMI — ``vin[0]`` outside the ISO 3780
+           North American codes 1-5, or a WMI filed under a European, Japanese,
+           Korean or Indian manufacturer country (an NA plant of such a maker,
+           e.g. 4JG, 5UX, 3VW, builds to the maker's scheme; T-VINA-7b survey).
         2. OPSI corrupt prefixes — Mazda Mexico (3MZ/3MD/3MV) VINs in the
            Slovenian DMV registration data have corrupt pos-9 digits.
         3. Legacy dummy marker — position 9 carries a non-standard character
            (European vehicles from the 1990s often used Z or 0 as a dummy).
         """
-        if self._is_non_nhtsa_wmi(vin):
+        if self._is_non_na_region(vin) or self._is_non_nhtsa_wmi(vin):
             return True
 
         if vin[:3] in _OPSI_CHECKSUM_CORRUPT_PREFIXES:
