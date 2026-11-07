@@ -73,7 +73,7 @@ from obdlab.schemas.dna_view import (
 )
 from symptomlab import SymptomValidationError
 from symptomlab import resolve as resolve_symptom
-from vinlab import VINDecodeError
+from vinlab import VINDecodeError, VinDNA
 from vinlab import decode as decode_vin
 
 from wired.tracing import span
@@ -267,6 +267,15 @@ def _build_echo_audit(raw_inputs: dict[str, Any]) -> UserInputEchoAudit:
         if fields:
             groups.append(UserInputEchoFieldGroup(screen_id=screen_id, label=label, fields=dict(fields)))
     return UserInputEchoAudit(submitted_at=datetime.now(UTC), groups=groups)
+
+
+def decode_vehicle(vin: str) -> VinDNA:
+    """Decode *vin* with the same VINLab decode that ``diagnose`` runs (F-C5-12).
+
+    The UI gates its form fields with this result, so the form and the labs see one DNA.
+    Raises ``VINDecodeError`` as ``vinlab.decode`` does.
+    """
+    return decode_vin(vin)
 
 
 def validate_triage(triage: dict[str, Any]) -> str | None:

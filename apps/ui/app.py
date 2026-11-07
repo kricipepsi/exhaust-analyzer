@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import streamlit as st
 
-from wired.composition import diagnose
+from wired.composition import decode_vehicle, diagnose
 from ui_payload import (
     build_diagnose_payload,
     distinct_family_siblings,
@@ -327,8 +327,7 @@ with st.sidebar:
 
             if len(vin_input) == 17:
                 try:
-                    import vinlab
-                    dna = vinlab.decode(vin_input)
+                    dna = decode_vehicle(vin_input)
                     st.success(
                         f"Decoded: {dna.make} {dna.model_year or ''} "
                         f"{dna.engine_displacement_liters}L {dna.cylinder_count}cyl "
