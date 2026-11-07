@@ -124,7 +124,7 @@ Truth-vs-Perception framing unchanged: the ECU is **perception**; GASLab Brettsc
 | 12 | `total_trim_correction_delta` | `float` | — | §5 / §12 — shrtft1+longft1 |
 | 13 | `total_trim_correction_delta_b2` | `float\|None` | — | §5 / §12 — null when single-bank |
 | 14 | `per_bank_trim_delta` | `float\|None` | — | §5 / §12.1 — B1−B2 signed delta |
-| 15 | `normalized_obd_lambda` | `float` | [0.7, 1.3] | §5 / §11 |
+| 15 | `normalized_obd_lambda` | `float \| None` | [0.7, 1.3]; `None` while analytics are frozen | §5 / §11 |
 | 16 | `lambda_perception_delta` | `float\|None` | — | §5 — null when not wideband/0x44 |
 | 17 | `ve_pct` | `float` | [0.0, 200.0] | §6.4 — 200 ceiling for thermal-shock steam overshoot |
 | 18 | `ve_validity` | `VEValidity` | — | §5 / §10 |
@@ -204,7 +204,7 @@ Truth-vs-Perception framing unchanged: the ECU is **perception**; GASLab Brettsc
 | `HIGH_IDLE_LOAD` enum value is permanently retired (superseded by `REGULATORY_HIGH_IDLE`/`STRESS_IDLE`) | `test_vocabulary.py` codebase scan asserts zero occurrences |
 | `O2_CHANNEL_FAULT` is a formal 4th member of `O2NormalizationMode` (sentinel for out-of-range O2 input) | Guarded by `test_vocabulary.py` enum-vs-wiki drift check |
 | `O2FailureMode` carries exactly 4 values (NO_FAULT/STUCK_LEAN/STUCK_RICH/WIDEBAND_OFFSET_CANDIDATE); no pruned v1 member (SLUGGISH/DEAD/WRONG_CENTERLINE/HEATER_FAULT) survives | `test_vocabulary.py` codebase scan |
-| Cold engine defaults (`lambda=1.0`, `trim_delta=0.0`) are COMLab-acceptable | COMLab must treat `analytics_frozen=True` as a signal to skip trim analysis |
+| Cold engine defaults (`lambda=None`, `trim_delta=0.0`) are COMLab-acceptable (T-AUD-17) | COMLab must treat `analytics_frozen=True` as a signal to skip trim analysis |
 | OBD-rail trim bounds (±127) capture sensor-fault signalling that narrower nominal bounds would discard | COMLab trim-evidence scoring consumes railed-trim signal |
 | `WIDEBAND_OFFSET_CANDIDATE` is a proposal flag, never a verdict | COMLab `T-COMV2-O2OFFSET-1` (Stage 4) is the named consumer |
 

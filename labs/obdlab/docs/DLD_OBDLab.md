@@ -126,7 +126,7 @@ All values are wire-format strings consumed across lab boundaries
 
 **Removed from v1.0:** `EuroEmissionCategory` and `ResolvedHorizon` enums, and
 the `ObdEmissionsView` sub-model — all pruned (PURGE-2) for lack of a live
-consumer.
+consumer. `ObdEmissionsView` is still defined in `schemas/dna_view.py` and exported; nothing reads it (T-AUD-17).
 
 ### `ObdLabDnaView` (7 fields)
 
@@ -169,7 +169,7 @@ Pydantic `BaseModel`. The JSON contract surface emitted by
 | 12 | `total_trim_correction_delta` | `float` | `= shrtft1 + longft1` | delta_Healing |
 | 13 | `total_trim_correction_delta_b2` | `float \| None` | `= shrtft2 + longft2` | delta_Healing bank 2 |
 | 14 | `per_bank_trim_delta` | `float \| None` | `= B1 − B2` | `T-COMV2-BANK-FUSE-1` (S4) |
-| 15 | `normalized_obd_lambda` | `float` | `[0.7, 1.3]` | Lambda delta vs GASLab |
+| 15 | `normalized_obd_lambda` | `float \| None` | `[0.7, 1.3]`; `None` while frozen | Lambda delta vs GASLab |
 | 16 | `lambda_perception_delta` | `float \| None` | `= λ − commanded_λ` | `T-COMV2-ECU-FUSE-1` (S4) |
 | 17 | `ve_pct` | `float` | `[0.0, 200.0]` | `T-COMV2-VE-GATE-1` (S4) |
 | 18 | `ve_validity` | `VEValidity` | | `T-COMV2-VE-GATE-1` (S4) |
@@ -182,6 +182,8 @@ Pydantic `BaseModel`. The JSON contract surface emitted by
 | 25 | `intake_air_temp_c` | `float` | `[-40, 140]` | live in `ve_engine`; `T-COMV2-ECU-HW-1` |
 | 26 | `throttle_pos_pct` | `float` | `[0, 100]` | `T-COMV2-ECU-HW-1` (S4) |
 | 27 | `control_module_voltage_v` | `float` | `[0, 18]`, default `14.0` | `T-COMV2-VPWR-GATE-1` (S4) |
+
+Translator fill defaults when the input is absent (T-AUD-17): `intake_air_temp_c` `25.0`, `throttle_pos_pct`, `calculated_engine_load_pct`, `shrtft1` and `longft1` `0.0`, `control_module_voltage_v` `14.0`.
 | 28 | `per_cylinder_misfire_counts` | `dict[int, int] \| None` | cyl ≥ 1, count ≥ 0 | `T-COMV2-MISFIRE-LOC-1` (S4) |
 | 29 | `ltft_cell_vector` | `dict[int, float] \| None` | cell ≥ 0, `[-127, 127]` | `T-COMV2-LTFT-CELL-1` (S4) |
 | 30 | `w_theo` | `float \| None` | g/s | `T-COMV2-MAF-LIN-1` (S4) |

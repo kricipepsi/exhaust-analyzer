@@ -37,4 +37,4 @@ state_bucketing_rules:
       - node: "calculated_engine_load_pct"
         operator: "BETWEEN"
         value: [10.0, 60.0]
-    notes: "Supersedes former HIGH_IDLE_LOAD at 2200-2600 RPM"
+    notes: "Supersedes the former BP-era high-idle-load bucket at 2200-2600 RPM"

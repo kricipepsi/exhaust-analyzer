@@ -45,7 +45,7 @@ Feature: A cold engine freezes analytics but still emits a payload
     When the translator runs
     Then rpm_state_bucket = COLD_OPEN_LOOP_INVALID
       And engine_warmed = false
-      And normalized_obd_lambda = 1.0 (stoichiometric safe default)
+      And normalized_obd_lambda = None (no λ while analytics are frozen)
       And total_trim_correction_delta = 0.0
       And ve_pct = 0.0 with ve_validity = UNKNOWN
       And the payload is still emitted (no exception)

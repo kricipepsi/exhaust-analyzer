@@ -8,6 +8,7 @@ Source: OBDLab_KG_Wiki.md §10, BP §1.
 import logging
 from typing import Any
 
+from obdlab.core.exceptions import AirMeteringStrategyError
 from obdlab.schemas.dna_view import (
     AirMeteringStrategy,
     InductionType,
@@ -92,7 +93,7 @@ class VEEngine:
         if strategy == AirMeteringStrategy.MAF_ONLY:
             return self._ve_maf_only(pids, bucket, displacement)
 
-        raise ValueError(f"Unknown air_metering_strategy: {strategy}")
+        raise AirMeteringStrategyError(f"Unknown air_metering_strategy: {strategy}")
 
     # ------------------------------------------------------------------
     # DUAL_MAF_MAP_CROSSCHECK — standard formula §10.1

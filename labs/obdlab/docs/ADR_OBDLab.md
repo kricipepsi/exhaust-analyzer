@@ -200,7 +200,7 @@ the other gates) rather than a bare `ValueError`.
 
 ### Consequences
 
-- **Positive:** COMLab catches the whole family with one `except ObdLabError`.
+- **Positive:** COMLab catches the whole family with one `except ObdLabError` (the unknown-strategy raise in `ve_engine.py` is `AirMeteringStrategyError` since T-AUD-17).
 - **Positive:** exception semantics match intent (no `AssertionError` for
   validation).
 - **Negative:** any caller that previously caught `ValueError`/`AssertionError`

@@ -48,9 +48,10 @@ Brettschneider lambda) is *ground truth*.
 ## 2. Architecture Position
 
 ```
-COMLab (Stage 4 — decision engine)
-  │  builds ObdLabDnaView from the VIN/DNA record
-  │  populates freeze_frame_pids from DTCLab before calling OBDLab
+Wired composition (apps/wired/wired/composition.py, T-AUD-17)
+  │  builds ObdLabDnaView from the VIN/DNA record (MAP_ONLY_SPEED_DENSITY when
+  │  the VIN names no strategy; OBDLab alone defaults to DUAL_MAF_MAP_CROSSCHECK)
+  │  copies the user's DTC codes into active_dtcs; freeze_frame_pids stays {}
   ▼
 obdlab.SensorSignalTranslator.translate(raw_user_inputs, dna_view, accumulator?)
   │
@@ -66,7 +67,7 @@ obdlab.SensorSignalTranslator.translate(raw_user_inputs, dna_view, accumulator?)
   OBDLivePayload (31 canonical fields)
   │
   ▼
-COMLab consumes the payload as a frozen contract surface (see §7).
+COMLab consumes the payload as a frozen contract surface (see §7). The composition also copies Mode $06 and trim fields (`mode06_catalyst_margin_pct`, `stft_idle_pct`, `ltft_idle_pct`, `stft_2500_pct`, `ltft_2500_pct`, and more) from the raw OBD inputs straight into COMLab's OBD payload, outside `OBDLivePayload` (T-AUD-17).
 ```
 
 Zero cross-lab Python imports. OBDLab owns local mirrors of any cross-lab type
@@ -103,7 +104,7 @@ raw_user_inputs + ObdLabDnaView (may be None) + LinearityAccumulator (optional)
   thermal override → analytics_frozen = (bucket == COLD_OPEN_LOOP_INVALID)
        │
   [4]  VEEngine.compute_ve            (frozen → ve_pct=0.0, ve_validity=UNKNOWN)
-  [5]  O2Normalizer.normalize         (frozen → normalized_obd_lambda=1.0, NO_FAULT)
+  [5]  O2Normalizer.normalize         (frozen → normalized_obd_lambda=None, NO_FAULT)
   [6]  TrimVectorAggregator.aggregate (frozen → totals 0.0, bank-2/delta None)
        │
   [7]  AnalyticsPreconditions.evaluate  (ALWAYS runs, even when frozen)
@@ -248,7 +249,7 @@ emit-S2 / consume-S4 pattern, kept honest by the signal/noise rule.
 | Sensor bounds drift | 0 drift between `physical_sensor_bounds.json` and `OBDLab_KG_Wiki.md §3.1` |
 | Import isolation | 0 cross-lab Python imports |
 | `HIGH_IDLE_LOAD` token | 0 occurrences in `obdlab/` (superseded by `REGULATORY_HIGH_IDLE`/`STRESS_IDLE`) |
-| Numeric literals | every literal in `obdlab/` carries a `# wiki:` citation comment |
+| Numeric literals | literals in `obdlab/` carry a `# wiki:` citation, mostly per line; the `iat or 25.0` fallback in `ve_engine.py` and the translator's fill defaults have none (T-AUD-17) |
 | Signal/noise | every payload field has a named, existing-or-proposed consumer |
 
 ---

@@ -5,7 +5,8 @@
 + 6 analytics fields per T-OBD-WIRE-1 + intake_air_temp_c & throttle_pos_pct per T-OBDV2-7
 + control_module_voltage_v per T-OBDV2-8 + per_cylinder_misfire_counts per T-OBDV2-9
 + w_theo & sensor_error_delta per T-OBDV2-10 + ltft_cell_vector per T-OBDV2-11).
-All internally-computed analytics are now emitted so COMLab's OBDLiveDataPayload mirror loses no data.
+All internally-computed analytics are emitted. COMLab's OBDLiveDataPayload mirror has no field named
+calculated_engine_load_pct, engine_rpm, longft2, maf_status, map_status or shrtft2 (F-C4-10, T-AUD-17).
 """
 
 from pydantic import BaseModel, Field

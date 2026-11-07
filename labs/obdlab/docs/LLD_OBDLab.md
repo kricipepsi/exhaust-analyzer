@@ -24,8 +24,8 @@ source: "labs/obdlab/docs/LLD_OBDLab.md"
 **Date:** 2026-06-10
 **Supersedes:** LLD_OBDLab v1.0 (2026-05-22).
 
-Convention: every numeric literal in `obdlab/` carries a `# wiki: <source>`
-comment (code-review gate). The literals below are transcribed from the live
+Convention: numeric literals in `obdlab/` carry a `# wiki: <source>`
+comment (code-review gate); the `iat or 25.0` fallback in `ve_engine.py` has none (T-AUD-17). The literals below are transcribed from the live
 modules; the `# wiki:` source is shown alongside each.
 
 ---
@@ -131,7 +131,8 @@ bound is `[0.0, 200.0]` (§6.4 — 200 ceiling for thermal-shock steam overshoot
 
 **Degraded mode:** when `displacement`, `maf`, `map`, or `rpm` is missing (or
 `rpm == 0`), `compute_ve` returns `(None, …, VEValidity.UNKNOWN)`; the
-orchestrator substitutes the `0.0` sentinel into `ve_pct`. No crash.
+orchestrator substitutes the `0.0` sentinel into `ve_pct`. No crash. A missing
+`intake_air_temp_c` is not degraded mode: the formula uses `25.0` °C (`iat or 25.0`, T-AUD-17).
 
 ### MAP_ONLY emulation / MAF_ONLY back-calculation
 
@@ -284,7 +285,7 @@ W_theo = (eta_v * displacement * map_kpa * rpm) / (120.0 * R(0.287) * (iat_c + 2
     − |maf_idle   − W_theo_idle|   / W_theo_idle ) * 100.0
 ```
 
-Both guard against a zero denominator (return `0.0`). Emitted only under
+Both guard against a zero denominator: the ratio helper returns `0.0`; the delta helper sets only the affected term to `0.0` and returns the other term (T-AUD-17). Emitted only under
 `DUAL_MAF_MAP_CROSSCHECK` once the `LinearityAccumulator` holds **both** the
 `STABILIZED_IDLE` and `STRESS_IDLE` bands.
 
@@ -332,9 +333,9 @@ hardening.
 
 ## 14. `freeze_frame_pids` Forwarding Contract
 
-`OBDLivePayload.freeze_frame_pids` (default `{}`) is populated by **COMLab**
-before the OBDLab call, from DTCLab freeze-frame data — OBDLab ferries it
-through unchanged. OBDLab never reads DTCLab directly (no cross-lab import).
+`OBDLivePayload.freeze_frame_pids` (default `{}`) is meant to be populated by the
+caller from DTCLab freeze-frame data — OBDLab ferries it through unchanged. The wired
+composition does not populate it (it copies only the DTC codes into `active_dtcs`, T-AUD-17). OBDLab never reads DTCLab directly (no cross-lab import).
 
 ---
 
@@ -353,7 +354,7 @@ through unchanged. OBDLab never reads DTCLab directly (no cross-lab import).
 | Pattern | Enforcement |
 |---------|-------------|
 | `from gaslab/dtclab/comlab/dnalab/vinlab import …` | import-isolation audit (test suite) |
-| `HIGH_IDLE_LOAD` anywhere in `obdlab/` | `test_vocabulary.py` codebase scan |
+| `HIGH_IDLE_LOAD` anywhere in `obdlab/` | `test_vocabulary.py` scan of `*.py` (the YAML note was reworded, T-AUD-17) |
 | Numeric literal without `# wiki:` comment | code-review gate |
 | New `OBDLivePayload` field without a named consumer | signal/noise rule — field does not ship |
 | Diesel-specific logic | `PRD_4D_App.md §5` scope exclusion |
