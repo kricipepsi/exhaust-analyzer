@@ -523,7 +523,7 @@ class LabPipelineAggregator:
                 resolved_horizon=horizon_lit,
                 degradation_mode=degradation_mode,
                 processing_confidence_rating=self._confidence_from_horizon(horizon),
-                vin_confidence="HIGH",  # lld: §3.3 — nominal; Literal "HIGH"
+                vin_confidence=request.metadata.vin_confidence.value,  # lld: §3.3; F-C1-9 (T-COMA-8): echoed
                 lab_routing_directive=LabRoutingDirectiveOut(
                     suppress_gaslab=directive.suppress_gaslab,
                     suppress_obd_live_pids=directive.suppress_obd_live_pids,
@@ -594,7 +594,7 @@ class LabPipelineAggregator:
             resolved_horizon=horizon_lit,
             degradation_mode=degradation_mode,
             processing_confidence_rating=self._confidence_from_horizon(horizon),
-            vin_confidence="HIGH",  # lld: §3.3 — nominal; Literal "HIGH"
+            vin_confidence=request.metadata.vin_confidence.value,  # lld: §3.3; F-C1-9 (T-COMA-8): echoed
             lab_routing_directive=LabRoutingDirectiveOut(
                 suppress_gaslab=directive.suppress_gaslab,
                 suppress_obd_live_pids=directive.suppress_obd_live_pids,
