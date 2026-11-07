@@ -2171,7 +2171,18 @@ class FaultAtlasRouter:
                     winner_rule_id,
                 )
 
-            return OrchestratorFinalUIOutput(**v2_output)
+            # F-C1-4 (T-COMA-7): the catalyst-damage override (wiki 07 §RULE_CAT_OVERRIDE, ADR-0010) runs on top of
+            # any verdict on this path too; it reads only the request's DTC block.
+            v2_result = OrchestratorFinalUIOutput(**v2_output)
+            if isinstance(_req, OrchestratorInboundRequest):
+                v2_result = v2_result.model_copy(
+                    update={
+                        "performance_analytics": self.apply_catalyst_damage_override(
+                            None, _req, v2_result.performance_analytics  # type: ignore[arg-type]  # verdict unused
+                        )
+                    }
+                )
+            return v2_result
 
         request: OrchestratorInboundRequest = sanitized["request"]
         if self._enable_delta and "delta_signature" not in sanitized:
