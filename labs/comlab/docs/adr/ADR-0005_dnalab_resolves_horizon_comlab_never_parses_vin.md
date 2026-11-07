@@ -11,7 +11,8 @@ the heavy decode done once by DNALab.
 **Decision.** DNALab pre-computes `resolved_horizon` (and `euro_emission_category`,
 `cylinder_count`, etc.) and ships them in `VehicleDNA`. COMLab is a **read-only
 consumer**: `horizon_context_injector.HorizonContextInjector.from_vehicle_dna`
-reads `vin_dna.resolved_horizon` and loads the era-sensitivity threshold mask — it
+reads `vin_dna.resolved_horizon` and loads the era-sensitivity threshold mask (for
+`HORIZON_MODERN` it applies the empty default mask, T-AUD-18e) — it
 does **not** string-slice the VIN. A `_horizon_from_euro()` fallback exists only
 to derive the horizon from `euro_emission_category` when an older payload omits
 `resolved_horizon`; it is a defensive default, not a decode.

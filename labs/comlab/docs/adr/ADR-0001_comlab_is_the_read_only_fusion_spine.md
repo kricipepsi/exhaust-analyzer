@@ -27,8 +27,10 @@ recompute them).
   (no persistent state — see DLD §2.3).
 - Negative: COMLab's verdict quality is bounded by producer quality; a producer
   bug surfaces here, so the cross-lab contract and anti-orphan checks matter.
-- Neutral: COMLab adds exactly one synthetic signal of its own — the `POA_HISTORY`
-  routing tag injected from `chemical_state == POA_SIGNATURE` — and nothing else.
+- Neutral: COMLab adds two synthetic signals of its own — the `POA_HISTORY`
+  routing tag injected from `chemical_state == POA_SIGNATURE` and the `EGR_HISTORY`
+  tag injected from `chemical_state == EGR_DILUTION_MISFIRE` (`fault_atlas_router.py`,
+  T-AUD-18e) — and nothing else.
 
 **Alternatives considered.**
 1. *Thick orchestrator that re-validates producer math.* Rejected — duplicates

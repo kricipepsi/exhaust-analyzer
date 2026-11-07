@@ -25,7 +25,9 @@ ABSTAINs on an `rpm_state_bucket` mismatch rather than differencing across regim
 - Positive: emitters stay single-point and stateless; the optional second reading
   unlocks stronger separation without duplicating fault tables.
 - Positive: fully additive — single-reading callers are unaffected; the feature is
-  gated by `enable_delta` and the optional payload field.
+  gated by `enable_delta` and the optional payload field. A second flag,
+  `enable_delta_v2` (default `False`), gates the delta re-rank on the v2
+  `scored_rules` path (`fault_atlas_router.py`, T-AUD-18e).
 - Negative: the strongest separations need the technician to take a second reading;
   without it some pairs stay ambiguous (honest `SINGLE_POINT` signalling).
 - Neutral: the engine carries both single- and dual-frame code paths.

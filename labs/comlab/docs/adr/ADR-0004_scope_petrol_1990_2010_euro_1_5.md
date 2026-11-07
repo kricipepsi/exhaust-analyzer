@@ -13,7 +13,8 @@ Those features were never in the shipped scope and leave orphaned artefacts.
 horizon buckets: `HORIZON_LEGACY` (Euro 1–2), `HORIZON_ADAPTIVE` (Euro 3–4), and
 `HORIZON_MODERN` (Euro 5, capped at the 1990–2010 window). Post-2010 **Euro 6+**
 technology — GPF/DPF inference, LSPI, secondary-air-injection inference — is **out
-of scope** and absent from every schema, registry rule, and KG node. GDI and early
+of scope** and absent from every registry rule and KG node; the `EuroEmissionCategory` enum still
+declares `EURO_6` and `EURO_7` (`schemas/vocabulary.py`, T-AUD-18e). GDI and early
 turbocharging are in scope only for vehicles sold inside the window; the related
 enum values (`FuelDeliveryType.GDI`, `BOOST_HISTORY`, `KNOCK_HISTORY`, wideband O₂
 types) stay because in-window vehicles use them. `HORIZON_MODERN` is **not deleted**

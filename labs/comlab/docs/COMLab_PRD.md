@@ -54,6 +54,24 @@ architectural decision from them and does not re-litigate them.
 
 ---
 
+## 0. Shipped-code deltas (T-AUD-18e)
+
+Parts of this document predate the shipped package. Where the text and this table disagree, the table states the code (measured by T-AUD-11g, re-checked on `fix/T-AUD-18d`). The behaviour decisions are T-AUD-3's; when it changes the code, it updates this table.
+
+| PRD says | Shipped code |
+|---|---|
+| §4.2 the COMLab gates run in Stage A on the assembled payload | they run only when `enable_fatal_gates=True`; `LabPipelineAggregator` and `wired.composition.diagnose()` default it to `False`, so the public app raises no `ERR-ABORT-00x` (F-C1-13; any change is T-AUD-3) |
+| §4.2 `ERR-ABORT-001` fires on `sample_validity != "VALID"` | `validity not in ("VALID", "BORDERLINE")`: a `BORDERLINE` sample passes (as the BDD scenario "A borderline gas sample is allowed through" states; any change is T-AUD-3) |
+| §4.2 `ERR-ABORT-004` reads `vehicle_dna.vin_dna.confidence` | `request.metadata.vin_confidence == VinConfidence.NONE` raises `ERR-ABORT-004` |
+| §5 `degradation_mode` is `FULL_FUSION` / `GAS_DOMINANT` | `DegradationLit` has four values; the output's `execution_meta.degradation_mode` is `FULL_FUSION`, `GAS_DOMINANT` (only when the routing directive sets `suppress_gaslab`) or `FATAL_INCOMPLETE` (an abort); `SINGLE_POINT` is set only on the delta engine's own result (`analytics/delta_engine.py`) |
+| §6 the abort banner shows `error_code` and `ui_remediation_message` | an abort returns a full `OrchestratorFinalUIOutput`: `degradation_mode` `FATAL_INCOMPLETE`, the code in `diagnostic_verdict.fault_code`, `fault_name` `Fatal Abort: <code>`, the message in `display_headline` and `actionable_remediation`; there is no `error` block, no `error_code` and no `ui_remediation_message` field |
+| §6 `ERR-ABORT-001` action | message: "Gas sample is invalid. Check probe connections, verify sample line integrity, and re-sample." |
+| §6 `ERR-ABORT-002` action "Warm engine to ≥70 °C" | the gate fires on `engine_warmed == False` (OBDLab sets it at ECT ≥ 70 °C); message: "Engine not at operating temperature (ECT < 75 °C). Warm engine to full operating temperature and re-test." (`_ENGINE_WARMED_REMEDIATION_TEMP_C = 75`) |
+| §6 `ERR-ABORT-004` action | message: "VIN could not be decoded. Enter vehicle details manually before proceeding." |
+| §6 `ERR-ABORT-005` action | message: "Schema version is too old. Update the client to a version that supports schema v1.0 or later." (`MIN_SUPPORTED_SCHEMA_VERSION = "1.0"`) |
+
+---
+
 ## 1. Product vision & strategic value
 
 ### 1.1 What COMLab is, from the user's perspective

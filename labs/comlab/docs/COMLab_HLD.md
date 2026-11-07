@@ -64,6 +64,23 @@ sign-off" (§12) are all now resolved in code; §12 records the resolutions.
 
 ---
 
+## 0. Shipped-code deltas (T-AUD-18e)
+
+Parts of this document predate the shipped package. Where the text and this table disagree, the table states the code (measured by T-AUD-11g, re-checked on `fix/T-AUD-18d`). The behaviour decisions are T-AUD-3's; when it changes the code, it updates this table.
+
+| HLD says | Shipped code |
+|---|---|
+| §4 step 2: the schema-version gate runs second and reads `vehicle_dna.schema_version` | `check_schema_version(request.metadata.schema_version)` runs last, after `ERR-ABORT-001`, `-002` and `-004` (`run_fatal_gates_and_routing`) |
+| §4 step 3: Stage A runs the fatal validity gates | they run only when `enable_fatal_gates=True`; `LabPipelineAggregator` and `wired.composition.diagnose()` default it to `False`, so the public app raises no `ERR-ABORT-00x` (F-C1-13; any change is T-AUD-3) |
+| §4 step 3: `sample_validity == "VALID"` else `ERR-ABORT-001` | `validity not in ("VALID", "BORDERLINE")`: a `BORDERLINE` sample passes (as the BDD scenario "A borderline gas sample is allowed through" states; any change is T-AUD-3) |
+| §4 step 3: `vehicle_dna.vin_dna.confidence != "NONE"` else `ERR-ABORT-004` | `request.metadata.vin_confidence == VinConfidence.NONE` raises `ERR-ABORT-004` |
+| §4 step 5: `PARTIAL` VIN confidence or a scanner without freeze-frame gives `GAS_DOMINANT` | `_map_degradation` returns `GAS_DOMINANT` only when the directive sets `suppress_gaslab`; every other session is `FULL_FUSION` (any change is T-AUD-3) |
+| §4 step 8: no second frame gives the `SINGLE_POINT` degradation mode | the output's `execution_meta.degradation_mode` is `FULL_FUSION`, `GAS_DOMINANT` (only when the routing directive sets `suppress_gaslab`) or `FATAL_INCOMPLETE` (an abort); `SINGLE_POINT` is set only on the delta engine's own result (`analytics/delta_engine.py`) |
+| §7.3 `run_fallback_tree` consumes the directive | it reads only `suppress_gaslab` (the non-starter path sets `GAS_DOMINANT`); for any other session it raises `NotImplementedError` (phase 3). Only `sanitize_and_aggregate` calls it; `process()` does not |
+| §7.5 an abort returns a discriminated union with an `error` block | an abort returns a full `OrchestratorFinalUIOutput`: `degradation_mode` `FATAL_INCOMPLETE`, the code in `diagnostic_verdict.fault_code`, `fault_name` `Fatal Abort: <code>`, the message in `display_headline` and `actionable_remediation`; there is no `error` block, no `error_code` and no `ui_remediation_message` field; no `schema_version`; no `ERR-VIN-400` code exists in the package |
+
+---
+
 ## 1. What COMLab is, in one sentence
 
 COMLab is the **read-only fusion gate** at the terminal end of the 4DLab

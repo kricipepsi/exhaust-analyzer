@@ -30,6 +30,18 @@ A shared vocabulary used throughout:
 
 ---
 
+## 0. Shipped-code deltas (T-AUD-18e)
+
+Parts of this document predate the shipped package. Where the text and this table disagree, the table states the code (measured by T-AUD-11g, re-checked on `fix/T-AUD-18d`). The behaviour decisions are T-AUD-3's; when it changes the code, it updates this table.
+
+| BDD says | Shipped code |
+|---|---|
+| Feature "Stage-A fatal gates honour suppression" | the scenarios hold with `enable_fatal_gates=True`; `LabPipelineAggregator` and `wired.composition.diagnose()` default it to `False` |
+| "Without a second frame the path is single-point": `degradation_mode is SINGLE_POINT` | the output's `execution_meta.degradation_mode` is `FULL_FUSION`, `GAS_DOMINANT` (only when the routing directive sets `suppress_gaslab`) or `FATAL_INCOMPLETE` (an abort); `SINGLE_POINT` is set only on the delta engine's own result (`analytics/delta_engine.py`) |
+| "A legacy car without a scanner degrades to gas-dominant" | a request with no OBD live data gets `FULL_FUSION`; `GAS_DOMINANT` needs `suppress_gaslab` from the symptom router (any change is T-AUD-3) |
+
+---
+
 ## Feature: Contract validation at the ingestion gate
 *Tests: `unit/test_lab_pipeline_aggregator.py`, `unit/test_vocabulary_sae_iso_conformance.py`*
 
