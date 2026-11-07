@@ -10,10 +10,13 @@ Ensures:
 6. Expected state values stay within the scorer vocabulary
 """
 import csv
+import sys
+from pathlib import Path
 
 import pytest
 
-CSV_PATH = "apps/wired/v7/data/cases_petrol_v7.csv"
+_REPO_ROOT = Path(__file__).resolve().parents[4]  # T-COMA-9: tests -> v7 -> wired -> apps -> repo
+CSV_PATH = str(_REPO_ROOT / "apps" / "wired" / "v7" / "data" / "cases_petrol_v7.csv")
 
 # Per-family confidence bands from run 20260630_163900 (Option B re-pin)
 FAMILY_BANDS = {
@@ -172,8 +175,8 @@ def test_corpus_validates():
     """Corpus still validates against FaultAtlasKG (no vocabulary/KG violation)."""
     import subprocess
     result = subprocess.run(
-        ['/agent_workspace/.venv-wired/bin/python', 'apps/wired/v7/load_corpus.py', '--validate'],
-        capture_output=True, text=True, cwd='/agent_workspace'
+        [sys.executable, 'apps/wired/v7/load_corpus.py', '--validate'],
+        capture_output=True, text=True, cwd=str(_REPO_ROOT)
     )
     assert result.returncode == 0, f"Corpus validation failed: {result.stderr}"
 

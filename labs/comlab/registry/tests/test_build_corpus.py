@@ -22,7 +22,12 @@ from tools.build_corpus import (
     parse_blueprint,
     build_cvsgaps_map,
     MASTER_CSV,
+    BLUEPRINT,
 )
+
+# T-COMA-9: these inputs are local Jaeger/harness data, not tracked in git; the tests that read them skip without it.
+needs_blueprint = pytest.mark.skipif(not BLUEPRINT.exists(), reason="FAILURE_BLUEPRINT.md (local Jaeger run) absent")
+needs_master = pytest.mark.skipif(not MASTER_CSV.exists(), reason="cases_petrol_master_v6.csv (local harness data) absent")
 
 # ---------------------------------------------------------------------------
 # Schema validation tests
@@ -215,6 +220,7 @@ class TestClassifyCase:
 # ---------------------------------------------------------------------------
 
 
+@needs_blueprint
 class TestParseBlueprint:
     """FAILURE_BLUEPRINT.md parsing."""
 
@@ -301,6 +307,7 @@ class TestOutputContracts:
         assert not missing_in_meta, f"CSV rows lack meta: {missing_in_meta}"
         assert not missing_in_csv, f"meta references missing CSV rows: {missing_in_csv}"
 
+    @needs_master
     def test_csv_same_schema(self, curated_rows):
         """Curated CSV has the same columns as master."""
         master_cols = set()
@@ -336,6 +343,7 @@ class TestOutputContracts:
         for r in new_rows:
             assert r["fuel_type"] == "petrol"
 
+    @needs_master
     def test_kept_csv_rows_match_master(self, curated_rows):
         """KEEP rows in curated CSV are verbatim copies from master."""
         master_rows = {}

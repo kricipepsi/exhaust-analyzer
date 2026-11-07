@@ -401,7 +401,7 @@ def validate_corpus(csv_path: str | Path | None = None) -> bool:
 
             dtc_inputs = raw_inputs.get("dtc")
             if dtc_inputs is not None:
-                _run_dtclab(_as_dict(dtc_inputs))
+                _run_dtclab(_as_dict(dtc_inputs), vin_dna)
 
             # If tag is invalid, we expected a validation failure (like out-of-range or format error)
             if tag == "invalid":
