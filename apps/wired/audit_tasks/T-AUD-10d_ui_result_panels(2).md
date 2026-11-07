@@ -60,18 +60,18 @@ Cowork's: read it, run `apply_fix.py`, do not edit it.
 
 ### First action ###
 ```bash
-cd C:/4DApp/repo && git branch --show-current && git rev-parse --short HEAD~1 && git status --porcelain
+cd C:/4DApp/repo && git branch --show-current && git log --oneline b8ec171..HEAD && git status --porcelain
 ```
 ```
 fix/T-AUD-10d
-b8ec171
+<Cowork's spec(T-AUD-10d) commits only (the row was authored as T-AUD-10b1 and renamed)>
 ```
-`HEAD` is Cowork's `spec(T-AUD-10d)` commit and its parent is `b8ec171`. `git status --porcelain` prints nothing.
+Every commit after `b8ec171` is a Cowork `spec(T-AUD-10…)` commit. `git status --porcelain` prints nothing.
 Anything else is a stop.
 
 ### Success criteria ###
 1. Steps 1-2 report the P2 counts; the new test fails 4 of 4 on the base code (R3 procedure); step 4 reports P3.
-2. `ruff` passes on the two Python files it names; one commit on `fix/T-AUD-10d` after the spec commit;
+2. `ruff` passes on the two Python files it names; one commit on `fix/T-AUD-10d` after the spec commits;
    `git status --porcelain` lists only the note and the RESULT (step 3).
 
 ### Context ###
@@ -122,7 +122,7 @@ timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check apps/ui/ui_payload.py app
 Expected:
 - step 1: `65 passed`; `106 passed`; no `failed` or `error`.
 - step 2: `4 passed`.
-- step 3: `All checks passed!`; `2 files changed, 50 insertions(+)`; the spec commit and your one commit; only the
+- step 3: `All checks passed!`; `2 files changed, 50 insertions(+)`; the spec commits and your one commit; only the
   note and the RESULT.
 - step 4: `rendered: {'horizon': True, 'gas skipped disclosure': True}`.
 
