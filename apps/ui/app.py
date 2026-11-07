@@ -9,6 +9,9 @@ from wired.composition import diagnose
 from ui_payload import (
     build_diagnose_payload,
     distinct_family_siblings,
+    horizon_meaning,
+    routing_notices,
+    severity_banner,
     validate_widgets,
     TIER1_UI_TO_INTERNAL,
     FIELD_HELP,
@@ -906,10 +909,17 @@ with col_verdict:
         enrichment = res.fault_enrichment
         analytics = res.performance_analytics
 
+        # Severity ribbon (PRD 5.1) and the skipped-lab disclosure (PRD 5.6); T-AUD-10d
+        sev_kind, sev_text = severity_banner(analytics.severity_level)
+        getattr(st, sev_kind)(sev_text)
+        for notice in routing_notices(meta.lab_routing_directive):
+            st.info(notice)
+
         # 1. Verification Meta info
         st.caption(f"Session ID: `{res.session_id}`")
         st.caption(f"Degradation Mode: **{meta.degradation_mode}**")
         st.caption(f"VIN Decode Confidence: **{meta.vin_confidence}**")
+        st.caption(f"Horizon: **{meta.resolved_horizon}** — {horizon_meaning(meta.resolved_horizon)}")
 
         # Confidence Rating display: band label + score format per contract §3
         # e.g., "HIGH_ASSURANCE" -> "High Assurance"
@@ -1011,6 +1021,8 @@ with col_verdict:
             # Knowledge graph enrichment details
             with st.expander("🔬 Knowledge Graph Enrichment", expanded=True):
                 st.markdown(f"**Component Group:** `{enrichment.component_group}`")
+                if enrichment.impacted_subsystems:  # PRD 5.2 badge list; T-AUD-10d
+                    st.markdown("**Impacted Subsystems:** " + " ".join(f"`{s}`" for s in enrichment.impacted_subsystems))
                 st.markdown(f"**Mechanical Failure Mode:** {enrichment.mechanical_failure_mode}")
                 st.markdown("**UI Remediation Steps:**")
                 for step in enrichment.ui_remediation_steps:

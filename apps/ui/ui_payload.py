@@ -1275,3 +1275,41 @@ def distinct_family_siblings(verdict: Any, limit: int = 2) -> list[Any]:
         if len(picked) == limit:
             break
     return picked
+
+
+# source: labs/comlab/docs/COMLab_PRD.md 5.1 (severity ribbon copy); T-AUD-10d, F-C5-7
+SEVERITY_BANNER: dict[str, tuple[str, str]] = {
+    "CRITICAL_IMMEDIATE_STOP": ("error", "Critical: do not drive."),
+    "WARNING_DEGRADED_PERFORMANCE": ("warning", "Warning: safe to drive, schedule repair."),
+    "OPTIMAL_HEALTH": ("success", "No fault detected."),
+}
+
+# source: labs/comlab/docs/COMLab_PRD.md 5.6 (lab routing directive panel copy); T-AUD-10d, F-C5-7
+ROUTING_NOTICES: tuple[tuple[str, str], ...] = (
+    ("suppress_gaslab", "Gas analyser inputs skipped because the symptom is 'vehicle won't start'."),
+    ("suppress_obd_live_pids", "Live OBD PIDs skipped because the engine was not running."),
+    ("suppress_mode06_ui", "Mode $06 monitor section skipped — monitors are not ready when the engine is not running."),
+    ("cold_start_mode", "Cold-start hypothesis was active — some warm-only rules were down-weighted."),
+)
+
+# source: labs/comlab/wiki/04_horizon_eras.md (era table); COMLab_PRD.md 5.7; T-AUD-10d, F-C5-7
+HORIZON_MEANING: dict[str, str] = {
+    "HORIZON_LEGACY": "Euro 1-2 era tuning applied (pre-1997 to about 2001).",
+    "HORIZON_ADAPTIVE": "Euro 3-4 era tuning applied (about 2001-2011).",
+    "HORIZON_MODERN": "Euro 5-6 era tuning applied (about 2011 onward).",
+}
+
+
+def severity_banner(level: str) -> tuple[str, str]:
+    """Return the Streamlit call name and the copy for a severity_level (PRD 5.1)."""
+    return SEVERITY_BANNER[level]
+
+
+def routing_notices(directive: Any) -> list[str]:
+    """Return the PRD 5.6 notice for every true LabRoutingDirective flag; empty when all four are false."""
+    return [text for flag, text in ROUTING_NOTICES if getattr(directive, flag)]
+
+
+def horizon_meaning(horizon: str) -> str:
+    """Return the era sentence for a resolved_horizon (PRD 5.7)."""
+    return HORIZON_MEANING[horizon]
