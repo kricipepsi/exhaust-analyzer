@@ -8,6 +8,7 @@ import streamlit as st
 from wired.composition import diagnose
 from ui_payload import (
     build_diagnose_payload,
+    distinct_family_siblings,
     validate_widgets,
     TIER1_UI_TO_INTERNAL,
     FIELD_HELP,
@@ -945,7 +946,7 @@ with col_verdict:
             )
 
             # Differential siblings (the runners-up)
-            for idx, sib in enumerate(verdict.differential_siblings[:2]):
+            for idx, sib in enumerate(distinct_family_siblings(verdict)):
                 conf_text = f"{sib.confidence_score:.2f}" if sib.confidence_score is not None else "null"
                 conf_pct = int((sib.confidence_score or 0.0) * 100)
                 st.markdown(
@@ -984,7 +985,7 @@ with col_verdict:
             )
 
             # Sibling differential candidates (first 2 distinct families)
-            for idx, sib in enumerate(verdict.differential_siblings[:2]):
+            for idx, sib in enumerate(distinct_family_siblings(verdict)):
                 conf_text = f"{sib.confidence_score:.2f}" if sib.confidence_score is not None else "null"
                 conf_pct = int((sib.confidence_score or 0.0) * 100)
                 st.markdown(

@@ -1257,3 +1257,21 @@ def build_diagnose_payload(widgets: dict[str, Any]) -> dict[str, Any]:
         raw_inputs["dtc"] = dtc
 
     return raw_inputs
+
+
+def distinct_family_siblings(verdict: Any, limit: int = 2) -> list[Any]:
+    """Return up to *limit* runner-up siblings whose fault families differ from the winner's and from each other.
+
+    source: apps/wired/ship_tasks/reports/SHIP_UI_CONTRACT_2026-07-07.md section 3.1 ("winner +
+    differential_siblings (first 2 distinct families)"); T-AUD-10a, F-C5-8. Order is COMLab's; no padding.
+    """
+    seen = {verdict.fault_family}
+    picked: list[Any] = []
+    for sib in verdict.differential_siblings:
+        if sib.fault_family in seen:
+            continue
+        picked.append(sib)
+        seen.add(sib.fault_family)
+        if len(picked) == limit:
+            break
+    return picked
