@@ -153,6 +153,19 @@ def _fold_brand(raw: str) -> str:
     return re.sub(r"[^A-Z0-9]+", "", without_diacritics.upper())
 
 
+# T-VINA-11c: below this majority_share a VDS engine-map row is wrong more often than right
+# (held-out Nio file 3, 39,867 petrol VINs: engine code 0.336, displacement +-0.1 L 0.497), so it is not applied.
+_WEAK_SHARE_FLOOR = 0.50
+
+
+def _weak_share(row: dict[str, str]) -> bool:
+    """True when the row's ``majority_share`` is stated and below ``_WEAK_SHARE_FLOOR``."""
+    try:
+        return float(row.get("majority_share", "").strip()) < _WEAK_SHARE_FLOOR
+    except ValueError:
+        return False
+
+
 def _is_non_petrol(*values: str | None) -> bool:
     """Check any value for non-petrol fuel keywords (H1 guard)."""
     for v in values:
@@ -593,6 +606,10 @@ class RobustVINDecoder:
             csv_fuel = engine_row.get("fuel_system_type", "")
             if _is_non_petrol(csv_fuel):
                 raise VINDecodeError("Fuel type out of scope")
+            # T-VINA-11c: H1 reads a weak row first (a diesel key stays out of scope); its engine is not applied.
+            if _weak_share(engine_row):
+                conf_flags.append("vds_engine_weak")
+                engine_row = None
 
         # 5. vref.db lookup for tech-mask + CoC
         db_row = None
@@ -610,9 +627,8 @@ class RobustVINDecoder:
                     conf_flags.append("vref_year_out_of_window")
             else:
                 conf_flags.append("no_engine_code")
-        else:
-            if "wmi_brand_missing" not in conf_flags:
-                conf_flags.append("engine_not_in_csv")
+        elif "wmi_brand_missing" not in conf_flags and "vds_engine_weak" not in conf_flags:
+            conf_flags.append("engine_not_in_csv")
 
         # H1: secondary petrol-only check against vref.db fuel_delivery_type
         if db_row is not None:

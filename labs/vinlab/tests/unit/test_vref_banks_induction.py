@@ -26,6 +26,7 @@ I5_VIN = "YV1LW5502V2373912"
 # reads a 1.2 TSI (I3 TURBOCHARGED); TecDoc states AZQ NATURALLY_ASPIRATED.
 AZQ_VIN = "TMBCY46Y733811341"
 # AEB, map V6/6 (2.4 L), model year 2000 (row window 1995-2006); TecDoc states 4 cylinders (1781 cc).
+# The map row (AUDI ZZZ4B) has majority_share 0.230, below the T-VINA-11c floor: the count tests raise it.
 AEB_VIN = "WAUZZZ4BZYN125879"
 
 AZQ_ROW = (
@@ -33,6 +34,12 @@ AZQ_ROW = (
     "has_turbo, is_v_engine, o2_type, induction_type, fuel_delivery_type) "
     "VALUES ('AZQ', 'SKODA', 1198, 2001, 2009, 'ERA_OBDII_EARLY', 0, 0, '', ?, 'PORT_INJECTION')"
 )
+
+
+def _strong(decoder: RobustVINDecoder, key: str) -> RobustVINDecoder:
+    """Raise one map row's majority_share above the T-VINA-11c floor on this decoder only (the count logic is tested)."""
+    decoder.vds_full_exact_index[key]["majority_share"] = "0.900"
+    return decoder
 
 
 @pytest.fixture()
@@ -112,7 +119,7 @@ def test_vref_count_replaces_map_count(vref_copy):
 @pytest.mark.parametrize("count", [None, 0])
 def test_null_or_zero_vref_count_keeps_map_count(vref_copy, count):
     # PIN: a NULL or 0 count states nothing (R3); the map's 6 stays and the fallback does not run (it would say 4).
-    decoder = vref_copy("UPDATE engine_ref SET cylinder_count = ? WHERE engine_code = 'AEB'", (count,))
+    decoder = _strong(vref_copy("UPDATE engine_ref SET cylinder_count = ? WHERE engine_code = 'AEB'", (count,)), "AUDI_ZZZ4B")
     assert decoder.decode_vin_payload(AEB_VIN).cylinder_count == 6
 
 
@@ -132,8 +139,6 @@ def test_vref_count_with_blank_map_count_skips_the_heuristic(vref_copy, displace
 @pytest.mark.parametrize(
     ("vin", "cylinders", "banks"),
     [
-        (AEB_VIN, 4, 1),  # AEB: TecDoc 4, map V6/6
-        ("WAUZZZ8GZNA003486", 5, 1),  # NG: TecDoc 5, map V6/6
         ("JSAFTD62V00115689", 6, 2),  # H25A: row inserted by T-VINA-16, TecDoc 6 and is_v_engine 1, map blank
     ],
 )
