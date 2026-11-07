@@ -24,6 +24,13 @@ def test_skips_winner_family_and_repeats() -> None:
     assert [s.fault_id for s in got] == ["S2", "S4"]
 
 
+def test_caps_at_two_distinct_families() -> None:
+    """NEW (revision 02): three other families -> the first two in COMLab's order; limit=1 -> one."""
+    v = _v("misfire", "rich_mixture", "misfire", "lean_condition", "sensor_fault")
+    assert [s.fault_id for s in U.distinct_family_siblings(v)] == ["S0", "S2"]
+    assert [s.fault_id for s in U.distinct_family_siblings(v, limit=1)] == ["S0"]
+
+
 def test_fewer_than_two_distinct_is_not_padded() -> None:
     """NEW: only one other family -> one card; none -> no card."""
     assert [s.fault_id for s in U.distinct_family_siblings(_v("misfire", "misfire", "rich_mixture", "misfire"))] == ["S1"]
