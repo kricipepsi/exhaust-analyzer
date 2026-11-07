@@ -69,7 +69,7 @@ classification, two views — ADR-0005).
 > COMLab-D (rework audit). Do not rename either side unilaterally.
 
 ### `VinConfidence` — decode confidence (contract §8)
-`HIGH` (clean resolve), `PARTIAL` (any downgrade flag), `NONE` (engine not in CSV).
+`HIGH` (clean resolve), `PARTIAL` (any downgrade flag), `NONE` (engine not in CSV, or a blank-brand WMI).
 Consumed by OBDLab's three-branch DNA-RPM gate.
 
 ### `DownstreamTrimRole` — downstream O2 role (O2_MODEL_STRATEGY.md §3)
@@ -128,7 +128,7 @@ they are **not** serialised:
 | `engine_not_in_vref` | engine_code not in `vref.db` | PARTIAL |
 | `vref_year_out_of_window` | model year outside the matched `vref.db` row's `my_start`-`my_end`; row not applied | PARTIAL |
 | `euro_unknown` | no applied `vref.db` row states a recognised `euro_norm`; era from the model year (wiki §10.8) | PARTIAL |
-| `wmi_brand_missing` | the WMI row has a blank brand; engine resolution is skipped | PARTIAL |
+| `wmi_brand_missing` | the WMI row has a blank brand; engine resolution is skipped | NONE |
 | `vds_engine_ambiguous` | the Path-A VDS row's `majority_share` is below 0.70 | PARTIAL |
 | `vds_engine_weak` | the VDS row's `majority_share` is below 0.50: the H1 fuel guard reads it, then the row is not applied (no engine code, displacement or cylinders) | PARTIAL |
 | `coc_null_<field>` | a core CoC field is NULL (first of 9 checked) | PARTIAL |

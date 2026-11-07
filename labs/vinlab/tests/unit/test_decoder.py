@@ -186,11 +186,11 @@ class TestBrandJoinIntegrity:
         flags: list[str] = []
         assert decoder._resolve_engine("115ZZZZZZAZZZZZZZ", "", flags) is None
         assert flags == ["wmi_brand_missing"]
-        assert decoder._compute_confidence(flags) == "PARTIAL"
+        assert decoder._compute_confidence(flags) == "NONE"  # F-C6-9 (T-VINA-7a)
 
         dna = decoder.decode_vin_payload("115ZZZZZZAZZZZZZZ")
         assert dna.make == ""
-        assert dna.confidence == "PARTIAL"
+        assert dna.confidence == "NONE"
         assert dna.engine_displacement_liters == 0.0
         assert dna.cylinder_count == 0
 

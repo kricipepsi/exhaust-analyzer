@@ -546,7 +546,8 @@ class RobustVINDecoder:
 
     def _compute_confidence(self, conf_flags: list[str]) -> VinConfidence:
         """Compute VIN decode confidence based on collection of confidence flags."""
-        if "engine_not_in_csv" in conf_flags:
+        # F-C6-9: a blank-brand WMI resolves no engine either, so it grades as an unmapped engine does
+        if "engine_not_in_csv" in conf_flags or "wmi_brand_missing" in conf_flags:
             return VinConfidence.NONE
         elif conf_flags:
             return VinConfidence.PARTIAL

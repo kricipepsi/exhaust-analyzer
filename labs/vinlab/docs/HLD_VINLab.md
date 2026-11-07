@@ -98,7 +98,7 @@ raw_vin
 [8] lookup_engine_ref(vref.db, engine_code)  → db_row | None
         a row outside its my_start–my_end window is discarded (vref_year_out_of_window)
         db None → conf flag; engine None → engine_not_in_csv (NONE),
-        or wmi_brand_missing (PARTIAL) when the WMI brand is blank
+        or wmi_brand_missing (NONE) when the WMI brand is blank
 [H1] _is_non_petrol(db fuel_delivery_type) → VINDecodeError
 [9] assemble VinDNA:
         basic attrs (CSV) → tech-mask (vref.db, authoritative for displacement) →

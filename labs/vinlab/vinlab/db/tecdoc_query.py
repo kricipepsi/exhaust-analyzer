@@ -7,6 +7,7 @@ for a resolved engine_code. No other module writes SQL.
 from __future__ import annotations
 
 import sqlite3
+from contextlib import closing
 from pathlib import Path
 from typing import Any
 
@@ -62,7 +63,7 @@ def lookup_engine_ref(db_path: Path, engine_code: str) -> dict[str, Any] | None:
         return None
 
     uri = f"file:{db_path}?mode=ro"
-    with sqlite3.connect(uri, uri=True) as conn:
+    with closing(sqlite3.connect(uri, uri=True)) as conn:
         conn.row_factory = sqlite3.Row
         # Try exact match first
         cur = conn.execute(
@@ -77,7 +78,7 @@ def lookup_engine_ref(db_path: Path, engine_code: str) -> dict[str, Any] | None:
     norm_index = _build_normalised_index(db_path)
     actual_code = norm_index.get(norm_code)
     if actual_code is not None:
-        with sqlite3.connect(uri, uri=True) as conn:
+        with closing(sqlite3.connect(uri, uri=True)) as conn:
             conn.row_factory = sqlite3.Row
             cur = conn.execute(
                 "SELECT * FROM engine_ref WHERE engine_code = ?", (actual_code,)
@@ -92,7 +93,8 @@ def lookup_engine_ref(db_path: Path, engine_code: str) -> dict[str, Any] | None:
 def open_vref_readonly(db_path: Path) -> sqlite3.Connection:
     """Open vref.db in read-only mode via URI.
 
-    The decoder calls this once in __init__ and reuses the connection.
+    No caller in ``vinlab``: the decoder uses ``lookup_engine_ref``, which closes each connection it opens
+    (F-C6-14). A caller of this function closes the connection it gets.
     """
     uri = f"file:{db_path}?mode=ro"
     return sqlite3.connect(uri, uri=True)
