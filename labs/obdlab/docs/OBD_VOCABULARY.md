@@ -85,7 +85,7 @@ Euro 6 GDI 2.0L  -> stress_idle_rpm_target = 4500  (HPFP loaded)
 |---|---|---|---|
 | `STABILIZED_IDLE` | 650 – 900 | < 30% | Closed-loop, warm engine |
 | `REGULATORY_HIGH_IDLE` | 2200 – 2800 | 15 – 40% | Two-speed idle test (was `HIGH_IDLE_LOAD` in old BP) |
-| `STRESS_IDLE` | VIN `stress_idle_rpm_target` ± 10 % | 10 – 60% | Clinical load test (NEW). VIN-derived target per OBDLab BP state-bucketing rules; OBDLab BP currently uses `HIGH_IDLE_LOAD` naming and does not yet define this bucket — cross-reference to be added when OBDLab BP §6 is updated. |
+| `STRESS_IDLE` | VIN `stress_idle_rpm_target` ± 10 % | 10 – 60% | Clinical load test (NEW). VIN-derived target per OBDLab BP state-bucketing rules; the bucket is defined in `obd_translation_rules.yaml` and replaces the BP-era high-idle-load name (T-AUD-17). |
 | `COLD_OPEN_LOOP_INVALID` | any | any | ECT < 75°C — freeze all trim analytics |
 
 **Recommendation for OBDLab BP:** the BP currently calls the second point `HIGH_IDLE_LOAD` and uses 2200-2600. This wiki proposes renaming it to `REGULATORY_HIGH_IDLE` and adding a new `STRESS_IDLE` bucket. The OBDLab BP needs a §3 revision when this lands.

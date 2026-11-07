@@ -17,8 +17,10 @@ BOGUS = SimpleNamespace(air_metering_strategy="BOGUS_STRATEGY", engine_displacem
 
 
 def test_new_unknown_strategy_is_obdlab_error():
-    with pytest.raises(ObdLabError, match="Unknown air_metering_strategy"):
+    from obdlab.core.exceptions import AirMeteringStrategyError
+    with pytest.raises(AirMeteringStrategyError, match="Unknown air_metering_strategy") as caught:
         VEEngine().compute_ve({}, RpmStateBucket.STABILIZED_IDLE, BOGUS)
+    assert isinstance(caught.value, ObdLabError) and type(caught.value) is AirMeteringStrategyError
 
 
 def test_new_error_has_its_own_class():

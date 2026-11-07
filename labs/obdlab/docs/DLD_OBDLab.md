@@ -126,7 +126,8 @@ All values are wire-format strings consumed across lab boundaries
 
 **Removed from v1.0:** `EuroEmissionCategory` and `ResolvedHorizon` enums, and
 the `ObdEmissionsView` sub-model — all pruned (PURGE-2) for lack of a live
-consumer. `ObdEmissionsView` is still defined in `schemas/dna_view.py` and exported; nothing reads it (T-AUD-17).
+consumer. They left the v1.0 view contract; the `ObdEmissionsView` class itself is still defined in
+`schemas/dna_view.py` and exported, and nothing reads it (T-AUD-17).
 
 ### `ObdLabDnaView` (7 fields)
 
@@ -182,12 +183,12 @@ Pydantic `BaseModel`. The JSON contract surface emitted by
 | 25 | `intake_air_temp_c` | `float` | `[-40, 140]` | live in `ve_engine`; `T-COMV2-ECU-HW-1` |
 | 26 | `throttle_pos_pct` | `float` | `[0, 100]` | `T-COMV2-ECU-HW-1` (S4) |
 | 27 | `control_module_voltage_v` | `float` | `[0, 18]`, default `14.0` | `T-COMV2-VPWR-GATE-1` (S4) |
-
-Translator fill defaults when the input is absent (T-AUD-17): `intake_air_temp_c` `25.0`, `throttle_pos_pct`, `calculated_engine_load_pct`, `shrtft1` and `longft1` `0.0`, `control_module_voltage_v` `14.0`.
 | 28 | `per_cylinder_misfire_counts` | `dict[int, int] \| None` | cyl ≥ 1, count ≥ 0 | `T-COMV2-MISFIRE-LOC-1` (S4) |
 | 29 | `ltft_cell_vector` | `dict[int, float] \| None` | cell ≥ 0, `[-127, 127]` | `T-COMV2-LTFT-CELL-1` (S4) |
 | 30 | `w_theo` | `float \| None` | g/s | `T-COMV2-MAF-LIN-1` (S4) |
 | 31 | `sensor_error_delta` | `float \| None` | % | `T-COMV2-MAF-LIN-1` (S4) |
+
+Translator fill defaults when the input is absent (T-AUD-17): `intake_air_temp_c` `25.0`, `throttle_pos_pct`, `calculated_engine_load_pct`, `shrtft1` and `longft1` `0.0`, `control_module_voltage_v` `14.0`.
 
 > **Removed from v1.0:** `o2_channel_fault` (the fault signal is now carried by
 > `o2_failure_mode` + `O2NormalizationMode.O2_CHANNEL_FAULT`). Fields 14, 16–18,
