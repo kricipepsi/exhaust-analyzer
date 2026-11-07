@@ -119,8 +119,8 @@ The build-validation script (§7) `du -b`-sums the contents of
 failure. Today's expected breakdown:
 
 ```
-comlab/config/global_fault_registry.json      ~ 0.75 MB
-comlab/config/kg/                              ~ 2.40 MB total
+comlab/config/global_fault_registry.json      ~ 0.75 MB budget (110,240 bytes measured, T-AUD-18c)
+comlab/config/kg/                              ~ 2.40 MB budget (*.json 191,093 bytes measured, T-AUD-18c)
   ├── _kg_schema.json                          ~ 6 KB
   ├── rich_mixture.json                        ~ 0.30 MB
   ├── lean_condition.json                      ~ 0.25 MB
@@ -187,7 +187,7 @@ trades stage budgets is allowed if and only if the sum stays ≤ 250 ms.
 | Fault-atlas walk (Stage B) | §4.2 | 60 ms | Up to 120 rule rows × ≤ 5 operator clauses each |
 | KG resolve (Stage C) | §4.3 | 5 ms | O(1) dict lookup for winner + ≤ 5 sibling lookups |
 | Power-loss analytics (Stage D) | §4.4 | 15 ms | Pure math; no I/O |
-| Serializer (Stage E) | §4.5 | 25 ms | Pydantic model dump + orjson serialise |
+| Serializer (Stage E) | §4.5 | 25 ms | Pydantic model dump (orjson is not used, T-AUD-18c) |
 | **Slack** | | **80 ms** | Cushion for GC pauses, jitter, future stages |
 | **Total** | | **250 ms** | |
 
@@ -240,6 +240,8 @@ Phase 3 — cross-reference validation (in-process variant of §7 test)
    3b. kg fault_ids ⊆ registry fault_ids ∪ {OPTIMAL_HEALTH}
    3c. every node.differential_siblings ⊆ kg fault_ids
    On any failure → KGConsistencyError; process exits with code 78
+   **Not implemented (T-AUD-18c):** the loader raises `ValueError`; there is no
+   `KGConsistencyError` and no exit code 78
        (configuration error, per sysexits.h convention)
    Cost: ≤ 50 ms
 
@@ -260,6 +262,9 @@ diff configs to find the problem.
 ## 5. Logging strategy
 
 ### 5.1 Library and format
+
+**Not implemented (T-AUD-18c):** the package emits none of the structured records below (no
+`stage_latency_ms`, no stage events).
 
 COMLab logs through the standard `logging` module to a named logger
 (`comlab`). Every log record is structured (JSON line on stdout) so
@@ -421,7 +426,8 @@ Per the build-validation ruling (recorded in `docs/adr/`), every PR against
 `comlab/` runs an
 automated build-validation script before any reviewer is required to
 look. The script lives at `scripts/build_validate.py` and runs as the
-sole job of the `comlab-validate` CI workflow.
+sole job of the `comlab-validate` CI workflow. **Not implemented (T-AUD-18c):** neither the
+script nor the workflow exists.
 
 ### 7.1 What the script enforces (in order — fail-fast)
 
@@ -549,7 +555,8 @@ COMLab declares a constant `MIN_SUPPORTED_SCHEMA_VERSION` (currently
 | `vehicle_dna.schema_version == "2.0"` | no — `ERR-ABORT-005` | major bump invalidates v1 reader |
 
 Outbound `OrchestratorFinalUIOutput.schema_version` echoes the
-inbound `vehicle_dna.schema_version`. The UI may use this to render
+inbound `vehicle_dna.schema_version`. **Not implemented (T-AUD-18c):** `OrchestratorFinalUIOutput`
+has no `schema_version` field. The UI may use this to render
 a "your data uses an older schema" hint if it cares; COMLab does not.
 
 ### 9.2 KG file `schema_version`
@@ -578,7 +585,8 @@ bump and requires a paired producer release (per
 COMLab v1 ships as a Python package consumed in-process by whichever
 4DApp surface assembles the inbound request. The wizard backend
 imports `comlab.run_orchestrator(...)` (LLD-defined entry point) and
-gets a `dict` back. There is no network hop inside COMLab.
+gets a `dict` back. **Not implemented (T-AUD-18c):** there is no `run_orchestrator`; the wired
+composition (`apps/wired/wired/composition.py::diagnose`) calls `LabPipelineAggregator.process`. There is no network hop inside COMLab.
 
 This model is chosen because:
 
