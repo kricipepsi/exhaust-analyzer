@@ -47,5 +47,7 @@ T-AUD-17: OBDLab docs match the code (32 live bullets of 11f + F-C4-10); ValueEr
 own pass 2026-11-07: P1-P4 measured (fact 5) · `apply_fix.py` exits on any literal count other than 1 · traceability: criteria 1-4 → steps 1-4 · 1c hits: R1 "every upheld finding" = the 32 live bullets (fact 4); R4 "No other executable line" = the raise and the new class; criterion 4 "only" = note + RESULT · test coupling: `test_vocabulary.py` scans *.py (fact 3) · no finding.
 cold read 2026-11-07 FOCUSED reader; trigger 1c grep hit (R1 "every"); 0 findings, 0 patched — 3 calls.
 
+cold read 2026-11-07 DELTA (r02): 0 findings, 1 unsettled (First action vs the untracked revision-01 note and RESULT) patched by Cowork — 3 calls.
+
 ### Correction history ###
-(none)
+- r02 2026-11-07, second review `recheck/codex/T-AUD-17_review.md` (ds-flash, APPROVE WITH CORRECTIONS). Upheld: stale `STRESS_IDLE` "does not yet define" note (BLOCKER; the census matched code tokens only), DLD table split by the inserted paragraph, exact-class test, `ObdEmissionsView` wording. Not upheld: the six `except ValueError` scopes (none encloses `compute_ve`: float parsing in the composition, `Horizon(...)` in COMLab; re-derived by grep and read), the `notes:` NIT (no code reads the key). Rehearsed on `3c2327f`: stale 0, notes 20, obdlab 394 passed, ruff clean (`rehearsal_r02.patch`). The revision runs as a fresh headless session (MEMORY: `--resume` resends only the path).

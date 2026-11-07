@@ -41,7 +41,7 @@ and the payload docstring names the fields COMLab's mirror lacks (F-C4-10). Done
 ### Pinned values ###
 | id | value | population | command |
 |---|---|---|---|
-| P1 | census on the base `stale 20`, `notes 0`, `highidle 1`; after `stale 0`, `notes 19`, `highidle 0` | OBDLab docs, README, `payload.py`, the YAML rules, `ve_engine.py` | step 1 |
+| P1 | census on the base `stale 20`, `notes 0`, `highidle 1`; after `stale 0`, `notes 20` (19 at revision 01), `highidle 0` | OBDLab docs, README, `payload.py`, the YAML rules, `ve_engine.py` | step 1 |
 | P2 | `test_ve_strategy_error.py` base `2 failed, 1 passed`; obdlab base `2 failed, 392 passed, 2 skipped` with it, after `394 passed, 2 skipped` | the lab suite | step 2 |
 | P3 | `ast_same.py` prints `ast same labs/obdlab/obdlab/schemas/payload.py` (docstring only) | `payload.py` | step 1 |
 | P4 | corpus `corpus 314`, `differ 0` against `C:/4DApp/recheck/T-AUD-20/cw/corpus.json`; wired `106 passed`; comlab `503 passed, 4 skipped, 2 errors` before and after | 314 corpus cases; the two suites | step 3 |
@@ -63,8 +63,13 @@ is not 1 and keeps each file's line endings.
   `OBDLiveDataPayload` has no field for (F-C4-10). No other executable line changes.
 - **R5** `NEW` `labs/obdlab/tests/unit/test_ve_strategy_error.py`, a copy of
   `C:/4DApp/recheck/T-AUD-17/tests/test_ve_strategy_error.py` (2 `NEW`, 1 `PIN`).
-- The simplest correct route is `$PY C:/4DApp/recheck/T-AUD-17/apply_fix.py` run from `C:/4DApp/repo`, then copy the
-  test; read the diff before you commit it.
+- **R6 Revision 02 (second review, ds-flash APPROVE WITH CORRECTIONS).** Your revision-01 commit stays. On top of it run
+  `$PY C:/4DApp/recheck/T-AUD-17/apply_fix_r02.py` from `C:/4DApp/repo` (the `STRESS_IDLE` vocabulary note no longer
+  says the bucket is undefined; the DLD fill-defaults paragraph moves below row 31 so the table is whole; the
+  `ObdEmissionsView` sentence is reworded), copy `C:/4DApp/recheck/T-AUD-17/tests/test_ve_strategy_error.py` over the
+  test (it now pins `AirMeteringStrategyError` itself), and commit as a second commit.
+- The simplest correct route at revision 01 was `$PY C:/4DApp/recheck/T-AUD-17/apply_fix.py` run from `C:/4DApp/repo`,
+  then copy the test; read the diff before you commit it.
 
 ### First action ###
 ```bash
@@ -74,7 +79,9 @@ cd C:/4DApp/repo && git branch --show-current && git log --oneline -1 && git sta
 fix/T-AUD-17
 <the newest spec(T-AUD-17): commit, a descendant of e530c69: record it as the base>
 ```
-`git status --porcelain` prints nothing. Anything else is a stop.
+`git status --porcelain` prints nothing. At revision 02 your revision-01 commit `3c2327f` sits between the first spec
+commit and the newest one, and `git status --porcelain` lists exactly your revision-01 note and RESULT (untracked);
+add a `## Revision 02` section to each. Anything else is a stop.
 
 ### Success criteria ###
 1. Step 1 prints P1's after-values and P3's line.
@@ -93,10 +100,10 @@ fix/T-AUD-17
 ```bash
 cd C:/4DApp/repo && for p in labs/obdlab/README.md labs/obdlab/docs/PRD_OBDLab.md labs/obdlab/docs/HLD_OBDLab.md labs/obdlab/docs/LLD_OBDLab.md labs/obdlab/docs/DLD_OBDLab.md labs/obdlab/docs/BDD_OBDLab.md labs/obdlab/docs/OBD_VOCABULARY.md labs/obdlab/docs/ADR_OBDLab.md labs/obdlab/obdlab/core/exceptions.py labs/obdlab/obdlab/core/ve_engine.py labs/obdlab/obdlab/schemas/payload.py labs/obdlab/obdlab/config/obd_translation_rules.yaml C:/4DApp/recheck/T-AUD-17/apply_fix.py C:/4DApp/recheck/T-AUD-17/census.sh C:/4DApp/recheck/T-AUD-17/stale_patterns.txt C:/4DApp/recheck/T-AUD-17/tests/test_ve_strategy_error.py C:/4DApp/recheck/T-AUD-20/cw/corpus.json; do test -f "$p" || echo "MISSING $p"; done; test -e labs/obdlab/tests/unit/test_ve_strategy_error.py && echo "EXISTS new test"; echo checked
 ```
-Expected: `checked`, and no `MISSING` or `EXISTS` line.
+Expected: `checked` and no `MISSING` line; at revision 02 exactly one `EXISTS new test` line (your revision-01 file).
 
 ### Deliverables ###
-1. R1-R5, committed on `fix/T-AUD-17`.
+1. R1-R6, committed on `fix/T-AUD-17`.
 2. `repo/apps/wired/audit_tasks/progress_notes/T-AUD-17.md` and `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-17.md`.
 
 ### Files to touch ###
@@ -112,7 +119,7 @@ Expected: `checked`, and no `MISSING` or `EXISTS` line.
 - `repo/labs/obdlab/obdlab/core/ve_engine.py` (MODIFY: R4)
 - `repo/labs/obdlab/obdlab/schemas/payload.py` (MODIFY: R4; docstring)
 - `repo/labs/obdlab/obdlab/config/obd_translation_rules.yaml` (MODIFY: R4; one `notes` string)
-- `repo/labs/obdlab/tests/unit/test_ve_strategy_error.py` (CREATE: R5)
+- `repo/labs/obdlab/tests/unit/test_ve_strategy_error.py` (MODIFY: R5, R6; created at revision 01)
 - `repo/apps/wired/audit_tasks/progress_notes/T-AUD-17.md` (CREATE)
 - `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-17.md` (CREATE)
 - `C:/4DApp/recheck/T-AUD-17/pt/` and `C:/4DApp/recheck/T-AUD-17/impl/` (RUNTIME: pytest `--basetemp` and the corpus
@@ -146,7 +153,7 @@ $PY -c "import json;a=json.load(open('C:/4DApp/recheck/T-AUD-20/cw/corpus.json')
 git log --oneline -3; git status --porcelain
 ```
 Expected:
-- step 1: `stale 0`; `notes 19`; `highidle 0`; `ast same labs/obdlab/obdlab/schemas/payload.py`.
+- step 1: `stale 0`; `notes 20`; `highidle 0`; `ast same labs/obdlab/obdlab/schemas/payload.py`.
 - step 2: `394 passed, 2 skipped`; `All checks passed!`.
 - step 3: `corpus 314`; `differ 0`; `106 passed`; `503 passed, 4 skipped, 2 errors` (the 2 collection errors,
   `test_abstain_margin_002.py` and `test_tunable_reweight.py`, exist on the base).
