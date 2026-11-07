@@ -573,6 +573,18 @@ def _resolve_pid(request: OrchestratorInboundRequest, pid_name: str) -> float | 
 # ---------------------------------------------------------------------------
 
 
+def _reported_fault_score(scored_rules: list[dict[str, Any]], verdict: dict[str, Any]) -> float:
+    """F-C1-10 (T-COMA-11): the re-ranked score of the rule the verdict names, not of the new top rule.
+
+    Falls back to the verdict's current confidence when the named rule is not in *scored_rules*.
+    """
+    code = verdict.get("fault_code")
+    for rule in scored_rules:
+        if rule.get("rule_id") == code:
+            return float(rule.get("score", 0.0))
+    return float(verdict.get("confidence_score", 0.0))
+
+
 class FaultAtlasRouter:
     """Stage B decision core. 5-phase triage walk per LLD §6.4.
 
@@ -2054,7 +2066,7 @@ class FaultAtlasRouter:
                 if scored_rules and v2_output.get("diagnostic_verdict", {}).get(
                     "is_fault_detected"
                 ):
-                    new_top_score = float(scored_rules[0].get("score", 0.0))
+                    new_top_score = _reported_fault_score(scored_rules, v2_output["diagnostic_verdict"])
                     new_top = scored_rules[0]
                     v2_output["diagnostic_verdict"]["confidence_score"] = new_top_score
                     v2_output["diagnostic_verdict"]["confidence"] = new_top_score  # alias
@@ -2101,7 +2113,7 @@ class FaultAtlasRouter:
                 if scored_rules and v2_output.get("diagnostic_verdict", {}).get(
                     "is_fault_detected"
                 ):
-                    new_top_score = float(scored_rules[0].get("score", 0.0))
+                    new_top_score = _reported_fault_score(scored_rules, v2_output["diagnostic_verdict"])
                     v2_output["diagnostic_verdict"]["confidence_score"] = new_top_score
                     v2_output["diagnostic_verdict"]["confidence"] = new_top_score
 
