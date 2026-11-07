@@ -153,8 +153,10 @@ candidate, which the H2 guard refuses.
 
 **Two-path engine resolution (`_resolve_engine`).** Path A matches the modern 5-char
 VDS (`vin[3:8]`) keyed `BRAND_VDS`; Path B falls back to the legacy single-character
-position-8 (`vin[7]`) keyed `BRAND_POS8`. Returns the CSV row or `None`. A Path-A row
-whose `majority_share` is below 0.70 adds the flag `vds_engine_ambiguous`.
+position-8 (`vin[7]`) keyed `BRAND_POS8`; the shipped map has no `pos_8_only` row, so Path B
+never matches in production (F-C6-10). Returns the CSV row or `None`. A Path-A row
+whose `majority_share` is below 0.70 adds the flag `vds_engine_ambiguous`; below 0.50 the
+row is not applied after the H1 fuel check (`vds_engine_weak`, PARTIAL; T-VINA-11c).
 
 **Overlay modules** (applied after base decode, each a pure function of already-decoded
 fields):

@@ -119,8 +119,11 @@ neither matches   → None  (engine not in CSV → confidence NONE, page 04)
 ```
 
 Path A is the modern 5-character VDS (`vin[3:8]`); Path B is the legacy
-single-character position-8 fallback (`vin[7]`) used by older vehicles whose VDS
-does not carry a full engine pattern. A `None` result is **not** an exception — the
+single-character position-8 fallback (`vin[7]`) for older vehicles whose VDS
+does not carry a full engine pattern. **The shipped `vds_engine_map.csv` has no
+`pos_8_only` row (0 of 12,987 rows; F-C6-10)**, so in production every lookup is Path A
+and an unmatched VDS goes straight to `None`; Path B is code only, tested with
+fixture rows, until a source for per-brand position-8 engine letters is found. A `None` result is **not** an exception — the
 VIN is still decoded from WMI/year, but `confidence` collapses to `NONE` because
 the engine — the spine of every CoC and overlay value — is unknown.
 

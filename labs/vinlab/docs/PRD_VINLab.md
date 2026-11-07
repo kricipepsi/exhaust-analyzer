@@ -158,7 +158,8 @@ rather than failing when reference data is incomplete.
 - P0: **Scope guards** — H1 petrol-only (keyword scan of CSV `fuel_system_type` and
   `vref.db` `fuel_delivery_type`), H2 model year ∈ [1990, 2010].
 - P0: **Two-path engine resolution** — Path A `vds_full` (`vin[3:8]`), Path B
-  `pos_8_only` (`vin[7]`) fallback, keyed by brand.
+  `pos_8_only` (`vin[7]`) fallback, keyed by brand. Path B ships with no map rows
+  (F-C6-10): the code path exists, the data does not.
 - P0: **vref.db tech-mask + CoC overlay** — `lookup_engine_ref()` (read-only SQLite)
   fetches induction, fuel delivery, MAF/MAP presence, euro norm, O2 type, EGR, and the
   13 CoC/type-approval/noise measurements.
