@@ -1269,8 +1269,10 @@ def _translate_to_output(
         ui_remediation_steps = ["Continue routine maintenance"]
     else:
         rule, clamped_score = winner
+        # F-C1-3 (T-COMA-5): a no-fault rule (NF-001/NF-002) that wins is a healthy verdict, not a fault
+        no_fault_winner = rule.fault_family == FaultFamily.NO_FAULT
         verdict = {
-            "is_fault_detected": True,
+            "is_fault_detected": not no_fault_winner,
             "fault_code": rule.rule_id,
             "fault_name": rule.description,
             "fault_family": rule.fault_family.value,
@@ -1280,7 +1282,7 @@ def _translate_to_output(
             "differential_siblings": [],
         }
         # convention: HIGH_ASSURANCE threshold mirrors v1 fault_atlas_router.py L874 (>= 0.70)
-        severity = "WARNING_DEGRADED_PERFORMANCE"
+        severity = _NO_FAULT_SEVERITY if no_fault_winner else "WARNING_DEGRADED_PERFORMANCE"
         confidence_rating = "HIGH_ASSURANCE" if clamped_score >= 0.70 else "DEGRADED_ASSURANCE"
         verdict_aliases = {
             "fault_id": rule.rule_id,
