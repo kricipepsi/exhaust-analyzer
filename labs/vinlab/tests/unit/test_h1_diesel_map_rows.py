@@ -20,6 +20,36 @@ DIESEL_KEYS = {
     ("TOYOTA", "1CD-FTV"), ("TOYOTA", "1KZ-TE"), ("VOLKSWAGEN", "ANJ"), ("VOLKSWAGEN", "JP"), ("VOLVO", "D4204T"),
 }
 
+ROWS_PER_KEY = {
+    ("BMW", "306D2"): 1,
+    ("BMW", "306D3"): 1,
+    ("BMW", "306D5"): 1,
+    ("BMW", "N47D20C"): 1,
+    ("CITROEN", "9HY"): 1,
+    ("HYUNDAI", "D4BH"): 1,
+    ("IVECO", "8140.43"): 2,
+    ("KIA", "D3FA"): 5,
+    ("KIA", "D4EA-F"): 1,
+    ("KIA", "D4FA"): 4,
+    ("KIA", "D4FB"): 6,
+    ("KIA", "D4FE"): 1,
+    ("KIA", "D4HA"): 2,
+    ("KIA", "D4HB"): 3,
+    ("KIA", "D4HC"): 2,
+    ("KIA", "J3"): 4,
+    ("MAZDA", "F6JA"): 1,
+    ("MAZDA", "R2"): 28,
+    ("MAZDA", "WL"): 11,
+    ("NISSAN", "ZD30"): 1,
+    ("PEUGEOT", "8140.43S"): 1,
+    ("PEUGEOT", "T8A"): 1,
+    ("TOYOTA", "1CD-FTV"): 1,
+    ("TOYOTA", "1KZ-TE"): 1,
+    ("VOLKSWAGEN", "ANJ"): 1,
+    ("VOLKSWAGEN", "JP"): 1,
+    ("VOLVO", "D4204T"): 1,
+}
+
 
 def _rows() -> list[dict[str, str]]:
     with MAP.open(encoding="utf-8", newline="") as fh:
@@ -31,11 +61,28 @@ def test_diesel_keys_carry_diesel() -> None:
     rows = _rows()
     hit = [r for r in rows if (r["brand"], r["engine_code"]) in DIESEL_KEYS]
     assert len(hit) == 84
+    per_key: dict[tuple[str, str], int] = {}
+    for r in hit:
+        per_key[(r["brand"], r["engine_code"])] = per_key.get((r["brand"], r["engine_code"]), 0) + 1
+    assert per_key == ROWS_PER_KEY
     assert {r["fuel_system_type"] for r in hit} == {"DIESEL"}
     assert sum(r["fuel_system_type"] == "DIESEL" for r in rows) == 84
 
 
-def test_diesel_vin_rejected_by_h1() -> None:
-    """NEW: a VIN whose VDS resolves to BMW N47D20C is rejected (wiki 10.4)."""
+@pytest.mark.parametrize("vin", [
+    "WBA3E11009E123456",  # synthetic: VDS resolves to BMW N47D20C
+    "JT111GJ9000023441",  # real registry VIN: Toyota 1KZ-TE
+])
+def test_diesel_vin_rejected_by_h1(vin: str) -> None:
+    """NEW: a VIN whose VDS resolves to a TecDoc-diesel key is rejected (wiki 10.4)."""
     with pytest.raises(VINDecodeError, match="Fuel type out of scope"):
-        decode("WBA3E11009E123456")
+        decode(vin)
+
+
+@pytest.mark.parametrize("vin", [
+    "WBA4W9C5ZLYYYYYYY",  # BMW B58B30 (petrol), same brand as four diesel keys
+    "WVWZZZ1KZAP012480",  # Volkswagen BSE (petrol), same brand as two diesel keys
+])
+def test_petrol_vin_still_decodes(vin: str) -> None:
+    """NEW (revision 02): a petrol VIN of a brand with diesel keys still decodes."""
+    assert decode(vin).make
