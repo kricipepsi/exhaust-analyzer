@@ -4,7 +4,7 @@
 
 **Status:** v1.0 (2026-05-19). Replaces and supersedes `DTCLab/docs/_archive/master_wiki_v1_pre_split.md` (the prior monolithic `DTCLab_Master_Wiki.md`) and the older `COMLab/docs/wiki/DTC_VOCABULARY.md` v1.0 (2026-05-16) where they drift. Companion to `DTC_WIKI.md` — wiki is the reasoning grammar; this is the contract layer.
 
-**Scope:** petrol vehicles 1990 – 2020 (Euro 1 – Euro 6/7), manually entered diagnostic data, SAE J1979 OBD-II. DTC classes processed: `P` (powertrain). Classes `B`, `C`, `U` are recognised by the regex but routed only when their DTCs appear in §13 — otherwise filtered at the ingestion gate.
+**Scope:** petrol vehicles 1990 – 2020 (Euro 1 – Euro 6/7), manually entered diagnostic data, SAE J1979 OBD-II. DTC classes processed: `P` (powertrain). Classes `B`, `C`, `U` are recognised by the regex and pass the ingestion gate (`validate_dtc_list` returns every valid code); they are routed only when their DTCs appear in §13, otherwise they carry no tag.
 
 **Anchored to:**
 
@@ -79,9 +79,9 @@ Modes `$01`, `$04`, `$05`, `$08`, `$09` are out of scope (live PIDs are OBDLab; 
 
 ---
 
-## 4. `DTCRoutingTag` — 19-value enum
+## 4. `DTCRoutingTag` — 17-value enum
 
-The fault-family routing surface emitted at the COMLab boundary. Single source of truth: this section. Drift guards key on this 19-member block.
+The fault-family routing surface emitted at the COMLab boundary. Single source of truth: this section. Drift guards key on this 17-member block.
 
 ```python
 from enum import StrEnum
@@ -105,13 +105,14 @@ class DTCRoutingTag(StrEnum):
     ECU_INTERNAL_HISTORY = "ECU_INTERNAL_HISTORY"   # P0600–P0699
     POA_HISTORY          = "POA_HISTORY"            # gas-chem signature only; no direct DTC
     IDLE_CONTROL_HISTORY = "IDLE_CONTROL_HISTORY"   # P0505–P0511
+
     BOOST_HISTORY        = "BOOST_HISTORY"          # P0234, P0299, P0235–P0245
     KNOCK_HISTORY        = "KNOCK_HISTORY"          # P0325–P0334
     COOLANT_SYSTEM_MALFUNCTION = "COOLANT_SYSTEM_MALFUNCTION"  # P0128/P0117 in OL_FAULT (cross-field)
     CYLINDER_FLUID_MISFIRE     = "CYLINDER_FLUID_MISFIRE"      # P030x in CL (cross-field, coolant evidence)
 ```
 
-**Total: 19 routing tags.** A 16-value enum (dropping `POA_HISTORY`) is the older COMLab vocab shape — wrong for DTCLab. A 4-value enum is the forbidden v6 shape.
+**Total: 17 routing tags.** A 16-value enum (dropping `POA_HISTORY` and the two cross-field coolant/fluid tags) is the older COMLab vocab shape — wrong for DTCLab. A 4-value enum is the forbidden v6 shape.
 
 **`POA_HISTORY` origin (this vocab is canonical):** Piston/valve oil-aerosol burning produces a gas-chem fingerprint (HC high, CO low, λ ≈ 1.00) but **does not trigger a direct DTC**. COMLab injects `POA_HISTORY` when GasLab's payload reports `chemical_state == "POA_SIGNATURE"` (T-FX-3). DTCLab's `RoutingTagMapper` never emits `POA_HISTORY`. The older COMLab vocab's "P250C + P0300 fallout" reading is superseded — `P250C` is an oil-level code, not an oil-burning marker; P0300 is downstream noise, not a primary POA signal.
 
@@ -132,6 +133,7 @@ class DTCRoutingTag(StrEnum):
 | `ECU_INTERNAL_HISTORY` | none | §4.2; DTC_WIKI §13 |
 | `POA_HISTORY` | none (chemistry-driven) | §4.2; DTC_WIKI §10.3 |
 | `IDLE_CONTROL_HISTORY` | none | §4.2 |
+
 | `BOOST_HISTORY` | none | §4.2 |
 | `KNOCK_HISTORY` | none | §4.2; DTC_WIKI §8.2 |
 | `COOLANT_SYSTEM_MALFUNCTION` | none (cross-field: P0128/P0117 + OL_FAULT) | §4; CoolantLeakSig.md TS51_DTC |
@@ -139,13 +141,13 @@ class DTCRoutingTag(StrEnum):
 
 When `DtcLabDnaView.confidence == PARTIAL` or `NONE`, the gated values fall back to "emit if the DTC pattern matches" — the DNA gate is a *filter*, not a *requirement*. Logged downgrade per `NewArchProposal §3.3`.
 
-**Cross-references to DNA-gate flags (prose form, for the three gated tags).** `CATALYST_HISTORY` is gated by `DtcEmissionsView.has_catalyst`. `EGR_HISTORY` is gated by `DtcEmissionsView.egr_equipped`. `SAI_HISTORY` is gated by `DtcEmissionsView.secondary_air_equipped`. Each gate links a `DTCRoutingTag` enum value (§4) to a `DtcEmissionsView` boolean flag (§14) via the `DtcLabDnaView` projection consumed by `DTCLab.__init__`.
+**Cross-references to DNA-gate flags (prose form, for the two gated tags).** `CATALYST_HISTORY` is gated by `DtcEmissionsView.has_catalyst`. `EGR_HISTORY` is gated by `DtcEmissionsView.egr_equipped`. Each gate links a `DTCRoutingTag` enum value (§4) to a `DtcEmissionsView` boolean flag (§14) via the `DtcLabDnaView` projection consumed by `DTCLab.__init__`.
 
 ### 4.2 DTC-to-routing-tag fan-out (prose anchor)
 
 The §15 mapping table and `dtclab/config/routing_tag_map.yaml` remain canonical, but the relations are restated here as prose so each DTC-family → tag link is unambiguous. Read every sentence as `<DTC range> routes to <TAG>`.
 
-DTC P0010–P0023 (VVT / cam phaser actuator) routes to `VVT_HISTORY`. DTC P0100–P0115 (MAF, MAP, IAT circuits) routes to `LEAN_HISTORY`. DTC P0116–P0128 (ECT / thermostat) routes to `THERMAL_HISTORY`. DTC P0130–P0167 (O₂ sensor circuits and heaters) routes to `O2_HISTORY`. DTC P0171 and P0174 (fuel-system lean) routes to `LEAN_HISTORY`. DTC P0172 and P0175 (fuel-system rich) routes to `RICH_HISTORY`. DTC P0200–P0212 (injector circuit / performance) routes to `INJECTOR_HISTORY`. DTC P0230–P0233 (fuel pump primary) routes to `LEAN_HISTORY`. DTC P0234, P0299 and P0235–P0245 (turbo / boost) routes to `BOOST_HISTORY`. DTC P0300–P0312 (misfire), P0335 / P0340 (CKP / CMP) and P0351–P0358 (ignition coils) route to `MISFIRE_HISTORY`. DTC P0325–P0334 (knock sensor) routes to `KNOCK_HISTORY`. DTC P0400–P0409 (EGR flow) routes to `EGR_HISTORY`. DTC P0420 and P0430 (catalyst efficiency) routes to `CATALYST_HISTORY`. DTC P0440–P0459 (EVAP system) routes to `EVAP_HISTORY`. DTC P0505–P0511 (idle air control) routes to `IDLE_CONTROL_HISTORY`. DTC P0562, P0563, P0600 and P0641–P0643 (system voltage, serial link, sensor reference) route to `ECU_INTERNAL_HISTORY`. `POA_HISTORY` has no direct DTC and is injected by COMLab when GASLab reports `chemical_state == "POA_SIGNATURE"` (T-FX-3). DTC P0128/P0117 (thermostat/ECT) in OL_FAULT routes to `COOLANT_SYSTEM_MALFUNCTION` (cross-field: requires both DTC match and fuel_status == OL_FAULT). DTC P030x (misfire) in CL routes to `CYLINDER_FLUID_MISFIRE` (cross-field: requires both DTC starts-with P030 and fuel_status == CL).
+DTC P0010–P0023 (VVT / cam phaser actuator) routes to `VVT_HISTORY`. DTC P0100–P0115 (MAF, MAP, IAT circuits) routes to `LEAN_HISTORY`. DTC P0116–P0128 (ECT / thermostat) routes to `THERMAL_HISTORY`. DTC P0130–P0167 (O₂ sensor circuits and heaters) routes to `O2_HISTORY`. DTC P0171 and P0174 (fuel-system lean) routes to `LEAN_HISTORY`. DTC P0172 and P0175 (fuel-system rich) routes to `RICH_HISTORY`. DTC P0200–P0212 (injector circuit / performance) routes to `INJECTOR_HISTORY`. DTC P0230–P0233 (fuel pump primary) routes to `LEAN_HISTORY`. DTC P0234, P0299 and P0235–P0245 (turbo / boost) routes to `BOOST_HISTORY`. DTC P0300–P0312 (misfire), P0335 / P0340 (CKP / CMP) and P0351–P0358 (ignition coils) route to `MISFIRE_HISTORY`. DTC P0325–P0334 (knock sensor) routes to `KNOCK_HISTORY`. DTC P0400–P0409 (EGR flow) routes to `EGR_HISTORY`. DTC P0420 and P0430 (catalyst efficiency) routes to `CATALYST_HISTORY`. DTC P0440–P0459 (EVAP system) routes to `EVAP_HISTORY`. DTC P0505–P0511 (idle air control) routes to `IDLE_CONTROL_HISTORY`. DTC P0562, P0563, P0600, P0601–P0606 and P0641–P0643 (system voltage, serial link, ECU processor, sensor reference) route to `ECU_INTERNAL_HISTORY`. `POA_HISTORY` has no direct DTC and is injected by COMLab when GASLab reports `chemical_state == "POA_SIGNATURE"` (T-FX-3). DTC P0128/P0117 (thermostat/ECT) in OL_FAULT routes to `COOLANT_SYSTEM_MALFUNCTION` (cross-field: requires both DTC match and fuel_status == OL_FAULT). DTC P030x (misfire) in CL routes to `CYLINDER_FLUID_MISFIRE` (cross-field: requires both DTC starts-with P030 and fuel_status == CL).
 
 All 17 `DTCRoutingTag` values therefore have at least one explicit routing relation above: `LEAN_HISTORY`, `RICH_HISTORY`, `MISFIRE_HISTORY`, `CATALYST_HISTORY`, `EGR_HISTORY`, `O2_HISTORY`, `INJECTOR_HISTORY`, `VVT_HISTORY`, `EVAP_HISTORY`, `THERMAL_HISTORY`, `ECU_INTERNAL_HISTORY`, `POA_HISTORY`, `IDLE_CONTROL_HISTORY`, `BOOST_HISTORY`, `KNOCK_HISTORY`, `COOLANT_SYSTEM_MALFUNCTION`, `CYLINDER_FLUID_MISFIRE`.
 
@@ -187,13 +189,14 @@ The state is captured *implicitly* by which list the DTC appears in (`pending_dt
 
 ---
 
-## 7. `Mode06MonitorState` — 3 values
+## 7. `Mode06MonitorState` — 4 values
 
 ```python
 class Mode06MonitorState(StrEnum):
     PASSED                = "PASSED"                  # margin > 15% — confidence 0.0
     PENDING_FAIL_MARGINAL = "PENDING_FAIL_MARGINAL"   # margin 1–15% — confidence 0.4
     CRITICAL_FAIL         = "CRITICAL_FAIL"           # margin ≤ 0% — confidence 0.7
+    MONITOR_ABORTED       = "MONITOR_ABORTED"         # Incomplete/all-zero; no margin
 ```
 
 **Class name is `Mode06MonitorState`** (not `Mode06Status` — the older COMLab vocab shape; superseded here).
@@ -207,6 +210,10 @@ Margin boundary tri-state:
 | 16 – 100 | `PASSED` |
 
 Margin = 0 is `CRITICAL_FAIL` (boundary inclusive on the fail side); margin = 15 is `PENDING_FAIL_MARGINAL`; margin = 16 is `PASSED`.
+
+`MONITOR_ABORTED` is not a margin bucket. It is emitted only for CAN-era no-start
+Mode $06 Misfire Monitor `MID_A1_TID_53` when the ECU reports an explicit
+Incomplete/all-zero monitor state; see `wiki/10_nonstart_diagnostics.md` §10.3.
 
 ### 7.1 Universal MID groups (prose anchor)
 
@@ -317,7 +324,8 @@ Mode `$02` snapshot at fault confirmation. **All freeze-frame field names are ba
 | `throttle_pos_pct` | `$11` | float | % | `ge=0, le=100` |
 | `fuel_system_status` | `$03` | `FuelSystemStatus` | enum | enum-validated |
 
-Missing any field → mark payload `FREEZE_FRAME_INCOMPLETE` and degrade confidence.
+Missing any field → the extractor raises `FreezeFrameIncompleteError`; the composition checks the same
+fields first and aborts the session with `FREEZE_FRAME_INCOMPLETE`.
 
 ### 12.2 Extended PIDs — optional
 
@@ -330,7 +338,7 @@ Missing any field → mark payload `FREEZE_FRAME_INCOMPLETE` and degrade confide
 | `run_time_since_start_sec` | Engine run time when fault set |
 | `fuel_level_pct` | Fuel level |
 
-### 12.3 Derived symptom flags — 6 bool fields
+### 12.3 Derived symptom flags — 7 bool fields
 
 Computed by `freeze_frame_extractor.py` from the mandatory PIDs:
 
@@ -342,6 +350,7 @@ Computed by `freeze_frame_extractor.py` from the mandatory PIDs:
 | `ff_iat_ect_biased` | `|intake_air_temp_c − coolant_temp_c| > 30` AND `engine_rpm == 0` |
 | `ff_timing_retard_severe` | `ignition_advance_deg < −10` |
 | `ff_codes_cleared_invalidated` | `codes_cleared` (from session context) |
+| `ff_fuel_spark_cut_at_crank` | `fuel_system_status == OL_FAULT` AND `vehicle_speed_kmh == 0` AND `engine_rpm <= 180` |
 
 ---
 
@@ -403,6 +412,7 @@ The §13.2 table is also restated as prose so each MID range is an extractable c
 **MID `$3D` — VVT phaser accuracy.** Variable-valve-timing actuator accuracy monitor. Key TID `$84` reports phase-degree error against commanded position. MID `$3D` is the direct pre-DTC monitor for the P0010–P0023 range routed by `VVT_HISTORY` (§4.2).
 
 **MID `$13` — Fuel system rail pressure.** Rail-pressure target-vs-actual monitor. Key TID `$80` reports rail-pressure target. Cross-reference: `DTC_WIKI.md §7.1` mentions MID `$13` as the fuel-system pressure monitor consulted alongside vacuum-leak diagnosis.
+
 
 **MID `$81` / `$82` — Fuel rail pressure (GDI).** Direct-injection high-pressure rail monitors. Key TID `$83` reports HPFP (high-pressure-fuel-pump) duty cycle. These MIDs corroborate `INJECTOR_HISTORY` on GDI vehicles (§4.2; `DTC_WIKI.md §10.2`).
 
@@ -520,6 +530,7 @@ Lives in `dtclab/config/routing_tag_map.yaml` with `source_wiki:` provenance key
 | P0562, P0563 | System voltage low / high | `ECU_INTERNAL_HISTORY` | C |
 | P0600 | Serial communication link | `ECU_INTERNAL_HISTORY` | D |
 | P0641, P0642, P0643 | Sensor reference voltage | `ECU_INTERNAL_HISTORY` | C |
+
 
 Transmission DTCs (P0700, P0730, P0741, P0841) are recognised by regex but not mapped to a routing tag — they pass through `confirmed_dtcs` without contributing to routing.
 

@@ -3,7 +3,7 @@
 **Purpose:** the authoritative vocabulary for OBD (On-Board Diagnostics) identifiers used across all 4DLab modules — VINLab, GASLab, OBDLab, DTCLab, COMLab. Every PID name, unit, range, RPM band, and polymorphic switch in the codebase derives from this wiki.
 
 **Status:** v1.2 (2026-06-10). To be updated as the OBDLab BP and COMLab schemas evolve.
-**Changelog:** v1.2 (2026-07-07) — §17 synced 30→34 to the live code enum (FU-2 doc-sync, T-SHIP-4). v1.1 (2026-05-23) — added EGR_DILUTION_MISFIRE, INCOMPLETE_OXIDATION to ChemicalSignature enum (§17).
+**Changelog:** v1.3 (2026-11-07) — resynced with `labs/obdlab/docs/OBD_VOCABULARY.md` (T-AUD-18d). v1.2 (2026-07-07) — §17 synced 30→34 to the live code enum (FU-2 doc-sync, T-SHIP-4). v1.1 (2026-05-23) — added EGR_DILUTION_MISFIRE, INCOMPLETE_OXIDATION to ChemicalSignature enum (§17).
 **Changelog:** v1.2 (2026-06-10) — reconciled §12.4 O2FailureMode (7→4) and §5.2 FuelSystemStatus to shipped obdlab code.
 
 **Scope:** petrol vehicles 1990-2020 (Euro 1 through Euro 6/7), manually entered data — no live CAN/OBD streaming.
@@ -35,7 +35,7 @@ The OBDLab BP §2 specifies a "High-Density Node Inventory" of exactly 8 core PI
 | `manifold_vacuum_kpa` | `010B` | `010B` | Intake manifold absolute pressure (MAP) | kPa | 0 – 255 | ISO 15031-5 / J1979 |
 | `shrtft1` | `0106` | `0106` | Short-term fuel trim, Bank 1 | % | -127 – +127 | ISO 15031-5 / J1979 |
 | `longft1` | `0107` | `0107` | Long-term fuel trim, Bank 1 | % | -127 – +127 | ISO 15031-5 / J1979 |
-| `total_trim_correction_delta` | (derived) | (derived) | STFT + LTFT, virtual node | % | -200 – +200 | OBDLab BP §2 |
+| `total_trim_correction_delta` | (derived) | (derived) | STFT + LTFT, virtual node | % | -254 – +254 (no payload bound) | OBDLab BP §2 |
 
 **Bank 2 (V engines):** `shrtft2` and `longft2` map to ISO 15031-5 / SAE J1979 PIDs `0108` and `0109` respectively. Same units and ranges.
 
@@ -85,7 +85,7 @@ Euro 6 GDI 2.0L  -> stress_idle_rpm_target = 4500  (HPFP loaded)
 |---|---|---|---|
 | `STABILIZED_IDLE` | 650 – 900 | < 30% | Closed-loop, warm engine |
 | `REGULATORY_HIGH_IDLE` | 2200 – 2800 | 15 – 40% | Two-speed idle test (was `HIGH_IDLE_LOAD` in old BP) |
-| `STRESS_IDLE` | 3500 – 4500 (VIN-dependent) | 40 – 60% | Clinical load test (NEW). VIN-derived target per OBDLab BP state-bucketing rules; OBDLab BP currently uses `HIGH_IDLE_LOAD` naming and does not yet define this bucket — cross-reference to be added when OBDLab BP §6 is updated. |
+| `STRESS_IDLE` | VIN `stress_idle_rpm_target` ± 10 % | 10 – 60% | Clinical load test (NEW). VIN-derived target per OBDLab BP state-bucketing rules; the bucket is defined in `obd_translation_rules.yaml` and replaces the BP-era high-idle-load name (T-AUD-17). |
 | `COLD_OPEN_LOOP_INVALID` | any | any | ECT < 75°C — freeze all trim analytics |
 
 **Recommendation for OBDLab BP:** the BP currently calls the second point `HIGH_IDLE_LOAD` and uses 2200-2600. This wiki proposes renaming it to `REGULATORY_HIGH_IDLE` and adding a new `STRESS_IDLE` bucket. The OBDLab BP needs a §3 revision when this lands.
@@ -94,7 +94,7 @@ Euro 6 GDI 2.0L  -> stress_idle_rpm_target = 4500  (HPFP loaded)
 
 ## 4. VIN-driven polymorphic switches (OBDLab BP §4 "Global VIN Guards")
 
-VINLab emits four switches that propagate into OBDLab and Gas Lab. These are the most architecturally important identifiers in the vocabulary.
+VINLab emits four switches that propagate into OBDLab and Gas Lab. OBDLab code reads no `euro_emission_category` switch (T-AUD-17). These are the most architecturally important identifiers in the vocabulary.
 
 ### 4.1 `euro_emission_category`
 
@@ -132,7 +132,7 @@ COMLab TrimAnalyticsGate can apply the correct weight coefficient. Per BP §3.2.
 ### 4.4 `stress_idle_rpm_target` (NEW per user spec 2026-05-16)
 
 ```python
-stress_idle_rpm_target: int  # range 2800-5000, VIN-derived
+stress_idle_rpm_target: int | None  # VIN-derived; None when unknown, no range check
 ```
 
 OBDLab applies this when entering the STRESS_IDLE bucket.
@@ -146,9 +146,9 @@ These are not raw PIDs — they're calculated inside OBDLab and exposed to the O
 | Node | Formula | Range | Notes |
 |---|---|---|---|
 | `total_trim_correction_delta` | `shrtft1 + longft1` | -254 – +254 % | Widened per T-W-6 to accommodate ±127% per-trim sentinel doubled |
-| `calculated_ve` | Ideal-gas air-loop equation | 0 – 100 % | Volumetric Efficiency, OBDLab BP §1 |
+| `calculated_ve` | Ideal-gas air-loop equation (payload `ve_pct`) | 0 – 200 % | Volumetric Efficiency, OBDLab BP §1 |
 | `normalized_obd_lambda` | Per O2 sensor type | 0.7 – 1.3 | Bridges narrowband + wideband |
-| `engine_warmed` | `coolant_temp_c >= 70` | bool | Gates all downstream analytics |
+| `engine_warmed` | `coolant_temp_c >= 70` | bool | Gates all downstream analytics. ECT gates (T-AUD-17): `analytics_preconditions.py` treats the engine as warm at `coolant_temp_c >= 70` (`TrimAnalyticsGate.ENGINE_COLD` below it); the bucketing rule and the semantic thermal gate use 75 (`COLD_OPEN_LOOP_INVALID` below 75). Unifying them is T-AUD-21. |
 
 ### 5.1 GASLab boundary enums (mirrored in COMLab)
 
@@ -194,6 +194,7 @@ class O2NormalizationMode(StrEnum):
     NARROWBAND_VOLTAGE_TO_LAMBDA       = "NARROWBAND_VOLTAGE_TO_LAMBDA"       # wiki: OBD_VOCABULARY §12.1 — 3-zone voltage mapping
     WIDEBAND_PASSTHROUGH               = "WIDEBAND_PASSTHROUGH"                # wiki: OBD_VOCABULARY §12.2 — direct lambda/AFR passthrough
     WIDEBAND_NB_SIM_VOLTAGE_TO_LAMBDA  = "WIDEBAND_NB_SIM_VOLTAGE_TO_LAMBDA"  # wiki: OBD_VOCABULARY §12.3 — WB sensor in NB-sim mode, 3-zone mapping, mode preserved for COMLab TrimAnalyticsGate branching
+    O2_CHANNEL_FAULT                   = "O2_CHANNEL_FAULT"                   # out-of-range input; clamped lambda, payload flagged (T-AUD-17)
 ```
 
 ```python
@@ -371,7 +372,7 @@ Compare ECU-reported lambda direction against Gas Lab's chemistry-derived lambda
 
 ### 11.4 Preconditions for valid trim reading
 
-All of the following must hold; otherwise mark `fuel_trim_invalid`:
+All of the following must hold; otherwise `AnalyticsPreconditions.evaluate` returns the first failing `TrimAnalyticsGate` value (for example `ENGINE_COLD`). There is no `fuel_trim_invalid` marker (T-AUD-17):
 
 - ECT ≥ 70°C (engine warmed)
 - Fuel system status = closed-loop (CL)
@@ -745,7 +746,7 @@ SAE J1979 PID `0105` defines the coolant temperature range (-40 to 215°C) but n
 
 | Band | ECT range | ECU / engine behaviour | Diagnostic meaning |
 |---|---|---|---|
-| `COLD_OPEN_LOOP` | < 70°C | Open-loop enrichment active; closed-loop fuel control disabled | Trim analytics frozen — engine not evaluable |
+| `COLD_OPEN_LOOP` | < 75°C (bucketing; the trim gate is < 70, T-AUD-17) | Open-loop enrichment active; closed-loop fuel control disabled | Trim analytics frozen — engine not evaluable |
 | `WARMUP_TRANSITION` | 70 – 88°C | Closed-loop enabled; thermostat still closed | Normal warm-up behaviour — valid but not at equilibrium |
 | `NORMAL_OPERATING` | 88 – 95°C | Thermostat open; steady-state coolant temp | Normal operating range — all diagnostics valid |
 | `FAN_RANGE` | 95 – 105°C | Radiator fan cycles; ECU maintains temp within band | Normal under load or hot ambient — fan-on is expected |

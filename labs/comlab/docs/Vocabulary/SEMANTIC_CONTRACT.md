@@ -84,7 +84,7 @@ When in doubt about a field name or enum value, this table tells you which docum
 | RPM measurement bands (idle / regulatory / stress) | `OBD_VOCABULARY.md` §3 | OBDLab BP + user spec 2026-05-16 |
 | Fault families | `OBD_VOCABULARY.md` §6 | cases CSV `expected_top_fault_family` |
 | DTC regex, severity, P-code ranges | `DTC_VOCABULARY.md` §2 + §9 | SAE J2012 anchored |
-| DTC routing tags | `DTC_VOCABULARY.md` §11 | aggregated from cases material |
+| DTC routing tags | `DTC_VOCABULARY.md` §4 | aggregated from cases material |
 | Mode 06 MID/TID dictionary | `DTC_VOCABULARY.md` §19 + §7 | OBDadd1.md + DTCLabBP §3.2 |
 | Chemical signatures emitted by GASLab | `GAS_VOCABULARY.md` §21 / `OBD_VOCABULARY.md` §17 (**34-value** enum, v2.1) | v2.1 cam-timing split retired `WRONG_VALVE_TIMING` for three `CAM_TIMING_*` states |
 | VehicleDNA JSON shape (combined payload) | `VINLab/VehicleDNA.md` §"Combined" | upstream owner (VINLab) |
@@ -127,7 +127,7 @@ Produced by VINLab's `decode()`. Matches Part A of `VehicleDNA.md`:
     "upstream_o2_type": "WIDEBAND_AFR",      // see §6.3
     "downstream_o2_present": true,
     "egr_equipped": false,
-    "secondary_air_equipped": false
+    "secondary_air_equipped": false          // not in any lab model: no lab code reads or emits it (T-AUD-18d)
   },
   "euro_emission_category": "EURO_6",        // NEW — see §6.4
   "stress_idle_rpm_target": 4500,            // NEW — see §6.5
@@ -190,7 +190,7 @@ Defined in `COMLab/comlab/schemas/ingestion.py` (Pydantic). Each owned by its re
   "lambda_chem": 0.82,
   "lambda_measured": 0.85,                 // float | None — directly-measured analyser λ for no-OBD fallback (T-FX-7)
   "sample_validity": "VALID",              // VALID | BORDERLINE | INVALID | EXTERNAL_O2_SUSPECT
-  "reading_high": null,                    // GasReading | None — OPTIONAL 2500-RPM frame (T-GV2-4); enables Δgas (COMWIKI-11)
+  "reading_high": null,                    // GasReading | None — OPTIONAL 2500-RPM frame (T-GV2-4); enables Δgas (COMWIKI-11); a GASLab input: COMLab's `GasLabPayload` has no such field, it reads `high_idle_*` (T-AUD-18d)
   "high_idle_hc": null,                    // float | None — per-gas high-idle frame values (high_idle_{hc,co,co2,o2,nox,lambda})
   "high_idle_co": null, "high_idle_co2": null, "high_idle_o2": null, "high_idle_nox": null, "high_idle_lambda": null
 }
@@ -221,16 +221,15 @@ Defined in `COMLab/comlab/schemas/ingestion.py` (Pydantic). Each owned by its re
   "confirmed_dtcs": ["P0172"],
   "pending_dtcs": [],
   "permanent_dtcs": [],
-  "routing_tags": ["RICH_HISTORY"],        // values from DTC_VOCABULARY §11 enum
-  "mode_06_monitors": [
-    {
-      "mid": "A2",
-      "tid": "0B",
-      "component": "Misfire_Cylinder_2_Data",
-      "status": "PENDING_FAIL_MARGINAL",   // PASSED | PENDING_FAIL_MARGINAL | CRITICAL_FAIL
-      "margin_pct": 8.5
+  "routing_tags": ["RICH_HISTORY"],        // values from DTC_VOCABULARY §4 enum
+  "mode_06_monitors": {                    // dict keyed by monitor_id (COMLab `Mode06MonitorResult`, T-AUD-18d)
+    "MID_A2_TID_0B": {
+      "monitor_id": "MID_A2_TID_0B",       // pattern ^MID_[0-9A-F]{2}_TID_[0-9A-F]{2}$
+      "state": "PENDING_FAIL_MARGINAL",    // PASSED | PENDING_FAIL_MARGINAL | CRITICAL_FAIL | MONITOR_ABORTED
+      "margin_pct": 8.5,
+      "target_component": "Misfire_Cylinder_2_Data"
     }
-  ],
+  },
   "historical_fault_context": "HISTORICAL_LOAD_FAULT",
   "freeze_frame": { /* FreezeFrameRecord — PIDs at fault moment (RPM, ECT, load, trims); see DTC_VOCABULARY §12.
                        v2: conditional evidence channel — present only when a DTC is stored; fused at the verdict
@@ -257,6 +256,8 @@ Whoever calls COMLab assembles this. In production the UI does it; in tests the 
 ```
 
 The top-level keys are snake_case. The `vehicle_dna` slice **replaces** the older `metadata` block from `OrchestratorLabBP.md` (which had `session_id`, `vin_dna_string`, `resolved_horizon`, `cylinder_count`). All of those fields are now inside `vehicle_dna` — COMLab reads `vehicle_dna.session_id`, `vehicle_dna.vin_dna.vin`, `vehicle_dna.vin_dna.cylinder_count`, and derives `resolved_horizon` from `vehicle_dna.vin_dna.euro_emission_category`.
+
+**Code (T-AUD-18d):** `OrchestratorInboundRequest` still declares `metadata: SessionMetadata` as required and `vehicle_dna: VehicleDNA | None = None` (`comlab/schemas/ingestion.py`). A request sends one of the two, never both (ERR-CONTRACT-001); when it sends `vehicle_dna`, the validator `_metadata_from_vehicle_dna` derives `metadata` from it, and COMLab reads `metadata` downstream.
 
 ---
 
@@ -299,6 +300,7 @@ Anything COMLab needs that isn't in this table is a contract gap — file a §10
 4 bool flags: `suppress_gaslab`, `suppress_obd_live_pids`,
 `suppress_mode06_ui`, `cold_start_mode`. Consumed by
 `LabPipelineAggregator.run_fallback_tree()` and `fault_atlas_router`.
+**Not implemented (T-AUD-18d):** `run_fallback_tree()` reads only `suppress_gaslab` (the non-starter path sets `GAS_DOMINANT`); for any other session it raises `NotImplementedError` ("full fallback tree not yet implemented (phase 3)", `comlab/core/lab_pipeline_aggregator.py`).
 Source: `data_flow_report.md §5.3`.
 
 ### 5.2 POA routing
@@ -482,10 +484,11 @@ class SampleValidity(StrEnum):
     INVALID             = "INVALID"
     EXTERNAL_O2_SUSPECT = "EXTERNAL_O2_SUSPECT"
 
-class Mode06Status(StrEnum):
+class Mode06Status(StrEnum):           # COMLab alias: Mode06MonitorState = Mode06Status (DTCLab's name)
     PASSED                 = "PASSED"
     PENDING_FAIL_MARGINAL  = "PENDING_FAIL_MARGINAL"
     CRITICAL_FAIL          = "CRITICAL_FAIL"
+    MONITOR_ABORTED        = "MONITOR_ABORTED"   # CAN-era no-start misfire monitor only (DTC_VOCABULARY §7)
 
 class HistoricalFaultContext(StrEnum):
     HISTORICAL_IDLE_FAULT     = "HISTORICAL_IDLE_FAULT"
@@ -519,8 +522,8 @@ class ProcessingConfidenceRating(StrEnum):
 
 **Three larger enums live in separate files** because they grow per-case:
 
-- `ChemicalSignature` (**34 values**, v2.1) — in `GAS_VOCABULARY.md` §21 / `OBD_VOCABULARY.md` §17. Owned by GASLab. The v2.1 timing-taxonomy split retired `WRONG_VALVE_TIMING` for three `CAM_TIMING_*` states (`CAM_TIMING_RETARDED_MAP` / `CAM_TIMING_RETARDED_MAF` / `CAM_TIMING_ADVANCED`); COMLab's local mirror reconciliation to 34 is `T-GV2-2`/`FU-1` (DEP-1, deferred to S4).
-- `DTCRoutingTag` (16 values today, growing) — in `DTC_VOCABULARY.md` §11. Owned by DTCLab.
+- `ChemicalSignature` (**34 values**, v2.1) — in `GAS_VOCABULARY.md` §21 / `OBD_VOCABULARY.md` §17. Owned by GASLab. The v2.1 timing-taxonomy split retired `WRONG_VALVE_TIMING` for three `CAM_TIMING_*` states (`CAM_TIMING_RETARDED_MAP` / `CAM_TIMING_RETARDED_MAF` / `CAM_TIMING_ADVANCED`); COMLab's local mirror (`comlab/schemas/vocabulary.py`) carries the same 34 values (T-AUD-18d).
+- `DTCRoutingTag` (17 values today, growing) — in `DTC_VOCABULARY.md` §4. Owned by DTCLab.
 - `FaultNode` (the granular fault IDs like `Mechanical_Lean_Vacuum_Leak`) — extracted from cases CSV. Owned by COMLab via its fault registry.
 
 These three are still locked at contract level (no producer can emit a value not in the enum) but are expected to grow with normal release cadence. Adding a value is a minor-version bump (§10).
