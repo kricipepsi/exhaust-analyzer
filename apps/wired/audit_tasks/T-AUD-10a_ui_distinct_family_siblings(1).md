@@ -27,6 +27,9 @@
 - **Test length: 1/5.** **Runs real compute: NO.**
 - **Expected wall-clock: 10-20 min.** Stop rule: at 30 min, write `## Time` and a partial RESULT, then stop.
 - **Plan: NONE.** One scripted edit, rehearsed (`C:/4DApp/recheck/T-AUD-10a/rehearsal.patch`).
+- **Revision 02 (2026-11-07):** build `f63a524` approved with corrections by the second review
+  (`C:/4DApp/recheck/codex/T-AUD-10a_review.md`): the test never checks the 2-card cap. This run does R4 only; R1-R3
+  are done, do not run `apply_fix.py` again.
 - **Skills:** `C:/4DApp/.claude/skills/writing-4dapp-python-code/SKILL.md`
 
 ### Goal ###
@@ -38,7 +41,7 @@ winner's and from each other, through a new `ui_payload.distinct_family_siblings
 | id | value | population | command |
 |---|---|---|---|
 | P1 | ui `57 passed`; wired `106 passed`; `app.py` has 2 `differential_siblings[:2]` loops | base `d848f80` | steps 1-2 on the base |
-| P2 | after the edit: ui `60 passed`; the new test `3 passed`, and `3 failed` on the base code; wired `106 passed`; ruff clean on `ui_payload.py` and the new test; `git diff --stat` of the two source files `21 insertions(+), 2 deletions(-)` | Cowork's rehearsal | `C:/4DApp/recheck/T-AUD-10a/rehearsal.patch` |
+| P2 | after R4: ui `61 passed`; the test `4 passed`; with the `if len(picked) == limit: break` lines removed `1 failed, 3 passed`; wired `106 passed`; ruff clean on `ui_payload.py` and the new test; `git diff --stat` of the two source files `21 insertions(+), 2 deletions(-)` | Cowork's rehearsal | `C:/4DApp/recheck/T-AUD-10a/rehearsal.patch` |
 | P3 | v7 corpus, 311 results: today 172 render a sibling of the winner's family; with the helper 283 show 2 cards, 23 show 1, 5 show 0 | `diagnose` over the corpus | `C:/4DApp/recheck/T-AUD-10a/measure.py` (from `repo/audit/scratch/C5`) |
 
 `$PY` is `C:/4DApp/.venv/Scripts/python.exe`. Every file under `C:/4DApp/recheck/T-AUD-10a/` except `pt/` is Cowork's:
@@ -52,7 +55,12 @@ read it, run `apply_fix.py`, do not edit it.
   markup does not change.
 - **R3 The test** `apps/ui/tests/test_t_aud_10a_distinct_siblings.py` (NEW) is the file
   `C:/4DApp/recheck/T-AUD-10a/test_t_aud_10a_distinct_siblings.py`.
-- The simplest correct route is `$PY -I C:/4DApp/recheck/T-AUD-10a/apply_fix.py` run from `C:/4DApp/repo` (it makes
+- **R4 (revision 02)** `apps/ui/tests/test_t_aud_10a_distinct_siblings.py` becomes, byte for byte,
+  `C:/4DApp/recheck/T-AUD-10a/test_t_aud_10a_distinct_siblings_r02.py` (`cp`, then `cmp`): it adds
+  `test_caps_at_two_distinct_families`. Mutant check: copy `apps/ui/ui_payload.py` to
+  `C:/4DApp/recheck/T-AUD-10a/mut/` first, delete the two lines `if len(picked) == limit:` / `break` in the repo file,
+  run step 2 (`1 failed, 3 passed`), copy the file back, confirm with `cmp`, and record it.
+- (Revision 01, done in `f63a524`.) The simplest correct route was `$PY -I C:/4DApp/recheck/T-AUD-10a/apply_fix.py` run from `C:/4DApp/repo` (it makes
   R1-R3 and exits on any unexpected count); read the diff before you commit it. Then show P2's base failure:
   `git stash push apps/ui/app.py apps/ui/ui_payload.py`, run step 2, `git stash pop`, and record the result.
 
@@ -62,14 +70,15 @@ cd C:/4DApp/repo && git branch --show-current && git rev-parse --short HEAD~1 &&
 ```
 ```
 fix/T-AUD-10a
-d848f80
+<HEAD~1 is f63a524>
 ```
-`HEAD` is Cowork's `spec(T-AUD-10a)` commit and its parent is `d848f80`. `git status --porcelain` prints nothing.
-Anything else is a stop.
+`HEAD` is Cowork's `spec(T-AUD-10a)` revision 02 commit; its parent is `f63a524`. `git status --porcelain` lists only
+the first run's `progress_notes/T-AUD-10a.md` and `results/RESULT_T-AUD-10a.md` (untracked): append a
+`## Revision 02` section to each. Anything else is a stop.
 
 ### Success criteria ###
-1. Steps 1-2 report the P2 counts; the new test fails 3 of 3 on the base code (R3 procedure).
-2. `ruff` passes on the two Python files it names; one commit on `fix/T-AUD-10a` after the spec commit;
+1. Steps 1-2 report the P2 counts; the R4 mutant gives `1 failed, 3 passed`.
+2. `ruff` passes on the two Python files it names; one new commit on `fix/T-AUD-10a` after the revision 02 spec commit;
    `git status --porcelain` lists only the note and the RESULT (step 3).
 
 ### Context ###
@@ -80,21 +89,21 @@ Anything else is a stop.
 
 ### Preconditions ###
 ```bash
-cd C:/4DApp/repo && for p in apps/ui/app.py apps/ui/ui_payload.py C:/4DApp/recheck/T-AUD-10a/apply_fix.py C:/4DApp/recheck/T-AUD-10a/test_t_aud_10a_distinct_siblings.py; do test -f "$p" || echo "MISSING $p"; done; test -e apps/ui/tests/test_t_aud_10a_distinct_siblings.py && echo "EXISTS test"; echo checked
+cd C:/4DApp/repo && for p in apps/ui/app.py apps/ui/ui_payload.py C:/4DApp/recheck/T-AUD-10a/apply_fix.py C:/4DApp/recheck/T-AUD-10a/test_t_aud_10a_distinct_siblings_r02.py apps/ui/tests/test_t_aud_10a_distinct_siblings.py; do test -f "$p" || echo "MISSING $p"; done; echo checked
 ```
-Expected: `checked`, and no `MISSING` or `EXISTS` line.
+Expected: `checked`, and no `MISSING` line.
 
 ### Deliverables ###
-1. One commit on `fix/T-AUD-10a`: R1-R3.
-2. `repo/apps/wired/audit_tasks/progress_notes/T-AUD-10a.md` (with the base failure result).
-3. `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-10a.md`.
+1. One new commit on `fix/T-AUD-10a`: R4 (R1-R3 are in `f63a524`).
+2. `repo/apps/wired/audit_tasks/progress_notes/T-AUD-10a.md` (append `## Revision 02` with the mutant result).
+3. `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-10a.md` (append `## Revision 02`).
 
 ### Files to touch ###
-- `repo/apps/ui/app.py` (MODIFY: R2)
-- `repo/apps/ui/ui_payload.py` (MODIFY: R1)
-- `repo/apps/ui/tests/test_t_aud_10a_distinct_siblings.py` (CREATE: R3)
-- `repo/apps/wired/audit_tasks/progress_notes/T-AUD-10a.md` (CREATE)
-- `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-10a.md` (CREATE)
+- `repo/apps/ui/tests/test_t_aud_10a_distinct_siblings.py` (MODIFY: R4)
+- `repo/apps/ui/ui_payload.py` (RUNTIME: the R4 mutant only; restored, not committed)
+- `repo/apps/wired/audit_tasks/progress_notes/T-AUD-10a.md` (MODIFY: append)
+- `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-10a.md` (MODIFY: append)
+- `C:/4DApp/recheck/T-AUD-10a/mut/` (RUNTIME: your mutant copy)
 - `C:/4DApp/recheck/T-AUD-10a/pt/` (RUNTIME: pytest `--basetemp`)
 
 ### Out of scope ###
@@ -117,10 +126,10 @@ mkdir -p C:/4DApp/recheck/T-AUD-10a/pt
 timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check apps/ui/ui_payload.py apps/ui/tests/test_t_aud_10a_distinct_siblings.py; git diff --stat d848f80 HEAD -- apps/ui/app.py apps/ui/ui_payload.py; git log --oneline d848f80..HEAD; git status --porcelain
 ```
 Expected:
-- step 1: `60 passed`; `106 passed`; no `failed` or `error`.
-- step 2: `3 passed`.
-- step 3: `All checks passed!`; `2 files changed, 21 insertions(+), 2 deletions(-)`; the spec commit and your one
-  commit; only the note and the RESULT.
+- step 1: `61 passed`; `106 passed`; no `failed` or `error`.
+- step 2: `4 passed`.
+- step 3: `All checks passed!`; `2 files changed, 21 insertions(+), 2 deletions(-)`; the two spec commits, `f63a524`
+  and your one new commit; only the note and the RESULT.
 
 Repo-wide gates (report-only): comlab `508 passed, 4 skipped`; registry `5 failed, 504 passed, 4 deselected` (the 5
 named `test_build_corpus` failures). Cowork runs them at review.

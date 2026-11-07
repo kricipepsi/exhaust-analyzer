@@ -39,4 +39,8 @@ own pass 2026-11-07: P1-P3 measured (facts 2, 3) · `apply_fix.py` exits on any 
 criteria 1-2 → steps 1-3 · cold read: not triggered (d1, scripted) · no finding.
 
 ### Correction history ###
-(none)
+- **Revision 02 (2026-11-07).** Second review ds-flash APPROVE WITH CORRECTIONS (`recheck/codex/T-AUD-10a_review.md`).
+  Upheld (re-derived): the cap is untested (the only input has 2 other families; removing the `break` still passes)
+  → R4 (rehearsed: test `4 passed`; no-break mutant `1 failed, 3 passed`; ui `61 passed`; ruff clean). Not upheld:
+  `limit` edge values (only the default is called), `None` family (the schema requires it), abstain-branch AppTest
+  (the source check covers both loops; one helper).
