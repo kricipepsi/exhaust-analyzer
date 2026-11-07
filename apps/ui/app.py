@@ -10,6 +10,7 @@ from ui_payload import (
     build_diagnose_payload,
     distinct_family_siblings,
     horizon_meaning,
+    input_echo_rows,
     routing_notices,
     severity_banner,
     validate_widgets,
@@ -1035,6 +1036,14 @@ with col_verdict:
                 st.markdown(f"**Lambda Perception Delta:** `{analytics.lambda_perception_delta:.3f}`")
                 st.markdown(f"**O₂ Sensor Bias Verdict:** `{analytics.o2_sensor_bias_verdict or 'NONE'}`")
                 st.markdown(f"**Severity Level:** `{analytics.severity_level}`")
+
+        # User-input echo audit (PRD 5.5), collapsed by default; T-AUD-10e
+        echo_groups = input_echo_rows(res.user_input_echo_audit)
+        if echo_groups:
+            with st.expander("Show what I typed →", expanded=False):
+                for echo_label, echo_fields in echo_groups:
+                    st.markdown(f"**{echo_label}**")
+                    st.table({"Field": [f for f, _ in echo_fields], "Value": [v for _, v in echo_fields]})
 
         # Static Calibration Caveat Footer per contract §3.3
         st.markdown("---")

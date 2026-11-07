@@ -4,6 +4,7 @@ Maps flat Streamlit widget values to the structured raw_inputs dict
 expected by wired.diagnose().
 """
 
+import json
 import re
 from dataclasses import dataclass
 from typing import Any
@@ -940,6 +941,29 @@ def _csv_primary_symptom(tier_1: str | None, tier_2: str | None, engine_state: s
     if (tier_1, tier_2) == ("vehicle_starting_issues", "prolonged_crank_hard_start"):
         return "non_starter" if engine_state == "will_not_start" else "hard_start_cold"
     return None
+
+
+def _echo_value(value: Any) -> str:
+    """One echo cell: ``—`` for an empty value, JSON for a list or dict, else ``str``."""
+    if value is None:
+        return "—"
+    if isinstance(value, (list, dict)):
+        return json.dumps(value, ensure_ascii=False)
+    return str(value)
+
+
+def input_echo_rows(echo: Any) -> list[tuple[str, list[tuple[str, str]]]]:
+    """The input echo as ``(group label, [(field, value), ...])``, in COMLab's order (PRD 5.5).
+
+    Groups with no fields are dropped, so the empty sentinel echo gives ``[]``.
+    """
+    if echo is None:
+        return []
+    return [
+        (group.label, [(name, _echo_value(value)) for name, value in group.fields.items()])
+        for group in echo.groups
+        if group.fields
+    ]
 
 
 def build_diagnose_payload(widgets: dict[str, Any]) -> dict[str, Any]:

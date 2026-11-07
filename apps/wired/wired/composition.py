@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import math
 import uuid
+from datetime import UTC, datetime
 from typing import Any
 
 from comlab.core.lab_pipeline_aggregator import LabPipelineAggregator
@@ -19,6 +20,8 @@ from comlab.schemas.ingestion import (
     FreezeFramePIDs,
     OrchestratorInboundRequest,
     SessionMetadata,
+    UserInputEchoAudit,
+    UserInputEchoFieldGroup,
 )
 from comlab.schemas.ingestion import (
     GasLabPayload as COMGasLabPayload,
@@ -164,6 +167,7 @@ def _diagnose(
     gas_inputs = _as_dict(raw_inputs.get("gas"))
     obd_inputs = raw_inputs.get("obd")
     dtc_inputs = raw_inputs.get("dtc")
+    echo = _build_echo_audit(raw_inputs)
 
     symptom_dna: dict[str, Any] = {}
     try:
@@ -206,13 +210,13 @@ def _diagnose(
     if incomplete is not None:
         error_code, message = incomplete
         return LabPipelineAggregator(enable_fatal_gates=enable_fatal_gates).abort_incomplete(
-            metadata, error_code, message
+            metadata, error_code, message, echo=echo
         )
     out_of_range = _out_of_range_input(obd_inputs)
     if out_of_range is not None:
         error_code, message = out_of_range
         return LabPipelineAggregator(enable_fatal_gates=enable_fatal_gates).abort_incomplete(
-            metadata, error_code, message
+            metadata, error_code, message, echo=echo
         )
     gas_output = None if _gasless_non_starter(triage, gas_inputs) else _run_gaslab(
         gas_inputs, vin_dna, cranking=triage.get("engine_state") == _NON_STARTER
@@ -234,9 +238,35 @@ def _diagnose(
         # consumer: perception_contradiction O2-health verdict qualification (T-FX-9)
         has_catalyst=bool(emissions.get("has_catalyst", True)),
         # consumer: power_loss_analytics catalyst index gate + perception_contradiction de-cat check
+        user_input_echo_audit=echo,
+        # consumer: apps/ui/app.py "Show what I typed" expander via ui_payload.input_echo_rows (PRD 5.5)
     )
     with span("comlab.process"):
         return LabPipelineAggregator(enable_fatal_gates=enable_fatal_gates).process(request)
+
+
+_ECHO_GROUPS: tuple[tuple[str, str, str], ...] = (
+    ("gas", "gas", "Gas readings"),
+    ("obd", "obd", "OBD live data"),
+    ("dtc", "dtc", "DTCs and freeze frame"),
+)
+
+
+def _build_echo_audit(raw_inputs: dict[str, Any]) -> UserInputEchoAudit:
+    """Echo the typed inputs verbatim, one group per input screen (PRD 5.5, LLD 3.3).
+
+    The vehicle group holds the VIN, the triage selection and the hardware overrides
+    (as ``override_<key>``). A gas, OBD or DTC group is present only when that input was sent.
+    """
+    vehicle: dict[str, Any] = {"vin": raw_inputs.get("vin")}
+    vehicle.update(_as_dict(raw_inputs.get("triage")))
+    vehicle.update({f"override_{k}": v for k, v in _as_dict(raw_inputs.get("overrides")).items()})
+    groups = [UserInputEchoFieldGroup(screen_id="vehicle_context", label="Vehicle and symptom", fields=vehicle)]
+    for key, screen_id, label in _ECHO_GROUPS:
+        fields = _as_dict(raw_inputs.get(key))
+        if fields:
+            groups.append(UserInputEchoFieldGroup(screen_id=screen_id, label=label, fields=dict(fields)))
+    return UserInputEchoAudit(submitted_at=datetime.now(UTC), groups=groups)
 
 
 def validate_triage(triage: dict[str, Any]) -> str | None:
