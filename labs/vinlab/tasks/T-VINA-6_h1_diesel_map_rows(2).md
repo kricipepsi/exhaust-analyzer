@@ -27,6 +27,9 @@ clone `C:/4DApp/repo`, on branch `fix/T-VINA-6` (built on `origin/main`, `8b4d34
 - **Test length: 1/5.** **Runs real compute: NO.**
 - **Expected wall-clock: 10-20 min.** Stop rule: at 30 min, write `## Time` and a partial RESULT, then stop.
 - **Plan: NONE.** Cowork rehearsed the edit (`C:/4DApp/recheck/T-VINA-6/rehearsal.patch`).
+- **Revision 02 (2026-11-07):** the build `ee538f8` was approved with corrections by the second review
+  (`C:/4DApp/recheck/codex/T-VINA-6_review.md`). This run does R3 only: the test file gains per-key counts, the real
+  Toyota VIN and two petrol controls. R1-R2 are done; do not run `apply_fix.py` again.
 - **Skills:** `C:/4DApp/.claude/skills/writing-4dapp-python-code/SKILL.md`
 
 ### Goal ###
@@ -38,7 +41,7 @@ Done is `### Verification ###` passing with the P2 counts.
 | id | value | population | command |
 |---|---|---|---|
 | P1 | vinlab `376 passed, 8 skipped`; wired `85 passed`; ui `49 passed`; the map has 0 `DIESEL` rows | base `8b4d343` | steps 1-3 on the base |
-| P2 | after the edit: vinlab `378 passed, 8 skipped`; `test_h1_diesel_map_rows.py` `2 passed`, and `2 failed` with the base map; wired `85 passed`; ui `49 passed`; `git diff --numstat` of the map `84 84` (added, deleted) | Cowork's rehearsal | `C:/4DApp/recheck/T-VINA-6/rehearsal.patch` |
+| P2 | after R3: vinlab `381 passed, 8 skipped`; `test_h1_diesel_map_rows.py` `5 passed`, and `3 failed, 2 passed` with the base map; wired `85 passed`; ui `49 passed`; `git diff --numstat` of the map `84 84` (added, deleted) | Cowork's rehearsal | `C:/4DApp/recheck/T-VINA-6/rehearsal.patch` |
 | P3 | the 27 keys: TecDoc `EngineType` is `Diesel` for every engine id of the key (tiers T0/T1/T0A of the T-VINA-13a extractor); no key mixes petrol and diesel; 1 of 1,364 real VINs (`JT111GJ9000023441`, Toyota 1KZ-TE) reaches one; no v7 corpus VIN does | TecDoc 1Q2019, real VINs | `C:/4DApp/recheck/T-VINA-6/measure_fuel.py`, `reach.py` |
 
 `$PY` is `C:/4DApp/.venv/Scripts/python.exe`. Every file under `C:/4DApp/recheck/T-VINA-6/` except `pt/` is Cowork's:
@@ -51,24 +54,34 @@ read it, run `apply_fix.py`, do not edit it.
 - **R2 The test** `labs/vinlab/tests/unit/test_h1_diesel_map_rows.py` (NEW) is the file
   `C:/4DApp/recheck/T-VINA-6/test_h1_diesel_map_rows.py`: the 84 rows say `DIESEL` and no other row does; the VIN
   `WBA3E11009E123456` (BMW N47D20C) raises `VINDecodeError`.
-- The simplest correct route is `$PY -I C:/4DApp/recheck/T-VINA-6/apply_fix.py` run from `C:/4DApp/repo` (it makes R1
+- **R3 (revision 02)** `labs/vinlab/tests/unit/test_h1_diesel_map_rows.py` becomes, byte for byte,
+  `C:/4DApp/recheck/T-VINA-6/test_h1_diesel_map_rows_r02.py` (`cp`, then `cmp`): `ROWS_PER_KEY` pins the rows per
+  key; the H1 test also takes `JT111GJ9000023441` (real, Toyota 1KZ-TE); `test_petrol_vin_still_decodes` takes
+  `WBA4W9C5ZLYYYYYYY` (BMW B58B30) and `WVWZZZ1KZAP012480` (VW BSE). Base-map check:
+  `git checkout 302a954 -- labs/vinlab/vinlab/data/vds_engine_map.csv`, run step 2, then
+  `git checkout HEAD -- labs/vinlab/vinlab/data/vds_engine_map.csv`, and record the result.
+- (Revision 01, done in `ee538f8`.) The simplest correct route was `$PY -I C:/4DApp/recheck/T-VINA-6/apply_fix.py` run from `C:/4DApp/repo` (it makes R1
   and R2 and exits on any count other than 84); read the diff before you commit it. Then show P2's base-map failure:
   `git stash push labs/vinlab/vinlab/data/vds_engine_map.csv`, run step 2, `git stash pop`, and record the result.
 
 ### First action ###
 ```bash
-cd C:/4DApp/repo && git branch --show-current && git rev-parse --short HEAD~1 && git status --porcelain
+cd C:/4DApp/repo && git branch --show-current && git log --oneline -3 && git status --porcelain
 ```
 ```
 fix/T-VINA-6
-8b4d343
+<Cowork's vina: spec(T-VINA-6) revision 02 commit>
+ee538f8 fix(T-VINA-6): 84 TecDoc-diesel engine map rows carry DIESEL so the H1 guard fires
+302a954 vina: spec(T-VINA-6): H1 fires on the shipped map (84 TecDoc-diesel rows -> DIESEL); register T-VINA-6b
+?? labs/vinlab/tasks/progress_notes/T-VINA-6.md
+?? labs/vinlab/tasks/results/RESULT_T-VINA-6.md
 ```
-`HEAD` is Cowork's `vina:` spec commit and its parent is `8b4d343`. `git status --porcelain` prints nothing. Anything
-else is a stop.
+The two untracked files are the first run's note and RESULT: append a `## Revision 02` section to each. Anything else
+is a stop.
 
 ### Success criteria ###
-1. Steps 1-3 report the P2 counts; the new test fails 2 of 2 with the base map (R2 procedure).
-2. `ruff` passes on the new test; one commit on `fix/T-VINA-6` after the spec commit; `git status --porcelain` lists
+1. Steps 1-3 report the P2 counts; with the base map the test gives `3 failed, 2 passed` (R3 procedure).
+2. `ruff` passes on the test; one new commit on `fix/T-VINA-6` after the revision 02 spec commit; `git status --porcelain` lists
    only the note and the RESULT (step 4).
 
 ### Context ###
@@ -79,20 +92,20 @@ else is a stop.
 
 ### Preconditions ###
 ```bash
-cd C:/4DApp/repo && for p in labs/vinlab/vinlab/data/vds_engine_map.csv C:/4DApp/recheck/T-VINA-6/apply_fix.py C:/4DApp/recheck/T-VINA-6/test_h1_diesel_map_rows.py; do test -f "$p" || echo "MISSING $p"; done; test -e labs/vinlab/tests/unit/test_h1_diesel_map_rows.py && echo "EXISTS test"; echo checked
+cd C:/4DApp/repo && for p in labs/vinlab/vinlab/data/vds_engine_map.csv C:/4DApp/recheck/T-VINA-6/apply_fix.py C:/4DApp/recheck/T-VINA-6/test_h1_diesel_map_rows_r02.py labs/vinlab/tests/unit/test_h1_diesel_map_rows.py; do test -f "$p" || echo "MISSING $p"; done; echo checked
 ```
-Expected: `checked`, and no `MISSING` or `EXISTS` line.
+Expected: `checked`, and no `MISSING` line.
 
 ### Deliverables ###
-1. One commit on `fix/T-VINA-6`: R1-R2.
-2. `repo/labs/vinlab/tasks/progress_notes/T-VINA-6.md` (with the base-map failure result).
-3. `repo/labs/vinlab/tasks/results/RESULT_T-VINA-6.md`.
+1. One new commit on `fix/T-VINA-6`: R3 (R1-R2 are in `ee538f8`).
+2. `repo/labs/vinlab/tasks/progress_notes/T-VINA-6.md` (a `## Revision 02` section with the base-map result).
+3. `repo/labs/vinlab/tasks/results/RESULT_T-VINA-6.md` (a `## Revision 02` section).
 
 ### Files to touch ###
-- `repo/labs/vinlab/vinlab/data/vds_engine_map.csv` (MODIFY: R1)
-- `repo/labs/vinlab/tests/unit/test_h1_diesel_map_rows.py` (CREATE: R2)
-- `repo/labs/vinlab/tasks/progress_notes/T-VINA-6.md` (CREATE)
-- `repo/labs/vinlab/tasks/results/RESULT_T-VINA-6.md` (CREATE)
+- `repo/labs/vinlab/tests/unit/test_h1_diesel_map_rows.py` (MODIFY: R3)
+- `repo/labs/vinlab/vinlab/data/vds_engine_map.csv` (RUNTIME: the R3 base-map check only; restored, not committed)
+- `repo/labs/vinlab/tasks/progress_notes/T-VINA-6.md` (MODIFY: append)
+- `repo/labs/vinlab/tasks/results/RESULT_T-VINA-6.md` (MODIFY: append)
 - `C:/4DApp/recheck/T-VINA-6/pt/` (RUNTIME: pytest `--basetemp`)
 
 ### Out of scope ###
@@ -117,10 +130,10 @@ mkdir -p C:/4DApp/recheck/T-VINA-6/pt
 timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check labs/vinlab/tests/unit/test_h1_diesel_map_rows.py; git diff --numstat 8b4d343 HEAD; git log --oneline 8b4d343..HEAD; git status --porcelain
 ```
 Expected:
-- step 1: `378 passed, 8 skipped`; no `failed` or `error`.
-- step 2: `2 passed`.
+- step 1: `381 passed, 8 skipped`; no `failed` or `error`.
+- step 2: `5 passed`.
 - step 3: `85 passed`; `49 passed`.
-- step 4: `All checks passed!`; numstat `84 84` (added, deleted) for the map and the new test's lines (plus the spec commit's files); the
-  spec commit and your one commit; only the note and the RESULT.
+- step 4: `All checks passed!`; numstat `84 84` (added, deleted) for the map and the test's lines (plus the spec commits' files);
+  the two spec commits, `ee538f8` and your one new commit; only the note and the RESULT.
 
 Repo-wide gates: wired and ui in step 3. The row changes one data file and adds one test.

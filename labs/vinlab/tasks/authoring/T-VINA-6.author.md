@@ -42,4 +42,10 @@ criteria 1-2 → steps 1-4 · 1c grep: "every" in P3 is the measured TecDoc fact
 · no finding.
 
 ### Correction history ###
-(none)
+- **Revision 02 (2026-11-07).** Second review ds-flash APPROVE WITH CORRECTIONS (`recheck/codex/T-VINA-6_review.md`).
+  Upheld (re-derived): no real VIN and no petrol control in the test; the total 84 does not pin the key population →
+  R3 (rehearsed: test `5 passed`; base map `3 failed, 2 passed`; vinlab `381 passed, 8 skipped`; ruff clean).
+  Not upheld: BMW FE435 share 0.333 (the decoder already attributes 306D3 to that VDS; the row describes a diesel
+  either way) and the cylinder/displacement fields of WL, J3, ZD30, 1KZ-TE, JP (that column is unreliable map-wide,
+  e.g. KIA D3FA, a 3-cylinder, says 4; the engine code is the evidence). LOW items (ordering assertion, key-set
+  fixture) too small. False negatives D4HE and the WL variants (1WL, PWL) → T-VINA-6b.
