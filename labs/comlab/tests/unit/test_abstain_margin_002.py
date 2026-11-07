@@ -12,7 +12,7 @@ from comlab.core.fault_atlas_router import ABSTAIN_MARGIN, FaultAtlasRouter
 from tests.unit.test_abstain_family_margin import MockKGNode, _mock_v2_output, _registry_row
 from tests.unit.test_fault_atlas_router import _make_request, _sanitized
 
-WORKSPACE_ROOT = Path("/agent_workspace")
+WORKSPACE_ROOT = Path(__file__).resolve().parents[4]  # repo root (labs/comlab/tests/unit/<file>); was /agent_workspace (T-COMA-4)
 APPS_WIRED = str(WORKSPACE_ROOT / "apps/wired")
 if APPS_WIRED not in sys.path:
     sys.path.insert(0, APPS_WIRED)

@@ -5,7 +5,7 @@ from __future__ import annotations
 import csv
 import sys
 from pathlib import Path
-WORKSPACE_ROOT = Path("/agent_workspace")
+WORKSPACE_ROOT = Path(__file__).resolve().parents[4]  # repo root (labs/comlab/tests/unit/<file>); was /agent_workspace (T-COMA-4)
 for relative in (
     "apps/wired",
     "labs/comlab",
