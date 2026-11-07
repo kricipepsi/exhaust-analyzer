@@ -81,8 +81,9 @@ technology — GPF/DPF inference, LSPI, secondary-air-injection (SAI) inference 
 is **out of scope** and is not represented in any schema, registry rule, or KG
 node. GDI and early turbocharging are in scope only for vehicles sold within the
 1990–2010 window. `HORIZON_MODERN` remains a real era bucket (and the safe
-default), capped at this window; it is not the "2010–2020 wideband/GPF" tier the
-v1.0 draft described.
+default). Its era mask in `config/eras_sensitivity_masks.yaml` still reads "Euro 5 & 6
+vehicles (~2010-2020)", `model_year_range: [2010, 2020]`; its rule pack is deactivated, so
+MODERN vehicles get the default lab settings (T-AUD-18a).
 
 ---
 
@@ -290,7 +291,7 @@ This pipeline is the HLD-level expansion of
    in `SEMANTIC_CONTRACT.md` §6.2 / §6.3.
 7. **Catalyst-damage-imminent override.** If
    `dtc_lab_output.mil_flashing == true` AND any `confirmed_dtcs`
-   matches `^P030[0-9]$`, force `severity_level =
+   matches `^P030[0-8]$` (`_P030X_RE`; P0309 is not matched, T-AUD-18a), force `severity_level =
    CRITICAL_IMMEDIATE_STOP` regardless of confidence ranking.
 8. **Two-operating-point Δ (optional).** When the request carries a
    `second_operating_point` frame, `analytics/delta_engine.py` differences it
@@ -418,7 +419,8 @@ Two sources contribute to the runner-up panel:
 The serializer unions the two sources, deduplicates by `fault_id`, and
 caps the total at 5. Each entry in the response is `{fault_id,
 fault_name, confidence_score | null}` — `null` for editor-curated
-siblings that did not fire this session.
+siblings that did not fire this session. An editor-curated sibling carries its `fault_id` as
+`fault_name` (the router sets `fault_name=sibling_id`, T-AUD-18a).
 
 ### 5.4 The on-disk shape (HLD-level — LLD will finalise the JSON schema)
 

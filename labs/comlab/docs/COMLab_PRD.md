@@ -223,7 +223,7 @@ require all four labs' data to evaluate.
 | Thermal gate (ECT < 70 °C for trim analytics; ECT < 75 °C for engine-state bucket) | OBDLab | `coolant_temp_c < 70` and analytics needed | Inline warning on Screen 3: "Engine is cold (ECT 62 °C). Warm to ≥70 °C before reading fuel trims." Wizard offers "skip trim analytics" or "go back". Two thresholds coexist: 70 °C gates trim analytics (`ENGINE_COLD`), 75 °C gates the `COLD_OPEN_LOOP_INVALID` engine-state bucket. Both must be satisfied before closed-loop diagnostics run. |
 | Gas sample validity | GASLab | `gas_co + gas_co2 + gas_o2` outside 14–18% | Inline error on Screen 2: "Gas sample fails validity check — likely air leak at probe. Re-seat and re-sample." |
 | Single-bank Bank 2 enforcement | OBDLab | Bank 2 trim values entered when `number_of_banks == 1` from DNA | Fields hidden by DNA gating; if somehow submitted, OBDLab strips them and warns. |
-| DTC format | DTCLab | DTC string fails `^[BCPU][0-3][0-9]{3}$` | Inline error on Screen 4 next to the offending row. |
+| DTC format | DTCLab | DTC string fails `^[BCPU][0-3][0-9A-F]{3}$` (`vocabulary.DTC_REGEX`) | Inline error on Screen 4 next to the offending row. |
 
 ### 4.2 COMLab gates (run in Stage A of the pipeline, on the assembled payload)
 
@@ -472,7 +472,7 @@ support workflows.)
 ### 8.2 No network requirement after launch
 
 COMLab itself does no outbound network calls during a session. All
-config (`global_fault_registry.json`, `fault_atlas_kg/*.json`,
+config (`global_fault_registry.json`, `config/kg/*.json`,
 `eras_sensitivity_masks.yaml`) is loaded at boot from local disk.
 This is a hard requirement: workshops with intermittent connectivity
 must be able to run sessions offline once the app is loaded. (The
