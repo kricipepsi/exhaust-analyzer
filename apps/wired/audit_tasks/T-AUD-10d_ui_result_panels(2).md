@@ -27,6 +27,9 @@
 - **Test length: 1/5.** **Runs real compute: NO.**
 - **Expected wall-clock: 10-20 min.** Stop rule: at 30 min, write `## Time` and a partial RESULT, then stop.
 - **Plan: NONE.** One scripted edit, rehearsed (`C:/4DApp/recheck/T-AUD-10d/rehearsal.patch`).
+- **Revision 02 (2026-11-07):** build `1797ed4` approved with corrections by the second review
+  (`C:/4DApp/recheck/codex/T-AUD-10d_review.md` #2-#4: the test checks prefixes and not the placement). This run does
+  R4 only; R1-R3 are done, do not run `apply_fix.py` again.
 - **Skills:** `C:/4DApp/.claude/skills/writing-4dapp-python-code/SKILL.md`
 
 ### Goal ###
@@ -54,7 +57,13 @@ Cowork's: read it, run `apply_fix.py`, do not edit it.
   badge line under `Component Group` when the list is not empty. Nothing else in the pane changes.
 - **R3 The test** `apps/ui/tests/test_t_aud_10d_result_panels.py` (NEW) is the file
   `C:/4DApp/recheck/T-AUD-10d/test_t_aud_10d_result_panels.py`.
-- The simplest correct route is `$PY -I C:/4DApp/recheck/T-AUD-10d/apply_fix.py` run from `C:/4DApp/repo` (it makes
+- **R4 (revision 02)** `apps/ui/tests/test_t_aud_10d_result_panels.py` becomes, byte for byte,
+  `C:/4DApp/recheck/T-AUD-10d/test_t_aud_10d_result_panels_r02.py` (`cp`, then `cmp`): exact copy for every severity,
+  notice and horizon, and the banner, notices and horizon before `if verdict.abstained:`. Mutant check: copy
+  `apps/ui/app.py` to `C:/4DApp/recheck/T-AUD-10d/mut/`, move the two banner lines (`sev_kind, sev_text = …` and
+  `getattr(st, sev_kind)(sev_text)`) to just above `st.subheader("🔧 Actionable Remediation")` (indented one level
+  more), run step 2 (`1 failed, 3 passed`), copy the file back, `cmp`, and record it.
+- (Revision 01, done in `1797ed4`.) The simplest correct route was `$PY -I C:/4DApp/recheck/T-AUD-10d/apply_fix.py` run from `C:/4DApp/repo` (it makes
   R1-R3 and exits on any unexpected count); read the diff before you commit it. Then show P2's base failure:
   `git stash push apps/ui/app.py apps/ui/ui_payload.py`, run step 2, `git stash pop`, and record the result.
 
@@ -64,14 +73,15 @@ cd C:/4DApp/repo && git branch --show-current && git log --oneline b8ec171..HEAD
 ```
 ```
 fix/T-AUD-10d
-<Cowork's spec(T-AUD-10d) commits only (the row was authored as T-AUD-10b1 and renamed)>
+<Cowork's spec(T-AUD-10…) commits and 1797ed4 feat(T-AUD-10d)>
 ```
-Every commit after `b8ec171` is a Cowork `spec(T-AUD-10…)` commit. `git status --porcelain` prints nothing.
-Anything else is a stop.
+The newest commit is Cowork's revision 02 spec; `1797ed4` is the first run's build. `git status --porcelain` lists only
+the first run's `progress_notes/T-AUD-10d.md` and `results/RESULT_T-AUD-10d.md` (untracked): append a
+`## Revision 02` section to each. Anything else is a stop.
 
 ### Success criteria ###
-1. Steps 1-2 report the P2 counts; the new test fails 4 of 4 on the base code (R3 procedure); step 4 reports P3.
-2. `ruff` passes on the two Python files it names; one commit on `fix/T-AUD-10d` after the spec commits;
+1. Steps 1-2 report the P2 counts; the R4 mutant gives `1 failed, 3 passed`; step 4 reports P3.
+2. `ruff` passes on the two Python files it names; one new commit on `fix/T-AUD-10d` after the revision 02 spec commit;
    `git status --porcelain` lists only the note and the RESULT (step 3).
 
 ### Context ###
@@ -81,21 +91,21 @@ Anything else is a stop.
 
 ### Preconditions ###
 ```bash
-cd C:/4DApp/repo && for p in apps/ui/app.py apps/ui/ui_payload.py labs/comlab/wiki/04_horizon_eras.md audit/scratch/C5/test_c5_probes.py C:/4DApp/recheck/T-AUD-10d/apply_fix.py C:/4DApp/recheck/T-AUD-10d/test_t_aud_10d_result_panels.py; do test -f "$p" || echo "MISSING $p"; done; test -e apps/ui/tests/test_t_aud_10d_result_panels.py && echo "EXISTS test"; echo checked
+cd C:/4DApp/repo && for p in apps/ui/app.py apps/ui/ui_payload.py labs/comlab/wiki/04_horizon_eras.md audit/scratch/C5/test_c5_probes.py C:/4DApp/recheck/T-AUD-10d/apply_fix.py C:/4DApp/recheck/T-AUD-10d/test_t_aud_10d_result_panels_r02.py apps/ui/tests/test_t_aud_10d_result_panels.py; do test -f "$p" || echo "MISSING $p"; done; echo checked
 ```
-Expected: `checked`, and no `MISSING` or `EXISTS` line.
+Expected: `checked`, and no `MISSING` line.
 
 ### Deliverables ###
-1. One commit on `fix/T-AUD-10d`: R1-R3.
-2. `repo/apps/wired/audit_tasks/progress_notes/T-AUD-10d.md` (with the base failure and the P3 probe line).
-3. `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-10d.md`.
+1. One new commit on `fix/T-AUD-10d`: R4 (R1-R3 are in `1797ed4`).
+2. `repo/apps/wired/audit_tasks/progress_notes/T-AUD-10d.md` (append `## Revision 02` with the mutant result).
+3. `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-10d.md` (append `## Revision 02`).
 
 ### Files to touch ###
-- `repo/apps/ui/app.py` (MODIFY: R2)
-- `repo/apps/ui/ui_payload.py` (MODIFY: R1)
-- `repo/apps/ui/tests/test_t_aud_10d_result_panels.py` (CREATE: R3)
-- `repo/apps/wired/audit_tasks/progress_notes/T-AUD-10d.md` (CREATE)
-- `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-10d.md` (CREATE)
+- `repo/apps/ui/tests/test_t_aud_10d_result_panels.py` (MODIFY: R4)
+- `repo/apps/ui/app.py` (RUNTIME: the R4 mutant only; restored, not committed)
+- `repo/apps/wired/audit_tasks/progress_notes/T-AUD-10d.md` (MODIFY: append)
+- `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-10d.md` (MODIFY: append)
+- `C:/4DApp/recheck/T-AUD-10d/mut/` (RUNTIME: your mutant copy)
 - `C:/4DApp/recheck/T-AUD-10d/pt/` (RUNTIME: pytest `--basetemp`)
 
 ### Out of scope ###
@@ -122,8 +132,8 @@ timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check apps/ui/ui_payload.py app
 Expected:
 - step 1: `65 passed`; `106 passed`; no `failed` or `error`.
 - step 2: `4 passed`.
-- step 3: `All checks passed!`; `2 files changed, 50 insertions(+)`; the spec commits and your one commit; only the
-  note and the RESULT.
+- step 3: `All checks passed!`; `2 files changed, 50 insertions(+)`; the spec commits, `1797ed4` and your one new
+  commit; only the note and the RESULT.
 - step 4: `rendered: {'horizon': True, 'gas skipped disclosure': True}`.
 
 Repo-wide gates (report-only): comlab `508 passed, 4 skipped`. Cowork runs them at review.

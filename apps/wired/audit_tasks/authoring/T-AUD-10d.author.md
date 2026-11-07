@@ -37,4 +37,9 @@ own pass 2026-11-07: P1-P3 measured (fact 3) · `apply_fix.py` exits on any unex
 criteria 1-2 → steps 1-4 · cold read: not triggered (d2, scripted) · no finding.
 
 ### Correction history ###
-(none)
+- **Revision 02 (2026-11-07).** Second review ds-flash APPROVE WITH CORRECTIONS (`recheck/codex/T-AUD-10d_review.md`).
+  Upheld (re-derived): #3 the notice test checks two prefixes; #4 severity/horizon copy not exact; #2 in part, the
+  placement above the abstain split is unchecked → R4 (rehearsed: `4 passed`; banner-moved mutant `1 failed, 3
+  passed`; ui `65`; ruff clean). Not upheld: #1 badges in the abstain branch (the enrichment block is verdict-only by
+  design); #2 an AppTest (the audit render probe covers horizon and notice; cost at ctx 49 %); #5 closed literals;
+  #6 notice styling.
