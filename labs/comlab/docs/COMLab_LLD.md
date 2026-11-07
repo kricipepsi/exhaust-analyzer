@@ -93,6 +93,35 @@ behaviour), `COMLab_DLD.md` (resource/ops), `docs/adr/` (decisions),
 
 ---
 
+## 0. Shipped-code deltas (T-AUD-18b)
+
+The listings below predate parts of the shipped package. Where a listing and this table disagree, the table
+states the code (measured by T-AUD-11g, re-checked on `fix/T-AUD-18c`). Section numbers point at the listing.
+
+| LLD listing says | Shipped code |
+|---|---|
+| §3 `OrchestratorInboundRequest.vehicle_dna: VehicleDNA` | `vehicle_dna: VehicleDNA | None = None`; a `metadata: SessionMetadata` block is required (`schemas/ingestion.py`) |
+| §3 `symptom_dna: SymptomDNA` | `symptom_dna: dict` (default `{}`); no `SymptomDNA` class exists |
+| §3 `ve_pct` `le=100.0` | `ve_pct: float = Field(..., ge=0.0, le=200.0)` |
+| §3 `routing_tags` is a 19-value set | `DTCRoutingTag` has 17 values (`schemas/vocabulary.py`) |
+| §3 `DiagnosticVerdict` | also carries `abstained` and `abstain_reason`, set from `ABSTAIN_FLOOR` (0.80) and `ABSTAIN_MARGIN` (`core/fault_atlas_router.py`) |
+| §3 `OrchestratorFinalUIOutput.schema_version` | no such field (`schemas/response.py`) |
+| §3 `OrchestratorErrorOutput`, `ErrorBody` | neither class exists; aborts return a full output with a `fault_code` |
+| §5 `SanitizedPayload` TypedDict | no such type |
+| §5 `route_symptom(symptom_dna: SymptomDNA | dict)` | `route_symptom(symptom_dna: Mapping[str, Any])` (`core/symptom_router.py`) |
+| §5 `LabPipelineAggregator.__init__(self, horizon_injector)` | seven optional keyword arguments; the aggregator builds its own injector |
+| §5 `check_schema_version(self, vehicle_dna: VehicleDNA)` | `check_schema_version(self, schema_version: str)` |
+| §5 `classify_degradation(...)` | no public method; the private `_map_degradation` does the mapping |
+| §6 `FaultAtlasKG.all_fault_ids`, `resolve_with_default`, `KGConsistencyError` | none exist (`core/fault_atlas_kg.py`) |
+| §6 a bad or duplicate KG node raises `KGConsistencyError` | the loader raises `ValueError` ("Schema validation failed for KG file") |
+| §6 each KG file is validated against `_kg_schema.json` | the loader skips `_kg_schema.json` and validates with the `KGFile` Pydantic model |
+| §6 twelve KG files for twelve `FaultFamily` values | `config/kg/` holds 13 family files (with `invalid_input.json`); `FaultFamilyLit` has 16 values |
+| §7 registry top-level `schema_version` | the file carries `version` `0.1.0` and a `remediation_map` key |
+| §7 `fallback_strategy` has three values | registry rows also hold `GAS_ONLY` and `REQUIRE_DTC` |
+| §7 `bonus_on_dtc_match` capped at 0.5 | `Field(ge=0.0, le=1.0)` (`RegistryRow`) |
+| §7 registry rows carry no `ui_diagnostic_string` | `RegistryRow` declares it and the rows use it |
+| §9 ERR-VIN-400 raised inside the VinDNA gate | no `ERR-VIN` code exists in the package |
+
 ## 1. Scope and non-goals
 
 The LLD specifies **types, signatures, and contracts** for every COMLab
