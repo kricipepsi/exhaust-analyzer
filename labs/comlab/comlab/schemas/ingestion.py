@@ -158,6 +158,8 @@ class SessionMetadata(BaseModel):
     # fault_atlas_router.execute_triage_loop VE circularity gate.
     schema_version: str = Field(default="1.0", pattern=r"^\d+\.\d+$")  # lld: §6.3 — MIN_SUPPORTED_SCHEMA_VERSION gate
     vin_confidence: VinConfidence = Field(default=VinConfidence.HIGH)  # lld: §10 — ERR-ABORT-004 gate
+    fuel_delivery_type: FuelDeliveryType | None = None
+    # T-COMA-18 (F-C1-6): VIN decode; None = not sent. consumer: registry/integration_shim.py::_hardware_gate
 
 
 class GasLabPayload(BaseModel):

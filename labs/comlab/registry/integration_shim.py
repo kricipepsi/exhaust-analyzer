@@ -171,6 +171,9 @@ _GATING_KEY_WEAK_SUPPORT: str = "weak_support_only"  # T-COMA-6: strict support 
 # T-COMA-1: the non_starter family gate prunes every other family for a will_not_start session.
 _PRUNE_REASON_FAMILY_GATE: str = "family_gate"  # consumer: fault_atlas_router.py route() phase.prune span
 _GATING_KEY_WILL_NOT_START: str = "engine_state:will_not_start"  # wiki: 07 RULE_LAB_SUPPRESSION
+_PRUNE_REASON_HARDWARE_GATE: str = "hardware_gate"  # T-COMA-18 (F-C1-6); consumer: as _PRUNE_REASON_FAMILY_GATE
+_GDI_PRECONDITION: str = "gdi_equipped: true"  # RM-004 (rules/rich_mixture.json)
+_GATING_KEY_GDI: str = "precondition:gdi_equipped"
 
 class ControlPlausibilityState(StrEnum):
     """C3 electrical-reference producer states for ECU/control fault scoring."""
@@ -1221,6 +1224,21 @@ def _apply_competition(
 # =============================================================================
 
 
+def _hardware_gate(rule: Rule, payload: dict[str, Any]) -> bool:
+    """True when a GDI-only rule cannot apply (T-COMA-18, F-C1-6; wiki 04 RULE_HORIZON_PRUNE "MODERN only | GDI").
+
+    The rule stays when the VIN decode says GDI, when the resolved era is MODERN, or when no era is sent (a
+    direct router call). A decoded PORT_INJECTION alone never prunes: it is also the decoder's default when the
+    fuel system is unknown.
+    """
+    if rule.precondition != _GDI_PRECONDITION:
+        return False
+    if str((payload.get("metadata") or {}).get("fuel_delivery_type") or "") == "GDI":
+        return False
+    horizon = payload.get("horizon_ctx")
+    return horizon is not None and str(horizon) != "HORIZON_MODERN"
+
+
 def _non_starter_gate(payload: dict[str, Any]) -> bool:
     """True when the routing directive marks a will_not_start session (wiki 07 RULE_LAB_SUPPRESSION).
 
@@ -1423,6 +1441,15 @@ class RegistryV2Router:
                         "rule_id": rule.rule_id,
                         "prune_reason": _PRUNE_REASON_FAMILY_GATE,
                         "failed_gating_key": _GATING_KEY_WILL_NOT_START,
+                    }
+                )
+                continue
+            if _hardware_gate(rule, payload):
+                pruned_rules.append(
+                    {
+                        "rule_id": rule.rule_id,
+                        "prune_reason": _PRUNE_REASON_HARDWARE_GATE,
+                        "failed_gating_key": _GATING_KEY_GDI,
                     }
                 )
                 continue

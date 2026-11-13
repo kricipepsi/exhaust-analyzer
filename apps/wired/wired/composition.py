@@ -431,6 +431,8 @@ def _build_metadata(vin_dna: dict[str, Any]) -> SessionMetadata:
         vin_confidence=VinConfidence(str(vin_dna.get("confidence", "NONE"))),
         air_metering_strategy=strategy,
         # consumer: fault_atlas_router.execute_triage_loop VE circularity gate
+        fuel_delivery_type=vin_dna.get("fuel_delivery_type") or None,
+        # consumer: registry/integration_shim.py::_hardware_gate (T-COMA-18, F-C1-6)
     )
 
 

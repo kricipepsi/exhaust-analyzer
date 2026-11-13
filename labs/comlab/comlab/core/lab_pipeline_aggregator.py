@@ -681,6 +681,7 @@ class LabPipelineAggregator:
                 "resolved_horizon": request.metadata.resolved_horizon,
                 "cylinder_count": request.metadata.cylinder_count,
                 "degradation_mode": degradation_mode,
+                "fuel_delivery_type": request.metadata.fuel_delivery_type,  # consumer: integration_shim._hardware_gate
             },
             "gas_lab_output": (
                 request.gas_lab_output.model_dump() if request.gas_lab_output is not None else None
