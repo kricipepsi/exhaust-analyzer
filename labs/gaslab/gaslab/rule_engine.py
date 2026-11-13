@@ -47,7 +47,7 @@ def _candidate_rank(name: str, faults: dict) -> tuple[bool, float]:
 def _is_low_triangle_exhaust_air_leak(reading: GasReading, ontology: dict) -> bool:
     """Return whether a low-triangle sample matches air-ingress chemistry.
 
-    Source: ``GAS_WIKI §7.7`` and ``GAS_VOCABULARY §10.1``.
+    Source: ``GAS_WIKI §7.7``, ``GAS_WIKI §4.2`` (dilution screen, T-GASA-1) and ``GAS_VOCABULARY §10.1``.
     """
     leak_signature = ontology.get("faults", {}).get(
         ChemicalSignature.EXHAUST_AIR_LEAK.value, {},
@@ -348,12 +348,12 @@ def _definitive_match(
     ):
         volumetric_sum = reading.co + reading.co2 + reading.o2  # wiki: GAS_WIKI §6.1
         if volumetric_sum <= collision.get("triangle_sum_threshold", 16.0):  # wiki: GAS_WIKI §8.5 — CO dominates
-            return ChemicalSignature.RICH_MISFIRE, SampleValidity.EXTERNAL_O2_SUSPECT
+            return ChemicalSignature.RICH_MISFIRE, validity  # T-GASA-2 (F-C2-2): the triangle gate's validity
         # wiki: GAS_WIKI §7.7 — EXHAUST_AIR_LEAK requires HC Normal;
         # high HC in the collision pattern is RICH_MISFIRE, not a pure leak
         if reading.hc <= collision.get("hc_max", 100):  # vocab: GAS_VOCABULARY §10.1 normal_borderline.max
-            return ChemicalSignature.EXHAUST_AIR_LEAK, SampleValidity.EXTERNAL_O2_SUSPECT
-        return ChemicalSignature.RICH_MISFIRE, SampleValidity.EXTERNAL_O2_SUSPECT
+            return ChemicalSignature.EXHAUST_AIR_LEAK, validity  # T-GASA-2 (F-C2-2): the triangle gate's validity
+        return ChemicalSignature.RICH_MISFIRE, validity  # T-GASA-2 (F-C2-2): the triangle gate's validity
 
     # Rich timing branch rule (Priority 40 fallback) — wiki: GAS_WIKI §4.10, §7.24
     if (

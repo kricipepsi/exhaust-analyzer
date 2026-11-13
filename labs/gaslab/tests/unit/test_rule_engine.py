@@ -273,7 +273,7 @@ def test_collision_still_fires_when_hc_low(ontology: dict) -> None:
     assert chem == ChemicalSignature.RICH_MISFIRE, (
         f"collision should still fire when hc < 1000, got {chem}"
     )
-    assert validity == SampleValidity.EXTERNAL_O2_SUSPECT
+    assert validity == SampleValidity.VALID  # T-GASA-2 (F-C2-2): sum 16.0 is inside VALID [14, 16]
 
 
 def test_specificity_prefers_narrowest_match(ontology: dict) -> None:

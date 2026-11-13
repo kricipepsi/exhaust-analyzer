@@ -72,7 +72,7 @@ def test_high_hc_collision_triangle_normal_routes_to_rich_misfire(ontology):
     result, validity = _classify(reading, ontology_=ontology)
     # triangle = 1.0 + 12.0 + 3.0 = 16.0 -> <= 16 -> RICH_MISFIRE
     assert result == ChemicalSignature.RICH_MISFIRE
-    assert validity == SampleValidity.EXTERNAL_O2_SUSPECT
+    assert validity == SampleValidity.VALID  # T-GASA-2 (F-C2-2): sum 16.0 is inside VALID [14, 16]
 
 
 def test_hc_at_boundary_100_routes_to_exhaust_air_leak(ontology):
