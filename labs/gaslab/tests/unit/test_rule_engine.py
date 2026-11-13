@@ -377,6 +377,29 @@ def test_mild_valve_seals_keep_verdict_when_2500_confirms(ontology: dict) -> Non
     assert confirmed == (ChemicalSignature.WORN_VALVE_SEALS, SampleValidity.VALID)
 
 
+@pytest.mark.parametrize(
+    ("hc", "co", "co2", "o2", "nox"),
+    [
+        (101, 0.20, 14.43, 0.06, 78),  # lowest idle HC that reaches the route (seeded scan, T-GASA-3)
+        (250, 0.30, 14.00, 0.40, 50),  # wiki: GAS_WIKI §7.21 — v1 idle row top edge
+        # Idle-only verdict is WORN_ENGINE; HC cleans up at 2500, so it is not a flat worn engine.
+        (258, 0.13, 14.87, 0.25, 9),  # wiki: GASWIKI-06A §6A.1 — routing precedence: sharp drop => valve seals
+    ],
+)
+def test_valve_seal_route_band_edges_with_2500_cleanup(
+    ontology: dict, hc: int, co: float, co2: float, o2: float, nox: int
+) -> None:
+    """F-C2-5 (T-GASA-3 review): the 75-500 idle band holds at its reachable edges."""
+    reading = _reading(hc=hc, co=co, co2=co2, o2=o2, nox=nox)
+    reading_high = _reading(
+        hc=20, co=0.10, co2=15.0, o2=0.0, nox=60,  # wiki: GASWIKI-06A §6A.1 — HC <= 35, CO <= 0.15
+    )
+    chem, validity = classify(
+        reading, _dna(), EngineStateBucket.STABILIZED_IDLE, ontology, reading_high=reading_high
+    )
+    assert (chem, validity) == (ChemicalSignature.WORN_VALVE_SEALS, SampleValidity.VALID)
+
+
 def test_poa_routes_to_worn_piston_rings_on_rising_hc_loaded_co(ontology: dict) -> None:
     """Idle HC at 120 and high-idle HC > 300 with high CO routes to WORN_PISTON_RINGS."""
     reading = _reading(
