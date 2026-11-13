@@ -161,6 +161,15 @@ class SessionMetadata(BaseModel):
     fuel_delivery_type: FuelDeliveryType | None = None
     # T-COMA-18 (F-C1-6): VIN decode; None = not sent. consumer: registry/integration_shim.py::_hardware_gate
 
+    @field_validator("resolved_horizon", mode="before")
+    @classmethod
+    def _known_horizon(cls, value: Any) -> str:
+        """Upper-case the era and reject an unknown one; never default it to MODERN (T-COMA-19, F-C1-15)."""
+        era = str(getattr(value, "value", value)).strip().upper()
+        if era not in {h.value for h in Horizon}:
+            raise ValueError(f"resolved_horizon {value!r} is not HORIZON_LEGACY, HORIZON_ADAPTIVE or HORIZON_MODERN")
+        return era
+
 
 class GasLabPayload(BaseModel):
     """Output fragment produced by the GasLab module (gas_lab_fresh package).

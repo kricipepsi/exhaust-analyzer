@@ -13,6 +13,8 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from uuid import uuid4
 
+import pytest
+from pydantic import ValidationError
 from comlab.core.lab_pipeline_aggregator import LabPipelineAggregator
 from comlab.schemas.ingestion import (
     OrchestratorInboundRequest,
@@ -75,10 +77,10 @@ def test_abort_incomplete_fatal_incomplete_from_metadata_only() -> None:
     assert v.differential_siblings == []
 
 
-def test_abort_incomplete_unknown_horizon_defaults_modern() -> None:
-    """NEW: an unknown horizon string resolves as process() does (MODERN)."""
-    out = LabPipelineAggregator().abort_incomplete(_metadata(horizon="HORIZON_UNKNOWN"), "X", "m")
-    assert out.execution_meta.resolved_horizon == "HORIZON_MODERN"
+def test_abort_incomplete_unknown_horizon_is_rejected() -> None:
+    """PIN (T-COMA-19, F-C1-15): an unknown horizon string is rejected by the schema, not defaulted to MODERN."""
+    with pytest.raises(ValidationError):
+        _metadata(horizon="HORIZON_UNKNOWN")
 
 
 def test_abort_incomplete_carries_echo_or_sentinel() -> None:
