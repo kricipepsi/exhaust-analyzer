@@ -346,8 +346,9 @@ faults:
     differentiator_edges:
       - type: dna
         field: fuel_delivery_type
-        not_equals: GDI                                   # wiki: GAS_WIKI §7.19 — overlap disambiguation vs GDI_HPFP_INTERNAL_SEAL_LEAK;
-                                                          # GASWIKI-06A: FPR universal, so every non-GDI type (T-GASA-14, F-C2-3)
+        not_equals: GDI                                   # wiki: GAS_WIKI §7.19 — overlap disambiguation vs GDI_HPFP_INTERNAL_SEAL_LEAK
+                                                          # GASWIKI-06A says FPR universal; this edge is a deliberate exception: on GDI the
+                                                          # identical tailpipe goes to GDI_HPFP (06A: "tailpipe identical to FPR rupture"). T-GASA-14
 
   # --- §7.20 ---------------------------------------------------------------
   GDI_HPFP_INTERNAL_SEAL_LEAK:

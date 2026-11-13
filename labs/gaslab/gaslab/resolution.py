@@ -316,7 +316,7 @@ def apply_differentiators(
                     edge_actual = _resolve_dna_field(dna, edge_field)
                     # T-GASA-14 (F-C2-3): `not_equals` excludes one value; `equals` requires one.
                     if "not_equals" in edge:
-                        if edge_actual == edge["not_equals"]:
+                        if edge_actual is None or edge_actual == edge["not_equals"]:  # unresolved field fails closed
                             rejected = True
                             break
                     elif edge_actual != edge["equals"]:

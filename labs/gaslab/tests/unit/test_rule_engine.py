@@ -1629,10 +1629,30 @@ def test_wideband_o2_bias_low_realistic_sample_is_emitted(ontology: dict) -> Non
 
 @pytest.mark.parametrize(
     ("fuel", "vr"),
-    [("PORT_INJECTION", True), ("CARBURETOR", True), ("GDI", False)],  # producer enum: vinlab models.py
+    [
+        ("PORT_INJECTION", ChemicalSignature.VACUUM_REGULATOR_DIAPHRAGM_RUPTURE),  # producer enum: vinlab models.py
+        ("CARBURETOR", ChemicalSignature.VACUUM_REGULATOR_DIAPHRAGM_RUPTURE),
+        ("GDI", ChemicalSignature.GDI_HPFP_INTERNAL_SEAL_LEAK),  # the edge's deliberate GDI exception
+    ],
 )
-def test_vr_rupture_reachable_for_real_fuel_types(ontology: dict, fuel: str, vr: bool) -> None:
+def test_vr_rupture_reachable_for_real_fuel_types(ontology: dict, fuel: str, vr: ChemicalSignature) -> None:
     """GASWIKI-06A §7.19: dna_gate none (FPR universal); the edge only excludes GDI (vs GDI_HPFP)."""
     reading = _reading(hc=1500, co=5.0, co2=10.5, o2=0.1, nox=10)  # inside the VR signature, sum 15.6
-    chem, _ = classify(reading, _dna(fuel_delivery_type=fuel), EngineStateBucket.STABILIZED_IDLE, ontology)
-    assert (chem == ChemicalSignature.VACUUM_REGULATOR_DIAPHRAGM_RUPTURE) is vr
+    result = classify(reading, _dna(fuel_delivery_type=fuel), EngineStateBucket.STABILIZED_IDLE, ontology)
+    assert result == (vr, SampleValidity.VALID)
+
+
+def test_not_equals_edge_fails_closed_on_unresolved_field(ontology: dict) -> None:
+    """T-GASA-14 review M3: a not_equals edge on a field the DNA view lacks rejects, like equals."""
+    import copy
+
+    onto = copy.deepcopy(ontology)
+    onto["faults"]["VACUUM_REGULATOR_DIAPHRAGM_RUPTURE"]["differentiator_edges"][0]["field"] = "no_such_field"
+    survivors = apply_differentiators(
+        ["VACUUM_REGULATOR_DIAPHRAGM_RUPTURE"],
+        _reading(hc=1500, co=5.0, co2=10.5, o2=0.1, nox=10),
+        _dna(fuel_delivery_type="PORT_INJECTION"),
+        onto,
+        EngineStateBucket.STABILIZED_IDLE,
+    )
+    assert "VACUUM_REGULATOR_DIAPHRAGM_RUPTURE" not in survivors
