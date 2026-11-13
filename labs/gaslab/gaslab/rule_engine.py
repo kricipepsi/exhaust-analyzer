@@ -296,7 +296,8 @@ def _definitive_match(
 
     # Cam-timing rule — wiki: GAS_WIKI §8.6 (priority 82)
     wvt = grammar.get("cam_timing_rule", {})
-    # T-GASA-4 (F-C2-6): the §4.10 HC > 1000 gate excludes every GASWIKI-06B cam vector (idle HC 250-900).
+    # T-GASA-4 (F-C2-6): the §4.10 HC > 1000 gate excludes both lean-branch GASWIKI-06B vectors
+    # (ADVANCED idle HC 250-600, RETARDED_MAF idle HC 300-900).
     # Below it, down to the 06B floor, the rule fires only on the 2500 RPM confirmation §4.10 names.
     cam_hc_gate = reading.hc > wvt.get("hc_threshold", 1000) or (  # wiki: GAS_WIKI §8.6
         reading_high is not None
@@ -308,7 +309,10 @@ def _definitive_match(
         and reading.co > 0.0  # wiki: GAS_WIKI §8.6
     ):
         lchem = lambda_chem(reading)
-        if 2.0 <= reading.o2 <= 4.5 and 1.08 <= lchem <= 1.18:  # wiki: GAS_WIKI §8.6
+        maf_hc_ok = reading.hc > wvt.get("hc_threshold", 1000) or (  # wiki: GAS_WIKI §8.6
+            reading.hc >= wvt.get("hc_atlas_floor_maf", 300)  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAF — idle HC 300-900
+        )
+        if 2.0 <= reading.o2 <= 4.5 and 1.08 <= lchem <= 1.18 and maf_hc_ok:  # wiki: GAS_WIKI §8.6
             # If reading_high is provided, verify it persists at 2500 RPM
             # high idle vector: O2 1.0-2.5%, lambda 1.03-1.09, HC 150-400, CO 0.10-0.30%, NOx 150-500
             if reading_high is not None:

@@ -1450,8 +1450,6 @@ def test_cylinder_count_read_in_masking_path(ontology: dict) -> None:
     )
 
 
-
-
 # ---------------------------------------------------------------------------
 # T-GASA-4 — F-C2-6: cam-timing rule reaches the GASWIKI-06B vectors on a 2500 RPM confirmation
 # ---------------------------------------------------------------------------
@@ -1493,3 +1491,24 @@ def test_cam_rule_atlas_floor_edge(ontology: dict, hc: int, expected_cam: bool) 
         reading, _dna(), EngineStateBucket.STABILIZED_IDLE, ontology, reading_high=_reading(**_CAM_ADV_HIGH)
     )
     assert (chem == ChemicalSignature.CAM_TIMING_ADVANCED) is expected_cam
+
+
+@pytest.mark.parametrize(("hc", "expected_maf"), [(299, False), (300, True)])
+def test_cam_retarded_maf_floor_edge(ontology: dict, hc: int, expected_maf: bool) -> None:
+    """T-GASA-4 review M1: the MAF branch opens at its own 06B idle floor, HC 300 (seeded scan vector)."""
+    reading = _reading(hc=hc, co=0.48, co2=10.98, o2=2.64, nox=10)
+    reading_high = _reading(hc=250, co=0.20, co2=12.5, o2=1.8, nox=300)  # wiki: GASWIKI-06B (2500)
+    chem, _ = classify(
+        reading, _dna(), EngineStateBucket.STABILIZED_IDLE, ontology, reading_high=reading_high
+    )
+    assert (chem == ChemicalSignature.CAM_TIMING_RETARDED_MAF) is expected_maf
+
+
+def test_cam_rule_low_hc_rejects_non_confirming_2500(ontology: dict) -> None:
+    """T-GASA-4 review L2: idle HC 450 with a 2500 reading whose NOx does not rise (100) is not cam."""
+    reading = _reading(hc=450, co=0.7, co2=11.5, o2=2.3, nox=25)  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED (idle)
+    reading_high = _reading(**{**_CAM_ADV_HIGH, "nox": 100})  # outside the 06B 2500 NOx 300-900
+    chem, _ = classify(
+        reading, _dna(), EngineStateBucket.STABILIZED_IDLE, ontology, reading_high=reading_high
+    )
+    assert chem not in (ChemicalSignature.CAM_TIMING_ADVANCED, ChemicalSignature.CAM_TIMING_RETARDED_MAF)
