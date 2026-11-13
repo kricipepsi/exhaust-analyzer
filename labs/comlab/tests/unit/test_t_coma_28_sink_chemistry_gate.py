@@ -38,12 +38,20 @@ def test_sinks_do_not_fire_without_their_chemistry(rules, state: str) -> None:
     assert _score_rule(rules["MF-005"], obs) is None
 
 
-def test_lc002_fires_on_lean_chemistry(rules) -> None:
-    assert _score_rule(rules["LC-002"], _obs("LEAN_MIXTURE")) is not None
+def test_lc002_fires_on_lean_chemistry_at_its_old_score(rules) -> None:
+    """T-COMA-29 (REVIEW_T-COMA-28 M2): base 0.91 + map_kpa SUGGESTIVE 0.05 = 0.96, the pre-gate 0.81 + 0.10 + 0.05."""
+    assert _score_rule(rules["LC-002"], _obs("LEAN_MIXTURE")) == pytest.approx(0.96)
 
 
-def test_mf005_fires_on_misfire_chemistry_without_dtc(rules) -> None:
-    assert _score_rule(rules["MF-005"], _obs("IGNITION_MISFIRE")) is not None
+def test_mf005_fires_on_misfire_chemistry_at_its_old_score(rules) -> None:
+    """T-COMA-29 (REVIEW_T-COMA-28 M2): base 0.85 + none_present SUGGESTIVE 0.05 = 0.90, the pre-gate 0.75 + 0.10 + 0.05."""
+    assert _score_rule(rules["MF-005"], _obs("IGNITION_MISFIRE")) == pytest.approx(0.90)
+
+
+def test_each_sink_rejects_the_other_sinks_chemistry(rules) -> None:
+    """T-COMA-29 (REVIEW_T-COMA-28 L2): the gate is the rule's own state, not any fault state."""
+    assert _score_rule(rules["LC-002"], _obs("IGNITION_MISFIRE")) is None
+    assert _score_rule(rules["MF-005"], _obs("LEAN_MIXTURE")) is None
 
 
 def test_gating_tiers(rules) -> None:
