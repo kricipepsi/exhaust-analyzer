@@ -63,7 +63,7 @@ Parts of this document predate the shipped package. Where the text and this tabl
 | §4.2 the COMLab gates run in Stage A on the assembled payload | they run only when `enable_fatal_gates=True`; `LabPipelineAggregator` and `wired.composition.diagnose()` default it to `False`, so the public app raises no `ERR-ABORT-00x` (F-C1-13; any change is T-AUD-3) |
 | §4.2 `ERR-ABORT-001` fires on `sample_validity != "VALID"` | `validity not in ("VALID", "BORDERLINE")`: a `BORDERLINE` sample passes (as the BDD scenario "A borderline gas sample is allowed through" states; any change is T-AUD-3) |
 | §4.2 `ERR-ABORT-004` reads `vehicle_dna.vin_dna.confidence` | `request.metadata.vin_confidence == VinConfidence.NONE` raises `ERR-ABORT-004` |
-| §5 `degradation_mode` is `FULL_FUSION` / `GAS_DOMINANT` | `DegradationLit` has four values; the output's `execution_meta.degradation_mode` is `FULL_FUSION`, `GAS_DOMINANT` (only when the routing directive sets `suppress_gaslab`) or `FATAL_INCOMPLETE` (an abort); `SINGLE_POINT` is set only on the delta engine's own result (`analytics/delta_engine.py`) |
+| §5 `degradation_mode` is `FULL_FUSION` / `GAS_DOMINANT` | `DegradationLit` has four values; the output's `execution_meta.degradation_mode` is `FULL_FUSION`, `GAS_DOMINANT` (the routing directive suppresses GASLab or OBD, or OBD live data is absent; T-COMA-21) or `FATAL_INCOMPLETE` (an abort); `SINGLE_POINT` is set only on the delta engine's own result (`analytics/delta_engine.py`) |
 | §6 the abort banner shows `error_code` and `ui_remediation_message` | an abort returns a full `OrchestratorFinalUIOutput`: `degradation_mode` `FATAL_INCOMPLETE`, the code in `diagnostic_verdict.fault_code`, `fault_name` `Fatal Abort: <code>`, the message in `display_headline` and `actionable_remediation`; there is no `error` block, no `error_code` and no `ui_remediation_message` field |
 | §6 `ERR-ABORT-001` action | message: "Gas sample is invalid. Check probe connections, verify sample line integrity, and re-sample." |
 | §6 `ERR-ABORT-002` action "Warm engine to ≥70 °C" | the gate fires on `engine_warmed == False` (OBDLab sets it at ECT ≥ 70 °C); message: "Engine not at operating temperature (ECT < 75 °C). Warm engine to full operating temperature and re-test." (`_ENGINE_WARMED_REMEDIATION_TEMP_C = 75`) |
@@ -425,8 +425,10 @@ Degradation is a quieter signal: the diagnosis still runs, but with
 acknowledged reduced confidence. Surfaces on the result page as:
 
 - **`GAS_DOMINANT` mode** — yellow info chip in the execution meta
-  footer: "Diagnosis based on gas chemistry only; fuel trim data was
-  not available."
+  footer: "Live OBD data was not available (no scanner, or the engine
+  was not running); the diagnosis rests on the gas sample and the
+  trouble codes." (F-D2-14, T-COMA-22: true for a legacy car without
+  a scanner and for a non-starter.)
 - **`vin_confidence == PARTIAL`** — yellow banner at the top of
   Screen 6: "Vehicle profile partially resolved — DNA-relative checks
   used best-guess defaults. Verify the VIN and vehicle make/model."

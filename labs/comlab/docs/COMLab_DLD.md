@@ -307,7 +307,7 @@ built deterministically.
 | Stage A.2 (version) | `stage_a_version.ok` | `stage_a_version.minor_drift` | `stage_a_version.err_abort_005` |
 | Stage A.3 (gates) | `stage_a_gates.ok` | — | `stage_a_gates.err_abort_001` / `_002` / `_004` |
 | Stage A.4 (routing) | `stage_a_routing.ok` | — | — |
-| Stage A.5 (degradation) | `stage_a_degradation.ok` | `stage_a_degradation.partial_dna` (when GAS_DOMINANT triggered by `suppress_gaslab` — engine_state == will_not_start) | — |
+| Stage A.5 (degradation) | `stage_a_degradation.ok` | `stage_a_degradation.partial_dna` (when GAS_DOMINANT: GASLab or OBD suppressed, or no OBD live data; T-COMA-21) | — |
 | Stage A.6 (projection) | `stage_a_projection.ok` | — | `stage_a_projection.err_internal` |
 | Stage B (walk) | `stage_b_walk.ok` (with `rules_evaluated`, `rules_truthy`, `winner_fault_id`) | `stage_b_walk.no_winner` (no rule fired) | — |
 | Stage C (KG) | `stage_c_kg.ok` | — | `stage_c_kg.err_lookup_miss` (registry/KG drift at runtime — should never happen) |
@@ -643,8 +643,9 @@ exercise.
 
 These are by-design and never page anyone:
 
-- `suppress_gaslab` (engine_state == will_not_start) → `degradation_mode == GAS_DOMINANT`,
-  pipeline proceeds, PRD §6.3 yellow banner shown.
+- `suppress_gaslab` or `suppress_obd_live_pids` (engine_state cranking or will_not_start), or no
+  OBD live data → `degradation_mode == GAS_DOMINANT` (T-COMA-21), pipeline proceeds, PRD §6.3
+  yellow chip shown.
 - `SymptomDNA.engine_state == will_not_start` → producer labs suppressed
   via routing directive, pipeline proceeds with DTC-only evidence.
 - `obd_live_data.engine_warmed == false` AND OBDLab suppressed → no
