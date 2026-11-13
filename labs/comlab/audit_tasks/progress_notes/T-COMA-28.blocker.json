@@ -1,0 +1,33 @@
+{
+  "schema": "blocker-record/2",
+  "task_id": "T-COMA-28",
+  "pack": "coma",
+  "task_file": "labs/comlab/audit_tasks/T-COMA-28_sink_chemistry_gate(2).md",
+  "date": "2026-11-13",
+  "phase": "precheck",
+  "prior_record": null,
+  "reached_first_edit": false,
+  "stopped": false,
+  "findings": [
+    {
+      "class": "STALE-ANCHOR",
+      "gist": "R4 states the new test has 8 cases; Cowork's staged test file collects 6 (one 3-way parametrize plus 3 plain tests). P2 (comlab 563 -> 569, +6) agrees with 6, so only the R4 literal is off.",
+      "task_anchor": "labs/comlab/audit_tasks/T-COMA-28_sink_chemistry_gate(2).md:59",
+      "task_says": "- **R4** New test `labs/comlab/tests/unit/test_t_coma_28_sink_chemistry_gate.py` (8 cases).",
+      "tree_says": "3 failed, 3 passed in 0.47s",
+      "settling_command": "cd C:/4DApp/repo/labs/comlab && PYTHONDONTWRITEBYTECODE=1 C:/4DApp/.venv/Scripts/python.exe -m pytest -q -p no:cacheprovider --basetemp=C:/4DApp/recheck/T-COMA-28/pt/red C:/4DApp/recheck/T-COMA-28/test_t_coma_28_sink_chemistry_gate.py",
+      "settling_output": "FAILED ...[CAM_TIMING_ADVANCED]; FAILED ...[TIMING_RETARDED]; FAILED ...::test_gating_tiers; 3 failed, 3 passed in 0.47s",
+      "severity": "soft",
+      "chosen_interpretation": "Use the staged file unchanged (rehearse.py copies it verbatim; R1 forbids editing Cowork's files) and judge against P2's counts (569 comlab, 29 targeted), which match 6 cases. Cowork can correct the R4 literal from this evidence.",
+      "blocks_first_edit": false
+    }
+  ],
+  "work_completed_before_stop": [
+    "Baseline: fix/T-COMA-28, one spec commit a80b5f2 after 3cd8541, clean porcelain",
+    "Preconditions: checked, no MISSING",
+    "Red run of the staged new test on the base: 3 failed, 3 passed"
+  ],
+  "not_done": [],
+  "cheats_declined": ["Did not add two test cases to reach the literal 8"],
+  "dispatch_rounds_spent": 1
+}
