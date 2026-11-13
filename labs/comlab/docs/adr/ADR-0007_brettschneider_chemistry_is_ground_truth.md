@@ -30,6 +30,16 @@ rules out a drifting supply before attributing bias.
 - Neutral: COMLab cannot prove intent faults (e.g. cam phase) from chemistry
   alone — those need OBD/CKP corroboration downstream.
 
+**Amendment (2026-11-13, T-COMA-17; audit F-C1-13, F-C1-14).** The abort on an
+`INVALID` sample (`ERR-ABORT-001`) runs only with `enable_fatal_gates=True`. On the
+default path an `INVALID` sample stays scored, its `execution_meta` carries
+`processing_confidence_rating` `LOW_CERTAINTY` and the reason `GAS_SAMPLE_INVALID`,
+and the UI shows a re-sample notice. An `EXTERNAL_O2_SUSPECT` sample warns
+(`GAS_SAMPLE_O2_SUSPECT`) and continues on both paths. Measured on the v7 corpus
+(314 cases, 37 `INVALID`): abort gives 197 correct families, scoring gives 216.
+Air in the sample is often the finding itself (exhaust leak, misfire), and GASLab
+reads air dilution as `INVALID` above a triangle sum of 18 %.
+
 **Alternatives considered.**
 1. *Trust the ECU and use gas only to corroborate.* Rejected — reproduces the dead
    end the product exists to resolve.

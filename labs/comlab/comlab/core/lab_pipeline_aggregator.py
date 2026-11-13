@@ -211,6 +211,33 @@ class LabPipelineAggregator:
             return "DEGRADED_ASSURANCE"
         return "LOW_CERTAINTY"
 
+    @classmethod
+    def _confidence_for(
+        cls, horizon: Horizon, reasons: list[LabRoutingDirectiveReason]
+    ) -> ConfidenceLit:
+        """Horizon confidence, cut to LOW_CERTAINTY when the gas sample is INVALID (T-COMA-17)."""
+        if LabRoutingDirectiveReason.GAS_SAMPLE_INVALID in reasons:
+            return "LOW_CERTAINTY"
+        return cls._confidence_from_horizon(horizon)
+
+    @staticmethod
+    def _gas_sample_reasons(
+        request: OrchestratorInboundRequest, directive: LabRoutingDirective
+    ) -> list[LabRoutingDirectiveReason]:
+        """The gas-sample qualifier for an unsuppressed GASLab sample (T-COMA-17, ADR-0007 amendment).
+
+        An INVALID sample stays scored (fatal gates off) but is flagged; EXTERNAL_O2_SUSPECT warns.
+        """
+        gas = request.gas_lab_output
+        if directive.suppress_gaslab or gas is None:
+            return []
+        validity = gas.sample_validity
+        if validity == "INVALID":
+            return [LabRoutingDirectiveReason.GAS_SAMPLE_INVALID]
+        if validity == "EXTERNAL_O2_SUSPECT":
+            return [LabRoutingDirectiveReason.GAS_SAMPLE_O2_SUSPECT]
+        return []
+
     # ------------------------------------------------------------------
     # Era threshold helpers
     # ------------------------------------------------------------------
@@ -369,7 +396,7 @@ class LabPipelineAggregator:
         # ERR-ABORT-001: sample_validity != VALID (when GASLab not suppressed)
         if not directive.suppress_gaslab:
             validity = request.gas_lab_output.sample_validity
-            if validity not in ("VALID", "BORDERLINE"):
+            if validity not in ("VALID", "BORDERLINE", "EXTERNAL_O2_SUSPECT"):  # O2-suspect: warn but continue (F-C1-14)
                 raise AggregatorAbort(
                     "ERR-ABORT-001",
                     "Gas sample is invalid. Check probe connections, "
@@ -499,6 +526,7 @@ class LabPipelineAggregator:
 
         # -- Build shared Stage A outputs (used by both paths) --
         reasons_out: list[LabRoutingDirectiveReason] = list(directive.reasons)
+        reasons_out += self._gas_sample_reasons(request, directive)
         bias_verdict_value: str | None = (
             perception_result.bias_verdict.value
             if perception_result.bias_verdict is not None
@@ -522,7 +550,7 @@ class LabPipelineAggregator:
             exec_meta = ExecutionMeta(
                 resolved_horizon=horizon_lit,
                 degradation_mode=degradation_mode,
-                processing_confidence_rating=self._confidence_from_horizon(horizon),
+                processing_confidence_rating=self._confidence_for(horizon, reasons_out),
                 vin_confidence=request.metadata.vin_confidence.value,  # lld: §3.3; F-C1-9 (T-COMA-8): echoed
                 lab_routing_directive=LabRoutingDirectiveOut(
                     suppress_gaslab=directive.suppress_gaslab,
@@ -593,7 +621,7 @@ class LabPipelineAggregator:
         execution_meta = ExecutionMeta(
             resolved_horizon=horizon_lit,
             degradation_mode=degradation_mode,
-            processing_confidence_rating=self._confidence_from_horizon(horizon),
+            processing_confidence_rating=self._confidence_for(horizon, reasons_out),
             vin_confidence=request.metadata.vin_confidence.value,  # lld: §3.3; F-C1-9 (T-COMA-8): echoed
             lab_routing_directive=LabRoutingDirectiveOut(
                 suppress_gaslab=directive.suppress_gaslab,

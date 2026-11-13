@@ -636,18 +636,21 @@ class FaultEnrichmentSeverity(StrEnum):
 
 
 class LabRoutingDirectiveReason(StrEnum):
-    """Why a routing-directive flag was set.
+    """Why a routing-directive flag was set, or why the gas evidence is qualified.
 
     Consumer: ``response.LabRoutingDirectiveOut.reasons`` — UI renders the
-    "why was this section greyed out" copy per PRD §5.6.
+    "why was this section greyed out" copy per PRD §5.6, and the gas-sample
+    notices (``apps/ui/ui_payload.py::routing_notices``).
 
-    Source: COMLab_LLD.md §3.1.
+    Source: COMLab_LLD.md §3.1; the two GAS_SAMPLE_* members: T-COMA-17 (ADR-0007 amendment).
     """
 
     NON_STARTER_NO_EXHAUST = "NON_STARTER_NO_EXHAUST"                # lld: §3.1 — engine_state == will_not_start
     NON_RUNNING_NO_LIVE_PIDS = "NON_RUNNING_NO_LIVE_PIDS"            # lld: §3.1 — engine_state in {will_not_start, cranking}
     NON_RUNNING_MONITORS_NOT_READY = "NON_RUNNING_MONITORS_NOT_READY"  # lld: §3.1 — engine_state == will_not_start
     COLD_START_HYPOTHESIS = "COLD_START_HYPOTHESIS"                  # lld: §3.1 — occurs_during == cold_only
+    GAS_SAMPLE_INVALID = "GAS_SAMPLE_INVALID"                        # T-COMA-17 — sample_validity == INVALID; scored at LOW_CERTAINTY
+    GAS_SAMPLE_O2_SUSPECT = "GAS_SAMPLE_O2_SUSPECT"                  # T-COMA-17 — sample_validity == EXTERNAL_O2_SUSPECT; warn but continue
 
 
 class PrimaryLoadCalculation(StrEnum):

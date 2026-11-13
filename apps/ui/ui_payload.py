@@ -1316,6 +1316,14 @@ ROUTING_NOTICES: tuple[tuple[str, str], ...] = (
     ("cold_start_mode", "Cold-start hypothesis was active — some warm-only rules were down-weighted."),
 )
 
+# source: labs/gaslab/gaslab/contracts.py SampleValidity; ADR-0007 amendment; T-COMA-17 (F-C1-13, F-C1-14)
+GAS_SAMPLE_NOTICES: tuple[tuple[str, str], ...] = (
+    ("GAS_SAMPLE_INVALID", "The gas sample failed the validity check, so findings that use the gas reading are low "
+     "certainty. Check the probe and the sample line, then re-sample."),
+    ("GAS_SAMPLE_O2_SUSPECT", "The gas sample shows more oxygen than a sealed exhaust gives. Check the exhaust and "
+     "the sample line for an air leak."),
+)
+
 # source: labs/comlab/wiki/04_horizon_eras.md (era table); COMLab_PRD.md 5.7; T-AUD-10d, F-C5-7
 HORIZON_MEANING: dict[str, str] = {
     "HORIZON_LEGACY": "Euro 1-2 era tuning applied (pre-1997 to about 2001).",
@@ -1330,8 +1338,11 @@ def severity_banner(level: str) -> tuple[str, str]:
 
 
 def routing_notices(directive: Any) -> list[str]:
-    """Return the PRD 5.6 notice for every true LabRoutingDirective flag; empty when all four are false."""
-    return [text for flag, text in ROUTING_NOTICES if getattr(directive, flag)]
+    """Return the PRD 5.6 notice for every true LabRoutingDirective flag, then one per gas-sample reason (T-COMA-17)."""
+    reasons = {str(r) for r in getattr(directive, "reasons", None) or ()}
+    return [text for flag, text in ROUTING_NOTICES if getattr(directive, flag)] + [
+        text for reason, text in GAS_SAMPLE_NOTICES if reason in reasons
+    ]
 
 
 def horizon_meaning(horizon: str) -> str:
