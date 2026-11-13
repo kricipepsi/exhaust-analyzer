@@ -153,6 +153,7 @@ def _coc_adjust_normal_bounds(
 def _calibrate_o2_bias_low_bounds(
     signature: dict,
     dna: GasLabDnaView,
+    triangle: dict | None = None,
 ) -> dict:
     """Return O2_SENSOR_BIASED_LOW signature bounds calibrated for wideband.
 
@@ -163,11 +164,13 @@ def _calibrate_o2_bias_low_bounds(
         adjusted["co"] = {"min": 5.0, "max": 8.0}  # wiki: GASWIKI-05 §7.14
         adjusted["lambda"] = {"min": 0.77, "max": 0.85}  # wiki: GASWIKI-05 §7.14
         # T-GASA-8 (F-C2-10): CO2 follows from the triangle gate, so CO + CO2 + O2 can sit in [14, 16].
-        sum_min, sum_max = 14.0, 16.0  # wiki: GASWIKI-04 §4.1 — VALID triangle sum
-        o2_max = signature["o2"]["max"]
+        gate = triangle or {}
+        sum_min = gate.get("sum_valid_min", 14.0)  # wiki: GASWIKI-04 §4.1 — VALID triangle sum
+        sum_max = gate.get("sum_valid_max", 16.0)  # wiki: GASWIKI-04 §4.1 — VALID triangle sum
+        o2_min, o2_max = signature["o2"]["min"], signature["o2"]["max"]
         adjusted["co2"] = {
             "min": round(sum_min - adjusted["co"]["max"] - o2_max, 2),
-            "max": round(sum_max - adjusted["co"]["min"], 2),
+            "max": round(sum_max - adjusted["co"]["min"] - o2_min, 2),
         }
         return adjusted
     return signature
@@ -217,7 +220,9 @@ def _matching_fault_candidates(
             if name == "NORMAL_OPERATION":
                 sig = _coc_adjust_normal_bounds(sig, dna)
             elif name == "O2_SENSOR_BIASED_LOW":
-                sig = _calibrate_o2_bias_low_bounds(sig, dna)
+                sig = _calibrate_o2_bias_low_bounds(
+                    sig, dna, ontology.get("validity_gates", {}).get("exhaust_gas_triangle")
+                )
             elif name == "O2_SENSOR_BIASED_HIGH":
                 sig = _calibrate_o2_bias_high_bounds(sig, dna)
 

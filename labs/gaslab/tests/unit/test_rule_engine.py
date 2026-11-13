@@ -1616,8 +1616,11 @@ def test_wideband_o2_bias_low_co2_window_follows_triangle(ontology: dict) -> Non
     from gaslab.rule_engine import _calibrate_o2_bias_low_bounds
 
     sig = ontology["faults"]["O2_SENSOR_BIASED_LOW"]["signature"]
-    wb = _calibrate_o2_bias_low_bounds(sig, _dna(upstream_o2_type="WIDEBAND_LAMBDA"))
+    before = {k: dict(v) for k, v in sig.items()}
+    triangle = ontology["validity_gates"]["exhaust_gas_triangle"]
+    wb = _calibrate_o2_bias_low_bounds(sig, _dna(upstream_o2_type="WIDEBAND_LAMBDA"), triangle)
     assert wb["co2"] == {"min": 5.7, "max": 11.0}
+    assert sig == before  # the ontology signature is not mutated
     assert _calibrate_o2_bias_low_bounds(sig, _dna(upstream_o2_type="NARROWBAND")) is sig
 
 
