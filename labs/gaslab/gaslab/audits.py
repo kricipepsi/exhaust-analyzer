@@ -36,12 +36,27 @@ def _is_catch_all(entry: dict) -> bool:
     return entry.get("signature_type") == "catch_all"
 
 
+def _is_filtering_edge(edge: dict) -> bool:
+    """Return True if ``resolution.py`` can drop or route a candidate on this edge.
+
+    ``dna`` edges filter on a DNA field; ``rpm_differential`` edges filter on
+    ``appears_in_states`` or route on ``route_when_matched``. ``physical_check``
+    edges and note-only edges are informational and never filter
+    (``resolution.apply_differentiators``). T-GASA-10, F-C2-13.
+    """
+    kind = edge.get("type")
+    if kind == "dna":
+        return True
+    if kind == "rpm_differential":
+        return bool(edge.get("appears_in_states") or edge.get("route_when_matched"))
+    return False
+
+
 def _has_resolution(entry: dict) -> bool:
-    """Return True if the fault entry carries a differentiator or DNA gate."""
+    """Return True if the fault entry carries a DNA gate or a filtering differentiator edge."""
     if entry.get("dna_gate"):
         return True
-    diff_edges = entry.get("differentiator_edges")
-    return bool(diff_edges)
+    return any(_is_filtering_edge(e) for e in entry.get("differentiator_edges") or [])
 
 
 def find_uncovered_overlaps(ontology: dict) -> list[tuple[str, str]]:
