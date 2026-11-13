@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-COMA-23` | `repo\labs\comlab\audit_tasks\PROGRESS.md` | **1** | 1 | NO | 10 min | abort banner |
+| `T-COMA-24` | `repo\labs\comlab\audit_tasks\PROGRESS.md` | **1** | 1 | NO | 10 min | bdd cited tests |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-COMA-23` · owner: `repo\labs\comlab\audit_tasks\PROGRESS.md` · 1/5** — When `execution_meta.degradation_mode` is `FATAL_INCOMPLETE`, the results pane shows a red `st.error` banner "Diagnosis stopped (<error code>): <remediation>" in place of the severity banner.
-  `repo\labs\comlab\audit_tasks/T-COMA-23_abort_banner(1).md`
+**`T-COMA-24` · owner: `repo\labs\comlab\audit_tasks\PROGRESS.md` · 1/5** — The two validation tests in `tests/unit/test_lab_pipeline_aggregator.py` run (they pass today).
+  `repo\labs\comlab\audit_tasks/T-COMA-24_bdd_cited_tests(1).md`
 
 ## Distribution
 
-- **1/5** — 1: T-COMA-23
+- **1/5** — 1: T-COMA-24
