@@ -3,7 +3,7 @@
   "capture_date": "2026-06-21",
   "case_id": "COM-020",
   "expected": {
-    "confidence": "DEGRADED_ASSURANCE",
+    "confidence": "HIGH_ASSURANCE",
     "degradation_mode": "FULL_FUSION",
     "fault_family": "misfire",
     "top_fault": "MF-001"

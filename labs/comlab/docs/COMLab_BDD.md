@@ -37,8 +37,8 @@ Parts of this document predate the shipped package. Where the text and this tabl
 | BDD says | Shipped code |
 |---|---|
 | Feature "Stage-A fatal gates honour suppression" | the scenarios hold with `enable_fatal_gates=True`; `LabPipelineAggregator` and `wired.composition.diagnose()` default it to `False` |
-| "Without a second frame the path is single-point": `degradation_mode is SINGLE_POINT` | the output's `execution_meta.degradation_mode` is `FULL_FUSION`, `GAS_DOMINANT` (only when the routing directive sets `suppress_gaslab`) or `FATAL_INCOMPLETE` (an abort); `SINGLE_POINT` is set only on the delta engine's own result (`analytics/delta_engine.py`) |
-| "A legacy car without a scanner degrades to gas-dominant" | a request with no OBD live data gets `FULL_FUSION`; `GAS_DOMINANT` needs `suppress_gaslab` from the symptom router (any change is T-AUD-3) |
+| "Without a second frame the path is single-point": `degradation_mode is SINGLE_POINT` | the output's `execution_meta.degradation_mode` is `FULL_FUSION`, `GAS_DOMINANT` (OBD live data absent or suppressed; T-COMA-21) or `FATAL_INCOMPLETE` (an abort). It states lab completeness, so a clean four-lab request is `FULL_FUSION` ("All four labs reporting cleanly is full fusion"); `SINGLE_POINT` is set only on the delta engine's own result (`analytics/delta_engine.py`) |
+| "All four labs reporting cleanly is full fusion": `processing_confidence_rating is HIGH_ASSURANCE` | the rating is the band of the verdict's own score (wiki 09 CONCEPT_CONF_TIER: ≥ 0.80 HIGH, ≥ 0.50 DEGRADED, else LOW), capped at `DEGRADED_ASSURANCE` under `GAS_DOMINANT` and `LOW_CERTAINTY` for an abstained verdict or an INVALID gas sample (T-COMA-21, T-COMA-17); a clean request is HIGH when its score is ≥ 0.80 |
 
 ---
 

@@ -76,6 +76,8 @@ _RICH_DTC_CODES: frozenset[str] = frozenset({"P0172", "P0175"})  # wiki: DTC_VOC
 _FATAL_DISPLAY_HEADLINE_LIMIT = 140  # lld: §3.3 DiagnosticVerdict.display_headline
 _FATAL_FAILURE_MODE_LIMIT = 280  # lld: §3.3 FaultEnrichment.mechanical_failure_mode
 _OVERRIDE_PATH_CONFIDENCE_SCORE = 0.5  # lld: §6.3 — nominal; Stage B refines
+_TIER_HIGH_MIN = 0.80  # wiki: 09 §CONCEPT_CONF_TIER — HIGH_ASSURANCE posterior ≳ 0.80 (T-COMA-21)
+_TIER_DEGRADED_MIN = 0.50  # wiki: 09 §CONCEPT_CONF_TIER — DEGRADED_ASSURANCE 0.50-0.80 (T-COMA-21)
 _OVERRIDE_PATH_KINETIC_POWER_LOSS_PCT = 0.0  # lld: §6.4 — stubbed override path
 _OVERRIDE_PATH_CATALYST_EFFICIENCY_PCT = 100.0  # lld: §6.4 — stubbed override path
 _DEFAULT_LAMBDA_TOLERANCE = 0.05  # lld: §6.1 — mask fallback when lambda_tolerance absent
@@ -192,33 +194,39 @@ class LabPipelineAggregator:
     # ------------------------------------------------------------------
 
     @staticmethod
-    def _map_degradation(directive: LabRoutingDirective) -> DegradationLit:
-        """Map symptom-router directive flags to degradation mode literal."""
-        if directive.suppress_gaslab:
+    def _map_degradation(
+        directive: LabRoutingDirective, request: OrchestratorInboundRequest
+    ) -> DegradationLit:
+        """GAS_DOMINANT when OBD data is absent or suppressed, else FULL_FUSION (wiki 07 CONCEPT_DEGRADATION_MODE).
+
+        T-COMA-21 (F-C1-11). SINGLE_POINT stays on the delta engine's own result (COMLab_BDD deviation table).
+        """
+        if directive.suppress_gaslab or directive.suppress_obd_live_pids or request.obd_live_data is None:
             return "GAS_DOMINANT"  # lld: §3.3 DegradationLit
         return "FULL_FUSION"  # lld: §3.3 DegradationLit
 
     # ------------------------------------------------------------------
-    # Horizon → Confidence heuristic
+    # Verdict score → Confidence tier (wiki 09 CONCEPT_CONF_TIER)
     # ------------------------------------------------------------------
 
     @staticmethod
-    def _confidence_from_horizon(horizon: Horizon) -> ConfidenceLit:
-        """Heuristic confidence from resolved horizon.  # lld: §6.3"""
-        if horizon == Horizon.MODERN:
-            return "HIGH_ASSURANCE"
-        if horizon == Horizon.ADAPTIVE:
-            return "DEGRADED_ASSURANCE"
-        return "LOW_CERTAINTY"
-
-    @classmethod
     def _confidence_for(
-        cls, horizon: Horizon, reasons: list[LabRoutingDirectiveReason]
+        verdict: DiagnosticVerdict,
+        reasons: list[LabRoutingDirectiveReason],
+        degradation_mode: DegradationLit,
     ) -> ConfidenceLit:
-        """Horizon confidence, cut to LOW_CERTAINTY when the gas sample is INVALID (T-COMA-17)."""
-        if LabRoutingDirectiveReason.GAS_SAMPLE_INVALID in reasons:
+        """The band of the verdict's own score, never the era (T-COMA-21, F-C1-12).
+
+        LOW_CERTAINTY when the verdict abstained or the gas sample is INVALID (T-COMA-17); GAS_DOMINANT caps the
+        tier at DEGRADED_ASSURANCE (wiki 07 "confidence ceiling applies").
+        """
+        if verdict.abstained or LabRoutingDirectiveReason.GAS_SAMPLE_INVALID in reasons:
             return "LOW_CERTAINTY"
-        return cls._confidence_from_horizon(horizon)
+        if verdict.confidence_score < _TIER_DEGRADED_MIN:
+            return "LOW_CERTAINTY"
+        if verdict.confidence_score < _TIER_HIGH_MIN or degradation_mode == "GAS_DOMINANT":
+            return "DEGRADED_ASSURANCE"
+        return "HIGH_ASSURANCE"
 
     @staticmethod
     def _gas_sample_reasons(
@@ -522,7 +530,7 @@ class LabPipelineAggregator:
                 return self._build_fatal_incomplete_output(request, abort, horizon)
         else:
             directive = route_symptom(request.symptom_dna)
-        degradation_mode: DegradationLit = self._map_degradation(directive)
+        degradation_mode: DegradationLit = self._map_degradation(directive, request)
 
         # -- Build shared Stage A outputs (used by both paths) --
         reasons_out: list[LabRoutingDirectiveReason] = list(directive.reasons)
@@ -550,7 +558,9 @@ class LabPipelineAggregator:
             exec_meta = ExecutionMeta(
                 resolved_horizon=horizon_lit,
                 degradation_mode=degradation_mode,
-                processing_confidence_rating=self._confidence_for(horizon, reasons_out),
+                processing_confidence_rating=self._confidence_for(
+                    router_output.diagnostic_verdict, reasons_out, degradation_mode
+                ),
                 vin_confidence=request.metadata.vin_confidence.value,  # lld: §3.3; F-C1-9 (T-COMA-8): echoed
                 lab_routing_directive=LabRoutingDirectiveOut(
                     suppress_gaslab=directive.suppress_gaslab,
@@ -621,7 +631,7 @@ class LabPipelineAggregator:
         execution_meta = ExecutionMeta(
             resolved_horizon=horizon_lit,
             degradation_mode=degradation_mode,
-            processing_confidence_rating=self._confidence_for(horizon, reasons_out),
+            processing_confidence_rating=self._confidence_for(verdict, reasons_out, degradation_mode),
             vin_confidence=request.metadata.vin_confidence.value,  # lld: §3.3; F-C1-9 (T-COMA-8): echoed
             lab_routing_directive=LabRoutingDirectiveOut(
                 suppress_gaslab=directive.suppress_gaslab,
