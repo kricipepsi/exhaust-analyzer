@@ -1277,8 +1277,9 @@ def test_o2_bias_calibrated_by_sensor_type(ontology: dict) -> None:
     assert "O2_SENSOR_BIASED_LOW" not in candidates_wb
 
     # Reading 2: Fits wideband BIASED_LOW signature but not default/narrowband
-    # (co=6.5 is in wideband [5.0, 8.0] but not default [0.5, 3.0])
-    reading_low_wb = _reading(hc=50, co=6.5, co2=14.5, o2=0.1, nox=50)  # lambda is around 0.845
+    # (co=6.5 is in wideband [5.0, 8.0] but not default [0.5, 3.0]).
+    # T-GASA-8 (F-C2-10): CO2 8.5 keeps the triangle sum at 15.1 (was 14.5, sum 21.1, not a valid sample).
+    reading_low_wb = _reading(hc=50, co=6.5, co2=8.5, o2=0.1, nox=50)  # lambda is around 0.784
     candidates_nb_2 = _matching_fault_candidates(reading_low_wb, engine_state, ontology, dna_nb)
     assert "O2_SENSOR_BIASED_LOW" not in candidates_nb_2
 
@@ -1603,4 +1604,28 @@ def test_collision_tier_max_scales_with_catalyst(
     dna = _dna(euro_emission_category=euro, has_catalyst=has_catalyst)
     chem, _ = classify(reading, dna, EngineStateBucket.STABILIZED_IDLE, ontology)
     assert (chem == ChemicalSignature.RICH_MISFIRE) is collision
+
+
+# ---------------------------------------------------------------------------
+# T-GASA-8 — F-C2-10: the wideband O2_SENSOR_BIASED_LOW box is satisfiable inside the triangle gate
+# ---------------------------------------------------------------------------
+
+
+def test_wideband_o2_bias_low_co2_window_follows_triangle(ontology: dict) -> None:
+    """GASWIKI-04 §4.1 sum 14-16 with CO 5-8 and O2 <= 0.3 gives CO2 5.7-11.0."""
+    from gaslab.rule_engine import _calibrate_o2_bias_low_bounds
+
+    sig = ontology["faults"]["O2_SENSOR_BIASED_LOW"]["signature"]
+    wb = _calibrate_o2_bias_low_bounds(sig, _dna(upstream_o2_type="WIDEBAND_LAMBDA"))
+    assert wb["co2"] == {"min": 5.7, "max": 11.0}
+    assert _calibrate_o2_bias_low_bounds(sig, _dna(upstream_o2_type="NARROWBAND")) is sig
+
+
+def test_wideband_o2_bias_low_realistic_sample_is_emitted(ontology: dict) -> None:
+    """F-C2-10 probe: GASWIKI-04 §4.12 sensor bias (λ 0.80, CO 6 %, sum 15.6) is O2_SENSOR_BIASED_LOW / VALID."""
+    reading = _reading(hc=80, co=6.0, co2=9.5, o2=0.1, nox=20)
+    chem, validity = classify(
+        reading, _dna(upstream_o2_type="WIDEBAND_LAMBDA"), EngineStateBucket.STABILIZED_IDLE, ontology
+    )
+    assert (chem, validity) == (ChemicalSignature.O2_SENSOR_BIASED_LOW, SampleValidity.VALID)
 

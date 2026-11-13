@@ -162,6 +162,13 @@ def _calibrate_o2_bias_low_bounds(
         adjusted = dict(signature)
         adjusted["co"] = {"min": 5.0, "max": 8.0}  # wiki: GASWIKI-05 §7.14
         adjusted["lambda"] = {"min": 0.77, "max": 0.85}  # wiki: GASWIKI-05 §7.14
+        # T-GASA-8 (F-C2-10): CO2 follows from the triangle gate, so CO + CO2 + O2 can sit in [14, 16].
+        sum_min, sum_max = 14.0, 16.0  # wiki: GASWIKI-04 §4.1 — VALID triangle sum
+        o2_max = signature["o2"]["max"]
+        adjusted["co2"] = {
+            "min": round(sum_min - adjusted["co"]["max"] - o2_max, 2),
+            "max": round(sum_max - adjusted["co"]["min"], 2),
+        }
         return adjusted
     return signature
 
