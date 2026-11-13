@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-COMA-22` | `repo\labs\comlab\audit_tasks\PROGRESS.md` | **1** | 1 | NO | 10 min | degradation docs |
+| `T-COMA-23` | `repo\labs\comlab\audit_tasks\PROGRESS.md` | **1** | 1 | NO | 10 min | abort banner |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-COMA-22` · owner: `repo\labs\comlab\audit_tasks\PROGRESS.md` · 1/5** — The PRD's GAS_DOMINANT chip copy is true for both causes (no scanner; engine not running), and the PRD §0, HLD §0 and DLD §11.2 / Stage A.5 text state T-COMA-21's rule: GAS_DOMINANT when GASLab or OBD
-  `repo\labs\comlab\audit_tasks/T-COMA-22_degradation_docs(1).md`
+**`T-COMA-23` · owner: `repo\labs\comlab\audit_tasks\PROGRESS.md` · 1/5** — When `execution_meta.degradation_mode` is `FATAL_INCOMPLETE`, the results pane shows a red `st.error` banner "Diagnosis stopped (<error code>): <remediation>" in place of the severity banner.
+  `repo\labs\comlab\audit_tasks/T-COMA-23_abort_banner(1).md`
 
 ## Distribution
 
-- **1/5** — 1: T-COMA-22
+- **1/5** — 1: T-COMA-23
