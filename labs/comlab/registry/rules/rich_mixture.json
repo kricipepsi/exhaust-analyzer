@@ -182,6 +182,52 @@
         "OBD_VOCABULARY \u00a73",
         "DTC_VOCABULARY \u00a74"
       ]
+    },
+    {
+      "rule_id": "RM-005",
+      "fault_family": "rich_mixture",
+      "description": "Saturated EVAP canister purging fuel vapour: GASLab EVAP_CANISTER_SATURATED chemistry.",
+      "chemistry_evidence": [
+        {
+          "state": "EVAP_CANISTER_SATURATED",
+          "tier": "GATING",
+          "wiki_ref": "GAS_WIKI \u00a77.28"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [],
+      "base_weight": 0.9,
+      "competition_group": "rich_mixture",
+      "passes_cases": [
+        "UNIT-COMA27-EVAP_CANISTER_SATURATED"
+      ],
+      "source_wiki_refs": [
+        "GAS_WIKI \u00a77.28",
+        "gaslab/gaslab/family_map.py"
+      ]
+    },
+    {
+      "rule_id": "RM-006",
+      "fault_family": "rich_mixture",
+      "description": "Ruptured fuel-pressure regulator diaphragm drawing fuel into the intake: GASLab VACUUM_REGULATOR_DIAPHRAGM_RUPTURE chemistry.",
+      "chemistry_evidence": [
+        {
+          "state": "VACUUM_REGULATOR_DIAPHRAGM_RUPTURE",
+          "tier": "GATING",
+          "wiki_ref": "GAS_WIKI \u00a77.19"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [],
+      "base_weight": 0.9,
+      "competition_group": "rich_mixture",
+      "passes_cases": [
+        "UNIT-COMA27-VACUUM_REGULATOR_DIAPHRAGM_RUPTURE"
+      ],
+      "source_wiki_refs": [
+        "GAS_WIKI \u00a77.19",
+        "gaslab/gaslab/family_map.py"
+      ]
     }
   ]
 }

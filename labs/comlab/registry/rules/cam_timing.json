@@ -435,6 +435,52 @@
         "GAS_VOCABULARY \u00a72",
         "DTC_VOCABULARY \u00a74"
       ]
+    },
+    {
+      "rule_id": "CT-009",
+      "fault_family": "cam_timing",
+      "description": "Cam phasing retarded on a MAP-sensed (speed-density) engine: GASLab CAM_TIMING_RETARDED_MAP chemistry. The MAP-system twin of CT-001.",
+      "chemistry_evidence": [
+        {
+          "state": "CAM_TIMING_RETARDED_MAP",
+          "tier": "GATING",
+          "wiki_ref": "GAS_WIKI \u00a77.24"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [],
+      "base_weight": 0.9,
+      "competition_group": "cam_timing",
+      "passes_cases": [
+        "UNIT-COMA27-CAM_TIMING_RETARDED_MAP"
+      ],
+      "source_wiki_refs": [
+        "GAS_WIKI \u00a77.24",
+        "gaslab/gaslab/family_map.py"
+      ]
+    },
+    {
+      "rule_id": "CT-010",
+      "fault_family": "cam_timing",
+      "description": "Cam phasing advanced: GASLab CAM_TIMING_ADVANCED chemistry (HC 250-600 ppm at idle, NOx rising and HC falling idle to 2500).",
+      "chemistry_evidence": [
+        {
+          "state": "CAM_TIMING_ADVANCED",
+          "tier": "GATING",
+          "wiki_ref": "GAS_WIKI \u00a77.24"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [],
+      "base_weight": 0.9,
+      "competition_group": "cam_timing",
+      "passes_cases": [
+        "UNIT-COMA27-CAM_TIMING_ADVANCED"
+      ],
+      "source_wiki_refs": [
+        "GAS_WIKI \u00a77.24",
+        "gaslab/gaslab/family_map.py"
+      ]
     }
   ]
 }

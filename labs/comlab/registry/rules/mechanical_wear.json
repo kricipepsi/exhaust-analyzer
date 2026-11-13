@@ -453,6 +453,29 @@
         "OilburnCases.md \u00a7P_NEW_13",
         "GAS_VOCABULARY \u00a73"
       ]
+    },
+    {
+      "rule_id": "MW-010",
+      "fault_family": "mechanical_wear",
+      "description": "Carbon on GDI intake valves: GASLab GDI_INTAKE_VALVE_CARBON chemistry.",
+      "chemistry_evidence": [
+        {
+          "state": "GDI_INTAKE_VALVE_CARBON",
+          "tier": "GATING",
+          "wiki_ref": "GAS_WIKI \u00a77.18"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [],
+      "base_weight": 0.9,
+      "competition_group": "mechanical_wear",
+      "passes_cases": [
+        "UNIT-COMA27-GDI_INTAKE_VALVE_CARBON"
+      ],
+      "source_wiki_refs": [
+        "GAS_WIKI \u00a77.18",
+        "gaslab/gaslab/family_map.py"
+      ]
     }
   ]
 }

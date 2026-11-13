@@ -136,6 +136,29 @@
         "GAS_VOCABULARY §2",
         "GAS_VOCABULARY §3"
       ]
+    },
+    {
+      "rule_id": "IF-004",
+      "fault_family": "ignition_fault",
+      "description": "Ignition timing over-advanced: GASLab TIMING_OVER_ADVANCED chemistry.",
+      "chemistry_evidence": [
+        {
+          "state": "TIMING_OVER_ADVANCED",
+          "tier": "GATING",
+          "wiki_ref": "GAS_WIKI §7.12"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [],
+      "base_weight": 0.9,
+      "competition_group": "ignition_fault",
+      "passes_cases": [
+        "UNIT-COMA27-TIMING_OVER_ADVANCED"
+      ],
+      "source_wiki_refs": [
+        "GAS_WIKI §7.12",
+        "gaslab/gaslab/family_map.py"
+      ]
     }
   ]
 }

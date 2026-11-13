@@ -349,6 +349,52 @@
         "GAS_VOCABULARY \u00a73",
         "DTC_VOCABULARY \u00a74"
       ]
+    },
+    {
+      "rule_id": "MF-007",
+      "fault_family": "misfire",
+      "description": "Misfire from excess EGR dilution: GASLab EGR_DILUTION_MISFIRE chemistry.",
+      "chemistry_evidence": [
+        {
+          "state": "EGR_DILUTION_MISFIRE",
+          "tier": "GATING",
+          "wiki_ref": "GAS_WIKI \u00a77.29"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [],
+      "base_weight": 0.9,
+      "competition_group": "misfire",
+      "passes_cases": [
+        "UNIT-COMA27-EGR_DILUTION_MISFIRE"
+      ],
+      "source_wiki_refs": [
+        "GAS_WIKI \u00a77.29",
+        "gaslab/gaslab/family_map.py"
+      ]
+    },
+    {
+      "rule_id": "MF-008",
+      "fault_family": "misfire",
+      "description": "EGR valve stuck open, idle dilution misfire: GASLab EGR_STUCK_OPEN chemistry.",
+      "chemistry_evidence": [
+        {
+          "state": "EGR_STUCK_OPEN",
+          "tier": "GATING",
+          "wiki_ref": "GAS_WIKI \u00a77.26"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [],
+      "base_weight": 0.9,
+      "competition_group": "misfire",
+      "passes_cases": [
+        "UNIT-COMA27-EGR_STUCK_OPEN"
+      ],
+      "source_wiki_refs": [
+        "GAS_WIKI \u00a77.26",
+        "gaslab/gaslab/family_map.py"
+      ]
     }
   ]
 }

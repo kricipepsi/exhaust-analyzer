@@ -47,9 +47,10 @@ def test_ruleset_validates():
     assert rs.fault_family == FaultFamily.MECHANICAL_WEAR
 
 
-def test_exactly_nine_rules():
+def test_exactly_ten_rules():
+    """9 curated rules plus MW-010 (T-COMA-27)."""
     rs = _load_ruleset()
-    assert len(rs.rules) == 9, f"Expected 9 rules, got {len(rs.rules)}"
+    assert len(rs.rules) == 10, f"Expected 10 rules, got {len(rs.rules)}"
 
 
 def test_no_duplicate_rule_ids():
@@ -77,6 +78,10 @@ def test_all_case_ids_resolve():
     orphans = []
     for rule in rs.rules:
         for cid in rule.passes_cases:
+            # T-COMA-27: a UNIT-COMA27-<STATE> case has no corpus row; tests/unit/test_t_coma_27_unrouted_states.py
+            # executes it.
+            if cid.startswith("UNIT-COMA27-"):
+                continue
             if cid not in corpus_ids:
                 orphans.append(f"{rule.rule_id}: {cid}")
     assert not orphans, f"Orphan case refs: {orphans}"

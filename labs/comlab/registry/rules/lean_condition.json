@@ -157,6 +157,52 @@
         "OBD_VOCABULARY \u00a72",
         "DTC_VOCABULARY \u00a74"
       ]
+    },
+    {
+      "rule_id": "LC-004",
+      "fault_family": "lean_condition",
+      "description": "EGR valve stuck closed, high combustion temperature lean-side signature: GASLab EGR_STUCK_CLOSED chemistry.",
+      "chemistry_evidence": [
+        {
+          "state": "EGR_STUCK_CLOSED",
+          "tier": "GATING",
+          "wiki_ref": "GAS_WIKI \u00a77.25"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [],
+      "base_weight": 0.9,
+      "competition_group": "lean_condition",
+      "passes_cases": [
+        "UNIT-COMA27-EGR_STUCK_CLOSED"
+      ],
+      "source_wiki_refs": [
+        "GAS_WIKI \u00a77.25",
+        "gaslab/gaslab/family_map.py"
+      ]
+    },
+    {
+      "rule_id": "LC-005",
+      "fault_family": "lean_condition",
+      "description": "High combustion temperature (high NOx) lean-side signature: GASLab HIGH_COMBUSTION_TEMP chemistry.",
+      "chemistry_evidence": [
+        {
+          "state": "HIGH_COMBUSTION_TEMP",
+          "tier": "GATING",
+          "wiki_ref": "GAS_WIKI \u00a77.8"
+        }
+      ],
+      "obd_evidence": [],
+      "dtc_evidence": [],
+      "base_weight": 0.9,
+      "competition_group": "lean_condition",
+      "passes_cases": [
+        "UNIT-COMA27-HIGH_COMBUSTION_TEMP"
+      ],
+      "source_wiki_refs": [
+        "GAS_WIKI \u00a77.8",
+        "gaslab/gaslab/family_map.py"
+      ]
     }
   ]
 }

@@ -35,9 +35,10 @@ def test_ruleset_validates():
     assert rs.fault_family.value == "cam_timing"
 
 
-def test_exactly_eight_rules():
+def test_exactly_ten_rules():
+    """8 curated rules plus CT-009 and CT-010 (T-COMA-27)."""
     rs = _load_ruleset()
-    assert len(rs.rules) == 8, f"Expected 8 rules, got {len(rs.rules)}"
+    assert len(rs.rules) == 10, f"Expected 10 rules, got {len(rs.rules)}"
 
 
 def test_no_duplicate_rule_ids():
