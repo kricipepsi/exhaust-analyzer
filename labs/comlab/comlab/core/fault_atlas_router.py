@@ -77,9 +77,9 @@ _P030X_RE = re.compile(r"^P030[0-9]$")  # lld: §6.4 catalyst-damage DTC pattern
 # HIGH_ASSURANCE vs DEGRADED_ASSURANCE labeling at route() line ~810.
 MIN_CONFIDENCE_THRESHOLD: float = 0.70  # lld: §6.4
 
-# v3 metrics: top-3 + abstain thresholds from T-V3-0 report (v3/reports/V3_TOPK_CEILING_2026-06-30.md §6)
-ABSTAIN_FLOOR: float = 0.80  # winner_score below this -> abstain
-ABSTAIN_MARGIN: float = 0.02  # top1 - top2 within this -> abstain
+# Abstain thresholds and their sources: wiki 09_calibration_confidence.md §CONCEPT_ABSTAIN (F-D1-12, T-COMA-16)
+ABSTAIN_FLOOR: float = 0.80  # wiki: 09_calibration_confidence.md §CONCEPT_ABSTAIN; winner_score below this -> abstain
+ABSTAIN_MARGIN: float = 0.02  # wiki: 09_calibration_confidence.md §CONCEPT_ABSTAIN; top1 - top2 within this -> abstain
 _MARGIN_EPSILON: float = 1e-9  # T-COMA-12 (F-C1-19): absorb binary float noise, as the shim's _FLOAT_EPSILON
 _OPEN_LOOP_TRIM_CONFIDENCE_CAP = 0.60  # wiki: 08_scoring_to_fusion_rework.md §CONCEPT_EVIDENCE_INPUTS
 # below MIN_CONFIDENCE_THRESHOLD so open-loop trim evidence cannot win.

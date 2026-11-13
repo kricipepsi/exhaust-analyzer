@@ -63,6 +63,22 @@ Gate-Data calibration sets them):
 The symptom prior is capped as a **moderate-LR ceiling** so it can never push a tier on its own
 (`COMWIKI-10` `RULE_SYMPTOM_PRIOR`).
 
+## Abstain thresholds {#CONCEPT_ABSTAIN}
+
+COMLab marks a verdict `abstained` (it declines to name one fault) in three cases. The production values are
+measured operating points, not calibrated posteriors. They are expert priors until Gate-Data calibration sets
+them, like the tier bands above.
+
+| Constant | Value | Rule | Source |
+|---|---|---|---|
+| `ABSTAIN_FLOOR` | 0.80 | the winner's score is below the floor: abstain, reason `floor` | `v3/reports/V3_TOPK_CEILING_2026-06-30.md` §6 ("abstain_floor at winner_score <0.80"); the same edge as the `HIGH_ASSURANCE` band |
+| `ABSTAIN_MARGIN` | 0.02 | the winner and the best rule of a **different** family are within the margin: abstain, reason `margin` | owner-picked operating point of T-V3-3D (`v3/V3_PROGRESS.md`), from the margin sweep in `v3/reports/V3_ABSTAIN_CHECKPOINT_2026-07-01.md` Tier 3 (0.02: coverage 77.89 %, 229 of 294) |
+| `_MARGIN_EPSILON` | 1e-9 | float noise is absorbed at the margin edge (0.82 − 0.80 abstains) | T-COMA-12 (F-C1-19); the shim's `_FLOAT_EPSILON` convention |
+
+A run where no rule fires at all keeps the no-fault verdict and abstains with reason `no_rule` (T-COMA-6, F-C1-1).
+The engine certifies health only when NF-001/NF-002 fires. The V3 checkpoint measured the floor as inert (0 of 297
+cases below 0.80); margin drives almost all abstention.
+
 ## Verification metrics {#CONCEPT_CALIB_METRICS}
 
 A confidence claim ships only with the calibration evidence (`COMWIKI-12` success criteria):
@@ -82,6 +98,7 @@ subset (`COMWIKI-12`).
 **CONCEPT_CONF_TIER** REDEFINED_AS **posterior/LR bands** (not evidence completeness)
 **CONCEPT_CONFORMAL** GUARANTEES **finite-sample coverage** FOR **CONCEPT_DIFFERENTIAL (COMWIKI-10)**
 **CONCEPT_CALIB_METRICS** (reliability/ECE/Brier) GATE **any accuracy claim**
+**CONCEPT_ABSTAIN** DECIDES **abstained / abstain_reason** ON **DiagnosticVerdict** (floor, margin, no_rule)
 
 ## Core Entities
 
@@ -89,3 +106,4 @@ subset (`COMWIKI-12`).
 - **CONCEPT_CONF_TIER** — Posterior/likelihood-ratio bands mapping diagnostic confidence. Consumer: `comlab/core/lab_pipeline_aggregator.py (proposed)`.
 - **CONCEPT_CONFORMAL** — Conformal prediction sets guaranteeing finite-sample coverage. Consumer: `comlab/core/lab_pipeline_aggregator.py (proposed)`.
 - **CONCEPT_CALIB_METRICS** — Expected calibration error and reliability verification metrics. Consumer: `COMLab validation`.
+- **CONCEPT_ABSTAIN** — Abstain floor, family-aware margin and no-rule abstention. Consumer: `comlab/core/fault_atlas_router.py` (`ABSTAIN_FLOOR`, `ABSTAIN_MARGIN`, `_within_abstain_margin`).
