@@ -43,7 +43,7 @@ Parts of this document predate the shipped package. Where the text and this tabl
 ---
 
 ## Feature: Contract validation at the ingestion gate
-*Tests: `unit/test_lab_pipeline_aggregator.py`, `unit/test_vocabulary_sae_iso_conformance.py`*
+*Tests: `unit/test_lab_pipeline_aggregator.py` (the two validation tests), `unit/test_t_coma_19_known_horizon.py`, `unit/test_vocabulary_sae_iso_conformance.py`*
 
 ```gherkin
 Scenario: A well-formed payload is accepted
@@ -72,7 +72,7 @@ Scenario: A downstream trim role without a downstream sensor is rejected
 ---
 
 ## Feature: Stage-A fatal gates honour suppression
-*Tests: `unit/test_fatal_gate_wiring.py`, `unit/test_lab_pipeline_aggregator.py`*
+*Tests: `unit/test_fatal_gate_wiring.py`, `unit/test_t_coma_17_gas_sample_reasons.py`, `apps/wired/tests/test_fatal_gate.py`*
 
 ```gherkin
 Scenario: An invalid gas sample aborts the session
