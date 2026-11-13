@@ -7,6 +7,7 @@ import streamlit as st
 
 from wired.composition import decode_vehicle, diagnose
 from ui_payload import (
+    abort_banner,
     build_diagnose_payload,
     distinct_family_siblings,
     horizon_meaning,
@@ -910,8 +911,12 @@ with col_verdict:
         analytics = res.performance_analytics
 
         # Severity ribbon (PRD 5.1) and the skipped-lab disclosure (PRD 5.6); T-AUD-10d
-        sev_kind, sev_text = severity_banner(analytics.severity_level)
-        getattr(st, sev_kind)(sev_text)
+        # An aborted session gets a red error banner, never the green "No fault detected." (T-COMA-23, F-D2-7)
+        if meta.degradation_mode == "FATAL_INCOMPLETE":
+            st.error(abort_banner(verdict))
+        else:
+            sev_kind, sev_text = severity_banner(analytics.severity_level)
+            getattr(st, sev_kind)(sev_text)
         for notice in routing_notices(meta.lab_routing_directive):
             st.info(notice)
 

@@ -1337,6 +1337,11 @@ def severity_banner(level: str) -> tuple[str, str]:
     return SEVERITY_BANNER[level]
 
 
+def abort_banner(verdict: Any) -> str:
+    """Red banner copy for an aborted session: the error code and the remediation (PRD 5.1; T-COMA-23, F-D2-7)."""
+    return f"Diagnosis stopped ({verdict.fault_code}): {verdict.actionable_remediation}"
+
+
 def routing_notices(directive: Any) -> list[str]:
     """Return the PRD 5.6 notice for every true LabRoutingDirective flag, then one per gas-sample reason (T-COMA-17)."""
     reasons = {str(r) for r in getattr(directive, "reasons", None) or ()}
