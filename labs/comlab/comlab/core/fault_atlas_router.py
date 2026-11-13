@@ -1022,8 +1022,9 @@ class FaultAtlasRouter:
 
             # Phase 3 — OBD operator checks
             dtc_output: Any = request.dtc_lab_output
-            confirmed_dtcs: set[str] = set(dtc_output.confirmed_dtcs)
-            active_mil: bool = dtc_output.active_mil
+            # T-COMA-20 (F-C1-16): no DTCLab output means no codes and no MIL, as on the v2 path.
+            confirmed_dtcs: set[str] = set(dtc_output.confirmed_dtcs) if dtc_output is not None else set()
+            active_mil: bool = bool(dtc_output.active_mil) if dtc_output is not None else False
 
             with tracer.start_as_current_span("phase.obd_eval") as obd_span:
                 obd_span.set_attribute("router.candidates_in", len(candidates))
