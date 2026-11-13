@@ -68,3 +68,25 @@ def test_thin_evidence_on_other_gas_is_unchanged(case_id, family):
     v = diagnose(raw).diagnostic_verdict
     assert v.fault_family == family
     assert v.is_fault_detected is True
+
+
+def _synthetic(chem_tier, with_obd: bool):
+    """CF-002 reshaped: its NORMAL_OPERATION chemistry row at ``chem_tier``, optionally LC-002's map_kpa row, no DTC."""
+    from registry.schema_v2 import EvidenceTier
+
+    base, obs = _rule_and_obs("CF-002")
+    lc002, _ = _rule_and_obs("LC-002")
+    chem = base.chemistry_evidence[0].model_copy(update={"tier": getattr(EvidenceTier, chem_tier)})
+    obd = [e for e in lc002.obd_evidence if e.pid == "map_kpa"] if with_obd else []
+    return base.model_copy(update={"chemistry_evidence": [chem], "obd_evidence": obd, "dtc_evidence": []}), obs
+
+
+@pytest.mark.parametrize(("chem_tier", "with_obd"), [("DEFINITIVE", False), ("SUGGESTIVE", False), ("GATING", True)])
+def test_normal_row_alone_or_as_anchor_does_not_fire(chem_tier, with_obd):
+    """NEW (correction 1): a rule whose only support row is NORMAL_OPERATION, or a GATING NORMAL row plus one weak
+    row, does not fire on healthy gas, and the prune is attributed as weak support."""
+    from registry.integration_shim import _prune_attribution, _score_rule
+
+    rule, obs = _synthetic(chem_tier, with_obd)
+    assert _score_rule(rule, obs) is None
+    assert _prune_attribution(rule, obs) == ("missing_evidence", "weak_support_only")

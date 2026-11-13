@@ -979,11 +979,8 @@ def _strict_support(rule: Rule, obs: _Observation) -> bool:
     """
     if obs.chemistry_state is not ChemistryState.NORMAL_OPERATION:
         return True
-    rows = [
-        (e.tier, _check_chemistry_evidence(e, obs), None)
-        for e in rule.chemistry_evidence
-        if e.state is not ChemistryState.NORMAL_OPERATION  # the healthy reading is not evidence of a fault
-    ]
+    normal = ChemistryState.NORMAL_OPERATION  # the healthy reading is a row, never evidence of a fault
+    rows = [(e.tier, e.state is not normal and _check_chemistry_evidence(e, obs), None) for e in rule.chemistry_evidence]
     rows += [(e.tier, _check_obd_evidence(e, obs), None) for e in rule.obd_evidence]
     rows += [(e.tier, _check_dtc_evidence(e, obs), e.strategy) for e in rule.dtc_evidence]
     support = [r for r in rows if r[0] != EvidenceTier.GATING]
@@ -993,7 +990,8 @@ def _strict_support(rule: Rule, obs: _Observation) -> bool:
     if any(t == EvidenceTier.DEFINITIVE or st in ("any_match", "all_match") for t, _s, st in sat):
         return True
     chem_gate = any(
-        e.tier == EvidenceTier.GATING and _check_chemistry_evidence(e, obs) for e in rule.chemistry_evidence
+        e.tier == EvidenceTier.GATING and e.state is not normal and _check_chemistry_evidence(e, obs)
+        for e in rule.chemistry_evidence
     )
     return len(sat) >= 2 or (chem_gate and len(sat) >= 1)
 
