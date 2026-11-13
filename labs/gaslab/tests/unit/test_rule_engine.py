@@ -1586,20 +1586,21 @@ def test_coc_probe_reading_ignores_coc_below_high(ontology: dict) -> None:
 
 
 @pytest.mark.parametrize(
-    ("co", "co2", "has_catalyst", "collision"),
+    ("co", "co2", "euro", "has_catalyst", "collision"),
     [
-        (1.2, 11.5, True, True),  # vocab: GAS_VOCABULARY §10.2 — with cat, tier_max 0.45
-        (1.2, 11.5, False, False),  # vocab: GAS_VOCABULARY §10.2 — Euro 1 no-cat, tier_max 1.5 (F-C2-9 probe)
-        (1.5, 11.2, False, False),  # at the no-cat tier_max: not above it
-        (1.51, 11.2, False, True),  # just above the no-cat tier_max
+        (1.2, 11.5, "Euro 4", True, True),  # vocab: GAS_VOCABULARY §10.2 — Euro 4 + cat, tier_max 0.45
+        (1.2, 11.5, "Euro 1", True, True),  # catalyst presence alone picks the tier (T-GASA-7 ruling)
+        (1.2, 11.5, "Euro 1", False, False),  # vocab: GAS_VOCABULARY §10.2 — Euro 1 no-cat, tier_max 1.5 (F-C2-9 probe)
+        (1.5, 11.2, "Euro 1", False, False),  # at the no-cat tier_max: not above it
+        (1.51, 11.2, "Euro 1", False, True),  # just above the no-cat tier_max
     ],
 )
 def test_collision_tier_max_scales_with_catalyst(
-    ontology: dict, co: float, co2: float, has_catalyst: bool, collision: bool
+    ontology: dict, co: float, co2: float, euro: str, has_catalyst: bool, collision: bool
 ) -> None:
     """vocab §10.2: tier_max is the active DNA-scaled tier (Euro 4 + cat 0.45, Euro 1 no-cat 1.5)."""
     reading = _reading(hc=150, co=co, co2=co2, o2=2.4, nox=40)  # O2 > 2.0: wiki: GAS_WIKI §8.5
-    dna = _dna(euro_emission_category="Euro 1", has_catalyst=has_catalyst)
+    dna = _dna(euro_emission_category=euro, has_catalyst=has_catalyst)
     chem, _ = classify(reading, dna, EngineStateBucket.STABILIZED_IDLE, ontology)
     assert (chem == ChemicalSignature.RICH_MISFIRE) is collision
 
