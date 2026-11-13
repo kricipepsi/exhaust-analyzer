@@ -390,6 +390,17 @@ def _ff_cold(ff: dict[str, Any]) -> bool:
         return False
 
 
+_OPEN_LOOP_STATUSES = frozenset({"OL", "OL_DRIVE", "OL_FAULT"})  # wiki: DTC_VOCABULARY §8 FuelSystemStatus
+
+
+def _open_loop(block: dict[str, Any]) -> bool:
+    """F-C1-8 (T-COMA-13): True when the block reports an open fuel loop; its trims then carry no O2 feedback."""
+    status = block.get("fuel_system_status")
+    if status is None:
+        return False
+    return str(getattr(status, "value", status)) in _OPEN_LOOP_STATUSES
+
+
 def _trims_blocked(obd: dict[str, Any]) -> bool:
     """True when ``obd_live_data`` carries a ``trim_analytics_gate`` other than VALID."""
     gate = obd.get("trim_analytics_gate")
@@ -409,7 +420,7 @@ def _resolve_single_source(payload: dict[str, Any], source: str, field: str) -> 
         # trim_analytics_gate "Suppresses trim findings when blocked"
         # (OBD_VOCABULARY.md). Only the live trims are gated: the "ff" source is the
         # ECU's own snapshot and keeps the fallback.
-        if field in _GATED_LIVE_TRIMS and _trims_blocked(obd):
+        if field in _GATED_LIVE_TRIMS and (_trims_blocked(obd) or _open_loop(obd)):
             return None
         val = obd.get(field)
     elif source == "perception":
@@ -425,8 +436,8 @@ def _resolve_single_source(payload: dict[str, Any], source: str, field: str) -> 
     elif source == "ff":
         dtc = payload.get("dtc_lab_output") or {}
         ff = dtc.get("freeze_frame") or {}
-        # Trims captured on a cold engine are open-loop and not scored.
-        if field in _FF_TRIM_FIELDS and _ff_cold(ff):
+        # Trims captured on a cold engine or in a reported open loop are not scored (F-C1-8).
+        if field in _FF_TRIM_FIELDS and (_ff_cold(ff) or _open_loop(ff)):
             return None
         val = ff.get(field)
     else:  # pragma: no cover — _PID_DISPATCH is closed
