@@ -42,6 +42,7 @@ reasoning_grammar:
       sum > 16 → EXHAUST_AIR_LEAK.  EXHAUST_AIR_LEAK path additionally requires
       HC Normal (§7.7) — high HC with the collision pattern is RICH_MISFIRE.
     co_tier_max: 0.45             # vocab: GAS_VOCABULARY §10.2 — Euro 4 with cat
+    co_tier_max_no_cat: 1.5       # vocab: GAS_VOCABULARY §10.2 — Euro 1 no-cat (mild_rich.max); used when has_catalyst is false
     o2_threshold: 2.0             # wiki: GAS_WIKI §8.5
     triangle_sum_threshold: 16.0  # wiki: GAS_WIKI §8.5 — sum > 16 → EXHAUST_AIR_LEAK, ≤ 16 → RICH_MISFIRE
     hc_max: 100                   # wiki: GAS_WIKI §7.7 — EXHAUST_AIR_LEAK requires HC Normal; vocab: GAS_VOCABULARY §10.1 normal_borderline.max

@@ -356,7 +356,12 @@ def _definitive_match(
     # Collision rule — wiki: GAS_WIKI §8.5 (priority 80)
     collision = grammar.get("collision_rule", {})
     if (
-        reading.co > collision.get("co_tier_max", 0.45)  # wiki: GAS_WIKI §8.5
+        # T-GASA-7 (F-C2-9): tier_max is the active DNA-scaled tier — with cat normal_with_cat.max, without mild_rich.max.
+        reading.co > (
+            collision.get("co_tier_max", 0.45)  # vocab: GAS_VOCABULARY §10.2 normal_with_cat.max — Euro 4 with cat
+            if dna.has_catalyst
+            else collision.get("co_tier_max_no_cat", 1.5)  # vocab: GAS_VOCABULARY §10.2 mild_rich.max — Euro 1 no-cat
+        )
         and reading.o2 > collision.get("o2_threshold", 2.0)  # wiki: GAS_WIKI §8.5
     ):
         volumetric_sum = reading.co + reading.co2 + reading.o2  # wiki: GAS_WIKI §6.1
