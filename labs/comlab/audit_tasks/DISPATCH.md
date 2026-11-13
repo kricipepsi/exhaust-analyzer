@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-COMA-19` | `repo\labs\comlab\audit_tasks\PROGRESS.md` | **1** | 1 | NO | 10 min | known horizon |
+| `T-COMA-20` | `repo\labs\comlab\audit_tasks\PROGRESS.md` | **1** | 1 | NO | 10 min | v1 without dtc |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-COMA-19` · owner: `repo\labs\comlab\audit_tasks\PROGRESS.md` · 1/5** — `SessionMetadata.resolved_horizon` is upper-cased and stripped, and a value that is not `HORIZON_LEGACY`, `HORIZON_ADAPTIVE` or `HORIZON_MODERN` is a `ValidationError`.
-  `repo\labs\comlab\audit_tasks/T-COMA-19_known_horizon(1).md`
+**`T-COMA-20` · owner: `repo\labs\comlab\audit_tasks\PROGRESS.md` · 1/5** — On the v1 path (`use_v2_registry=False`), `FaultAtlasRouter`'s Phase 3 reads no codes and no MIL when `request.dtc_lab_output` is `None`, instead of raising `AttributeError`.
+  `repo\labs\comlab\audit_tasks/T-COMA-20_v1_without_dtc(1).md`
 
 ## Distribution
 
-- **1/5** — 1: T-COMA-19
+- **1/5** — 1: T-COMA-20
