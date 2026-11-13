@@ -29,6 +29,8 @@ Code row in the app clone `C:/4DApp/repo`, on branch `fix/T-COMA-15` (built on t
 - **Expected wall-clock: 15 min.** Stop rule: at 30 min, write `## Time` and a partial RESULT, then stop.
 - **Plan: NONE.** One scripted edit and one new test, rehearsed (`C:/4DApp/recheck/T-COMA-15/rehearsal.patch`).
 - **Skills:** `C:/4DApp/.claude/skills/writing-4dapp-python-code/SKILL.md`
+- **Correction 1 (2026-11-13, second review of `e8f1e84`): this dispatch is the revision only.** R1-R5 are built in
+  `e8f1e84`; do R6 and R7, then one new commit. Expected wall-clock 10 min; stop rule 20 min.
 
 ### Goal ###
 A sensor that reads lean (OBD λ leaner than the chemistry, `lambda_perception_delta > +tolerance`) is
@@ -41,7 +43,7 @@ counts.
 | id | value | population | command |
 |---|---|---|---|
 | P1 | comlab `510 passed, 4 skipped`; wired `170 passed`; ui `70 passed` | base `68dd691` | step 1 on the base |
-| P2 | after the edit: comlab `510 passed, 4 skipped`; wired `176 passed`; the new test `6 passed` (`4 failed, 2 passed` on the base code); ui `70 passed`; ruff clean on the five files step 5 names; `git diff --stat 68dd691 HEAD -- labs/comlab/comlab labs/comlab/registry labs/comlab/tests apps` `6 files changed, 76 insertions(+), 35 deletions(-)` | Cowork's rehearsal | `C:/4DApp/recheck/T-COMA-15/rehearsal.patch` plus the test |
+| P2 | after correction 1: comlab `510 passed, 4 skipped`; wired `176 passed`; the new test `6 passed` (`2 failed, 4 passed` with the corrected test on `e8f1e84`'s rules); ui `70 passed`; ruff clean on the five files step 5 names; `git diff --stat e8f1e84 HEAD -- labs/comlab/comlab labs/comlab/registry labs/comlab/tests apps` `2 files changed, 10 insertions(+), 7 deletions(-)` | Cowork's rehearsal | `C:/4DApp/recheck/T-COMA-15/rehearsal.patch` plus the test |
 | P3 | v7 corpus: `vs before 18 of 314`, `vs expected 0 of 314` (18 SF-001/SF-002 swaps, plus EXP-N005 CF-001 → SF-001; family accuracy 216 equal) | `repo/audit/scratch/C5` | step 4 |
 
 `$PY` is `C:/4DApp/.venv/Scripts/python.exe`. Every file under `C:/4DApp/recheck/T-COMA-15/` except `pt/` is
@@ -68,7 +70,15 @@ them, run `rehearse.py`, copy the test, do not edit any of them.
   labs/comlab/registry/rules/sensor_fault.json`, run step 2 (`4 failed, 2 passed`), `git stash pop`. Mutant A: swap
   the two `bias_verdict=` labels back, run step 2 (`2 failed, 4 passed`). Mutant B: put SF-001's delta row back to
   `gt 0.03` and SF-002's to `lt -0.03`, run step 2 (`2 failed, 4 passed`). Put each back by hand (the edit is not
-  committed yet, so not `git restore`). Record the three results and the restored `git diff --stat`.
+  committed yet, so not `git restore`). Record the three results and the restored `git diff --stat`. (Done in `e8f1e84`.)
+- **R6 correction 1** (from the second review, re-derived by Cowork): `rule.description` is the verdict's
+  `fault_name` and the source of its headline. SF-001 must say `(sensor reads falsely rich, ECU under-fuels)` and SF-002
+  `(sensor reads falsely lean, ECU over-fuels)`. Route: `$PY -I C:/4DApp/recheck/T-COMA-15/correct1.py` from
+  `C:/4DApp/repo`, then copy `C:/4DApp/recheck/T-COMA-15/test_t_coma_15_o2_bias_direction_c1.py` over
+  `apps/wired/tests/test_t_coma_15_o2_bias_direction.py` (`cp`, then `cmp`). It also pins each delta row's value and
+  tier.
+- **R7 base failure for R6:** with the corrected test copied and before `correct1.py`, step 2 gives `2 failed, 4 passed`.
+  Add a `## Correction 1` section to the note (R7, the gate, `## Time`) and update the RESULT; both stay uncommitted.
 
 ### First action ###
 ```bash
@@ -76,14 +86,16 @@ cd C:/4DApp/repo && git branch --show-current && git log --oneline 68dd691..HEAD
 ```
 ```
 fix/T-COMA-15
-<Cowork's spec(T-COMA-15) commit>
+<Cowork's spec(T-COMA-15) correction 1 commit>
+e8f1e84 fix(T-COMA-15): O2 bias label and SF-001/SF-002 delta rows follow the lean/rich direction (F-D2-1)
+4de9540 coma: spec(T-COMA-15): O2 bias direction in the perception label and SF-001/SF-002 rows (F-D2-1)
 ```
-`git status --porcelain` prints nothing. Anything else is a stop.
+`git status --porcelain` lists only `?? .../progress_notes/T-COMA-15.md` and `?? .../results/RESULT_T-COMA-15.md`.
+Anything else is a stop.
 
 ### Success criteria ###
-1. Steps 1-4 report the P2 and P3 counts; R5 gives base `4 failed, 2 passed`, and mutants A and B `2 failed, 4
-   passed` each.
-2. Step 5: ruff clean, the P2 diff stat, one new commit on `fix/T-COMA-15` after the spec commit, and
+1. Steps 1-4 report the P2 and P3 counts; R7 gives `2 failed, 4 passed`.
+2. Step 5: ruff clean, the P2 diff stat, one new commit on `fix/T-COMA-15` after the correction spec commit, and
    `git status --porcelain` lists only the note and the RESULT.
 
 ### Context ###
@@ -97,28 +109,24 @@ fix/T-COMA-15
 
 ### Preconditions ###
 ```bash
-cd C:/4DApp/repo && for p in labs/comlab/comlab/core/perception_contradiction.py labs/comlab/registry/rules/sensor_fault.json labs/comlab/tests/unit/test_perception_contradiction.py labs/comlab/tests/e2e/test_real_routing.py apps/wired/tests/test_oil_cases.py C:/4DApp/recheck/T-COMA-15/rehearse.py C:/4DApp/recheck/T-COMA-15/test_t_coma_15_o2_bias_direction.py C:/4DApp/recheck/T-COMA-15/before.json C:/4DApp/recheck/T-COMA-15/expected_after.json C:/4DApp/recheck/T-COMA-6/verdicts.py; do test -f "$p" || echo "MISSING $p"; done; echo checked
+cd C:/4DApp/repo && for p in labs/comlab/comlab/core/perception_contradiction.py labs/comlab/registry/rules/sensor_fault.json labs/comlab/tests/unit/test_perception_contradiction.py labs/comlab/tests/e2e/test_real_routing.py apps/wired/tests/test_oil_cases.py C:/4DApp/recheck/T-COMA-15/rehearse.py C:/4DApp/recheck/T-COMA-15/test_t_coma_15_o2_bias_direction.py C:/4DApp/recheck/T-COMA-15/before.json C:/4DApp/recheck/T-COMA-15/expected_after.json C:/4DApp/recheck/T-COMA-6/verdicts.py C:/4DApp/recheck/T-COMA-15/correct1.py C:/4DApp/recheck/T-COMA-15/test_t_coma_15_o2_bias_direction_c1.py; do test -f "$p" || echo "MISSING $p"; done; echo checked
 ```
 Expected: `checked`, and no `MISSING` line.
 
 ### Deliverables ###
-1. One new commit on `fix/T-COMA-15`: R1-R4.
-2. `repo/labs/comlab/audit_tasks/progress_notes/T-COMA-15.md` (with the R5 results).
+1. One new commit on `fix/T-COMA-15`: R6 (R1-R4 are `e8f1e84`).
+2. `repo/labs/comlab/audit_tasks/progress_notes/T-COMA-15.md` (with the R5 results and the R7 correction section).
 3. `repo/labs/comlab/audit_tasks/results/RESULT_T-COMA-15.md`.
 
 ### Files to touch ###
-- `repo/labs/comlab/comlab/core/perception_contradiction.py` (MODIFY: R1)
-- `repo/labs/comlab/registry/rules/sensor_fault.json` (MODIFY: R2)
-- `repo/labs/comlab/tests/unit/test_perception_contradiction.py` (MODIFY: R3)
-- `repo/labs/comlab/tests/e2e/test_real_routing.py` (MODIFY: R3)
-- `repo/apps/wired/tests/test_oil_cases.py` (MODIFY: R3)
-- `repo/apps/wired/tests/test_t_coma_15_o2_bias_direction.py` (CREATE: R4)
-- `repo/labs/comlab/audit_tasks/progress_notes/T-COMA-15.md` (CREATE)
-- `repo/labs/comlab/audit_tasks/results/RESULT_T-COMA-15.md` (CREATE)
+- `repo/labs/comlab/registry/rules/sensor_fault.json` (MODIFY: R6)
+- `repo/apps/wired/tests/test_t_coma_15_o2_bias_direction.py` (MODIFY: R6)
+- `repo/labs/comlab/audit_tasks/progress_notes/T-COMA-15.md` (MODIFY: R7)
+- `repo/labs/comlab/audit_tasks/results/RESULT_T-COMA-15.md` (MODIFY: R7)
 - `C:/4DApp/recheck/T-COMA-15/pt/` (RUNTIME: pytest `--basetemp`, corpus output)
 
 ### Out of scope ###
-- The rule descriptions' wording (SF-001 "slow/lazy response — biased high"), the e2e mock names, the KG and UI copy,
+- The rest of the rule descriptions' wording (SF-001 "slow/lazy response"), the e2e mock names, the KG and UI copy,
   and the D2 probe file: later rows, register `repo/labs/comlab/audit_tasks/PROGRESS.md`. F-D2-2, 3, 4.
 - Pushing, merging or deploying: Cowork pushes `fix/T-COMA-15` after acceptance; the operator merges.
 
@@ -140,14 +148,14 @@ grep -n "bias_verdict=ChemicalSignature" labs/comlab/comlab/core/perception_cont
 # 4.
 (cd audit/scratch/C5 && timeout 280 $PY C:/4DApp/recheck/T-COMA-6/verdicts.py </dev/null > C:/4DApp/recheck/T-COMA-15/pt/after.json) && $PY -c "import json; r='C:/4DApp/recheck/T-COMA-15/'; a=json.load(open(r+'before.json')); e=json.load(open(r+'expected_after.json')); b=json.load(open(r+'pt/after.json')); print('vs before', sum(a[k]!=b.get(k) for k in a), 'of', len(b)); print('vs expected', sum(e[k]!=b.get(k) for k in e), 'of', len(b))"
 # 5.
-timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check labs/comlab/comlab/core/perception_contradiction.py labs/comlab/tests/unit/test_perception_contradiction.py labs/comlab/tests/e2e/test_real_routing.py apps/wired/tests/test_oil_cases.py apps/wired/tests/test_t_coma_15_o2_bias_direction.py; git diff --stat 68dd691 HEAD -- labs/comlab/comlab labs/comlab/registry labs/comlab/tests apps; git log --oneline 68dd691..HEAD; git status --porcelain
+timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check labs/comlab/comlab/core/perception_contradiction.py labs/comlab/tests/unit/test_perception_contradiction.py labs/comlab/tests/e2e/test_real_routing.py apps/wired/tests/test_oil_cases.py apps/wired/tests/test_t_coma_15_o2_bias_direction.py; git diff --stat e8f1e84 HEAD -- labs/comlab/comlab labs/comlab/registry labs/comlab/tests apps; git log --oneline 68dd691..HEAD; git status --porcelain
 ```
 Expected:
 - step 1: `510 passed, 4 skipped`; `176 passed`; `70 passed`; no `failed` or `error`.
 - step 2: `6 passed`.
 - step 3: two lines; the first names `O2_SENSOR_BIASED_LOW`, the second `O2_SENSOR_BIASED_HIGH`.
 - step 4: `vs before 18 of 314`, `vs expected 0 of 314`.
-- step 5: `All checks passed!`; `6 files changed, 76 insertions(+), 35 deletions(-)`; the spec commit and your one new
-  commit; only the note and the RESULT.
+- step 5: `All checks passed!`; `2 files changed, 10 insertions(+), 7 deletions(-)`; the two spec commits, `e8f1e84`
+  and your one new commit; only the note and the RESULT.
 
 Repo-wide gates: none beyond step 1 (comlab, wired and ui read the shim and the perception result).

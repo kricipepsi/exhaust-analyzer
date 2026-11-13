@@ -48,4 +48,11 @@ own pass 2026-11-13: P1-P3 measured (facts 1, 3) · `rehearse.py` exits on any u
 criteria 1-2 → steps 1-5 and R5 · cold read: not triggered (d2, scripted) · no finding.
 
 ### Correction history ###
-(none)
+- **Correction 1 (2026-11-13), after the second review of `e8f1e84`** (`C:/4DApp/recheck/codex/T-COMA-15_review.md`,
+  ds-flash, APPROVE WITH CORRECTIONS). Medium upheld: `rule.description` becomes `fault_name`, `display_headline` and
+  `ui_diagnostic_string` (140 characters), and SF-001's text said "(sensor reads falsely lean, ECU over-fuels)" while
+  SF-001 now fires when the sensor reads rich; SF-002 is the mirror image. The old text used the λ-value meaning of
+  "high". The two parentheticals are swapped. Low upheld: the test now pins each delta row's value and tier, and that
+  the description names the same direction. Rehearsed (`correction1.patch`): the corrected test goes 2 failed to
+  6 passed; comlab, wired 176, ui, corpus (0 of 314 against expected) and ruff are equal. Lost: accepting with a
+  follow-up row, which would ship user-facing text that contradicts the verdict.
