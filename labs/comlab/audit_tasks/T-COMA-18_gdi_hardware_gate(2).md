@@ -27,8 +27,11 @@ Code row in the app clone `C:/4DApp/repo`, on branch `fix/T-COMA-18` (built on t
 `24d265b`).
 - **Test length: 1/5.** **Runs real compute: NO.**
 - **Expected wall-clock: 15 min.** Stop rule: at 30 min, write `## Time` and a partial RESULT, then stop.
-- **Plan: NONE.** One patch and one new test, rehearsed (`C:/4DApp/recheck/T-COMA-18/rehearsal.patch`).
+- **Plan: NONE.** One patch and one new test, rehearsed (`C:/4DApp/recheck/T-COMA-18/rehearsal.patch`,
+  `correction1.patch`).
 - **Skills:** `C:/4DApp/.claude/skills/writing-4dapp-python-code/SKILL.md`
+- **Correction 1 (2026-11-13, second review of `2a3ccd1`): this dispatch is the revision only.** R1-R4 are built in
+  `2a3ccd1`; do R5 and R6, then one new commit. Expected wall-clock 10 min; stop rule 20 min.
 
 ### Goal ###
 REG-V2 reads RM-004's precondition `gdi_equipped: true`. The rule is pruned (reason `hardware_gate`) unless the VIN
@@ -40,7 +43,7 @@ and P3 counts.
 | id | value | population | command |
 |---|---|---|---|
 | P1 | comlab `517 passed, 4 skipped`; wired `176 passed`; ui `73 passed`; the three F-C1-6 audit probes `3 failed` | base `24d265b` | steps 1 and 3 on the base |
-| P2 | after the patch: comlab `517 passed, 4 skipped`; wired `185 passed`; ui `73 passed`; new test `9 passed` (base `5 failed, 4 passed`); `test_tunable_reweight.py` `2 passed`; ruff clean; `git diff --stat 24d265b HEAD -- labs/comlab/comlab labs/comlab/registry apps` `5 files changed, 112 insertions(+)` | Cowork's rehearsal | `rehearsal.patch` plus the test |
+| P2 | after correction 1: comlab `517 passed, 4 skipped`; wired `186 passed`; ui `73 passed`; new test `10 passed` (base `5 failed, 4 passed` before R5); `test_tunable_reweight.py` `2 passed`; ruff clean; `git diff --stat 24d265b HEAD -- labs/comlab/comlab labs/comlab/registry apps` `5 files changed, 121 insertions(+)` | Cowork's rehearsal | `rehearsal.patch` plus the test |
 | P3 | probe output starts `LEGACY rich -> ['RM-001', ('LC-002'`, and `3 passed, 7 deselected`; v7 corpus `changed 0 of 314` against `C:/4DApp/recheck/T-COMA-17/before.json` | `repo/audit/scratch/C1`, `C5` | steps 3 and 4 |
 
 `$PY` is `C:/4DApp/.venv/Scripts/python.exe`. Every file under `C:/4DApp/recheck/T-COMA-18/` except `pt/` is
@@ -68,7 +71,15 @@ them, apply the patch, copy the test, do not edit any of them.
   `return str(horizon) != "HORIZON_MODERN"` (`1 failed, 8 passed`).
   D: in the aggregator, delete the `"fuel_delivery_type": request.metadata.fuel_delivery_type,` line
   (`1 failed, 8 passed`).
-  Record the five results and the restored `git diff --stat`.
+  Record the five results and the restored `git diff --stat`. (Done in `2a3ccd1`.)
+- **R5 correction 1** (from the second review, re-derived by Cowork): from `C:/4DApp/repo`,
+  `git apply C:/4DApp/recheck/T-COMA-18/correction1.patch`. It makes the GDI-chemistry test assert
+  `"RM-004" not in` the verdict and its siblings, adds `test_router_records_the_hardware_gate_prune` (the
+  `pruned_rules` entry, and no RM-004 in `scored_rules`), and rewords the `_hardware_gate` docstring (only the era
+  prunes). Then `cmp` the test against `C:/4DApp/recheck/T-COMA-18/test_t_coma_18_gdi_hardware_gate_c1.py`.
+- **R6 mutant E:** in the gate's `pruned_rules.append`, replace `"prune_reason": _PRUNE_REASON_HARDWARE_GATE,`
+  with `"prune_reason": "x",`, run step 2 (`1 failed, 9 passed`), and put the line back by hand. Add a
+  `## Correction 1` section to the note (R6, the gate, `## Time`) and update the RESULT; both stay uncommitted.
 
 ### First action ###
 ```bash
@@ -76,13 +87,16 @@ cd C:/4DApp/repo && git branch --show-current && git log --oneline 24d265b..HEAD
 ```
 ```
 fix/T-COMA-18
-<Cowork's spec(T-COMA-18) commit>
+<Cowork's spec(T-COMA-18) correction 1 commit>
+2a3ccd1 fix(T-COMA-18): prune GDI-only RM-004 on a non-GDI, non-MODERN car (F-C1-6)
+206f21b coma: spec(T-COMA-18): RM-004 needs a GDI decode or the MODERN era (F-C1-6)
 ```
-`git status --porcelain` prints nothing. Anything else is a stop.
+`git status --porcelain` lists only `?? .../progress_notes/T-COMA-18.md` and `?? .../results/RESULT_T-COMA-18.md`.
+Anything else is a stop.
 
 ### Success criteria ###
-1. Steps 1-4 report the P2 and P3 counts; R4 gives the base and mutant counts it names.
-2. Step 5: ruff clean, the P2 diff stat, one new commit on `fix/T-COMA-18` after the spec commit, and
+1. Steps 1-4 report the P2 and P3 counts; R6 gives `1 failed, 9 passed`.
+2. Step 5: ruff clean, the P2 diff stat, one new commit on `fix/T-COMA-18` after the correction spec commit, and
    `git status --porcelain` lists only the note and the RESULT.
 
 ### Context ###
@@ -96,21 +110,21 @@ fix/T-COMA-18
 
 ### Preconditions ###
 ```bash
-cd C:/4DApp/repo && for p in labs/comlab/registry/integration_shim.py labs/comlab/comlab/core/lab_pipeline_aggregator.py labs/comlab/comlab/schemas/ingestion.py apps/wired/wired/composition.py audit/scratch/C1/test_c1_era_pids_deploy.py C:/4DApp/recheck/T-COMA-18/rehearsal.patch C:/4DApp/recheck/T-COMA-18/test_t_coma_18_gdi_hardware_gate.py C:/4DApp/recheck/T-COMA-17/before.json C:/4DApp/recheck/T-COMA-6/verdicts.py; do test -f "$p" || echo "MISSING $p"; done; echo checked
+cd C:/4DApp/repo && for p in C:/4DApp/recheck/T-COMA-18/correction1.patch C:/4DApp/recheck/T-COMA-18/test_t_coma_18_gdi_hardware_gate_c1.py labs/comlab/registry/integration_shim.py labs/comlab/comlab/core/lab_pipeline_aggregator.py labs/comlab/comlab/schemas/ingestion.py apps/wired/wired/composition.py audit/scratch/C1/test_c1_era_pids_deploy.py C:/4DApp/recheck/T-COMA-18/rehearsal.patch C:/4DApp/recheck/T-COMA-18/test_t_coma_18_gdi_hardware_gate.py C:/4DApp/recheck/T-COMA-17/before.json C:/4DApp/recheck/T-COMA-6/verdicts.py; do test -f "$p" || echo "MISSING $p"; done; echo checked
 ```
 Expected: `checked`, and no `MISSING` line.
 
 ### Deliverables ###
-1. One new commit on `fix/T-COMA-18`: R1-R3.
-2. `repo/labs/comlab/audit_tasks/progress_notes/T-COMA-18.md` (with the R4 results).
+1. One new commit on `fix/T-COMA-18`: R5 (R1-R3 are `2a3ccd1`).
+2. `repo/labs/comlab/audit_tasks/progress_notes/T-COMA-18.md` (with the R4 results and the R6 correction section).
 3. `repo/labs/comlab/audit_tasks/results/RESULT_T-COMA-18.md`.
 
 ### Files to touch ###
-- `repo/labs/comlab/registry/integration_shim.py` (MODIFY: R1)
+- `repo/labs/comlab/registry/integration_shim.py` (MODIFY: R1, R5 docstring)
 - `repo/labs/comlab/comlab/schemas/ingestion.py` (MODIFY: R2)
 - `repo/labs/comlab/comlab/core/lab_pipeline_aggregator.py` (MODIFY: R2)
 - `repo/apps/wired/wired/composition.py` (MODIFY: R2)
-- `repo/apps/wired/tests/test_t_coma_18_gdi_hardware_gate.py` (CREATE: R3)
+- `repo/apps/wired/tests/test_t_coma_18_gdi_hardware_gate.py` (CREATE: R3; MODIFY: R5)
 - `repo/labs/comlab/audit_tasks/progress_notes/T-COMA-18.md` (CREATE)
 - `repo/labs/comlab/audit_tasks/results/RESULT_T-COMA-18.md` (CREATE)
 - `C:/4DApp/recheck/T-COMA-18/pt/` (RUNTIME: pytest `--basetemp`, `after.json`)
@@ -144,11 +158,11 @@ mkdir -p C:/4DApp/recheck/T-COMA-18/pt
 timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check labs/comlab/registry/integration_shim.py labs/comlab/comlab/core/lab_pipeline_aggregator.py labs/comlab/comlab/schemas/ingestion.py apps/wired/wired/composition.py apps/wired/tests/test_t_coma_18_gdi_hardware_gate.py; git diff --stat 24d265b HEAD -- labs/comlab/comlab labs/comlab/registry apps | tail -1; git log --oneline 24d265b..HEAD; git status --porcelain
 ```
 Expected:
-- step 1: `517 passed, 4 skipped`; `185 passed`; `73 passed`; `2 passed`; no `failed` or `error`.
-- step 2: `9 passed`.
+- step 1: `517 passed, 4 skipped`; `186 passed`; `73 passed`; `2 passed`; no `failed` or `error`.
+- step 2: `10 passed`.
 - step 3: a line starting `LEGACY rich -> ['RM-001', ('LC-002'` with no `RM-004`; `3 passed, 7 deselected`.
 - step 4: `changed 0 of 314`.
-- step 5: `All checks passed!`; `5 files changed, 112 insertions(+)`; the spec commit and your one new commit; only
-  the note and the RESULT.
+- step 5: `All checks passed!`; `5 files changed, 121 insertions(+)`; the two spec commits, `2a3ccd1` and your one
+  new commit; only the note and the RESULT.
 
 Repo-wide gates: none beyond step 1 (comlab, wired and ui read the shim, the schema and the aggregator).

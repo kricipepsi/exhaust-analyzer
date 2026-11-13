@@ -37,11 +37,11 @@ Input: `audit/reports/R1_C1_20261017.md` F-C1-6; `labs/comlab/wiki/04_horizon_er
 ### Gate rehearsal ###
 | step | state | evidence |
 |---|---|---|
-| step 1 | SIMULATED | `517 passed, 4 skipped`; `185 passed`; `73 passed`; `2 passed` |
-| step 2 | SIMULATED | `9 passed`; base `5 failed, 4 passed` |
+| step 1 | SIMULATED | `517 passed, 4 skipped`; `186 passed`; `73 passed`; `2 passed` |
+| step 2 | SIMULATED | `10 passed` (correction 1); base `5 failed, 4 passed` |
 | step 3 | SIMULATED | `LEGACY rich -> ['RM-001', ('LC-002', 0.86...`; `3 passed, 7 deselected` |
 | step 4 | SIMULATED | `changed 0 of 314` |
-| step 5 | SIMULATED | ruff `All checks passed!`; `5 files changed, 112 insertions(+)` |
+| step 5 | SIMULATED | ruff `All checks passed!`; `5 files changed, 121 insertions(+)` |
 
 ### Exclusivity ###
 No other implementer runs.
@@ -54,4 +54,9 @@ own pass 2026-11-13: P1-P3 measured (facts 1, 6) · patch applies clean · trace
 and R4 · cold read: not triggered (d2, scripted patch) · no finding.
 
 ### Correction history ###
-(none)
+- **Correction 1 (2026-11-13, second review of `2a3ccd1`, ds-pro APPROVE WITH CORRECTIONS).** Upheld after
+  re-derivation: (M) the GDI-chemistry test checked only the winner; (M) no test asserted the `hardware_gate`
+  prune record; (L) the docstring's "PORT_INJECTION alone never prunes" read as a contradiction on LEGACY. Not
+  upheld: (M) criteria evidence not in the prompt (Cowork re-ran the gates; the note holds R4 and step 5); (L)
+  module-level `logging.disable` (the pattern of every T-COMA test). Rehearsed: test `10 passed`; mutant E
+  `1 failed, 9 passed`; wired `186`; ruff clean; `5 files changed, 121 insertions(+)` from `24d265b`.
