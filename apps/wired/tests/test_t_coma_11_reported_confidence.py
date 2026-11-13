@@ -30,9 +30,10 @@ def test_falls_back_to_the_current_confidence():
     assert _reported_fault_score(SCORED, {"fault_code": "XX-999", "confidence_score": 0.42}) == 0.42
 
 
-@pytest.mark.parametrize(("case_id", "code", "confidence"), [("CASE-013", "LC-002", 0.96), ("CASE-016", "LC-002", 0.91)])
+@pytest.mark.parametrize(("case_id", "code", "confidence"), [("CASE-013", "CF-001", 1.0), ("CASE-016", "CF-001", 1.0)])
 def test_corpus_case_reports_its_own_score(case_id, code, confidence):
-    """NEW: two v7 corpus cases whose card showed another rule's 1.00 now show LC-002's own score."""
+    """Two v7 corpus cases report the winner's own score. T-COMA-28: LC-002 no longer fires without lean chemistry,
+    so CF-001 (the labelled family) wins at its own 1.00."""
     raw = next(r for cid, r, *_ in load_corpus() if cid == case_id)
     v = diagnose(raw).diagnostic_verdict
     assert v.fault_code == code

@@ -1,4 +1,4 @@
-"""T-COMA-27 (F-C1-2): every GASLab chemical state with a REG-V2 rule routes to that rule, not to a sink.
+"""T-COMA-27 (F-C1-2): each of the ten states T-COMA-27 routed reaches its new rule, not a sink.
 
 Each rule added by T-COMA-27 names `UNIT-COMA27-<STATE>` in `passes_cases`; this file is the case that executes it.
 The family is GASLab's own (`labs/gaslab/gaslab/family_map.py`). FLAT_CAMSHAFT and INCOMPLETE_OXIDATION stay
@@ -65,3 +65,5 @@ def test_each_new_rule_names_its_unit_case() -> None:
     for state, (rule, _family) in ROUTED.items():
         assert rules[rule].passes_cases == [f"UNIT-COMA27-{state}"]
         assert [c.state.value for c in rules[rule].chemistry_evidence] == [state]
+        assert [c.tier.value for c in rules[rule].chemistry_evidence] == ["GATING"]
+        assert rules[rule].base_weight == 0.9

@@ -243,11 +243,11 @@
     {
       "rule_id": "MF-005",
       "fault_family": "misfire",
-      "description": "ECU blindness \u2014 gas chemistry ground-truth shows misfire but ECU misfire counter reads zero; Brettschneider override: chemistry is truth, ECU counter is perception",
+      "description": "ECU blindness \u2014 gas chemistry ground-truth shows misfire but ECU misfire counter reads zero; Brettschneider override: chemistry is truth, ECU counter is perception. IGNITION_MISFIRE is GATING (T-COMA-28, F-C1-2): no misfire chemistry, no ECU-blindness verdict",
       "chemistry_evidence": [
         {
           "state": "IGNITION_MISFIRE",
-          "tier": "DEFINITIVE",
+          "tier": "GATING",
           "wiki_ref": "GAS_VOCABULARY \u00a73"
         }
       ],
@@ -283,7 +283,7 @@
           "wiki_ref": "DTC_VOCABULARY \u00a74"
         }
       ],
-      "base_weight": 0.75,
+      "base_weight": 0.85,
       "competition_group": "misfire",
       "perception_flag": "perception_only",
       "passes_cases": [

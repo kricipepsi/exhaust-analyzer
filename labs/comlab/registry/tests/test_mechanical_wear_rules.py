@@ -80,7 +80,7 @@ def test_all_case_ids_resolve():
         for cid in rule.passes_cases:
             # T-COMA-27: a UNIT-COMA27-<STATE> case has no corpus row; tests/unit/test_t_coma_27_unrouted_states.py
             # executes it.
-            if cid.startswith("UNIT-COMA27-"):
+            if cid == "UNIT-COMA27-GDI_INTAKE_VALVE_CARBON":
                 continue
             if cid not in corpus_ids:
                 orphans.append(f"{rule.rule_id}: {cid}")

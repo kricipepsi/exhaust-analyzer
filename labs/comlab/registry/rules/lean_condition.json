@@ -62,11 +62,11 @@
     {
       "rule_id": "LC-002",
       "fault_family": "lean_condition",
-      "description": "Lean condition with retarded timing \u2014 knock-avoidance timing pull causes lean chemistry without DTC confirmation",
+      "description": "Lean condition with retarded timing \u2014 knock-avoidance timing pull causes lean chemistry without DTC confirmation. LEAN_MIXTURE is GATING (T-COMA-28, F-C1-2): without lean chemistry the rule does not fire on normal idle vacuum alone",
       "chemistry_evidence": [
         {
           "state": "LEAN_MIXTURE",
-          "tier": "DEFINITIVE",
+          "tier": "GATING",
           "wiki_ref": "GAS_VOCABULARY \u00a73"
         },
         {
@@ -93,7 +93,7 @@
           "wiki_ref": "OBD_VOCABULARY \u00a73"
         }
       ],
-      "base_weight": 0.81,
+      "base_weight": 0.91,
       "competition_group": "lean_condition",
       "passes_cases": [
         "REAL-002",

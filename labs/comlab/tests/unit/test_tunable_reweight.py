@@ -40,7 +40,8 @@ def test_tunable_reweight_recovered_cases() -> None:
         "era3_019": "exhaust_leak",
         "EXP-N027": "rich_mixture",
         "EXP-N010": "rich_mixture",
-        "era3_007": "lean_condition",
+        # era3_007 removed by T-COMA-28: its gas is SAMPLE_INVALID; lean reached its top 3 only through LC-002
+        # firing on idle map_kpa with no lean chemistry (F-C1-2).
         "YAML-PDF_4G_01": "catalyst_failure",
         "EXP-N014": "misfire",
     }

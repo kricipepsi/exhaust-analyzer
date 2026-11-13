@@ -48,8 +48,11 @@ def test_weak_rule_prune_is_attributed():
     """NEW: a rule stopped only by strict support is attributed as weak support (the telemetry complement)."""
     from registry.integration_shim import _prune_attribution
 
-    rule, obs = _rule_and_obs("LC-002")
+    rule, obs = _rule_and_obs("LC-003")
     assert _prune_attribution(rule, obs) == ("missing_evidence", "weak_support_only")
+    # T-COMA-28: LC-002 now needs LEAN_MIXTURE, so on healthy gas it is pruned by its chemistry gate.
+    rule, obs = _rule_and_obs("LC-002")
+    assert _prune_attribution(rule, obs) == ("chemistry", "gas_lab_state")
 
 
 @pytest.mark.parametrize(("rule_id", "dtcs", "pids"), [("CF-002", (), {"longft1": 12.0}), ("MF-004", ("P0301",), {})])

@@ -76,7 +76,11 @@ def test_v2_route_surfaces_ranked_differential_with_family(registry_path: Any) -
         obd_longft1=12.0,
     )
 
-    output = router.route(_sanitized(request))
+    sanitized = _sanitized(request)
+    # T-COMA-28: the shim reads chemistry from a top-level gas_lab_output. Without it, the only sibling came from
+    # MF-005 firing with no chemistry at all (F-C1-2).
+    sanitized["gas_lab_output"] = request.gas_lab_output.model_dump(mode="json")
+    output = router.route(sanitized)
     siblings = output.diagnostic_verdict.differential_siblings
 
     assert siblings
