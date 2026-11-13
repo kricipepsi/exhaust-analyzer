@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-COMA-20` | `repo\labs\comlab\audit_tasks\PROGRESS.md` | **1** | 1 | NO | 10 min | v1 without dtc |
+| `T-COMA-21` | `repo\labs\comlab\audit_tasks\PROGRESS.md` | **2** | 1 | NO | 15 min | mode and rating |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-COMA-20` · owner: `repo\labs\comlab\audit_tasks\PROGRESS.md` · 1/5** — On the v1 path (`use_v2_registry=False`), `FaultAtlasRouter`'s Phase 3 reads no codes and no MIL when `request.dtc_lab_output` is `None`, instead of raising `AttributeError`.
-  `repo\labs\comlab\audit_tasks/T-COMA-20_v1_without_dtc(1).md`
+**`T-COMA-21` · owner: `repo\labs\comlab\audit_tasks\PROGRESS.md` · 2/5** — `execution_meta.degradation_mode` is `GAS_DOMINANT` when OBD live data is absent or suppressed, else `FULL_FUSION` (or `FATAL_INCOMPLETE` on an abort).
+  `repo\labs\comlab\audit_tasks/T-COMA-21_mode_and_rating(2).md`
 
 ## Distribution
 
-- **1/5** — 1: T-COMA-20
+- **2/5** — 1: T-COMA-21
