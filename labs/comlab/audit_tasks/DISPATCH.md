@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-COMA-3a` | `repo\labs\comlab\audit_tasks\PROGRESS.md` | **2** | 2 | NO | 20-40 min | crank sync no start |
+| `T-COMA-17` | `repo\labs\comlab\audit_tasks\PROGRESS.md` | **2** | 1 | NO | 15 min | invalid sample flagged |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-COMA-3a` · owner: `repo\labs\comlab\audit_tasks\PROGRESS.md` · 2/5** — A `will_not_start` session with P0335 or P0336 (crankshaft position sensor) names the `non_starter` rule NS-005 instead of the `NS-NO-RULE` abstain.
-  `repo\labs\comlab\audit_tasks/T-COMA-3a_crank_sync_no_start(2).md`
+**`T-COMA-17` · owner: `repo\labs\comlab\audit_tasks\PROGRESS.md` · 2/5** — On the default path (fatal gates off) an INVALID gas sample stays scored, but its `execution_meta` says so: `processing_confidence_rating` is `LOW_CERTAINTY` and `lab_routing_directive.reasons` carrie
+  `repo\labs\comlab\audit_tasks/T-COMA-17_invalid_sample_flagged(2).md`
 
 ## Distribution
 
-- **2/5** — 1: T-COMA-3a
+- **2/5** — 1: T-COMA-17
