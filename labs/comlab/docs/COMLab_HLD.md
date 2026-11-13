@@ -78,6 +78,8 @@ Parts of this document predate the shipped package. Where the text and this tabl
 | §4 step 8: no second frame gives the `SINGLE_POINT` degradation mode | the output's `execution_meta.degradation_mode` is `FULL_FUSION`, `GAS_DOMINANT` (the routing directive suppresses GASLab or OBD, or OBD live data is absent; T-COMA-21) or `FATAL_INCOMPLETE` (an abort); `SINGLE_POINT` is set only on the delta engine's own result (`analytics/delta_engine.py`) |
 | §7.3 `run_fallback_tree` consumes the directive | the stub was removed (T-COMA-25: no production caller); `process()` reads the directive through `_map_degradation` and `_gas_sample_reasons` |
 | §7.5 an abort returns a discriminated union with an `error` block | an abort returns a full `OrchestratorFinalUIOutput`: `degradation_mode` `FATAL_INCOMPLETE`, the code in `diagnostic_verdict.fault_code`, `fault_name` `Fatal Abort: <code>`, the message in `display_headline` and `actionable_remediation`; there is no `error` block, no `error_code` and no `ui_remediation_message` field; no `schema_version`; no `ERR-VIN-400` code exists in the package |
+| §4.5 and §9 rule 7: the outbound payload echoes `schema_version` verbatim | `OrchestratorFinalUIOutput` has no `schema_version` field; its six fields are `session_id`, `execution_meta`, `diagnostic_verdict`, `performance_analytics`, `fault_enrichment`, `user_input_echo_audit` (`schemas/response.py`; F-D2-6, T-COMA-30) |
+| §5.2 `ui_remediation_steps` replaces `actionable_remediation` | both ship: `diagnostic_verdict.actionable_remediation` is a required `str`, and `fault_enrichment.ui_remediation_steps` carries the numbered list |
 
 ---
 

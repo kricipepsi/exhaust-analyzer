@@ -104,8 +104,11 @@ states the code (measured by T-AUD-11g, re-checked on `fix/T-AUD-18c`). Section 
 | §3 `symptom_dna: SymptomDNA` | `symptom_dna: dict` (default `{}`); no `SymptomDNA` class exists |
 | §3 `ve_pct` `le=100.0` | `ve_pct: float = Field(..., ge=0.0, le=200.0)` |
 | §3 `routing_tags` is a 19-value set | `DTCRoutingTag` has 17 values (`schemas/vocabulary.py`) |
-| §3 `DiagnosticVerdict` | also carries `abstained` and `abstain_reason`, set from `ABSTAIN_FLOOR` (0.80) and `ABSTAIN_MARGIN` (`core/fault_atlas_router.py`) |
+| §3 `DiagnosticVerdict` | also carries the required `actionable_remediation: str`, and `abstained` and `abstain_reason` (`floor`, `margin` or `no_rule`), set from `ABSTAIN_FLOOR` (0.80) and `ABSTAIN_MARGIN` (`core/fault_atlas_router.py`) |
 | §3 `OrchestratorFinalUIOutput.schema_version` | no such field (`schemas/response.py`) |
+| §3 `DifferentialSiblingOut` | also carries `fault_family: FaultFamilyLit` (`schemas/response.py`) |
+| §6.7 `ECUHardwareVerdict.reason` | no such field: the dataclass holds `is_ecu_hardware_fault` and `confidence` (`core/ecu_hardware_checker.py`) |
+| §6.6 `PerceptionContradictionResult` | also carries `guard_suppressed: bool` and `qualifiers: tuple[str, ...]` (`core/perception_contradiction.py`) |
 | §3 `OrchestratorErrorOutput`, `ErrorBody` | neither class exists; aborts return a full output with a `fault_code` |
 | §5 `SanitizedPayload` TypedDict | no such type |
 | §5 `route_symptom(symptom_dna: SymptomDNA | dict)` | `route_symptom(symptom_dna: Mapping[str, Any])` (`core/symptom_router.py`) |

@@ -376,7 +376,7 @@ Small, low-emphasis (italic, light grey) at the bottom of Screen 6:
   `DEGRADED_ASSURANCE` / `LOW_CERTAINTY`).
 - `vin_confidence` (`HIGH` / `PARTIAL` / `NONE`).
 - `session_id` (copy button next to it for support tickets).
-- `schema_version`.
+- `schema_version`: not shipped. The output carries no such field (F-D2-6, T-COMA-30).
 
 ### 5.8 Result-page layout when a fatal abort fires
 
