@@ -16,8 +16,8 @@
       "obd_evidence": [
         {
           "pid": "lambda_perception_delta",
-          "operator": "gt",
-          "value": 0.03,
+          "operator": "lt",
+          "value": -0.03,
           "tier": "DEFINITIVE",
           "units": "lambda",
           "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
@@ -61,8 +61,8 @@
       "obd_evidence": [
         {
           "pid": "lambda_perception_delta",
-          "operator": "lt",
-          "value": -0.03,
+          "operator": "gt",
+          "value": 0.03,
           "tier": "DEFINITIVE",
           "units": "lambda",
           "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"

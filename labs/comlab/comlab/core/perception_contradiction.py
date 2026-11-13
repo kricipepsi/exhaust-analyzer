@@ -215,19 +215,20 @@ def detect(
     # wiki: COMLab_Lab_Input_Reference.md §Perception vs Truth axis (0.05-0.08 band)
     # lld: eras_sensitivity_masks.yaml lambda_tolerance per horizon
     if delta > era_lambda_tolerance:
-        # OBD lambda leaner than truth -> sensor reads artificially lean/high lambda
+        # OBD lambda leaner than truth -> the sensor reads artificially lean: biased LOW (F-D2-1, T-COMA-15;
+        # vocabulary.py O2_SENSOR_BIASED_LOW, COMLab_BDD "A biased-lean sensor ... O2_SENSOR_BIASED_LOW")
         return PerceptionContradictionResult(
             lambda_perception_delta=delta,
-            bias_verdict=ChemicalSignature.O2_SENSOR_BIASED_HIGH,
+            bias_verdict=ChemicalSignature.O2_SENSOR_BIASED_LOW,
             guard_suppressed=False,
             qualifiers=tuple(config_qualifiers),
         )
 
     if -delta > era_lambda_tolerance:
-        # OBD lambda richer than truth -> sensor reads artificially rich/low lambda
+        # OBD lambda richer than truth -> the sensor reads artificially rich: biased HIGH (F-D2-1, T-COMA-15)
         return PerceptionContradictionResult(
             lambda_perception_delta=delta,
-            bias_verdict=ChemicalSignature.O2_SENSOR_BIASED_LOW,
+            bias_verdict=ChemicalSignature.O2_SENSOR_BIASED_HIGH,
             guard_suppressed=False,
             qualifiers=tuple(config_qualifiers),
         )

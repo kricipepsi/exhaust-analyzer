@@ -45,43 +45,43 @@ def test_no_bias_at_tolerance_boundary():
     assert result.bias_verdict is None
 
 
-# -- Case 2: OBD lambda lean by > tolerance → O2_SENSOR_BIASED_HIGH --------
+# -- Case 2: OBD lambda lean by > tolerance → O2_SENSOR_BIASED_LOW --------
 
 
-def test_biased_high_when_obd_lean():
-    """normalized_obd_lambda lean by > tolerance → O2_SENSOR_BIASED_HIGH."""
+def test_biased_low_when_obd_lean():
+    """normalized_obd_lambda lean by > tolerance → O2_SENSOR_BIASED_LOW."""
     result = detect(lambda_chem=1.00, normalized_obd_lambda=1.12, era_lambda_tolerance=0.02)
     assert result.lambda_perception_delta == pytest.approx(0.12)
-    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_HIGH
-    assert result.guard_suppressed is False
-
-
-def test_biased_high_modern_tight_tolerance():
-    """MODERN era (tolerance=0.02) — small divergence triggers bias."""
-    result = detect(lambda_chem=0.99, normalized_obd_lambda=1.02, era_lambda_tolerance=0.02)
-    assert result.lambda_perception_delta == pytest.approx(0.03)
-    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_HIGH
-
-
-# -- Case 3: OBD lambda rich by > tolerance → O2_SENSOR_BIASED_LOW ----------
-
-
-def test_biased_low_when_obd_rich():
-    """normalized_obd_lambda rich by > tolerance → O2_SENSOR_BIASED_LOW."""
-    result = detect(lambda_chem=1.00, normalized_obd_lambda=0.88, era_lambda_tolerance=0.02)
-    assert result.lambda_perception_delta == pytest.approx(-0.12)
     assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_LOW
     assert result.guard_suppressed is False
 
 
-def test_biased_low_legacy_wide_tolerance():
+def test_biased_low_modern_tight_tolerance():
+    """MODERN era (tolerance=0.02) — small divergence triggers bias."""
+    result = detect(lambda_chem=0.99, normalized_obd_lambda=1.02, era_lambda_tolerance=0.02)
+    assert result.lambda_perception_delta == pytest.approx(0.03)
+    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_LOW
+
+
+# -- Case 3: OBD lambda rich by > tolerance → O2_SENSOR_BIASED_HIGH ----------
+
+
+def test_biased_high_when_obd_rich():
+    """normalized_obd_lambda rich by > tolerance → O2_SENSOR_BIASED_HIGH."""
+    result = detect(lambda_chem=1.00, normalized_obd_lambda=0.88, era_lambda_tolerance=0.02)
+    assert result.lambda_perception_delta == pytest.approx(-0.12)
+    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_HIGH
+    assert result.guard_suppressed is False
+
+
+def test_biased_high_legacy_wide_tolerance():
     """LEGACY era (tolerance=0.10) — only large divergence triggers."""
     # Just below tolerance → no bias
     result = detect(lambda_chem=1.00, normalized_obd_lambda=0.91, era_lambda_tolerance=0.10)
     assert result.bias_verdict is None
     # Well below tolerance → bias
     result = detect(lambda_chem=1.00, normalized_obd_lambda=0.85, era_lambda_tolerance=0.10)
-    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_LOW
+    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_HIGH
 
 
 # -- Case 4: Lambda Truth guard — suppress when gas chemistry deeply abnormal
@@ -108,14 +108,14 @@ def test_guard_boundary_low():
     """lambda_chem exactly at 0.90 → guard NOT triggered (boundary is exclusive)."""
     result = detect(lambda_chem=0.90, normalized_obd_lambda=1.05, era_lambda_tolerance=0.02)
     assert result.guard_suppressed is False
-    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_HIGH
+    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_LOW
 
 
 def test_guard_boundary_high():
     """lambda_chem exactly at 1.10 → guard NOT triggered (boundary is exclusive)."""
     result = detect(lambda_chem=1.10, normalized_obd_lambda=0.95, era_lambda_tolerance=0.02)
     assert result.guard_suppressed is False
-    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_LOW
+    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_HIGH
 
 
 # -- Case 5: OBD channel absent → detector inert, no crash -----------------
@@ -217,12 +217,12 @@ def test_no_obd_measured_diverges_fires_bias():
     """No OBD channel + lambda_measured diverges beyond tolerance -> bias fires.
 
     lambda_chem=1.00 (stoich, guard not triggered), lambda_measured=1.12
-    (deviation=0.12 > MODERN tolerance 0.02) -> O2_SENSOR_BIASED_HIGH.
+    (deviation=0.12 > MODERN tolerance 0.02) -> O2_SENSOR_BIASED_LOW.
     T-FX-7 Success criteria case 1.
     """
     perception = select_perception_lambda(normalized_obd_lambda=None, lambda_measured=1.12)
     result = detect(lambda_chem=1.00, normalized_obd_lambda=perception, era_lambda_tolerance=0.02)
-    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_HIGH
+    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_LOW
     assert result.guard_suppressed is False
 
 
@@ -340,7 +340,7 @@ def test_downstream_trim_secondary_exact_match_masked():
 # -- Role: SECONDARY_FUEL_TRIM — beyond tolerance, NOT masked ----------------
 
 
-def test_downstream_trim_secondary_biased_high_not_masked():
+def test_downstream_trim_secondary_biased_low_not_masked():
     """SECONDARY_FUEL_TRIM + beyond tolerance (biased high) -> bias fires, qualifiers empty.
 
     Success criterion 4: a delta beyond tolerance is unaffected by the role —
@@ -352,11 +352,11 @@ def test_downstream_trim_secondary_biased_high_not_masked():
         era_lambda_tolerance=0.02,
         downstream_trim_role=DownstreamTrimRole.SECONDARY_FUEL_TRIM,
     )
-    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_HIGH
+    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_LOW
     assert result.qualifiers == ()
 
 
-def test_downstream_trim_secondary_biased_low_not_masked():
+def test_downstream_trim_secondary_biased_high_not_masked():
     """SECONDARY_FUEL_TRIM + beyond tolerance (biased low) -> bias fires, qualifiers empty."""
     result = detect(
         lambda_chem=1.00,
@@ -364,7 +364,7 @@ def test_downstream_trim_secondary_biased_low_not_masked():
         era_lambda_tolerance=0.02,
         downstream_trim_role=DownstreamTrimRole.SECONDARY_FUEL_TRIM,
     )
-    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_LOW
+    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_HIGH
     assert result.qualifiers == ()
 
 
@@ -408,7 +408,7 @@ def test_downstream_trim_secondary_obd_absent_not_masked():
 
 
 def test_downstream_trim_all_roles_same_bias_verdict():
-    """All three roles produce O2_SENSOR_BIASED_HIGH for the same beyond-tolerance delta.
+    """All three roles produce O2_SENSOR_BIASED_LOW for the same beyond-tolerance delta.
 
     The role only qualifies the in-tolerance case; it does not change the verdict.
     """
@@ -419,7 +419,7 @@ def test_downstream_trim_all_roles_same_bias_verdict():
             era_lambda_tolerance=0.02,
             downstream_trim_role=role,
         )
-        assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_HIGH
+        assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_LOW
         assert result.qualifiers == ()
 
 
@@ -729,7 +729,7 @@ def test_decat_secondary_trim_biased_still_incoherent():
         downstream_trim_role=DownstreamTrimRole.SECONDARY_FUEL_TRIM,
         has_catalyst=False,
     )
-    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_HIGH
+    assert result.bias_verdict is ChemicalSignature.O2_SENSOR_BIASED_LOW
     assert QUALIFIER_DECAT_SECONDARY_TRIM_INCOHERENT in result.qualifiers
 
 

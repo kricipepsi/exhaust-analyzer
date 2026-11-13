@@ -14,7 +14,7 @@ ROUTED_CASES = (
 
 KNOWN_BLOCKED_CASES = (
     ("MW-001", "CF-001"),
-    ("MW-008", "SF-001"),
+    ("MW-008", "SF-002"),
 )
 
 
@@ -53,4 +53,4 @@ def test_pcv_captures_gaslab_chemical_state() -> None:
     gas_output = _run_gaslab(raw_inputs["gas"], _build_fallback_vin_dna(raw_inputs["vin"]))
 
     assert gas_output.chemical_state == "INCOMPLETE_OXIDATION"
-    assert diagnose(raw_inputs).diagnostic_verdict.fault_code == "SF-001"
+    assert diagnose(raw_inputs).diagnostic_verdict.fault_code == "SF-002"

@@ -107,7 +107,7 @@ def test_sensor_fault_o2_lazy_via_perception_biased_high():
 
     # Perception bias verdict should be in performance analytics
     pa = result.performance_analytics
-    assert pa.o2_sensor_bias_verdict == "O2_SENSOR_BIASED_HIGH"
+    assert pa.o2_sensor_bias_verdict == "O2_SENSOR_BIASED_LOW"  # OBD lean vs chemistry (F-D2-1, T-COMA-15)
 
     fe = result.fault_enrichment
     assert fe.component_group == "Exhaust Gas Sensing System"
@@ -133,7 +133,7 @@ def test_sensor_fault_o2_lazy_via_perception_biased_low():
     assert verdict.fault_family == "sensor_fault"
 
     pa = result.performance_analytics
-    assert pa.o2_sensor_bias_verdict == "O2_SENSOR_BIASED_LOW"
+    assert pa.o2_sensor_bias_verdict == "O2_SENSOR_BIASED_HIGH"  # OBD rich vs chemistry (F-D2-1, T-COMA-15)
 
     fe = result.fault_enrichment
     assert fe.component_group == "Exhaust Gas Sensing System"
