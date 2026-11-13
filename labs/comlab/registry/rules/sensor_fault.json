@@ -5,7 +5,7 @@
     {
       "rule_id": "SF-001",
       "fault_family": "sensor_fault",
-      "description": "Upstream O2 sensor slow/lazy response \u2014 biased high: gas analyser confirms stoichiometric chemistry (normal operation) while OBD lambda perception is biased high (sensor reads falsely lean, ECU over-fuels). Sensor still switches but cross-counts are sluggish. No circuit DTC \u2014 the sensor works, just too slowly. v1 ERR-SF-001 perception_flag path, v2 evidence-tier form",
+      "description": "Upstream O2 sensor slow/lazy response \u2014 biased high: gas analyser confirms stoichiometric chemistry (normal operation) while OBD lambda perception is biased high (sensor reads falsely rich, ECU under-fuels). Sensor still switches but cross-counts are sluggish. No circuit DTC \u2014 the sensor works, just too slowly. v1 ERR-SF-001 perception_flag path, v2 evidence-tier form",
       "chemistry_evidence": [
         {
           "state": "O2_SENSOR_BIASED_HIGH",
@@ -50,7 +50,7 @@
     {
       "rule_id": "SF-002",
       "fault_family": "sensor_fault",
-      "description": "Upstream O2 sensor slow/lazy response \u2014 biased low: gas analyser confirms stoichiometric chemistry (normal operation) while OBD lambda perception is biased low (sensor reads falsely rich, ECU under-fuels). Sensor still switches but cross-counts are sluggish. v1 ERR-SF-001 second perception-flag variant, v2 evidence-tier form",
+      "description": "Upstream O2 sensor slow/lazy response \u2014 biased low: gas analyser confirms stoichiometric chemistry (normal operation) while OBD lambda perception is biased low (sensor reads falsely lean, ECU over-fuels). Sensor still switches but cross-counts are sluggish. v1 ERR-SF-001 second perception-flag variant, v2 evidence-tier form",
       "chemistry_evidence": [
         {
           "state": "O2_SENSOR_BIASED_LOW",

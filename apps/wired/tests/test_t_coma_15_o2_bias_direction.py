@@ -23,14 +23,17 @@ def _rule(rule_id: str):
     return next(r for r in RegistryV2Router().rules if r.rule_id == rule_id)
 
 
-@pytest.mark.parametrize(("rule_id", "state", "operator"), [("SF-001", "O2_SENSOR_BIASED_HIGH", "lt"),
-                                                            ("SF-002", "O2_SENSOR_BIASED_LOW", "gt")])
-def test_rule_delta_row_agrees_with_its_chemistry_state(rule_id, state, operator):
-    """NEW: SF-001 (biased high, reads rich) needs delta < 0; SF-002 (biased low, reads lean) needs delta > 0."""
+@pytest.mark.parametrize(("rule_id", "state", "operator", "value", "reads"),
+                         [("SF-001", "O2_SENSOR_BIASED_HIGH", "lt", -0.03, "reads falsely rich"),
+                          ("SF-002", "O2_SENSOR_BIASED_LOW", "gt", 0.03, "reads falsely lean")])
+def test_rule_delta_row_agrees_with_its_chemistry_state(rule_id, state, operator, value, reads):
+    """NEW: SF-001 (biased high, reads rich) needs delta < -0.03; SF-002 (biased low, reads lean) needs delta > 0.03;
+    each DEFINITIVE, and the user-facing description says the same direction (correction 1)."""
     rule = _rule(rule_id)
     assert [e.state.value for e in rule.chemistry_evidence] == [state]
     rows = [e for e in rule.obd_evidence if e.pid == "lambda_perception_delta"]
-    assert [e.operator for e in rows] == [operator]
+    assert [(e.operator, e.value, e.tier.value) for e in rows] == [(operator, value, "DEFINITIVE")]
+    assert reads in rule.description
 
 
 @pytest.mark.parametrize(("rule_id", "pid", "operator"), [("SF-001", "o2_voltage", "ge"), ("SF-002", "o2_voltage", "le")])
