@@ -69,7 +69,7 @@ __all__ = [
 _UNKNOWN_FAULT_ID: str = "ERR-UNKNOWN-000"  # lld: §6.4 sentinel
 
 # P030x pattern for catalyst-damage override (lld: §6.4 step 7)
-_P030X_RE = re.compile(r"^P030[0-8]$")  # lld: §6.4 catalyst-damage DTC pattern
+_P030X_RE = re.compile(r"^P030[0-9]$")  # lld: §6.4 catalyst-damage DTC pattern; wiki 07 §RULE_CAT_OVERRIDE
 
 # Minimum confidence threshold for fault verdict routing (lld: §6.4)
 # Values below this produce no_fault even when a rule matches — the evidence
@@ -80,6 +80,7 @@ MIN_CONFIDENCE_THRESHOLD: float = 0.70  # lld: §6.4
 # v3 metrics: top-3 + abstain thresholds from T-V3-0 report (v3/reports/V3_TOPK_CEILING_2026-06-30.md §6)
 ABSTAIN_FLOOR: float = 0.80  # winner_score below this -> abstain
 ABSTAIN_MARGIN: float = 0.02  # top1 - top2 within this -> abstain
+_MARGIN_EPSILON: float = 1e-9  # T-COMA-12 (F-C1-19): absorb binary float noise, as the shim's _FLOAT_EPSILON
 _OPEN_LOOP_TRIM_CONFIDENCE_CAP = 0.60  # wiki: 08_scoring_to_fusion_rework.md §CONCEPT_EVIDENCE_INPUTS
 # below MIN_CONFIDENCE_THRESHOLD so open-loop trim evidence cannot win.
 _SCORE_CEILING = 1.0  # wiki: 09_calibration_confidence.md §CONCEPT_CONF_TIER
@@ -571,6 +572,16 @@ def _resolve_pid(request: OrchestratorInboundRequest, pid_name: str) -> float | 
 # ---------------------------------------------------------------------------
 # FaultAtlasRouter
 # ---------------------------------------------------------------------------
+
+
+def _within_abstain_margin(winner_score: float, runner_up_score: float) -> bool:
+    """F-C1-19 (T-COMA-12): top1 - top2 within ABSTAIN_MARGIN, with float noise absorbed (0.82 - 0.80 abstains)."""
+    return winner_score - runner_up_score <= ABSTAIN_MARGIN + _MARGIN_EPSILON
+
+
+def _discriminator_families(routing_tags: list[str], table: dict[str, Any]) -> set[str]:
+    """F-C1-18 (T-COMA-12): the families the routing-tag discriminator lifts, each once, however many tags map to it."""
+    return {mapping["family"] for tag in routing_tags if (mapping := table.get(tag)) is not None}
 
 
 def _reported_fault_score(scored_rules: list[dict[str, Any]], verdict: dict[str, Any]) -> float:
@@ -2095,16 +2106,12 @@ class FaultAtlasRouter:
                 and _req.dtc_lab_output is not None
             ):
                 _v2_routing_tags = _req.dtc_lab_output.routing_tags
-            for tag in _v2_routing_tags:
-                mapping = self._discriminator_table.get(tag)
-                if mapping is None:
-                    continue
-                target_family = mapping["family"]
-                for i, rule in enumerate(scored_rules):
-                    if rule.get("fault_family") == target_family:
-                        old_score = float(rule.get("score", 0.0))
-                        boosted = min(old_score + self._discriminator_weight, 1.0)
-                        scored_rules[i]["score"] = boosted
+            lift_families = _discriminator_families(_v2_routing_tags, self._discriminator_table)
+            for i, rule in enumerate(scored_rules):
+                if rule.get("fault_family") in lift_families:
+                    old_score = float(rule.get("score", 0.0))
+                    boosted = min(old_score + self._discriminator_weight, 1.0)
+                    scored_rules[i]["score"] = boosted
             # Re-sort after discriminator
             if _v2_routing_tags:
                 scored_rules.sort(
@@ -2175,7 +2182,7 @@ class FaultAtlasRouter:
                 if winner_score < ABSTAIN_FLOOR:
                     abstained = True
                     abstain_reason = "floor"
-                elif top2_score is not None and (winner_score - top2_score) <= ABSTAIN_MARGIN:
+                elif top2_score is not None and _within_abstain_margin(winner_score, top2_score):
                     abstained = True
                     abstain_reason = "margin"
 
@@ -2334,7 +2341,9 @@ class FaultAtlasRouter:
                     if runner_family != fault_family:
                         different_family_runner_up_score = score_val
                         break
-                if different_family_runner_up_score is not None and (winner_score - different_family_runner_up_score) <= ABSTAIN_MARGIN:
+                if different_family_runner_up_score is not None and _within_abstain_margin(
+                    winner_score, different_family_runner_up_score
+                ):
                     abstained = True
                     abstain_reason = "margin"
 
