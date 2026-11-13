@@ -59,6 +59,8 @@ def _is_low_triangle_exhaust_air_leak(reading: GasReading, ontology: dict) -> bo
 
     return (
         volumetric_sum < 14.0  # wiki: GAS_WIKI §6.1; GAS_WIKI §7.7 reachability table
+        # wiki: GAS_WIKI §4.2 dilution screen — CO + CO2 <= 6 % is a diluted sample, not leak chemistry (T-GASA-1)
+        and reading.co + reading.co2 > 6.0
         and reading.hc <= hc_bounds.get("max", 100)  # vocab: GAS_VOCABULARY §10.1 normal_borderline.max
         and co_bounds.get("min", 0.1) <= reading.co <= co_bounds.get("max", 0.5)  # wiki: GAS_WIKI §7.7
         and reading.o2 > o2_bounds.get("min", 2.0)  # wiki: GAS_WIKI §7.7 — O2 > 2 %
