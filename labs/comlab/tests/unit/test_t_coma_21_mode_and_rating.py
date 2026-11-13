@@ -75,3 +75,17 @@ def test_invalid_sample_is_low_certainty() -> None:
     from comlab.schemas.vocabulary import LabRoutingDirectiveReason as R
 
     assert A._confidence_for(_verdict(0.95), [R.GAS_SAMPLE_INVALID], "FULL_FUSION") == "LOW_CERTAINTY"
+
+
+def test_gaslab_suppression_alone_is_gas_dominant() -> None:
+    from types import SimpleNamespace as NS
+
+    directive = NS(suppress_gaslab=True, suppress_obd_live_pids=False)
+    assert A._map_degradation(directive, _request()) == "GAS_DOMINANT"
+
+
+def test_process_caps_a_high_score_without_obd() -> None:
+    out = A().process(_request(obd=False))
+    assert out.diagnostic_verdict.confidence_score >= 0.80
+    assert out.execution_meta.degradation_mode == "GAS_DOMINANT"
+    assert out.execution_meta.processing_confidence_rating == "DEGRADED_ASSURANCE"

@@ -197,7 +197,9 @@ class LabPipelineAggregator:
     def _map_degradation(
         directive: LabRoutingDirective, request: OrchestratorInboundRequest
     ) -> DegradationLit:
-        """GAS_DOMINANT when OBD data is absent or suppressed, else FULL_FUSION (wiki 07 CONCEPT_DEGRADATION_MODE).
+        """GAS_DOMINANT when GASLab or OBD is suppressed or OBD live data is absent, else FULL_FUSION.
+
+        wiki 07 CONCEPT_DEGRADATION_MODE. The test reads gas and OBD only; DTC output does not change the mode.
 
         T-COMA-21 (F-C1-11). SINGLE_POINT stays on the delta engine's own result (COMLab_BDD deviation table).
         """
