@@ -1551,3 +1551,31 @@ def test_cam_map_fallback_rejects_falling_lambda_on_euro_2(ontology: dict) -> No
         ontology, reading_high=_reading(hc=517, co=2.62, co2=12.37, o2=0.2, nox=300),
     )
     assert chem != ChemicalSignature.CAM_TIMING_RETARDED_MAP
+
+
+# ---------------------------------------------------------------------------
+# T-GASA-6 — F-C2-8: per-vehicle CoC overrides apply only at HIGH confidence
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(("confidence", "applied"), [("NONE", False), ("LOW", False), ("HIGH", True)])
+def test_coc_overrides_only_at_high_confidence(ontology: dict, confidence: str, applied: bool) -> None:
+    """GAS_VOCABULARY §11, GASWIKI-02 §2.8: 'When confidence = HIGH the per-vehicle CoC bounds override'."""
+    sig = ontology["faults"]["NORMAL_OPERATION"]["signature"]
+    plain = _coc_adjust_normal_bounds(sig, _dna(confidence=confidence))
+    coc = _coc_adjust_normal_bounds(sig, _dna(confidence=confidence, co_low_idle=0.45, target_lambda_v112=1.02))
+    assert (coc["co"]["max"] == 0.45) is applied
+    assert (coc["lambda"] == {"min": pytest.approx(1.015), "max": pytest.approx(1.025)}) is applied
+    if not applied:
+        assert coc == plain
+
+
+def test_coc_probe_reading_ignores_coc_below_high(ontology: dict) -> None:
+    """F-C2-8 probe: at confidence NONE/LOW a CoC limit does not change the verdict."""
+    reading = _reading(hc=30, co=0.3, co2=15.0, o2=0.2, nox=40)
+    for confidence in ("NONE", "LOW"):
+        with_coc = classify(reading, _dna(confidence=confidence, co_low_idle=0.45),
+                            EngineStateBucket.STABILIZED_IDLE, ontology)
+        without = classify(reading, _dna(confidence=confidence), EngineStateBucket.STABILIZED_IDLE, ontology)
+        assert with_coc == without
+

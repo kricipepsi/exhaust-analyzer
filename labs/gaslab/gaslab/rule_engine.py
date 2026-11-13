@@ -120,6 +120,8 @@ def _coc_adjust_normal_bounds(
 ) -> dict:
     """Return NORMAL_OPERATION signature bounds adjusted for per-vehicle CoC targets.
 
+    Both CoC overrides apply only when ``dna.confidence == "HIGH"`` (GAS_VOCABULARY §11; T-GASA-6).
+
     When ``target_lambda_v112`` is present, the λ window is centered on
     ``v112 ± 0.005`` (clamped to a sane floor/ceiling). When absent, the
     generic ±0.005 window is kept.
@@ -133,7 +135,8 @@ def _coc_adjust_normal_bounds(
     _LAMBDA_CEILING = 1.15  # wiki: GAS_WIKI §4.7 — gasoline lean limit (~AFR 16.9)
 
     adjusted = dict(signature)
-    if dna.target_lambda_v112 is not None:
+    high = dna.confidence == "HIGH"  # vocab: GAS_VOCABULARY §11 — per-vehicle bounds override only at HIGH (T-GASA-6, F-C2-8)
+    if high and dna.target_lambda_v112 is not None:
         lo = max(dna.target_lambda_v112 - 0.005, _LAMBDA_FLOOR)  # vocab: GAS_VOCABULARY §3
         hi = min(dna.target_lambda_v112 + 0.005, _LAMBDA_CEILING)  # vocab: GAS_VOCABULARY §3
         adjusted["lambda"] = {"min": lo, "max": hi}
@@ -141,7 +144,7 @@ def _coc_adjust_normal_bounds(
     adjusted["co"] = dict(signature.get("co", {}))
     adjusted["co"]["max"] = _euro_thresholds(dna).co_idle_ceiling
     # wiki: GASWIKI-02 §2.8 — Euro-scaled idle CO ceiling
-    if dna.co_low_idle is not None:
+    if high and dna.co_low_idle is not None:  # vocab: GAS_VOCABULARY §11
         adjusted["co"]["max"] = dna.co_low_idle
         # vocab: GAS_VOCABULARY §10.2 normal_with_cat — CO ceiling per CoC limit
     return adjusted
