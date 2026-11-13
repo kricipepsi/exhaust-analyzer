@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-COMA-24` | `repo\labs\comlab\audit_tasks\PROGRESS.md` | **1** | 1 | NO | 10 min | bdd cited tests |
+| `T-COMA-25` | `repo\labs\comlab\audit_tasks\PROGRESS.md` | **1** | 1 | NO | 10 min | dead fallback tree |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-COMA-24` · owner: `repo\labs\comlab\audit_tasks\PROGRESS.md` · 1/5** — The two validation tests in `tests/unit/test_lab_pipeline_aggregator.py` run (they pass today).
-  `repo\labs\comlab\audit_tasks/T-COMA-24_bdd_cited_tests(1).md`
+**`T-COMA-25` · owner: `repo\labs\comlab\audit_tasks\PROGRESS.md` · 1/5** — `LabPipelineAggregator.run_fallback_tree` and `sanitize_and_aggregate` (a stub that raised `NotImplementedError` for every session except a non-starter) are removed, with the two skipped tests that ca
+  `repo\labs\comlab\audit_tasks/T-COMA-25_dead_fallback_tree(1).md`
 
 ## Distribution
 
-- **1/5** — 1: T-COMA-24
+- **1/5** — 1: T-COMA-25
