@@ -44,7 +44,7 @@ source: "labs/gaslab/docs/LLD_GASLab.md"
 **HLD / DLD Reference:** HLD_GASLab v2.1 / DLD_GASLab v2.1
 **Version:** 2.1
 **Date:** 2026-06-10
-**Change note:** Refreshed to the live engine — cam-timing rule (renamed from the retired WVT rule) and its high-idle confirmation vectors, `fuel_trim` leak routing, Euro-class CO/HC scaling, wideband O₂-bias calibration, and the single-value `target_lambda_v112` CoC window.
+**Change note:** Refreshed to the live engine — cam-timing rule (renamed from the retired WVT rule) and its high-idle confirmation vectors, `fuel_trim` leak routing, Euro-class CO/HC scaling, wideband O₂-bias calibration, and the single-value `target_lambda_v112` CoC window. 2026-11-13 (T-GASA-9, F-C2-12): the masking cylinder-count gate (`inferred_cyl >= 1`) was removed; GASWIKI-04 §4.8 states none.
 
 Convention: numeric literals in `gaslab/` carry a `# wiki:` or `# vocab:` comment citing `GAS_WIKI` / `GAS_VOCABULARY`, often once per condition block rather than on each literal (the rich-timing branch in `rule_engine.py` cites its block on the line above it, T-AUD-16). The literals below are transcribed from source.
 

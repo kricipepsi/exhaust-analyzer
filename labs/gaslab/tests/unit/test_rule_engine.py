@@ -1421,7 +1421,7 @@ def test_misfire_masking_unchanged_across_cylinder_counts(ontology: dict) -> Non
         assert validity == expected_validity, f"Failed validity at cylinder_count={cyl}"
 
 
-@pytest.mark.parametrize("cyl", [2, 3, 4, 12])
+@pytest.mark.parametrize("cyl", range(1, 17))  # DLD: cylinder_count 1-16
 def test_masking_rule_fires_for_every_cylinder_count(ontology: dict, cyl: int) -> None:
     """GASWIKI-04 §4.8 has no cylinder gate; GASWIKI-05 §FAULT_IGNITION_MISFIRE: dna_gate none, count is an estimate.
 
