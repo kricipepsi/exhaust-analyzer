@@ -1620,3 +1620,19 @@ def test_wideband_o2_bias_low_realistic_sample_is_emitted(ontology: dict) -> Non
     )
     assert (chem, validity) == (ChemicalSignature.O2_SENSOR_BIASED_LOW, SampleValidity.VALID)
 
+
+
+# ---------------------------------------------------------------------------
+# T-GASA-14 — F-C2-3: VACUUM_REGULATOR_DIAPHRAGM_RUPTURE reachable for every non-GDI fuel type
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    ("fuel", "vr"),
+    [("PORT_INJECTION", True), ("CARBURETOR", True), ("GDI", False)],  # producer enum: vinlab models.py
+)
+def test_vr_rupture_reachable_for_real_fuel_types(ontology: dict, fuel: str, vr: bool) -> None:
+    """GASWIKI-06A §7.19: dna_gate none (FPR universal); the edge only excludes GDI (vs GDI_HPFP)."""
+    reading = _reading(hc=1500, co=5.0, co2=10.5, o2=0.1, nox=10)  # inside the VR signature, sum 15.6
+    chem, _ = classify(reading, _dna(fuel_delivery_type=fuel), EngineStateBucket.STABILIZED_IDLE, ontology)
+    assert (chem == ChemicalSignature.VACUUM_REGULATOR_DIAPHRAGM_RUPTURE) is vr

@@ -313,9 +313,13 @@ def apply_differentiators(
             for edge in edges:
                 if edge.get("type") == "dna":
                     edge_field: str = edge["field"]
-                    edge_expected = edge["equals"]
                     edge_actual = _resolve_dna_field(dna, edge_field)
-                    if edge_actual != edge_expected:
+                    # T-GASA-14 (F-C2-3): `not_equals` excludes one value; `equals` requires one.
+                    if "not_equals" in edge:
+                        if edge_actual == edge["not_equals"]:
+                            rejected = True
+                            break
+                    elif edge_actual != edge["equals"]:
                         rejected = True
                         break
                 elif edge.get("type") == "rpm_differential" and engine_state is not None:  # wiki: GAS_VOCABULARY §7

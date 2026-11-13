@@ -246,7 +246,7 @@ dna_gate = entry.get("dna_gate")
 if dna_gate is not None:
     if _resolve_dna_field(dna, dna_gate["field"]) != dna_gate["value"]:
         continue  # suppress this candidate
-# differentiator_edges: type "dna" → equality filter; "rpm_differential" → engine_state filter;
+# differentiator_edges: type "dna" → `equals` (or `not_equals`, T-GASA-14) filter; "rpm_differential" → engine_state filter;
 #                       type "physical_check" → informational (never filters)
 ```
 
