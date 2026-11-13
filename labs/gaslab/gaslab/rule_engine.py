@@ -129,10 +129,10 @@ def _coc_adjust_normal_bounds(
     When ``co_low_idle`` is present, the CO max uses the per-vehicle CoC
     limit instead of the generic 0.45 %.
 
-    Source: ``GAS_VOCABULARY §11``, ``GAS_WIKI §4.7``.
+    Source: ``GAS_VOCABULARY §11``; clamp limits GASWIKI-06A / GASWIKI-05 (F-C2-15).
     """
-    _LAMBDA_FLOOR = 0.85   # wiki: GAS_WIKI §4.7 — gasoline rich limit (~AFR 12.5)
-    _LAMBDA_CEILING = 1.15  # wiki: GAS_WIKI §4.7 — gasoline lean limit (~AFR 16.9)
+    _LAMBDA_FLOOR = 0.85   # wiki: GASWIKI-06A §FAULT_VACUUM_REGULATOR_DIAPHRAGM_RUPTURE — λ < 0.85 is a gross rich fault (T-GASA-12)
+    _LAMBDA_CEILING = 1.15  # wiki: GASWIKI-05 §FAULT_LEAN_MISFIRE — λ > 1.15 is lean misfire (T-GASA-12)
 
     adjusted = dict(signature)
     high = dna.confidence == "HIGH"  # vocab: GAS_VOCABULARY §11 — per-vehicle bounds override only at HIGH (T-GASA-6, F-C2-8)
