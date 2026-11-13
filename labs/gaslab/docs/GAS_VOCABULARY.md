@@ -227,18 +227,25 @@ The `BORDERLINE` value is reserved for future use when stricter validity is need
 ## 6. Lambda from chemistry — formal definition
 
 ```
-       [CO₂] + [CO]/2 + [O₂] + (Hcv/4 · [CO₂]/([CO₂]+[CO])) · [CO₂]
-λ  =  ─────────────────────────────────────────────────────────────
-                       [CO₂] + [CO] + [HC]
+                 [CO₂] + [CO]/2 + [O₂]
+λ₄  =  ─────────────────────────────────────────        (gases in vol %, HC in ppm)
+         [CO₂] + [CO] + [HC] · HC_FACTOR
+
+HC_FACTOR = 0.0025   (ppm HC → effective vol % in the carbon balance)
+λ_5gas = λ₄ + (NOₓ_ppm / 1e6) × 0.5 / volumetric_sum_fraction
 ```
 
-The code (`brettschneider.lambda_chem`) has no `Hcv` term: it computes λ₄ = ([CO₂] + [CO]/2 + [O₂]) / ([CO₂] + [CO] + HC·`HC_FACTOR`), then the 5-gas NOx correction (T-AUD-16).
+This is the implemented definition (`gaslab/brettschneider.lambda_chem`). The formula printed here before
+T-GASA-11 — `([CO₂] + [CO]/2 + [O₂] + (Hcv/4 · [CO₂]/([CO₂]+[CO])) · [CO₂]) / ([CO₂] + [CO] + [HC])` — is **not** a
+definition: it has no `(1 + Hcv/4 …)` denominator normalisation and gives λ ≈ 1.45 for a stoichiometric sample
+(F-C2-14). Adopting the full Brettschneider equation (with `Hcv` and the normalised denominator) would move every
+verdict; it is a deferred design row (T-GASA-F14).
 
 Constants:
 
 | Symbol | Value | Notes |
 |---|---|---|
-| `Hcv` | 1.85 | Hydrogen-to-carbon atomic ratio for pump petrol |
+| `Hcv` | 1.85 | Hydrogen-to-carbon atomic ratio for pump petrol; not used by λ₄ (reserved for T-GASA-F14) |
 | `AFR_stoich` | 14.71 | Stoichiometric petrol AFR (kg air / kg fuel) |
 
 NOₓ adds a small O₂-equivalence term (~0.05 % per 1 000 ppm); on a 5-gas analyser it is included directly via the standard Brettschneider modification:
@@ -247,7 +254,7 @@ NOₓ adds a small O₂-equivalence term (~0.05 % per 1 000 ppm); on a 5-gas ana
 λ_5gas = λ_4gas  +  (NOₓ_ppm / 1e6) × 0.5 / volumetric_sum_fraction
 ```
 
-Implementation lives in `gaslab/brettschneider.py` (when the new code lands). The function is pure: same five inputs → same output, no side effects.
+Implementation lives in `gaslab/brettschneider.py`. The function is pure: same five inputs → same output, no side effects.
 
 ### 6.1 Edge cases
 

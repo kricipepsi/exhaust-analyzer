@@ -64,12 +64,21 @@ GASLab uses λ as the universal mixture axis. AFR is reported for context (`AFR 
 GASLab calculates λ purely from chemistry — no O₂ sensor required:
 
 ```
-       [CO₂] + [CO]/2 + [O₂] + (Hcv/4 · [CO₂]/([CO₂]+[CO])) · [CO₂]
-λ  =  ─────────────────────────────────────────────────────────────
-                       [CO₂] + [CO] + [HC]
+                 [CO₂] + [CO]/2 + [O₂]
+λ₄  =  ─────────────────────────────────────────        (gases in vol %, HC in ppm)
+         [CO₂] + [CO] + [HC] · HC_FACTOR
+
+HC_FACTOR = 0.0025   (ppm HC → effective vol % in the carbon balance)
+λ_5gas = λ₄ + (NOₓ_ppm / 1e6) × 0.5 / volumetric_sum_fraction
 ```
 
-`Hcv` is the hydrogen-to-carbon ratio of the fuel (≈ 1.85 for pump petrol; 4 for methane). NOₓ contributes a small O₂-equivalence term (~0.05 % per 1 000 ppm NOₓ) supplied directly by the 5-gas analyser. Implementation note: `brettschneider.py` uses `hc_equiv = hc * 0.0025`, a standard and valid NDIR-scaling approach `[v2: q1]`.
+This is the implemented definition (`gaslab/brettschneider.lambda_chem`). The formula printed here before
+T-GASA-11 — `([CO₂] + [CO]/2 + [O₂] + (Hcv/4 · [CO₂]/([CO₂]+[CO])) · [CO₂]) / ([CO₂] + [CO] + [HC])` — is **not** a
+definition: it has no `(1 + Hcv/4 …)` denominator normalisation and gives λ ≈ 1.45 for a stoichiometric sample
+(F-C2-14). Adopting the full Brettschneider equation (with `Hcv` and the normalised denominator) would move every
+verdict; it is a deferred design row (T-GASA-F14).
+
+`Hcv` is the hydrogen-to-carbon ratio of the fuel (≈ 1.85 for pump petrol; 4 for methane); λ₄ does not use it. NOₓ contributes a small O₂-equivalence term (~0.05 % per 1 000 ppm NOₓ) supplied directly by the 5-gas analyser. Implementation note: `brettschneider.py` uses `hc_equiv = hc * 0.0025`, a standard and valid NDIR-scaling approach `[v2: q1]`.
 
 **Three diagnostic consequences:**
 
