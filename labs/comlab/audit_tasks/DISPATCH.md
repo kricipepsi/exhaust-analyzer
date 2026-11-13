@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-COMA-17` | `repo\labs\comlab\audit_tasks\PROGRESS.md` | **2** | 1 | NO | 15 min | invalid sample flagged |
+| `T-COMA-18` | `repo\labs\comlab\audit_tasks\PROGRESS.md` | **2** | 1 | NO | 15 min | gdi hardware gate |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-COMA-17` · owner: `repo\labs\comlab\audit_tasks\PROGRESS.md` · 2/5** — On the default path (fatal gates off) an INVALID gas sample stays scored, but its `execution_meta` says so: `processing_confidence_rating` is `LOW_CERTAINTY` and `lab_routing_directive.reasons` carrie
-  `repo\labs\comlab\audit_tasks/T-COMA-17_invalid_sample_flagged(2).md`
+**`T-COMA-18` · owner: `repo\labs\comlab\audit_tasks\PROGRESS.md` · 2/5** — REG-V2 reads RM-004's precondition `gdi_equipped: true`.
+  `repo\labs\comlab\audit_tasks/T-COMA-18_gdi_hardware_gate(2).md`
 
 ## Distribution
 
-- **2/5** — 1: T-COMA-17
+- **2/5** — 1: T-COMA-18
