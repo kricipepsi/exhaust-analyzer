@@ -18,4 +18,4 @@ Gate blocks go in `progress_notes/<ID>.md`. Cells stay under 120 characters and 
 | ID | Task file | Status | Blocked by | Date | Score | Note |
 |---|---|---|---|---|---|---|
 | T-GASA-1 | (inline, Cowork; difficulty 1, no task file: roster 2026-11-13) | done | — | 2026-11-13 | 1/5 | **ACCEPT 2026-11-13, score 99, t=15/1 — `repo/labs/gaslab/audit_tasks/reviews/REVIEW_T-GASA-1.md`.** F-C2-1 (HIGH): low-triangle leak route needs CO + CO2 > 6 % (wiki §4.2); diluted sample is INVALID |
-| T-GASA-2 | (inline, Cowork; difficulty 1, no task file: roster 2026-11-13) | pending | T-GASA-1 | 2026-11-13 | 1/5 | F-C2-2 (HIGH): collision rule keeps the triangle gate's validity; 2 pins re-stated; T-GASA-1 docstring nit |
+| T-GASA-2 | (inline, Cowork; difficulty 1, no task file: roster 2026-11-13) | done | T-GASA-1 | 2026-11-13 | 1/5 | **ACCEPT 2026-11-13, score 99, t=12/1 — `repo/labs/gaslab/audit_tasks/reviews/REVIEW_T-GASA-2.md`.** F-C2-2 (HIGH): collision rule keeps the triangle gate's validity; 2 pins re-stated; T-GASA-1 docstring nit |
