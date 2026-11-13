@@ -167,6 +167,7 @@ _PRUNE_REASON_CHEMISTRY: str = "chemistry"  # consumer: analyse_failure_modes._p
 _PRUNE_REASON_MISSING_EVIDENCE: str = "missing_evidence"  # consumer: analyse_failure_modes._prune_event_buckets
 _GATING_KEY_CHEMISTRY: str = "gas_lab_state"  # wiki: matches v1 chemistry prune key (L392)
 _GATING_KEY_NO_EVIDENCE: str = "no_evidence_satisfied"  # firing-predicate (b) failure
+_GATING_KEY_WEAK_SUPPORT: str = "weak_support_only"  # T-COMA-6: strict support failed on NORMAL_OPERATION
 # T-COMA-1: the non_starter family gate prunes every other family for a will_not_start session.
 _PRUNE_REASON_FAMILY_GATE: str = "family_gate"  # consumer: fault_atlas_router.py route() phase.prune span
 _GATING_KEY_WILL_NOT_START: str = "engine_state:will_not_start"  # wiki: 07 RULE_LAB_SUPPRESSION
@@ -967,6 +968,36 @@ def _score_rule(rule: Rule, obs: _Observation) -> float | None:
     return _score_rule_raw(rule, obs)
 
 
+def _strict_support(rule: Rule, obs: _Observation) -> bool:
+    """F-C1-1 (T-COMA-6): on NORMAL_OPERATION chemistry, does the rule have enough support to fire?
+
+    True for any other chemistry state (the permissive predicate applies) and for a rule whose rows are all GATING.
+    Otherwise the rule needs one of: a satisfied DEFINITIVE row, a satisfied positive DTC row (any_match or
+    all_match), two satisfied non-GATING rows, or a satisfied GATING chemistry row plus one satisfied non-GATING
+    row. A satisfied ``none_present`` DTC row is an exclusion and a NORMAL_OPERATION chemistry row is the healthy
+    reading itself, so neither is support.
+    """
+    if obs.chemistry_state is not ChemistryState.NORMAL_OPERATION:
+        return True
+    rows = [
+        (e.tier, _check_chemistry_evidence(e, obs), None)
+        for e in rule.chemistry_evidence
+        if e.state is not ChemistryState.NORMAL_OPERATION  # the healthy reading is not evidence of a fault
+    ]
+    rows += [(e.tier, _check_obd_evidence(e, obs), None) for e in rule.obd_evidence]
+    rows += [(e.tier, _check_dtc_evidence(e, obs), e.strategy) for e in rule.dtc_evidence]
+    support = [r for r in rows if r[0] != EvidenceTier.GATING]
+    if not support:
+        return True
+    sat = [r for r in support if r[1] and r[2] != "none_present"]
+    if any(t == EvidenceTier.DEFINITIVE or st in ("any_match", "all_match") for t, _s, st in sat):
+        return True
+    chem_gate = any(
+        e.tier == EvidenceTier.GATING and _check_chemistry_evidence(e, obs) for e in rule.chemistry_evidence
+    )
+    return len(sat) >= 2 or (chem_gate and len(sat) >= 1)
+
+
 def _score_rule_raw(rule: Rule, obs: _Observation) -> float | None:
     """Return the clamped score for a firing rule, or ``None`` if the rule
     does not fire.
@@ -1020,6 +1051,8 @@ def _score_rule_raw(rule: Rule, obs: _Observation) -> float | None:
         # Firing predicate (b): need ≥1 satisfied row of any tier.
         # Spec clarification — see module docstring.
         return None
+    if not _strict_support(rule, obs):
+        return None
 
     ceiling = rule.confidence_ceiling if rule.confidence_ceiling is not None else _CONFIDENCE_HARD_CAP
     return min(score, ceiling)
@@ -1063,6 +1096,8 @@ def _prune_attribution(rule: Rule, obs: _Observation) -> tuple[str, str] | None:
     )
     if not any_satisfied:
         return (_PRUNE_REASON_MISSING_EVIDENCE, _GATING_KEY_NO_EVIDENCE)
+    if not _strict_support(rule, obs):
+        return (_PRUNE_REASON_MISSING_EVIDENCE, _GATING_KEY_WEAK_SUPPORT)
 
     return None  # rule fires — not pruned
 

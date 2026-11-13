@@ -184,7 +184,7 @@ def test_e2e_abstain_case():
     
     # Perfect stoich with no symptoms / no DTCs / no trims should abstain due to insufficient evidence
     assert res.diagnostic_verdict.abstained is True
-    assert res.diagnostic_verdict.abstain_reason in ("floor", "margin")
+    assert res.diagnostic_verdict.abstain_reason in ("floor", "margin", "no_rule")
 
 
 def test_advanced_fields_mapping():

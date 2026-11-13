@@ -2166,6 +2166,11 @@ class FaultAtlasRouter:
                 # T-COMA-1: no non_starter rule matches a will_not_start session.
                 abstained = True
                 abstain_reason = "no_rule"
+            elif not scored_rules:
+                # T-COMA-6 (F-C1-1): no rule fired, not even NF-001/NF-002, so the evidence does not certify a
+                # healthy car: keep the no-fault verdict and abstain.
+                abstained = True
+                abstain_reason = "no_rule"
             elif is_fault:
                 if winner_score < ABSTAIN_FLOOR:
                     abstained = True

@@ -271,7 +271,7 @@ def test_v2_no_abstain(monkeypatch, registry_path):
 
 
 def test_v2_healthy_no_abstain(monkeypatch, registry_path):
-    """V2 path: no fault detected does not abstain."""
+    """V2 path: no rule fired (not even NF-001/NF-002): no fault, abstained no_rule (T-COMA-6)."""
     router = FaultAtlasRouter(str(registry_path), FaultAtlasKG(), PowerLossAnalytics(), use_v2_registry=True, enable_delta_v2=False)
     
     mock_out = _mock_v2_output(False, "OPTIMAL_HEALTH", 0.0)
@@ -290,5 +290,5 @@ def test_v2_healthy_no_abstain(monkeypatch, registry_path):
     res = router.route(_sanitized(req))
     
     assert res.diagnostic_verdict.is_fault_detected is False
-    assert res.diagnostic_verdict.abstained is False
-    assert res.diagnostic_verdict.abstain_reason is None
+    assert res.diagnostic_verdict.abstained is True
+    assert res.diagnostic_verdict.abstain_reason == "no_rule"
