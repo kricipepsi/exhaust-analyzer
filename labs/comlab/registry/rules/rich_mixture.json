@@ -159,14 +159,6 @@
           "tier": "SUGGESTIVE",
           "units": "%",
           "wiki_ref": "OBD_VOCABULARY \u00a72"
-        },
-        {
-          "pid": "fuel_pressure",
-          "operator": "lt",
-          "value": 3000.0,
-          "tier": "SUGGESTIVE",
-          "units": "kPa",
-          "wiki_ref": "OBD_VOCABULARY \u00a73"
         }
       ],
       "dtc_evidence": [

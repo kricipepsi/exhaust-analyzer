@@ -350,7 +350,6 @@ _PID_DISPATCH: dict[str, tuple[tuple[str, str], ...]] = {
     # Measured post-catalyst channel (OBDLiveDataPayload.downstream_o2_v). No FF fallback:
     # FreezeFrameRecord has no B1S2 voltage and the upstream B1S1 value must not score downstream evidence.
     "o2_downstream": (("obd", "downstream_o2_v"),),
-    "fuel_pressure": (("ff", "fuel_pressure_kpa"),),  # wiki: optional FF PID; None if absent
 }
 
 
