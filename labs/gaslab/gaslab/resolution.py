@@ -453,7 +453,7 @@ def apply_differentiators(
         if any(c in survivors for c in mechanical_wear_family):
             routed_leaf = None
             if (
-                300 <= reading.hc <= 500  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+                75 <= reading.hc <= 500  # wiki: GASWIKI-06A §FAULT_WORN_VALVE_SEALS physics — v1 75–250 and v2 300–500 are one fault at two severities
                 and reading_high.hc <= 35  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
                 and reading_high.hc < reading.hc  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
                 and reading_high.co <= 0.15  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR

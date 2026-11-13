@@ -360,6 +360,23 @@ def test_poa_routes_to_worn_valve_seals_on_sharp_hc_dropoff(ontology: dict) -> N
     assert validity == SampleValidity.VALID
 
 
+def test_mild_valve_seals_keep_verdict_when_2500_confirms(ontology: dict) -> None:
+    """F-C2-5: the v1 idle presentation (HC 75-250) plus a sharp drop at 2500 stays WORN_VALVE_SEALS."""
+    reading = _reading(
+        hc=150, co=0.3, co2=14.0, o2=0.4, nox=50,  # wiki: GAS_WIKI §7.21 — v1 idle row
+    )
+    reading_high = _reading(
+        hc=20, co=0.10, co2=15.0, o2=0.0, nox=60,  # wiki: GASWIKI-06A §6A.1 — HC <= 35, CO <= 0.15
+    )
+    dna = _dna()
+    idle_only = classify(reading, dna, EngineStateBucket.STABILIZED_IDLE, ontology)
+    confirmed = classify(
+        reading, dna, EngineStateBucket.STABILIZED_IDLE, ontology, reading_high=reading_high
+    )
+    assert idle_only == (ChemicalSignature.WORN_VALVE_SEALS, SampleValidity.VALID)
+    assert confirmed == (ChemicalSignature.WORN_VALVE_SEALS, SampleValidity.VALID)
+
+
 def test_poa_routes_to_worn_piston_rings_on_rising_hc_loaded_co(ontology: dict) -> None:
     """Idle HC at 120 and high-idle HC > 300 with high CO routes to WORN_PISTON_RINGS."""
     reading = _reading(
