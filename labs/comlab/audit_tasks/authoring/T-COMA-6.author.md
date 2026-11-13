@@ -60,4 +60,13 @@ own pass 2026-11-13: P1-P3 measured (facts 1, 3) · `rehearse.py` exits on any u
 criteria 1-2 → steps 1-5 and R5 · cold read: not triggered (d2, scripted) · no finding.
 
 ### Correction history ###
-(none)
+- **Correction 1 (2026-11-13), after the second review of `9e0df5d`** (`C:/4DApp/recheck/codex/T-COMA-6_review.md`,
+  ds-flash, APPROVE WITH CORRECTIONS). The High finding is upheld as latent. `_strict_support` filtered NORMAL rows
+  out before the "no non-GATING row" test, so a rule whose only support row is NORMAL would fire on healthy gas.
+  This departs from R1, and the defect was in Cowork's rehearsal script. No current rule has the shape (registry
+  scan: 0), so the corpus and probes do not move. Cowork extended it to a GATING NORMAL row used as the chemistry
+  anchor. The Medium finding (no test) is upheld, with three synthetic cases. Rehearsed (`correction1.patch`): the new
+  test goes 3 failed to 16 passed; wired 140 → 143; comlab, ui, probes and corpus equal; ruff clean. Also fixed in
+  the spec: step 1's `git checkout -- labs/comlab/registry/case_library.html` named an untracked path (pathspec
+  error, harmless), so it is removed. Lost: accepting at 9e0df5d with a follow-up row, which would leave a known
+  departure from R1 on `main`.

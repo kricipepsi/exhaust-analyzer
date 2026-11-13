@@ -28,6 +28,8 @@ clone `C:/4DApp/repo`, on branch `fix/T-COMA-6` (built on the accepted `fix/T-CO
 - **Expected wall-clock: 15-20 min.** Stop rule: at 35 min, write `## Time` and a partial RESULT, then stop.
 - **Plan: NONE.** One scripted edit and one new test, rehearsed (`C:/4DApp/recheck/T-COMA-6/rehearsal.patch`).
 - **Skills:** `C:/4DApp/.claude/skills/writing-4dapp-python-code/SKILL.md`
+- **Correction 1 (2026-11-13, second review of `9e0df5d`): this dispatch is the revision only.** R1-R5 are built and
+  reviewed in `9e0df5d`; do R6 and R7, then one new commit. Expected wall-clock 10 min; stop rule 20 min.
 
 ### Goal ###
 When the gas reads `NORMAL_OPERATION`, a registry rule fires only with strict support, so one normal-valued
@@ -39,11 +41,11 @@ today's predicate. Done is `### Verification ###` with the P2 and P3 counts.
 | id | value | population | command |
 |---|---|---|---|
 | P1 | comlab `510 passed, 4 skipped`; wired `127 passed`; ui `70 passed`; the three healthy-car probes fail (`3 failed, 13 deselected`; verdicts `LC-002` and `MF-005`) | base `49214a9` | steps 1 and 3 on the base |
-| P2 | after the edit: comlab `510 passed, 4 skipped`; wired `140 passed`; the new test `13 passed` (`9 failed, 4 passed` on the base code); ui `70 passed`; ruff clean on the five files step 5 names; `git diff --stat 49214a9 HEAD -- labs/comlab/registry labs/comlab/comlab labs/comlab/tests apps` `5 files changed, 114 insertions(+), 4 deletions(-)` | Cowork's rehearsal | `C:/4DApp/recheck/T-COMA-6/rehearsal.patch` plus the test |
+| P2 | after correction 1: comlab `510 passed, 4 skipped`; wired `143 passed`; the new test `16 passed` (`3 failed, 13 passed` on `9e0df5d`'s shim); ui `70 passed`; ruff clean on the five files step 5 names; `git diff --stat 9e0df5d HEAD -- labs/comlab/registry labs/comlab/comlab labs/comlab/tests apps` `2 files changed, 26 insertions(+), 6 deletions(-)` | Cowork's rehearsal | `C:/4DApp/recheck/T-COMA-6/correction1.patch` |
 | P3 | the probes: `3 passed, 13 deselected`, first verdict line `verdict: OPTIMAL_HEALTH no_fault 0.0 False OPTIMAL_HEALTH`; v7 corpus: `changed 0 of 314` (fault code and family) against `C:/4DApp/recheck/T-COMA-6/before.json` | `repo/audit/scratch/C1`, `C5` | steps 3 and 4 |
 
 `$PY` is `C:/4DApp/.venv/Scripts/python.exe`. Every file under `C:/4DApp/recheck/T-COMA-6/` except `pt/` is Cowork's:
-read it, run `rehearse.py`, copy the test, do not edit any of them.
+read it, run `correct1.py`, copy the test, do not edit any of them.
 
 ### Rulings that bind ###
 - **R1 strict support** in `labs/comlab/registry/integration_shim.py`: a new `_strict_support(rule, obs) -> bool`
@@ -68,7 +70,16 @@ read it, run `rehearse.py`, copy the test, do not edit any of them.
   (`9 failed, 4 passed`), `git stash pop`. Mutant A: in `_strict_support`, delete `and r[2] != "none_present"`, run
   step 2 (`1 failed, 12 passed`). Mutant B: replace `if e.state is not ChemistryState.NORMAL_OPERATION` with
   `if True`, run step 2 (`2 failed, 11 passed`). Put each line back by hand (the edit is not committed yet, so not
-  `git restore`). Record the three results and the restored `git diff --stat`.
+  `git restore`). Record the three results and the restored `git diff --stat`. (Done in `9e0df5d`.)
+- **R6 correction 1** (from the second review, re-derived by Cowork): in `_strict_support` a `NORMAL_OPERATION`
+  chemistry row stays a row, so a rule whose only non-GATING row is NORMAL is not "a rule with no non-GATING row";
+  it is never satisfied support, and a GATING NORMAL row is not the chemistry anchor. Route:
+  `$PY -I C:/4DApp/recheck/T-COMA-6/correct1.py` from `C:/4DApp/repo`, then copy
+  `C:/4DApp/recheck/T-COMA-6/test_t_coma_6_firing_predicate_c1.py` over `apps/wired/tests/test_t_coma_6_firing_predicate.py`
+  (`cp`, then `cmp`). It adds three synthetic cases (`test_normal_row_alone_or_as_anchor_does_not_fire`).
+- **R7 base failure for R6:** with the new test copied and before `correct1.py`, step 2 gives `3 failed, 13 passed`.
+  Update the note (an `## Correction 1` section with R7, the gate and `## Time`) and the RESULT; both stay
+  uncommitted, as before.
 
 ### First action ###
 ```bash
@@ -76,14 +87,16 @@ cd C:/4DApp/repo && git branch --show-current && git log --oneline 49214a9..HEAD
 ```
 ```
 fix/T-COMA-6
-<Cowork's spec(T-COMA-6) commit>
+<Cowork's spec(T-COMA-6) correction 1 commit>
+9e0df5d fix(T-COMA-6): strict support on NORMAL_OPERATION gas; no-fire verdict abstains no_rule
+8f1690b coma: spec(T-COMA-6): on NORMAL_OPERATION gas a rule needs strict support; no-fire abstains (F-C1-1)
 ```
-`git status --porcelain` prints nothing. Anything else is a stop.
+`git status --porcelain` lists only `?? .../progress_notes/T-COMA-6.md` and `?? .../results/RESULT_T-COMA-6.md`.
+Anything else is a stop.
 
 ### Success criteria ###
-1. Steps 1-4 report the P2 and P3 counts; R5 gives base `9 failed, 4 passed`, mutant A `1 failed, 12 passed` and
-   mutant B `2 failed, 11 passed`.
-2. Step 5: ruff clean, the P2 diff stat, one new commit on `fix/T-COMA-6` after the spec commit, and
+1. Steps 1-4 report the P2 and P3 counts; R7 gives `3 failed, 13 passed`.
+2. Step 5: ruff clean, the P2 diff stat, one new commit on `fix/T-COMA-6` after the correction spec commit, and
    `git status --porcelain` lists only the note and the RESULT.
 
 ### Context ###
@@ -94,23 +107,20 @@ fix/T-COMA-6
 
 ### Preconditions ###
 ```bash
-cd C:/4DApp/repo && for p in labs/comlab/registry/integration_shim.py labs/comlab/comlab/core/fault_atlas_router.py labs/comlab/tests/unit/test_abstain_emit.py apps/ui/tests/test_ui.py audit/scratch/C1/test_c1_healthy_and_sinks.py audit/scratch/C5/test_c5_probes.py C:/4DApp/recheck/T-COMA-6/rehearse.py C:/4DApp/recheck/T-COMA-6/test_t_coma_6_firing_predicate.py C:/4DApp/recheck/T-COMA-6/verdicts.py C:/4DApp/recheck/T-COMA-6/before.json; do test -f "$p" || echo "MISSING $p"; done; echo checked
+cd C:/4DApp/repo && for p in labs/comlab/registry/integration_shim.py labs/comlab/comlab/core/fault_atlas_router.py labs/comlab/tests/unit/test_abstain_emit.py apps/ui/tests/test_ui.py audit/scratch/C1/test_c1_healthy_and_sinks.py audit/scratch/C5/test_c5_probes.py C:/4DApp/recheck/T-COMA-6/rehearse.py C:/4DApp/recheck/T-COMA-6/test_t_coma_6_firing_predicate.py C:/4DApp/recheck/T-COMA-6/verdicts.py C:/4DApp/recheck/T-COMA-6/before.json C:/4DApp/recheck/T-COMA-6/correct1.py C:/4DApp/recheck/T-COMA-6/test_t_coma_6_firing_predicate_c1.py; do test -f "$p" || echo "MISSING $p"; done; echo checked
 ```
 Expected: `checked`, and no `MISSING` line.
 
 ### Deliverables ###
-1. One new commit on `fix/T-COMA-6`: R1-R4.
-2. `repo/labs/comlab/audit_tasks/progress_notes/T-COMA-6.md` (with the R5 results).
+1. One new commit on `fix/T-COMA-6`: R6 (R1-R4 are `9e0df5d`).
+2. `repo/labs/comlab/audit_tasks/progress_notes/T-COMA-6.md` (with the R5 results and the R7 correction section).
 3. `repo/labs/comlab/audit_tasks/results/RESULT_T-COMA-6.md`.
 
 ### Files to touch ###
-- `repo/labs/comlab/registry/integration_shim.py` (MODIFY: R1)
-- `repo/labs/comlab/comlab/core/fault_atlas_router.py` (MODIFY: R2)
-- `repo/labs/comlab/tests/unit/test_abstain_emit.py` (MODIFY: R3)
-- `repo/apps/ui/tests/test_ui.py` (MODIFY: R3)
-- `repo/apps/wired/tests/test_t_coma_6_firing_predicate.py` (CREATE: R4)
-- `repo/labs/comlab/audit_tasks/progress_notes/T-COMA-6.md` (CREATE)
-- `repo/labs/comlab/audit_tasks/results/RESULT_T-COMA-6.md` (CREATE)
+- `repo/labs/comlab/registry/integration_shim.py` (MODIFY: R6)
+- `repo/apps/wired/tests/test_t_coma_6_firing_predicate.py` (MODIFY: R6)
+- `repo/labs/comlab/audit_tasks/progress_notes/T-COMA-6.md` (MODIFY: R7)
+- `repo/labs/comlab/audit_tasks/results/RESULT_T-COMA-6.md` (MODIFY: R7)
 - `C:/4DApp/recheck/T-COMA-6/pt/` (RUNTIME: pytest `--basetemp`)
 
 ### Out of scope ###
@@ -128,7 +138,7 @@ PY=C:/4DApp/.venv/Scripts/python.exe
 export PYTHONDONTWRITEBYTECODE=1
 mkdir -p C:/4DApp/recheck/T-COMA-6/pt
 # 1.
-(cd labs/comlab && timeout 280 $PY -m pytest -q -p no:cacheprovider --basetemp=C:/4DApp/recheck/T-COMA-6/pt/c </dev/null | tail -1); git checkout -- labs/comlab/registry/case_library.html
+(cd labs/comlab && timeout 280 $PY -m pytest -q -p no:cacheprovider --basetemp=C:/4DApp/recheck/T-COMA-6/pt/c </dev/null | tail -1)
 (cd apps/wired && timeout 280 $PY -m pytest -q -p no:cacheprovider --basetemp=C:/4DApp/recheck/T-COMA-6/pt/w </dev/null | tail -1)
 (cd apps/ui && timeout 280 $PY -m pytest -q -p no:cacheprovider --basetemp=C:/4DApp/recheck/T-COMA-6/pt/u </dev/null | tail -1)
 # 2.
@@ -138,14 +148,14 @@ mkdir -p C:/4DApp/recheck/T-COMA-6/pt
 # 4.
 (cd audit/scratch/C5 && timeout 280 $PY C:/4DApp/recheck/T-COMA-6/verdicts.py </dev/null > C:/4DApp/recheck/T-COMA-6/pt/after.json) && $PY -c "import json; a=json.load(open('C:/4DApp/recheck/T-COMA-6/before.json')); b=json.load(open('C:/4DApp/recheck/T-COMA-6/pt/after.json')); print('changed', sum(a[k]!=b.get(k) for k in a), 'of', len(b))"
 # 5.
-timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check labs/comlab/registry/integration_shim.py labs/comlab/comlab/core/fault_atlas_router.py labs/comlab/tests/unit/test_abstain_emit.py apps/ui/tests/test_ui.py apps/wired/tests/test_t_coma_6_firing_predicate.py; git diff --stat 49214a9 HEAD -- labs/comlab/registry labs/comlab/comlab labs/comlab/tests apps; git log --oneline 49214a9..HEAD; git status --porcelain
+timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check labs/comlab/registry/integration_shim.py labs/comlab/comlab/core/fault_atlas_router.py labs/comlab/tests/unit/test_abstain_emit.py apps/ui/tests/test_ui.py apps/wired/tests/test_t_coma_6_firing_predicate.py; git diff --stat 9e0df5d HEAD -- labs/comlab/registry labs/comlab/comlab labs/comlab/tests apps; git log --oneline 49214a9..HEAD; git status --porcelain
 ```
 Expected:
-- step 1: `510 passed, 4 skipped`; `140 passed`; `70 passed`; no `failed` or `error`.
-- step 2: `13 passed`.
+- step 1: `510 passed, 4 skipped`; `143 passed`; `70 passed`; no `failed` or `error`.
+- step 2: `16 passed`.
 - step 3: `verdict: OPTIMAL_HEALTH no_fault 0.0 False OPTIMAL_HEALTH`, then `3 passed, 13 deselected`.
 - step 4: `changed 0 of 314`.
-- step 5: `All checks passed!`; `5 files changed, 114 insertions(+), 4 deletions(-)`; the spec commit and your one new
-  commit; only the note and the RESULT.
+- step 5: `All checks passed!`; `2 files changed, 26 insertions(+), 6 deletions(-)`; the two spec commits, `9e0df5d`
+  and your one new commit; only the note and the RESULT.
 
 Repo-wide gates: none beyond step 1 (comlab, wired and ui read the shim).
