@@ -250,7 +250,7 @@ if dna_gate is not None:
 #                       type "physical_check" → informational (never filters)
 ```
 
-`confidence` is **not** consumed by the strict gate. On the `process()` path its one functional use is `_rich_co_ceiling(dna)`: `co_high_idle` overrides the Euro default **only** when `confidence == "HIGH"`. Off that path, `ranking._dna_tier` reads it to pick the confidence-ceiling row (T-AUD-16).
+`confidence` is **not** consumed by the strict gate. On the `process()` path it gates the per-vehicle CoC overrides only: `_rich_co_ceiling(dna)` uses `co_high_idle`, and `_coc_adjust_normal_bounds` uses `co_low_idle` and `target_lambda_v112`, **only** when `confidence == "HIGH"` (ADR-0011 amendment, T-GASA-6). Off that path, `ranking._dna_tier` reads it to pick the confidence-ceiling row (T-AUD-16).
 
 ---
 

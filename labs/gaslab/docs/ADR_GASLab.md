@@ -19,7 +19,7 @@ This file records the standing architectural decisions that shape GASLab. Record
 | ADR-0008 | Cam-timing states are not DNA-gated; the MAF/MAP split rides a gas discriminator | Accepted |
 | ADR-0009 | Optional high-idle (2500 RPM) reading drives RPM-differential separation | Accepted |
 | ADR-0010 | Collapse the `target_lambda` low/high pair into a single `target_lambda_v112` window | Accepted |
-| ADR-0011 | `confidence` is carried but gates only the `co_high_idle` override | Accepted |
+| ADR-0011 | `confidence` is carried and gates only the per-vehicle CoC overrides (amended 2026-11-13) | Accepted |
 
 ---
 
@@ -123,7 +123,7 @@ This file records the standing architectural decisions that shape GASLab. Record
 - Positive: no false positives from impossible faults; the gate is simple equality, trivially testable.
 - Positive: deterministic — the verdict does not depend on a confidence heuristic.
 - Negative: a wrong/missing DNA field can suppress a real fault; correctness of the verdict leans on DNA-projection quality upstream.
-- Neutral: `confidence` is still carried in the DNA view and used in one narrow, explicit place on the `process()` path (ADR-0011).
+- Neutral: `confidence` is still carried in the DNA view and used only for the per-vehicle CoC overrides on the `process()` path (ADR-0011).
 
 **Alternatives considered.**
 1. *Confidence-weighted gates (relax when DNA is PARTIAL/NONE).* Rejected for the canonical pipeline — it trades a clear, testable rule for a tunable heuristic and risks emitting impossible faults.
@@ -243,7 +243,7 @@ This file records the standing architectural decisions that shape GASLab. Record
 
 ---
 
-## ADR-0011: `confidence` is carried but gates only the `co_high_idle` override
+## ADR-0011: `confidence` is carried and gates only the per-vehicle CoC overrides
 
 **Status:** Accepted
 
@@ -261,7 +261,13 @@ This file records the standing architectural decisions that shape GASLab. Record
 1. *Ignore `confidence` entirely in GASLab.* Rejected — then `co_high_idle` would be trusted blindly even on a low-confidence lookup.
 2. *Use `confidence` to weight all per-vehicle overrides.* Rejected — broadens into the heuristic ADR-0005 declines; one explicit gate is enough.
 
-**References.** `LLD_GASLab §7, §9`; `DLD_GASLab §5`; `resolution._rich_co_ceiling`.
+**Amendment (2026-11-13, T-GASA-6, F-C2-8).** GAS_VOCABULARY §11 and GASWIKI-02 §2.8 say *all* per-vehicle CoC
+bounds override the defaults only when `confidence = HIGH`. The same binary HIGH gate now also covers the two
+NORMAL_OPERATION overrides in `rule_engine._coc_adjust_normal_bounds` (`co_low_idle`, `target_lambda_v112`), which
+before applied at any confidence. This is not alternative 2: it is the one explicit gate, applied to every CoC field,
+with no weighting and no effect on fault gates (ADR-0005 stands). Domain truth is the wiki (FIX_PLAN ruling 1).
+
+**References.** `LLD_GASLab §7, §9`; `DLD_GASLab §5`; `resolution._rich_co_ceiling`; `rule_engine._coc_adjust_normal_bounds`.
 
 ---
 

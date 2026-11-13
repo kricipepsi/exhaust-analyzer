@@ -188,7 +188,7 @@ sample_validity(reading) → SampleValidity:
 | `target_lambda_v112` | `Optional[float]` | `[0.5, 2.5]` | certified CoC λ centre; `_coc_adjust_normal_bounds` NORMAL λ window `[v112±0.005]` |
 | `co_low_idle` | `Optional[float]` | `[0, 15]` | per-vehicle CoC idle CO ceiling; NORMAL CO max |
 | `co_high_idle` | `Optional[float]` | `[0, 15]` | per-vehicle CoC 2500 RPM CO ceiling; CAM_MAP rich-CO ceiling **when `confidence == HIGH`** |
-| `confidence` | `str` | default `"NONE"` | not a payload field; on the `process()` path gates only the `co_high_idle` override; off that path `ranking.py` reads it for the ceiling tier (T-AUD-16) |
+| `confidence` | `str` | default `"NONE"` | not a payload field; on the `process()` path gates only the CoC overrides (`co_high_idle`, `co_low_idle`, `target_lambda_v112`; T-GASA-6); off that path `ranking.py` reads it for the ceiling tier (T-AUD-16) |
 
 > Changes from v1: `target_lambda_low` + `target_lambda_high` collapsed to the single `target_lambda_v112`; `co_high_idle` added; `secondary_air_equipped` removed (no consumer).
 

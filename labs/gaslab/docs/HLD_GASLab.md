@@ -147,7 +147,7 @@ GasReading (idle) [+ reading_high 2500 RPM] + GasLabContext
 
 ## 5. DNA-Gate Architecture
 
-In the v1/v2 pipeline the DNA gate is applied **strictly and unconditionally**: a fault is suppressed whenever its gate field does not match the DNA view. The `GasLabDnaView.confidence` field (`HIGH` / `PARTIAL` / `NONE`) is an input only (not a `GasLabPayload` field, so it is not forwarded to COMLab, T-AUD-16) and is **not** consumed by the strict gate. On the `process()` path it *is* read in one narrow place — the rich-CO ceiling for the `CAM_TIMING_RETARDED_MAP` branch uses the per-vehicle `co_high_idle` **only when `confidence == "HIGH"`** (otherwise the Euro-scaled default applies). There is no broad HIGH/PARTIAL/NONE branching in `apply_differentiators`. Off the `process()` path, `ranking.py` (GASLabSimple) reads it to pick its confidence-ceiling tier.
+In the v1/v2 pipeline the DNA gate is applied **strictly and unconditionally**: a fault is suppressed whenever its gate field does not match the DNA view. The `GasLabDnaView.confidence` field (`HIGH` / `PARTIAL` / `NONE`) is an input only (not a `GasLabPayload` field, so it is not forwarded to COMLab, T-AUD-16) and is **not** consumed by the strict gate. On the `process()` path it *is* read for the per-vehicle CoC overrides only — the rich-CO ceiling for the `CAM_TIMING_RETARDED_MAP` branch (`co_high_idle`) and the NORMAL_OPERATION bounds (`co_low_idle`, `target_lambda_v112`) use the CoC value **only when `confidence == "HIGH"`** (otherwise the defaults apply; ADR-0011 amendment, T-GASA-6). There is no broad HIGH/PARTIAL/NONE branching in `apply_differentiators`. Off the `process()` path, `ranking.py` (GASLabSimple) reads it to pick its confidence-ceiling tier.
 
 6 DNA-gated faults in the ontology:
 
@@ -159,6 +159,10 @@ In the v1/v2 pipeline the DNA gate is applied **strictly and unconditionally**: 
 | `GDI_HPFP_INTERNAL_SEAL_LEAK` | `fuel_delivery_type` | `"GDI"` |
 | `EGR_STUCK_CLOSED` | `egr_equipped` | `true` |
 | `EGR_STUCK_OPEN` | `egr_equipped` | `true` |
+
+`HIGH_COMBUSTION_TEMP` has no `dna_gate` but carries a `dna` differentiator edge `emissions.egr_equipped = false`:
+on an EGR-equipped vehicle the same NOx-only pattern is emitted as `EGR_STUCK_CLOSED` instead (F-D2-24; pinned by
+`tests/unit/test_resolution.py`).
 
 The three `CAM_TIMING_*` states are deliberately **not** DNA-gated: there is no DNA field for MAF-vs-MAP air metering, and inventing one would add a field with no consumer (signal/noise violation). The split is carried by the gas-direction discriminator instead.
 
