@@ -27,8 +27,11 @@ MEDIUM: `processing_confidence_rating` comes from the era alone; FIX_PLAN T-AUD-
 `C:/4DApp/repo`, on branch `fix/T-COMA-21` (built on the accepted `fix/T-COMA-20`, `8dc0b43`).
 - **Test length: 1/5.** **Runs real compute: NO.**
 - **Expected wall-clock: 15 min.** Stop rule: at 30 min, write `## Time` and a partial RESULT, then stop.
-- **Plan: NONE.** One patch and one new test, rehearsed (`C:/4DApp/recheck/T-COMA-21/rehearsal.patch`).
+- **Plan: NONE.** One patch and one new test, rehearsed (`C:/4DApp/recheck/T-COMA-21/rehearsal.patch`,
+  `correction1.patch`).
 - **Skills:** `C:/4DApp/.claude/skills/writing-4dapp-python-code/SKILL.md`
+- **Correction 1 (2026-11-13, second review of `3ed6cb0`): this dispatch is the revision only.** R1-R5 are built in
+  `3ed6cb0`; do R6 and R7, then one new commit. Expected wall-clock 10 min; stop rule 20 min.
 
 ### Goal ###
 `execution_meta.degradation_mode` is `GAS_DOMINANT` when OBD live data is absent or suppressed, else
@@ -41,7 +44,7 @@ and `LOW_CERTAINTY` for an abstained verdict or an INVALID gas sample. The BDD d
 | id | value | population | command |
 |---|---|---|---|
 | P1 | comlab `527 passed, 4 skipped`; wired `186 passed`; ui `73 passed`; the four audit probes in step 3 `4 failed` | base `8dc0b43` | steps 1 and 3 on the base |
-| P2 | after the patch: comlab `538 passed, 4 skipped`; wired `186 passed`; ui `73 passed`; step 2 `11 passed` (base `10 failed, 1 passed`); ruff clean; `git diff --stat 8dc0b43 HEAD -- labs/comlab/comlab labs/comlab/docs labs/comlab/tests` `4 files changed, 110 insertions(+), 23 deletions(-)` | Cowork's rehearsal | `rehearsal.patch` plus the test |
+| P2 | after correction 1: comlab `540 passed, 4 skipped`; wired `186 passed`; ui `73 passed`; step 2 `13 passed` (base `10 failed, 1 passed` before R6); ruff clean; `git diff --stat 8dc0b43 HEAD -- labs/comlab/comlab labs/comlab/docs labs/comlab/tests` `4 files changed, 126 insertions(+), 23 deletions(-)` | Cowork's rehearsal | `rehearsal.patch` plus the test |
 | P3 | step 3 `4 passed`; v7 corpus verdicts `changed 0 of 314` against `C:/4DApp/recheck/T-COMA-17/before.json` | `repo/audit/scratch/C1`, `C5` | steps 3 and 4 |
 | P4 | on the 311 runnable v7 cases: rating changed on 202, mode on 17; family accuracy per tier HIGH `157/199`, DEGRADED `8/11`, LOW `51/101` (before: HIGH `5/8`, DEGRADED `1/1`, LOW `210/302`) | v7 corpus | `C:/4DApp/recheck/T-COMA-21/meta.py`, Cowork's, not rerun |
 
@@ -72,7 +75,17 @@ them, apply the patch, copy the test, do not edit any of them.
   C: drop ` or degradation_mode == "GAS_DOMINANT"` from R2.
   D: drop `verdict.abstained or ` from R2.
   E: change `< _TIER_HIGH_MIN` to `<= _TIER_HIGH_MIN`.
-  Record the six results and the restored `git diff --stat`.
+  Record the six results and the restored `git diff --stat`. (Done in `3ed6cb0`.)
+- **R6 correction 1** (from the second review, re-derived by Cowork): from `C:/4DApp/repo`,
+  `git apply C:/4DApp/recheck/T-COMA-21/correction1.patch`. It names the `suppress_gaslab` trigger and "gas and OBD
+  only" in the `_map_degradation` docstring and the BDD row, and adds two tests:
+  `test_gaslab_suppression_alone_is_gas_dominant` and `test_process_caps_a_high_score_without_obd`. Then `cmp` the
+  test against `C:/4DApp/recheck/T-COMA-21/test_t_coma_21_mode_and_rating_c1.py`.
+- **R7 mutants F and G**, one at a time, step 2 after each (each `1 failed, 12 passed`), line put back by hand:
+  F: drop `directive.suppress_gaslab or ` from the R1 condition. G: in the first `ExecutionMeta` site, replace
+  `router_output.diagnostic_verdict, reasons_out, degradation_mode` with
+  `router_output.diagnostic_verdict, reasons_out, "FULL_FUSION"`. Add a `## Correction 1` section to the note
+  (R7, the gate, `## Time`) and update the RESULT; both stay uncommitted.
 
 ### First action ###
 ```bash
@@ -80,13 +93,16 @@ cd C:/4DApp/repo && git branch --show-current && git log --oneline 8dc0b43..HEAD
 ```
 ```
 fix/T-COMA-21
-<Cowork's spec(T-COMA-21) commit>
+<Cowork's spec(T-COMA-21) correction 1 commit>
+3ed6cb0 fix(T-COMA-21): degradation_mode reflects OBD absence; rating is the verdict score band (F-C1-11, F-C1-12)
+c988cb9 coma: spec(T-COMA-21): degradation_mode = lab completeness; rating = score band (F-C1-11, F-C1-12)
 ```
-`git status --porcelain` prints nothing. Anything else is a stop.
+`git status --porcelain` lists only `?? .../progress_notes/T-COMA-21.md` and `?? .../results/RESULT_T-COMA-21.md`.
+Anything else is a stop.
 
 ### Success criteria ###
-1. Steps 1-4 report the P2 and P3 counts; R5 gives the base and mutant counts it names.
-2. Step 5: ruff clean, the P2 diff stat, one new commit on `fix/T-COMA-21` after the spec commit, and
+1. Steps 1-4 report the P2 and P3 counts; R7 gives `1 failed, 12 passed` for F and for G.
+2. Step 5: ruff clean, the P2 diff stat, one new commit on `fix/T-COMA-21` after the correction spec commit, and
    `git status --porcelain` lists only the note and the RESULT.
 
 ### Context ###
@@ -100,20 +116,20 @@ fix/T-COMA-21
 
 ### Preconditions ###
 ```bash
-cd C:/4DApp/repo && for p in labs/comlab/comlab/core/lab_pipeline_aggregator.py labs/comlab/docs/COMLab_BDD.md labs/comlab/tests/regression/fixtures/case_020_misfire.json audit/scratch/C1/test_c1_stage_a.py audit/scratch/C1/test_c1_verdict_shape.py C:/4DApp/recheck/T-COMA-21/rehearsal.patch C:/4DApp/recheck/T-COMA-21/test_t_coma_21_mode_and_rating.py C:/4DApp/recheck/T-COMA-17/before.json C:/4DApp/recheck/T-COMA-6/verdicts.py; do test -f "$p" || echo "MISSING $p"; done; echo checked
+cd C:/4DApp/repo && for p in C:/4DApp/recheck/T-COMA-21/correction1.patch C:/4DApp/recheck/T-COMA-21/test_t_coma_21_mode_and_rating_c1.py labs/comlab/comlab/core/lab_pipeline_aggregator.py labs/comlab/docs/COMLab_BDD.md labs/comlab/tests/regression/fixtures/case_020_misfire.json audit/scratch/C1/test_c1_stage_a.py audit/scratch/C1/test_c1_verdict_shape.py C:/4DApp/recheck/T-COMA-21/rehearsal.patch C:/4DApp/recheck/T-COMA-21/test_t_coma_21_mode_and_rating.py C:/4DApp/recheck/T-COMA-17/before.json C:/4DApp/recheck/T-COMA-6/verdicts.py; do test -f "$p" || echo "MISSING $p"; done; echo checked
 ```
 Expected: `checked`, and no `MISSING` line.
 
 ### Deliverables ###
-1. One new commit on `fix/T-COMA-21`: R1-R4.
-2. `repo/labs/comlab/audit_tasks/progress_notes/T-COMA-21.md` (with the R5 results).
+1. One new commit on `fix/T-COMA-21`: R6 (R1-R4 are `3ed6cb0`).
+2. `repo/labs/comlab/audit_tasks/progress_notes/T-COMA-21.md` (with the R5 results and the R7 correction section).
 3. `repo/labs/comlab/audit_tasks/results/RESULT_T-COMA-21.md`.
 
 ### Files to touch ###
-- `repo/labs/comlab/comlab/core/lab_pipeline_aggregator.py` (MODIFY: R1, R2)
+- `repo/labs/comlab/comlab/core/lab_pipeline_aggregator.py` (MODIFY: R1, R2, R6 docstring)
 - `repo/labs/comlab/tests/regression/fixtures/case_020_misfire.json` (MODIFY: R3)
-- `repo/labs/comlab/docs/COMLab_BDD.md` (MODIFY: R3)
-- `repo/labs/comlab/tests/unit/test_t_coma_21_mode_and_rating.py` (CREATE: R4)
+- `repo/labs/comlab/docs/COMLab_BDD.md` (MODIFY: R3, R6)
+- `repo/labs/comlab/tests/unit/test_t_coma_21_mode_and_rating.py` (CREATE: R4; MODIFY: R6)
 - `repo/labs/comlab/audit_tasks/progress_notes/T-COMA-21.md` (CREATE)
 - `repo/labs/comlab/audit_tasks/results/RESULT_T-COMA-21.md` (CREATE)
 - `C:/4DApp/recheck/T-COMA-21/pt/` (RUNTIME: pytest `--basetemp`, `after.json`)
@@ -145,11 +161,11 @@ mkdir -p C:/4DApp/recheck/T-COMA-21/pt
 timeout 120 C:/4DApp/.venv-loop/Scripts/ruff.exe check labs/comlab/comlab/core/lab_pipeline_aggregator.py labs/comlab/tests/unit/test_t_coma_21_mode_and_rating.py; git diff --stat 8dc0b43 HEAD -- labs/comlab/comlab labs/comlab/docs labs/comlab/tests | tail -1; git log --oneline 8dc0b43..HEAD; git status --porcelain
 ```
 Expected:
-- step 1: `538 passed, 4 skipped`; `186 passed`; `73 passed`; no `failed` or `error`.
-- step 2: `11 passed`.
+- step 1: `540 passed, 4 skipped`; `186 passed`; `73 passed`; no `failed` or `error`.
+- step 2: `13 passed`.
 - step 3: `4 passed`.
 - step 4: `changed 0 of 314`.
-- step 5: `All checks passed!`; `4 files changed, 110 insertions(+), 23 deletions(-)`; the spec commit and your one
-  new commit; only the note and the RESULT.
+- step 5: `All checks passed!`; `4 files changed, 126 insertions(+), 23 deletions(-)`; the two spec commits,
+  `3ed6cb0` and your one new commit; only the note and the RESULT.
 
 Repo-wide gates: none beyond step 1 (comlab, wired and ui read `execution_meta`).

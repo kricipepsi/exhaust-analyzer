@@ -30,11 +30,11 @@ scanner" scenarios. Rehearsal: `C:/4DApp/recheck/T-COMA-21/`.
 ### Gate rehearsal ###
 | step | state | evidence |
 |---|---|---|
-| step 1 | SIMULATED | `538 passed, 4 skipped`; `186 passed`; `73 passed` |
-| step 2 | SIMULATED | `11 passed`; base `10 failed, 1 passed` |
+| step 1 | SIMULATED | `540 passed, 4 skipped`; `186 passed`; `73 passed` |
+| step 2 | SIMULATED | `13 passed` (correction 1); base `10 failed, 1 passed` |
 | step 3 | SIMULATED | `4 passed` |
 | step 4 | SIMULATED | `changed 0 of 314` |
-| step 5 | SIMULATED | ruff `All checks passed!`; `4 files changed, 110 insertions(+), 23 deletions(-)` |
+| step 5 | SIMULATED | ruff `All checks passed!`; `4 files changed, 126 insertions(+), 23 deletions(-)` |
 
 ### Exclusivity ###
 No other implementer runs.
@@ -47,4 +47,10 @@ own pass 2026-11-13: P1-P4 measured (facts 1, 4, 5) · patch applies clean · tr
 and R5 · cold read: not triggered (d2, scripted patch) · no finding.
 
 ### Correction history ###
-(none)
+- **Correction 1 (2026-11-13, second review of `3ed6cb0`, ds APPROVE WITH CORRECTIONS).** Upheld after
+  re-derivation: (M) the docstring and BDD row drop the `suppress_gaslab` trigger; (L) the `suppress_gaslab`
+  branch is untested; (L) no `process()` test of the GAS_DOMINANT cap; (L) "lab completeness" overclaims (the
+  gate reads gas and OBD only). Not upheld: (M) porcelain evidence (Cowork ran `git status`: the note and the
+  RESULT); (L) phase timings and the mutant-revert method (state verified by `cmp` and the restored stat).
+  Rehearsed: step 2 `13 passed`; mutants F and G `1 failed, 12 passed`; comlab `540`; `4 files changed, 126
+  insertions(+), 23 deletions(-)` from `8dc0b43`.
