@@ -299,8 +299,8 @@ Anything COMLab needs that isn't in this table is a contract gap — file a §10
 **LabRoutingDirective** — produced by `symptom_router.route_symptom()`.
 4 bool flags: `suppress_gaslab`, `suppress_obd_live_pids`,
 `suppress_mode06_ui`, `cold_start_mode`. Consumed by
-`LabPipelineAggregator.run_fallback_tree()` and `fault_atlas_router`.
-**Not implemented (T-AUD-18d):** `run_fallback_tree()` reads only `suppress_gaslab` (the non-starter path sets `GAS_DOMINANT`); for any other session it raises `NotImplementedError` ("full fallback tree not yet implemented (phase 3)", `comlab/core/lab_pipeline_aggregator.py`).
+`LabPipelineAggregator.process()` and `fault_atlas_router`.
+**Shipped (T-COMA-25):** `process()` reads the directive (`_map_degradation`, `_gas_sample_reasons`); the stub `run_fallback_tree()` and `sanitize_and_aggregate()` were removed (no production caller).
 Source: `data_flow_report.md §5.3`.
 
 ### 5.2 POA routing

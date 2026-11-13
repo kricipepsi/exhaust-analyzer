@@ -56,7 +56,6 @@ from comlab.schemas.response import (
     PerformanceAnalytics,
 )
 from comlab.schemas.vocabulary import (
-    DegradationMode,
     Horizon,
     LabRoutingDirective,
     LabRoutingDirectiveReason,
@@ -713,29 +712,3 @@ class LabPipelineAggregator:
         request = OrchestratorInboundRequest.model_validate(raw_input)
         return request.model_dump()
 
-    def run_fallback_tree(self, payload: dict[str, Any]) -> dict[str, Any]:
-        """Sub-Components: Fallback_Error_Execution_Tree + Graceful_Degradation_Handler.
-
-        Non-starter short-circuit: if symptom routing suppresses GASLab,
-        absent GASLab data is expected — do not raise AggregatorAbort.
-        Full fallback tree (BP lines 1086-1162) deferred to phase 3.
-        """
-        directive = route_symptom(payload.get("symptom_dna", {}))
-
-        if directive.suppress_gaslab:
-            payload["degradation_mode"] = DegradationMode.GAS_DOMINANT
-            payload["routing_directive"] = directive
-            return payload
-
-        raise NotImplementedError(
-            "run_fallback_tree: full fallback tree not yet implemented (phase 3). "
-            "Non-starter path handled above."
-        )
-
-    def sanitize_and_aggregate(self, raw_input: dict[str, Any]) -> dict[str, Any]:
-        """End-to-end Script 2 entrypoint.
-
-        validate_payload -> run_fallback_tree -> return sanitized payload.
-        """
-        payload = self.validate_payload(raw_input)
-        return self.run_fallback_tree(payload)
