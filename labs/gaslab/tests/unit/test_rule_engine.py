@@ -1421,34 +1421,22 @@ def test_misfire_masking_unchanged_across_cylinder_counts(ontology: dict) -> Non
         assert validity == expected_validity, f"Failed validity at cylinder_count={cyl}"
 
 
-def test_cylinder_count_read_in_masking_path(ontology: dict) -> None:
-    """Assert cylinder_count actively participates in masking decision.
+@pytest.mark.parametrize("cyl", [2, 3, 4, 12])
+def test_masking_rule_fires_for_every_cylinder_count(ontology: dict, cyl: int) -> None:
+    """GASWIKI-04 §4.8 has no cylinder gate; GASWIKI-05 §FAULT_IGNITION_MISFIRE: dna_gate none, count is an estimate.
 
-    Source: docs/GASLab/wikiNEW/05_fault_atlas_part_a.md §FAULT_IGNITION_MISFIRE
+    T-GASA-9 (F-C2-12) restates the former test_cylinder_count_read_in_masking_path, which pinned an unstated gate
+    (cylinder_count 2, O2 3.8 -> not IGNITION_MISFIRE).
     """
-    # At cylinder_count = 2 and o2 = 3.8:
-    # inferred_cyl = round(3.8 / (21 / 2)) = round(0.36) = 0 < 1 -> should fail masking
-    reading_fail = _reading(
+    reading = _reading(
         hc=1500,  # wiki: GAS_WIKI §8.4
         co=0.2,
         co2=10.0,
         o2=3.8,   # wiki: GAS_WIKI §8.4
         nox=30,   # wiki: GAS_WIKI §8.4
     )
-    dna_fail = _dna(cylinder_count=2)
-    chem_fail, _ = classify(reading_fail, dna_fail, EngineStateBucket.STABILIZED_IDLE, ontology)
-    # Since it fails masking, it routes to another class or normal operation (not IGNITION_MISFIRE)
-    assert chem_fail != ChemicalSignature.IGNITION_MISFIRE, (
-        f"Should not classify as IGNITION_MISFIRE with cyl=2 and o2=3.8, got {chem_fail}"
-    )
-
-    # At cylinder_count = 12 and o2 = 3.8:
-    # inferred_cyl = round(3.8 / (21 / 12)) = round(2.17) = 2 >= 1 -> should confirm masking
-    dna_pass = _dna(cylinder_count=12)
-    chem_pass, _ = classify(reading_fail, dna_pass, EngineStateBucket.STABILIZED_IDLE, ontology)
-    assert chem_pass == ChemicalSignature.IGNITION_MISFIRE, (
-        f"Should classify as IGNITION_MISFIRE with cyl=12 and o2=3.8, got {chem_pass}"
-    )
+    chem, _ = classify(reading, _dna(cylinder_count=cyl), EngineStateBucket.STABILIZED_IDLE, ontology)
+    assert chem == ChemicalSignature.IGNITION_MISFIRE
 
 
 # ---------------------------------------------------------------------------

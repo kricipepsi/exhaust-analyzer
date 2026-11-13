@@ -303,11 +303,8 @@ def _definitive_match(
         and reading.o2 > masking.get("o2_threshold", 3.0)  # wiki: GAS_WIKI §8.4
         and reading.nox < masking.get("nox_threshold", 50)  # wiki: GAS_WIKI §8.4
     ):
-        # wiki: GASWIKI-05 §FAULT_IGNITION_MISFIRE
-        inferred_cyl = round(reading.o2 / (21 / dna.cylinder_count))  # wiki: GAS_WIKI §3.4
-        # masking confirmed only if the O2 spike is consistent with >=1 dropped cylinder
-        if inferred_cyl >= 1:  # wiki: GASWIKI-05 §FAULT_IGNITION_MISFIRE
-            return ChemicalSignature.IGNITION_MISFIRE, validity
+        # T-GASA-9 (F-C2-12): §4.8 states no cylinder gate; GASWIKI-05's cylinder count is an estimate only.
+        return ChemicalSignature.IGNITION_MISFIRE, validity  # wiki: GASWIKI-04 §4.8 — override any LEAN verdict
 
     # Cam-timing rule — wiki: GAS_WIKI §8.6 (priority 82)
     wvt = grammar.get("cam_timing_rule", {})

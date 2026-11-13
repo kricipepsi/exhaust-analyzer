@@ -44,7 +44,7 @@ source: "labs/gaslab/docs/LLD_GASLab.md"
 **HLD / DLD Reference:** HLD_GASLab v2.1 / DLD_GASLab v2.1
 **Version:** 2.1
 **Date:** 2026-06-10
-**Change note:** Refreshed to the live engine — cam-timing rule (renamed from the retired WVT rule) and its high-idle confirmation vectors, `fuel_trim` leak routing, masking cylinder-count inference, Euro-class CO/HC scaling, wideband O₂-bias calibration, and the single-value `target_lambda_v112` CoC window.
+**Change note:** Refreshed to the live engine — cam-timing rule (renamed from the retired WVT rule) and its high-idle confirmation vectors, `fuel_trim` leak routing, Euro-class CO/HC scaling, wideband O₂-bias calibration, and the single-value `target_lambda_v112` CoC window.
 
 Convention: numeric literals in `gaslab/` carry a `# wiki:` or `# vocab:` comment citing `GAS_WIKI` / `GAS_VOCABULARY`, often once per condition block rather than on each literal (the rich-timing branch in `rule_engine.py` cites its block on the line above it, T-AUD-16). The literals below are transcribed from source.
 
@@ -145,10 +145,8 @@ COOLANT_HC_THRESHOLD  = 300.0  # ppm  — ethylene-glycol HC flash floor
 MASKING_HC_THRESHOLD  = 1000   # ppm
 MASKING_O2_THRESHOLD  = 3.0    # vol%
 MASKING_NOX_THRESHOLD = 50     # ppm
-#   hc > 1000 AND o2 > 3.0 AND nox < 50 →
-#     inferred_cyl = round(o2 / (21 / dna.cylinder_count))   # wiki: GAS_WIKI §3.4
-#     if inferred_cyl ≥ 1 → IGNITION_MISFIRE
-#   (the O2 spike must be consistent with ≥1 dropped cylinder)
+#   hc > 1000 AND o2 > 3.0 AND nox < 50 → IGNITION_MISFIRE
+#   (no cylinder gate: GASWIKI-04 §4.8 states none; the GASWIKI-05 cylinder count is an estimate. T-GASA-9, F-C2-12)
 
 # 4.5 Cam-timing rule (priority 82) — wiki: GAS_WIKI §8.6  (was wrong_valve_timing_rule)
 CAM_HC_THRESHOLD = 1000  # ppm

@@ -177,7 +177,7 @@ sample_validity(reading) → SampleValidity:
 | Field | Type | Constraints | Purpose |
 |-------|------|------------|---------|
 | `engine_displacement_liters` | `float` | `> 0` | stored |
-| `cylinder_count` | `int` | `1–16` | masking-rule cylinder inference |
+| `cylinder_count` | `int` | `1–16` | cylinder-count estimate (GASWIKI-05; not a masking gate since T-GASA-9) |
 | `number_of_banks` | `int` | `1–4` | no GASLab reader; carried in the view (T-AUD-16) |
 | `euro_emission_category` | `str` | free text | Euro-scaled CO/HC ceilings |
 | `fuel_delivery_type` | `str` | `"GDI"` / `"NON_GDI"` | GDI-gated fault suppression |
@@ -206,7 +206,7 @@ Step 2: _definitive_match(...) — first decisive verdict wins, in order:
         b. EXTERNAL_O2_SUSPECT leak + fuel_trim   → leak (trim>8) / SAMPLE_INVALID (trim≤8)
         c. validity == INVALID                    → (SAMPLE_INVALID, INVALID)
         d. coolant (87): co2≤12, hc≥300, block_test_passed → COOLANT_LEAK_INTERNAL
-        e. masking (85): hc>1000, o2>3, nox<50, inferred_cyl≥1 → IGNITION_MISFIRE
+        e. masking (85): hc>1000, o2>3, nox<50 → IGNITION_MISFIRE (no cylinder gate; GASWIKI-04 §4.8, T-GASA-9)
         f. cam-timing (82): hc>1000, o2>2, co>0 → CAM_TIMING_RETARDED_MAF / CAM_TIMING_ADVANCED
                                                    (high-idle confirms when reading_high present)
         g. RPM-differential routes
@@ -311,7 +311,7 @@ tests/
 | `unit/test_brettschneider.py` | Stoich near-unity, 5-gas, rich/stoich/lean sweep, custom `Hcv`, NOx correction |
 | `unit/test_contracts.py` | 34 enum values, `GasReading` validation, `GasLabPayload` (incl. `lambda_measured`), constants |
 | `unit/test_validity_gates.py` | triangle (VALID/EXT_O2_SUSPECT/INVALID), dilution floor, combined |
-| `unit/test_rule_engine.py` | NORMAL, masking + cylinder inference, collision, DNA suppression, SAMPLE_INVALID, cam-timing, tie-break |
+| `unit/test_rule_engine.py` | NORMAL, masking (every cylinder count), collision, DNA suppression, SAMPLE_INVALID, cam-timing, tie-break |
 | `unit/test_rule_engine_reachability.py` | every one of the 34 signatures reachable by some input |
 | `unit/test_resolution.py` | overlaps, GDI vs non-GDI, RPM-differential cam/lean/mechanical/catalyst separation |
 | `unit/test_t_p8_7_hc_discriminator.py` | HC-direction discriminator for the timing/misfire family |
