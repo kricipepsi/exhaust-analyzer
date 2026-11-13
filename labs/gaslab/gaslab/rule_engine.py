@@ -296,8 +296,14 @@ def _definitive_match(
 
     # Cam-timing rule — wiki: GAS_WIKI §8.6 (priority 82)
     wvt = grammar.get("cam_timing_rule", {})
+    # T-GASA-4 (F-C2-6): the §4.10 HC > 1000 gate excludes every GASWIKI-06B cam vector (idle HC 250-900).
+    # Below it, down to the 06B floor, the rule fires only on the 2500 RPM confirmation §4.10 names.
+    cam_hc_gate = reading.hc > wvt.get("hc_threshold", 1000) or (  # wiki: GAS_WIKI §8.6
+        reading_high is not None
+        and reading.hc >= wvt.get("hc_atlas_floor", 250)  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED — idle HC 250-600
+    )
     if (
-        reading.hc > wvt.get("hc_threshold", 1000)  # wiki: GAS_WIKI §8.6
+        cam_hc_gate
         and reading.o2 > wvt.get("o2_threshold", 2.0)  # wiki: GAS_WIKI §8.6
         and reading.co > 0.0  # wiki: GAS_WIKI §8.6
     ):

@@ -61,6 +61,7 @@ reasoning_grammar:
       HC > 1000 ppm AND CO present AND O₂ > 2.0 % ⇒ CAM_TIMING_RETARDED_MAF or CAM_TIMING_ADVANCED.
       Priority 82 per GAS_VOCABULARY §14 — between masking (85) and collision (80).
     hc_threshold: 1000        # vocab: GAS_VOCABULARY §10.1 — ignition_misfire_floor
+    hc_atlas_floor: 250       # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED — idle HC 250-600; needs the 2500 RPM reading
     o2_threshold: 2.0         # wiki: GAS_WIKI §8.6
 
   coolant_intrusion_rule:
