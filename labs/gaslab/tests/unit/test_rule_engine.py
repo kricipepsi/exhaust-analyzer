@@ -1512,3 +1512,42 @@ def test_cam_rule_low_hc_rejects_non_confirming_2500(ontology: dict) -> None:
         reading, _dna(), EngineStateBucket.STABILIZED_IDLE, ontology, reading_high=reading_high
     )
     assert chem not in (ChemicalSignature.CAM_TIMING_ADVANCED, ChemicalSignature.CAM_TIMING_RETARDED_MAF)
+
+
+# ---------------------------------------------------------------------------
+# T-GASA-5 — F-C2-7: the rich-branch CAM_TIMING_RETARDED_MAP fallback needs partial normalisation
+# ---------------------------------------------------------------------------
+
+_CAM_MAP_IDLE = dict(hc=400, co=3.5, co2=11.0, o2=0.5, nox=5)  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (idle)
+
+
+@pytest.mark.parametrize(
+    ("high", "expected_map"),
+    [
+        # λ 0.8549 -> 0.8905, CO 3.5 -> 2.5: partial normalisation toward 2500 RPM.
+        (dict(hc=200, co=2.5, co2=12.0, o2=0.1, nox=150), True),
+        # λ flat (0.8549 -> 0.8548) and CO rises: the sensor family (GASWIKI-08 §8.9).
+        (dict(hc=200, co=3.6, co2=11.0, o2=0.1, nox=150), False),
+        # λ rises (-> 0.8835) but CO rises 3.5 -> 3.6: CO must fall idle->2500.
+        (dict(hc=200, co=3.6, co2=13.0, o2=0.3, nox=150), False),
+    ],
+)
+def test_cam_map_fallback_needs_partial_normalisation(ontology: dict, high: dict, expected_map: bool) -> None:
+    """GASWIKI-04 §4.10 rich branch: 'signature PARTIALLY normalises toward 2500 RPM'."""
+    chem, _ = classify(
+        _reading(**_CAM_MAP_IDLE), _dna(), EngineStateBucket.STABILIZED_IDLE, ontology,
+        reading_high=_reading(**high),
+    )
+    assert (chem == ChemicalSignature.CAM_TIMING_RETARDED_MAP) is expected_map
+
+
+def test_cam_map_fallback_rejects_falling_lambda_on_euro_2(ontology: dict) -> None:
+    """CO falls 3.5 -> 2.62 but λ drops 0.8549 -> 0.8534: no normalisation (seeded scan vector, T-GASA-5).
+
+    Euro 2 (2500 HC ceiling 1200) lets HC 517 through; on Euro 3+ the ceiling of 200 rejects it first.
+    """
+    chem, _ = classify(
+        _reading(**_CAM_MAP_IDLE), _dna(euro_emission_category="Euro 2"), EngineStateBucket.STABILIZED_IDLE,
+        ontology, reading_high=_reading(hc=517, co=2.62, co2=12.37, o2=0.2, nox=300),
+    )
+    assert chem != ChemicalSignature.CAM_TIMING_RETARDED_MAP
