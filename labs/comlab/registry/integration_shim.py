@@ -1228,8 +1228,8 @@ def _hardware_gate(rule: Rule, payload: dict[str, Any]) -> bool:
     """True when a GDI-only rule cannot apply (T-COMA-18, F-C1-6; wiki 04 RULE_HORIZON_PRUNE "MODERN only | GDI").
 
     The rule stays when the VIN decode says GDI, when the resolved era is MODERN, or when no era is sent (a
-    direct router call). A decoded PORT_INJECTION alone never prunes: it is also the decoder's default when the
-    fuel system is unknown.
+    direct router call). The fuel type only ever keeps the rule (GDI); a decoded PORT_INJECTION never prunes it,
+    because it is also the decoder's default when the fuel system is unknown. Only the era prunes.
     """
     if rule.precondition != _GDI_PRECONDITION:
         return False

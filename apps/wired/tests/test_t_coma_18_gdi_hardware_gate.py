@@ -60,7 +60,7 @@ def test_rm004_offered_only_on_gdi_or_modern(horizon: str, fuel: str | None, off
 
 
 def test_gdi_chemistry_on_legacy_car_is_not_rm004() -> None:
-    assert _ids("GDI_HPFP_INTERNAL_SEAL_LEAK", "HORIZON_LEGACY")[0] != "RM-004"
+    assert "RM-004" not in _ids("GDI_HPFP_INTERNAL_SEAL_LEAK", "HORIZON_LEGACY")
 
 
 def test_pruned_rule_is_reported_as_hardware_gate() -> None:
@@ -70,6 +70,15 @@ def test_pruned_rule_is_reported_as_hardware_gate() -> None:
     other = next(r for r in shim.RegistryV2Router().rules if r.rule_id == "RM-001")
     assert shim._hardware_gate(other, payload) is False
     assert shim._hardware_gate(rule, {"metadata": {}}) is False  # no era sent: unknown, not pruned
+
+
+def test_router_records_the_hardware_gate_prune() -> None:
+    payload = {"horizon_ctx": "HORIZON_LEGACY", "metadata": {"fuel_delivery_type": None}}
+    _out, diagnostics = shim.RegistryV2Router().route_case_with_diagnostics(payload)
+    gated = [p for p in diagnostics["pruned_rules"] if p["rule_id"] == "RM-004"]
+    assert gated == [{"rule_id": "RM-004", "prune_reason": "hardware_gate",
+                      "failed_gating_key": "precondition:gdi_equipped"}]
+    assert "RM-004" not in [r["rule_id"] for r in diagnostics["scored_rules"]]
 
 
 def test_wired_metadata_carries_fuel_delivery_type() -> None:
