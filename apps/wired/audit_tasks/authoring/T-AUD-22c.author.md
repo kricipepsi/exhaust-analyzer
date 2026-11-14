@@ -36,6 +36,7 @@ No other implementer runs.
 T-AUD-22c: COMLab registry rules literals (358 lines) classified, citation-checked; CLAIMS OK scope=rules.
 
 ### Cold read ###
+cold read 2026-11-14 FOCUSED reader: 0 findings (C:/4DApp/recheck/scratch/T-AUD-22c_coldread.md) — 5 calls
 
 ### Correction history ###
 (none)
