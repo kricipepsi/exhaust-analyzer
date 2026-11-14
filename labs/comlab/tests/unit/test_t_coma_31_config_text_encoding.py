@@ -1,4 +1,4 @@
-"""T-COMA-31: no COMLab config JSON string is UTF-8 text that was decoded as cp1252 (mojibake such as 'â€”' for '—').
+"""T-COMA-31: no string in global_fault_registry.json or config/kg/*.json is UTF-8 text that was decoded as cp1252 (mojibake such as 'â€”' for '—').
 
 Found by the T-AUD-22c survey: 372 escape runs in global_fault_registry.json and 11 KG files. Fixed in place.
 """
@@ -35,7 +35,19 @@ def _strings(node: object):
 
 
 def test_config_files_found() -> None:
-    assert len(FILES) >= 12
+    assert len(FILES) == 15  # global_fault_registry.json + 14 KG files (T-COMA-31 review L3)
+
+
+# Independent of the cp1252 round-trip (review M2): the raw text holds no escaped or literal mojibake lead bytes.
+_BS = chr(92)
+_RAW_MARKERS = (_BS + "u00e2" + _BS + "u20ac", _BS + "u00c3", _BS + "u00c2", "â€", "Ã", "Â")
+
+
+@pytest.mark.parametrize("path", FILES, ids=lambda p: p.name)
+def test_no_raw_mojibake_markers(path: Path) -> None:
+    raw = path.read_text(encoding="utf-8")
+    hits = [m for m in _RAW_MARKERS if m in raw]
+    assert not hits, f"{path.name}: raw mojibake markers {hits}"
 
 
 @pytest.mark.parametrize("path", FILES, ids=lambda p: p.name)
