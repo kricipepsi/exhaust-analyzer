@@ -42,6 +42,7 @@ No other implementer runs.
 T-AUD-22b: COMLab Python literals (293 lines) classified, citation-checked; CLAIMS OK scope=*.py.
 
 ### Cold read ###
+cold read 2026-11-14 FOCUSED reader: 0 findings (C:/4DApp/recheck/scratch/T-AUD-22b_coldread.md) — 4 calls
 
 ### Correction history ###
 (none)
