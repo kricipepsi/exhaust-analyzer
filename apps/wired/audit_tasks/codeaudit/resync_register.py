@@ -98,7 +98,7 @@ def main() -> int:
         else:
             changed += 1
             print(f"CHANGED {c['cand_id']} {f}:{n}->{m} {cur[m - 1].strip()[:100]}")
-            c["sha"], c["text"] = sha(cur[m - 1]), cur[m - 1]
+            c["sha"], c["text"] = sha(cur[m - 1]), cur[m - 1].strip()
         c["line"] = str(m)
         remap[c["cand_id"]] = m
     for k in claims:

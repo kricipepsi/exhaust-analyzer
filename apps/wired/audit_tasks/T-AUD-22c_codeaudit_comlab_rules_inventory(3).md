@@ -1,0 +1,126 @@
+### Routing ###
+`audit`, row T-AUD-22c (T-AUD-22, third slice: the numeric literals of the COMLab registry rules; operator order
+2026-11-13). Docs row in the app clone `C:/4DApp/repo`, on branch `fix/T-AUD-22c` (built on the accepted
+`fix/T-AUD-22-RESYNC`, `0fba628`, which holds both registers re-keyed to the tip).
+- **Test length: 1/5.** One checker run, under 10 s.
+- **Runs real compute: NO.**
+- **Expected wall-clock: 30 min.** Stop rule: at 90 min, finish the current file, commit, write `## Time` and a partial
+  RESULT that names the first candidate not done, then stop.
+- **Plan: NONE.** The register format and its checker are fixed (`codeaudit/README.md`, `check_code_claims.py`).
+- **Overnight:** no.
+
+### Goal ###
+Every numeric literal in the COMLab registry rules (`labs/comlab/registry/rules/*.json`) that carries a domain value is
+appended to `apps/wired/audit_tasks/codeaudit/claims_comlab.csv` as a classified claim with the citation the rule
+gives, checked against the document that citation names, and linked by `same_as` to a GASLab wiki-register claim where
+one states the same value. This row lists and classifies; it verifies nothing on the web. Done is
+`check_code_claims.py --group comlab --files 'labs/comlab/registry/rules/*'` printing `CLAIMS OK` (step 1).
+
+### Pinned values ###
+| id | value | population | command |
+|---|---|---|---|
+| P1 | `files 52 candidates 3794 auto_non_domain 2366 to_classify 1428` | the COMLab group on the spec commit | `extract_code_candidates.py --group comlab` |
+| P1b | `358` non-auto candidates in `labs/comlab/registry/rules/*` (16 files) | `candidates_comlab.csv` on the spec commit | step 1 before any new row (P2) |
+| P2 | `CLAIMS FAIL 358 error(s)` (all `uncovered`) | `claims_comlab.csv` as committed by T-AUD-22b (`CK0001`-`CK0301`) | step 1 |
+| P3 | `130` candidate lines starting `"base_weight"` or `"confidence_ceiling"` | the P1b rows | step 2 |
+| P4 | `CLAIMS OK group=comlab scope=*.py candidates 293 covered claims 301` | T-AUD-22b's rows, unchanged | step 3 |
+
+`$PY` is `C:/4DApp/.venv/Scripts/python.exe`. `extract_code_candidates.py`, `check_code_claims.py`,
+`resync_register.py`, `candidates_*.csv` and `README.md` in `apps/wired/audit_tasks/codeaudit/`, and everything in
+`labs/gaslab/audit_tasks/wikiaudit/`, are Cowork's: read and run them, do not edit them.
+
+### Rulings that bind ###
+- **R1** The register format is `codeaudit/README.md` § claims_<group>.csv, which points to the wiki register README
+  for the fields and classes. Read both before the first row.
+- **R2** Scope is the non-auto rows of `candidates_comlab.csv` whose `file` matches `labs/comlab/registry/rules/*`
+  (P1b). Each needs at least one new row in `claims_comlab.csv`: a classified claim, or one `NON_DOMAIN` row (a list
+  position, an id or count that the extractor missed). Append after `CK0301`; new `claim_id`s run `CK0302` upward in
+  candidates order. Do not change rows `CK0001`-`CK0301`.
+- **R3** `base_weight` and `confidence_ceiling` are the rule engine's own scoring knobs: class `INTERNAL_PARAMETER`,
+  quantity `rule base_weight` or `rule confidence_ceiling`, unit `score`, condition = the rule id they sit in (P3).
+- **R4** A `description` line with numbers holds one claim per stated value (for example `HC 250-600 ppm at idle`):
+  quantity, value and condition as the sentence states them. A `value`, `range_low` or `range_high` line takes its
+  quantity and unit from the `pid` or `field` of the same condition object.
+- **R5** `citation` is the rule's own `wiki_ref` (the nearest one in the same rule object), as written with `\u00a7`
+  read as `§`; empty when the rule has none. When that document is in the clone (search `labs/` and `Vault/` by file
+  name), open it at the cited section. If the rule value differs from the value the document states, the claim gets a
+  `suspect` text naming the document and its value. A document not found is counted in the note as "citation not found".
+- **R6** `same_as` names a GASLab wiki-register claim (`W0001`-`W1693`) only when that claim states the same quantity,
+  condition and value; otherwise an earlier `CK` claim that states the same; otherwise empty. `suspect` is also required
+  on every claim that contradicts your own knowledge, with the reason.
+- **R7** `claims_comlab.csv` stays UTF-8 as the source text reads (a JSON `\u2014` is written `—`); the checker rejects
+  double-encoded fields. No web access in this row.
+
+### First action ###
+```bash
+cd C:/4DApp/repo && git branch --show-current && git log --oneline fix/T-AUD-22-RESYNC..HEAD && git status --porcelain && cd apps/wired/audit_tasks/codeaudit && C:/4DApp/.venv/Scripts/python.exe -I extract_code_candidates.py --group comlab && git status --porcelain .
+```
+```
+fix/T-AUD-22c
+<one or more spec(T-AUD-22c) commits by Cowork>
+files 52 candidates 3794 auto_non_domain 2366 to_classify 1428
+```
+Both `git status --porcelain` runs print nothing: the script re-writes `candidates_comlab.csv` byte-identical.
+Anything else is a stop.
+
+### Success criteria ###
+1. Step 1 prints `CLAIMS OK group=comlab scope=labs/comlab/registry/rules/* candidates <P1b>` and no `ERROR` line.
+2. Step 2 prints `knobs <P3> internal <P3>`.
+3. Step 3 prints the P4 line unchanged.
+4. The note discloses the step 1 `classes`, `suspect` and `same_as_wiki` figures, the count of new claims with an
+   empty `citation`, the count of "citation not found", and lists every new `suspect` claim with its reason.
+5. One new commit on `fix/T-AUD-22c` after the spec commits that changes `claims_comlab.csv` only, by appended rows.
+
+### Context ###
+- The operator found the GASLab wiki's CO 0.45 % "normal" above the legal limit and that the same number was
+  hard-coded. A rule value that differs from the document it cites is a finding even when neither is verified yet.
+- T-AUD-22b classified COMLab's Python literals. Cowork then made the extractor skip JSON-escaped section numbers,
+  other `\uXXXX` escapes and digit-holding identifiers (`case_001`, `shrtft1`); the KG, fault-registry and config
+  slices follow this one.
+
+### Preconditions ###
+```bash
+cd C:/4DApp/repo && for p in apps/wired/audit_tasks/codeaudit/README.md apps/wired/audit_tasks/codeaudit/check_code_claims.py apps/wired/audit_tasks/codeaudit/candidates_comlab.csv apps/wired/audit_tasks/codeaudit/claims_comlab.csv labs/gaslab/audit_tasks/wikiaudit/README.md labs/gaslab/audit_tasks/wikiaudit/claims.csv labs/comlab/registry/rules/cam_timing.json; do test -f "$p" || echo "MISSING $p"; done; echo checked
+```
+Expected: `checked`, and no `MISSING` line.
+
+### Deliverables ###
+1. `repo/apps/wired/audit_tasks/codeaudit/claims_comlab.csv` with the new rows, committed on `fix/T-AUD-22c`.
+2. `repo/apps/wired/audit_tasks/progress_notes/T-AUD-22c.md`.
+3. `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-22c.md`.
+
+### Files to touch ###
+- `repo/apps/wired/audit_tasks/codeaudit/claims_comlab.csv` (MODIFY: append rows per R1-R7)
+- `repo/apps/wired/audit_tasks/progress_notes/T-AUD-22c.md` (CREATE)
+- `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-22c.md` (CREATE)
+- `repo/apps/wired/audit_tasks/codeaudit/candidates_comlab.csv` (RUNTIME: re-written byte-identical by the first action)
+
+### Out of scope ###
+- Editing any rule, config, wiki or vocabulary value, even a suspect one: the verification rows decide, then fix rows
+  edit. The double-encoded text in the KG and fault-registry JSON is row T-COMA-31.
+- The KG, fault-registry and config files: later T-AUD-22 slices. Rows `CK0001`-`CK0301`.
+- Web lookups (R7). Pushing: Cowork pushes after acceptance.
+
+### Verification ###
+In-scope gates (blocking). Run from `C:/4DApp/repo` in Git Bash.
+```bash
+cd C:/4DApp/repo/apps/wired/audit_tasks/codeaudit
+PY=C:/4DApp/.venv/Scripts/python.exe
+# 1.
+timeout 60 $PY -I check_code_claims.py --group comlab --files 'labs/comlab/registry/rules/*' | tail -4
+# 2.
+timeout 60 $PY -I -c "import csv; c={x['cand_id']:x for x in csv.DictReader(open('candidates_comlab.csv',encoding='utf-8'))}; k={i for i,x in c.items() if not x['auto'] and x['file'].startswith('labs/comlab/registry/rules/') and x['text'].startswith(('\"base_weight\"','\"confidence_ceiling\"'))}; r=[x for x in csv.DictReader(open('claims_comlab.csv',encoding='utf-8')) if x['cand_id'] in k]; print(f\"knobs {len(k)} internal {len({x['cand_id'] for x in r if x['class']=='INTERNAL_PARAMETER'})}\")"
+# 3.
+timeout 60 $PY -I check_code_claims.py --group comlab --files '*.py' | tail -1
+# 4.
+cd C:/4DApp/repo && git log --oneline fix/T-AUD-22-RESYNC..HEAD && git diff --stat HEAD~1 HEAD | tail -1 && git diff HEAD~1 HEAD -- apps/wired/audit_tasks/codeaudit/claims_comlab.csv | grep -c '^-[^-]' ; git status --porcelain
+```
+Expected:
+- step 1: a `classes …` line, `suspect N same_as_wiki M`, `CLAIMS OK group=comlab scope=labs/comlab/registry/rules/*
+  candidates <P1b> covered claims N`; no `ERROR`.
+- step 2: `knobs <P3> internal <P3>`.
+- step 3: the P4 line.
+- step 4: the spec commits and your one commit; `1 file changed`; `0` removed lines; only the note and the RESULT
+  untracked.
+
+Repo-wide gates: none (no code or test changes).

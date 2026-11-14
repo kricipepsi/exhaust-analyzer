@@ -34,6 +34,8 @@ DATA_NON_DOMAIN = re.compile("|".join([
     r"\b(?:F|T|R)-[A-Z0-9]+(?:-[A-Za-z0-9]+)*", r"\bADR-\d+\b", r"\b20\d\d-\d\d-\d\d(?:T[\d:.]+Z?)?\b",
     r"\bv\d+(?:\.\d+)*\b", r"§\s*\d+(?:\.\d+)*", r"\b[A-Z]{2,}[-_]\d+[A-Z]?\b", r"\b[PBCU][0-9A-F]{4}\b",
     r"\"version\"\s*:\s*\"?[\d.]+\"?", r"^\s*#.*$",
+    # T-AUD-22c: JSON-escaped section signs with their number, other \uXXXX escapes, identifiers holding digits
+    r"\\u00a7\s*\d+(?:\.\d+)*", r"\\u[0-9a-fA-F]{4}", r"\b[A-Za-z_]+\d+[A-Za-z0-9_]*\b",
 ]))
 
 

@@ -1019,7 +1019,7 @@ C1017,docs/GAS_VOCABULARY.md,358,a69570f082,,"severe_misfire:         { min: 800
 C1018,docs/GAS_VOCABULARY.md,359,9b1038a73d,,ignition_misfire_floor: { min: 1000 }
 C1019,docs/GAS_VOCABULARY.md,360,4f3f0e92db,,mechanical_or_dead_cat: { min: 2000 }
 C1020,docs/GAS_VOCABULARY.md,363,386b17fead,NON_DOMAIN,### 10.2 `gas_co` (vol %)
-C1021,docs/GAS_VOCABULARY.md,367,0f5b3ed29b,,"  normal_with_cat:        { min: 0.1, max: 0.3 }   # legal idle CO limit, cat cars first used from 1/9/2002 (T-GASA-17)"
+C1021,docs/GAS_VOCABULARY.md,367,0f5b3ed29b,,"normal_with_cat:        { min: 0.1, max: 0.3 }   # legal idle CO limit, cat cars first used from 1/9/2002 (T-GASA-17)"
 C1022,docs/GAS_VOCABULARY.md,369,31090bcc0a,,"cat_not_lit_band:       { min: 0.5, max: 0.9 }"
 C1023,docs/GAS_VOCABULARY.md,370,a0e98170a9,,"mild_rich:              { min: 0.5, max: 1.5 }"
 C1024,docs/GAS_VOCABULARY.md,371,9cc92c24a9,,"clear_rich:             { min: 1.5, max: 3.0 }"
@@ -1220,7 +1220,7 @@ C1218,gaslab/data/gas_lab_ontology.yaml,40,cd35d75fee,,CO and O2 both elevated i
 C1219,gaslab/data/gas_lab_ontology.yaml,41,8cb54ba996,,combustion event.  Disambiguated by the triangle: sum ~15 → RICH_MISFIRE;
 C1220,gaslab/data/gas_lab_ontology.yaml,42,50ae1683d7,,sum > 16 → EXHAUST_AIR_LEAK.  EXHAUST_AIR_LEAK path additionally requires
 C1221,gaslab/data/gas_lab_ontology.yaml,43,52ff6042e5,NON_DOMAIN,HC Normal (§7.7) — high HC with the collision pattern is RICH_MISFIRE.
-C1222,gaslab/data/gas_lab_ontology.yaml,44,afda53966c,,    co_tier_max: 0.3              # vocab: GAS_VOCABULARY §10.2 — Euro 4 with cat; legal idle CO 0.3 % (T-GASA-17 S001)
+C1222,gaslab/data/gas_lab_ontology.yaml,44,afda53966c,,co_tier_max: 0.3              # vocab: GAS_VOCABULARY §10.2 — Euro 4 with cat; legal idle CO 0.3 % (T-GASA-17 S001)
 C1223,gaslab/data/gas_lab_ontology.yaml,45,f5a2954066,,co_tier_max_no_cat: 1.5       # vocab: GAS_VOCABULARY §10.2 — Euro 1 no-cat (mild_rich.max); used when has_catalyst is false
 C1224,gaslab/data/gas_lab_ontology.yaml,46,4a2759d79c,,o2_threshold: 2.0             # wiki: GAS_WIKI §8.5
 C1225,gaslab/data/gas_lab_ontology.yaml,47,555903c707,,"triangle_sum_threshold: 16.0  # wiki: GAS_WIKI §8.5 — sum > 16 → EXHAUST_AIR_LEAK, ≤ 16 → RICH_MISFIRE"
@@ -1253,7 +1253,7 @@ C1251,gaslab/data/gas_lab_ontology.yaml,88,a0a537064c,NON_DOMAIN,#   differentia
 C1252,gaslab/data/gas_lab_ontology.yaml,92,009dd962ea,NON_DOMAIN,# --- §7.1 ----------------------------------------------------------------
 C1253,gaslab/data/gas_lab_ontology.yaml,94,6d829c3fa7,NON_DOMAIN,"citation: ""GAS_WIKI §7.1"""
 C1254,gaslab/data/gas_lab_ontology.yaml,97,44ed75ba4a,,"hc:  { min: 0,   max: 35 }     # vocab: GAS_VOCABULARY §10.1 normal_with_cat"
-C1255,gaslab/data/gas_lab_ontology.yaml,98,b3e6065c11,,"      co:  { min: 0.1, max: 0.3 }    # vocab: GAS_VOCABULARY §10.2 normal_with_cat (T-GASA-17: legal idle CO 0.3 %)"
+C1255,gaslab/data/gas_lab_ontology.yaml,98,b3e6065c11,,"co:  { min: 0.1, max: 0.3 }    # vocab: GAS_VOCABULARY §10.2 normal_with_cat (T-GASA-17: legal idle CO 0.3 %)"
 C1256,gaslab/data/gas_lab_ontology.yaml,99,80d5ad6359,,"co2: { min: 14.5, max: 16.0 }  # vocab: GAS_VOCABULARY §10.3 peak_efficiency"
 C1257,gaslab/data/gas_lab_ontology.yaml,100,05d9dc65a7,,"o2:  { min: 0.0, max: 0.35 }   # vocab: GAS_VOCABULARY §10.4 normal_post_cat"
 C1258,gaslab/data/gas_lab_ontology.yaml,101,17bdf8c2fe,,"nox: { min: 0,   max: 100 }    # vocab: GAS_VOCABULARY §10.5 normal_idle"

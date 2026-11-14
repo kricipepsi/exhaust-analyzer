@@ -97,7 +97,7 @@ K0095,labs/gaslab/gaslab/resolution.py,442,6c5941a6bf,,and 1.01 <= lchem_idle <=
 K0096,labs/gaslab/gaslab/resolution.py,445,97f6f68676,,reading_high.nox > 1200  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED — NOx very high at 2500
 K0097,labs/gaslab/gaslab/resolution.py,446,9673b50314,,and 1.0 <= lchem_high <= 1.06  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (2500)
 K0098,labs/gaslab/gaslab/resolution.py,447,a19e8f0e78,,"and reading_high.hc <= 100  # vocab: GAS_VOCABULARY §10.1 normal_borderline.max — ""others near normal"""
-K0099,labs/gaslab/gaslab/resolution.py,448,3fb466b6de,,"            and reading_high.co <= 0.3  # vocab: GAS_VOCABULARY §10.2 normal_with_cat.max — ""others near normal"""
+K0099,labs/gaslab/gaslab/resolution.py,448,3fb466b6de,,"and reading_high.co <= 0.3  # vocab: GAS_VOCABULARY §10.2 normal_with_cat.max — ""others near normal"""
 K0100,labs/gaslab/gaslab/resolution.py,460,dfd985843d,,75 <= reading.hc <= 500  # wiki: GASWIKI-06A §FAULT_WORN_VALVE_SEALS physics — v1 75–250 and v2 300–500 are one fault at two severities
 K0101,labs/gaslab/gaslab/resolution.py,461,f5d615446d,,and reading_high.hc <= 35  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
 K0102,labs/gaslab/gaslab/resolution.py,463,c4b63b613f,,and reading_high.co <= 0.15  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
@@ -182,7 +182,7 @@ K0180,labs/gaslab/gaslab/rule_engine.py,351,8a28a1e78b,,and 300 <= reading_high.
 K0181,labs/gaslab/gaslab/rule_engine.py,352,532edc72ee,,and 100 <= reading_high.hc <= 300
 K0182,labs/gaslab/gaslab/rule_engine.py,353,de40e55435,,and 0.15 <= reading_high.co <= 0.50
 K0183,labs/gaslab/gaslab/rule_engine.py,364,64ec270e23,NON_DOMAIN,"return ChemicalSignature(rpm_routed[0]), validity"
-K0184,labs/gaslab/gaslab/rule_engine.py,371,8a68fef93b,,"            collision.get(""co_tier_max"", 0.3)  # vocab: GAS_VOCABULARY §10.2 normal_with_cat.max — Euro 4 with cat"
+K0184,labs/gaslab/gaslab/rule_engine.py,371,8a68fef93b,,"collision.get(""co_tier_max"", 0.3)  # vocab: GAS_VOCABULARY §10.2 normal_with_cat.max — Euro 4 with cat"
 K0185,labs/gaslab/gaslab/rule_engine.py,373,477cce3226,,"else collision.get(""co_tier_max_no_cat"", 1.5)  # vocab: GAS_VOCABULARY §10.2 mild_rich.max — Euro 1 no-cat"
 K0186,labs/gaslab/gaslab/rule_engine.py,375,7627fed5e9,,"and reading.o2 > collision.get(""o2_threshold"", 2.0)  # wiki: GAS_WIKI §8.5"
 K0187,labs/gaslab/gaslab/rule_engine.py,378,83547ea376,,"if volumetric_sum <= collision.get(""triangle_sum_threshold"", 16.0):  # wiki: GAS_WIKI §8.5 — CO dominates"
