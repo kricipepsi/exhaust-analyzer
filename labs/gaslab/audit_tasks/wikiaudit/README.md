@@ -40,3 +40,27 @@ Header, exactly: `claim_id,cand_id,file,line,quantity,value,unit,condition,class
   for the first statement.
 - `suspect`: empty, or a short reason the value may be wrong: it contradicts another claim (name its `claim_id`), or it
   contradicts what you know (state what you know). The verification rows check suspect claims first.
+
+## sources.csv, verdicts.csv, sources/ (verification rows)
+
+`check_verdicts.py --scope scope/<ROW>.txt` checks them. A row's scope file lists root claims (claims with no
+`same_as`); a linked claim takes its root's verdict.
+
+`sources.csv` header: `source_id,url,title,publisher,kind,fetched_file,fetched_date`
+- `source_id` `S` + three digits; `fetched_file` `sources/S<NNN>.md`, the firecrawl output, committed;
+  `fetched_date` ISO date.
+- `kind`: `PRIMARY_LAW` (statute, directive, regulation), `PRIMARY_REGULATOR` (DVSA, EPA, a ministry's own manual),
+  `PRIMARY_STANDARD` (SAE, ISO, OIML, UNECE text), `OEM`, `TRADE` (analyser maker, trade training), `ACADEMIC`,
+  `SECONDARY`. A `LEGAL_LIMIT` claim is CONFIRMED or CONTRADICTED only by a `PRIMARY_*` source.
+
+`verdicts.csv` header: `claim_id,verdict,source_id,quote,source_value,note`
+- `verdict`:
+  - `CONFIRMED`: the source states the same value for the same quantity and condition.
+  - `CONTRADICTED`: the source gives a different value for the same quantity and condition (or, for a "normal" range,
+    a legal limit that the range exceeds).
+  - `PARTLY`: the value is right but its condition or attribution is wrong (an MOT limit labelled a Euro
+    type-approval limit), or only one end of a range holds.
+  - `CITATION_WRONG`: the source the claim cites does not say it.
+  - `UNSOURCED`: no source found; `note` names the searches made.
+- `quote`: words copied from the fetched file, at least 12 characters; the checker finds them there.
+- `source_value`: what the source says, required for CONTRADICTED, PARTLY and CITATION_WRONG.
