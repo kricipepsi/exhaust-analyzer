@@ -5,7 +5,7 @@
     "ERR-MF-001": {
       "fault_name": "coil_on_plug_insulation_arc",
       "fault_family": "misfire",
-      "component_group": "Ignition System \u00e2\u20ac\u201d Coil-on-Plug Assembly",
+      "component_group": "Ignition System \u2014 Coil-on-Plug Assembly",
       "impacted_subsystems": [
         "Coil-on-Plug (COP) High-Voltage Winding",
         "Spark Plug Boot and Terminal",
@@ -13,10 +13,10 @@
       ],
       "mechanical_failure_mode": "Internal insulation breakdown in the COP winding allows high-voltage ignition energy to arc to engine ground through the coil body, starving the spark plug of energy and causing an ignition-type misfire.",
       "ui_remediation_steps": [
-        "Swap the suspect COP coil to a known-good cylinder and confirm the misfire DTC follows the coil \u00e2\u20ac\u201d this eliminates injector and compression variables.",
-        "Inspect the coil boot for white or black tracking marks (carbon arc traces) on the external surface \u00e2\u20ac\u201d visible tracking confirms insulation breakdown.",
+        "Swap the suspect COP coil to a known-good cylinder and confirm the misfire DTC follows the coil \u2014 this eliminates injector and compression variables.",
+        "Inspect the coil boot for white or black tracking marks (carbon arc traces) on the external surface \u2014 visible tracking confirms insulation breakdown.",
         "Inspect the spark plug well for moisture, oil, or carbon dust which accelerates arc path formation.",
-        "Replace the faulty COP coil. Replace the spark plug on the affected cylinder simultaneously \u00e2\u20ac\u201d arc events often erode the spark plug gap.",
+        "Replace the faulty COP coil. Replace the spark plug on the affected cylinder simultaneously \u2014 arc events often erode the spark plug gap.",
         "If tracking marks appear on multiple coils, inspect the ignition system for shared ground issue or coolant ingress to plug wells.",
         "Clear all DTCs and verify no misfire returns over one full drive cycle."
       ],
@@ -29,7 +29,7 @@
     "ERR-MF-002": {
       "fault_name": "spark_plug_carbon_fouled",
       "fault_family": "misfire",
-      "component_group": "Ignition System \u00e2\u20ac\u201d Spark Plugs",
+      "component_group": "Ignition System \u2014 Spark Plugs",
       "impacted_subsystems": [
         "Spark Plug Electrodes",
         "Ignition Spark Gap",
@@ -37,11 +37,11 @@
       ],
       "mechanical_failure_mode": "Carbon or oil deposits bridging the spark plug electrode gap create a low-resistance shunt path that bleeds ignition energy, preventing a reliable spark and causing intermittent cylinder misfire.",
       "ui_remediation_steps": [
-        "Remove all spark plugs and inspect \u00e2\u20ac\u201d a carbon-fouled plug shows black matte or oily black deposits across the electrode and insulator nose.",
+        "Remove all spark plugs and inspect \u2014 a carbon-fouled plug shows black matte or oily black deposits across the electrode and insulator nose.",
         "Identify the fouled plug(s) by their appearance relative to healthy plugs (which should show light grey or tan deposits).",
         "Replace all fouled spark plugs with OEM-specified plugs (correct heat range, gap, and electrode type).",
         "Investigate the root cause of fouling: rich running (ERR-RM-001 through ERR-RM-004) causes dry carbon fouling; oil consumption (ERR-RM-001, ERR-RM-002) causes wet oily fouling.",
-        "Address the root cause \u00e2\u20ac\u201d replacing plugs without fixing the rich or oil-burn condition will cause recurrence within weeks.",
+        "Address the root cause \u2014 replacing plugs without fixing the rich or oil-burn condition will cause recurrence within weeks.",
         "Verify repair: no misfire DTCs after one full drive cycle; check fuel trim normalisation."
       ],
       "differential_siblings": [
@@ -53,7 +53,7 @@
     "ERR-MF-003": {
       "fault_name": "spark_plug_gap_erosion",
       "fault_family": "misfire",
-      "component_group": "Ignition System \u00e2\u20ac\u201d Spark Plugs",
+      "component_group": "Ignition System \u2014 Spark Plugs",
       "impacted_subsystems": [
         "Spark Plug Centre and Ground Electrodes",
         "Ignition Coil Secondary Voltage Demand",
@@ -61,11 +61,11 @@
       ],
       "mechanical_failure_mode": "Electrode metal erosion gradually widens the spark plug gap beyond the ignition coil's secondary voltage capability, causing voltage to exceed the coil's capacity at low RPM/low load and producing lean-type misfires at idle.",
       "ui_remediation_steps": [
-        "Remove and measure spark plug gap with a feeler gauge \u00e2\u20ac\u201d a gap more than 0.2 mm above OEM specification confirms erosion.",
+        "Remove and measure spark plug gap with a feeler gauge \u2014 a gap more than 0.2 mm above OEM specification confirms erosion.",
         "Inspect electrode condition: eroded plugs show a rounded, worn centre electrode and a cupped or pitted ground electrode.",
-        "Replace all spark plugs simultaneously \u00e2\u20ac\u201d if one is eroded, the others are typically near end of life.",
+        "Replace all spark plugs simultaneously \u2014 if one is eroded, the others are typically near end of life.",
         "Use OEM-specified replacement plugs (heat range and electrode type matter; avoid substituting iridium for copper without checking coil compatibility).",
-        "Check ignition coil secondary voltage capacity \u00e2\u20ac\u201d an aged coil may not produce enough peak voltage to fire a correctly-gapped new plug if the coil is also degraded.",
+        "Check ignition coil secondary voltage capacity \u2014 an aged coil may not produce enough peak voltage to fire a correctly-gapped new plug if the coil is also degraded.",
         "Verify: misfire DTCs should clear and HC should return to < 100 ppm after one drive cycle."
       ],
       "differential_siblings": [
@@ -77,7 +77,7 @@
     "ERR-MF-004": {
       "fault_name": "ignition_coil_primary_winding_failure",
       "fault_family": "misfire",
-      "component_group": "Ignition System \u00e2\u20ac\u201d Ignition Coil",
+      "component_group": "Ignition System \u2014 Ignition Coil",
       "impacted_subsystems": [
         "Ignition Coil Primary Winding",
         "Coil Drive Circuit (ECM)",
@@ -85,11 +85,11 @@
       ],
       "mechanical_failure_mode": "Open or shorted primary winding in the ignition coil prevents the ECM from energising the coil; with no stored magnetic field, the secondary cannot produce high voltage and the cylinder fires no spark.",
       "ui_remediation_steps": [
-        "Measure primary winding resistance with a multimeter across the coil's primary terminals \u00e2\u20ac\u201d compare to OEM specification (typically 0.5\u00e2\u20ac\u201c2.0 ohms). An open circuit (\u00e2\u02c6\u017e) or short (< 0.3 ohm) confirms failure.",
+        "Measure primary winding resistance with a multimeter across the coil's primary terminals \u2014 compare to OEM specification (typically 0.5\u20132.0 ohms). An open circuit (\u221e) or short (< 0.3 ohm) confirms failure.",
         "Swap the suspect coil to a known-good cylinder and confirm the misfire DTC follows the coil.",
         "Inspect the coil electrical connector for corrosion, pushed-back pins, or moisture ingress.",
         "Replace the failed ignition coil.",
-        "Check the ECM coil driver circuit output \u00e2\u20ac\u201d repeated coil primary failures may indicate a failing ECM driver transistor over-driving the coil.",
+        "Check the ECM coil driver circuit output \u2014 repeated coil primary failures may indicate a failing ECM driver transistor over-driving the coil.",
         "Clear all DTCs and verify the misfire does not return after one drive cycle."
       ],
       "differential_siblings": [
@@ -109,9 +109,9 @@
       ],
       "mechanical_failure_mode": "Open circuit in the fuel injector solenoid winding or injector driver circuit prevents any fuel delivery to the affected cylinder, causing a lean misfire on every combustion cycle.",
       "ui_remediation_steps": [
-        "Measure injector solenoid resistance with a multimeter \u00e2\u20ac\u201d compare to OEM specification (typically 12\u00e2\u20ac\u201c16 ohms for high-impedance injectors). An open circuit or < 2 ohms (short) confirms failure.",
+        "Measure injector solenoid resistance with a multimeter \u2014 compare to OEM specification (typically 12\u201316 ohms for high-impedance injectors). An open circuit or < 2 ohms (short) confirms failure.",
         "Check injector wiring harness connector for corrosion, damage, or pushed-back pins at the suspected cylinder.",
-        "Use a test light or noid light to verify ECM pulse signal reaches the injector \u00e2\u20ac\u201d absence of signal suggests ECM driver failure.",
+        "Use a test light or noid light to verify ECM pulse signal reaches the injector \u2014 absence of signal suggests ECM driver failure.",
         "Replace the dead injector.",
         "Verify repair: cylinder contribution test should show HC response when cylinder is disabled; no response before repair confirms no fuel delivery.",
         "Clear DTCs and verify no misfire return after one drive cycle."
@@ -133,12 +133,12 @@
       ],
       "mechanical_failure_mode": "Severe compression loss from ring, valve, or bore degradation prevents adequate charge compression; without sufficient pressure, ignition occurs weakly or fails, producing a mechanical misfire unresponsive to ignition or fuel system repairs.",
       "ui_remediation_steps": [
-        "Perform a dry compression test on all cylinders \u00e2\u20ac\u201d any cylinder below 80 % of OEM specification or below 689 kPa (100 psi) confirms the problem cylinder.",
-        "Perform a wet compression test (add oil to the cylinder) \u00e2\u20ac\u201d if compression rises significantly when wet, ring seal is the cause; if no change, valve seating is the cause.",
-        "Perform a leak-down test to quantify the leak \u00e2\u20ac\u201d listen for air escaping from the intake (valve), exhaust (exhaust valve), or oil cap (rings/bore).",
+        "Perform a dry compression test on all cylinders \u2014 any cylinder below 80 % of OEM specification or below 689 kPa (100 psi) confirms the problem cylinder.",
+        "Perform a wet compression test (add oil to the cylinder) \u2014 if compression rises significantly when wet, ring seal is the cause; if no change, valve seating is the cause.",
+        "Perform a leak-down test to quantify the leak \u2014 listen for air escaping from the intake (valve), exhaust (exhaust valve), or oil cap (rings/bore).",
         "If ring failure: assess whether the bore is serviceable for oversize rings, or whether full engine replacement is required.",
         "If valve seating: remove cylinder head and assess valve and seat condition; re-cut or replace as required.",
-        "This fault requires mechanical repair \u00e2\u20ac\u201d no fuel, ignition, or ECU solution will resolve it."
+        "This fault requires mechanical repair \u2014 no fuel, ignition, or ECU solution will resolve it."
       ],
       "differential_siblings": [
         "ERR-RM-002",
@@ -149,7 +149,7 @@
     "ERR-MF-007": {
       "fault_name": "gdi_intake_valve_carbon_buildup",
       "fault_family": "misfire",
-      "component_group": "Engine Cylinder Head Assembly \u00e2\u20ac\u201d GDI Variant",
+      "component_group": "Engine Cylinder Head Assembly \u2014 GDI Variant",
       "impacted_subsystems": [
         "Intake Valve Stems and Heads (GDI)",
         "Intake Port Flow",
@@ -157,11 +157,11 @@
       ],
       "mechanical_failure_mode": "Carbon deposits accumulate on GDI intake valves due to absent port fuel washing, reducing intake flow area and disrupting charge motion, causing lean misfire at idle and part-load.",
       "ui_remediation_steps": [
-        "Perform a bore scope inspection of the intake ports and valve heads through the intake manifold \u00e2\u20ac\u201d heavy black carbon deposits confirm the diagnosis.",
+        "Perform a bore scope inspection of the intake ports and valve heads through the intake manifold \u2014 heavy black carbon deposits confirm the diagnosis.",
         "Perform walnut shell media blasting through the intake ports with the intake valves closed to remove deposits without disassembly.",
         "If media blasting is unavailable, chemical intake valve cleaning using direct-solvent injection through the intake is a less thorough alternative.",
         "Consider adding a catch can to the crankcase breather circuit to reduce oil mist reaching the intake valves post-cleaning.",
-        "Document the cleaning interval \u00e2\u20ac\u201d GDI intake valve carbon typically requires service every 60 000\u00e2\u20ac\u201c100 000 km on affected platforms.",
+        "Document the cleaning interval \u2014 GDI intake valve carbon typically requires service every 60 000\u2013100 000 km on affected platforms.",
         "Verify repair: idle quality should improve and misfire DTCs should not return after one drive cycle."
       ],
       "differential_siblings": [

@@ -13,12 +13,12 @@
       ],
       "mechanical_failure_mode": "Atmospheric air enters the intake system after the MAF sensor measurement point, adding unmetered air that the ECU cannot account for, causing a permanent lean fuel condition.",
       "ui_remediation_steps": [
-        "With engine at idle, spray propane or carburetor cleaner carefully around all vacuum hose junctions, intake manifold gasket mating faces, and the throttle body gasket \u00e2\u20ac\u201d RPM change or trim shift confirms the leak location.",
-        "Use a smoke machine to pressurise the intake downstream of the MAF sensor \u00e2\u20ac\u201d visible smoke escaping identifies the leak point without open-flame risk.",
+        "With engine at idle, spray propane or carburetor cleaner carefully around all vacuum hose junctions, intake manifold gasket mating faces, and the throttle body gasket \u2014 RPM change or trim shift confirms the leak location.",
+        "Use a smoke machine to pressurise the intake downstream of the MAF sensor \u2014 visible smoke escaping identifies the leak point without open-flame risk.",
         "Inspect all vacuum hoses for cracking, hardening, or disconnection, particularly those on the back face of the intake manifold.",
         "Inspect intake manifold gaskets for distortion (warped plastic intake on high-mileage engines).",
         "Replace the leaking component. Torque manifold bolts to OEM specification in the correct sequence.",
-        "Verify repair: fuel trim should recover to within \u00c2\u00b15 % within 10 minutes of idle."
+        "Verify repair: fuel trim should recover to within \u00b15 % within 10 minutes of idle."
       ],
       "differential_siblings": [
         "ERR-LC-002",
@@ -37,10 +37,10 @@
       ],
       "mechanical_failure_mode": "Contamination on the MAF sensor hot-wire or film element reduces its sensitivity, causing it to under-report actual airflow; the ECU injects insufficient fuel for the true air mass, creating a consistent lean condition.",
       "ui_remediation_steps": [
-        "Inspect the MAF sensor element visually (requires removal from housing) \u00e2\u20ac\u201d look for oil film, dust coating, or spider webs on the hot-wire or film.",
-        "Clean the MAF element with dedicated MAF sensor cleaner spray. Do not use brake cleaner or contact cleaner \u00e2\u20ac\u201d they leave residue.",
-        "Re-test after cleaning: if trims normalise within \u00c2\u00b15 %, contamination was the cause.",
-        "If trims do not normalise after cleaning, the element sensitivity is permanently degraded \u00e2\u20ac\u201d replace the MAF sensor.",
+        "Inspect the MAF sensor element visually (requires removal from housing) \u2014 look for oil film, dust coating, or spider webs on the hot-wire or film.",
+        "Clean the MAF element with dedicated MAF sensor cleaner spray. Do not use brake cleaner or contact cleaner \u2014 they leave residue.",
+        "Re-test after cleaning: if trims normalise within \u00b15 %, contamination was the cause.",
+        "If trims do not normalise after cleaning, the element sensitivity is permanently degraded \u2014 replace the MAF sensor.",
         "Inspect and replace the air filter if it was bypassed or overloaded (source of contamination).",
         "Check for oil from a crankcase breather or turbo recirculation hose contaminating the air path before the MAF."
       ],
@@ -59,12 +59,12 @@
         "Fuel Pressure Regulator",
         "Fuel Filter"
       ],
-      "mechanical_failure_mode": "Degraded fuel pump delivers insufficient fuel pressure at the rail, causing fuel starvation under demand \u00e2\u20ac\u201d most severe at stress-idle RPM when fuel flow requirements peak.",
+      "mechanical_failure_mode": "Degraded fuel pump delivers insufficient fuel pressure at the rail, causing fuel starvation under demand \u2014 most severe at stress-idle RPM when fuel flow requirements peak.",
       "ui_remediation_steps": [
-        "Measure fuel rail static pressure (key-on engine-off) and compare to OEM specification (typically 3.0\u00e2\u20ac\u201c3.5 bar port injection).",
-        "Measure fuel pressure at idle and at 2500 RPM \u00e2\u20ac\u201d if pressure drops more than 0.3 bar under load, the pump is confirmed weak.",
-        "Check the fuel filter first (if accessible and age unknown) \u00e2\u20ac\u201d a clogged filter produces the same low-pressure signature before the pump.",
-        "Perform a fuel pump current draw test \u00e2\u20ac\u201d a pump drawing more than spec current while producing low pressure indicates impeller wear.",
+        "Measure fuel rail static pressure (key-on engine-off) and compare to OEM specification (typically 3.0\u20133.5 bar port injection).",
+        "Measure fuel pressure at idle and at 2500 RPM \u2014 if pressure drops more than 0.3 bar under load, the pump is confirmed weak.",
+        "Check the fuel filter first (if accessible and age unknown) \u2014 a clogged filter produces the same low-pressure signature before the pump.",
+        "Perform a fuel pump current draw test \u2014 a pump drawing more than spec current while producing low pressure indicates impeller wear.",
         "Replace the in-tank fuel pump (and filter if serviceable separately).",
         "Verify repair: pressure holds at OEM spec at 2500 RPM under load."
       ],
@@ -86,8 +86,8 @@
       "mechanical_failure_mode": "Carbon and varnish deposits partially block the injector nozzle orifice, reducing fuel flow below the ECU's commanded quantity and causing a lean mixture on the affected cylinder(s).",
       "ui_remediation_steps": [
         "Perform an injector balance test (KOEO pressure drop per cylinder) to identify which injector has restricted flow.",
-        "Perform a cylinder contribution test at idle \u00e2\u20ac\u201d the affected cylinder shows less HC change when disabled.",
-        "Attempt ultrasonic injector cleaning on a bench before replacement \u00e2\u20ac\u201d mild deposits can be cleared.",
+        "Perform a cylinder contribution test at idle \u2014 the affected cylinder shows less HC change when disabled.",
+        "Attempt ultrasonic injector cleaning on a bench before replacement \u2014 mild deposits can be cleared.",
         "If flow rate after cleaning is still > 10 % less than the mean of the set, replace the injector.",
         "Add a quality fuel injector cleaner to the fuel tank and re-run one full heat cycle before deciding on replacement if symptoms are borderline.",
         "After replacement, recheck balance test and confirm all cylinders within 5 % of each other."
@@ -109,12 +109,12 @@
       ],
       "mechanical_failure_mode": "Carbon-jammed EGR valve remains open at idle, flooding the intake charge with inert exhaust gas that dilutes the combustible mixture and reduces combustion efficiency.",
       "ui_remediation_steps": [
-        "Command the EGR valve closed via scan tool (actuator test) and monitor idle quality \u00e2\u20ac\u201d if idle smooths immediately, the valve is confirmed stuck open.",
+        "Command the EGR valve closed via scan tool (actuator test) and monitor idle quality \u2014 if idle smooths immediately, the valve is confirmed stuck open.",
         "Remove the EGR valve and inspect the pintle and seat for heavy carbon deposits preventing closure.",
         "Clean the EGR pintle and housing with carbon solvent if deposits are not hardened. Replace valve if pintle seat is damaged.",
-        "Inspect the EGR cooler (if fitted) for internal leaks \u00e2\u20ac\u201d coolant in the exhaust path produces similar dilution.",
+        "Inspect the EGR cooler (if fitted) for internal leaks \u2014 coolant in the exhaust path produces similar dilution.",
         "Clean the EGR intake manifold port to remove accumulated carbon deposits that can hold the valve open.",
-        "After repair, run a functional EGR test at 2500 RPM \u00e2\u20ac\u201d a healthy EGR valve causes a slight drop in RPM when commanded open at that speed."
+        "After repair, run a functional EGR test at 2500 RPM \u2014 a healthy EGR valve causes a slight drop in RPM when commanded open at that speed."
       ],
       "differential_siblings": [
         "ERR-LC-001"
@@ -132,12 +132,12 @@
       ],
       "mechanical_failure_mode": "A crack or failed gasket in the exhaust path upstream of the oxygen sensor allows atmospheric air to enter via venturi pulsing, falsely elevating the O2 sensor reading and driving the ECU into unnecessary rich correction.",
       "ui_remediation_steps": [
-        "With the engine idling cold, listen for a 'ticking' or 'chuffing' sound from the exhaust manifold area \u00e2\u20ac\u201d exhaust gas escaping through a crack is louder when cold (metal not yet expanded).",
-        "Use an exhaust gas analyser probe near the suspected leak point \u00e2\u20ac\u201d HC reading at the crack (not the tailpipe) confirms escaping combustion gas.",
+        "With the engine idling cold, listen for a 'ticking' or 'chuffing' sound from the exhaust manifold area \u2014 exhaust gas escaping through a crack is louder when cold (metal not yet expanded).",
+        "Use an exhaust gas analyser probe near the suspected leak point \u2014 HC reading at the crack (not the tailpipe) confirms escaping combustion gas.",
         "Inspect all exhaust manifold gaskets visually for carbon soot marks or blowout traces.",
         "Perform an exhaust system leak test using compressed air with the engine stopped (or smoke machine via the tailpipe with the probe blocked).",
         "Replace the failed exhaust manifold gasket or weld the cracked manifold as appropriate.",
-        "Verify: after repair, O2 sensor switching pattern should normalise and fuel trims return to \u00c2\u00b15 %."
+        "Verify: after repair, O2 sensor switching pattern should normalise and fuel trims return to \u00b15 %."
       ],
       "differential_siblings": [
         "ERR-LC-001",

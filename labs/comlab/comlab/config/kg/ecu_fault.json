@@ -11,13 +11,13 @@
         "Long-Term Fuel Trim (LTFT)",
         "Closed-Loop Fuel Authority"
       ],
-      "mechanical_failure_mode": "Fuel trim adaptation has reached its authority limit (typically \u00c2\u00b125%) in one direction and is holding at the rail \u00e2\u20ac\u201d the ECU can no longer correct the mixture error, confirming a root-cause fault of sufficient magnitude to exceed the trim system's correction range.",
+      "mechanical_failure_mode": "Fuel trim adaptation has reached its authority limit (typically \u00b125%) in one direction and is holding at the rail \u2014 the ECU can no longer correct the mixture error, confirming a root-cause fault of sufficient magnitude to exceed the trim system's correction range.",
       "ui_remediation_steps": [
-        "Record the trim direction: positive saturation (STFT/LTFT pegged at +20 to +25 %) means a lean root cause \u00e2\u20ac\u201d look for vacuum leak, fuel starvation, MAF under-read, injector clog. Negative saturation (pegged at \u00e2\u02c6\u201920 to \u00e2\u02c6\u201925 %) means a rich root cause \u00e2\u20ac\u201d look for fuel pressure excess, leaking injector, ECT sensor bias, EVAP purge stuck open.",
-        "ERR-EF-001 is a secondary fault \u00e2\u20ac\u201d it does not replace the root-cause diagnosis; it tells you the correction system is exhausted. Always chase the primary fault first.",
+        "Record the trim direction: positive saturation (STFT/LTFT pegged at +20 to +25 %) means a lean root cause \u2014 look for vacuum leak, fuel starvation, MAF under-read, injector clog. Negative saturation (pegged at \u221220 to \u221225 %) means a rich root cause \u2014 look for fuel pressure excess, leaking injector, ECT sensor bias, EVAP purge stuck open.",
+        "ERR-EF-001 is a secondary fault \u2014 it does not replace the root-cause diagnosis; it tells you the correction system is exhausted. Always chase the primary fault first.",
         "Check whether trim saturation is bank-specific (STFT1/LTFT1 vs STFT2/LTFT2). Bank-specific saturation points to an injector, coil, or cylinder-specific fault. Global saturation (both banks equal) points to a global air or fuel pressure fault.",
-        "With the root cause corrected, clear adaptive fuel maps and allow one full warm drive cycle for trim to relearn. Trim should return within \u00c2\u00b110 % if the fix was complete.",
-        "If trim does not recover within \u00c2\u00b110 % after root cause repair, suspect a second independent fault or incomplete repair."
+        "With the root cause corrected, clear adaptive fuel maps and allow one full warm drive cycle for trim to relearn. Trim should return within \u00b110 % if the fix was complete.",
+        "If trim does not recover within \u00b110 % after root cause repair, suspect a second independent fault or incomplete repair."
       ],
       "differential_siblings": [
         "ERR-EF-002",
@@ -35,12 +35,12 @@
         "Short-Term Fuel Trim (STFT)",
         "O2 Sensor Feedback Authority"
       ],
-      "mechanical_failure_mode": "ECU fuel control is operating in open-loop mode \u00e2\u20ac\u201d the O2 sensor feedback loop is not active \u00e2\u20ac\u201d causing the engine to run at the base calibration map value without trim correction, producing a fixed mixture that is biased by calibration accuracy alone.",
+      "mechanical_failure_mode": "ECU fuel control is operating in open-loop mode \u2014 the O2 sensor feedback loop is not active \u2014 causing the engine to run at the base calibration map value without trim correction, producing a fixed mixture that is biased by calibration accuracy alone.",
       "ui_remediation_steps": [
         "Confirm open-loop status on scan tool: fuel system status PID should show OL (open loop). If showing CL (closed loop) but trim is frozen at 0 %, suspect a sensor fault (ERR-SF-001, ERR-SF-002) rather than a control system failure.",
-        "Check for DTC P0140 (O2 sensor no activity \u00e2\u20ac\u201d bank 1) or P0160 (bank 2) \u00e2\u20ac\u201d these specifically flag that the ECU declared the O2 sensor inactive and exited closed-loop.",
-        "Verify engine coolant temperature: the ECU will remain in open-loop until the ECT sensor reads above the closed-loop entry threshold (typically 70 \u00c2\u00b0C). Confirm `engine_warmed = true` has been reached (see ERR-SF-005 and ERR-RM-006 for ECT faults that prevent warm-up).",
-        "Check the upstream O2 sensor heater circuit \u00e2\u20ac\u201d a cold sensor (failed heater) will never produce a switching signal, which is interpreted by many ECUs as sensor absence \u00e2\u2020\u2019 closed-loop disabled.",
+        "Check for DTC P0140 (O2 sensor no activity \u2014 bank 1) or P0160 (bank 2) \u2014 these specifically flag that the ECU declared the O2 sensor inactive and exited closed-loop.",
+        "Verify engine coolant temperature: the ECU will remain in open-loop until the ECT sensor reads above the closed-loop entry threshold (typically 70 \u00b0C). Confirm `engine_warmed = true` has been reached (see ERR-SF-005 and ERR-RM-006 for ECT faults that prevent warm-up).",
+        "Check the upstream O2 sensor heater circuit \u2014 a cold sensor (failed heater) will never produce a switching signal, which is interpreted by many ECUs as sensor absence \u2192 closed-loop disabled.",
         "If coolant temp is normal and O2 sensor heater is functional, suspect ECU software fault or calibration corruption. Check for TSBs.",
         "After resolving root cause, verify fuel system status transitions to CL within 5 minutes of reaching operating temperature."
       ],
@@ -54,7 +54,7 @@
     "ERR-ECU-001": {
       "fault_name": "ecu_internal_processor_fault",
       "fault_family": "ecu_fault",
-      "component_group": "Engine Control Module (ECM/PCM) \u00e2\u20ac\u201d Processor and Memory Subsystem",
+      "component_group": "Engine Control Module (ECM/PCM) \u2014 Processor and Memory Subsystem",
       "impacted_subsystems": [
         "ECM Central Processor (CPU)",
         "ECM Non-Volatile Memory (ROM / Flash)",
@@ -62,13 +62,13 @@
         "5V Sensor Reference Voltage Circuit",
         "CAN Communication Bus"
       ],
-      "mechanical_failure_mode": "ECM internal processor integrity self-check failure \u00e2\u20ac\u201d watchdog timeout, ROM checksum mismatch, KAM corruption, or internal memory fault. ECU self-reports P0606 when its self-test detects a hardware-level fault in the processor or memory subsystem.",
+      "mechanical_failure_mode": "ECM internal processor integrity self-check failure \u2014 watchdog timeout, ROM checksum mismatch, KAM corruption, or internal memory fault. ECU self-reports P0606 when its self-test detects a hardware-level fault in the processor or memory subsystem.",
       "ui_remediation_steps": [
-        "Verify battery voltage is stable \u00e2\u20ac\u201d check charging system output (13.5\u00e2\u20ac\u201c14.5 V at 2000 RPM) and battery resting voltage (\u00e2\u2030\u00a5 12.4 V). A failing alternator or weak battery can cause intermittent ECU voltage dropout that triggers phantom P0606.",
-        "Check for companion DTCs \u00e2\u20ac\u201d P0562 (system voltage low), P0563 (system voltage high), P0641 (5V reference open), P0642 (5V reference low), or P0643 (5V reference high) suggest the root cause is power-supply, not the ECU itself.",
+        "Verify battery voltage is stable \u2014 check charging system output (13.5\u201314.5 V at 2000 RPM) and battery resting voltage (\u2265 12.4 V). A failing alternator or weak battery can cause intermittent ECU voltage dropout that triggers phantom P0606.",
+        "Check for companion DTCs \u2014 P0562 (system voltage low), P0563 (system voltage high), P0641 (5V reference open), P0642 (5V reference low), or P0643 (5V reference high) suggest the root cause is power-supply, not the ECU itself.",
         "Inspect ECU ground points and harness connectors for corrosion, loose terminals, or water ingress. A poor ground or intermittent connection can mimic an internal ECU fault.",
         "Clear DTCs and re-test under the same operating conditions. If P0606 returns immediately with no companion power-supply DTCs, the ECU internal fault is genuine.",
-        "Before replacing the ECU, verify the latest ECU calibration/flash is installed \u00e2\u20ac\u201d an incomplete or corrupt flash can set P0606. Re-flash with the latest OEM calibration and re-test.",
+        "Before replacing the ECU, verify the latest ECU calibration/flash is installed \u2014 an incomplete or corrupt flash can set P0606. Re-flash with the latest OEM calibration and re-test.",
         "If P0606 persists after re-flash and power-supply faults are ruled out, replace the ECM. Perform immobiliser pairing, CASE relearn (if applicable), and verify all monitors complete one drive cycle without DTC recurrence."
       ],
       "differential_siblings": [

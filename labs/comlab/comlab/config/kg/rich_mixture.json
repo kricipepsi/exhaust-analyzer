@@ -14,7 +14,7 @@
       "mechanical_failure_mode": "High intake manifold vacuum at idle draws engine oil down worn valve guides directly into combustion ports, producing HC spike and oil-smoke signature.",
       "ui_remediation_steps": [
         "Perform a wet/dry compression test on all cylinders to isolate whether ring wear is also present.",
-        "Inspect the valve cover gasket area and breather hoses for oil weeping \u00e2\u20ac\u201d confirms oil is migrating.",
+        "Inspect the valve cover gasket area and breather hoses for oil weeping \u2014 confirms oil is migrating.",
         "Perform a cylinder-contribution test (cut each cylinder and monitor HC change) to localise the worst guide(s).",
         "Remove cylinder head; measure valve-to-guide oil clearance against OEM specification.",
         "Replace valve stem seals. Replace valve guides if clearance exceeds OEM tolerance.",
@@ -38,7 +38,7 @@
       "mechanical_failure_mode": "Worn piston ring lands allow combustion blow-by and oil passage past the rings into the combustion chamber, generating HC and oil smoke at all RPM points.",
       "ui_remediation_steps": [
         "Perform a wet/dry compression test: low dry compression confirmed with wet step (oil seals rings) confirms ring wear.",
-        "Check crankcase ventilation \u00e2\u20ac\u201d excessive blow-by pressure (pop-up dipstick, white smoke from breather) confirms ring leakage.",
+        "Check crankcase ventilation \u2014 excessive blow-by pressure (pop-up dipstick, white smoke from breather) confirms ring leakage.",
         "Perform a leak-down test to quantify ring seal percentage per cylinder.",
         "If compression < 80 % of OEM spec or leak-down > 20 %, engine requires overhaul (rings/bore resizing).",
         "Assess cylinder bore for scoring or out-of-round using bore gauge before specifying rings alone.",
@@ -62,11 +62,11 @@
       "mechanical_failure_mode": "Degraded injector needle seat allows fuel to drip into the intake port or cylinder when closed, producing a persistent rich over-fuelling on the affected cylinder(s).",
       "ui_remediation_steps": [
         "Perform an injector balance test (KOEO fuel pressure drop per cylinder) to identify the leaking injector.",
-        "Remove injectors and bench-test flow and leak-back \u00e2\u20ac\u201d a leaking seat drips more than 1 drop per 30 seconds at rail pressure.",
-        "Check fuel rail pressure hold-down after pump off \u00e2\u20ac\u201d rapid pressure loss confirms internal injector leak.",
+        "Remove injectors and bench-test flow and leak-back \u2014 a leaking seat drips more than 1 drop per 30 seconds at rail pressure.",
+        "Check fuel rail pressure hold-down after pump off \u2014 rapid pressure loss confirms internal injector leak.",
         "Replace the leaking injector(s). Replace O-ring seals on reinstallation.",
-        "Recheck with scan tool: short-term fuel trim should return to within \u00c2\u00b15 % after replacement.",
-        "If all injectors are leaking, suspect contaminated fuel or injector age \u00e2\u20ac\u201d consider full set replacement."
+        "Recheck with scan tool: short-term fuel trim should return to within \u00b15 % after replacement.",
+        "If all injectors are leaking, suspect contaminated fuel or injector age \u2014 consider full set replacement."
       ],
       "differential_siblings": [
         "ERR-RM-007",
@@ -86,11 +86,11 @@
       "mechanical_failure_mode": "Stuck-open EVAP purge solenoid continuously feeds fuel vapour from the carbon canister into the intake manifold, producing uncontrolled over-fuelling independent of ECU fuel commands.",
       "ui_remediation_steps": [
         "Disconnect the EVAP purge hose from the intake manifold port; if the engine smooths and trims recover toward 0 %, the purge valve is confirmed stuck open.",
-        "Apply vacuum to the purge valve solenoid with the ignition off \u00e2\u20ac\u201d a healthy valve should hold vacuum indefinitely; a stuck valve bleeds down.",
+        "Apply vacuum to the purge valve solenoid with the ignition off \u2014 a healthy valve should hold vacuum indefinitely; a stuck valve bleeds down.",
         "Inspect the purge solenoid for sticking or carbon contamination internally.",
         "Replace the EVAP purge solenoid valve.",
-        "Check the carbon canister for saturation (fuel-soaked canister vents fuel not vapour \u00e2\u20ac\u201d replace canister if saturated).",
-        "After repair, verify EVAP system integrity with a smoke test and confirm trim recovery within \u00c2\u00b15 %."
+        "Check the carbon canister for saturation (fuel-soaked canister vents fuel not vapour \u2014 replace canister if saturated).",
+        "After repair, verify EVAP system integrity with a smoke test and confirm trim recovery within \u00b15 %."
       ],
       "differential_siblings": [
         "ERR-RM-003",
@@ -109,12 +109,12 @@
       ],
       "mechanical_failure_mode": "Internal HPFP drive-shaft seal rupture allows high-pressure fuel to migrate past the seal into the engine oil, producing unmetered fuel intrusion and severe crankcase contamination.",
       "ui_remediation_steps": [
-        "Do not drive the vehicle \u00e2\u20ac\u201d continued operation with fuel-contaminated oil causes bearing and cylinder wall damage.",
-        "Pull dipstick and check oil level and smell \u00e2\u20ac\u201d fuel-contaminated oil smells of raw petrol and the level will be elevated above the max mark.",
+        "Do not drive the vehicle \u2014 continued operation with fuel-contaminated oil causes bearing and cylinder wall damage.",
+        "Pull dipstick and check oil level and smell \u2014 fuel-contaminated oil smells of raw petrol and the level will be elevated above the max mark.",
         "Change engine oil immediately to remove fuel contamination before any further diagnosis.",
-        "Replace the High-Pressure Fuel Pump (HPFP) assembly \u00e2\u20ac\u201d the internal seal is not serviceable separately on most GDI applications.",
+        "Replace the High-Pressure Fuel Pump (HPFP) assembly \u2014 the internal seal is not serviceable separately on most GDI applications.",
         "After HPFP replacement, change oil again after the first 500 km to clear any remaining contamination.",
-        "Verify repair: long-term fuel trim should return to within \u00c2\u00b15 % and oil smell should be absent."
+        "Verify repair: long-term fuel trim should return to within \u00b15 % and oil smell should be absent."
       ],
       "differential_siblings": [
         "ERR-RM-003",
@@ -133,12 +133,12 @@
       ],
       "mechanical_failure_mode": "ECT sensor internal resistance shifts high, reporting falsely cold coolant temperature to the ECU, forcing continuous open-loop cold-start enrichment even when the engine is fully warm.",
       "ui_remediation_steps": [
-        "Measure actual coolant temperature with a contact thermometer or infrared gun at the thermostat housing \u00e2\u20ac\u201d compare to the ECT sensor reading on the scan tool.",
-        "If the scan tool ECT reads < 60 \u00c2\u00b0C while the actual coolant is > 80 \u00c2\u00b0C, the sensor is confirmed biased.",
+        "Measure actual coolant temperature with a contact thermometer or infrared gun at the thermostat housing \u2014 compare to the ECT sensor reading on the scan tool.",
+        "If the scan tool ECT reads < 60 \u00b0C while the actual coolant is > 80 \u00b0C, the sensor is confirmed biased.",
         "Check ECT sensor connector and wiring for corrosion or water ingress before replacing the sensor.",
-        "Replace the ECT sensor. Verify the new sensor reads within 3 \u00c2\u00b0C of the contact thermometer at operating temperature.",
-        "After replacement, confirm the ECU enters closed-loop (fuel system status = CL on OBD-II) and trims recover toward \u00c2\u00b15 %.",
-        "Monitor over one full drive cycle \u00e2\u20ac\u201d if trim normalises, repair is complete."
+        "Replace the ECT sensor. Verify the new sensor reads within 3 \u00b0C of the contact thermometer at operating temperature.",
+        "After replacement, confirm the ECU enters closed-loop (fuel system status = CL on OBD-II) and trims recover toward \u00b15 %.",
+        "Monitor over one full drive cycle \u2014 if trim normalises, repair is complete."
       ],
       "differential_siblings": [
         "ERR-SF-005",
@@ -157,12 +157,12 @@
       ],
       "mechanical_failure_mode": "Ruptured FPR diaphragm allows fuel rail pressure to vent directly into the intake manifold vacuum reference port, delivering unmetered liquid fuel into the intake charge.",
       "ui_remediation_steps": [
-        "With engine running at idle, disconnect the vacuum hose from the FPR vacuum port \u00e2\u20ac\u201d if raw fuel or strong fuel smell emerges from the hose, the diaphragm is confirmed ruptured.",
+        "With engine running at idle, disconnect the vacuum hose from the FPR vacuum port \u2014 if raw fuel or strong fuel smell emerges from the hose, the diaphragm is confirmed ruptured.",
         "Check the intake manifold for fuel pooling at the FPR vacuum port connection point.",
         "Replace the fuel pressure regulator assembly (diaphragm is not separately serviceable).",
         "Inspect and replace the vacuum line if fuel contamination has softened or swollen it.",
-        "After replacement, verify fuel pressure holds at 3.0\u00e2\u20ac\u201c3.5 bar (or OEM spec) at idle with vacuum hose connected.",
-        "Recheck fuel trims \u00e2\u20ac\u201d should return to within \u00c2\u00b15 % within one drive cycle."
+        "After replacement, verify fuel pressure holds at 3.0\u20133.5 bar (or OEM spec) at idle with vacuum hose connected.",
+        "Recheck fuel trims \u2014 should return to within \u00b15 % within one drive cycle."
       ],
       "differential_siblings": [
         "ERR-RM-003",

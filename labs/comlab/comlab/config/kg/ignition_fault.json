@@ -5,18 +5,18 @@
     "ERR-IF-001": {
       "fault_name": "ignition_coil_driver_fault",
       "fault_family": "ignition_fault",
-      "component_group": "Ignition System \u00e2\u20ac\u201d ECU Ignition Driver Transistor / Coil Primary Circuit",
+      "component_group": "Ignition System \u2014 ECU Ignition Driver Transistor / Coil Primary Circuit",
       "impacted_subsystems": [
         "ECU Ignition Driver Output Stage",
         "Ignition Coil Primary Winding",
         "Crankshaft Acceleration Misfire Monitor"
       ],
-      "mechanical_failure_mode": "ECU ignition driver transistor degrades thermally, failing to switch coil primary current. Coil fires intermittently or not at all \u00e2\u20ac\u201d misfire stays on cylinder after coil swap, confirming fault is upstream in ECU. Common with high under-hood thermal exposure.",
+      "mechanical_failure_mode": "ECU ignition driver transistor degrades thermally, failing to switch coil primary current. Coil fires intermittently or not at all \u2014 misfire stays on cylinder after coil swap, confirming fault is upstream in ECU. Common with high under-hood thermal exposure.",
       "ui_remediation_steps": [
-        "Swap the suspect cylinder's ignition coil with a known-good cylinder \u00e2\u20ac\u201d if the misfire stays on the original cylinder (does not follow the coil), the fault is upstream of the coil: wiring, connector, or ECU driver.",
-        "Back-probe the coil primary control wire with a lab scope \u00e2\u20ac\u201d look for a clean 0\u00e2\u2020\u201912V\u00e2\u2020\u20190 V switching event. A rounded falling edge, missing event, or erratic timing indicates a driver fault.",
-        "Check the primary circuit wiring between the ECU connector and the coil connector \u00e2\u20ac\u201d resistance should be < 0.5 \u00ce\u00a9. Any green corrosion at the ECU connector pin suggests water intrusion.",
-        "If the driver transistor is confirmed failed, the ECU must be replaced or repaired by an ECU specialist. Do not attempt to drive the transistor with an external circuit \u00e2\u20ac\u201d it is part of the ECU's dwell control logic.",
+        "Swap the suspect cylinder's ignition coil with a known-good cylinder \u2014 if the misfire stays on the original cylinder (does not follow the coil), the fault is upstream of the coil: wiring, connector, or ECU driver.",
+        "Back-probe the coil primary control wire with a lab scope \u2014 look for a clean 0\u219212V\u21920 V switching event. A rounded falling edge, missing event, or erratic timing indicates a driver fault.",
+        "Check the primary circuit wiring between the ECU connector and the coil connector \u2014 resistance should be < 0.5 \u03a9. Any green corrosion at the ECU connector pin suggests water intrusion.",
+        "If the driver transistor is confirmed failed, the ECU must be replaced or repaired by an ECU specialist. Do not attempt to drive the transistor with an external circuit \u2014 it is part of the ECU's dwell control logic.",
         "After ECU replacement, perform the immobiliser relearn and crank-angle sensor relearn procedures per the manufacturer's service information.",
         "Verify repair: no misfire DTC, secondary ignition waveform clean across all cylinders, Mode $06 misfire counts at zero."
       ],
@@ -30,20 +30,20 @@
     "ERR-IF-002": {
       "fault_name": "ignition_switch_voltage_drop",
       "fault_family": "ignition_fault",
-      "component_group": "Ignition System \u00e2\u20ac\u201d Ignition Switch and Primary Power Supply Path",
+      "component_group": "Ignition System \u2014 Ignition Switch and Primary Power Supply Path",
       "impacted_subsystems": [
         "Ignition Switch Contact Assembly",
         "Coil Primary Supply Voltage Rail",
         "ECU Ignition Supply Monitor"
       ],
-      "mechanical_failure_mode": "Worn ignition switch contacts create resistive voltage drop in coil primary supply. At cranking or under load, coil voltage drops below 10.5 V, starving coil of dwell current, producing weak or absent spark. Intermittent \u00e2\u20ac\u201d worse hot or with headlights/blower running.",
+      "mechanical_failure_mode": "Worn ignition switch contacts create resistive voltage drop in coil primary supply. At cranking or under load, coil voltage drops below 10.5 V, starving coil of dwell current, producing weak or absent spark. Intermittent \u2014 worse hot or with headlights/blower running.",
       "ui_remediation_steps": [
-        "Measure voltage at the coil primary supply terminal (usually the coil connector's B+ pin) during cranking \u00e2\u20ac\u201d should be \u00e2\u2030\u00a5 10.5 V. Below 10.0 V confirms a supply-side voltage drop.",
-        "Perform a voltage-drop test across the ignition switch: one probe at battery positive, one probe at the ignition coil supply fuse output, key ON engine running \u00e2\u20ac\u201d drop should be < 0.3 V.",
-        "Back-probe each side of the ignition switch connector \u00e2\u20ac\u201d if the drop occurs across the switch itself (not the wiring), the switch contacts are worn or corroded.",
-        "Check that the problem is not caused by aftermarket accessories tapped into the ignition supply circuit (alarm, remote start, stereo) \u00e2\u20ac\u201d these add load and accelerate switch wear.",
+        "Measure voltage at the coil primary supply terminal (usually the coil connector's B+ pin) during cranking \u2014 should be \u2265 10.5 V. Below 10.0 V confirms a supply-side voltage drop.",
+        "Perform a voltage-drop test across the ignition switch: one probe at battery positive, one probe at the ignition coil supply fuse output, key ON engine running \u2014 drop should be < 0.3 V.",
+        "Back-probe each side of the ignition switch connector \u2014 if the drop occurs across the switch itself (not the wiring), the switch contacts are worn or corroded.",
+        "Check that the problem is not caused by aftermarket accessories tapped into the ignition supply circuit (alarm, remote start, stereo) \u2014 these add load and accelerate switch wear.",
         "Replace the ignition switch if the voltage drop across the switch exceeds 0.3 V. If the switch is integrated with the immobiliser antenna, a dealer-level key relearn may be required.",
-        "Verify repair: coil primary voltage \u00e2\u2030\u00a5 10.5 V during cranking, no voltage drop across the switch > 0.3 V, misfire counts at zero across all operating conditions."
+        "Verify repair: coil primary voltage \u2265 10.5 V during cranking, no voltage drop across the switch > 0.3 V, misfire counts at zero across all operating conditions."
       ],
       "differential_siblings": [
         "ERR-IF-001",
@@ -54,7 +54,7 @@
     "ERR-IF-003": {
       "fault_name": "ckp_sensor_intermittent_dropout",
       "fault_family": "ignition_fault",
-      "component_group": "Ignition System \u00e2\u20ac\u201d Crankshaft Position Sensor and Trigger Wheel",
+      "component_group": "Ignition System \u2014 Crankshaft Position Sensor and Trigger Wheel",
       "impacted_subsystems": [
         "Crankshaft Position (CKP) Hall-Effect or VR Sensor",
         "ECU Ignition Timing Reference",
@@ -62,10 +62,10 @@
       ],
       "mechanical_failure_mode": "CKP sensor signal drops out: failing Hall-effect sensor (thermal), cracked VR magnet, excessive air gap, or damaged trigger-wheel tooth. ECU loses crank position reference each dropout, causing random no-spark events registered as P0300 without cylinder-specific DTC.",
       "ui_remediation_steps": [
-        "Monitor CKP sensor output with a lab scope while heat-soaking the sensor with a heat gun \u00e2\u20ac\u201d a failing Hall sensor will show dropout or erratic square-wave edges above ~80 \u00c2\u00b0C.",
-        "Check the CKP sensor air gap with a feeler gauge against the manufacturer specification (typically 0.5\u00e2\u20ac\u201c1.5 mm). A loose mounting bolt allows the gap to open beyond the sensor's detection range.",
-        "Inspect the trigger wheel for a damaged, bent, or missing tooth \u00e2\u20ac\u201d rotate the engine by hand and visually confirm every tooth through the sensor port.",
-        "If the sensor is a VR (variable reluctance) type, measure coil resistance and check for cracked magnet \u00e2\u20ac\u201d a cracked magnet produces a weak or missing AC signal at low RPM.",
+        "Monitor CKP sensor output with a lab scope while heat-soaking the sensor with a heat gun \u2014 a failing Hall sensor will show dropout or erratic square-wave edges above ~80 \u00b0C.",
+        "Check the CKP sensor air gap with a feeler gauge against the manufacturer specification (typically 0.5\u20131.5 mm). A loose mounting bolt allows the gap to open beyond the sensor's detection range.",
+        "Inspect the trigger wheel for a damaged, bent, or missing tooth \u2014 rotate the engine by hand and visually confirm every tooth through the sensor port.",
+        "If the sensor is a VR (variable reluctance) type, measure coil resistance and check for cracked magnet \u2014 a cracked magnet produces a weak or missing AC signal at low RPM.",
         "Replace the CKP sensor if confirmed faulty. Always perform a crank-angle sensor relearn (CASE relearn) after replacement on vehicles that require it.",
         "Verify repair: clean CKP signal at all RPM and temperature conditions, no P0300 or P0335 DTC, misfire counts at zero."
       ],

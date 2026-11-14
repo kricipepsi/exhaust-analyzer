@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org",
   "title": "OrchestratorGlobalFaultRegistry",
   "version": "0.1.0",
-  "description": "Flat cross-domain fault registry for ComLab. v0.1 ships with the three starter rules from OrchestratorLabBP.md plus a synthetic catalyst-efficiency rule. New faults are added by appending to this array \u00e2\u20ac\u201d no Python changes required.",
+  "description": "Flat cross-domain fault registry for ComLab. v0.1 ships with the three starter rules from OrchestratorLabBP.md plus a synthetic catalyst-efficiency rule. New faults are added by appending to this array \u2014 no Python changes required.",
   "registry": [
     {
       "fault_id": "ERR-E1-M032",
@@ -77,7 +77,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Three-way catalyst oxygen storage capacity depleted below the OBD monitor threshold \u00e2\u20ac\u201d post-cat O2 switching ratio approaching 1:1.",
+      "ui_diagnostic_string": "Three-way catalyst oxygen storage capacity depleted below the OBD monitor threshold \u2014 post-cat O2 switching ratio approaching 1:1.",
       "cross_domain_matrix": {
         "gas_lab_state": "CATALYST_OVERWHELMED",
         "obd_live_pids": {
@@ -108,7 +108,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Catalyst ceramic substrate melted and collapsed from sustained misfire dumping raw fuel \u00e2\u20ac\u201d housing shows heat discolouration and backpressure exceeds 3.0 psi at 2500 RPM.",
+      "ui_diagnostic_string": "Catalyst ceramic substrate melted and collapsed from sustained misfire dumping raw fuel \u2014 housing shows heat discolouration and backpressure exceeds 3.0 psi at 2500 RPM.",
       "cross_domain_matrix": {
         "gas_lab_state": "CATALYST_OVERWHELMED",
         "obd_live_pids": {
@@ -144,7 +144,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Exhaust flow restricted by partially collapsed substrate or carbon-clogged honeycomb \u00e2\u20ac\u201d CO2 collapses under load as volumetric efficiency drops.",
+      "ui_diagnostic_string": "Exhaust flow restricted by partially collapsed substrate or carbon-clogged honeycomb \u2014 CO2 collapses under load as volumetric efficiency drops.",
       "cross_domain_matrix": {
         "gas_lab_state": "CATALYST_OVERWHELMED",
         "obd_live_pids": {
@@ -174,7 +174,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Catalyst has lost all conversion \u00e2\u20ac\u201d oxidation and reduction both failed. Tailpipe HC exceeds 250 ppm with-cat, CO above 1.5 %, CO2 below 13 %, post-cat O2 flat at reference voltage.",
+      "ui_diagnostic_string": "Catalyst has lost all conversion \u2014 oxidation and reduction both failed. Tailpipe HC exceeds 250 ppm with-cat, CO above 1.5 %, CO2 below 13 %, post-cat O2 flat at reference voltage.",
       "cross_domain_matrix": {
         "gas_lab_state": "CATALYST_OVERWHELMED",
         "obd_live_pids": {
@@ -208,7 +208,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Healthy catalyst oxidising rich feed-gas \u00e2\u20ac\u201d clean tailpipe masks a serious upstream rich condition. Strongly negative LTFT is the tell.",
+      "ui_diagnostic_string": "Healthy catalyst oxidising rich feed-gas \u2014 clean tailpipe masks a serious upstream rich condition. Strongly negative LTFT is the tell.",
       "cross_domain_matrix": {
         "gas_lab_state": "NORMAL_OPERATION",
         "obd_live_pids": {
@@ -236,7 +236,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Catalyst washcoat poisoned by phosphorus and zinc from engine oil consumption \u00e2\u20ac\u201d glassy coating permanently blocks OSC sites, gradual P0420 onset.",
+      "ui_diagnostic_string": "Catalyst washcoat poisoned by phosphorus and zinc from engine oil consumption \u2014 glassy coating permanently blocks OSC sites, gradual P0420 onset.",
       "cross_domain_matrix": {
         "gas_lab_state": "POA_SIGNATURE",
         "obd_live_pids": {
@@ -267,7 +267,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Catalyst has not reached light-off temperature (> 250 \u00c2\u00b0C) \u00e2\u20ac\u201d CO/HC oxidation and NOx reduction stalled. Check O2 heater circuit, thermostat, or short-trip operating pattern.",
+      "ui_diagnostic_string": "Catalyst has not reached light-off temperature (> 250 \u00b0C) \u2014 CO/HC oxidation and NOx reduction stalled. Check O2 heater circuit, thermostat, or short-trip operating pattern.",
       "cross_domain_matrix": {
         "gas_lab_state": "CATALYST_NOT_LIGHTING_OFF",
         "obd_live_pids": {
@@ -298,7 +298,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Exhaust manifold-to-head gasket failure allowing atmospheric air into the exhaust stream \u00e2\u20ac\u201d upstream O2 sensor reads false-lean, driving positive fuel trim correction.",
+      "ui_diagnostic_string": "Exhaust manifold-to-head gasket failure allowing atmospheric air into the exhaust stream \u2014 upstream O2 sensor reads false-lean, driving positive fuel trim correction.",
       "cross_domain_matrix": {
         "gas_lab_state": "EXHAUST_AIR_LEAK",
         "obd_live_pids": {
@@ -329,7 +329,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Cracked exhaust manifold (cast iron or tubular) admitting air pre-O2 sensor \u00e2\u20ac\u201d pulse-synchronous false-lean O2 reading with audible cold-engine ticking.",
+      "ui_diagnostic_string": "Cracked exhaust manifold (cast iron or tubular) admitting air pre-O2 sensor \u2014 pulse-synchronous false-lean O2 reading with audible cold-engine ticking.",
       "cross_domain_matrix": {
         "gas_lab_state": "EXHAUST_AIR_LEAK",
         "obd_live_pids": {
@@ -360,7 +360,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Bolted flange leak at manifold-to-downpipe joint \u00e2\u20ac\u201d false-lean if O2 sensor is downstream of the leak; noise without trim disturbance if O2 is upstream.",
+      "ui_diagnostic_string": "Bolted flange leak at manifold-to-downpipe joint \u2014 false-lean if O2 sensor is downstream of the leak; noise without trim disturbance if O2 is upstream.",
       "cross_domain_matrix": {
         "gas_lab_state": "EXHAUST_AIR_LEAK",
         "obd_live_pids": {
@@ -391,7 +391,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Flex pipe bellows ruptured post-catalyst \u00e2\u20ac\u201d no O2 sensor or trim impact; primary symptoms are exhaust noise and possible cabin fume entry.",
+      "ui_diagnostic_string": "Flex pipe bellows ruptured post-catalyst \u2014 no O2 sensor or trim impact; primary symptoms are exhaust noise and possible cabin fume entry.",
       "cross_domain_matrix": {
         "gas_lab_state": "NORMAL_OPERATION",
         "obd_live_pids": {},
@@ -413,7 +413,7 @@
         "HORIZON_LEGACY",
         "HORIZON_ADAPTIVE"
       ],
-      "ui_diagnostic_string": "EGR feed tube crack or pinhole leak \u00e2\u20ac\u201d exhaust gas escapes before reaching EGR valve, reducing actual EGR flow; false-lean if leak is pre-O2 sensor.",
+      "ui_diagnostic_string": "EGR feed tube crack or pinhole leak \u2014 exhaust gas escapes before reaching EGR valve, reducing actual EGR flow; false-lean if leak is pre-O2 sensor.",
       "cross_domain_matrix": {
         "gas_lab_state": "EXHAUST_AIR_LEAK",
         "obd_live_pids": {
@@ -444,7 +444,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Compression donut gasket at exhaust slip-joint or spring-bolted flange has deteriorated \u00e2\u20ac\u201d exhaust leak under load with no trim disturbance unless pre-O2.",
+      "ui_diagnostic_string": "Compression donut gasket at exhaust slip-joint or spring-bolted flange has deteriorated \u2014 exhaust leak under load with no trim disturbance unless pre-O2.",
       "cross_domain_matrix": {
         "gas_lab_state": "EXHAUST_AIR_LEAK",
         "obd_live_pids": {},
@@ -466,7 +466,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "ECU ignition coil driver transistor failing \u00e2\u20ac\u201d coil fires intermittently or not at all; misfire stays on the cylinder after coil swap, confirming the fault is upstream in the ECU.",
+      "ui_diagnostic_string": "ECU ignition coil driver transistor failing \u2014 coil fires intermittently or not at all; misfire stays on the cylinder after coil swap, confirming the fault is upstream in the ECU.",
       "cross_domain_matrix": {
         "gas_lab_state": "IGNITION_MISFIRE",
         "obd_live_pids": {
@@ -503,7 +503,7 @@
         "HORIZON_LEGACY",
         "HORIZON_ADAPTIVE"
       ],
-      "ui_diagnostic_string": "Worn ignition switch contacts causing voltage drop in coil primary supply \u00e2\u20ac\u201d coil primary voltage below 10.5 V during cranking produces weak or absent spark.",
+      "ui_diagnostic_string": "Worn ignition switch contacts causing voltage drop in coil primary supply \u2014 coil primary voltage below 10.5 V during cranking produces weak or absent spark.",
       "cross_domain_matrix": {
         "gas_lab_state": "IGNITION_MISFIRE",
         "obd_live_pids": {
@@ -533,7 +533,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "CKP sensor signal dropping out intermittently \u00e2\u20ac\u201d ECU loses crankshaft position reference, causing random no-spark events registered as P0300 random misfire.",
+      "ui_diagnostic_string": "CKP sensor signal dropping out intermittently \u2014 ECU loses crankshaft position reference, causing random no-spark events registered as P0300 random misfire.",
       "cross_domain_matrix": {
         "gas_lab_state": "IGNITION_MISFIRE",
         "obd_live_pids": {
@@ -564,7 +564,7 @@
         "HORIZON_MODERN"
       ],
       "preconditions": {},
-      "ui_diagnostic_string": "Head gasket fire ring breached between two adjacent cylinders \u00e2\u20ac\u201d combustion pressure crosses the gasket land during compression and power strokes. Two adjacent cylinders read 30-60 psi below bank average on compression test.",
+      "ui_diagnostic_string": "Head gasket fire ring breached between two adjacent cylinders \u2014 combustion pressure crosses the gasket land during compression and power strokes. Two adjacent cylinders read 30-60 psi below bank average on compression test.",
       "cross_domain_matrix": {
         "gas_lab_state": "INCOMPLETE_COMBUSTION",
         "obd_live_pids": {},
@@ -594,7 +594,7 @@
         "HORIZON_MODERN"
       ],
       "preconditions": {},
-      "ui_diagnostic_string": "Head gasket breached between combustion chamber and coolant passage \u00e2\u20ac\u201d combustion gas forced into cooling system during power stroke. Continuous bubbles in radiator at idle confirm the leak path.",
+      "ui_diagnostic_string": "Head gasket breached between combustion chamber and coolant passage \u2014 combustion gas forced into cooling system during power stroke. Continuous bubbles in radiator at idle confirm the leak path.",
       "cross_domain_matrix": {
         "gas_lab_state": "COOLANT_LEAK_INTERNAL",
         "obd_live_pids": {
@@ -629,7 +629,7 @@
         "HORIZON_MODERN"
       ],
       "preconditions": {},
-      "ui_diagnostic_string": "Piston rings worn beyond specification \u00e2\u20ac\u201d compression ring face barrel profile lost, oil control ring drain-back holes carbon-plugged. Wet compression test positive (>= 20 psi rise). Continuous oil burning and crankcase blow-by.",
+      "ui_diagnostic_string": "Piston rings worn beyond specification \u2014 compression ring face barrel profile lost, oil control ring drain-back holes carbon-plugged. Wet compression test positive (>= 20 psi rise). Continuous oil burning and crankcase blow-by.",
       "cross_domain_matrix": {
         "gas_lab_state": "WORN_PISTON_RINGS",
         "obd_live_pids": {
@@ -667,7 +667,7 @@
         "HORIZON_MODERN"
       ],
       "preconditions": {},
-      "ui_diagnostic_string": "Valve stem seals hardened, cracked, or worn \u00e2\u20ac\u201d lip seal no longer wipes oil from valve stem. Blue-white smoke puff at cold start (clears in 2-5 seconds) and on snap-throttle. Compression typically normal because rings seal pressure.",
+      "ui_diagnostic_string": "Valve stem seals hardened, cracked, or worn \u2014 lip seal no longer wipes oil from valve stem. Blue-white smoke puff at cold start (clears in 2-5 seconds) and on snap-throttle. Compression typically normal because rings seal pressure.",
       "cross_domain_matrix": {
         "gas_lab_state": "WORN_VALVE_SEALS",
         "obd_live_pids": {},
@@ -722,7 +722,7 @@
         "HORIZON_MODERN"
       ],
       "preconditions": {},
-      "ui_diagnostic_string": "Single cylinder bore scored \u00e2\u20ac\u201d vertical gouges from debris ingestion, detonation, or oil starvation. Affected cylinder 30-50 psi below bank average with minimal wet-test recovery (< 10 psi rise). Oil-fouled plug on that cylinder only.",
+      "ui_diagnostic_string": "Single cylinder bore scored \u2014 vertical gouges from debris ingestion, detonation, or oil starvation. Affected cylinder 30-50 psi below bank average with minimal wet-test recovery (< 10 psi rise). Oil-fouled plug on that cylinder only.",
       "cross_domain_matrix": {
         "gas_lab_state": "WORN_ENGINE",
         "obd_live_pids": {},
@@ -752,7 +752,7 @@
         "HORIZON_MODERN"
       ],
       "preconditions": {},
-      "ui_diagnostic_string": "Timing chain stretched beyond tensioner range or belt jumped one tooth \u00e2\u20ac\u201d cam phasing globally retarded. All cylinders equally low compression. Classic wrong-valve-timing gas fingerprint: very high HC (> 1000 ppm) plus elevated O2 (> 5 %).",
+      "ui_diagnostic_string": "Timing chain stretched beyond tensioner range or belt jumped one tooth \u2014 cam phasing globally retarded. All cylinders equally low compression. Classic wrong-valve-timing gas fingerprint: very high HC (> 1000 ppm) plus elevated O2 (> 5 %).",
       "cross_domain_matrix": {
         "gas_lab_state": "CAM_TIMING_RETARDED_MAP",
         "obd_live_pids": {
@@ -788,7 +788,7 @@
       "preconditions": {
         "vvt_equipped": true
       },
-      "ui_diagnostic_string": "VVT phaser locked in full-advance position \u00e2\u20ac\u201d internal lock pin seized or spool valve jammed. Intake valves open too early causing knock under light load and rough/loping idle from exhaust reversion. P0011/P0021 DTCs set.",
+      "ui_diagnostic_string": "VVT phaser locked in full-advance position \u2014 internal lock pin seized or spool valve jammed. Intake valves open too early causing knock under light load and rough/loping idle from exhaust reversion. P0011/P0021 DTCs set.",
       "cross_domain_matrix": {
         "gas_lab_state": "IGNITION_MISFIRE",
         "obd_live_pids": {
@@ -824,7 +824,7 @@
       "preconditions": {
         "vvt_equipped": true
       },
-      "ui_diagnostic_string": "VVT phaser locked in full-retard position \u00e2\u20ac\u201d lock pin seized or debris overrides return spring. Engine flat and gutless below 3500 RPM, wakes up above 4000 RPM. HC 1000-3000 ppm with mild rich lambda. P0014/P0024 DTCs set.",
+      "ui_diagnostic_string": "VVT phaser locked in full-retard position \u2014 lock pin seized or debris overrides return spring. Engine flat and gutless below 3500 RPM, wakes up above 4000 RPM. HC 1000-3000 ppm with mild rich lambda. P0014/P0024 DTCs set.",
       "cross_domain_matrix": {
         "gas_lab_state": "CAM_TIMING_RETARDED_MAP",
         "obd_live_pids": {
@@ -857,7 +857,7 @@
       "preconditions": {
         "vvt_equipped": true
       },
-      "ui_diagnostic_string": "VVT phaser responds sluggishly to ECU commands \u00e2\u20ac\u201d oil sludge/varnish obstructing solenoid screen and phaser oil galleries. Phaser lags commanded angle by 0.5-2.0 seconds. Transient hesitation during throttle changes. Often sets no DTC.",
+      "ui_diagnostic_string": "VVT phaser responds sluggishly to ECU commands \u2014 oil sludge/varnish obstructing solenoid screen and phaser oil galleries. Phaser lags commanded angle by 0.5-2.0 seconds. Transient hesitation during throttle changes. Often sets no DTC.",
       "cross_domain_matrix": {
         "gas_lab_state": "VVT_FAILURE",
         "obd_live_pids": {},
@@ -882,7 +882,7 @@
       "preconditions": {
         "vvt_equipped": true
       },
-      "ui_diagnostic_string": "VVT oil control solenoid electrically degraded \u00e2\u20ac\u201d coil resistance drifted beyond 6-14 ohm spec, internal spool valve stuck, or connector pin corrosion. ECU cannot position phaser. P0010/P0020 circuit DTCs set.",
+      "ui_diagnostic_string": "VVT oil control solenoid electrically degraded \u2014 coil resistance drifted beyond 6-14 ohm spec, internal spool valve stuck, or connector pin corrosion. ECU cannot position phaser. P0010/P0020 circuit DTCs set.",
       "cross_domain_matrix": {
         "gas_lab_state": "NORMAL_OPERATION",
         "obd_live_pids": {},
@@ -909,7 +909,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Weak spark or marginal fuel delivery \u00e2\u20ac\u201d intermittent firing during cranking never sustains. HC moderate (200-800 ppm), CO2 depressed (3-6 %), O2 high (12-18 %), lambda lean (1.20-1.50).",
+      "ui_diagnostic_string": "Weak spark or marginal fuel delivery \u2014 intermittent firing during cranking never sustains. HC moderate (200-800 ppm), CO2 depressed (3-6 %), O2 high (12-18 %), lambda lean (1.20-1.50).",
       "cross_domain_matrix": {
         "gas_lab_state": "INCOMPLETE_COMBUSTION",
         "obd_live_pids": {},
@@ -932,7 +932,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Unmetered air entering the intake downstream of the MAF sensor \u00e2\u20ac\u201d vacuum leak causing true lean combustion with idle-dominant positive fuel trim correction.",
+      "ui_diagnostic_string": "Unmetered air entering the intake downstream of the MAF sensor \u2014 vacuum leak causing true lean combustion with idle-dominant positive fuel trim correction.",
       "cross_domain_matrix": {
         "gas_lab_state": "LEAN_MIXTURE",
         "obd_live_pids": {
@@ -963,7 +963,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Fuel pump unable to maintain rail pressure under demand \u00e2\u20ac\u201d stress-RPM-dominant lean from fuel starvation. Fuel pressure drops under load.",
+      "ui_diagnostic_string": "Fuel pump unable to maintain rail pressure under demand \u2014 stress-RPM-dominant lean from fuel starvation. Fuel pressure drops under load.",
       "cross_domain_matrix": {
         "gas_lab_state": "LEAN_MIXTURE",
         "obd_live_pids": {
@@ -995,7 +995,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Partially blocked fuel injector nozzle \u00e2\u20ac\u201d cylinder-specific or bank-specific lean from restricted fuel flow. May show bank-asymmetric trim on dual-bank engines.",
+      "ui_diagnostic_string": "Partially blocked fuel injector nozzle \u2014 cylinder-specific or bank-specific lean from restricted fuel flow. May show bank-asymmetric trim on dual-bank engines.",
       "cross_domain_matrix": {
         "gas_lab_state": "LEAN_MIXTURE",
         "obd_live_pids": {
@@ -1030,7 +1030,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Severely clogged fuel injector causing cylinder lean misfire \u00e2\u20ac\u201d restricted flow below reliable ignition threshold. Misfire DTC with lean fuel trim confirms injector-level restriction.",
+      "ui_diagnostic_string": "Severely clogged fuel injector causing cylinder lean misfire \u2014 restricted flow below reliable ignition threshold. Misfire DTC with lean fuel trim confirms injector-level restriction.",
       "cross_domain_matrix": {
         "gas_lab_state": "LEAN_MISFIRE",
         "obd_live_pids": {
@@ -1064,7 +1064,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Worn valve stem seals drawing engine oil into the combustion chamber on valve open \u00e2\u20ac\u201d idle-dominant oil burn produces elevated HC with POA-style chemistry. Replace all valve stem seals as a set; inspect guides for clearance.",
+      "ui_diagnostic_string": "Worn valve stem seals drawing engine oil into the combustion chamber on valve open \u2014 idle-dominant oil burn produces elevated HC with POA-style chemistry. Replace all valve stem seals as a set; inspect guides for clearance.",
       "cross_domain_matrix": {
         "gas_lab_state": "POA_SIGNATURE",
         "obd_live_pids": {},
@@ -1087,7 +1087,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Worn piston rings allow oil blow-by on both compression and intake strokes \u00e2\u20ac\u201d POA chemistry with HC elevated at both idle and high-idle. Confirm with wet compression test; bottom-end rebuild required.",
+      "ui_diagnostic_string": "Worn piston rings allow oil blow-by on both compression and intake strokes \u2014 POA chemistry with HC elevated at both idle and high-idle. Confirm with wet compression test; bottom-end rebuild required.",
       "cross_domain_matrix": {
         "gas_lab_state": "POA_SIGNATURE",
         "obd_live_pids": {},
@@ -1110,7 +1110,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Fuel injector pintle not sealing \u00e2\u20ac\u201d drip leak into the manifold delivering excess fuel. Strong negative trim with rich chemistry and no mechanical symptom. Perform injector pressure-drop balance test; replace leaking injector.",
+      "ui_diagnostic_string": "Fuel injector pintle not sealing \u2014 drip leak into the manifold delivering excess fuel. Strong negative trim with rich chemistry and no mechanical symptom. Perform injector pressure-drop balance test; replace leaking injector.",
       "cross_domain_matrix": {
         "gas_lab_state": "RICH_MIXTURE",
         "obd_live_pids": {
@@ -1140,7 +1140,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "EVAP purge solenoid stuck open dumping raw fuel vapour from the charcoal canister into the intake \u00e2\u20ac\u201d rich chemistry with very high HC. Replace the purge control valve; verify canister is free of liquid fuel.",
+      "ui_diagnostic_string": "EVAP purge solenoid stuck open dumping raw fuel vapour from the charcoal canister into the intake \u2014 rich chemistry with very high HC. Replace the purge control valve; verify canister is free of liquid fuel.",
       "cross_domain_matrix": {
         "gas_lab_state": "RICH_MIXTURE",
         "obd_live_pids": {
@@ -1173,7 +1173,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Engine coolant temperature sensor biased cold \u00e2\u20ac\u201d ECU locked in cold-start enrichment after warm-up, forcing rich chemistry. Compare ECT PID against mechanical thermostat temperature; replace drifted ECT sensor.",
+      "ui_diagnostic_string": "Engine coolant temperature sensor biased cold \u2014 ECU locked in cold-start enrichment after warm-up, forcing rich chemistry. Compare ECT PID against mechanical thermostat temperature; replace drifted ECT sensor.",
       "cross_domain_matrix": {
         "gas_lab_state": "RICH_MIXTURE",
         "obd_live_pids": {
@@ -1205,7 +1205,7 @@
         "HORIZON_LEGACY",
         "HORIZON_ADAPTIVE"
       ],
-      "ui_diagnostic_string": "Vacuum-referenced fuel pressure regulator diaphragm ruptured \u00e2\u20ac\u201d fuel leaking through the vacuum reference line into the intake manifold. Strong rich condition with raw fuel deposits on vacuum line. Replace mechanical FPR.",
+      "ui_diagnostic_string": "Vacuum-referenced fuel pressure regulator diaphragm ruptured \u2014 fuel leaking through the vacuum reference line into the intake manifold. Strong rich condition with raw fuel deposits on vacuum line. Replace mechanical FPR.",
       "cross_domain_matrix": {
         "gas_lab_state": "RICH_MIXTURE",
         "obd_live_pids": {
@@ -1236,7 +1236,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Carbon or oil deposits bridging spark plug electrode gap \u00e2\u20ac\u201d conductive shunt bleeds ignition energy causing intermittent misfire. Remove and inspect plugs; if fouled black, investigate root cause (rich running or oil consumption).",
+      "ui_diagnostic_string": "Carbon or oil deposits bridging spark plug electrode gap \u2014 conductive shunt bleeds ignition energy causing intermittent misfire. Remove and inspect plugs; if fouled black, investigate root cause (rich running or oil consumption).",
       "cross_domain_matrix": {
         "gas_lab_state": "IGNITION_MISFIRE",
         "obd_live_pids": {
@@ -1266,7 +1266,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Electrode metal erosion widens spark plug gap beyond coil secondary voltage capability \u00e2\u20ac\u201d lean-type misfires dominant at idle where coil dwell time is shortest. Measure gap; replace all plugs if gap > 0.2 mm over OEM spec.",
+      "ui_diagnostic_string": "Electrode metal erosion widens spark plug gap beyond coil secondary voltage capability \u2014 lean-type misfires dominant at idle where coil dwell time is shortest. Measure gap; replace all plugs if gap > 0.2 mm over OEM spec.",
       "cross_domain_matrix": {
         "gas_lab_state": "LEAN_MISFIRE",
         "obd_live_pids": {
@@ -1296,7 +1296,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Open or shorted primary winding prevents ECM from energising coil \u00e2\u20ac\u201d cylinder completely dead with every cycle misfiring. Severe IGNITION_MISFIRE with extreme positive trim. Measure primary resistance (0.5-2.0 ohm); swap coil to confirm; replace failed coil.",
+      "ui_diagnostic_string": "Open or shorted primary winding prevents ECM from energising coil \u2014 cylinder completely dead with every cycle misfiring. Severe IGNITION_MISFIRE with extreme positive trim. Measure primary resistance (0.5-2.0 ohm); swap coil to confirm; replace failed coil.",
       "cross_domain_matrix": {
         "gas_lab_state": "IGNITION_MISFIRE",
         "obd_live_pids": {
@@ -1330,7 +1330,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Open circuit in fuel injector solenoid \u00e2\u20ac\u201d no fuel to affected cylinder. Air-only cylinder produces LEAN_MISFIRE with bank-specific positive trim spike. Simultaneous P020X injector circuit + P030X misfire DTC on same cylinder is the strongest combined signal.",
+      "ui_diagnostic_string": "Open circuit in fuel injector solenoid \u2014 no fuel to affected cylinder. Air-only cylinder produces LEAN_MISFIRE with bank-specific positive trim spike. Simultaneous P020X injector circuit + P030X misfire DTC on same cylinder is the strongest combined signal.",
       "cross_domain_matrix": {
         "gas_lab_state": "LEAN_MISFIRE",
         "obd_live_pids": {
@@ -1364,7 +1364,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Severe compression loss from ring, valve, or bore degradation \u00e2\u20ac\u201d misfire persists after ignition and fuel systems ruled out. Perform wet/dry compression test and leak-down test to pinpoint leak location. Mechanical repair required \u00e2\u20ac\u201d no ignition or fuel system fix will resolve.",
+      "ui_diagnostic_string": "Severe compression loss from ring, valve, or bore degradation \u2014 misfire persists after ignition and fuel systems ruled out. Perform wet/dry compression test and leak-down test to pinpoint leak location. Mechanical repair required \u2014 no ignition or fuel system fix will resolve.",
       "cross_domain_matrix": {
         "gas_lab_state": "IGNITION_MISFIRE",
         "obd_live_pids": {},
@@ -1391,7 +1391,7 @@
       "preconditions": {
         "fuel_delivery_type": "GDI"
       },
-      "ui_diagnostic_string": "Carbon deposits accumulate on GDI intake valves due to absent port fuel washing \u00e2\u20ac\u201d restricts intake flow and disrupts charge motion causing lean misfire at idle and part-load. Borescope intake ports to confirm; walnut blast media clean to remove deposits.",
+      "ui_diagnostic_string": "Carbon deposits accumulate on GDI intake valves due to absent port fuel washing \u2014 restricts intake flow and disrupts charge motion causing lean misfire at idle and part-load. Borescope intake ports to confirm; walnut blast media clean to remove deposits.",
       "cross_domain_matrix": {
         "gas_lab_state": "LEAN_MISFIRE",
         "obd_live_pids": {
@@ -1422,7 +1422,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Spark plug carbon fouling from rich-mixture misfire \u00e2\u20ac\u201d excess fuel washing down cylinder walls and depositing conductive carbon on plug insulator. Black matte or oily black deposits across electrode and insulator nose.",
+      "ui_diagnostic_string": "Spark plug carbon fouling from rich-mixture misfire \u2014 excess fuel washing down cylinder walls and depositing conductive carbon on plug insulator. Black matte or oily black deposits across electrode and insulator nose.",
       "cross_domain_matrix": {
         "gas_lab_state": "RICH_MISFIRE",
         "obd_live_pids": {
@@ -1451,7 +1451,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "VVT phaser locked in full-retard position \u00e2\u20ac\u201d lock pin seized or debris overrides return spring. Engine flat and gutless below 3500 RPM, wakes up above 4000 RPM. HC 1000-3000 ppm with mild rich lambda. P0014/P0024 DTCs set.",
+      "ui_diagnostic_string": "VVT phaser locked in full-retard position \u2014 lock pin seized or debris overrides return spring. Engine flat and gutless below 3500 RPM, wakes up above 4000 RPM. HC 1000-3000 ppm with mild rich lambda. P0014/P0024 DTCs set.",
       "cross_domain_matrix": {
         "gas_lab_state": "VVT_FAILURE",
         "obd_live_pids": {},
@@ -1477,7 +1477,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Upstream O2 sensor element is dead \u00e2\u20ac\u201d output voltage is fixed (stuck rich > 0.7 V or stuck lean < 0.2 V) with no switching. Circuit DTC (P0131/P0132/P0134) confirms electrical failure. Gas analyser lambda_chem may be near-normal while ECU perception is pegged.",
+      "ui_diagnostic_string": "Upstream O2 sensor element is dead \u2014 output voltage is fixed (stuck rich > 0.7 V or stuck lean < 0.2 V) with no switching. Circuit DTC (P0131/P0132/P0134) confirms electrical failure. Gas analyser lambda_chem may be near-normal while ECU perception is pegged.",
       "cross_domain_matrix": {
         "gas_lab_state": "NORMAL_OPERATION",
         "obd_live_pids": {},
@@ -1505,7 +1505,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Upstream O2 sensor responding sluggishly \u00e2\u20ac\u201d ECU over-corrects fuel trim because delayed feedback causes oscillation. Gas analyser lambda_chem is near-stoichiometric ground truth but OBD lambda perception is biased high (sensor reads falsely lean). No circuit DTC \u00e2\u20ac\u201d sensor still switches, just too slowly.",
+      "ui_diagnostic_string": "Upstream O2 sensor responding sluggishly \u2014 ECU over-corrects fuel trim because delayed feedback causes oscillation. Gas analyser lambda_chem is near-stoichiometric ground truth but OBD lambda perception is biased high (sensor reads falsely lean). No circuit DTC \u2014 sensor still switches, just too slowly.",
       "cross_domain_matrix": {
         "gas_lab_state": "NORMAL_OPERATION",
         "obd_live_pids": {},
@@ -1529,7 +1529,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "Upstream O2 sensor responding sluggishly \u00e2\u20ac\u201d ECU under-fuels because delayed feedback causes oscillation. Gas analyser lambda_chem is near-stoichiometric ground truth but OBD lambda perception is biased low (sensor reads falsely rich). No circuit DTC \u00e2\u20ac\u201d sensor still switches, just too slowly.",
+      "ui_diagnostic_string": "Upstream O2 sensor responding sluggishly \u2014 ECU under-fuels because delayed feedback causes oscillation. Gas analyser lambda_chem is near-stoichiometric ground truth but OBD lambda perception is biased low (sensor reads falsely rich). No circuit DTC \u2014 sensor still switches, just too slowly.",
       "cross_domain_matrix": {
         "gas_lab_state": "NORMAL_OPERATION",
         "obd_live_pids": {},
@@ -1553,7 +1553,7 @@
         "HORIZON_ADAPTIVE",
         "HORIZON_MODERN"
       ],
-      "ui_diagnostic_string": "ECM internal processor/memory self-test failure (P0606). The ECU is reporting that it is defective \u00e2\u20ac\u201d all ECU-reported sensor values become unreliable. Gas analyser is the sole ground-truth data source.",
+      "ui_diagnostic_string": "ECM internal processor/memory self-test failure (P0606). The ECU is reporting that it is defective \u2014 all ECU-reported sensor values become unreliable. Gas analyser is the sole ground-truth data source.",
       "cross_domain_matrix": {
         "gas_lab_state": "NORMAL_OPERATION",
         "obd_live_pids": {},
@@ -2775,42 +2775,42 @@
     "catalyst_efficiency_below_threshold": "Rule out feed-gas faults (misfire, fuel trim, exhaust leak) before condemning the catalyst. Check Mode $06 catalyst monitor data and IR temperature delta. Replace catalytic converter if OSC is confirmed depleted.",
     "catalyst_substrate_meltdown": "Identify and repair the root cause that dumped fuel into the catalyst (misfire, leaking injector) before replacing the converter. Replace catalytic converter and both O2 sensors. Inspect exhaust manifold and downstream components for heat damage.",
     "catalyst_flow_restriction": "Perform backpressure test at idle and 2500 RPM. Inspect substrate face with borescope for soot or collapse. Replace catalytic converter if backpressure remains above 3.0 psi at 2500 RPM.",
-    "dead_catalyst_hc_nox_breakthrough": "Confirm dead cat with tailpipe gas analyser \u00e2\u20ac\u201d compare pre-cat vs post-cat emissions. Check for poisoning source before replacement. Replace catalytic converter and post-cat O2 sensor.",
-    "catalyst_masking_rich_engine": "Do NOT replace the catalyst \u00e2\u20ac\u201d it is healthy. Chase the upstream rich condition: check fuel pressure, injector leak-down, EVAP purge function, and HPFP seal (GDI). Fix the root cause; the cat will recover once the rich feed-gas stops.",
-    "catalyst_oil_poisoning": "Identify and repair the oil consumption root cause (valve seals, piston rings, PCV) before replacing the converter \u00e2\u20ac\u201d a new cat will be poisoned within weeks if the oil path is not closed. Replace catalytic converter; poisoned washcoat cannot be regenerated.",
-    "catalyst_below_lightoff_temperature": "Check pre-cat O2 sensor heater circuit resistance and thermostat opening temperature. For short-trip-only vehicles, document as operating pattern. Replace failed O2 sensor or thermostat. Verify catalyst reaches > 250 \u00c2\u00b0C within 5 minutes of cold start.",
-    "exhaust_manifold_gasket_leak": "Confirm exhaust leak with cold-engine listening test and exhaust analyser probe at the manifold-to-head joint. Replace the failed exhaust manifold gasket. Inspect manifold flange for flatness \u00e2\u20ac\u201d a warped flange will cause the new gasket to fail.",
+    "dead_catalyst_hc_nox_breakthrough": "Confirm dead cat with tailpipe gas analyser \u2014 compare pre-cat vs post-cat emissions. Check for poisoning source before replacement. Replace catalytic converter and post-cat O2 sensor.",
+    "catalyst_masking_rich_engine": "Do NOT replace the catalyst \u2014 it is healthy. Chase the upstream rich condition: check fuel pressure, injector leak-down, EVAP purge function, and HPFP seal (GDI). Fix the root cause; the cat will recover once the rich feed-gas stops.",
+    "catalyst_oil_poisoning": "Identify and repair the oil consumption root cause (valve seals, piston rings, PCV) before replacing the converter \u2014 a new cat will be poisoned within weeks if the oil path is not closed. Replace catalytic converter; poisoned washcoat cannot be regenerated.",
+    "catalyst_below_lightoff_temperature": "Check pre-cat O2 sensor heater circuit resistance and thermostat opening temperature. For short-trip-only vehicles, document as operating pattern. Replace failed O2 sensor or thermostat. Verify catalyst reaches > 250 \u00b0C within 5 minutes of cold start.",
+    "exhaust_manifold_gasket_leak": "Confirm exhaust leak with cold-engine listening test and exhaust analyser probe at the manifold-to-head joint. Replace the failed exhaust manifold gasket. Inspect manifold flange for flatness \u2014 a warped flange will cause the new gasket to fail.",
     "exhaust_manifold_crack": "Cold-engine listening test for pulse-synchronous ticking. Spray soapy water near suspected crack points. Replace or weld the cracked manifold. Replace flange gaskets and hardware.",
     "downpipe_flange_leak": "Listening test at the manifold-to-downpipe flange. Inspect flange hardware for loose or missing bolts. Replace flange gasket. On turbo vehicles, verify wastegate actuator stroke after repair.",
     "flex_pipe_rupture": "Listen for exhaust noise from underneath the vehicle. Visual inspection of flex pipe braiding for broken wires or tears. Check engine mounts before replacement. Replace flex pipe section.",
     "egr_feed_tube_leak": "Listen for ticking near EGR tube routing. Inspect tube for carbon soot marks or cracks at flex section and flare nuts. Replace EGR feed tube. Verify EGR monitor completes without DTC after repair.",
     "exhaust_joint_donut_failure": "Load engine against torque converter and listen for exhaust blat at suspect joint. Inspect donut gasket for deformation or carbon soot tracks. Replace donut gasket and spring bolts as a set.",
-    "ignition_coil_driver_fault": "Swap suspect coil with known-good cylinder \u00e2\u20ac\u201d if misfire stays on original cylinder, the fault is upstream. Back-probe coil primary control wire with lab scope. Replace or repair ECU if driver transistor is confirmed failed.",
-    "ignition_switch_voltage_drop": "Measure coil primary supply voltage during cranking \u00e2\u20ac\u201d below 10.5 V confirms supply-side drop. Perform voltage-drop test across ignition switch. Replace ignition switch if drop exceeds 0.3 V.",
+    "ignition_coil_driver_fault": "Swap suspect coil with known-good cylinder \u2014 if misfire stays on original cylinder, the fault is upstream. Back-probe coil primary control wire with lab scope. Replace or repair ECU if driver transistor is confirmed failed.",
+    "ignition_switch_voltage_drop": "Measure coil primary supply voltage during cranking \u2014 below 10.5 V confirms supply-side drop. Perform voltage-drop test across ignition switch. Replace ignition switch if drop exceeds 0.3 V.",
     "ckp_sensor_intermittent_dropout": "Monitor CKP sensor output with lab scope while heat-soaking. Check air gap with feeler gauge. Inspect trigger wheel for damaged teeth. Replace CKP sensor and perform CASE relearn if required.",
     "head_gasket_fire_ring_failure": "Remove cylinder head. Inspect gasket fire ring for burned-through or crushed section between the two low cylinders. Check head and block deck for flatness. Replace head gasket with new MLS or composite gasket. Torque head bolts in correct sequence to angle specification.",
-    "head_gasket_coolant_passage_leak": "Perform block test to confirm combustion gas in coolant. Remove cylinder head. Replace head gasket. Flush cooling system thoroughly. Change engine oil \u00e2\u20ac\u201d coolant contamination destroys bearing protection.",
+    "head_gasket_coolant_passage_leak": "Perform block test to confirm combustion gas in coolant. Remove cylinder head. Replace head gasket. Flush cooling system thoroughly. Change engine oil \u2014 coolant contamination destroys bearing protection.",
     "worn_piston_rings": "Confirm with wet compression test (>= 20 psi rise). Engine requires bottom-end rebuild: piston rings, cylinder hone or bore, possibly pistons. Inspect PCV system before teardown. This is a major mechanical repair.",
-    "worn_valve_stem_seals": "Replace all valve stem seals as a set (intake and exhaust). Inspect valve guides for excessive clearance while seals are off \u00e2\u20ac\u201d worn guides will destroy new seals. Verify: no blue smoke on cold start or snap-throttle.",
-    "low_compression_multi_cylinder": "Check cam timing first \u00e2\u20ac\u201d if timing marks align and wet test raises compression, rings are the cause. If timing is correct and rings confirmed worn: full engine rebuild (rings, hone, possibly oversize pistons, bearings). Engine-out major repair.",
+    "worn_valve_stem_seals": "Replace all valve stem seals as a set (intake and exhaust). Inspect valve guides for excessive clearance while seals are off \u2014 worn guides will destroy new seals. Verify: no blue smoke on cold start or snap-throttle.",
+    "low_compression_multi_cylinder": "Check cam timing first \u2014 if timing marks align and wet test raises compression, rings are the cause. If timing is correct and rings confirmed worn: full engine rebuild (rings, hone, possibly oversize pistons, bearings). Engine-out major repair.",
     "cylinder_bore_scoring": "Borescope inspection to confirm vertical score marks. If confirmed: engine requires bottom-end rebuild (bore, oversize piston, rings). In severe cases, replacement engine may be more economical than rebuild.",
     "cam_timing_retard_chain_stretch": "Verify cam timing mechanically at TDC. Replace timing chain/belt, tensioner, guides, and cam/crank sprockets as a complete kit. Re-time engine to manufacturer specification. Perform CASE relearn if required.",
-    "vvt_phaser_stuck_advanced": "Check engine oil condition first \u00e2\u20ac\u201d flush if sludged. Replace VVT phaser, oil control solenoid, and all O-rings and gaskets. Flush engine oil system to remove debris. Verify: no knock under light load, P0011/P0021 does not return.",
-    "vvt_phaser_stuck_retarded": "Check engine oil condition first \u00e2\u20ac\u201d flush if sludged. Replace VVT phaser, oil control solenoid, and all seals. Flush engine oil system thoroughly. Verify: power delivery smooth from 1500 RPM to redline, P0014/P0024 does not return.",
+    "vvt_phaser_stuck_advanced": "Check engine oil condition first \u2014 flush if sludged. Replace VVT phaser, oil control solenoid, and all O-rings and gaskets. Flush engine oil system to remove debris. Verify: no knock under light load, P0011/P0021 does not return.",
+    "vvt_phaser_stuck_retarded": "Check engine oil condition first \u2014 flush if sludged. Replace VVT phaser, oil control solenoid, and all seals. Flush engine oil system thoroughly. Verify: power delivery smooth from 1500 RPM to redline, P0014/P0024 does not return.",
     "vvt_phaser_sludge_lag": "Professional engine oil flush with reputable product, then drain and refill with correct synthetic oil and new OEM-quality filter. If flushing does not restore response, remove and clean/replace oil-control solenoid. If phaser is internally sludged, replace phaser and solenoid together.",
     "vvt_solenoid_fault": "Measure solenoid coil resistance (typically 6-14 ohm at 20 C). Inspect spool valve screen for debris. Apply 12 V to verify spool valve clicks. Replace VVT solenoid if confirmed faulty. Use OEM-quality replacement.",
     "no_spark_coil_failure": "Confirm cranking RPM is normal (150-300 via PID $0C) to rule out CKP failure. Disable fuel pump (pull fuse), crank, and verify no spark on any cylinder with spark tester. Replace failed ignition coil(s). If ECU driver is confirmed failed, repair or replace ECU.",
-    "rich_no_start_ect_sensor": "Read ECT PID: -40 C on warm engine = open circuit. Attempt WOT clear-flood \u00e2\u20ac\u201d if engine fires, flooding is confirmed. Measure ECT sensor resistance and compare to manufacturer spec. Replace failed ECT sensor. Verify cold-start enrichment tapers to stoichiometric within 30 seconds.",
-    "no_fuel_delivery": "Check cranking RPM PID first \u00e2\u20ac\u201d 0 RPM routes to CKP failure. KOEO fuel pressure test: must reach spec within 2 seconds. Noid light test for injector pulse during cranking. Check immobiliser security light. Replace fuel pump if confirmed dead. If injector circuit fault, diagnose wiring before replacing injectors.",
-    "lean_no_start_weak_spark": "Check battery voltage during cranking \u00e2\u20ac\u201d below 10.0 V starves coils and injectors. Inspect spark plugs for fouling, carbon tracking, or gap erosion. Test coil secondary with adjustable spark tester \u00e2\u20ac\u201d spark must jump 20 mm gap. Verify fuel pressure holds during extended cranking. If all pass, perform relative compression test.",
-    "ckp_sensor_failure_no_rpm": "Read RPM PID during cranking \u00e2\u20ac\u201d zero RPM with audible cranking confirms CKP failure. Scan for P0335/P0336. Inspect CKP connector and harness for corrosion or chafing. Measure CKP sensor resistance (200-1000 ohm typical for inductive). Replace CKP sensor and perform CASE relearn if required.",
-    "spark_plug_carbon_fouled": "Remove all spark plugs and inspect \u00e2\u20ac\u201d carbon-fouled plug shows black matte or oily black deposits across electrode and insulator nose. Identify the fouled plug(s). Replace all fouled spark plugs with OEM-specified plugs. Investigate and repair the root cause of fouling (rich running or oil consumption) before replacing plugs.",
-    "spark_plug_gap_erosion": "Remove and measure spark plug gap with feeler gauge \u00e2\u20ac\u201d gap more than 0.2 mm above OEM spec confirms erosion. Replace all spark plugs simultaneously. Verify: misfire DTCs clear and HC returns to < 100 ppm after one drive cycle.",
+    "rich_no_start_ect_sensor": "Read ECT PID: -40 C on warm engine = open circuit. Attempt WOT clear-flood \u2014 if engine fires, flooding is confirmed. Measure ECT sensor resistance and compare to manufacturer spec. Replace failed ECT sensor. Verify cold-start enrichment tapers to stoichiometric within 30 seconds.",
+    "no_fuel_delivery": "Check cranking RPM PID first \u2014 0 RPM routes to CKP failure. KOEO fuel pressure test: must reach spec within 2 seconds. Noid light test for injector pulse during cranking. Check immobiliser security light. Replace fuel pump if confirmed dead. If injector circuit fault, diagnose wiring before replacing injectors.",
+    "lean_no_start_weak_spark": "Check battery voltage during cranking \u2014 below 10.0 V starves coils and injectors. Inspect spark plugs for fouling, carbon tracking, or gap erosion. Test coil secondary with adjustable spark tester \u2014 spark must jump 20 mm gap. Verify fuel pressure holds during extended cranking. If all pass, perform relative compression test.",
+    "ckp_sensor_failure_no_rpm": "Read RPM PID during cranking \u2014 zero RPM with audible cranking confirms CKP failure. Scan for P0335/P0336. Inspect CKP connector and harness for corrosion or chafing. Measure CKP sensor resistance (200-1000 ohm typical for inductive). Replace CKP sensor and perform CASE relearn if required.",
+    "spark_plug_carbon_fouled": "Remove all spark plugs and inspect \u2014 carbon-fouled plug shows black matte or oily black deposits across electrode and insulator nose. Identify the fouled plug(s). Replace all fouled spark plugs with OEM-specified plugs. Investigate and repair the root cause of fouling (rich running or oil consumption) before replacing plugs.",
+    "spark_plug_gap_erosion": "Remove and measure spark plug gap with feeler gauge \u2014 gap more than 0.2 mm above OEM spec confirms erosion. Replace all spark plugs simultaneously. Verify: misfire DTCs clear and HC returns to < 100 ppm after one drive cycle.",
     "ignition_coil_primary_winding_failure": "Measure primary winding resistance with multimeter (typically 0.5-2.0 ohm). Open circuit or short confirms failure. Swap suspect coil to known-good cylinder. Replace failed coil. Check ECM coil driver if repeated coil failures occur.",
     "dead_injector_cylinder_misfire": "Measure injector solenoid resistance (typically 12-16 ohm). Open circuit or short confirms failure. Use noid light to verify ECM pulse signal. Replace dead injector. Verify: cylinder contribution test shows HC response when cylinder is disabled.",
-    "low_compression_mechanical_misfire": "Perform dry compression test on all cylinders \u00e2\u20ac\u201d any below 80% OEM spec or 689 kPa (100 psi) confirms. Perform wet test: if compression rises, ring seal is cause; if unchanged, valve seating is cause. Perform leak-down test to confirm and locate leak. Mechanical repair required.",
-    "gdi_intake_valve_carbon_buildup": "Perform borescope inspection of intake ports and valve heads \u00e2\u20ac\u201d heavy black carbon deposits confirm diagnosis. Perform walnut shell media blasting through intake ports with intake valves closed. Consider adding catch can to crankcase breather circuit. Document cleaning interval (60 000-100 000 km on GDI platforms).",
-    "upstream_o2_sensor_lazy_response": "Observe upstream O2 sensor switching frequency on a scan tool \u00e2\u20ac\u201d healthy sensor switches > 0.5 Hz at warm idle; lazy sensor < 0.25 Hz. Check O2 heater circuit resistance. Note: gas analyser lambda_chem is ground truth \u00e2\u20ac\u201d if near 1.0 but sensor signal is not switching normally, sensor is suspect. Replace the upstream O2 sensor and verify switching frequency returns to > 0.5 Hz.",
-    "upstream_o2_sensor_fixed_voltage": "Observe upstream O2 sensor voltage in scan tool live data \u00e2\u20ac\u201d stuck-rich > 0.7 V indefinitely; stuck-lean < 0.2 V indefinitely. Verify with gas analyser: if lambda_chem is normal but sensor reads stuck, sensor is confirmed dead. Check O2 heater circuit resistance. Replace the upstream O2 sensor. After replacement, verify sensor begins switching within 30 seconds of engine start."
+    "low_compression_mechanical_misfire": "Perform dry compression test on all cylinders \u2014 any below 80% OEM spec or 689 kPa (100 psi) confirms. Perform wet test: if compression rises, ring seal is cause; if unchanged, valve seating is cause. Perform leak-down test to confirm and locate leak. Mechanical repair required.",
+    "gdi_intake_valve_carbon_buildup": "Perform borescope inspection of intake ports and valve heads \u2014 heavy black carbon deposits confirm diagnosis. Perform walnut shell media blasting through intake ports with intake valves closed. Consider adding catch can to crankcase breather circuit. Document cleaning interval (60 000-100 000 km on GDI platforms).",
+    "upstream_o2_sensor_lazy_response": "Observe upstream O2 sensor switching frequency on a scan tool \u2014 healthy sensor switches > 0.5 Hz at warm idle; lazy sensor < 0.25 Hz. Check O2 heater circuit resistance. Note: gas analyser lambda_chem is ground truth \u2014 if near 1.0 but sensor signal is not switching normally, sensor is suspect. Replace the upstream O2 sensor and verify switching frequency returns to > 0.5 Hz.",
+    "upstream_o2_sensor_fixed_voltage": "Observe upstream O2 sensor voltage in scan tool live data \u2014 stuck-rich > 0.7 V indefinitely; stuck-lean < 0.2 V indefinitely. Verify with gas analyser: if lambda_chem is normal but sensor reads stuck, sensor is confirmed dead. Check O2 heater circuit resistance. Replace the upstream O2 sensor. After replacement, verify sensor begins switching within 30 seconds of engine start."
   }
 }

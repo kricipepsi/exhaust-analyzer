@@ -13,11 +13,11 @@
       ],
       "mechanical_failure_mode": "Degraded upstream O2 sensor element responds slowly to exhaust mixture changes, causing the ECU's closed-loop fuel control to oscillate sluggishly and over-correct, producing erratic trim behaviour without a true rich or lean condition.",
       "ui_remediation_steps": [
-        "Observe the upstream O2 sensor switching frequency on a scan tool in live data \u00e2\u20ac\u201d a healthy narrowband sensor should switch > 0.5 Hz (ideally 1\u00e2\u20ac\u201c2 Hz) at warm idle; a lazy sensor switches < 0.25 Hz or holds mid-voltage.",
-        "Check O2 sensor heating circuit \u00e2\u20ac\u201d if the heater has failed, the sensor runs colder and responds slower; measure heater circuit resistance.",
+        "Observe the upstream O2 sensor switching frequency on a scan tool in live data \u2014 a healthy narrowband sensor should switch > 0.5 Hz (ideally 1\u20132 Hz) at warm idle; a lazy sensor switches < 0.25 Hz or holds mid-voltage.",
+        "Check O2 sensor heating circuit \u2014 if the heater has failed, the sensor runs colder and responds slower; measure heater circuit resistance.",
         "Note: the gas analyser lambda_chem value is the ground truth. If lambda_chem is near 1.0 but the O2 sensor signal is not switching normally, the sensor is suspect.",
         "Replace the upstream O2 sensor.",
-        "After replacement, verify switching frequency returns to > 0.5 Hz and fuel trim settles within \u00c2\u00b15 % at warm idle.",
+        "After replacement, verify switching frequency returns to > 0.5 Hz and fuel trim settles within \u00b15 % at warm idle.",
         "Verify the downstream O2 sensor shows normal differential from upstream (confirms catalyst is also healthy)."
       ],
       "differential_siblings": [
@@ -37,9 +37,9 @@
       ],
       "mechanical_failure_mode": "Dead upstream O2 sensor element locks at a fixed output voltage, forcing the ECU into an erroneous fixed-mixture belief and either opening the loop or driving extreme trim adaptation in one direction continuously.",
       "ui_remediation_steps": [
-        "Observe the upstream O2 sensor voltage in scan tool live data \u00e2\u20ac\u201d a stuck-rich sensor reads > 0.7 V indefinitely; a stuck-lean sensor reads < 0.2 V indefinitely. No switching occurs.",
+        "Observe the upstream O2 sensor voltage in scan tool live data \u2014 a stuck-rich sensor reads > 0.7 V indefinitely; a stuck-lean sensor reads < 0.2 V indefinitely. No switching occurs.",
         "Verify with the gas analyser: if lambda_chem is normal but the sensor reads stuck, the sensor is confirmed dead.",
-        "Check O2 sensor heater circuit \u00e2\u20ac\u201d a failed heater that never brings the sensor to operating temperature (> 300 \u00c2\u00b0C) causes a stuck near-zero voltage from a cold element (cold O2 sensor = lean voltage).",
+        "Check O2 sensor heater circuit \u2014 a failed heater that never brings the sensor to operating temperature (> 300 \u00b0C) causes a stuck near-zero voltage from a cold element (cold O2 sensor = lean voltage).",
         "Replace the upstream O2 sensor.",
         "After replacement, verify the sensor begins switching within 30 seconds of engine start (heater brings it to temp quickly on a new sensor).",
         "Recheck fuel trim: should normalise from pegged values within one warm-up cycle."
@@ -61,12 +61,12 @@
       ],
       "mechanical_failure_mode": "Degraded or failed MAF sensor electronics produce a consistently low airflow signal that does not correspond to actual airflow, causing the ECU to under-fuel and generating a persistent lean condition with associated DTCs.",
       "ui_remediation_steps": [
-        "Compare the MAF reading (g/s) on the scan tool to the expected value for the engine's idle RPM and displacement \u00e2\u20ac\u201d typical idle MAF is 2\u00e2\u20ac\u201c8 g/s per litre of displacement.",
+        "Compare the MAF reading (g/s) on the scan tool to the expected value for the engine's idle RPM and displacement \u2014 typical idle MAF is 2\u20138 g/s per litre of displacement.",
         "Check MAF signal plausibility: if the MAF reads low at idle AND the engine is running lean (trim > +15 %), suspect MAF hardware failure.",
-        "Try cleaning the MAF element with dedicated MAF cleaner first \u00e2\u20ac\u201d if contamination is the cause, trim will recover (see ERR-LC-002).",
+        "Try cleaning the MAF element with dedicated MAF cleaner first \u2014 if contamination is the cause, trim will recover (see ERR-LC-002).",
         "If cleaning does not restore correct readings, replace the MAF sensor.",
-        "After replacement, verify g/s reading matches expected for the engine size and trim returns to \u00c2\u00b15 %.",
-        "Check that the new MAF sensor matches the OEM part number \u00e2\u20ac\u201d aftermarket MAF sensors are a known source of persistent lean codes."
+        "After replacement, verify g/s reading matches expected for the engine size and trim returns to \u00b15 %.",
+        "Check that the new MAF sensor matches the OEM part number \u2014 aftermarket MAF sensors are a known source of persistent lean codes."
       ],
       "differential_siblings": [
         "ERR-LC-001",
@@ -85,9 +85,9 @@
       ],
       "mechanical_failure_mode": "MAP sensor internal reference pressure cell shifts from calibration, reporting a biased manifold pressure that corrupts the speed-density fuel calculation and produces a sustained lean or rich mixture depending on drift direction.",
       "ui_remediation_steps": [
-        "With ignition on, engine off: MAP sensor should read close to barometric pressure (typically 100\u00e2\u20ac\u201c103 kPa at sea level). Any reading more than 3 kPa off is suspect.",
-        "With engine at warm idle: MAP should read 30\u00e2\u20ac\u201c50 kPa (naturally aspirated idle vacuum). A reading significantly higher or lower at known-good idle conditions confirms drift.",
-        "Compare MAP reading to expected vacuum on the fuel trim graph \u00e2\u20ac\u201d if the MAP is high (under-reading vacuum) when trims are positive, a lean bias from the MAP is confirmed.",
+        "With ignition on, engine off: MAP sensor should read close to barometric pressure (typically 100\u2013103 kPa at sea level). Any reading more than 3 kPa off is suspect.",
+        "With engine at warm idle: MAP should read 30\u201350 kPa (naturally aspirated idle vacuum). A reading significantly higher or lower at known-good idle conditions confirms drift.",
+        "Compare MAP reading to expected vacuum on the fuel trim graph \u2014 if the MAP is high (under-reading vacuum) when trims are positive, a lean bias from the MAP is confirmed.",
         "Replace the MAP sensor.",
         "After replacement, re-verify key-on reading and idle vacuum reading against known-good values.",
         "Clear adaptive fuel maps and allow the ECU to relearn over one full drive cycle before re-evaluating trims."
@@ -109,11 +109,11 @@
       ],
       "mechanical_failure_mode": "ECT sensor reports below-operating-temperature coolant regardless of actual engine temperature, permanently preventing ECU closed-loop entry and forcing continuous cold-start enrichment.",
       "ui_remediation_steps": [
-        "Compare ECT sensor reading on scan tool to actual coolant temperature measured with a contact thermometer at the thermostat housing \u00e2\u20ac\u201d a > 15 \u00c2\u00b0C discrepancy confirms sensor failure.",
+        "Compare ECT sensor reading on scan tool to actual coolant temperature measured with a contact thermometer at the thermostat housing \u2014 a > 15 \u00b0C discrepancy confirms sensor failure.",
         "Check ECT sensor connector for corrosion, water ingress, or pushed-back pin causing a high-resistance fault.",
-        "Inspect the thermostat: a thermostat stuck open produces genuinely cold coolant (the sensor reads correctly but the engine never warms up) \u00e2\u20ac\u201d feel the upper radiator hose. Hot hose at idle = thermostat open (mechanical fault). Cold hose = sensor fault (sensor wrong, engine actually warming normally).",
+        "Inspect the thermostat: a thermostat stuck open produces genuinely cold coolant (the sensor reads correctly but the engine never warms up) \u2014 feel the upper radiator hose. Hot hose at idle = thermostat open (mechanical fault). Cold hose = sensor fault (sensor wrong, engine actually warming normally).",
         "Replace the ECT sensor.",
-        "After replacement, verify ECT on scan tool matches contact thermometer within 5 \u00c2\u00b0C at operating temperature.",
+        "After replacement, verify ECT on scan tool matches contact thermometer within 5 \u00b0C at operating temperature.",
         "Confirm ECU enters closed-loop (fuel system status = CL) within 5 minutes of reaching normal operating temperature."
       ],
       "differential_siblings": [
@@ -131,13 +131,13 @@
         "Catalyst Efficiency Monitor",
         "OBD-II Readiness Flag"
       ],
-      "mechanical_failure_mode": "Contaminated downstream O2 sensor produces a signal pattern that mimics a failed catalyst \u00e2\u20ac\u201d switching where it should be flat \u00e2\u20ac\u201d triggering false P0420/P0430 catalyst efficiency DTCs when the catalyst is mechanically intact.",
+      "mechanical_failure_mode": "Contaminated downstream O2 sensor produces a signal pattern that mimics a failed catalyst \u2014 switching where it should be flat \u2014 triggering false P0420/P0430 catalyst efficiency DTCs when the catalyst is mechanically intact.",
       "ui_remediation_steps": [
-        "Verify catalyst efficiency test conditions: coolant temp > 80 \u00c2\u00b0C, no misfire DTCs, no fuel trim beyond \u00c2\u00b110 %. If any precondition is broken, fix it first and retest \u00e2\u20ac\u201d false P0420 is common when fuel trim is skewed.",
+        "Verify catalyst efficiency test conditions: coolant temp > 80 \u00b0C, no misfire DTCs, no fuel trim beyond \u00b110 %. If any precondition is broken, fix it first and retest \u2014 false P0420 is common when fuel trim is skewed.",
         "Compare upstream vs downstream O2 sensor waveforms in live data. A healthy catalyst: downstream is nearly flat (< 0.5 Hz switching). A contaminated downstream sensor: switching at nearly the same frequency as the upstream sensor.",
-        "Inspect downstream O2 sensor connector and bung for moisture, oil residue, or coolant seepage \u00e2\u20ac\u201d these are the common contamination routes.",
-        "Substitute a known-good downstream sensor (or a new one) and retest \u00e2\u20ac\u201d if P0420 does not return over one complete drive cycle, the original sensor was the fault.",
-        "If P0420 returns after sensor replacement, the catalyst itself is confirmed defective (ERR-EF-003 boundary \u00e2\u20ac\u201d out of scope v1).",
+        "Inspect downstream O2 sensor connector and bung for moisture, oil residue, or coolant seepage \u2014 these are the common contamination routes.",
+        "Substitute a known-good downstream sensor (or a new one) and retest \u2014 if P0420 does not return over one complete drive cycle, the original sensor was the fault.",
+        "If P0420 returns after sensor replacement, the catalyst itself is confirmed defective (ERR-EF-003 boundary \u2014 out of scope v1).",
         "Clear DTCs after repair and complete one full drive cycle to confirm OBD-II readiness clears."
       ],
       "differential_siblings": [

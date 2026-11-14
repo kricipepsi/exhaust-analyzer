@@ -5,20 +5,20 @@
     "ERR-NS-004": {
       "fault_name": "lean_no_start_weak_spark",
       "fault_family": "non_starter",
-      "component_group": "Ignition / Fuel Interface \u00e2\u20ac\u201d Spark Energy / Fuel Atomisation",
+      "component_group": "Ignition / Fuel Interface \u2014 Spark Energy / Fuel Atomisation",
       "impacted_subsystems": [
         "Spark Plug Condition and Gap",
         "Ignition Coil Secondary Energy",
         "Fuel Injector Spray Pattern",
         "Battery Voltage During Cranking"
       ],
-      "mechanical_failure_mode": "Weak spark (coil degradation, fouled plugs, low cranking voltage) or poor fuel atomisation \u00e2\u20ac\u201d marginal combustion never sustains. Gas: HC moderate (300 ppm), CO low (0.02 %), CO2 depressed (4 %), O2 high (16 %), lambda lean (1.35). Intermittent firing not enough to reach idle.",
+      "mechanical_failure_mode": "Weak spark (coil degradation, fouled plugs, low cranking voltage) or poor fuel atomisation \u2014 marginal combustion never sustains. Gas: HC moderate (300 ppm), CO low (0.02 %), CO2 depressed (4 %), O2 high (16 %), lambda lean (1.35). Intermittent firing not enough to reach idle.",
       "ui_remediation_steps": [
-        "Check battery voltage during cranking \u00e2\u20ac\u201d below 10.0 V starves the ignition coils and injectors of operating voltage. Charge or replace battery before further diagnosis.",
-        "Remove and inspect all spark plugs \u00e2\u20ac\u201d look for wet fouling (fuel present, no spark), carbon fouling (weak spark can't ionise gap), or gap erosion beyond spec. Replace plugs if any are marginal.",
-        "Test ignition coil secondary with an adjustable spark tester \u00e2\u20ac\u201d spark should jump a 20 mm gap with a bright blue-white arc. Weak orange spark that fails at >10 mm = marginal coil.",
-        "Verify fuel pressure under load during cranking \u00e2\u20ac\u201d marginal pump may produce KOEO pressure but collapse during extended cranking. Pressure should hold within 10 % of spec throughout cranking.",
-        "If all of the above checks pass, perform a relative compression test: read cranking RPM and MAP during cranking. Uneven cranking speed or MAP pulses indicate compression loss \u00e2\u20ac\u201d route to compression test.",
+        "Check battery voltage during cranking \u2014 below 10.0 V starves the ignition coils and injectors of operating voltage. Charge or replace battery before further diagnosis.",
+        "Remove and inspect all spark plugs \u2014 look for wet fouling (fuel present, no spark), carbon fouling (weak spark can't ionise gap), or gap erosion beyond spec. Replace plugs if any are marginal.",
+        "Test ignition coil secondary with an adjustable spark tester \u2014 spark should jump a 20 mm gap with a bright blue-white arc. Weak orange spark that fails at >10 mm = marginal coil.",
+        "Verify fuel pressure under load during cranking \u2014 marginal pump may produce KOEO pressure but collapse during extended cranking. Pressure should hold within 10 % of spec throughout cranking.",
+        "If all of the above checks pass, perform a relative compression test: read cranking RPM and MAP during cranking. Uneven cranking speed or MAP pulses indicate compression loss \u2014 route to compression test.",
         "Verify repair: engine starts consistently. Gas analyser shows normal cold-start enrichment transitioning to stoichiometric idle within 60 seconds."
       ],
       "differential_siblings": [
