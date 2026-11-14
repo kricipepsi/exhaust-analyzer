@@ -365,6 +365,7 @@ thresholds:
 ```yaml
 thresholds:
   normal_with_cat:        { min: 0.1, max: 0.3 }   # legal idle CO limit, cat cars first used from 1/9/2002 (T-GASA-17)
+  # 0.3-0.5 is not a fault band: cat cars first used 1/8/1995-31/8/2002 have a 0.5 % legal idle limit (T-GASA-17 S009).
   cat_not_lit_band:       { min: 0.5, max: 0.9 }
   mild_rich:              { min: 0.5, max: 1.5 }
   clear_rich:             { min: 1.5, max: 3.0 }

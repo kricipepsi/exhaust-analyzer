@@ -752,14 +752,18 @@ def test_coc_tighter_lambda_shrinks_normal_window(ontology: dict) -> None:
 
 
 def test_coc_co_target_blocks_borderline_normal(ontology: dict) -> None:
-    """CO=0.40 is outside the CoC limit 0.30 (CoC overrides the Euro idle ceiling at HIGH confidence)."""
-    reading = _reading(hc=15, co=0.40, co2=15.0, o2=0.2, nox=50)
-    dna = _dna(co_low_idle=0.30)
+    """CO=0.15 is normal at the Euro 4 idle ceiling (0.2) but outside a CoC limit of 0.12 (T-GASA-18 review)."""
+    reading = _reading(hc=15, co=0.15, co2=15.0, o2=0.1, nox=50)  # λ ≈ 0.999, inside the NORMAL window
+    without_coc = _matching_fault_candidates(
+        reading, EngineStateBucket.STABILIZED_IDLE, ontology, _dna(),
+    )
+    assert "NORMAL_OPERATION" in without_coc, without_coc
+    dna = _dna(co_low_idle=0.12)
     candidates = _matching_fault_candidates(
         reading, EngineStateBucket.STABILIZED_IDLE, ontology, dna,
     )
     assert "NORMAL_OPERATION" not in candidates, (
-        f"CoC CO limit 0.30 should reject CO=0.40, got {candidates}"
+        f"CoC CO limit 0.12 should reject CO=0.15, got {candidates}"
     )
 
 

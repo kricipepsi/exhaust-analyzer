@@ -28,7 +28,8 @@ def _dna() -> GasLabDnaView:
     )
 
 
-def test_ontology_values_are_the_legal_idle_limit(ontology: dict) -> None:
+def test_ontology_stated_baseline_is_the_legal_idle_limit(ontology: dict) -> None:
+    """The stated baseline; classify replaces the NORMAL maximum with the Euro idle ceiling (T-GASA-FEURO)."""
     assert ontology["faults"]["NORMAL_OPERATION"]["signature"]["co"]["max"] == 0.3
     assert ontology["reasoning_grammar"]["collision_rule"]["co_tier_max"] == 0.3
 
