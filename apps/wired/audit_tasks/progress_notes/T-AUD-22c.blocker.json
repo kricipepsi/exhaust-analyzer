@@ -1,0 +1,36 @@
+{
+  "schema": "blocker-record/2",
+  "task_id": "T-AUD-22c",
+  "pack": "audit",
+  "task_file": "apps/wired/audit_tasks/T-AUD-22c_codeaudit_comlab_rules_inventory(3).md",
+  "date": "2026-11-14",
+  "phase": "implementation",
+  "prior_record": null,
+  "reached_first_edit": true,
+  "stopped": false,
+  "findings": [
+    {
+      "class": "UNSATISFIABLE",
+      "gist": "Criterion 3 requires step 3 to print the P4 line unchanged, but the checker's 'covered claims' is len(all claim rows), so any appended row (required by R2 and criterion 1) changes it from 301.",
+      "task_anchor": "apps/wired/audit_tasks/T-AUD-22c_codeaudit_comlab_rules_inventory(3).md:89",
+      "task_says": "3. Step 3 prints the P4 line unchanged.",
+      "tree_says": "print(f\"CLAIMS OK group={group}{scope} candidates {todo} covered claims {len(claims)}\")",
+      "settling_command": "cd apps/wired/audit_tasks/codeaudit && grep -n 'covered claims' check_code_claims.py && C:/4DApp/.venv/Scripts/python.exe -I check_code_claims.py --group comlab --files '*.py' | tail -1",
+      "settling_output": "135:    print(f\"CLAIMS OK group={group}{scope} candidates {todo} covered claims {len(claims)}\")\nCLAIMS OK group=comlab scope=*.py candidates 293 covered claims 692",
+      "severity": "soft",
+      "chosen_interpretation": "Read criterion 3 as: step 3 still prints CLAIMS OK with 'candidates 293' (the T-AUD-22b slice stays fully covered and rows CK0001-CK0301 are unchanged); 'covered claims' rises 301 -> 692 by the 391 appended rows. Cowork can confirm from the step 3 output and the append-only diff (391 insertions, 0 deletions).",
+      "blocks_first_edit": false
+    }
+  ],
+  "work_completed_before_stop": [
+    "391 rows CK0302-CK0692 appended and committed (d8a63ab) on fix/T-AUD-22c",
+    "Step 1 CLAIMS OK candidates 358; step 2 knobs 130 internal 130; step 3 CLAIMS OK candidates 293 covered claims 692"
+  ],
+  "not_done": [
+    "None for this finding; Cowork rules on the reading of criterion 3"
+  ],
+  "cheats_declined": [
+    "Did not edit check_code_claims.py (Cowork's) to make the line print 301"
+  ],
+  "dispatch_rounds_spent": 1
+}
