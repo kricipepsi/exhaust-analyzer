@@ -212,7 +212,7 @@ C0210,wiki/03_five_gases_reference.md,46,587d67ebcd,,**Behaviour bands:** ≤ 50
 C0211,wiki/03_five_gases_reference.md,50,5aa1b44425,NON_DOMAIN,## 3.2 CO — Carbon monoxide (vol %) {#GAS_CO}
 C0212,wiki/03_five_gases_reference.md,52,21bb97c9c0,,"Partial-oxidation product. CO exists only if combustion happened but ran out of oxygen. **One-way rich indicator:** CO ≈ 0 does not prove lean, but CO > ~1.5 % effectively guarantees rich."
 C0213,wiki/03_five_gases_reference.md,54,ac0715c85a,,**Sensor:** NDIR ~4.7 µm with chemical filters to suppress H₂ interference. Electrochemical CO cells over-read on H₂ from rich combustion; NDIR is mandatory for diagnostic-grade work.
-C0214,wiki/03_five_gases_reference.md,60,22500db61f,,"| Tailpipe, working cat | 0.1 – 0.45 % |"
+C0214,wiki/03_five_gases_reference.md,60,54e190fefa,,"| Tailpipe, working cat | 0.1 – 0.3 % (legal idle limit 0.3 %, cars first used from 1/9/2002) |"
 C0215,wiki/03_five_gases_reference.md,61,5ebf39d20d,,"| Tailpipe, cat not lighting off | 0.5 – 0.9 % |"
 C0216,wiki/03_five_gases_reference.md,62,21efb505c8,,| Pre-cat | up to 1.5 % can be normal |
 C0217,wiki/03_five_gases_reference.md,64,b441fa3955,,**Behaviour bands:** ≤ 0.5 % stoich/clean-up; 0.5–1.5 % mild rich or normal pre-cat; 1.5–3 % clear rich; > 3 % very rich (expect concurrent HC rise).
@@ -243,7 +243,7 @@ C0241,wiki/03_five_gases_reference.md,125,f8e0593a86,,"| Under load, healthy | 5
 C0242,wiki/03_five_gases_reference.md,126,d103a2bfa4,,"| Under load, EGR / cooling / timing fault | > 1500 ppm |"
 C0243,wiki/03_five_gases_reference.md,133,ccbf0c889a,,## 3.6 The 5-gas cheat sheet {#CONCEPT_5GAS_CHEATSHEET}
 C0244,wiki/03_five_gases_reference.md,137,1d253e35d5,,| Hydrocarbons | HC | 0 – 35 ppm | Moderate | Low | Very high (> 1000 ppm) |
-C0245,wiki/03_five_gases_reference.md,138,2bc54d7961,,| Carbon monoxide | CO | 0.1 – 0.45 % | High (> 1.0 %) | Very low (< 0.1 %) | Low – moderate |
+C0245,wiki/03_five_gases_reference.md,138,db7fce2a74,,| Carbon monoxide | CO | 0.1 – 0.3 % | High (> 1.0 %) | Very low (< 0.1 %) | Low – moderate |
 C0246,wiki/03_five_gases_reference.md,139,74f32f2d9f,,| Carbon dioxide | CO₂ | 14.5 – 16.0 % | Low (< 12 %) | Low (< 12 %) | Very low (< 10 %) |
 C0247,wiki/03_five_gases_reference.md,140,d2a0ae124c,,| Oxygen | O₂ | 0 – 0.35 % | Low (< 0.2 %) | High (> 1.0 %) | High (> 4.0 %) |
 C0248,wiki/03_five_gases_reference.md,141,8485c1754d,,| Nitric oxide | NOₓ | < 100 ppm | Very low | Very high | Low |
@@ -263,7 +263,7 @@ C0261,wiki/03_five_gases_reference.md,167,b0202dec7d,,"**CONCEPT_5GAS_CHEATSHEET
 C0262,wiki/03_five_gases_reference.md,170,53db30b68e,,**ΔO₂ per misfiring cylinder** CONSUMED_BY **cylinder_count** from **GasLabDnaView** (≈ 21 % / N)
 C0263,wiki/03_five_gases_reference.md,172,cbd6caeee3,,"**CO₂** INDICATES **combustion efficiency** — peaks at λ ≈ 1.000, falls below ceiling with any combustion disturbance"
 C0264,wiki/03_five_gases_reference.md,176,2f4332a141,,"- **GAS_HC** — Hydrocarbons (ppm), NDIR ~3.4 µm. Normal: ≤ 35 ppm (with cat), ≤ 250 ppm (no cat). Consumer: `GasReading` → `rule_engine._signature_values`."
-C0265,wiki/03_five_gases_reference.md,177,aa900ffff2,,"- **GAS_CO** — Carbon monoxide (vol %), NDIR ~4.7 µm. Normal: 0.1–0.45 % (with cat). One-way rich indicator. Consumer: `GasReading` → `rule_engine._signature_values`."
+C0265,wiki/03_five_gases_reference.md,177,44f51fd706,,"- **GAS_CO** — Carbon monoxide (vol %), NDIR ~4.7 µm. Normal: 0.1–0.3 % (with cat). One-way rich indicator. Consumer: `GasReading` → `rule_engine._signature_values`."
 C0266,wiki/03_five_gases_reference.md,178,37456dbcfc,,"- **GAS_CO2** — Carbon dioxide (vol %), NDIR ~4.3 µm. Normal: 14.5–16.0 % (with cat). Combustion efficiency score card. Consumer: `GasReading` → `rule_engine._signature_values`."
 C0267,wiki/03_five_gases_reference.md,179,e3ba7b3ac9,,"- **GAS_O2** — Oxygen (vol %), electrochemical/paramagnetic. Normal: ≤ 0.35 % (post-cat). Truthful post-catalyst mixture indicator. Consumer: `GasReading` → `rule_engine._signature_values`."
 C0268,wiki/03_five_gases_reference.md,180,ba63cfb0bd,,"- **GAS_NOX** — Oxides of nitrogen (ppm), electrochemical. Normal: < 100 ppm (idle). Thermal NO indicator. Consumer: `GasReading` → `rule_engine._signature_values`."
@@ -375,7 +375,7 @@ C0373,wiki/05_fault_atlas_part_a.md,21,8f986412a0,,"- ""comlab: labs/comlab/coml
 C0374,wiki/05_fault_atlas_part_a.md,28,cc732d1757,NON_DOMAIN,"source: ""labs/gaslab/wiki/05_fault_atlas_part_a.md"""
 C0375,wiki/05_fault_atlas_part_a.md,31,d8b2b911ac,NON_DOMAIN,# 5. Fault Signature Atlas — Part A
 C0376,wiki/05_fault_atlas_part_a.md,33,672a2aa639,NON_DOMAIN,"> **Chunk summary.** Sixteen `chemical_state` entities. Each is a typed record (gas vector + DNA gate + match class + discriminator + cross-refs). Numeric thresholds are normative; directional patterns are the lookup key. `match_class` feeds the confidence ceiling (→ CONCEPT_CONFIDENCE_CEILING, GASWIKI-10)."
-C0377,wiki/05_fault_atlas_part_a.md,39,948e9a86e4,,- **gas_vector:** HC 0–35 ppm | CO 0.1–0.45 % | CO₂ 14.5–16 % | O₂ 0–0.35 % | NOₓ < 100 ppm | λ 0.995–1.005
+C0377,wiki/05_fault_atlas_part_a.md,39,9ce560268e,,- **gas_vector:** HC 0–35 ppm | CO 0.1–0.3 % | CO₂ 14.5–16 % | O₂ 0–0.35 % | NOₓ < 100 ppm | λ 0.995–1.005
 C0378,wiki/05_fault_atlas_part_a.md,44,4657c00ca1,,- **gas_vector:** HC normal–moderate | CO **> 1.5 %** | CO₂ < 13 % | O₂ **< 0.5 %** | NOₓ very low | λ **< 0.95**
 C0379,wiki/05_fault_atlas_part_a.md,49,eb9142c158,,- **gas_vector:** HC low (< 300 ppm) | CO **< 0.1 %** | CO₂ < 13 % | O₂ **> 2.5 %** | NOₓ very high under load | λ **> 1.05**
 C0380,wiki/05_fault_atlas_part_a.md,54,33e1ae08a3,,- **gas_vector:** HC **> 1000 ppm** | CO normal–low | CO₂ **< 10 %** | O₂ **> 3.0 %** | NOₓ **< 50 ppm** | λ ≥ 1.0 (false-lean)
@@ -427,7 +427,7 @@ C0425,wiki/05_fault_atlas_part_a.md,149,e0b0891f7c,,"**FAULT_O2_SENSOR_BIASED_HI
 C0426,wiki/05_fault_atlas_part_a.md,150,8876f14201,,**FAULT_O2_SENSOR_BIASED_HIGH** VERIFIED_BY **RULE_LAMBDA_MISMATCH** (DEFINITIVE when fires)
 C0427,wiki/05_fault_atlas_part_a.md,153,e4a6994a0b,NON_DOMAIN,**FAULT_WORN_ENGINE** DISAMBIGUATED_BY **FAULT_POA_SIGNATURE** (GASWIKI-06A)
 C0428,wiki/05_fault_atlas_part_a.md,154,6e628e7424,NON_DOMAIN,"**match_class** GATED_BY **CONCEPT_CONFIDENCE_CEILING** (GASWIKI-10) — FALLBACK → LOW, SPECIFIC → MEDIUM, DEFINITIVE → HIGH"
-C0429,wiki/05_fault_atlas_part_a.md,158,f1ba4f4d8a,,"- **FAULT_NORMAL_OPERATION** — `NORMAL_OPERATION`, FALLBACK. HC 0–35, CO 0.1–0.45 %, CO₂ 14.5–16 %, O₂ 0–0.35 %, NOₓ < 100, λ 0.995–1.005. Consumer: `rule_engine.classify` (default output)."
+C0429,wiki/05_fault_atlas_part_a.md,158,f8527bfff0,,"- **FAULT_NORMAL_OPERATION** — `NORMAL_OPERATION`, FALLBACK. HC 0–35, CO 0.1–0.3 %, CO₂ 14.5–16 %, O₂ 0–0.35 %, NOₓ < 100, λ 0.995–1.005. Consumer: `rule_engine.classify` (default output)."
 C0430,wiki/05_fault_atlas_part_a.md,159,dc4a06cc21,,"- **FAULT_RICH_MIXTURE** — `RICH_MIXTURE`, SPECIFIC. CO > 1.5 %, O₂ < 0.5 %, λ < 0.95. Consumer: `rule_engine._matching_fault_candidates`."
 C0431,wiki/05_fault_atlas_part_a.md,160,df127d07c8,,"- **FAULT_LEAN_MIXTURE** — `LEAN_MIXTURE`, SPECIFIC. CO < 0.1 %, O₂ > 2.5 %, λ > 1.05. Consumer: `rule_engine._matching_fault_candidates`."
 C0432,wiki/05_fault_atlas_part_a.md,161,f2f54575f5,,"- **FAULT_IGNITION_MISFIRE** — `IGNITION_MISFIRE`, DEFINITIVE (via RULE_MASKING). HC > 1000, O₂ > 3.0 %, NOₓ < 50. Consumer: `rule_engine._definitive_match` (priority 85)."
@@ -598,7 +598,7 @@ C0596,wiki/07_catalyst_postcat_logic.md,33,e563d241be,NON_DOMAIN,## 7.1 How a th
 C0597,wiki/07_catalyst_postcat_logic.md,38,b92eb30af9,,Oxidation:  2 CO + O₂  →  2 CO₂
 C0598,wiki/07_catalyst_postcat_logic.md,40,5757021184,,Reduction:  2 NO + 2 CO →  N₂ + 2 CO₂
 C0599,wiki/07_catalyst_postcat_logic.md,43,2229c34885,NON_DOMAIN,## 7.2 Pre- vs post-cat efficiency {#CONCEPT_PRE_POST_CAT_EFFICIENCY}
-C0600,wiki/07_catalyst_postcat_logic.md,47,ffe2c40753,,| Healthy engine + healthy cat | ~95 % | > 99 % | 0.1 – 0.45 % | < 35 ppm | < 0.35 % |
+C0600,wiki/07_catalyst_postcat_logic.md,47,348719ea22,,| Healthy engine + healthy cat | ~95 % | > 99 % | 0.1 – 0.3 % | < 35 ppm | < 0.35 % |
 C0601,wiki/07_catalyst_postcat_logic.md,48,bfb094d756,,| Healthy engine + failed cat | ~95 % | < 97 % | 0.5 – 0.9 % | 75 – 125 ppm | 0.3 – 0.7 % |
 C0602,wiki/07_catalyst_postcat_logic.md,49,1c11459e73,,| Rich mixture + healthy cat | < 90 % | ~ 90 % | High (> 1 %) | Moderate | Very low |
 C0603,wiki/07_catalyst_postcat_logic.md,50,e76e15f7fe,,| Misfire + healthy cat | < 80 % | < 85 % | Moderate | Very high | High |
@@ -794,7 +794,7 @@ C0792,wiki/11_sources_appendices.md,47,2e0a057c51,,"| `EP-CAT-02 / EP-CAT-05; Vo
 C0793,wiki/11_sources_appendices.md,49,5d9df127ab,NON_DOMAIN,## 11.2 Reference appendix tables {#CONCEPT_REFERENCE_TABLES}
 C0794,wiki/11_sources_appendices.md,51,c144641438,NON_DOMAIN,"### 11.2.1 Idle reference (warm, working cat)"
 C0795,wiki/11_sources_appendices.md,55,b677f92efe,,| HC | 0 – 35 ppm | 35 – 100 ppm | > 100 ppm |
-C0796,wiki/11_sources_appendices.md,56,69dac7e765,,| CO | 0.1 – 0.45 % | 0.45 – 1.0 % | > 1.0 % |
+C0796,wiki/11_sources_appendices.md,56,44ea965692,,| CO | 0.1 – 0.3 % | 0.3 – 1.0 % | > 1.0 % |
 C0797,wiki/11_sources_appendices.md,57,34f80af88c,,| CO₂ | 14.5 – 16 % | 13.5 – 14.5 % | < 13.5 % |
 C0798,wiki/11_sources_appendices.md,58,6b4fba1f62,,| O₂ | 0 – 0.35 % | 0.35 – 1.0 % | > 1.0 % |
 C0799,wiki/11_sources_appendices.md,59,85328b45a1,,| NOₓ | < 100 ppm | 100 – 500 ppm | > 500 ppm |
@@ -1019,186 +1019,186 @@ C1017,docs/GAS_VOCABULARY.md,358,a69570f082,,"severe_misfire:         { min: 800
 C1018,docs/GAS_VOCABULARY.md,359,9b1038a73d,,ignition_misfire_floor: { min: 1000 }
 C1019,docs/GAS_VOCABULARY.md,360,4f3f0e92db,,mechanical_or_dead_cat: { min: 2000 }
 C1020,docs/GAS_VOCABULARY.md,363,386b17fead,NON_DOMAIN,### 10.2 `gas_co` (vol %)
-C1021,docs/GAS_VOCABULARY.md,367,ff8a4336b5,,"normal_with_cat:        { min: 0.1, max: 0.45 }"
-C1022,docs/GAS_VOCABULARY.md,368,31090bcc0a,,"cat_not_lit_band:       { min: 0.5, max: 0.9 }"
-C1023,docs/GAS_VOCABULARY.md,369,a0e98170a9,,"mild_rich:              { min: 0.5, max: 1.5 }"
-C1024,docs/GAS_VOCABULARY.md,370,9cc92c24a9,,"clear_rich:             { min: 1.5, max: 3.0 }"
-C1025,docs/GAS_VOCABULARY.md,371,10c269edd6,,very_rich:              { min: 3.0 }
-C1026,docs/GAS_VOCABULARY.md,374,7b2dd488a0,,"The collision rule (§8.5 in wiki) uses the active DNA-scaled tier maximum, read from `reasoning_grammar.collision_rule`: `co_tier_max` `0.45` (`normal_with_cat.max`, Euro 4 + cat) when `has_catalyst` is true, else `co_tier_max_no_cat` `1.5` (`mild_rich.max`, Euro 1 no-cat). The tier is chosen by catalyst presence only (T-GASA-7, F-C2-9)."
-C1027,docs/GAS_VOCABULARY.md,376,c8f61f3c24,,### 10.3 `gas_co2` (vol %)
-C1028,docs/GAS_VOCABULARY.md,380,946395eec8,,"peak_efficiency:        { min: 14.5, max: 16.0 }"
-C1029,docs/GAS_VOCABULARY.md,381,155588bcb2,,"cat_not_lit_band:       { min: 13.5, max: 14.5 }"
-C1030,docs/GAS_VOCABULARY.md,382,4319b165a8,,no_cat_minimum:         { min: 13.0 }
-C1031,docs/GAS_VOCABULARY.md,383,37036c5b83,,"combustion_deficit:     { min: 11.0, max: 13.0 }"
-C1032,docs/GAS_VOCABULARY.md,384,326fba84f3,,severe_failure:         { max: 11.0 }
-C1033,docs/GAS_VOCABULARY.md,385,cbdad1bdf4,,total_quench:           { max: 5.0 }
-C1034,docs/GAS_VOCABULARY.md,388,f384e88121,,### 10.4 `gas_o2` (vol %)
-C1035,docs/GAS_VOCABULARY.md,392,2e5f4c5bbd,,normal_post_cat:        { max: 0.35 }
-C1036,docs/GAS_VOCABULARY.md,393,51c5352655,,"normal_pre_cat:         { min: 0.5, max: 1.5 }"
-C1037,docs/GAS_VOCABULARY.md,394,b4e2d9e629,,"cat_not_lit_band:       { min: 0.3, max: 0.7 }"
-C1038,docs/GAS_VOCABULARY.md,395,7cc41d21d3,,"mild_lean:              { min: 1.5, max: 4.0 }"
-C1039,docs/GAS_VOCABULARY.md,396,95811c03c0,,severe_lean_or_misfire: { min: 4.0 }
-C1040,docs/GAS_VOCABULARY.md,399,8c8e1f590d,NON_DOMAIN,### 10.5 `gas_nox` (ppm)
-C1041,docs/GAS_VOCABULARY.md,403,778f969322,,normal_idle:            { max: 100 }
-C1042,docs/GAS_VOCABULARY.md,404,6b44ee089d,,"elevated_idle:          { min: 100,  max: 500 }"
-C1043,docs/GAS_VOCABULARY.md,405,4f0c74b089,,"high_idle:              { min: 500,  max: 1500 }"
-C1044,docs/GAS_VOCABULARY.md,406,367890e7d7,,"high_load_normal:       { min: 500,  max: 1500 }"
-C1045,docs/GAS_VOCABULARY.md,407,7e7c3c6c77,,high_combustion_temp:   { min: 1500 }
-C1046,docs/GAS_VOCABULARY.md,408,454af823c8,,misfire_suppression:    { max: 50 }
-C1047,docs/GAS_VOCABULARY.md,411,2bebc821f7,NON_DOMAIN,### 10.6 `volumetric_sum` (vol %)
-C1048,docs/GAS_VOCABULARY.md,415,502d089e99,,sample_invalid_low:     { max: 14.0 }
-C1049,docs/GAS_VOCABULARY.md,416,6298095e2e,,"borderline_low:         { min: 14.0, max: 15.0 }"
-C1050,docs/GAS_VOCABULARY.md,417,bd7a51f22b,,"normal:                 { min: 15.0, max: 16.0 }"
-C1051,docs/GAS_VOCABULARY.md,418,40c19c7aac,,"external_o2_suspect:    { min: 16.0, max: 18.0 }"
-C1052,docs/GAS_VOCABULARY.md,419,a94f23a6f3,,sample_invalid_high:    { min: 18.0 }
-C1053,docs/GAS_VOCABULARY.md,422,1b98b27644,NON_DOMAIN,### 10.7 `lambda_chem` (dimensionless)
-C1054,docs/GAS_VOCABULARY.md,426,39bb72fb7d,,heavily_rich:                { max: 0.92 }
-C1055,docs/GAS_VOCABULARY.md,427,2fd7e742d6,,"borderline_rich:             { min: 0.92,  max: 0.97 }"
-C1056,docs/GAS_VOCABULARY.md,428,53f457b5a8,,"stoichiometric:              { min: 0.97,  max: 1.03 }"
-C1057,docs/GAS_VOCABULARY.md,429,6c22354fcf,,"catalyst_light_off:          { min: 0.98,  max: 1.02 }"
-C1058,docs/GAS_VOCABULARY.md,430,f8d3afb08a,,"catalyst_peak_efficiency:    { min: 0.995, max: 1.005 }"
-C1059,docs/GAS_VOCABULARY.md,431,f955372db0,,"borderline_lean:             { min: 1.03,  max: 1.07 }"
-C1060,docs/GAS_VOCABULARY.md,432,f9ad33cc75,,heavily_lean:                { min: 1.07 }
-C1061,docs/GAS_VOCABULARY.md,435,2cbc1aa3cf,NON_DOMAIN,### 10.8 `fuel_trim` (%) — RPM-differential discriminator only
-C1062,docs/GAS_VOCABULARY.md,437,8948b987d1,,"Fuel trim is a **perception/DNA-context** signal, not a 5-gas analyser channel."
-C1063,docs/GAS_VOCABULARY.md,438,8b0989d865,NON_DOMAIN,These bands exist solely to give the §7.23.1 RPM-differential discriminator a
-C1064,docs/GAS_VOCABULARY.md,439,9ffdf5ed27,,vocabulary home for its trim column; they are read at the **2500 RPM / high-idle**
-C1065,docs/GAS_VOCABULARY.md,440,945fa702b0,NON_DOMAIN,"state, not the §10 `STABILIZED_IDLE` baseline. Values inherited from the wiki"
-C1066,docs/GAS_VOCABULARY.md,445,8a9a1d8a95,,"stable_band:        { min: -8.0, max: 8.0 }   # wiki §7.21 (worn valve seals) + §7.16 (generalised wear): trims stay within normal closed-loop band"
-C1067,docs/GAS_VOCABULARY.md,446,3f50050cba,,negative_load_cut:  { max: -12.0 }            # wiki §7.22 (worn piston rings): ECU cuts fuel hard under load as oil-as-fuel enters via PCV
-C1068,docs/GAS_VOCABULARY.md,449,f0a2444f7a,NON_DOMAIN,> HC change-direction bands for the same discriminator reuse §10.1: a sharp drop
-C1069,docs/GAS_VOCABULARY.md,450,7c2c56ab79,,> to `normal_with_cat` (≤ 35 ppm) at 2500 RPM ⇒ worn valve seals; a rise into
-C1070,docs/GAS_VOCABULARY.md,451,6f317be1ce,,"> `real_combustion_fault` (band floor 250 ppm; the code tests > 300 ppm at 2500 RPM, `resolution.py`, T-AUD-16) that persists ⇒ worn piston rings. No new"
-C1071,docs/GAS_VOCABULARY.md,454,2fbd645629,NON_DOMAIN,### 10.9 `chemical_efficiency` and `oxygen_usage` (derived combustion-integrity metrics)
-C1072,docs/GAS_VOCABULARY.md,456,3637550b86,,"**Not implemented (T-AUD-16):** no code computes it. `chemical_efficiency` is a **derived** dimensionless metric, computed from existing analyser channels (`gas_co2` + `gas_co`). It is not a new analyser channel and is not part of `GasLabPayload` v1. Source: GASWIKI-02 §2.10; `EP-GAS-03`; formula-wiki F-GAS-04."
-C1073,docs/GAS_VOCABULARY.md,460,72ef6c1988,,"formula: ""gas_co2 / (gas_co2 + gas_co)"""
-C1074,docs/GAS_VOCABULARY.md,461,ea416fd340,,"inputs: [gas_co2, gas_co]"
-C1075,docs/GAS_VOCABULARY.md,464,953168a1ee,,healthy:             { min: 0.95 }
-C1076,docs/GAS_VOCABULARY.md,465,6658fc4d8b,,combustion_deficit:  { max: 0.95 }
-C1077,docs/GAS_VOCABULARY.md,468,f18c2cfc94,NON_DOMAIN,`oxygen_usage` is the qualitative O₂-vs-CO discriminator behind the misfire-vs-rich split. It reuses the §10.2 CO and §10.4 O₂ bands; no new numeric threshold is introduced. Source: GASWIKI-02 §2.10; formula-wiki F-GAS-05.
-C1078,docs/GAS_VOCABULARY.md,472,f1c21bf244,,"inputs: [gas_o2, gas_co, gas_hc]"
-C1079,docs/GAS_VOCABULARY.md,475,497199a50d,,"misfire: ""high O2 + high HC/CO"""
-C1080,docs/GAS_VOCABULARY.md,476,14e8dfc78f,,"pure_rich: ""high CO + near-zero O2"""
-C1081,docs/GAS_VOCABULARY.md,477,6f729e9779,,"thresholds: ""reuse gas_co §10.2 and gas_o2 §10.4; no new numeric ratio"""
-C1082,docs/GAS_VOCABULARY.md,482,98333304e9,NON_DOMAIN,## 11. DNA-derived per-vehicle bound overrides
-C1083,docs/GAS_VOCABULARY.md,484,3bc2423470,,"When the OEM lookup populated CoC empirical targets, the per-vehicle λ window (`target_lambda_v112`) and idle CO ceiling (`co_low_idle`) override the defaults in §10 at any confidence; only the 2500 RPM `co_high_idle` ceiling needs `GasLabDnaView.confidence = HIGH` (T-AUD-16). Source: wiki §4.7 + §10."
-C1084,docs/GAS_VOCABULARY.md,488,f9a3f8456f,,| `target_lambda_v112` | `peak_efficiency` λ centre | Center the ± 0.005 window on this value |
-C1085,docs/GAS_VOCABULARY.md,490,dc5ceaa7c9,,| `co_high_idle` | `mild_rich.max` at 2500 RPM | Per-vehicle 2-speed-idle limit |
-C1086,docs/GAS_VOCABULARY.md,494,ea58da3655,NON_DOMAIN,"|  | **Not implemented (T-AUD-16):** | `co_type_approval`, `hc_type_approval`, `nox_type_approval`, `fuel_type` and `altitude_band` are not fields of `GasLabDnaView` |"
-C1087,docs/GAS_VOCABULARY.md,496,2ba3ad4f64,,"| `fuel_type` *(v2, context-only)* | nothing — does **not** move any bound | E5/E10/winter-blend annotation; lower idle HC/CO with ethanol. May *widen* `NORMAL_OPERATION` bounds slightly but **must not** relax the triangle gate. Source: wiki §2.9; research q9 |"
-C1088,docs/GAS_VOCABULARY.md,497,aade80d2e2,,"| `altitude_band` *(v2, context-only)* | nothing | λ math is altitude-invariant (mass balance). Annotates the diagnosis only. Source: wiki §2.9; research q9 |"
-C1089,docs/GAS_VOCABULARY.md,499,8c3d7829b2,NON_DOMAIN,"When the DNA field is `None`, the default from §10 is used. **Not implemented (T-AUD-16):** no GASLab module logs which value (per-vehicle vs default) was applied."
-C1090,docs/GAS_VOCABULARY.md,501,4187db5185,,"**v2 gate-integrity rule:** neither `fuel_type` nor `altitude_band` may relax `volumetric_sum.sample_invalid_low` (14.0) or any validity gate. Ethanol/altitude shifts are absorbed by re-validation (OBD trims, probe-occlusion test), never by widening a sample-integrity boundary."
-C1091,docs/GAS_VOCABULARY.md,505,9e2c85ced6,NON_DOMAIN,## 12. The `GasLabPayload` contract — what COMLab sees
-C1092,docs/GAS_VOCABULARY.md,507,10fd272ec6,NON_DOMAIN,Single source of truth: `SEMANTIC_CONTRACT.md` §4.4. Reproduced here so GASLab can validate its own output without importing COMLab:
-C1093,docs/GAS_VOCABULARY.md,511,087e290915,NON_DOMAIN,"""chemical_state"":  ""RICH_MIXTURE"",   // §3 ChemicalSignature"
-C1094,docs/GAS_VOCABULARY.md,512,a0b3bc008c,,"""gas_co"":          4.5,               // vol %"
-C1095,docs/GAS_VOCABULARY.md,513,f479b8c3e4,,"""gas_hc"":          650,               // ppm"
-C1096,docs/GAS_VOCABULARY.md,514,1d0203ed9a,,"""gas_co2"":         9.5,               // vol %   (added v1.1, 2026-05-19)"
-C1097,docs/GAS_VOCABULARY.md,515,811551869e,,"""gas_o2"":          0.1,               // vol %"
-C1098,docs/GAS_VOCABULARY.md,516,fc77c445ff,,"""gas_nox"":         15,                // ppm     (added v1.1, 2026-05-19)"
-C1099,docs/GAS_VOCABULARY.md,517,49b3a2dc37,,"""lambda_chem"":     0.82,              // dimensionless"
-C1100,docs/GAS_VOCABULARY.md,518,4181a94b76,NON_DOMAIN,"""sample_validity"": ""VALID"",           // §5 SampleValidity"
-C1101,docs/GAS_VOCABULARY.md,519,63d76c39bd,,"""lambda_measured"": null,              // optional directly-measured analyser λ (added 2026-06; T-FX-7)"
-C1102,docs/GAS_VOCABULARY.md,520,0e3ba179a5,,"""high_idle_hc"":     170,               // ppm, optional (added for high-idle delta, MW-008/009)"
-C1103,docs/GAS_VOCABULARY.md,521,9fab546bd0,,"""high_idle_co"":     0.1,               // vol %, optional"
-C1104,docs/GAS_VOCABULARY.md,522,759154c4b9,,"""high_idle_co2"":    15.0,              // vol %, optional"
-C1105,docs/GAS_VOCABULARY.md,523,c22a047c17,,"""high_idle_o2"":     0.2,               // vol %, optional"
-C1106,docs/GAS_VOCABULARY.md,524,05ad8d290f,,"""high_idle_nox"":    45,                // ppm, optional"
-C1107,docs/GAS_VOCABULARY.md,525,33fc5b9410,,"""high_idle_lambda"": 0.99               // dimensionless, optional"
-C1108,docs/GAS_VOCABULARY.md,529,ef876c577f,NON_DOMAIN,### 12.1 Pydantic schema (proposed for `gaslab/schemas.py`)
-C1109,docs/GAS_VOCABULARY.md,538,26b3e5e039,,"gas_co:          float = Field(..., ge=0.0, le=15.0)"
-C1110,docs/GAS_VOCABULARY.md,539,1004b723fe,,"gas_hc:          int   = Field(..., ge=0,  le=20_000)"
-C1111,docs/GAS_VOCABULARY.md,540,e5d3833d87,,"gas_co2:         float = Field(..., ge=0.0, le=22.0)"
-C1112,docs/GAS_VOCABULARY.md,541,c98a7da820,,"gas_o2:          float = Field(..., ge=0.0, le=22.0)"
-C1113,docs/GAS_VOCABULARY.md,542,0c743793b6,,"gas_nox:         int   = Field(..., ge=0,  le=5_000)"
-C1114,docs/GAS_VOCABULARY.md,543,fabca277bf,,"lambda_chem:     float = Field(..., ge=0.5, le=2.5)"
-C1115,docs/GAS_VOCABULARY.md,545,b4d5bf2b35,,"lambda_measured: float | None = Field(default=None, ge=0.5, le=2.0)  # optional directly-measured analyser λ"
-C1116,docs/GAS_VOCABULARY.md,546,6dd1a34448,,"high_idle_hc:     Optional[int]   = Field(default=None, ge=0, le=20_000)"
-C1117,docs/GAS_VOCABULARY.md,547,3d953f61d4,,"high_idle_co:     Optional[float] = Field(default=None, ge=0.0, le=15.0)"
-C1118,docs/GAS_VOCABULARY.md,548,d511cd4c9f,,"high_idle_co2:    Optional[float] = Field(default=None, ge=0.0, le=22.0)"
-C1119,docs/GAS_VOCABULARY.md,549,ade0ccf2cf,,"high_idle_o2:     Optional[float] = Field(default=None, ge=0.0, le=22.0)"
-C1120,docs/GAS_VOCABULARY.md,550,9293aba595,,"high_idle_nox:    Optional[int]   = Field(default=None, ge=0, le=5_000)"
-C1121,docs/GAS_VOCABULARY.md,551,34e96654a3,,"high_idle_lambda: Optional[float] = Field(default=None, ge=0.5, le=2.5)"
-C1122,docs/GAS_VOCABULARY.md,554,a9549a031f,,"> **`lambda_measured` (added 2026-06).** Optional directly-measured analyser λ, passed through from `GasLabContext.lambda_measured`. **Named consumer:** COMLab perception-contradiction detector — the no-OBD fallback path (T-FX-7). When OBD is present COMLab uses `lambda_chem` vs `normalized_obd_lambda`; without OBD it falls back to `lambda_measured`. The field is now live in `gaslab/contracts.py`; the v1 model in this section has been brought in line."
-C1123,docs/GAS_VOCABULARY.md,556,f0967806ad,,Range bounds match the analyser measurement envelope from §2. The Pydantic validator at COMLab will reject payloads outside these bounds — which means GASLab must never emit one. (See §13 invariant 4.)
-C1124,docs/GAS_VOCABULARY.md,558,db729ec83f,,"**Cross-lab follow-up required.** This widening is a contract change. `COMLab/comlab/schemas/ingestion.py::GasLabPayload` (the Pydantic model COMLab declares) and `COMLab/docs/wiki/SEMANTIC_CONTRACT.md` §4.4 must be updated to add `gas_co2` and `gas_nox` with matching ranges before GASLab is wired to COMLab. Tracked here, not done here, because those files are owned by COMLab."
-C1125,docs/GAS_VOCABULARY.md,560,2f252c1803,NON_DOMAIN,### 12.2 Fields **not** in the payload (intentional)
-C1126,docs/GAS_VOCABULARY.md,563,01631ed120,NON_DOMAIN,"- `inferred_misfiring_cylinder_count` — **Not implemented (T-AUD-16):** not emitted. Design: a warning string when `chemical_state = IGNITION_MISFIRE`, not a structured field."
-C1127,docs/GAS_VOCABULARY.md,564,c0dec3474b,NON_DOMAIN,- `catalyst_light_off_status` — see §9 above; internal only in v1.
-C1128,docs/GAS_VOCABULARY.md,568,3014d37cb1,NON_DOMAIN,## 13. Invariants the GASLab code must enforce
-C1129,docs/GAS_VOCABULARY.md,570,a5ccf9c4e1,,1. **Five inputs always.** No 4-gas fallback path. Missing NOₓ → reject upstream.
-C1130,docs/GAS_VOCABULARY.md,571,4a9366d521,,"2. **Triangle first.** No `chemical_state` other than `SAMPLE_INVALID` may be emitted unless `sample_validity` is `VALID`, `BORDERLINE`, or `EXTERNAL_O2_SUSPECT`."
-C1131,docs/GAS_VOCABULARY.md,572,88db679fa9,NON_DOMAIN,3. **Single chemical state.** GASLab returns exactly one `chemical_state`; ambiguity is collapsed by rule priority (the rule engine has named overrides — see wiki §8.4–§8.6).
-C1132,docs/GAS_VOCABULARY.md,573,1a4ba10531,NON_DOMAIN,"4. **Output never exceeds Pydantic bounds.** The values in `GasLabPayload` are pre-validated against §12.1 ranges before emission. If the rule engine would produce out-of-bound values, that is a code bug."
-C1133,docs/GAS_VOCABULARY.md,574,9e1956efd9,NON_DOMAIN,5. **DNA gates are honoured.** A `ChemicalSignature` value with a DNA gate in §3.1 cannot be emitted unless the gate evaluates to `true` against the current `GasLabDnaView`.
-C1134,docs/GAS_VOCABULARY.md,575,c342e92da6,NON_DOMAIN,"6. **No COMLab imports.** GASLab declares its own enums (this file is the spec). COMLab independently mirrors them in `comlab/schemas/vocabulary.py`. Two independent declarations of the same StrEnum are intentional — JSON values are the cross-lab contract, not Python classes."
-C1135,docs/GAS_VOCABULARY.md,576,5ec7481fca,NON_DOMAIN,7. **Confidence does not shrink the candidate set (T-AUD-16).** The DNA gate applies strictly at every confidence. On the `process()` path `confidence` is read only for the `co_high_idle` override; the wiki §10 candidate-set restriction for `PARTIAL`/`NONE` is not applied.
-C1136,docs/GAS_VOCABULARY.md,580,162a7eb078,NON_DOMAIN,## 14. Rule engine priority levels (informative)
-C1137,docs/GAS_VOCABULARY.md,582,d5f59d7fac,NON_DOMAIN,Source: `gas_lab_dataset.yaml` v2.3 (edges section). Higher priority wins.
-C1138,docs/GAS_VOCABULARY.md,586,49708fa9ea,,"| 95 | Validity gate | `rule_sample_invalid` (triangle outside [14, 18]) |"
-C1139,docs/GAS_VOCABULARY.md,587,2bcadba85a,,| 92 | External-O₂ warning | `rule_external_oxygen_warning` (16 < triangle ≤ 18) |
-C1140,docs/GAS_VOCABULARY.md,588,579bc26754,,| 85 | Named override — misfire mask | `rule_ignition_misfire` |
-C1141,docs/GAS_VOCABULARY.md,589,9df8b46191,,"| 82 | Named override — cam timing (lean/persistent: retarded-MAF, advanced) | `rule_wrong_valve_timing` (routes to `CAM_TIMING_*`; rule id retained pending cross-lab rename) |"
-C1142,docs/GAS_VOCABULARY.md,590,30b4bd3aa4,,"| 80 | Collision rules | `rule_rich_misfire_collision`, `rule_collision_downstream_ingress` |"
-C1143,docs/GAS_VOCABULARY.md,591,b073883dfe,,"| 70 | Mixture rules | `rule_rich_mixture`, `rule_lean_mixture` |"
-C1144,docs/GAS_VOCABULARY.md,592,4fac3d96bc,,"| 60 | Sub-class rules | `rule_lean_misfire`, sensor bias |"
-C1145,docs/GAS_VOCABULARY.md,593,f482695e19,,"| 50 | RPM-differential signatures | valve seals, piston rings, GDI carbon |"
-C1146,docs/GAS_VOCABULARY.md,594,b62e8c83cb,,"| 40 | Mechanical and other | cam-timing fallback (incl. retarded-MAP rich case), worn engine, flat cam |"
-C1147,docs/GAS_VOCABULARY.md,595,65d1e1b84a,,"| 30 | Catalyst classes | not-lighting-off, overwhelmed |"
-C1148,docs/GAS_VOCABULARY.md,596,e643cc3233,,"| 20 | Equipment-gated | EGR stuck closed/open, VVT, EVAP |"
-C1149,docs/GAS_VOCABULARY.md,597,1a9c6df945,,| 10 | Default | `NORMAL_OPERATION` |
-C1150,docs/GAS_VOCABULARY.md,603,32425714b8,NON_DOMAIN,## 15. Internal vs. emitted vocabulary — summary table
-C1151,docs/GAS_VOCABULARY.md,607,b5704bd112,,"| `gas_hc`, `gas_co`, `gas_co2`, `gas_o2`, `gas_nox` | yes | yes (all five, as of v1.1) | §2 |"
-C1152,docs/GAS_VOCABULARY.md,608,8826ec0832,NON_DOMAIN,| `lambda_chem` | yes | yes | §6 |
-C1153,docs/GAS_VOCABULARY.md,609,1104e55bbf,NON_DOMAIN,"| `volumetric_sum` | yes | no (derivable) | §2, §10.6 |"
-C1154,docs/GAS_VOCABULARY.md,610,9247876b2d,NON_DOMAIN,| `chemical_efficiency` | yes | no (derivable) | §10.9 |
-C1155,docs/GAS_VOCABULARY.md,611,097ec213d5,NON_DOMAIN,| `oxygen_usage` | yes | no (derivable) | §10.9 |
-C1156,docs/GAS_VOCABULARY.md,612,9bb89e607d,NON_DOMAIN,| `ChemicalSignature` | yes | yes (`chemical_state`) | §3 |
-C1157,docs/GAS_VOCABULARY.md,613,eaa81e8c66,NON_DOMAIN,| `LambdaBand` | yes | no | §4 |
-C1158,docs/GAS_VOCABULARY.md,614,5e9de6d425,NON_DOMAIN,| `SampleValidity` | yes | yes | §5 |
-C1159,docs/GAS_VOCABULARY.md,615,6957b5495c,NON_DOMAIN,| `EngineStateBucket` | yes (input) | no | §7 |
-C1160,docs/GAS_VOCABULARY.md,616,b0089051f1,NON_DOMAIN,| `GasBehavior` | yes (rule grammar) | no | §8 |
-C1161,docs/GAS_VOCABULARY.md,617,53faf9eb52,NON_DOMAIN,| `CatalystStatus` | yes | no in v1 | §9 |
-C1162,docs/GAS_VOCABULARY.md,618,349a66d71b,NON_DOMAIN,| `inferred_misfiring_cylinder_count` | yes | as warning string | §6 wiki |
-C1163,docs/GAS_VOCABULARY.md,622,febdc2cbf9,NON_DOMAIN,## 16. Cross-lab vocabulary alignment
-C1164,docs/GAS_VOCABULARY.md,624,db5a37f70b,NON_DOMAIN,Three terms are reserved by `SEMANTIC_CONTRACT.md` §2. GASLab uses these as opaque tokens — it does not coin its own variants.
-C1165,docs/GAS_VOCABULARY.md,638,850170b3ad,NON_DOMAIN,## 17. Sources
-C1166,docs/GAS_VOCABULARY.md,645,fcad218f62,,"| `COMLab/docs/wiki/OBD_VOCABULARY.md` §17 | `ChemicalSignature` enum (canonical; GASLab side now 34-value — §17 mirror update pending, see §3) |"
-C1167,docs/GAS_VOCABULARY.md,646,c75ed64b95,NON_DOMAIN,| `COMLab/docs/wiki/OBD_VOCABULARY.md` §3 | `EngineStateBucket` alignment |
-C1168,docs/GAS_VOCABULARY.md,647,182132cc39,,"| `labs/gaslab/wiki/` (chunks `00`–`11`) | All numeric thresholds, behaviour bands, fault patterns (canonical chunked wiki; single-file `GAS_WIKI.md` retired 2026-06-10) |"
-C1169,docs/GAS_VOCABULARY.md,648,721fa680f2,NON_DOMAIN,| `GASLab/data/gas_lab_dataset.yaml` v2.3 | Existing executable spec — used as numeric reference |
-C1170,docs/GAS_VOCABULARY.md,649,f0ae12f3c3,NON_DOMAIN,| `GASLab/data/gas_lab_wiki.md` v1.2 | Prior wiki — synthesised into the new wiki |
-C1171,docs/GAS_VOCABULARY.md,651,c4c9b00964,,| `GASLab/data/gasrules1.md` | Crypton tables; AFR / λ relationship |
-C1172,docs/GAS_VOCABULARY.md,656,0f38bb2274,NON_DOMAIN,## 18. Change protocol
-C1173,docs/GAS_VOCABULARY.md,658,db325b8ac5,NON_DOMAIN,Vocabulary changes follow the same protocol as `SEMANTIC_CONTRACT.md` §10:
-C1174,docs/GAS_VOCABULARY.md,660,7b9f66b4c0,NON_DOMAIN,"1. **Backwards-compatible additions** (new enum values, new threshold tiers, new optional DNA fields) bump the wiki minor version (e.g. `v1.0` → `v1.1`)."
-C1175,docs/GAS_VOCABULARY.md,661,64d558b243,NON_DOMAIN,"2. **Breaking changes** (enum value renames, threshold semantics changes, contract field renames) bump the major version (e.g. `v1.x` → `v2.0`) and require coordinated COMLab schema update."
-C1176,docs/GAS_VOCABULARY.md,662,5667308087,,"3. **All changes** must be reflected in both the GAS wiki **chunks** (`wiki/00`–`11`) and `GAS_VOCABULARY.md` in the same commit. Drift between them is a defect. (The single-file `GAS_WIKI.md` mirror was retired to ARCHIVE on 2026-06-10, so there is no longer a third copy to keep in sync.)"
-C1177,docs/GAS_VOCABULARY.md,666,b12c827618,NON_DOMAIN,## 19. λ-divergence magnitude reference (v2)
-C1178,docs/GAS_VOCABULARY.md,668,52f480f44c,,"Quantified expected divergence between chemistry λ (ground truth) and ECU-perceived λ, per fault. Feeds the truth-vs-perception detector (wiki §4.11–4.12, GASWIKI-04). Source: research q6. These are **informative priors**, not thresholds — the gate threshold stays Δλ > 0.08."
-C1179,docs/GAS_VOCABULARY.md,672,9c01b18a56,,| Ignition misfire (ECU chases O₂ spike) | up to ≈ 0.24 | actual λ 0.76–0.85 (rich) |
-C1180,docs/GAS_VOCABULARY.md,673,2450a3eeab,,"| O₂-sensor poisoning / signal bias | 0.15 – 0.23 | actual λ 0.77–0.85, CO 5–8 % |"
-C1181,docs/GAS_VOCABULARY.md,674,58cb73c373,,| Upstream exhaust air leak | 0.05 – 0.10 | actual λ ≈ 0.95 vs reported 1.00 |
-C1182,docs/GAS_VOCABULARY.md,675,f1b8455525,,| Wideband calibration-resistor damage (late-era) | 0.12 – 0.18 | erratic over/under-report |
-C1183,docs/GAS_VOCABULARY.md,678,fd8be315d2,NON_DOMAIN,## 20. Oil-burn sub-modes & proposed enum additions (v2)
-C1184,docs/GAS_VOCABULARY.md,680,46d96561d6,,"`[v2: q4]` Five field-documented oil-ingestion modes (wiki §6A.1, GASWIKI-06A). Per the v2 enum decision they emit existing values now; candidate new values are recorded for a future coordinated contract revision and are **not emittable today**."
-C1185,docs/GAS_VOCABULARY.md,682,9d965ba6a8,NON_DOMAIN,| Field case | v2 emit (existing value) | Live registry rule ID | Candidate v2.x value | Gate if added |
-C1186,docs/GAS_VOCABULARY.md,684,5cf19f790f,,| Worn piston rings | `WORN_PISTON_RINGS` | `MW-001` | — (exists) | none |
-C1187,docs/GAS_VOCABULARY.md,685,90b46f2cdb,,| Degraded valve-stem seals | `WORN_VALVE_SEALS` | `MW-002` | — (exists) | none |
-C1188,docs/GAS_VOCABULARY.md,686,788d3b416d,,| Stuck-open PCV | `POA_SIGNATURE` (clogged-PCV sub-mode) | `MW-008` | `PCV_STUCK_OPEN` | none |
-C1189,docs/GAS_VOCABULARY.md,687,0388c236d6,,| Head-gasket oil-to-cylinder breach | `COOLANT_LEAK_INTERNAL` (oil breach) | `MW-003` | `HEAD_GASKET_OIL_BREACH` | none |
-C1190,docs/GAS_VOCABULARY.md,688,449d9cf94c,,| Worn turbo turbine seals | `POA_SIGNATURE` (turbo-seal sub-mode) | `MW-009` | `TURBO_SEAL_OIL_LEAK` | `induction_type = forced` |
-C1191,docs/GAS_VOCABULARY.md,692,60ba2be42d,,"Verdicts for PCV and turbocharger seals are determined on the live path by the registry rules `MW-008` and `MW-009` via the integration shim, utilizing the resolved `high_idle_hc`, `high_idle_co`, and `high_idle_lambda` targets."
-C1192,docs/GAS_VOCABULARY.md,694,867cca6a24,NON_DOMAIN,## 21. Change log
-C1193,docs/GAS_VOCABULARY.md,698,536f7b6b69,NON_DOMAIN,| v1.0 | 2026-05-19 | Initial new-build vocabulary |
-C1194,docs/GAS_VOCABULARY.md,699,f4fd5c13ed,,| v1.1 | 2026-05-23 | `gas_co2`/`gas_nox` added to payload; `fuel_trim` discriminator §10.8 |
-C1195,docs/GAS_VOCABULARY.md,700,a829bf9e92,,| **v2.0** | **2026-06-03** | **Scope narrowed to 1990–2010 (Euro 1–5).** Added: Brettschneider reliability/uncertainty band (§6.2); `fuel_type`/`altitude_band` context-only DNA fields (§11) with gate-integrity rule; λ-divergence magnitude reference (§19); oil-burn sub-modes + proposed enum additions (§20). The 32-value `ChemicalSignature` contract is **unchanged** (frozen); new oil-burn cases map to existing values. |
-C1196,docs/GAS_VOCABULARY.md,701,ff6cd12105,,"| **v2.1** | **2026-06-03** | **Timing-taxonomy revision (source: `q1&7/Advanced Engineering Analysis of Petrol Engine Timings (1990–2010)`).** Retired `WRONG_VALVE_TIMING`; added system-specific cam-timing values `CAM_TIMING_RETARDED_MAP`, `CAM_TIMING_RETARDED_MAF`, `CAM_TIMING_ADVANCED` (§3). Contract surface 32 → **34**. Consumer: COMLab `chemical_state` routing / fault-atlas (06B). This is a **breaking enum change** (§18.2) requiring a coordinated update of `OBD_VOCABULARY.md §17`, `SEMANTIC_CONTRACT.md`, the COMLab schema, and `resolution.py` rule bindings — those land in a later cross-lab session. |"
-C1197,docs/GAS_VOCABULARY.md,702,145beffd89,,"| **v2.2** | **2026-06-10** | **Combustion-integrity derived metrics.** Added `chemical_efficiency = CO₂/(CO₂+CO)` and qualitative `oxygen_usage` O₂-vs-CO discriminator (§10.9), with internal-vs-emitted rows (§15). No `ChemicalSignature` value, payload field, enum, or 34-value contract surface changed. |"
-C1198,docs/GAS_VOCABULARY.md,703,645f08876d,,"| (concept) | 2026-06-10 | **Healthy-catalyst masking limitation.** Added GASWIKI-07 §7.8 `CONCEPT_HEALTHY_CAT_MASKING` plus the §9 `CatalystStatus` caveat: `LIT_AND_WORKING` names the catalyst state, not an engine-health verdict. `Catalyst_Masking_Rich` remains a COMLab candidate named in prose, not a GASLab `ChemicalSignature` value. No enum member, threshold, payload field, or 34-value contract surface changed. |"
-C1199,docs/GAS_VOCABULARY.md,704,a4ef55605d,,"| **v2.3** | **2026-11-06** | **Cranking bucket (T-COMA-3b).** `EngineStateBucket` gains the GASLab-only `CRANKING` (§7), set by the composition for a `will_not_start` session; wiki §4.3/§4.14 define the cranking-shape rule. No `ChemicalSignature` value, payload field or 34-value contract surface changed; OBDLab's and COMLab's bucket enums are unchanged. |"
-C1200,docs/GAS_VOCABULARY.md,705,6e5515caef,,"| (doc) | 2026-06-10 | **Single-file `GAS_WIKI.md` mirror retired to ARCHIVE.** The chunked set (`wiki/00`–`11`) is now the sole canonical wiki form; references updated in §Status, §Anchored-to, §17 sources, and the §18.3 no-drift rule. No vocabulary member, threshold, or contract surface changed (no version bump). |"
+C1021,docs/GAS_VOCABULARY.md,367,0f5b3ed29b,,"  normal_with_cat:        { min: 0.1, max: 0.3 }   # legal idle CO limit, cat cars first used from 1/9/2002 (T-GASA-17)"
+C1022,docs/GAS_VOCABULARY.md,369,31090bcc0a,,"cat_not_lit_band:       { min: 0.5, max: 0.9 }"
+C1023,docs/GAS_VOCABULARY.md,370,a0e98170a9,,"mild_rich:              { min: 0.5, max: 1.5 }"
+C1024,docs/GAS_VOCABULARY.md,371,9cc92c24a9,,"clear_rich:             { min: 1.5, max: 3.0 }"
+C1025,docs/GAS_VOCABULARY.md,372,10c269edd6,,very_rich:              { min: 3.0 }
+C1026,docs/GAS_VOCABULARY.md,375,77838f0747,,"The collision rule (§8.5 in wiki) uses the active DNA-scaled tier maximum, read from `reasoning_grammar.collision_rule`: `co_tier_max` `0.3` (`normal_with_cat.max`, Euro 4 + cat) when `has_catalyst` is true, else `co_tier_max_no_cat` `1.5` (`mild_rich.max`, Euro 1 no-cat). The tier is chosen by catalyst presence only (T-GASA-7, F-C2-9)."
+C1027,docs/GAS_VOCABULARY.md,377,c8f61f3c24,,### 10.3 `gas_co2` (vol %)
+C1028,docs/GAS_VOCABULARY.md,381,946395eec8,,"peak_efficiency:        { min: 14.5, max: 16.0 }"
+C1029,docs/GAS_VOCABULARY.md,382,155588bcb2,,"cat_not_lit_band:       { min: 13.5, max: 14.5 }"
+C1030,docs/GAS_VOCABULARY.md,383,4319b165a8,,no_cat_minimum:         { min: 13.0 }
+C1031,docs/GAS_VOCABULARY.md,384,37036c5b83,,"combustion_deficit:     { min: 11.0, max: 13.0 }"
+C1032,docs/GAS_VOCABULARY.md,385,326fba84f3,,severe_failure:         { max: 11.0 }
+C1033,docs/GAS_VOCABULARY.md,386,cbdad1bdf4,,total_quench:           { max: 5.0 }
+C1034,docs/GAS_VOCABULARY.md,389,f384e88121,,### 10.4 `gas_o2` (vol %)
+C1035,docs/GAS_VOCABULARY.md,393,2e5f4c5bbd,,normal_post_cat:        { max: 0.35 }
+C1036,docs/GAS_VOCABULARY.md,394,51c5352655,,"normal_pre_cat:         { min: 0.5, max: 1.5 }"
+C1037,docs/GAS_VOCABULARY.md,395,b4e2d9e629,,"cat_not_lit_band:       { min: 0.3, max: 0.7 }"
+C1038,docs/GAS_VOCABULARY.md,396,7cc41d21d3,,"mild_lean:              { min: 1.5, max: 4.0 }"
+C1039,docs/GAS_VOCABULARY.md,397,95811c03c0,,severe_lean_or_misfire: { min: 4.0 }
+C1040,docs/GAS_VOCABULARY.md,400,8c8e1f590d,NON_DOMAIN,### 10.5 `gas_nox` (ppm)
+C1041,docs/GAS_VOCABULARY.md,404,778f969322,,normal_idle:            { max: 100 }
+C1042,docs/GAS_VOCABULARY.md,405,6b44ee089d,,"elevated_idle:          { min: 100,  max: 500 }"
+C1043,docs/GAS_VOCABULARY.md,406,4f0c74b089,,"high_idle:              { min: 500,  max: 1500 }"
+C1044,docs/GAS_VOCABULARY.md,407,367890e7d7,,"high_load_normal:       { min: 500,  max: 1500 }"
+C1045,docs/GAS_VOCABULARY.md,408,7e7c3c6c77,,high_combustion_temp:   { min: 1500 }
+C1046,docs/GAS_VOCABULARY.md,409,454af823c8,,misfire_suppression:    { max: 50 }
+C1047,docs/GAS_VOCABULARY.md,412,2bebc821f7,NON_DOMAIN,### 10.6 `volumetric_sum` (vol %)
+C1048,docs/GAS_VOCABULARY.md,416,502d089e99,,sample_invalid_low:     { max: 14.0 }
+C1049,docs/GAS_VOCABULARY.md,417,6298095e2e,,"borderline_low:         { min: 14.0, max: 15.0 }"
+C1050,docs/GAS_VOCABULARY.md,418,bd7a51f22b,,"normal:                 { min: 15.0, max: 16.0 }"
+C1051,docs/GAS_VOCABULARY.md,419,40c19c7aac,,"external_o2_suspect:    { min: 16.0, max: 18.0 }"
+C1052,docs/GAS_VOCABULARY.md,420,a94f23a6f3,,sample_invalid_high:    { min: 18.0 }
+C1053,docs/GAS_VOCABULARY.md,423,1b98b27644,NON_DOMAIN,### 10.7 `lambda_chem` (dimensionless)
+C1054,docs/GAS_VOCABULARY.md,427,39bb72fb7d,,heavily_rich:                { max: 0.92 }
+C1055,docs/GAS_VOCABULARY.md,428,2fd7e742d6,,"borderline_rich:             { min: 0.92,  max: 0.97 }"
+C1056,docs/GAS_VOCABULARY.md,429,53f457b5a8,,"stoichiometric:              { min: 0.97,  max: 1.03 }"
+C1057,docs/GAS_VOCABULARY.md,430,6c22354fcf,,"catalyst_light_off:          { min: 0.98,  max: 1.02 }"
+C1058,docs/GAS_VOCABULARY.md,431,f8d3afb08a,,"catalyst_peak_efficiency:    { min: 0.995, max: 1.005 }"
+C1059,docs/GAS_VOCABULARY.md,432,f955372db0,,"borderline_lean:             { min: 1.03,  max: 1.07 }"
+C1060,docs/GAS_VOCABULARY.md,433,f9ad33cc75,,heavily_lean:                { min: 1.07 }
+C1061,docs/GAS_VOCABULARY.md,436,2cbc1aa3cf,NON_DOMAIN,### 10.8 `fuel_trim` (%) — RPM-differential discriminator only
+C1062,docs/GAS_VOCABULARY.md,438,8948b987d1,,"Fuel trim is a **perception/DNA-context** signal, not a 5-gas analyser channel."
+C1063,docs/GAS_VOCABULARY.md,439,8b0989d865,NON_DOMAIN,These bands exist solely to give the §7.23.1 RPM-differential discriminator a
+C1064,docs/GAS_VOCABULARY.md,440,9ffdf5ed27,,vocabulary home for its trim column; they are read at the **2500 RPM / high-idle**
+C1065,docs/GAS_VOCABULARY.md,441,945fa702b0,NON_DOMAIN,"state, not the §10 `STABILIZED_IDLE` baseline. Values inherited from the wiki"
+C1066,docs/GAS_VOCABULARY.md,446,8a9a1d8a95,,"stable_band:        { min: -8.0, max: 8.0 }   # wiki §7.21 (worn valve seals) + §7.16 (generalised wear): trims stay within normal closed-loop band"
+C1067,docs/GAS_VOCABULARY.md,447,3f50050cba,,negative_load_cut:  { max: -12.0 }            # wiki §7.22 (worn piston rings): ECU cuts fuel hard under load as oil-as-fuel enters via PCV
+C1068,docs/GAS_VOCABULARY.md,450,f0a2444f7a,NON_DOMAIN,> HC change-direction bands for the same discriminator reuse §10.1: a sharp drop
+C1069,docs/GAS_VOCABULARY.md,451,7c2c56ab79,,> to `normal_with_cat` (≤ 35 ppm) at 2500 RPM ⇒ worn valve seals; a rise into
+C1070,docs/GAS_VOCABULARY.md,452,6f317be1ce,,"> `real_combustion_fault` (band floor 250 ppm; the code tests > 300 ppm at 2500 RPM, `resolution.py`, T-AUD-16) that persists ⇒ worn piston rings. No new"
+C1071,docs/GAS_VOCABULARY.md,455,2fbd645629,NON_DOMAIN,### 10.9 `chemical_efficiency` and `oxygen_usage` (derived combustion-integrity metrics)
+C1072,docs/GAS_VOCABULARY.md,457,3637550b86,,"**Not implemented (T-AUD-16):** no code computes it. `chemical_efficiency` is a **derived** dimensionless metric, computed from existing analyser channels (`gas_co2` + `gas_co`). It is not a new analyser channel and is not part of `GasLabPayload` v1. Source: GASWIKI-02 §2.10; `EP-GAS-03`; formula-wiki F-GAS-04."
+C1073,docs/GAS_VOCABULARY.md,461,72ef6c1988,,"formula: ""gas_co2 / (gas_co2 + gas_co)"""
+C1074,docs/GAS_VOCABULARY.md,462,ea416fd340,,"inputs: [gas_co2, gas_co]"
+C1075,docs/GAS_VOCABULARY.md,465,953168a1ee,,healthy:             { min: 0.95 }
+C1076,docs/GAS_VOCABULARY.md,466,6658fc4d8b,,combustion_deficit:  { max: 0.95 }
+C1077,docs/GAS_VOCABULARY.md,469,f18c2cfc94,NON_DOMAIN,`oxygen_usage` is the qualitative O₂-vs-CO discriminator behind the misfire-vs-rich split. It reuses the §10.2 CO and §10.4 O₂ bands; no new numeric threshold is introduced. Source: GASWIKI-02 §2.10; formula-wiki F-GAS-05.
+C1078,docs/GAS_VOCABULARY.md,473,f1c21bf244,,"inputs: [gas_o2, gas_co, gas_hc]"
+C1079,docs/GAS_VOCABULARY.md,476,497199a50d,,"misfire: ""high O2 + high HC/CO"""
+C1080,docs/GAS_VOCABULARY.md,477,14e8dfc78f,,"pure_rich: ""high CO + near-zero O2"""
+C1081,docs/GAS_VOCABULARY.md,478,6f729e9779,,"thresholds: ""reuse gas_co §10.2 and gas_o2 §10.4; no new numeric ratio"""
+C1082,docs/GAS_VOCABULARY.md,483,98333304e9,NON_DOMAIN,## 11. DNA-derived per-vehicle bound overrides
+C1083,docs/GAS_VOCABULARY.md,485,3bc2423470,,"When the OEM lookup populated CoC empirical targets, the per-vehicle λ window (`target_lambda_v112`) and idle CO ceiling (`co_low_idle`) override the defaults in §10 at any confidence; only the 2500 RPM `co_high_idle` ceiling needs `GasLabDnaView.confidence = HIGH` (T-AUD-16). Source: wiki §4.7 + §10."
+C1084,docs/GAS_VOCABULARY.md,489,f9a3f8456f,,| `target_lambda_v112` | `peak_efficiency` λ centre | Center the ± 0.005 window on this value |
+C1085,docs/GAS_VOCABULARY.md,491,dc5ceaa7c9,,| `co_high_idle` | `mild_rich.max` at 2500 RPM | Per-vehicle 2-speed-idle limit |
+C1086,docs/GAS_VOCABULARY.md,495,ea58da3655,NON_DOMAIN,"|  | **Not implemented (T-AUD-16):** | `co_type_approval`, `hc_type_approval`, `nox_type_approval`, `fuel_type` and `altitude_band` are not fields of `GasLabDnaView` |"
+C1087,docs/GAS_VOCABULARY.md,497,2ba3ad4f64,,"| `fuel_type` *(v2, context-only)* | nothing — does **not** move any bound | E5/E10/winter-blend annotation; lower idle HC/CO with ethanol. May *widen* `NORMAL_OPERATION` bounds slightly but **must not** relax the triangle gate. Source: wiki §2.9; research q9 |"
+C1088,docs/GAS_VOCABULARY.md,498,aade80d2e2,,"| `altitude_band` *(v2, context-only)* | nothing | λ math is altitude-invariant (mass balance). Annotates the diagnosis only. Source: wiki §2.9; research q9 |"
+C1089,docs/GAS_VOCABULARY.md,500,8c3d7829b2,NON_DOMAIN,"When the DNA field is `None`, the default from §10 is used. **Not implemented (T-AUD-16):** no GASLab module logs which value (per-vehicle vs default) was applied."
+C1090,docs/GAS_VOCABULARY.md,502,4187db5185,,"**v2 gate-integrity rule:** neither `fuel_type` nor `altitude_band` may relax `volumetric_sum.sample_invalid_low` (14.0) or any validity gate. Ethanol/altitude shifts are absorbed by re-validation (OBD trims, probe-occlusion test), never by widening a sample-integrity boundary."
+C1091,docs/GAS_VOCABULARY.md,506,9e2c85ced6,NON_DOMAIN,## 12. The `GasLabPayload` contract — what COMLab sees
+C1092,docs/GAS_VOCABULARY.md,508,10fd272ec6,NON_DOMAIN,Single source of truth: `SEMANTIC_CONTRACT.md` §4.4. Reproduced here so GASLab can validate its own output without importing COMLab:
+C1093,docs/GAS_VOCABULARY.md,512,087e290915,NON_DOMAIN,"""chemical_state"":  ""RICH_MIXTURE"",   // §3 ChemicalSignature"
+C1094,docs/GAS_VOCABULARY.md,513,a0b3bc008c,,"""gas_co"":          4.5,               // vol %"
+C1095,docs/GAS_VOCABULARY.md,514,f479b8c3e4,,"""gas_hc"":          650,               // ppm"
+C1096,docs/GAS_VOCABULARY.md,515,1d0203ed9a,,"""gas_co2"":         9.5,               // vol %   (added v1.1, 2026-05-19)"
+C1097,docs/GAS_VOCABULARY.md,516,811551869e,,"""gas_o2"":          0.1,               // vol %"
+C1098,docs/GAS_VOCABULARY.md,517,fc77c445ff,,"""gas_nox"":         15,                // ppm     (added v1.1, 2026-05-19)"
+C1099,docs/GAS_VOCABULARY.md,518,49b3a2dc37,,"""lambda_chem"":     0.82,              // dimensionless"
+C1100,docs/GAS_VOCABULARY.md,519,4181a94b76,NON_DOMAIN,"""sample_validity"": ""VALID"",           // §5 SampleValidity"
+C1101,docs/GAS_VOCABULARY.md,520,63d76c39bd,,"""lambda_measured"": null,              // optional directly-measured analyser λ (added 2026-06; T-FX-7)"
+C1102,docs/GAS_VOCABULARY.md,521,0e3ba179a5,,"""high_idle_hc"":     170,               // ppm, optional (added for high-idle delta, MW-008/009)"
+C1103,docs/GAS_VOCABULARY.md,522,9fab546bd0,,"""high_idle_co"":     0.1,               // vol %, optional"
+C1104,docs/GAS_VOCABULARY.md,523,759154c4b9,,"""high_idle_co2"":    15.0,              // vol %, optional"
+C1105,docs/GAS_VOCABULARY.md,524,c22a047c17,,"""high_idle_o2"":     0.2,               // vol %, optional"
+C1106,docs/GAS_VOCABULARY.md,525,05ad8d290f,,"""high_idle_nox"":    45,                // ppm, optional"
+C1107,docs/GAS_VOCABULARY.md,526,33fc5b9410,,"""high_idle_lambda"": 0.99               // dimensionless, optional"
+C1108,docs/GAS_VOCABULARY.md,530,ef876c577f,NON_DOMAIN,### 12.1 Pydantic schema (proposed for `gaslab/schemas.py`)
+C1109,docs/GAS_VOCABULARY.md,539,26b3e5e039,,"gas_co:          float = Field(..., ge=0.0, le=15.0)"
+C1110,docs/GAS_VOCABULARY.md,540,1004b723fe,,"gas_hc:          int   = Field(..., ge=0,  le=20_000)"
+C1111,docs/GAS_VOCABULARY.md,541,e5d3833d87,,"gas_co2:         float = Field(..., ge=0.0, le=22.0)"
+C1112,docs/GAS_VOCABULARY.md,542,c98a7da820,,"gas_o2:          float = Field(..., ge=0.0, le=22.0)"
+C1113,docs/GAS_VOCABULARY.md,543,0c743793b6,,"gas_nox:         int   = Field(..., ge=0,  le=5_000)"
+C1114,docs/GAS_VOCABULARY.md,544,fabca277bf,,"lambda_chem:     float = Field(..., ge=0.5, le=2.5)"
+C1115,docs/GAS_VOCABULARY.md,546,b4d5bf2b35,,"lambda_measured: float | None = Field(default=None, ge=0.5, le=2.0)  # optional directly-measured analyser λ"
+C1116,docs/GAS_VOCABULARY.md,547,6dd1a34448,,"high_idle_hc:     Optional[int]   = Field(default=None, ge=0, le=20_000)"
+C1117,docs/GAS_VOCABULARY.md,548,3d953f61d4,,"high_idle_co:     Optional[float] = Field(default=None, ge=0.0, le=15.0)"
+C1118,docs/GAS_VOCABULARY.md,549,d511cd4c9f,,"high_idle_co2:    Optional[float] = Field(default=None, ge=0.0, le=22.0)"
+C1119,docs/GAS_VOCABULARY.md,550,ade0ccf2cf,,"high_idle_o2:     Optional[float] = Field(default=None, ge=0.0, le=22.0)"
+C1120,docs/GAS_VOCABULARY.md,551,9293aba595,,"high_idle_nox:    Optional[int]   = Field(default=None, ge=0, le=5_000)"
+C1121,docs/GAS_VOCABULARY.md,552,34e96654a3,,"high_idle_lambda: Optional[float] = Field(default=None, ge=0.5, le=2.5)"
+C1122,docs/GAS_VOCABULARY.md,555,a9549a031f,,"> **`lambda_measured` (added 2026-06).** Optional directly-measured analyser λ, passed through from `GasLabContext.lambda_measured`. **Named consumer:** COMLab perception-contradiction detector — the no-OBD fallback path (T-FX-7). When OBD is present COMLab uses `lambda_chem` vs `normalized_obd_lambda`; without OBD it falls back to `lambda_measured`. The field is now live in `gaslab/contracts.py`; the v1 model in this section has been brought in line."
+C1123,docs/GAS_VOCABULARY.md,557,f0967806ad,,Range bounds match the analyser measurement envelope from §2. The Pydantic validator at COMLab will reject payloads outside these bounds — which means GASLab must never emit one. (See §13 invariant 4.)
+C1124,docs/GAS_VOCABULARY.md,559,db729ec83f,,"**Cross-lab follow-up required.** This widening is a contract change. `COMLab/comlab/schemas/ingestion.py::GasLabPayload` (the Pydantic model COMLab declares) and `COMLab/docs/wiki/SEMANTIC_CONTRACT.md` §4.4 must be updated to add `gas_co2` and `gas_nox` with matching ranges before GASLab is wired to COMLab. Tracked here, not done here, because those files are owned by COMLab."
+C1125,docs/GAS_VOCABULARY.md,561,2f252c1803,NON_DOMAIN,### 12.2 Fields **not** in the payload (intentional)
+C1126,docs/GAS_VOCABULARY.md,564,01631ed120,NON_DOMAIN,"- `inferred_misfiring_cylinder_count` — **Not implemented (T-AUD-16):** not emitted. Design: a warning string when `chemical_state = IGNITION_MISFIRE`, not a structured field."
+C1127,docs/GAS_VOCABULARY.md,565,c0dec3474b,NON_DOMAIN,- `catalyst_light_off_status` — see §9 above; internal only in v1.
+C1128,docs/GAS_VOCABULARY.md,569,3014d37cb1,NON_DOMAIN,## 13. Invariants the GASLab code must enforce
+C1129,docs/GAS_VOCABULARY.md,571,a5ccf9c4e1,,1. **Five inputs always.** No 4-gas fallback path. Missing NOₓ → reject upstream.
+C1130,docs/GAS_VOCABULARY.md,572,4a9366d521,,"2. **Triangle first.** No `chemical_state` other than `SAMPLE_INVALID` may be emitted unless `sample_validity` is `VALID`, `BORDERLINE`, or `EXTERNAL_O2_SUSPECT`."
+C1131,docs/GAS_VOCABULARY.md,573,88db679fa9,NON_DOMAIN,3. **Single chemical state.** GASLab returns exactly one `chemical_state`; ambiguity is collapsed by rule priority (the rule engine has named overrides — see wiki §8.4–§8.6).
+C1132,docs/GAS_VOCABULARY.md,574,1a4ba10531,NON_DOMAIN,"4. **Output never exceeds Pydantic bounds.** The values in `GasLabPayload` are pre-validated against §12.1 ranges before emission. If the rule engine would produce out-of-bound values, that is a code bug."
+C1133,docs/GAS_VOCABULARY.md,575,9e1956efd9,NON_DOMAIN,5. **DNA gates are honoured.** A `ChemicalSignature` value with a DNA gate in §3.1 cannot be emitted unless the gate evaluates to `true` against the current `GasLabDnaView`.
+C1134,docs/GAS_VOCABULARY.md,576,c342e92da6,NON_DOMAIN,"6. **No COMLab imports.** GASLab declares its own enums (this file is the spec). COMLab independently mirrors them in `comlab/schemas/vocabulary.py`. Two independent declarations of the same StrEnum are intentional — JSON values are the cross-lab contract, not Python classes."
+C1135,docs/GAS_VOCABULARY.md,577,5ec7481fca,NON_DOMAIN,7. **Confidence does not shrink the candidate set (T-AUD-16).** The DNA gate applies strictly at every confidence. On the `process()` path `confidence` is read only for the `co_high_idle` override; the wiki §10 candidate-set restriction for `PARTIAL`/`NONE` is not applied.
+C1136,docs/GAS_VOCABULARY.md,581,162a7eb078,NON_DOMAIN,## 14. Rule engine priority levels (informative)
+C1137,docs/GAS_VOCABULARY.md,583,d5f59d7fac,NON_DOMAIN,Source: `gas_lab_dataset.yaml` v2.3 (edges section). Higher priority wins.
+C1138,docs/GAS_VOCABULARY.md,587,49708fa9ea,,"| 95 | Validity gate | `rule_sample_invalid` (triangle outside [14, 18]) |"
+C1139,docs/GAS_VOCABULARY.md,588,2bcadba85a,,| 92 | External-O₂ warning | `rule_external_oxygen_warning` (16 < triangle ≤ 18) |
+C1140,docs/GAS_VOCABULARY.md,589,579bc26754,,| 85 | Named override — misfire mask | `rule_ignition_misfire` |
+C1141,docs/GAS_VOCABULARY.md,590,9df8b46191,,"| 82 | Named override — cam timing (lean/persistent: retarded-MAF, advanced) | `rule_wrong_valve_timing` (routes to `CAM_TIMING_*`; rule id retained pending cross-lab rename) |"
+C1142,docs/GAS_VOCABULARY.md,591,30b4bd3aa4,,"| 80 | Collision rules | `rule_rich_misfire_collision`, `rule_collision_downstream_ingress` |"
+C1143,docs/GAS_VOCABULARY.md,592,b073883dfe,,"| 70 | Mixture rules | `rule_rich_mixture`, `rule_lean_mixture` |"
+C1144,docs/GAS_VOCABULARY.md,593,4fac3d96bc,,"| 60 | Sub-class rules | `rule_lean_misfire`, sensor bias |"
+C1145,docs/GAS_VOCABULARY.md,594,f482695e19,,"| 50 | RPM-differential signatures | valve seals, piston rings, GDI carbon |"
+C1146,docs/GAS_VOCABULARY.md,595,b62e8c83cb,,"| 40 | Mechanical and other | cam-timing fallback (incl. retarded-MAP rich case), worn engine, flat cam |"
+C1147,docs/GAS_VOCABULARY.md,596,65d1e1b84a,,"| 30 | Catalyst classes | not-lighting-off, overwhelmed |"
+C1148,docs/GAS_VOCABULARY.md,597,e643cc3233,,"| 20 | Equipment-gated | EGR stuck closed/open, VVT, EVAP |"
+C1149,docs/GAS_VOCABULARY.md,598,1a9c6df945,,| 10 | Default | `NORMAL_OPERATION` |
+C1150,docs/GAS_VOCABULARY.md,604,32425714b8,NON_DOMAIN,## 15. Internal vs. emitted vocabulary — summary table
+C1151,docs/GAS_VOCABULARY.md,608,b5704bd112,,"| `gas_hc`, `gas_co`, `gas_co2`, `gas_o2`, `gas_nox` | yes | yes (all five, as of v1.1) | §2 |"
+C1152,docs/GAS_VOCABULARY.md,609,8826ec0832,NON_DOMAIN,| `lambda_chem` | yes | yes | §6 |
+C1153,docs/GAS_VOCABULARY.md,610,1104e55bbf,NON_DOMAIN,"| `volumetric_sum` | yes | no (derivable) | §2, §10.6 |"
+C1154,docs/GAS_VOCABULARY.md,611,9247876b2d,NON_DOMAIN,| `chemical_efficiency` | yes | no (derivable) | §10.9 |
+C1155,docs/GAS_VOCABULARY.md,612,097ec213d5,NON_DOMAIN,| `oxygen_usage` | yes | no (derivable) | §10.9 |
+C1156,docs/GAS_VOCABULARY.md,613,9bb89e607d,NON_DOMAIN,| `ChemicalSignature` | yes | yes (`chemical_state`) | §3 |
+C1157,docs/GAS_VOCABULARY.md,614,eaa81e8c66,NON_DOMAIN,| `LambdaBand` | yes | no | §4 |
+C1158,docs/GAS_VOCABULARY.md,615,5e9de6d425,NON_DOMAIN,| `SampleValidity` | yes | yes | §5 |
+C1159,docs/GAS_VOCABULARY.md,616,6957b5495c,NON_DOMAIN,| `EngineStateBucket` | yes (input) | no | §7 |
+C1160,docs/GAS_VOCABULARY.md,617,b0089051f1,NON_DOMAIN,| `GasBehavior` | yes (rule grammar) | no | §8 |
+C1161,docs/GAS_VOCABULARY.md,618,53faf9eb52,NON_DOMAIN,| `CatalystStatus` | yes | no in v1 | §9 |
+C1162,docs/GAS_VOCABULARY.md,619,349a66d71b,NON_DOMAIN,| `inferred_misfiring_cylinder_count` | yes | as warning string | §6 wiki |
+C1163,docs/GAS_VOCABULARY.md,623,febdc2cbf9,NON_DOMAIN,## 16. Cross-lab vocabulary alignment
+C1164,docs/GAS_VOCABULARY.md,625,db5a37f70b,NON_DOMAIN,Three terms are reserved by `SEMANTIC_CONTRACT.md` §2. GASLab uses these as opaque tokens — it does not coin its own variants.
+C1165,docs/GAS_VOCABULARY.md,639,850170b3ad,NON_DOMAIN,## 17. Sources
+C1166,docs/GAS_VOCABULARY.md,646,fcad218f62,,"| `COMLab/docs/wiki/OBD_VOCABULARY.md` §17 | `ChemicalSignature` enum (canonical; GASLab side now 34-value — §17 mirror update pending, see §3) |"
+C1167,docs/GAS_VOCABULARY.md,647,c75ed64b95,NON_DOMAIN,| `COMLab/docs/wiki/OBD_VOCABULARY.md` §3 | `EngineStateBucket` alignment |
+C1168,docs/GAS_VOCABULARY.md,648,182132cc39,,"| `labs/gaslab/wiki/` (chunks `00`–`11`) | All numeric thresholds, behaviour bands, fault patterns (canonical chunked wiki; single-file `GAS_WIKI.md` retired 2026-06-10) |"
+C1169,docs/GAS_VOCABULARY.md,649,721fa680f2,NON_DOMAIN,| `GASLab/data/gas_lab_dataset.yaml` v2.3 | Existing executable spec — used as numeric reference |
+C1170,docs/GAS_VOCABULARY.md,650,f0ae12f3c3,NON_DOMAIN,| `GASLab/data/gas_lab_wiki.md` v1.2 | Prior wiki — synthesised into the new wiki |
+C1171,docs/GAS_VOCABULARY.md,652,c4c9b00964,,| `GASLab/data/gasrules1.md` | Crypton tables; AFR / λ relationship |
+C1172,docs/GAS_VOCABULARY.md,657,0f38bb2274,NON_DOMAIN,## 18. Change protocol
+C1173,docs/GAS_VOCABULARY.md,659,db325b8ac5,NON_DOMAIN,Vocabulary changes follow the same protocol as `SEMANTIC_CONTRACT.md` §10:
+C1174,docs/GAS_VOCABULARY.md,661,7b9f66b4c0,NON_DOMAIN,"1. **Backwards-compatible additions** (new enum values, new threshold tiers, new optional DNA fields) bump the wiki minor version (e.g. `v1.0` → `v1.1`)."
+C1175,docs/GAS_VOCABULARY.md,662,64d558b243,NON_DOMAIN,"2. **Breaking changes** (enum value renames, threshold semantics changes, contract field renames) bump the major version (e.g. `v1.x` → `v2.0`) and require coordinated COMLab schema update."
+C1176,docs/GAS_VOCABULARY.md,663,5667308087,,"3. **All changes** must be reflected in both the GAS wiki **chunks** (`wiki/00`–`11`) and `GAS_VOCABULARY.md` in the same commit. Drift between them is a defect. (The single-file `GAS_WIKI.md` mirror was retired to ARCHIVE on 2026-06-10, so there is no longer a third copy to keep in sync.)"
+C1177,docs/GAS_VOCABULARY.md,667,b12c827618,NON_DOMAIN,## 19. λ-divergence magnitude reference (v2)
+C1178,docs/GAS_VOCABULARY.md,669,52f480f44c,,"Quantified expected divergence between chemistry λ (ground truth) and ECU-perceived λ, per fault. Feeds the truth-vs-perception detector (wiki §4.11–4.12, GASWIKI-04). Source: research q6. These are **informative priors**, not thresholds — the gate threshold stays Δλ > 0.08."
+C1179,docs/GAS_VOCABULARY.md,673,9c01b18a56,,| Ignition misfire (ECU chases O₂ spike) | up to ≈ 0.24 | actual λ 0.76–0.85 (rich) |
+C1180,docs/GAS_VOCABULARY.md,674,2450a3eeab,,"| O₂-sensor poisoning / signal bias | 0.15 – 0.23 | actual λ 0.77–0.85, CO 5–8 % |"
+C1181,docs/GAS_VOCABULARY.md,675,58cb73c373,,| Upstream exhaust air leak | 0.05 – 0.10 | actual λ ≈ 0.95 vs reported 1.00 |
+C1182,docs/GAS_VOCABULARY.md,676,f1b8455525,,| Wideband calibration-resistor damage (late-era) | 0.12 – 0.18 | erratic over/under-report |
+C1183,docs/GAS_VOCABULARY.md,679,fd8be315d2,NON_DOMAIN,## 20. Oil-burn sub-modes & proposed enum additions (v2)
+C1184,docs/GAS_VOCABULARY.md,681,46d96561d6,,"`[v2: q4]` Five field-documented oil-ingestion modes (wiki §6A.1, GASWIKI-06A). Per the v2 enum decision they emit existing values now; candidate new values are recorded for a future coordinated contract revision and are **not emittable today**."
+C1185,docs/GAS_VOCABULARY.md,683,9d965ba6a8,NON_DOMAIN,| Field case | v2 emit (existing value) | Live registry rule ID | Candidate v2.x value | Gate if added |
+C1186,docs/GAS_VOCABULARY.md,685,5cf19f790f,,| Worn piston rings | `WORN_PISTON_RINGS` | `MW-001` | — (exists) | none |
+C1187,docs/GAS_VOCABULARY.md,686,90b46f2cdb,,| Degraded valve-stem seals | `WORN_VALVE_SEALS` | `MW-002` | — (exists) | none |
+C1188,docs/GAS_VOCABULARY.md,687,788d3b416d,,| Stuck-open PCV | `POA_SIGNATURE` (clogged-PCV sub-mode) | `MW-008` | `PCV_STUCK_OPEN` | none |
+C1189,docs/GAS_VOCABULARY.md,688,0388c236d6,,| Head-gasket oil-to-cylinder breach | `COOLANT_LEAK_INTERNAL` (oil breach) | `MW-003` | `HEAD_GASKET_OIL_BREACH` | none |
+C1190,docs/GAS_VOCABULARY.md,689,449d9cf94c,,| Worn turbo turbine seals | `POA_SIGNATURE` (turbo-seal sub-mode) | `MW-009` | `TURBO_SEAL_OIL_LEAK` | `induction_type = forced` |
+C1191,docs/GAS_VOCABULARY.md,693,60ba2be42d,,"Verdicts for PCV and turbocharger seals are determined on the live path by the registry rules `MW-008` and `MW-009` via the integration shim, utilizing the resolved `high_idle_hc`, `high_idle_co`, and `high_idle_lambda` targets."
+C1192,docs/GAS_VOCABULARY.md,695,867cca6a24,NON_DOMAIN,## 21. Change log
+C1193,docs/GAS_VOCABULARY.md,699,536f7b6b69,NON_DOMAIN,| v1.0 | 2026-05-19 | Initial new-build vocabulary |
+C1194,docs/GAS_VOCABULARY.md,700,f4fd5c13ed,,| v1.1 | 2026-05-23 | `gas_co2`/`gas_nox` added to payload; `fuel_trim` discriminator §10.8 |
+C1195,docs/GAS_VOCABULARY.md,701,a829bf9e92,,| **v2.0** | **2026-06-03** | **Scope narrowed to 1990–2010 (Euro 1–5).** Added: Brettschneider reliability/uncertainty band (§6.2); `fuel_type`/`altitude_band` context-only DNA fields (§11) with gate-integrity rule; λ-divergence magnitude reference (§19); oil-burn sub-modes + proposed enum additions (§20). The 32-value `ChemicalSignature` contract is **unchanged** (frozen); new oil-burn cases map to existing values. |
+C1196,docs/GAS_VOCABULARY.md,702,ff6cd12105,,"| **v2.1** | **2026-06-03** | **Timing-taxonomy revision (source: `q1&7/Advanced Engineering Analysis of Petrol Engine Timings (1990–2010)`).** Retired `WRONG_VALVE_TIMING`; added system-specific cam-timing values `CAM_TIMING_RETARDED_MAP`, `CAM_TIMING_RETARDED_MAF`, `CAM_TIMING_ADVANCED` (§3). Contract surface 32 → **34**. Consumer: COMLab `chemical_state` routing / fault-atlas (06B). This is a **breaking enum change** (§18.2) requiring a coordinated update of `OBD_VOCABULARY.md §17`, `SEMANTIC_CONTRACT.md`, the COMLab schema, and `resolution.py` rule bindings — those land in a later cross-lab session. |"
+C1197,docs/GAS_VOCABULARY.md,703,145beffd89,,"| **v2.2** | **2026-06-10** | **Combustion-integrity derived metrics.** Added `chemical_efficiency = CO₂/(CO₂+CO)` and qualitative `oxygen_usage` O₂-vs-CO discriminator (§10.9), with internal-vs-emitted rows (§15). No `ChemicalSignature` value, payload field, enum, or 34-value contract surface changed. |"
+C1198,docs/GAS_VOCABULARY.md,704,645f08876d,,"| (concept) | 2026-06-10 | **Healthy-catalyst masking limitation.** Added GASWIKI-07 §7.8 `CONCEPT_HEALTHY_CAT_MASKING` plus the §9 `CatalystStatus` caveat: `LIT_AND_WORKING` names the catalyst state, not an engine-health verdict. `Catalyst_Masking_Rich` remains a COMLab candidate named in prose, not a GASLab `ChemicalSignature` value. No enum member, threshold, payload field, or 34-value contract surface changed. |"
+C1199,docs/GAS_VOCABULARY.md,705,a4ef55605d,,"| **v2.3** | **2026-11-06** | **Cranking bucket (T-COMA-3b).** `EngineStateBucket` gains the GASLab-only `CRANKING` (§7), set by the composition for a `will_not_start` session; wiki §4.3/§4.14 define the cranking-shape rule. No `ChemicalSignature` value, payload field or 34-value contract surface changed; OBDLab's and COMLab's bucket enums are unchanged. |"
+C1200,docs/GAS_VOCABULARY.md,706,6e5515caef,,"| (doc) | 2026-06-10 | **Single-file `GAS_WIKI.md` mirror retired to ARCHIVE.** The chunked set (`wiki/00`–`11`) is now the sole canonical wiki form; references updated in §Status, §Anchored-to, §17 sources, and the §18.3 no-drift rule. No vocabulary member, threshold, or contract surface changed (no version bump). |"
 C1201,gaslab/data/gas_lab_ontology.yaml,4,c2389c9c4b,,# The 32 fault entries map 1:1 to ChemicalSignature values (GAS_VOCABULARY §3).
 C1202,gaslab/data/gas_lab_ontology.yaml,5,cd5b1c3c33,NON_DOMAIN,# Per-gas thresholds derive from GAS_VOCABULARY §10.1–§10.5.
 C1203,gaslab/data/gas_lab_ontology.yaml,7,d982c46b10,,# Format version 1.0.  Do not edit without a matching wiki change.
@@ -1220,7 +1220,7 @@ C1218,gaslab/data/gas_lab_ontology.yaml,40,cd35d75fee,,CO and O2 both elevated i
 C1219,gaslab/data/gas_lab_ontology.yaml,41,8cb54ba996,,combustion event.  Disambiguated by the triangle: sum ~15 → RICH_MISFIRE;
 C1220,gaslab/data/gas_lab_ontology.yaml,42,50ae1683d7,,sum > 16 → EXHAUST_AIR_LEAK.  EXHAUST_AIR_LEAK path additionally requires
 C1221,gaslab/data/gas_lab_ontology.yaml,43,52ff6042e5,NON_DOMAIN,HC Normal (§7.7) — high HC with the collision pattern is RICH_MISFIRE.
-C1222,gaslab/data/gas_lab_ontology.yaml,44,d3dfb88ce2,,co_tier_max: 0.45             # vocab: GAS_VOCABULARY §10.2 — Euro 4 with cat
+C1222,gaslab/data/gas_lab_ontology.yaml,44,afda53966c,,    co_tier_max: 0.3              # vocab: GAS_VOCABULARY §10.2 — Euro 4 with cat; legal idle CO 0.3 % (T-GASA-17 S001)
 C1223,gaslab/data/gas_lab_ontology.yaml,45,f5a2954066,,co_tier_max_no_cat: 1.5       # vocab: GAS_VOCABULARY §10.2 — Euro 1 no-cat (mild_rich.max); used when has_catalyst is false
 C1224,gaslab/data/gas_lab_ontology.yaml,46,4a2759d79c,,o2_threshold: 2.0             # wiki: GAS_WIKI §8.5
 C1225,gaslab/data/gas_lab_ontology.yaml,47,555903c707,,"triangle_sum_threshold: 16.0  # wiki: GAS_WIKI §8.5 — sum > 16 → EXHAUST_AIR_LEAK, ≤ 16 → RICH_MISFIRE"
@@ -1253,7 +1253,7 @@ C1251,gaslab/data/gas_lab_ontology.yaml,88,a0a537064c,NON_DOMAIN,#   differentia
 C1252,gaslab/data/gas_lab_ontology.yaml,92,009dd962ea,NON_DOMAIN,# --- §7.1 ----------------------------------------------------------------
 C1253,gaslab/data/gas_lab_ontology.yaml,94,6d829c3fa7,NON_DOMAIN,"citation: ""GAS_WIKI §7.1"""
 C1254,gaslab/data/gas_lab_ontology.yaml,97,44ed75ba4a,,"hc:  { min: 0,   max: 35 }     # vocab: GAS_VOCABULARY §10.1 normal_with_cat"
-C1255,gaslab/data/gas_lab_ontology.yaml,98,cbaa02ae7c,,"co:  { min: 0.1, max: 0.45 }   # vocab: GAS_VOCABULARY §10.2 normal_with_cat"
+C1255,gaslab/data/gas_lab_ontology.yaml,98,b3e6065c11,,"      co:  { min: 0.1, max: 0.3 }    # vocab: GAS_VOCABULARY §10.2 normal_with_cat (T-GASA-17: legal idle CO 0.3 %)"
 C1256,gaslab/data/gas_lab_ontology.yaml,99,80d5ad6359,,"co2: { min: 14.5, max: 16.0 }  # vocab: GAS_VOCABULARY §10.3 peak_efficiency"
 C1257,gaslab/data/gas_lab_ontology.yaml,100,05d9dc65a7,,"o2:  { min: 0.0, max: 0.35 }   # vocab: GAS_VOCABULARY §10.4 normal_post_cat"
 C1258,gaslab/data/gas_lab_ontology.yaml,101,17bdf8c2fe,,"nox: { min: 0,   max: 100 }    # vocab: GAS_VOCABULARY §10.5 normal_idle"
