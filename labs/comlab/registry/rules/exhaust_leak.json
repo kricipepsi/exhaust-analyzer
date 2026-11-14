@@ -61,7 +61,7 @@
       "obd_evidence": [
         {
           "pid": "o2_downstream",
-          "operator": "ge",
+          "operator": "lt",
           "value": 0.45,
           "tier": "SUGGESTIVE",
           "units": "V",

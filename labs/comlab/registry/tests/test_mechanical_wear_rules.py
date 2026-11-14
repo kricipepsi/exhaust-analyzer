@@ -215,16 +215,15 @@ def test_mw003_ect_obd_evidence():
 
 
 def test_mw004_map_obd_evidence():
-    """MW-004 must carry map_kpa < 30.0 as SUGGESTIVE OBD evidence."""
+    """T-COMA-32: MW-004 carries no map_kpa < 30.0 row (strong vacuum, the opposite of weak cylinders)."""
     rs = _load_ruleset()
     for rule in rs.rules:
         if rule.rule_id == "MW-004":
-            found = any(
+            inverted = any(
                 obd.pid == "map_kpa" and obd.operator == "lt"
-                and obd.value == 30.0 and obd.tier == EvidenceTier.SUGGESTIVE
                 for obd in rule.obd_evidence
             )
-            assert found, "MW-004: missing map_kpa < 30.0 SUGGESTIVE OBD evidence"
+            assert not inverted, "MW-004: map_kpa 'lt' row tests strong vacuum (T-COMA-32)"
 
 
 def test_mw005_rpm_gating_obd_evidence():
@@ -340,7 +339,7 @@ def test_mw003_ect_wiki_ref():
 
 
 def test_mw004_map_wiki_ref():
-    """MW-004 map_kpa threshold must carry a wiki_ref citation."""
+    """MW-004 map_kpa threshold, if one returns, must carry a wiki_ref citation."""
     rs = _load_ruleset()
     for rule in rs.rules:
         if rule.rule_id == "MW-004":

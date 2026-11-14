@@ -130,7 +130,7 @@
     {
       "rule_id": "MW-004",
       "fault_family": "mechanical_wear",
-      "description": "Low compression / worn engine (general wear): cylinder sealing failure from worn rings, scored bores, or burned valves produces WORN_ENGINE chemistry \u2014 severely depressed CO2 (<12%) from incomplete combustion. OBD: map_kpa < 30.0 kPa as SUGGESTIVE (low intake vacuum at idle from weak cylinders unable to pull a strong vacuum stroke). v1 ERR-MW-006 expanded with MAP evidence (v1 had no OBD constraints). INCOMPLETE_COMBUSTION is DEFINITIVE \u2014 mechanical_wear is the primary consumer of this chemistry; misfire has no INCOMPLETE_COMBUSTION rule (FT-10 differentiation). MW-005 competes",
+      "description": "Low compression / worn engine (general wear): cylinder sealing failure from worn rings, scored bores, or burned valves produces WORN_ENGINE chemistry \u2014 severely depressed CO2 (<12%) from incomplete combustion. No OBD evidence: the former map_kpa < 30.0 kPa row tested strong vacuum, the opposite of weak cylinders (T-COMA-32); a weak-vacuum MAP floor needs a verified value. v1 ERR-MW-006 expanded with MAP evidence (v1 had no OBD constraints). INCOMPLETE_COMBUSTION is DEFINITIVE \u2014 mechanical_wear is the primary consumer of this chemistry; misfire has no INCOMPLETE_COMBUSTION rule (FT-10 differentiation). MW-005 competes",
       "chemistry_evidence": [
         {
           "state": "WORN_ENGINE",
@@ -143,16 +143,7 @@
           "wiki_ref": "GAS_VOCABULARY \u00a73"
         }
       ],
-      "obd_evidence": [
-        {
-          "pid": "map_kpa",
-          "operator": "lt",
-          "value": 30.0,
-          "tier": "SUGGESTIVE",
-          "units": "kPa",
-          "wiki_ref": "OBD_VOCABULARY \u00a76"
-        }
-      ],
+      "obd_evidence": [],
       "dtc_evidence": [],
       "base_weight": 0.8,
       "competition_group": "mechanical_wear",

@@ -27,3 +27,11 @@ The fields and the eight classes are those of `labs/gaslab/audit_tasks/wikiaudit
   quantity, condition and value. A code value that differs from the claim its citation names gets no `same_as` and a
   `suspect` text naming that claim.
 - `value`: as written in the code (`0.45`, `250`, `1.03`); every number must appear in the line.
+
+## Keeping the registers on the tip (T-AUD-22-RESYNC)
+
+A fix row that edits an audited file moves or changes register lines. After the fix, run
+`resync_register.py --register gaslab-code|comlab-code|wiki --base <commit before the fix> --apply`: moved lines are
+re-keyed, changed lines are listed for hand re-classification, and `--drop-gone` removes the rows of deleted lines.
+Since T-COMA-32 dropped `K3025`/`K3026`, a fresh `extract_code_candidates.py --group comlab` no longer reproduces
+`candidates_comlab.csv`: a slice checks its rows with `check_code_claims.py` and does not re-run the extractor.

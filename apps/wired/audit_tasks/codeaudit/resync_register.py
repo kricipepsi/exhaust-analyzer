@@ -6,7 +6,8 @@ candidate whose line no longer matches, the old file (git show <base>:<file>) is
 - an unchanged line that moved gets its new line number (candidates and claims rows);
 - a replaced line (paired in order inside a replaced block) gets its new line number, sha and text, and is listed as CHANGED: its claims keep their
   old value until a person re-classifies them (the claims checker then flags any value no longer in the line);
-- a deleted line is listed as GONE and left as it is.
+- a deleted line is listed as GONE and left as it is; with --drop-gone its candidate and claim rows are removed
+  (ids are labels: the other ids stay, so a fresh extract_code_candidates.py run no longer reproduces the file).
 Without --apply nothing is written. Prints one line per CHANGED/GONE candidate and a summary line.
 """
 from __future__ import annotations
@@ -66,6 +67,7 @@ def main() -> int:
     ap.add_argument("--register", choices=sorted(REGISTERS), required=True)
     ap.add_argument("--base", required=True)
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--drop-gone", action="store_true")
     a = ap.parse_args()
     root, cand_p, claim_p = REGISTERS[a.register]
     cfields, cands = read_csv(cand_p)
@@ -75,6 +77,7 @@ def main() -> int:
     maps: dict[str, dict[int, tuple[str, int]]] = {}
     moved = changed = gone = 0
     remap: dict[str, int] = {}
+    dropped: set[str] = set()
     for c in cands:
         f = c["file"]
         if f not in new_lines:
@@ -92,6 +95,7 @@ def main() -> int:
         if hit is None:
             gone += 1
             print(f"GONE {c['cand_id']} {f}:{n}")
+            dropped.add(c["cand_id"])
             continue
         kind, m = hit
         if kind == "same" and sha(cur[m - 1]) == c["sha"]:
@@ -102,6 +106,11 @@ def main() -> int:
             c["sha"], c["text"] = sha(cur[m - 1]), cur[m - 1].strip()
         c["line"] = str(m)
         remap[c["cand_id"]] = m
+    if a.drop_gone and dropped:
+        gone_claims = [k["claim_id"] for k in claims if k["cand_id"] in dropped]
+        print("DROPPED candidates " + " ".join(sorted(dropped)) + " claims " + (" ".join(gone_claims) or "none"))
+        cands = [c for c in cands if c["cand_id"] not in dropped]
+        claims = [k for k in claims if k["cand_id"] not in dropped]
     for k in claims:
         if k["cand_id"] in remap:
             k["line"] = str(remap[k["cand_id"]])
