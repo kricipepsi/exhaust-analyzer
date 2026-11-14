@@ -2801,7 +2801,7 @@ K2799,labs/comlab/registry/rules/exhaust_leak.json,53,5a7e493432,NON_DOMAIN,"""d
 K2800,labs/comlab/registry/rules/exhaust_leak.json,58,9de51da520,NON_DOMAIN,"""wiki_ref"": ""GAS_VOCABULARY \u00a73"""
 K2801,labs/comlab/registry/rules/exhaust_leak.json,63,2e3c325765,NON_DOMAIN,"""pid"": ""o2_downstream"","
 K2802,labs/comlab/registry/rules/exhaust_leak.json,65,2770334b29,,"""value"": 0.45,"
-K2803,labs/comlab/registry/rules/exhaust_leak.json,68,9aca7d6fe6,NON_DOMAIN,"""wiki_ref"": ""OBD_VOCABULARY \u00a76"""
+K2803,labs/comlab/registry/rules/exhaust_leak.json,68,95688b98e4,NON_DOMAIN,"""wiki_ref"": ""OBD_VOCABULARY \u00a712.1"""
 K2804,labs/comlab/registry/rules/exhaust_leak.json,74,dc7bef2ec5,NON_DOMAIN,"""P2096"","
 K2805,labs/comlab/registry/rules/exhaust_leak.json,75,fefc6230bb,NON_DOMAIN,"""P2098"""
 K2806,labs/comlab/registry/rules/exhaust_leak.json,79,227b175db2,NON_DOMAIN,"""wiki_ref"": ""DTC_VOCABULARY \u00a74"""
