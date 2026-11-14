@@ -57,7 +57,7 @@ Partial-oxidation product. CO exists only if combustion happened but ran out of 
 
 | Condition | CO range |
 |---|---|
-| Tailpipe, working cat | 0.1 – 0.45 % |
+| Tailpipe, working cat | 0.1 – 0.3 % (legal idle limit 0.3 %, cars first used from 1/9/2002) |
 | Tailpipe, cat not lighting off | 0.5 – 0.9 % |
 | Pre-cat | up to 1.5 % can be normal |
 
@@ -135,7 +135,7 @@ Thermal NO formation requires peak temperatures > ~2500 °F (~1370 °C). At idle
 | Parameter | Symbol | Ideal idle | Rich | Lean | Misfire |
 |---|---|---|---|---|---|
 | Hydrocarbons | HC | 0 – 35 ppm | Moderate | Low | Very high (> 1000 ppm) |
-| Carbon monoxide | CO | 0.1 – 0.45 % | High (> 1.0 %) | Very low (< 0.1 %) | Low – moderate |
+| Carbon monoxide | CO | 0.1 – 0.3 % | High (> 1.0 %) | Very low (< 0.1 %) | Low – moderate |
 | Carbon dioxide | CO₂ | 14.5 – 16.0 % | Low (< 12 %) | Low (< 12 %) | Very low (< 10 %) |
 | Oxygen | O₂ | 0 – 0.35 % | Low (< 0.2 %) | High (> 1.0 %) | High (> 4.0 %) |
 | Nitric oxide | NOₓ | < 100 ppm | Very low | Very high | Low |
@@ -174,7 +174,7 @@ GASLab raises `SENSOR_INTERFERENCE_SUSPECT` when companion-gas patterns suggest 
 ## Core Entities
 
 - **GAS_HC** — Hydrocarbons (ppm), NDIR ~3.4 µm. Normal: ≤ 35 ppm (with cat), ≤ 250 ppm (no cat). Consumer: `GasReading` → `rule_engine._signature_values`.
-- **GAS_CO** — Carbon monoxide (vol %), NDIR ~4.7 µm. Normal: 0.1–0.45 % (with cat). One-way rich indicator. Consumer: `GasReading` → `rule_engine._signature_values`.
+- **GAS_CO** — Carbon monoxide (vol %), NDIR ~4.7 µm. Normal: 0.1–0.3 % (with cat). One-way rich indicator. Consumer: `GasReading` → `rule_engine._signature_values`.
 - **GAS_CO2** — Carbon dioxide (vol %), NDIR ~4.3 µm. Normal: 14.5–16.0 % (with cat). Combustion efficiency score card. Consumer: `GasReading` → `rule_engine._signature_values`.
 - **GAS_O2** — Oxygen (vol %), electrochemical/paramagnetic. Normal: ≤ 0.35 % (post-cat). Truthful post-catalyst mixture indicator. Consumer: `GasReading` → `rule_engine._signature_values`.
 - **GAS_NOX** — Oxides of nitrogen (ppm), electrochemical. Normal: < 100 ppm (idle). Thermal NO indicator. Consumer: `GasReading` → `rule_engine._signature_values`.

@@ -127,7 +127,8 @@ def _coc_adjust_normal_bounds(
     generic ±0.005 window is kept.
 
     When ``co_low_idle`` is present, the CO max uses the per-vehicle CoC
-    limit instead of the generic 0.45 %.
+    limit instead of the Euro-scaled idle ceiling (``_euro_thresholds``), which always replaces the
+    ontology maximum (T-GASA-18).
 
     Source: ``GAS_VOCABULARY §11``; clamp limits GASWIKI-06A / GASWIKI-05 (F-C2-15).
     """
@@ -367,7 +368,7 @@ def _definitive_match(
     if (
         # T-GASA-7 (F-C2-9): tier_max is the active DNA-scaled tier — with cat normal_with_cat.max, without mild_rich.max.
         reading.co > (
-            collision.get("co_tier_max", 0.45)  # vocab: GAS_VOCABULARY §10.2 normal_with_cat.max — Euro 4 with cat
+            collision.get("co_tier_max", 0.3)  # vocab: GAS_VOCABULARY §10.2 normal_with_cat.max — Euro 4 with cat
             if dna.has_catalyst
             else collision.get("co_tier_max_no_cat", 1.5)  # vocab: GAS_VOCABULARY §10.2 mild_rich.max — Euro 1 no-cat
         )

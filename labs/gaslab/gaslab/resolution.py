@@ -445,7 +445,7 @@ def apply_differentiators(
             reading_high.nox > 1200  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED — NOx very high at 2500
             and 1.0 <= lchem_high <= 1.06  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (2500)
             and reading_high.hc <= 100  # vocab: GAS_VOCABULARY §10.1 normal_borderline.max — "others near normal"
-            and reading_high.co <= 0.45  # vocab: GAS_VOCABULARY §10.2 normal_with_cat.max — "others near normal"
+            and reading_high.co <= 0.3  # vocab: GAS_VOCABULARY §10.2 normal_with_cat.max — "others near normal"
         )
         if toa_clean_idle and toa_nox_spike and "TIMING_OVER_ADVANCED" not in survivors:
             survivors.append("TIMING_OVER_ADVANCED")

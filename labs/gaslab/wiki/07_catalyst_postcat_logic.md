@@ -44,7 +44,7 @@ Reduction:  2 NO + 2 CO →  N₂ + 2 CO₂
 
 | Condition | Pre-cat CE | Post-cat CE | Tailpipe CO | Tailpipe HC | Tailpipe O₂ |
 |---|---|---|---|---|---|
-| Healthy engine + healthy cat | ~95 % | > 99 % | 0.1 – 0.45 % | < 35 ppm | < 0.35 % |
+| Healthy engine + healthy cat | ~95 % | > 99 % | 0.1 – 0.3 % | < 35 ppm | < 0.35 % |
 | Healthy engine + failed cat | ~95 % | < 97 % | 0.5 – 0.9 % | 75 – 125 ppm | 0.3 – 0.7 % |
 | Rich mixture + healthy cat | < 90 % | ~ 90 % | High (> 1 %) | Moderate | Very low |
 | Misfire + healthy cat | < 80 % | < 85 % | Moderate | Very high | High |

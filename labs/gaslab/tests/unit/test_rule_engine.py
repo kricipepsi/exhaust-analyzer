@@ -98,13 +98,13 @@ def test_misfire_via_masking_rule(ontology: dict) -> None:
 def test_collision_routes_to_external_o2(ontology: dict) -> None:
     """High CO + high O2 triggers collision rule → EXTERNAL_O2_SUSPECT.
 
-    Per ``GAS_WIKI §8.5``: CO > 0.45 % AND O2 > 2.0 % is physically
+    Per ``GAS_WIKI §8.5``: CO > 0.3 % (co_tier_max, T-GASA-18) AND O2 > 2.0 % is physically
     impossible in a single combustion event.  The triangle sum determines
     whether RICH_MISFIRE or EXHAUST_AIR_LEAK is the correct label.
     """
     reading = _reading(
         hc=50,
-        co=3.0,  # wiki: GAS_WIKI §8.5 — > 0.45 %
+        co=3.0,  # wiki: GAS_WIKI §8.5 — > 0.3 %
         co2=11.0,
         o2=2.5,  # wiki: GAS_WIKI §8.5 — > 2.0 %
         nox=50,
@@ -200,7 +200,7 @@ def test_cam_timing_emitted_for_canonical_signature(ontology: dict) -> None:
 
     Per ``GAS_WIKI §8.6``: HC > 1000 ppm AND CO present AND O₂ > 2 %.
     The canonical reading below satisfies the collision rule as well
-    (co > 0.45 AND o2 > 2.0), but the cam-timing rule at priority 82 fires
+    (co > 0.3 AND o2 > 2.0), but the cam-timing rule at priority 82 fires
     before collision at priority 80.
 
     Triangle sum = 0.6 + 10.0 + 4.5 = 15.1 -> validity is VALID.
@@ -229,12 +229,12 @@ def test_cam_timing_priority_above_collision(ontology: dict) -> None:
     """Cam-timing rule (priority 82) wins over collision rule (priority 80).
 
     A reading that satisfies BOTH the cam-timing signature
-    AND the collision rule (co > 0.45, o2 > 2.0) must classify to
+    AND the collision rule (co > 0.3, o2 > 2.0) must classify to
     CAM_TIMING_RETARDED_MAF, not RICH_MISFIRE or EXHAUST_AIR_LEAK.
     """
     reading = _reading(
         hc=1200,  # wiki: GAS_WIKI §8.6 — > 1000 ppm
-        co=0.6,   # above collision co_tier_max (0.45)
+        co=0.6,   # above collision co_tier_max (0.3)
         co2=10.0,
         o2=4.5,   # above both WVT (2.0) and collision (2.0) thresholds
         nox=80,
@@ -255,14 +255,14 @@ def test_cam_timing_priority_above_collision(ontology: dict) -> None:
 def test_collision_still_fires_when_hc_low(ontology: dict) -> None:
     """Collision rule still fires when HC is below the WVT threshold.
 
-    Regression guard: a reading with co > 0.45 AND o2 > 2.0 but
+    Regression guard: a reading with co > 0.3 AND o2 > 2.0 but
     hc < 1000 must still classify via the collision rule (RICH_MISFIRE
     or EXHAUST_AIR_LEAK).  WVT rule must not eat collision's domain
     when HC is low.
     """
     reading = _reading(
         hc=300,   # below WVT hc_threshold (1000)
-        co=2.0,   # above collision co_tier_max (0.45)
+        co=2.0,   # above collision co_tier_max (0.3)
         co2=10.0,
         o2=4.0,   # above collision o2_threshold (2.0), below WVT (5.0)
         nox=80,
@@ -752,7 +752,7 @@ def test_coc_tighter_lambda_shrinks_normal_window(ontology: dict) -> None:
 
 
 def test_coc_co_target_blocks_borderline_normal(ontology: dict) -> None:
-    """CO=0.40 is normal at generic CO max 0.45 but outside CoC limit 0.30."""
+    """CO=0.40 is outside the CoC limit 0.30 (CoC overrides the Euro idle ceiling at HIGH confidence)."""
     reading = _reading(hc=15, co=0.40, co2=15.0, o2=0.2, nox=50)
     dna = _dna(co_low_idle=0.30)
     candidates = _matching_fault_candidates(
@@ -1577,7 +1577,7 @@ def test_coc_probe_reading_ignores_coc_below_high(ontology: dict) -> None:
 @pytest.mark.parametrize(
     ("co", "co2", "euro", "has_catalyst", "collision"),
     [
-        (1.2, 11.5, "Euro 4", True, True),  # vocab: GAS_VOCABULARY §10.2 — Euro 4 + cat, tier_max 0.45
+        (1.2, 11.5, "Euro 4", True, True),  # vocab: GAS_VOCABULARY §10.2 — Euro 4 + cat, tier_max 0.3
         (1.2, 11.5, "Euro 1", True, True),  # catalyst presence alone picks the tier (T-GASA-7 ruling)
         (1.2, 11.5, "Euro 1", False, False),  # vocab: GAS_VOCABULARY §10.2 — Euro 1 no-cat, tier_max 1.5 (F-C2-9 probe)
         (1.5, 11.2, "Euro 1", False, False),  # at the no-cat tier_max: not above it
@@ -1587,7 +1587,7 @@ def test_coc_probe_reading_ignores_coc_below_high(ontology: dict) -> None:
 def test_collision_tier_max_scales_with_catalyst(
     ontology: dict, co: float, co2: float, euro: str, has_catalyst: bool, collision: bool
 ) -> None:
-    """vocab §10.2: tier_max is the active DNA-scaled tier (Euro 4 + cat 0.45, Euro 1 no-cat 1.5)."""
+    """vocab §10.2: tier_max is the active DNA-scaled tier (Euro 4 + cat 0.3, Euro 1 no-cat 1.5)."""
     reading = _reading(hc=150, co=co, co2=co2, o2=2.4, nox=40)  # O2 > 2.0: wiki: GAS_WIKI §8.5
     dna = _dna(euro_emission_category=euro, has_catalyst=has_catalyst)
     chem, _ = classify(reading, dna, EngineStateBucket.STABILIZED_IDLE, ontology)

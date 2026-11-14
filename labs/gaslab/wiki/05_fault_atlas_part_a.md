@@ -36,7 +36,7 @@ source: "labs/gaslab/wiki/05_fault_atlas_part_a.md"
 
 ### FAULT_NORMAL_OPERATION — healthy idle {#FAULT_NORMAL_OPERATION}
 - **chemical_state:** `NORMAL_OPERATION` · **dna_gate:** none · **match_class:** FALLBACK
-- **gas_vector:** HC 0–35 ppm | CO 0.1–0.45 % | CO₂ 14.5–16 % | O₂ 0–0.35 % | NOₓ < 100 ppm | λ 0.995–1.005
+- **gas_vector:** HC 0–35 ppm | CO 0.1–0.3 % | CO₂ 14.5–16 % | O₂ 0–0.35 % | NOₓ < 100 ppm | λ 0.995–1.005
 - Catalyst lit, mixture in window, triangle valid. Emitted by absence of any matching fault.
 
 ### FAULT_RICH_MIXTURE — too much fuel {#FAULT_RICH_MIXTURE}
@@ -155,7 +155,7 @@ source: "labs/gaslab/wiki/05_fault_atlas_part_a.md"
 
 ## Core Entities
 
-- **FAULT_NORMAL_OPERATION** — `NORMAL_OPERATION`, FALLBACK. HC 0–35, CO 0.1–0.45 %, CO₂ 14.5–16 %, O₂ 0–0.35 %, NOₓ < 100, λ 0.995–1.005. Consumer: `rule_engine.classify` (default output).
+- **FAULT_NORMAL_OPERATION** — `NORMAL_OPERATION`, FALLBACK. HC 0–35, CO 0.1–0.3 %, CO₂ 14.5–16 %, O₂ 0–0.35 %, NOₓ < 100, λ 0.995–1.005. Consumer: `rule_engine.classify` (default output).
 - **FAULT_RICH_MIXTURE** — `RICH_MIXTURE`, SPECIFIC. CO > 1.5 %, O₂ < 0.5 %, λ < 0.95. Consumer: `rule_engine._matching_fault_candidates`.
 - **FAULT_LEAN_MIXTURE** — `LEAN_MIXTURE`, SPECIFIC. CO < 0.1 %, O₂ > 2.5 %, λ > 1.05. Consumer: `rule_engine._matching_fault_candidates`.
 - **FAULT_IGNITION_MISFIRE** — `IGNITION_MISFIRE`, DEFINITIVE (via RULE_MASKING). HC > 1000, O₂ > 3.0 %, NOₓ < 50. Consumer: `rule_engine._definitive_match` (priority 85).

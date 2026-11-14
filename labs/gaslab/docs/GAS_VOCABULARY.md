@@ -364,14 +364,14 @@ thresholds:
 
 ```yaml
 thresholds:
-  normal_with_cat:        { min: 0.1, max: 0.45 }
+  normal_with_cat:        { min: 0.1, max: 0.3 }   # legal idle CO limit, cat cars first used from 1/9/2002 (T-GASA-17)
   cat_not_lit_band:       { min: 0.5, max: 0.9 }
   mild_rich:              { min: 0.5, max: 1.5 }
   clear_rich:             { min: 1.5, max: 3.0 }
   very_rich:              { min: 3.0 }
 ```
 
-The collision rule (§8.5 in wiki) uses the active DNA-scaled tier maximum, read from `reasoning_grammar.collision_rule`: `co_tier_max` `0.45` (`normal_with_cat.max`, Euro 4 + cat) when `has_catalyst` is true, else `co_tier_max_no_cat` `1.5` (`mild_rich.max`, Euro 1 no-cat). The tier is chosen by catalyst presence only (T-GASA-7, F-C2-9).
+The collision rule (§8.5 in wiki) uses the active DNA-scaled tier maximum, read from `reasoning_grammar.collision_rule`: `co_tier_max` `0.3` (`normal_with_cat.max`, Euro 4 + cat) when `has_catalyst` is true, else `co_tier_max_no_cat` `1.5` (`mild_rich.max`, Euro 1 no-cat). The tier is chosen by catalyst presence only (T-GASA-7, F-C2-9).
 
 ### 10.3 `gas_co2` (vol %)
 
