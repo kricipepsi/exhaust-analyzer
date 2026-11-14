@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-4u` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **1** | 1 | NO | 10-25 min | projector doc drift |
+| `T-AUD-22b` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 30 min | codeaudit comlab python inventory |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-4u` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 1/5** — T-AUD-4q retired COMLab's DNA projector (`comlab/projection.py`, `comlab/schemas/lab_dna_views.py`).
-  `repo\apps\wired\audit_tasks/T-AUD-4u_projector_doc_drift(1).md`
+**`T-AUD-22b` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — Every numeric literal in the `.py` files of the COMLab group (`labs/comlab/comlab/**/*.py`, `labs/comlab/registry/**/*.py`) that carries a domain value is listed in `apps/wired/audit_tasks/codeaudit/c
+  `repo\apps\wired\audit_tasks/T-AUD-22b_codeaudit_comlab_python_inventory(3).md`
 
 ## Distribution
 
-- **1/5** — 1: T-AUD-4u
+- **3/5** — 1: T-AUD-22b
