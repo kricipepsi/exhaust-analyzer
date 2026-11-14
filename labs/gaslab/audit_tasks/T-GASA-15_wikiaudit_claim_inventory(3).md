@@ -23,7 +23,7 @@
 2026-11-13). Docs row in the app clone `C:/4DApp/repo`, on branch `fix/T-GASA-15` (built on the accepted `fix/T-GASA-14`).
 - **Test length: 1/5.** One checker run, under 10 s.
 - **Runs real compute: NO.**
-- **Expected wall-clock: 60 min.** Stop rule: at 120 min, finish the current wiki file, commit, write `## Time` and a
+- **Expected wall-clock: 60 min (correction 1: 10 min).** Stop rule: at 120 min, finish the current wiki file, commit, write `## Time` and a
   partial RESULT that names the first file not done, then stop.
 - **Plan: NONE.** The register format and its checker are fixed (`wikiaudit/README.md`, `check_claims.py`).
 - **Overnight:** no.
@@ -54,24 +54,30 @@ classifies; it verifies nothing on the web. Done is `check_claims.py --scope wik
   post-cat rule (`CO < 0.3 %`) and wiki 11 §11.2.3. Its claims at candidates `C0214`, `C0245`, `C0600`, `C0796` carry a
   `suspect` text (step 2). That seed is not the limit: flag every contradiction you see.
 - **R5** No web access in this row. The verification rows use firecrawl.
+- **R6** `claims.csv` is UTF-8 with every non-ASCII character as written in the wiki (`–`, `°`, `≤`, `λ`), never
+  double-encoded (`â€“`, `Â°`). `check_claims.py` rejects a double-encoded field. Commit `a6145dd` holds 570 such
+  fields on 484 lines: repair them in one further commit that changes `claims.csv` only; change no claim's content.
 
 ### First action ###
 ```bash
-cd C:/4DApp/repo && git branch --show-current && git log --oneline fix/T-GASA-14..HEAD && git status --porcelain && C:/4DApp/.venv/Scripts/python.exe -I labs/gaslab/audit_tasks/wikiaudit/extract_candidates.py && git status --porcelain
+cd C:/4DApp/repo && git branch --show-current && git log --oneline fix/T-GASA-14..HEAD && C:/4DApp/.venv/Scripts/python.exe -I labs/gaslab/audit_tasks/wikiaudit/check_claims.py --scope wiki | tail -1
 ```
 ```
 fix/T-GASA-15
-<Cowork's spec(T-GASA-15) commit>
-candidates 1565 auto_non_domain 397 to_classify 1168
+<Cowork's spec(T-GASA-15) correction 1 commit>
+a6145dd docs(T-GASA-15): WIKIAUDIT claim inventory of the 14 wiki files (680 candidates, 1171 claims, 107 suspect)
+9cc058d spec(T-GASA-15): WIKIAUDIT claim inventory of the wiki; register tools and candidates
+CLAIMS FAIL 570 error(s)
 ```
-Both `git status --porcelain` runs print nothing: the script re-writes `candidates.csv` byte-identical. Anything else
-is a stop.
+Anything else is a stop. Then repair per R6.
 
 ### Success criteria ###
 1. Step 1 prints `CLAIMS OK scope=wiki candidates` with the P1 wiki count and no `ERROR` line.
 2. Step 2 prints `seeds flagged 4 of 4`.
 3. The note discloses the step 1 `classes` and `suspect` lines, and lists every `suspect` claim with its reason.
-4. One new commit on `fix/T-GASA-15` after the spec commit that adds `claims.csv` and nothing else.
+4. On `fix/T-GASA-15` after the spec commits: `a6145dd` (adds `claims.csv`) and one R6 repair commit that changes
+   `claims.csv` only.
+5. Step 4 prints `content equal after decode: True`: the repair changed encoding, not content.
 
 ### Context ###
 - The operator found the wiki's CO 0.45 % "normal" above the legal limit and ordered every wiki number source-checked.
@@ -91,7 +97,7 @@ Expected: `checked`, and no `MISSING` line.
 3. `repo/labs/gaslab/audit_tasks/results/RESULT_T-GASA-15.md`.
 
 ### Files to touch ###
-- `repo/labs/gaslab/audit_tasks/wikiaudit/claims.csv` (CREATE: R1-R4)
+- `repo/labs/gaslab/audit_tasks/wikiaudit/claims.csv` (MODIFY: R6; created by `a6145dd` under R1-R4)
 - `repo/labs/gaslab/audit_tasks/progress_notes/T-GASA-15.md` (CREATE)
 - `repo/labs/gaslab/audit_tasks/results/RESULT_T-GASA-15.md` (CREATE)
 - `repo/labs/gaslab/audit_tasks/wikiaudit/candidates.csv` (RUNTIME: re-written byte-identical by the first action)
@@ -113,10 +119,14 @@ timeout 60 $PY -I check_claims.py --scope wiki | tail -4
 timeout 60 $PY -I -c "import csv; r=list(csv.DictReader(open('claims.csv',encoding='utf-8'))); s={'C0214','C0245','C0600','C0796'}; f={x['cand_id'] for x in r if x['cand_id'] in s and x['suspect'].strip() and '0.45' in x['value']}; print(f'seeds flagged {len(f)} of 4')"
 # 3.
 cd C:/4DApp/repo && git log --oneline fix/T-GASA-14..HEAD && git diff --stat HEAD~1 HEAD | tail -1 && git status --porcelain
+# 4.
+cd C:/4DApp/repo/labs/gaslab/audit_tasks/wikiaudit && timeout 60 $PY -I -c "import subprocess; old=subprocess.run(['git','show','a6145dd:./claims.csv'],capture_output=True).stdout.decode('utf-8'); new=open('claims.csv',encoding='utf-8',newline='').read(); print('content equal after decode:', old.encode('cp1252').decode('utf-8')==new)"
 ```
 Expected:
 - step 1: a `classes …` line, a `suspect N` line, `CLAIMS OK scope=wiki candidates <P1 wiki count> covered claims N`; no `ERROR`.
 - step 2: `seeds flagged 4 of 4`.
-- step 3: the spec commit and your one commit; `1 file changed`; only the note and the RESULT untracked.
+- step 3: the repair commit, the correction commit, `a6145dd`, `9cc058d`; `1 file changed`; only the note and the
+  RESULT untracked.
+- step 4: `content equal after decode: True`.
 
 Repo-wide gates: none (no code or test changes).

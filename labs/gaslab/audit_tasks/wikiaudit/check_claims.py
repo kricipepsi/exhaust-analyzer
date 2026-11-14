@@ -31,6 +31,16 @@ def nums(s: str) -> set[str]:
     return {n.replace(",", ".").lstrip("0") or "0" for n in NUM_RE.findall(s)}
 
 
+def mojibake(s: str) -> bool:
+    """True when s is UTF-8 text that was decoded as cp1252 and re-encoded (e.g. 'Â°' for '°', 'â€“' for '–')."""
+    if s.isascii():
+        return False
+    try:
+        return s.encode("cp1252").decode("utf-8") != s
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return False
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--scope", choices=["wiki", "vocab_ontology", "all"], required=True)
@@ -58,6 +68,9 @@ def main() -> int:
     covered: set[str] = set()
     for r in claims:
         cid = r["claim_id"]
+        for f in FIELDS:
+            if mojibake(r[f]):
+                errors.append(f"ERROR {cid}: {f} is double-encoded (UTF-8 read as cp1252): {r[f][:40]!r}")
         if not re.fullmatch(r"W\d{4}", cid):
             errors.append(f"ERROR {cid}: claim_id must be W + 4 digits")
         c = cands.get(r["cand_id"])

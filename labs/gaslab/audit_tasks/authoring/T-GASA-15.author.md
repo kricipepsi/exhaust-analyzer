@@ -30,7 +30,8 @@ Rehearsal copy: `C:/4DApp/recheck/T-GASA-15/lab/`.
 |---|---|---|
 | step 1 | DEFERRED | `CLAIMS OK scope=wiki candidates 680`; pre-state `CLAIMS FAIL 680 error(s)` (P2) |
 | step 2 | DEFERRED | `seeds flagged 4 of 4`; pre-state: no `claims.csv`, the command raises |
-| step 3 | DEFERRED | the spec commit plus one commit, `1 file changed` |
+| step 3 | DEFERRED | the repair commit on top of the correction commit, `1 file changed` |
+| step 4 | SIMULATED | cp1252→UTF-8 round trip of `a6145dd:claims.csv` written in place: `content equal after decode: True`; `484 insertions(+), 484 deletions(-)`; `check_claims.py` `CLAIMS OK` (restored) |
 
 ### Exclusivity ###
 No other implementer runs.
@@ -41,6 +42,11 @@ T-GASA-15: the wiki's 680 numeric lines classified into claims.csv; CLAIMS OK; s
 ### Cold read ###
 own pass 2026-11-14: literals `CO < 0.3 %` (wiki 03, 1 hit) and `0.1 – 0.45` at the four seed candidates present · closed sets: R2 scope = non-auto `wiki/` rows of `candidates.csv`; R4 suspect set = claims that contradict another claim or the implementer's knowledge · counts: 680 = P1 = P2 · traceability: criteria 1-4 → steps 1-3 and the note · first action re-run leaves the tree clean (checked on 5690cd4) · no finding.
 cold read 2026-11-14 FOCUSED reader; trigger grep hit (R2, R4); 0 findings, 0 patched, 0 not-a-conflict — 20070 tok, 5 calls
+cold read 2026-11-14 DELTA reader (correction 1); trigger patch; 0 findings — 3 calls (the reader read the patched file whole; it runs no git)
 
 ### Correction history ###
-(none)
+- **Correction 1 (2026-11-14, review of `a6145dd`).** Build passed every gate, but 570 fields on 484 lines of
+  `claims.csv` are double-encoded (UTF-8 decoded as cp1252, re-encoded: `â€“`, `Â°`, `Î»`). The checker had no encoding
+  check (author gap): `mojibake()` added, it fails `a6145dd` and passes the round-tripped file. R6, criteria 4-5 and
+  step 4 added; first action re-pinned. Classification sampled (25 random, 12 NON_DOMAIN, all 18 LEGAL_LIMIT): sound.
+  Lost alternative: Cowork repairs the file (a silent repair of a failure).
