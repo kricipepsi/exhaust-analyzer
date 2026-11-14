@@ -1,6 +1,8 @@
 """T-AUD-22: check claims_<group>.csv against candidates_<group>.csv and the source files (Cowork tool).
 
-python -I check_code_claims.py --group gaslab|comlab|rest
+python -I check_code_claims.py --group gaslab|comlab|rest [--files GLOB ...]
+--files limits the coverage check to candidates whose file matches a glob (one inventory slice); every claim row is
+still checked. With no --files the whole group must be covered.
 Exit 0 and a last line "CLAIMS OK ..." when every check passes; exit 1 and one "ERROR" line per defect otherwise.
 The format is README.md beside this file. same_as may name a wiki claim (W id, wikiaudit/claims.csv) or an earlier
 claim of the same group.
@@ -9,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import fnmatch
 import hashlib
 import re
 import sys
@@ -37,10 +40,26 @@ def nums(s: str) -> set[str]:
     return {norm(n) for n in NUM_RE.findall(s)}
 
 
+def mojibake(s: str) -> bool:
+    """True when s is UTF-8 text that was decoded as cp1252 and re-encoded (e.g. 'Â°' for '°', 'â€“' for '–')."""
+    if s.isascii():
+        return False
+    try:
+        return s.encode("cp1252").decode("utf-8") != s
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return False
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--group", choices=sorted(PREFIX), required=True)
-    group = ap.parse_args().group
+    ap.add_argument("--files", nargs="+", default=None, metavar="GLOB")
+    args = ap.parse_args()
+    group = args.group
+    globs = args.files
+
+    def in_scope(f: str) -> bool:
+        return globs is None or any(fnmatch.fnmatchcase(f, g) for g in globs)
     pre = PREFIX[group]
     errors: list[str] = []
     cands = {r["cand_id"]: r for r in csv.DictReader((HERE / f"candidates_{group}.csv").open(encoding="utf-8"))}
@@ -67,6 +86,9 @@ def main() -> int:
     covered: set[str] = set()
     for r in claims:
         cid = r["claim_id"]
+        for f in FIELDS:
+            if mojibake(r[f]):
+                errors.append(f"ERROR {cid}: {f} is double-encoded (UTF-8 read as cp1252): {r[f][:40]!r}")
         if not re.fullmatch(rf"{pre}\d{{4}}", cid):
             errors.append(f"ERROR {cid}: claim_id must be {pre} + 4 digits")
         c = cands.get(r["cand_id"])
@@ -97,7 +119,7 @@ def main() -> int:
             elif by_id[s]["cand_id"] == r["cand_id"]:
                 errors.append(f"ERROR {cid}: same_as points into its own line")
     for c in cands.values():
-        if not c["auto"] and c["cand_id"] not in covered:
+        if not c["auto"] and in_scope(c["file"]) and c["cand_id"] not in covered:
             errors.append(f"ERROR uncovered {c['cand_id']} {c['file']}:{c['line']}")
     for e in errors:
         print(e)
@@ -105,11 +127,12 @@ def main() -> int:
         print(f"CLAIMS FAIL {len(errors)} error(s)")
         return 1
     cls = Counter(r["class"] for r in claims)
-    todo = sum(1 for c in cands.values() if not c["auto"])
+    todo = sum(1 for c in cands.values() if not c["auto"] and in_scope(c["file"]))
     print("classes " + " ".join(f"{k}={cls[k]}" for k in sorted(cls)))
     print(f"suspect {sum(1 for r in claims if r['suspect'].strip())} "
           f"same_as_wiki {sum(1 for r in claims if r['same_as'].startswith('W'))}")
-    print(f"CLAIMS OK group={group} candidates {todo} covered claims {len(claims)}")
+    scope = "" if globs is None else " scope=" + ",".join(globs)
+    print(f"CLAIMS OK group={group}{scope} candidates {todo} covered claims {len(claims)}")
     return 0
 
 
