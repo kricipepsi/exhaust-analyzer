@@ -37,4 +37,6 @@ T-AUD-22e: COMLab knowledge-graph literals (261 lines) classified; CLAIMS OK sco
 cold read 2026-11-15 FOCUSED reader: 0 findings (C:/4DApp/recheck/scratch/T-AUD-22e_coldread.md) — 4 calls
 
 ### Correction history ###
-(none)
+- 2026-11-15 (Cowork, after the hand-back B12): `check_code_claims.py` decodes `\uXXXX` escapes in the candidate
+  text before NUM_RE (`unescape`, f4f0347); the rules, `*.py`, registry and gaslab scopes stay CLAIMS OK; the 354
+  implementer rows pass unchanged. No task-file change.
