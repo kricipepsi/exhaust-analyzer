@@ -2655,7 +2655,7 @@
         "HORIZON_LEGACY",
         "HORIZON_ADAPTIVE"
       ],
-      "ui_diagnostic_string": "Sensor fault producing rich-mixture chemistry through ECU mis-fueling. ECT sensor biased cold (stuck at low resistance), MAF over-reading (oil contamination), or fuel-rail pressure sensor reading high \u2014 all cause the ECU to over-fuel, creating true rich combustion. Compare ECT against mechanical thermostat temperature; clean MAF hot-wire; verify fuel pressure with mechanical gauge.",
+      "ui_diagnostic_string": "Sensor fault producing rich-mixture chemistry through ECU mis-fueling. ECT sensor biased cold (resistance stuck high), MAF over-reading (oil contamination), or fuel-rail pressure sensor reading high \u2014 all cause the ECU to over-fuel, creating true rich combustion. Compare ECT against mechanical thermostat temperature; clean MAF hot-wire; verify fuel pressure with mechanical gauge.",
       "cross_domain_matrix": {
         "gas_lab_state": "RICH_MIXTURE",
         "obd_live_pids": {},
