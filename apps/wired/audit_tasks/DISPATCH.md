@@ -16,7 +16,7 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-22h` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 30 min | codeaudit rest apps inventory |
+| `T-AUD-22h` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 30 min (correction 1: 10 min) | codeaudit rest apps inventory |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 

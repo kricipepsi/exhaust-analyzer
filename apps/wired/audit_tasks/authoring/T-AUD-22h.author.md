@@ -32,10 +32,11 @@ commit: `check_code_claims.py` gains `OUT_OF_SCOPE` (one file) and prints `out_o
 ### Gate rehearsal ###
 | step | state | evidence |
 |---|---|---|
-| step 1 | DEFERRED | pre-state `CLAIMS FAIL 209 error(s)` (P2) |
-| step 2 | DEFERRED | pre-state `CLAIMS FAIL 209 error(s)`; post-state `CLAIMS OK ... candidates 411` needs the rows |
+| step 1 | PASS | run 1 (`5f2726f`): `CLAIMS OK group=rest scope=apps/* candidates 209 covered claims 451` |
+| step 2 | PASS | run 1: `suspect 38`, `CLAIMS OK group=rest candidates 411 covered claims 451` (P6 pre-state) |
 | step 3 | PASS | `CLAIMS OK group=rest scope=labs/* candidates 202 covered claims 210` (P5) |
-| step 4 | DEFERRED | `0` removed lines; the CSV, note and RESULT in status |
+| step 4 | DEFERRED | `0` removed lines against `79c1e1b`; the CSV, note and RESULT in status |
+| step 5 | PASS (both arms) | pre-state `R9 FAIL [] [] [RK0247, RK0249, RK0384, RK0386, RK0394]`; five rows marked: `R9 OK changed 5 missing none` (restored) |
 
 ### Exclusivity ###
 No other implementer runs.
@@ -47,4 +48,11 @@ T-AUD-22h: apps/ui and apps/wired literals (209 lines) classified; CLAIMS OK gro
 cold read 2026-11-15 FOCUSED reader: 0 findings; 1 UNSETTLED (header "commit locally" vs lane no-commit) — RULED: the lane go prompt overrides the header, as for T-AUD-22d-22g (C:/4DApp/recheck/scratch/T-AUD-22h_coldread.md) — 4 calls
 
 ### Correction history ###
-(none)
+- DELTA cold read 2026-11-15: 0 findings; UNSETTLED R9 line break inside `lineterminator` fixed before dispatch (C:/4DApp/recheck/scratch/T-AUD-22h_coldread_c1.md).
+- **Correction 1 (2026-11-15, after run 1 promoted as `5f2726f`).** Run 1 met every criterion (re-run by Cowork: 209 /
+  411 / 202 OK, 0 removed lines, 7 min) but missed R7's lab-bound comparison on five rows (P7): MAF max 500 vs RK0188
+  655.35, FF RPM 16383 vs RK0182 8000, FF ECT 215 vs RK0184 140, FF IAT 215 vs RK0204 140. Added R9, P6, P7, criteria
+  4-6, step 4 against `79c1e1b`, step 5 (rehearsed: pre-state `R9 FAIL ... [5 rows]`; with the five marked `R9 OK
+  changed 5 missing none`). Lost alternative: accept and carry the five into the verification row (leaves the
+  register, the verification input, wrong). Noted but not ruled defects: CO2/O2 input max 22 % (above the physical
+  ~15.7 % / 20.9 %), downstream O2 max 1.5 V (J1979 1.275 V); left to the verification row as candidates.

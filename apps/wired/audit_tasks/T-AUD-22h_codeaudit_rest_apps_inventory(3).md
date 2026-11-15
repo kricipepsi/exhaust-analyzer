@@ -24,7 +24,7 @@ order 2026-11-13). Docs row in the app clone `C:/4DApp/repo`, on branch `fix/T-A
 `fix/T-AUD-22g`, `360918e`).
 - **Test length: 1/5.** Two checker runs, under 10 s each.
 - **Runs real compute: NO.**
-- **Expected wall-clock: 30 min.** Stop rule: at 90 min, finish the current file, write `## Time` and a partial
+- **Expected wall-clock: 30 min (correction 1: 10 min).** Stop rule: at 90 min, finish the current file, write `## Time` and a partial
   RESULT that names the first candidate not done, then stop.
 - **Plan: NONE.** The register format and its checker are fixed (`codeaudit/README.md`, `check_code_claims.py`).
 - **Overnight:** no.
@@ -45,6 +45,8 @@ row lists and classifies; it verifies nothing on the web. Done is `check_code_cl
 | P3 | `out_of_scope 129 candidate(s) in 1 file(s)` | `apps/ui/_sample_app_reference.py` (checker `OUT_OF_SCOPE`) | steps 1-2 after the rows |
 | P4 | `411` candidates for the whole group (labs `202` + P1) | `candidates_rest.csv` minus `auto` minus P3 | step 2 |
 | P5 | `CLAIMS OK group=rest scope=labs/* candidates 202` | the T-AUD-22g rows, unchanged | step 3 |
+| P6 | `suspect 38` before R9; at least `suspect 43` after it | `claims_rest.csv` at `5f2726f` (`RK0001`-`RK0451`) | step 2 |
+| P7 | the five R9 rows: `RK0247`, `RK0249` (`maf_gps_*` max `500.0` g/s vs `RK0188` `655.35`), `RK0384` (`FF_RPM_MAX` `16383` vs `RK0182` `8000`), `RK0386` (`FF_ECT_MAX` `215.0` vs `RK0184` `140.0`), `RK0394` (`FF_IAT_MAX` `215.0` vs `RK0204` `140.0`) | `5f2726f` | step 5 |
 
 `$PY` is `C:/4DApp/.venv/Scripts/python.exe`. `extract_code_candidates.py`, `check_code_claims.py`,
 `resync_register.py`, `candidates_*.csv` and `README.md` in `apps/wired/audit_tasks/codeaudit/`, and everything in
@@ -86,15 +88,25 @@ row lists and classifies; it verifies nothing on the web. Done is `check_code_cl
   `-100 .. +99.22 %` are one such case (T-AUD-22g `RK` suspects state the same for OBDLab).
 - **R8** `claims_rest.csv` stays UTF-8 as the source text reads; the checker rejects double-encoded fields. No web
   access in this row.
+- **R9** The rows `RK0211`-`RK0451` exist (`5f2726f`). Apply the R7 lab-bound comparison to each of them: every
+  `ANALYSER_SPEC` claim whose reading is also bounded by an `RK0001`-`RK0210` claim with a different value gets a
+  `suspect` text naming that claim and its value (a freeze-frame bound that is the SAE J1979 encoding range says so in
+  the text). The P7 rows are such claims; find and mark any other. Change only the `suspect` field of rows in
+  `RK0211`-`RK0451`: add no row, remove no row, change no other field, keep the LF line ends (a Python csv writer needs `lineterminator="\n"`). Update the note's figures and `suspect` list
+  and the RESULT to the new state, under a `## Correction 1` heading in each.
 
 ### First action ###
 ```bash
-cd C:/4DApp/repo && git branch --show-current && git log --oneline fix/T-AUD-22g..HEAD && git status --porcelain && cd apps/wired/audit_tasks/codeaudit && C:/4DApp/.venv/Scripts/python.exe -I check_code_claims.py --group rest --files 'apps/*' | tail -1
+cd C:/4DApp/repo && git branch --show-current && git log --oneline fix/T-AUD-22g..HEAD && git status --porcelain && cd apps/wired/audit_tasks/codeaudit && C:/4DApp/.venv/Scripts/python.exe -I check_code_claims.py --group rest | tail -3
 ```
 ```
 fix/T-AUD-22h
-<one or more spec(T-AUD-22h) commits by Cowork>
-CLAIMS FAIL 209 error(s)
+<Cowork's spec(T-AUD-22h) correction 1 commit>
+5f2726f <the first run's rows, note and RESULT>
+79c1e1b spec(T-AUD-22h): ...
+suspect 38 same_as_wiki 5
+out_of_scope 129 candidate(s) in 1 file(s)
+CLAIMS OK group=rest candidates 411 covered claims 451
 ```
 `git status --porcelain` prints nothing. Anything else is a stop.
 
@@ -105,8 +117,11 @@ CLAIMS FAIL 209 error(s)
    row per P1 candidate, and no `ERROR` line.
 3. Step 3 prints the P5 line (the T-AUD-22g rows still pass).
 4. The note discloses the step 2 `classes`, `suspect` and `same_as_wiki` figures, the count of new claims with an
-   empty `citation`, the count of "citation not found", and lists every new `suspect` claim with its reason.
-5. Only `claims_rest.csv` changes, by appended rows (step 4: `0` removed lines).
+   empty `citation`, the count of "citation not found", and lists every new `suspect` claim with its reason; its
+   `## Correction 1` section lists each R9 row and its reason.
+5. Against the spec commit `79c1e1b`, `claims_rest.csv` changes only by appended rows (step 4: `0` removed lines).
+6. Against `5f2726f`, only `suspect` fields of `RK0211`-`RK0451` change, and every P7 row is among them (step 5:
+   `R9 OK changed N missing none`, N at least 5); step 2's `suspect` figure is at least the P6 value.
 
 ### Context ###
 - The operator found the GASLab wiki's CO 0.45 % "normal" above the legal limit and that the same number was
@@ -127,9 +142,9 @@ Expected: `checked`, and no `MISSING` line.
 3. `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-22h.md`.
 
 ### Files to touch ###
-- `repo/apps/wired/audit_tasks/codeaudit/claims_rest.csv` (MODIFY: append rows per R1-R8)
-- `repo/apps/wired/audit_tasks/progress_notes/T-AUD-22h.md` (CREATE)
-- `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-22h.md` (CREATE)
+- `repo/apps/wired/audit_tasks/codeaudit/claims_rest.csv` (MODIFY: append rows per R1-R8; `suspect` fields per R9)
+- `repo/apps/wired/audit_tasks/progress_notes/T-AUD-22h.md` (MODIFY: `## Correction 1`)
+- `repo/apps/wired/audit_tasks/results/RESULT_T-AUD-22h.md` (MODIFY: `## Correction 1`)
 
 ### Out of scope ###
 - Editing any app, lab, config, wiki or vocabulary value, even a suspect one: the verification rows decide, then fix
@@ -150,13 +165,16 @@ timeout 60 $PY -I check_code_claims.py --group rest | tail -4
 # 3.
 timeout 60 $PY -I check_code_claims.py --group rest --files 'labs/*' | tail -1
 # 4.
-cd C:/4DApp/repo && git diff -- apps/wired/audit_tasks/codeaudit/claims_rest.csv | grep -c '^-[^-]' ; git status --porcelain
+cd C:/4DApp/repo && git diff 79c1e1b -- apps/wired/audit_tasks/codeaudit/claims_rest.csv | grep -c '^-[^-]' ; git status --porcelain
+# 5.
+timeout 60 $PY -I -c "import csv,io,subprocess as sp;P='apps/wired/audit_tasks/codeaudit/claims_rest.csv';A=list(csv.DictReader(io.StringIO(sp.run(['git','show','5f2726f:'+P],capture_output=True,check=True).stdout.decode('utf-8'))));B=list(csv.DictReader(open(P,encoding='utf-8')));assert [r['claim_id'] for r in A]==[r['claim_id'] for r in B],'rows differ';S={b['claim_id']:b['suspect'].strip() for b in B};bad=[a['claim_id'] for a,b in zip(A,B) if any(a[k]!=b[k] for k in a if k!='suspect')];ch=[b['claim_id'] for a,b in zip(A,B) if a['suspect']!=b['suspect']];out=[c for c in ch if not 'RK0211'<=c<='RK0451'];miss=[c for c in ('RK0247','RK0249','RK0384','RK0386','RK0394') if c not in ch or not S[c]];print('R9 FAIL',bad,out,miss) if bad or out or miss else print('R9 OK changed',len(ch),'missing none')"
 ```
 Expected:
 - step 1: a `classes …` line, `suspect N same_as_wiki M`, the P3 line, `CLAIMS OK group=rest scope=apps/* candidates
   <P1> covered claims N`; no `ERROR`.
 - step 2: the same `classes` and `suspect` lines, the P3 line, `CLAIMS OK group=rest candidates <P4> covered claims N`.
 - step 3: the P5 line.
-- step 4: `0`; status lists `claims_rest.csv` modified, and the note and the RESULT.
+- step 4: `0`; status lists `claims_rest.csv`, the note and the RESULT modified.
+- step 5: `R9 OK changed N missing none`, N at least 5.
 
 Repo-wide gates: none (no code or test changes).
