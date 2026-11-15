@@ -63,17 +63,15 @@ update.
 | `calculated_engine_load_pct` | 0.0 | 100.0 | % | |
 | `mass_airflow_gps` | 0.0 | 655.35 | g/s | |
 | `manifold_vacuum_kpa` | 0.0 | 255.0 | kPa | |
-| `shrtft1` | −127.0 | 127.0 | % | widened from OBD-nominal [−100, 99.22] (T-W-6) |
-| `longft1` | −127.0 | 127.0 | % | widened (T-W-6) |
-| `shrtft2` | −127.0 | 127.0 | % | only validated when `number_of_banks == 2` |
-| `longft2` | −127.0 | 127.0 | % | only validated when `number_of_banks == 2` |
+| `shrtft1` | −100.0 | 99.22 | % | SAE J1979 PID 06 `(A-128)*100/128` (ADR-0006 amendment, T-AUD-24a; amends T-W-6) |
+| `longft1` | −100.0 | 99.22 | % | SAE J1979 PID 07 `(A-128)*100/128` (ADR-0006 amendment, T-AUD-24a; amends T-W-6) |
+| `shrtft2` | −100.0 | 99.22 | % | only validated when `number_of_banks == 2` (ADR-0006 amendment, T-AUD-24a) |
+| `longft2` | −100.0 | 99.22 | % | only validated when `number_of_banks == 2` (ADR-0006 amendment, T-AUD-24a) |
 | `intake_air_temp_c` | −40.0 | 140.0 | °C | |
 | `throttle_pos_pct` | 0.0 | 100.0 | % | |
 | `control_module_voltage_v` | 0.0 | 18.0 | V | PCM pin supply per ecu-diagnosis/09 |
 
-**Rail-value rationale (T-W-6):** trims were widened to the OBD rail `±127`
-because a railed trim is itself a *sensor-fault signal* consumed by COMLab
-trim-evidence scoring; rejecting it as out-of-bounds would lose that signal.
+**Rail-value rationale (ADR-0006 amendment, T-AUD-24a; amends T-W-6):** trims use the SAE J1979 PIDs `06`–`09` range `[−100.0, 99.22]` (`(A-128)*100/128`) because a railed trim reads at those limits and is itself a *sensor-fault signal* consumed by COMLab trim-evidence scoring; see `ADR_OBDLab.md` ADR-0006 Amendment (T-AUD-24a).
 
 **Bank-2 null contract:** `shrtft2`/`longft2` must be `null` (not `0.0`) when
 `number_of_banks == 1`. Emitting `0.0` for an absent bank is a
@@ -231,8 +229,8 @@ _WIDEBAND_OFFSET_THRESHOLD = 0.05   # |ratio−1.0| trigger (o2-logic/03 / 08)
 ## 9. Semantic Consistency Thresholds (`core/semantic_consistency_checker.py`)
 
 ```python
-_TRIM_MIN            = -127.0  # Physics_Gate_4 (widened, T-W-6)
-_TRIM_MAX            =  127.0  # Physics_Gate_4 (widened, T-W-6)
+_TRIM_MIN            = -100.0  # Physics_Gate_4 (SAE J1979 PIDs 06-09; ADR-0006 amendment, T-AUD-24a)
+_TRIM_MAX            =  99.22  # Physics_Gate_4 (SAE J1979 PIDs 06-09; ADR-0006 amendment, T-AUD-24a)
 _CUTOFF_ECT_COLD     =  75     # thermal gate cutoff (°C), §4.1
 _CUTOFF_ECT_CLOSED   =  80     # Physics_Gate_2 closed-loop-expected (°C), §4
 _CUTOFF_VSS          =  10     # Physics_Gate_1 VSS (km/h)

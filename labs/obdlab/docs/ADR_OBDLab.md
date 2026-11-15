@@ -218,7 +218,11 @@ the other gates) rather than a bare `ValueError`.
 
 ## ADR-0006: Widen fuel-trim bounds to the OBD rail `±127` and treat rails as signal
 
-**Status:** Accepted (T-W-6)
+**Status:** Amended (T-AUD-24a, 2026-11-15)
+
+### Amendment (T-AUD-24a)
+
+SAE J1979 PIDs `06`–`09` (`shrtft1`, `longft1`, `shrtft2`, `longft2`) encode fuel trim as `(A - 128) * 100 / 128` for raw byte `A` in `0..255`, which spans `-100.0 .. +99.22 %` (`A = 0` → `-100 %`; `A = 255` → `+99.21875 %`). ECUs cannot emit `±127`; a saturated/railed trim reads at `-100` or `+99.22 %` (per-trim bounds `[-100.0, 99.22]`, summed `total_trim_correction_delta` bounds `[-200.0, 198.44]`). The "railed trim is a signal" principle stands: COMLab's downstream consumers gate well inside these limits at `|trim| >= 25 %` and `-15 %` (`fault_atlas_router.py:103`, `ecu_hardware_checker.py:14`, `perception_contradiction.py:54`). See `labs/gaslab/audit_tasks/wikiaudit/verdicts.csv` verdicts `CK0181`, `RK0191`, and `RK0192`.
 
 ### Context
 

@@ -348,10 +348,10 @@ class OBDLiveDataPayload(BaseModel):
     """
 
     engine_warmed: bool
-    total_trim_correction_delta: float = Field(..., ge=-254.0, le=254.0)
-    # Widened from [-200, 200] to [-254, 254] per T-W-6 — railed OBD trim values
-    # (±127 each for STFT + LTFT) sum to ±254. The consumer (fault_atlas_router
-    # trim-evidence scoring) gates on railed-trim patterns.
+    total_trim_correction_delta: float = Field(..., ge=-200.0, le=198.44)
+    # SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 %; two railed trims
+    # sum to [-200.0, 198.44] (T-AUD-24a, amends T-W-6). The consumer
+    # (fault_atlas_router trim-evidence scoring) gates on railed-trim patterns.
     total_trim_correction_delta_b2: float | None = None
     # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — ecu_fault fuse (enable_ecu_fuse, off by default)
     lambda_perception_delta: float | None = None
@@ -374,11 +374,11 @@ class OBDLiveDataPayload(BaseModel):
         default=None
     )  # consumer: v1 execute_triage_loop only (use_v2_registry=False); no reader on the default v2 path (F-C4-5) — Phase 5 linearity ladder (enable_maf_lin, off by default)
     shrtft1: float | None = Field(
-        default=None, ge=-127.0, le=127.0
-    )  # OBDLab_KG_Wiki rail; consumer: SF-008, EF-001/002/003
+        default=None, ge=-100.0, le=99.22
+    )  # SAE J1979 PID 06 (T-AUD-24a, amends T-W-6); consumer: SF-008, EF-001/002/003
     longft1: float | None = Field(
-        default=None, ge=-127.0, le=127.0
-    )  # OBDLab_KG_Wiki rail; consumer: SF-008, EF-001/002/003
+        default=None, ge=-100.0, le=99.22
+    )  # SAE J1979 PID 07 (T-AUD-24a, amends T-W-6); consumer: SF-008, EF-001/002/003
     mass_airflow_gps: float | None = Field(
         default=None, ge=0.0, le=655.35
     )  # OBDLab_KG_Wiki; consumer: SF-004
@@ -413,10 +413,10 @@ class OBDLiveDataPayload(BaseModel):
     freeze_frame_pids: FreezeFramePIDs | None = None
     mode06_catalyst_margin_pct: float | None = Field(default=None)
     catalyst_index_ratio: float | None = Field(default=None, ge=0.0)
-    stft_idle_pct: float | None = Field(default=None, ge=-127.0, le=127.0)
-    ltft_idle_pct: float | None = Field(default=None, ge=-127.0, le=127.0)
-    stft_2500_pct: float | None = Field(default=None, ge=-127.0, le=127.0)
-    ltft_2500_pct: float | None = Field(default=None, ge=-127.0, le=127.0)
+    stft_idle_pct: float | None = Field(default=None, ge=-100.0, le=99.22)  # wiki: OBD_VOCABULARY §2
+    ltft_idle_pct: float | None = Field(default=None, ge=-100.0, le=99.22)  # wiki: OBD_VOCABULARY §2
+    stft_2500_pct: float | None = Field(default=None, ge=-100.0, le=99.22)  # wiki: OBD_VOCABULARY §2
+    ltft_2500_pct: float | None = Field(default=None, ge=-100.0, le=99.22)  # wiki: OBD_VOCABULARY §2
     mode06_o2_response_margin_pct: float | None = Field(default=None, ge=0.0)
     # consumer: registry integration_shim SensorDynamicsState O2_LAZY_OR_BIASED branch — T-V3-P4-C6B
     maf_actual_calc_delta_pct_idle: float | None = Field(default=None)
@@ -439,9 +439,9 @@ class OBDLiveDataPayload(BaseModel):
     # consumer: registry integration_shim CONTROL_REFERENCE_FAULT branch — T-V3-P4-C3B
     bidirectional_fuel_response_ok_bool: bool | None = Field(default=None)
     # consumer: registry integration_shim CONTROL_REFERENCE_FAULT branch — T-V3-P4-C3B
-    stft_load_pct: float | None = Field(default=None, ge=-127.0, le=127.0)
+    stft_load_pct: float | None = Field(default=None, ge=-100.0, le=99.22)  # wiki: OBD_VOCABULARY §2
     # consumer: registry integration_shim LeanRootCauseState branch — T-V3-P4-C5B
-    ltft_load_pct: float | None = Field(default=None, ge=-127.0, le=127.0)
+    ltft_load_pct: float | None = Field(default=None, ge=-100.0, le=99.22)  # wiki: OBD_VOCABULARY §2
     # consumer: registry integration_shim LeanRootCauseState branch — T-V3-P4-C5B
     calc_load_wot_pct: float | None = Field(default=None, ge=0.0, le=100.0)
     # consumer: registry integration_shim LeanRootCauseState branch — T-V3-P4-C5B
@@ -496,9 +496,9 @@ class SecondOperatingPointFrame(BaseModel):
     engine_rpm: int = Field(..., ge=0)
 
     # -- ΔTrim channel (delta-relations/01-05); bounds mirror OBDLiveDataPayload --
-    total_trim_correction_delta: float | None = Field(default=None, ge=-254.0, le=254.0)  # wiki: delta-relations/01
-    shrtft1: float | None = Field(default=None, ge=-127.0, le=127.0)  # wiki: delta-relations/01
-    longft1: float | None = Field(default=None, ge=-127.0, le=127.0)  # wiki: delta-relations/01
+    total_trim_correction_delta: float | None = Field(default=None, ge=-200.0, le=198.44)  # wiki: delta-relations/01
+    shrtft1: float | None = Field(default=None, ge=-100.0, le=99.22)  # wiki: delta-relations/01
+    longft1: float | None = Field(default=None, ge=-100.0, le=99.22)  # wiki: delta-relations/01
 
     # -- Δgas channel (delta-relations/07); bounds mirror GasLabPayload --
     gas_hc: int | None = Field(default=None, ge=0, le=20000)  # wiki: delta-relations/07

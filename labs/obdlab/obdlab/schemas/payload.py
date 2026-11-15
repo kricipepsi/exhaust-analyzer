@@ -50,18 +50,18 @@ class OBDLivePayload(BaseModel):
     manifold_vacuum_kpa: float | None = Field(default=None, ge=0, le=255)
     # wiki: §3.1 — null when MAF_ONLY routing (§10.2)
 
-    shrtft1: float = Field(ge=-127, le=127)
-    # Widened from OBD-nominal [-100, 99.22] to OBD-rail [-127, 127] per T-W-6.
+    shrtft1: float = Field(ge=-100.0, le=99.22)
+    # wiki: §3.1 — SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 %; a railed trim reads at these limits (T-AUD-24a, amends T-W-6).
     # Rail values are a sensor_fault signal; rejecting them causes signal loss.
 
-    longft1: float = Field(ge=-127, le=127)
-    # Widened per T-W-6 — see shrtft1 note.
+    longft1: float = Field(ge=-100.0, le=99.22)
+    # wiki: §3.1 — SAE J1979 PIDs 06-09 (T-AUD-24a, amends T-W-6) — see shrtft1 note.
 
-    shrtft2: float | None = Field(default=None, ge=-127, le=127)
-    # Widened per T-W-6 — see shrtft1 note.
+    shrtft2: float | None = Field(default=None, ge=-100.0, le=99.22)
+    # wiki: §3.1 — SAE J1979 PIDs 06-09 (T-AUD-24a, amends T-W-6) — see shrtft1 note.
 
-    longft2: float | None = Field(default=None, ge=-127, le=127)
-    # Widened per T-W-6 — see shrtft1 note.
+    longft2: float | None = Field(default=None, ge=-100.0, le=99.22)
+    # wiki: §3.1 — SAE J1979 PIDs 06-09 (T-AUD-24a, amends T-W-6) — see shrtft1 note.
 
     total_trim_correction_delta: float
     # wiki: §5 / §12 — shrtft1 + longft1 (Bank 1 only)

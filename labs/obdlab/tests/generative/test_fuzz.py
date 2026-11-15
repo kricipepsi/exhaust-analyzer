@@ -39,8 +39,8 @@ def test_fuzz_no_crash() -> None:
         # Randomly perturb each numeric field within its FieldRange envelope
         point["engine_rpm"] = random.randint(0, 8000)
         point["coolant_temp_c"] = random.uniform(-40, 140)
-        point["shrtft1"] = random.uniform(-127, 127)
-        point["longft1"] = random.uniform(-127, 127)
+        point["shrtft1"] = random.uniform(-100.0, 99.22)
+        point["longft1"] = random.uniform(-100.0, 99.22)
 
         if random.random() < 0.3:
             point["mass_airflow_gps"] = random.uniform(0, 655.35)
@@ -48,8 +48,8 @@ def test_fuzz_no_crash() -> None:
             point["manifold_vacuum_kpa"] = random.uniform(0, 255)
         if random.random() < 0.2:
             point["number_of_banks"] = 2
-            point["shrtft2"] = random.uniform(-127, 127)
-            point["longft2"] = random.uniform(-127, 127)
+            point["shrtft2"] = random.uniform(-100.0, 99.22)
+            point["longft2"] = random.uniform(-100.0, 99.22)
         if random.random() < 0.3:
             point["pid_oxygen_sensor_volts"] = random.uniform(0, 5)
         if random.random() < 0.1:

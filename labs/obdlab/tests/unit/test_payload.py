@@ -110,9 +110,9 @@ def test_calculated_engine_load_pct_at_boundary():
 
 
 def test_shrtft1_at_boundary():
-    """shrtft1 at min (-127) and max (127) accepted (widened OBD-rail bounds)."""
-    assert OBDLivePayload(**_canonical_kwargs(shrtft1=-127)).shrtft1 == -127
-    assert OBDLivePayload(**_canonical_kwargs(shrtft1=127)).shrtft1 == 127
+    """shrtft1 at min (-100.0) and max (99.22) accepted (SAE J1979 PID 06)."""
+    assert OBDLivePayload(**_canonical_kwargs(shrtft1=-100.0)).shrtft1 == -100.0
+    assert OBDLivePayload(**_canonical_kwargs(shrtft1=99.22)).shrtft1 == 99.22
 
 
 def test_normalized_obd_lambda_at_boundary():
@@ -179,16 +179,22 @@ def test_calculated_engine_load_above_100_rejected():
         OBDLivePayload(**_canonical_kwargs(calculated_engine_load_pct=100.1))
 
 
-def test_shrtft1_below_minus_127_rejected():
-    """shrtft1 < -127 raises ValidationError (widened OBD-rail bounds)."""
+def test_shrtft1_below_minus_100_rejected():
+    """shrtft1 < -100.0 raises ValidationError (SAE J1979 PID 06)."""
     with pytest.raises(ValidationError):
-        OBDLivePayload(**_canonical_kwargs(shrtft1=-127.1))
+        OBDLivePayload(**_canonical_kwargs(shrtft1=-100.1))
 
 
-def test_shrtft1_above_127_rejected():
-    """shrtft1 > 127 raises ValidationError (widened OBD-rail bounds)."""
+def test_shrtft1_above_99_22_rejected():
+    """shrtft1 > 99.22 raises ValidationError (SAE J1979 PID 06)."""
     with pytest.raises(ValidationError):
-        OBDLivePayload(**_canonical_kwargs(shrtft1=127.1))
+        OBDLivePayload(**_canonical_kwargs(shrtft1=99.3))
+
+
+def test_shrtft1_rejects_old_127_rail():
+    """shrtft1=127.0 (old T-W-6 rail) is rejected under SAE J1979 [-100.0, 99.22] (T-AUD-24a)."""
+    with pytest.raises(ValidationError):
+        OBDLivePayload(**_canonical_kwargs(shrtft1=127.0))
 
 
 def test_normalized_obd_lambda_below_0_7_rejected():

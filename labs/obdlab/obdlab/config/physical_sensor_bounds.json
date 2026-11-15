@@ -27,28 +27,28 @@
       "unit": "kPa"
     },
     "shrtft1": {
-      "min": -127.0,
-      "max": 127.0,
+      "min": -100.0,
+      "max": 99.22,
       "unit": "%",
-      "note": "Widened from OBD nominal [-100, 99.22] to accommodate OBD rail/sensor-fault sentinel values (-127, +127). Rail values are a sensor_fault signal consumed by COMLab trim-evidence scoring."
+      "note": "SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 %; a railed trim reads at these limits (T-AUD-24a, amends T-W-6). Rail values are a sensor_fault signal consumed by COMLab trim-evidence scoring."
     },
     "longft1": {
-      "min": -127.0,
-      "max": 127.0,
+      "min": -100.0,
+      "max": 99.22,
       "unit": "%",
-      "note": "Widened from OBD nominal [-100, 99.22] to accommodate OBD rail/sensor-fault sentinel values (-127, +127)."
+      "note": "SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 %; a railed trim reads at these limits (T-AUD-24a, amends T-W-6)."
     },
     "shrtft2": {
-      "min": -127.0,
-      "max": 127.0,
+      "min": -100.0,
+      "max": 99.22,
       "unit": "%",
-      "note": "Only validated when number_of_banks == 2. Must be null when number_of_banks == 1. Widened to accommodate OBD rail values."
+      "note": "Only validated when number_of_banks == 2. Must be null when number_of_banks == 1. SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 %; a railed trim reads at these limits (T-AUD-24a, amends T-W-6)."
     },
     "longft2": {
-      "min": -127.0,
-      "max": 127.0,
+      "min": -100.0,
+      "max": 99.22,
       "unit": "%",
-      "note": "Only validated when number_of_banks == 2. Must be null when number_of_banks == 1. Widened to accommodate OBD rail values."
+      "note": "Only validated when number_of_banks == 2. Must be null when number_of_banks == 1. SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 %; a railed trim reads at these limits (T-AUD-24a, amends T-W-6)."
     },
     "intake_air_temp_c": {
       "min": -40.0,
