@@ -1,0 +1,790 @@
+cand_id,file,line,sha,auto,text
+K0001,labs/obdlab/obdlab/core/analytics_preconditions.py,35,11dfe9ac73,,ECT_WARM_THRESHOLD = 70  # wiki: §9
+K0002,labs/obdlab/obdlab/core/analytics_preconditions.py,38,3b42d3b3a3,,WOT_THROTTLE_THRESHOLD = 90  # wiki: §9
+K0003,labs/obdlab/obdlab/core/analytics_preconditions.py,90,edaaeb169b,NON_DOMAIN,if drive_cycles is not None and drive_cycles < 1:
+K0004,labs/obdlab/obdlab/core/maf_linearity.py,7,19cd07b01f,,R: float = 0.287  # wiki: research/chunks/pids-protocol/05
+K0005,labs/obdlab/obdlab/core/maf_linearity.py,8,4b4c92e36c,,CONSTANT_120: float = 120.0  # wiki: research/chunks/pids-protocol/05
+K0006,labs/obdlab/obdlab/core/maf_linearity.py,9,951d5a85cf,,K_OFFSET: float = 273.15  # wiki: research/chunks/pids-protocol/05
+K0007,labs/obdlab/obdlab/core/maf_linearity.py,10,dd254522c9,,PERCENT_MULT: float = 100.0  # wiki: research/chunks/pids-protocol/05
+K0008,labs/obdlab/obdlab/core/maf_linearity.py,27,7628123618,,if denominator == 0.0:  # wiki: research/chunks/pids-protocol/05
+K0009,labs/obdlab/obdlab/core/maf_linearity.py,28,78c78268f4,,return 0.0
+K0010,labs/obdlab/obdlab/core/maf_linearity.py,42,0230a00bd5,,if w_theo_stress == 0.0:  # wiki: research/chunks/pids-protocol/05
+K0011,labs/obdlab/obdlab/core/maf_linearity.py,43,0c31235f88,,err_stress = 0.0
+K0012,labs/obdlab/obdlab/core/maf_linearity.py,47,b4cbed7ac6,,if w_theo_idle == 0.0:  # wiki: research/chunks/pids-protocol/05
+K0013,labs/obdlab/obdlab/core/maf_linearity.py,48,292581ca27,,err_idle = 0.0
+K0014,labs/obdlab/obdlab/core/o2_normalizer.py,30,a9d165c25c,,_ZONE_LEAN_BOUNDARY   = 0.40   # wiki: §11.1 — upper bound of LEAN_STATE (V)
+K0015,labs/obdlab/obdlab/core/o2_normalizer.py,31,7dbfc7b566,,_ZONE_STOICH_BOUNDARY = 0.50   # wiki: §11.1 — upper bound of STOICHIOMETRIC_CENTER (V)
+K0016,labs/obdlab/obdlab/core/o2_normalizer.py,32,65d852b4dc,,_ZONE_MIN_VOLTAGE     = 0.10   # wiki: §11.1 — minimum valid narrowband voltage
+K0017,labs/obdlab/obdlab/core/o2_normalizer.py,33,90a788f661,,_ZONE_MAX_VOLTAGE     = 0.90   # wiki: §11.1 — maximum valid narrowband voltage
+K0018,labs/obdlab/obdlab/core/o2_normalizer.py,36,57b081d281,,_LAMBDA_LEAN   = 1.05  # wiki: §11.1 — 0.10–0.40 V
+K0019,labs/obdlab/obdlab/core/o2_normalizer.py,37,dfdfa186d6,,_LAMBDA_STOICH = 1.00  # wiki: §11.1 — 0.41–0.50 V
+K0020,labs/obdlab/obdlab/core/o2_normalizer.py,38,ce8ee942ad,,_LAMBDA_RICH   = 0.95  # wiki: §11.1 — 0.51–0.90 V
+K0021,labs/obdlab/obdlab/core/o2_normalizer.py,41,593dda3f70,,_LAMBDA_MIN = 0.7   # wiki: §5
+K0022,labs/obdlab/obdlab/core/o2_normalizer.py,42,bb87c3010e,,_LAMBDA_MAX = 1.3   # wiki: §5
+K0023,labs/obdlab/obdlab/core/o2_normalizer.py,46,cac0394f62,,_LAMBDA_STOICH_TARGET = 1.0  # wiki: o2-logic/03 §BIASED_OFFSET
+K0024,labs/obdlab/obdlab/core/o2_normalizer.py,49,cf5f4a0344,,_WIDEBAND_OFFSET_THRESHOLD = 0.05  # wiki: o2-logic/03 §BIASED_OFFSET / o2-logic/08
+K0025,labs/obdlab/obdlab/core/pid_ingestion_validator.py,20,cf22e7eecb,,"""_f"":     (""_c"",   lambda v: (v - 32.0) * 5.0 / 9.0),  # wiki: §3.2 — °F → °C"
+K0026,labs/obdlab/obdlab/core/pid_ingestion_validator.py,21,b129dac01f,,"""_psi"":   (""_kpa"", lambda v: v * 6.895),                 # wiki: §3.2 — psi → kPa"
+K0027,labs/obdlab/obdlab/core/pid_ingestion_validator.py,22,5c2bcb1c62,,"""_inhg"":  (""_kpa"", lambda v: v * 3.386),                 # wiki: §3.2 — in Hg → kPa"
+K0028,labs/obdlab/obdlab/core/pid_ingestion_validator.py,23,2de293e477,,"""_lbmin"": (""_gps"", lambda v: v * 7.559),                 # wiki: §3.2 — lb/min → g/s"
+K0029,labs/obdlab/obdlab/core/pid_ingestion_validator.py,26,f05ed8bbf6,,_DNA_RPM_HEADROOM = 1.05  # wiki: §3 — 5% headroom for redline overshoot
+K0030,labs/obdlab/obdlab/core/pid_ingestion_validator.py,94,bad6823312,NON_DOMAIN,if cell_idx < 0:  # wiki: research/chunks/fuel-trim/13
+K0031,labs/obdlab/obdlab/core/pid_ingestion_validator.py,99,6e23669857,,if ltft_val < -127 or ltft_val > 127:  # wiki: research/chunks/fuel-trim/13
+K0032,labs/obdlab/obdlab/core/pid_ingestion_validator.py,142,7127faccff,NON_DOMAIN,if cyl_idx < 1:  # wiki: research/chunks/fuel-trim/17
+K0033,labs/obdlab/obdlab/core/pid_ingestion_validator.py,147,324eb525bd,NON_DOMAIN,if cnt_val < 0:  # wiki: research/chunks/fuel-trim/17
+K0034,labs/obdlab/obdlab/core/pid_ingestion_validator.py,219,e3b97bcc0d,NON_DOMAIN,"number_of_banks = inputs.get(""number_of_banks"", 1)"
+K0035,labs/obdlab/obdlab/core/pid_ingestion_validator.py,227,440bc885a2,NON_DOMAIN,"if field in (""shrtft2"", ""longft2"") and number_of_banks != 2:"
+K0036,labs/obdlab/obdlab/core/pid_ingestion_validator.py,289,7b2d988431,NON_DOMAIN,"if inputs.get(""number_of_banks"", 1) != 1:"
+K0037,labs/obdlab/obdlab/core/semantic_consistency_checker.py,18,1e2bfbc380,,_TRIM_MIN = -127.0   # widened from OBD-nominal -100 to accommodate OBD rail values per T-W-6
+K0038,labs/obdlab/obdlab/core/semantic_consistency_checker.py,19,75d4ec0506,,_TRIM_MAX = 127.0    # widened from OBD-nominal 99.22 to accommodate OBD rail values per T-W-6
+K0039,labs/obdlab/obdlab/core/semantic_consistency_checker.py,21,e385736b42,,_CUTOFF_ECT_COLD = 75         # wiki: §4.1 — thermal gate cutoff (°C)
+K0040,labs/obdlab/obdlab/core/semantic_consistency_checker.py,22,5bb35bbc2c,,_CUTOFF_ECT_CLOSED = 80       # wiki: §4 — closed-loop expected threshold (°C)
+K0041,labs/obdlab/obdlab/core/semantic_consistency_checker.py,23,58a809e3da,,_CUTOFF_VSS = 10              # wiki: §4 — VSS km/h for Physics_Gate_1
+K0042,labs/obdlab/obdlab/core/semantic_consistency_checker.py,24,6f5e196437,,_CUTOFF_RPM_STALLED = 400     # wiki: §4 — stalled engine RPM for Physics_Gate_1
+K0043,labs/obdlab/obdlab/core/sensor_signal_translator.py,138,e4bd30cac7,,ve_pct_val: float = 0.0  # wiki: §10 — 0.0 sentinel when analytics frozen; ve_validity==UNKNOWN suppresses router use
+K0044,labs/obdlab/obdlab/core/sensor_signal_translator.py,146,8ff289b154,,ve_pct_val = ve_pct_raw or 0.0  # wiki: §10 — None guard; 0.0 sentinel when None
+K0045,labs/obdlab/obdlab/core/sensor_signal_translator.py,160,97945ed43e,,total_trim = 0.0
+K0046,labs/obdlab/obdlab/core/sensor_signal_translator.py,169,f437cc729a,,"semantic_gates_passed=(len(gates_passed) == 3),"
+K0047,labs/obdlab/obdlab/core/sensor_signal_translator.py,207,fd0f1728d7,NON_DOMAIN,and rpm_val > 0
+K0048,labs/obdlab/obdlab/core/sensor_signal_translator.py,229,5c3c7ad2b9,NON_DOMAIN,"number_of_banks = sanitized.get(""number_of_banks"", 1)"
+K0049,labs/obdlab/obdlab/core/sensor_signal_translator.py,236,816db9f8b9,,"calculated_engine_load_pct=sanitized.get(""calculated_engine_load_pct"", 0.0),"
+K0050,labs/obdlab/obdlab/core/sensor_signal_translator.py,239,90eb5e460e,,"shrtft1=sanitized.get(""shrtft1"", 0.0),"
+K0051,labs/obdlab/obdlab/core/sensor_signal_translator.py,240,324f4490df,,"longft1=sanitized.get(""longft1"", 0.0),"
+K0052,labs/obdlab/obdlab/core/sensor_signal_translator.py,241,d449336baa,NON_DOMAIN,"shrtft2=sanitized.get(""shrtft2"") if number_of_banks == 2 else None,"
+K0053,labs/obdlab/obdlab/core/sensor_signal_translator.py,242,e0433bb36c,NON_DOMAIN,"longft2=sanitized.get(""longft2"") if number_of_banks == 2 else None,"
+K0054,labs/obdlab/obdlab/core/sensor_signal_translator.py,256,b2f989b4e7,,"intake_air_temp_c=sanitized.get(""intake_air_temp_c"", 25.0),"
+K0055,labs/obdlab/obdlab/core/sensor_signal_translator.py,257,338760846d,,"throttle_pos_pct=sanitized.get(""throttle_pos_pct"", 0.0),"
+K0056,labs/obdlab/obdlab/core/sensor_signal_translator.py,258,047288df3d,,"control_module_voltage_v=sanitized.get(""control_module_voltage_v"", 14.0),"
+K0057,labs/obdlab/obdlab/core/state_bucketing.py,128,5a1d9eb92a,,"tolerance_pct = cond.get(""tolerance_pct"", 10)"
+K0058,labs/obdlab/obdlab/core/state_bucketing.py,129,4d9fe80f10,,margin = value * (tolerance_pct / 100.0)
+K0059,labs/obdlab/obdlab/core/trim_vector_aggregator.py,45,f59576fa16,NON_DOMAIN,"banks = sanitized_pids.get(""number_of_banks"", 1)"
+K0060,labs/obdlab/obdlab/core/trim_vector_aggregator.py,46,a45320775b,NON_DOMAIN,if banks != 2:
+K0061,labs/obdlab/obdlab/core/ve_engine.py,27,91b3a743a0,,MM_AIR: float = 28.97
+K0062,labs/obdlab/obdlab/core/ve_engine.py,29,1144e8a1d8,,R_GAS: float = 8.314
+K0063,labs/obdlab/obdlab/core/ve_engine.py,31,5774fbbb11,,K_OFFSET: float = 273.15
+K0064,labs/obdlab/obdlab/core/ve_engine.py,36,1c1f0419fc,,"(RpmStateBucket.STABILIZED_IDLE.value, AirMeteringStrategy.MAP_ONLY_SPEED_DENSITY.value): 0.65,"
+K0065,labs/obdlab/obdlab/core/ve_engine.py,37,df96a7f026,,"(RpmStateBucket.REGULATORY_HIGH_IDLE.value, AirMeteringStrategy.MAP_ONLY_SPEED_DENSITY.value): 0.80,"
+K0066,labs/obdlab/obdlab/core/ve_engine.py,38,8b5c2eea11,,"(RpmStateBucket.STRESS_IDLE.value, AirMeteringStrategy.MAP_ONLY_SPEED_DENSITY.value): 0.80,"
+K0067,labs/obdlab/obdlab/core/ve_engine.py,40,122bb39c5a,,"(RpmStateBucket.STABILIZED_IDLE.value, AirMeteringStrategy.MAF_ONLY.value): 0.70,"
+K0068,labs/obdlab/obdlab/core/ve_engine.py,41,1b50f91873,,"(RpmStateBucket.REGULATORY_HIGH_IDLE.value, AirMeteringStrategy.MAF_ONLY.value): 0.82,"
+K0069,labs/obdlab/obdlab/core/ve_engine.py,42,904ebc4348,,"(RpmStateBucket.STRESS_IDLE.value, AirMeteringStrategy.MAF_ONLY.value): 0.82,"
+K0070,labs/obdlab/obdlab/core/ve_engine.py,46,81f5e77b2a,,_CUTOFF_VE_COLLAPSE = 50.0     # wiki: §6.4 — VE% below which idle VE collapse triggers
+K0071,labs/obdlab/obdlab/core/ve_engine.py,47,77c8f7de8e,,_CUTOFF_MAP_COLLAPSE = 45.0    # wiki: BP §2 — MAP must be > 45 kPa for collapse trigger
+K0072,labs/obdlab/obdlab/core/ve_engine.py,48,dfa897fd36,,_CUTOFF_VE_CONTAMINATION = 65.0  # wiki: §6.4 — VE% below which MAF contamination triggers
+K0073,labs/obdlab/obdlab/core/ve_engine.py,49,de2887f98c,,_CUTOFF_TFT_CONTAMINATION = 15.0  # wiki: §6.4 — TFT > 15% for MAF contamination
+K0074,labs/obdlab/obdlab/core/ve_engine.py,50,47fce65dba,,_CUTOFF_VE_SKEW = 90.0         # wiki: §6.4 — VE% above which sensor skew triggers
+K0075,labs/obdlab/obdlab/core/ve_engine.py,111,f8d41f19ca,NON_DOMAIN,if maf is None or map_kpa is None or rpm is None or rpm == 0 or displacement is None:
+K0076,labs/obdlab/obdlab/core/ve_engine.py,114,e7899acaa4,,"ve_pct = self._calc_ve_standard(maf, map_kpa, rpm, displacement, iat or 25.0)"
+K0077,labs/obdlab/obdlab/core/ve_engine.py,133,7c7cc30776,NON_DOMAIN,if map_kpa is None or rpm is None or rpm == 0 or displacement is None:
+K0078,labs/obdlab/obdlab/core/ve_engine.py,140,3264d88339,,iat_k = (iat or 25.0) + K_OFFSET  # wiki: §10.1
+K0079,labs/obdlab/obdlab/core/ve_engine.py,143,e29f1df1ff,,map_kpa * (rpm / 60.0) * (displacement / 2.0) * MM_AIR
+K0080,labs/obdlab/obdlab/core/ve_engine.py,148,f11f87074f,,"ve_pct = self._calc_ve_standard(emulated_maf, map_kpa, rpm, displacement, iat or 25.0)"
+K0081,labs/obdlab/obdlab/core/ve_engine.py,168,d1d0f33ea9,NON_DOMAIN,if maf is None or rpm is None or rpm == 0 or displacement is None:
+K0082,labs/obdlab/obdlab/core/ve_engine.py,175,3264d88339,,iat_k = (iat or 25.0) + K_OFFSET  # wiki: §10.1
+K0083,labs/obdlab/obdlab/core/ve_engine.py,179,140a87587b,,/ ((rpm / 60.0) * (displacement / 2.0) * MM_AIR * target_ve)
+K0084,labs/obdlab/obdlab/core/ve_engine.py,182,7a07535f12,,"ve_pct = self._calc_ve_standard(maf, inferred_map, rpm, displacement, iat or 25.0)"
+K0085,labs/obdlab/obdlab/core/ve_engine.py,205,c8fe9980f2,,map_kpa * (rpm / 60.0) * (displacement / 2.0) * MM_AIR  # wiki: §10.1 — MM in denominator
+K0086,labs/obdlab/obdlab/core/ve_engine.py,207,0902ce47f7,,if denominator == 0.0:
+K0087,labs/obdlab/obdlab/core/ve_engine.py,208,c8699814c6,,return 0.0
+K0088,labs/obdlab/obdlab/core/ve_engine.py,209,24bc060de3,,return (numerator / denominator) * 100.0
+K0089,labs/obdlab/obdlab/schemas/payload.py,38,0534e68e27,,"engine_rpm: int = Field(ge=0, le=8000)"
+K0090,labs/obdlab/obdlab/schemas/payload.py,41,1386fd62ef,,"coolant_temp_c: float = Field(ge=-40, le=140)"
+K0091,labs/obdlab/obdlab/schemas/payload.py,44,3ed88d993d,,"calculated_engine_load_pct: float = Field(ge=0, le=100)"
+K0092,labs/obdlab/obdlab/schemas/payload.py,47,3618f8acf9,,"mass_airflow_gps: float | None = Field(default=None, ge=0, le=655.35)"
+K0093,labs/obdlab/obdlab/schemas/payload.py,50,f1e127b2d7,,"manifold_vacuum_kpa: float | None = Field(default=None, ge=0, le=255)"
+K0094,labs/obdlab/obdlab/schemas/payload.py,53,d13fdb466d,,"shrtft1: float = Field(ge=-127, le=127)"
+K0095,labs/obdlab/obdlab/schemas/payload.py,57,f36f40ef2d,,"longft1: float = Field(ge=-127, le=127)"
+K0096,labs/obdlab/obdlab/schemas/payload.py,60,23b46e60eb,,"shrtft2: float | None = Field(default=None, ge=-127, le=127)"
+K0097,labs/obdlab/obdlab/schemas/payload.py,63,6fe124cf1f,,"longft2: float | None = Field(default=None, ge=-127, le=127)"
+K0098,labs/obdlab/obdlab/schemas/payload.py,75,0f4d81ca06,,"normalized_obd_lambda: float | None = Field(ge=0.7, le=1.3)"
+K0099,labs/obdlab/obdlab/schemas/payload.py,81,4216d36dee,,"ve_pct: float = Field(ge=0.0, le=200.0)  # wiki: §6.4 — max 200 to accommodate thermal shock steam overshoot"
+K0100,labs/obdlab/obdlab/schemas/payload.py,106,91201175b3,,"intake_air_temp_c: float = Field(ge=-40, le=140)"
+K0101,labs/obdlab/obdlab/schemas/payload.py,109,97d7dc2369,,"throttle_pos_pct: float = Field(ge=0, le=100)"
+K0102,labs/obdlab/obdlab/schemas/payload.py,112,9b869cdf99,,"control_module_voltage_v: float = Field(default=14.0, ge=0, le=18)"
+K0103,labs/dtclab/dtclab/core/freeze_frame_extractor.py,98,9d189aa575,,"""ff_ect_warmup"": record.coolant_temp_c < 60,  # wiki: DTC_WIKI.md §3"
+K0104,labs/dtclab/dtclab/core/freeze_frame_extractor.py,105,a66339b93a,,"< -10,  # wiki: DTC_WIKI.md §8.2"
+K0105,labs/dtclab/dtclab/core/freeze_frame_extractor.py,139,eeea7f8386,,return load_pct > 70 and rpm < 1500  # wiki: §12.3
+K0106,labs/dtclab/dtclab/core/freeze_frame_extractor.py,149,07d047e0b3,,return abs(iat_c - ect_c) > 30 and rpm == 0  # wiki: §12.3
+K0107,labs/dtclab/dtclab/core/freeze_frame_extractor.py,165,0a21da2525,NON_DOMAIN,and speed_kmh == 0
+K0108,labs/dtclab/dtclab/core/freeze_frame_extractor.py,166,99c5a75767,,and rpm <= 180  # wiki: DTC_VOCABULARY.md §12.3
+K0109,labs/dtclab/dtclab/core/historical_context_classifier.py,27,a9f38026b1,,if coolant_temp_c < 60:  # wiki: DTC_VOCABULARY.md §9
+K0110,labs/dtclab/dtclab/core/historical_context_classifier.py,30,1f55d2db7a,,if engine_rpm < 1000 and calculated_load_pct < 25:  # wiki: DTC_VOCABULARY.md §9
+K0111,labs/dtclab/dtclab/core/historical_context_classifier.py,33,9434fb1824,,if engine_rpm > 2000 and calculated_load_pct > 45:  # wiki: DTC_VOCABULARY.md §9
+K0112,labs/dtclab/dtclab/core/mode06_evaluator.py,46,fc5ecf9566,NON_DOMAIN,if margin_pct <= 0:
+K0113,labs/dtclab/dtclab/core/mode06_evaluator.py,49,99e47a5c01,,if margin_pct <= 15:
+K0114,labs/dtclab/dtclab/core/mode06_evaluator.py,66,a56f65ea41,,@functools.lru_cache(maxsize=4)
+K0115,labs/dtclab/dtclab/core/mode06_evaluator.py,112,0f2f043906,NON_DOMAIN,mid_hex = parts[1]  # the MID hex component
+K0116,labs/dtclab/dtclab/ranking.py,75,f1e9e8f35b,,_DNA_FACTOR_HIGH: float = 1.0     # wiki: §14.2 — gate holds; full confidence
+K0117,labs/dtclab/dtclab/ranking.py,76,aaabe4e4e9,,_DNA_FACTOR_PARTIAL: float = 0.7  # wiki: §14.2 — downgrade (partial DNA)
+K0118,labs/dtclab/dtclab/ranking.py,77,bd3c789a40,,_DNA_FACTOR_NONE: float = 0.5     # wiki: §14.2 — pure DTC pattern (no DNA)
+K0119,labs/dtclab/dtclab/ranking.py,166,4e4971e94b,,return 1.0  # wiki: §14.2 — no gate on this family
+K0120,labs/dtclab/dtclab/ranking.py,271,da3cd62ff8,,"if weight > family_max_weight.get(family, -1.0):"
+K0121,labs/dtclab/dtclab/ranking.py,365,6be9fe5f8c,,"confidence = min(max(c.raw_confidence, 0.0), 1.0)"
+K0122,labs/dtclab/dtclab/ranking.py,371,129165049f,NON_DOMAIN,"result.sort(key=lambda item: (-item[1], item[0]))"
+K0123,labs/dtclab/dtclab/ranking.py,373,390cb857ff,NON_DOMAIN,return result[:3]
+K0124,labs/dtclab/dtclab/schemas/freeze_frame.py,29,b588b1bbf2,,"calculated_load_pct: float = Field(ge=0, le=100)"
+K0125,labs/dtclab/dtclab/schemas/freeze_frame.py,32,f645d83917,NON_DOMAIN,engine_rpm: int = Field(ge=0)
+K0126,labs/dtclab/dtclab/schemas/freeze_frame.py,44,087fcb8af3,NON_DOMAIN,manifold_pressure_kpa: float = Field(ge=0)
+K0127,labs/dtclab/dtclab/schemas/freeze_frame.py,47,51971d7b5d,NON_DOMAIN,vehicle_speed_kmh: int = Field(ge=0)
+K0128,labs/dtclab/dtclab/schemas/freeze_frame.py,56,90da17491c,NON_DOMAIN,maf_gps: float = Field(ge=0)
+K0129,labs/dtclab/dtclab/schemas/freeze_frame.py,59,97d7dc2369,,"throttle_pos_pct: float = Field(ge=0, le=100)"
+K0130,labs/dtclab/dtclab/schemas/vocabulary.py,112,836e2af41b,,"""confirmed"": 1.0,  # wiki: §16 — Mode $03; two-drive-cycle confirmation"
+K0131,labs/dtclab/dtclab/schemas/vocabulary.py,113,666d788088,,"""permanent"": 1.0,  # wiki: §16 — Mode $0A; emissions-critical, monitor-confirmed"
+K0132,labs/dtclab/dtclab/schemas/vocabulary.py,114,23aff5f93b,,"""pending"": 0.5,  # wiki: §16 — Mode $07; single failure"
+K0133,labs/dtclab/dtclab/schemas/vocabulary.py,115,da87aab899,,"""mode06_critical_fail"": 0.7,  # wiki: §16 — test failed"
+K0134,labs/dtclab/dtclab/schemas/vocabulary.py,116,da39ddbffa,,"""mode06_marginal"": 0.4,  # wiki: §16 — approaching limit"
+K0135,labs/dtclab/dtclab/schemas/vocabulary.py,117,e00547ac0b,,"""mode06_passed"": 0.0,  # wiki: §16 — no contribution"
+K0136,labs/dnalab/dnalab/models.py,54,a415b8f435,NON_DOMAIN,"sid = session_id or f""DNA_TX_{uuid.uuid4().hex[:10].upper()}"""
+K0137,labs/symptomlab/symptomlab/validator.py,36,606a8f7440,,if len(self._allowed) != 21:
+K0138,apps/wired/v7/load_corpus.py,20,f262874aa2,NON_DOMAIN,WORKSPACE_ROOT = Path(__file__).resolve().parents[3]
+K0139,apps/wired/v7/load_corpus.py,21,9e7f124fdf,NON_DOMAIN,"sys.path.insert(0, str(WORKSPACE_ROOT / 'apps/wired'))"
+K0140,apps/wired/v7/load_corpus.py,33,f22bbdcd25,NON_DOMAIN,"sys.path.insert(0, path)"
+K0141,apps/wired/v7/load_corpus.py,280,9e64e2d2cd,,"obd[""engine_rpm""] = 800"
+K0142,apps/wired/v7/load_corpus.py,282,c93f22d779,,"obd[""coolant_temp_c""] = 85.0"
+K0143,apps/wired/v7/load_corpus.py,287,1fce5d50cf,,"obd[""shrtft1""] = 0.0"
+K0144,apps/wired/v7/load_corpus.py,289,7d88dfd5ec,,"obd[""longft1""] = 0.0"
+K0145,apps/wired/v7/load_corpus.py,291,bb752c57f0,NON_DOMAIN,"if obd.get(""number_of_banks"", 1) == 2:"
+K0146,apps/wired/v7/load_corpus.py,307,4378a4179b,,if v_num > 1.01:
+K0147,apps/wired/v7/load_corpus.py,308,bbdbf55907,,"obd[""pid_oxygen_sensor_volts""] = 0.25"
+K0148,apps/wired/v7/load_corpus.py,309,69e70a5c08,,elif v_num < 0.99:
+K0149,apps/wired/v7/load_corpus.py,310,18c98eb601,,"obd[""pid_oxygen_sensor_volts""] = 0.70"
+K0150,apps/wired/v7/load_corpus.py,312,797f69ed71,,"obd[""pid_oxygen_sensor_volts""] = 0.45"
+K0151,apps/wired/v7/load_corpus.py,315,4cbae9dbb5,,"obd[""pid_wideband_equivalence_ratio""] = 1.0"
+K0152,apps/wired/v7/load_corpus.py,317,382403ef71,,"obd[""pid_oxygen_sensor_volts""] = 0.45"
+K0153,apps/wired/v7/load_corpus.py,377,7d3f62625f,NON_DOMAIN,success_count = 0
+K0154,apps/wired/v7/load_corpus.py,378,a6d7794e79,NON_DOMAIN,total_count = 0
+K0155,apps/wired/v7/load_corpus.py,381,09fcccdd48,NON_DOMAIN,total_count += 1
+K0156,apps/wired/v7/load_corpus.py,412,eb6b59f376,NON_DOMAIN,success_count += 1
+K0157,apps/wired/v7/load_corpus.py,416,76da06b4be,NON_DOMAIN,success_count += 1
+K0158,apps/wired/v7/load_corpus.py,424,e460c363a8,NON_DOMAIN,for err in errors[:10]:
+K0159,apps/wired/v7/load_corpus.py,438,bd1bf62270,NON_DOMAIN,sys.exit(0 if validate_corpus() else 1)
+K0160,apps/wired/v7/load_corpus.py,442,c1951c0e40,NON_DOMAIN,"for idx, (case_id, _, category, source_ref, tag) in enumerate(load_corpus(), start=1):"
+K0161,apps/wired/v7/run_suite.py,21,f262874aa2,NON_DOMAIN,WORKSPACE_ROOT = Path(__file__).resolve().parents[3]
+K0162,apps/wired/v7/run_suite.py,22,814d6cdd7a,NON_DOMAIN,"sys.path.insert(0, str(WORKSPACE_ROOT / ""apps/wired""))"
+K0163,apps/wired/v7/run_suite.py,32,f22bbdcd25,NON_DOMAIN,"sys.path.insert(0, path)"
+K0164,apps/wired/v7/run_suite.py,150,218905fbea,,"actual_confidence = verdict.get(""confidence_score"", 0.0)"
+K0165,apps/wired/v7/run_suite.py,226,203d0e06c5,NON_DOMAIN,total_run = 0
+K0166,apps/wired/v7/run_suite.py,227,f19e74c33c,NON_DOMAIN,accuracy_cases_count = 0
+K0167,apps/wired/v7/run_suite.py,228,7f41da5955,NON_DOMAIN,accuracy_cases_passed = 0
+K0168,apps/wired/v7/run_suite.py,229,c7a91ae315,NON_DOMAIN,characterization_cases_count = 0
+K0169,apps/wired/v7/run_suite.py,230,2815565aab,NON_DOMAIN,characterization_ran_count = 0
+K0170,apps/wired/v7/run_suite.py,231,14a21ca021,NON_DOMAIN,characterization_error_count = 0
+K0171,apps/wired/v7/run_suite.py,236,481b99003b,NON_DOMAIN,"""fault_family"": 0,"
+K0172,apps/wired/v7/run_suite.py,237,a8279f5612,NON_DOMAIN,"""fault_code"": 0,"
+K0173,apps/wired/v7/run_suite.py,238,89efb4f536,NON_DOMAIN,"""state"": 0,"
+K0174,apps/wired/v7/run_suite.py,239,71d904bf1f,NON_DOMAIN,"""confidence"": 0,"
+K0175,apps/wired/v7/run_suite.py,240,1888178b02,NON_DOMAIN,"""perception_gap"": 0,"
+K0176,apps/wired/v7/run_suite.py,241,f4b5efec31,NON_DOMAIN,"""demotion_note_contains"": 0,"
+K0177,apps/wired/v7/run_suite.py,243,347b6a9e2f,NON_DOMAIN,crash_count = 0
+K0178,apps/wired/v7/run_suite.py,296,2df12ea30e,NON_DOMAIN,crash_count += 1
+K0179,apps/wired/v7/run_suite.py,304,c2b49ffd6f,NON_DOMAIN,characterization_ran_count += 1
+K0180,apps/wired/v7/run_suite.py,306,6d7cbc5352,NON_DOMAIN,characterization_error_count += 1
+K0181,apps/wired/v7/run_suite.py,318,74e9d3aa77,NON_DOMAIN,total_run += 1
+K0182,apps/wired/v7/run_suite.py,322,02a8e7a914,NON_DOMAIN,characterization_cases_count += 1
+K0183,apps/wired/v7/run_suite.py,324,19efb2b770,NON_DOMAIN,accuracy_cases_count += 1
+K0184,apps/wired/v7/run_suite.py,326,4e3e2cee3d,NON_DOMAIN,accuracy_cases_passed += 1
+K0185,apps/wired/v7/run_suite.py,330,8ad25ebcf7,NON_DOMAIN,"per_family_total[fam] = per_family_total.get(fam, 0) + 1"
+K0186,apps/wired/v7/run_suite.py,332,23419a8742,NON_DOMAIN,"per_family_passed[fam] = per_family_passed.get(fam, 0) + 1"
+K0187,apps/wired/v7/run_suite.py,337,7492242c59,NON_DOMAIN,"per_dimension_failures[dim] = per_dimension_failures.get(dim, 0) + 1"
+K0188,apps/wired/v7/run_suite.py,356,9f1a43d6b7,,"print(""\n"" + ""="" * 60)"
+K0189,apps/wired/v7/run_suite.py,358,d56263758b,,"print(""="" * 60)"
+K0190,apps/wired/v7/run_suite.py,362,ff57ed3678,NON_DOMAIN,if accuracy_cases_count > 0:
+K0191,apps/wired/v7/run_suite.py,363,9819c28539,,accuracy_pct = (accuracy_cases_passed / accuracy_cases_count) * 100
+K0192,apps/wired/v7/run_suite.py,373,c6e74b1b14,NON_DOMAIN,"passed = per_family_passed.get(fam, 0)"
+K0193,apps/wired/v7/run_suite.py,374,f8e7712667,,pct = (passed / total) * 100
+K0194,apps/wired/v7/run_suite.py,392,b0db832dfe,,"""pct"": (accuracy_cases_passed / accuracy_cases_count * 100) if accuracy_cases_count > 0 else 0,"
+K0195,apps/wired/v7/run_suite.py,402,b5d6c15dff,NON_DOMAIN,"}, f, indent=2)"
+K0196,apps/wired/v7/run_suite.py,405,a751126601,NON_DOMAIN,return 0
+K0197,apps/wired/wired/composition.py,108,79870a1022,,"""mode06_catalyst_margin_pct"": (-1000.0, 100.0, float),"
+K0198,apps/wired/wired/composition.py,109,1d68951923,,"""catalyst_index_ratio"": (0.0, 2.0, float),"
+K0199,apps/wired/wired/composition.py,110,0026e3c470,,"""stft_idle_pct"": (-127.0, 127.0, float),"
+K0200,apps/wired/wired/composition.py,111,df017be130,,"""ltft_idle_pct"": (-127.0, 127.0, float),"
+K0201,apps/wired/wired/composition.py,112,28d159e267,,"""stft_2500_pct"": (-127.0, 127.0, float),"
+K0202,apps/wired/wired/composition.py,113,92e0bb4459,,"""ltft_2500_pct"": (-127.0, 127.0, float),"
+K0203,apps/wired/wired/composition.py,114,670753785d,,"""mode06_o2_response_margin_pct"": (0.0, 100.0, float),"
+K0204,apps/wired/wired/composition.py,115,850747f592,,"""maf_actual_calc_delta_pct_idle"": (-100.0, 100.0, float),"
+K0205,apps/wired/wired/composition.py,116,9cb46f882d,,"""maf_actual_calc_delta_pct_2500"": (-100.0, 100.0, float),"
+K0206,apps/wired/wired/composition.py,117,3f9386a3cb,,"""maf_gps_idle"": (0.0, 500.0, float),"
+K0207,apps/wired/wired/composition.py,118,807efdf2ff,,"""maf_gps_2500"": (0.0, 500.0, float),"
+K0208,apps/wired/wired/composition.py,119,788a20c084,,"""calc_airflow_gps_idle"": (0.0, 500.0, float),"
+K0209,apps/wired/wired/composition.py,120,8d3ddbf150,,"""calc_airflow_gps_2500"": (0.0, 500.0, float),"
+K0210,apps/wired/wired/composition.py,121,23d7b4ce7c,,"""koeo_map_baro_delta_kpa"": (0.0, 50.0, float),"
+K0211,apps/wired/wired/composition.py,122,4829fc60c7,,"""module_voltage_loaded_v"": (0.0, 18.0, float),"
+K0212,apps/wired/wired/composition.py,123,351dc244a8,,"""dlc_signal_ground_drop_v"": (0.0, 5.0, float),"
+K0213,apps/wired/wired/composition.py,124,9b5470b40d,,"""stft_load_pct"": (-127.0, 127.0, float),"
+K0214,apps/wired/wired/composition.py,125,3bdc11f529,,"""ltft_load_pct"": (-127.0, 127.0, float),"
+K0215,apps/wired/wired/composition.py,126,cdec61a764,,"""calc_load_wot_pct"": (0.0, 100.0, float),"
+K0216,apps/wired/wired/composition.py,127,08380fb4f2,,"""fuel_rail_pressure_load_kpa"": (0.0, 250000.0, float),"
+K0217,apps/wired/wired/composition.py,128,02c95efdfb,,"""wideband_lambda_wot"": (0.0, 3.0, float),"
+K0218,apps/wired/wired/composition.py,129,22dab11262,,"""co2_idle_pct"": (0.0, 22.0, float),"
+K0219,apps/wired/wired/composition.py,130,b60c1a6634,,"""tailpipe_o2_elevation_pct"": (0.0, 22.0, float),"
+K0220,apps/wired/wired/composition.py,131,3ce532c679,,"""downstream_o2_v"": (0.0, 1.5, float),"
+K0221,apps/wired/wired/composition.py,132,8c6b55807a,,"""propane_trim_shift_pct"": (-100.0, 100.0, float),"
+K0222,apps/wired/wired/composition.py,133,101ad2af5f,,"""stored_dtc_count"": (0, 100, int),"
+K0223,apps/wired/wired/composition.py,134,6e82e23fea,,"""pending_dtc_count"": (0, 100, int),"
+K0224,apps/wired/wired/composition.py,135,6162969abe,,"""permanent_dtc_count"": (0, 100, int),"
+K0225,apps/wired/wired/composition.py,136,0a8e814274,,"""mode06_min_margin_pct"": (-100.0, 100.0, float),"
+K0226,apps/wired/wired/composition.py,137,83cf31c06a,,"""warmup_cycles_since_clear"": (0, 255, int),"
+K0227,apps/wired/wired/composition.py,138,f45e04a7e3,,"""miles_since_clear"": (0, 65535, int),"
+K0228,apps/wired/wired/composition.py,369,2c309b56b5,NON_DOMAIN,"if obd_inputs.get(""number_of_banks"") == 2:"
+K0229,apps/wired/wired/composition.py,422,28e36a5c73,,if len(vin_for_metadata) != 17:
+K0230,apps/wired/wired/composition.py,429,e161b58099,,"cylinder_count=int(vin_dna.get(""cylinder_count"") or 4),"
+K0231,apps/wired/wired/composition.py,527,ed97de0647,,target_lambda = (coc_target_lambda_low + coc_target_lambda_high) / 2.0
+K0232,apps/wired/wired/composition.py,537,0e3dfb0eda,,"engine_displacement_liters=float(vin_dna.get(""engine_displacement_liters"") or 2.0),"
+K0233,apps/wired/wired/composition.py,538,e161b58099,,"cylinder_count=int(vin_dna.get(""cylinder_count"") or 4),"
+K0234,apps/wired/wired/composition.py,539,cf78f61a82,NON_DOMAIN,"number_of_banks=int(vin_dna.get(""number_of_banks"") or 1),"
+K0235,apps/wired/wired/composition.py,690,ba8dabc3cf,,"engine_displacement_liters=float(vin_dna.get(""engine_displacement_liters"") or 0.0)"
+K0236,apps/wired/wired/composition.py,715,1f4c93eb58,NON_DOMAIN,"_DTC_EURO = {f""EURO_{n}"" for n in range(1, 8)}"
+K0237,apps/wired/wired/composition.py,766,c07d1c0a31,,safe_vin = vin if len(vin) == 17 else _FALLBACK_VIN
+K0238,apps/wired/wired/composition.py,772,22125bb70d,,"""cylinder_count"": 4,"
+K0239,apps/wired/wired/composition.py,773,281be489b3,NON_DOMAIN,"""number_of_banks"": 1,"
+K0240,apps/wired/wired/composition.py,774,20c464adbc,,"""engine_displacement_liters"": 2.0,"
+K0241,apps/wired/wired/registry_guard.py,13,0d4e640a78,,_EXPECTED_RULE_COUNT = 73  # dossier: registry/docs/REGISTRY_PROGRESS.md wired-registry-guard-rule-count-drift
+K0242,apps/wired/wired/registry_guard.py,14,fc2a1e08d8,NON_DOMAIN,"_DEFAULT_RULES_DIR = Path(__file__).resolve().parents[3] / ""labs"" / ""comlab"" / ""registry"" / ""rules"""
+K0243,apps/wired/wired/registry_guard.py,36,7a121e95b5,NON_DOMAIN,total = 0
+K0244,apps/wired/wired/run_case.py,12,4345c88c4e,NON_DOMAIN,APP_ROOT = Path(__file__).resolve().parents[1]
+K0245,apps/wired/wired/run_case.py,13,f262874aa2,NON_DOMAIN,WORKSPACE_ROOT = Path(__file__).resolve().parents[3]
+K0246,apps/wired/wired/run_case.py,31,e4e3d7248c,NON_DOMAIN,"sys.path.insert(0, path)"
+K0247,apps/wired/wired/run_case.py,67,9ad5342e61,NON_DOMAIN,return 1
+K0248,apps/wired/wired/run_case.py,76,a751126601,NON_DOMAIN,return 0
+K0249,apps/ui/_sample_app_reference.py,9,75c49cc273,NON_DOMAIN,"sys.path.insert(0, str(parent_dir))"
+K0250,apps/ui/_sample_app_reference.py,228,36d70df477,NON_DOMAIN,"def _check_radio(options, state_key, default_index=0, help_text=None):"
+K0251,apps/ui/_sample_app_reference.py,276,53bfeab472,,if len(vin_input) == 17:
+K0252,apps/ui/_sample_app_reference.py,285,957c7eabf0,NON_DOMAIN,"_yr = (f""{_dna.year_range[0]}–{_dna.year_range[1]}"""
+K0253,apps/ui/_sample_app_reference.py,308,cb0a611735,,"st.session_state[""vin_displacement_cc""] = int(round(_dna.displacement_l * 1000))"
+K0254,apps/ui/_sample_app_reference.py,341,8fcf8860d3,NON_DOMAIN,"default_index=0,"
+K0255,apps/ui/_sample_app_reference.py,356,8fcf8860d3,NON_DOMAIN,"default_index=0,"
+K0256,apps/ui/_sample_app_reference.py,368,94128480f1,NON_DOMAIN,"default_index=2,"
+K0257,apps/ui/_sample_app_reference.py,373,3042d3bb1b,,"fuel_stoich = FUEL_STOICH_AFR.get(fuel_ui_key, 14.7)"
+K0258,apps/ui/_sample_app_reference.py,380,8fcf8860d3,NON_DOMAIN,"default_index=0,"
+K0259,apps/ui/_sample_app_reference.py,396,8fcf8860d3,NON_DOMAIN,"default_index=0,"
+K0260,apps/ui/_sample_app_reference.py,406,8fcf8860d3,NON_DOMAIN,"default_index=0,"
+K0261,apps/ui/_sample_app_reference.py,435,c78f8827df,NON_DOMAIN,"index=0,"
+K0262,apps/ui/_sample_app_reference.py,452,9cc0be0768,,"low_co_val = st.session_state.get(""low_co"", 0.0)"
+K0263,apps/ui/_sample_app_reference.py,453,14d77927d9,,"low_co2_val = st.session_state.get(""low_co2"", 0.0)"
+K0264,apps/ui/_sample_app_reference.py,456,4c986d2b11,,if total_gas < 12.0:
+K0265,apps/ui/_sample_app_reference.py,468,382be8f741,NON_DOMAIN,"""hc"": st.session_state.get(""low_hc"", 0),"
+K0266,apps/ui/_sample_app_reference.py,469,6725274a38,,"""o2"": st.session_state.get(""low_o2"", 0.0),"
+K0267,apps/ui/_sample_app_reference.py,470,8bcd15392f,,"""lambda"": st.session_state.get(""low_lambda"", 1.0),"
+K0268,apps/ui/_sample_app_reference.py,471,b8ec725ec6,NON_DOMAIN,"""nox"": st.session_state.get(""low_nox"", 0),"
+K0269,apps/ui/_sample_app_reference.py,485,d18885c50c,NON_DOMAIN,"l1_c1, l1_c2 = st.columns(2)"
+K0270,apps/ui/_sample_app_reference.py,487,27adb13b66,,"co = st.number_input(""CO (%)"", min_value=0.0, max_value=10.0,"
+K0271,apps/ui/_sample_app_reference.py,488,3ebdf34326,,"value=0.12, step=0.01, format=""%.2f"", key=""low_co"")"
+K0272,apps/ui/_sample_app_reference.py,489,7270f40cd0,,"co2 = st.number_input(""CO₂ (%)"", min_value=0.0, max_value=20.0,"
+K0273,apps/ui/_sample_app_reference.py,490,6792cf4dd6,,"value=14.8, step=0.1, format=""%.1f"", key=""low_co2"")"
+K0274,apps/ui/_sample_app_reference.py,491,9893495b50,,"hc = st.number_input(""HC (ppm)"", min_value=0, max_value=20000,"
+K0275,apps/ui/_sample_app_reference.py,492,41f04c51f0,,"value=25, step=1, key=""low_hc"")"
+K0276,apps/ui/_sample_app_reference.py,494,9899ef27bd,,"o2 = st.number_input(""O₂ (%)"", min_value=0.0, max_value=20.0,"
+K0277,apps/ui/_sample_app_reference.py,495,3c6dfe5330,,"value=0.25, step=0.01, format=""%.2f"", key=""low_o2"")"
+K0278,apps/ui/_sample_app_reference.py,497,7b5ccf977a,,"""Lambda (sensor)"", min_value=0.5, max_value=2.0,"
+K0279,apps/ui/_sample_app_reference.py,498,15405ed9bb,,"value=1.00, step=0.01, format=""%.2f"", key=""low_lambda"","
+K0280,apps/ui/_sample_app_reference.py,503,c96d759d10,,"""NOx (ppm)"", min_value=0, max_value=5000, value=0, step=1,"
+K0281,apps/ui/_sample_app_reference.py,534,88412f0d71,NON_DOMAIN,"l2_c1, l2_c2 = st.columns(2)"
+K0282,apps/ui/_sample_app_reference.py,536,ff29ea45c4,,"hi_co = st.number_input(""CO (%)"", min_value=0.0, max_value=10.0,"
+K0283,apps/ui/_sample_app_reference.py,537,ee455f25fc,,"value=0.0, step=0.01, format=""%.2f"", key=""hi_co"")"
+K0284,apps/ui/_sample_app_reference.py,538,48ff5a8c18,,"hi_co2 = st.number_input(""CO₂ (%)"", min_value=0.0, max_value=20.0,"
+K0285,apps/ui/_sample_app_reference.py,539,634eb45b53,,"value=0.0, step=0.1, format=""%.1f"", key=""hi_co2"")"
+K0286,apps/ui/_sample_app_reference.py,540,f67c8aa626,,"hi_hc = st.number_input(""HC (ppm)"", min_value=0, max_value=20000,"
+K0287,apps/ui/_sample_app_reference.py,541,50ea0a2674,NON_DOMAIN,"value=0, step=1, key=""hi_hc"")"
+K0288,apps/ui/_sample_app_reference.py,543,1d8efe6afa,,"hi_o2 = st.number_input(""O₂ (%)"", min_value=0.0, max_value=20.0,"
+K0289,apps/ui/_sample_app_reference.py,544,c5735d9500,,"value=0.0, step=0.01, format=""%.2f"", key=""hi_o2"")"
+K0290,apps/ui/_sample_app_reference.py,545,b5816caa96,,"hi_lambda = st.number_input(""Lambda (sensor)"", min_value=0.0, max_value=2.0,"
+K0291,apps/ui/_sample_app_reference.py,546,c42e4d655e,,"value=0.0, step=0.01, format=""%.2f"", key=""hi_lambda"")"
+K0292,apps/ui/_sample_app_reference.py,547,bf18131fd3,,"hi_nox = st.number_input(""NOx (ppm)"", min_value=0, max_value=5000,"
+K0293,apps/ui/_sample_app_reference.py,548,835c0d4dfe,NON_DOMAIN,"value=0, step=1, key=""hi_nox"")"
+K0294,apps/ui/_sample_app_reference.py,552,d28afdbdbf,NON_DOMAIN,"l3_c1, l3_c2 = st.columns(2)"
+K0295,apps/ui/_sample_app_reference.py,554,ecc3da0a19,,"l3_rpm = st.number_input(""Engine RPM"", min_value=0, max_value=8000,"
+K0296,apps/ui/_sample_app_reference.py,555,293c35c22a,NON_DOMAIN,"value=0, step=1, key=""l3_rpm"")"
+K0297,apps/ui/_sample_app_reference.py,556,3ebff85e3d,,"l3_load = st.number_input(""Calc Load (%)"", min_value=0.0, max_value=100.0,"
+K0298,apps/ui/_sample_app_reference.py,557,d1f8a85597,,"value=0.0, step=0.1, key=""l3_load"")"
+K0299,apps/ui/_sample_app_reference.py,559,40115a23e9,,"""STFT B1 (%)"", min_value=-25.0, max_value=25.0,"
+K0300,apps/ui/_sample_app_reference.py,560,44c18f26f2,,"value=0.0, step=0.1, key=""l3_stft_b1"","
+K0301,apps/ui/_sample_app_reference.py,564,7e18fc39e4,,"""LTFT B1 (%)"", min_value=-25.0, max_value=25.0,"
+K0302,apps/ui/_sample_app_reference.py,565,5657ed77b9,,"value=0.0, step=0.1, key=""l3_ltft_b1"","
+K0303,apps/ui/_sample_app_reference.py,569,0693894e2b,,"""STFT B2 (%)"", min_value=-25.0, max_value=25.0,"
+K0304,apps/ui/_sample_app_reference.py,570,7fdf989885,,"value=0.0, step=0.1, key=""l3_stft_b2"","
+K0305,apps/ui/_sample_app_reference.py,574,70243b8dc8,,"""LTFT B2 (%)"", min_value=-25.0, max_value=25.0,"
+K0306,apps/ui/_sample_app_reference.py,575,6a07aeed6a,,"value=0.0, step=0.1, key=""l3_ltft_b2"","
+K0307,apps/ui/_sample_app_reference.py,580,22153e4e5b,,"""Upstream O₂ S11 (smart)"", min_value=0.0, max_value=2.0,"
+K0308,apps/ui/_sample_app_reference.py,581,312a5628df,,"value=0.45, step=0.01, format=""%.2f"", key=""l3_o2_up"","
+K0309,apps/ui/_sample_app_reference.py,597,efdf27dd7b,,"""Downstream O₂ S12 (V)"", min_value=0.0, max_value=1.5,"
+K0310,apps/ui/_sample_app_reference.py,598,758b251e07,,"value=0.0, step=0.01, format=""%.2f"", key=""l3_o2_dn"","
+K0311,apps/ui/_sample_app_reference.py,602,4a4dbad45a,,"l3_maf = st.number_input(""MAF (g/s)"", min_value=0.0, max_value=500.0,"
+K0312,apps/ui/_sample_app_reference.py,603,905cb3a4ae,,"value=0.0, step=0.1, key=""l3_maf"")"
+K0313,apps/ui/_sample_app_reference.py,604,7151cf0d4a,,"l3_map = st.number_input(""MAP (kPa)"", min_value=0.0, max_value=200.0,"
+K0314,apps/ui/_sample_app_reference.py,605,c48a4e87c7,,"value=0.0, step=0.1, key=""l3_map"")"
+K0315,apps/ui/_sample_app_reference.py,606,334a5fe870,,"l3_ect = st.number_input(""ECT (°C)"", min_value=-40, max_value=200,"
+K0316,apps/ui/_sample_app_reference.py,607,9b8490525c,NON_DOMAIN,"value=0, step=1, key=""l3_ect"")"
+K0317,apps/ui/_sample_app_reference.py,617,8b3de0668a,NON_DOMAIN,"l4_c1, l4_c2 = st.columns(2)"
+K0318,apps/ui/_sample_app_reference.py,619,9690d19e40,,"l4_rpm_hi = st.number_input(""Engine RPM"", min_value=0, max_value=8000,"
+K0319,apps/ui/_sample_app_reference.py,620,1f37b75347,NON_DOMAIN,"value=0, step=1, key=""l4_rpm"")"
+K0320,apps/ui/_sample_app_reference.py,621,62d255a623,,"l4_load_hi = st.number_input(""Calc Load (%)"", min_value=0.0, max_value=100.0,"
+K0321,apps/ui/_sample_app_reference.py,622,4254947f39,,"value=0.0, step=0.1, key=""l4_load"")"
+K0322,apps/ui/_sample_app_reference.py,623,286a96c8a2,,"l4_stft_b1_hi = st.number_input(""STFT B1 (%)"", min_value=-25.0, max_value=25.0,"
+K0323,apps/ui/_sample_app_reference.py,624,66b01cb6c2,,"value=0.0, step=0.1, key=""l4_stft_b1"","
+K0324,apps/ui/_sample_app_reference.py,626,39fd5a83e4,,"l4_ltft_b1_hi = st.number_input(""LTFT B1 (%)"", min_value=-25.0, max_value=25.0,"
+K0325,apps/ui/_sample_app_reference.py,627,a92fcf217b,,"value=0.0, step=0.1, key=""l4_ltft_b1"","
+K0326,apps/ui/_sample_app_reference.py,629,ff510c9ddd,,"l4_stft_b2_hi = st.number_input(""STFT B2 (%)"", min_value=-25.0, max_value=25.0,"
+K0327,apps/ui/_sample_app_reference.py,630,2a636570e3,,"value=0.0, step=0.1, key=""l4_stft_b2"","
+K0328,apps/ui/_sample_app_reference.py,632,112f893992,,"l4_ltft_b2_hi = st.number_input(""LTFT B2 (%)"", min_value=-25.0, max_value=25.0,"
+K0329,apps/ui/_sample_app_reference.py,633,3e2474e00d,,"value=0.0, step=0.1, key=""l4_ltft_b2"","
+K0330,apps/ui/_sample_app_reference.py,637,22153e4e5b,,"""Upstream O₂ S11 (smart)"", min_value=0.0, max_value=2.0,"
+K0331,apps/ui/_sample_app_reference.py,638,ddb9a4bcf0,,"value=0.45, step=0.01, format=""%.2f"", key=""l4_o2_up"","
+K0332,apps/ui/_sample_app_reference.py,642,efdf27dd7b,,"""Downstream O₂ S12 (V)"", min_value=0.0, max_value=1.5,"
+K0333,apps/ui/_sample_app_reference.py,643,497275df39,,"value=0.0, step=0.01, format=""%.2f"", key=""l4_o2_dn"","
+K0334,apps/ui/_sample_app_reference.py,646,af77f6f0a1,,"l4_maf_hi = st.number_input(""MAF (g/s)"", min_value=0.0, max_value=500.0,"
+K0335,apps/ui/_sample_app_reference.py,647,b8a2e5a0f1,,"value=0.0, step=0.1, key=""l4_maf"")"
+K0336,apps/ui/_sample_app_reference.py,648,fbb954d596,,"l4_map_hi = st.number_input(""MAP (kPa)"", min_value=0.0, max_value=200.0,"
+K0337,apps/ui/_sample_app_reference.py,649,4a696e5b23,,"value=0.0, step=0.1, key=""l4_map"")"
+K0338,apps/ui/_sample_app_reference.py,650,cd4f126c06,,"l4_ect_hi = st.number_input(""ECT (°C)"", min_value=-40, max_value=200,"
+K0339,apps/ui/_sample_app_reference.py,651,131b949307,NON_DOMAIN,"value=0, step=1, key=""l4_ect"")"
+K0340,apps/ui/_sample_app_reference.py,656,c49f90e04d,,"ff_c1, ff_c2, ff_c3, ff_c4 = st.columns(4)"
+K0341,apps/ui/_sample_app_reference.py,662,8fcf8860d3,NON_DOMAIN,"default_index=0,"
+K0342,apps/ui/_sample_app_reference.py,664,ca7368b562,,"ff_calc_load = st.number_input(""Calc Load (%)"", min_value=0.0, max_value=100.0,"
+K0343,apps/ui/_sample_app_reference.py,665,e608624808,,"value=0.0, step=0.1, key=""ff_calc_load"")"
+K0344,apps/ui/_sample_app_reference.py,666,23418f67e2,,"ff_ect = st.number_input(""ECT (°C)"", min_value=-40, max_value=200,"
+K0345,apps/ui/_sample_app_reference.py,667,e98cc5b898,NON_DOMAIN,"value=0, step=1, key=""ff_ect"")"
+K0346,apps/ui/_sample_app_reference.py,668,291db6db54,,"ff_iat = st.number_input(""IAT (°C)"", min_value=-40, max_value=100,"
+K0347,apps/ui/_sample_app_reference.py,669,ed5d301649,NON_DOMAIN,"value=0, step=1, key=""ff_iat"")"
+K0348,apps/ui/_sample_app_reference.py,671,8af7c5b636,,"""Barometric Pressure (kPa)"", min_value=0.0, max_value=120.0,"
+K0349,apps/ui/_sample_app_reference.py,672,8c9c089f5f,,"value=0.0, step=0.1, key=""ff_baro"","
+K0350,apps/ui/_sample_app_reference.py,676,f5766da87c,,"ff_rpm = st.number_input(""Engine RPM"", min_value=0, max_value=8000,"
+K0351,apps/ui/_sample_app_reference.py,677,19fdc2b542,NON_DOMAIN,"value=0, step=1, key=""ff_rpm"")"
+K0352,apps/ui/_sample_app_reference.py,678,683ad31a92,,"ff_speed = st.number_input(""Vehicle Speed (km/h)"", min_value=0, max_value=300,"
+K0353,apps/ui/_sample_app_reference.py,679,fe3a7104f0,NON_DOMAIN,"value=0, step=1, key=""ff_speed"")"
+K0354,apps/ui/_sample_app_reference.py,680,2829ba80aa,,"ff_map = st.number_input(""MAP (kPa)"", min_value=0.0, max_value=200.0,"
+K0355,apps/ui/_sample_app_reference.py,681,c7ca34688e,,"value=0.0, step=0.1, key=""ff_map"")"
+K0356,apps/ui/_sample_app_reference.py,682,9fc9ad2ec3,,"ff_maf = st.number_input(""MAF (g/s)"", min_value=0.0, max_value=500.0,"
+K0357,apps/ui/_sample_app_reference.py,683,ec0fb72dde,,"value=0.0, step=0.1, key=""ff_maf"")"
+K0358,apps/ui/_sample_app_reference.py,684,6d0e4e5a88,,"ff_throttle = st.number_input(""Throttle (%)"", min_value=0.0, max_value=100.0,"
+K0359,apps/ui/_sample_app_reference.py,685,3afdb9713e,,"value=0.0, step=0.1, key=""ff_throttle"")"
+K0360,apps/ui/_sample_app_reference.py,687,662744e8ab,,"ff_stft_b1 = st.number_input(""STFT B1 (%)"", min_value=-25.0, max_value=25.0,"
+K0361,apps/ui/_sample_app_reference.py,688,01b59405ca,,"value=0.0, step=0.1, key=""ff_stft_b1"","
+K0362,apps/ui/_sample_app_reference.py,690,96ae2b4cf0,,"ff_ltft_b1 = st.number_input(""LTFT B1 (%)"", min_value=-25.0, max_value=25.0,"
+K0363,apps/ui/_sample_app_reference.py,691,37ac8824e5,,"value=0.0, step=0.1, key=""ff_ltft_b1"","
+K0364,apps/ui/_sample_app_reference.py,694,0693894e2b,,"""STFT B2 (%)"", min_value=-25.0, max_value=25.0,"
+K0365,apps/ui/_sample_app_reference.py,695,68e3b0bcc9,,"value=0.0, step=0.1, key=""ff_stft_b2"","
+K0366,apps/ui/_sample_app_reference.py,699,70243b8dc8,,"""LTFT B2 (%)"", min_value=-25.0, max_value=25.0,"
+K0367,apps/ui/_sample_app_reference.py,700,ca5335d348,,"value=0.0, step=0.1, key=""ff_ltft_b2"","
+K0368,apps/ui/_sample_app_reference.py,705,22153e4e5b,,"""Upstream O₂ S11 (smart)"", min_value=0.0, max_value=2.0,"
+K0369,apps/ui/_sample_app_reference.py,706,858a178578,,"value=0.45, step=0.01, format=""%.2f"", key=""ff_o2_up"","
+K0370,apps/ui/_sample_app_reference.py,710,efdf27dd7b,,"""Downstream O₂ S12 (V)"", min_value=0.0, max_value=1.5,"
+K0371,apps/ui/_sample_app_reference.py,711,d68db39e54,,"value=0.0, step=0.01, format=""%.2f"", key=""ff_o2_dn"","
+K0372,apps/ui/_sample_app_reference.py,715,7d46ca2f5a,,"""Ignition Advance (°BTDC)"", min_value=-20.0, max_value=60.0,"
+K0373,apps/ui/_sample_app_reference.py,716,d56e1c7a29,,"value=0.0, step=0.1, key=""ff_ignition"","
+K0374,apps/ui/_sample_app_reference.py,722,a1181dc00a,,"""Fuel Rail Pressure (kPa)"", min_value=0.0, max_value=20000.0,"
+K0375,apps/ui/_sample_app_reference.py,723,c47e409534,,"value=0.0, step=1.0, key=""ff_fuel_rail"","
+K0376,apps/ui/_sample_app_reference.py,726,75f1e5cd83,,"""Commanded EGR (%)"", min_value=0.0, max_value=100.0,"
+K0377,apps/ui/_sample_app_reference.py,727,a621be5e06,,"value=0.0, step=0.1, key=""ff_egr"","
+K0378,apps/ui/_sample_app_reference.py,737,f046025d59,NON_DOMAIN,"if v is not None and v != 0 and v != """":"
+K0379,apps/ui/_sample_app_reference.py,754,68f769a1c4,,_O2_UP_DEFAULT = 0.45
+K0380,apps/ui/_sample_app_reference.py,875,612ec579f5,,"fconf = float(fb.get(""confidence"", 0.0))"
+K0381,apps/ui/_sample_app_reference.py,882,ee6b9faa2f,,"_raw_lam = result.get(""lambda_calculated"", 1.0)"
+K0382,apps/ui/_sample_app_reference.py,887,176e98f9da,,calc_lambda_val = 1.0
+K0383,apps/ui/_sample_app_reference.py,889,adbf9ea7dc,,calc_lambda_val = 1.0
+K0384,apps/ui/_sample_app_reference.py,898,2de6664e88,,if freeze_frame.ect is not None and freeze_frame.ect < 75:
+K0385,apps/ui/_sample_app_reference.py,911,5e6353c9f5,NON_DOMAIN,"_n    = _vref_data.get(""vref_sample_count"", 0)"
+K0386,apps/ui/_sample_app_reference.py,924,f5f4688dd7,,"rc1, rc2, rc3, rc4 = st.columns(4)"
+K0387,apps/ui/_sample_app_reference.py,943,603c4d2d69,,"m1, m2, m3, m4 = st.columns(4)"
+K0388,apps/ui/_sample_app_reference.py,956,88da52683a,NON_DOMAIN,if (_hi_lam_measured is not None and _hi_lam_measured > 0
+K0389,apps/ui/_sample_app_reference.py,959,c6078e8863,,if _lam_dev > 0.02:
+K0390,apps/ui/_sample_app_reference.py,966,bab2d34045,,"confidence = float(result.get(""confidence"", 0.0))"
+K0391,apps/ui/_sample_app_reference.py,968,bfb5c05a7f,NON_DOMAIN,"priority = int(result.get(""priority"", 0) or 0)"
+K0392,apps/ui/_sample_app_reference.py,971,13d1754218,,"severity_color = ""red"" if confidence >= 0.5 else ""orange"" if confidence >= 0.25 else ""green"""
+K0393,apps/ui/_sample_app_reference.py,977,1174a90873,,"s1, s2, s3 = st.columns(3)"
+K0394,apps/ui/_sample_app_reference.py,986,b4a23d748f,NON_DOMAIN,"channels_present = result.get(""channels_present"", 0)"
+K0395,apps/ui/_sample_app_reference.py,987,cdd5914ead,,if channels_present < 6:
+K0396,apps/ui/_sample_app_reference.py,1004,f91d0d71eb,NON_DOMAIN,"rank = int(c.get(""rank"", 1))"
+K0397,apps/ui/_sample_app_reference.py,1006,3ed41cc803,,"confidence = float(c.get(""confidence"", 0.0))"
+K0398,apps/ui/_sample_app_reference.py,1013,79f888e1f7,NON_DOMAIN,"""dx-card-top1"" if rank == 1"
+K0399,apps/ui/_sample_app_reference.py,1014,108b7d3bd7,NON_DOMAIN,"else ""dx-card-top2"" if rank == 2"
+K0400,apps/ui/_sample_app_reference.py,1015,267fcc60dc,,"else ""dx-card-top3"" if rank == 3"
+K0401,apps/ui/_sample_app_reference.py,1018,8c90d0a2a9,NON_DOMAIN,"name_class = ""dx-fault-name-top1"" if rank == 1 else """""
+K0402,apps/ui/_sample_app_reference.py,1019,c420ba532f,NON_DOMAIN,"bar_fill_class = """" if rank == 1 else ""dx-confidence-bar-fill-secondary"""
+K0403,apps/ui/_sample_app_reference.py,1037,d720b1d415,,"conf_pct = min(confidence * 100.0, 100.0)"
+K0404,apps/ui/_sample_app_reference.py,1073,bbcd3e4157,NON_DOMAIN,for sym in active_symptoms[:10]:
+K0405,apps/ui/_sample_app_reference.py,1096,612ec579f5,,"fconf = float(fb.get(""confidence"", 0.0))"
+K0406,apps/ui/_sample_app_reference.py,1104,62f79410ff,NON_DOMAIN,top_n = list(probs.items())[:5]
+K0407,apps/ui/_sample_app_reference.py,1116,c682730782,,"value=confidence * 100,"
+K0408,apps/ui/_sample_app_reference.py,1119,1a10b1d2c6,,"""axis"": {""range"": [0, 100]},"
+K0409,apps/ui/_sample_app_reference.py,1122,f9dcc00503,,"{""range"": [0, 25], ""color"": ""lightgray""},"
+K0410,apps/ui/_sample_app_reference.py,1123,f993be35be,,"{""range"": [25, 50], ""color"": ""orange""},"
+K0411,apps/ui/_sample_app_reference.py,1124,a850c5a12e,,"{""range"": [50, 100], ""color"": ""green""},"
+K0412,apps/ui/_sample_app_reference.py,1134,c3a380a439,NON_DOMAIN,traj_x = [t[0] for t in trajectory]
+K0413,apps/ui/_sample_app_reference.py,1135,689344b2e0,,"traj_y = [float(t[1].get(""confidence"", 0.0)) * 100 for t in trajectory]"
+K0414,apps/ui/_sample_app_reference.py,1136,ef9d167afe,NON_DOMAIN,"traj_top = [t[1].get(""top_fault"", """") for t in trajectory]"
+K0415,apps/ui/_sample_app_reference.py,1146,f45af56699,,"yaxis=dict(range=[0, 100]),"
+K0416,apps/ui/_sample_app_reference.py,1178,86560dde60,NON_DOMAIN,"rpm = list(range(800, 3500, 200))"
+K0417,apps/ui/_sample_app_reference.py,1179,0c821ad657,,measured = [lambda_sensor + (0.01 if r < 2000 else -0.02) for r in rpm]
+K0418,apps/ui/_sample_app_reference.py,1188,2d76434bf1,,"fig.add_hrect(y0=0.98, y1=1.02, line_width=0, fillcolor=""green"","
+K0419,apps/ui/_sample_app_reference.py,1189,a2a9f96cf2,,"opacity=0.1, annotation_text=""Stoich Zone"")"
+K0420,apps/ui/app.py,251,03f2975d7f,NON_DOMAIN,"def _check_radio(options: list[str], state_key: str, default_index: int = 0, help_text: str | None = None, help_str: str | None = None) -> str:"
+K0421,apps/ui/app.py,329,4a4f8a7726,,if len(vin_input) == 17:
+K0422,apps/ui/app.py,363,188a0760e3,NON_DOMAIN,active_number_of_banks = 1
+K0423,apps/ui/app.py,369,0ab35c9b2d,,active_cylinder_count = 4
+K0424,apps/ui/app.py,386,078d19b7af,NON_DOMAIN,"index=0,"
+K0425,apps/ui/app.py,400,b8b5745ece,NON_DOMAIN,"dtc_mem_status = _check_radio([""Normal"", ""Recently cleared (<50 mi)""], ""dtc_memory_status"", default_index=0, help_text=""🗒️ DTC Memory Status"", help_str=FIELD_HELP[""dtc_memory_status""].get_tooltip())"
+K0426,apps/ui/app.py,414,078d19b7af,NON_DOMAIN,"index=0,"
+K0427,apps/ui/app.py,419,eed2ccebb6,,"pad, body = st.columns([0.06, 0.94])"
+K0428,apps/ui/app.py,438,4cd5d27882,NON_DOMAIN,"triage_tier_2 = st.selectbox(""Subfield filter (Tier 2)"", options=allowed_t2, index=0, help=FIELD_HELP[""triage_tier_2""].get_tooltip())"
+K0429,apps/ui/app.py,440,5d47c3482f,NON_DOMAIN,"triage_occurs_during = _check_radio([""Always"", ""Cold only"", ""Hot only"", ""Intermittent""], ""occurs_during"", default_index=0, help_text=""Occurs during"", help_str=FIELD_HELP[""triage_occurs_during""].get_tooltip())"
+K0430,apps/ui/app.py,441,cefa0bbed2,NON_DOMAIN,"triage_engine_state = _check_radio([""Running"", ""Cranking"", ""Won't start""], ""engine_state"", default_index=0, help_text=""Engine state"", help_str=FIELD_HELP[""triage_engine_state""].get_tooltip())"
+K0431,apps/ui/app.py,445,c26e9dcd53,,"col_main, col_verdict = st.columns([0.65, 0.35])"
+K0432,apps/ui/app.py,457,01999abea9,,"gc1, gc2, gc3 = st.columns(3)"
+K0433,apps/ui/app.py,459,41722aa815,,"gas_low_co = st.number_input(""CO (%)"", min_value=GAS_CO_MIN, max_value=GAS_CO_MAX, value=None, step=0.01, format=""%.2f"", key=""gas_co"", help=FIELD_HELP[""gas_co""].get_tooltip())"
+K0434,apps/ui/app.py,460,56920c810a,,"gas_low_o2 = st.number_input(""O₂ (%)"", min_value=GAS_O2_MIN, max_value=GAS_O2_MAX, value=None, step=0.01, format=""%.2f"", key=""gas_o2"", help=FIELD_HELP[""gas_o2""].get_tooltip())"
+K0435,apps/ui/app.py,462,334bf42ede,,"gas_low_co2 = st.number_input(""CO₂ (%)"", min_value=GAS_CO2_MIN, max_value=GAS_CO2_MAX, value=None, step=0.1, format=""%.1f"", key=""gas_co2"", help=FIELD_HELP[""gas_co2""].get_tooltip())"
+K0436,apps/ui/app.py,463,2e86b8de6c,NON_DOMAIN,"gas_low_nox = st.number_input(""NOx (ppm)"", min_value=GAS_NOX_MIN, max_value=GAS_NOX_MAX, value=None, step=1, key=""gas_nox"", help=FIELD_HELP[""gas_nox""].get_tooltip())"
+K0437,apps/ui/app.py,465,676b179389,NON_DOMAIN,"gas_low_hc = st.number_input(""HC (ppm)"", min_value=GAS_HC_MIN, max_value=GAS_HC_MAX, value=None, step=1, key=""gas_hc"", help=FIELD_HELP[""gas_hc""].get_tooltip())"
+K0438,apps/ui/app.py,466,f9009772f4,,"gas_low_lambda = st.number_input(""Measured λ (analyser)"", min_value=GAS_LAMBDA_MIN, max_value=GAS_LAMBDA_MAX, value=None, step=0.001, format=""%.3f"", key=""gas_lambda"", help=FIELD_HELP[""gas_lambda_measured""].get_tooltip())"
+K0439,apps/ui/app.py,474,e0c1a79773,,"ghc1, ghc2, ghc3 = st.columns(3)"
+K0440,apps/ui/app.py,476,cbc1615f49,,"gas_high_co = st.number_input(""CO (%)"", min_value=GAS_CO_MIN, max_value=GAS_CO_MAX, value=None, step=0.01, format=""%.2f"", key=""gas_co_high"", help=FIELD_HELP[""gas_co_high""].get_tooltip())"
+K0441,apps/ui/app.py,477,385682fd94,,"gas_high_o2 = st.number_input(""O₂ (%)"", min_value=GAS_O2_MIN, max_value=GAS_O2_MAX, value=None, step=0.01, format=""%.2f"", key=""gas_o2_high"", help=FIELD_HELP[""gas_o2_high""].get_tooltip())"
+K0442,apps/ui/app.py,479,441ad40db0,,"gas_high_co2 = st.number_input(""CO₂ (%)"", min_value=GAS_CO2_MIN, max_value=GAS_CO2_MAX, value=None, step=0.1, format=""%.1f"", key=""gas_co2_high"", help=FIELD_HELP[""gas_co2_high""].get_tooltip())"
+K0443,apps/ui/app.py,480,b4858112a9,NON_DOMAIN,"gas_high_nox = st.number_input(""NOx (ppm)"", min_value=GAS_NOX_MIN, max_value=GAS_NOX_MAX, value=None, step=1, key=""gas_nox_high"", help=FIELD_HELP[""gas_nox_high""].get_tooltip())"
+K0444,apps/ui/app.py,482,5c1d090850,NON_DOMAIN,"gas_high_hc = st.number_input(""HC (ppm)"", min_value=GAS_HC_MIN, max_value=GAS_HC_MAX, value=None, step=1, key=""gas_hc_high"", help=FIELD_HELP[""gas_hc_high""].get_tooltip())"
+K0445,apps/ui/app.py,488,c9daa29801,,"oc1, oc2, oc3, oc4 = st.columns(4)"
+K0446,apps/ui/app.py,490,650d6c367a,,"obd_low_rpm = st.number_input(""Engine RPM"", min_value=OBD_RPM_MIN, max_value=OBD_RPM_MAX, value=None, step=50, key=""obd_rpm"", help=FIELD_HELP[""obd_engine_rpm""].get_tooltip())"
+K0447,apps/ui/app.py,491,9903680ef9,,"obd_low_stft1 = st.number_input(""STFT B1 (%)"", min_value=OBD_TRIM_MIN, max_value=OBD_TRIM_MAX, value=None, step=1.0, key=""obd_stft1"", help=FIELD_HELP[""obd_shrtft1""].get_tooltip())"
+K0448,apps/ui/app.py,494,f0ce68f298,NON_DOMAIN,if active_number_of_banks == 2:
+K0449,apps/ui/app.py,495,3d40ee2f89,,"pad, body = st.columns([0.06, 0.94])"
+K0450,apps/ui/app.py,497,050df1faae,,"obd_low_stft2 = st.number_input(""STFT B2 (%)"", min_value=OBD_TRIM_MIN, max_value=OBD_TRIM_MAX, value=None, step=1.0, key=""obd_stft2"", help=FIELD_HELP[""obd_shrtft2""].get_tooltip())"
+K0451,apps/ui/app.py,502,e039aa2aae,,"obd_low_ect = st.number_input(""Coolant temp ECT (°C)"", min_value=OBD_ECT_MIN, max_value=OBD_ECT_MAX, value=None, step=1.0, key=""obd_ect"", help=FIELD_HELP[""obd_coolant_temp_c""].get_tooltip())"
+K0452,apps/ui/app.py,503,f12c40e380,,"obd_low_ltft1 = st.number_input(""LTFT B1 (%)"", min_value=OBD_TRIM_MIN, max_value=OBD_TRIM_MAX, value=None, step=1.0, key=""obd_ltft1"", help=FIELD_HELP[""obd_longft1""].get_tooltip())"
+K0453,apps/ui/app.py,505,f0ce68f298,NON_DOMAIN,if active_number_of_banks == 2:
+K0454,apps/ui/app.py,506,3d40ee2f89,,"pad, body = st.columns([0.06, 0.94])"
+K0455,apps/ui/app.py,508,50ec826b67,,"obd_low_ltft2 = st.number_input(""LTFT B2 (%)"", min_value=OBD_TRIM_MIN, max_value=OBD_TRIM_MAX, value=None, step=1.0, key=""obd_ltft2"", help=FIELD_HELP[""obd_longft2""].get_tooltip())"
+K0456,apps/ui/app.py,513,1a6532a58a,,"obd_low_load = st.number_input(""Calc load (%)"", min_value=OBD_LOAD_MIN, max_value=OBD_LOAD_MAX, value=None, step=1.0, key=""obd_load"", help=FIELD_HELP[""obd_calculated_engine_load_pct""].get_tooltip())"
+K0457,apps/ui/app.py,517,3d40ee2f89,,"pad, body = st.columns([0.06, 0.94])"
+K0458,apps/ui/app.py,519,6542b62010,,"obd_low_maf = st.number_input(""MAF (g/s)"", min_value=OBD_MAF_MIN, max_value=OBD_MAF_MAX, value=None, step=0.1, key=""obd_maf"", help=FIELD_HELP[""obd_mass_airflow_gps""].get_tooltip())"
+K0459,apps/ui/app.py,525,3d40ee2f89,,"pad, body = st.columns([0.06, 0.94])"
+K0460,apps/ui/app.py,527,bed16ce4d7,,"obd_low_map = st.number_input(""MAP (kPa)"", min_value=OBD_MAP_MIN, max_value=OBD_MAP_MAX, value=None, step=1.0, key=""obd_map"", help=FIELD_HELP[""obd_manifold_vacuum_kpa""].get_tooltip())"
+K0461,apps/ui/app.py,536,672180bed6,,"obd_low_o2_up = st.number_input(""Upstream O₂ (V)"", min_value=UPSTREAM_O2_NARROWBAND_MIN, max_value=UPSTREAM_O2_NARROWBAND_MAX, value=None, step=0.01, key=""obd_o2_up"", help=FIELD_HELP[""obd_upstream_o2_val""].get_tooltip())"
+K0462,apps/ui/app.py,538,b60b150e40,,"obd_low_o2_up = st.number_input(""Upstream O₂ (λ)"", min_value=UPSTREAM_O2_WIDEBAND_LAMBDA_MIN, max_value=UPSTREAM_O2_WIDEBAND_LAMBDA_MAX, value=None, step=0.001, format=""%.3f"", key=""obd_o2_up"", help=FIELD_HELP[""obd_upstream_o2_val""].get_tooltip())"
+K0463,apps/ui/app.py,540,9dd42b3f6f,,"obd_low_o2_up = st.number_input(""Upstream O₂ (AFR)"", min_value=UPSTREAM_O2_WIDEBAND_AFR_MIN, max_value=UPSTREAM_O2_WIDEBAND_AFR_MAX, value=None, step=0.1, format=""%.1f"", key=""obd_o2_up"", help=FIELD_HELP[""obd_upstream_o2_val""].get_tooltip())"
+K0464,apps/ui/app.py,544,3d40ee2f89,,"pad, body = st.columns([0.06, 0.94])"
+K0465,apps/ui/app.py,546,e01a530d98,,"obd_low_o2_dn = st.number_input(""Downstream O₂ S12 (V)"", min_value=OBD_O2_DN_MIN, max_value=OBD_O2_DN_MAX, value=None, step=0.01, format=""%.2f"", key=""obd_o2_dn"", help=FIELD_HELP[""obd_downstream_o2_v""].get_tooltip())"
+K0466,apps/ui/app.py,550,bf5a05651b,NON_DOMAIN,"obd_low_fss = st.selectbox(""Fuel-sys status"", options=["""", ""CL"", ""OL"", ""OL_DRIVE"", ""OL_FAULT""], index=0, key=""obd_fss"", help=FIELD_HELP[""obd_fuel_sys_status""].get_tooltip())"
+K0467,apps/ui/app.py,559,3d7d79152c,NON_DOMAIN,"dc1, dc2 = st.columns(2)"
+K0468,apps/ui/app.py,576,eb656de5f0,,"fc1, fc2, fc3, fc4 = st.columns(4)"
+K0469,apps/ui/app.py,578,28549c3721,,"ff_load = st.number_input(""Calc load (%)"", min_value=FF_LOAD_MIN, max_value=FF_LOAD_MAX, value=None, step=1.0, key=""ff_load"", help=FIELD_HELP[""ff_calculated_load_pct""].get_tooltip())"
+K0470,apps/ui/app.py,579,387db53d06,,"ff_stft_b1 = st.number_input(""STFT B1 (%)"", min_value=FF_TRIM_MIN, max_value=FF_TRIM_MAX, value=None, step=0.1, key=""ff_stft_b1"", help=FIELD_HELP[""ff_short_term_ft1""].get_tooltip())"
+K0471,apps/ui/app.py,580,2fe16b39f4,,"ff_intake_air_temp_c = st.number_input(""Intake air temp IAT (°C)"", min_value=FF_IAT_MIN, max_value=FF_IAT_MAX, value=None, step=1.0, key=""ff_iat"", help=FIELD_HELP[""ff_intake_air_temp_c""].get_tooltip())"
+K0472,apps/ui/app.py,582,4036491ce3,,"ff_rpm = st.number_input(""Engine RPM"", min_value=FF_RPM_MIN, max_value=FF_RPM_MAX, value=None, step=50, key=""ff_rpm"", help=FIELD_HELP[""ff_engine_rpm""].get_tooltip())"
+K0473,apps/ui/app.py,583,8be98bc984,,"ff_ltft_b1 = st.number_input(""LTFT B1 (%)"", min_value=FF_TRIM_MIN, max_value=FF_TRIM_MAX, value=None, step=0.1, key=""ff_ltft_b1"", help=FIELD_HELP[""ff_long_term_ft1""].get_tooltip())"
+K0474,apps/ui/app.py,584,4f24c7ba3d,,"ff_maf = st.number_input(""MAF (g/s)"", min_value=FF_MAF_MIN, max_value=FF_MAF_MAX, value=None, step=0.1, key=""ff_maf"", help=FIELD_HELP[""ff_maf_gps""].get_tooltip())"
+K0475,apps/ui/app.py,586,2f836648f7,,"ff_ect = st.number_input(""Coolant temp ECT (°C)"", min_value=FF_ECT_MIN, max_value=FF_ECT_MAX, value=None, step=1.0, key=""ff_ect"", help=FIELD_HELP[""ff_coolant_temp_c""].get_tooltip())"
+K0476,apps/ui/app.py,587,9d95330ad2,NON_DOMAIN,"ff_map = st.number_input(""MAP (kPa)"", min_value=FF_MAP_MIN, max_value=FF_MAP_MAX, value=None, step=1, key=""ff_map"", help=FIELD_HELP[""ff_manifold_pressure_kpa""].get_tooltip())"
+K0477,apps/ui/app.py,588,a4be31873d,,"ff_throttle = st.number_input(""Throttle (%)"", min_value=FF_THROTTLE_MIN, max_value=FF_THROTTLE_MAX, value=None, step=1.0, key=""ff_throttle"", help=FIELD_HELP[""ff_throttle_pos_pct""].get_tooltip())"
+K0478,apps/ui/app.py,590,f38e6536f0,NON_DOMAIN,"ff_speed = st.number_input(""Vehicle speed (km/h)"", min_value=FF_SPEED_MIN, max_value=FF_SPEED_MAX, value=None, step=1, key=""ff_speed"", help=FIELD_HELP[""ff_vehicle_speed_kmh""].get_tooltip())"
+K0479,apps/ui/app.py,591,49d219a38b,,"ff_ignition = st.number_input(""Ignition advance (°BTDC)"", min_value=FF_IGNITION_MIN, max_value=FF_IGNITION_MAX, value=None, step=0.5, key=""ff_ignition"", help=FIELD_HELP[""ff_ignition_advance_deg""].get_tooltip())"
+K0480,apps/ui/app.py,592,787059bfa9,NON_DOMAIN,"ff_fss = st.selectbox(""Fuel-system status"", options=["""", ""CL"", ""OL"", ""OL_DRIVE"", ""OL_FAULT""], index=0, key=""ff_fss"", help=FIELD_HELP[""ff_fuel_system_status""].get_tooltip())"
+K0481,apps/ui/app.py,597,eed2ccebb6,,"pad, body = st.columns([0.06, 0.94])"
+K0482,apps/ui/app.py,600,5aad2c8946,,"fe1, fe2, fe3 = st.columns(3)"
+K0483,apps/ui/app.py,602,c7439d297f,NON_DOMAIN,if active_number_of_banks == 2:
+K0484,apps/ui/app.py,603,ea03940cf5,,"ff_stft_b2 = st.number_input(""STFT B2 (%)"", min_value=FF_TRIM_MIN, max_value=FF_TRIM_MAX, value=None, step=0.1, key=""ff_stft_b2"", help=FIELD_HELP[""ff_short_term_ft2""].get_tooltip())"
+K0485,apps/ui/app.py,604,e76b31687d,,"ff_long_term_ft2 = st.number_input(""LTFT B2 (%)"", min_value=FF_TRIM_MIN, max_value=FF_TRIM_MAX, value=None, step=0.1, key=""ff_ltft_b2"", help=FIELD_HELP[""ff_long_term_ft2""].get_tooltip())"
+K0486,apps/ui/app.py,610,e8ced2f19c,,"ff_o2_voltage_b1s1 = st.number_input(""Upstream O₂ B1S1 (V)"", min_value=FF_O2_V_B1S1_MIN, max_value=FF_O2_V_B1S1_MAX, value=None, step=0.001, format=""%.3f"", key=""ff_o2_voltage_b1s1"", help=FIELD_HELP[""ff_o2_voltage_b1s1""].get_tooltip())"
+K0487,apps/ui/app.py,615,f117d3e487,NON_DOMAIN,"ff_barometric = st.number_input(""Barometric pressure (kPa)"", min_value=FF_MAP_MIN, max_value=FF_MAP_MAX, value=None, step=1, key=""ff_baro"", help=FIELD_HELP[""ff_barometric_pressure_kpa""].get_tooltip())"
+K0488,apps/ui/app.py,617,1f46f32b94,,"ff_egr = st.number_input(""Commanded EGR (%)"", min_value=FF_THROTTLE_MIN, max_value=FF_THROTTLE_MAX, value=None, step=0.1, key=""ff_egr"", help=FIELD_HELP[""ff_commanded_egr_pct""].get_tooltip())"
+K0489,apps/ui/app.py,622,65afc788e8,NON_DOMAIN,"ff_runtime = st.number_input(""Run time since start (s)"", min_value=FF_RUNTIME_MIN, max_value=FF_RUNTIME_MAX, value=None, step=1, key=""ff_runtime"", help=FIELD_HELP[""ff_run_time_since_start_sec""].get_tooltip())"
+K0490,apps/ui/app.py,623,028403b0cc,,"ff_fuel_level = st.number_input(""Fuel level (%)"", min_value=FF_FUEL_LEVEL_MIN, max_value=FF_FUEL_LEVEL_MAX, value=None, step=0.1, key=""ff_fuel_level"", help=FIELD_HELP[""ff_fuel_level_pct""].get_tooltip())"
+K0491,apps/ui/app.py,640,439feccccf,,"col1, col2, col3, col4 = st.columns([3, 3, 3, 1])"
+K0492,apps/ui/app.py,642,aa9fc995ff,NON_DOMAIN,"mon_id_val = st.text_input(f""Monitor ID #{i+1}"", value=mon[""monitor_id""], key=f""mon_id_{i}"", help=FIELD_HELP[""mode06_monitor_id""].get_tooltip())"
+K0493,apps/ui/app.py,650,bf0a113e45,NON_DOMAIN,if len(parts) >= 2:
+K0494,apps/ui/app.py,651,33add5f0cd,NON_DOMAIN,mid_hex = parts[1]
+K0495,apps/ui/app.py,659,499ddb582b,NON_DOMAIN,"margin = st.number_input(f""Margin (%) #{i+1}"", value=mon[""margin_pct""], key=f""mon_margin_{i}"", help=FIELD_HELP[""mode06_margin_pct""].get_tooltip())"
+K0496,apps/ui/app.py,678,ad9bc6071e,,"ac2_1, ac2_2, ac2_3 = st.columns(3)"
+K0497,apps/ui/app.py,694,e8f6331e1a,NON_DOMAIN,"ac3_1, ac3_2 = st.columns(2)"
+K0498,apps/ui/app.py,700,80911dcc48,NON_DOMAIN,"adv_bidirectional_fuel_response_ok_bool = st.selectbox(""bidirectional_fuel_response_ok_bool"", options=[""—"", ""True"", ""False""], index=0, key=""adv_bidirectional_fuel_response_ok_bool"", help=FIELD_HELP[""bidirectional_fuel_response_ok_bool""].get_tooltip())"
+K0499,apps/ui/app.py,704,9b07e4f95e,,"ac6_1, ac6_2, ac6_3 = st.columns(3)"
+K0500,apps/ui/app.py,718,818a62296d,NON_DOMAIN,"ac5_1, ac5_2 = st.columns(2)"
+K0501,apps/ui/app.py,729,c302d46c2c,NON_DOMAIN,"ac4_1, ac4_2 = st.columns(2)"
+K0502,apps/ui/app.py,739,dcf7fad385,,"ac9_1, ac9_2, ac9_3 = st.columns(3)"
+K0503,apps/ui/app.py,741,6f7455a100,NON_DOMAIN,"adv_readiness_supported_complete_bool = st.selectbox(""readiness_supported_complete_bool"", options=[""—"", ""True"", ""False""], index=0, key=""adv_readiness_supported_complete_bool"", help=FIELD_HELP[""readiness_supported_complete_bool""].get_tooltip())"
+K0504,apps/ui/app.py,742,3f7e962967,NON_DOMAIN,"adv_permanent_dtc_count = st.number_input(""permanent_dtc_count"", min_value=ADV_DTC_COUNT_MIN, max_value=ADV_DTC_COUNT_MAX, value=None, step=1, key=""adv_permanent_dtc_count"", help=FIELD_HELP[""permanent_dtc_count""].get_tooltip())"
+K0505,apps/ui/app.py,743,05dbe4ce92,NON_DOMAIN,"adv_miles_since_clear = st.number_input(""miles_since_clear"", min_value=ADV_MILES_MIN, max_value=ADV_MILES_MAX, value=None, step=1, key=""adv_miles_since_clear"", help=FIELD_HELP[""miles_since_clear""].get_tooltip())"
+K0506,apps/ui/app.py,745,0861729669,NON_DOMAIN,"adv_stored_dtc_count = st.number_input(""stored_dtc_count"", min_value=ADV_DTC_COUNT_MIN, max_value=ADV_DTC_COUNT_MAX, value=None, step=1, key=""adv_stored_dtc_count"", help=FIELD_HELP[""stored_dtc_count""].get_tooltip())"
+K0507,apps/ui/app.py,746,a55c611d61,,"adv_mode06_min_margin_pct = st.number_input(""mode06_min_margin_pct (%)"", min_value=-100.0, max_value=100.0, value=None, key=""adv_mode06_min_margin_pct"", help=FIELD_HELP[""mode06_min_margin_pct""].get_tooltip())"
+K0508,apps/ui/app.py,748,79c81f478b,NON_DOMAIN,"adv_pending_dtc_count = st.number_input(""pending_dtc_count"", min_value=ADV_DTC_COUNT_MIN, max_value=ADV_DTC_COUNT_MAX, value=None, step=1, key=""adv_pending_dtc_count"", help=FIELD_HELP[""pending_dtc_count""].get_tooltip())"
+K0509,apps/ui/app.py,749,ccb73ba1d7,NON_DOMAIN,"adv_warmup_cycles_since_clear = st.number_input(""warmup_cycles_since_clear"", min_value=ADV_WARMUP_MIN, max_value=ADV_WARMUP_MAX, value=None, step=1, key=""adv_warmup_cycles_since_clear"", help=FIELD_HELP[""warmup_cycles_since_clear""].get_tooltip())"
+K0510,apps/ui/app.py,955,b56d0017f9,,"<div class=""dx-confidence-bar-fill dx-confidence-bar-fill-secondary"" style=""width: {verdict.confidence_score * 100}%;""></div>"
+K0511,apps/ui/app.py,966,0236fe72b7,,conf_pct = int((sib.confidence_score or 0.0) * 100)
+K0512,apps/ui/app.py,971,16b7a52764,NON_DOMAIN,"<span class=""dx-fault-name"">Candidate #{idx + 2}: {sib.fault_id} — {sib.fault_name}</span>"
+K0513,apps/ui/app.py,993,fc7fda4a39,,"<div class=""dx-confidence-bar-fill"" style=""width: {verdict.confidence_score * 100}%;""></div>"
+K0514,apps/ui/app.py,1005,0236fe72b7,,conf_pct = int((sib.confidence_score or 0.0) * 100)
+K0515,apps/ui/app.py,1010,16b7a52764,NON_DOMAIN,"<span class=""dx-fault-name"">Candidate #{idx + 2}: {sib.fault_id} — {sib.fault_name}</span>"
+K0516,apps/ui/ui_payload.py,15,ffd3d87673,,GAS_CO_MIN = 0.0
+K0517,apps/ui/ui_payload.py,16,6e6a1591dd,,GAS_CO_MAX = 15.0
+K0518,apps/ui/ui_payload.py,17,ee44cbdf3d,,GAS_CO2_MIN = 0.0
+K0519,apps/ui/ui_payload.py,18,57a9a959a3,,GAS_CO2_MAX = 22.0
+K0520,apps/ui/ui_payload.py,19,83931399d4,NON_DOMAIN,GAS_HC_MIN = 0
+K0521,apps/ui/ui_payload.py,20,8c7764d01f,,GAS_HC_MAX = 20000
+K0522,apps/ui/ui_payload.py,21,34ba180e9e,,GAS_O2_MIN = 0.0
+K0523,apps/ui/ui_payload.py,22,f8bc1fff8b,,GAS_O2_MAX = 22.0
+K0524,apps/ui/ui_payload.py,23,614005a1ea,NON_DOMAIN,GAS_NOX_MIN = 0
+K0525,apps/ui/ui_payload.py,24,339e0cd57f,,GAS_NOX_MAX = 5000
+K0526,apps/ui/ui_payload.py,25,aa8016b0d6,,GAS_LAMBDA_MIN = 0.500
+K0527,apps/ui/ui_payload.py,26,767f47c334,,GAS_LAMBDA_MAX = 2.000
+K0528,apps/ui/ui_payload.py,28,5158ee6660,NON_DOMAIN,OBD_RPM_MIN = 0
+K0529,apps/ui/ui_payload.py,29,3c3bdbf31f,,OBD_RPM_MAX = 8000
+K0530,apps/ui/ui_payload.py,30,dfe4c66a79,,OBD_ECT_MIN = -40.0
+K0531,apps/ui/ui_payload.py,31,a92502e7d3,,OBD_ECT_MAX = 140.0
+K0532,apps/ui/ui_payload.py,32,63aca56f9a,,OBD_LOAD_MIN = 0.0
+K0533,apps/ui/ui_payload.py,33,c67009a7ad,,OBD_LOAD_MAX = 100.0
+K0534,apps/ui/ui_payload.py,34,4aa7d7eb14,,OBD_TRIM_MIN = -127.0
+K0535,apps/ui/ui_payload.py,35,f4d5f57a62,,OBD_TRIM_MAX = 127.0
+K0536,apps/ui/ui_payload.py,36,311490b51e,,OBD_MAF_MIN = 0.0
+K0537,apps/ui/ui_payload.py,37,921de606b3,,OBD_MAF_MAX = 655.35
+K0538,apps/ui/ui_payload.py,38,8d05fe4422,,OBD_MAP_MIN = 0.0
+K0539,apps/ui/ui_payload.py,39,8fd99eee90,,OBD_MAP_MAX = 255.0
+K0540,apps/ui/ui_payload.py,40,d39c2ed9f3,,OBD_O2_DN_MIN = 0.0
+K0541,apps/ui/ui_payload.py,41,bab61c2009,,OBD_O2_DN_MAX = 1.5
+K0542,apps/ui/ui_payload.py,43,9a47590a2a,,FF_LOAD_MIN = 0.0
+K0543,apps/ui/ui_payload.py,44,102531316f,,FF_LOAD_MAX = 100.0
+K0544,apps/ui/ui_payload.py,45,1b89c21d5d,NON_DOMAIN,FF_RPM_MIN = 0
+K0545,apps/ui/ui_payload.py,46,06aba90954,,FF_RPM_MAX = 16383
+K0546,apps/ui/ui_payload.py,47,719ea39b72,,FF_ECT_MIN = -40.0
+K0547,apps/ui/ui_payload.py,48,a76db5fe55,,FF_ECT_MAX = 215.0
+K0548,apps/ui/ui_payload.py,49,0f57e98925,,FF_TRIM_MIN = -100.0
+K0549,apps/ui/ui_payload.py,50,5850d871d3,,FF_TRIM_MAX = 99.22
+K0550,apps/ui/ui_payload.py,51,bc5be4bef5,NON_DOMAIN,FF_MAP_MIN = 0
+K0551,apps/ui/ui_payload.py,52,bcbdc17c64,,FF_MAP_MAX = 255
+K0552,apps/ui/ui_payload.py,53,d5d863e481,NON_DOMAIN,FF_SPEED_MIN = 0
+K0553,apps/ui/ui_payload.py,54,c8ddecec7a,,FF_SPEED_MAX = 255
+K0554,apps/ui/ui_payload.py,55,a69e59c44a,,FF_IGNITION_MIN = -64.0
+K0555,apps/ui/ui_payload.py,56,6ae7ca095e,,FF_IGNITION_MAX = 63.5
+K0556,apps/ui/ui_payload.py,57,1fadf60332,,FF_IAT_MIN = -40.0
+K0557,apps/ui/ui_payload.py,58,e70b246663,,FF_IAT_MAX = 215.0
+K0558,apps/ui/ui_payload.py,59,000f4c4087,,FF_MAF_MIN = 0.0
+K0559,apps/ui/ui_payload.py,60,60f70f8eaf,,FF_MAF_MAX = 655.35
+K0560,apps/ui/ui_payload.py,61,7788ad0050,,FF_THROTTLE_MIN = 0.0
+K0561,apps/ui/ui_payload.py,62,b8f4e0ee83,,FF_THROTTLE_MAX = 100.0
+K0562,apps/ui/ui_payload.py,63,3f4db16d16,,FF_O2_V_B1S1_MIN = 0.000
+K0563,apps/ui/ui_payload.py,64,aa2b52afb8,,FF_O2_V_B1S1_MAX = 1.275
+K0564,apps/ui/ui_payload.py,65,c56bf3f048,NON_DOMAIN,FF_RUNTIME_MIN = 0
+K0565,apps/ui/ui_payload.py,66,dae6795914,,FF_RUNTIME_MAX = 65535
+K0566,apps/ui/ui_payload.py,67,d8b449969c,,FF_FUEL_LEVEL_MIN = 0.0
+K0567,apps/ui/ui_payload.py,68,d2e65331a7,,FF_FUEL_LEVEL_MAX = 100.0
+K0568,apps/ui/ui_payload.py,70,ccbc8982e0,,UPSTREAM_O2_NARROWBAND_MIN = 0.0
+K0569,apps/ui/ui_payload.py,71,021d4c423d,,UPSTREAM_O2_NARROWBAND_MAX = 1.0
+K0570,apps/ui/ui_payload.py,72,d9e1a0a132,,UPSTREAM_O2_WIDEBAND_LAMBDA_MIN = 0.7
+K0571,apps/ui/ui_payload.py,73,b706c5c732,,UPSTREAM_O2_WIDEBAND_LAMBDA_MAX = 1.3
+K0572,apps/ui/ui_payload.py,74,fc59f48f14,,UPSTREAM_O2_WIDEBAND_AFR_MIN = 10.0
+K0573,apps/ui/ui_payload.py,75,c0d45c1f2f,,UPSTREAM_O2_WIDEBAND_AFR_MAX = 20.0
+K0574,apps/ui/ui_payload.py,77,68a27a0cf3,,WIDEBAND_AFR_STOICH = 14.7
+K0575,apps/ui/ui_payload.py,79,bf9ea4abb0,,ADV_CAT_MARGIN_MIN = -1000.0
+K0576,apps/ui/ui_payload.py,80,b91bc240c7,,ADV_CAT_MARGIN_MAX = 100.0
+K0577,apps/ui/ui_payload.py,81,8bf7849c08,,ADV_CAT_INDEX_MIN = 0.0
+K0578,apps/ui/ui_payload.py,82,c66c283241,,ADV_CAT_INDEX_MAX = 2.0
+K0579,apps/ui/ui_payload.py,83,9d024a02d8,,ADV_DECEL_CO_MIN = 0.0
+K0580,apps/ui/ui_payload.py,84,317be71055,,ADV_DECEL_CO_MAX = 25.0
+K0581,apps/ui/ui_payload.py,85,2221c12118,NON_DOMAIN,ADV_DELTA_HC_MIN = 0
+K0582,apps/ui/ui_payload.py,86,c819ba2b9b,,ADV_DELTA_HC_MAX = 20000
+K0583,apps/ui/ui_payload.py,87,7c4fc3e2d5,,ADV_DELTA_CO_MIN = 0.0
+K0584,apps/ui/ui_payload.py,88,e5ce9a85b6,,ADV_DELTA_CO_MAX = 15.0
+K0585,apps/ui/ui_payload.py,89,ba102a40f4,,ADV_MAP_BARO_MIN = 0.0
+K0586,apps/ui/ui_payload.py,90,baf058355e,,ADV_MAP_BARO_MAX = 50.0
+K0587,apps/ui/ui_payload.py,91,280a80c1c5,,ADV_VOLTAGE_MIN = 0.0
+K0588,apps/ui/ui_payload.py,92,8a82714120,,ADV_VOLTAGE_MAX = 18.0
+K0589,apps/ui/ui_payload.py,93,d92e642189,,ADV_GND_DROP_MIN = 0.0
+K0590,apps/ui/ui_payload.py,94,3cbff70d26,,ADV_GND_DROP_MAX = 5.0
+K0591,apps/ui/ui_payload.py,95,b76a9c4782,,ADV_O2_MARGIN_MIN = 0.0
+K0592,apps/ui/ui_payload.py,96,8d408ccdc4,,ADV_O2_MARGIN_MAX = 100.0
+K0593,apps/ui/ui_payload.py,97,717fb536e9,,ADV_MAF_DELTA_MIN = -100.0
+K0594,apps/ui/ui_payload.py,98,413c2b493b,,ADV_MAF_DELTA_MAX = 100.0
+K0595,apps/ui/ui_payload.py,99,e1ec214c94,,ADV_MAF_GPS_MIN = 0.0
+K0596,apps/ui/ui_payload.py,100,d35c210815,,ADV_MAF_GPS_MAX = 500.0
+K0597,apps/ui/ui_payload.py,101,a497eea467,,ADV_PRESSURE_MIN = 0.0
+K0598,apps/ui/ui_payload.py,102,535cfdf763,,ADV_PRESSURE_MAX = 250000.0
+K0599,apps/ui/ui_payload.py,103,44ef0162f9,,ADV_LAMBDA_WOT_MIN = 0.0
+K0600,apps/ui/ui_payload.py,104,99805da76a,,ADV_LAMBDA_WOT_MAX = 3.0
+K0601,apps/ui/ui_payload.py,105,438816e904,,ADV_CO2_MIN = 0.0
+K0602,apps/ui/ui_payload.py,106,9d6d663564,,ADV_CO2_MAX = 22.0
+K0603,apps/ui/ui_payload.py,107,f50b3c1844,,ADV_O2_ELEV_MIN = 0.0
+K0604,apps/ui/ui_payload.py,108,c226262c9b,,ADV_O2_ELEV_MAX = 22.0
+K0605,apps/ui/ui_payload.py,109,eb0962dc58,NON_DOMAIN,ADV_DTC_COUNT_MIN = 0
+K0606,apps/ui/ui_payload.py,110,fd945d525d,,ADV_DTC_COUNT_MAX = 100
+K0607,apps/ui/ui_payload.py,111,dbc91411e4,NON_DOMAIN,ADV_WARMUP_MIN = 0
+K0608,apps/ui/ui_payload.py,112,d17d93156f,,ADV_WARMUP_MAX = 255
+K0609,apps/ui/ui_payload.py,113,9f8ba31979,NON_DOMAIN,ADV_MILES_MIN = 0
+K0610,apps/ui/ui_payload.py,114,e43cd0145a,,ADV_MILES_MAX = 65535
+K0611,apps/ui/ui_payload.py,138,8784c1fe42,,"min_val=17,"
+K0612,apps/ui/ui_payload.py,139,347738de4d,,"max_val=17,"
+K0613,apps/ui/ui_payload.py,323,74f0c88a3d,,"min_val=0.0,"
+K0614,apps/ui/ui_payload.py,324,5288a079a3,,"max_val=20.0,"
+K0615,apps/ui/ui_payload.py,368,7de2611bc1,,"min_val=-100.0,"
+K0616,apps/ui/ui_payload.py,369,41d2fe977f,,"max_val=100.0,"
+K0617,apps/ui/ui_payload.py,686,7de2611bc1,,"min_val=-100.0,"
+K0618,apps/ui/ui_payload.py,687,41d2fe977f,,"max_val=100.0,"
+K0619,apps/ui/ui_payload.py,726,c5b29bd622,NON_DOMAIN,"min_val=1,"
+K0620,apps/ui/ui_payload.py,727,13fb402fc3,,"max_val=12,"
+K0621,apps/ui/ui_payload.py,976,5095889cb0,NON_DOMAIN,"num_banks = int(widgets.get(""active_number_of_banks"") or 1)"
+K0622,apps/ui/ui_payload.py,1088,811c8d78ca,NON_DOMAIN,"num_banks = int(widgets.get(""active_number_of_banks"") or 1)"
+K0623,apps/ui/ui_payload.py,1091,409ca2e787,NON_DOMAIN,if num_banks == 2:
+K0624,apps/ui/ui_payload.py,1123,b7b9464e34,NON_DOMAIN,"obd[""pid_wideband_equivalence_ratio""] = round(float(val_o2) / WIDEBAND_AFR_STOICH, 4)"
+K0625,apps/ui/ui_payload.py,1262,28b5d09de3,NON_DOMAIN,"if ff_key in (""short_term_ft2"", ""long_term_ft2"") and num_banks != 2:"
+K0626,apps/ui/ui_payload.py,1286,ed745c7aac,NON_DOMAIN,"def distinct_family_siblings(verdict: Any, limit: int = 2) -> list[Any]:"
+K0627,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,2,1008d42274,NON_DOMAIN,"""_source_wiki"": ""DTC_VOCABULARY.md §13.2"","
+K0628,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,3,f9c274a609,,"""_description"": ""Universal Mode $06 MID inventory — CAN-equipped vehicles, 2008+. Manufacturer-specific MIDs are layered on top by the caller."","
+K0629,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,4,c1b1f0a8f7,,"""01"": {""name"": ""O2 Sensor Response B1S1"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0630,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,5,2ea5592819,,"""02"": {""name"": ""O2 Sensor Response B1S2"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0631,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,6,58d5526f3e,,"""05"": {""name"": ""O2 Heater Performance B1S1"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0632,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,7,b6cffc41c5,,"""06"": {""name"": ""O2 Heater Performance B1S2"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0633,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,8,e04488ae3e,,"""13"": {""name"": ""Fuel System Rail Pressure"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0634,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,9,9134d0e882,,"""21"": {""name"": ""Catalyst OSC Bank 1"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0635,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,10,b269d87cf6,,"""22"": {""name"": ""Catalyst OSC Bank 2"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0636,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,11,80db5c51bd,,"""31"": {""name"": ""EVAP Leak Test 0.040\"""", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0637,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,12,bece147c13,,"""32"": {""name"": ""EVAP Leak Test 0.020\"""", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0638,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,13,9fbe422a9e,,"""33"": {""name"": ""EVAP Leak Test"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0639,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,14,90844c629b,,"""34"": {""name"": ""EVAP Leak Test"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0640,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,15,595757ab10,,"""35"": {""name"": ""EVAP Leak Test"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0641,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,16,456eaac0c2,,"""36"": {""name"": ""EVAP Leak Test"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0642,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,17,7c70c60554,,"""37"": {""name"": ""EVAP Leak Test"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0643,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,18,376ac730bc,,"""38"": {""name"": ""EVAP Leak Test"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0644,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,19,4ea1b314b8,,"""39"": {""name"": ""EVAP Leak Test"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0645,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,20,ca6ad01f26,,"""3A"": {""name"": ""EVAP Leak Test"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0646,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,21,85ff5b10eb,,"""3B"": {""name"": ""EGR Flow"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0647,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,22,d8e270e337,,"""3C"": {""name"": ""EGR Cooler Bypass"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0648,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,23,16743c93bf,,"""3D"": {""name"": ""VVT Phaser Accuracy"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0649,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,24,b1dd20e959,,"""71"": {""name"": ""Secondary Air Injection"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0650,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,25,326718eb7f,,"""81"": {""name"": ""Fuel Rail Pressure GDI Bank 1"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0651,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,26,f10c397919,,"""82"": {""name"": ""Fuel Rail Pressure GDI Bank 2"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0652,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,27,0d260c4013,,"""A1"": {""name"": ""Misfire Cylinder 1"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0653,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,28,1158e5a017,,"""A2"": {""name"": ""Misfire Cylinder 2"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0654,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,29,ce6ea2dff2,,"""A3"": {""name"": ""Misfire Cylinder 3"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0655,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,30,73b5d506e9,,"""A4"": {""name"": ""Misfire Cylinder 4"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0656,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,31,b0f57bf6d9,,"""A5"": {""name"": ""Misfire Cylinder 5"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0657,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,32,24fcea7ebf,,"""A6"": {""name"": ""Misfire Cylinder 6"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0658,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,33,cc76718cc7,,"""A7"": {""name"": ""Misfire Cylinder 7"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0659,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,34,d04aebc077,,"""A8"": {""name"": ""Misfire Cylinder 8"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0660,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,35,d57ccac1d1,,"""A9"": {""name"": ""Misfire Cylinder 9"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""},"
+K0661,labs/dtclab/dtclab/config/mode_06_hex_dictionary.json,36,d12b4429f7,NON_DOMAIN,"""E1"": {""name"": ""Thermostat / Cooling"", ""source_wiki"": ""DTC_VOCABULARY.md §13.2""}"
+K0662,labs/dtclab/dtclab/config/routing_tag_map.yaml,2,8be6caf392,NON_DOMAIN,# Canonical source: DTC_VOCABULARY.md §15
+K0663,labs/dtclab/dtclab/config/routing_tag_map.yaml,8,5ead5fe411,,"- patterns: [""^P001[0-9]$"", ""^P002[0-3]$""]"
+K0664,labs/dtclab/dtclab/config/routing_tag_map.yaml,10,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0665,labs/dtclab/dtclab/config/routing_tag_map.yaml,13,9da06fe053,,"- patterns: [""^P010[0-4]$""]"
+K0666,labs/dtclab/dtclab/config/routing_tag_map.yaml,15,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0667,labs/dtclab/dtclab/config/routing_tag_map.yaml,18,6f638436af,,"- patterns: [""^P010[5-9]$""]"
+K0668,labs/dtclab/dtclab/config/routing_tag_map.yaml,20,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0669,labs/dtclab/dtclab/config/routing_tag_map.yaml,23,9aafdbe164,,"- patterns: [""^P011[0-5]$""]"
+K0670,labs/dtclab/dtclab/config/routing_tag_map.yaml,25,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0671,labs/dtclab/dtclab/config/routing_tag_map.yaml,28,875bed2308,,"- patterns: [""^P011[6-9]$"", ""^P012[0-8]$""]"
+K0672,labs/dtclab/dtclab/config/routing_tag_map.yaml,30,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0673,labs/dtclab/dtclab/config/routing_tag_map.yaml,32,cae2d504ba,NON_DOMAIN,# --- O2 Bank 1 Sensor 1 circuit / heater ---
+K0674,labs/dtclab/dtclab/config/routing_tag_map.yaml,33,4052cafcfe,,"- patterns: [""^P013[0-9]$"", ""^P014[0-7]$""]"
+K0675,labs/dtclab/dtclab/config/routing_tag_map.yaml,34,92eee8b879,NON_DOMAIN,tag: O2_HISTORY
+K0676,labs/dtclab/dtclab/config/routing_tag_map.yaml,35,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0677,labs/dtclab/dtclab/config/routing_tag_map.yaml,37,f3747f3dbd,NON_DOMAIN,# --- O2 Bank 2 Sensor 1 circuit / heater ---
+K0678,labs/dtclab/dtclab/config/routing_tag_map.yaml,38,c20ff699b5,,"- patterns: [""^P015[0-9]$"", ""^P016[0-7]$""]"
+K0679,labs/dtclab/dtclab/config/routing_tag_map.yaml,39,92eee8b879,NON_DOMAIN,tag: O2_HISTORY
+K0680,labs/dtclab/dtclab/config/routing_tag_map.yaml,40,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0681,labs/dtclab/dtclab/config/routing_tag_map.yaml,42,04b0dd346f,NON_DOMAIN,# --- Fuel system lean Bank 1 ---
+K0682,labs/dtclab/dtclab/config/routing_tag_map.yaml,43,d31991c801,NON_DOMAIN,"- patterns: [""^P0171$""]"
+K0683,labs/dtclab/dtclab/config/routing_tag_map.yaml,45,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0684,labs/dtclab/dtclab/config/routing_tag_map.yaml,47,6604789898,NON_DOMAIN,# --- Fuel system rich Bank 1 ---
+K0685,labs/dtclab/dtclab/config/routing_tag_map.yaml,48,81d5dcf5a2,NON_DOMAIN,"- patterns: [""^P0172$""]"
+K0686,labs/dtclab/dtclab/config/routing_tag_map.yaml,50,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0687,labs/dtclab/dtclab/config/routing_tag_map.yaml,52,debbc8ecf9,NON_DOMAIN,# --- Fuel system lean Bank 2 ---
+K0688,labs/dtclab/dtclab/config/routing_tag_map.yaml,53,b25dc528f5,NON_DOMAIN,"- patterns: [""^P0174$""]"
+K0689,labs/dtclab/dtclab/config/routing_tag_map.yaml,55,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0690,labs/dtclab/dtclab/config/routing_tag_map.yaml,57,b9a37ab53c,NON_DOMAIN,# --- Fuel system rich Bank 2 ---
+K0691,labs/dtclab/dtclab/config/routing_tag_map.yaml,58,f6f834557d,NON_DOMAIN,"- patterns: [""^P0175$""]"
+K0692,labs/dtclab/dtclab/config/routing_tag_map.yaml,60,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0693,labs/dtclab/dtclab/config/routing_tag_map.yaml,63,008069fae3,,"- patterns: [""^P020[0-9]$"", ""^P021[0-2]$""]"
+K0694,labs/dtclab/dtclab/config/routing_tag_map.yaml,65,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0695,labs/dtclab/dtclab/config/routing_tag_map.yaml,68,ec647b71bb,,"- patterns: [""^P023[0-3]$""]"
+K0696,labs/dtclab/dtclab/config/routing_tag_map.yaml,70,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0697,labs/dtclab/dtclab/config/routing_tag_map.yaml,73,60a02d4dd3,NON_DOMAIN,"- patterns: [""^P0234$""]"
+K0698,labs/dtclab/dtclab/config/routing_tag_map.yaml,75,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0699,labs/dtclab/dtclab/config/routing_tag_map.yaml,78,379c244596,NON_DOMAIN,"- patterns: [""^P0299$""]"
+K0700,labs/dtclab/dtclab/config/routing_tag_map.yaml,80,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0701,labs/dtclab/dtclab/config/routing_tag_map.yaml,83,2d1734f10a,,"- patterns: [""^P023[5-9]$"", ""^P024[0-5]$""]"
+K0702,labs/dtclab/dtclab/config/routing_tag_map.yaml,85,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0703,labs/dtclab/dtclab/config/routing_tag_map.yaml,88,ec5fa8d5fc,NON_DOMAIN,"- patterns: [""^P0300$""]"
+K0704,labs/dtclab/dtclab/config/routing_tag_map.yaml,90,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0705,labs/dtclab/dtclab/config/routing_tag_map.yaml,93,b9963f80e3,,"- patterns: [""^P030[1-9]$"", ""^P031[0-2]$""]"
+K0706,labs/dtclab/dtclab/config/routing_tag_map.yaml,95,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0707,labs/dtclab/dtclab/config/routing_tag_map.yaml,98,4330bc3c98,,"- patterns: [""^P032[5-9]$"", ""^P033[0-4]$""]"
+K0708,labs/dtclab/dtclab/config/routing_tag_map.yaml,100,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0709,labs/dtclab/dtclab/config/routing_tag_map.yaml,103,bdfe8a9710,NON_DOMAIN,"- patterns: [""^P0335$"", ""^P0340$""]"
+K0710,labs/dtclab/dtclab/config/routing_tag_map.yaml,105,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0711,labs/dtclab/dtclab/config/routing_tag_map.yaml,108,a939be1da2,,"- patterns: [""^P035[1-8]$""]"
+K0712,labs/dtclab/dtclab/config/routing_tag_map.yaml,110,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0713,labs/dtclab/dtclab/config/routing_tag_map.yaml,113,c2e83794a4,,"- patterns: [""^P040[0-9]$""]"
+K0714,labs/dtclab/dtclab/config/routing_tag_map.yaml,115,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0715,labs/dtclab/dtclab/config/routing_tag_map.yaml,118,6d8d979d60,NON_DOMAIN,# --- Catalyst efficiency Bank 1 (DNA-gated) ---
+K0716,labs/dtclab/dtclab/config/routing_tag_map.yaml,119,298f286be3,NON_DOMAIN,"- patterns: [""^P0420$""]"
+K0717,labs/dtclab/dtclab/config/routing_tag_map.yaml,121,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0718,labs/dtclab/dtclab/config/routing_tag_map.yaml,124,33fdb5827e,NON_DOMAIN,# --- Catalyst efficiency Bank 2 (DNA-gated) ---
+K0719,labs/dtclab/dtclab/config/routing_tag_map.yaml,125,a41f5f4b58,NON_DOMAIN,"- patterns: [""^P0430$""]"
+K0720,labs/dtclab/dtclab/config/routing_tag_map.yaml,127,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0721,labs/dtclab/dtclab/config/routing_tag_map.yaml,131,3c0e536eda,,"- patterns: [""^P044[0-9]$"", ""^P045[0-9]$""]"
+K0722,labs/dtclab/dtclab/config/routing_tag_map.yaml,133,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0723,labs/dtclab/dtclab/config/routing_tag_map.yaml,136,c2abcc0eb8,,"- patterns: [""^P050[5-9]$"", ""^P051[0-1]$""]"
+K0724,labs/dtclab/dtclab/config/routing_tag_map.yaml,138,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0725,labs/dtclab/dtclab/config/routing_tag_map.yaml,141,8ecdba6b64,,"- patterns: [""^P056[2-3]$""]"
+K0726,labs/dtclab/dtclab/config/routing_tag_map.yaml,143,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0727,labs/dtclab/dtclab/config/routing_tag_map.yaml,146,9a178bdd03,NON_DOMAIN,"- patterns: [""^P0600$""]"
+K0728,labs/dtclab/dtclab/config/routing_tag_map.yaml,148,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0729,labs/dtclab/dtclab/config/routing_tag_map.yaml,150,da06cf3cd8,NON_DOMAIN,# --- ECU processor/internal faults (P0601–P0606 gap; DTC_VOCABULARY.md §4.2) ---
+K0730,labs/dtclab/dtclab/config/routing_tag_map.yaml,151,52e97caac9,,"- patterns: [""^P060[1-6]$""]"
+K0731,labs/dtclab/dtclab/config/routing_tag_map.yaml,153,e2c49dae64,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §4.2"""
+K0732,labs/dtclab/dtclab/config/routing_tag_map.yaml,156,fe0355c9d2,,"- patterns: [""^P064[1-3]$""]"
+K0733,labs/dtclab/dtclab/config/routing_tag_map.yaml,158,d2f0c38fd7,NON_DOMAIN,"source_wiki: ""DTC_VOCABULARY.md §15"""
+K0734,labs/obdlab/obdlab/config/obd_translation_rules.yaml,1,fbeb095f9e,NON_DOMAIN,# OBDLab state bucketing rules per OBDLab_KG_Wiki.md §8.2 / §8.1.
+K0735,labs/obdlab/obdlab/config/obd_translation_rules.yaml,2,6ae71b6713,NON_DOMAIN,"source_wiki: ""OBDLab_KG_Wiki.md §8.2"""
+K0736,labs/obdlab/obdlab/config/obd_translation_rules.yaml,9,95df9ed5f4,,value: 75.0
+K0737,labs/obdlab/obdlab/config/obd_translation_rules.yaml,10,57ea54d641,,priority: 1    # evaluated first regardless of RPM — wiki: §8.2
+K0738,labs/obdlab/obdlab/config/obd_translation_rules.yaml,16,dff914febe,,"value: [650, 900]"
+K0739,labs/obdlab/obdlab/config/obd_translation_rules.yaml,19,b81cae93e7,,value: 30.0
+K0740,labs/obdlab/obdlab/config/obd_translation_rules.yaml,25,49aa5df85f,,"value: [2200, 2800]"
+K0741,labs/obdlab/obdlab/config/obd_translation_rules.yaml,28,9d5ff33b71,,"value: [15.0, 40.0]"
+K0742,labs/obdlab/obdlab/config/obd_translation_rules.yaml,29,758f53e865,NON_DOMAIN,"source_wiki: ""OBDLab_KG_Wiki.md §8.1"""
+K0743,labs/obdlab/obdlab/config/obd_translation_rules.yaml,35,8104cf2a65,NON_DOMAIN,"value: ""stress_idle_rpm_target""    # per-vehicle value from VinDNA — wiki: §3.2"
+K0744,labs/obdlab/obdlab/config/obd_translation_rules.yaml,36,c0e032350c,,tolerance_pct: 10
+K0745,labs/obdlab/obdlab/config/obd_translation_rules.yaml,39,0b60d4b56a,,"value: [10.0, 60.0]"
+K0746,labs/obdlab/obdlab/config/obd_translation_rules.yaml,40,e06ad07247,,"notes: ""Supersedes the former BP-era high-idle-load bucket at 2200-2600 RPM"""
+K0747,labs/obdlab/obdlab/config/physical_sensor_bounds.json,2,709bb27ab0,NON_DOMAIN,"""source_wiki"": ""OBDLab_KG_Wiki.md §3.1"","
+K0748,labs/obdlab/obdlab/config/physical_sensor_bounds.json,5,1fe9bac0f5,,"""min"": 0,"
+K0749,labs/obdlab/obdlab/config/physical_sensor_bounds.json,6,071fe21d4a,,"""max"": 8000,"
+K0750,labs/obdlab/obdlab/config/physical_sensor_bounds.json,10,e0287128f0,,"""min"": -40.0,"
+K0751,labs/obdlab/obdlab/config/physical_sensor_bounds.json,11,d984f80a8c,,"""max"": 140.0,"
+K0752,labs/obdlab/obdlab/config/physical_sensor_bounds.json,15,7fec1131b8,,"""min"": 0.0,"
+K0753,labs/obdlab/obdlab/config/physical_sensor_bounds.json,16,de49be72c5,,"""max"": 100.0,"
+K0754,labs/obdlab/obdlab/config/physical_sensor_bounds.json,20,7fec1131b8,,"""min"": 0.0,"
+K0755,labs/obdlab/obdlab/config/physical_sensor_bounds.json,21,4506713641,,"""max"": 655.35,"
+K0756,labs/obdlab/obdlab/config/physical_sensor_bounds.json,25,7fec1131b8,,"""min"": 0.0,"
+K0757,labs/obdlab/obdlab/config/physical_sensor_bounds.json,26,a1a2e1536f,,"""max"": 255.0,"
+K0758,labs/obdlab/obdlab/config/physical_sensor_bounds.json,29,3b0318f65a,NON_DOMAIN,"""shrtft1"": {"
+K0759,labs/obdlab/obdlab/config/physical_sensor_bounds.json,30,9da33d4318,,"""min"": -127.0,"
+K0760,labs/obdlab/obdlab/config/physical_sensor_bounds.json,31,44841b4733,,"""max"": 127.0,"
+K0761,labs/obdlab/obdlab/config/physical_sensor_bounds.json,33,ff2e2fb545,,"""note"": ""Widened from OBD nominal [-100, 99.22] to accommodate OBD rail/sensor-fault sentinel values (-127, +127). Rail values are a sensor_fault signal consumed by COMLab trim-evidence scoring."""
+K0762,labs/obdlab/obdlab/config/physical_sensor_bounds.json,35,9dc0c89f1c,NON_DOMAIN,"""longft1"": {"
+K0763,labs/obdlab/obdlab/config/physical_sensor_bounds.json,36,9da33d4318,,"""min"": -127.0,"
+K0764,labs/obdlab/obdlab/config/physical_sensor_bounds.json,37,44841b4733,,"""max"": 127.0,"
+K0765,labs/obdlab/obdlab/config/physical_sensor_bounds.json,39,a683e75afe,,"""note"": ""Widened from OBD nominal [-100, 99.22] to accommodate OBD rail/sensor-fault sentinel values (-127, +127)."""
+K0766,labs/obdlab/obdlab/config/physical_sensor_bounds.json,41,9e7073b9aa,NON_DOMAIN,"""shrtft2"": {"
+K0767,labs/obdlab/obdlab/config/physical_sensor_bounds.json,42,9da33d4318,,"""min"": -127.0,"
+K0768,labs/obdlab/obdlab/config/physical_sensor_bounds.json,43,44841b4733,,"""max"": 127.0,"
+K0769,labs/obdlab/obdlab/config/physical_sensor_bounds.json,45,eef62113bb,,"""note"": ""Only validated when number_of_banks == 2. Must be null when number_of_banks == 1. Widened to accommodate OBD rail values."""
+K0770,labs/obdlab/obdlab/config/physical_sensor_bounds.json,47,17d762d75e,NON_DOMAIN,"""longft2"": {"
+K0771,labs/obdlab/obdlab/config/physical_sensor_bounds.json,48,9da33d4318,,"""min"": -127.0,"
+K0772,labs/obdlab/obdlab/config/physical_sensor_bounds.json,49,44841b4733,,"""max"": 127.0,"
+K0773,labs/obdlab/obdlab/config/physical_sensor_bounds.json,51,eef62113bb,,"""note"": ""Only validated when number_of_banks == 2. Must be null when number_of_banks == 1. Widened to accommodate OBD rail values."""
+K0774,labs/obdlab/obdlab/config/physical_sensor_bounds.json,54,e0287128f0,,"""min"": -40.0,"
+K0775,labs/obdlab/obdlab/config/physical_sensor_bounds.json,55,d984f80a8c,,"""max"": 140.0,"
+K0776,labs/obdlab/obdlab/config/physical_sensor_bounds.json,59,7fec1131b8,,"""min"": 0.0,"
+K0777,labs/obdlab/obdlab/config/physical_sensor_bounds.json,60,de49be72c5,,"""max"": 100.0,"
+K0778,labs/obdlab/obdlab/config/physical_sensor_bounds.json,64,7fec1131b8,,"""min"": 0.0,"
+K0779,labs/obdlab/obdlab/config/physical_sensor_bounds.json,65,8fe5441a1c,,"""max"": 18.0,"
+K0780,labs/obdlab/obdlab/config/physical_sensor_bounds.json,67,9073efced8,,"""note"": ""Supply voltage at the PCM pins per OBDLab_KG_Wiki.md §3.1 / ecu-diagnosis/09."""
+K0781,labs/obdlab/obdlab/config/physical_sensor_bounds.json,70,5296549d34,NON_DOMAIN,"""bank_2_null_contract"": {"
+K0782,labs/obdlab/obdlab/config/physical_sensor_bounds.json,71,da6821321a,NON_DOMAIN,"""source_wiki"": ""OBDLab_KG_Wiki.md §3.1"","
+K0783,labs/obdlab/obdlab/config/physical_sensor_bounds.json,72,b24849bc54,,"""rule"": ""shrtft2 and longft2 must be null (not 0.0) when number_of_banks == 1. Emitting 0.0 for absent bank fields is a SEMANTIC_CONTRACT violation."""
+K0784,labs/symptomlab/symptomlab/data/allowed_combinations.yaml,2,3872985506,NON_DOMAIN,"# Contract: SEMANTIC_CONTRACT.md §4.2 — the (tier_1, tier_2) strings are the enum source."
+K0785,labs/symptomlab/symptomlab/data/allowed_combinations.yaml,3,19d2c03cb5,NON_DOMAIN,# Last updated: 2026-06-11
+K0786,labs/symptomlab/symptomlab/data/allowed_combinations.yaml,6,89dad92936,NON_DOMAIN,# is NOT here — that lives in COMLab per DNALab_TO_COMLab_FLOW.md §4.
+K0787,labs/symptomlab/symptomlab/data/allowed_combinations.yaml,34,b4778d5cac,NON_DOMAIN,- blue_smoke_on_cold_start_clears   # valve-stem seals: cold-start cloud that clears on driving (P_NEW_10)
+K0788,labs/symptomlab/symptomlab/data/allowed_combinations.yaml,35,40b9ff7e2f,NON_DOMAIN,"- blue_smoke_under_acceleration     # piston rings / turbo seal: worsens under load (P_NEW_09, P_NEW_13)"
+K0789,labs/symptomlab/symptomlab/data/allowed_combinations.yaml,36,51e90313a7,NON_DOMAIN,- oil_loss_no_visible_smoke         # PCV stuck-open / slow consumption: oil loss without obvious smoke (P_NEW_11)
