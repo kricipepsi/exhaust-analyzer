@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-23a` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 45 min | codeaudit verify obd scaling and eras |
+| `T-AUD-23b` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 45 min | codeaudit verify sensor and gas values |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-23a` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — Each of the 25 root claims in `labs/gaslab/audit_tasks/wikiaudit/scope/T-AUD-23a.txt` gets a verdict backed by a quote from a fetched source, so the fix rows for the fuel-trim bounds (OBDLab, COMLab,
-  `repo\apps\wired\audit_tasks/T-AUD-23a_codeaudit_verify_obd_scaling_and_eras(3).md`
+**`T-AUD-23b` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — Each of the 29 root claims in `labs/gaslab/audit_tasks/wikiaudit/scope/T-AUD-23b.txt` gets a verdict backed by a quote from a fetched source, so the fix rows for the sensor thresholds, the no-fault ga
+  `repo\apps\wired\audit_tasks/T-AUD-23b_codeaudit_verify_sensor_and_gas_values(3).md`
 
 ## Distribution
 
-- **3/5** — 1: T-AUD-23a
+- **3/5** — 1: T-AUD-23b
