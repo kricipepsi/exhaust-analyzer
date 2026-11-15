@@ -19,7 +19,7 @@
         {
           "pid": "co",
           "operator": "le",
-          "value": 0.5,
+          "value": 0.3,
           "tier": "GATING",
           "units": "%",
           "wiki_ref": "master_gas_guide \u00a72"
@@ -35,7 +35,7 @@
         {
           "pid": "o2",
           "operator": "le",
-          "value": 0.6,
+          "value": 0.5,
           "tier": "GATING",
           "units": "%",
           "wiki_ref": "master_gas_guide \u00a72"
@@ -150,7 +150,7 @@
         {
           "pid": "nox",
           "operator": "le",
-          "value": 300.0,
+          "value": 50.0,
           "tier": "GATING",
           "units": "ppm",
           "wiki_ref": "master_gas_guide \u00a78.5"
