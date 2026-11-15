@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-24d` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 2 | NO | 15 min | fix ect maf guidance text |
+| `T-AUD-24e` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 1 | NO | 15 min | fix no fault gas window |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-24d` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — Five user-facing strings in COMLab rule data state wrong sensor values or invert the coolant-sensor physics (an NTC sensor reads cold when its resistance is high; T-AUD-23b verdicts `CK1359`, `CK1371`
-  `repo\apps\wired\audit_tasks/T-AUD-24d_fix_ect_maf_guidance_text(2).md`
+**`T-AUD-24e` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — The no-fault rules accept a gas sample as healthy only inside sourced healthy values: NF-001 CO at most the legal idle limit, NF-001 O2 at most a working catalyst's balanced ceiling, NF-002 NOx at mos
+  `repo\apps\wired\audit_tasks/T-AUD-24e_fix_no_fault_gas_window(2).md`
 
 ## Distribution
 
-- **2/5** — 1: T-AUD-24d
+- **2/5** — 1: T-AUD-24e
