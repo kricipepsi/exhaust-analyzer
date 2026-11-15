@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-22h` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 30 min (correction 1: 10 min) | codeaudit rest apps inventory |
+| `T-AUD-23a` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 45 min | codeaudit verify obd scaling and eras |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-22h` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — Every non-auto candidate of `candidates_rest.csv` whose `file` starts `apps/`, except the out-of-scope file `apps/ui/_sample_app_reference.py`, is appended to `apps/wired/audit_tasks/codeaudit/claims_
-  `repo\apps\wired\audit_tasks/T-AUD-22h_codeaudit_rest_apps_inventory(3).md`
+**`T-AUD-23a` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — Each of the 25 root claims in `labs/gaslab/audit_tasks/wikiaudit/scope/T-AUD-23a.txt` gets a verdict backed by a quote from a fetched source, so the fix rows for the fuel-trim bounds (OBDLab, COMLab,
+  `repo\apps\wired\audit_tasks/T-AUD-23a_codeaudit_verify_obd_scaling_and_eras(3).md`
 
 ## Distribution
 
-- **3/5** — 1: T-AUD-22h
+- **3/5** — 1: T-AUD-23a
