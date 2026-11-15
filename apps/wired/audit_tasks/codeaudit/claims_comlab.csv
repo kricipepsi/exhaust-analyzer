@@ -532,9 +532,9 @@ CK0531,K3268,labs/comlab/registry/rules/misfire.json,387,rule confidence_ceiling
 CK0532,K3279,labs/comlab/registry/rules/misfire.json,414,rule base_weight,0.9,score,MF-007,INTERNAL_PARAMETER,GAS_WIKI §7.29,,
 CK0533,K3284,labs/comlab/registry/rules/misfire.json,437,rule base_weight,0.9,score,MF-008,INTERNAL_PARAMETER,GAS_WIKI §7.26,,
 CK0534,K3290,labs/comlab/registry/rules/no_fault.json,14,hc,≤ 50.0,ppm,"NF-001, GATING",TYPICAL_RANGE,master_gas_guide §2,W0177,
-CK0535,K3292,labs/comlab/registry/rules/no_fault.json,22,co,≤ 0.5,% vol,"NF-001, GATING",TYPICAL_RANGE,master_gas_guide §2,,"no_fault accepts CO up to 0.5 %, above the 0.3 % legal idle CO limit for catalyst cars (T-GASA-17, W0185) and the working-cat post-cat ceiling < 0.3 % (W0192)"
+CK0535,K3292,labs/comlab/registry/rules/no_fault.json,22,co,0.3,% vol,"NF-001, GATING",TYPICAL_RANGE,master_gas_guide §2,,"RESOLVED T-AUD-24e (was 0.5; legal idle CO 0.3 %, T-AUD-23a CK0535)"
 CK0536,K3295,labs/comlab/registry/rules/no_fault.json,30,co2,≥ 14.5,% vol,"NF-001, GATING",TYPICAL_RANGE,master_gas_guide §2,,
-CK0537,K3298,labs/comlab/registry/rules/no_fault.json,38,o2,≤ 0.6,% vol,"NF-001, GATING",TYPICAL_RANGE,master_gas_guide §2,,"no_fault accepts O2 up to 0.6 %, above the working-cat ceiling ≤ 0.35 % (W0206); 0.3–0.7 % is the wiki's cat-at-edge-of-light-off band (W0208)"
+CK0537,K3298,labs/comlab/registry/rules/no_fault.json,38,o2,0.5,% vol,"NF-001, GATING",TYPICAL_RANGE,master_gas_guide §2,,"RESOLVED T-AUD-24e (was 0.6; working-catalyst idle O2 below 0.5 %, T-AUD-23b CK0537)"
 CK0538,K3300,labs/comlab/registry/rules/no_fault.json,46,nox,≤ 50.0,ppm,"NF-001, GATING",TYPICAL_RANGE,master_gas_guide §8.5,,
 CK0539,K3302,labs/comlab/registry/rules/no_fault.json,54,obd_lambda in_range lower edge,0.97,-,"NF-001, GATING",TYPICAL_RANGE,master_gas_guide §2,,
 CK0540,K3303,labs/comlab/registry/rules/no_fault.json,55,obd_lambda in_range upper edge,1.03,-,"NF-001, GATING",TYPICAL_RANGE,master_gas_guide §2,,
@@ -544,7 +544,7 @@ CK0543,K3343,labs/comlab/registry/rules/no_fault.json,121,hc,≤ 30.0,ppm,"NF-00
 CK0544,K3345,labs/comlab/registry/rules/no_fault.json,129,co,≤ 0.05,% vol,"NF-002, GATING",TYPICAL_RANGE,master_gas_guide §2,,
 CK0545,K3348,labs/comlab/registry/rules/no_fault.json,137,co2,≥ 14.6,% vol,"NF-002, GATING",TYPICAL_RANGE,master_gas_guide §2,,
 CK0546,K3351,labs/comlab/registry/rules/no_fault.json,145,o2,≤ 0.5,% vol,"NF-002, GATING",TYPICAL_RANGE,master_gas_guide §2,,
-CK0547,K3353,labs/comlab/registry/rules/no_fault.json,153,nox,≤ 300.0,ppm,"NF-002, GATING",TYPICAL_RANGE,master_gas_guide §8.5,,"a 'pristine gas' acceptance allows NOx up to 300 ppm, above healthy idle NOx < 100 (W0223) and inside the elevated band 100–500 (W0224); NF-001 uses ≤ 50"
+CK0547,K3353,labs/comlab/registry/rules/no_fault.json,153,nox,50.0,ppm,"NF-002, GATING",TYPICAL_RANGE,master_gas_guide §8.5,,"RESOLVED T-AUD-24e (was 300.0; healthy idle NOx near 0, NF-001 cap 50 ppm, T-AUD-23b CK0547)"
 CK0548,K3355,labs/comlab/registry/rules/no_fault.json,161,obd_lambda in_range lower edge,0.97,-,"NF-002, GATING",TYPICAL_RANGE,master_gas_guide §2,,
 CK0549,K3356,labs/comlab/registry/rules/no_fault.json,162,obd_lambda in_range upper edge,1.03,-,"NF-002, GATING",TYPICAL_RANGE,master_gas_guide §2,,
 CK0550,K3360,labs/comlab/registry/rules/no_fault.json,178,rule base_weight,0.96,score,NF-002,INTERNAL_PARAMETER,master_gas_guide §2,,
