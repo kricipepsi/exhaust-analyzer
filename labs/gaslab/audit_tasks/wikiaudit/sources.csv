@@ -9,3 +9,18 @@ S009,https://assets.publishing.service.gov.uk/media/5a81bcf5ed915d74e6233d90/in-
 S011,https://www.govinfo.gov/content/pkg/CFR-2011-title40-vol18/pdf/CFR-2011-title40-vol18-sec85-2215.pdf,40 CFR 85.2215 Two speed idle test - EPA 91 (CFR 7-1-11 edition),US GPO (govinfo.gov),PRIMARY_LAW,sources/S011.md,2026-11-14
 S012,https://en.wikipedia.org/wiki/OBD-II_PIDs,OBD-II PIDs,Wikipedia,SECONDARY,sources/S012.md,2026-11-15
 S013,https://www.underhoodservice.com/misfire-codes-p0300-p0301-p0312-and-p0313p0314/,"Misfire Codes P0300, P0301-P0312 and P0313+P0314",Underhood Service (Babcox Media),TRADE,sources/S013.md,2026-11-15
+S014,https://www.oiml.org/en/files/pdf_r/r099-1-2-e08-reconfirmed-2024.pdf,OIML R 99-1 & 2:2008 Instruments for measuring vehicle exhaust emissions,OIML,PRIMARY_STANDARD,sources/S014.md,2026-11-15
+S015,https://www.bosch-motorsport.com/content/downloads/Raceparts/Resources/pdf/Data%20Sheet_70101387_Temperature_Sensor_NTC_M12.pdf,Temperature Sensor NTC M12 Data Sheet,Bosch Motorsport,OEM,sources/S015.md,2026-11-15
+S016,https://www.bosch-motorsport.com/content/downloads/Raceparts/Resources/pdf/Data%20Sheet_69034379_Lambda_Sensor_LSU_4.9.pdf,Lambda Sensor LSU 4.9 Data Sheet,Bosch Motorsport,OEM,sources/S016.md,2026-11-15
+S017,https://share.qclt.com/%E4%B8%B0%E7%94%B0Toyota%20RAV4%20Repair%20Manual/2GR-FE%20Engine%20Control%20System/SFI%20System/0060039.pdf,Toyota RAV4 2GR-FE Repair Manual: DTC P0420 / P0430 Catalyst System Efficiency Below Threshold,Toyota Motor Corporation,OEM,sources/S017.md,2026-11-15
+S018,https://www.bridgeanalyzers.com/blogs/technical-support-exhaust-gas-analyzers/exhaust-gas-readings-and-the-combustion-process-14-ega,Exhaust Gas Readings and the Combustion Process - 14 EGA,Bridge Analyzers,TRADE,sources/S018.md,2026-11-15
+S019,https://gearsmagazine.com/magazine/mass-air-flow-misconceptions/,Mass Air Flow Misconceptions!,Gears Magazine (ATRA),TRADE,sources/S019.md,2026-11-15
+S020,https://www.alldata.com/sites/default/files/file-attachments/maf_sensor_testing_110918.pdf,MAF Sensor Testing,ALLDATA,TRADE,sources/S020.md,2026-11-15
+S021,https://www.fluke.com/en-us/learn/blog/digital-multimeters/how-to-monitor-oxygen-sensor-voltage-with-a-multimeter,How to Monitor Oxygen Sensor Voltage with a Multimeter,Fluke Corporation,TRADE,sources/S021.md,2026-11-15
+S022,https://en.wikipedia.org/wiki/Volumetric_efficiency,Volumetric efficiency,Wikipedia,SECONDARY,sources/S022.md,2026-11-15
+S023,https://www.walkerexhaust.com/support/tech-tips/five-gas-diagnostic-chart.html,5-Gas Diagnostic Chart,Walker Exhaust (Tenneco),TRADE,sources/S023.md,2026-11-15
+S024,https://www.underhoodservice.com/as-o2-sensors-age-their-ability-to-accurately-calculate-exhaust-levels-declines/,Why O2 Sensors Fail To Calculate Exhaust Levels Over Time,Underhood Service (Babcox Media),TRADE,sources/S024.md,2026-11-15
+S025,https://apextechnation.com/articles/p0118-ect-high-code,P0118: Engine Coolant Temperature Sensor Circuit High Input,Apex Tech Nation,TRADE,sources/S025.md,2026-11-15
+S026,https://apextechnation.com/articles/oxygen-sensors-explained,"Oxygen Sensors Explained: Types, Function, and Diagnosis",Apex Tech Nation,TRADE,sources/S026.md,2026-11-15
+S027,https://www.law.cornell.edu/regulations/california/13-CCR-1968.2,"Cal. Code Regs. Tit. 13, § 1968.2 - Malfunction and Diagnostic System Requirements",Cornell Law School LII (CARB Title 13),PRIMARY_LAW,sources/S027.md,2026-11-15
+S028,https://www.crypton.co.za/Tto%20know/Emissions/NOx.html,NOx (Oxides of Nitrogen),Crypton Diagnostic Equipment,TRADE,sources/S028.md,2026-11-15
