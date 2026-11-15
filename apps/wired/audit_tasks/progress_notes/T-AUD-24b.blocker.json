@@ -1,0 +1,35 @@
+{
+  "schema": "blocker-record/2",
+  "task_id": "T-AUD-24b",
+  "pack": "audit",
+  "task_file": "apps/wired/audit_tasks/T-AUD-24b_fix_era_masks_dead_keys(2).md",
+  "date": "2026-11-15",
+  "phase": "precheck",
+  "prior_record": null,
+  "reached_first_edit": false,
+  "stopped": false,
+  "findings": [
+    {
+      "class": "UNSATISFIABLE",
+      "gist": "Verification step 3 checks v.get('lambda_tolerance') on h.items() (horizon dicts) instead of t.items() (gas_lab_thresholds dicts), so lt is always None for all three horizons and step 3 can never print ERA OK under R1.",
+      "task_anchor": "apps/wired/audit_tasks/T-AUD-24b_fix_era_masks_dead_keys(2).md:112",
+      "task_says": "lt={k:v.get('lambda_tolerance') for k,v in h.items()};print('ERA OK' if not bad and lt=={'HORIZON_LEGACY':0.1,'HORIZON_ADAPTIVE':0.05,'HORIZON_MODERN':0.02} else 'ERA FAIL',bad,lt)",
+      "tree_says": "{'description': 'Euro 1 & 2 vehicles (~1990-2000)', 'model_year_range': [1990, 2000], 'gas_lab_thresholds': {'gas_co_max_pct': 1.0, 'gas_hc_max_ppm': 150, 'lambda_tolerance': 0.1}, 'rule_pack': 'era_1_mechanical_rules', 'deactivate_nodes': ['turbo_boost_loop', 'scr_efficiency_loop', 'gdi_hpfp_seal_integrity'], 'routing_rigor': 'LOW_PERMISSIVE'}",
+      "settling_command": "C:/4DApp/.venv/Scripts/python.exe -I -c \"import yaml; h=yaml.safe_load(open('labs/comlab/comlab/config/eras_sensitivity_masks.yaml',encoding='utf-8'))['horizons']; print(h['HORIZON_LEGACY'])\"",
+      "settling_output": "{'description': 'Euro 1 & 2 vehicles (~1990-2000)', 'model_year_range': [1990, 2000], 'gas_lab_thresholds': {'gas_co_max_pct': 1.0, 'gas_hc_max_ppm': 150, 'lambda_tolerance': 0.1}, 'rule_pack': 'era_1_mechanical_rules', 'deactivate_nodes': ['turbo_boost_loop', 'scr_efficiency_loop', 'gdi_hpfp_seal_integrity'], 'routing_rigor': 'LOW_PERMISSIVE'}",
+      "severity": "soft",
+      "chosen_interpretation": "Implement R1-R4 verbatim (keeping lambda_tolerance under gas_lab_thresholds per R1) and report both the literal step 3 output and the t.items() check output; Cowork can correct h.items() to t.items() in the spec without reworking any delivered file.",
+      "blocks_first_edit": false
+    }
+  ],
+  "work_completed_before_stop": [
+    "Ran First action, Preconditions, and baseline Verification steps 1-3"
+  ],
+  "not_done": [
+    "R1-R4 edits, new unit test, final verification, and RESULT_T-AUD-24b.md"
+  ],
+  "cheats_declined": [
+    "Did not move lambda_tolerance out of gas_lab_thresholds (would violate R1)"
+  ],
+  "dispatch_rounds_spent": 1
+}

@@ -1,8 +1,11 @@
 # Era sensitivity masks — emitted by Script 1 and injected into upstream labs.
 # Per OrchestratorLabBP.md §"Era-to-EURO Mapping Matrix" (line 506).
 #
-# Each horizon defines pass/fail thresholds + which downstream rule packs to
-# activate. Tune these without touching Python.
+# Each horizon sets `lambda_tolerance` (the largest gap between OBD lambda and
+# chemical lambda that the ECU-fault fuse, `fault_atlas_router.py`
+# `_ecu_fault_verdict`, still treats as agreement) and which downstream rule
+# packs to activate. These are not legal emission limits (T-AUD-24b). Tune
+# these without touching Python.
 
 version: "0.1.0"
 
@@ -14,8 +17,6 @@ horizons:
     description: "Euro 1 & 2 vehicles (~1990-2000)"
     model_year_range: [1990, 2000]
     gas_lab_thresholds:
-      gas_co_max_pct: 1.0
-      gas_hc_max_ppm: 150
       lambda_tolerance: 0.10
     rule_pack: "era_1_mechanical_rules"
     deactivate_nodes:
@@ -29,8 +30,6 @@ horizons:
     description: "Euro 3 & 4 vehicles (~2000-2010)"
     model_year_range: [2000, 2010]
     gas_lab_thresholds:
-      gas_co_max_pct: 0.5
-      gas_hc_max_ppm: 55
       lambda_tolerance: 0.05
     rule_pack: "era_2_electronic_overdrive_rules"
     activate_nodes:
@@ -45,8 +44,6 @@ horizons:
     description: "Euro 5 & 6 vehicles (~2010-2020)"
     model_year_range: [2010, 2020]
     gas_lab_thresholds:
-      gas_co_max_pct: 0.2
-      gas_hc_max_ppm: 15
       lambda_tolerance: 0.02
     activate_nodes:
       - "catalyst_oxygen_storage_capacity"
