@@ -85,13 +85,13 @@ Euro 5–6, wideband (or NB-simulated-wideband) upstream O₂, tight emission wi
 
 ## Era sensitivity masks {#CONCEPT_ERA_MASK}
 
-From `eras_sensitivity_masks.yaml` — the per-era thresholds the gates and scoring read. Each
+From `eras_sensitivity_masks.yaml` — the per-era values the code reads: `lambda_tolerance` (OBD lambda vs chemical lambda agreement, read by the ECU-fault fuse) and the rule-pack switches. Each
 literal is era-scoped; numeric tolerances tighten with era.
 
 ```yaml
-HORIZON_LEGACY:   { gas_co_max_pct: 1.5, gas_hc_max_ppm: 300, lambda_tolerance: 0.10, routing_rigor: relaxed,  model_year_range: 1980–2001 }
-HORIZON_ADAPTIVE: { gas_co_max_pct: 1.0, gas_hc_max_ppm: 200, lambda_tolerance: 0.05, routing_rigor: standard, model_year_range: 2001–2011 }
-HORIZON_MODERN:   { gas_co_max_pct: 0.5, gas_hc_max_ppm: 150, lambda_tolerance: 0.02, routing_rigor: strict,   model_year_range: 2011–present }
+HORIZON_LEGACY:   { lambda_tolerance: 0.10, routing_rigor: relaxed,  model_year_range: 1980–2001 }
+HORIZON_ADAPTIVE: { lambda_tolerance: 0.05, routing_rigor: standard, model_year_range: 2001–2011 }
+HORIZON_MODERN:   { lambda_tolerance: 0.02, routing_rigor: strict,   model_year_range: 2011–present }
 ```
 
 > **v2 reconciliation note.** Two "engine-warmed" thresholds coexist in the codebase — **70 °C**
