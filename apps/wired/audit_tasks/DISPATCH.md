@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-24a` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 2 | NO | 40 min | fix fuel trim bounds j1979 |
+| `T-AUD-24b` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 1 | NO | 15 min | fix era masks dead keys |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-24a` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — Every per-trim bound (`shrtft1`, `longft1`, `shrtft2`, `longft2`, the COMLab `*_pct` trims, the wired-app trim ranges, the UI `OBD_TRIM_*` constants and the OBDLab `ltft_cell_vector` check) and the su
-  `repo\apps\wired\audit_tasks/T-AUD-24a_fix_fuel_trim_bounds_j1979(3).md`
+**`T-AUD-24b` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — `labs/comlab/comlab/config/eras_sensitivity_masks.yaml` keeps only what code reads.
+  `repo\apps\wired\audit_tasks/T-AUD-24b_fix_era_masks_dead_keys(2).md`
 
 ## Distribution
 
-- **3/5** — 1: T-AUD-24a
+- **2/5** — 1: T-AUD-24b
