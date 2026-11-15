@@ -1,0 +1,38 @@
+{
+  "schema": "blocker-record/2",
+  "task_id": "T-AUD-22e",
+  "pack": "audit",
+  "task_file": "apps/wired/audit_tasks/T-AUD-22e_codeaudit_comlab_kg_inventory(3).md",
+  "date": "2026-11-15",
+  "phase": "implementation",
+  "prior_record": null,
+  "reached_first_edit": true,
+  "stopped": true,
+  "findings": [
+    {
+      "class": "UNSATISFIABLE",
+      "gist": "check_code_claims.py runs NUM_RE (\\d+(?:\\.\\d+)?(?:[eE][-+]?\\d+)?) against the raw undecoded text column of candidates_comlab.csv. In 44 KG claims where the source JSON uses \\u00b1, \\u2013, \\u2212, or \\u2192 immediately before digits (e.g. \\u00b15, 2000\\u20133000, < \\u221210, 0\\u219212V), NUM_RE concatenates the hex code digits onto the claim number (yielding 15, 20133000, 221210, 219212) so the real number is absent from nums(c['text']). Spec R7 mandates clean UTF-8 values, codeaudit/README.md requires the numeric value as written, and the spec forbids editing check_code_claims.py, candidates_comlab.csv, or kg/*.json — so no compliant CSV edit can pass Verification step 1.",
+      "task_anchor": "apps/wired/audit_tasks/T-AUD-22e_codeaudit_comlab_kg_inventory(3).md:89",
+      "task_says": "1. Step 1 prints `CLAIMS OK group=comlab scope=labs/comlab/comlab/config/kg/* candidates <P1>`",
+      "tree_says": "apps/wired/audit_tasks/codeaudit/check_code_claims.py:29,109 applies NUM_RE = re.compile(r\"\\d+(?:\\.\\d+)?(?:[eE][-+]?\\d+)?\") directly to raw candidates_comlab.csv['text'] containing unescaped JSON \\uXXXX escapes before digits, producing CLAIMS FAIL 44 error(s) across CK1071..CK1369 when claims_comlab.csv stores UTF-8 numeric values per R7.",
+      "settling_command": "C:/4DApp/.venv/Scripts/python.exe -I -c \"import csv, re; c={r['cand_id']:r['text'] for r in csv.DictReader(open('apps/wired/audit_tasks/codeaudit/candidates_comlab.csv',encoding='utf-8'))}; rx=re.compile(r'\\d+(?:\\.\\d+)?(?:[eE][-+]?\\d+)?'); [print(k, rx.findall(c[k]), repr(c[k])) for k in ('K1114','K1115','K1158','K1364','K1842')]\"",
+      "settling_output": "K1114 ['2014', '0300', '2013', '0312', '00', '110', '2'] '\"Rule out feed-gas problems first \\\\u2014 confirm no active P0300\\\\u2013P0312 (misfire), fuel trims within \\\\u00b110 %, no exhaust leak before the rear O2 sensor.\",'\nK1115 ['2265', '70', '00', '0', '2000', '20133000'] '\"Verify the catalyst monitor enable conditions held during the freeze frame: ECT \\\\u2265 70 \\\\u00b0C, steady 2000\\\\u20133000 RPM, closed loop, no misfire DTC.\",'\nK1158 ['2014', '221210'] '\"Check LTFT \\\\u2014 strongly negative LTFT (< \\\\u221210 %) with clean tailpipe gases is the hallmark of catalyst masking. The cat is scrubbing evidence.\",'\nK1364 ['2014', '0', '219212', '21920'] '\"Back-probe the coil primary control wire with a lab scope \\\\u2014 look for a clean 0\\\\u219212V\\\\u21920 V switching event. A rounded falling edge, missing event, or erratic timing indicates a driver fault.\",'\nK1842 ['2014', '2', '20138'] '\"Compare the MAF reading (g/s) on the scan tool to the expected value for the engine\\'s idle RPM and displacement \\\\u2014 typical idle MAF is 2\\\\u20138 g/s per litre of displacement.\",'",
+      "severity": "hard",
+      "blocks_first_edit": true
+    }
+  ],
+  "work_completed_before_stop": [
+    "Completed First action and verified Preconditions (7 files) and pinned baselines P1 (261), P2 (CLAIMS FAIL 261), P3 (22 schema lines), P4 (CK0001-CK1026 intact, 1025 rows), P5 (13+9+27+212).",
+    "Classified all 261 non-auto candidates across all 14 files in labs/comlab/comlab/config/kg/*.json into 354 UTF-8 rows CK1027..CK1380 appended to apps/wired/audit_tasks/codeaudit/claims_comlab.csv (11 ANALYSER_SPEC, 170 DIAGNOSTIC_THRESHOLD, 46 NON_DOMAIN including all 22 schema lines and 24 index/DTC/PID-only lines, 2 PHYSICAL_CONSTANT, 9 RULE_OF_THUMB, 116 TYPICAL_RANGE; 15 same_as W links; 90 same_as CK links; 19 suspect claims with documented reasons).",
+    "Verified 310 of 354 new rows and all 261 coverage checks, mojibake checks, same_as checks, and schema NON_DOMAIN checks (step 2: schema 22 non_domain 22) pass cleanly; all remaining 44 errors in check_code_claims.py are solely the raw JSON \\uXXXX regex-concatenation artifact on lines with \\u00b1/\\u2013/\\u2212/\\u2192 before digits."
+  ],
+  "not_done": [
+    "Step 1 CLAIMS OK (44 rows fail check_code_claims.py:109 due to raw JSON \\uXXXX escapes in candidates_comlab.csv).",
+    "Step 3 CLAIMS OK (check_code_claims.py iterates all rows of claims_comlab.csv, so those same 44 KG rows cause step 3 to fail while present in claims_comlab.csv)."
+  ],
+  "cheats_declined": [
+    "Did not edit check_code_claims.py, candidates_comlab.csv, or labs/comlab/comlab/config/kg/*.json.",
+    "Did not write falsified escape-concatenated digits (e.g. \\u00b15 or 20133000) into claims_comlab.csv or strip numeric digits into prose words to bypass NUM_RE."
+  ],
+  "dispatch_rounds_spent": 1
+}
