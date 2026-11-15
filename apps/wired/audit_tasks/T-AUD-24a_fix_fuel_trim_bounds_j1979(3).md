@@ -157,13 +157,13 @@ cd C:/4DApp/repo
 export PYTHONDONTWRITEBYTECODE=1
 PY=C:/4DApp/.venv/Scripts/python.exe
 # 1.
-timeout 600 $PY -m pytest -p no:cacheprovider -q labs/obdlab/tests | tail -1
+timeout 300 $PY -m pytest -p no:cacheprovider -q labs/obdlab/tests | tail -1
 # 2.
-timeout 900 $PY -m pytest -p no:cacheprovider -q labs/comlab/tests | tail -1
+timeout 300 $PY -m pytest -p no:cacheprovider -q labs/comlab/tests | tail -1
 # 3.
-timeout 600 $PY -m pytest -p no:cacheprovider -q apps/wired/tests | tail -1
+timeout 300 $PY -m pytest -p no:cacheprovider -q apps/wired/tests | tail -1
 # 4.
-(cd apps/ui && timeout 600 $PY -m pytest -p no:cacheprovider -q tests | tail -1)
+(cd apps/ui && timeout 300 $PY -m pytest -p no:cacheprovider -q tests | tail -1)
 # 5.
 grep -nE "(^|[^0-9.])-?(127|254)(\.0)?([^0-9]|$)" labs/obdlab/obdlab/config/physical_sensor_bounds.json labs/obdlab/obdlab/schemas/payload.py labs/obdlab/obdlab/core/semantic_consistency_checker.py labs/obdlab/obdlab/core/pid_ingestion_validator.py labs/comlab/comlab/schemas/ingestion.py apps/wired/wired/composition.py apps/ui/ui_payload.py labs/comlab/docs/Vocabulary/OBD_VOCABULARY.md labs/obdlab/tests/fixtures/descriptor.py | grep -c .
 # 6.
