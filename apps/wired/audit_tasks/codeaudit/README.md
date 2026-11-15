@@ -35,3 +35,9 @@ A fix row that edits an audited file moves or changes register lines. After the 
 re-keyed, changed lines are listed for hand re-classification, and `--drop-gone` removes the rows of deleted lines.
 Since T-COMA-32 dropped `K3025`/`K3026`, a fresh `extract_code_candidates.py --group comlab` no longer reproduces
 `candidates_comlab.csv`: a slice checks its rows with `check_code_claims.py` and does not re-run the extractor.
+
+## Out of scope (T-AUD-22h)
+
+`check_code_claims.py` `OUT_OF_SCOPE` lists files whose candidates need no claim row, with the reason; a claim row on
+one is an error, and the checker prints `out_of_scope N`. Today: `apps/ui/_sample_app_reference.py` (imported by
+nothing; imports the absent `engine` package, so its literals never run).

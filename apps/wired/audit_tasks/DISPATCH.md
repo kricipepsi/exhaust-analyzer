@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-22g` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 30 min | codeaudit rest labs inventory |
+| `T-AUD-22h` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 30 min | codeaudit rest apps inventory |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-22g` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — Every non-auto candidate of `candidates_rest.csv` whose `file` starts `labs/` is written to the new register `apps/wired/audit_tasks/codeaudit/claims_rest.csv` as a classified claim (or one `NON_DOMAI
-  `repo\apps\wired\audit_tasks/T-AUD-22g_codeaudit_rest_labs_inventory(3).md`
+**`T-AUD-22h` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — Every non-auto candidate of `candidates_rest.csv` whose `file` starts `apps/`, except the out-of-scope file `apps/ui/_sample_app_reference.py`, is appended to `apps/wired/audit_tasks/codeaudit/claims_
+  `repo\apps\wired\audit_tasks/T-AUD-22h_codeaudit_rest_apps_inventory(3).md`
 
 ## Distribution
 
-- **3/5** — 1: T-AUD-22g
+- **3/5** — 1: T-AUD-22h

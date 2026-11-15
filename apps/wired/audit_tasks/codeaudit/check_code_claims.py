@@ -27,6 +27,10 @@ FIELDS = ["claim_id", "cand_id", "file", "line", "quantity", "value", "unit", "c
           "same_as", "suspect"]
 PREFIX = {"gaslab": "GK", "comlab": "CK", "rest": "RK"}
 NUM_RE = re.compile(r"\d+(?:\.\d+)?(?:[eE][-+]?\d+)?")
+# Files whose candidates need no claim row, with the reason (Cowork ruling, T-AUD-22h). A claim row on one is an error.
+OUT_OF_SCOPE = {
+    "apps/ui/_sample_app_reference.py": "not production: imported by nothing, imports the absent `engine` package",
+}
 
 
 def norm(n: str) -> str:
@@ -68,7 +72,7 @@ def main() -> int:
     globs = args.files
 
     def in_scope(f: str) -> bool:
-        return globs is None or any(fnmatch.fnmatchcase(f, g) for g in globs)
+        return f not in OUT_OF_SCOPE and (globs is None or any(fnmatch.fnmatchcase(f, g) for g in globs))
     pre = PREFIX[group]
     errors: list[str] = []
     cands = {r["cand_id"]: r for r in csv.DictReader((HERE / f"candidates_{group}.csv").open(encoding="utf-8"))}
@@ -105,6 +109,8 @@ def main() -> int:
             errors.append(f"ERROR {cid}: unknown cand_id {r['cand_id']}")
             continue
         covered.add(c["cand_id"])
+        if c["file"] in OUT_OF_SCOPE:
+            errors.append(f"ERROR {cid}: {c['file']} is out of scope ({OUT_OF_SCOPE[c['file']]})")
         if r["file"] != c["file"] or r["line"] != c["line"]:
             errors.append(f"ERROR {cid}: file/line {r['file']}:{r['line']} != candidate {c['file']}:{c['line']}")
         if r["class"] not in CLASSES:
@@ -141,6 +147,9 @@ def main() -> int:
     print(f"suspect {sum(1 for r in claims if r['suspect'].strip())} "
           f"same_as_wiki {sum(1 for r in claims if r['same_as'].startswith('W'))}")
     scope = "" if globs is None else " scope=" + ",".join(globs)
+    out = sum(1 for c in cands.values() if not c["auto"] and c["file"] in OUT_OF_SCOPE)
+    if out:
+        print(f"out_of_scope {out} candidate(s) in {len(OUT_OF_SCOPE)} file(s)")
     print(f"CLAIMS OK group={group}{scope} candidates {todo} covered claims {len(claims)}")
     return 0
 
