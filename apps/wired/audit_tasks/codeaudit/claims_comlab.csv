@@ -1378,22 +1378,16 @@ CK1377,K1886,labs/comlab/comlab/config/kg/sensor_fault.json,185,ECT sensor refer
 CK1378,K1886,labs/comlab/comlab/config/kg/sensor_fault.json,185,ECT sensor resistance at 20 °C,> 10,kohm,ERR-SF-008 temperature/resistance table example,TYPICAL_RANGE,,,NTC automotive ECT thermistors read ~2-3 kohm at 20 °C rather than > 10 kohm (typical > 10 kohm is below 0 °C); also calls cold-enrichment fault 'stuck-low resistance'
 CK1379,K1886,labs/comlab/comlab/config/kg/sensor_fault.json,185,ECT sensor reference cool temperature,20,°C,ERR-SF-008 resistance table lower temp point,TYPICAL_RANGE,,,
 CK1380,K1889,labs/comlab/comlab/config/kg/sensor_fault.json,189,fuel trim recovery band,+/-10,%,ERR-SF-008 post-repair trim target,TYPICAL_RANGE,,,
-CK1381,K0382,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,7,,,,,NON_DOMAIN,,,
-CK1382,K0384,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,14,,,,,NON_DOMAIN,,,
-CK1383,K0385,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,15,,,,,NON_DOMAIN,,,
-CK1384,K0386,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,17,CO threshold,1.0,% vol,"HORIZON_LEGACY (Euro 1 & 2, ~1990-2000)",DIAGNOSTIC_THRESHOLD,"OrchestratorLabBP.md §""Era-to-EURO Mapping Matrix""",,above Euro 2 with-cat idle limit 0.5 % (W0125) and UK MOT natural-idle limit ≤ 0.30 % (W1109); below non-cat 4.5 % (W0124); also differs from COMLab wiki/04_horizon_eras.md §CONCEPT_ERA_MASK (1.5 %)
-CK1385,K0387,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,18,HC threshold,150,ppm,"HORIZON_LEGACY (Euro 1 & 2, ~1990-2000)",DIAGNOSTIC_THRESHOLD,"OrchestratorLabBP.md §""Era-to-EURO Mapping Matrix""",,"differs from UK MOT HC legal limit ≤ 200 ppm at raised idle (W1111) and Euro 2 1200 ppm (W0126, itself flagged suspect); also differs from COMLab wiki/04_horizon_eras.md §CONCEPT_ERA_MASK (300 ppm)"
-CK1386,K0388,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,19,lambda tolerance,0.10,-,"HORIZON_LEGACY (Euro 1 & 2, ~1990-2000)",DIAGNOSTIC_THRESHOLD,"OrchestratorLabBP.md §""Era-to-EURO Mapping Matrix""",,"±0.10 (0.90–1.10) is wider than the UK MOT lambda legal limit 0.97–1.03 (±0.03, W1112) at raised idle"
-CK1387,K0391,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,29,,,,,NON_DOMAIN,,,
-CK1388,K0392,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,30,,,,,NON_DOMAIN,,,
-CK1389,K0393,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,32,CO threshold,0.5,% vol,"HORIZON_ADAPTIVE (Euro 3 & 4, ~2000-2010)",DIAGNOSTIC_THRESHOLD,"OrchestratorLabBP.md §""Era-to-EURO Mapping Matrix""",,"above Euro 3 CO idle limit 0.3 % (W0127), UK MOT natural-idle limit ≤ 0.30 % (W1109), and UK MOT raised-idle limit ≤ 0.20 % (W1110); 0.5 % is the Euro 2 idle limit (W0125); also differs from COMLab wiki/04_horizon_eras.md §CONCEPT_ERA_MASK (1.0 %)"
-CK1390,K0394,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,33,HC threshold,55,ppm,"HORIZON_ADAPTIVE (Euro 3 & 4, ~2000-2010)",DIAGNOSTIC_THRESHOLD,"OrchestratorLabBP.md §""Era-to-EURO Mapping Matrix""",,"differs from UK MOT HC legal limit ≤ 200 ppm at raised idle (W1111) and Euro 3/4 200 ppm (W0128, W0130); also differs from COMLab wiki/04_horizon_eras.md §CONCEPT_ERA_MASK (200 ppm)"
-CK1391,K0395,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,34,lambda tolerance,0.05,-,"HORIZON_ADAPTIVE (Euro 3 & 4, ~2000-2010)",DIAGNOSTIC_THRESHOLD,"OrchestratorLabBP.md §""Era-to-EURO Mapping Matrix""",,"±0.05 (0.95–1.05) is wider than the UK MOT lambda legal limit 0.97–1.03 (±0.03, W1112) at raised idle"
-CK1392,K0400,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,45,,,,,NON_DOMAIN,,,
-CK1393,K0401,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,46,,,,,NON_DOMAIN,,,
-CK1394,K0402,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,48,CO threshold,0.2,% vol,"HORIZON_MODERN (Euro 5 & 6, ~2010-2020)",DIAGNOSTIC_THRESHOLD,"OrchestratorLabBP.md §""Era-to-EURO Mapping Matrix""",W1110,
-CK1395,K0403,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,49,HC threshold,15,ppm,"HORIZON_MODERN (Euro 5 & 6, ~2010-2020)",DIAGNOSTIC_THRESHOLD,"OrchestratorLabBP.md §""Era-to-EURO Mapping Matrix""",,differs from UK MOT HC legal limit ≤ 200 ppm at raised idle (W1111) and Euro 5 200 ppm (W0132); 15 ppm matches healthy post-cat typical reading (W1105); also differs from COMLab wiki/04_horizon_eras.md §CONCEPT_ERA_MASK (150 ppm)
-CK1396,K0404,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,50,lambda tolerance,0.02,-,"HORIZON_MODERN (Euro 5 & 6, ~2010-2020)",DIAGNOSTIC_THRESHOLD,"OrchestratorLabBP.md §""Era-to-EURO Mapping Matrix""",,"±0.02 (0.98–1.02) is tighter than the UK MOT lambda legal limit 0.97–1.03 (±0.03, W1112) at raised idle"
+CK1381,K0382,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,10,,,,,NON_DOMAIN,,,
+CK1382,K0384,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,17,,,,,NON_DOMAIN,,,
+CK1383,K0385,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,18,,,,,NON_DOMAIN,,,
+CK1386,K0388,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,20,lambda tolerance,0.10,-,"HORIZON_LEGACY (Euro 1 & 2, ~1990-2000)",DIAGNOSTIC_THRESHOLD,"OrchestratorLabBP.md §""Era-to-EURO Mapping Matrix""",,"±0.10 (0.90–1.10) is wider than the UK MOT lambda legal limit 0.97–1.03 (±0.03, W1112) at raised idle"
+CK1387,K0391,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,30,,,,,NON_DOMAIN,,,
+CK1388,K0392,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,31,,,,,NON_DOMAIN,,,
+CK1391,K0395,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,33,lambda tolerance,0.05,-,"HORIZON_ADAPTIVE (Euro 3 & 4, ~2000-2010)",DIAGNOSTIC_THRESHOLD,"OrchestratorLabBP.md §""Era-to-EURO Mapping Matrix""",,"±0.05 (0.95–1.05) is wider than the UK MOT lambda legal limit 0.97–1.03 (±0.03, W1112) at raised idle"
+CK1392,K0400,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,44,,,,,NON_DOMAIN,,,
+CK1393,K0401,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,45,,,,,NON_DOMAIN,,,
+CK1396,K0404,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,47,lambda tolerance,0.02,-,"HORIZON_MODERN (Euro 5 & 6, ~2010-2020)",DIAGNOSTIC_THRESHOLD,"OrchestratorLabBP.md §""Era-to-EURO Mapping Matrix""",,"±0.02 (0.98–1.02) is tighter than the UK MOT lambda legal limit 0.97–1.03 (±0.03, W1112) at raised idle"
 CK1397,K1893,labs/comlab/comlab/config/proposals/entries.yaml,4,,,,,NON_DOMAIN,,,
 CK1398,K1911,labs/comlab/comlab/config/proposals/entries.yaml,41,,,,,NON_DOMAIN,,,
 CK1399,K1917,labs/comlab/comlab/config/proposals/entries.yaml,51,,,,,NON_DOMAIN,,,

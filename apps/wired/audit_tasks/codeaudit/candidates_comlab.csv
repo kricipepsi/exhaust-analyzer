@@ -380,29 +380,23 @@ K0378,labs/comlab/registry/tools/build_corpus.py,523,3348be3670,NON_DOMAIN,f.wri
 K0379,labs/comlab/registry/tools/render_case_library.py,47,2966bb051d,NON_DOMAIN,"meta_family_counts[fam] = meta_family_counts.get(fam, 0) + 1"
 K0380,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,1,d8fcac943e,NON_DOMAIN,# Era sensitivity masks — emitted by Script 1 and injected into upstream labs.
 K0381,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,2,95e0bea716,NON_DOMAIN,"# Per OrchestratorLabBP.md §""Era-to-EURO Mapping Matrix"" (line 506)."
-K0382,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,7,e2324f3ca3,,"version: ""0.1.0"""
-K0383,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,12,a2fb12475e,NON_DOMAIN,"# Euro 1 & 2, 1990-2000. Distributors, mechanical pressure regulators,"
-K0384,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,14,9c53ea18cf,,"description: ""Euro 1 & 2 vehicles (~1990-2000)"""
-K0385,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,15,2d1bea81c0,,"model_year_range: [1990, 2000]"
-K0386,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,17,6cedfb491b,,gas_co_max_pct: 1.0
-K0387,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,18,e8648c5cb7,,gas_hc_max_ppm: 150
-K0388,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,19,1f59efb264,,lambda_tolerance: 0.10
-K0389,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,20,929c875b0a,NON_DOMAIN,"rule_pack: ""era_1_mechanical_rules"""
-K0390,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,28,b9130c33ef,NON_DOMAIN,"# Euro 3 & 4, 2000-2010. COP, electronic throttle, early GDI, early VVT."
-K0391,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,29,7f8929dd3b,,"description: ""Euro 3 & 4 vehicles (~2000-2010)"""
-K0392,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,30,304d0ce81b,,"model_year_range: [2000, 2010]"
-K0393,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,32,a6a8cf7ac0,,gas_co_max_pct: 0.5
-K0394,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,33,4e39877ca0,,gas_hc_max_ppm: 55
-K0395,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,34,b36c063bfd,,lambda_tolerance: 0.05
-K0396,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,35,3087f65dd1,NON_DOMAIN,"rule_pack: ""era_2_electronic_overdrive_rules"""
-K0397,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,42,275433ffd7,NON_DOMAIN,"# Euro 5 & 6, 2010-2020. Downsized turbos, multi-stage GDI, thermal mgmt."
-K0398,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,43,d383a1b370,NON_DOMAIN,# T-FX-PURGE-2: rule_pack deactivated; MODERN-only activate_nodes stripped.
-K0399,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,44,cebebec0db,NON_DOMAIN,# MODERN vehicles route to default lab settings (per T-FX-PURGE-1).
-K0400,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,45,cb4221c2c6,,"description: ""Euro 5 & 6 vehicles (~2010-2020)"""
-K0401,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,46,d6a072d489,,"model_year_range: [2010, 2020]"
-K0402,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,48,2c94696623,,gas_co_max_pct: 0.2
-K0403,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,49,29e0d69520,,gas_hc_max_ppm: 15
-K0404,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,50,15096d607b,,lambda_tolerance: 0.02
+K0382,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,10,e2324f3ca3,,"version: ""0.1.0"""
+K0383,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,15,a2fb12475e,NON_DOMAIN,"# Euro 1 & 2, 1990-2000. Distributors, mechanical pressure regulators,"
+K0384,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,17,9c53ea18cf,,"description: ""Euro 1 & 2 vehicles (~1990-2000)"""
+K0385,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,18,2d1bea81c0,,"model_year_range: [1990, 2000]"
+K0388,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,20,1f59efb264,,lambda_tolerance: 0.10
+K0389,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,21,929c875b0a,NON_DOMAIN,"rule_pack: ""era_1_mechanical_rules"""
+K0390,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,29,b9130c33ef,NON_DOMAIN,"# Euro 3 & 4, 2000-2010. COP, electronic throttle, early GDI, early VVT."
+K0391,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,30,7f8929dd3b,,"description: ""Euro 3 & 4 vehicles (~2000-2010)"""
+K0392,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,31,304d0ce81b,,"model_year_range: [2000, 2010]"
+K0395,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,33,b36c063bfd,,lambda_tolerance: 0.05
+K0396,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,34,3087f65dd1,NON_DOMAIN,"rule_pack: ""era_2_electronic_overdrive_rules"""
+K0397,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,41,275433ffd7,NON_DOMAIN,"# Euro 5 & 6, 2010-2020. Downsized turbos, multi-stage GDI, thermal mgmt."
+K0398,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,42,d383a1b370,NON_DOMAIN,# T-FX-PURGE-2: rule_pack deactivated; MODERN-only activate_nodes stripped.
+K0399,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,43,cebebec0db,NON_DOMAIN,# MODERN vehicles route to default lab settings (per T-FX-PURGE-1).
+K0400,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,44,cb4221c2c6,,"description: ""Euro 5 & 6 vehicles (~2010-2020)"""
+K0401,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,45,d6a072d489,,"model_year_range: [2010, 2020]"
+K0404,labs/comlab/comlab/config/eras_sensitivity_masks.yaml,47,15096d607b,,lambda_tolerance: 0.02
 K0405,labs/comlab/comlab/config/global_fault_registry.json,4,05627694e7,NON_DOMAIN,"""version"": ""0.1.0"","
 K0406,labs/comlab/comlab/config/global_fault_registry.json,5,ce7aeb2cf3,NON_DOMAIN,"""description"": ""Flat cross-domain fault registry for ComLab. v0.1 ships with the three starter rules from OrchestratorLabBP.md plus a synthetic catalyst-efficiency rule. New faults are added by appending to this array \u2014 no Python changes required."","
 K0407,labs/comlab/comlab/config/global_fault_registry.json,8,25e800171a,NON_DOMAIN,"""fault_id"": ""ERR-E1-M032"","

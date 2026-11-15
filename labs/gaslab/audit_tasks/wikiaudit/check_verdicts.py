@@ -61,6 +61,18 @@ def main() -> int:
     for reg in REGISTERS:
         for r in csv.DictReader(reg.open(encoding="utf-8")):
             claims[r["claim_id"]] = r
+    # A claim whose source line a fix row deleted keeps its verdict as history (retired.csv: claim_id, retired_by,
+    # reason; T-AUD-24b). It must no longer be in a register.
+    retired: dict[str, dict[str, str]] = {}
+    if (HERE / "retired.csv").is_file():
+        for r in csv.DictReader((HERE / "retired.csv").open(encoding="utf-8")):
+            if r["claim_id"] in claims:
+                errors.append(f"ERROR retired {r['claim_id']}: still a claim in a register")
+            elif not r.get("retired_by", "").strip():
+                errors.append(f"ERROR retired {r['claim_id']}: retired_by is empty")
+            retired[r["claim_id"]] = r
+    for cid in retired:
+        claims.setdefault(cid, {"claim_id": cid, "same_as": "", "class": "RETIRED"})
     scope = [s.strip() for s in scope_path.read_text(encoding="utf-8").splitlines() if s.strip()]
     sources = {r["source_id"]: r for r in read(HERE / "sources.csv", SRC_FIELDS, errors)}
     texts: dict[str, str] = {}
@@ -123,6 +135,8 @@ def main() -> int:
     in_scope = [v for v in verdicts if v["claim_id"] in set(scope)]
     cnt = Counter(v["verdict"] for v in in_scope)
     print("verdicts " + " ".join(f"{k}={cnt[k]}" for k in sorted(cnt)))
+    if retired:
+        print(f"retired {sum(1 for c in scope if c in retired)} of {len(scope)} scope claims (retired.csv)")
     print(f"sources {len(sources)} primary {sum(1 for s in sources.values() if s['kind'] in PRIMARY)}")
     print(f"VERDICTS OK scope={scope_path.name} claims {len(scope)}")
     return 0
