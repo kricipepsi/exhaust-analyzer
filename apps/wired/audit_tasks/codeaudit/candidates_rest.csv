@@ -29,14 +29,14 @@ K0027,labs/obdlab/obdlab/core/pid_ingestion_validator.py,22,5c2bcb1c62,,"""_inhg
 K0028,labs/obdlab/obdlab/core/pid_ingestion_validator.py,23,2de293e477,,"""_lbmin"": (""_gps"", lambda v: v * 7.559),                 # wiki: §3.2 — lb/min → g/s"
 K0029,labs/obdlab/obdlab/core/pid_ingestion_validator.py,26,f05ed8bbf6,,_DNA_RPM_HEADROOM = 1.05  # wiki: §3 — 5% headroom for redline overshoot
 K0030,labs/obdlab/obdlab/core/pid_ingestion_validator.py,94,bad6823312,NON_DOMAIN,if cell_idx < 0:  # wiki: research/chunks/fuel-trim/13
-K0031,labs/obdlab/obdlab/core/pid_ingestion_validator.py,99,6e23669857,,if ltft_val < -127 or ltft_val > 127:  # wiki: research/chunks/fuel-trim/13
+K0031,labs/obdlab/obdlab/core/pid_ingestion_validator.py,99,af4417ec66,,if ltft_val < -100.0 or ltft_val > 99.22:  # wiki: research/chunks/fuel-trim/13
 K0032,labs/obdlab/obdlab/core/pid_ingestion_validator.py,142,7127faccff,NON_DOMAIN,if cyl_idx < 1:  # wiki: research/chunks/fuel-trim/17
 K0033,labs/obdlab/obdlab/core/pid_ingestion_validator.py,147,324eb525bd,NON_DOMAIN,if cnt_val < 0:  # wiki: research/chunks/fuel-trim/17
 K0034,labs/obdlab/obdlab/core/pid_ingestion_validator.py,219,e3b97bcc0d,NON_DOMAIN,"number_of_banks = inputs.get(""number_of_banks"", 1)"
 K0035,labs/obdlab/obdlab/core/pid_ingestion_validator.py,227,440bc885a2,NON_DOMAIN,"if field in (""shrtft2"", ""longft2"") and number_of_banks != 2:"
 K0036,labs/obdlab/obdlab/core/pid_ingestion_validator.py,289,7b2d988431,NON_DOMAIN,"if inputs.get(""number_of_banks"", 1) != 1:"
-K0037,labs/obdlab/obdlab/core/semantic_consistency_checker.py,18,1e2bfbc380,,_TRIM_MIN = -127.0   # widened from OBD-nominal -100 to accommodate OBD rail values per T-W-6
-K0038,labs/obdlab/obdlab/core/semantic_consistency_checker.py,19,75d4ec0506,,_TRIM_MAX = 127.0    # widened from OBD-nominal 99.22 to accommodate OBD rail values per T-W-6
+K0037,labs/obdlab/obdlab/core/semantic_consistency_checker.py,18,0997316386,,"_TRIM_MIN = -100.0   # SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 %; a railed trim reads at these limits (T-AUD-24a, amends T-W-6)"
+K0038,labs/obdlab/obdlab/core/semantic_consistency_checker.py,19,a9122bca88,,"_TRIM_MAX = 99.22    # SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 %; a railed trim reads at these limits (T-AUD-24a, amends T-W-6)"
 K0039,labs/obdlab/obdlab/core/semantic_consistency_checker.py,21,e385736b42,,_CUTOFF_ECT_COLD = 75         # wiki: §4.1 — thermal gate cutoff (°C)
 K0040,labs/obdlab/obdlab/core/semantic_consistency_checker.py,22,5bb35bbc2c,,_CUTOFF_ECT_CLOSED = 80       # wiki: §4 — closed-loop expected threshold (°C)
 K0041,labs/obdlab/obdlab/core/semantic_consistency_checker.py,23,58a809e3da,,_CUTOFF_VSS = 10              # wiki: §4 — VSS km/h for Physics_Gate_1
@@ -92,10 +92,10 @@ K0090,labs/obdlab/obdlab/schemas/payload.py,41,1386fd62ef,,"coolant_temp_c: floa
 K0091,labs/obdlab/obdlab/schemas/payload.py,44,3ed88d993d,,"calculated_engine_load_pct: float = Field(ge=0, le=100)"
 K0092,labs/obdlab/obdlab/schemas/payload.py,47,3618f8acf9,,"mass_airflow_gps: float | None = Field(default=None, ge=0, le=655.35)"
 K0093,labs/obdlab/obdlab/schemas/payload.py,50,f1e127b2d7,,"manifold_vacuum_kpa: float | None = Field(default=None, ge=0, le=255)"
-K0094,labs/obdlab/obdlab/schemas/payload.py,53,d13fdb466d,,"shrtft1: float = Field(ge=-127, le=127)"
-K0095,labs/obdlab/obdlab/schemas/payload.py,57,f36f40ef2d,,"longft1: float = Field(ge=-127, le=127)"
-K0096,labs/obdlab/obdlab/schemas/payload.py,60,23b46e60eb,,"shrtft2: float | None = Field(default=None, ge=-127, le=127)"
-K0097,labs/obdlab/obdlab/schemas/payload.py,63,6fe124cf1f,,"longft2: float | None = Field(default=None, ge=-127, le=127)"
+K0094,labs/obdlab/obdlab/schemas/payload.py,53,b780f445c8,,"shrtft1: float = Field(ge=-100.0, le=99.22)"
+K0095,labs/obdlab/obdlab/schemas/payload.py,57,aa9746090c,,"longft1: float = Field(ge=-100.0, le=99.22)"
+K0096,labs/obdlab/obdlab/schemas/payload.py,60,83763e2a05,,"shrtft2: float | None = Field(default=None, ge=-100.0, le=99.22)"
+K0097,labs/obdlab/obdlab/schemas/payload.py,63,1f2f7ec0ea,,"longft2: float | None = Field(default=None, ge=-100.0, le=99.22)"
 K0098,labs/obdlab/obdlab/schemas/payload.py,75,0f4d81ca06,,"normalized_obd_lambda: float | None = Field(ge=0.7, le=1.3)"
 K0099,labs/obdlab/obdlab/schemas/payload.py,81,4216d36dee,,"ve_pct: float = Field(ge=0.0, le=200.0)  # wiki: §6.4 — max 200 to accommodate thermal shock steam overshoot"
 K0100,labs/obdlab/obdlab/schemas/payload.py,106,91201175b3,,"intake_air_temp_c: float = Field(ge=-40, le=140)"
@@ -197,10 +197,10 @@ K0195,apps/wired/v7/run_suite.py,402,b5d6c15dff,NON_DOMAIN,"}, f, indent=2)"
 K0196,apps/wired/v7/run_suite.py,405,a751126601,NON_DOMAIN,return 0
 K0197,apps/wired/wired/composition.py,108,79870a1022,,"""mode06_catalyst_margin_pct"": (-1000.0, 100.0, float),"
 K0198,apps/wired/wired/composition.py,109,1d68951923,,"""catalyst_index_ratio"": (0.0, 2.0, float),"
-K0199,apps/wired/wired/composition.py,110,0026e3c470,,"""stft_idle_pct"": (-127.0, 127.0, float),"
-K0200,apps/wired/wired/composition.py,111,df017be130,,"""ltft_idle_pct"": (-127.0, 127.0, float),"
-K0201,apps/wired/wired/composition.py,112,28d159e267,,"""stft_2500_pct"": (-127.0, 127.0, float),"
-K0202,apps/wired/wired/composition.py,113,92e0bb4459,,"""ltft_2500_pct"": (-127.0, 127.0, float),"
+K0199,apps/wired/wired/composition.py,110,d67c0183c6,,"""stft_idle_pct"": (-100.0, 99.22, float),"
+K0200,apps/wired/wired/composition.py,111,a1b692024f,,"""ltft_idle_pct"": (-100.0, 99.22, float),"
+K0201,apps/wired/wired/composition.py,112,ddfab60dcb,,"""stft_2500_pct"": (-100.0, 99.22, float),"
+K0202,apps/wired/wired/composition.py,113,c3c9c446f2,,"""ltft_2500_pct"": (-100.0, 99.22, float),"
 K0203,apps/wired/wired/composition.py,114,670753785d,,"""mode06_o2_response_margin_pct"": (0.0, 100.0, float),"
 K0204,apps/wired/wired/composition.py,115,850747f592,,"""maf_actual_calc_delta_pct_idle"": (-100.0, 100.0, float),"
 K0205,apps/wired/wired/composition.py,116,9cb46f882d,,"""maf_actual_calc_delta_pct_2500"": (-100.0, 100.0, float),"
@@ -211,8 +211,8 @@ K0209,apps/wired/wired/composition.py,120,8d3ddbf150,,"""calc_airflow_gps_2500""
 K0210,apps/wired/wired/composition.py,121,23d7b4ce7c,,"""koeo_map_baro_delta_kpa"": (0.0, 50.0, float),"
 K0211,apps/wired/wired/composition.py,122,4829fc60c7,,"""module_voltage_loaded_v"": (0.0, 18.0, float),"
 K0212,apps/wired/wired/composition.py,123,351dc244a8,,"""dlc_signal_ground_drop_v"": (0.0, 5.0, float),"
-K0213,apps/wired/wired/composition.py,124,9b5470b40d,,"""stft_load_pct"": (-127.0, 127.0, float),"
-K0214,apps/wired/wired/composition.py,125,3bdc11f529,,"""ltft_load_pct"": (-127.0, 127.0, float),"
+K0213,apps/wired/wired/composition.py,124,82ae1ca357,,"""stft_load_pct"": (-100.0, 99.22, float),"
+K0214,apps/wired/wired/composition.py,125,9795663512,,"""ltft_load_pct"": (-100.0, 99.22, float),"
 K0215,apps/wired/wired/composition.py,126,cdec61a764,,"""calc_load_wot_pct"": (0.0, 100.0, float),"
 K0216,apps/wired/wired/composition.py,127,08380fb4f2,,"""fuel_rail_pressure_load_kpa"": (0.0, 250000.0, float),"
 K0217,apps/wired/wired/composition.py,128,02c95efdfb,,"""wideband_lambda_wot"": (0.0, 3.0, float),"
@@ -532,8 +532,8 @@ K0530,apps/ui/ui_payload.py,30,dfe4c66a79,,OBD_ECT_MIN = -40.0
 K0531,apps/ui/ui_payload.py,31,a92502e7d3,,OBD_ECT_MAX = 140.0
 K0532,apps/ui/ui_payload.py,32,63aca56f9a,,OBD_LOAD_MIN = 0.0
 K0533,apps/ui/ui_payload.py,33,c67009a7ad,,OBD_LOAD_MAX = 100.0
-K0534,apps/ui/ui_payload.py,34,4aa7d7eb14,,OBD_TRIM_MIN = -127.0
-K0535,apps/ui/ui_payload.py,35,f4d5f57a62,,OBD_TRIM_MAX = 127.0
+K0534,apps/ui/ui_payload.py,34,09bdeb57de,,OBD_TRIM_MIN = -100.0
+K0535,apps/ui/ui_payload.py,35,3251012d75,,OBD_TRIM_MAX = 99.22
 K0536,apps/ui/ui_payload.py,36,311490b51e,,OBD_MAF_MIN = 0.0
 K0537,apps/ui/ui_payload.py,37,921de606b3,,OBD_MAF_MAX = 655.35
 K0538,apps/ui/ui_payload.py,38,8d05fe4422,,OBD_MAP_MIN = 0.0
@@ -757,21 +757,21 @@ K0755,labs/obdlab/obdlab/config/physical_sensor_bounds.json,21,4506713641,,"""ma
 K0756,labs/obdlab/obdlab/config/physical_sensor_bounds.json,25,7fec1131b8,,"""min"": 0.0,"
 K0757,labs/obdlab/obdlab/config/physical_sensor_bounds.json,26,a1a2e1536f,,"""max"": 255.0,"
 K0758,labs/obdlab/obdlab/config/physical_sensor_bounds.json,29,3b0318f65a,NON_DOMAIN,"""shrtft1"": {"
-K0759,labs/obdlab/obdlab/config/physical_sensor_bounds.json,30,9da33d4318,,"""min"": -127.0,"
-K0760,labs/obdlab/obdlab/config/physical_sensor_bounds.json,31,44841b4733,,"""max"": 127.0,"
-K0761,labs/obdlab/obdlab/config/physical_sensor_bounds.json,33,ff2e2fb545,,"""note"": ""Widened from OBD nominal [-100, 99.22] to accommodate OBD rail/sensor-fault sentinel values (-127, +127). Rail values are a sensor_fault signal consumed by COMLab trim-evidence scoring."""
+K0759,labs/obdlab/obdlab/config/physical_sensor_bounds.json,30,9578d18e6b,,"""min"": -100.0,"
+K0760,labs/obdlab/obdlab/config/physical_sensor_bounds.json,31,f70675ae9a,,"""max"": 99.22,"
+K0761,labs/obdlab/obdlab/config/physical_sensor_bounds.json,33,e95d0da5bf,,"""note"": ""SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 %; a railed trim reads at these limits (T-AUD-24a, amends T-W-6). Rail values are a sensor_fault signal consumed by COMLab trim-evidence scoring."""
 K0762,labs/obdlab/obdlab/config/physical_sensor_bounds.json,35,9dc0c89f1c,NON_DOMAIN,"""longft1"": {"
-K0763,labs/obdlab/obdlab/config/physical_sensor_bounds.json,36,9da33d4318,,"""min"": -127.0,"
-K0764,labs/obdlab/obdlab/config/physical_sensor_bounds.json,37,44841b4733,,"""max"": 127.0,"
-K0765,labs/obdlab/obdlab/config/physical_sensor_bounds.json,39,a683e75afe,,"""note"": ""Widened from OBD nominal [-100, 99.22] to accommodate OBD rail/sensor-fault sentinel values (-127, +127)."""
+K0763,labs/obdlab/obdlab/config/physical_sensor_bounds.json,36,9578d18e6b,,"""min"": -100.0,"
+K0764,labs/obdlab/obdlab/config/physical_sensor_bounds.json,37,f70675ae9a,,"""max"": 99.22,"
+K0765,labs/obdlab/obdlab/config/physical_sensor_bounds.json,39,9a64b89942,,"""note"": ""SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 %; a railed trim reads at these limits (T-AUD-24a, amends T-W-6)."""
 K0766,labs/obdlab/obdlab/config/physical_sensor_bounds.json,41,9e7073b9aa,NON_DOMAIN,"""shrtft2"": {"
-K0767,labs/obdlab/obdlab/config/physical_sensor_bounds.json,42,9da33d4318,,"""min"": -127.0,"
-K0768,labs/obdlab/obdlab/config/physical_sensor_bounds.json,43,44841b4733,,"""max"": 127.0,"
-K0769,labs/obdlab/obdlab/config/physical_sensor_bounds.json,45,eef62113bb,,"""note"": ""Only validated when number_of_banks == 2. Must be null when number_of_banks == 1. Widened to accommodate OBD rail values."""
+K0767,labs/obdlab/obdlab/config/physical_sensor_bounds.json,42,9578d18e6b,,"""min"": -100.0,"
+K0768,labs/obdlab/obdlab/config/physical_sensor_bounds.json,43,f70675ae9a,,"""max"": 99.22,"
+K0769,labs/obdlab/obdlab/config/physical_sensor_bounds.json,45,d10aa0a941,,"""note"": ""Only validated when number_of_banks == 2. Must be null when number_of_banks == 1. SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 %; a railed trim reads at these limits (T-AUD-24a, amends T-W-6)."""
 K0770,labs/obdlab/obdlab/config/physical_sensor_bounds.json,47,17d762d75e,NON_DOMAIN,"""longft2"": {"
-K0771,labs/obdlab/obdlab/config/physical_sensor_bounds.json,48,9da33d4318,,"""min"": -127.0,"
-K0772,labs/obdlab/obdlab/config/physical_sensor_bounds.json,49,44841b4733,,"""max"": 127.0,"
-K0773,labs/obdlab/obdlab/config/physical_sensor_bounds.json,51,eef62113bb,,"""note"": ""Only validated when number_of_banks == 2. Must be null when number_of_banks == 1. Widened to accommodate OBD rail values."""
+K0771,labs/obdlab/obdlab/config/physical_sensor_bounds.json,48,9578d18e6b,,"""min"": -100.0,"
+K0772,labs/obdlab/obdlab/config/physical_sensor_bounds.json,49,f70675ae9a,,"""max"": 99.22,"
+K0773,labs/obdlab/obdlab/config/physical_sensor_bounds.json,51,d10aa0a941,,"""note"": ""Only validated when number_of_banks == 2. Must be null when number_of_banks == 1. SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 %; a railed trim reads at these limits (T-AUD-24a, amends T-W-6)."""
 K0774,labs/obdlab/obdlab/config/physical_sensor_bounds.json,54,e0287128f0,,"""min"": -40.0,"
 K0775,labs/obdlab/obdlab/config/physical_sensor_bounds.json,55,d984f80a8c,,"""max"": 140.0,"
 K0776,labs/obdlab/obdlab/config/physical_sensor_bounds.json,59,7fec1131b8,,"""min"": 0.0,"

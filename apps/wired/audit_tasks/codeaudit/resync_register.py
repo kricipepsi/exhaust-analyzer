@@ -1,6 +1,6 @@
 """T-AUD-22-RESYNC: re-key a line-keyed register after the audited files changed (Cowork tool).
 
-python -I resync_register.py --register gaslab-code|comlab-code|wiki --base <git rev> [--apply]
+python -I resync_register.py --register gaslab-code|comlab-code|rest-code|wiki --base <git rev> [--apply]
 The register's candidates were keyed (line + sha of the line text) to the files as they were at --base. For each
 candidate whose line no longer matches, the old file (git show <base>:<file>) is diffed against the working file:
 - an unchanged line that moved gets its new line number (candidates and claims rows);
@@ -25,6 +25,7 @@ REPO = HERE.parents[3]
 REGISTERS = {
     "gaslab-code": (REPO, HERE / "candidates_gaslab.csv", HERE / "claims_gaslab.csv"),
     "comlab-code": (REPO, HERE / "candidates_comlab.csv", HERE / "claims_comlab.csv"),
+    "rest-code": (REPO, HERE / "candidates_rest.csv", HERE / "claims_rest.csv"),
     "wiki": (REPO / "labs" / "gaslab", REPO / "labs/gaslab/audit_tasks/wikiaudit/candidates.csv",
              REPO / "labs/gaslab/audit_tasks/wikiaudit/claims.csv"),
 }
