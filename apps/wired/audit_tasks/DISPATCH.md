@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-24b` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 1 | NO | 15 min | fix era masks dead keys |
+| `T-AUD-24c` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 1 | NO | 20 min | fix misfire dtc range |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-24b` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — `labs/comlab/comlab/config/eras_sensitivity_masks.yaml` keeps only what code reads.
-  `repo\apps\wired\audit_tasks/T-AUD-24b_fix_era_masks_dead_keys(2).md`
+**`T-AUD-24c` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — Every COMLab rule list that names the cylinder-misfire codes `P0300`-`P0304` also names `P0305`-`P0312`, so a misfire on cylinder 5 to 12 of a larger engine matches the same rules (SAE J2012: P0301-P0
+  `repo\apps\wired\audit_tasks/T-AUD-24c_fix_misfire_dtc_range(2).md`
 
 ## Distribution
 
-- **2/5** — 1: T-AUD-24b
+- **2/5** — 1: T-AUD-24c
