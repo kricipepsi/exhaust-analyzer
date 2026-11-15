@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-22e` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 30 min | codeaudit comlab kg inventory |
+| `T-AUD-22f` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 30 min | codeaudit comlab config inventory |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-22e` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — Every non-auto candidate of the 14 files `labs/comlab/comlab/config/kg/*.json` is appended to `apps/wired/audit_tasks/codeaudit/claims_comlab.csv` as a classified claim (or one `NON_DOMAIN` row), link
-  `repo\apps\wired\audit_tasks/T-AUD-22e_codeaudit_comlab_kg_inventory(3).md`
+**`T-AUD-22f` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — Every non-auto candidate of the six config YAML files (`labs/comlab/comlab/config/*.yaml`, `proposals/` included) is appended to `apps/wired/audit_tasks/codeaudit/claims_comlab.csv` as a classified cl
+  `repo\apps\wired\audit_tasks/T-AUD-22f_codeaudit_comlab_config_inventory(3).md`
 
 ## Distribution
 
-- **3/5** — 1: T-AUD-22e
+- **3/5** — 1: T-AUD-22f
