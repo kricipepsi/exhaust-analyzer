@@ -266,7 +266,7 @@
     {
       "rule_id": "MW-007",
       "fault_family": "mechanical_wear",
-      "description": "IGNITION_MISFIRE chemistry with mechanical-wear discriminators: GASLab classifies the combustion as misfire-type, but absence of P030x DTCs and depressed CO2 with low NOx point to mechanical sealing failure, not ignition. Differentiated from misfire by P0300-P0304 none_present DEFINITIVE, hc > 200 DEFINITIVE, and o2 < 4.0 GATING; the O2 gate excludes high-O2 no-DTC true misfire while preserving the CSV-120 mechanical-wear signature. FT-10",
+      "description": "IGNITION_MISFIRE chemistry with mechanical-wear discriminators: GASLab classifies the combustion as misfire-type, but absence of P030x DTCs and depressed CO2 with low NOx point to mechanical sealing failure, not ignition. Differentiated from misfire by P0300-P0312 none_present DEFINITIVE, hc > 200 DEFINITIVE, and o2 < 4.0 GATING; the O2 gate excludes high-O2 no-DTC true misfire while preserving the CSV-120 mechanical-wear signature. FT-10",
       "chemistry_evidence": [
         {
           "state": "IGNITION_MISFIRE",
@@ -315,7 +315,15 @@
             "P0301",
             "P0302",
             "P0303",
-            "P0304"
+            "P0304",
+            "P0305",
+            "P0306",
+            "P0307",
+            "P0308",
+            "P0309",
+            "P0310",
+            "P0311",
+            "P0312"
           ],
           "strategy": "none_present",
           "tier": "DEFINITIVE",
