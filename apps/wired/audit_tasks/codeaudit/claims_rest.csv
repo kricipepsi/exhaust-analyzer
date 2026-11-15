@@ -245,9 +245,9 @@ RK0243,K0204,apps/wired/wired/composition.py,115,maf_actual_calc_delta_pct_idle,
 RK0244,K0205,apps/wired/wired/composition.py,116,maf_actual_calc_delta_pct_2500,-100.0,%,plausible min,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
 RK0245,K0205,apps/wired/wired/composition.py,116,maf_actual_calc_delta_pct_2500,100.0,%,plausible max,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
 RK0246,K0206,apps/wired/wired/composition.py,117,maf_gps_idle,0.0,g/s,plausible min,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
-RK0247,K0206,apps/wired/wired/composition.py,117,maf_gps_idle,500.0,g/s,plausible max,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
+RK0247,K0206,apps/wired/wired/composition.py,117,maf_gps_idle,500.0,g/s,plausible max,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,Differs from OBDLab RK0188 (mass_airflow_gps plausible max 655.35 g/s; cf. RK0080 0-655.35 g/s)
 RK0248,K0207,apps/wired/wired/composition.py,118,maf_gps_2500,0.0,g/s,plausible min,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
-RK0249,K0207,apps/wired/wired/composition.py,118,maf_gps_2500,500.0,g/s,plausible max,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
+RK0249,K0207,apps/wired/wired/composition.py,118,maf_gps_2500,500.0,g/s,plausible max,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,Differs from OBDLab RK0188 (mass_airflow_gps plausible max 655.35 g/s; cf. RK0080 0-655.35 g/s)
 RK0250,K0208,apps/wired/wired/composition.py,119,calc_airflow_gps_idle,0.0,g/s,plausible min,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
 RK0251,K0208,apps/wired/wired/composition.py,119,calc_airflow_gps_idle,500.0,g/s,plausible max,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
 RK0252,K0209,apps/wired/wired/composition.py,120,calc_airflow_gps_2500,0.0,g/s,plausible min,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
@@ -266,8 +266,8 @@ RK0264,K0215,apps/wired/wired/composition.py,126,calc_load_wot_pct,0.0,%,plausib
 RK0265,K0215,apps/wired/wired/composition.py,126,calc_load_wot_pct,100.0,%,plausible max,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,RK0186,
 RK0266,K0216,apps/wired/wired/composition.py,127,fuel_rail_pressure_load_kpa,0.0,kPa,plausible min,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
 RK0267,K0216,apps/wired/wired/composition.py,127,fuel_rail_pressure_load_kpa,250000.0,kPa,plausible max,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
-RK0268,K0217,apps/wired/wired/composition.py,128,wideband_lambda_wot,0.0,-,plausible min,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
-RK0269,K0217,apps/wired/wired/composition.py,128,wideband_lambda_wot,3.0,-,plausible max,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
+RK0268,K0217,apps/wired/wired/composition.py,128,wideband_lambda_wot,0.0,-,plausible min,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,Differs from OBDLab RK0020 (minimum plausible wideband lambda 0.7; cf. RK0086 normalized_obd_lambda 0.7-1.3); raw COMLab WOT channel
+RK0269,K0217,apps/wired/wired/composition.py,128,wideband_lambda_wot,3.0,-,plausible max,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,Differs from OBDLab RK0021 (maximum plausible wideband lambda 1.3; cf. RK0086 normalized_obd_lambda 0.7-1.3); raw COMLab WOT channel
 RK0270,K0218,apps/wired/wired/composition.py,129,co2_idle_pct,0.0,%,plausible min,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
 RK0271,K0218,apps/wired/wired/composition.py,129,co2_idle_pct,22.0,%,plausible max,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
 RK0272,K0219,apps/wired/wired/composition.py,130,tailpipe_o2_elevation_pct,0.0,%,plausible min,ANALYSER_SPEC,T-AUD-4s (F-C4-8): apps/ui/ui_payload.py; apps/ui/app.py; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,,
@@ -382,9 +382,9 @@ RK0380,K0540,apps/ui/ui_payload.py,40,OBD_O2_DN_MIN,0.0,V,input min,ANALYSER_SPE
 RK0381,K0541,apps/ui/ui_payload.py,41,OBD_O2_DN_MAX,1.5,V,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §6; labs/obdlab/wiki/OBDLab_KG_Wiki.md §3.1,RK0275,
 RK0382,K0542,apps/ui/ui_payload.py,43,FF_LOAD_MIN,0.0,%,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,RK0185,
 RK0383,K0543,apps/ui/ui_payload.py,44,FF_LOAD_MAX,100.0,%,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,RK0186,
-RK0384,K0545,apps/ui/ui_payload.py,46,FF_RPM_MAX,16383,rpm,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,
+RK0384,K0545,apps/ui/ui_payload.py,46,FF_RPM_MAX,16383,rpm,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,SAE J1979 PID 0x0C freeze-frame encoding range (0-16383.75 rpm); differs from OBDLab RK0182 (engine_rpm plausible max 8000 rpm; cf. RK0077 0-8000 rpm)
 RK0385,K0546,apps/ui/ui_payload.py,47,FF_ECT_MIN,-40.0,°C,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,RK0183,
-RK0386,K0547,apps/ui/ui_payload.py,48,FF_ECT_MAX,215.0,°C,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,
+RK0386,K0547,apps/ui/ui_payload.py,48,FF_ECT_MAX,215.0,°C,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,SAE J1979 PID 0x05 freeze-frame encoding range (-40 to 215 °C); differs from OBDLab RK0184 (coolant_temp_c plausible max 140.0 °C; cf. RK0078 -40-140 °C)
 RK0387,K0548,apps/ui/ui_payload.py,49,FF_TRIM_MIN,-100.0,%,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,
 RK0388,K0549,apps/ui/ui_payload.py,50,FF_TRIM_MAX,99.22,%,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,
 RK0389,K0551,apps/ui/ui_payload.py,52,FF_MAP_MAX,255,kPa,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,RK0190,
@@ -392,18 +392,18 @@ RK0390,K0553,apps/ui/ui_payload.py,54,FF_SPEED_MAX,255,km/h,input max,ANALYSER_S
 RK0391,K0554,apps/ui/ui_payload.py,55,FF_IGNITION_MIN,-64.0,deg BTDC,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,
 RK0392,K0555,apps/ui/ui_payload.py,56,FF_IGNITION_MAX,63.5,deg BTDC,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,
 RK0393,K0556,apps/ui/ui_payload.py,57,FF_IAT_MIN,-40.0,°C,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,RK0203,
-RK0394,K0557,apps/ui/ui_payload.py,58,FF_IAT_MAX,215.0,°C,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,
+RK0394,K0557,apps/ui/ui_payload.py,58,FF_IAT_MAX,215.0,°C,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,"SAE J1979 PID 0x0F freeze-frame encoding range (-40 to 215 °C); differs from OBDLab RK0204 (intake_air_temp_c plausible max 140.0 °C; cf. RK0088 -40-140 °C, OBDLab_KG_Wiki.md §3.1 80 °C)"
 RK0395,K0558,apps/ui/ui_payload.py,59,FF_MAF_MIN,0.0,g/s,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,RK0187,
 RK0396,K0559,apps/ui/ui_payload.py,60,FF_MAF_MAX,655.35,g/s,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,RK0188,
 RK0397,K0560,apps/ui/ui_payload.py,61,FF_THROTTLE_MIN,0.0,%,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,RK0205,
 RK0398,K0561,apps/ui/ui_payload.py,62,FF_THROTTLE_MAX,100.0,%,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,RK0206,
-RK0399,K0562,apps/ui/ui_payload.py,63,FF_O2_V_B1S1_MIN,0.000,V,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,
-RK0400,K0563,apps/ui/ui_payload.py,64,FF_O2_V_B1S1_MAX,1.275,V,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,
+RK0399,K0562,apps/ui/ui_payload.py,63,FF_O2_V_B1S1_MIN,0.000,V,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,SAE J1979 PID 0x14/0x15 freeze-frame encoding range (0.000-1.275 V); differs from OBDLab RK0015 (narrowband O2 minimum valid voltage 0.10 V in o2_normalizer.py)
+RK0400,K0563,apps/ui/ui_payload.py,64,FF_O2_V_B1S1_MAX,1.275,V,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,SAE J1979 PID 0x14/0x15 freeze-frame encoding range (0.000-1.275 V); differs from OBDLab RK0016 (narrowband O2 maximum valid voltage 0.90 V in o2_normalizer.py)
 RK0401,K0565,apps/ui/ui_payload.py,66,FF_RUNTIME_MAX,65535,s,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,
 RK0402,K0566,apps/ui/ui_payload.py,67,FF_FUEL_LEVEL_MIN,0.0,%,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,
 RK0403,K0567,apps/ui/ui_payload.py,68,FF_FUEL_LEVEL_MAX,100.0,%,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §10,,
-RK0404,K0568,apps/ui/ui_payload.py,70,UPSTREAM_O2_NARROWBAND_MIN,0.0,V,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §7,,
-RK0405,K0569,apps/ui/ui_payload.py,71,UPSTREAM_O2_NARROWBAND_MAX,1.0,V,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §7,,
+RK0404,K0568,apps/ui/ui_payload.py,70,UPSTREAM_O2_NARROWBAND_MIN,0.0,V,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §7,,Differs from OBDLab RK0015 (narrowband O2 minimum valid voltage 0.10 V in o2_normalizer.py)
+RK0405,K0569,apps/ui/ui_payload.py,71,UPSTREAM_O2_NARROWBAND_MAX,1.0,V,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §7,,Differs from OBDLab RK0016 (narrowband O2 maximum valid voltage 0.90 V in o2_normalizer.py)
 RK0406,K0570,apps/ui/ui_payload.py,72,UPSTREAM_O2_WIDEBAND_LAMBDA_MIN,0.7,-,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §7,RK0020,
 RK0407,K0571,apps/ui/ui_payload.py,73,UPSTREAM_O2_WIDEBAND_LAMBDA_MAX,1.3,-,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §7,RK0021,
 RK0408,K0572,apps/ui/ui_payload.py,74,UPSTREAM_O2_WIDEBAND_AFR_MIN,10.0,AFR,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §7,,
@@ -429,11 +429,11 @@ RK0427,K0592,apps/ui/ui_payload.py,96,ADV_O2_MARGIN_MAX,100.0,%,input max,ANALYS
 RK0428,K0593,apps/ui/ui_payload.py,97,ADV_MAF_DELTA_MIN,-100.0,%,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §9; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,RK0242,
 RK0429,K0594,apps/ui/ui_payload.py,98,ADV_MAF_DELTA_MAX,100.0,%,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §9; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,RK0243,
 RK0430,K0595,apps/ui/ui_payload.py,99,ADV_MAF_GPS_MIN,0.0,g/s,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §9; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,RK0246,
-RK0431,K0596,apps/ui/ui_payload.py,100,ADV_MAF_GPS_MAX,500.0,g/s,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §9; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,RK0247,
+RK0431,K0596,apps/ui/ui_payload.py,100,ADV_MAF_GPS_MAX,500.0,g/s,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §9; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,RK0247,Differs from OBDLab RK0188 (mass_airflow_gps plausible max 655.35 g/s; cf. RK0080 0-655.35 g/s); same bound as RK0247
 RK0432,K0597,apps/ui/ui_payload.py,101,ADV_PRESSURE_MIN,0.0,kPa,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §9; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,RK0266,
 RK0433,K0598,apps/ui/ui_payload.py,102,ADV_PRESSURE_MAX,250000.0,kPa,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §9; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,RK0267,
-RK0434,K0599,apps/ui/ui_payload.py,103,ADV_LAMBDA_WOT_MIN,0.0,-,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §9; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,RK0268,
-RK0435,K0600,apps/ui/ui_payload.py,104,ADV_LAMBDA_WOT_MAX,3.0,-,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §9; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,RK0269,
+RK0434,K0599,apps/ui/ui_payload.py,103,ADV_LAMBDA_WOT_MIN,0.0,-,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §9; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,RK0268,Differs from OBDLab RK0020 (minimum plausible wideband lambda 0.7; cf. RK0086 normalized_obd_lambda 0.7-1.3); same bound as RK0268 (raw COMLab WOT channel)
+RK0435,K0600,apps/ui/ui_payload.py,104,ADV_LAMBDA_WOT_MAX,3.0,-,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §9; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,RK0269,Differs from OBDLab RK0021 (maximum plausible wideband lambda 1.3; cf. RK0086 normalized_obd_lambda 0.7-1.3); same bound as RK0269 (raw COMLab WOT channel)
 RK0436,K0601,apps/ui/ui_payload.py,105,ADV_CO2_MIN,0.0,%,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §9; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,RK0270,
 RK0437,K0602,apps/ui/ui_payload.py,106,ADV_CO2_MAX,22.0,%,input max,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §9; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,RK0271,
 RK0438,K0603,apps/ui/ui_payload.py,107,ADV_O2_ELEV_MIN,0.0,%,input min,ANALYSER_SPEC,apps/ui/4DLab_UI_FieldMap.md §9; apps/ui/tests/test_t_aud_4s_raw_obd_ranges.py,RK0272,

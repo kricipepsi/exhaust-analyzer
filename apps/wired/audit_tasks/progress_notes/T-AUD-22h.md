@@ -54,3 +54,52 @@
 - First action: `2026-11-15T21:10:11Z` (local wall-clock `22:10:11+01:00`)
 - Verification complete: `2026-11-15T21:17:14Z` (local wall-clock `22:17:14+01:00`)
 - Duration: `7 min` (`423 s`)
+
+## Correction 1
+
+### Readiness Challenge (Correction 1)
+- **(a) Starting state matches task:** Branch `agy/T-AUD-22h` (worktree per `T-AUD-22h.go.txt` lane rule) with commits `79c1e1b`, `5bb8d53`, `5f2726f`, and `4461c46`, `git status --porcelain` empty, all precondition files `checked`, and `check_code_claims.py --group rest` printing `suspect 38 same_as_wiki 5`, `out_of_scope 129 candidate(s) in 1 file(s)`, `CLAIMS OK group=rest candidates 411 covered claims 451`.
+- **(b) Test fails for intended reason:** At `5f2726f`, the five P7 rows (`RK0247`, `RK0249`, `RK0384`, `RK0386`, `RK0394`) and additional R9 `ANALYSER_SPEC` lab-bound divergences (`RK0268`, `RK0269`, `RK0399`, `RK0400`, `RK0404`, `RK0405`, `RK0431`, `RK0434`, `RK0435`) have empty `suspect` fields, so `suspect 38 < 43` (P6) and Step 5 would fail (`missing P7`).
+- **(c) Independently derived decisive expected value:** Exhaustive comparison of all 158 `ANALYSER_SPEC` rows in `RK0211`–`RK0451` against `RK0001`–`RK0210` yields 14 R9 rows to mark (the 5 P7 rows plus 9 additional rows: `RK0268`, `RK0269`, `RK0399`, `RK0400`, `RK0404`, `RK0405`, `RK0431`, `RK0434`, `RK0435`), raising `suspect` from `38` to `52` (`>= 43`, P6) with `N = 14 >= 5` in Step 5.
+- **(d) No contradiction or missing decision prevents implementation:** Rulings R7 and R9 plus `T-AUD-22h.go.txt` lane rules are consistent; `claims_rest.csv` uses UTF-8 with LF (`\n`, 452 lines).
+- **(e) Teach-back:** Populate only the `suspect` field of the R9-affected `ANALYSER_SPEC` rows in `RK0211`–`RK0451` (preserving all other fields, row count, and LF line ends) and update `T-AUD-22h.md` and `RESULT_T-AUD-22h.md` under `## Correction 1`. Done is verified by `check_code_claims.py` Steps 1–3 (`CLAIMS OK`, `suspect 52`), Step 4 (`0` removed lines vs `79c1e1b`), and Step 5 (`R9 OK changed 14 missing none` vs `5f2726f`).
+
+### Updated Figures & R9 Suspect Rows
+- **Step 2 (`--group rest`) totals after Correction 1:**
+  - `candidates 411 covered claims 451` (unchanged)
+  - `classes`: `ANALYSER_SPEC=203 DIAGNOSTIC_THRESHOLD=36 INTERNAL_PARAMETER=46 NON_DOMAIN=140 PHYSICAL_CONSTANT=22 TYPICAL_RANGE=4` (unchanged)
+  - `suspect 52` (`20` baseline `RK0001`–`RK0210` + `18` run-1 `apps/` + **`14` R9** = **`32` new `apps/` suspects**), `same_as_wiki 5` (unchanged)
+  - Empty `citation` among new claims: **83** (unchanged); `"citation not found"` count: **0** (unchanged)
+- **R9 rows marked (14 `ANALYSER_SPEC` claims in `RK0211`–`RK0451`):**
+  1. `RK0247` (`K0206`, `apps/wired/wired/composition.py:117`, `maf_gps_idle` plausible max `500.0 g/s`): differs from OBDLab `RK0188` (`mass_airflow_gps` plausible max `655.35 g/s`; cf. `RK0080` `0-655.35 g/s`). *(P7)*
+  2. `RK0249` (`K0207`, `apps/wired/wired/composition.py:118`, `maf_gps_2500` plausible max `500.0 g/s`): differs from OBDLab `RK0188` (`mass_airflow_gps` plausible max `655.35 g/s`; cf. `RK0080` `0-655.35 g/s`). *(P7)*
+  3. `RK0268` (`K0217`, `apps/wired/wired/composition.py:128`, `wideband_lambda_wot` plausible min `0.0 -`): differs from OBDLab `RK0020` (minimum plausible wideband lambda `0.7`; cf. `RK0086` `normalized_obd_lambda` `0.7-1.3`); raw COMLab WOT channel.
+  4. `RK0269` (`K0217`, `apps/wired/wired/composition.py:128`, `wideband_lambda_wot` plausible max `3.0 -`): differs from OBDLab `RK0021` (maximum plausible wideband lambda `1.3`; cf. `RK0086` `normalized_obd_lambda` `0.7-1.3`); raw COMLab WOT channel.
+  5. `RK0384` (`K0546`, `apps/ui/ui_payload.py:46`, `FF_RPM_MAX` input max `16383 rpm`): SAE J1979 PID `0x0C` freeze-frame encoding range (`0-16383.75 rpm`); differs from OBDLab `RK0182` (`engine_rpm` plausible max `8000 rpm`; cf. `RK0077` `0-8000 rpm`). *(P7)*
+  6. `RK0386` (`K0548`, `apps/ui/ui_payload.py:48`, `FF_ECT_MAX` input max `215.0 °C`): SAE J1979 PID `0x05` freeze-frame encoding range (`-40` to `215 °C`); differs from OBDLab `RK0184` (`coolant_temp_c` plausible max `140.0 °C`; cf. `RK0078` `-40-140 °C`). *(P7)*
+  7. `RK0394` (`K0558`, `apps/ui/ui_payload.py:58`, `FF_IAT_MAX` input max `215.0 °C`): SAE J1979 PID `0x0F` freeze-frame encoding range (`-40` to `215 °C`); differs from OBDLab `RK0204` (`intake_air_temp_c` plausible max `140.0 °C`; cf. `RK0088` `-40-140 °C`, `OBDLab_KG_Wiki.md §3.1` `80 °C`). *(P7)*
+  8. `RK0399` (`K0563`, `apps/ui/ui_payload.py:63`, `FF_O2_V_B1S1_MIN` input min `0.000 V`): SAE J1979 PID `0x14`/`0x15` freeze-frame encoding range (`0.000-1.275 V`); differs from OBDLab `RK0015` (narrowband O2 minimum valid voltage `0.10 V` in `o2_normalizer.py`).
+  9. `RK0400` (`K0564`, `apps/ui/ui_payload.py:64`, `FF_O2_V_B1S1_MAX` input max `1.275 V`): SAE J1979 PID `0x14`/`0x15` freeze-frame encoding range (`0.000-1.275 V`); differs from OBDLab `RK0016` (narrowband O2 maximum valid voltage `0.90 V` in `o2_normalizer.py`).
+  10. `RK0404` (`K0567`, `apps/ui/ui_payload.py:70`, `UPSTREAM_O2_NARROWBAND_MIN` input min `0.0 V`): differs from OBDLab `RK0015` (narrowband O2 minimum valid voltage `0.10 V` in `o2_normalizer.py`).
+  11. `RK0405` (`K0568`, `apps/ui/ui_payload.py:71`, `UPSTREAM_O2_NARROWBAND_MAX` input max `1.0 V`): differs from OBDLab `RK0016` (narrowband O2 maximum valid voltage `0.90 V` in `o2_normalizer.py`).
+  12. `RK0431` (`K0595`, `apps/ui/ui_payload.py:100`, `ADV_MAF_GPS_MAX` input max `500.0 g/s`): differs from OBDLab `RK0188` (`mass_airflow_gps` plausible max `655.35 g/s`; cf. `RK0080` `0-655.35 g/s`); same bound as `RK0247`.
+  13. `RK0434` (`K0598`, `apps/ui/ui_payload.py:103`, `ADV_LAMBDA_WOT_MIN` input min `0.0 -`): differs from OBDLab `RK0020` (minimum plausible wideband lambda `0.7`; cf. `RK0086` `normalized_obd_lambda` `0.7-1.3`); same bound as `RK0268` (raw COMLab WOT channel).
+  14. `RK0435` (`K0599`, `apps/ui/ui_payload.py:104`, `ADV_LAMBDA_WOT_MAX` input max `3.0 -`): differs from OBDLab `RK0021` (maximum plausible wideband lambda `1.3`; cf. `RK0086` `normalized_obd_lambda` `0.7-1.3`); same bound as `RK0269` (raw COMLab WOT channel).
+- **Non-marked boundary decisions:**
+  - `RK0387`/`RK0388` (`FF_TRIM_MIN=-100.0 %`, `FF_TRIM_MAX=99.22 %`): match the SAE J1979 nominal range recorded in `RK0193`/`RK0196` (`-100 - 99.22 %`), whereas `RK0191`/`RK0192` (`-127.0`/`127.0 %`) are the already-flagged rail sentinels.
+  - `RK0251`/`RK0253` (`calc_airflow_gps_idle`/`calc_airflow_gps_2500` `500.0 g/s`): modeled/calculated airflow (`w_theo`), distinct from measured `mass_airflow_gps` (`RK0188`, `655.35 g/s`).
+  - `RK0274`/`RK0275`/`RK0380`/`RK0381` (`downstream_o2_v`/`OBD_O2_DN_*` `0.0..1.5 V`): post-cat B1S2 reading bypassed by OBDLab (`o2_normalizer.py` `RK0015`/`RK0016` bound upstream B1S1 `pid_oxygen_sensor_volts`).
+
+### VERIFICATION GATE (Correction 1)
+- Step 1 (`check_code_claims.py --group rest --files 'apps/*'`): `classes ANALYSER_SPEC=203 DIAGNOSTIC_THRESHOLD=36 INTERNAL_PARAMETER=46 NON_DOMAIN=140 PHYSICAL_CONSTANT=22 TYPICAL_RANGE=4`, `suspect 52 same_as_wiki 5`, `out_of_scope 129 candidate(s) in 1 file(s)`, `CLAIMS OK group=rest scope=apps/* candidates 209 covered claims 451`.
+- Step 2 (`check_code_claims.py --group rest`): `classes ANALYSER_SPEC=203 DIAGNOSTIC_THRESHOLD=36 INTERNAL_PARAMETER=46 NON_DOMAIN=140 PHYSICAL_CONSTANT=22 TYPICAL_RANGE=4`, `suspect 52 same_as_wiki 5`, `out_of_scope 129 candidate(s) in 1 file(s)`, `CLAIMS OK group=rest candidates 411 covered claims 451`.
+- Step 3 (`check_code_claims.py --group rest --files 'labs/*'`): `CLAIMS OK group=rest scope=labs/* candidates 202 covered claims 451`.
+- Step 4 (`git diff 79c1e1b -- apps/wired/audit_tasks/codeaudit/claims_rest.csv` removed lines & `git status --porcelain`): `0` removed lines; status lists only `claims_rest.csv`, `T-AUD-22h.md`, and `RESULT_T-AUD-22h.md`.
+- Step 5 (R9 check against `5f2726f`): `R9 OK changed 14 missing none`.
+
+### CODE REVIEW (Correction 1)
+- Verified only `suspect` fields on the 14 R9 rows in `RK0211`–`RK0451` changed vs `5f2726f` (`RK0001`–`RK0210` and all non-`suspect` fields untouched byte-for-byte), all 5 P7 rows (`RK0247`, `RK0249`, `RK0384`, `RK0386`, `RK0394`) are present, UTF-8 encoding and LF (`\n`) line endings are preserved (0 CRLF), and `removed_lines=0` vs `79c1e1b`.
+
+## Time (Correction 1)
+phase | start | end | minutes | context at end
+correction-1 | 2026-11-15T21:23:11Z | 2026-11-15T21:27:09Z | 4 | ABSENT

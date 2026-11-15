@@ -68,3 +68,68 @@ Classified all **209** non-auto in-scope numeric literal candidates under `apps/
 
 ## Remaining risks or uncertainties
 - The 18 `suspect` claims document existing codebase/spec discrepancies (`-127.0`/`127.0 %` fuel trims vs SAE J1979 `-100.0..+99.22 %`, `WIDEBAND_AFR_STOICH = 14.7` vs `14.71`, `ADV_DECEL_CO_MAX = 25.0 %` vs `0-15 %` CO envelope, and `obd_upstream_o2_val` `0.0-20.0` union tooltip drift vs per-sensor widgets) for downstream fix tasks.
+
+## Correction 1
+
+### Status
+completed
+
+### Summary
+Applied ruling R9 (`4461c46`) across `RK0211`–`RK0451` in [claims_rest.csv](file:///C:/4DApp/.agy/T-AUD-22h/apps/wired/audit_tasks/codeaudit/claims_rest.csv), comparing every `ANALYSER_SPEC` row against `RK0001`–`RK0210` lab bounds. Updated only the `suspect` field on **14** rows (the 5 P7 rows `RK0247`, `RK0249`, `RK0384`, `RK0386`, `RK0394`, plus `RK0268`, `RK0269`, `RK0399`, `RK0400`, `RK0404`, `RK0405`, `RK0431`, `RK0434`, `RK0435`), raising total `suspect` claims from `38` to **`52`** (`>= 43`, P6) with `0` removed lines vs `79c1e1b` and `R9 OK changed 14 missing none` vs `5f2726f`. Updated [T-AUD-22h.md](file:///C:/4DApp/.agy/T-AUD-22h/apps/wired/audit_tasks/progress_notes/T-AUD-22h.md) and this result under `## Correction 1`.
+
+### Files changed
+- Modified: `apps/wired/audit_tasks/codeaudit/claims_rest.csv` (`suspect` populated on 14 rows in `RK0211`–`RK0451`; LF preserved; `0` removed lines vs `79c1e1b`)
+- Modified: `apps/wired/audit_tasks/progress_notes/T-AUD-22h.md` (added `## Correction 1` readiness challenge, 14-row disclosure, `VERIFICATION GATE`, `CODE REVIEW`, and `## Time`)
+- Modified: `apps/wired/audit_tasks/results/RESULT_T-AUD-22h.md` (added `## Correction 1`)
+
+### Commands executed
+- Read-only inspection of `claims_rest.csv` (`RK0001`–`RK0210` and `RK0211`–`RK0451`), `composition.py`, `ui_payload.py`, `o2_normalizer.py`, `payload.py`, `physical_sensor_bounds.json`, `OBDLab_KG_Wiki.md`, `4DLab_UI_FieldMap.md`, and `check_code_claims.py`
+- In-place Python update of the 14 R9 `suspect` fields in `claims_rest.csv` from `5f2726f` preserving exact bytes of all other rows and LF line endings
+- Verification Steps 1–5 from `apps/wired/audit_tasks/T-AUD-22h_codeaudit_rest_apps_inventory(3).md`
+
+### Validation evidence
+- **Step 1 (`--files 'apps/*'`):**
+  ```text
+  classes ANALYSER_SPEC=203 DIAGNOSTIC_THRESHOLD=36 INTERNAL_PARAMETER=46 NON_DOMAIN=140 PHYSICAL_CONSTANT=22 TYPICAL_RANGE=4
+  suspect 52 same_as_wiki 5
+  out_of_scope 129 candidate(s) in 1 file(s)
+  CLAIMS OK group=rest scope=apps/* candidates 209 covered claims 451
+  ```
+- **Step 2 (`--group rest`):**
+  ```text
+  classes ANALYSER_SPEC=203 DIAGNOSTIC_THRESHOLD=36 INTERNAL_PARAMETER=46 NON_DOMAIN=140 PHYSICAL_CONSTANT=22 TYPICAL_RANGE=4
+  suspect 52 same_as_wiki 5
+  out_of_scope 129 candidate(s) in 1 file(s)
+  CLAIMS OK group=rest candidates 411 covered claims 451
+  ```
+- **Step 3 (`--files 'labs/*'`):**
+  ```text
+  CLAIMS OK group=rest scope=labs/* candidates 202 covered claims 451
+  ```
+- **Step 4 (`git diff 79c1e1b` removed lines & `git status --porcelain`):**
+  ```text
+  0
+   M apps/wired/audit_tasks/codeaudit/claims_rest.csv
+   M apps/wired/audit_tasks/progress_notes/T-AUD-22h.md
+   M apps/wired/audit_tasks/results/RESULT_T-AUD-22h.md
+  ```
+- **Step 5 (R9 check against `5f2726f`):**
+  ```text
+  R9 OK changed 14 missing none
+  ```
+
+### Criteria (Correction 1)
+1. **Step 1 (`--files 'apps/*'`) prints P3 and `CLAIMS OK group=rest scope=apps/* candidates 209`, no `ERROR`:** MET (`covered claims 451`).
+2. **Step 2 (`--group rest`) prints `CLAIMS OK group=rest candidates 411 covered claims N` (`N >= 419`), no `ERROR`:** MET (`N = 451`, `suspect 52`).
+3. **Step 3 (`--files 'labs/*'`) prints P5:** MET (`CLAIMS OK group=rest scope=labs/* candidates 202 covered claims 451`).
+4. **Note discloses Step 2 figures, empty-citation (`83`), citation-not-found (`0`), and `## Correction 1` lists each R9 row and reason:** MET in `apps/wired/audit_tasks/progress_notes/T-AUD-22h.md`.
+5. **Against `79c1e1b`, `claims_rest.csv` changes only by appended rows (Step 4: `0` removed lines):** MET (`0`).
+6. **Against `5f2726f`, only `suspect` fields of `RK0211`–`RK0451` change, every P7 row is included (`R9 OK changed N missing none`, `N >= 5`), and `suspect >= 43` (P6):** MET (`changed 14`, `missing none`, `suspect 52 >= 43`).
+
+### Decisions the task did not specify (Correction 1)
+- **`RK0387`/`RK0388` (`FF_TRIM_MIN=-100.0 %`, `FF_TRIM_MAX=99.22 %`):** Left unmarked because they match the SAE J1979 nominal range already recorded in `RK0193`/`RK0196` (`-100 - 99.22 %`), while `RK0191`/`RK0192` (`-127.0`/`127.0 %`) are the already-flagged rail sentinels (consistent with P7).
+- **`RK0251`/`RK0253` (`calc_airflow_gps_idle`/`calc_airflow_gps_2500` `500.0 g/s`):** Left unmarked as modeled/calculated airflow (`w_theo`), distinct from measured `mass_airflow_gps` (`RK0188`).
+- **`RK0274`/`RK0275`/`RK0380`/`RK0381` (`downstream_o2_v`/`OBD_O2_DN_*` `0.0..1.5 V`):** Left unmarked as post-cat B1S2 voltage bypassed by OBDLab (`RK0015`/`RK0016` bound upstream B1S1 `pid_oxygen_sensor_volts` in `o2_normalizer.py`).
+
+### Rollback (Correction 1)
+- `git checkout 5f2726f -- apps/wired/audit_tasks/codeaudit/claims_rest.csv apps/wired/audit_tasks/progress_notes/T-AUD-22h.md apps/wired/audit_tasks/results/RESULT_T-AUD-22h.md` (performed by Cowork if reverting Correction 1).
