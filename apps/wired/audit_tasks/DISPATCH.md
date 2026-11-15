@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-22c` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 30 min | codeaudit comlab rules inventory |
+| `T-AUD-22d` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 30 min | codeaudit comlab registry inventory |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-22c` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — Every numeric literal in the COMLab registry rules (`labs/comlab/registry/rules/*.json`) that carries a domain value is appended to `apps/wired/audit_tasks/codeaudit/claims_comlab.csv` as a classified
-  `repo\apps\wired\audit_tasks/T-AUD-22c_codeaudit_comlab_rules_inventory(3).md`
+**`T-AUD-22d` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — Every non-auto candidate of `labs/comlab/comlab/config/global_fault_registry.json` is appended to `apps/wired/audit_tasks/codeaudit/claims_comlab.csv` as a classified claim (or one `NON_DOMAIN` row),
+  `repo\apps\wired\audit_tasks/T-AUD-22d_codeaudit_comlab_registry_inventory(3).md`
 
 ## Distribution
 
-- **3/5** — 1: T-AUD-22c
+- **3/5** — 1: T-AUD-22d
