@@ -117,10 +117,10 @@ Truth-vs-Perception framing unchanged: the ECU is **perception**; GASLab Brettsc
 | 5 | `calculated_engine_load_pct` | `float` | [0, 100] | §3.1 |
 | 6 | `mass_airflow_gps` | `float\|None` | [0, 655.35] | §3.1 — null when MAP_ONLY |
 | 7 | `manifold_vacuum_kpa` | `float\|None` | [0, 255] | §3.1 — null when MAF_ONLY |
-| 8 | `shrtft1` | `float` | [−127, 127] | T-W-6 — widened from OBD-nominal |
-| 9 | `longft1` | `float` | [−127, 127] | T-W-6 |
-| 10 | `shrtft2` | `float\|None` | [−127, 127] | T-W-6 — null when single-bank |
-| 11 | `longft2` | `float\|None` | [−127, 127] | T-W-6 — null when single-bank |
+| 8 | `shrtft1` | `float` | [−100.0, 99.22] | SAE J1979 PID 06 (ADR-0006 amendment, T-AUD-24a; amends T-W-6) |
+| 9 | `longft1` | `float` | [−100.0, 99.22] | SAE J1979 PID 07 (ADR-0006 amendment, T-AUD-24a) |
+| 10 | `shrtft2` | `float\|None` | [−100.0, 99.22] | SAE J1979 PID 08 (ADR-0006 amendment, T-AUD-24a) — null when single-bank |
+| 11 | `longft2` | `float\|None` | [−100.0, 99.22] | SAE J1979 PID 09 (ADR-0006 amendment, T-AUD-24a) — null when single-bank |
 | 12 | `total_trim_correction_delta` | `float` | — | §5 / §12 — shrtft1+longft1 |
 | 13 | `total_trim_correction_delta_b2` | `float\|None` | — | §5 / §12 — null when single-bank |
 | 14 | `per_bank_trim_delta` | `float\|None` | — | §5 / §12.1 — B1−B2 signed delta |
@@ -176,15 +176,15 @@ Truth-vs-Perception framing unchanged: the ECU is **perception**; GASLab Brettsc
 | `calculated_engine_load_pct` | 0.0 | 100.0 | % | wiki: §3.1 |
 | `mass_airflow_gps` | 0.0 | 655.35 | g/s | wiki: §3.1 |
 | `manifold_vacuum_kpa` | 0.0 | 255.0 | kPa | wiki: §3.1 |
-| `shrtft1` | −127.0 | 127.0 | % | widened from OBD-nominal (T-W-6) |
-| `longft1` | −127.0 | 127.0 | % | widened (T-W-6) |
-| `shrtft2` | −127.0 | 127.0 | % | only validated when `number_of_banks == 2` |
-| `longft2` | −127.0 | 127.0 | % | only validated when `number_of_banks == 2` |
+| `shrtft1` | −100.0 | 99.22 | % | SAE J1979 PID 06 (ADR-0006 amendment, T-AUD-24a; amends T-W-6) |
+| `longft1` | −100.0 | 99.22 | % | SAE J1979 PID 07 (ADR-0006 amendment, T-AUD-24a; amends T-W-6) |
+| `shrtft2` | −100.0 | 99.22 | % | only validated when `number_of_banks == 2` (ADR-0006 amendment, T-AUD-24a) |
+| `longft2` | −100.0 | 99.22 | % | only validated when `number_of_banks == 2` (ADR-0006 amendment, T-AUD-24a) |
 | `intake_air_temp_c` | −40.0 | 140.0 | °C | wiki: §3.1 |
 | `throttle_pos_pct` | 0.0 | 100.0 | % | wiki: §3.1 |
 | `control_module_voltage_v` | 0.0 | 18.0 | V | wiki: §3.1 / ecu-diagnosis/09 |
 
-**Rail-value rationale (T-W-6):** trim bounds were widened from OBD-nominal [−100, 99.22] to the OBD rail ±127 because a railed trim is itself a *sensor-fault signal* consumed by COMLab trim-evidence scoring; rejecting it as out-of-bounds would discard that signal.
+**Rail-value rationale (ADR-0006 amendment, T-AUD-24a; amends T-W-6):** trim bounds follow SAE J1979 PIDs `06`–`09` (`(A-128)*100/128 = [−100.0, 99.22] %`) because a railed trim reads at those limits and is itself a *sensor-fault signal* consumed by COMLab trim-evidence scoring; see `ADR_OBDLab.md` ADR-0006 Amendment (T-AUD-24a).
 
 ### Physical constants (LLD §1)
 

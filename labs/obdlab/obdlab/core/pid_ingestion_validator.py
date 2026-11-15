@@ -62,7 +62,7 @@ class PIDIngestionValidator:
 
         Must be a dict[int, float] or None.
         Cell indices must be non-negative integers (>= 0).
-        LTFT % values must be floats or ints between -127 and 127.
+        LTFT % values must be floats or ints between -100 and 99.22.
         Raises PIDValidationError on violation.
         """
         vector = raw_user_inputs.get("ltft_cell_vector")
@@ -96,9 +96,9 @@ class PIDIngestionValidator:
                     f"ltft_cell_vector: cell index must be >= 0, got {cell_idx}"
                 )
 
-            if ltft_val < -127 or ltft_val > 127:  # wiki: research/chunks/fuel-trim/13
+            if ltft_val < -100.0 or ltft_val > 99.22:  # wiki: research/chunks/fuel-trim/13
                 raise PIDValidationError(
-                    f"ltft_cell_vector: LTFT for cell {cell_idx} must be between -127 and 127, got {ltft_val}"
+                    f"ltft_cell_vector: LTFT for cell {cell_idx} must be between -100 and 99.22, got {ltft_val}"
                 )
 
             sanitized_vector[cell_idx] = ltft_val

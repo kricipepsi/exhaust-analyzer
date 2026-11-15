@@ -1369,7 +1369,7 @@ def test_obd_live_data_payload_mirrors_named_obd_evidence() -> None:
 
 
 def test_obd_live_trim_payload_rejects_obd_rail_overflow() -> None:
-    """Individual OBD fuel trims are bounded to OBDLab's +/-127 rail."""
+    """Individual OBD fuel trims are bounded to SAE J1979 [-100.0, 99.22] %."""
     with pytest.raises(ValueError):
         OBDLiveDataPayload(
             engine_warmed=True,

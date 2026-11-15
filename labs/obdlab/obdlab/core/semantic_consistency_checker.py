@@ -15,8 +15,8 @@ from obdlab.schemas.vocabulary import FuelSystemStatus, RpmStateBucket
 logger = logging.getLogger(__name__)
 
 # wiki: §3.1 — trim safety rails (redundant with physical_sensor_bounds.json)
-_TRIM_MIN = -127.0   # widened from OBD-nominal -100 to accommodate OBD rail values per T-W-6
-_TRIM_MAX = 127.0    # widened from OBD-nominal 99.22 to accommodate OBD rail values per T-W-6
+_TRIM_MIN = -100.0   # SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 %; a railed trim reads at these limits (T-AUD-24a, amends T-W-6)
+_TRIM_MAX = 99.22    # SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 %; a railed trim reads at these limits (T-AUD-24a, amends T-W-6)
 
 _CUTOFF_ECT_COLD = 75         # wiki: §4.1 — thermal gate cutoff (°C)
 _CUTOFF_ECT_CLOSED = 80       # wiki: §4 — closed-loop expected threshold (°C)

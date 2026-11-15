@@ -28,7 +28,7 @@ _BOX_DEFS: list[dict[str, Any]] = [
     # -- Trim channel boxes --
     {
         "sig": "trim_positive",
-        "dims": {"shrtft1": (5.0, 127.0), "longft1": (0.0, 127.0)},
+        "dims": {"shrtft1": (5.0, 99.22), "longft1": (0.0, 99.22)},
         "channel": "total_trim_correction_delta",
         "default": 0.0,
         "predicate": ">= 5.0",
@@ -36,7 +36,7 @@ _BOX_DEFS: list[dict[str, Any]] = [
     },
     {
         "sig": "trim_negative",
-        "dims": {"shrtft1": (-127.0, -5.0), "longft1": (-127.0, 0.0)},
+        "dims": {"shrtft1": (-100.0, -5.0), "longft1": (-100.0, 0.0)},
         "channel": "total_trim_correction_delta",
         "default": 0.0,
         "predicate": "<= -5.0",
@@ -98,8 +98,8 @@ _BOX_DEFS: list[dict[str, Any]] = [
     {
         "sig": "bank_asym",
         "dims": {
-            "shrtft1": (10.0, 127.0),
-            "shrtft2": (-127.0, -10.0),
+            "shrtft1": (10.0, 99.22),
+            "shrtft2": (-100.0, -10.0),
             "number_of_banks": (2, 2),
         },
         "channel": "per_bank_trim_delta",
@@ -119,10 +119,10 @@ _FIELDS: list[FieldRange] = [
     FieldRange(name="calculated_engine_load_pct", type_="float", min_=0, max_=100),
     FieldRange(name="mass_airflow_gps", type_="Optional[float]", min_=0, max_=655.35),
     FieldRange(name="manifold_vacuum_kpa", type_="Optional[float]", min_=0, max_=255),
-    FieldRange(name="shrtft1", type_="float", min_=-127, max_=127),
-    FieldRange(name="longft1", type_="float", min_=-127, max_=127),
-    FieldRange(name="shrtft2", type_="Optional[float]", min_=-127, max_=127),
-    FieldRange(name="longft2", type_="Optional[float]", min_=-127, max_=127),
+    FieldRange(name="shrtft1", type_="float", min_=-100.0, max_=99.22),
+    FieldRange(name="longft1", type_="float", min_=-100.0, max_=99.22),
+    FieldRange(name="shrtft2", type_="Optional[float]", min_=-100.0, max_=99.22),
+    FieldRange(name="longft2", type_="Optional[float]", min_=-100.0, max_=99.22),
     FieldRange(name="number_of_banks", type_="int", min_=1, max_=2),
     FieldRange(name="pid_oxygen_sensor_volts", type_="Optional[float]", min_=0, max_=5),
     FieldRange(name="pid_wideband_equivalence_ratio", type_="Optional[float]", min_=0.5, max_=2.0),

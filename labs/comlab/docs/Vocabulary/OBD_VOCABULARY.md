@@ -33,9 +33,9 @@ The OBDLab BP §2 specifies a "High-Density Node Inventory" of exactly 8 core PI
 | `calculated_engine_load_pct` | `0104` | `0104` | Calculated engine load | % | 0 – 100 | ISO 15031-5 / J1979 |
 | `mass_airflow_gps` | `0110` | `0110` | Mass airflow rate (MAF) | g/s | 0 – 655.35 | ISO 15031-5 / J1979 |
 | `manifold_vacuum_kpa` | `010B` | `010B` | Intake manifold absolute pressure (MAP) | kPa | 0 – 255 | ISO 15031-5 / J1979 |
-| `shrtft1` | `0106` | `0106` | Short-term fuel trim, Bank 1 | % | -127 – +127 | ISO 15031-5 / J1979 |
-| `longft1` | `0107` | `0107` | Long-term fuel trim, Bank 1 | % | -127 – +127 | ISO 15031-5 / J1979 |
-| `total_trim_correction_delta` | (derived) | (derived) | STFT + LTFT, virtual node | % | -254 – +254 (no payload bound) | OBDLab BP §2 |
+| `shrtft1` | `0106` | `0106` | Short-term fuel trim, Bank 1 | % | -100 – +99.22 | ISO 15031-5 / J1979 |
+| `longft1` | `0107` | `0107` | Long-term fuel trim, Bank 1 | % | -100 – +99.22 | ISO 15031-5 / J1979 |
+| `total_trim_correction_delta` | (derived) | (derived) | STFT + LTFT, virtual node | % | -200 – +198.44 (no payload bound) | OBDLab BP §2 |
 
 **Bank 2 (V engines):** `shrtft2` and `longft2` map to ISO 15031-5 / SAE J1979 PIDs `0108` and `0109` respectively. Same units and ranges.
 
@@ -145,7 +145,7 @@ These are not raw PIDs — they're calculated inside OBDLab and exposed to the O
 
 | Node | Formula | Range | Notes |
 |---|---|---|---|
-| `total_trim_correction_delta` | `shrtft1 + longft1` | -254 – +254 % | Widened per T-W-6 to accommodate ±127% per-trim sentinel doubled |
+| `total_trim_correction_delta` | `shrtft1 + longft1` | -200 – +198.44 % | SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 % doubled (T-AUD-24a, amends T-W-6) |
 | `calculated_ve` | Ideal-gas air-loop equation (payload `ve_pct`) | 0 – 200 % | Volumetric Efficiency, OBDLab BP §1 |
 | `normalized_obd_lambda` | Per O2 sensor type | 0.7 – 1.3 | Bridges narrowband + wideband |
 | `engine_warmed` | `coolant_temp_c >= 70` | bool | Gates all downstream analytics. ECT gates (T-AUD-17): `analytics_preconditions.py` treats the engine as warm at `coolant_temp_c >= 70` (`TrimAnalyticsGate.ENGINE_COLD` below it); the bucketing rule and the semantic thermal gate use 75 (`COLD_OPEN_LOOP_INVALID` below 75). Unifying them is T-AUD-21. |
@@ -344,7 +344,7 @@ The master fuel trim guide defines the diagnostic interpretation rules for STFT/
 | Healthy idle | -5% to +5% | -10% to +10% | ±10% |
 | Healthy cruise | -5% to +5% | -10% to +10% | ±10% |
 | ECU-set DTC trigger | n/a | n/a | ≈ ±25% |
-| Register saturation | n/a | n/a | ±127% (magnitude meaningless beyond ±25%) |
+| Register saturation | n/a | n/a | -100 / +99.22 % (SAE J1979 PIDs 06-09 limits; magnitude meaningless beyond ±25%) |
 
 ### 11.2 RPM-dependence decision tree (THE diagnostic discriminator)
 

@@ -19,13 +19,12 @@ EXPECTED_BOUNDS = {
     "calculated_engine_load_pct": {"min": 0,  "max": 100,    "unit": "%"},
     "mass_airflow_gps":         {"min": 0,    "max": 655.35, "unit": "g/s"},
     "manifold_vacuum_kpa":      {"min": 0,    "max": 255,    "unit": "kPa"},
-    # Widened from OBD-nominal [-100, 99.22] to OBD-rail [-127, 127] per T-W-6 —
-    # railed fuel-trim values are a sensor_fault signal; rejecting them at the
-    # PID gate causes signal loss (cases case_025, case_026).
-    "shrtft1":                  {"min": -127, "max": 127,    "unit": "%"},
-    "longft1":                  {"min": -127, "max": 127,    "unit": "%"},
-    "shrtft2":                  {"min": -127, "max": 127,    "unit": "%"},
-    "longft2":                  {"min": -127, "max": 127,    "unit": "%"},
+    # SAE J1979 PIDs 06-09: (A-128)*100/128 = -100 .. +99.22 %; a railed trim
+    # reads at these limits (T-AUD-24a, amends T-W-6).
+    "shrtft1":                  {"min": -100.0, "max": 99.22, "unit": "%"},
+    "longft1":                  {"min": -100.0, "max": 99.22, "unit": "%"},
+    "shrtft2":                  {"min": -100.0, "max": 99.22, "unit": "%"},
+    "longft2":                  {"min": -100.0, "max": 99.22, "unit": "%"},
     "intake_air_temp_c":        {"min": -40,  "max": 140,    "unit": "°C"},
     "throttle_pos_pct":         {"min": 0,    "max": 100,    "unit": "%"},
     "control_module_voltage_v": {"min": 0,    "max": 18,     "unit": "V"},
