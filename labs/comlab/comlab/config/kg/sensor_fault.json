@@ -61,7 +61,7 @@
       ],
       "mechanical_failure_mode": "Degraded or failed MAF sensor electronics produce a consistently low airflow signal that does not correspond to actual airflow, causing the ECU to under-fuel and generating a persistent lean condition with associated DTCs.",
       "ui_remediation_steps": [
-        "Compare the MAF reading (g/s) on the scan tool to the expected value for the engine's idle RPM and displacement \u2014 typical idle MAF is 2\u20138 g/s per litre of displacement.",
+        "Compare the MAF reading (g/s) on the scan tool to the expected value for the engine's idle RPM and displacement \u2014 typical warm-idle MAF is about 1 g/s per litre of displacement (about 2 g/s for a 2.0 L engine).",
         "Check MAF signal plausibility: if the MAF reads low at idle AND the engine is running lean (trim > +15 %), suspect MAF hardware failure.",
         "Try cleaning the MAF element with dedicated MAF cleaner first \u2014 if contamination is the cause, trim will recover (see ERR-LC-002).",
         "If cleaning does not restore correct readings, replace the MAF sensor.",
@@ -157,7 +157,7 @@
       ],
       "mechanical_failure_mode": "Air-metering or temperature sensor under-reading, causing the ECU to under-fuel and create true lean combustion. MAF hot-wire contamination (dirt, oil, or debris insulating the sensing element), MAP sensor vacuum leak at the sensor port, or IAT sensor reading artificially high...",
       "ui_remediation_steps": [
-        "Compare MAF reading at warm idle against the manufacturer specification (typically 2-6 g/s for a 2.0 L engine). A reading consistently below specification with normal idle quality suggests sensor under-read.",
+        "Compare MAF reading at warm idle against the manufacturer specification (typically about 2 g/s for a 2.0 L engine, about 1 g/s per litre). A reading consistently below specification with normal idle quality suggests sensor under-read.",
         "Clean the MAF sensor hot-wire with a dedicated MAF cleaner spray \u2014 do NOT use brake cleaner, carb cleaner, or any solvent that leaves a residue. Allow to dry completely before re-installing.",
         "Check the MAP sensor vacuum hose for cracks, kinks, or oil contamination \u2014 a restricted vacuum signal causes the MAP sensor to under-report manifold pressure, which the ECU interprets as lower load.",
         "Compare IAT reading at cold start against the ambient temperature and ECT reading \u2014 all three should agree within a few degrees. An IAT reading that is consistently higher than the other two confirms sensor drift.",
@@ -179,10 +179,10 @@
         "Fuel Rail Pressure Sensor",
         "MAF Sensor (Over-Reading from Oil Contamination)"
       ],
-      "mechanical_failure_mode": "Temperature or pressure sensor over-reading, causing the ECU to over-fuel and create true rich combustion. ECT sensor biased cold (stuck at low resistance, reading -40 C on a warm engine), fuel-rail pressure sensor reading high, or MAF over-reading from oil-saturated hot-wire ...",
+      "mechanical_failure_mode": "Temperature or pressure sensor over-reading, causing the ECU to over-fuel and create true rich combustion. ECT sensor biased cold (resistance stuck high, reading -40 C on a warm engine), fuel-rail pressure sensor reading high, or MAF over-reading from oil-saturated hot-wire ...",
       "ui_remediation_steps": [
         "Compare ECT reading on a scan tool against the mechanical thermostat housing temperature (infrared thermometer) on a fully warmed engine \u2014 should agree within 5 C. An ECT reading significantly colder confirms sensor drift.",
-        "Measure ECT sensor resistance and compare to the manufacturer's temperature/resistance table \u2014 a sensor that reads 2-3 kohm at 90 C should read > 10 kohm at 20 C. A stuck-low resistance (cold reading) forces cold-start enrichment continuously.",
+        "Measure ECT sensor resistance and compare to the manufacturer's temperature/resistance table \u2014 a typical NTC sensor reads about 2-3 kohm at 20 C and about 0.2-0.3 kohm at 90 C. A stuck-high resistance (cold reading) forces cold-start enrichment continuously.",
         "Check the fuel-rail pressure sensor reading against a mechanical fuel-pressure gauge \u2014 if the sensor reads higher than actual, the ECU reduces injector pulse width thinking pressure is higher, but the error is typically in the opposite direction. A sensor reading low drives the ECU to increase pulse width, creating rich.",
         "Inspect the MAF sensor for oil contamination from an over-oiled aftermarket air filter \u2014 the oil film on the hot-wire insulates it, causing the sensor to over-read air mass, which the ECU compensates with more fuel.",
         "Replace the confirmed-faulty sensor with an OEM-quality replacement. After replacement, clear fuel trims and allow the ECU to re-learn. Verify that the replacement sensor reading matches the known-good reference.",
