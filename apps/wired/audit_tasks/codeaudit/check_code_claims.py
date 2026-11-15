@@ -40,6 +40,15 @@ def nums(s: str) -> set[str]:
     return {norm(n) for n in NUM_RE.findall(s)}
 
 
+ESCAPE_RE = re.compile(r"\\u([0-9a-fA-F]{4})")
+
+
+def unescape(s: str) -> str:
+    """Decode JSON \\uXXXX escapes in a candidate line, so the hex digits of `\\u00b110` do not join the number 10
+    (T-AUD-22e hand-back: 44 KG claims read `\\u00b1`, `\\u2013`, `\\u2212` or `\\u2192` right before a digit)."""
+    return ESCAPE_RE.sub(lambda m: chr(int(m.group(1), 16)), s)
+
+
 def mojibake(s: str) -> bool:
     """True when s is UTF-8 text that was decoded as cp1252 and re-encoded (e.g. 'Â°' for '°', 'â€“' for '–')."""
     if s.isascii():
@@ -106,7 +115,7 @@ def main() -> int:
         for f in ("quantity", "value", "unit", "condition"):
             if not r[f].strip():
                 errors.append(f"ERROR {cid}: {f} empty for class {r['class']}")
-        missing = nums(r["value"]) - nums(c["text"])
+        missing = nums(r["value"]) - nums(unescape(c["text"]))
         if missing:
             errors.append(f"ERROR {cid}: value number(s) {sorted(missing)} not in the line text")
         s = r["same_as"].strip()
