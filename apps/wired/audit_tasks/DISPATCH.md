@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-24c` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 1 | NO | 20 min | fix misfire dtc range |
+| `T-AUD-24d` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **2** | 2 | NO | 15 min | fix ect maf guidance text |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-24c` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — Every COMLab rule list that names the cylinder-misfire codes `P0300`-`P0304` also names `P0305`-`P0312`, so a misfire on cylinder 5 to 12 of a larger engine matches the same rules (SAE J2012: P0301-P0
-  `repo\apps\wired\audit_tasks/T-AUD-24c_fix_misfire_dtc_range(2).md`
+**`T-AUD-24d` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 2/5** — Five user-facing strings in COMLab rule data state wrong sensor values or invert the coolant-sensor physics (an NTC sensor reads cold when its resistance is high; T-AUD-23b verdicts `CK1359`, `CK1371`
+  `repo\apps\wired\audit_tasks/T-AUD-24d_fix_ect_maf_guidance_text(2).md`
 
 ## Distribution
 
-- **2/5** — 1: T-AUD-24c
+- **2/5** — 1: T-AUD-24d
