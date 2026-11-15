@@ -16,15 +16,15 @@ operator starts it detached and the agent reads the verdict from the manifest.
 
 | ID | Owner | Diff | Test | Compute | Wall-clock | Task |
 |---|---|---|---|---|---|---|
-| `T-AUD-23b` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 1 | NO | 45 min | codeaudit verify sensor and gas values |
+| `T-AUD-24a` | `repo\apps\wired\audit_tasks\PROGRESS.md` | **3** | 2 | NO | 40 min | fix fuel trim bounds j1979 |
 
 ⚠ = test length 4-5: detached runner, operator-started. Not an agent session.
 
 ## What each one does
 
-**`T-AUD-23b` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — Each of the 29 root claims in `labs/gaslab/audit_tasks/wikiaudit/scope/T-AUD-23b.txt` gets a verdict backed by a quote from a fetched source, so the fix rows for the sensor thresholds, the no-fault ga
-  `repo\apps\wired\audit_tasks/T-AUD-23b_codeaudit_verify_sensor_and_gas_values(3).md`
+**`T-AUD-24a` · owner: `repo\apps\wired\audit_tasks\PROGRESS.md` · 3/5** — Every per-trim bound (`shrtft1`, `longft1`, `shrtft2`, `longft2`, the COMLab `*_pct` trims, the wired-app trim ranges, the UI `OBD_TRIM_*` constants and the OBDLab `ltft_cell_vector` check) and the su
+  `repo\apps\wired\audit_tasks/T-AUD-24a_fix_fuel_trim_bounds_j1979(3).md`
 
 ## Distribution
 
-- **3/5** — 1: T-AUD-23b
+- **3/5** — 1: T-AUD-24a
