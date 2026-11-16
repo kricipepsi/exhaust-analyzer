@@ -535,9 +535,9 @@ with col_main:
                     if active_upstream_o2_type in ("NARROWBAND", "WIDEBAND_NB_SIM"):
                         obd_low_o2_up = st.number_input("Upstream O₂ (V)", min_value=UPSTREAM_O2_NARROWBAND_MIN, max_value=UPSTREAM_O2_NARROWBAND_MAX, value=None, step=0.01, key="obd_o2_up", help=FIELD_HELP["obd_upstream_o2_val"].get_tooltip())
                     elif active_upstream_o2_type == "WIDEBAND_LAMBDA":
-                        obd_low_o2_up = st.number_input("Upstream O₂ (λ)", min_value=UPSTREAM_O2_WIDEBAND_LAMBDA_MIN, max_value=UPSTREAM_O2_WIDEBAND_LAMBDA_MAX, value=None, step=0.001, format="%.3f", key="obd_o2_up", help=FIELD_HELP["obd_upstream_o2_val"].get_tooltip())
+                        obd_low_o2_up = st.number_input("Upstream O₂ (λ)", min_value=UPSTREAM_O2_WIDEBAND_LAMBDA_MIN, max_value=UPSTREAM_O2_WIDEBAND_LAMBDA_MAX, value=None, step=0.001, format="%.3f", key="obd_o2_up", help=FIELD_HELP["obd_upstream_o2_lambda"].get_tooltip())
                     elif active_upstream_o2_type == "WIDEBAND_AFR":
-                        obd_low_o2_up = st.number_input("Upstream O₂ (AFR)", min_value=UPSTREAM_O2_WIDEBAND_AFR_MIN, max_value=UPSTREAM_O2_WIDEBAND_AFR_MAX, value=None, step=0.1, format="%.1f", key="obd_o2_up", help=FIELD_HELP["obd_upstream_o2_val"].get_tooltip())
+                        obd_low_o2_up = st.number_input("Upstream O₂ (AFR)", min_value=UPSTREAM_O2_WIDEBAND_AFR_MIN, max_value=UPSTREAM_O2_WIDEBAND_AFR_MAX, value=None, step=0.1, format="%.1f", key="obd_o2_up", help=FIELD_HELP["obd_upstream_o2_afr"].get_tooltip())
                 
                 # Gated downstream O2
                 if active_downstream_o2_present:
