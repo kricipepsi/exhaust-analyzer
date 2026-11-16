@@ -17,7 +17,7 @@
         {
           "pid": "lambda_perception_delta",
           "operator": "lt",
-          "value": -0.03,
+          "value": -0.05,
           "tier": "DEFINITIVE",
           "units": "lambda",
           "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
@@ -62,7 +62,7 @@
         {
           "pid": "lambda_perception_delta",
           "operator": "gt",
-          "value": 0.03,
+          "value": 0.05,
           "tier": "DEFINITIVE",
           "units": "lambda",
           "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
@@ -171,7 +171,7 @@
         {
           "pid": "lambda_perception_delta",
           "operator": "gt",
-          "value": 0.03,
+          "value": 0.05,
           "tier": "SUGGESTIVE",
           "units": "lambda",
           "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
@@ -179,7 +179,7 @@
         {
           "pid": "lambda_perception_delta",
           "operator": "lt",
-          "value": -0.03,
+          "value": -0.05,
           "tier": "SUGGESTIVE",
           "units": "lambda",
           "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
@@ -229,7 +229,7 @@
         {
           "pid": "lambda_perception_delta",
           "operator": "gt",
-          "value": 0.03,
+          "value": 0.05,
           "tier": "SUGGESTIVE",
           "units": "lambda",
           "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
@@ -237,7 +237,7 @@
         {
           "pid": "lambda_perception_delta",
           "operator": "lt",
-          "value": -0.03,
+          "value": -0.05,
           "tier": "SUGGESTIVE",
           "units": "lambda",
           "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
@@ -279,7 +279,7 @@
         {
           "pid": "lambda_perception_delta",
           "operator": "gt",
-          "value": 0.03,
+          "value": 0.05,
           "tier": "SUGGESTIVE",
           "units": "lambda",
           "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
@@ -287,7 +287,7 @@
         {
           "pid": "lambda_perception_delta",
           "operator": "lt",
-          "value": -0.03,
+          "value": -0.05,
           "tier": "SUGGESTIVE",
           "units": "lambda",
           "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
@@ -330,7 +330,7 @@
         {
           "pid": "lambda_perception_delta",
           "operator": "gt",
-          "value": 0.03,
+          "value": 0.05,
           "tier": "SUGGESTIVE",
           "units": "lambda",
           "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
@@ -338,7 +338,7 @@
         {
           "pid": "lambda_perception_delta",
           "operator": "lt",
-          "value": -0.03,
+          "value": -0.05,
           "tier": "SUGGESTIVE",
           "units": "lambda",
           "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
@@ -386,7 +386,7 @@
         {
           "pid": "lambda_perception_delta",
           "operator": "gt",
-          "value": 0.03,
+          "value": 0.05,
           "tier": "DEFINITIVE",
           "units": "lambda",
           "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
@@ -394,7 +394,7 @@
         {
           "pid": "lambda_perception_delta",
           "operator": "lt",
-          "value": -0.03,
+          "value": -0.05,
           "tier": "DEFINITIVE",
           "units": "lambda",
           "wiki_ref": "T-FX-6 \u00a7PerceptionContradictionResult"
