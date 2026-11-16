@@ -86,8 +86,8 @@
         },
         {
           "pid": "map_kpa",
-          "operator": "lt",
-          "value": 40.0,
+          "operator": "gt",
+          "value": 50.0,
           "tier": "SUGGESTIVE",
           "units": "kPa",
           "wiki_ref": "OBD_VOCABULARY \u00a73"
