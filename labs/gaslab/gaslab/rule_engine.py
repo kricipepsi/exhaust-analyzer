@@ -13,7 +13,7 @@ from __future__ import annotations
 from gaslab.brettschneider import lambda_chem
 from gaslab.contracts import ChemicalSignature, EngineStateBucket, GasReading, SampleValidity
 from gaslab.dna_view import GasLabDnaView
-from gaslab.resolution import _euro_thresholds, _rich_co_ceiling, apply_differentiators
+from gaslab.resolution import _CAM_MAP_HC_MAX_2500, _euro_thresholds, _rich_co_ceiling, apply_differentiators
 from gaslab.validity_gates import sample_validity
 
 _GAS_KEYS: tuple[str, ...] = ("hc", "co", "co2", "o2", "nox", "lambda")
@@ -393,13 +393,12 @@ def _definitive_match(
     ):
         lchem_high = lambda_chem(reading_high)
         co_ceiling = _rich_co_ceiling(dna)
-        hc_ceiling = _euro_thresholds(dna).hc_2500_ceiling
         if (
             # T-GASA-5 (F-C2-7): the same partial-normalisation tell as resolution.py; flat rich is the sensor family.
             lchem_high > lambda_chem(reading)  # wiki: GASWIKI-04 §4.10 — signature PARTIALLY normalises toward 2500 RPM
             and reading_high.co < reading.co  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP — CO falls idle→2500
             and 200 <= reading_high.hc  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
-            and (hc_ceiling is None or reading_high.hc <= hc_ceiling)
+            and reading_high.hc <= _CAM_MAP_HC_MAX_2500  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
             and co_ceiling <= reading_high.co <= 4.5
             and 11.0 <= reading_high.co2 <= 13.0
             and reading_high.o2 <= 0.5
