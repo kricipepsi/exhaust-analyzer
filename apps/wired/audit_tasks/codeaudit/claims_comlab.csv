@@ -623,11 +623,11 @@ CK0622,K3563,labs/comlab/registry/rules/rich_mixture.json,158,longft1,≤ -15.0,
 CK0623,K3567,labs/comlab/registry/rules/rich_mixture.json,174,rule base_weight,0.8,score,RM-004,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0624,K3574,labs/comlab/registry/rules/rich_mixture.json,199,rule base_weight,0.9,score,RM-005,INTERNAL_PARAMETER,GAS_WIKI §7.28,,
 CK0625,K3579,labs/comlab/registry/rules/rich_mixture.json,222,rule base_weight,0.9,score,RM-006,INTERNAL_PARAMETER,GAS_WIKI §7.19,,
-CK0626,K3587,labs/comlab/registry/rules/sensor_fault.json,20,lambda_perception_delta,< -0.03,-,"SF-001 O2_SENSOR_BIASED_HIGH, DEFINITIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,
+CK0626,K3587,labs/comlab/registry/rules/sensor_fault.json,20,lambda_perception_delta,< -0.05,-,"SF-001 O2_SENSOR_BIASED_HIGH, DEFINITIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,RESOLVED T-AUD-24k
 CK0627,K3590,labs/comlab/registry/rules/sensor_fault.json,28,o2_voltage,≥ 0.55,V,"SF-001 O2_SENSOR_BIASED_HIGH, DEFINITIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §12.1,,
 CK0628,K3592,labs/comlab/registry/rules/sensor_fault.json,34,rule base_weight,0.85,score,SF-001,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0629,K3594,labs/comlab/registry/rules/sensor_fault.json,37,,,,,NON_DOMAIN,,,
-CK0630,K3606,labs/comlab/registry/rules/sensor_fault.json,65,lambda_perception_delta,> 0.03,-,"SF-002 O2_SENSOR_BIASED_LOW, DEFINITIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,
+CK0630,K3606,labs/comlab/registry/rules/sensor_fault.json,65,lambda_perception_delta,> 0.05,-,"SF-002 O2_SENSOR_BIASED_LOW, DEFINITIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,RESOLVED T-AUD-24k
 CK0631,K3609,labs/comlab/registry/rules/sensor_fault.json,73,o2_voltage,≤ 0.35,V,"SF-002 O2_SENSOR_BIASED_LOW, DEFINITIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §12.1,,
 CK0632,K3611,labs/comlab/registry/rules/sensor_fault.json,79,rule base_weight,0.85,score,SF-002,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0633,K3613,labs/comlab/registry/rules/sensor_fault.json,82,,,,,NON_DOMAIN,,,
@@ -641,31 +641,31 @@ CK0640,K3636,labs/comlab/registry/rules/sensor_fault.json,150,rule base_weight,0
 CK0641,K3637,labs/comlab/registry/rules/sensor_fault.json,152,rule confidence_ceiling,0.9,score,SF-003,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0642,K3638,labs/comlab/registry/rules/sensor_fault.json,153,,,,,NON_DOMAIN,,,
 CK0643,K3646,labs/comlab/registry/rules/sensor_fault.json,168,MAF idle baseline,~1,g/s per litre,curb idle,TYPICAL_RANGE,T-FX-6 §PerceptionContradictionResult,,
-CK0644,K3647,labs/comlab/registry/rules/sensor_fault.json,174,lambda_perception_delta,> 0.03,-,"SF-004, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,
-CK0645,K3649,labs/comlab/registry/rules/sensor_fault.json,182,lambda_perception_delta,< -0.03,-,"SF-004, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,
+CK0644,K3647,labs/comlab/registry/rules/sensor_fault.json,174,lambda_perception_delta,> 0.05,-,"SF-004, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,RESOLVED T-AUD-24k
+CK0645,K3649,labs/comlab/registry/rules/sensor_fault.json,182,lambda_perception_delta,< -0.05,-,"SF-004, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,RESOLVED T-AUD-24k
 CK0646,K3651,labs/comlab/registry/rules/sensor_fault.json,190,maf,≥ 3.5,g/s,"SF-004, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §16.2,,
 CK0647,K3655,labs/comlab/registry/rules/sensor_fault.json,206,rule base_weight,0.72,score,SF-004,INTERNAL_PARAMETER,T-FX-6 §PerceptionContradictionResult,,
 CK0648,K3656,labs/comlab/registry/rules/sensor_fault.json,208,rule confidence_ceiling,0.8,score,SF-004,INTERNAL_PARAMETER,T-FX-6 §PerceptionContradictionResult,,
-CK0649,K3663,labs/comlab/registry/rules/sensor_fault.json,232,lambda_perception_delta,> 0.03,-,"SF-005, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,
-CK0650,K3665,labs/comlab/registry/rules/sensor_fault.json,240,lambda_perception_delta,< -0.03,-,"SF-005, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,
+CK0649,K3663,labs/comlab/registry/rules/sensor_fault.json,232,lambda_perception_delta,> 0.05,-,"SF-005, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,RESOLVED T-AUD-24k
+CK0650,K3665,labs/comlab/registry/rules/sensor_fault.json,240,lambda_perception_delta,< -0.05,-,"SF-005, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,RESOLVED T-AUD-24k
 CK0651,K3667,labs/comlab/registry/rules/sensor_fault.json,248,map_kpa,< 35.0,kPa,"SF-005, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §3,,
 CK0652,K3669,labs/comlab/registry/rules/sensor_fault.json,254,rule base_weight,0.65,score,SF-005,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0653,K3670,labs/comlab/registry/rules/sensor_fault.json,256,rule confidence_ceiling,0.8,score,SF-005,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
-CK0654,K3679,labs/comlab/registry/rules/sensor_fault.json,282,lambda_perception_delta,> 0.03,-,"SF-006, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,
-CK0655,K3681,labs/comlab/registry/rules/sensor_fault.json,290,lambda_perception_delta,< -0.03,-,"SF-006, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,
+CK0654,K3679,labs/comlab/registry/rules/sensor_fault.json,282,lambda_perception_delta,> 0.05,-,"SF-006, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,RESOLVED T-AUD-24k
+CK0655,K3681,labs/comlab/registry/rules/sensor_fault.json,290,lambda_perception_delta,< -0.05,-,"SF-006, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,RESOLVED T-AUD-24k
 CK0656,K3683,labs/comlab/registry/rules/sensor_fault.json,298,ect_c,≤ 60.0,°C,"SF-006, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §11.4,,
 CK0657,K3686,labs/comlab/registry/rules/sensor_fault.json,306,o2_downstream,≥ 0.6,V,"SF-006, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §12.1,,
 CK0658,K3688,labs/comlab/registry/rules/sensor_fault.json,312,rule base_weight,0.6,score,SF-006,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0659,K3689,labs/comlab/registry/rules/sensor_fault.json,314,rule confidence_ceiling,0.75,score,SF-006,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0660,K3695,labs/comlab/registry/rules/sensor_fault.json,327,,,,,NON_DOMAIN,,,
-CK0661,K3696,labs/comlab/registry/rules/sensor_fault.json,333,lambda_perception_delta,> 0.03,-,"SF-007, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,
-CK0662,K3698,labs/comlab/registry/rules/sensor_fault.json,341,lambda_perception_delta,< -0.03,-,"SF-007, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,
+CK0661,K3696,labs/comlab/registry/rules/sensor_fault.json,333,lambda_perception_delta,> 0.05,-,"SF-007, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,RESOLVED T-AUD-24k
+CK0662,K3698,labs/comlab/registry/rules/sensor_fault.json,341,lambda_perception_delta,< -0.05,-,"SF-007, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,RESOLVED T-AUD-24k
 CK0663,K3701,labs/comlab/registry/rules/sensor_fault.json,349,o2_voltage,≤ 0.2,V,"SF-007, GATING",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §12.1,,
 CK0664,K3705,labs/comlab/registry/rules/sensor_fault.json,365,rule base_weight,0.65,score,SF-007,INTERNAL_PARAMETER,T-FX-6 §PerceptionContradictionResult,,
 CK0665,K3706,labs/comlab/registry/rules/sensor_fault.json,367,rule confidence_ceiling,0.8,score,SF-007,INTERNAL_PARAMETER,T-FX-6 §PerceptionContradictionResult,,
 CK0666,K3707,labs/comlab/registry/rules/sensor_fault.json,368,,,,,NON_DOMAIN,,,
-CK0667,K3716,labs/comlab/registry/rules/sensor_fault.json,389,lambda_perception_delta,> 0.03,-,"SF-008, DEFINITIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,
-CK0668,K3718,labs/comlab/registry/rules/sensor_fault.json,397,lambda_perception_delta,< -0.03,-,"SF-008, DEFINITIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,
+CK0667,K3716,labs/comlab/registry/rules/sensor_fault.json,389,lambda_perception_delta,> 0.05,-,"SF-008, DEFINITIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,RESOLVED T-AUD-24k
+CK0668,K3718,labs/comlab/registry/rules/sensor_fault.json,397,lambda_perception_delta,< -0.05,-,"SF-008, DEFINITIVE",DIAGNOSTIC_THRESHOLD,T-FX-6 §PerceptionContradictionResult,,RESOLVED T-AUD-24k
 CK0669,K3721,labs/comlab/registry/rules/sensor_fault.json,405,shrtft1,> 5.0,%,"SF-008, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §10.3,,
 CK0670,K3724,labs/comlab/registry/rules/sensor_fault.json,413,shrtft1,< -5.0,%,"SF-008, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §10.3,,
 CK0671,K3727,labs/comlab/registry/rules/sensor_fault.json,421,longft1,> 3.0,%,"SF-008, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §10.3,,
