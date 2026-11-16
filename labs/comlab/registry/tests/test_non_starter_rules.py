@@ -151,16 +151,16 @@ def test_ns004_lean_misfire_suggestive():
 
 
 def test_ns001_rpm_suggestive():
-    """NS-001 must carry rpm < 600 as SUGGESTIVE OBD evidence."""
+    """NS-001 must carry rpm < 400 as SUGGESTIVE OBD evidence."""
     rs = _load_ruleset()
     for rule in rs.rules:
         if rule.rule_id == "NS-001":
             found = any(
                 obd.pid == "rpm" and obd.operator == "lt"
-                and obd.value == 600 and obd.tier == EvidenceTier.SUGGESTIVE
+                and obd.value == 400 and obd.tier == EvidenceTier.SUGGESTIVE
                 for obd in rule.obd_evidence
             )
-            assert found, "NS-001: missing rpm < 600 SUGGESTIVE OBD evidence"
+            assert found, "NS-001: missing rpm < 400 SUGGESTIVE OBD evidence"
 
 
 def test_ns001_co2_suggestive():
@@ -198,29 +198,29 @@ def test_ns001_frozen_trims_suggestive():
 
 
 def test_ns002_ect_suggestive():
-    """NS-002 must carry ect_c < 30.0 as SUGGESTIVE OBD evidence."""
+    """NS-002 must carry ect_c < 10.0 as SUGGESTIVE OBD evidence."""
     rs = _load_ruleset()
     for rule in rs.rules:
         if rule.rule_id == "NS-002":
             found = any(
                 obd.pid == "ect_c" and obd.operator == "lt"
-                and obd.value == 30.0 and obd.tier == EvidenceTier.SUGGESTIVE
+                and obd.value == 10.0 and obd.tier == EvidenceTier.SUGGESTIVE
                 for obd in rule.obd_evidence
             )
-            assert found, "NS-002: missing ect_c < 30.0 SUGGESTIVE OBD evidence"
+            assert found, "NS-002: missing ect_c < 10.0 SUGGESTIVE OBD evidence"
 
 
 def test_ns003_rpm_gating():
-    """NS-003 must carry rpm < 600 as GATING OBD evidence."""
+    """NS-003 must carry rpm < 400 as GATING OBD evidence."""
     rs = _load_ruleset()
     for rule in rs.rules:
         if rule.rule_id == "NS-003":
             found = any(
                 obd.pid == "rpm" and obd.operator == "lt"
-                and obd.value == 600 and obd.tier == EvidenceTier.GATING
+                and obd.value == 400 and obd.tier == EvidenceTier.GATING
                 for obd in rule.obd_evidence
             )
-            assert found, "NS-003: missing rpm < 600 GATING OBD evidence"
+            assert found, "NS-003: missing rpm < 400 GATING OBD evidence"
 
 
 # ---------------------------------------------------------------------------
@@ -401,12 +401,12 @@ def test_real003_has_competing_rules():
 
 
 def test_ns005_crank_sync_dtc_gating():
-    """NS-005 (T-COMA-3a): P0335/P0336 any_match GATING, rpm < 600 SUGGESTIVE; LEAN_MISFIRE SUGGESTIVE (T-COMA-3b)."""
+    """NS-005 (T-COMA-3a): P0335/P0336 any_match GATING, rpm < 400 SUGGESTIVE; LEAN_MISFIRE SUGGESTIVE (T-COMA-3b)."""
     rule = next(r for r in _load_ruleset().rules if r.rule_id == "NS-005")
     assert rule.fault_family == FaultFamily.NON_STARTER
     assert [(c.state, c.tier) for c in rule.chemistry_evidence] == [("LEAN_MISFIRE", EvidenceTier.SUGGESTIVE)]
     assert [(set(d.dtc_codes), d.tier) for d in rule.dtc_evidence] == [({"P0335", "P0336"}, EvidenceTier.GATING)]
-    assert any(o.pid == "rpm" and o.operator == "lt" and o.value == 600 and o.tier == EvidenceTier.SUGGESTIVE
+    assert any(o.pid == "rpm" and o.operator == "lt" and o.value == 400 and o.tier == EvidenceTier.SUGGESTIVE
                for o in rule.obd_evidence)
     assert rule.passes_cases == ["case_040"]
 

@@ -159,7 +159,7 @@
     {
       "rule_id": "MW-005",
       "fault_family": "mechanical_wear",
-      "description": "INCOMPLETE_COMBUSTION chemistry with running-engine precondition: combustion is occurring but is inefficient due to mechanical sealing failure. Differentiated from non_starter family (which shares INCOMPLETE_COMBUSTION chemistry) by the running-engine gate \u2014 OBD rpm > 600 as GATING (non_starter cases never reach running RPM). confidence_ceiling applied because INCOMPLETE_COMBUSTION chemistry is shared with non_starter. v1 ERR-MW-001 reactivated with running-engine gate and non_starter competition awareness",
+      "description": "INCOMPLETE_COMBUSTION chemistry with running-engine precondition: combustion is occurring but is inefficient due to mechanical sealing failure. Differentiated from non_starter family (which shares INCOMPLETE_COMBUSTION chemistry) by the running-engine gate \u2014 OBD rpm > 400 as GATING (non_starter cases never reach running RPM). confidence_ceiling applied because INCOMPLETE_COMBUSTION chemistry is shared with non_starter. v1 ERR-MW-001 reactivated with running-engine gate and non_starter competition awareness",
       "chemistry_evidence": [
         {
           "state": "INCOMPLETE_COMBUSTION",
@@ -171,7 +171,7 @@
         {
           "pid": "rpm",
           "operator": "gt",
-          "value": 600,
+          "value": 400,
           "tier": "GATING",
           "units": "RPM",
           "wiki_ref": "OBD_VOCABULARY \u00a75"
