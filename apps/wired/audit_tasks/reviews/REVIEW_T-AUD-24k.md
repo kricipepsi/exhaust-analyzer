@@ -20,3 +20,10 @@ findings (`C:/4DApp/recheck/codex/T-AUD-24k_review.md`; it cites the embedded di
 - **L1 (Low, Cowork):** the R2 docstring names S016, S037, S038 and S040. Under the T-AUD-23e review M1 the delta
   evidence is PARTLY, so the docstring says more than the evidence does. Score −1. Not a correction: the docstring is
   a pointer to the sources.
+
+## Correction (Cowork, 2026-11-16, after acceptance)
+- **Missed gate:** the row's Verification (copied from T-AUD-24j) ran `labs/comlab/tests` and
+  `labs/comlab/registry/tests` only. `apps/wired/tests/test_t_coma_15_o2_bias_direction.py` pins the SF-001/SF-002
+  delta at ±0.03, and 2 of its cases fail after this row (wired `3 failed, 235 passed` on the chain tip against
+  `1 failed, 237 passed` on `fix/T-AUD-24j`). Cowork found it while rehearsing T-AUD-24o. The repair is the revision
+  row T-AUD-24p. The score stays as given; the miss is Cowork's review, not the implementer's work.
