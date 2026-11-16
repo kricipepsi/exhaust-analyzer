@@ -469,8 +469,8 @@ CK0467,K3014,labs/comlab/registry/rules/mechanical_wear.json,117,rule base_weigh
 CK0468,K3022,labs/comlab/registry/rules/mechanical_wear.json,133,CO2,< 12,% vol,MW-004 WORN_ENGINE,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,
 CK0469,K3022,labs/comlab/registry/rules/mechanical_wear.json,133,map_kpa,< 30.0,kPa,"MW-004 WORN_ENGINE, SUGGESTIVE (idle)",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,"RESOLVED T-COMA-32 (map_kpa < 30.0 row removed; weak-vacuum MAP floor unverified); low compression gives weak manifold vacuum, that is a higher absolute MAP; a MAP below 30 kPa is strong vacuum"
 CK0471,K3027,labs/comlab/registry/rules/mechanical_wear.json,148,rule base_weight,0.8,score,MW-004,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
-CK0472,K3033,labs/comlab/registry/rules/mechanical_wear.json,162,rpm,> 600,rpm,"MW-005 running-engine gate, GATING",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,
-CK0473,K3035,labs/comlab/registry/rules/mechanical_wear.json,174,rpm,> 600,rpm,"MW-005 INCOMPLETE_COMBUSTION, GATING",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §5,,
+CK0472,K3033,labs/comlab/registry/rules/mechanical_wear.json,162,rpm,> 400,rpm,"MW-005 running-engine gate, GATING",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,RESOLVED T-AUD-24o
+CK0473,K3035,labs/comlab/registry/rules/mechanical_wear.json,174,rpm,> 400,rpm,"MW-005 INCOMPLETE_COMBUSTION, GATING",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §5,,RESOLVED T-AUD-24o
 CK0474,K3038,labs/comlab/registry/rules/mechanical_wear.json,182,co2,< 13.0,% vol,"MW-005 INCOMPLETE_COMBUSTION, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §2,,
 CK0475,K3041,labs/comlab/registry/rules/mechanical_wear.json,190,o2,≥ 1.5,% vol,"MW-005 INCOMPLETE_COMBUSTION, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §2,,
 CK0476,K3043,labs/comlab/registry/rules/mechanical_wear.json,198,hc,≥ 200.0,ppm,"MW-005 INCOMPLETE_COMBUSTION, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §2,,
@@ -550,9 +550,9 @@ CK0549,K3356,labs/comlab/registry/rules/no_fault.json,162,obd_lambda in_range up
 CK0550,K3360,labs/comlab/registry/rules/no_fault.json,178,rule base_weight,0.96,score,NF-002,INTERNAL_PARAMETER,master_gas_guide §2,,
 CK0551,K3361,labs/comlab/registry/rules/no_fault.json,180,rule confidence_ceiling,0.96,score,NF-002,INTERNAL_PARAMETER,master_gas_guide §2,,
 CK0552,K3368,labs/comlab/registry/rules/non_starter.json,8,CO2,< 5,% vol,NS-001 LEAN_MISFIRE no-start (no combustion),DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,
-CK0553,K3368,labs/comlab/registry/rules/non_starter.json,8,rpm,< 600,rpm,NS-001 no-start,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,
+CK0553,K3368,labs/comlab/registry/rules/non_starter.json,8,rpm,< 400,rpm,NS-001 no-start,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,RESOLVED T-AUD-24o
 CK0554,K3368,labs/comlab/registry/rules/non_starter.json,8,CO2,≥ 10,% vol,running misfire cases,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,
-CK0555,K3370,labs/comlab/registry/rules/non_starter.json,20,rpm,< 600,rpm,"NS-001 LEAN_MISFIRE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §5,,
+CK0555,K3370,labs/comlab/registry/rules/non_starter.json,20,rpm,< 400,rpm,"NS-001 LEAN_MISFIRE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §5,,RESOLVED T-AUD-24o
 CK0556,K3373,labs/comlab/registry/rules/non_starter.json,28,co2,< 5.0,% vol,"NS-001 LEAN_MISFIRE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §2,,
 CK0557,K3376,labs/comlab/registry/rules/non_starter.json,36,stft_b1 in_range lower edge,-1.0,%,"NS-001 LEAN_MISFIRE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §7,,
 CK0558,K3377,labs/comlab/registry/rules/non_starter.json,37,stft_b1 in_range upper edge,1.0,%,"NS-001 LEAN_MISFIRE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §7,,
@@ -561,31 +561,31 @@ CK0560,K3381,labs/comlab/registry/rules/non_starter.json,46,ltft_b1 in_range upp
 CK0561,K3383,labs/comlab/registry/rules/non_starter.json,53,rule base_weight,0.8,score,NS-001,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0562,K3384,labs/comlab/registry/rules/non_starter.json,55,rule confidence_ceiling,0.85,score,NS-001,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0563,K3393,labs/comlab/registry/rules/non_starter.json,71,CO2,< 5,% vol,NS-002 RICH_MISFIRE no-start (no combustion),DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,
-CK0564,K3393,labs/comlab/registry/rules/non_starter.json,71,ECT,< 30,°C,"NS-002 extreme cold enrichment, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,
-CK0565,K3393,labs/comlab/registry/rules/non_starter.json,71,rpm,< 600,rpm,NS-002 no-start,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,
+CK0564,K3393,labs/comlab/registry/rules/non_starter.json,71,ECT,< 10,°C,"NS-002 extreme cold enrichment, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,RESOLVED T-AUD-24o
+CK0565,K3393,labs/comlab/registry/rules/non_starter.json,71,rpm,< 400,rpm,NS-002 no-start,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,RESOLVED T-AUD-24o
 CK0566,K3393,labs/comlab/registry/rules/non_starter.json,71,CO2,≥ 8,% vol,running rich-misfire cases,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,
-CK0567,K3395,labs/comlab/registry/rules/non_starter.json,83,rpm,< 600,rpm,"NS-002 RICH_MISFIRE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §5,,
+CK0567,K3395,labs/comlab/registry/rules/non_starter.json,83,rpm,< 400,rpm,"NS-002 RICH_MISFIRE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §5,,RESOLVED T-AUD-24o
 CK0568,K3398,labs/comlab/registry/rules/non_starter.json,91,co2,< 5.0,% vol,"NS-002 RICH_MISFIRE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §2,,
-CK0569,K3400,labs/comlab/registry/rules/non_starter.json,99,ect_c,< 30.0,°C,"NS-002 RICH_MISFIRE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §8,,
+CK0569,K3400,labs/comlab/registry/rules/non_starter.json,99,ect_c,< 10.0,°C,"NS-002 RICH_MISFIRE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §8,,RESOLVED T-AUD-24o
 CK0570,K3403,labs/comlab/registry/rules/non_starter.json,107,stft_b1 in_range lower edge,-1.0,%,"NS-002 RICH_MISFIRE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §7,,
 CK0571,K3404,labs/comlab/registry/rules/non_starter.json,108,stft_b1 in_range upper edge,1.0,%,"NS-002 RICH_MISFIRE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §7,,
 CK0572,K3407,labs/comlab/registry/rules/non_starter.json,116,ltft_b1 in_range lower edge,-1.0,%,"NS-002 RICH_MISFIRE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §7,,
 CK0573,K3408,labs/comlab/registry/rules/non_starter.json,117,ltft_b1 in_range upper edge,1.0,%,"NS-002 RICH_MISFIRE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §7,,
 CK0574,K3410,labs/comlab/registry/rules/non_starter.json,124,rule base_weight,0.8,score,NS-002,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0575,K3411,labs/comlab/registry/rules/non_starter.json,126,rule confidence_ceiling,0.85,score,NS-002,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
-CK0576,K3419,labs/comlab/registry/rules/non_starter.json,141,rpm,< 600,rpm,"NS-003 no-start, GATING",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,
-CK0577,K3419,labs/comlab/registry/rules/non_starter.json,141,rpm,> 600,rpm,"MW-005 running-engine gate, GATING",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,CK0472,
-CK0578,K3421,labs/comlab/registry/rules/non_starter.json,153,rpm,< 600,rpm,"NS-003 INCOMPLETE_COMBUSTION, GATING",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §5,,
+CK0576,K3419,labs/comlab/registry/rules/non_starter.json,141,rpm,< 400,rpm,"NS-003 no-start, GATING",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,RESOLVED T-AUD-24o
+CK0577,K3419,labs/comlab/registry/rules/non_starter.json,141,rpm,> 400,rpm,"MW-005 running-engine gate, GATING",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,CK0472,RESOLVED T-AUD-24o
+CK0578,K3421,labs/comlab/registry/rules/non_starter.json,153,rpm,< 400,rpm,"NS-003 INCOMPLETE_COMBUSTION, GATING",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §5,,RESOLVED T-AUD-24o
 CK0579,K3424,labs/comlab/registry/rules/non_starter.json,161,co2,< 8.0,% vol,"NS-003 INCOMPLETE_COMBUSTION, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §2,,
 CK0580,K3426,labs/comlab/registry/rules/non_starter.json,168,rule base_weight,0.75,score,NS-003,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0581,K3427,labs/comlab/registry/rules/non_starter.json,170,rule confidence_ceiling,0.85,score,NS-003,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0582,K3434,labs/comlab/registry/rules/non_starter.json,184,rule base_weight,0.8,score,NS-004,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0583,K3434,labs/comlab/registry/rules/non_starter.json,184,rule confidence_ceiling,0.9,score,NS-004,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0584,K3434,labs/comlab/registry/rules/non_starter.json,184,rule confidence_ceiling,0.85,score,NS-001,INTERNAL_PARAMETER,GAS_VOCABULARY §3,CK0562,
-CK0585,K3436,labs/comlab/registry/rules/non_starter.json,196,rpm,< 600,rpm,"NS-004, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §5,,
+CK0585,K3436,labs/comlab/registry/rules/non_starter.json,196,rpm,< 400,rpm,"NS-004, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §5,,RESOLVED T-AUD-24o
 CK0586,K3442,labs/comlab/registry/rules/non_starter.json,214,rule base_weight,0.8,score,NS-004,INTERNAL_PARAMETER,GAS_VOCABULARY §3,CK0582,
 CK0587,K3443,labs/comlab/registry/rules/non_starter.json,216,rule confidence_ceiling,0.9,score,NS-004,INTERNAL_PARAMETER,GAS_VOCABULARY §3,CK0583,
-CK0588,K3451,labs/comlab/registry/rules/non_starter.json,241,rpm,< 600,rpm,"NS-005, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §5,,
+CK0588,K3451,labs/comlab/registry/rules/non_starter.json,241,rpm,< 400,rpm,"NS-005, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §5,,RESOLVED T-AUD-24o
 CK0589,K3456,labs/comlab/registry/rules/non_starter.json,258,rule base_weight,0.8,score,NS-005,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0590,K3457,labs/comlab/registry/rules/non_starter.json,260,rule confidence_ceiling,0.9,score,NS-005,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0591,K3463,labs/comlab/registry/rules/overheating.json,8,NOx,≥ 1500,ppm,HIGH_COMBUSTION_TEMP chemistry,DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §23.1,W1322,
