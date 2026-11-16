@@ -319,10 +319,22 @@ FIELD_HELP: dict[str, FieldHelp] = {
         unit="kPa"
     ),
     "obd_upstream_o2_val": FieldHelp(
-        explanation="Upstream oxygen sensor reading. Units and ranges vary depending on the decoded sensor type.",
-        min_val=0.0,
-        max_val=20.0,
-        unit=""
+        explanation="Upstream narrowband oxygen sensor voltage.",
+        min_val=UPSTREAM_O2_NARROWBAND_MIN,
+        max_val=UPSTREAM_O2_NARROWBAND_MAX,
+        unit="V"
+    ),
+    "obd_upstream_o2_lambda": FieldHelp(
+        explanation="Upstream wideband oxygen sensor reading as lambda (1.0 = stoichiometric).",
+        min_val=UPSTREAM_O2_WIDEBAND_LAMBDA_MIN,
+        max_val=UPSTREAM_O2_WIDEBAND_LAMBDA_MAX,
+        unit="λ"
+    ),
+    "obd_upstream_o2_afr": FieldHelp(
+        explanation="Upstream wideband oxygen sensor reading as air-fuel ratio (14.7 = stoichiometric for petrol).",
+        min_val=UPSTREAM_O2_WIDEBAND_AFR_MIN,
+        max_val=UPSTREAM_O2_WIDEBAND_AFR_MAX,
+        unit="AFR"
     ),
     "obd_downstream_o2_v": FieldHelp(
         explanation="Downstream sensor S12 voltage indicating post-catalyst oxygen levels and sensor bias.",
