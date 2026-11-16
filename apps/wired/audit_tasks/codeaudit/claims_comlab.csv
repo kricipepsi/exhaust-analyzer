@@ -10,7 +10,7 @@ CK0008,K0008,labs/comlab/comlab/analytics/delta_engine.py,172,exhaust backpressu
 CK0009,K0009,labs/comlab/comlab/analytics/delta_engine.py,173,exhaust backpressure total trim (≈ 0 band),|trim| ≤ 5.0,%,low idle,DIAGNOSTIC_THRESHOLD,wiki: delta-relations/05 — backpressure starts ≈ 0 at low idle,,
 CK0010,K0010,labs/comlab/comlab/analytics/delta_engine.py,176,worn rings ΔHC,≥ +100,ppm,low idle → 2500 rpm,DIAGNOSTIC_THRESHOLD,wiki: delta-relations/07 — worn rings ΔHC ≥ +100 (15→180),,
 CK0011,K0011,labs/comlab/comlab/analytics/delta_engine.py,177,worn valve seals ΔHC,≤ -50,ppm,low idle → 2500 rpm,DIAGNOSTIC_THRESHOLD,wiki: delta-relations/07 — worn valve seals ΔHC ≤ -50 (120→15),,
-CK0012,K0012,labs/comlab/comlab/analytics/delta_engine.py,178,flat cam elevated O2,≥ 2.0,% vol,"2500 rpm, flat camshaft lobe",DIAGNOSTIC_THRESHOLD,"wiki: delta-relations/07 — flat cam breathing misfire, elevated O2 ≥ ~2.5",,code 2.0 but its own comment says O2 ≥ ~2.5 and Vault/labs/obdlab/wiki/delta-relations/07 row GAS-FC-001 gives O2 2.50 at 2500 rpm
+CK0012,K0012,labs/comlab/comlab/analytics/delta_engine.py,178,flat cam elevated O2,≥ 2.0,% vol,"2500 rpm, flat camshaft lobe",DIAGNOSTIC_THRESHOLD,"wiki: delta-relations/07 — flat cam breathing misfire, elevated O2 ≥ ~2.5",,code 2.0 but its own comment says O2 ≥ ~2.5 and Vault/labs/obdlab/wiki/delta-relations/07 row GAS-FC-001 gives O2 2.50 at 2500 rpm; T-AUD-23c: fix row T-AUD-24i
 CK0013,K0013,labs/comlab/comlab/analytics/delta_engine.py,179,EGR stuck closed ΔNOx,≥ +800,ppm,low idle → 2500 rpm,DIAGNOSTIC_THRESHOLD,wiki: delta-relations/07 — EGR stuck-closed ΔNOx ≥ +800 (1500→2800),,
 CK0014,K0014,labs/comlab/comlab/analytics/delta_engine.py,180,rich-fault attenuation Δλ,≥ +0.05,-,low idle → 2500 rpm,DIAGNOSTIC_THRESHOLD,"wiki: delta-relations/07 — rich faults attenuate, Δλ ≥ +0.05",,
 CK0015,K0015,labs/comlab/comlab/analytics/delta_engine.py,183,post-turbo boost leak STFT,≈ -20.0,%,"forced induction, under boost",DIAGNOSTIC_THRESHOLD,wiki: delta-relations/06 — post-turbo leak ≈ -20 % STFT,,
@@ -54,7 +54,7 @@ CK0052,K0053,labs/comlab/comlab/core/ecu_hardware_checker.py,14,railed total tri
 CK0053,K0054,labs/comlab/comlab/core/ecu_hardware_checker.py,15,bank-symmetry bound per_bank_trim_delta,≤ 5.0,%,bank-to-bank trim difference,DIAGNOSTIC_THRESHOLD,wiki: 02_lab_input_contract.md §2 authority bands; §2a,,
 CK0054,K0055,labs/comlab/comlab/core/ecu_hardware_checker.py,16,ECU hardware verdict confidence,0.80,-,ECU hardware lie fires,INTERNAL_PARAMETER,wiki: 09_calibration_confidence.md §CONCEPT_CONF_TIER,,
 CK0055,K0056,labs/comlab/comlab/core/ecu_hardware_checker.py,17,,,,,NON_DOMAIN,,,
-CK0056,K0059,labs/comlab/comlab/core/fault_atlas_router.py,78,HIGH_ASSURANCE / routing confidence floor,0.70,-,winner_score,INTERNAL_PARAMETER,lld: §6.4,,"used as the HIGH_ASSURANCE boundary (fault_atlas_router.py route(), winner_score >= MIN_CONFIDENCE_THRESHOLD); 09_calibration_confidence.md §CONCEPT_CONF_TIER puts HIGH_ASSURANCE at posterior ≳ 0.80, as does lab_pipeline_aggregator _TIER_HIGH_MIN 0.80 (CK0124); LLD §6.4 states no value"
+CK0056,K0059,labs/comlab/comlab/core/fault_atlas_router.py,78,HIGH_ASSURANCE / routing confidence floor,0.70,-,winner_score,INTERNAL_PARAMETER,lld: §6.4,,"used as the HIGH_ASSURANCE boundary (fault_atlas_router.py route(), winner_score >= MIN_CONFIDENCE_THRESHOLD); 09_calibration_confidence.md §CONCEPT_CONF_TIER puts HIGH_ASSURANCE at posterior ≳ 0.80, as does lab_pipeline_aggregator _TIER_HIGH_MIN 0.80 (CK0124); LLD §6.4 states no value; T-AUD-23c: defensible or too small, no fix"
 CK0057,K0060,labs/comlab/comlab/core/fault_atlas_router.py,81,abstain floor,0.80,-,winner_score,INTERNAL_PARAMETER,wiki: 09_calibration_confidence.md §CONCEPT_ABSTAIN; winner_score below this -> abstain,,
 CK0058,K0061,labs/comlab/comlab/core/fault_atlas_router.py,82,abstain margin,0.02,-,top1 - top2 of a different family,INTERNAL_PARAMETER,wiki: 09_calibration_confidence.md §CONCEPT_ABSTAIN; top1 - top2 within this -> abstain,,
 CK0059,K0062,labs/comlab/comlab/core/fault_atlas_router.py,83,float-noise epsilon,1e-9,-,score band edge,INTERNAL_PARAMETER,"T-COMA-12 (F-C1-19): absorb binary float noise, as the shim's _FLOAT_EPSILON",,
@@ -83,7 +83,7 @@ CK0081,K0084,labs/comlab/comlab/core/fault_atlas_router.py,134,LTFT cell lean bo
 CK0082,K0085,labs/comlab/comlab/core/fault_atlas_router.py,135,standard sea-level barometric pressure,101.325,kPa,standard atmosphere,PHYSICAL_CONSTANT,wiki: 02_lab_input_contract.md §2a CONCEPT_OBD_CONSUMER_BANDS,,
 CK0083,K0086,labs/comlab/comlab/core/fault_atlas_router.py,136,default deviation tolerance ratio,0.10,-,rule tolerance absent,INTERNAL_PARAMETER,wiki: 08_scoring_to_fusion_rework.md §CONCEPT_EVIDENCE_INPUTS,,
 CK0084,K0091,labs/comlab/comlab/core/fault_atlas_router.py,207,,,,,NON_DOMAIN,,,
-CK0085,K0092,labs/comlab/comlab/core/fault_atlas_router.py,208,bonus_on_dtc_match bound,0.0 – 1.0,-,registry rule schema,INTERNAL_PARAMETER,lld: §8.1,,COMLab_LLD.md §8.1 global_fault_registry schema caps bonus_on_dtc_match at maximum 0.5; code allows 1.0
+CK0085,K0092,labs/comlab/comlab/core/fault_atlas_router.py,208,bonus_on_dtc_match bound,0.0 – 1.0,-,registry rule schema,INTERNAL_PARAMETER,lld: §8.1,,"COMLab_LLD.md §8.1 global_fault_registry schema caps bonus_on_dtc_match at maximum 0.5; code allows 1.0; T-AUD-23c: defensible or too small, no fix"
 CK0086,K0095,labs/comlab/comlab/core/fault_atlas_router.py,595,,,,,NON_DOMAIN,,,
 CK0087,K0096,labs/comlab/comlab/core/fault_atlas_router.py,596,,,,,NON_DOMAIN,,,
 CK0088,K0097,labs/comlab/comlab/core/fault_atlas_router.py,631,,,,,NON_DOMAIN,,,
@@ -127,7 +127,7 @@ CK0125,K0151,labs/comlab/comlab/core/lab_pipeline_aggregator.py,79,DEGRADED_ASSU
 CK0126,K0152,labs/comlab/comlab/core/lab_pipeline_aggregator.py,80,,,,,NON_DOMAIN,,,
 CK0127,K0153,labs/comlab/comlab/core/lab_pipeline_aggregator.py,81,override path catalyst efficiency stub,100.0,%,stubbed override path,INTERNAL_PARAMETER,lld: §6.4 — stubbed override path,,
 CK0128,K0154,labs/comlab/comlab/core/lab_pipeline_aggregator.py,82,default lambda tolerance,0.05,-,mask has no lambda_tolerance,INTERNAL_PARAMETER,lld: §6.1 — mask fallback when lambda_tolerance absent,,
-CK0129,K0155,labs/comlab/comlab/core/lab_pipeline_aggregator.py,83,engine-warmed remediation gate ECT,75,°C,remediation message,DIAGNOSTIC_THRESHOLD,wiki: 02_lab_input_contract.md §2 — warmed gate,,02_lab_input_contract.md §2 states no temperature (engine_warmed is a bool); OBDLab_KG_Wiki.md §9 warm gate is coolant_temp_c ≥ 70 and integration_shim _FF_WARM_ECT_C is 70.0 (CK0236)
+CK0129,K0155,labs/comlab/comlab/core/lab_pipeline_aggregator.py,83,engine-warmed remediation gate ECT,75,°C,remediation message,DIAGNOSTIC_THRESHOLD,wiki: 02_lab_input_contract.md §2 — warmed gate,,02_lab_input_contract.md §2 states no temperature (engine_warmed is a bool); OBDLab_KG_Wiki.md §9 warm gate is coolant_temp_c ≥ 70 and integration_shim _FF_WARM_ECT_C is 70.0 (CK0236); T-AUD-23c: covered by T-AUD-17 (cold cutoff 70 vs 75)
 CK0130,K0156,labs/comlab/comlab/core/lab_pipeline_aggregator.py,358,,,,,NON_DOMAIN,,,
 CK0131,K0157,labs/comlab/comlab/core/lab_pipeline_aggregator.py,364,,,,,NON_DOMAIN,,,
 CK0132,K0158,labs/comlab/comlab/core/lab_pipeline_aggregator.py,366,,,,,NON_DOMAIN,,,
@@ -251,7 +251,7 @@ CK0249,K0283,labs/comlab/registry/integration_shim.py,739,fuel rail pressure dro
 CK0250,K0284,labs/comlab/registry/integration_shim.py,740,wideband lambda at WOT,> 1.05,-,fuel delivery shortfall,DIAGNOSTIC_THRESHOLD,2. FUEL_DELIVERY_SHORTFALL,,
 CK0251,K0285,labs/comlab/registry/integration_shim.py,746,calculated load at WOT,< 80.0,%,MAF under-read with positive load trim,DIAGNOSTIC_THRESHOLD,3. MAF_UNDERREAD,,
 CK0252,K0286,labs/comlab/registry/integration_shim.py,773,,,,,NON_DOMAIN,,,
-CK0253,K0287,labs/comlab/registry/integration_shim.py,774,CO2 default when absent,15.0,% vol,"C4 signal state, CO2 column absent",INTERNAL_PARAMETER,,,"an absent CO2 is filled with a healthy 15.0 % instead of abstaining, so the co2 < 12.0 leak test cannot fire on a missing reading"
+CK0253,K0287,labs/comlab/registry/integration_shim.py,774,CO2 default when absent,15.0,% vol,"C4 signal state, CO2 column absent",INTERNAL_PARAMETER,,,"an absent CO2 is filled with a healthy 15.0 % instead of abstaining, so the co2 < 12.0 leak test cannot fire on a missing reading; T-AUD-23c: defensible or too small, no fix"
 CK0254,K0288,labs/comlab/registry/integration_shim.py,775,,,,,NON_DOMAIN,,,
 CK0255,K0289,labs/comlab/registry/integration_shim.py,776,,,,,NON_DOMAIN,,,
 CK0256,K0290,labs/comlab/registry/integration_shim.py,777,,,,,NON_DOMAIN,,,
@@ -290,7 +290,7 @@ CK0288,K0332,labs/comlab/registry/integration_shim.py,1295,,,,,NON_DOMAIN,,,
 CK0289,K0333,labs/comlab/registry/integration_shim.py,1304,,,,,NON_DOMAIN,,,
 CK0290,K0334,labs/comlab/registry/integration_shim.py,1315,,,,,NON_DOMAIN,,,
 CK0291,K0335,labs/comlab/registry/integration_shim.py,1327,,,,,NON_DOMAIN,,,
-CK0292,K0337,labs/comlab/registry/integration_shim.py,1347,HIGH_ASSURANCE / routing confidence floor,0.70,-,winner_score,INTERNAL_PARAMETER,convention: HIGH_ASSURANCE threshold mirrors v1 fault_atlas_router.py L874 (>= 0.70),CK0056,"as CK0056: 09_calibration_confidence.md §CONCEPT_CONF_TIER puts HIGH_ASSURANCE at posterior ≳ 0.80; the cited router line is L78/L2389, not L874"
+CK0292,K0337,labs/comlab/registry/integration_shim.py,1347,HIGH_ASSURANCE / routing confidence floor,0.70,-,winner_score,INTERNAL_PARAMETER,convention: HIGH_ASSURANCE threshold mirrors v1 fault_atlas_router.py L874 (>= 0.70),CK0056,"as CK0056: 09_calibration_confidence.md §CONCEPT_CONF_TIER puts HIGH_ASSURANCE at posterior ≳ 0.80; the cited router line is L78/L2389, not L874; T-AUD-23c: defensible or too small, no fix"
 CK0293,K0340,labs/comlab/registry/integration_shim.py,1367,,,,,NON_DOMAIN,,,
 CK0294,K0341,labs/comlab/registry/integration_shim.py,1369,,,,,NON_DOMAIN,,,
 CK0295,K0344,labs/comlab/registry/schema_v2.py,238,rule base_weight default,0.70,-,registry v2 rule schema,INTERNAL_PARAMETER,,,
@@ -318,7 +318,7 @@ CK0316,K2382,labs/comlab/registry/rules/cam_timing.json,148,stft_b1,≤ -5.0,%,"
 CK0317,K2385,labs/comlab/registry/rules/cam_timing.json,156,ltft_b1,≤ -5.0,%,"CT-004 VVT_FAILURE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §10.3,,
 CK0318,K2390,labs/comlab/registry/rules/cam_timing.json,173,rule base_weight,0.75,score,CT-004,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0319,K2391,labs/comlab/registry/rules/cam_timing.json,175,rule confidence_ceiling,0.85,score,CT-004,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
-CK0320,K2397,labs/comlab/registry/rules/cam_timing.json,188,VVT_HISTORY DTC range,P0010-P0023,DTC,CT-005 gate,DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §10.3,,"three rule descriptions give three VVT_HISTORY ranges (CT-005 P0010-P0023, CT-006 P0011-P0024, MW-006 P0010-P0025); by my knowledge the SAE J2012 camshaft actuator/timing codes run P0010-P0025"
+CK0320,K2397,labs/comlab/registry/rules/cam_timing.json,188,VVT_HISTORY DTC range,P0010-P0023,DTC,CT-005 gate,DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §10.3,,"three rule descriptions give three VVT_HISTORY ranges (CT-005 P0010-P0023, CT-006 P0011-P0024, MW-006 P0010-P0025); by my knowledge the SAE J2012 camshaft actuator/timing codes run P0010-P0025; T-AUD-23c: defensible or too small, no fix"
 CK0321,K2397,labs/comlab/registry/rules/cam_timing.json,188,stft_b1 in_range,-5 – 5,%,"CT-005, SUGGESTIVE (trims near zero)",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §10.3,,
 CK0322,K2397,labs/comlab/registry/rules/cam_timing.json,188,ltft_b1 in_range,-5 – 5,%,"CT-005, SUGGESTIVE (trims near zero)",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §10.3,,
 CK0323,K2399,labs/comlab/registry/rules/cam_timing.json,194,stft_b1 in_range lower edge,-5.0,%,"CT-005, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §10.3,,
@@ -327,7 +327,7 @@ CK0325,K2403,labs/comlab/registry/rules/cam_timing.json,203,ltft_b1 in_range low
 CK0326,K2404,labs/comlab/registry/rules/cam_timing.json,204,ltft_b1 in_range upper edge,5.0,%,"CT-005, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §10.3,,
 CK0327,K2423,labs/comlab/registry/rules/cam_timing.json,235,rule base_weight,0.7,score,CT-005,INTERNAL_PARAMETER,OBD_VOCABULARY §10.3,,
 CK0328,K2424,labs/comlab/registry/rules/cam_timing.json,237,rule confidence_ceiling,0.85,score,CT-005,INTERNAL_PARAMETER,OBD_VOCABULARY §10.3,,
-CK0329,K2429,labs/comlab/registry/rules/cam_timing.json,249,VVT_HISTORY DTC range,P0011-P0024,DTC,CT-006 gate,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,"three rule descriptions give three VVT_HISTORY ranges (CT-005 P0010-P0023, CT-006 P0011-P0024, MW-006 P0010-P0025); by my knowledge the SAE J2012 camshaft actuator/timing codes run P0010-P0025"
+CK0329,K2429,labs/comlab/registry/rules/cam_timing.json,249,VVT_HISTORY DTC range,P0011-P0024,DTC,CT-006 gate,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,"three rule descriptions give three VVT_HISTORY ranges (CT-005 P0010-P0023, CT-006 P0011-P0024, MW-006 P0010-P0025); by my knowledge the SAE J2012 camshaft actuator/timing codes run P0010-P0025; T-AUD-23c: defensible or too small, no fix"
 CK0330,K2440,labs/comlab/registry/rules/cam_timing.json,275,rule base_weight,0.7,score,CT-006,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0331,K2441,labs/comlab/registry/rules/cam_timing.json,277,rule confidence_ceiling,0.85,score,CT-006,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0332,K2451,labs/comlab/registry/rules/cam_timing.json,312,hc,≥ 180.0,ppm,"CT-007 INCOMPLETE_COMBUSTION/SAMPLE_INVALID/VVT_FAILURE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §2,,
@@ -395,7 +395,7 @@ CK0393,K2733,labs/comlab/registry/rules/ecu_fault.json,177,rule base_weight,0.75
 CK0394,K2734,labs/comlab/registry/rules/ecu_fault.json,179,rule confidence_ceiling,0.85,score,EF-003,INTERNAL_PARAMETER,T-FX-6 §PerceptionContradictionResult,,
 CK0395,K2756,labs/comlab/registry/rules/ecu_fault.json,208,ECU internal DTC range,P0600-P0699,DTC,EF-004 ECU_INTERNAL_HISTORY gate,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,
 CK0396,K2760,labs/comlab/registry/rules/ecu_fault.json,227,rule base_weight,0.85,score,EF-004,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
-CK0397,K2767,labs/comlab/registry/rules/ecu_fault.json,242,triangle valid band CO+CO2+O2,14 – 16,% vol,EF-005 SAMPLE_INVALID gate (outside = unphysical),DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,"GAS_VOCABULARY §10.6 calls only < 14 and ≥ 18 sample-invalid; 16–18 is EXTERNAL_O2_SUSPECT (W1327), not unphysical"
+CK0397,K2767,labs/comlab/registry/rules/ecu_fault.json,242,triangle valid band CO+CO2+O2,14 – 16,% vol,EF-005 SAMPLE_INVALID gate (outside = unphysical),DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,"GAS_VOCABULARY §10.6 calls only < 14 and ≥ 18 sample-invalid; 16–18 is EXTERNAL_O2_SUSPECT (W1327), not unphysical; T-AUD-23c: defensible or too small, no fix"
 CK0398,K2773,labs/comlab/registry/rules/ecu_fault.json,263,rule base_weight,0.7,score,EF-005,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0399,K2774,labs/comlab/registry/rules/ecu_fault.json,265,rule confidence_ceiling,0.8,score,EF-005,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0400,K2783,labs/comlab/registry/rules/exhaust_leak.json,8,,,,,NON_DOMAIN,,,
@@ -438,7 +438,7 @@ CK0436,K2901,labs/comlab/registry/rules/invalid_input.json,43,o2,> 18.0,% vol,"I
 CK0437,K2904,labs/comlab/registry/rules/invalid_input.json,51,co2,< 5.0,% vol,"II-002, GATING",DIAGNOSTIC_THRESHOLD,master_gas_guide §2,,
 CK0438,K2906,labs/comlab/registry/rules/invalid_input.json,58,rule base_weight,0.95,score,II-002,INTERNAL_PARAMETER,master_gas_guide §2,,
 CK0439,K2907,labs/comlab/registry/rules/invalid_input.json,60,rule confidence_ceiling,0.95,score,II-002,INTERNAL_PARAMETER,master_gas_guide §2,,
-CK0440,K2914,labs/comlab/registry/rules/lean_condition.json,8,lambda_chem (Brettschneider),> 1.03,-,LC-001 classic lean condition,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,the wiki gives LEAN_MIXTURE as λ > 1.05 (W0416); 1.03 – 1.07 is the vocabulary's BORDERLINE_LEAN band (W1242)
+CK0440,K2914,labs/comlab/registry/rules/lean_condition.json,8,lambda_chem (Brettschneider),> 1.03,-,LC-001 classic lean condition,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,the wiki gives LEAN_MIXTURE as λ > 1.05 (W0416); 1.03 – 1.07 is the vocabulary's BORDERLINE_LEAN band (W1242); T-AUD-23c: fix row T-AUD-24i
 CK0441,K2917,labs/comlab/registry/rules/lean_condition.json,20,longft1,≥ 10.0,%,"LC-001 LEAN_MIXTURE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §2,,
 CK0442,K2920,labs/comlab/registry/rules/lean_condition.json,28,shrtft1,≥ 5.0,%,"LC-001 LEAN_MIXTURE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §2,,
 CK0443,K2925,labs/comlab/registry/rules/lean_condition.json,45,rule base_weight,0.85,score,LC-001,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
@@ -589,7 +589,7 @@ CK0588,K3451,labs/comlab/registry/rules/non_starter.json,241,rpm,< 600,rpm,"NS-0
 CK0589,K3456,labs/comlab/registry/rules/non_starter.json,258,rule base_weight,0.8,score,NS-005,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0590,K3457,labs/comlab/registry/rules/non_starter.json,260,rule confidence_ceiling,0.9,score,NS-005,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0591,K3463,labs/comlab/registry/rules/overheating.json,8,NOx,≥ 1500,ppm,HIGH_COMBUSTION_TEMP chemistry,DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §23.1,W1322,
-CK0592,K3464,labs/comlab/registry/rules/overheating.json,14,ect_c,> 110.0,°C,"OV-001, DEFINITIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §23.1,,OBD_VOCABULARY §23.1 sets OVERHEATING_THRESHOLD at ≥ 108 °C and the rule description says 'above the OVERHEATING_THRESHOLD'; the rule gates at > 110
+CK0592,K3464,labs/comlab/registry/rules/overheating.json,14,ect_c,> 110.0,°C,"OV-001, DEFINITIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §23.1,,OBD_VOCABULARY §23.1 sets OVERHEATING_THRESHOLD at ≥ 108 °C and the rule description says 'above the OVERHEATING_THRESHOLD'; the rule gates at > 110; T-AUD-23c: fix row T-AUD-24i
 CK0593,K3466,labs/comlab/registry/rules/overheating.json,22,rpm,> 1000.0,rpm,"OV-001, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §23.2,,
 CK0594,K3468,labs/comlab/registry/rules/overheating.json,28,rule base_weight,0.8,score,OV-001,INTERNAL_PARAMETER,OBD_VOCABULARY §23.1,,
 CK0595,K3469,labs/comlab/registry/rules/overheating.json,30,rule confidence_ceiling,0.85,score,OV-001,INTERNAL_PARAMETER,OBD_VOCABULARY §23.1,,
@@ -608,7 +608,7 @@ CK0607,K3501,labs/comlab/registry/rules/overheating.json,135,rpm,< 1000.0,rpm,"O
 CK0608,K3503,labs/comlab/registry/rules/overheating.json,141,rule base_weight,0.65,score,OV-004,INTERNAL_PARAMETER,OBD_VOCABULARY §23.1,,
 CK0609,K3504,labs/comlab/registry/rules/overheating.json,143,rule confidence_ceiling,0.7,score,OV-004,INTERNAL_PARAMETER,OBD_VOCABULARY §23.1,,
 CK0610,K3505,labs/comlab/registry/rules/overheating.json,145,,,,,NON_DOMAIN,,,
-CK0611,K3510,labs/comlab/registry/rules/rich_mixture.json,8,lambda_chem (Brettschneider),< 0.97,-,RM-001 classic rich mixture,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,the wiki gives RICH_MIXTURE as λ < 0.95 (W0411); 0.92 – 0.97 is the vocabulary's BORDERLINE_RICH band (W1238)
+CK0611,K3510,labs/comlab/registry/rules/rich_mixture.json,8,lambda_chem (Brettschneider),< 0.97,-,RM-001 classic rich mixture,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,"the wiki gives RICH_MIXTURE as λ < 0.95 (W0411); 0.92 – 0.97 is the vocabulary's BORDERLINE_RICH band (W1238); T-AUD-23c: defensible or too small, no fix"
 CK0612,K3513,labs/comlab/registry/rules/rich_mixture.json,20,longft1,≤ -10.0,%,"RM-001 RICH_MIXTURE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §2,,
 CK0613,K3516,labs/comlab/registry/rules/rich_mixture.json,28,shrtft1,≤ -5.0,%,"RM-001 RICH_MIXTURE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §2,,
 CK0614,K3521,labs/comlab/registry/rules/rich_mixture.json,45,rule base_weight,0.9,score,RM-001,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
@@ -754,7 +754,7 @@ CK0753,K0549,labs/comlab/comlab/config/global_fault_registry.json,580,registry b
 CK0754,K0551,labs/comlab/comlab/config/global_fault_registry.json,591,cylinder compression drop below bank average,30-60,psi,ERR-MW-001 two adjacent cylinders,DIAGNOSTIC_THRESHOLD,,,
 CK0755,K0557,labs/comlab/comlab/config/global_fault_registry.json,617,registry base_weight,0.85,score,ERR-MW-001,INTERNAL_PARAMETER,,,
 CK0756,K0558,labs/comlab/comlab/config/global_fault_registry.json,618,registry bonus_on_dtc_match,0.15,score,ERR-MW-001,INTERNAL_PARAMETER,,,
-CK0757,K0561,labs/comlab/comlab/config/global_fault_registry.json,635,ect_c,> 90.0,°C,"ERR-MW-002 COOLANT_LEAK_INTERNAL, GREATER_THAN",DIAGNOSTIC_THRESHOLD,,CK0465,MW-003 in mechanical_wear.json (CK0464) tightened v1 ERR-MW-002 from > 90.0 to > 95.0 °C; OBD_VOCABULARY §23.1 FAN_RANGE is 95–105 °C
+CK0757,K0561,labs/comlab/comlab/config/global_fault_registry.json,635,ect_c,> 90.0,°C,"ERR-MW-002 COOLANT_LEAK_INTERNAL, GREATER_THAN",DIAGNOSTIC_THRESHOLD,,CK0465,MW-003 in mechanical_wear.json (CK0464) tightened v1 ERR-MW-002 from > 90.0 to > 95.0 °C; OBD_VOCABULARY §23.1 FAN_RANGE is 95–105 °C; NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)
 CK0758,K0567,labs/comlab/comlab/config/global_fault_registry.json,652,registry base_weight,0.9,score,ERR-MW-002,INTERNAL_PARAMETER,,,
 CK0759,K0568,labs/comlab/comlab/config/global_fault_registry.json,653,registry bonus_on_dtc_match,0.1,score,ERR-MW-002,INTERNAL_PARAMETER,,,
 CK0760,K0570,labs/comlab/comlab/config/global_fault_registry.json,664,wet compression test rise,≥ 20,psi,ERR-MW-003 worn piston rings,DIAGNOSTIC_THRESHOLD,,,
@@ -767,7 +767,7 @@ CK0766,K0583,labs/comlab/comlab/config/global_fault_registry.json,722,registry b
 CK0767,K0584,labs/comlab/comlab/config/global_fault_registry.json,723,registry bonus_on_dtc_match,0.0,score,ERR-MW-004,INTERNAL_PARAMETER,,,
 CK0768,K0586,labs/comlab/comlab/config/global_fault_registry.json,734,cylinder compression (uniformly low),60-80,psi,ERR-MW-005 worn rings/cylinders or jumped timing,DIAGNOSTIC_THRESHOLD,,,
 CK0769,K0586,labs/comlab/comlab/config/global_fault_registry.json,734,manifold vacuum,10-15,inHg,ERR-MW-005 steady abnormally low,DIAGNOSTIC_THRESHOLD,,,
-CK0770,K0587,labs/comlab/comlab/config/global_fault_registry.json,740,map_kpa,< 30.0,kPa,"ERR-MW-005 INCOMPLETE_COMBUSTION, LESS_THAN",DIAGNOSTIC_THRESHOLD,,,"low compression causes weak manifold vacuum (higher absolute MAP), whereas < 30.0 kPa tests strong vacuum; contradicts K0586 (10-15 inHg ≈ 50–67 kPa) and T-COMA-32 removed this threshold from MW-004 (CK0469)"
+CK0770,K0587,labs/comlab/comlab/config/global_fault_registry.json,740,map_kpa,< 30.0,kPa,"ERR-MW-005 INCOMPLETE_COMBUSTION, LESS_THAN",DIAGNOSTIC_THRESHOLD,,,"low compression causes weak manifold vacuum (higher absolute MAP), whereas < 30.0 kPa tests strong vacuum; contradicts K0586 (10-15 inHg ≈ 50–67 kPa) and T-COMA-32 removed this threshold from MW-004 (CK0469); NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)"
 CK0771,K0589,labs/comlab/comlab/config/global_fault_registry.json,753,registry base_weight,0.8,score,ERR-MW-005,INTERNAL_PARAMETER,,,
 CK0772,K0590,labs/comlab/comlab/config/global_fault_registry.json,754,registry bonus_on_dtc_match,0.1,score,ERR-MW-005,INTERNAL_PARAMETER,,,
 CK0773,K0592,labs/comlab/comlab/config/global_fault_registry.json,765,cylinder compression drop below bank average,30-50,psi,ERR-MW-006 single scored bore,DIAGNOSTIC_THRESHOLD,,,
@@ -776,7 +776,7 @@ CK0775,K0598,labs/comlab/comlab/config/global_fault_registry.json,791,registry b
 CK0776,K0599,labs/comlab/comlab/config/global_fault_registry.json,792,registry bonus_on_dtc_match,0.15,score,ERR-MW-006,INTERNAL_PARAMETER,,,
 CK0777,K0601,labs/comlab/comlab/config/global_fault_registry.json,803,hc,> 1000,ppm,ERR-CT-001 wrong valve timing,DIAGNOSTIC_THRESHOLD,,W0322,
 CK0778,K0601,labs/comlab/comlab/config/global_fault_registry.json,803,o2,> 5,% vol,ERR-CT-001 wrong valve timing,DIAGNOSTIC_THRESHOLD,,W0323,
-CK0779,K0602,labs/comlab/comlab/config/global_fault_registry.json,809,map_kpa,< 30.0,kPa,"ERR-CT-001 CAM_TIMING_RETARDED_MAP, LESS_THAN",DIAGNOSTIC_THRESHOLD,,,"retarded cam timing with low compression causes weak manifold vacuum (higher absolute MAP, wiki/06b:43, K0978 10-15 inHg), whereas < 30.0 kPa tests strong vacuum"
+CK0779,K0602,labs/comlab/comlab/config/global_fault_registry.json,809,map_kpa,< 30.0,kPa,"ERR-CT-001 CAM_TIMING_RETARDED_MAP, LESS_THAN",DIAGNOSTIC_THRESHOLD,,,"retarded cam timing with low compression causes weak manifold vacuum (higher absolute MAP, wiki/06b:43, K0978 10-15 inHg), whereas < 30.0 kPa tests strong vacuum; NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)"
 CK0780,K0608,labs/comlab/comlab/config/global_fault_registry.json,826,registry base_weight,0.85,score,ERR-CT-001,INTERNAL_PARAMETER,,,
 CK0781,K0609,labs/comlab/comlab/config/global_fault_registry.json,827,registry bonus_on_dtc_match,0.15,score,ERR-CT-001,INTERNAL_PARAMETER,,,
 CK0782,K0613,labs/comlab/comlab/config/global_fault_registry.json,846,shrtft1 in_range lower edge,-10.0,%,"ERR-CT-002 IGNITION_MISFIRE, IN_RANGE",DIAGNOSTIC_THRESHOLD,,,
@@ -785,7 +785,7 @@ CK0784,K0617,labs/comlab/comlab/config/global_fault_registry.json,862,registry b
 CK0785,K0618,labs/comlab/comlab/config/global_fault_registry.json,863,registry bonus_on_dtc_match,0.25,score,ERR-CT-002,INTERNAL_PARAMETER,,,
 CK0786,K0620,labs/comlab/comlab/config/global_fault_registry.json,875,engine speed (flat/gutless ceiling),< 3500,rpm,"ERR-CT-003 CAM_TIMING_RETARDED_MAP, VVT phaser locked retard",DIAGNOSTIC_THRESHOLD,,,
 CK0787,K0620,labs/comlab/comlab/config/global_fault_registry.json,875,engine speed (power recovery),> 4000,rpm,"ERR-CT-003 CAM_TIMING_RETARDED_MAP, VVT phaser locked retard",DIAGNOSTIC_THRESHOLD,,,
-CK0788,K0620,labs/comlab/comlab/config/global_fault_registry.json,875,hc,1000-3000,ppm,"ERR-CT-003 CAM_TIMING_RETARDED_MAP, mild rich lambda",DIAGNOSTIC_THRESHOLD,,,"wiki/06b:41 (W0697) gives CAM_TIMING_RETARDED_MAP idle HC as 400–1200 ppm (and 2500 rpm 200–600 ppm), not 1000–3000 ppm"
+CK0788,K0620,labs/comlab/comlab/config/global_fault_registry.json,875,hc,1000-3000,ppm,"ERR-CT-003 CAM_TIMING_RETARDED_MAP, mild rich lambda",DIAGNOSTIC_THRESHOLD,,,"wiki/06b:41 (W0697) gives CAM_TIMING_RETARDED_MAP idle HC as 400–1200 ppm (and 2500 rpm 200–600 ppm), not 1000–3000 ppm; NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)"
 CK0789,K0622,labs/comlab/comlab/config/global_fault_registry.json,881,shrtft1,> 5.0,%,"ERR-CT-003 CAM_TIMING_RETARDED_MAP, GREATER_THAN",DIAGNOSTIC_THRESHOLD,,,
 CK0790,K0625,labs/comlab/comlab/config/global_fault_registry.json,895,registry base_weight,0.8,score,ERR-CT-003,INTERNAL_PARAMETER,,,
 CK0791,K0626,labs/comlab/comlab/config/global_fault_registry.json,896,registry bonus_on_dtc_match,0.2,score,ERR-CT-003,INTERNAL_PARAMETER,,,
@@ -796,7 +796,7 @@ CK0795,K0632,labs/comlab/comlab/config/global_fault_registry.json,933,VVT soleno
 CK0796,K0635,labs/comlab/comlab/config/global_fault_registry.json,948,registry base_weight,0.8,score,ERR-CT-005,INTERNAL_PARAMETER,,,
 CK0797,K0636,labs/comlab/comlab/config/global_fault_registry.json,949,registry bonus_on_dtc_match,0.2,score,ERR-CT-005,INTERNAL_PARAMETER,,,
 CK0798,K0638,labs/comlab/comlab/config/global_fault_registry.json,960,hc,200-800,ppm,ERR-NS-004 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,
-CK0799,K0638,labs/comlab/comlab/config/global_fault_registry.json,960,co2,3-6,% vol,ERR-NS-004 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,wiki/04 §4.14 (W0350/W0351) defines cranking INCOMPLETE_COMBUSTION as 5.0 ≤ CO2 < 8.0 % and routes CO2 < 5.0 % to LEAN_MISFIRE
+CK0799,K0638,labs/comlab/comlab/config/global_fault_registry.json,960,co2,3-6,% vol,ERR-NS-004 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,wiki/04 §4.14 (W0350/W0351) defines cranking INCOMPLETE_COMBUSTION as 5.0 ≤ CO2 < 8.0 % and routes CO2 < 5.0 % to LEAN_MISFIRE; NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)
 CK0800,K0638,labs/comlab/comlab/config/global_fault_registry.json,960,o2,12-18,% vol,ERR-NS-004 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,
 CK0801,K0638,labs/comlab/comlab/config/global_fault_registry.json,960,lambda_chem,1.20-1.50,-,ERR-NS-004 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,
 CK0802,K0639,labs/comlab/comlab/config/global_fault_registry.json,971,registry base_weight,0.6,score,ERR-NS-004,INTERNAL_PARAMETER,,,
@@ -931,7 +931,7 @@ CK0930,K0905,labs/comlab/comlab/config/global_fault_registry.json,2280,registry 
 CK0931,K0908,labs/comlab/comlab/config/global_fault_registry.json,2302,registry base_weight,0.55,score,ERR-NS-001,INTERNAL_PARAMETER,,,
 CK0932,K0909,labs/comlab/comlab/config/global_fault_registry.json,2303,registry bonus_on_dtc_match,0.0,score,ERR-NS-001,INTERNAL_PARAMETER,,,
 CK0933,K0911,labs/comlab/comlab/config/global_fault_registry.json,2313,hc,200-800,ppm,ERR-NS-002 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,
-CK0934,K0911,labs/comlab/comlab/config/global_fault_registry.json,2313,co2,3-6,% vol,ERR-NS-002 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,wiki/04 §4.14 (W0350/W0351) defines cranking INCOMPLETE_COMBUSTION as 5.0 ≤ CO2 < 8.0 % and routes CO2 < 5.0 % to LEAN_MISFIRE
+CK0934,K0911,labs/comlab/comlab/config/global_fault_registry.json,2313,co2,3-6,% vol,ERR-NS-002 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,wiki/04 §4.14 (W0350/W0351) defines cranking INCOMPLETE_COMBUSTION as 5.0 ≤ CO2 < 8.0 % and routes CO2 < 5.0 % to LEAN_MISFIRE; NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)
 CK0935,K0911,labs/comlab/comlab/config/global_fault_registry.json,2313,o2,12-18,% vol,ERR-NS-002 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,
 CK0936,K0911,labs/comlab/comlab/config/global_fault_registry.json,2313,lambda_chem,1.20-1.50,-,ERR-NS-002 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,
 CK0937,K0912,labs/comlab/comlab/config/global_fault_registry.json,2325,registry base_weight,0.55,score,ERR-NS-002,INTERNAL_PARAMETER,,,
@@ -1021,7 +1021,7 @@ CK1020,K1023,labs/comlab/comlab/config/global_fault_registry.json,2876,GDI intak
 CK1021,K1024,labs/comlab/comlab/config/global_fault_registry.json,2877,upstream O2 switching frequency (healthy),> 0.5,Hz,upstream_o2_sensor_lazy_response warm idle,TYPICAL_RANGE,,,OBD_VOCABULARY §12.1 sets healthy narrowband switching frequency at 2–5 Hz (MPI) or 2–3 Hz (TBI) and classifies < 0.5 Hz as slow/dying
 CK1022,K1024,labs/comlab/comlab/config/global_fault_registry.json,2877,upstream O2 switching frequency (lazy),< 0.25,Hz,upstream_o2_sensor_lazy_response warm idle,DIAGNOSTIC_THRESHOLD,,,"OBD_VOCABULARY §12.1 already classifies < 0.5 Hz as slow/dying, not < 0.25 Hz"
 CK1023,K1024,labs/comlab/comlab/config/global_fault_registry.json,2877,lambda_chem,1.0,-,upstream_o2_sensor_lazy_response stoichiometric ground truth,PHYSICAL_CONSTANT,,W0079,
-CK1024,K1025,labs/comlab/comlab/config/global_fault_registry.json,2878,o2_voltage stuck rich,> 0.7,V,upstream_o2_sensor_fixed_voltage pegged,DIAGNOSTIC_THRESHOLD,,CK0859,OBD_VOCABULARY §12.1 sets narrowband STUCK_RICH at pinned > 0.85 V (and SF-003 CK0635/CK0638 gate at > 0.80 V / ≥ 0.8 V)
+CK1024,K1025,labs/comlab/comlab/config/global_fault_registry.json,2878,o2_voltage stuck rich,> 0.7,V,upstream_o2_sensor_fixed_voltage pegged,DIAGNOSTIC_THRESHOLD,,CK0859,OBD_VOCABULARY §12.1 sets narrowband STUCK_RICH at pinned > 0.85 V (and SF-003 CK0635/CK0638 gate at > 0.80 V / ≥ 0.8 V); NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)
 CK1025,K1025,labs/comlab/comlab/config/global_fault_registry.json,2878,o2_voltage stuck lean,< 0.2,V,upstream_o2_sensor_fixed_voltage pegged,DIAGNOSTIC_THRESHOLD,,CK0860,
 CK1026,K1025,labs/comlab/comlab/config/global_fault_registry.json,2878,O2 switching start delay post-replacement,30,s,upstream_o2_sensor_fixed_voltage after engine start,TYPICAL_RANGE,,,
 CK1027,K1026,labs/comlab/comlab/config/kg/_kg_schema.json,2,,,,,NON_DOMAIN,,,
@@ -1095,7 +1095,7 @@ CK1094,K1146,labs/comlab/comlab/config/kg/catalyst_failure.json,89,co2,< 13,% vo
 CK1095,K1147,labs/comlab/comlab/config/kg/catalyst_failure.json,90,co pre-cat baseline,~0.6,% vol,ERR-CF-004 feed-gas efficient normal range,TYPICAL_RANGE,,,
 CK1096,K1147,labs/comlab/comlab/config/kg/catalyst_failure.json,90,hc pre-cat baseline,~100,ppm,ERR-CF-004 feed-gas efficient normal range,TYPICAL_RANGE,,,
 CK1097,K1151,labs/comlab/comlab/config/kg/catalyst_failure.json,94,hc,≤ 50,ppm,ERR-CF-004 post-repair tailpipe at 2500 rpm,TYPICAL_RANGE,,,
-CK1098,K1151,labs/comlab/comlab/config/kg/catalyst_failure.json,94,co,≤ 0.5,% vol,ERR-CF-004 post-repair tailpipe at 2500 rpm,TYPICAL_RANGE,,,"post-repair working-catalyst ceiling of <= 0.5 % at 2500 rpm exceeds working-cat idle CO ceilings (W0185 0.1–0.3 %, W0192 < 0.3 %) and the UK MOT 2500 rpm limit <= 0.20 % (W1110; same gap as CK0535)"
+CK1098,K1151,labs/comlab/comlab/config/kg/catalyst_failure.json,94,co,≤ 0.5,% vol,ERR-CF-004 post-repair tailpipe at 2500 rpm,TYPICAL_RANGE,,,"post-repair working-catalyst ceiling of <= 0.5 % at 2500 rpm exceeds working-cat idle CO ceilings (W0185 0.1–0.3 %, W0192 < 0.3 %) and the UK MOT 2500 rpm limit <= 0.20 % (W1110; same gap as CK0535); NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)"
 CK1099,K1151,labs/comlab/comlab/config/kg/catalyst_failure.json,94,co2,≥ 14.5,% vol,ERR-CF-004 post-repair tailpipe at 2500 rpm,TYPICAL_RANGE,,,
 CK1100,K1158,labs/comlab/comlab/config/kg/catalyst_failure.json,114,longft1,< -10,%,ERR-CF-005 catalyst masking negative trim threshold,DIAGNOSTIC_THRESHOLD,,,
 CK1101,K1160,labs/comlab/comlab/config/kg/catalyst_failure.json,117,longft1 recovery band,±10,%,ERR-CF-005 post-repair trim target,TYPICAL_RANGE,,,
@@ -1116,7 +1116,7 @@ CK1115,K1194,labs/comlab/comlab/config/kg/catalyst_failure.json,189,post-cat to 
 CK1116,K1195,labs/comlab/comlab/config/kg/catalyst_failure.json,190,post-cat to pre-cat O2 switching ratio,1:1,-,ERR-CF-009 P0420/P0430 monitor fail ratio,DIAGNOSTIC_THRESHOLD,,CK0700,
 CK1117,K1198,labs/comlab/comlab/config/kg/catalyst_failure.json,193,post-cat O2 voltage healthy flat target,~0.6-0.7,V,ERR-CF-009 post-repair steady downstream,TYPICAL_RANGE,,,
 CK1118,K1198,labs/comlab/comlab/config/kg/catalyst_failure.json,193,hc,< 50,ppm,ERR-CF-009 post-repair tailpipe target,TYPICAL_RANGE,,,
-CK1119,K1198,labs/comlab/comlab/config/kg/catalyst_failure.json,193,co,< 0.5,% vol,ERR-CF-009 post-repair tailpipe target,TYPICAL_RANGE,,,"post-repair working-catalyst ceiling of < 0.5 % exceeds the < 0.3 % post-cat CO rule (W0192), 0.1–0.3 % normal working-cat idle range (W0185), and UK MOT <= 0.30 % idle limit (W1109; same gap as CK0535)"
+CK1119,K1198,labs/comlab/comlab/config/kg/catalyst_failure.json,193,co,< 0.5,% vol,ERR-CF-009 post-repair tailpipe target,TYPICAL_RANGE,,,"post-repair working-catalyst ceiling of < 0.5 % exceeds the < 0.3 % post-cat CO rule (W0192), 0.1–0.3 % normal working-cat idle range (W0185), and UK MOT <= 0.30 % idle limit (W1109; same gap as CK0535); NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)"
 CK1120,K1206,labs/comlab/comlab/config/kg/catalyst_failure.json,214,,,,,NON_DOMAIN,,,
 CK1121,K1207,labs/comlab/comlab/config/kg/catalyst_failure.json,215,catalyst inlet-outlet test speed,2500,rpm,ERR-CF-010 IR exotherm test,DIAGNOSTIC_THRESHOLD,,W0011,
 CK1122,K1207,labs/comlab/comlab/config/kg/catalyst_failure.json,215,catalyst outlet minus inlet temperature delta,30-100,°C,ERR-CF-010 healthy exothermic rise at 2500 rpm,TYPICAL_RANGE,,,
@@ -1251,8 +1251,8 @@ CK1250,K1565,labs/comlab/comlab/config/kg/mechanical_wear.json,143,cylinder leak
 CK1251,K1573,labs/comlab/comlab/config/kg/mechanical_wear.json,166,cylinder compression below OEM spec,< 80,%,ERR-MW-008 dry compression failure threshold,DIAGNOSTIC_THRESHOLD,,CK1017,
 CK1252,K1573,labs/comlab/comlab/config/kg/mechanical_wear.json,166,cylinder compression minimum,100,psi,ERR-MW-008 dry compression failure threshold,DIAGNOSTIC_THRESHOLD,,CK1019,
 CK1253,K1574,labs/comlab/comlab/config/kg/mechanical_wear.json,167,wet compression test rise,> 20,psi,ERR-MW-008 confirms ring wear,DIAGNOSTIC_THRESHOLD,,CK0953,
-CK1254,K1582,labs/comlab/comlab/config/kg/mechanical_wear.json,189,hc,150-500,ppm,ERR-MW-007 POA_SIGNATURE oil consumption,DIAGNOSTIC_THRESHOLD,,,"wiki/06a §POA (W0600) and GasLab POA_SIGNATURE table (W1622) set severe/diagnostic POA oil burning at HC > 500 ppm (500–20000 ppm), and MW-008/MW-009 rules (CK0491, CK0500) gate at hc >= 500 ppm; 150-500 ppm lies below that floor"
-CK1255,K1582,labs/comlab/comlab/config/kg/mechanical_wear.json,189,co,< 0.5,% vol,ERR-MW-007 POA_SIGNATURE oil consumption,DIAGNOSTIC_THRESHOLD,,,wiki §POA_SIGNATURE (W0652) gives CO ~ 0 % (and MW-009 CK0502 gates at CO < 0.15 %; UK MOT idle CO limit W1109 is <= 0.30 %); < 0.5 % is looser than both
+CK1254,K1582,labs/comlab/comlab/config/kg/mechanical_wear.json,189,hc,150-500,ppm,ERR-MW-007 POA_SIGNATURE oil consumption,DIAGNOSTIC_THRESHOLD,,,"wiki/06a §POA (W0600) and GasLab POA_SIGNATURE table (W1622) set severe/diagnostic POA oil burning at HC > 500 ppm (500–20000 ppm), and MW-008/MW-009 rules (CK0491, CK0500) gate at hc >= 500 ppm; 150-500 ppm lies below that floor; NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)"
+CK1255,K1582,labs/comlab/comlab/config/kg/mechanical_wear.json,189,co,< 0.5,% vol,ERR-MW-007 POA_SIGNATURE oil consumption,DIAGNOSTIC_THRESHOLD,,,wiki §POA_SIGNATURE (W0652) gives CO ~ 0 % (and MW-009 CK0502 gates at CO < 0.15 %; UK MOT idle CO limit W1109 is <= 0.30 %); < 0.5 % is looser than both; NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)
 CK1256,K1582,labs/comlab/comlab/config/kg/mechanical_wear.json,189,lambda_chem,1.0,-,ERR-MW-007 POA_SIGNATURE near stoichiometric,DIAGNOSTIC_THRESHOLD,,CK0950,
 CK1257,K1583,labs/comlab/comlab/config/kg/mechanical_wear.json,191,excessive oil consumption rate,> 1 / 1000,L/km,ERR-MW-007 > 1 L per 1000 km significant mechanical wear,RULE_OF_THUMB,,,
 CK1258,K1584,labs/comlab/comlab/config/kg/mechanical_wear.json,192,cold-start blue smoke clear time,2-5,s,ERR-MW-007 valve stem seals vs piston rings,DIAGNOSTIC_THRESHOLD,,CK0765,
@@ -1283,7 +1283,7 @@ CK1282,K1687,labs/comlab/comlab/config/kg/no_fault.json,2,,,,,NON_DOMAIN,,,
 CK1283,K1688,labs/comlab/comlab/config/kg/non_starter.json,2,,,,,NON_DOMAIN,,,
 CK1284,K1691,labs/comlab/comlab/config/kg/non_starter.json,15,hc,300,ppm,ERR-NS-004 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,
 CK1285,K1691,labs/comlab/comlab/config/kg/non_starter.json,15,co,0.02,% vol,ERR-NS-004 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,
-CK1286,K1691,labs/comlab/comlab/config/kg/non_starter.json,15,co2,4,% vol,ERR-NS-004 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,wiki/04 §4.14 (W0350/W0351) defines cranking INCOMPLETE_COMBUSTION as 5.0 <= CO2 < 8.0 % and routes CO2 < 5.0 % to LEAN_MISFIRE (same contradiction as CK0799/CK0934)
+CK1286,K1691,labs/comlab/comlab/config/kg/non_starter.json,15,co2,4,% vol,ERR-NS-004 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,wiki/04 §4.14 (W0350/W0351) defines cranking INCOMPLETE_COMBUSTION as 5.0 <= CO2 < 8.0 % and routes CO2 < 5.0 % to LEAN_MISFIRE (same contradiction as CK0799/CK0934); NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)
 CK1287,K1691,labs/comlab/comlab/config/kg/non_starter.json,15,o2,16,% vol,ERR-NS-004 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,
 CK1288,K1691,labs/comlab/comlab/config/kg/non_starter.json,15,lambda_chem,1.35,-,ERR-NS-004 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,,
 CK1289,K1692,labs/comlab/comlab/config/kg/non_starter.json,17,battery cranking voltage minimum,< 10.0,V,ERR-NS-004 starves coils and injectors,DIAGNOSTIC_THRESHOLD,,CK1010,
@@ -1312,7 +1312,7 @@ CK1311,K1718,labs/comlab/comlab/config/kg/non_starter.json,87,ignition coil prim
 CK1312,K1718,labs/comlab/comlab/config/kg/non_starter.json,87,coil primary resistance test temperature,20,°C,ERR-NS-005 measurement ambient temp,TYPICAL_RANGE,,,
 CK1313,K1718,labs/comlab/comlab/config/kg/non_starter.json,87,ignition coil secondary resistance,5-15,kohm,ERR-NS-005 typical spec,TYPICAL_RANGE,,,
 CK1314,K1724,labs/comlab/comlab/config/kg/non_starter.json,106,hc,200-800,ppm,ERR-NS-002 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,CK0933,
-CK1315,K1724,labs/comlab/comlab/config/kg/non_starter.json,106,co2,3-6,% vol,ERR-NS-002 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,CK0934,wiki/04 §4.14 (W0350/W0351) defines cranking INCOMPLETE_COMBUSTION as 5.0 <= CO2 < 8.0 % and routes CO2 < 5.0 % to LEAN_MISFIRE (as CK0799/CK0934)
+CK1315,K1724,labs/comlab/comlab/config/kg/non_starter.json,106,co2,3-6,% vol,ERR-NS-002 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,CK0934,wiki/04 §4.14 (W0350/W0351) defines cranking INCOMPLETE_COMBUSTION as 5.0 <= CO2 < 8.0 % and routes CO2 < 5.0 % to LEAN_MISFIRE (as CK0799/CK0934); NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)
 CK1316,K1724,labs/comlab/comlab/config/kg/non_starter.json,106,o2,12-18,% vol,ERR-NS-002 INCOMPLETE_COMBUSTION cranking,DIAGNOSTIC_THRESHOLD,,CK0935,
 CK1317,K1725,labs/comlab/comlab/config/kg/non_starter.json,108,battery cranking voltage minimum,< 10.0,V,ERR-NS-002 starves coils and injectors,DIAGNOSTIC_THRESHOLD,,CK1010,
 CK1318,K1727,labs/comlab/comlab/config/kg/non_starter.json,110,adjustable spark tester gap,20,mm,ERR-NS-002 blue-white arc target,DIAGNOSTIC_THRESHOLD,,CK0926,
@@ -1346,13 +1346,13 @@ CK1345,K1809,labs/comlab/comlab/config/kg/rich_mixture.json,287,hc,1000+,ppm,ERR
 CK1346,K1810,labs/comlab/comlab/config/kg/rich_mixture.json,289,,,,,NON_DOMAIN,,,
 CK1347,K1814,labs/comlab/comlab/config/kg/rich_mixture.json,294,hc,< 100,ppm,ERR-RM-013 post-repair at idle,TYPICAL_RANGE,,CK1014,
 CK1348,K1818,labs/comlab/comlab/config/kg/sensor_fault.json,2,,,,,NON_DOMAIN,,,
-CK1349,K1823,labs/comlab/comlab/config/kg/sensor_fault.json,16,upstream O2 switching frequency (healthy),> 0.5,Hz,ERR-SF-001 warm idle,TYPICAL_RANGE,,CK1021,OBD_VOCABULARY §12.1 sets healthy narrowband switching frequency at 2–5 Hz (MPI) or 2–3 Hz (TBI) and classifies < 0.5 Hz as slow/dying (as CK1021)
+CK1349,K1823,labs/comlab/comlab/config/kg/sensor_fault.json,16,upstream O2 switching frequency (healthy),> 0.5,Hz,ERR-SF-001 warm idle,TYPICAL_RANGE,,CK1021,OBD_VOCABULARY §12.1 sets healthy narrowband switching frequency at 2–5 Hz (MPI) or 2–3 Hz (TBI) and classifies < 0.5 Hz as slow/dying (as CK1021); NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)
 CK1350,K1823,labs/comlab/comlab/config/kg/sensor_fault.json,16,upstream O2 switching frequency (ideal),1-2,Hz,ERR-SF-001 warm idle,TYPICAL_RANGE,,,"OBD_VOCABULARY §12.1 sets healthy narrowband switching at 2–5 Hz (MPI) or 2–3 Hz (TBI), faster than the 1–2 Hz stated here"
-CK1351,K1823,labs/comlab/comlab/config/kg/sensor_fault.json,16,upstream O2 switching frequency (lazy),< 0.25,Hz,ERR-SF-001 warm idle,DIAGNOSTIC_THRESHOLD,,CK1022,OBD_VOCABULARY §12.1 already classifies < 0.5 Hz as slow/dying rather than < 0.25 Hz (as CK1022)
+CK1351,K1823,labs/comlab/comlab/config/kg/sensor_fault.json,16,upstream O2 switching frequency (lazy),< 0.25,Hz,ERR-SF-001 warm idle,DIAGNOSTIC_THRESHOLD,,CK1022,OBD_VOCABULARY §12.1 already classifies < 0.5 Hz as slow/dying rather than < 0.25 Hz (as CK1022); NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)
 CK1352,K1825,labs/comlab/comlab/config/kg/sensor_fault.json,18,lambda_chem,1.0,-,ERR-SF-001 stoichiometric ground truth,PHYSICAL_CONSTANT,,W0079,
-CK1353,K1827,labs/comlab/comlab/config/kg/sensor_fault.json,20,upstream O2 switching frequency (healthy),> 0.5,Hz,ERR-SF-001 post-repair warm idle,TYPICAL_RANGE,,CK1021,OBD_VOCABULARY §12.1 sets healthy narrowband switching frequency at 2–5 Hz (MPI) or 2–3 Hz (TBI) and classifies < 0.5 Hz as slow/dying (as CK1021)
+CK1353,K1827,labs/comlab/comlab/config/kg/sensor_fault.json,20,upstream O2 switching frequency (healthy),> 0.5,Hz,ERR-SF-001 post-repair warm idle,TYPICAL_RANGE,,CK1021,OBD_VOCABULARY §12.1 sets healthy narrowband switching frequency at 2–5 Hz (MPI) or 2–3 Hz (TBI) and classifies < 0.5 Hz as slow/dying (as CK1021); NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)
 CK1354,K1827,labs/comlab/comlab/config/kg/sensor_fault.json,20,fuel trim recovery band,±5,%,ERR-SF-001 post-repair warm idle,TYPICAL_RANGE,,,
-CK1355,K1835,labs/comlab/comlab/config/kg/sensor_fault.json,40,o2_voltage stuck rich,> 0.7,V,ERR-SF-002 pegged upstream O2,DIAGNOSTIC_THRESHOLD,,CK0859,"OBD_VOCABULARY §12.1 sets narrowband STUCK_RICH at pinned > 0.85 V (and SF-003 CK0635/CK0638 gate at > 0.80 / >= 0.8 V), not > 0.7 V (as CK0859/CK1024)"
+CK1355,K1835,labs/comlab/comlab/config/kg/sensor_fault.json,40,o2_voltage stuck rich,> 0.7,V,ERR-SF-002 pegged upstream O2,DIAGNOSTIC_THRESHOLD,,CK0859,"OBD_VOCABULARY §12.1 sets narrowband STUCK_RICH at pinned > 0.85 V (and SF-003 CK0635/CK0638 gate at > 0.80 / >= 0.8 V), not > 0.7 V (as CK0859/CK1024); NOT LIVE (T-AUD-23c): v1 path only (USE_V2_REGISTRY=0)"
 CK1356,K1835,labs/comlab/comlab/config/kg/sensor_fault.json,40,o2_voltage stuck lean,< 0.2,V,ERR-SF-002 pegged upstream O2,DIAGNOSTIC_THRESHOLD,,CK0860,
 CK1357,K1836,labs/comlab/comlab/config/kg/sensor_fault.json,42,O2 sensor operating temperature threshold,> 300,°C,ERR-SF-002 heater circuit active minimum,PHYSICAL_CONSTANT,,,
 CK1358,K1838,labs/comlab/comlab/config/kg/sensor_fault.json,44,O2 switching start delay post-replacement,30,s,ERR-SF-002 after engine start,TYPICAL_RANGE,,CK1026,
@@ -1508,7 +1508,7 @@ CK1513,K2091,labs/comlab/comlab/config/proposals/entries.yaml,484,HC delta,+150,
 CK1514,K2092,labs/comlab/comlab/config/proposals/entries.yaml,485,CO delta,-0.2,%,Head gasket failure (coolant leakage),TYPICAL_RANGE,,,
 CK1515,K2093,labs/comlab/comlab/config/proposals/entries.yaml,486,NOx delta,-50,%,Head gasket failure (coolant leakage),TYPICAL_RANGE,,,
 CK1516,K2094,labs/comlab/comlab/config/proposals/entries.yaml,491,HC delta,+49,%,Leaking / stuck-open fuel injector,TYPICAL_RANGE,,,
-CK1517,K2095,labs/comlab/comlab/config/proposals/entries.yaml,492,CO delta,-5,%,Leaking / stuck-open fuel injector,TYPICAL_RANGE,,,leaking/stuck-open fuel injector causes rich fueling which normally increases tailpipe CO rather than decreasing it by -5%
+CK1517,K2095,labs/comlab/comlab/config/proposals/entries.yaml,492,CO delta,-5,%,Leaking / stuck-open fuel injector,TYPICAL_RANGE,,,leaking/stuck-open fuel injector causes rich fueling which normally increases tailpipe CO rather than decreasing it by -5%; NOT LIVE (T-AUD-23c): config/proposals/entries.yaml is loaded by no code
 CK1518,K2096,labs/comlab/comlab/config/proposals/entries.yaml,493,NOx delta,+352,%,Leaking / stuck-open fuel injector,TYPICAL_RANGE,,,
 CK1519,K2097,labs/comlab/comlab/config/proposals/entries.yaml,494,fuel consumption delta,+15 to +30,%,Leaking / stuck-open fuel injector,TYPICAL_RANGE,,,
 CK1520,K2098,labs/comlab/comlab/config/proposals/entries.yaml,497,HC delta,+1284.6,%,"Coolant-temperature-sensor (CTS) bias cold, FTP",TYPICAL_RANGE,,,
@@ -1536,7 +1536,7 @@ CK1541,K2118,labs/comlab/comlab/config/proposals/entries.yaml,524,NOx delta,+33,
 CK1542,K2119,labs/comlab/comlab/config/proposals/entries.yaml,525,fuel consumption delta,+11,%,Oxygen sensor (0.1V lean bias),TYPICAL_RANGE,,,
 CK1543,K2120,labs/comlab/comlab/config/proposals/entries.yaml,527,O2 sensor voltage,0.9,V,Oxygen sensor (0.9V rich bias),TYPICAL_RANGE,,,
 CK1544,K2121,labs/comlab/comlab/config/proposals/entries.yaml,528,HC delta,+317,%,Oxygen sensor (0.9V rich bias),TYPICAL_RANGE,,,
-CK1545,K2122,labs/comlab/comlab/config/proposals/entries.yaml,529,CO delta,+410,%,Oxygen sensor (0.9V rich bias),TYPICAL_RANGE,,,"0.9 V O2 rich bias (O2_SENSOR_BIASED_HIGH) causes the ECU to lean out fueling, yielding low CO (W1564 0.0–0.2 % vol, W0485 lambda > 1.0) rather than +410% CO"
+CK1545,K2122,labs/comlab/comlab/config/proposals/entries.yaml,529,CO delta,+410,%,Oxygen sensor (0.9V rich bias),TYPICAL_RANGE,,,"0.9 V O2 rich bias (O2_SENSOR_BIASED_HIGH) causes the ECU to lean out fueling, yielding low CO (W1564 0.0–0.2 % vol, W0485 lambda > 1.0) rather than +410% CO; NOT LIVE (T-AUD-23c): config/proposals/entries.yaml is loaded by no code"
 CK1546,K2123,labs/comlab/comlab/config/proposals/entries.yaml,530,NOx delta,+61,%,Oxygen sensor (0.9V rich bias),TYPICAL_RANGE,,,
 CK1547,K2124,labs/comlab/comlab/config/proposals/entries.yaml,531,fuel consumption delta,+9,%,Oxygen sensor (0.9V rich bias),TYPICAL_RANGE,,,
 CK1548,K2125,labs/comlab/comlab/config/proposals/entries.yaml,534,HC delta,+169,%,EGR valve (stuck open),TYPICAL_RANGE,,,
