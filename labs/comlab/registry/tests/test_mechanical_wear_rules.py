@@ -227,16 +227,16 @@ def test_mw004_map_obd_evidence():
 
 
 def test_mw005_rpm_gating_obd_evidence():
-    """MW-005 must carry rpm > 600 as GATING OBD evidence."""
+    """MW-005 must carry rpm > 400 as GATING OBD evidence."""
     rs = _load_ruleset()
     for rule in rs.rules:
         if rule.rule_id == "MW-005":
             found = any(
                 obd.pid == "rpm" and obd.operator == "gt"
-                and obd.value == 600 and obd.tier == EvidenceTier.GATING
+                and obd.value == 400 and obd.tier == EvidenceTier.GATING
                 for obd in rule.obd_evidence
             )
-            assert found, "MW-005: missing rpm > 600 GATING OBD evidence"
+            assert found, "MW-005: missing rpm > 400 GATING OBD evidence"
 
 
 def test_mw007_high_hc_definitive_obd_evidence():
