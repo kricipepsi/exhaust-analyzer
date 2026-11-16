@@ -225,7 +225,7 @@
         {
           "pid": "hc",
           "operator": "lt",
-          "value": 200.0,
+          "value": 50.0,
           "tier": "SUGGESTIVE",
           "units": "ppm",
           "wiki_ref": "GAS_VOCABULARY \u00a72"

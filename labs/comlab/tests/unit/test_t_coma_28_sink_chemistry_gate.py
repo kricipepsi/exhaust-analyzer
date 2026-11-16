@@ -22,11 +22,11 @@ def rules():
     return {r.rule_id: r for r in RegistryV2Router().rules}
 
 
-def _obs(state: str):
+def _obs(state: str, map_kpa: float = 35.0):
     return _build_observation({
         "gas_lab_output": {"chemical_state": state, "sample_validity": "VALID",
                            "gas_hc": 80, "gas_o2": 0.4, "gas_co": 0.3, "gas_co2": 14.8, "gas_nox": 50},
-        "dtc_lab_output": {"confirmed_dtcs": [], "routing_tags": [], "freeze_frame": FREEZE},
+        "dtc_lab_output": {"confirmed_dtcs": [], "routing_tags": [], "freeze_frame": {**FREEZE, "manifold_pressure_kpa": map_kpa}},
         "obd_live_data": None,
     })
 
@@ -38,9 +38,10 @@ def test_sinks_do_not_fire_without_their_chemistry(rules, state: str) -> None:
     assert _score_rule(rules["MF-005"], obs) is None
 
 
-def test_lc002_fires_on_lean_chemistry_at_its_old_score(rules) -> None:
-    """T-COMA-29 (REVIEW_T-COMA-28 M2): base 0.91 + map_kpa SUGGESTIVE 0.05 = 0.96, the pre-gate 0.81 + 0.10 + 0.05."""
-    assert _score_rule(rules["LC-002"], _obs("LEAN_MIXTURE")) == pytest.approx(0.96)
+@pytest.mark.parametrize(("map_kpa", "score"), [(35.0, 0.91), (55.0, 0.96)])
+def test_lc002_map_gate_needs_weak_vacuum(rules, map_kpa: float, score: float) -> None:
+    """T-AUD-24j: base 0.91; the map_kpa SUGGESTIVE 0.05 adds only above the healthy idle band (> 50 kPa, S036)."""
+    assert _score_rule(rules["LC-002"], _obs("LEAN_MIXTURE", map_kpa)) == pytest.approx(score)
 
 
 def test_mf005_fires_on_misfire_chemistry_at_its_old_score(rules) -> None:
