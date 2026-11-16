@@ -10,7 +10,7 @@ CK0008,K0008,labs/comlab/comlab/analytics/delta_engine.py,172,exhaust backpressu
 CK0009,K0009,labs/comlab/comlab/analytics/delta_engine.py,173,exhaust backpressure total trim (≈ 0 band),|trim| ≤ 5.0,%,low idle,DIAGNOSTIC_THRESHOLD,wiki: delta-relations/05 — backpressure starts ≈ 0 at low idle,,
 CK0010,K0010,labs/comlab/comlab/analytics/delta_engine.py,176,worn rings ΔHC,≥ +100,ppm,low idle → 2500 rpm,DIAGNOSTIC_THRESHOLD,wiki: delta-relations/07 — worn rings ΔHC ≥ +100 (15→180),,
 CK0011,K0011,labs/comlab/comlab/analytics/delta_engine.py,177,worn valve seals ΔHC,≤ -50,ppm,low idle → 2500 rpm,DIAGNOSTIC_THRESHOLD,wiki: delta-relations/07 — worn valve seals ΔHC ≤ -50 (120→15),,
-CK0012,K0012,labs/comlab/comlab/analytics/delta_engine.py,178,flat cam elevated O2,≥ 2.0,% vol,"2500 rpm, flat camshaft lobe",DIAGNOSTIC_THRESHOLD,"wiki: delta-relations/07 — flat cam breathing misfire, elevated O2 ≥ ~2.5",,code 2.0 but its own comment says O2 ≥ ~2.5 and Vault/labs/obdlab/wiki/delta-relations/07 row GAS-FC-001 gives O2 2.50 at 2500 rpm; T-AUD-23c: fix row T-AUD-24i
+CK0012,K0012,labs/comlab/comlab/analytics/delta_engine.py,178,flat cam elevated O2,≥ 2.5,% vol,"2500 rpm, flat camshaft lobe",DIAGNOSTIC_THRESHOLD,"wiki: delta-relations/07 — flat cam breathing misfire, elevated O2 ≥ ~2.5",,code 2.0 but its own comment says O2 ≥ ~2.5 and Vault/labs/obdlab/wiki/delta-relations/07 row GAS-FC-001 gives O2 2.50 at 2500 rpm; T-AUD-23c: fix row T-AUD-24i; RESOLVED T-AUD-24i
 CK0013,K0013,labs/comlab/comlab/analytics/delta_engine.py,179,EGR stuck closed ΔNOx,≥ +800,ppm,low idle → 2500 rpm,DIAGNOSTIC_THRESHOLD,wiki: delta-relations/07 — EGR stuck-closed ΔNOx ≥ +800 (1500→2800),,
 CK0014,K0014,labs/comlab/comlab/analytics/delta_engine.py,180,rich-fault attenuation Δλ,≥ +0.05,-,low idle → 2500 rpm,DIAGNOSTIC_THRESHOLD,"wiki: delta-relations/07 — rich faults attenuate, Δλ ≥ +0.05",,
 CK0015,K0015,labs/comlab/comlab/analytics/delta_engine.py,183,post-turbo boost leak STFT,≈ -20.0,%,"forced induction, under boost",DIAGNOSTIC_THRESHOLD,wiki: delta-relations/06 — post-turbo leak ≈ -20 % STFT,,
@@ -438,7 +438,7 @@ CK0436,K2901,labs/comlab/registry/rules/invalid_input.json,43,o2,> 18.0,% vol,"I
 CK0437,K2904,labs/comlab/registry/rules/invalid_input.json,51,co2,< 5.0,% vol,"II-002, GATING",DIAGNOSTIC_THRESHOLD,master_gas_guide §2,,
 CK0438,K2906,labs/comlab/registry/rules/invalid_input.json,58,rule base_weight,0.95,score,II-002,INTERNAL_PARAMETER,master_gas_guide §2,,
 CK0439,K2907,labs/comlab/registry/rules/invalid_input.json,60,rule confidence_ceiling,0.95,score,II-002,INTERNAL_PARAMETER,master_gas_guide §2,,
-CK0440,K2914,labs/comlab/registry/rules/lean_condition.json,8,lambda_chem (Brettschneider),> 1.03,-,LC-001 classic lean condition,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,the wiki gives LEAN_MIXTURE as λ > 1.05 (W0416); 1.03 – 1.07 is the vocabulary's BORDERLINE_LEAN band (W1242); T-AUD-23c: fix row T-AUD-24i
+CK0440,K2914,labs/comlab/registry/rules/lean_condition.json,8,lambda_chem (Brettschneider),≥ 1.05,-,LC-001 classic lean condition,DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §3,,the wiki gives LEAN_MIXTURE as λ > 1.05 (W0416); 1.03 – 1.07 is the vocabulary's BORDERLINE_LEAN band (W1242); T-AUD-23c: fix row T-AUD-24i; RESOLVED T-AUD-24i
 CK0441,K2917,labs/comlab/registry/rules/lean_condition.json,20,longft1,≥ 10.0,%,"LC-001 LEAN_MIXTURE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §2,,
 CK0442,K2920,labs/comlab/registry/rules/lean_condition.json,28,shrtft1,≥ 5.0,%,"LC-001 LEAN_MIXTURE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §2,,
 CK0443,K2925,labs/comlab/registry/rules/lean_condition.json,45,rule base_weight,0.85,score,LC-001,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
@@ -589,7 +589,7 @@ CK0588,K3451,labs/comlab/registry/rules/non_starter.json,241,rpm,< 600,rpm,"NS-0
 CK0589,K3456,labs/comlab/registry/rules/non_starter.json,258,rule base_weight,0.8,score,NS-005,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0590,K3457,labs/comlab/registry/rules/non_starter.json,260,rule confidence_ceiling,0.9,score,NS-005,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0591,K3463,labs/comlab/registry/rules/overheating.json,8,NOx,≥ 1500,ppm,HIGH_COMBUSTION_TEMP chemistry,DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §23.1,W1322,
-CK0592,K3464,labs/comlab/registry/rules/overheating.json,14,ect_c,> 110.0,°C,"OV-001, DEFINITIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §23.1,,OBD_VOCABULARY §23.1 sets OVERHEATING_THRESHOLD at ≥ 108 °C and the rule description says 'above the OVERHEATING_THRESHOLD'; the rule gates at > 110; T-AUD-23c: fix row T-AUD-24i
+CK0592,K3464,labs/comlab/registry/rules/overheating.json,14,ect_c,≥ 108.0,°C,"OV-001, DEFINITIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §23.1,,OBD_VOCABULARY §23.1 sets OVERHEATING_THRESHOLD at ≥ 108 °C and the rule description says 'above the OVERHEATING_THRESHOLD'; the rule gates at > 110; T-AUD-23c: fix row T-AUD-24i; RESOLVED T-AUD-24i
 CK0593,K3466,labs/comlab/registry/rules/overheating.json,22,rpm,> 1000.0,rpm,"OV-001, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §23.2,,
 CK0594,K3468,labs/comlab/registry/rules/overheating.json,28,rule base_weight,0.8,score,OV-001,INTERNAL_PARAMETER,OBD_VOCABULARY §23.1,,
 CK0595,K3469,labs/comlab/registry/rules/overheating.json,30,rule confidence_ceiling,0.85,score,OV-001,INTERNAL_PARAMETER,OBD_VOCABULARY §23.1,,

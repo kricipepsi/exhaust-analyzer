@@ -10,7 +10,7 @@ K0008,labs/comlab/comlab/analytics/delta_engine.py,172,77beb59ef7,,_BACKPRESS_EL
 K0009,labs/comlab/comlab/analytics/delta_engine.py,173,ceaba63ba0,,_BACKPRESS_LOW_ABS: float = +5.0  # wiki: delta-relations/05 — backpressure starts ≈ 0 at low idle
 K0010,labs/comlab/comlab/analytics/delta_engine.py,176,f82c6ac1c6,,_DHC_RINGS_MIN: int = +100  # wiki: delta-relations/07 — worn rings ΔHC ≥ +100 (15→180)
 K0011,labs/comlab/comlab/analytics/delta_engine.py,177,e4ddcbc296,,_DHC_VALVE_MAX: int = -50  # wiki: delta-relations/07 — worn valve seals ΔHC ≤ -50 (120→15)
-K0012,labs/comlab/comlab/analytics/delta_engine.py,178,064bd04a76,,"_FLATCAM_ELEV_O2_MIN: float = 2.0  # wiki: delta-relations/07 — flat cam breathing misfire, elevated O2 ≥ ~2.5"
+K0012,labs/comlab/comlab/analytics/delta_engine.py,178,5a916cfd87,,"_FLATCAM_ELEV_O2_MIN: float = 2.5  # wiki: delta-relations/07 — flat cam breathing misfire, elevated O2 ≥ ~2.5"
 K0013,labs/comlab/comlab/analytics/delta_engine.py,179,f4cb15ef11,,_DNOX_EGR_MIN: int = +800  # wiki: delta-relations/07 — EGR stuck-closed ΔNOx ≥ +800 (1500→2800)
 K0014,labs/comlab/comlab/analytics/delta_engine.py,180,cbfe3c9380,,"_DLAMBDA_RICH_MIN: float = +0.05  # wiki: delta-relations/07 — rich faults attenuate, Δλ ≥ +0.05"
 K0015,labs/comlab/comlab/analytics/delta_engine.py,183,8b8b3e2017,,_TURBO_INVERT_STFT: float = -20.0  # wiki: delta-relations/06 — post-turbo leak ≈ -20 % STFT
@@ -2906,7 +2906,7 @@ K2910,labs/comlab/registry/rules/invalid_input.json,64,8dc0ad6dde,NON_DOMAIN,"""
 K2911,labs/comlab/registry/rules/invalid_input.json,67,3a1541289d,NON_DOMAIN,"""master_gas_guide \u00a72"""
 K2912,labs/comlab/registry/rules/lean_condition.json,2,6f95f14900,NON_DOMAIN,"""version"": ""2.0"","
 K2913,labs/comlab/registry/rules/lean_condition.json,6,e00de48677,NON_DOMAIN,"""rule_id"": ""LC-001"","
-K2914,labs/comlab/registry/rules/lean_condition.json,8,c30ce93c17,,"""description"": ""Classic lean condition from unmetered air \u2014 Brettschneider lambda > 1.03 with positive fuel trims"","
+K2914,labs/comlab/registry/rules/lean_condition.json,8,a5702ee898,,"""description"": ""Classic lean condition from unmetered air \u2014 Brettschneider lambda >= 1.05 with positive fuel trims"","
 K2915,labs/comlab/registry/rules/lean_condition.json,13,9de51da520,NON_DOMAIN,"""wiki_ref"": ""GAS_VOCABULARY \u00a73"""
 K2916,labs/comlab/registry/rules/lean_condition.json,18,6a48612a30,NON_DOMAIN,"""pid"": ""longft1"","
 K2917,labs/comlab/registry/rules/lean_condition.json,20,46825b80c3,,"""value"": 10.0,"
@@ -3454,7 +3454,7 @@ K3460,labs/comlab/registry/rules/non_starter.json,266,ec385b6293,NON_DOMAIN,"""D
 K3461,labs/comlab/registry/rules/overheating.json,2,6f95f14900,NON_DOMAIN,"""version"": ""2.0"","
 K3462,labs/comlab/registry/rules/overheating.json,6,3d8eaa4f61,NON_DOMAIN,"""rule_id"": ""OV-001"","
 K3463,labs/comlab/registry/rules/overheating.json,8,a387760380,,"""description"": ""Classic overheating \u2014 thermostat stuck closed (no DTC required). OBD-primary: elevated ECT above the OVERHEATING_THRESHOLD with ECU-elevated idle RPM indicating the ECU has detected the heat and entered the cooling-idle target. No chemistry signal \u2014 HIGH_COMBUSTION_TEMP requires NOx \u2265 1500 ppm which is unreachable at idle on a street engine (GAS_VOCABULARY \u00a710.5)."","
-K3464,labs/comlab/registry/rules/overheating.json,14,d41a487be4,,"""value"": 110.0,"
+K3464,labs/comlab/registry/rules/overheating.json,14,c757f48672,,"""value"": 108.0,"
 K3465,labs/comlab/registry/rules/overheating.json,17,7975de17eb,NON_DOMAIN,"""wiki_ref"": ""OBD_VOCABULARY \u00a723.1"""
 K3466,labs/comlab/registry/rules/overheating.json,22,1d93892947,,"""value"": 1000.0,"
 K3467,labs/comlab/registry/rules/overheating.json,25,bb43e165fc,NON_DOMAIN,"""wiki_ref"": ""OBD_VOCABULARY \u00a723.2"""
