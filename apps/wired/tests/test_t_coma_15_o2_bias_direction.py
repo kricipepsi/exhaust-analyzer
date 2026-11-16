@@ -24,10 +24,10 @@ def _rule(rule_id: str):
 
 
 @pytest.mark.parametrize(("rule_id", "state", "operator", "value", "reads"),
-                         [("SF-001", "O2_SENSOR_BIASED_HIGH", "lt", -0.03, "reads falsely rich"),
-                          ("SF-002", "O2_SENSOR_BIASED_LOW", "gt", 0.03, "reads falsely lean")])
+                         [("SF-001", "O2_SENSOR_BIASED_HIGH", "lt", -0.05, "reads falsely rich"),
+                          ("SF-002", "O2_SENSOR_BIASED_LOW", "gt", 0.05, "reads falsely lean")])
 def test_rule_delta_row_agrees_with_its_chemistry_state(rule_id, state, operator, value, reads):
-    """NEW: SF-001 (biased high, reads rich) needs delta < -0.03; SF-002 (biased low, reads lean) needs delta > 0.03;
+    """NEW: SF-001 (biased high, reads rich) needs delta < -0.05; SF-002 (biased low, reads lean) needs delta > 0.05 (T-AUD-24k);
     each DEFINITIVE, and the user-facing description says the same direction (correction 1)."""
     rule = _rule(rule_id)
     assert [e.state.value for e in rule.chemistry_evidence] == [state]
