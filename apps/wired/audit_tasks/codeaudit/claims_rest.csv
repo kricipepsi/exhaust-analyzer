@@ -60,7 +60,7 @@ RK0058,K0070,labs/obdlab/obdlab/core/ve_engine.py,46,idle VE collapse cutoff,50.
 RK0059,K0071,labs/obdlab/obdlab/core/ve_engine.py,47,idle VE collapse MAP floor,45.0,kPa,MAP > 45 kPa required for collapse trigger,DIAGNOSTIC_THRESHOLD,BP §2,,
 RK0060,K0072,labs/obdlab/obdlab/core/ve_engine.py,48,MAF contamination VE cutoff,65.0,%,VE% < 65% triggers FAULT_MAF_CONTAMINATION,DIAGNOSTIC_THRESHOLD,OBDLab_KG_Wiki.md §6.4; §10.3,,
 RK0061,K0073,labs/obdlab/obdlab/core/ve_engine.py,49,MAF contamination trim cutoff,15.0,%,total fuel trim > +15% with VE < 65%,DIAGNOSTIC_THRESHOLD,OBDLab_KG_Wiki.md §6.4; §10.3,,
-RK0062,K0074,labs/obdlab/obdlab/core/ve_engine.py,50,VE sensor skew threshold,90.0,%,VE% above which FAULT_VE_SENSOR_SKEW triggers,DIAGNOSTIC_THRESHOLD,OBDLab_KG_Wiki.md §6.4,,OBDLab_KG_Wiki.md §6.4 and §10.3 specify > 85% for FAULT_VE_SENSOR_SKEW; 90.0% comes from §4 Physics_Gate_3
+RK0062,K0074,labs/obdlab/obdlab/core/ve_engine.py,50,VE sensor skew threshold,90.0,%,VE% above which FAULT_VE_SENSOR_SKEW triggers,DIAGNOSTIC_THRESHOLD,OBDLab_KG_Wiki.md §6.4,,"OBDLab_KG_Wiki.md §6.4 and §10.3 specify > 85% for FAULT_VE_SENSOR_SKEW; 90.0% comes from §4 Physics_Gate_3; T-AUD-24g: S019 90 % is a WOT figure, this cutoff is idle-only; verdict PARTLY, no fix"
 RK0063,K0076,labs/obdlab/obdlab/core/ve_engine.py,114,default ambient intake air temperature,25.0,°C,fallback IAT when missing,INTERNAL_PARAMETER,,RK0044,
 RK0064,K0078,labs/obdlab/obdlab/core/ve_engine.py,140,default ambient intake air temperature,25.0,°C,fallback IAT when missing,INTERNAL_PARAMETER,OBDLab_KG_Wiki.md §10.1,RK0044,
 RK0065,K0079,labs/obdlab/obdlab/core/ve_engine.py,143,seconds per minute conversion,60.0,s/min,RPM to rev/s conversion,PHYSICAL_CONSTANT,OBDLab_KG_Wiki.md §10.1,,
