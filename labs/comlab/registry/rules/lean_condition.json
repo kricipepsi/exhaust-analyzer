@@ -5,7 +5,7 @@
     {
       "rule_id": "LC-001",
       "fault_family": "lean_condition",
-      "description": "Classic lean condition from unmetered air \u2014 Brettschneider lambda > 1.03 with positive fuel trims",
+      "description": "Classic lean condition from unmetered air \u2014 Brettschneider lambda >= 1.05 with positive fuel trims",
       "chemistry_evidence": [
         {
           "state": "LEAN_MIXTURE",

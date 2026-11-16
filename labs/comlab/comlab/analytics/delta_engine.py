@@ -175,7 +175,7 @@ class DeltaEngine:
     # -- Δgas profile thresholds (delta-relations/07; HC ppm, NOx ppm) --
     _DHC_RINGS_MIN: int = +100  # wiki: delta-relations/07 — worn rings ΔHC ≥ +100 (15→180)
     _DHC_VALVE_MAX: int = -50  # wiki: delta-relations/07 — worn valve seals ΔHC ≤ -50 (120→15)
-    _FLATCAM_ELEV_O2_MIN: float = 2.0  # wiki: delta-relations/07 — flat cam breathing misfire, elevated O2 ≥ ~2.5
+    _FLATCAM_ELEV_O2_MIN: float = 2.5  # wiki: delta-relations/07 — flat cam breathing misfire, elevated O2 ≥ ~2.5
     _DNOX_EGR_MIN: int = +800  # wiki: delta-relations/07 — EGR stuck-closed ΔNOx ≥ +800 (1500→2800)
     _DLAMBDA_RICH_MIN: float = +0.05  # wiki: delta-relations/07 — rich faults attenuate, Δλ ≥ +0.05
 

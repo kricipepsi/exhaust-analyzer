@@ -10,8 +10,8 @@
       "obd_evidence": [
         {
           "pid": "ect_c",
-          "operator": "gt",
-          "value": 110.0,
+          "operator": "ge",
+          "value": 108.0,
           "tier": "DEFINITIVE",
           "units": "degC",
           "wiki_ref": "OBD_VOCABULARY \u00a723.1"

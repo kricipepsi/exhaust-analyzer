@@ -147,15 +147,15 @@ def test_ov004_chemistry_empty():
 # ---------------------------------------------------------------------------
 
 
-def test_ov001_ect_definitive_110():
+def test_ov001_ect_definitive_108():
     rs = _load_ruleset()
     rule = _rule_by_id(rs, "OV-001")
     found = any(
-        obd.pid == "ect_c" and obd.operator == "gt"
-        and obd.value == 110.0 and obd.tier == EvidenceTier.DEFINITIVE
+        obd.pid == "ect_c" and obd.operator == "ge"
+        and obd.value == 108.0 and obd.tier == EvidenceTier.DEFINITIVE
         for obd in rule.obd_evidence
     )
-    assert found, "OV-001: missing ect_c gt 110.0 DEFINITIVE OBD"
+    assert found, "OV-001: missing ect_c ge 108.0 DEFINITIVE OBD"
 
 
 def test_ov001_rpm_suggestive_gt_1000():
