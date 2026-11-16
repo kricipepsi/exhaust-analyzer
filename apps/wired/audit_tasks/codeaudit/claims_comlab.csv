@@ -350,7 +350,7 @@ CK0348,K2522,labs/comlab/registry/rules/catalyst_failure.json,28,co2,≤ 14.0,% 
 CK0349,K2527,labs/comlab/registry/rules/catalyst_failure.json,45,rule base_weight,0.851,score,CF-001,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0350,K2529,labs/comlab/registry/rules/catalyst_failure.json,49,,,,,NON_DOMAIN,,,
 CK0351,K2539,labs/comlab/registry/rules/catalyst_failure.json,74,longft1,≥ 10.0,%,"CF-002 NORMAL_OPERATION, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §2,,
-CK0352,K2541,labs/comlab/registry/rules/catalyst_failure.json,82,hc,< 100.0,ppm,"CF-002 NORMAL_OPERATION, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §2,,
+CK0352,K2541,labs/comlab/registry/rules/catalyst_failure.json,82,hc,< 50.0,ppm,"CF-002 NORMAL_OPERATION, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §2,,RESOLVED T-AUD-24j
 CK0353,K2546,labs/comlab/registry/rules/catalyst_failure.json,99,rule base_weight,0.701,score,CF-002,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0354,K2547,labs/comlab/registry/rules/catalyst_failure.json,101,rule confidence_ceiling,0.8,score,CF-002,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0355,K2561,labs/comlab/registry/rules/catalyst_failure.json,132,co2,≤ 11.0,% vol,"CF-003 CATALYST_OVERWHELMED, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §2,,
@@ -443,7 +443,7 @@ CK0441,K2917,labs/comlab/registry/rules/lean_condition.json,20,longft1,≥ 10.0,
 CK0442,K2920,labs/comlab/registry/rules/lean_condition.json,28,shrtft1,≥ 5.0,%,"LC-001 LEAN_MIXTURE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §2,,
 CK0443,K2925,labs/comlab/registry/rules/lean_condition.json,45,rule base_weight,0.85,score,LC-001,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0444,K2941,labs/comlab/registry/rules/lean_condition.json,82,longft1,≥ 3.0,%,"LC-002 LEAN_MIXTURE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §2,,
-CK0445,K2943,labs/comlab/registry/rules/lean_condition.json,90,map_kpa,< 40.0,kPa,"LC-002 LEAN_MIXTURE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §3,,
+CK0445,K2943,labs/comlab/registry/rules/lean_condition.json,90,map_kpa,> 50.0,kPa,"LC-002 LEAN_MIXTURE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §3,,RESOLVED T-AUD-24j
 CK0446,K2945,labs/comlab/registry/rules/lean_condition.json,96,rule base_weight,0.91,score,LC-002,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0447,K2954,labs/comlab/registry/rules/lean_condition.json,123,maf,< 3.5,g/s,"LC-003 LEAN_MIXTURE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §3,,
 CK0448,K2957,labs/comlab/registry/rules/lean_condition.json,131,longft1,≥ 8.0,%,"LC-003 LEAN_MIXTURE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,OBD_VOCABULARY §2,,
@@ -521,7 +521,7 @@ CK0520,K3191,labs/comlab/registry/rules/misfire.json,162,longft1,≤ -5.0,%,"MF-
 CK0521,K3202,labs/comlab/registry/rules/misfire.json,199,rule base_weight,0.8,score,MF-003,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0522,K3203,labs/comlab/registry/rules/misfire.json,202,,,,,NON_DOMAIN,,,
 CK0523,K3204,labs/comlab/registry/rules/misfire.json,203,,,,,NON_DOMAIN,,,
-CK0524,K3213,labs/comlab/registry/rules/misfire.json,228,hc,< 200.0,ppm,"MF-004 NORMAL_OPERATION, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §2,,
+CK0524,K3213,labs/comlab/registry/rules/misfire.json,228,hc,< 50.0,ppm,"MF-004 NORMAL_OPERATION, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §2,,RESOLVED T-AUD-24j
 CK0525,K3221,labs/comlab/registry/rules/misfire.json,256,rule base_weight,0.6,score,MF-004,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0526,K3222,labs/comlab/registry/rules/misfire.json,258,rule confidence_ceiling,0.7,score,MF-004,INTERNAL_PARAMETER,GAS_VOCABULARY §3,,
 CK0527,K3236,labs/comlab/registry/rules/misfire.json,290,hc,≥ 200.0,ppm,"MF-005 IGNITION_MISFIRE, SUGGESTIVE",DIAGNOSTIC_THRESHOLD,GAS_VOCABULARY §2,,
