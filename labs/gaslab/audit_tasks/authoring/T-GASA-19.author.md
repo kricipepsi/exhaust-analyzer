@@ -7,7 +7,7 @@ needed (exact text); second review kept (code row). Lane: Hydrogen high.
 ### Verified context ###
 1. **S009 Table 1 (DVSA, primary, fetched by T-GASA-17):** 1/8/75-1/8/86 CO 4.5 %, HC 1200; 1/8/86-1/8/95 (not Annex)
    3.5 %, HC 1200; 1/8/95-31/8/02 idle CO 0.5 %, fast idle CO 0.3 %, HC 200, λ 1±0.03; from 1/9/02 idle CO 0.3 %,
-   fast idle CO 0.2 %, HC 200. Read at `labs/gaslab/audit_tasks/wikiaudit/sources/S009.md:430-437`.
+   fast idle CO 0.2 %, HC 200. Read at `labs/gaslab/audit_tasks/wikiaudit/sources/S009.md:430-438`.
 2. **wiki/06b:42 (W0703, W0704): CAM_TIMING_RETARDED_MAP at 2500 rpm HC 200-600 ppm, CO 1.5-4.5 %.** claims.csv.
 3. **`test_resolution.py:499-527` names the floor "the literal 1.5 (mild_rich.max)"** with a HIGH per-vehicle override:
    the Euro idle limit replaced that literal later. Read.

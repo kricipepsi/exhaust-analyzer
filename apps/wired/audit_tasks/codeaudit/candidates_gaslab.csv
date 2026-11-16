@@ -58,85 +58,85 @@ K0056,labs/gaslab/gaslab/ranking.py,147,6d3ac4f69b,NON_DOMAIN,count += 1
 K0057,labs/gaslab/gaslab/ranking.py,191,c165f08261,NON_DOMAIN,"corroborating_channels=0,"
 K0058,labs/gaslab/gaslab/ranking.py,227,85e32ce18f,NON_DOMAIN,"corroborating_channels=0,"
 K0059,labs/gaslab/gaslab/resolution.py,28,e829260cea,,HC_IGNITION_MISFIRE_FLOOR = 1000  # vocab: GAS_VOCABULARY §10.1
-K0060,labs/gaslab/gaslab/resolution.py,39,6de4921de9,,"""1"": EuroThresholds(4.5, None),  # wiki: GASWIKI-02 §2.8"
-K0061,labs/gaslab/gaslab/resolution.py,40,7358f3c70f,,"""2"": EuroThresholds(0.5, 1200),  # wiki: GASWIKI-02 §2.8"
-K0062,labs/gaslab/gaslab/resolution.py,41,a4282bfc72,,"""3"": EuroThresholds(0.3, 200),  # wiki: GASWIKI-02 §2.8"
-K0063,labs/gaslab/gaslab/resolution.py,42,c5ce640f84,,"""4"": EuroThresholds(0.2, 200),  # wiki: GASWIKI-02 §2.8"
-K0064,labs/gaslab/gaslab/resolution.py,43,99ef104e92,,"""5"": EuroThresholds(0.2, 200),  # wiki: GASWIKI-02 §2.8"
-K0065,labs/gaslab/gaslab/resolution.py,81,78753ad7e2,NON_DOMAIN,"attr = field_path.split(""."")[-1]"
-K0066,labs/gaslab/gaslab/resolution.py,236,cdd248242e,NON_DOMAIN,for name_b in names[i + 1:]:
-K0067,labs/gaslab/gaslab/resolution.py,341,13e83b7964,,reading_high.o2 < 1.0  # wiki: GAS_WIKI §8.9 - lean normalises at 2500
-K0068,labs/gaslab/gaslab/resolution.py,342,8dd7ec810e,,and 0.985 <= lchem_high <= 1.015  # wiki: GAS_WIKI §8.9 - lambda normalises toward 1.0
-K0069,labs/gaslab/gaslab/resolution.py,362,0ec528b09a,,2.0 <= reading.o2 <= 4.5  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAF (idle)
-K0070,labs/gaslab/gaslab/resolution.py,363,f1dbb9f5ba,,and 1.08 <= lchem_idle <= 1.18  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAF (idle)
-K0071,labs/gaslab/gaslab/resolution.py,364,b9eb6fe61d,,and 1.0 <= reading_high.o2 <= 2.5  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAF (2500)
-K0072,labs/gaslab/gaslab/resolution.py,365,86ca41c484,,and 1.03 <= lchem_high <= 1.09  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAF (2500)
-K0073,labs/gaslab/gaslab/resolution.py,366,4d495a90e3,,and 150 <= reading_high.hc <= 400  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAF (2500)
-K0074,labs/gaslab/gaslab/resolution.py,367,1e01af70e4,,and 0.10 <= reading_high.co <= 0.30  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAF (2500)
-K0075,labs/gaslab/gaslab/resolution.py,368,ecdbc2138c,,and 150 <= reading_high.nox <= 500  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAF (2500)
-K0076,labs/gaslab/gaslab/resolution.py,381,0452c924ad,,250 <= reading.hc <= 600  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED (idle)
-K0077,labs/gaslab/gaslab/resolution.py,382,e447e677ac,,and 1.03 <= lchem_idle <= 1.08  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED (idle)
-K0078,labs/gaslab/gaslab/resolution.py,386,8e6b9e9cf4,,and 0.80 <= reading_high.o2 <= 1.80  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED (2500)
-K0079,labs/gaslab/gaslab/resolution.py,387,2a700b3c74,,and 1.01 <= lchem_high <= 1.05  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED (2500)
-K0080,labs/gaslab/gaslab/resolution.py,388,f7c5d46e04,,and 100 <= reading_high.hc <= 300  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED (2500)
-K0081,labs/gaslab/gaslab/resolution.py,389,c00a0ec3c6,,and 0.15 <= reading_high.co <= 0.50  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED (2500)
-K0082,labs/gaslab/gaslab/resolution.py,390,2bd4433a18,,and 300 <= reading_high.nox <= 900  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED (2500)
-K0083,labs/gaslab/gaslab/resolution.py,405,aee21c3d52,,0.75 <= lchem_idle <= 0.88  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (idle)
-K0084,labs/gaslab/gaslab/resolution.py,406,f65e881c78,,and reading.o2 <= 0.5  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (idle)
-K0085,labs/gaslab/gaslab/resolution.py,409,601607ef53,,and reading_high.o2 <= 0.5  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
-K0086,labs/gaslab/gaslab/resolution.py,410,84957bb3f6,,and 0.85 <= lchem_high <= 0.95  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
-K0087,labs/gaslab/gaslab/resolution.py,411,919e6a9544,,and 200 <= reading_high.hc  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
-K0088,labs/gaslab/gaslab/resolution.py,415,194ea48fe4,,and co_ceiling <= reading_high.co <= 4.5  # vocab: GAS_VOCABULARY §10.2
-K0089,labs/gaslab/gaslab/resolution.py,416,015e5fb55b,,and 100 <= reading_high.nox <= 400  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
-K0090,labs/gaslab/gaslab/resolution.py,437,cf48dce7b2,,120 <= reading.hc <= 250  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (idle)
-K0091,labs/gaslab/gaslab/resolution.py,438,519d84cae0,,and 0.10 <= reading.co <= 0.30  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (idle)
-K0092,labs/gaslab/gaslab/resolution.py,439,5a197aeafc,,and 11.5 <= reading.co2 <= 13.0  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (idle)
-K0093,labs/gaslab/gaslab/resolution.py,440,95721711fa,,and 0.8 <= reading.o2 <= 1.5  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (idle)
-K0094,labs/gaslab/gaslab/resolution.py,441,d643738f1a,,and 20 <= reading.nox <= 60  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (idle)
-K0095,labs/gaslab/gaslab/resolution.py,442,6c5941a6bf,,and 1.01 <= lchem_idle <= 1.04  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (idle)
-K0096,labs/gaslab/gaslab/resolution.py,445,97f6f68676,,reading_high.nox > 1200  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED — NOx very high at 2500
-K0097,labs/gaslab/gaslab/resolution.py,446,9673b50314,,and 1.0 <= lchem_high <= 1.06  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (2500)
-K0098,labs/gaslab/gaslab/resolution.py,447,a19e8f0e78,,"and reading_high.hc <= 100  # vocab: GAS_VOCABULARY §10.1 normal_borderline.max — ""others near normal"""
-K0099,labs/gaslab/gaslab/resolution.py,448,3fb466b6de,,"and reading_high.co <= 0.3  # vocab: GAS_VOCABULARY §10.2 normal_with_cat.max — ""others near normal"""
-K0100,labs/gaslab/gaslab/resolution.py,460,dfd985843d,,75 <= reading.hc <= 500  # wiki: GASWIKI-06A §FAULT_WORN_VALVE_SEALS physics — v1 75–250 and v2 300–500 are one fault at two severities
-K0101,labs/gaslab/gaslab/resolution.py,461,f5d615446d,,and reading_high.hc <= 35  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0102,labs/gaslab/gaslab/resolution.py,463,c4b63b613f,,and reading_high.co <= 0.15  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0103,labs/gaslab/gaslab/resolution.py,464,60564fbea9,,and 0.96 <= lchem_high <= 1.0  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0104,labs/gaslab/gaslab/resolution.py,465,974bd56bb0,,and (fuel_trim is None or -8.0 <= fuel_trim <= 8.0)  # vocab: GAS_VOCABULARY §10.8 stable_band
-K0105,labs/gaslab/gaslab/resolution.py,469,d10b09c08b,,100 <= reading.hc <= 150  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0106,labs/gaslab/gaslab/resolution.py,470,63824563d4,,and reading_high.hc > 300  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0107,labs/gaslab/gaslab/resolution.py,472,93146f92fd,,and reading_high.co > 0.5  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0108,labs/gaslab/gaslab/resolution.py,473,094d44a663,,and lchem_high < 0.99  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0109,labs/gaslab/gaslab/resolution.py,474,061d7bf6a9,,and (fuel_trim is None or fuel_trim <= -12.0)  # vocab: GAS_VOCABULARY §10.8 negative_load_cut
-K0110,labs/gaslab/gaslab/resolution.py,478,3a943bcc34,,150 <= reading.hc <= 300  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0111,labs/gaslab/gaslab/resolution.py,479,c5cf545f8f,,and 150 <= reading_high.hc <= 300  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0112,labs/gaslab/gaslab/resolution.py,481,3106b647e5,,and 1.0 <= lchem_high <= 1.03  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0113,labs/gaslab/gaslab/resolution.py,486,3843a77a0e,,and reading.hc > 500  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0114,labs/gaslab/gaslab/resolution.py,488,a6b750baf0,,and reading.co <= 0.10  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0115,labs/gaslab/gaslab/resolution.py,489,8883679e4a,,and reading_high.co <= 0.10  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0116,labs/gaslab/gaslab/resolution.py,490,32637e2bf6,,and 0.995 <= lchem_idle <= 1.005  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0117,labs/gaslab/gaslab/resolution.py,491,bb7cdc8b2d,,and 0.995 <= lchem_high <= 1.005  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0118,labs/gaslab/gaslab/resolution.py,495,ecd24a874d,,reading.hc > 500  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0119,labs/gaslab/gaslab/resolution.py,496,5fdc31f763,,and reading_high.hc > 500  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0120,labs/gaslab/gaslab/resolution.py,497,9e54402ee5,,and (lchem_high < 0.95 or lchem_high > 1.05)  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
-K0121,labs/gaslab/gaslab/resolution.py,521,a6f1c5f68b,,if not (0.98 <= lchem <= 1.02 and 0.98 <= lchem_high <= 1.02):  # wiki: GAS_WIKI §7.6
-K0122,labs/gaslab/gaslab/resolution.py,527,51fe0d8b95,,14.5 <= reading_high.co2 <= 16.0  # wiki: GAS_WIKI §7.6
-K0123,labs/gaslab/gaslab/resolution.py,528,913c339176,,and reading_high.o2 < 0.5  # wiki: GAS_WIKI §7.6
-K0124,labs/gaslab/gaslab/resolution.py,529,92efc423dc,,and reading_high.co < 0.2  # wiki: GAS_WIKI §7.6
-K0125,labs/gaslab/gaslab/resolution.py,530,9763b567e0,,and reading_high.hc < 35  # wiki: GAS_WIKI §7.6
-K0126,labs/gaslab/gaslab/resolution.py,534,bf722a0e1f,,13.5 <= reading.co2 <= 14.5  # wiki: GAS_WIKI §7.6
-K0127,labs/gaslab/gaslab/resolution.py,535,d9e7671d63,,and 0.3 <= reading.o2 <= 0.7  # wiki: GAS_WIKI §7.6
-K0128,labs/gaslab/gaslab/resolution.py,536,76970d7941,,and 0.5 <= reading.co <= 0.9  # wiki: GAS_WIKI §7.6
-K0129,labs/gaslab/gaslab/resolution.py,537,2e84713f80,,and 75 <= reading.hc <= 125  # wiki: GAS_WIKI §7.6
-K0130,labs/gaslab/gaslab/resolution.py,541,4dda414147,,reading_high.co2 < 13.5  # wiki: GAS_WIKI §7.6
-K0131,labs/gaslab/gaslab/resolution.py,542,1f5969697a,,and reading_high.hc > 100  # wiki: GAS_WIKI §7.6
-K0132,labs/gaslab/gaslab/resolution.py,543,43a9c25388,,and reading_high.co > 0.5  # wiki: GAS_WIKI §7.6
-K0133,labs/gaslab/gaslab/resolution.py,544,623b505d1c,,and reading_high.o2 > 0.5  # wiki: GAS_WIKI §7.6
-K0134,labs/gaslab/gaslab/resolution.py,548,df13a95d9f,,reading.co2 < 13.5  # wiki: GAS_WIKI §7.6
-K0135,labs/gaslab/gaslab/resolution.py,549,6ab64f86b3,,and reading.hc > 100  # wiki: GAS_WIKI §7.6
-K0136,labs/gaslab/gaslab/resolution.py,550,70ca337d7c,,and reading.co > 0.5  # wiki: GAS_WIKI §7.6
-K0137,labs/gaslab/gaslab/resolution.py,551,973fd50abe,,and reading.o2 > 0.5  # wiki: GAS_WIKI §7.6
-K0138,labs/gaslab/gaslab/resolution.py,579,8d394070f9,NON_DOMAIN,return len(candidates) <= 1
+K0060,labs/gaslab/gaslab/resolution.py,40,d1a4ff8896,,"""1"": EuroThresholds(0.5),"
+K0061,labs/gaslab/gaslab/resolution.py,41,952a8a9e60,,"""2"": EuroThresholds(0.5),"
+K0062,labs/gaslab/gaslab/resolution.py,42,0da5603928,,"""3"": EuroThresholds(0.3),"
+K0063,labs/gaslab/gaslab/resolution.py,43,9a256eead2,,"""4"": EuroThresholds(0.3),"
+K0064,labs/gaslab/gaslab/resolution.py,44,cf7eeeb1cd,,"""5"": EuroThresholds(0.3),"
+K0065,labs/gaslab/gaslab/resolution.py,82,78753ad7e2,NON_DOMAIN,"attr = field_path.split(""."")[-1]"
+K0066,labs/gaslab/gaslab/resolution.py,241,cdd248242e,NON_DOMAIN,for name_b in names[i + 1:]:
+K0067,labs/gaslab/gaslab/resolution.py,346,13e83b7964,,reading_high.o2 < 1.0  # wiki: GAS_WIKI §8.9 - lean normalises at 2500
+K0068,labs/gaslab/gaslab/resolution.py,347,8dd7ec810e,,and 0.985 <= lchem_high <= 1.015  # wiki: GAS_WIKI §8.9 - lambda normalises toward 1.0
+K0069,labs/gaslab/gaslab/resolution.py,367,0ec528b09a,,2.0 <= reading.o2 <= 4.5  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAF (idle)
+K0070,labs/gaslab/gaslab/resolution.py,368,f1dbb9f5ba,,and 1.08 <= lchem_idle <= 1.18  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAF (idle)
+K0071,labs/gaslab/gaslab/resolution.py,369,b9eb6fe61d,,and 1.0 <= reading_high.o2 <= 2.5  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAF (2500)
+K0072,labs/gaslab/gaslab/resolution.py,370,86ca41c484,,and 1.03 <= lchem_high <= 1.09  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAF (2500)
+K0073,labs/gaslab/gaslab/resolution.py,371,4d495a90e3,,and 150 <= reading_high.hc <= 400  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAF (2500)
+K0074,labs/gaslab/gaslab/resolution.py,372,1e01af70e4,,and 0.10 <= reading_high.co <= 0.30  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAF (2500)
+K0075,labs/gaslab/gaslab/resolution.py,373,ecdbc2138c,,and 150 <= reading_high.nox <= 500  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAF (2500)
+K0076,labs/gaslab/gaslab/resolution.py,386,0452c924ad,,250 <= reading.hc <= 600  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED (idle)
+K0077,labs/gaslab/gaslab/resolution.py,387,e447e677ac,,and 1.03 <= lchem_idle <= 1.08  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED (idle)
+K0078,labs/gaslab/gaslab/resolution.py,391,8e6b9e9cf4,,and 0.80 <= reading_high.o2 <= 1.80  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED (2500)
+K0079,labs/gaslab/gaslab/resolution.py,392,2a700b3c74,,and 1.01 <= lchem_high <= 1.05  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED (2500)
+K0080,labs/gaslab/gaslab/resolution.py,393,f7c5d46e04,,and 100 <= reading_high.hc <= 300  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED (2500)
+K0081,labs/gaslab/gaslab/resolution.py,394,c00a0ec3c6,,and 0.15 <= reading_high.co <= 0.50  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED (2500)
+K0082,labs/gaslab/gaslab/resolution.py,395,2bd4433a18,,and 300 <= reading_high.nox <= 900  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_ADVANCED (2500)
+K0083,labs/gaslab/gaslab/resolution.py,409,aee21c3d52,,0.75 <= lchem_idle <= 0.88  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (idle)
+K0084,labs/gaslab/gaslab/resolution.py,410,f65e881c78,,and reading.o2 <= 0.5  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (idle)
+K0085,labs/gaslab/gaslab/resolution.py,413,601607ef53,,and reading_high.o2 <= 0.5  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
+K0086,labs/gaslab/gaslab/resolution.py,414,84957bb3f6,,and 0.85 <= lchem_high <= 0.95  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
+K0087,labs/gaslab/gaslab/resolution.py,415,919e6a9544,,and 200 <= reading_high.hc  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
+K0088,labs/gaslab/gaslab/resolution.py,417,194ea48fe4,,and co_ceiling <= reading_high.co <= 4.5  # vocab: GAS_VOCABULARY §10.2
+K0089,labs/gaslab/gaslab/resolution.py,418,015e5fb55b,,and 100 <= reading_high.nox <= 400  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
+K0090,labs/gaslab/gaslab/resolution.py,439,cf48dce7b2,,120 <= reading.hc <= 250  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (idle)
+K0091,labs/gaslab/gaslab/resolution.py,440,519d84cae0,,and 0.10 <= reading.co <= 0.30  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (idle)
+K0092,labs/gaslab/gaslab/resolution.py,441,5a197aeafc,,and 11.5 <= reading.co2 <= 13.0  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (idle)
+K0093,labs/gaslab/gaslab/resolution.py,442,95721711fa,,and 0.8 <= reading.o2 <= 1.5  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (idle)
+K0094,labs/gaslab/gaslab/resolution.py,443,d643738f1a,,and 20 <= reading.nox <= 60  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (idle)
+K0095,labs/gaslab/gaslab/resolution.py,444,6c5941a6bf,,and 1.01 <= lchem_idle <= 1.04  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (idle)
+K0096,labs/gaslab/gaslab/resolution.py,447,97f6f68676,,reading_high.nox > 1200  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED — NOx very high at 2500
+K0097,labs/gaslab/gaslab/resolution.py,448,9673b50314,,and 1.0 <= lchem_high <= 1.06  # wiki: GASWIKI-05 §FAULT_TIMING_OVER_ADVANCED (2500)
+K0098,labs/gaslab/gaslab/resolution.py,449,a19e8f0e78,,"and reading_high.hc <= 100  # vocab: GAS_VOCABULARY §10.1 normal_borderline.max — ""others near normal"""
+K0099,labs/gaslab/gaslab/resolution.py,450,3fb466b6de,,"and reading_high.co <= 0.3  # vocab: GAS_VOCABULARY §10.2 normal_with_cat.max — ""others near normal"""
+K0100,labs/gaslab/gaslab/resolution.py,462,dfd985843d,,75 <= reading.hc <= 500  # wiki: GASWIKI-06A §FAULT_WORN_VALVE_SEALS physics — v1 75–250 and v2 300–500 are one fault at two severities
+K0101,labs/gaslab/gaslab/resolution.py,463,f5d615446d,,and reading_high.hc <= 35  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0102,labs/gaslab/gaslab/resolution.py,465,c4b63b613f,,and reading_high.co <= 0.15  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0103,labs/gaslab/gaslab/resolution.py,466,60564fbea9,,and 0.96 <= lchem_high <= 1.0  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0104,labs/gaslab/gaslab/resolution.py,467,974bd56bb0,,and (fuel_trim is None or -8.0 <= fuel_trim <= 8.0)  # vocab: GAS_VOCABULARY §10.8 stable_band
+K0105,labs/gaslab/gaslab/resolution.py,471,d10b09c08b,,100 <= reading.hc <= 150  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0106,labs/gaslab/gaslab/resolution.py,472,63824563d4,,and reading_high.hc > 300  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0107,labs/gaslab/gaslab/resolution.py,474,93146f92fd,,and reading_high.co > 0.5  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0108,labs/gaslab/gaslab/resolution.py,475,094d44a663,,and lchem_high < 0.99  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0109,labs/gaslab/gaslab/resolution.py,476,061d7bf6a9,,and (fuel_trim is None or fuel_trim <= -12.0)  # vocab: GAS_VOCABULARY §10.8 negative_load_cut
+K0110,labs/gaslab/gaslab/resolution.py,480,3a943bcc34,,150 <= reading.hc <= 300  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0111,labs/gaslab/gaslab/resolution.py,481,c5cf545f8f,,and 150 <= reading_high.hc <= 300  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0112,labs/gaslab/gaslab/resolution.py,483,3106b647e5,,and 1.0 <= lchem_high <= 1.03  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0113,labs/gaslab/gaslab/resolution.py,488,3843a77a0e,,and reading.hc > 500  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0114,labs/gaslab/gaslab/resolution.py,490,a6b750baf0,,and reading.co <= 0.10  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0115,labs/gaslab/gaslab/resolution.py,491,8883679e4a,,and reading_high.co <= 0.10  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0116,labs/gaslab/gaslab/resolution.py,492,32637e2bf6,,and 0.995 <= lchem_idle <= 1.005  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0117,labs/gaslab/gaslab/resolution.py,493,bb7cdc8b2d,,and 0.995 <= lchem_high <= 1.005  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0118,labs/gaslab/gaslab/resolution.py,497,ecd24a874d,,reading.hc > 500  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0119,labs/gaslab/gaslab/resolution.py,498,5fdc31f763,,and reading_high.hc > 500  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0120,labs/gaslab/gaslab/resolution.py,499,9e54402ee5,,and (lchem_high < 0.95 or lchem_high > 1.05)  # wiki: GASWIKI-06A §CONCEPT_RPM_DIFFERENTIAL_DISCRIMINATOR
+K0121,labs/gaslab/gaslab/resolution.py,523,a6f1c5f68b,,if not (0.98 <= lchem <= 1.02 and 0.98 <= lchem_high <= 1.02):  # wiki: GAS_WIKI §7.6
+K0122,labs/gaslab/gaslab/resolution.py,529,51fe0d8b95,,14.5 <= reading_high.co2 <= 16.0  # wiki: GAS_WIKI §7.6
+K0123,labs/gaslab/gaslab/resolution.py,530,913c339176,,and reading_high.o2 < 0.5  # wiki: GAS_WIKI §7.6
+K0124,labs/gaslab/gaslab/resolution.py,531,92efc423dc,,and reading_high.co < 0.2  # wiki: GAS_WIKI §7.6
+K0125,labs/gaslab/gaslab/resolution.py,532,9763b567e0,,and reading_high.hc < 35  # wiki: GAS_WIKI §7.6
+K0126,labs/gaslab/gaslab/resolution.py,536,bf722a0e1f,,13.5 <= reading.co2 <= 14.5  # wiki: GAS_WIKI §7.6
+K0127,labs/gaslab/gaslab/resolution.py,537,d9e7671d63,,and 0.3 <= reading.o2 <= 0.7  # wiki: GAS_WIKI §7.6
+K0128,labs/gaslab/gaslab/resolution.py,538,76970d7941,,and 0.5 <= reading.co <= 0.9  # wiki: GAS_WIKI §7.6
+K0129,labs/gaslab/gaslab/resolution.py,539,2e84713f80,,and 75 <= reading.hc <= 125  # wiki: GAS_WIKI §7.6
+K0130,labs/gaslab/gaslab/resolution.py,543,4dda414147,,reading_high.co2 < 13.5  # wiki: GAS_WIKI §7.6
+K0131,labs/gaslab/gaslab/resolution.py,544,1f5969697a,,and reading_high.hc > 100  # wiki: GAS_WIKI §7.6
+K0132,labs/gaslab/gaslab/resolution.py,545,43a9c25388,,and reading_high.co > 0.5  # wiki: GAS_WIKI §7.6
+K0133,labs/gaslab/gaslab/resolution.py,546,623b505d1c,,and reading_high.o2 > 0.5  # wiki: GAS_WIKI §7.6
+K0134,labs/gaslab/gaslab/resolution.py,550,df13a95d9f,,reading.co2 < 13.5  # wiki: GAS_WIKI §7.6
+K0135,labs/gaslab/gaslab/resolution.py,551,6ab64f86b3,,and reading.hc > 100  # wiki: GAS_WIKI §7.6
+K0136,labs/gaslab/gaslab/resolution.py,552,70ca337d7c,,and reading.co > 0.5  # wiki: GAS_WIKI §7.6
+K0137,labs/gaslab/gaslab/resolution.py,553,973fd50abe,,and reading.o2 > 0.5  # wiki: GAS_WIKI §7.6
+K0138,labs/gaslab/gaslab/resolution.py,581,8d394070f9,NON_DOMAIN,return len(candidates) <= 1
 K0139,labs/gaslab/gaslab/rule_engine.py,61,d527df0c78,,volumetric_sum < 14.0  # wiki: GAS_WIKI §6.1; GAS_WIKI §7.7 reachability table
 K0140,labs/gaslab/gaslab/rule_engine.py,63,8e38b47de4,,and reading.co + reading.co2 > 6.0
 K0141,labs/gaslab/gaslab/rule_engine.py,64,32a436854b,,"and reading.hc <= hc_bounds.get(""max"", 100)  # vocab: GAS_VOCABULARY §10.1 normal_borderline.max"
@@ -191,15 +191,15 @@ K0189,labs/gaslab/gaslab/rule_engine.py,389,feb8952d97,,and 400 <= reading.hc <=
 K0190,labs/gaslab/gaslab/rule_engine.py,390,ce21881c0d,,and 3.5 <= reading.co <= 7.0
 K0191,labs/gaslab/gaslab/rule_engine.py,391,3978f93022,,and 0.75 <= lambda_chem(reading) <= 0.88
 K0192,labs/gaslab/gaslab/rule_engine.py,392,534fc5287a,,and reading.o2 <= 0.5
-K0193,labs/gaslab/gaslab/rule_engine.py,401,c06cc6981d,,and 200 <= reading_high.hc  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
-K0194,labs/gaslab/gaslab/rule_engine.py,403,5fd4050178,,and co_ceiling <= reading_high.co <= 4.5
-K0195,labs/gaslab/gaslab/rule_engine.py,404,3ec4c7a101,,and 11.0 <= reading_high.co2 <= 13.0
-K0196,labs/gaslab/gaslab/rule_engine.py,405,1af1536cc2,,and reading_high.o2 <= 0.5
-K0197,labs/gaslab/gaslab/rule_engine.py,406,40cbb8e2fe,,and 100 <= reading_high.nox <= 400
-K0198,labs/gaslab/gaslab/rule_engine.py,407,a317473673,,and 0.85 <= lchem_high <= 0.95
-K0199,labs/gaslab/gaslab/rule_engine.py,420,8202d7c8a3,,"if reading.co2 >= 8.0:  # wiki: GAS_WIKI §4.14 — running-engine combustion, not a cranking sample"
-K0200,labs/gaslab/gaslab/rule_engine.py,427,7d64a9ba2b,,"if reading.co >= 1.5:  # vocab: GAS_VOCABULARY §10.2 clear_rich.min — fuel arrives, does not burn"
-K0201,labs/gaslab/gaslab/rule_engine.py,429,acc005821c,,if reading.co2 < 5.0:  # vocab: GAS_VOCABULARY §10.3 total_quench.max — no or too little fuel burns
+K0193,labs/gaslab/gaslab/rule_engine.py,400,c06cc6981d,,and 200 <= reading_high.hc  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
+K0194,labs/gaslab/gaslab/rule_engine.py,402,5fd4050178,,and co_ceiling <= reading_high.co <= 4.5
+K0195,labs/gaslab/gaslab/rule_engine.py,403,3ec4c7a101,,and 11.0 <= reading_high.co2 <= 13.0
+K0196,labs/gaslab/gaslab/rule_engine.py,404,1af1536cc2,,and reading_high.o2 <= 0.5
+K0197,labs/gaslab/gaslab/rule_engine.py,405,40cbb8e2fe,,and 100 <= reading_high.nox <= 400
+K0198,labs/gaslab/gaslab/rule_engine.py,406,a317473673,,and 0.85 <= lchem_high <= 0.95
+K0199,labs/gaslab/gaslab/rule_engine.py,419,8202d7c8a3,,"if reading.co2 >= 8.0:  # wiki: GAS_WIKI §4.14 — running-engine combustion, not a cranking sample"
+K0200,labs/gaslab/gaslab/rule_engine.py,426,7d64a9ba2b,,"if reading.co >= 1.5:  # vocab: GAS_VOCABULARY §10.2 clear_rich.min — fuel arrives, does not burn"
+K0201,labs/gaslab/gaslab/rule_engine.py,428,acc005821c,,if reading.co2 < 5.0:  # vocab: GAS_VOCABULARY §10.3 total_quench.max — no or too little fuel burns
 K0202,labs/gaslab/gaslab/validity_gates.py,27,4746df3d82,,if volumetric_sum < 14.0:  # wiki: GAS_WIKI §6.1
 K0203,labs/gaslab/gaslab/validity_gates.py,29,9d2bb29f1d,,if volumetric_sum > 18.0:  # wiki: GAS_WIKI §6.1
 K0204,labs/gaslab/gaslab/validity_gates.py,31,10985fee10,,"if volumetric_sum > 16.0:  # wiki: GAS_WIKI §6.1 — (16, 18]"
