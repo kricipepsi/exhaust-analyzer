@@ -32,25 +32,26 @@ class EuroThresholds(NamedTuple):
     """Euro-class default emissions ceilings from ``CONCEPT_EURO_SCALING``."""
 
     co_idle_ceiling: float
-    hc_2500_ceiling: int | None
 
 
+# DVSA in-service limits, natural idle CO, by date of first use (T-GASA-17 source S009 Table 1):
+# 1/8/95-31/8/02 0.5 %, from 1/9/02 0.3 %. Euro 1-2 map to the 0.5 % band, Euro 3-5 to the 0.3 % band (T-GASA-19).
 _EURO_THRESHOLDS: dict[str, EuroThresholds] = {
-    "1": EuroThresholds(4.5, None),  # wiki: GASWIKI-02 §2.8
-    "2": EuroThresholds(0.5, 1200),  # wiki: GASWIKI-02 §2.8
-    "3": EuroThresholds(0.3, 200),  # wiki: GASWIKI-02 §2.8
-    "4": EuroThresholds(0.2, 200),  # wiki: GASWIKI-02 §2.8
-    "5": EuroThresholds(0.2, 200),  # wiki: GASWIKI-02 §2.8
+    "1": EuroThresholds(0.5),
+    "2": EuroThresholds(0.5),
+    "3": EuroThresholds(0.3),
+    "4": EuroThresholds(0.3),
+    "5": EuroThresholds(0.3),
 }
 
 
 def _euro_thresholds(dna: GasLabDnaView) -> EuroThresholds:
-    """Return Euro-scaled CO/HC ceilings, defaulting unknown values to Euro 4."""
+    """Return the Euro-scaled idle CO ceiling, defaulting unknown values to Euro 4."""
     category = dna.euro_emission_category.upper().replace("_", " ").replace("-", " ")
     for euro_class, thresholds in _EURO_THRESHOLDS.items():
         if euro_class in category:
             return thresholds
-    return _EURO_THRESHOLDS["4"]  # wiki: GASWIKI-02 §2.8
+    return _EURO_THRESHOLDS["4"]  # T-GASA-19: unknown class -> the from-1/9/02 band
 
 
 _CAM_TIMING_SIGNATURES: set[str] = {
@@ -92,19 +93,23 @@ def _value_within_bounds(value: float, bounds: dict) -> bool:
     )
 
 
+_CAM_MAP_CO_FLOOR_2500 = 1.5  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500) CO 1.5-4.5 %; vocab: GAS_VOCABULARY §10.2 mild_rich.max
+_CAM_MAP_HC_MAX_2500 = 600  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500) HC 200-600 ppm
+
+
 def _rich_co_ceiling(dna: GasLabDnaView) -> float:
     """Rich-CO ceiling (``mild_rich.max``) at 2500 RPM for the CAM_MAP branch.
 
-    The per-vehicle ``co_high_idle`` from the vehicle's CoC overrides the Euro
+    The per-vehicle ``co_high_idle`` from the vehicle's CoC overrides the 1.5 %
     default, but only when the DNA lookup is HIGH-confidence and the field is
-    populated.  Otherwise the Euro threshold table applies.
+    populated.  The default is the signature floor, not a legal limit (T-GASA-19).
 
     Source: ``GAS_VOCABULARY §11`` (per-vehicle override gate, confidence=HIGH) +
-    ``GASWIKI-02 §2.8`` (Euro-scaled defaults).
+    ``GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP`` (2500 rpm CO 1.5-4.5 %).
     """
     if dna.confidence == "HIGH" and dna.co_high_idle is not None:  # vocab: GAS_VOCABULARY §11
         return dna.co_high_idle
-    return _euro_thresholds(dna).co_idle_ceiling  # wiki: GASWIKI-02 §2.8
+    return _CAM_MAP_CO_FLOOR_2500
 
 
 def _prune_low_hc_misfires_when_timing_confirmed(
@@ -400,7 +405,6 @@ def apply_differentiators(
             # (GAS_VOCABULARY §11, GASWIKI-02 §2.8).
             # Source: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP.
             co_ceiling = _rich_co_ceiling(dna)  # vocab: GAS_VOCABULARY §11/§10.2
-            hc_ceiling = _euro_thresholds(dna).hc_2500_ceiling
             if not (
                 0.75 <= lchem_idle <= 0.88  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (idle)
                 and reading.o2 <= 0.5  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (idle)
@@ -409,9 +413,7 @@ def apply_differentiators(
                 and reading_high.o2 <= 0.5  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
                 and 0.85 <= lchem_high <= 0.95  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
                 and 200 <= reading_high.hc  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
-                and (
-                    hc_ceiling is None or reading_high.hc <= hc_ceiling
-                )  # wiki: GASWIKI-02 §2.8
+                and reading_high.hc <= _CAM_MAP_HC_MAX_2500  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
                 and co_ceiling <= reading_high.co <= 4.5  # vocab: GAS_VOCABULARY §10.2
                 and 100 <= reading_high.nox <= 400  # wiki: GASWIKI-06B §FAULT_CAM_TIMING_RETARDED_MAP (2500)
             ):

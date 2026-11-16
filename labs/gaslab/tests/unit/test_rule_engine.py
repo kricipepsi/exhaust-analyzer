@@ -10,7 +10,7 @@ import pytest
 from gaslab.contracts import ChemicalSignature, EngineStateBucket, GasReading, SampleValidity
 from gaslab.dna_view import GasLabDnaView
 from gaslab.ontology_loader import load_ontology
-from gaslab.resolution import _resolve_lean_timing_cosurvival, apply_differentiators
+from gaslab.resolution import _euro_thresholds, _resolve_lean_timing_cosurvival, apply_differentiators
 from gaslab.rule_engine import _coc_adjust_normal_bounds, _matching_fault_candidates, classify
 
 
@@ -731,7 +731,7 @@ def test_coc_adjust_uses_euro_default_when_targets_none() -> None:
     sig = {"co": {"min": 0.1, "max": 0.45}, "lambda": {"min": 0.995, "max": 1.005}}
     dna = _dna(target_lambda_v112=None, co_low_idle=None)
     adjusted = _coc_adjust_normal_bounds(sig, dna)
-    assert adjusted["co"]["max"] == 0.2
+    assert adjusted["co"]["max"] == 0.3
     assert adjusted["lambda"] == sig["lambda"]
 
 
@@ -836,7 +836,7 @@ def test_euro2_loosens_co_ceiling(ontology: dict) -> None:
 
 def test_euro_default_is_euro4_when_absent(ontology: dict) -> None:
     """Unknown or absent Euro category falls back to the Euro-4 CO ceiling."""
-    reading = _reading(hc=15, co=0.30, co2=15.0, o2=0.2, nox=50)
+    reading = _reading(hc=15, co=0.35, co2=15.0, o2=0.2, nox=50)
 
     candidates = _matching_fault_candidates(
         reading,
@@ -866,27 +866,26 @@ def test_per_vehicle_coc_overrides_euro_default(ontology: dict) -> None:
     assert "NORMAL_OPERATION" not in candidates
 
 
-def test_euro4_tightens_hc_ceiling_2500(ontology: dict) -> None:
-    """Euro-4 rejects a 2500-RPM CAM_MAP HC value that Euro-2 admits."""
-    reading_high = _reading(hc=800, co=0.8, co2=12.5, o2=0.2, nox=200)
+def test_cam_map_hc_window_2500_ignores_euro_class(ontology: dict) -> None:
+    """CAM_TIMING_RETARDED_MAP 2500-RPM HC window [200, 600] is independent of Euro class."""
+    for euro in ("Euro 2", "Euro 4"):
+        kept = apply_differentiators(
+            ["CAM_TIMING_RETARDED_MAP"],
+            _cam_map_idle_rich(),
+            _dna(euro_emission_category=euro),
+            ontology,
+            reading_high=_reading(hc=500, co=2.2, co2=12.0, o2=0.2, nox=200),
+        )
+        assert kept == ["CAM_TIMING_RETARDED_MAP"], euro
 
-    euro4_result = apply_differentiators(
-        ["CAM_TIMING_RETARDED_MAP"],
-        _cam_map_idle_rich(),
-        _dna(euro_emission_category="Euro 4"),
-        ontology,
-        reading_high=reading_high,
-    )
-    assert euro4_result == []
-
-    euro2_result = apply_differentiators(
-        ["CAM_TIMING_RETARDED_MAP"],
-        _cam_map_idle_rich(),
-        _dna(euro_emission_category="Euro 2"),
-        ontology,
-        reading_high=reading_high,
-    )
-    assert euro2_result == ["CAM_TIMING_RETARDED_MAP"]
+        dropped = apply_differentiators(
+            ["CAM_TIMING_RETARDED_MAP"],
+            _cam_map_idle_rich(),
+            _dna(euro_emission_category=euro),
+            ontology,
+            reading_high=_reading(hc=800, co=2.2, co2=12.0, o2=0.2, nox=200),
+        )
+        assert dropped == [], euro
 
 
 def test_coc_lambda_clamped_to_sane_floor_ceiling() -> None:
@@ -1660,3 +1659,14 @@ def test_not_equals_edge_fails_closed_on_unresolved_field(ontology: dict) -> Non
         EngineStateBucket.STABILIZED_IDLE,
     )
     assert "VACUUM_REGULATOR_DIAPHRAGM_RUPTURE" not in survivors
+
+
+def test_euro_idle_co_ceilings_follow_dvsa_bands() -> None:
+    """_EURO_THRESHOLDS maps Euro 1-2 to 0.5 % and Euro 3-5 / unknown to 0.3 %."""
+    expected = {"1": 0.5, "2": 0.5, "3": 0.3, "4": 0.3, "5": 0.3}
+    actual = {
+        e: _euro_thresholds(_dna(euro_emission_category=f"Euro {e}")).co_idle_ceiling
+        for e in "12345"
+    }
+    assert actual == expected
+    assert _euro_thresholds(_dna(euro_emission_category="")).co_idle_ceiling == 0.3
